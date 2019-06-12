@@ -93,12 +93,22 @@ namespace MinishRandomizer.Core
 	public enum ItemType
 	{
 		Untyped,
+        SmithSword = 0x01,
+        GreenSword = 0x02,
+        RedSword = 0x03,
+        BlueSword = 0x04,
+//      UnusedSword = 0x05,
+        FourSword = 0x06,
+        Bombs = 0x07,
+        RemoteBombs = 0x08,
 		Bow = 0x09,
-
-		Boomerang = 0x0C,
-
+        LightArrow = 0x0A,
+        Boomerang = 0x0B,
+		MagicBoomerang = 0x0C,
+        Shield = 0x0D,
+        MirrorShield = 0x0E,
 		LanternOff = 0x0F,
-
+        
 		GustJar = 0x11,
 		PacciCane = 0x12,
 		MoleMitts = 0x13,

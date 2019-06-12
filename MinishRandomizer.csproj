@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{704DAD64-9C28-458B-8980-A945C1159FFA}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Minish_Cap_Randomizer</RootNamespace>
-    <AssemblyName>Minish Cap Randomizer</AssemblyName>
+    <RootNamespace>MinishRandomizer</RootNamespace>
+    <AssemblyName>MinishRandomizer</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="Core\Constants.cs" />
     <Compile Include="Core\ROM.cs" />
+    <Compile Include="Randomizer\Dependency.cs" />
     <Compile Include="UI\MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,6 +73,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -82,7 +84,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Resources\default.locdata" />
+    <EmbeddedResource Include="Resources\default.logic" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

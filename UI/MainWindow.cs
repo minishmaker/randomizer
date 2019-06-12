@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,7 +16,6 @@ namespace MinishRandomizer
     public partial class MainWindow : Form
     {
         private ROM ROM_;
-        private string locationPath;
 
         public MainWindow()
         {
@@ -34,9 +34,19 @@ namespace MinishRandomizer
                 return;
             }
 
-            Shuffler shuffler = new Shuffler();
-            shuffler.LoadLocations(locationPath);
 
+            Shuffler shuffler = new Shuffler(Path.GetDirectoryName(ROM.Instance.path));
+
+            if (customLocationCheckBox.Checked)
+            {
+                shuffler.LoadLocations(customLocationPath.Text);
+            }
+            else
+            {
+                shuffler.LoadLocations(null);
+            }
+
+            shuffler.RandomizeLocations();
         }
 
         private void LoadRom()
@@ -66,6 +76,44 @@ namespace MinishRandomizer
             {
                 MessageBox.Show("Invalid TMC ROM. Please Open a valid ROM.", "Incorrect ROM", MessageBoxButtons.OK);
                 statusText.Text = "Unable to determine ROM.";
+                return;
+            }
+        }
+
+        private void CustomLocationCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CustomLogicCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BrowseLocationButton_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog
+            {
+                Filter = "Location Data|*.location|All Files|*.*",
+                Title = "Select Custom Locations"
+            };
+
+            if (ofd.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+        }
+
+        private void BrowseLogicButton_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog
+            {
+                Filter = "Logic Data|*.logic|All Files|*.*",
+                Title = "Select Custom Logic"
+            };
+
+            if (ofd.ShowDialog() != DialogResult.OK)
+            {
                 return;
             }
         }
