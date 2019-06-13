@@ -1,2 +1,10 @@
-Smith's House;Minor;22-11-00;true
-Shield Location;Normal;0000FA6A;true
+# Default logic for the randomizer
+
+SmithHouse;Minor;22-11-00;true
+
+# Deepwood locations
+# Need gust jar to leave room
+DeepwoodWiggler;Normal;48-00-01;true;Items.GustJar
+DeepwoodButtonShells1;Minor;48-01-01;true;Items.GustJar
+DeepwoodButtonShells2;Minor;48-01-02;true;Items.GustJar
+DeepwoodPreCompassShells;Minor;48-02-01;true;Items.GustJar

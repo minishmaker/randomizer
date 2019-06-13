@@ -69,6 +69,9 @@ namespace MinishRandomizer.Randomizer
 
         public void LoadLocations(string locationFile)
         {
+            Locations.Clear();
+            Items.Clear();
+
             string[] locationStrings;
 
             if (locationFile == null)
@@ -78,7 +81,7 @@ namespace MinishRandomizer.Randomizer
                 using (StreamReader reader = new StreamReader(stream))
                 {
                     string allLocations = reader.ReadToEnd();
-                    locationStrings = allLocations.Split('\n');
+                    locationStrings = allLocations.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
                 }
             }
             else
@@ -88,27 +91,51 @@ namespace MinishRandomizer.Randomizer
             
             foreach (string locationString in locationStrings)
             {
+                if (locationString == "" || locationString[0] == '#')
+                {
+                    continue;
+                }
+
                 Location newLocation = Location.GetLocation(locationString);
                 Locations.Add(newLocation);
-                Items.Add(newLocation.Contents);
+                if (newLocation.Type != Location.LocationType.Helper)
+                {
+                    Items.Add(newLocation.Contents);
+                }
             }
         }
 
         public void RandomizeLocations()
         {
-            List<Location> unfilledLocations = Locations.Where(location => !location.Filled).ToList();
-            while (unfilledLocations.Count > 0)
+            List<Item> unplacedItems = Items.ToList();
+            List<Location> unfilledLocations = Locations.Where(location => !location.Filled && location.Type != Location.LocationType.Helper).ToList();
+            unfilledLocations.Shuffle(RNG);
+            unplacedItems.Shuffle(RNG);
+
+            int itemIndex;
+            while (unplacedItems.Count > 0)
             {
-                Location location = unfilledLocations[RNG.Next(unfilledLocations.Count)];
-                Item item = Items[RNG.Next(Items.Count)];
-                List<Item> unplacedItems = Items.Where(listItem => !ReferenceEquals(listItem, item)).ToList();
-                if (location.IsAccessible(unplacedItems))
+                // TODO: Make this fill not bad
+                itemIndex = RNG.Next(unplacedItems.Count);
+                Item item = unplacedItems[itemIndex];
+                Console.WriteLine($"Placing: {item.Type.ToString()}");
+                unplacedItems.RemoveAt(itemIndex);
+                List<Location> availableLocations = unfilledLocations.Where(location => location.CanPlace(item, unplacedItems, unfilledLocations)).ToList();
+
+                if (availableLocations.Count <= 0)
                 {
-                    Console.WriteLine($"Loc: {location.Name} Item: {item.Type.ToString()}");
-                    Items.Remove(item);
-                    location.Fill(item);
-                    unfilledLocations.Remove(location);
+                    Console.WriteLine($"Could not place {item.Type.ToString()}!");
+                    return;
                 }
+
+                availableLocations[0].Fill(item);
+                Console.WriteLine($"Placed {item.Type.ToString()} at {availableLocations[0].Name} with {unplacedItems.Count} items remaining\n");
+                unfilledLocations.Remove(availableLocations[0]);
+            }
+            
+            if (unfilledLocations.Count != 0)
+            {
+                Console.WriteLine("Not all locations filled!");
             }
 
             using (MemoryStream ms = new MemoryStream(ROM.Instance.romData))

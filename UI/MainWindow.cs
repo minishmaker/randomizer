@@ -37,9 +37,9 @@ namespace MinishRandomizer
 
             Shuffler shuffler = new Shuffler(Path.GetDirectoryName(ROM.Instance.path));
 
-            if (customLocationCheckBox.Checked)
+            if (customLogicCheckBox.Checked)
             {
-                shuffler.LoadLocations(customLocationPath.Text);
+                shuffler.LoadLocations(customLogicPath.Text);
             }
             else
             {
@@ -80,28 +80,10 @@ namespace MinishRandomizer
             }
         }
 
-        private void CustomLocationCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void CustomLogicCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-
-        }
-
-        private void BrowseLocationButton_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog ofd = new OpenFileDialog
-            {
-                Filter = "Location Data|*.location|All Files|*.*",
-                Title = "Select Custom Locations"
-            };
-
-            if (ofd.ShowDialog() != DialogResult.OK)
-            {
-                return;
-            }
+            browseLogicButton.Enabled = customLogicCheckBox.Checked;
+            customLogicPath.Enabled = customLogicCheckBox.Checked;
         }
 
         private void BrowseLogicButton_Click(object sender, EventArgs e)
@@ -116,6 +98,8 @@ namespace MinishRandomizer
             {
                 return;
             }
+
+            customLogicPath.Text = ofd.FileName;
         }
     }
 }

@@ -20,6 +20,8 @@ namespace MinishRandomizer.Randomizer
         {
             List<Dependency> dependencies = new List<Dependency>();
 
+            logic = logic.Replace(" ", "");
+
             // Match: comma, capture and match anything between 
             string regexPattern = @"(?:,|^)\(([&|](?:[^()]|(?<p>\()|(?<-p>\)))+)\)(?:,|$)|,";
             string[] subLogic = Regex.Split(logic, regexPattern);
@@ -29,6 +31,7 @@ namespace MinishRandomizer.Randomizer
                 {
                     continue;
                 }
+
 
                 switch(sequence[0])
                 {
@@ -42,7 +45,33 @@ namespace MinishRandomizer.Randomizer
                         dependencies.Add(orDependency);
                         break;
                     default:
-                        
+                        string[] dependencyParts = sequence.Split('.');
+                        switch (dependencyParts[0])
+                        {
+                            case "Locations":
+                                LocationDependency locationDependency = new LocationDependency(dependencyParts[1]);
+                                dependencies.Add(locationDependency);
+                                break;
+                            case "Items":
+                                if (Enum.TryParse(dependencyParts[1], out ItemType type))
+                                {
+                                    byte subType = 0;
+                                    if (dependencyParts.Length >= 3)
+                                    {
+                                        if (!byte.TryParse(dependencyParts[2], NumberStyles.HexNumber, null, out subType))
+                                        {
+                                            if (Enum.TryParse(dependencyParts[2], out KinstoneType subKinstoneType))
+                                            {
+                                                subType = (byte)subKinstoneType;
+                                            }
+                                        }
+                                    }
+
+                                    ItemDependency itemDependency = new ItemDependency(new Item(type, subType));
+                                    dependencies.Add(itemDependency);
+                                }
+                                break;
+                        }
                         break;
                 }
             }
@@ -50,50 +79,58 @@ namespace MinishRandomizer.Randomizer
             return dependencies;
         }
 
-        private Item RequiredItem;
-
-        public Dependency()
-        {
-
-        }
-
-        public Dependency(string dependencyText)
-        {
-            string[] dependencyParts = dependencyText.Split('.');
-            switch(dependencyParts[0].ToLower())
-            {
-                case "locations":
-
-                    break;
-                case "items":
-                    if (Enum.TryParse(dependencyParts[1], out ItemType type))
-                    {
-                        byte subType = 0;
-                        if (dependencyParts.Length >= 2)
-                        {
-                            if (!byte.TryParse(dependencyParts[2], NumberStyles.HexNumber, null, out subType))
-                            {
-                                if (Enum.TryParse(dependencyParts[2], out KinstoneType subKinstoneType))
-                                {
-                                    subType = (byte)subKinstoneType;
-                                }
-                            }
-                        }
-                        RequiredItem = new Item(type, subType);
-                    }
-                    else
-                    {
-                        RequiredItem = new Item(ItemType.Untyped, 0);
-                    }
-                    break;
-            }
-        }
-
-        public virtual bool DependencyFulfilled(List<Item> unplacedItems)
+        public virtual bool DependencyFulfilled(List<Item> availableItems, List<Location> locations)
         {
             return false;
         }
 
+    }
+
+    public class ItemDependency : Dependency
+    {
+        private Item RequiredItem;
+        public ItemDependency(Item item)
+        {
+            RequiredItem = item;
+        }
+
+        public override bool DependencyFulfilled(List<Item> availableItems, List<Location> locations)
+        {
+            foreach (Item item in availableItems)
+            {
+                Console.WriteLine($"Has: {item.Type.ToString()} Needs: {RequiredItem.Type.ToString()}");
+                if (item.Type == RequiredItem.Type && item.SubValue == RequiredItem.SubValue)
+                {
+                    return true;
+                }
+            }
+
+            Console.WriteLine($"Inccessible because: {RequiredItem.Type.ToString()} is not available!");
+            return false;
+        }
+    }
+
+    public class LocationDependency : Dependency
+    {
+        private string RequiredLocationName;
+        public LocationDependency(string locationName)
+        {
+            RequiredLocationName = locationName;
+        }
+
+        public override bool DependencyFulfilled(List<Item> availableItems, List<Location> locations)
+        {
+            foreach (Location location in locations)
+            {
+                if (location.Name == RequiredLocationName)
+                {
+                    Console.WriteLine($"Sub-Evaluating: {RequiredLocationName}");
+                    return location.CanPlace(new Item(), availableItems, locations);
+                }
+            }
+            Console.WriteLine($"Could not find location: {RequiredLocationName}");
+            return false;
+        }
     }
 
     public class AndDependency : Dependency
@@ -105,11 +142,11 @@ namespace MinishRandomizer.Randomizer
             AndList = GetDependencies(dependencyText);
         }
 
-        override public bool DependencyFulfilled(List<Item> unplacedItems)
+        public override bool DependencyFulfilled(List<Item> availableItems, List<Location> locations)
         {
             foreach (Dependency dependency in AndList)
             {
-                if (dependency.DependencyFulfilled(unplacedItems) == false)
+                if (dependency.DependencyFulfilled(availableItems, locations) == false)
                 {
                     return false;
                 }
@@ -127,11 +164,11 @@ namespace MinishRandomizer.Randomizer
             OrList = GetDependencies(dependencyText);
         }
 
-        override public bool DependencyFulfilled(List<Item> unplacedItems)
+        public override bool DependencyFulfilled(List<Item> availableItems, List<Location> locations)
         {
             foreach (Dependency dependency in OrList)
             {
-                if (dependency.DependencyFulfilled(unplacedItems) == true)
+                if (dependency.DependencyFulfilled(availableItems, locations) == true)
                 {
                     return true;
                 }

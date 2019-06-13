@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.statusText = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -35,19 +36,14 @@
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.randomize = new System.Windows.Forms.Button();
             this.logicTab = new System.Windows.Forms.TabPage();
-            this.customLogicCheckBox = new System.Windows.Forms.CheckBox();
-            this.customLocationPath = new System.Windows.Forms.TextBox();
-            this.browseLogicButton = new System.Windows.Forms.Button();
-            this.browseLocationButton = new System.Windows.Forms.Button();
             this.customLogicPath = new System.Windows.Forms.TextBox();
-            this.customLocationCheckBox = new System.Windows.Forms.CheckBox();
+            this.browseLogicButton = new System.Windows.Forms.Button();
+            this.customLogicCheckBox = new System.Windows.Forms.CheckBox();
             this.mainTabs = new System.Windows.Forms.TabControl();
-            this.locationsTab = new System.Windows.Forms.TabPage();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.logicTab.SuspendLayout();
             this.mainTabs.SuspendLayout();
-            this.locationsTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -113,24 +109,13 @@
             this.logicTab.Text = "Logic";
             this.logicTab.UseVisualStyleBackColor = true;
             // 
-            // customLogicCheckBox
+            // customLogicPath
             // 
-            this.customLogicCheckBox.AutoSize = true;
-            this.customLogicCheckBox.Location = new System.Drawing.Point(5, 152);
-            this.customLogicCheckBox.Name = "customLogicCheckBox";
-            this.customLogicCheckBox.Size = new System.Drawing.Size(112, 17);
-            this.customLogicCheckBox.TabIndex = 5;
-            this.customLogicCheckBox.Text = "Use Custom Logic";
-            this.customLogicCheckBox.UseVisualStyleBackColor = true;
-            this.customLogicCheckBox.CheckedChanged += new System.EventHandler(this.CustomLogicCheckBox_CheckedChanged);
-            // 
-            // customLocationPath
-            // 
-            this.customLocationPath.Enabled = false;
-            this.customLocationPath.Location = new System.Drawing.Point(113, 175);
-            this.customLocationPath.Name = "customLocationPath";
-            this.customLocationPath.Size = new System.Drawing.Size(206, 20);
-            this.customLocationPath.TabIndex = 3;
+            this.customLogicPath.Enabled = false;
+            this.customLogicPath.Location = new System.Drawing.Point(113, 175);
+            this.customLogicPath.Name = "customLogicPath";
+            this.customLogicPath.Size = new System.Drawing.Size(206, 20);
+            this.customLogicPath.TabIndex = 8;
             // 
             // browseLogicButton
             // 
@@ -143,58 +128,25 @@
             this.browseLogicButton.UseVisualStyleBackColor = true;
             this.browseLogicButton.Click += new System.EventHandler(this.BrowseLogicButton_Click);
             // 
-            // browseLocationButton
+            // customLogicCheckBox
             // 
-            this.browseLocationButton.Enabled = false;
-            this.browseLocationButton.Location = new System.Drawing.Point(32, 175);
-            this.browseLocationButton.Name = "browseLocationButton";
-            this.browseLocationButton.Size = new System.Drawing.Size(75, 23);
-            this.browseLocationButton.TabIndex = 4;
-            this.browseLocationButton.Text = "Browse...";
-            this.browseLocationButton.UseVisualStyleBackColor = true;
-            this.browseLocationButton.Click += new System.EventHandler(this.BrowseLocationButton_Click);
-            // 
-            // customLogicPath
-            // 
-            this.customLogicPath.Enabled = false;
-            this.customLogicPath.Location = new System.Drawing.Point(113, 175);
-            this.customLogicPath.Name = "customLogicPath";
-            this.customLogicPath.Size = new System.Drawing.Size(206, 20);
-            this.customLogicPath.TabIndex = 8;
-            // 
-            // customLocationCheckBox
-            // 
-            this.customLocationCheckBox.AutoSize = true;
-            this.customLocationCheckBox.Location = new System.Drawing.Point(5, 152);
-            this.customLocationCheckBox.Name = "customLocationCheckBox";
-            this.customLocationCheckBox.Size = new System.Drawing.Size(146, 17);
-            this.customLocationCheckBox.TabIndex = 6;
-            this.customLocationCheckBox.Text = "Use Custom Location List";
-            this.customLocationCheckBox.UseVisualStyleBackColor = true;
-            this.customLocationCheckBox.CheckedChanged += new System.EventHandler(this.CustomLocationCheckBox_CheckedChanged);
+            this.customLogicCheckBox.AutoSize = true;
+            this.customLogicCheckBox.Location = new System.Drawing.Point(5, 152);
+            this.customLogicCheckBox.Name = "customLogicCheckBox";
+            this.customLogicCheckBox.Size = new System.Drawing.Size(112, 17);
+            this.customLogicCheckBox.TabIndex = 5;
+            this.customLogicCheckBox.Text = "Use Custom Logic";
+            this.customLogicCheckBox.UseVisualStyleBackColor = true;
+            this.customLogicCheckBox.CheckedChanged += new System.EventHandler(this.CustomLogicCheckBox_CheckedChanged);
             // 
             // mainTabs
             // 
             this.mainTabs.Controls.Add(this.logicTab);
-            this.mainTabs.Controls.Add(this.locationsTab);
             this.mainTabs.Location = new System.Drawing.Point(9, 27);
             this.mainTabs.Name = "mainTabs";
             this.mainTabs.SelectedIndex = 0;
             this.mainTabs.Size = new System.Drawing.Size(369, 235);
             this.mainTabs.TabIndex = 9;
-            // 
-            // locationsTab
-            // 
-            this.locationsTab.Controls.Add(this.customLocationCheckBox);
-            this.locationsTab.Controls.Add(this.customLocationPath);
-            this.locationsTab.Controls.Add(this.browseLocationButton);
-            this.locationsTab.Location = new System.Drawing.Point(4, 22);
-            this.locationsTab.Name = "locationsTab";
-            this.locationsTab.Padding = new System.Windows.Forms.Padding(3);
-            this.locationsTab.Size = new System.Drawing.Size(361, 209);
-            this.locationsTab.TabIndex = 1;
-            this.locationsTab.Text = "Locations";
-            this.locationsTab.UseVisualStyleBackColor = true;
             // 
             // MainWindow
             // 
@@ -205,6 +157,7 @@
             this.Controls.Add(this.randomize);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainWindow";
             this.Text = "Minish Cap Randomizer";
@@ -215,8 +168,6 @@
             this.logicTab.ResumeLayout(false);
             this.logicTab.PerformLayout();
             this.mainTabs.ResumeLayout(false);
-            this.locationsTab.ResumeLayout(false);
-            this.locationsTab.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -231,14 +182,10 @@
         private System.Windows.Forms.Button randomize;
         private System.Windows.Forms.ToolStripStatusLabel statusText;
         private System.Windows.Forms.TabPage logicTab;
-        private System.Windows.Forms.CheckBox customLocationCheckBox;
         private System.Windows.Forms.TextBox customLogicPath;
-        private System.Windows.Forms.TextBox customLocationPath;
-        private System.Windows.Forms.Button browseLocationButton;
         private System.Windows.Forms.Button browseLogicButton;
         private System.Windows.Forms.CheckBox customLogicCheckBox;
         private System.Windows.Forms.TabControl mainTabs;
-        private System.Windows.Forms.TabPage locationsTab;
     }
 }
 

@@ -46,7 +46,34 @@ namespace MinishRandomizer.Randomizer
 
             List<Dependency> dependencies = Dependency.GetDependencies(logic);
 
-            return new Location(type, name, address, large, dependencies);
+            Location location = new Location(type, name, address, large, dependencies);
+
+            if (locationParts.Length >= 6)
+            {
+                string[] subParts = locationParts[5].Split('.');
+
+                if (subParts[0] == "Items")
+                {
+                    if (Enum.TryParse(subParts[1], out ItemType replacementType))
+                    {
+                        byte subType = 0;
+                        if (subParts.Length >= 3)
+                        {
+                            if (!byte.TryParse(subParts[2], NumberStyles.HexNumber, null, out subType))
+                            {
+                                if (Enum.TryParse(subParts[2], out KinstoneType subKinstoneType))
+                                {
+                                    subType = (byte)subKinstoneType;
+                                }
+                            }
+                        }
+
+                        location.SetItem(new Item(replacementType, subType));
+                    }
+                }
+            }
+
+            return location;
         }
 
         public static int GetAddressFromString(string addressString)
@@ -94,7 +121,7 @@ namespace MinishRandomizer.Randomizer
             NPCItem,
             KinstoneItem,
             HeartPieceItem,
-            HelperItem
+            Helper
         }
 
         public List<Dependency> Dependencies;
@@ -128,6 +155,11 @@ namespace MinishRandomizer.Randomizer
 
         public void WriteLocation(Writer r)
         {
+            if (Type == LocationType.Helper || Address == 0)
+            {
+                return;
+            }
+
             r.SetPosition(Address);
             r.WriteByte((byte)Contents.Type);
             if (Large)
@@ -148,11 +180,17 @@ namespace MinishRandomizer.Randomizer
             return new Item(type, subType);
         }
 
-        public bool IsAccessible(List<Item> unplacedItems)
+        public bool CanPlace(Item itemToPlace, List<Item> availableItems, List<Location> locations)
         {
+            Console.WriteLine($"Evaluating: {Name}");
+            if (!Large && itemToPlace.SubValue != 0)
+            {
+                Console.WriteLine($"Can't place because {Name} is small!");
+                return false;
+            }
             foreach (Dependency dependency in Dependencies)
             {
-                if (!dependency.DependencyFulfilled(unplacedItems))
+                if (!dependency.DependencyFulfilled(availableItems, locations))
                 {
                     return false;
                 }
@@ -163,8 +201,13 @@ namespace MinishRandomizer.Randomizer
 
         public void Fill(Item contents)
         {
-            Contents = contents;
+            SetItem(contents);
             Filled = true;
+        }
+
+        public void SetItem(Item contents)
+        {
+            Contents = contents;
         }
     }
 }
