@@ -17,9 +17,9 @@ namespace MinishRandomizer.Randomizer
             // Location format: Type;Name;Address;Large;Logic
             string[] locationParts = locationText.Split(';');
 
-            if (locationParts.Length < 4)
+            if (locationParts.Length < 3)
             {
-                return new Location(LocationType.Untyped, "INVALID LOCATION", 0, false, null);
+                return new Location(LocationType.Untyped, "INVALID LOCATION", 0, null);
             }
 
             string name = locationParts[0];
@@ -27,30 +27,24 @@ namespace MinishRandomizer.Randomizer
             string locationType = locationParts[1];
             if (!Enum.TryParse(locationType, out LocationType type) || type == LocationType.Untyped)
             {
-                return new Location(LocationType.Untyped, "INVALID LOCATION", 0, false, null);
+                return new Location(LocationType.Untyped, "INVALID LOCATION", 0, null);
             }
 
             int address = GetAddressFromString(locationParts[2]);
 
-            string largeText = locationParts[3];
-            if (!bool.TryParse(largeText, out bool large))
-            {
-                large = false;
-            }
-
             string logic = "";
-            if (locationParts.Length >= 5)
+            if (locationParts.Length >= 4)
             {
-                logic = locationParts[4];
+                logic = locationParts[3];
             }
 
             List<Dependency> dependencies = Dependency.GetDependencies(logic);
 
-            Location location = new Location(type, name, address, large, dependencies);
+            Location location = new Location(type, name, address, dependencies);
 
-            if (locationParts.Length >= 6)
+            if (locationParts.Length >= 5)
             {
-                string[] subParts = locationParts[5].Split('.');
+                string[] subParts = locationParts[4].Split('.');
 
                 if (subParts[0] == "Items")
                 {
@@ -129,18 +123,15 @@ namespace MinishRandomizer.Randomizer
         public string Name;
         public bool Filled;
         public Item Contents { get; private set; }
-        private bool Large;
         private Item DefaultContents;
         private int Address;
 
-        public Location(LocationType type, string name, int address, bool large, List<Dependency> dependencies)
+        public Location(LocationType type, string name, int address, List<Dependency> dependencies)
         {
             Type = type;
             Name = name;
 
             Address = address;
-
-            Large = large;
 
             Dependencies = dependencies;
 
@@ -155,27 +146,27 @@ namespace MinishRandomizer.Randomizer
 
         public void WriteLocation(Writer r)
         {
-            if (Type == LocationType.Helper || Address == 0)
+            switch (Type)
+            {
+                case LocationType.Helper:
+                case LocationType.Untyped:
+                    return;
+            }
+
+            if (Address == 0)
             {
                 return;
             }
 
             r.SetPosition(Address);
             r.WriteByte((byte)Contents.Type);
-            if (Large)
-            {
-                r.WriteByte(Contents.SubValue);
-            }
+            r.WriteByte(Contents.SubValue);
         }
 
         public Item GetItemContents()
         {
             ItemType type = (ItemType)ROM.Instance.reader.ReadByte(Address);
-            byte subType = 0;
-            if (Large)
-            {
-                subType = ROM.Instance.reader.ReadByte();
-            }
+            byte subType = ROM.Instance.reader.ReadByte();
             
             return new Item(type, subType);
         }
@@ -183,11 +174,6 @@ namespace MinishRandomizer.Randomizer
         public bool CanPlace(Item itemToPlace, List<Item> availableItems, List<Location> locations)
         {
             Console.WriteLine($"Evaluating: {Name}");
-            if (!Large && itemToPlace.SubValue != 0)
-            {
-                Console.WriteLine($"Can't place because {Name} is small!");
-                return false;
-            }
             foreach (Dependency dependency in Dependencies)
             {
                 if (!dependency.DependencyFulfilled(availableItems, locations))

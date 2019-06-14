@@ -51,14 +51,16 @@ namespace MinishRandomizer.Randomizer
 
         private Random RNG;
         private List<Location> Locations;
-        private List<Item> Items;
+        private List<Item> MajorItems;
+        private List<Item> MinorItems;
         private string OutputDirectory;
 
         public Shuffler(string outputDirectory)
         {
             RNG = new Random();
             Locations = new List<Location>();
-            Items = new List<Item>();
+            MajorItems = new List<Item>();
+            MinorItems = new List<Item>();
             OutputDirectory = outputDirectory;
         }
 
@@ -70,7 +72,8 @@ namespace MinishRandomizer.Randomizer
         public void LoadLocations(string locationFile)
         {
             Locations.Clear();
-            Items.Clear();
+            MajorItems.Clear();
+            MinorItems.Clear();
 
             string[] locationStrings;
 
@@ -98,41 +101,35 @@ namespace MinishRandomizer.Randomizer
 
                 Location newLocation = Location.GetLocation(locationString);
                 Locations.Add(newLocation);
-                if (newLocation.Type != Location.LocationType.Helper)
+                switch(newLocation.Type)
                 {
-                    Items.Add(newLocation.Contents);
+                    case Location.LocationType.Untyped:
+                    case Location.LocationType.Helper:
+                        break;
+                    case Location.LocationType.Minor:
+                        MinorItems.Add(newLocation.Contents);
+                        break;
+                    case Location.LocationType.Normal:
+                    default:
+                        Console.WriteLine($"Hey! {newLocation.Contents.Type.ToString()}");
+                        MajorItems.Add(newLocation.Contents);
+                        break;
                 }
             }
         }
 
         public void RandomizeLocations()
         {
-            List<Item> unplacedItems = Items.ToList();
+            List<Item> unplacedItems = MajorItems.ToList();
             List<Location> unfilledLocations = Locations.Where(location => !location.Filled && location.Type != Location.LocationType.Helper).ToList();
             unfilledLocations.Shuffle(RNG);
             unplacedItems.Shuffle(RNG);
 
-            int itemIndex;
-            while (unplacedItems.Count > 0)
-            {
-                // TODO: Make this fill not bad
-                itemIndex = RNG.Next(unplacedItems.Count);
-                Item item = unplacedItems[itemIndex];
-                Console.WriteLine($"Placing: {item.Type.ToString()}");
-                unplacedItems.RemoveAt(itemIndex);
-                List<Location> availableLocations = unfilledLocations.Where(location => location.CanPlace(item, unplacedItems, unfilledLocations)).ToList();
+            FillLocations(MajorItems.ToList(), unfilledLocations);
 
-                if (availableLocations.Count <= 0)
-                {
-                    Console.WriteLine($"Could not place {item.Type.ToString()}!");
-                    return;
-                }
+            unfilledLocations.Shuffle(RNG);
+            FastFillLocations(MinorItems.ToList(), unfilledLocations);
 
-                availableLocations[0].Fill(item);
-                Console.WriteLine($"Placed {item.Type.ToString()} at {availableLocations[0].Name} with {unplacedItems.Count} items remaining\n");
-                unfilledLocations.Remove(availableLocations[0]);
-            }
-            
             if (unfilledLocations.Count != 0)
             {
                 Console.WriteLine("Not all locations filled!");
@@ -148,6 +145,38 @@ namespace MinishRandomizer.Randomizer
             }
 
             File.WriteAllBytes(OutputDirectory + "/mcrando.gba", ROM.Instance.romData);
+        }
+
+        private void FillLocations(List<Item> items, List<Location> locations)
+        {
+            int itemIndex;
+            for (int i = items.Count - 1; i >= 0; i--)
+            {
+                itemIndex = RNG.Next(items.Count);
+                Item item = items[itemIndex];
+                Console.WriteLine($"Placing: {item.Type.ToString()}");
+                items.RemoveAt(itemIndex);
+                List<Location> availableLocations = locations.Where(location => location.CanPlace(item, items, locations)).ToList();
+
+                if (availableLocations.Count <= 0)
+                {
+                    Console.WriteLine($"Could not place {item.Type.ToString()}!");
+                    return;
+                }
+
+                availableLocations[0].Fill(item);
+                Console.WriteLine($"Placed {item.Type.ToString()} at {availableLocations[0].Name} with {items.Count} items remaining\n");
+                locations.Remove(availableLocations[0]);
+            }
+        }
+
+        private void FastFillLocations(List<Item> items, List<Location> locations)
+        {
+            foreach (Item item in items)
+            {
+                locations[0].Fill(item);
+                locations.RemoveAt(0);
+            }
         }
     }
 }

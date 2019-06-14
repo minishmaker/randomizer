@@ -1,10 +1,26 @@
-# Default logic for the randomizer
+# Default logic for the randomizer - Doesn't allow glitches, but allows unintuitive tricks
 
-SmithHouse;Minor;22-11-00;true
+# Location format:
+#	Name;Type;Address[;Logic][;Item Override]
+#		Name can be anything unique, hopefully without spaces
+#		Type should be one of Location.LocationType
+#		Address can be a hexadecimal address or of the form area-room-chest
+#		Logic should be a comma separated series of conditions, which can take the forms:
+#			(&a,b,c...) and (|a,b,c...) are an and/or of the contents
+#			Items.(itemName)[.subValue] requires the given item for the location
+#			Locations.(locationName) requires the location to be accessible first
+
+SmithHouse;Minor;22-11-00
 
 # Deepwood locations
 # Need gust jar to leave room
-DeepwoodWiggler;Normal;48-00-01;true;Items.GustJar
-DeepwoodButtonShells1;Minor;48-01-01;true;Items.GustJar
-DeepwoodButtonShells2;Minor;48-01-02;true;Items.GustJar
-DeepwoodPreCompassShells;Minor;48-02-01;true;Items.GustJar
+DeepwoodWiggler;Normal;48-00-01;Items.GustJar
+DeepwoodButtonShells1;Minor;48-01-01;Items.GustJar
+DeepwoodButtonShells2;Minor;48-01-02;Items.GustJar
+DeepwoodPreCompassShells;Minor;48-02-01;Items.GustJar
+DeepwoodBarrelShells;Minor;48-06-01;Items.GustJar
+DeepwoodUpstairsChest;Minor;48-17-01;
+
+# Cave of Flames locations
+CoFAccess;Helper;0;
+CoFBigChest
