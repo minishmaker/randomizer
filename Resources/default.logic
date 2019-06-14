@@ -10,17 +10,35 @@
 #			Items.(itemName)[.subValue] requires the given item for the location
 #			Locations.(locationName) requires the location to be accessible first
 
+# Item Macro Helpers
+HasSword;Helper;0; (|Items.SmithSword, Items.GreenSword, Items.BlueSword, Items.FourSword)
+HasBottle;Helper;0; (|Items.Bottle1, Items.Bottle2, Items.Bottle3, Items.Bottle4)
+
+# Misc Locations
 SmithHouse;Minor;22-11-00
+SmithSword;Normal;009CC8;;Items.SmithSword
+BrokenPicori;Normal;008F8A;;Items.Shield
+SouthKeeseCave;Minor;32-13-00; Items.BombBag
+BelariBombs;Normal;00A00C; (|Items.BombBag, Locations.CompleteDeepwood)
+
+AccessCrenel;Helper;0; Items.BombBag, Items.GustJar, Locations.HasBottle
+
+
+SaveEzlo;Helper;0;
+#JabberNut;Normal;;Locations.SaveEzlo
+
+BottleDeku;Normal;0CC0C0; Items.Shield, Items.BombBag, Locations.HasSword, Items.SpinAttack
 
 # Deepwood locations
-# Need gust jar to leave room
-DeepwoodWiggler;Normal;48-00-01;Items.GustJar
-DeepwoodButtonShells1;Minor;48-01-01;Items.GustJar
-DeepwoodButtonShells2;Minor;48-01-02;Items.GustJar
-DeepwoodPreCompassShells;Minor;48-02-01;Items.GustJar
-DeepwoodBarrelShells;Minor;48-06-01;Items.GustJar
-DeepwoodUpstairsChest;Minor;48-17-01;
+DeepwoodAccess;Helper;0;
+# Need gust jar or lantern to leave room
+DeepwoodWiggler;Normal;48-00-01; Locations.DeepwoodAccess, Locations.HasSword, (|Items.GustJar, Items.LanternOff)
+DeepwoodButtonShells1;Minor;48-01-01; Locations.DeepwoodAccess, (|Items.GustJar, Items.BombBag)
+DeepwoodButtonShells2;Minor;48-01-02; Locations.DeepwoodAccess, (|Items.GustJar, Items.BombBag)
+DeepwoodPreCompassShells;Minor;48-02-01; Locations.DeepwoodAccess,(|Items.GustJar, Items.BombBag)
+DeepwoodBarrelShells;Minor;48-06-01; Locations.DeepwoodAccess, (|Items.GustJar, Items.BombBag)
+DeepwoodUpstairsChest;Minor;48-17-01; Locations.DeepwoodAccess, (|Items.GustJar, Items.LanternOff)
+CompleteDeepwood;Helper;0; Items.GustJar, Locations.HasSword
 
 # Cave of Flames locations
-CoFAccess;Helper;0;
-CoFBigChest
+CoFAccess;Helper;0; Locations.AccessCrenel

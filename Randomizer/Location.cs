@@ -173,6 +173,18 @@ namespace MinishRandomizer.Randomizer
 
         public bool CanPlace(Item itemToPlace, List<Item> availableItems, List<Location> locations)
         {
+            switch (Type)
+            {
+                case LocationType.Helper:
+                case LocationType.Untyped:
+                    return false;
+            }
+
+            if (Address == 0)
+            {
+                return false;
+            }
+
             Console.WriteLine($"Evaluating: {Name}");
             foreach (Dependency dependency in Dependencies)
             {

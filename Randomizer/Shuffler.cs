@@ -121,7 +121,7 @@ namespace MinishRandomizer.Randomizer
         public void RandomizeLocations()
         {
             List<Item> unplacedItems = MajorItems.ToList();
-            List<Location> unfilledLocations = Locations.Where(location => !location.Filled && location.Type != Location.LocationType.Helper).ToList();
+            List<Location> unfilledLocations = Locations.Where(location => !location.Filled).ToList();
             unfilledLocations.Shuffle(RNG);
             unplacedItems.Shuffle(RNG);
 
@@ -149,14 +149,13 @@ namespace MinishRandomizer.Randomizer
 
         private void FillLocations(List<Item> items, List<Location> locations)
         {
-            int itemIndex;
             for (int i = items.Count - 1; i >= 0; i--)
             {
-                itemIndex = RNG.Next(items.Count);
+                int itemIndex = RNG.Next(items.Count);
                 Item item = items[itemIndex];
                 Console.WriteLine($"Placing: {item.Type.ToString()}");
                 items.RemoveAt(itemIndex);
-                List<Location> availableLocations = locations.Where(location => location.CanPlace(item, items, locations)).ToList();
+                List<Location> availableLocations = locations.Where(location => location.CanPlace(item, items, Locations)).ToList();
 
                 if (availableLocations.Count <= 0)
                 {
@@ -164,9 +163,11 @@ namespace MinishRandomizer.Randomizer
                     return;
                 }
 
-                availableLocations[0].Fill(item);
-                Console.WriteLine($"Placed {item.Type.ToString()} at {availableLocations[0].Name} with {items.Count} items remaining\n");
-                locations.Remove(availableLocations[0]);
+                int locationIndex = RNG.Next(availableLocations.Count);
+
+                availableLocations[locationIndex].Fill(item);
+                Console.WriteLine($"Placed {item.Type.ToString()} at {availableLocations[locationIndex].Name} with {items.Count} items remaining\n");
+                locations.Remove(availableLocations[locationIndex]);
             }
         }
 

@@ -189,7 +189,7 @@ namespace MinishRandomizer.Core
         HeartContainer = 0x62,
         PieceOfHeart = 0x63,
         Wallet = 0x64,
-        BigBomb = 0x65,
+        BombBag = 0x65,
         LargeQuiver = 0x66,
         KinstoneBag = 0x67,
         Brioche = 0x68,
