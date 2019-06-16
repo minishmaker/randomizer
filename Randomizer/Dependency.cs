@@ -49,6 +49,7 @@ namespace MinishRandomizer.Randomizer
                         switch (dependencyParts[0])
                         {
                             case "Locations":
+                            case "Helpers":
                                 LocationDependency locationDependency = new LocationDependency(dependencyParts[1]);
                                 dependencies.Add(locationDependency);
                                 break;
@@ -98,9 +99,9 @@ namespace MinishRandomizer.Randomizer
         {
             foreach (Item item in availableItems)
             {
-                Console.WriteLine($"Has: {item.Type.ToString()} Needs: {RequiredItem.Type.ToString()}");
                 if (item.Type == RequiredItem.Type && item.SubValue == RequiredItem.SubValue)
                 {
+                    Console.WriteLine($"Has: {item.Type.ToString()} Needs: {RequiredItem.Type.ToString()}");
                     return true;
                 }
             }
@@ -124,8 +125,7 @@ namespace MinishRandomizer.Randomizer
             {
                 if (location.Name == RequiredLocationName)
                 {
-                    Console.WriteLine($"Sub-Evaluating: {RequiredLocationName}");
-                    return location.CanPlace(new Item(), availableItems, locations);
+                    return location.IsAccessible(availableItems, locations);
                 }
             }
             Console.WriteLine($"Could not find location: {RequiredLocationName}");

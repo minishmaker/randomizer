@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -110,6 +111,7 @@ namespace MinishRandomizer.Randomizer
                         MinorItems.Add(newLocation.Contents);
                         break;
                     case Location.LocationType.Normal:
+                    case Location.LocationType.JabberNonsense:
                     default:
                         Console.WriteLine($"Hey! {newLocation.Contents.Type.ToString()}");
                         MajorItems.Add(newLocation.Contents);
@@ -120,6 +122,9 @@ namespace MinishRandomizer.Randomizer
 
         public void RandomizeLocations()
         {
+            //File.WriteAllBytes(OutputDirectory + "/mcrando.gba", ROM.Instance.romData); // Write file for patching. Bad, fix later
+            //ApplyPatch(OutputDirectory + "/mcrando.gba");
+
             List<Item> unplacedItems = MajorItems.ToList();
             List<Location> unfilledLocations = Locations.Where(location => !location.Filled).ToList();
             unfilledLocations.Shuffle(RNG);
@@ -179,5 +184,18 @@ namespace MinishRandomizer.Randomizer
                 locations.RemoveAt(0);
             }
         }
+
+        /*private void ApplyPatch(string outputPath)
+        {
+            string directory = Directory.GetCurrentDirectory();
+
+            using (Process process = new Process())
+            {
+                process.StartInfo.FileName = "ups.exe";
+                process.StartInfo.Arguments = $"patch -b {ROM.Instance.path} -p {directory + "/randopatch.ups"} -o {outputPath}";
+                process.Start();
+                process.WaitForExit();
+            }
+        }*/
     }
 }

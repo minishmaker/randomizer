@@ -16,29 +16,29 @@ HasBottle;Helper;0; (|Items.Bottle1, Items.Bottle2, Items.Bottle3, Items.Bottle4
 
 # Misc Locations
 SmithHouse;Minor;22-11-00
-SmithSword;Normal;009CC8;;Items.SmithSword
-BrokenPicori;Normal;008F8A;;Items.Shield
+Intro1;Normal;22-11-01
+Intro2;Normal;22-11-02
+Intro3;Normal;22-11-03
 SouthKeeseCave;Minor;32-13-00; Items.BombBag
-BelariBombs;Normal;00A00C; (|Items.BombBag, Locations.CompleteDeepwood)
+BelariBombs;Normal;00A00C
 
-AccessCrenel;Helper;0; Items.BombBag, Items.GustJar, Locations.HasBottle
+AccessCrenel;Helper;0; Items.BombBag, Items.GustJar, Helpers.HasBottle
 
+JabberNut;JabberNonsense;09498C
 
-SaveEzlo;Helper;0;
-#JabberNut;Normal;;Locations.SaveEzlo
-
-BottleDeku;Normal;0CC0C0; Items.Shield, Items.BombBag, Locations.HasSword, Items.SpinAttack
+BottleDeku;Normal;0CC0C0; Items.Shield, Items.BombBag, Helpers.HasSword
+#, Items.SpinAttack
 
 # Deepwood locations
-DeepwoodAccess;Helper;0;
+DeepwoodAccess;Helper;0; Items.JabberNut
 # Need gust jar or lantern to leave room
-DeepwoodWiggler;Normal;48-00-01; Locations.DeepwoodAccess, Locations.HasSword, (|Items.GustJar, Items.LanternOff)
+DeepwoodWiggler;Normal;48-00-01; Locations.DeepwoodAccess, Helpers.HasSword, (|Items.GustJar, Items.LanternOff)
 DeepwoodButtonShells1;Minor;48-01-01; Locations.DeepwoodAccess, (|Items.GustJar, Items.BombBag)
 DeepwoodButtonShells2;Minor;48-01-02; Locations.DeepwoodAccess, (|Items.GustJar, Items.BombBag)
 DeepwoodPreCompassShells;Minor;48-02-01; Locations.DeepwoodAccess,(|Items.GustJar, Items.BombBag)
 DeepwoodBarrelShells;Minor;48-06-01; Locations.DeepwoodAccess, (|Items.GustJar, Items.BombBag)
 DeepwoodUpstairsChest;Minor;48-17-01; Locations.DeepwoodAccess, (|Items.GustJar, Items.LanternOff)
-CompleteDeepwood;Helper;0; Items.GustJar, Locations.HasSword
+CompleteDeepwood;Helper;0; Locations.DeepwoodAccess, Items.GustJar, Locations.HasSword
 
 # Cave of Flames locations
 CoFAccess;Helper;0; Locations.AccessCrenel

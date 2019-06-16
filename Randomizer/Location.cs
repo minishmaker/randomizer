@@ -115,6 +115,7 @@ namespace MinishRandomizer.Randomizer
             NPCItem,
             KinstoneItem,
             HeartPieceItem,
+            JabberNonsense,
             Helper
         }
 
@@ -144,23 +145,31 @@ namespace MinishRandomizer.Randomizer
             Filled = false;
         }
 
-        public void WriteLocation(Writer r)
+        public void WriteLocation(Writer w)
         {
-            switch (Type)
-            {
-                case LocationType.Helper:
-                case LocationType.Untyped:
-                    return;
-            }
-
             if (Address == 0)
             {
                 return;
             }
 
-            r.SetPosition(Address);
-            r.WriteByte((byte)Contents.Type);
-            r.WriteByte(Contents.SubValue);
+            switch (Type)
+            {
+                case LocationType.Helper:
+                case LocationType.Untyped:
+                    return;
+                case LocationType.JabberNonsense:
+                    w.WriteByte((byte)Contents.Type, Address);
+                    w.WriteByte(Contents.SubValue, Address + 2);
+                    break;
+                case LocationType.Normal:
+                case LocationType.Minor:
+                default:
+                    
+                    w.SetPosition(Address);
+                    w.WriteByte((byte)Contents.Type);
+                    w.WriteByte(Contents.SubValue);
+                    break;
+            }
         }
 
         public Item GetItemContents()
@@ -185,15 +194,22 @@ namespace MinishRandomizer.Randomizer
                 return false;
             }
 
+            return IsAccessible(availableItems, locations);
+        }
+
+        public bool IsAccessible(List<Item> availableItems, List<Location> locations)
+        {
             Console.WriteLine($"Evaluating: {Name}");
             foreach (Dependency dependency in Dependencies)
             {
                 if (!dependency.DependencyFulfilled(availableItems, locations))
                 {
+                    Console.WriteLine("Unavailable :(");
                     return false;
                 }
             }
 
+            Console.WriteLine("Available!");
             return true;
         }
 
