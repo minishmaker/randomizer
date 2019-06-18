@@ -20,8 +20,6 @@ namespace MinishRandomizer.Randomizer
         {
             List<Dependency> dependencies = new List<Dependency>();
 
-            logic = logic.Replace(" ", "");
-
             // Match: comma, capture and match anything between 
             string regexPattern = @"(?:,|^)\(([&|](?:[^()]|(?<p>\()|(?<-p>\)))+)\)(?:,|$)|,";
             string[] subLogic = Regex.Split(logic, regexPattern);

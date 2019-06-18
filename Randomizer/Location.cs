@@ -19,6 +19,7 @@ namespace MinishRandomizer.Randomizer
 
             if (locationParts.Length < 3)
             {
+                Console.WriteLine("Too short");
                 return new Location(LocationType.Untyped, "INVALID LOCATION", 0, null);
             }
 
@@ -27,6 +28,7 @@ namespace MinishRandomizer.Randomizer
             string locationType = locationParts[1];
             if (!Enum.TryParse(locationType, out LocationType type) || type == LocationType.Untyped)
             {
+                Console.WriteLine("Invalid type");
                 return new Location(LocationType.Untyped, "INVALID LOCATION", 0, null);
             }
 
@@ -73,6 +75,11 @@ namespace MinishRandomizer.Randomizer
         public static int GetAddressFromString(string addressString)
         {
             // Either direct address or area-room-chest
+            if (addressString == "")
+            {
+                return 0;
+            }
+
             if (int.TryParse(addressString, NumberStyles.HexNumber, null, out int address))
             {
                 return address;
@@ -116,7 +123,8 @@ namespace MinishRandomizer.Randomizer
             KinstoneItem,
             HeartPieceItem,
             JabberNonsense,
-            Helper
+            Helper,
+            Starting
         }
 
         public List<Dependency> Dependencies;
@@ -174,8 +182,22 @@ namespace MinishRandomizer.Randomizer
 
         public Item GetItemContents()
         {
-            ItemType type = (ItemType)ROM.Instance.reader.ReadByte(Address);
-            byte subType = ROM.Instance.reader.ReadByte();
+            ItemType type = ItemType.Untyped;
+            byte subType = 0;
+
+            switch (Type)
+            {
+                case LocationType.JabberNonsense:
+                    type = (ItemType)ROM.Instance.reader.ReadByte(Address);
+                    subType = ROM.Instance.reader.ReadByte(Address + 2);
+                    break;
+                default:
+                    type = (ItemType)ROM.Instance.reader.ReadByte(Address);
+                    subType = ROM.Instance.reader.ReadByte();
+                    break;
+            }
+
+            
             
             return new Item(type, subType);
         }

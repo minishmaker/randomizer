@@ -52,6 +52,7 @@ namespace MinishRandomizer.Randomizer
 
         private Random RNG;
         private List<Location> Locations;
+        private List<Location> StartingLocations;
         private List<Item> MajorItems;
         private List<Item> MinorItems;
         private string OutputDirectory;
@@ -93,25 +94,40 @@ namespace MinishRandomizer.Randomizer
                 locationStrings = File.ReadAllLines(locationFile);
             }
             
-            foreach (string locationString in locationStrings)
+            foreach (string locationLine in locationStrings)
             {
-                if (locationString == "" || locationString[0] == '#')
+                string locationString = locationLine.Split('#')[0].Replace(" ", "");
+                locationString = locationString.Replace(" ", "");
+                if (locationString == "")
                 {
                     continue;
                 }
 
                 Location newLocation = Location.GetLocation(locationString);
-                Locations.Add(newLocation);
+
+                switch (newLocation.Type)
+                {
+                    case Location.LocationType.Starting:
+                        StartingLocations.Add(newLocation);
+                        break;
+                    default:
+                        Locations.Add(newLocation);
+                        break;
+                }
+
                 switch(newLocation.Type)
                 {
                     case Location.LocationType.Untyped:
                     case Location.LocationType.Helper:
+                        Console.WriteLine($"Helper or untyped {newLocation.Name}");
                         break;
                     case Location.LocationType.Minor:
+                        Console.WriteLine(newLocation.Contents.Type.ToString());
                         MinorItems.Add(newLocation.Contents);
                         break;
                     case Location.LocationType.Normal:
                     case Location.LocationType.JabberNonsense:
+                    case Location.LocationType.Starting:
                     default:
                         Console.WriteLine($"Hey! {newLocation.Contents.Type.ToString()}");
                         MajorItems.Add(newLocation.Contents);
@@ -122,13 +138,18 @@ namespace MinishRandomizer.Randomizer
 
         public void RandomizeLocations()
         {
-            //File.WriteAllBytes(OutputDirectory + "/mcrando.gba", ROM.Instance.romData); // Write file for patching. Bad, fix later
-            //ApplyPatch(OutputDirectory + "/mcrando.gba");
+            List<Item> allItems = MajorItems.Concat(MinorItems).ToList();
+
 
             List<Item> unplacedItems = MajorItems.ToList();
-            List<Location> unfilledLocations = Locations.Where(location => !location.Filled).ToList();
+            List<Location> unfilledLocations = Locations.Where(location => !location.Filled && location.Type != Location.LocationType.Helper && location.Type != Location.LocationType.Untyped).ToList();
             unfilledLocations.Shuffle(RNG);
             unplacedItems.Shuffle(RNG);
+
+            foreach (Item item in MajorItems)
+            {
+                Console.WriteLine($"Item: {item.Type.ToString()} Sub: {item.SubValue}");
+            }
 
             FillLocations(MajorItems.ToList(), unfilledLocations);
 
@@ -159,6 +180,10 @@ namespace MinishRandomizer.Randomizer
                 int itemIndex = RNG.Next(items.Count);
                 Item item = items[itemIndex];
                 Console.WriteLine($"Placing: {item.Type.ToString()}");
+                if (item.Type == ItemType.KinstoneX || item.Type == ItemType.ShellsX || item.Type == ItemType.Rupee20)
+                {
+                    Console.WriteLine("Inconcievable!");
+                }
                 items.RemoveAt(itemIndex);
                 List<Location> availableLocations = locations.Where(location => location.CanPlace(item, items, Locations)).ToList();
 

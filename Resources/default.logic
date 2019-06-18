@@ -9,36 +9,43 @@
 #			(&a,b,c...) and (|a,b,c...) are an and/or of the contents
 #			Items.(itemName)[.subValue] requires the given item for the location
 #			Locations.(locationName) requires the location to be accessible first
+#			Helpers.(helperName) is equivalent for Locations.(locationName), only provided for readability
+#		Item Override should be in the form of Items.(itemName)[.subValue]
+
+# Beginning Items - Only item override is set to introduce them to the pool
+#Intro1; Starting;;; Items.Shield
+#Intro2; Starting;;; Items.SmithSword
 
 # Item Macro Helpers
-HasSword;Helper;0; (|Items.SmithSword, Items.GreenSword, Items.BlueSword, Items.FourSword)
-HasBottle;Helper;0; (|Items.Bottle1, Items.Bottle2, Items.Bottle3, Items.Bottle4)
+HasSword; Helper;; (|Items.SmithSword, Items.GreenSword, Items.ReadSword, Items.BlueSword, Items.FourSword)
+HasBottle; Helper;; (|Items.Bottle1.FF, Items.Bottle2.FF, Items.Bottle3.FF, Items.Bottle4.FF)
 
 # Misc Locations
-SmithHouse;Minor;22-11-00
-Intro1;Normal;22-11-01
+SmithHouse; Minor; 22-11-00
+Intro1;Normal;22-11-01            # Will remove these later
 Intro2;Normal;22-11-02
-Intro3;Normal;22-11-03
-SouthKeeseCave;Minor;32-13-00; Items.BombBag
-BelariBombs;Normal;00A00C
+SouthKeeseCave; Minor; 32-13-00; Items.BombBag
+BelariBombs; Normal; 00A00C
+JabberNut; JabberNonsense; 09498C
+BottleScrub; Normal; 0CC0C0; Items.Shield, Items.BombBag, Helpers.HasSword #, Items.SpinAttack
 
-AccessCrenel;Helper;0; Items.BombBag, Items.GustJar, Helpers.HasBottle
-
-JabberNut;JabberNonsense;09498C
-
-BottleDeku;Normal;0CC0C0; Items.Shield, Items.BombBag, Helpers.HasSword
-#, Items.SpinAttack
+# Mount Crenel Locations
+AccessCrenel;Helper;; Helpers.HasBottle, Items.BombBag
+CrenelLowerScrub; Minor; 0CC09C; Helpers.HasBottle, Items.Shield            # Technically a Crenel item, but doesn't need bombs
+CrenelMinishHole; Minor; 35-00-00; Locations.AccessCrenel
+CrenelCaveDownstairs; Minor; 26-07-00; Locations.AccessCrenel
+CrenelGripScrub; Normal; 0CC0A8; Locations.AccessCrenel, Items.Shield
+CrenelBlockChest; Minor; 26-03-00; Locations.AccessCrenel, (|Items.PacciCane, (&Items.GustJar, Items.GripRing.FF))
 
 # Deepwood locations
-DeepwoodAccess;Helper;0; Items.JabberNut
-# Need gust jar or lantern to leave room
-DeepwoodWiggler;Normal;48-00-01; Locations.DeepwoodAccess, Helpers.HasSword, (|Items.GustJar, Items.LanternOff)
-DeepwoodButtonShells1;Minor;48-01-01; Locations.DeepwoodAccess, (|Items.GustJar, Items.BombBag)
-DeepwoodButtonShells2;Minor;48-01-02; Locations.DeepwoodAccess, (|Items.GustJar, Items.BombBag)
-DeepwoodPreCompassShells;Minor;48-02-01; Locations.DeepwoodAccess,(|Items.GustJar, Items.BombBag)
-DeepwoodBarrelShells;Minor;48-06-01; Locations.DeepwoodAccess, (|Items.GustJar, Items.BombBag)
-DeepwoodUpstairsChest;Minor;48-17-01; Locations.DeepwoodAccess, (|Items.GustJar, Items.LanternOff)
-CompleteDeepwood;Helper;0; Locations.DeepwoodAccess, Items.GustJar, Locations.HasSword
+DeepwoodAccess;Helper;; Items.JabberNut
+DeepwoodWiggler; Normal; 48-00-01; Locations.DeepwoodAccess, Helpers.HasSword, (|Items.GustJar, Items.LanternOff)            # Need gust jar or lantern to leave room
+DeepwoodButtonShells1; Minor; 48-01-01; Locations.DeepwoodAccess, (|Items.GustJar, Items.BombBag)
+DeepwoodButtonShells2; Minor; 48-01-02; Locations.DeepwoodAccess, (|Items.GustJar, Items.BombBag)
+DeepwoodPreCompassShells; Minor; 48-02-01; Locations.DeepwoodAccess,(|Items.GustJar, Items.BombBag)
+DeepwoodBarrelShells; Minor; 48-06-01; Locations.DeepwoodAccess, (|Items.GustJar, Items.BombBag)
+DeepwoodUpstairsChest; Minor; 48-17-01; Locations.DeepwoodAccess, (|Items.GustJar, Items.LanternOff)
+CompleteDeepwood; Helper;; Locations.DeepwoodAccess, Items.GustJar, Locations.HasSword
 
 # Cave of Flames locations
-CoFAccess;Helper;0; Locations.AccessCrenel
+CoFAccess;Helper;; Locations.AccessCrenel, (|Items.PacciCane, (&Items.GustJar, Items.GripRing.FF))
