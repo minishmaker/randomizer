@@ -46,6 +46,15 @@ namespace MinishRandomizer
                 shuffler.LoadLocations(null);
             }
 
+            if (customPatchCheckBox.Checked)
+            {
+                shuffler.PatchRom(customPatchPath.Text);
+            }
+            else
+            {
+                shuffler.PatchRom(null);
+            }
+
             shuffler.RandomizeLocations();
         }
 
@@ -86,6 +95,12 @@ namespace MinishRandomizer
             customLogicPath.Enabled = customLogicCheckBox.Checked;
         }
 
+        private void CustomPatchCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            browsePatchButton.Enabled = customPatchCheckBox.Checked;
+            customPatchPath.Enabled = customPatchCheckBox.Checked;
+        }
+
         private void BrowseLogicButton_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog
@@ -100,6 +115,22 @@ namespace MinishRandomizer
             }
 
             customLogicPath.Text = ofd.FileName;
+        }
+
+        private void BrowsePatchButton_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog
+            {
+                Filter = "UPS Patch|*.ups|All Files|*.*",
+                Title = "Select Custom Patch"
+            };
+
+            if (ofd.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+
+            customPatchPath.Text = ofd.FileName;
         }
     }
 }

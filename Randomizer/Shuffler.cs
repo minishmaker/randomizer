@@ -107,7 +107,7 @@ namespace MinishRandomizer.Randomizer
 
                 switch (newLocation.Type)
                 {
-                    case Location.LocationType.Starting:
+                    case Location.LocationType.StartingItem:
                         StartingLocations.Add(newLocation);
                         break;
                     default:
@@ -127,13 +127,33 @@ namespace MinishRandomizer.Randomizer
                         break;
                     case Location.LocationType.Normal:
                     case Location.LocationType.JabberNonsense:
-                    case Location.LocationType.Starting:
+                    case Location.LocationType.StartingItem:
                     default:
                         Console.WriteLine($"Hey! {newLocation.Contents.Type.ToString()}");
                         MajorItems.Add(newLocation.Contents);
                         break;
                 }
             }
+        }
+
+        public void PatchRom(string locationFile)
+        {
+            byte[] patchContents;
+            if (locationFile == null)
+            {
+                Assembly assembly = Assembly.GetExecutingAssembly();
+                using (Stream stream = assembly.GetManifestResourceStream("MinishRandomizer.Resources.randoPatch.ups"))
+                {
+                    patchContents = new byte[stream.Length];
+                    stream.Read(patchContents, 0, (int)stream.Length);
+                }
+            }
+            else
+            {
+                patchContents = File.ReadAllBytes(locationFile);
+            }
+
+            PatchUtil.ApplyUPS(ROM.Instance.romData, patchContents);
         }
 
         public void RandomizeLocations()

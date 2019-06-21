@@ -12,9 +12,8 @@
 #			Helpers.(helperName) is equivalent for Locations.(locationName), only provided for readability
 #		Item Override should be in the form of Items.(itemName)[.subValue]
 
-# Beginning Items - Only item override is set to introduce them to the pool
-#Intro1; Starting;;; Items.Shield
-#Intro2; Starting;;; Items.SmithSword
+
+# Deku (shop?) items are currently buggy and commented out. As a side effect, bottles are gone :(
 
 # Item Macro Helpers
 HasSword; Helper;; (|Items.SmithSword, Items.GreenSword, Items.ReadSword, Items.BlueSword, Items.FourSword)
@@ -22,20 +21,23 @@ HasBottle; Helper;; (|Items.Bottle1.FF, Items.Bottle2.FF, Items.Bottle3.FF, Item
 
 # Misc Locations
 SmithHouse; Minor; 22-11-00
-Intro1;Normal;22-11-01            # Will remove these later
-Intro2;Normal;22-11-02
+IntroItem1; Normal; F252B;; Items.SmithSword
+IntroItem2; Normal; F253B;; Items.Shield
 SouthKeeseCave; Minor; 32-13-00; Items.BombBag
 BelariBombs; Normal; 00A00C
 JabberNut; JabberNonsense; 09498C
-BottleScrub; Normal; 0CC0C0; Items.Shield, Items.BombBag, Helpers.HasSword #, Items.SpinAttack
+#BottleScrub; Normal; 0CC0C0; Items.Shield, Items.BombBag, Helpers.HasSword #, Items.SpinAttack
 
 # Mount Crenel Locations
-AccessCrenel;Helper;; Helpers.HasBottle, Items.BombBag
-CrenelLowerScrub; Minor; 0CC09C; Helpers.HasBottle, Items.Shield            # Technically a Crenel item, but doesn't need bombs
-CrenelMinishHole; Minor; 35-00-00; Locations.AccessCrenel
-CrenelCaveDownstairs; Minor; 26-07-00; Locations.AccessCrenel
-CrenelGripScrub; Normal; 0CC0A8; Locations.AccessCrenel, Items.Shield
-CrenelBlockChest; Minor; 26-03-00; Locations.AccessCrenel, (|Items.PacciCane, (&Items.GustJar, Items.GripRing.FF))
+AccessCrenel;Helper;; Helpers.HasBottle, (|Items.BombBag, Items.GripRing.FF)
+#CrenelLowerScrub; Minor; 0CC09C; Helpers.HasBottle, Items.Shield            # Technically a Crenel item, but doesn't need bombs
+CrenelVineHole; Minor; 35-00-00; Locations.AccessCrenel, (|Items.GustJar, Items.BombBag)
+CrenelMinishHouse; Minor; 27-03-00; Locations.AccessCrenel, (|Items.GustJar, Items.BombBag)
+CrenelCaveDownstairs; Minor; 26-07-00; Locations.AccessCrenel, Items.BombBag
+CrenelHeartCaveLeft; Minor; 26-08-00; Locations.AccessCrenel, Items.BombBag
+CrenelHeartCaveRight; Minor; 26-08-01; Locations.AccessCrenel, Items.BombBag
+#CrenelGripScrub; Normal; 0CC0A8; Locations.AccessCrenel, Items.Shield, Items.BombBag
+CrenelBlockChest; Minor; 26-03-00; Locations.AccessCrenel, (|Items.PacciCane, (&Items.GripRing.FF, (|Items.GustJar, Items.LightArrow)))
 
 # Deepwood locations
 DeepwoodAccess;Helper;; Items.JabberNut
@@ -48,4 +50,5 @@ DeepwoodUpstairsChest; Minor; 48-17-01; Locations.DeepwoodAccess, (|Items.GustJa
 CompleteDeepwood; Helper;; Locations.DeepwoodAccess, Items.GustJar, Locations.HasSword
 
 # Cave of Flames locations
-CoFAccess;Helper;; Locations.AccessCrenel, (|Items.PacciCane, (&Items.GustJar, Items.GripRing.FF))
+CoFAccess;Helper;; Locations.AccessCrenel, (|Items.PacciCane, (&Items.GripRing.FF, (|Items.GustJar, Items.LightArrow)))
+

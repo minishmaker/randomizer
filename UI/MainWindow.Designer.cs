@@ -35,14 +35,17 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.randomize = new System.Windows.Forms.Button();
-            this.logicTab = new System.Windows.Forms.TabPage();
+            this.generalTab = new System.Windows.Forms.TabPage();
             this.customLogicPath = new System.Windows.Forms.TextBox();
             this.browseLogicButton = new System.Windows.Forms.Button();
             this.customLogicCheckBox = new System.Windows.Forms.CheckBox();
             this.mainTabs = new System.Windows.Forms.TabControl();
+            this.browsePatchButton = new System.Windows.Forms.Button();
+            this.customPatchPath = new System.Windows.Forms.TextBox();
+            this.customPatchCheckBox = new System.Windows.Forms.CheckBox();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
-            this.logicTab.SuspendLayout();
+            this.generalTab.SuspendLayout();
             this.mainTabs.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -96,18 +99,21 @@
             this.randomize.UseVisualStyleBackColor = true;
             this.randomize.Click += new System.EventHandler(this.Randomize_Click);
             // 
-            // logicTab
+            // generalTab
             // 
-            this.logicTab.Controls.Add(this.customLogicPath);
-            this.logicTab.Controls.Add(this.browseLogicButton);
-            this.logicTab.Controls.Add(this.customLogicCheckBox);
-            this.logicTab.Location = new System.Drawing.Point(4, 22);
-            this.logicTab.Name = "logicTab";
-            this.logicTab.Padding = new System.Windows.Forms.Padding(3);
-            this.logicTab.Size = new System.Drawing.Size(361, 209);
-            this.logicTab.TabIndex = 0;
-            this.logicTab.Text = "Logic";
-            this.logicTab.UseVisualStyleBackColor = true;
+            this.generalTab.Controls.Add(this.customPatchCheckBox);
+            this.generalTab.Controls.Add(this.customPatchPath);
+            this.generalTab.Controls.Add(this.browsePatchButton);
+            this.generalTab.Controls.Add(this.customLogicPath);
+            this.generalTab.Controls.Add(this.browseLogicButton);
+            this.generalTab.Controls.Add(this.customLogicCheckBox);
+            this.generalTab.Location = new System.Drawing.Point(4, 22);
+            this.generalTab.Name = "generalTab";
+            this.generalTab.Padding = new System.Windows.Forms.Padding(3);
+            this.generalTab.Size = new System.Drawing.Size(361, 209);
+            this.generalTab.TabIndex = 0;
+            this.generalTab.Text = "General";
+            this.generalTab.UseVisualStyleBackColor = true;
             // 
             // customLogicPath
             // 
@@ -141,12 +147,42 @@
             // 
             // mainTabs
             // 
-            this.mainTabs.Controls.Add(this.logicTab);
+            this.mainTabs.Controls.Add(this.generalTab);
             this.mainTabs.Location = new System.Drawing.Point(9, 27);
             this.mainTabs.Name = "mainTabs";
             this.mainTabs.SelectedIndex = 0;
             this.mainTabs.Size = new System.Drawing.Size(369, 235);
             this.mainTabs.TabIndex = 9;
+            // 
+            // browsePatchButton
+            // 
+            this.browsePatchButton.Enabled = false;
+            this.browsePatchButton.Location = new System.Drawing.Point(32, 123);
+            this.browsePatchButton.Name = "browsePatchButton";
+            this.browsePatchButton.Size = new System.Drawing.Size(75, 23);
+            this.browsePatchButton.TabIndex = 9;
+            this.browsePatchButton.Text = "Browse...";
+            this.browsePatchButton.UseVisualStyleBackColor = true;
+            this.browsePatchButton.Click += new System.EventHandler(this.BrowsePatchButton_Click);
+            // 
+            // customPatchPath
+            // 
+            this.customPatchPath.Enabled = false;
+            this.customPatchPath.Location = new System.Drawing.Point(113, 123);
+            this.customPatchPath.Name = "customPatchPath";
+            this.customPatchPath.Size = new System.Drawing.Size(206, 20);
+            this.customPatchPath.TabIndex = 10;
+            // 
+            // customPatchCheckBox
+            // 
+            this.customPatchCheckBox.AutoSize = true;
+            this.customPatchCheckBox.Location = new System.Drawing.Point(5, 100);
+            this.customPatchCheckBox.Name = "customPatchCheckBox";
+            this.customPatchCheckBox.Size = new System.Drawing.Size(114, 17);
+            this.customPatchCheckBox.TabIndex = 11;
+            this.customPatchCheckBox.Text = "Use Custom Patch";
+            this.customPatchCheckBox.UseVisualStyleBackColor = true;
+            this.customPatchCheckBox.CheckedChanged += new System.EventHandler(this.CustomPatchCheckBox_CheckedChanged);
             // 
             // MainWindow
             // 
@@ -165,8 +201,8 @@
             this.statusStrip1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.logicTab.ResumeLayout(false);
-            this.logicTab.PerformLayout();
+            this.generalTab.ResumeLayout(false);
+            this.generalTab.PerformLayout();
             this.mainTabs.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -181,11 +217,14 @@
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
         private System.Windows.Forms.Button randomize;
         private System.Windows.Forms.ToolStripStatusLabel statusText;
-        private System.Windows.Forms.TabPage logicTab;
+        private System.Windows.Forms.TabPage generalTab;
         private System.Windows.Forms.TextBox customLogicPath;
         private System.Windows.Forms.Button browseLogicButton;
         private System.Windows.Forms.CheckBox customLogicCheckBox;
         private System.Windows.Forms.TabControl mainTabs;
+        private System.Windows.Forms.CheckBox customPatchCheckBox;
+        private System.Windows.Forms.TextBox customPatchPath;
+        private System.Windows.Forms.Button browsePatchButton;
     }
 }
 

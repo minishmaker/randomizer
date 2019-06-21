@@ -124,7 +124,7 @@ namespace MinishRandomizer.Randomizer
             HeartPieceItem,
             JabberNonsense,
             Helper,
-            Starting
+            StartingItem
         }
 
         public List<Dependency> Dependencies;
@@ -168,6 +168,14 @@ namespace MinishRandomizer.Randomizer
                 case LocationType.JabberNonsense:
                     w.WriteByte((byte)Contents.Type, Address);
                     w.WriteByte(Contents.SubValue, Address + 2);
+                    break;
+                case LocationType.StartingItem:
+                    // Nonfunctional in new patches
+                    break;
+                    w.SetPosition(0xEF3348 + ((byte)Contents.Type >> 2)); // Get items index in the starting item table
+                    byte initialByte = ROM.Instance.reader.ReadByte(0xEF3348 + ((byte)Contents.Type >> 2));
+                    initialByte |= (byte)(1 << ((byte)Contents.Type & 3) * 2);
+                    w.WriteByte(initialByte);
                     break;
                 case LocationType.Normal:
                 case LocationType.Minor:
