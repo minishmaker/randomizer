@@ -16,6 +16,7 @@ namespace MinishRandomizer
     public partial class MainWindow : Form
     {
         private ROM ROM_;
+        private Shuffler shuffler;
 
         public MainWindow()
         {
@@ -35,24 +36,9 @@ namespace MinishRandomizer
             }
 
 
-            Shuffler shuffler = new Shuffler(Path.GetDirectoryName(ROM.Instance.path));
-
-            if (customLogicCheckBox.Checked)
+            if (shuffler == null)
             {
-                shuffler.LoadLocations(customLogicPath.Text);
-            }
-            else
-            {
-                shuffler.LoadLocations(null);
-            }
-
-            if (customPatchCheckBox.Checked)
-            {
-                shuffler.PatchRom(customPatchPath.Text);
-            }
-            else
-            {
-                shuffler.PatchRom(null);
+                return;
             }
 
             shuffler.RandomizeLocations();
@@ -86,6 +72,26 @@ namespace MinishRandomizer
                 MessageBox.Show("Invalid TMC ROM. Please Open a valid ROM.", "Incorrect ROM", MessageBoxButtons.OK);
                 statusText.Text = "Unable to determine ROM.";
                 return;
+            }
+
+            shuffler = new Shuffler(Path.GetDirectoryName(ROM.Instance.path));
+
+            if (customLogicCheckBox.Checked)
+            {
+                shuffler.LoadLocations(customLogicPath.Text);
+            }
+            else
+            {
+                shuffler.LoadLocations(null);
+            }
+
+            if (customPatchCheckBox.Checked)
+            {
+                shuffler.PatchRom(customPatchPath.Text);
+            }
+            else
+            {
+                shuffler.PatchRom(null);
             }
         }
 

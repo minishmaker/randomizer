@@ -20,16 +20,22 @@ namespace MinishRandomizer.Randomizer
             if (locationParts.Length < 3)
             {
                 Console.WriteLine("Too short");
-                return new Location(LocationType.Untyped, "INVALID LOCATION", 0, null);
+                return new Location(LocationType.Untyped, "INVALID LOCATION", "", 0, null);
             }
 
-            string name = locationParts[0];
+            string[] names = locationParts[0].Split(':');
+            string name = names[0];
+            string dungeon = "";
+            if (names.Length >= 2)
+            {
+                dungeon = names[1];
+            }
 
             string locationType = locationParts[1];
             if (!Enum.TryParse(locationType, out LocationType type) || type == LocationType.Untyped)
             {
                 Console.WriteLine("Invalid type");
-                return new Location(LocationType.Untyped, "INVALID LOCATION", 0, null);
+                return new Location(LocationType.Untyped, "INVALID LOCATION", "", 0, null);
             }
 
             int address = GetAddressFromString(locationParts[2]);
@@ -42,7 +48,7 @@ namespace MinishRandomizer.Randomizer
 
             List<Dependency> dependencies = Dependency.GetDependencies(logic);
 
-            Location location = new Location(type, name, address, dependencies);
+            Location location = new Location(type, name, dungeon, address, dependencies);
 
             if (locationParts.Length >= 5)
             {
@@ -116,7 +122,7 @@ namespace MinishRandomizer.Randomizer
         public enum LocationType
         {
             Untyped,
-            Normal,
+            Major,
             Minor,
             DungeonItem,
             NPCItem,
@@ -124,21 +130,24 @@ namespace MinishRandomizer.Randomizer
             HeartPieceItem,
             JabberNonsense,
             Helper,
-            StartingItem
+            StartingItem,
+            PurchaseItem
         }
 
         public List<Dependency> Dependencies;
         public LocationType Type;
         public string Name;
+        public string Dungeon;
         public bool Filled;
         public Item Contents { get; private set; }
         private Item DefaultContents;
         private int Address;
 
-        public Location(LocationType type, string name, int address, List<Dependency> dependencies)
+        public Location(LocationType type, string name, string dungeon, int address, List<Dependency> dependencies)
         {
             Type = type;
             Name = name;
+            Dungeon = dungeon;
 
             Address = address;
 
@@ -169,6 +178,11 @@ namespace MinishRandomizer.Randomizer
                     w.WriteByte((byte)Contents.Type, Address);
                     w.WriteByte(Contents.SubValue, Address + 2);
                     break;
+                case LocationType.PurchaseItem:
+                    w.SetPosition(Address);
+                    w.WriteByte((byte)Contents.Type);
+                    w.WriteByte(0xFF);
+                    break;
                 case LocationType.StartingItem:
                     // Nonfunctional in new patches
                     break;
@@ -177,7 +191,7 @@ namespace MinishRandomizer.Randomizer
                     initialByte |= (byte)(1 << ((byte)Contents.Type & 3) * 2);
                     w.WriteByte(initialByte);
                     break;
-                case LocationType.Normal:
+                case LocationType.Major:
                 case LocationType.Minor:
                 default:
                     
@@ -190,14 +204,18 @@ namespace MinishRandomizer.Randomizer
 
         public Item GetItemContents()
         {
-            ItemType type = ItemType.Untyped;
-            byte subType = 0;
+            ItemType type;
+            byte subType;
 
             switch (Type)
             {
                 case LocationType.JabberNonsense:
                     type = (ItemType)ROM.Instance.reader.ReadByte(Address);
                     subType = ROM.Instance.reader.ReadByte(Address + 2);
+                    break;
+                case LocationType.PurchaseItem:
+                    type = (ItemType)ROM.Instance.reader.ReadByte(Address);
+                    subType = 0x00;
                     break;
                 default:
                     type = (ItemType)ROM.Instance.reader.ReadByte(Address);
@@ -207,7 +225,7 @@ namespace MinishRandomizer.Randomizer
 
             
             
-            return new Item(type, subType);
+            return new Item(type, subType, Dungeon);
         }
 
         public bool CanPlace(Item itemToPlace, List<Item> availableItems, List<Location> locations)
@@ -217,6 +235,19 @@ namespace MinishRandomizer.Randomizer
                 case LocationType.Helper:
                 case LocationType.Untyped:
                     return false;
+            }
+
+            switch (itemToPlace.Type)
+            {
+                case ItemType.SmallKey:
+                case ItemType.BigKey:
+                case ItemType.DungeonMap:
+                case ItemType.Compass:
+                    if (itemToPlace.Dungeon != Dungeon)
+                    {
+                        return false;
+                    }
+                    break;
             }
 
             if (Address == 0)
@@ -229,17 +260,14 @@ namespace MinishRandomizer.Randomizer
 
         public bool IsAccessible(List<Item> availableItems, List<Location> locations)
         {
-            Console.WriteLine($"Evaluating: {Name}");
             foreach (Dependency dependency in Dependencies)
             {
                 if (!dependency.DependencyFulfilled(availableItems, locations))
                 {
-                    Console.WriteLine("Unavailable :(");
                     return false;
                 }
             }
 
-            Console.WriteLine("Available!");
             return true;
         }
 

@@ -12,43 +12,45 @@
 #			Helpers.(helperName) is equivalent for Locations.(locationName), only provided for readability
 #		Item Override should be in the form of Items.(itemName)[.subValue]
 
-
-# Deku (shop?) items are currently buggy and commented out. As a side effect, bottles are gone :(
-
 # Item Macro Helpers
 HasSword; Helper;; (|Items.SmithSword, Items.GreenSword, Items.ReadSword, Items.BlueSword, Items.FourSword)
-HasBottle; Helper;; (|Items.Bottle1.FF, Items.Bottle2.FF, Items.Bottle3.FF, Items.Bottle4.FF)
+HasBottle; Helper;; (|Items.Bottle1, Items.Bottle2, Items.Bottle3, Items.Bottle4)
 
-# Misc Locations
+# Central Hyrule Locations
 SmithHouse; Minor; 22-11-00
-IntroItem1; Normal; F252B;; Items.SmithSword
-IntroItem2; Normal; F253B;; Items.Shield
+IntroItem1; Major; F252B;; Items.SmithSword
+IntroItem2; Major; F253B;; Items.Shield
 SouthKeeseCave; Minor; 32-13-00; Items.BombBag
-BelariBombs; Normal; 00A00C
-JabberNut; JabberNonsense; 09498C
-#BottleScrub; Normal; 0CC0C0; Items.Shield, Items.BombBag, Helpers.HasSword #, Items.SpinAttack
+HyruleWellRight; Minor; 41-00-04
+
+BottleScrub; PurchaseItem; 0CC0C0; Items.Shield, Items.BombBag, Helpers.HasSword #, Items.SpinAttack
+
+# Minish Woods Locations
+AccessMinishWoods; Helper;; (|Helpers.HasSword, Items.BombBag)
+JabberNut; JabberNonsense; 09498C; Locations.AccessMinishWoods
+BelariBombs; Major; 00A00C; Locations.AccessMinishWoods
 
 # Mount Crenel Locations
-AccessCrenel;Helper;; Helpers.HasBottle, (|Items.BombBag, Items.GripRing.FF)
-#CrenelLowerScrub; Minor; 0CC09C; Helpers.HasBottle, Items.Shield            # Technically a Crenel item, but doesn't need bombs
+AccessCrenel; Helper;; Helpers.HasBottle, (|Items.BombBag, Items.GripRing)
+CrenelLowerScrub; PurchaseItem; 0CC09C; Helpers.HasBottle, Items.Shield            # Technically a Crenel item, but doesn't need bombs
 CrenelVineHole; Minor; 35-00-00; Locations.AccessCrenel, (|Items.GustJar, Items.BombBag)
 CrenelMinishHouse; Minor; 27-03-00; Locations.AccessCrenel, (|Items.GustJar, Items.BombBag)
 CrenelCaveDownstairs; Minor; 26-07-00; Locations.AccessCrenel, Items.BombBag
 CrenelHeartCaveLeft; Minor; 26-08-00; Locations.AccessCrenel, Items.BombBag
 CrenelHeartCaveRight; Minor; 26-08-01; Locations.AccessCrenel, Items.BombBag
-#CrenelGripScrub; Normal; 0CC0A8; Locations.AccessCrenel, Items.Shield, Items.BombBag
-CrenelBlockChest; Minor; 26-03-00; Locations.AccessCrenel, (|Items.PacciCane, (&Items.GripRing.FF, (|Items.GustJar, Items.LightArrow)))
+CrenelGripScrub; PurchaseItem; 0CC0A8; Locations.AccessCrenel, Items.Shield, Items.BombBag
+CrenelBlockChest; Minor; 26-03-00; Locations.AccessCrenel, (|Items.PacciCane, (&Items.GripRing, (|Items.GustJar, Items.LightArrow)))
 
 # Deepwood locations
-DeepwoodAccess;Helper;; Items.JabberNut
-DeepwoodWiggler; Normal; 48-00-01; Locations.DeepwoodAccess, Helpers.HasSword, (|Items.GustJar, Items.LanternOff)            # Need gust jar or lantern to leave room
-DeepwoodButtonShells1; Minor; 48-01-01; Locations.DeepwoodAccess, (|Items.GustJar, Items.BombBag)
-DeepwoodButtonShells2; Minor; 48-01-02; Locations.DeepwoodAccess, (|Items.GustJar, Items.BombBag)
-DeepwoodPreCompassShells; Minor; 48-02-01; Locations.DeepwoodAccess,(|Items.GustJar, Items.BombBag)
-DeepwoodBarrelShells; Minor; 48-06-01; Locations.DeepwoodAccess, (|Items.GustJar, Items.BombBag)
-DeepwoodUpstairsChest; Minor; 48-17-01; Locations.DeepwoodAccess, (|Items.GustJar, Items.LanternOff)
-CompleteDeepwood; Helper;; Locations.DeepwoodAccess, Items.GustJar, Locations.HasSword
+DeepwoodAccess:Deepwood; Helper;; Locations.AccessMinishWoods, Items.JabberNut
+DeepwoodWiggler:Deepwood; Major; 48-00-01; Locations.DeepwoodAccess, Helpers.HasSword, (|Items.GustJar, Items.LanternOff)            # Need gust jar or lantern to leave room
+DeepwoodButtonShells1:Deepwood; Minor; 48-01-01; Locations.DeepwoodAccess, (|Items.GustJar, Items.BombBag)
+DeepwoodButtonShells2:Deepwood; Minor; 48-01-02; Locations.DeepwoodAccess, (|Items.GustJar, Items.BombBag)
+DeepwoodPreCompassShells:Deepwood; Minor; 48-02-01; Locations.DeepwoodAccess,(|Items.GustJar, Items.BombBag)
+DeepwoodBarrelShells:Deepwood; Minor; 48-06-01; Locations.DeepwoodAccess, (|Items.GustJar, Items.BombBag)
+DeepwoodUpstairsChest:Deepwood; Minor; 48-17-01; Locations.DeepwoodAccess, (|Items.GustJar, Items.LanternOff)
+CompleteDeepwood:Deepwood; Helper;; Locations.DeepwoodAccess, Items.GustJar, Locations.HasSword
 
 # Cave of Flames locations
-CoFAccess;Helper;; Locations.AccessCrenel, (|Items.PacciCane, (&Items.GripRing.FF, (|Items.GustJar, Items.LightArrow)))
+CoFAccess:FlameCave; Helper;; Locations.AccessCrenel, (|Items.PacciCane, (&Items.GripRing, (|Items.GustJar, Items.LightArrow)))
 

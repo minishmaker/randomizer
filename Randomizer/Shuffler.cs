@@ -16,8 +16,9 @@ namespace MinishRandomizer.Randomizer
         public readonly ItemType Type;
         public readonly KinstoneType Kinstone;
         public readonly byte SubValue;
+        public readonly string Dungeon;
 
-        public Item(ItemType type, byte subValue)
+        public Item(ItemType type, byte subValue, string dungeon = "")
         {
             Type = type;
             SubValue = subValue;
@@ -29,6 +30,8 @@ namespace MinishRandomizer.Randomizer
             {
                 Kinstone = KinstoneType.UnTyped;
             }
+
+            Dungeon = dungeon;
         }
 
         public override bool Equals(object obj)
@@ -125,7 +128,7 @@ namespace MinishRandomizer.Randomizer
                         Console.WriteLine(newLocation.Contents.Type.ToString());
                         MinorItems.Add(newLocation.Contents);
                         break;
-                    case Location.LocationType.Normal:
+                    case Location.LocationType.Major:
                     case Location.LocationType.JabberNonsense:
                     case Location.LocationType.StartingItem:
                     default:
@@ -209,8 +212,8 @@ namespace MinishRandomizer.Randomizer
 
                 if (availableLocations.Count <= 0)
                 {
-                    Console.WriteLine($"Could not place {item.Type.ToString()}!");
                     return;
+                    //throw new Exception($"Could not place {item.Type.ToString()}!");
                 }
 
                 int locationIndex = RNG.Next(availableLocations.Count);

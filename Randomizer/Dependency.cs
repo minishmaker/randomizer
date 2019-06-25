@@ -99,12 +99,10 @@ namespace MinishRandomizer.Randomizer
             {
                 if (item.Type == RequiredItem.Type && item.SubValue == RequiredItem.SubValue)
                 {
-                    Console.WriteLine($"Has: {item.Type.ToString()} Needs: {RequiredItem.Type.ToString()}");
                     return true;
                 }
             }
 
-            Console.WriteLine($"Inccessible because: {RequiredItem.Type.ToString()} is not available!");
             return false;
         }
     }
