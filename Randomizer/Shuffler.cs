@@ -110,16 +110,7 @@ namespace MinishRandomizer.Randomizer
                 }
 
                 Location newLocation = Location.GetLocation(locationString);
-
-                switch (newLocation.Type)
-                {
-                    case Location.LocationType.StartingItem:
-                        //StartingLocations.Add(newLocation);
-                        break;
-                    default:
-                        Locations.Add(newLocation);
-                        break;
-                }
+                Locations.Add(newLocation);
 
                 switch(newLocation.Type)
                 {
@@ -137,7 +128,8 @@ namespace MinishRandomizer.Randomizer
                         break;
                     case Location.LocationType.Major:
                     case Location.LocationType.JabberNonsense:
-                    case Location.LocationType.StartingItem:
+                    case Location.LocationType.PurchaseItem:
+                    case Location.LocationType.ScrollItem:
                     default:
                         Console.WriteLine($"Hey! {newLocation.Contents.Type.ToString()}");
                         MajorItems.Add(newLocation.Contents);

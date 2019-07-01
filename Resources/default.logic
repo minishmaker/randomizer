@@ -22,6 +22,7 @@ IntroItem1; Major; F252B;; Items.SmithSword
 IntroItem2; Major; F253B;; Items.Shield
 SouthKeeseCave; Minor; 32-13-00; Items.BombBag
 HyruleWellRight; Minor; 41-00-04
+SwiftbladeFirst; ScrollItem; 110D7B;
 
 BottleScrub; PurchaseItem; 0CC0C0; Items.Shield, Items.BombBag, Helpers.HasSword#, Items.SpinAttack
 
@@ -58,5 +59,18 @@ DeepwoodUpstairsChest:Deepwood; Minor; 48-17-01; Locations.DeepwoodAccess, (|Ite
 CompleteDeepwood:Deepwood; Helper;; Locations.DeepwoodAccess, Items.GustJar, Helpers.HasSword, Items.BigKey:Deepwood
 
 # Cave of Flames locations
-CoFAccess:FlameCave; Helper;; Locations.AccessCrenel, (|Items.PacciCane, (&Items.GripRing, (|Items.GustJar, Items.LightArrow)))
-
+CoFAccess:FlameCave; Helper;; Locations.AccessCrenel, (|Items.PacciCane, (&Items.GripRing, (|Items.GustJar, Items.LightArrow))), (|Items.BombBag, Items.Shield, Items.PacciCane)
+CoFFlippedCart:FlameCave; DungeonItem; 50-01-01; Locations.CoFAccess, Items.PacciCane, Items.SmallKey:FlameCave
+CoFChuPit:FlameCave; Major; 50-01-02; Locations.CoFAccess, Items.PacciCane, Items.SmallKey:FlameCave
+CoFSouthwest1:FlameCave; DungeonItem; 50-08-00; Locations.CoFAccess
+CoFSouthwest2:FlameCave; Minor; 50-08-01; Locations.CoFAccess
+CoFSoutheast1:FlameCave; Minor; 50-09-00; Locations.CoFAccess
+CoFSoutheast2:FlameCave; DungeonItem; 50-09-01; Locations.CoFAccess
+CoFBasement1:FlameCave; Minor; 50-10-00; Locations.CoFAccess, Items.PacciCane, Items.SmallKey:FlameCave:2
+CoFBasement2:FlameCave; Minor; 50-10-01; Locations.CoFAccess, Items.PacciCane, Items.SmallKey:FlameCave:2
+CoFBlades:FlameCave; Minor; 50-14-00; Locations.CoFAccess, Items.PacciCane, Items.SmallKey:FlameCave:2
+CoFSpinies:FlameCave; DungeonItem; 50-15-00; Locations.CoFAccess
+CoFBasementLava1:FlameCave; Minor; 50-17-00; Locations.CoFAccess, Items.PacciCane, Items.SmallKey:FlameCave:2
+CoFBasementLava2:FlameCave; Minor; 50-17-01; Locations.CoFAccess, Items.PacciCane, Items.SmallKey:FlameCave:2
+CoFBasementLavaBig:FlameCave; DungeonItem; 50-17-02; Locations.CoFAccess, Items.PacciCane, Items.SmallKey:FlameCave:2
+CompleteCoF:FlameCave; Helper;; Locations.CoFAccess, Items.PacciCane, Items.SmallKey:FlameCave:2, Items.BigKey:FlameCave

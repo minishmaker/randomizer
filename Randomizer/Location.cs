@@ -143,8 +143,9 @@ namespace MinishRandomizer.Randomizer
             HeartPieceItem,
             JabberNonsense,
             Helper,
-            StartingItem,
-            PurchaseItem
+            //StartingItem,
+            PurchaseItem,
+            ScrollItem
         }
 
         public List<Dependency> Dependencies;
@@ -206,18 +207,20 @@ namespace MinishRandomizer.Randomizer
 
                     w.WriteByte(0xFF);
                     break;
-                case LocationType.StartingItem:
-                    // Nonfunctional in new patches
+                case LocationType.ScrollItem:
+                    w.SetPosition(Address);
+                    if (Contents.Type == ItemType.KinstoneX || Contents.Type == ItemType.ShellsX)
+                    {
+                        w.WriteByte((byte)ItemType.Shells30);
+                    }
+                    else
+                    {
+                        w.WriteByte((byte)((byte)Contents.Type & 0x7F));
+                    }
                     break;
-                    /*w.SetPosition(0xEF3348 + ((byte)Contents.Type >> 2)); // Get items index in the starting item table
-                    byte initialByte = ROM.Instance.reader.ReadByte(0xEF3348 + ((byte)Contents.Type >> 2));
-                    initialByte |= (byte)(1 << ((byte)Contents.Type & 3) * 2);
-                    w.WriteByte(initialByte);
-                    break;*/
                 case LocationType.Major:
                 case LocationType.Minor:
                 default:
-                    
                     w.SetPosition(Address);
                     w.WriteByte((byte)Contents.Type);
                     w.WriteByte(Contents.SubValue);
@@ -265,7 +268,8 @@ namespace MinishRandomizer.Randomizer
                 case LocationType.Untyped:
                     return false;
                 case LocationType.PurchaseItem:
-                    if (itemToPlace.Type == ItemType.KinstoneX || itemToPlace.Type == ItemType.ShellsX)
+                case LocationType.ScrollItem:
+                    if (itemToPlace.SubValue != 0)
                     {
                         return false;
                     }
