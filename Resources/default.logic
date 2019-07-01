@@ -23,7 +23,7 @@ IntroItem2; Major; F253B;; Items.Shield
 SouthKeeseCave; Minor; 32-13-00; Items.BombBag
 HyruleWellRight; Minor; 41-00-04
 
-BottleScrub; PurchaseItem; 0CC0C0; Items.Shield, Items.BombBag, Helpers.HasSword #, Items.SpinAttack
+BottleScrub; PurchaseItem; 0CC0C0; Items.Shield, Items.BombBag, Helpers.HasSword#, Items.SpinAttack
 
 # Minish Woods Locations
 AccessMinishWoods; Helper;; (|Helpers.HasSword, Items.BombBag)
@@ -31,7 +31,7 @@ JabberNut; JabberNonsense; 09498C; Locations.AccessMinishWoods
 BelariBombs; Major; 00A00C; Locations.AccessMinishWoods
 
 # Mount Crenel Locations
-AccessCrenel; Helper;; Helpers.HasBottle, (|Items.BombBag, Items.GripRing)
+AccessCrenel; Helper;; Helpers.HasBottle, (|Items.BombBag, Items.GripRing), Helpers.HasSword#, Items.SpinAttack
 CrenelLowerScrub; PurchaseItem; 0CC09C; Helpers.HasBottle, Items.Shield            # Technically a Crenel item, but doesn't need bombs
 CrenelVineHole; Minor; 35-00-00; Locations.AccessCrenel, (|Items.GustJar, Items.BombBag)
 CrenelMinishHouse; Minor; 27-03-00; Locations.AccessCrenel, (|Items.GustJar, Items.BombBag)
@@ -43,13 +43,19 @@ CrenelBlockChest; Minor; 26-03-00; Locations.AccessCrenel, (|Items.PacciCane, (&
 
 # Deepwood locations
 DeepwoodAccess:Deepwood; Helper;; Locations.AccessMinishWoods, Items.JabberNut
-DeepwoodWiggler:Deepwood; Major; 48-00-01; Locations.DeepwoodAccess, Helpers.HasSword, (|Items.GustJar, Items.LanternOff)            # Need gust jar or lantern to leave room
-DeepwoodButtonShells1:Deepwood; Minor; 48-01-01; Locations.DeepwoodAccess, (|Items.GustJar, Items.BombBag)
-DeepwoodButtonShells2:Deepwood; Minor; 48-01-02; Locations.DeepwoodAccess, (|Items.GustJar, Items.BombBag)
-DeepwoodPreCompassShells:Deepwood; Minor; 48-02-01; Locations.DeepwoodAccess,(|Items.GustJar, Items.BombBag)
-DeepwoodBarrelShells:Deepwood; Minor; 48-06-01; Locations.DeepwoodAccess, (|Items.GustJar, Items.BombBag)
+DeepwoodWiggler:Deepwood; Major; 48-00-01; Locations.DeepwoodAccess, Helpers.HasSword, (|Items.GustJar, Items.LanternOff), Items.SmallKey:Deepwood:3
+DeepwoodPreWiggler1:Deepwood; Minor; 48-01-01; Locations.DeepwoodAccess, (|(&Items.GustJar, Items.SmallKey:Deepwood), (&Items.BombBag, Items.SmallKey:Deepwood:2))
+DeepwoodPreWiggler2:Deepwood; Minor; 48-01-02; Locations.DeepwoodAccess, (|(&Items.GustJar, Items.SmallKey:Deepwood), (&Items.BombBag, Items.SmallKey:Deepwood:2))
+DeepwoodPreCompass:Deepwood; Minor; 48-02-01; Locations.DeepwoodAccess, (|(&Items.GustJar, Items.SmallKey:Deepwood), (&Items.BombBag, Items.SmallKey:Deepwood:2))
+DeepwoodStatueRoom:Deepwood; DungeonItem; 48-04-01; Locations.DeepwoodAccess, Items.SmallKey:Deepwood
+DeepwoodWestWing:Deepwood; DungeonItem; 48-05-01; Locations.DeepwoodAccess, Items.SmallKey:Deepwood
+DeepwoodPreBarrel:Deepwood; Minor; 48-06-01; Locations.DeepwoodAccess, (|Items.GustJar, Items.BombBag), Items.SmallKey:Deepwood
+DeepwoodSlugTorches:Deepwood; DungeonItem; 48-10-01; Locations.DeepwoodAccess
+DeepwoodBasementNorth:Deepwood; DungeonItem; 48-11-01; Locations.DeepwoodAccess, (|Items.GustJar, (&Items.Flippers, Helpers.HasSword)), Items.SmallKey:Deepwood:3
+DeepwoodBasementSwitch:Deepwood; DungeonItem; 48-12-01; Locations.DeepwoodAccess, (|(&Items.GustJar, Items.SmallKey:Deepwood), (&Items.SmallKey:Deepwood:2, (|Items.Flippers, Items.RocsCape)))
+DeepwoodBasementEast:Deepwood; DungeonItem; 48-12-02; Locations.DeepwoodAccess, (|(&Items.GustJar, Items.SmallKey:Deepwood), Items.SmallKey:Deepwood:2)
 DeepwoodUpstairsChest:Deepwood; Minor; 48-17-01; Locations.DeepwoodAccess, (|Items.GustJar, Items.LanternOff)
-CompleteDeepwood:Deepwood; Helper;; Locations.DeepwoodAccess, Items.GustJar, Locations.HasSword
+CompleteDeepwood:Deepwood; Helper;; Locations.DeepwoodAccess, Items.GustJar, Helpers.HasSword, Items.BigKey:Deepwood
 
 # Cave of Flames locations
 CoFAccess:FlameCave; Helper;; Locations.AccessCrenel, (|Items.PacciCane, (&Items.GripRing, (|Items.GustJar, Items.LightArrow)))

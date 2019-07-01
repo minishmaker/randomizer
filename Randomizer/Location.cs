@@ -25,11 +25,6 @@ namespace MinishRandomizer.Randomizer
 
             string[] names = locationParts[0].Split(':');
             string name = names[0];
-            string dungeon = "";
-            if (names.Length >= 2)
-            {
-                dungeon = names[1];
-            }
 
             string locationType = locationParts[1];
             if (!Enum.TryParse(locationType, out LocationType type) || type == LocationType.Untyped)
@@ -47,6 +42,12 @@ namespace MinishRandomizer.Randomizer
             }
 
             List<Dependency> dependencies = Dependency.GetDependencies(logic);
+
+            string dungeon = "";
+            if (names.Length >= 2)
+            {
+                dungeon = names[1];
+            }
 
             Location location = new Location(type, name, dungeon, address, dependencies);
 
@@ -76,6 +77,18 @@ namespace MinishRandomizer.Randomizer
             }
 
             return location;
+        }
+
+        public static List<Item> GetItems(List<Location> locations)
+        {
+            List<Item> items = new List<Item>();
+
+            foreach (Location location in locations)
+            {
+                items.Add(location.Contents);
+            }
+
+            return items;
         }
 
         public static int GetAddressFromString(string addressString)
@@ -140,6 +153,7 @@ namespace MinishRandomizer.Randomizer
         public string Dungeon;
         public bool Filled;
         public Item Contents { get; private set; }
+        private bool? AvailableCache;
         private Item DefaultContents;
         private int Address;
 
@@ -160,6 +174,7 @@ namespace MinishRandomizer.Randomizer
             }
 
             Filled = false;
+            AvailableCache = null;
         }
 
         public void WriteLocation(Writer w)
@@ -180,17 +195,25 @@ namespace MinishRandomizer.Randomizer
                     break;
                 case LocationType.PurchaseItem:
                     w.SetPosition(Address);
-                    w.WriteByte((byte)Contents.Type);
+                    if (Contents.Type == ItemType.KinstoneX || Contents.Type == ItemType.ShellsX)
+                    {
+                        w.WriteByte((byte)ItemType.Shells30);
+                    }
+                    else
+                    {
+                        w.WriteByte((byte)Contents.Type);
+                    }
+
                     w.WriteByte(0xFF);
                     break;
                 case LocationType.StartingItem:
                     // Nonfunctional in new patches
                     break;
-                    w.SetPosition(0xEF3348 + ((byte)Contents.Type >> 2)); // Get items index in the starting item table
+                    /*w.SetPosition(0xEF3348 + ((byte)Contents.Type >> 2)); // Get items index in the starting item table
                     byte initialByte = ROM.Instance.reader.ReadByte(0xEF3348 + ((byte)Contents.Type >> 2));
                     initialByte |= (byte)(1 << ((byte)Contents.Type & 3) * 2);
                     w.WriteByte(initialByte);
-                    break;
+                    break;*/
                 case LocationType.Major:
                 case LocationType.Minor:
                 default:
@@ -224,8 +247,14 @@ namespace MinishRandomizer.Randomizer
             }
 
             
-            
-            return new Item(type, subType, Dungeon);
+            if (Type == LocationType.DungeonItem)
+            {
+                return new Item(type, subType, Dungeon);
+            }
+            else
+            {
+                return new Item(type, subType);
+            }
         }
 
         public bool CanPlace(Item itemToPlace, List<Item> availableItems, List<Location> locations)
@@ -235,19 +264,20 @@ namespace MinishRandomizer.Randomizer
                 case LocationType.Helper:
                 case LocationType.Untyped:
                     return false;
-            }
-
-            switch (itemToPlace.Type)
-            {
-                case ItemType.SmallKey:
-                case ItemType.BigKey:
-                case ItemType.DungeonMap:
-                case ItemType.Compass:
-                    if (itemToPlace.Dungeon != Dungeon)
+                case LocationType.PurchaseItem:
+                    if (itemToPlace.Type == ItemType.KinstoneX || itemToPlace.Type == ItemType.ShellsX)
                     {
                         return false;
                     }
                     break;
+            }
+
+            if (itemToPlace.Dungeon != "")
+            {
+                if (itemToPlace.Dungeon != Dungeon)
+                {
+                    return false;
+                }
             }
 
             if (Address == 0)
@@ -260,6 +290,11 @@ namespace MinishRandomizer.Randomizer
 
         public bool IsAccessible(List<Item> availableItems, List<Location> locations)
         {
+            if (AvailableCache != null)
+            {
+                return (bool)AvailableCache;
+            }
+
             foreach (Dependency dependency in Dependencies)
             {
                 if (!dependency.DependencyFulfilled(availableItems, locations))
@@ -269,6 +304,11 @@ namespace MinishRandomizer.Randomizer
             }
 
             return true;
+        }
+
+        public void InvalidateCache()
+        {
+            AvailableCache = null;
         }
 
         public void Fill(Item contents)

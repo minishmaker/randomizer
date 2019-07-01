@@ -1,11 +1,8 @@
 ﻿using MinishRandomizer.Core;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace MinishRandomizer.Randomizer
 {
@@ -30,10 +27,10 @@ namespace MinishRandomizer.Randomizer
                     continue;
                 }
 
-
                 switch(sequence[0])
                 {
                     // If the first character of the string is & or |, it's a compound dependency
+                    // These are handled recursively, with the first character chopped off
                     case '&':
                         AndDependency andDependency = new AndDependency(sequence.Substring(1));
                         dependencies.Add(andDependency);
@@ -43,7 +40,33 @@ namespace MinishRandomizer.Randomizer
                         dependencies.Add(orDependency);
                         break;
                     default:
-                        string[] dependencyParts = sequence.Split('.');
+                        string[] splitSequence = sequence.Split(':');
+                        string requirement = splitSequence[0];
+                        Console.WriteLine($"It's {requirement}");
+                        string dungeon = "";
+                        int count = 1;
+
+                        if (splitSequence.Length >= 2)
+                        {
+                            dungeon = splitSequence[1];
+                            if (splitSequence.Length >= 3)
+                            {
+                                if (!int.TryParse(splitSequence[2], out count))
+                                {
+                                    count = 1;
+                                }
+                            }
+                        }
+
+                        string[] dependencyParts = requirement.Split('.');
+
+                        Console.WriteLine($"It's also {dependencyParts[1]}");
+
+                        if (dependencyParts.Length < 2)
+                        {
+                            break;
+                        }
+
                         switch (dependencyParts[0])
                         {
                             case "Locations":
@@ -66,7 +89,7 @@ namespace MinishRandomizer.Randomizer
                                         }
                                     }
 
-                                    ItemDependency itemDependency = new ItemDependency(new Item(type, subType));
+                                    ItemDependency itemDependency = new ItemDependency(new Item(type, subType, dungeon), count);
                                     dependencies.Add(itemDependency);
                                 }
                                 break;
@@ -88,18 +111,25 @@ namespace MinishRandomizer.Randomizer
     public class ItemDependency : Dependency
     {
         private Item RequiredItem;
-        public ItemDependency(Item item)
+        private int Count;
+        public ItemDependency(Item item, int count = 1)
         {
             RequiredItem = item;
+            Count = count;
         }
 
         public override bool DependencyFulfilled(List<Item> availableItems, List<Location> locations)
         {
+            int counter = 0;
             foreach (Item item in availableItems)
             {
-                if (item.Type == RequiredItem.Type && item.SubValue == RequiredItem.SubValue)
+                if (item.Type == RequiredItem.Type && item.SubValue == RequiredItem.SubValue && (RequiredItem.Dungeon == "" || RequiredItem.Dungeon == item.Dungeon))
                 {
-                    return true;
+                    counter++;
+                    if (counter >= Count)
+                    {
+                        return true;
+                    }
                 }
             }
 
