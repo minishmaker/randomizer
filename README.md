@@ -5,7 +5,7 @@
 
 This program aims to randomize the item locations in such a way that all items are be available. This works sometimes, but currently is rather bugged.
 
-It's currently in early development; it likely will silently fail randomization and be broken until you reload the ROM.
+It's currently in early development; it likely will fail randomization and be broken until you reload the ROM.
 When it's finished to the point that it can randomize the entire game without failing often, it'll be set up on a website similar to other popular randomizers.
 
 Logic only goes up to the Cave of Flames currently; in the future it'll be extended to cover the whole game.

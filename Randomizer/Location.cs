@@ -141,7 +141,7 @@ namespace MinishRandomizer.Randomizer
             NPCItem,
             KinstoneItem,
             HeartPieceItem,
-            JabberNonsense,
+            Split,
             Helper,
             //StartingItem,
             PurchaseItem,
@@ -190,7 +190,7 @@ namespace MinishRandomizer.Randomizer
                 case LocationType.Helper:
                 case LocationType.Untyped:
                     return;
-                case LocationType.JabberNonsense:
+                case LocationType.Split:
                     w.WriteByte((byte)Contents.Type, Address);
                     w.WriteByte(Contents.SubValue, Address + 2);
                     break;
@@ -235,13 +235,17 @@ namespace MinishRandomizer.Randomizer
 
             switch (Type)
             {
-                case LocationType.JabberNonsense:
+                case LocationType.Split:
                     type = (ItemType)ROM.Instance.reader.ReadByte(Address);
                     subType = ROM.Instance.reader.ReadByte(Address + 2);
                     break;
                 case LocationType.PurchaseItem:
                     type = (ItemType)ROM.Instance.reader.ReadByte(Address);
                     subType = 0x00;
+                    break;
+                case LocationType.ScrollItem:
+                    type = (ItemType)(ROM.Instance.reader.ReadByte(Address) & 0x7F);
+                    subType = 0;
                     break;
                 default:
                     type = (ItemType)ROM.Instance.reader.ReadByte(Address);
@@ -317,13 +321,19 @@ namespace MinishRandomizer.Randomizer
 
         public void Fill(Item contents)
         {
-            SetItem(contents);
+            Contents = contents;
             Filled = true;
         }
 
         public void SetItem(Item contents)
         {
             Contents = contents;
+            DefaultContents = contents;
+        }
+
+        public void SetDefaultContents()
+        {
+            Contents = DefaultContents;
         }
     }
 }

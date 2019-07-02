@@ -11,6 +11,10 @@ using MinishRandomizer.Utilities;
 
 namespace MinishRandomizer.Randomizer
 {
+    public class ShuffleException : Exception {
+        public ShuffleException(string message) : base(message) { }
+    }
+
     public readonly struct Item
     {
         public readonly ItemType Type;
@@ -127,7 +131,7 @@ namespace MinishRandomizer.Randomizer
                         DungeonItems.Add(newLocation.Contents);
                         break;
                     case Location.LocationType.Major:
-                    case Location.LocationType.JabberNonsense:
+                    case Location.LocationType.Split:
                     case Location.LocationType.PurchaseItem:
                     case Location.LocationType.ScrollItem:
                     default:
@@ -160,6 +164,8 @@ namespace MinishRandomizer.Randomizer
 
         public void RandomizeLocations()
         {
+            ResetLocations();
+
             List<Item> unplacedItems = MajorItems.ToList();
             List<Item> dungeonSpecificItems = DungeonItems.ToList();
 
@@ -180,7 +186,7 @@ namespace MinishRandomizer.Randomizer
 
             if (unfilledLocations.Count != 0)
             {
-                Console.WriteLine("Not all locations filled!");
+                throw new ShuffleException($"There are {unfilledLocations.Count} unfilled locations!");
             }
 
             using (MemoryStream ms = new MemoryStream(ROM.Instance.romData))
@@ -193,6 +199,16 @@ namespace MinishRandomizer.Randomizer
             }
 
             File.WriteAllBytes(OutputDirectory + "/mcrando.gba", ROM.Instance.romData);
+        }
+
+        private void ResetLocations()
+        {
+            foreach (Location location in Locations)
+            {
+                location.SetDefaultContents();
+                location.InvalidateCache();
+                location.Filled = false;
+            }
         }
 
         // Based off of the RandomAssumed ALttPR filler
@@ -217,6 +233,10 @@ namespace MinishRandomizer.Randomizer
                 int itemIndex = RNG.Next(items.Count);
                 Item item = items[itemIndex];
                 Console.WriteLine($"Placing: {item.Type.ToString()}");
+                if (item.Dungeon != "")
+                {
+                    Console.WriteLine($"Dungeon: {item.Dungeon}");
+                }
                 
                 items.RemoveAt(itemIndex);
 
@@ -233,9 +253,7 @@ namespace MinishRandomizer.Randomizer
 
                 if (availableLocations.Count <= 0)
                 {
-                    Console.WriteLine($"Could not place {item.Type.ToString()}!");
-                    return null;
-                    //throw new Exception($"Could not place {item.Type.ToString()}!");
+                    throw new ShuffleException($"Could not place {item.Type}");
                 }
 
                 int locationIndex = RNG.Next(availableLocations.Count);

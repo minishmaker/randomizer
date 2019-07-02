@@ -42,7 +42,6 @@ namespace MinishRandomizer.Randomizer
                     default:
                         string[] splitSequence = sequence.Split(':');
                         string requirement = splitSequence[0];
-                        Console.WriteLine($"It's {requirement}");
                         string dungeon = "";
                         int count = 1;
 
@@ -59,8 +58,6 @@ namespace MinishRandomizer.Randomizer
                         }
 
                         string[] dependencyParts = requirement.Split('.');
-
-                        Console.WriteLine($"It's also {dependencyParts[1]}");
 
                         if (dependencyParts.Length < 2)
                         {
@@ -123,6 +120,7 @@ namespace MinishRandomizer.Randomizer
             int counter = 0;
             foreach (Item item in availableItems)
             {
+
                 if (item.Type == RequiredItem.Type && item.SubValue == RequiredItem.SubValue && (RequiredItem.Dungeon == "" || RequiredItem.Dungeon == item.Dungeon))
                 {
                     counter++;
@@ -132,7 +130,6 @@ namespace MinishRandomizer.Randomizer
                     }
                 }
             }
-
             return false;
         }
     }
@@ -154,8 +151,7 @@ namespace MinishRandomizer.Randomizer
                     return location.IsAccessible(availableItems, locations);
                 }
             }
-            Console.WriteLine($"Could not find location: {RequiredLocationName}");
-            return false;
+            throw new ShuffleException($"Could not find location {RequiredLocationName}. You may have an invalid logic file!");
         }
     }
 

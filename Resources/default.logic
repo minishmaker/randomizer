@@ -22,18 +22,18 @@ IntroItem1; Major; F252B;; Items.SmithSword
 IntroItem2; Major; F253B;; Items.Shield
 SouthKeeseCave; Minor; 32-13-00; Items.BombBag
 HyruleWellRight; Minor; 41-00-04
-SwiftbladeFirst; ScrollItem; 110D7B;
+SwiftbladeFirst; ScrollItem; 110D7B; Helpers.HasSword
 
-BottleScrub; PurchaseItem; 0CC0C0; Items.Shield, Items.BombBag, Helpers.HasSword#, Items.SpinAttack
+BottleScrub; PurchaseItem; 0CC0C0; Items.Shield, Items.BombBag, Helpers.HasSword, Items.SpinAttack
 
 # Minish Woods Locations
 AccessMinishWoods; Helper;; (|Helpers.HasSword, Items.BombBag)
-JabberNut; JabberNonsense; 09498C; Locations.AccessMinishWoods
+JabberNut; Split; 09498C; Locations.AccessMinishWoods
 BelariBombs; Major; 00A00C; Locations.AccessMinishWoods
 
 # Mount Crenel Locations
-AccessCrenel; Helper;; Helpers.HasBottle, (|Items.BombBag, Items.GripRing), Helpers.HasSword#, Items.SpinAttack
-CrenelLowerScrub; PurchaseItem; 0CC09C; Helpers.HasBottle, Items.Shield            # Technically a Crenel item, but doesn't need bombs
+AccessCrenel; Helper;; Helpers.HasBottle, (|Items.BombBag, Items.GripRing), Helpers.HasSword, Items.SpinAttack
+#CrenelLowerScrub; PurchaseItem; 0CC09C; Helpers.HasBottle, Items.Shield            # Technically a Crenel item, but doesn't need bombs
 CrenelVineHole; Minor; 35-00-00; Locations.AccessCrenel, (|Items.GustJar, Items.BombBag)
 CrenelMinishHouse; Minor; 27-03-00; Locations.AccessCrenel, (|Items.GustJar, Items.BombBag)
 CrenelCaveDownstairs; Minor; 26-07-00; Locations.AccessCrenel, Items.BombBag
@@ -41,6 +41,10 @@ CrenelHeartCaveLeft; Minor; 26-08-00; Locations.AccessCrenel, Items.BombBag
 CrenelHeartCaveRight; Minor; 26-08-01; Locations.AccessCrenel, Items.BombBag
 CrenelGripScrub; PurchaseItem; 0CC0A8; Locations.AccessCrenel, Items.Shield, Items.BombBag
 CrenelBlockChest; Minor; 26-03-00; Locations.AccessCrenel, (|Items.PacciCane, (&Items.GripRing, (|Items.GustJar, Items.LightArrow)))
+Melari; Major; 00D26E; Locations.CompleteCoF
+
+# Castor Wilds Locations
+AccessWilds; Helper;;
 
 # Deepwood locations
 DeepwoodAccess:Deepwood; Helper;; Locations.AccessMinishWoods, Items.JabberNut
@@ -52,8 +56,8 @@ DeepwoodStatueRoom:Deepwood; DungeonItem; 48-04-01; Locations.DeepwoodAccess, It
 DeepwoodWestWing:Deepwood; DungeonItem; 48-05-01; Locations.DeepwoodAccess, Items.SmallKey:Deepwood
 DeepwoodPreBarrel:Deepwood; Minor; 48-06-01; Locations.DeepwoodAccess, (|Items.GustJar, Items.BombBag), Items.SmallKey:Deepwood
 DeepwoodSlugTorches:Deepwood; DungeonItem; 48-10-01; Locations.DeepwoodAccess
-DeepwoodBasementNorth:Deepwood; DungeonItem; 48-11-01; Locations.DeepwoodAccess, (|Items.GustJar, (&Items.Flippers, Helpers.HasSword)), Items.SmallKey:Deepwood:3
-DeepwoodBasementSwitch:Deepwood; DungeonItem; 48-12-01; Locations.DeepwoodAccess, (|(&Items.GustJar, Items.SmallKey:Deepwood), (&Items.SmallKey:Deepwood:2, (|Items.Flippers, Items.RocsCape)))
+DeepwoodBasementNorth:Deepwood; DungeonItem; 48-11-01; Locations.DeepwoodAccess, Items.GustJar, Items.SmallKey:Deepwood:3
+DeepwoodBasementSwitch:Deepwood; DungeonItem; 48-12-01; Locations.DeepwoodAccess, (|(&Items.GustJar, Items.SmallKey:Deepwood), (&Items.SmallKey:Deepwood:2, Items.RocsCape))
 DeepwoodBasementEast:Deepwood; DungeonItem; 48-12-02; Locations.DeepwoodAccess, (|(&Items.GustJar, Items.SmallKey:Deepwood), Items.SmallKey:Deepwood:2)
 DeepwoodUpstairsChest:Deepwood; Minor; 48-17-01; Locations.DeepwoodAccess, (|Items.GustJar, Items.LanternOff)
 CompleteDeepwood:Deepwood; Helper;; Locations.DeepwoodAccess, Items.GustJar, Helpers.HasSword, Items.BigKey:Deepwood
@@ -74,3 +78,7 @@ CoFBasementLava1:FlameCave; Minor; 50-17-00; Locations.CoFAccess, Items.PacciCan
 CoFBasementLava2:FlameCave; Minor; 50-17-01; Locations.CoFAccess, Items.PacciCane, Items.SmallKey:FlameCave:2
 CoFBasementLavaBig:FlameCave; DungeonItem; 50-17-02; Locations.CoFAccess, Items.PacciCane, Items.SmallKey:FlameCave:2
 CompleteCoF:FlameCave; Helper;; Locations.CoFAccess, Items.PacciCane, Items.SmallKey:FlameCave:2, Items.BigKey:FlameCave
+
+# Fortress of Winds Locations
+#FortressAccess:Fortress; Helper;; Locations.AccessWilds
+#FortressPrize:Prizes; Major; 09C9E6

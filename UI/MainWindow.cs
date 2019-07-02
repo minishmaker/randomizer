@@ -41,7 +41,14 @@ namespace MinishRandomizer
                 return;
             }
 
-            shuffler.RandomizeLocations();
+            try
+            {
+                shuffler.RandomizeLocations();
+            }
+            catch (ShuffleException error)
+            {
+                MessageBox.Show(error.Message);
+            }
         }
 
         private void LoadRom()
