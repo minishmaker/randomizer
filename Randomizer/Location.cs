@@ -91,6 +91,19 @@ namespace MinishRandomizer.Randomizer
             return items;
         }
 
+        /*public static List<Item> GetAvailableItems(List<Location> locations, List<Item> preItems)
+        {
+            List<Item> items = new List<Item>();
+
+            List<Location> unsearchedLocations = locations.ToList();
+
+            do
+            {
+
+            }
+            while ();
+        }*/
+
         public static int GetAddressFromString(string addressString)
         {
             // Either direct address or area-room-chest

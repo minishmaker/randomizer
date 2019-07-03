@@ -179,7 +179,7 @@ namespace MinishRandomizer.Randomizer
             // Fill non-dungeon items, taking into account the previously placed dungeon items
             // This seems fairly crude; other randomizers don't seem to deal with this problem?
             unfilledLocations.Shuffle(RNG);
-            FillLocations(unplacedItems, unfilledLocations, previousLocations: dungeonLocations);
+            FillLocations(unplacedItems, unfilledLocations);
 
             unfilledLocations.Shuffle(RNG);
             FastFillLocations(MinorItems.ToList(), unfilledLocations);
@@ -212,21 +212,11 @@ namespace MinishRandomizer.Randomizer
         }
 
         // Based off of the RandomAssumed ALttPR filler
-        private List<Location> FillLocations(List<Item> items, List<Location> locations, List<Item> assumedItems = null, List<Location> previousLocations = null)
+        private List<Location> FillLocations(List<Item> items, List<Location> locations, List<Item> assumedItems = null)
         {
             List<Location> filledLocations = new List<Location>();
 
             assumedItems = assumedItems ?? new List<Item>();
-
-            previousLocations = previousLocations ?? new List<Location>();
-
-            List<Item> usableItems = new List<Item>(items.Count + previousLocations.Count + assumedItems.Count);
-            usableItems.AddRange(items);
-            usableItems.AddRange(assumedItems);
-
-            previousLocations = previousLocations.Where(location => location.IsAccessible(usableItems, Locations)).ToList();
-
-            usableItems.AddRange(Location.GetItems(previousLocations));
 
             for (int i = items.Count - 1; i >= 0; i--)
             {
@@ -240,16 +230,9 @@ namespace MinishRandomizer.Randomizer
                 
                 items.RemoveAt(itemIndex);
 
-                // Set up the list of usable items: items unfilled, items assumed, and items from available locations
-                usableItems.Clear();
-                usableItems.AddRange(items);
-                usableItems.AddRange(assumedItems);
+                List<Item> availableItems = GetAvailableItems(items.Concat(assumedItems).ToList());
 
-                previousLocations = previousLocations.Where(location => location.IsAccessible(usableItems, Locations)).ToList();
-
-                usableItems.AddRange(Location.GetItems(previousLocations));
-
-                List<Location> availableLocations = locations.Where(location => location.CanPlace(item, usableItems, Locations)).ToList();
+                List<Location> availableLocations = locations.Where(location => location.CanPlace(item, availableItems, Locations)).ToList();
 
                 if (availableLocations.Count <= 0)
                 {
@@ -281,17 +264,26 @@ namespace MinishRandomizer.Randomizer
             }
         }
 
-        /*private void ApplyPatch(string outputPath)
+        // Gets all the available items with a given item set, looping until there are no more items left to get
+        private List<Item> GetAvailableItems(List<Item> preAvailableItems)
         {
-            string directory = Directory.GetCurrentDirectory();
+            List<Item> availableItems = preAvailableItems.ToList();
 
-            using (Process process = new Process())
+            List<Location> filledLocations = Locations.Where(location => location.Filled && location.Type != Location.LocationType.Helper && location.Type != Location.LocationType.Untyped).ToList();
+
+            int previousSize;
+            do
             {
-                process.StartInfo.FileName = "ups.exe";
-                process.StartInfo.Arguments = $"patch -b {ROM.Instance.path} -p {directory + "/randopatch.ups"} -o {outputPath}";
-                process.Start();
-                process.WaitForExit();
+                List<Location> accessibleLocations = filledLocations.Where(location => location.IsAccessible(availableItems, Locations)).ToList();
+                previousSize = accessibleLocations.Count;
+
+                filledLocations.RemoveAll(location => accessibleLocations.Contains(location));
+
+                availableItems.AddRange(Location.GetItems(accessibleLocations));
             }
-        }*/
+            while (previousSize > 0);
+
+            return availableItems;
+        }
     }
 }
