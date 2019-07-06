@@ -13,8 +13,13 @@
 #		Item Override should be in the form of Items.(itemName)[.subValue]
 
 # Item Macro Helpers
-HasSword; Helper;; (|Items.SmithSword, Items.GreenSword, Items.ReadSword, Items.BlueSword, Items.FourSword)
+HasSword; Helper;; (|Items.SmithSword, Items.GreenSword, Items.RedSword, Items.BlueSword, Items.FourSword)
+CanSplit2; Helper;; (|Items.RedSword, Items.BlueSword, Items.FourSword)
+CanSplit3; Helper;; (|Items.BlueSword, Items.FourSword)
+
 HasBottle; Helper;; (|Items.Bottle1, Items.Bottle2, Items.Bottle3, Items.Bottle4)
+
+HasBow; Helper;; (|Items.Bow, Items.LightArrow)
 
 # Central Hyrule Locations
 SmithHouse; Minor; 22-11-00
@@ -23,16 +28,17 @@ IntroItem2; Major; F253B;; Items.Shield
 SouthKeeseCave; Minor; 32-13-00; Items.BombBag
 HyruleWellRight; Minor; 41-00-04
 SwiftbladeFirst; ScrollItem; 110D7B; Helpers.HasSword
+CafeLady; Minor; 00EDDA;; Items.KinstoneX.RedSpike
 
-BottleScrub; PurchaseItem; 0CC0C0; Items.Shield, Items.BombBag, Helpers.HasSword, Items.SpinAttack
+BottleScrub; PurchaseItem; 0CC0C0; Items.Shield, Items.BombBag, (|(&Helpers.HasSword, Items.SpinAttack), Items.Flippers)
 
 # Minish Woods Locations
-AccessMinishWoods; Helper;; (|Helpers.HasSword, Items.BombBag)
+AccessMinishWoods; Helper;; (|Helpers.HasSword, Items.BombBag, Items.LightArrow)
 JabberNut; Split; 09498C; Locations.AccessMinishWoods
 BelariBombs; Major; 00A00C; Locations.AccessMinishWoods
 
 # Mount Crenel Locations
-AccessCrenel; Helper;; Helpers.HasBottle, (|Items.BombBag, Items.GripRing), Helpers.HasSword, Items.SpinAttack
+AccessCrenel; Helper;; Helpers.HasBottle, (|Items.BombBag, Items.GripRing), (|(&Helpers.HasSword, Items.SpinAttack), Items.Flippers)
 #CrenelLowerScrub; PurchaseItem; 0CC09C; Helpers.HasBottle, Items.Shield            # Technically a Crenel item, but doesn't need bombs
 CrenelVineHole; Minor; 35-00-00; Locations.AccessCrenel, (|Items.GustJar, Items.BombBag)
 CrenelMinishHouse; Minor; 27-03-00; Locations.AccessCrenel, (|Items.GustJar, Items.BombBag)
@@ -44,7 +50,18 @@ CrenelBlockChest; Minor; 26-03-00; Locations.AccessCrenel, (|Items.PacciCane, (&
 Melari; Major; 00D26E; Locations.CompleteCoF
 
 # Castor Wilds Locations
-AccessWilds; Helper;;
+AccessWilds; Helper;; Helpers.CanSplit2, (|Items.SpinAttack, Items.Flippers), (|Items.PegasusBoots, Items.RocsCape)
+WildsSouthCave; Major; 2A-00-00; Locations.AccessWilds, (|Items.Flippers, Items.RocsCape, Helpers.HasBow); Items.KinstoneX.YellowTotemProng
+WildsDarknutCave; Major; 2B-00-00; Locations.AccessWilds, Helpers.HasSword; Items.KinstoneX.YellowTotemProng
+WildsDekuCaveRight; Major; 2A-01-00; Locations.AccessWilds, Helpers.HasBow; Items.KinstoneX.YellowTotemProng
+WildsMulldozerHole; Major; 27-06-00; Locations.AccessWilds, (|Items.Flippers, Items.GustJar)
+WildsDiggingCave1; Minor; 17-00-00; Locations.AccessWilds, Items.MoleMitts
+WildsDiggingCave2; Minor; 17-00-00; Locations.AccessWilds, Items.MoleMitts
+
+# Royal Valley Locations
+AccessValley; Helper;; (|(&Helpers.HasSword, Items.SpinAttack), Items.Flippers), Items.PacciCane, Items.LanternOff
+DampeKey; Major; 0096B4; Locations.AccessValley
+KingGift; Major; 00DA5A; Locations.AccessValley, Items.GraveyardKey, Helpers.CanSplit3, Items.PegasusBoots
 
 # Deepwood locations
 DeepwoodAccess:Deepwood; Helper;; Locations.AccessMinishWoods, Items.JabberNut
@@ -80,5 +97,5 @@ CoFBasementLavaBig:FlameCave; DungeonItem; 50-17-02; Locations.CoFAccess, Items.
 CompleteCoF:FlameCave; Helper;; Locations.CoFAccess, Items.PacciCane, Items.SmallKey:FlameCave:2, Items.BigKey:FlameCave
 
 # Fortress of Winds Locations
-#FortressAccess:Fortress; Helper;; Locations.AccessWilds
+FortressAccess:Fortress; Helper;; Locations.AccessWilds, Items.KinstoneX.YellowTotemProng::3
 #FortressPrize:Prizes; Major; 09C9E6
