@@ -36,6 +36,12 @@ BottleScrub; PurchaseItem; 0CC0C0; Items.Shield, Items.BombBag, (|(&Helpers.HasS
 AccessMinishWoods; Helper;; (|Helpers.HasSword, Items.BombBag, Items.LightArrow)
 JabberNut; Split; 09498C; Locations.AccessMinishWoods
 BelariBombs; Major; 00A00C; Locations.AccessMinishWoods
+MinishMiddleFlipperHole; Minor; 35-09-00; Locations.AccessMinishWoods, Items.Flippers
+MinishRightFlipperHole; Minor; 35-09-01; Locations.AccessMinishWoods, Items.Flippers
+MinishLeftFlipperHole; Minor; 35-09-02; Locations.AccessMinishWoods, Items.Flippers
+MinishWitchDiggingCaveRight; Minor; 0C-00-00; Locations.AccessMinishWoods, Items.MoleMitts, (|Items.Flippers, Items.RocsCape, (&Items.LonLonKey, Items.PacciCane))
+MinishLikeLikeDiggingCaveLeft; Minor; 0C-00-01; Locations.AccessMinishWoods, Items.MoleMitts
+MinishLikeLikeDiggingCaveRight; Minor; 0C-00-02; Locations.AccessMinishWoods, Items.MoleMitts
 
 # Mount Crenel Locations
 AccessCrenel; Helper;; Helpers.HasBottle, (|Items.BombBag, Items.GripRing), (|(&Helpers.HasSword, Items.SpinAttack), Items.Flippers)
@@ -57,14 +63,19 @@ WildsDekuCaveRight; Major; 2A-01-00; Locations.AccessWilds, Helpers.HasBow; Item
 WildsMulldozerHole; Major; 27-06-00; Locations.AccessWilds, (|Items.Flippers, Items.GustJar)
 WildsDiggingCave1; Minor; 17-00-00; Locations.AccessWilds, Items.MoleMitts
 WildsDiggingCave2; Minor; 17-00-00; Locations.AccessWilds, Items.MoleMitts
+WildsTopChest; Minor; 04-00-00; Locations.AccessWilds, Helpers.HasBow
+RuinsBombCave; Minor; 2A-02-00; Locations.AccessWilds, Items.KinstoneX.YellowTotemProng::3, Items.BombBag
+RuinsMinishCave; Minor; 27-07-00; Locations.AccessWilds, Items.KinstoneX.YellowTotemProng::3, Helpers.HasSword
+RuinsArmosKillLeft; Minor; 05-05-00; Locations.AccessWilds, Items.KinstoneX.YellowTotemProng::3, Helpers.HasSword
+RuinsArmosKillRight; Minor; 05-05-01; Locations.AccessWilds, Items.KinstoneX.YellowTotemProng::3, Helpers.HasSword
 
 # Royal Valley Locations
 AccessValley; Helper;; (|(&Helpers.HasSword, Items.SpinAttack), Items.Flippers), Items.PacciCane, Items.LanternOff
 DampeKey; Major; 0096B4; Locations.AccessValley
-KingGift; Major; 00DA5A; Locations.AccessValley, Items.GraveyardKey, Helpers.CanSplit3, Items.PegasusBoots
+KingGift:Prizes; Major; 00DA5A; Locations.AccessValley, Items.GraveyardKey, Helpers.CanSplit3, Items.PegasusBoots; Items.KinstoneX.YellowCrown
 
 # Deepwood locations
-DeepwoodAccess:Deepwood; Helper;; Locations.AccessMinishWoods, Items.JabberNut
+DeepwoodAccess:Deepwood; Helper;; Locations.AccessMinishWoods, (|Items.JabberNut, Items.Flippers)
 DeepwoodWiggler:Deepwood; Major; 48-00-01; Locations.DeepwoodAccess, Helpers.HasSword, (|Items.GustJar, Items.LanternOff), Items.SmallKey:Deepwood:3
 DeepwoodPreWiggler1:Deepwood; Minor; 48-01-01; Locations.DeepwoodAccess, (|(&Items.GustJar, Items.SmallKey:Deepwood), (&Items.BombBag, Items.SmallKey:Deepwood:2))
 DeepwoodPreWiggler2:Deepwood; Minor; 48-01-02; Locations.DeepwoodAccess, (|(&Items.GustJar, Items.SmallKey:Deepwood), (&Items.BombBag, Items.SmallKey:Deepwood:2))
@@ -97,5 +108,20 @@ CoFBasementLavaBig:FlameCave; DungeonItem; 50-17-02; Locations.CoFAccess, Items.
 CompleteCoF:FlameCave; Helper;; Locations.CoFAccess, Items.PacciCane, Items.SmallKey:FlameCave:2, Items.BigKey:FlameCave
 
 # Fortress of Winds Locations
-FortressAccess:Fortress; Helper;; Locations.AccessWilds, Items.KinstoneX.YellowTotemProng::3
-#FortressPrize:Prizes; Major; 09C9E6
+AccessFortress:Fortress; Helper;; Locations.AccessWilds, Items.KinstoneX.YellowTotemProng::3
+FortressEntrance:Fortress; Minor; 18-00-00; Locations.AccessFortress, Items.MoleMitts
+FortressOutsideF2Left:Fortress; Minor; 18-01-00; Locations.AccessFortress, Items.MoleMitts
+FortressOutsideF2Middle:Fortress; Minor; 18-01-01; Locations.AccessFortress, Items.MoleMitts
+FortressOutsideF2Right:Fortress; Minor; 18-01-02; Locations.AccessFortress, Items.MoleMitts, Helpers.HasBow, Helpers.CanSplit2
+FortressOutsideF3Left:Fortress; Minor; 18-02-00; Locations.AccessFortress, Items.MoleMitts
+FortressOutsideF3Right:Fortress; Minor; 18-02-00; Locations.AccessFortress, Items.MoleMitts
+FortressOutsideBigChest:Fortress; Major; 18-03-00; Locations.AccessFortress, Items.BombBag, Helpers.HasBow, Helpers.CanSplit2
+FortressOutsideSmallChest:Fortress; Minor; 18-03-01; Locations.FortressOutsideBigChest, Items.MoleMitts
+FortressEyegoreKill:Fortress; DungeonItem; 58-00-00; Locations.AccessFortress, Helpers.HasBow, Helpers.CanSplit2
+FortressPedestal:Fortress; DungeonItem; 58-19-00; Locations.AccessFortress
+FortressSkullFall:Fortress; DungeonItem; 58-1B-00; Locations.AccessFortress, Items.MoleMitts, Helpers.CanSplit2, Helpers.HasBow
+FortressSkullRoomLeft:Fortress; Minor; 58-1D-00; Locations.AccessFortress
+FortressSkullRoomRight:Fortress; Minor; 58-1D-01; Locations.AccessFortress
+FortressWizrobes:Fortress; Minor; 58-23-00; Locations.AccessFortress, Items.MoleMitts
+CompleteFortress:Fortress; Helper;; Locations.AccessFortress, Items.MoleMitts, Helpers.CanSplit2, Items.Bow, Items.BigKey:Fortress
+FortressPrize:Prizes; Major; 09C9E6; Locations.CompleteFortress
