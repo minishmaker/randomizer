@@ -130,6 +130,9 @@ namespace MinishRandomizer.Randomizer
                     }
                 }
             }
+
+            //Console.WriteLine($"Missing {RequiredItem.Type}");
+
             return false;
         }
     }
@@ -148,6 +151,7 @@ namespace MinishRandomizer.Randomizer
             {
                 if (location.Name == RequiredLocationName)
                 {
+
                     return location.IsAccessible(availableItems, locations);
                 }
             }

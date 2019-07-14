@@ -236,6 +236,7 @@ namespace MinishRandomizer.Randomizer
 
                 if (availableLocations.Count <= 0)
                 {
+                    availableItems.ForEach(itm => Console.WriteLine($"{itm.Type} sub {itm.SubValue}"));
                     throw new ShuffleException($"Could not place {item.Type}");
                 }
 

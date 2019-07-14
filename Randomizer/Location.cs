@@ -264,6 +264,7 @@ namespace MinishRandomizer.Randomizer
                     type = (ItemType)ROM.Instance.reader.ReadByte(Address);
                     subType = ROM.Instance.reader.ReadByte(Address + 2);
                     break;
+                case LocationType.Half:
                 case LocationType.PurchaseItem:
                     type = (ItemType)ROM.Instance.reader.ReadByte(Address);
                     subType = 0x00;
@@ -322,7 +323,7 @@ namespace MinishRandomizer.Randomizer
             return IsAccessible(availableItems, locations);
         }
 
-        public bool IsAccessible(List<Item> availableItems, List<Location> locations, bool cache = true)
+        public bool IsAccessible(List<Item> availableItems, List<Location> locations, bool cache = false)
         {
             if (AvailableCache != null && cache == true)
             {
@@ -336,6 +337,7 @@ namespace MinishRandomizer.Randomizer
                     if (cache)
                     {
                         AvailableCache = false;
+                        Console.WriteLine($"Can't reach {Name}");
                     }
                     
                     return false;
@@ -344,6 +346,7 @@ namespace MinishRandomizer.Randomizer
 
             if (cache)
             {
+                Console.WriteLine($"Can reach {Name}");
                 AvailableCache = true;
             }
             
