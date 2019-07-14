@@ -274,7 +274,8 @@ namespace MinishRandomizer.Randomizer
             int previousSize;
             do
             {
-                List<Location> accessibleLocations = filledLocations.Where(location => location.IsAccessible(availableItems, Locations)).ToList();
+                // Doesn't touch the cache to prevent incorrect caching
+                List<Location> accessibleLocations = filledLocations.Where(location => location.IsAccessible(availableItems, Locations, false)).ToList();
                 previousSize = accessibleLocations.Count;
 
                 filledLocations.RemoveAll(location => accessibleLocations.Contains(location));

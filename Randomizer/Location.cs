@@ -158,7 +158,8 @@ namespace MinishRandomizer.Randomizer
             Helper,
             //StartingItem,
             PurchaseItem,
-            ScrollItem
+            ScrollItem,
+            Half
         }
 
         public List<Dependency> Dependencies;
@@ -231,6 +232,17 @@ namespace MinishRandomizer.Randomizer
                         w.WriteByte((byte)((byte)Contents.Type & 0x7F));
                     }
                     break;
+                case LocationType.Half:
+                    w.SetPosition(Address);
+                    if (Contents.Type == ItemType.KinstoneX || Contents.Type == ItemType.ShellsX)
+                    {
+                        w.WriteByte((byte)ItemType.Shells30);
+                    }
+                    else
+                    {
+                        w.WriteByte((byte)Contents.Type);
+                    }
+                    break;
                 case LocationType.Major:
                 case LocationType.Minor:
                 default:
@@ -286,6 +298,7 @@ namespace MinishRandomizer.Randomizer
                     return false;
                 case LocationType.PurchaseItem:
                 case LocationType.ScrollItem:
+                case LocationType.Half:
                     if (itemToPlace.SubValue != 0)
                     {
                         return false;
@@ -309,9 +322,9 @@ namespace MinishRandomizer.Randomizer
             return IsAccessible(availableItems, locations);
         }
 
-        public bool IsAccessible(List<Item> availableItems, List<Location> locations)
+        public bool IsAccessible(List<Item> availableItems, List<Location> locations, bool cache = true)
         {
-            if (AvailableCache != null)
+            if (AvailableCache != null && cache == true)
             {
                 return (bool)AvailableCache;
             }
@@ -320,10 +333,20 @@ namespace MinishRandomizer.Randomizer
             {
                 if (!dependency.DependencyFulfilled(availableItems, locations))
                 {
+                    if (cache)
+                    {
+                        AvailableCache = false;
+                    }
+                    
                     return false;
                 }
             }
 
+            if (cache)
+            {
+                AvailableCache = true;
+            }
+            
             return true;
         }
 

@@ -203,7 +203,7 @@ namespace MinishRandomizer.Core
         ArrowButterfly = 0x70,
         DigButterfly = 0x71,
         SwimButterfly = 0x72,
-        FastSplin = 0x73,
+        FastSpin = 0x73,
         FastSplit = 0x74,
         LongSpin = 0x75
 	}
