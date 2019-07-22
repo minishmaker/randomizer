@@ -43,17 +43,17 @@ TownDiggingRight; Major; 0F-00-01; Items.MoleMitts; Items.SpinAttack #Temporary 
 TownDiggingLeft; Minor; 0F-00-02; Items.MoleMitts
 
 
-FlipsCaveBig; Major; 62-10-00; Items.Flippers, Items.Ocarina, Items.PacciCane, Helpers.HasSword
-FlipsCaveSmall; Minor; 62-12-00; Items.Flippers, Items.Ocarina, Items.PacciCane, Items.LanternOff
+#FlipsCaveBig; Major; 62-10-00; Items.Flippers, Items.Ocarina, Items.PacciCane, Helpers.HasSword
+#FlipsCaveSmall; Minor; 62-12-00; Items.Flippers, Items.Ocarina, Items.PacciCane, Items.LanternOff
 
 
 AccessEastField; Helper;; (|Helpers.HasSword, Items.BombBag, Helpers.HasLightBow, Items.Ocarina)
 SouthKeeseCave; Minor; 32-13-00; Locations.AccessEastField, Items.BombBag
 AboveHPHole; Minor; 27-00-00; Locations.AccessEastField, (|Items.Ocarina, Items.LonLonKey), (|Items.PacciCane, Items.RocsCape)
-LonLonCave; Minor; 32-0C-00; (|Items.Ocarina, Items.LonLonKey) Helpers.CanSplit2
+LonLonCave; Major; 32-0C-00; (|Items.Ocarina, Items.LonLonKey), Helpers.CanSplit2; Items.Bottle1 #Temp
 
 AccessWestField; Helper;; (|(&Helpers.HasSword, Items.SpinAttack), Items.Flippers, (&Items.BombBag, Helpers.CanSplit3))
-BottleScrub; PurchaseItem; 0CC0C0; Items.Shield, Items.BombBag, Locations.AccessWestField
+#BottleScrub; PurchaseItem; 0CC0C0; Items.Shield, Items.BombBag, Locations.AccessWestField
 
 # Minish Woods Locations
 AccessMinishWoods; Helper;; Locations.AccessEastField
@@ -73,8 +73,8 @@ CrenelVineHole; Minor; 35-00-00; Locations.AccessCrenel, (|Items.GustJar, Items.
 CrenelMinishHouse; Minor; 27-03-00; Locations.AccessCrenel, (|Items.GustJar, Items.BombBag)
 CrenelCaveDownstairs; Minor; 26-07-00; Locations.AccessCrenel, Items.BombBag
 CrenelHeartCaveLeft; Minor; 26-08-00; Locations.AccessCrenel, Items.BombBag
-CrenelHeartCaveRight; Minor; 26-08-01; Locations.AccessCrenel, Items.BombBag
-CrenelGripScrub; PurchaseItem; 0CC0A8; Locations.AccessCrenel, Items.Shield, Items.BombBag
+CrenelHeartCaveRight; Major; 26-08-01; Locations.AccessCrenel, Items.BombBag; Items.GripRing # Temp
+#CrenelGripScrub; PurchaseItem; 0CC0A8; Locations.AccessCrenel, Items.Shield, Items.BombBag
 GraybladeLeft; ScrollItem; 25-00-00; Locations.AccessCrenel, Helpers.CanSplit2
 GraybladeRight; ScrollItem; 25-00-01; Locations.AccessCrenel, Helpers.CanSplit2
 CrenelBlockChest; Minor; 26-03-00; Locations.AccessCrenel, (|Items.PacciCane, (&Items.GripRing, (|Items.GustJar, Helpers.HasLightBow)))
@@ -134,16 +134,16 @@ CloudsFreeChest; Major; 08-01-00; Locations.AccessClouds; Items.KinstoneX.Yellow
 #CloudsSouthKill; Major; ; Locations.AccessClouds, (|Items.RocsCape, Items.MoleMitts); Items.KinstoneX.YellowTornadoProng
 CloudsSouthMiddle; Major; 08-01-01; Locations.AccessClouds, (|Items.RocsCape, Items.MoleMitts); Items.KinstoneX.YellowTornadoProng
 CloudsWestBottom; Major; 08-01-02; Locations.AccessClouds, (|Items.RocsCape, Items.MoleMitts); Items.KinstoneX.YellowTornadoProng
-CloudsWestLeft; Minor; 08-01-03; Locations.AccessClouds, Items.MoleMitts
-CloudsWestRight; Minor; 08-01-04; Locations.AccessClouds, Items.MoleMitts
+CloudsWestLeft; Major; 08-01-03; Locations.AccessClouds, Items.MoleMitts; Items.KinstoneX.YellowTornadoProng # Temp
+CloudsWestRight; Major; 08-01-04; Locations.AccessClouds, Items.MoleMitts; Items.KinstoneX.YellowTornadoProng # Temp
 CloudsSouthLeft; Minor; 08-01-05; Locations.AccessClouds, (|Items.RocsCape, Items.MoleMitts)
 CloudsSouthRight; Minor; 08-01-06; Locations.AccessClouds, (|Items.RocsCape, Items.MoleMitts)
 
-AccessUpperClouds; Helper;; Locations.AccessClouds, (|Items.RocsCape, Items.MoleMitts), Items.KinstoneX.YellowTornadoProng::3
-TowerBottomRight; Minor; 30-00-00; Locations.AccessUpperClouds
-TowerBottomLeft; Minor; 30-00-01; Locations.AccessUpperClouds
+AccessUpperClouds; Helper;; Locations.AccessClouds, (|Items.RocsCape, Items.MoleMitts), Items.KinstoneX.YellowTornadoProng::5
+TowerBottomRight; Major; 30-00-00; Locations.AccessUpperClouds; Items.Flippers # Temp
+TowerBottomLeft; Major; 30-00-01; Locations.AccessUpperClouds; Items.PowerBracelets # Temp
 TowerF2; Minor; 30-01-00; Locations.AccessUpperClouds
-GregalOne; Half; 014C5A; Locations.AccessUpperClouds, Items.GustJar
+#GregalOne; Half; 014C5A; Locations.AccessUpperClouds, Items.GustJar
 GregalTwo; Half; 014CBC; Locations.AccessUpperClouds, Items.GustJar
 TowerRightBed; Minor; 30-02-00; Locations.AccessUpperClouds
 TowerMiddleBed; Minor; 30-02-01; Locations.AccessUpperClouds
@@ -205,24 +205,28 @@ FortressPrize:Prizes; Half; 09C9E6; Locations.CompleteFortress
 
 # Temple of Droplets Locations
 AccessDroplets:Droplets; Helper;; Locations.AccessHylia, (|Items.Flippers, Items.RocsCape)
-#DropletsFirstIceblock:Droplets; ; DungeonItem; Locations.AccessDroplets
-#DropletsSecondIceblock:Droplets; ; DungeonItem; Locations.AccessDroplets, Helpers.DropletsOpenDoors
-#DropletsEastLever:Droplets; Helper;; Locations.AccessDroplets, Items.BigKey:Droplets, Helpers.DropletsOpenDoors, (|Items.GustJar, (&Items.LanternOff, Items.RocsCape)), Helpers.CanSplit2
-#DropletsWestLever:Droplets; Helper;; Locations.AccessDroplets, Items.BigKey:Droplets, Helpers.DropletsOpenDoors, Items.LanternOff, Helpers.CanSplit2
-#DropletsOpenDoors:Droplets; Helper;; Items.SmallKey:Droplets:2, Items.GripRing, Items.Flippers, (|Items.GustJar, Items.RocsCape), Items.BombBag, Items.LanternOff, Helpers.HasSword
-#DropletsEastFirst:Droplets; Minor; 60-09-00; Locations.AccessDroplets, Items.BigKey:Droplets, (|Items.LanternOff, Locations.DropletsEastLever)
-#DropletsIceMaze:Droplets; Minor; 60-0A-00; Locations.AccessDroplets, Items.BigKey:Droplets,  (|Items.LanternOff, Locations.DropletsEastLever)
-#DropletsOverhang:Droplets; DungeonItem; 60-0D-00; Locations.AccessDroplets, Items.BigKey:Droplets
+# Temporary modification
+DropletsFirstIceblockConst:Droplets; Unshuffled; ; Locations.AccessDroplets; Items.SmallKey:Droplets
+DropletsSecondIceblockConst:Droplets; Unshuffled; ; Locations.AccessDroplets; Items.BigKey:Droplets
+# Eventual replacement
+#DropletsFirstIceblock:Droplets; DungeonItem; ; Locations.AccessDroplets; Items.SmallKey:Droplets
+#DropletsSecondIceblock:Droplets; DungeonItem; ; Locations.AccessDroplets, Helpers.DropletsOpenDoors; Items.BigKey:Droplets
+DropletsEastLever:Droplets; Helper;; Locations.AccessDroplets, Items.BigKey:Droplets, Helpers.DropletsOpenDoors, (|Items.GustJar, (&Items.LanternOff, Items.RocsCape)), Helpers.CanSplit2
+DropletsWestLever:Droplets; Helper;; Locations.AccessDroplets, Items.BigKey:Droplets, Helpers.DropletsOpenDoors, Items.LanternOff, Helpers.CanSplit2
+DropletsOpenDoors:Droplets; Helper;; Items.SmallKey:Droplets:2, Items.GripRing, Items.Flippers, (|Items.GustJar, Items.RocsCape), Items.BombBag, Items.LanternOff, Helpers.HasSword
+DropletsEastFirst:Droplets; Minor; 60-09-00; Locations.AccessDroplets, Items.BigKey:Droplets, (|Items.LanternOff, Locations.DropletsEastLever)
+DropletsIceMaze:Droplets; Minor; 60-0A-00; Locations.AccessDroplets, Items.BigKey:Droplets,  (|Items.LanternOff, Locations.DropletsEastLever)
+DropletsOverhang:Droplets; DungeonItem; 60-0D-00; Locations.AccessDroplets, Items.BigKey:Droplets
 DropletsBluChu:Droplets; Major; 60-10-01; Locations.AccessDroplets, Items.BigKey:Droplets,  (|Items.LanternOff, Locations.DropletsEastLever), Helpers.DropletsOpenDoors
-#DropletsBasement:Droplets; DungeonItem; 60-11-00; Locations.AccessDroplets, Items.BigKey:Droplets,  (|Items.LanternOff, Locations.DropletsEastLever)
-#DropletsFrozenIcePlain:Droplets; Minor; 60-28-00; Locations.AccessDroplets, Items.GustJar, Items.BigKey:Droplets, Helpers.DropletsOpenDoors
-#DropletsFreeIcePlain:Droplets; Minor; 60-28-01; Locations.AccessDroplets, Items.GustJar, Items.BigKey:Droplets, Helpers.DropletsOpenDoors
-#DropletsDarkMazeRight:Droplets; Minor; 60-2B-01; Locations.AccessDroplets, Items.BigKey:Droplets, Items.LanternOff
-#DropletsDarkMazeLeft:Droplets; Minor; 60-2B-02; Locations.AccessDroplets, Items.BigKey:Droplets, Items.LanternOff
-#DropletsDarkMazeMiddle:Droplets; Minor; 60-2B-03; Locations.AccessDroplets, Items.BigKey:Droplets, Items.LanternOff
-#DropletsPostTwinFrozen:Droplets; Minor; 60-2D-00; Locations.AccessDroplets, Items.GustJar, Items.BigKey:Droplets, Helpers.DropletsOpenDoors
-#DropletsPreviewFrozen:Droplets; Minor; 60-32-00; Locations.AccessDroplets, Items.BigKey:Droplets, Items.LanternOff
-#DropletsIceWiggler:Droplets; DungeonItem; 60-32-01; Locations.AccessDroplets, Items.GustJar, Items.BigKey:Droplets, Helpers.DropletsOpenDoors
+DropletsBasement:Droplets; DungeonItem; 60-11-00; Locations.AccessDroplets, Items.BigKey:Droplets,  (|Items.LanternOff, Locations.DropletsEastLever)
+DropletsFrozenIcePlain:Droplets; Minor; 60-28-00; Locations.AccessDroplets, Items.GustJar, Items.BigKey:Droplets, Helpers.DropletsOpenDoors
+DropletsFreeIcePlain:Droplets; Minor; 60-28-01; Locations.AccessDroplets, Items.GustJar, Items.BigKey:Droplets, Helpers.DropletsOpenDoors
+DropletsDarkMazeRight:Droplets; Minor; 60-2B-01; Locations.AccessDroplets, Items.BigKey:Droplets, Items.LanternOff
+DropletsDarkMazeLeft:Droplets; Minor; 60-2B-02; Locations.AccessDroplets, Items.BigKey:Droplets, Items.LanternOff
+DropletsDarkMazeMiddle:Droplets; Minor; 60-2B-03; Locations.AccessDroplets, Items.BigKey:Droplets, Items.LanternOff
+DropletsPostTwinFrozen:Droplets; Minor; 60-2D-00; Locations.AccessDroplets, Items.GustJar, Items.BigKey:Droplets, Helpers.DropletsOpenDoors
+DropletsPreviewFrozen:Droplets; Minor; 60-32-00; Locations.AccessDroplets, Items.BigKey:Droplets, Items.LanternOff
+DropletsIceWiggler:Droplets; DungeonItem; 60-32-01; Locations.AccessDroplets, Items.GustJar, Items.BigKey:Droplets, Helpers.DropletsOpenDoors
 CompleteDroplets:Droplets; Helper;; Locations.DropletsEastLever, Locations.DropletsWestLever, Items.LanternOff, Items.HasSword
 
 # Palace of Winds Locations

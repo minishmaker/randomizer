@@ -122,6 +122,11 @@ namespace MinishRandomizer.Randomizer
                     case Location.LocationType.Helper:
                         Console.WriteLine($"Helper or untyped {newLocation.Name}");
                         break;
+                    // Unshuffled locations are filled by default
+                    case Location.LocationType.Unshuffled:
+                        Console.WriteLine($"Unshuffled {newLocation.Name}");
+                        newLocation.Fill(newLocation.Contents);
+                        break;
                     case Location.LocationType.Minor:
                         Console.WriteLine(newLocation.Contents.Type.ToString());
                         MinorItems.Add(newLocation.Contents);
@@ -207,7 +212,11 @@ namespace MinishRandomizer.Randomizer
             {
                 location.SetDefaultContents();
                 location.InvalidateCache();
-                location.Filled = false;
+                
+                if (location.Type != Location.LocationType.Unshuffled)
+                {
+                    location.Filled = false;
+                }
             }
         }
 
@@ -270,7 +279,10 @@ namespace MinishRandomizer.Randomizer
         {
             List<Item> availableItems = preAvailableItems.ToList();
 
-            List<Location> filledLocations = Locations.Where(location => location.Filled && location.Type != Location.LocationType.Helper && location.Type != Location.LocationType.Untyped).ToList();
+            List<Location> filledLocations = Locations.Where(location => 
+            {
+                return location.Filled && location.Type != Location.LocationType.Helper && location.Type != Location.LocationType.Untyped;
+            }).ToList();
 
             int previousSize;
             do

@@ -120,7 +120,6 @@ namespace MinishRandomizer.Randomizer
             int counter = 0;
             foreach (Item item in availableItems)
             {
-
                 if (item.Type == RequiredItem.Type && item.SubValue == RequiredItem.SubValue && (RequiredItem.Dungeon == "" || RequiredItem.Dungeon == item.Dungeon))
                 {
                     counter++;

@@ -53,7 +53,8 @@ namespace MinishRandomizer.Randomizer
 
             if (locationParts.Length >= 5)
             {
-                string[] subParts = locationParts[4].Split('.');
+                string[] itemParts = locationParts[4].Split(':');
+                string[] subParts = itemParts[0].Split('.');
 
                 if (subParts[0] == "Items")
                 {
@@ -71,7 +72,19 @@ namespace MinishRandomizer.Randomizer
                             }
                         }
 
-                        location.SetItem(new Item(replacementType, subType));
+                        string itemDungeon = "";
+
+                        if (type == LocationType.Unshuffled)
+                        {
+                            itemDungeon = dungeon;
+                        }
+
+                        if (itemParts.Length >= 2)
+                        {
+                            itemDungeon = itemParts[1];
+                        }
+
+                        location.SetItem(new Item(replacementType, subType, itemDungeon));
                     }
                 }
             }
@@ -90,19 +103,6 @@ namespace MinishRandomizer.Randomizer
 
             return items;
         }
-
-        /*public static List<Item> GetAvailableItems(List<Location> locations, List<Item> preItems)
-        {
-            List<Item> items = new List<Item>();
-
-            List<Location> unsearchedLocations = locations.ToList();
-
-            do
-            {
-
-            }
-            while ();
-        }*/
 
         public static int GetAddressFromString(string addressString)
         {
@@ -159,7 +159,8 @@ namespace MinishRandomizer.Randomizer
             //StartingItem,
             PurchaseItem,
             ScrollItem,
-            Half
+            Half,
+            Unshuffled
         }
 
         public List<Dependency> Dependencies;
