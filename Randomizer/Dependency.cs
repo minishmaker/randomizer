@@ -17,9 +17,9 @@ namespace MinishRandomizer.Randomizer
         {
             List<Dependency> dependencies = new List<Dependency>();
 
-            // Match: comma, capture and match anything between 
-            string regexPattern = @"(?:,|^)\(([&|](?:[^()]|(?<p>\()|(?<-p>\)))+)\)(?:,|$)|,";
-            string[] subLogic = Regex.Split(logic, regexPattern);
+
+            List<string> subLogic = SplitDependencies(logic);
+
             foreach (string sequence in subLogic)
             {
                 if (string.IsNullOrEmpty(sequence))
@@ -89,6 +89,10 @@ namespace MinishRandomizer.Randomizer
                                     ItemDependency itemDependency = new ItemDependency(new Item(type, subType, dungeon), count);
                                     dependencies.Add(itemDependency);
                                 }
+                                else
+                                {
+                                    throw new ShuffleException($"Item {dependencyParts[1]} could not be found!");
+                                }
                                 break;
                         }
                         break;
@@ -96,6 +100,56 @@ namespace MinishRandomizer.Randomizer
             }
 
             return dependencies;
+        }
+
+        public static List<string> SplitDependencies(string logic)
+        {
+            List<string> subLogic = new List<string>();
+
+            int parenCount = 0;
+            string subsection = "";
+
+            foreach (char character in logic)
+            {
+                switch (character)
+                {
+                    case ',':
+                        if (parenCount == 0)
+                        {
+                            // Not within parentheses, should start a new logic string
+                            subLogic.Add(subsection);
+                            subsection = "";
+                        }
+                        else
+                        {
+                            // Comma is within parentheses, so it will be parsed as a compound dependency
+                            subsection += ',';
+                        }
+                        break;
+                    case '(':
+                        // Open parenthesis, so everything until it's closed should be one block
+                        parenCount++;
+                        break;
+                    case ')':
+                        // Close parenthesis, so reduce the number of open blocks by 1
+                        parenCount--;
+                        break;
+                    default:
+                        // Not a special case, so it should be added to the current logic subsection
+                        subsection += character;
+                        break;
+                }
+            }
+
+            // Add final section to logic
+            subLogic.Add(subsection);
+
+            if (parenCount > 0)
+            {
+                throw new ShuffleException($"Parentheses could not be parsed correctly! Make sure none of them are mismatched.");
+            }
+
+            return subLogic;
         }
 
         public virtual bool DependencyFulfilled(List<Item> availableItems, List<Location> locations)

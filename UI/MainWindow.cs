@@ -83,22 +83,29 @@ namespace MinishRandomizer
 
             shuffler = new Shuffler(Path.GetDirectoryName(ROM.Instance.path));
 
-            if (customLogicCheckBox.Checked)
+            try
             {
-                shuffler.LoadLocations(customLogicPath.Text);
-            }
-            else
-            {
-                shuffler.LoadLocations(null);
-            }
+                if (customLogicCheckBox.Checked)
+                {
+                    shuffler.LoadLocations(customLogicPath.Text);
+                }
+                else
+                {
+                    shuffler.LoadLocations(null);
+                }
 
-            if (customPatchCheckBox.Checked)
-            {
-                shuffler.PatchRom(customPatchPath.Text);
+                if (customPatchCheckBox.Checked)
+                {
+                    shuffler.PatchRom(customPatchPath.Text);
+                }
+                else
+                {
+                    shuffler.PatchRom(null);
+                }
             }
-            else
+            catch (ShuffleException error)
             {
-                shuffler.PatchRom(null);
+                MessageBox.Show(error.Message);
             }
         }
 

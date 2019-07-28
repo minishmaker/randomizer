@@ -186,6 +186,14 @@ namespace MinishRandomizer.Randomizer
             unfilledLocations.Shuffle(RNG);
             FillLocations(unplacedItems, unfilledLocations);
 
+            // Before shuffling Minor locations in, create a playthrough log 
+            List<Item> finalMajorItems = GetAvailableItems(new List<Item>(), true);
+
+            if (!new LocationDependency("BeatVaati").DependencyFulfilled(finalMajorItems, Locations))
+            {
+                throw new ShuffleException($"Randomization succeded, but could not beat Vaati!");
+            }
+
             unfilledLocations.Shuffle(RNG);
             FastFillLocations(MinorItems.ToList(), unfilledLocations);
 
@@ -275,16 +283,14 @@ namespace MinishRandomizer.Randomizer
         }
 
         // Gets all the available items with a given item set, looping until there are no more items left to get
-        private List<Item> GetAvailableItems(List<Item> preAvailableItems)
+        private List<Item> GetAvailableItems(List<Item> preAvailableItems, bool printPlaythrough = false)
         {
             List<Item> availableItems = preAvailableItems.ToList();
 
-            List<Location> filledLocations = Locations.Where(location => 
-            {
-                return location.Filled && location.Type != Location.LocationType.Helper && location.Type != Location.LocationType.Untyped;
-            }).ToList();
+            List<Location> filledLocations = Locations.Where(location => location.Filled && location.Type != Location.LocationType.Helper && location.Type != Location.LocationType.Untyped).ToList();
 
             int previousSize;
+            int sphereCount = 1;
             do
             {
                 // Doesn't touch the cache to prevent incorrect caching
@@ -293,7 +299,16 @@ namespace MinishRandomizer.Randomizer
 
                 filledLocations.RemoveAll(location => accessibleLocations.Contains(location));
 
-                availableItems.AddRange(Location.GetItems(accessibleLocations));
+                if (printPlaythrough)
+                {
+                    accessibleLocations.ForEach(location => Console.WriteLine($"Sphere {sphereCount}: {location.Contents.Type} sub {location.Contents.SubValue} at {location.Name}\n"));
+                }
+
+                List<Item> newItems = Location.GetItems(accessibleLocations);
+
+                availableItems.AddRange(newItems);
+
+                sphereCount++;
             }
             while (previousSize > 0);
 
