@@ -127,12 +127,24 @@ namespace MinishRandomizer.Randomizer
                         }
                         break;
                     case '(':
+                        // Nested parentheses should be in the subsection
+                        if (parenCount > 0)
+                        {
+                            subsection += '(';
+                        }
+
                         // Open parenthesis, so everything until it's closed should be one block
                         parenCount++;
                         break;
                     case ')':
                         // Close parenthesis, so reduce the number of open blocks by 1
                         parenCount--;
+
+                        // Nested parentheses should be in the subsection
+                        if (parenCount > 0)
+                        {
+                            subsection += ')';
+                        }
                         break;
                     default:
                         // Not a special case, so it should be added to the current logic subsection

@@ -260,7 +260,7 @@ namespace MinishRandomizer.Randomizer
                 int locationIndex = RNG.Next(availableLocations.Count);
 
                 availableLocations[locationIndex].Fill(item);
-                Console.WriteLine($"Placed {item.Type.ToString()} at {availableLocations[locationIndex].Name} with {items.Count} items remaining\n");
+                Console.WriteLine($"Placed {item.Type.ToString()} subtype {StringUtil.AsStringHex2(item.SubValue)} at {availableLocations[locationIndex].Name} with {items.Count} items remaining\n");
 
                 locations.Remove(availableLocations[locationIndex]);
 

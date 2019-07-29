@@ -79,7 +79,7 @@ CrenelHeartCaveRight; Major; 26-08-01; Locations.AccessCrenel, Items.BombBag; It
 GraybladeLeft; Minor; 25-00-00; Locations.AccessCrenel, Helpers.CanSplit2
 GraybladeRight; Minor; 25-00-01; Locations.AccessCrenel, Helpers.CanSplit2
 CrenelBlockChest; Minor; 26-03-00; Locations.AccessCrenel, (|Items.GripRing, Helpers.HasBottle), (|Items.PacciCane, (&Items.GripRing, (|Items.GustJar, Helpers.HasLightBow)))
-Melari; Major; 00D26E; Locations.CompleteCoF
+#Melari; Major; 00D26E; Locations.CompleteCoF
 
 # Castor Wilds Locations
 AccessWilds; Helper;; Locations.AccessWestField, Helpers.CanSplit2, (|Items.PegasusBoots, Items.RocsCape)
