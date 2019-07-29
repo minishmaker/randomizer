@@ -240,6 +240,11 @@ namespace MinishRandomizer.Randomizer
                 int itemIndex = RNG.Next(items.Count);
                 Item item = items[itemIndex];
                 Console.WriteLine($"Placing: {item.Type.ToString()}");
+                if (item.Type == ItemType.KinstoneX)
+                {
+                    Console.WriteLine($"Type: {item.Kinstone.ToString()}");
+                }
+
                 if (item.Dungeon != "")
                 {
                     Console.WriteLine($"Dungeon: {item.Dungeon}");
@@ -301,7 +306,7 @@ namespace MinishRandomizer.Randomizer
 
                 if (printPlaythrough)
                 {
-                    accessibleLocations.ForEach(location => Console.WriteLine($"Sphere {sphereCount}: {location.Contents.Type} sub {location.Contents.SubValue} at {location.Name}\n"));
+                    accessibleLocations.ForEach(location => Console.WriteLine($"Sphere {sphereCount}: {location.Contents.Type} sub {StringUtil.AsStringHex2(location.Contents.SubValue)} at {location.Name}\n"));
                 }
 
                 List<Item> newItems = Location.GetItems(accessibleLocations);
