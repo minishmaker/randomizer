@@ -1,0 +1,83 @@
+#include "Extensions/Hack Installation.txt"
+
+//#define DEBUG 0
+//#define TEST 0
+
+#define FreeSpace $EF3340
+ORG FreeSpace
+
+//#define neverSkipFusionCutscene 0 //define to never skip
+#define alwaysSkipFusionCutscene 0 //set to non-0 to skip, set to 0 to skip on button held
+
+#ifdef TEST
+	PUSH
+	ORG $EDD8+2; BYTE 0x5C 0x70  //lady kinstone
+	ORG $DA58+2; BYTE 0x5C 0x6C  //ghost kinstone
+	ORG $F2528+3; BYTE 0x01 0x00 //new item in smith's room, write item to $F252B
+	ORG $F2538+3; BYTE 0x0D 0x00 //new item in smith's room, write item to $F253B
+	POP
+	//unify golden kinstone fusions (obviously no need to change the royal piece)
+	PUSH
+	//tornado pieces first, all set to match with 0x65
+	ORG $C93E4+(8*1)+1; BYTE 0x8; ORG $C93E4+(8*1)+5; BYTE 0x1
+	ORG $C93E4+(8*2)+1; BYTE 0x8; ORG $C93E4+(8*2)+5; BYTE 0x1
+	ORG $C93E4+(8*3)+1; BYTE 0x8; ORG $C93E4+(8*3)+5; BYTE 0x1
+	ORG $C93E4+(8*4)+1; BYTE 0x8; ORG $C93E4+(8*4)+5; BYTE 0x1
+	ORG $C93E4+(8*5)+1; BYTE 0x8; ORG $C93E4+(8*5)+5; BYTE 0x1
+	//swamp second, all set to match with 0x6A
+	ORG $C93E4+(8*6)+1; BYTE 0xD; ORG $C93E4+(8*6)+5; BYTE 0x6
+	ORG $C93E4+(8*7)+1; BYTE 0xD; ORG $C93E4+(8*7)+5; BYTE 0x6
+	ORG $C93E4+(8*8)+1; BYTE 0xD; ORG $C93E4+(8*8)+5; BYTE 0x6
+	POP
+#endif
+
+//text ids set flags hacks
+PUSH; ORG $5E93C; jumpToHack(textFlags); POP
+ALIGN 4
+textFlags:
+#incbin "asm/textFlags.dmp"
+POIN textFlagsTable
+//we use 0x2002EA4 as our custom flag table, this is where the unused small key bytes start
+ALIGN 4
+textFlagsTable: //SHORT textid flag; WORD baseoffset
+SHORT 0x1F1F 0; WORD 0x2002EA4 //jabber nut sets custom flag 0
+//custom flag 1 is used for the ocarina
+SHORT 0x2D08 2; WORD 0x2002EA4 //buying mushroom sets custom flag 2
+SHORT 0x125C 6; WORD 0x2002CA6 //new melari flag
+SHORT 0x3D07 6; WORD 0x2002CB4 //set the simulation heart piece flag after it ends
+SHORT 0 0; WORD 0 //terminator
+
+//sanctuary stuff is wip and probably doesn't even work right now
+
+//flag hacks
+PUSH; ORG $7DBAC; jumpToHack(flagHack); POP
+ALIGN 4
+flagHack:
+#incbin "asm/flagHack.dmp"
+POIN newFlags
+ALIGN 4
+newFlags: //WORD originaloffset baseoffset bits
+WORD 0x800C710 0x2002C9C 0x04 //Festari - check for big chu being defeated instead of having earth element for special dialogue
+WORD 0x800D2A6 0x2002C9C 0x08 //Melari - instead of having fire element, check defeated gleerok
+WORD 0x800D30E 0x2002C9C 0x08 //Melari - instead of having fire element, check defeated gleerok
+WORD 0x800D04A 0x2002C9C 0x08 //Melari - instead of having fire element, check defeated gleerok
+WORD 0x800D066 0x2002C9C 0x08 //Melari - instead of having fire element, check defeated gleerok
+WORD 0x800D0BE 0x2002C9C 0x08 //Melari - instead of having fire element, check defeated gleerok
+WORD 0x800D0A0 0x2002CA6 0x40 //Melari - instead of having white sword, check exited mines with sword (repurposed)
+WORD 0x800D05E 0x2002CA6 0x40 //Melari - instead of having white sword, check exited mines with sword (repurposed)
+WORD 0x800D944 0x2002D74 0x20 //Zeffa - check for ocarina being dropped instead of ocarina being collected
+WORD 0x800D976 0x2002EA4 0x02 //Ocarina - check for a new flag for the ocarina being collected
+WORD 0x800D980 0x2002EA4 0x02 //Ocarina - check for a new flag for the ocarina being collected
+	WORD 0x8014070 0x2002B32 0xFF //Sanctuary - Ezlo doesn't nag you about the first stone tablet
+	WORD 0x8013BA8 0x2002B32 0xFF //Sanctuary - Ezlo doesn't nag you about the second stone tablet
+	//WORD 0x8014014 0x2002B32 0xFF //Sanctuary - yet more stone tablet
+WORD 0 0 0 //terminator
+
+	//sanctuary fixes
+	PUSH; ORG $4E98E; SHORT 0; POP //sanctuary garden door always open
+	PUSH; ORG $F4A9C; BYTE 0xFF; ORG $F4C18; POIN $F4AAC; POP//sanctuary switches door never closes
+
+#include "newGame.event"
+#include "logicfixes/installer.event"
+#include "gamefixes/installer.event"
+#include "improvements/installer.event"

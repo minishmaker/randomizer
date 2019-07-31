@@ -99,4 +99,7 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /y /d /s "$(ProjectDir)Resources\Patches" "$(TargetDir)Patches\"</PostBuildEvent>
+  </PropertyGroup>
 </Project>
