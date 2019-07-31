@@ -44,7 +44,7 @@ namespace MinishRandomizer
             try
             {
                 shuffler.RandomizeLocations();
-                MessageBox.Show("Your rom has been randomized.", "Randomization finished", MessageBoxButtons.OK);
+                MessageBox.Show("Your rom has been randomized. The randomized file is the mcrando.gba file in the directory of the base rom.", "Randomization finished", MessageBoxButtons.OK);
             }
             catch (ShuffleException error)
             {
