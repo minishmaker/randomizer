@@ -92,6 +92,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="Vendor\ColorzCore\ColorzCore\ColorzCore.csproj">
+      <Project>{b98f7ccf-9caa-406e-88d7-2040fa99f631}</Project>
+      <Name>ColorzCore</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
