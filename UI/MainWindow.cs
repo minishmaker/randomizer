@@ -44,6 +44,7 @@ namespace MinishRandomizer
             try
             {
                 shuffler.RandomizeLocations();
+                MessageBox.Show("Your rom has been randomized.", "Randomization finished", MessageBoxButtons.OK);
             }
             catch (ShuffleException error)
             {
