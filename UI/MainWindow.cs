@@ -15,12 +15,17 @@ namespace MinishRandomizer
 {
     public partial class MainWindow : Form
     {
+
         private ROM ROM_;
         private Shuffler shuffler;
+        private bool randomized;
 
         public MainWindow()
         {
             InitializeComponent();
+
+            // Initialize seed to random value
+            seedField.Text = new Random().Next().ToString();
         }
 
         private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
@@ -32,7 +37,12 @@ namespace MinishRandomizer
         {
             if (ROM_ == null)
             {
-                return;
+                LoadRom();
+
+                if (ROM_ == null)
+                {
+                    return;
+                }
             }
 
 
@@ -43,7 +53,37 @@ namespace MinishRandomizer
 
             try
             {
-                shuffler.RandomizeLocations();
+                if (int.TryParse(seedField.Text, out int seed))
+                {
+                    if (customLogicCheckBox.Checked)
+                    {
+                        shuffler.LoadLocations(customLogicPath.Text);
+                    }
+                    else
+                    {
+                        shuffler.LoadLocations();
+                    }
+
+                    
+                    shuffler.RandomizeLocations(seed);
+                }
+                else
+                {
+                    MessageBox.Show("The seed value is not valid!\nMake sure it's not too large and only contains numeric characters.");
+                }
+
+                // First randomization needs to change the tab
+                if (!randomized)
+                {
+                    // Change the tab to the seed output tab
+                    mainTabs.Controls.Add(generatedTab);
+                    mainTabs.SelectedTab = generatedTab;
+                }
+
+                randomized = true;
+
+                // Show ROM information on seed page
+                generatedSeedValue.Text = seed.ToString();
             }
             catch (ShuffleException error)
             {
@@ -82,31 +122,6 @@ namespace MinishRandomizer
             }
 
             shuffler = new Shuffler(Path.GetDirectoryName(ROM.Instance.path));
-
-            try
-            {
-                if (customLogicCheckBox.Checked)
-                {
-                    shuffler.LoadLocations(customLogicPath.Text);
-                }
-                else
-                {
-                    shuffler.LoadLocations(null);
-                }
-
-                if (customPatchCheckBox.Checked)
-                {
-                    shuffler.PatchRom(customPatchPath.Text);
-                }
-                else
-                {
-                    shuffler.PatchRom(null);
-                }
-            }
-            catch (ShuffleException error)
-            {
-                MessageBox.Show(error.Message);
-            }
         }
 
         private void CustomLogicCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -141,7 +156,7 @@ namespace MinishRandomizer
         {
             OpenFileDialog ofd = new OpenFileDialog
             {
-                Filter = "UPS Patch|*.ups|All Files|*.*",
+                Filter = "UPS Patches|*.ups|All Files|*.*",
                 Title = "Select Custom Patch"
             };
 
@@ -151,6 +166,87 @@ namespace MinishRandomizer
             }
 
             customPatchPath.Text = ofd.FileName;
+        }
+
+        private void SaveRomButton_Click(object sender, EventArgs e)
+        {
+            if (!randomized)
+            {
+                return;
+            }
+
+            // Get the default name for the saved ROM
+            string fileName = $"MinishRandomizer_{shuffler.Seed}";
+
+            SaveFileDialog sfd = new SaveFileDialog
+            {
+                Filter = "GBA ROMs|*.gba|All Files|*.*",
+                Title = "Save ROM",
+                FileName = fileName
+            };
+
+            if (sfd.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+
+            // Write output to ROM, then add patches
+            byte[] outputRom = shuffler.GetRandomizedRom();
+            File.WriteAllBytes(sfd.FileName, outputRom);
+        }
+
+        private void SavePatchButton_Click(object sender, EventArgs e)
+        {
+            if (!randomized)
+            {
+                return;
+            }
+
+            // Get the default name for the saved patch
+            string fileName = $"MinishRandomizer_{shuffler.Seed}_patch";
+
+            SaveFileDialog sfd = new SaveFileDialog
+            {
+                Filter = "UPS Patches|*.ups|All Files|*.*",
+                Title = "Save Patch",
+                FileName = fileName
+            };
+
+            if (sfd.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+
+            // Get UPS patch of ROM 
+            //byte[] patch = 
+            //File.WriteAllText(sfd.FileName, spoilerLog);
+        }
+
+        private void SaveSpoilerButton_Click(object sender, EventArgs e)
+        {
+            if (!randomized)
+            {
+                return;
+            }
+
+            // Get the default name for the saved patch
+            string fileName = $"MinishRandomizer_{shuffler.Seed}_spoiler";
+
+            SaveFileDialog sfd = new SaveFileDialog
+            {
+                Filter = "Text files|*.txt|All Files|*.*",
+                Title = "Save Spoiler",
+                FileName = fileName
+            };
+
+            if (sfd.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+
+            // Write output to ROM, then add patches
+            string spoilerLog = shuffler.GetSpoiler();
+            File.WriteAllText(sfd.FileName, spoilerLog);
         }
     }
 }

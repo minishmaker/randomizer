@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.29001.49
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinishRandomizer", "MinishRandomizer.csproj", "{704DAD64-9C28-458B-8980-A945C1159FFA}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Vendor", "Vendor", "{E5E80AB9-F3A1-4B3F-BAC1-46C864EB76E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorzCore", "Vendor\ColorzCore\ColorzCore\ColorzCore.csproj", "{B98F7CCF-9CAA-406E-88D7-2040FA99F631}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,9 +19,16 @@ Global
 		{704DAD64-9C28-458B-8980-A945C1159FFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{704DAD64-9C28-458B-8980-A945C1159FFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{704DAD64-9C28-458B-8980-A945C1159FFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B98F7CCF-9CAA-406E-88D7-2040FA99F631}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B98F7CCF-9CAA-406E-88D7-2040FA99F631}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B98F7CCF-9CAA-406E-88D7-2040FA99F631}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B98F7CCF-9CAA-406E-88D7-2040FA99F631}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B98F7CCF-9CAA-406E-88D7-2040FA99F631} = {E5E80AB9-F3A1-4B3F-BAC1-46C864EB76E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3200685A-8233-4883-B294-A2CBC408902C}

@@ -56,8 +56,8 @@ namespace MinishRandomizer.Randomizer
 
     public class Shuffler
     {
-
         private Random RNG;
+        public int Seed;
         private List<Location> Locations;
         //private List<Location> StartingLocations;
         private List<Item> DungeonItems;
@@ -67,7 +67,6 @@ namespace MinishRandomizer.Randomizer
 
         public Shuffler(string outputDirectory)
         {
-            RNG = new Random();
             Locations = new List<Location>();
             DungeonItems = new List<Item>();
             MajorItems = new List<Item>();
@@ -77,10 +76,15 @@ namespace MinishRandomizer.Randomizer
 
         public void SetSeed(int seed)
         {
+            Seed = seed;
             RNG = new Random(seed);
         }
 
-        public void LoadLocations(string locationFile)
+        /// <summary>
+        /// Reads the list of locations from a file, or the default logic if none is specified
+        /// </summary>
+        /// <param name="locationFile">The file to read locations from</param>
+        public void LoadLocations(string locationFile = null)
         {
             Locations.Clear();
             DungeonItems.Clear();
@@ -91,11 +95,13 @@ namespace MinishRandomizer.Randomizer
 
             if (locationFile == null)
             {
+                // Load default logic if no alternative is specified
                 Assembly assembly = Assembly.GetExecutingAssembly();
                 using (Stream stream = assembly.GetManifestResourceStream("MinishRandomizer.Resources.default.logic"))
                 using (StreamReader reader = new StreamReader(stream))
                 {
                     string allLocations = reader.ReadToEnd();
+                    // Each line is a different location, split regardless of return form
                     locationStrings = allLocations.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
                 }
             }
@@ -106,70 +112,61 @@ namespace MinishRandomizer.Randomizer
             
             foreach (string locationLine in locationStrings)
             {
+                // Spaces are ignored, and everything after a # is a comment
                 string locationString = locationLine.Split('#')[0].Replace(" ", "");
-                locationString = locationString.Replace(" ", "");
-                if (locationString == "")
+
+                // Empty lines or locations are ignored
+                if (string.IsNullOrWhiteSpace(locationString))
                 {
                     continue;
                 }
 
                 Location newLocation = Location.GetLocation(locationString);
-                Locations.Add(newLocation);
-
-                switch(newLocation.Type)
-                {
-                    case Location.LocationType.Untyped:
-                    case Location.LocationType.Helper:
-                        Console.WriteLine($"Helper or untyped {newLocation.Name}");
-                        break;
-                    // Unshuffled locations are filled by default
-                    case Location.LocationType.Unshuffled:
-                        Console.WriteLine($"Unshuffled {newLocation.Name}");
-                        newLocation.Fill(newLocation.Contents);
-                        break;
-                    case Location.LocationType.Minor:
-                        Console.WriteLine(newLocation.Contents.Type.ToString());
-                        MinorItems.Add(newLocation.Contents);
-                        break;
-                    case Location.LocationType.DungeonItem:
-                        Console.WriteLine($"{newLocation.Dungeon}: {newLocation.Contents.Type.ToString()}");
-                        DungeonItems.Add(newLocation.Contents);
-                        break;
-                    case Location.LocationType.Major:
-                    case Location.LocationType.Split:
-                    case Location.LocationType.PurchaseItem:
-                    case Location.LocationType.ScrollItem:
-                    default:
-                        Console.WriteLine($"Hey! {newLocation.Contents.Type.ToString()}");
-                        MajorItems.Add(newLocation.Contents);
-                        break;
-                }
+                AddLocation(newLocation);
             }
         }
 
-        public void PatchRom(string locationFile)
+        private void AddLocation(Location location)
         {
-            byte[] patchContents;
-            if (locationFile == null)
-            {
-                Assembly assembly = Assembly.GetExecutingAssembly();
-                using (Stream stream = assembly.GetManifestResourceStream("MinishRandomizer.Resources.randoPatch.ups"))
-                {
-                    patchContents = new byte[stream.Length];
-                    stream.Read(patchContents, 0, (int)stream.Length);
-                }
-            }
-            else
-            {
-                patchContents = File.ReadAllBytes(locationFile);
-            }
+            // All locations are in the master location list
+            Locations.Add(location);
 
-            PatchUtil.ApplyUPS(ROM.Instance.romData, patchContents);
+            // The type of the containing location determines how the item is handled
+            switch (location.Type)
+            {
+                // These locations are not filled, because they don't reference an item location
+                case Location.LocationType.Untyped:
+                case Location.LocationType.Helper:
+                    break;
+                // Unshuffled locations are filled by default
+                case Location.LocationType.Unshuffled:
+                    location.Fill(location.Contents);
+                    break;
+                // Minor locations are not logically accounted for
+                case Location.LocationType.Minor:
+                    MinorItems.Add(location.Contents);
+                    break;
+                // Dungeon items can only be placed within the same dungeon, and are placed first
+                case Location.LocationType.DungeonItem:
+                    DungeonItems.Add(location.Contents);
+                    break;
+                // Major/etc items are fully randomized
+                case Location.LocationType.Major:
+                case Location.LocationType.Split:
+                default:
+                    MajorItems.Add(location.Contents);
+                    break;
+            }
         }
 
-        public void RandomizeLocations()
+        /// <summary>
+        /// Loads and shuffles all locations
+        /// </summary>
+        /// <param name="seed">The RNG seed used for generation</param>
+        public void RandomizeLocations(int seed)
         {
-            ResetLocations();
+            // Make sure the RNG is set to the seed, so the seed can be regenerated
+            SetSeed(seed);
 
             List<Item> unplacedItems = MajorItems.ToList();
             List<Item> dungeonSpecificItems = DungeonItems.ToList();
@@ -181,27 +178,28 @@ namespace MinishRandomizer.Randomizer
             // Fill dungeon items first so there is room for them all
             List<Location> dungeonLocations = FillLocations(dungeonSpecificItems, unfilledLocations, unplacedItems);
 
-            // Fill non-dungeon items, taking into account the previously placed dungeon items
-            // This seems fairly crude; other randomizers don't seem to deal with this problem?
+            // Fill non-dungeon major items, checking for logic
             unfilledLocations.Shuffle(RNG);
             FillLocations(unplacedItems, unfilledLocations);
 
-            // Before shuffling Minor locations in, create a playthrough log 
-            List<Item> finalMajorItems = GetAvailableItems(new List<Item>(), true);
+            // Get every item that can be logically obtained, to check if the game can be completed
+            List<Item> finalMajorItems = GetAvailableItems(new List<Item>());
 
             if (!new LocationDependency("BeatVaati").DependencyFulfilled(finalMajorItems, Locations))
             {
                 throw new ShuffleException($"Randomization succeded, but could not beat Vaati!");
             }
 
+            // Put the remaining items into the place wherever
             unfilledLocations.Shuffle(RNG);
             FastFillLocations(MinorItems.ToList(), unfilledLocations);
 
             if (unfilledLocations.Count != 0)
             {
+                // All locations should be filled at this point
                 throw new ShuffleException($"There are {unfilledLocations.Count} unfilled locations!");
             }
-
+            
             using (MemoryStream ms = new MemoryStream(ROM.Instance.romData))
             {
                 Writer writer = new Writer(ms);
@@ -214,21 +212,13 @@ namespace MinishRandomizer.Randomizer
             File.WriteAllBytes(OutputDirectory + "/mcrando.gba", ROM.Instance.romData);
         }
 
-        private void ResetLocations()
-        {
-            foreach (Location location in Locations)
-            {
-                location.SetDefaultContents();
-                location.InvalidateCache();
-                
-                if (location.Type != Location.LocationType.Unshuffled)
-                {
-                    location.Filled = false;
-                }
-            }
-        }
-
-        // Based off of the RandomAssumed ALttPR filler
+        /// <summary>
+        /// Uniformly fills items in locations, checking to make sure the items are logically available.
+        /// </summary>
+        /// <param name="items">The items to fill with</param>
+        /// <param name="locations">The locations to be filled</param>
+        /// <param name="assumedItems">The items that are available by default</param>
+        /// <returns>A list of the locations that were filled</returns>
         private List<Location> FillLocations(List<Item> items, List<Location> locations, List<Item> assumedItems = null)
         {
             List<Location> filledLocations = new List<Location>();
@@ -237,8 +227,11 @@ namespace MinishRandomizer.Randomizer
 
             for (int i = items.Count - 1; i >= 0; i--)
             {
+                // Get a random item from the list and save its index
                 int itemIndex = RNG.Next(items.Count);
                 Item item = items[itemIndex];
+
+                // Write placing information to spoiler log
                 Console.WriteLine($"Placing: {item.Type.ToString()}");
                 if (item.Type == ItemType.KinstoneX)
                 {
@@ -250,16 +243,19 @@ namespace MinishRandomizer.Randomizer
                     Console.WriteLine($"Dungeon: {item.Dungeon}");
                 }
                 
+                // Take item out of pool
                 items.RemoveAt(itemIndex);
 
                 List<Item> availableItems = GetAvailableItems(items.Concat(assumedItems).ToList());
 
+                // Find locations that are available for placing the item
                 List<Location> availableLocations = locations.Where(location => location.CanPlace(item, availableItems, Locations)).ToList();
 
                 if (availableLocations.Count <= 0)
                 {
+                    // The filler broke, show all available items and get out
                     availableItems.ForEach(itm => Console.WriteLine($"{itm.Type} sub {itm.SubValue}"));
-                    throw new ShuffleException($"Could not place {item.Type}");
+                    throw new ShuffleException($"Could not place {item.Type}!");
                 }
 
                 int locationIndex = RNG.Next(availableLocations.Count);
@@ -278,8 +274,14 @@ namespace MinishRandomizer.Randomizer
             return filledLocations;
         }
 
+        /// <summary>
+        /// Fill items in locations without checking logic for speed
+        /// </summary>
+        /// <param name="items">The items to be filled</param>
+        /// <param name="locations">The locations in which to fill the items</param>
         private void FastFillLocations(List<Item> items, List<Location> locations)
         {
+            // Don't need to check logic, cause the items being placed do not affect logic
             foreach (Item item in items)
             {
                 locations[0].Fill(item);
@@ -287,15 +289,21 @@ namespace MinishRandomizer.Randomizer
             }
         }
 
-        // Gets all the available items with a given item set, looping until there are no more items left to get
-        private List<Item> GetAvailableItems(List<Item> preAvailableItems, bool printPlaythrough = false)
+
+        /// <summary>
+        /// Gets all the available items with a given item set, looping until there are no more items left to get
+        /// </summary>
+        /// <param name="preAvailableItems">Items that are available from the start</param>
+        /// <returns>A list of all the items that are logically accessible</returns>
+        private List<Item> GetAvailableItems(List<Item> preAvailableItems)
         {
             List<Item> availableItems = preAvailableItems.ToList();
 
             List<Location> filledLocations = Locations.Where(location => location.Filled && location.Type != Location.LocationType.Helper && location.Type != Location.LocationType.Untyped).ToList();
 
             int previousSize;
-            int sphereCount = 1;
+
+            // Get "spheres" until the next sphere contains no new items
             do
             {
                 // Doesn't touch the cache to prevent incorrect caching
@@ -304,20 +312,132 @@ namespace MinishRandomizer.Randomizer
 
                 filledLocations.RemoveAll(location => accessibleLocations.Contains(location));
 
-                if (printPlaythrough)
-                {
-                    accessibleLocations.ForEach(location => Console.WriteLine($"Sphere {sphereCount}: {location.Contents.Type} sub {StringUtil.AsStringHex2(location.Contents.SubValue)} at {location.Name}\n"));
-                }
-
                 List<Item> newItems = Location.GetItems(accessibleLocations);
 
                 availableItems.AddRange(newItems);
-
-                sphereCount++;
             }
             while (previousSize > 0);
 
             return availableItems;
+        }
+
+        /// <summary>
+        /// Get a byte[] of the randomized data
+        /// </summary>
+        /// <returns>The data of the randomized ROM</returns>
+        public byte[] GetRandomizedRom()
+        {
+            // Create a copy of the ROM data to modify for output
+            byte[] outputBytes = new byte[ROM.Instance.romData.Length];
+            Array.Copy(ROM.Instance.romData, 0, outputBytes, 0, outputBytes.Length);
+
+            using (MemoryStream ms = new MemoryStream(outputBytes))
+            {
+                Writer writer = new Writer(ms);
+                foreach (Location location in Locations)
+                {
+                    location.WriteLocation(writer);
+                }
+            }
+
+            return outputBytes;
+        }
+
+        /// <summary>
+        /// Get the contents of the spoiler log, including playthrough
+        /// </summary>
+        /// <returns>The contents of the spoiler log</returns>
+        public string GetSpoiler()
+        {
+            StringBuilder spoilerBuilder = new StringBuilder();
+            spoilerBuilder.AppendLine("Spoiler for Minish Cap Randomizer");
+            spoilerBuilder.AppendLine($"Seed: {Seed}");
+
+            spoilerBuilder.AppendLine();
+            AppendLocationSpoiler(spoilerBuilder);
+
+            spoilerBuilder.AppendLine();
+            AppendPlaythroughSpoiler(spoilerBuilder);
+
+
+            return spoilerBuilder.ToString();
+        }
+
+        /// <summary>
+        /// Create list of filled locations and their contents
+        /// </summary>
+        /// <param name="spoilerBuilder">The running spoiler log builder to append the locations to<</param>
+        private void AppendLocationSpoiler(StringBuilder spoilerBuilder)
+        {
+            spoilerBuilder.AppendLine("Location Contents:");
+            // Get the locations that have been filled
+            List<Location> filledLocations = Locations.Where(location => location.Filled && location.Type != Location.LocationType.Helper && location.Type != Location.LocationType.Untyped).ToList();
+
+            foreach (Location location in filledLocations)
+            {
+                spoilerBuilder.AppendLine($"{location.Name}: {location.Contents.Type}");
+
+                AppendSubvalue(spoilerBuilder, location);
+
+                spoilerBuilder.AppendLine();
+            }
+        }
+
+        /// <summary>
+        /// Create list of items in the order they can logically be collected
+        /// </summary>
+        /// <param name="spoilerBuilder">The running spoiler log builder to append the playthrough to</param>
+        private void AppendPlaythroughSpoiler(StringBuilder spoilerBuilder)
+        {
+            spoilerBuilder.AppendLine("Playthrough:");
+
+            List<Location> filledLocations = Locations.Where(location => location.Filled && location.Type != Location.LocationType.Helper && location.Type != Location.LocationType.Untyped).ToList();
+            List<Item> availableItems = new List<Item>();
+
+            int previousSize;
+            int sphereCounter = 1;
+
+            do
+            {
+                List<Location> accessibleLocations = filledLocations.Where(location => location.IsAccessible(availableItems, Locations, false)).ToList();
+                previousSize = accessibleLocations.Count;
+
+                filledLocations.RemoveAll(location => accessibleLocations.Contains(location));
+
+                List<Item> newItems = Location.GetItems(accessibleLocations);
+                availableItems.AddRange(newItems);
+
+                foreach (Location location in accessibleLocations)
+                {
+                    spoilerBuilder.AppendLine($"Sphere {sphereCounter}: {location.Contents.Type} in {location.Name}");
+
+                    AppendSubvalue(spoilerBuilder, location);
+                    spoilerBuilder.AppendLine();
+                }
+
+                sphereCounter++;
+                spoilerBuilder.AppendLine();
+            }
+            while (previousSize > 0);
+        }
+
+        private void AppendSubvalue(StringBuilder spoilerBuilder, Location location)
+        {
+            // Display subvalue if relevant
+            if (location.Contents.Type == ItemType.KinstoneX)
+            {
+                spoilerBuilder.AppendLine($"Kinstone Type: {location.Contents.Kinstone}");
+            }
+            else if (location.Contents.SubValue != 0)
+            {
+                spoilerBuilder.AppendLine($"Subvalue: {location.Contents.SubValue}");
+            }
+
+            // Display dungeon contents if relevant
+            if (!string.IsNullOrEmpty(location.Contents.Dungeon))
+            {
+                spoilerBuilder.AppendLine($"Dungeon: {location.Contents.Dungeon}");
+            }
         }
     }
 }

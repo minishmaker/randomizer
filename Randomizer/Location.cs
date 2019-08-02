@@ -20,7 +20,7 @@ namespace MinishRandomizer.Randomizer
             if (locationParts.Length < 3)
             {
                 Console.WriteLine("Too short");
-                return new Location(LocationType.Untyped, "INVALID LOCATION", "", 0, null);
+                throw new ShuffleException("A location in the logic file lacks required fields!");
             }
 
             string[] names = locationParts[0].Split(':');
@@ -30,7 +30,7 @@ namespace MinishRandomizer.Randomizer
             if (!Enum.TryParse(locationType, out LocationType type) || type == LocationType.Untyped)
             {
                 Console.WriteLine("Invalid type");
-                return new Location(LocationType.Untyped, "INVALID LOCATION", "", 0, null);
+                throw new ShuffleException($"Location \"{name}\" has invalid type \"{locationType}\"!");
             }
 
             int address = GetAddressFromString(locationParts[2]);
@@ -104,6 +104,11 @@ namespace MinishRandomizer.Randomizer
             return items;
         }
 
+        /// <summary>
+        /// Turn an address string into a file address
+        /// </summary>
+        /// <param name="addressString">String representing the address</param>
+        /// <returns></returns>
         public static int GetAddressFromString(string addressString)
         {
             // Either direct address or area-room-chest
@@ -112,36 +117,40 @@ namespace MinishRandomizer.Randomizer
                 return 0;
             }
 
+            // The address is a hexadecimal number, so it can simply be parsed
             if (int.TryParse(addressString, NumberStyles.HexNumber, null, out int address))
             {
                 return address;
             }
             
+            // The address is a chest, so it should
             string[] chestDetails = addressString.Split('-');
             if (chestDetails.Length != 3)
             {
-                return 0;
+                throw new ShuffleException($"Chest data \"{addressString}\" does not have a full address!");
             }
 
             if (!int.TryParse(chestDetails[0], NumberStyles.HexNumber, null, out int area))
             {
-                return 0;
+                throw new ShuffleException($"Chest data \"{addressString}\" has an invalid area index!");
             }
 
             if (!int.TryParse(chestDetails[1], NumberStyles.HexNumber, null, out int room))
             {
-                return 0;
+                throw new ShuffleException($"Chest data \"{addressString}\" has an invalid room index!");
             }
 
             if (!int.TryParse(chestDetails[2], NumberStyles.HexNumber, null, out int chest))
             {
-                return 0;
+                throw new ShuffleException($"Chest data \"{addressString}\" has an invalid chest index!");
             }
 
+            // Look chest address up in table
             int areaTableAddr = ROM.Instance.reader.ReadAddr(ROM.Instance.headers.AreaMetadataBase + (area << 2));
             int roomTableAddr = ROM.Instance.reader.ReadAddr(areaTableAddr + (room << 2));
             int chestTableAddr = ROM.Instance.reader.ReadAddr(roomTableAddr + 0x0C);
 
+            // Chests are 8 bytes long, and the item is stored 2 bytes in
             return chestTableAddr + chest * 8 + 0x02;
         }
 
@@ -151,14 +160,8 @@ namespace MinishRandomizer.Randomizer
             Major,
             Minor,
             DungeonItem,
-            NPCItem,
-            KinstoneItem,
-            HeartPieceItem,
             Split,
             Helper,
-            //StartingItem,
-            PurchaseItem,
-            ScrollItem,
             Half,
             Unshuffled
         }
@@ -209,30 +212,6 @@ namespace MinishRandomizer.Randomizer
                     w.WriteByte((byte)Contents.Type, Address);
                     w.WriteByte(Contents.SubValue, Address + 2);
                     break;
-                case LocationType.PurchaseItem:
-                    w.SetPosition(Address);
-                    if (Contents.Type == ItemType.KinstoneX || Contents.Type == ItemType.ShellsX)
-                    {
-                        w.WriteByte((byte)ItemType.Shells30);
-                    }
-                    else
-                    {
-                        w.WriteByte((byte)Contents.Type);
-                    }
-
-                    w.WriteByte(0xFF);
-                    break;
-                case LocationType.ScrollItem:
-                    w.SetPosition(Address);
-                    if (Contents.Type == ItemType.KinstoneX || Contents.Type == ItemType.ShellsX)
-                    {
-                        w.WriteByte((byte)ItemType.Shells30);
-                    }
-                    else
-                    {
-                        w.WriteByte((byte)((byte)Contents.Type & 0x7F));
-                    }
-                    break;
                 case LocationType.Half:
                     w.SetPosition(Address);
                     if (Contents.Type == ItemType.KinstoneX || Contents.Type == ItemType.ShellsX)
@@ -254,6 +233,10 @@ namespace MinishRandomizer.Randomizer
             }
         }
 
+        /// <summary>
+        /// Read the item from the ROM
+        /// </summary>
+        /// <returns>The item contained at the address</returns>
         public Item GetItemContents()
         {
             ItemType type;
@@ -266,13 +249,8 @@ namespace MinishRandomizer.Randomizer
                     subType = ROM.Instance.reader.ReadByte(Address + 2);
                     break;
                 case LocationType.Half:
-                case LocationType.PurchaseItem:
                     type = (ItemType)ROM.Instance.reader.ReadByte(Address);
                     subType = 0x00;
-                    break;
-                case LocationType.ScrollItem:
-                    type = (ItemType)(ROM.Instance.reader.ReadByte(Address) & 0x7F);
-                    subType = 0;
                     break;
                 default:
                     type = (ItemType)ROM.Instance.reader.ReadByte(Address);
@@ -291,6 +269,13 @@ namespace MinishRandomizer.Randomizer
             }
         }
 
+        /// <summary>
+        /// Check if an item can be placed into the location
+        /// </summary>
+        /// <param name="itemToPlace">The item to check placability of</param>
+        /// <param name="availableItems">The items used for checking accessibility</param>
+        /// <param name="locations">The locations used for checkign accessiblility</param>
+        /// <returns>If the item can be placed in this location</returns>
         public bool CanPlace(Item itemToPlace, List<Item> availableItems, List<Location> locations)
         {
             switch (Type)
@@ -298,8 +283,6 @@ namespace MinishRandomizer.Randomizer
                 case LocationType.Helper:
                 case LocationType.Untyped:
                     return false;
-                case LocationType.PurchaseItem:
-                case LocationType.ScrollItem:
                 case LocationType.Half:
                     if (itemToPlace.SubValue != 0)
                     {

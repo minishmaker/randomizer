@@ -36,17 +36,26 @@
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.randomize = new System.Windows.Forms.Button();
             this.generalTab = new System.Windows.Forms.TabPage();
+            this.seedLabel = new System.Windows.Forms.Label();
+            this.seedField = new System.Windows.Forms.TextBox();
+            this.customPatchCheckBox = new System.Windows.Forms.CheckBox();
+            this.customPatchPath = new System.Windows.Forms.TextBox();
+            this.browsePatchButton = new System.Windows.Forms.Button();
             this.customLogicPath = new System.Windows.Forms.TextBox();
             this.browseLogicButton = new System.Windows.Forms.Button();
             this.customLogicCheckBox = new System.Windows.Forms.CheckBox();
             this.mainTabs = new System.Windows.Forms.TabControl();
-            this.browsePatchButton = new System.Windows.Forms.Button();
-            this.customPatchPath = new System.Windows.Forms.TextBox();
-            this.customPatchCheckBox = new System.Windows.Forms.CheckBox();
+            this.generatedTab = new System.Windows.Forms.TabPage();
+            this.generatedSeedValue = new System.Windows.Forms.Label();
+            this.generatedSeedLabel = new System.Windows.Forms.Label();
+            this.saveSpoilerButton = new System.Windows.Forms.Button();
+            this.savePatchButton = new System.Windows.Forms.Button();
+            this.saveRomButton = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.generalTab.SuspendLayout();
             this.mainTabs.SuspendLayout();
+            this.generatedTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -101,6 +110,8 @@
             // 
             // generalTab
             // 
+            this.generalTab.Controls.Add(this.seedLabel);
+            this.generalTab.Controls.Add(this.seedField);
             this.generalTab.Controls.Add(this.customPatchCheckBox);
             this.generalTab.Controls.Add(this.customPatchPath);
             this.generalTab.Controls.Add(this.browsePatchButton);
@@ -114,6 +125,52 @@
             this.generalTab.TabIndex = 0;
             this.generalTab.Text = "General";
             this.generalTab.UseVisualStyleBackColor = true;
+            // 
+            // seedLabel
+            // 
+            this.seedLabel.AutoSize = true;
+            this.seedLabel.Location = new System.Drawing.Point(6, 13);
+            this.seedLabel.Name = "seedLabel";
+            this.seedLabel.Size = new System.Drawing.Size(35, 13);
+            this.seedLabel.TabIndex = 12;
+            this.seedLabel.Text = "Seed:";
+            // 
+            // seedField
+            // 
+            this.seedField.Location = new System.Drawing.Point(47, 10);
+            this.seedField.Name = "seedField";
+            this.seedField.Size = new System.Drawing.Size(100, 20);
+            this.seedField.TabIndex = 10;
+            // 
+            // customPatchCheckBox
+            // 
+            this.customPatchCheckBox.AutoSize = true;
+            this.customPatchCheckBox.Location = new System.Drawing.Point(5, 100);
+            this.customPatchCheckBox.Name = "customPatchCheckBox";
+            this.customPatchCheckBox.Size = new System.Drawing.Size(114, 17);
+            this.customPatchCheckBox.TabIndex = 11;
+            this.customPatchCheckBox.Text = "Use Custom Patch";
+            this.customPatchCheckBox.UseVisualStyleBackColor = true;
+            this.customPatchCheckBox.CheckedChanged += new System.EventHandler(this.CustomPatchCheckBox_CheckedChanged);
+            // 
+            // customPatchPath
+            // 
+            this.customPatchPath.Enabled = false;
+            this.customPatchPath.Location = new System.Drawing.Point(113, 123);
+            this.customPatchPath.Name = "customPatchPath";
+            this.customPatchPath.Size = new System.Drawing.Size(206, 20);
+            this.customPatchPath.TabIndex = 10;
+            // 
+            // browsePatchButton
+            // 
+            this.browsePatchButton.Enabled = false;
+            this.browsePatchButton.Location = new System.Drawing.Point(32, 123);
+            this.browsePatchButton.Name = "browsePatchButton";
+            this.browsePatchButton.Size = new System.Drawing.Size(75, 23);
+            this.browsePatchButton.TabIndex = 9;
+            this.browsePatchButton.Text = "Browse...";
+            this.browsePatchButton.UseVisualStyleBackColor = true;
+            this.browsePatchButton.Click += new System.EventHandler(this.BrowsePatchButton_Click);
             // 
             // customLogicPath
             // 
@@ -148,41 +205,74 @@
             // mainTabs
             // 
             this.mainTabs.Controls.Add(this.generalTab);
+            //this.mainTabs.Controls.Add(this.generatedTab);
             this.mainTabs.Location = new System.Drawing.Point(9, 27);
             this.mainTabs.Name = "mainTabs";
             this.mainTabs.SelectedIndex = 0;
             this.mainTabs.Size = new System.Drawing.Size(369, 235);
             this.mainTabs.TabIndex = 9;
             // 
-            // browsePatchButton
+            // generatedTab
             // 
-            this.browsePatchButton.Enabled = false;
-            this.browsePatchButton.Location = new System.Drawing.Point(32, 123);
-            this.browsePatchButton.Name = "browsePatchButton";
-            this.browsePatchButton.Size = new System.Drawing.Size(75, 23);
-            this.browsePatchButton.TabIndex = 9;
-            this.browsePatchButton.Text = "Browse...";
-            this.browsePatchButton.UseVisualStyleBackColor = true;
-            this.browsePatchButton.Click += new System.EventHandler(this.BrowsePatchButton_Click);
+            this.generatedTab.Controls.Add(this.generatedSeedValue);
+            this.generatedTab.Controls.Add(this.generatedSeedLabel);
+            this.generatedTab.Controls.Add(this.saveSpoilerButton);
+            this.generatedTab.Controls.Add(this.savePatchButton);
+            this.generatedTab.Controls.Add(this.saveRomButton);
+            this.generatedTab.Location = new System.Drawing.Point(4, 22);
+            this.generatedTab.Name = "generatedTab";
+            this.generatedTab.Padding = new System.Windows.Forms.Padding(3);
+            this.generatedTab.Size = new System.Drawing.Size(361, 209);
+            this.generatedTab.TabIndex = 1;
+            this.generatedTab.Text = "Seed";
+            this.generatedTab.UseVisualStyleBackColor = true;
             // 
-            // customPatchPath
+            // generatedSeedValue
             // 
-            this.customPatchPath.Enabled = false;
-            this.customPatchPath.Location = new System.Drawing.Point(113, 123);
-            this.customPatchPath.Name = "customPatchPath";
-            this.customPatchPath.Size = new System.Drawing.Size(206, 20);
-            this.customPatchPath.TabIndex = 10;
+            this.generatedSeedValue.AutoSize = true;
+            this.generatedSeedValue.Location = new System.Drawing.Point(51, 13);
+            this.generatedSeedValue.Name = "generatedSeedValue";
+            this.generatedSeedValue.Size = new System.Drawing.Size(0, 13);
+            this.generatedSeedValue.TabIndex = 4;
             // 
-            // customPatchCheckBox
+            // generatedSeedLabel
             // 
-            this.customPatchCheckBox.AutoSize = true;
-            this.customPatchCheckBox.Location = new System.Drawing.Point(5, 100);
-            this.customPatchCheckBox.Name = "customPatchCheckBox";
-            this.customPatchCheckBox.Size = new System.Drawing.Size(114, 17);
-            this.customPatchCheckBox.TabIndex = 11;
-            this.customPatchCheckBox.Text = "Use Custom Patch";
-            this.customPatchCheckBox.UseVisualStyleBackColor = true;
-            this.customPatchCheckBox.CheckedChanged += new System.EventHandler(this.CustomPatchCheckBox_CheckedChanged);
+            this.generatedSeedLabel.AutoSize = true;
+            this.generatedSeedLabel.Location = new System.Drawing.Point(16, 13);
+            this.generatedSeedLabel.Name = "generatedSeedLabel";
+            this.generatedSeedLabel.Size = new System.Drawing.Size(38, 13);
+            this.generatedSeedLabel.TabIndex = 3;
+            this.generatedSeedLabel.Text = "Seed: ";
+            // 
+            // saveSpoilerButton
+            // 
+            this.saveSpoilerButton.Location = new System.Drawing.Point(181, 180);
+            this.saveSpoilerButton.Name = "saveSpoilerButton";
+            this.saveSpoilerButton.Size = new System.Drawing.Size(75, 23);
+            this.saveSpoilerButton.TabIndex = 2;
+            this.saveSpoilerButton.Text = "Save Spoiler";
+            this.saveSpoilerButton.UseVisualStyleBackColor = true;
+            this.saveSpoilerButton.Click += new System.EventHandler(this.SaveSpoilerButton_Click);
+            // 
+            // savePatchButton
+            // 
+            this.savePatchButton.Location = new System.Drawing.Point(100, 180);
+            this.savePatchButton.Name = "savePatchButton";
+            this.savePatchButton.Size = new System.Drawing.Size(75, 23);
+            this.savePatchButton.TabIndex = 1;
+            this.savePatchButton.Text = "Save Patch";
+            this.savePatchButton.UseVisualStyleBackColor = true;
+            this.savePatchButton.Click += new System.EventHandler(this.SavePatchButton_Click);
+            // 
+            // saveRomButton
+            // 
+            this.saveRomButton.Location = new System.Drawing.Point(19, 180);
+            this.saveRomButton.Name = "saveRomButton";
+            this.saveRomButton.Size = new System.Drawing.Size(75, 23);
+            this.saveRomButton.TabIndex = 0;
+            this.saveRomButton.Text = "Save ROM";
+            this.saveRomButton.UseVisualStyleBackColor = true;
+            this.saveRomButton.Click += new System.EventHandler(this.SaveRomButton_Click);
             // 
             // MainWindow
             // 
@@ -204,6 +294,8 @@
             this.generalTab.ResumeLayout(false);
             this.generalTab.PerformLayout();
             this.mainTabs.ResumeLayout(false);
+            this.generatedTab.ResumeLayout(false);
+            this.generatedTab.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -225,6 +317,14 @@
         private System.Windows.Forms.CheckBox customPatchCheckBox;
         private System.Windows.Forms.TextBox customPatchPath;
         private System.Windows.Forms.Button browsePatchButton;
+        private System.Windows.Forms.Label seedLabel;
+        private System.Windows.Forms.TextBox seedField;
+        private System.Windows.Forms.TabPage generatedTab;
+        private System.Windows.Forms.Button saveSpoilerButton;
+        private System.Windows.Forms.Button savePatchButton;
+        private System.Windows.Forms.Button saveRomButton;
+        private System.Windows.Forms.Label generatedSeedLabel;
+        private System.Windows.Forms.Label generatedSeedValue;
     }
 }
 

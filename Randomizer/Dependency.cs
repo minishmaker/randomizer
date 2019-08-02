@@ -102,6 +102,11 @@ namespace MinishRandomizer.Randomizer
             return dependencies;
         }
 
+        /// <summary>
+        /// Split a logic string into the separate dependencies it represents
+        /// </summary>
+        /// <param name="logic">The logic string to split</param>
+        /// <returns>A list of the individual dependencies within the logic</returns>
         public static List<string> SplitDependencies(string logic)
         {
             List<string> subLogic = new List<string>();
