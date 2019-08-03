@@ -156,7 +156,7 @@ namespace MinishRandomizer
         {
             OpenFileDialog ofd = new OpenFileDialog
             {
-                Filter = "UPS Patches|*.ups|All Files|*.*",
+                Filter = "Event Assembler Buildfiles|*.event|All Files|*.*",
                 Title = "Select Custom Patch"
             };
 
@@ -193,6 +193,16 @@ namespace MinishRandomizer
             // Write output to ROM, then add patches
             byte[] outputRom = shuffler.GetRandomizedRom();
             File.WriteAllBytes(sfd.FileName, outputRom);
+
+            if (customPatchCheckBox.Checked)
+            {
+                shuffler.ApplyPatch(sfd.FileName, customPatchPath.Text);
+            }
+            else
+            {
+                // Use the default patch
+                shuffler.ApplyPatch(sfd.FileName);
+            }
         }
 
         private void SavePatchButton_Click(object sender, EventArgs e)

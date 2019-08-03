@@ -159,6 +159,20 @@ namespace MinishRandomizer.Randomizer
             }
         }
 
+        public void ApplyPatch(string romLocation, string patchFile = null)
+        {
+            if (string.IsNullOrEmpty(patchFile))
+            {
+                // Get directory of MinishRandomizer 
+                string assemblyPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+                patchFile = assemblyPath + "/Patches/ROM buildfile.event";
+            }
+
+            string[] args = new[] { "A", "FE8", "-input:" + patchFile, "-output:" + romLocation };
+
+            ColorzCore.Program.Main(args);
+        }
+
         /// <summary>
         /// Loads and shuffles all locations
         /// </summary>
@@ -199,17 +213,6 @@ namespace MinishRandomizer.Randomizer
                 // All locations should be filled at this point
                 throw new ShuffleException($"There are {unfilledLocations.Count} unfilled locations!");
             }
-            
-            using (MemoryStream ms = new MemoryStream(ROM.Instance.romData))
-            {
-                Writer writer = new Writer(ms);
-                foreach (Location location in Locations)
-                {
-                    location.WriteLocation(writer);
-                }
-            }
-
-            File.WriteAllBytes(OutputDirectory + "/mcrando.gba", ROM.Instance.romData);
         }
 
         /// <summary>
