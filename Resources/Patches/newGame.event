@@ -18,6 +18,7 @@ POIN startingFlags; WORD 0x2002C9C 0xF4
 POIN hurdyFusion; WORD 0x2002C87 1
 POIN kinstoneBag; WORD 0x2002B4B 1
 POIN fusionNumber; WORD 0x2002B57 1
+POIN cityCrest; WORD 0x2002A83 1
 #ifdef DEBUG
 	POIN DEBUGITEMS; WORD 0x2002B32 7
 	POIN DEBUGUPGRADES; WORD 0x2002B3F 7
@@ -43,6 +44,9 @@ BYTE 0x22 /*area*/ 0x15 /*room*/ 4 /*facing direction*/ 0 /*transition type*/; S
 
 canOpenMenu:
 BYTE 1
+
+cityCrest:
+BYTE 8
 
 haveMap:
 BYTE 0x40
