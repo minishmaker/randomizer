@@ -17,7 +17,7 @@ Download the latest zip from the [releases](https://github.com/minishmaker/rando
 - Spoiler log could be much clearer, we're working on that. Let us know in the [Discord server](https://discord.gg/ndFuWbV) and we'll tell you what it means.
 - Any route requiring chests on the bottom floor of Deepwood shrine (aside from the compass chest) are broken, as the lilypad doesn't spawn.
 - The game softlocks after defeating Mazaal, the boss in Fortress of Winds.
-- Items such as spin attack, bombs, fairy fountains, can still be obtained the way the game intends.
+- Items such as spin attack, bombs, pegasus boots, fairy fountains, can still be obtained the way the game intends.
 
 
 
