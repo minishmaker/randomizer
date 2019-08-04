@@ -1,0 +1,33 @@
+//fix eenie fusion
+PUSH; ORG $6B73C; jumpToHack(eenie); POP
+ALIGN 4
+eenie:
+#incbin "asm/eenie.dmp"
+
+//fix bow dozer room
+PUSH; ORG $4C668; jumpToHack(bowDozers); POP
+ALIGN 4
+bowDozers:
+#incbin "asm/bowDozers.dmp"
+
+//set the cloud tops house flag when we visit the map, regardless of anything else
+PUSH; ORG $DCB40; POIN cloudTopsHouse|1; POP
+ALIGN 4
+cloudTopsHouse:
+#incbin "asm/cloudTopsHouse.dmp"
+
+//graveyard changes
+PUSH; ORG $4BCE4; jumpToHack(graveyardGate); POP //new graveyard gate area checks
+ALIGN 4
+graveyardGate:
+#incbin "asm/graveyardGate.dmp"
+PUSH; ORG $9A608; jumpToHack(dampeHouse); POP //dampe's house, dampe is at house if not talekd to or gate is open
+ALIGN 4
+dampeHouse:
+#incbin "asm/dampeHouse.dmp"
+
+//fix cave of flames two way key door that's in one room, used to eat two keys at once
+PUSH; ORG $DF8CB; BYTE 1; POP
+
+//don't set simulation heart piece flag on enterting it (it's instead set when you exit it after winning by the text id set flags hack)
+PUSH; ORG $4E0C8; SHORT 0 0; POP

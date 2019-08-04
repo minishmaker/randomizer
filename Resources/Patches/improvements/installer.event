@@ -1,0 +1,21 @@
+//remove all ezlo stepping triggers
+PUSH; ORG $4AB14; jumpToHack(ezloPleaseStop); POP
+ALIGN 4
+ezloPleaseStop:
+#incbin "asm/ezloPleaseStop.dmp"
+
+//instant text
+PUSH; ORG $562AC; SHORT 0x2501; POP
+
+//skip fusion cutscene if A, B or START are held
+#ifndef neverSkipFusionCutscene
+	PUSH; ORG $A35E4; jumpToHack(skipFusionCutscene); POP
+	ALIGN 4
+	skipFusionCutscene:
+	#incbin "asm/skipFusionCutscene.dmp"
+	WORD alwaysSkipFusionCutscene //set to non-0 to always skip fusion cutscene
+#endif
+
+//skip minish transformation cutscenes automatically
+PUSH; ORG $70DFA; SHORT 0; POP
+
