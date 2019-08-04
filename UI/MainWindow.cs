@@ -203,6 +203,8 @@ namespace MinishRandomizer
                 // Use the default patch
                 shuffler.ApplyPatch(sfd.FileName);
             }
+
+            MessageBox.Show("ROM successfully saved.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void SavePatchButton_Click(object sender, EventArgs e)

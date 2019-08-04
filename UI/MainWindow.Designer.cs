@@ -256,6 +256,7 @@
             // 
             // savePatchButton
             // 
+            this.savePatchButton.Enabled = false;
             this.savePatchButton.Location = new System.Drawing.Point(100, 180);
             this.savePatchButton.Name = "savePatchButton";
             this.savePatchButton.Size = new System.Drawing.Size(75, 23);
