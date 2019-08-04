@@ -100,7 +100,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /y /d /s "$(ProjectDir)Resources\Patches" "$(TargetDir)Patches\";
+    <PostBuildEvent>xcopy /y /d /s "$(ProjectDir)Resources\Patches" "$(TargetDir)Patches\"
 xcopy /y /d /s "$(ProjectDir)Vendor\Language Raws" "$(TargetDir)Language Raws\"</PostBuildEvent>
   </PropertyGroup>
 </Project>

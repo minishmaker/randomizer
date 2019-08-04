@@ -1,4 +1,4 @@
-#include "Extensions/Hack Installation.txt"
+#define jumpToHack(offset) "BYTE 0x00 0x4B 0x18 0x47; POIN (offset|0x1)"
 
 //#define DEBUG 0
 //#define TEST 0
@@ -8,6 +8,7 @@ ORG FreeSpace
 
 //#define neverSkipFusionCutscene 0 //define to never skip
 #define alwaysSkipFusionCutscene 0 //set to non-0 to skip, set to 0 to skip on button held
+
 
 #ifdef TEST
 	PUSH
