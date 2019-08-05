@@ -31,3 +31,6 @@ PUSH; ORG $DF8CB; BYTE 1; POP
 
 //don't set simulation heart piece flag on enterting it (it's instead set when you exit it after winning by the text id set flags hack)
 PUSH; ORG $4E0C8; SHORT 0 0; POP
+
+//stop dws lilypad from going away after getting flippers
+PUSH; ORG $84EF0; SHORT 0x4280; POP
