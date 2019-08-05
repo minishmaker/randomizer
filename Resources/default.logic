@@ -26,6 +26,9 @@ HasLightBow; Helper;; (|Items.Bow::2, Items.LightArrow)
 HasBoomerang; Helper;; (|Items.Boomerang, Items.MagicBoomerang)
 
 HasDamageSource; Helper;; (|Helpers.HasSword, Helpers.HasBow, Items.BombBag)
+
+CanDestroyTrees; Helper;; (|Helpers.HasSword, Helpers.HasLightBow, Items.BombBag ,Items.LanternOff)
+
 # Central Hyrule Locations
 SmithHouse; Minor; 22-11-00
 IntroItem1; Major; F252B;; Items.SmithSword
@@ -48,11 +51,11 @@ TownDiggingLeft; Minor; 0F-00-02; Items.MoleMitts
 #FlipsCaveSmall; Minor; 62-12-00; Items.Flippers, Items.Ocarina, Items.PacciCane, Items.LanternOff
 
 
-AccessEastField; Helper;; (|Helpers.HasSword, Items.BombBag, Helpers.HasLightBow, Items.Ocarina)
-SouthKeeseCave; Minor; 32-13-00; Locations.AccessEastField, Items.BombBag
-AboveHPHole; Minor; 27-00-00; Locations.AccessEastField, (|Items.Ocarina, Items.LonLonKey), (|Items.PacciCane, Items.RocsCape)
+AccessEastField; Helper;; (|Helpers.CanDestroyTrees, Items.Ocarina)
+SouthKeeseCave; Minor; 32-13-00; Items.BombBag
+AboveHPHole; Minor; 27-00-00; Locations.AccessEastField, (|Items.Ocarina, Items.LonLonKey, Items.RocsCape), (|Items.PacciCane, Items.RocsCape)
 LonLonPot; Half; 0F2C9B; Locations.AccessEastField
-LonLonCave; Major; 32-0C-00; (|Items.Ocarina, Items.LonLonKey), Helpers.CanSplit2; Items.Bottle1 #Temp
+LonLonCave; Major; 32-0C-00; (|Items.Ocarina, Items.LonLonKey, Items.RocsCape), Helpers.CanSplit2; Items.Bottle1 #Temp
 
 AccessWestField; Helper;; (|Items.RocsCape, (&Helpers.HasSword, Items.SpinAttack), Items.Flippers, (&Items.BombBag, Helpers.CanSplit3))
 #BottleScrub; PurchaseItem; 0CC0C0; Items.Shield, Items.BombBag, Locations.AccessWestField
@@ -66,7 +69,7 @@ MinishRightFlipperHole; Minor; 35-09-01; Locations.AccessMinishWoods, Items.Flip
 MinishLeftFlipperHole; Minor; 35-09-02; Locations.AccessMinishWoods, Items.Flippers
 MinishLikeLikeDiggingCaveLeft; Minor; 0C-00-01; Locations.AccessMinishWoods, Items.MoleMitts
 MinishLikeLikeDiggingCaveRight; Minor; 0C-00-02; Locations.AccessMinishWoods, Items.MoleMitts
-MinishNorthHole; Minor; 35-05-00; Locations.AccessSouthHylia, Items.Flippers, Items.PegasusBoots
+MinishNorthHole; Minor; 35-05-00; Locations.AccessHyliaSouth, Items.Flippers, Items.PegasusBoots
 
 # Mount Crenel Locations
 AccessCrenel; Helper;; Locations.AccessWestField, Helpers.HasBottle, (|Items.BombBag, Items.GripRing,(&Items.RocsCape, Items.GustJar))
@@ -79,7 +82,7 @@ CrenelHeartCaveRight; Major; 26-08-01; Locations.AccessCrenel, Items.BombBag; It
 #CrenelGripScrub; PurchaseItem; 0CC0A8; Locations.AccessCrenel, Items.Shield, Items.BombBag
 GraybladeLeft; Minor; 25-00-00; Locations.AccessCrenel, Helpers.CanSplit2, Items.GripRing
 GraybladeRight; Minor; 25-00-01; Locations.AccessCrenel, Helpers.CanSplit2, Items.GripRing
-CrenelBlockChest; Minor; 26-03-00; Locations.AccessCrenel, (|Items.PacciCane, (&Items.GripRing, (|Items.RocsCape, (|Helpers.HasLightBow,(&Items.GustJar, (|Items.BombBag, Helpers.HasBow, Helpers.HasBoomerang))))))
+CrenelBlockChest; Minor; 26-03-00; Locations.AccessCrenel, (|Items.PacciCane, (&Items.GripRing, (|Items.RocsCape, Helpers.HasLightBow,(&Items.GustJar, (|Items.BombBag, Helpers.HasBow, Helpers.HasBoomerang)))))
 #Melari; Major; 00D26E; Locations.CompleteCoF
 
 # Castor Wilds Locations
@@ -88,8 +91,8 @@ WildsSouthCave; Major; 2A-00-00; Locations.AccessWilds, (|Items.Flippers, Items.
 WildsDarknutCave; Major; 2B-00-00; Locations.AccessWilds, Helpers.HasSword; Items.KinstoneX.YellowTotemProng
 WildsDekuCaveRight; Major; 2A-01-00; Locations.AccessWilds, Helpers.HasBow; Items.KinstoneX.YellowTotemProng
 WildsMulldozerHole; Major; 27-06-00; Locations.AccessWilds, (|Items.Flippers, Items.GustJar)
-WildsDiggingCave1; Minor; 17-00-00; Locations.AccessWilds, Items.MoleMitts
-WildsDiggingCave2; Minor; 17-00-01; Locations.AccessWilds, Items.MoleMitts
+WildsDiggingCaveLeft; Minor; 17-00-00; Locations.AccessWilds, Items.MoleMitts
+WildsDiggingCaveRight; Minor; 17-00-01; Locations.AccessWilds, Items.MoleMitts
 WildsTopChest; Minor; 04-00-00; Locations.AccessWilds, Helpers.HasBow
 RuinsBombCave; Minor; 2A-02-00; Locations.AccessWilds, Items.KinstoneX.YellowTotemProng::3, Items.BombBag
 RuinsMinishCave; Minor; 27-07-00; Locations.AccessWilds, Items.KinstoneX.YellowTotemProng::3, Helpers.HasSword
@@ -97,14 +100,16 @@ RuinsArmosKillLeft; Minor; 05-05-00; Locations.AccessWilds, Items.KinstoneX.Yell
 RuinsArmosKillRight; Minor; 05-05-01; Locations.AccessWilds, Items.KinstoneX.YellowTotemProng::3, Helpers.HasSword
 
 # Lake Hylia Locations
-AccessHylia; Helper;; Locations.AccessEastField, (|Items.Ocarina, Items.LonLonKey, (&Items.MoleMitts, (|Items.RocsCape, Items.Flippers)))
-#StockwellDog; Major; ; Locations.AccessHylia, Items.DogFoodBottle
-HyliaNorthMinishHole; Major; 35-07-00; Locations.AccessHylia, Items.Flippers, Items.PegasusBoots; Items.PegasusBoots #Temp
 
-AccessSouthHylia; Helper;; Locations.AccessHylia, (|Items.RocsCape, Items.Flippers, (&Items.MoleMitts, Items.PacciCane, (|Items.Ocarina, Items.LonLonKey)))
-WitchDiggingCaveRight; Minor; 0C-00-00; Locations.AccessMinishWoods, Items.MoleMitts, (|Items.Flippers, Items.RocsCape, (&Items.LonLonKey, Items.PacciCane))
+AccessHyliaNorth; Helper;; Locations.AccessEastField,(|Items.RocsCape, Items.LonLonKey,Items.Ocarina,(&Items.Flippers, Items.Items.MoleMitts))
+AccessHyliaSouth; Helper;; Locations.AccessHyliaNorth,(|Items.Flippers,Items.RocsCape,(&Items.MoleMitts,Items.PacciCane))
 
-AccessTreasureCave; Helper;; Locations.AccessHylia, Items.MoleMitts, Items.RocsCape
+#StockwellDog; Major; ; Locations.AccessHyliaNorth, Items.DogFoodBottle
+HyliaNorthMinishHole; Major; 35-07-00; Locations.AccessHyliaNorth, Items.Flippers, Items.PegasusBoots; Items.PegasusBoots #Temp
+
+WitchDiggingCaveRight; Minor; 0C-00-00; Locations.AccessHyliaSouth, Items.MoleMitts
+
+AccessTreasureCave; Helper;; Locations.AccessHyliaNorth, Items.MoleMitts, Items.RocsCape
 HyliaCapeCaveTopRight; Minor; 19-01-00; Locations.AccessTreasureCave 
 #TreasureCave1; Minor; 19-01-01; Locations.AccessTreasureCave #HyliaCapeCaveOOB  (51,41) map is 26 high
 HyliaCapeCaveBottomLeft; Minor; 19-01-02; Locations.AccessTreasureCave 
@@ -127,8 +132,8 @@ FallsTopCaveBomb; Minor; 33-02-00; Locations.AccessFallsNorth, Items.GripRing, I
 FallsTopCaveFree; Minor; 33-00-00; Locations.AccessFallsNorth, Items.GripRing
 
 AccessFallsSouth; Helper;; Locations.AccessEastField, Items.PacciCane
-FallsLowerCaveLeft; Minor; 16-00-01; Locations.AccessEastField, Items.PacciCane, Items.MoleMitts
-FallsLowerCaveRight; Minor; 16-00-02; Locations.AccessEastField, Items.PacciCane, Items.MoleMitts
+FallsLowerCaveLeft; Minor; 16-00-01; Locations.AccessFallsSouth, (|Items.RocsCape, Items.Flippers), Items.MoleMitts
+FallsLowerCaveRight; Minor; 16-00-02; Locations.AccessFallsSouth, (|Items.RocsCape, Items.Flippers), Items.MoleMitts
 
 # Cloud Tops Locations
 AccessClouds; Helper;; Locations.AccessFallsNorth, Items.GripRing
@@ -162,7 +167,7 @@ DeepwoodPreWiggler2:Deepwood; Minor; 48-01-02; Locations.DeepwoodAccess, (|(&Ite
 DeepwoodPreCompass:Deepwood; Minor; 48-02-01; Locations.DeepwoodAccess, (|(&Items.GustJar, Items.SmallKey:Deepwood), (&Items.BombBag, Items.SmallKey:Deepwood:2))
 DeepwoodStatueRoom:Deepwood; DungeonItem; 48-04-01; Locations.DeepwoodAccess, Items.SmallKey:Deepwood
 DeepwoodWestWing:Deepwood; DungeonItem; 48-05-01; Locations.DeepwoodAccess, Items.SmallKey:Deepwood
-DeepwoodPreBarrel:Deepwood; Minor; 48-06-01; Locations.DeepwoodAccess, (|Items.GustJar, Items.BombBag), Items.SmallKey:Deepwood
+DeepwoodPreBarrel:Deepwood; DungeonItem; 48-06-01; Locations.DeepwoodAccess, (|Items.GustJar, Items.BombBag), Items.SmallKey:Deepwood; Items.BigKey:Deepwood;  #to be changed back to minor on Lilypad fix
 DeepwoodSlugTorches:Deepwood; DungeonItem; 48-10-01; Locations.DeepwoodAccess
 #DeepwoodBasementNorth:Deepwood; DungeonItem; 48-11-01; Locations.DeepwoodAccess, Items.GustJar, Items.SmallKey:Deepwood:3			#to be uncommented on Lilypad fix
 DeepwoodBasementSwitch:Deepwood; DungeonItem; 48-12-01; Locations.DeepwoodAccess,  (&Items.SmallKey:Deepwood:2, Items.RocsCape)		#to be changed back on Lilypad fix (|(&Items.GustJar, Items.SmallKey:Deepwood), (&Items.SmallKey:Deepwood:2, Items.RocsCape))
@@ -171,9 +176,9 @@ DeepwoodUpstairsChest:Deepwood; Minor; 48-17-01; Locations.DeepwoodAccess, (|Ite
 CompleteDeepwood:Deepwood; Helper;; Locations.DeepwoodAccess, Items.GustJar, Helpers.HasSword, Items.BigKey:Deepwood
 
 # Cave of Flames locations
-CoFAccess:FlameCave; Helper;; Locations.AccessCrenel,(|Items.PacciCane, (&Items.GripRing, (|Items.RocsCape, (|Helpers.HasLightBow,(&Items.GustJar, (|Items.BombBag, Helpers.HasBow, Helpers.HasBoomerang)))))), (|Items.BombBag, Items.Shield, Items.PacciCane), Helpers.HasDamageSource
+CoFAccess:FlameCave; Helper;; Locations.AccessCrenel,(|Items.PacciCane, (&Items.GripRing, (|Items.RocsCape, Helpers.HasLightBow,(&Items.GustJar, (|Items.BombBag, Helpers.HasBow, Helpers.HasBoomerang))))), (|Items.BombBag, Items.Shield, Items.PacciCane), Helpers.HasDamageSource
 CoFFlippedCart:FlameCave; DungeonItem; 50-01-01; Locations.CoFAccess, Items.PacciCane, Items.SmallKey:FlameCave
-CoFChuPit:FlameCave; Major; 50-01-02; Locations.CoFAccess, Items.PacciCane, Items.SmallKey:FlameCave
+CoFChuPit:FlameCave; Major; 50-01-02; Locations.CoFAccess, Items.SmallKey:FlameCave
 CoFSouthwest1:FlameCave; DungeonItem; 50-08-00; Locations.CoFAccess
 CoFSouthwest2:FlameCave; Minor; 50-08-01; Locations.CoFAccess
 CoFSoutheast1:FlameCave; Minor; 50-09-00; Locations.CoFAccess
@@ -220,7 +225,7 @@ DropletsOpenDoors:Droplets; Helper;; Items.SmallKey:Droplets:2, Items.GripRing, 
 DropletsEastFirst:Droplets; Minor; 60-09-00; Locations.AccessDroplets, Items.BigKey:Droplets, (|Items.LanternOff, Locations.DropletsEastLever)
 DropletsIceMaze:Droplets; Minor; 60-0A-00; Locations.AccessDroplets, Items.BigKey:Droplets,  (|Items.LanternOff, Locations.DropletsEastLever)
 DropletsOverhang:Droplets; DungeonItem; 60-0D-00; Locations.AccessDroplets, Items.BigKey:Droplets
-DropletsBluChu:Droplets; Major; 60-10-01; Locations.AccessDroplets, Items.BigKey:Droplets,  (|Items.LanternOff, Locations.DropletsEastLever), Helpers.DropletsOpenDoors
+DropletsBluChu:Droplets; Major; 60-10-01; Locations.AccessDroplets, Items.BigKey:Droplets,  (|Items.LanternOff, Locations.DropletsEastLever), Items.GustJar, Helpers.DropletsOpenDoors
 DropletsBasement:Droplets; DungeonItem; 60-11-00; Locations.AccessDroplets, Items.BigKey:Droplets,  (|Items.LanternOff, Locations.DropletsEastLever)
 DropletsFrozenIcePlain:Droplets; Minor; 60-28-00; Locations.AccessDroplets, Items.GustJar, Items.BigKey:Droplets, Helpers.DropletsOpenDoors
 DropletsFreeIcePlain:Droplets; Minor; 60-28-01; Locations.AccessDroplets, Items.GustJar, Items.BigKey:Droplets, Helpers.DropletsOpenDoors
@@ -260,7 +265,9 @@ CompletePalace:Palace; Helper;; Locations.AccessPalace, Items.RocsCape, Items.Pa
 #BakeryRafter; Minor; 2E-03-00; (|Items.PacciCane, Items.Flippers, Items.RocsCape)
 #StockWellRafter; Minor; 2E-01-01; (|Items.PacciCane, Items.Flippers, Items.RocsCape)
 #StockWellDogfood; Major; NON-STANDARD (|Items.PacciCane, Items.Flippers, Items.RocsCape) #23-00
-#TrilbyHighlandsBombCave; Minor; 32-07-00; Locations.AccessWestField, Helpers.CanSplit2, Items.BombBag
+#TrilbyBombCave; Minor; 32-07-00; Locations.AccessWestField, Helpers.CanSplit2, Items.BombBag
+#TrilbyMoleCaveLeft; Minor; 13-03-00; Locations.AccessWestField, Items.MoleMitts
+#TrilbyMoleCaveRight; Minor; 13-03-02; Locations.AccessWestField, Items.MoleMitts
 #WildsSunkenKinstoneTop; Minor; NON-STANDARD #04-00
 #WildsSunkenKinstoneMiddle; Minor; NON-STANDARD #04-00
 #WildsSunkenKinstoneBottom; Minor; NON-STANDARD #04-00
