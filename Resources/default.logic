@@ -101,7 +101,7 @@ RuinsArmosKillRight; Minor; 05-05-01; Locations.AccessWilds, Items.KinstoneX.Yel
 
 # Lake Hylia Locations
 
-AccessHyliaNorth; Helper;; Locations.AccessEastField,(|Items.RocsCape, Items.LonLonKey,Items.Ocarina,(&Items.Flippers, Items.Items.MoleMitts))
+AccessHyliaNorth; Helper;; Locations.AccessEastField,(|Items.RocsCape, Items.LonLonKey,Items.Ocarina,(&Items.Flippers, Items.MoleMitts))
 AccessHyliaSouth; Helper;; Locations.AccessHyliaNorth,(|Items.Flippers,Items.RocsCape,(&Items.MoleMitts,Items.PacciCane))
 
 #StockwellDog; Major; ; Locations.AccessHyliaNorth, Items.DogFoodBottle
@@ -201,7 +201,7 @@ FortressOutsideF2Right:Fortress; Minor; 18-01-02; Locations.AccessFortress, Item
 FortressOutsideF3Left:Fortress; Minor; 18-02-00; Locations.AccessFortress, Items.MoleMitts
 FortressOutsideF3Right:Fortress; Minor; 18-02-01; Locations.AccessFortress, Items.MoleMitts
 FortressOutsideBombWallBigChest:Fortress; Major; 18-03-00; Locations.AccessFortress, Items.BombBag, Helpers.HasBow, Helpers.CanSplit2
-FortressOutsideBombWallSmallChest:Fortress; Minor; 18-03-01; Locations.FortressOutsideBigChest, Items.MoleMitts
+FortressOutsideBombWallSmallChest:Fortress; Minor; 18-03-01; Locations.FortressOutsideBombWallBigChest, Items.MoleMitts
 FortressEyegoreKill:Fortress; DungeonItem; 58-00-00; Locations.AccessFortress, Helpers.HasBow, Helpers.CanSplit2
 FortressPedestal:Fortress; DungeonItem; 58-19-00; Locations.AccessFortress
 FortressSkullFall:Fortress; DungeonItem; 58-1B-00; Locations.AccessFortress, Items.MoleMitts, Helpers.CanSplit2, Helpers.HasBow
@@ -212,7 +212,7 @@ CompleteFortress:Fortress; Helper;; Locations.AccessFortress, Items.MoleMitts, H
 #FortressPrize:Prizes; Half; 09C9E6; Locations.CompleteFortress
 
 # Temple of Droplets Locations
-AccessDroplets:Droplets; Helper;; Locations.AccessHylia, (|Items.Flippers, Items.RocsCape)
+AccessDroplets:Droplets; Helper;; Locations.AccessHyliaSouth, (|Items.Flippers, Items.RocsCape)
 # Temporary modification
 DropletsFirstIceblockConst:Droplets; Unshuffled; ; Locations.AccessDroplets; Items.SmallKey:Droplets
 DropletsSecondIceblockConst:Droplets; Unshuffled; ; Locations.AccessDroplets; Items.BigKey:Droplets
@@ -258,9 +258,9 @@ CompletePalace:Palace; Helper;; Locations.AccessPalace, Items.RocsCape, Items.Pa
 #Obscure or otherwise unrandomized locations
 #HyruleCastleWaterLeft; Minor; 07-00-01; Items.Flippers
 #HyruleCastleWaterRight; Minor; 07-00-02; Items.Flippers
-#RoyalValleyLostWoodsChest; Minor; NON-STANDARD; Locations.AccessValley
-#DropletsIceMazePot; Minor; NON-STANDARD; Locations.AccessDroplets, Items.BigKey:Droplets,  (|Items.LanternOff, Locations.DropletsEastLever)
-#HearthPot; Minor; NON-STANDARD #21-09
+#RoyalValleyLostWoodsChest; Minor; 0D8A84; Locations.AccessValley
+#DropletsIceMazePot; Minor; 0E3A73; Locations.AccessDroplets, Items.BigKey:Droplets,  (|Items.LanternOff, Locations.DropletsEastLever)
+#HearthPot; Minor; 0D663B
 #LonLonCaveSecret; Minor; 32-0D-00; (|Items.Ocarina, Items.LonLonKey), Items.BombBag, Items.LanternOff, Helpers.CanSplit2;
 #BakeryRafter; Minor; 2E-03-00; (|Items.PacciCane, Items.Flippers, Items.RocsCape)
 #StockWellRafter; Minor; 2E-01-01; (|Items.PacciCane, Items.Flippers, Items.RocsCape)
