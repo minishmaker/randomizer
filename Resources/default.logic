@@ -120,7 +120,7 @@ HyliaCapeCaveBottomRight; Minor; 19-01-06; Locations.AccessTreasureCave
 HyliaCapeCaveBottomMiddle; Minor; 19-01-07; Locations.AccessTreasureCave 
 
 # Royal Valley Locations
-AccessValley; Helper;; Helpers.CanSplit3, Items.BombBag, Items.LanternOff
+AccessValley; Helper;; Helpers.CanSplit3, (|Items.BombBag, Items.RocsCape, Items.Flippers), Items.LanternOff
 DampeKey; Major; 0096B6; Locations.AccessValley
 KingGift:Prizes; Major; 00DA5A; Locations.AccessValley, Items.GraveyardKey, Helpers.CanSplit3, Items.PegasusBoots; Items.KinstoneX.YellowCrown
 
