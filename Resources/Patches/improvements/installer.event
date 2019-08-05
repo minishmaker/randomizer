@@ -19,3 +19,17 @@ PUSH; ORG $562AC; SHORT 0x2501; POP
 //skip minish transformation cutscenes automatically
 PUSH; ORG $70DFA; SHORT 0; POP
 
+//pressing L uses pegasus boots, if owned
+PUSH; ORG $772AC; jumpToHack(pegasusShortcut1); POP
+ALIGN 4
+pegasusShortcut1:
+#incbin "asm/pegasusShortcut1.dmp"
+POIN ($772AC+0x08)|1 //return offset if false
+POIN ($772AC+0x2C)|1 //return offset if true
+POIN $778C4 //something about buttons
+PUSH; ORG $77950; jumpToHack(pegasusShortcut2); POP
+ALIGN 4
+pegasusShortcut2:
+#incbin "asm/pegasusShortcut2.dmp"
+POIN ($77950+0x08)|1 //return offset if false
+POIN ($77950+0x26)|1 //return offset if true
