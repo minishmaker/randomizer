@@ -17,20 +17,21 @@ ORG FreeSpace
 	ORG $F2528+3; BYTE 0x01 0x00 //new item in smith's room, write item to $F252B
 	ORG $F2538+3; BYTE 0x0D 0x00 //new item in smith's room, write item to $F253B
 	POP
-	//unify golden kinstone fusions (obviously no need to change the royal piece)
-	PUSH
-	//tornado pieces first, all set to match with 0x65
-	ORG $C93E4+(8*1)+1; BYTE 0x8; ORG $C93E4+(8*1)+5; BYTE 0x1
-	ORG $C93E4+(8*2)+1; BYTE 0x8; ORG $C93E4+(8*2)+5; BYTE 0x1
-	ORG $C93E4+(8*3)+1; BYTE 0x8; ORG $C93E4+(8*3)+5; BYTE 0x1
-	ORG $C93E4+(8*4)+1; BYTE 0x8; ORG $C93E4+(8*4)+5; BYTE 0x1
-	ORG $C93E4+(8*5)+1; BYTE 0x8; ORG $C93E4+(8*5)+5; BYTE 0x1
-	//swamp second, all set to match with 0x6A
-	ORG $C93E4+(8*6)+1; BYTE 0xD; ORG $C93E4+(8*6)+5; BYTE 0x6
-	ORG $C93E4+(8*7)+1; BYTE 0xD; ORG $C93E4+(8*7)+5; BYTE 0x6
-	ORG $C93E4+(8*8)+1; BYTE 0xD; ORG $C93E4+(8*8)+5; BYTE 0x6
-	POP
 #endif
+
+//unify golden kinstone fusions (obviously no need to change the royal piece)
+PUSH
+//tornado pieces first, all set to match with 0x65
+ORG $C93E4+(8*1)+1; BYTE 0x8; ORG $C93E4+(8*1)+5; BYTE 0x1
+ORG $C93E4+(8*2)+1; BYTE 0x8; ORG $C93E4+(8*2)+5; BYTE 0x1
+ORG $C93E4+(8*3)+1; BYTE 0x8; ORG $C93E4+(8*3)+5; BYTE 0x1
+ORG $C93E4+(8*4)+1; BYTE 0x8; ORG $C93E4+(8*4)+5; BYTE 0x1
+ORG $C93E4+(8*5)+1; BYTE 0x8; ORG $C93E4+(8*5)+5; BYTE 0x1
+//swamp second, all set to match with 0x6A
+ORG $C93E4+(8*6)+1; BYTE 0xD; ORG $C93E4+(8*6)+5; BYTE 0x6
+ORG $C93E4+(8*7)+1; BYTE 0xD; ORG $C93E4+(8*7)+5; BYTE 0x6
+ORG $C93E4+(8*8)+1; BYTE 0xD; ORG $C93E4+(8*8)+5; BYTE 0x6
+POP
 
 //text ids set flags hacks
 PUSH; ORG $5E93C; jumpToHack(textFlags); POP
