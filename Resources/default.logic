@@ -255,22 +255,29 @@ PalaceDarkBig:Palace; DungeonItem; 70-32-00; Locations.AccessPalace, Items.RocsC
 PalaceDarkSmall:Palace; DungeonItem; 70-32-01; Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.LanternOff, Items.PowerBracelets, Items.BigKey:Palace
 CompletePalace:Palace; Helper;; Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.LanternOff, Items.PowerBracelets, Items.BigKey:Palace, Items.SmallKey:Palace:4
 
-#Obscure or otherwise unrandomized locations
-#HyruleCastleWaterLeft; Minor; 07-00-01; Items.Flippers
-#HyruleCastleWaterRight; Minor; 07-00-02; Items.Flippers
-#RoyalValleyLostWoodsChest; Minor; 0D8A84; Locations.AccessValley
-#DropletsIceMazePot; Minor; 0E3A73; Locations.AccessDroplets, Items.BigKey:Droplets,  (|Items.LanternOff, Locations.DropletsEastLever)
-#HearthPot; Minor; 0D663B
-#LonLonCaveSecret; Minor; 32-0D-00; (|Items.Ocarina, Items.LonLonKey), Items.BombBag, Items.LanternOff, Helpers.CanSplit2;
-#BakeryRafter; Minor; 2E-03-00; (|Items.PacciCane, Items.Flippers, Items.RocsCape)
-#StockWellRafter; Minor; 2E-01-01; (|Items.PacciCane, Items.Flippers, Items.RocsCape)
+#Unrandomized locations
+
+#BakeryAttic; Minor; 2E-03-00; (|Items.PacciCane, Items.Flippers, Items.RocsCape)
+#StockWellAttic; Minor; 2E-01-01; (|Items.PacciCane, Items.Flippers, Items.RocsCape)
 #StockWellDogfood; Major; NON-STANDARD (|Items.PacciCane, Items.Flippers, Items.RocsCape) #23-00
+#HyruleWellTop; Minor; 41-00-00; Items.BombBag
+#HyruleWellPillar; Minor; 41-00-03;  Locations.HyruleWellLeft, Locations.HyruleWellRight, Locations.HyruleWellBottom
+#HyruleWellBottom; Minor; 41-00-02; Items.Flippers
 #TrilbyBombCave; Minor; 32-07-00; Locations.AccessWestField, Helpers.CanSplit2, Items.BombBag
 #TrilbyMoleCaveLeft; Minor; 13-03-00; Locations.AccessWestField, Items.MoleMitts
 #TrilbyMoleCaveRight; Minor; 13-03-02; Locations.AccessWestField, Items.MoleMitts
+
+#Obscure locations
 #WildsSunkenKinstoneTop; Minor; NON-STANDARD #04-00
 #WildsSunkenKinstoneMiddle; Minor; NON-STANDARD #04-00
 #WildsSunkenKinstoneBottom; Minor; NON-STANDARD #04-00
+#HearthPot; Minor; 0D663B
+#DropletsIceMazePot; Minor; 0E3A73; Locations.AccessDroplets, Items.BigKey:Droplets,  (|Items.LanternOff, Locations.DropletsEastLever)
+#HyruleCastleWaterLeft; Minor; 07-00-01; Items.Flippers
+#HyruleCastleWaterRight; Minor; 07-00-02; Items.Flippers
+#RoyalValleyLostWoodsChest; Minor; 0D8A84; Locations.AccessValley
+#LonLonCaveSecret; Minor; 32-0D-00; (|Items.Ocarina, Items.LonLonKey), Items.BombBag, Items.LanternOff, Helpers.CanSplit2;
+
 
 # Skipping ahead to DHC so the game can be considered beatable...
 BeatVaati; Helper;; Locations.CompleteDeepwood, Locations.CompleteCoF, Locations.CompleteDroplets, Locations.CompletePalace, Helpers.CanSplit4, Items.BombBag, Helpers.HasBow, Items.RocsCape, Items.LanternOff, Items.GustJar, Items.PacciCane
