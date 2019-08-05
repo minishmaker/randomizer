@@ -44,6 +44,7 @@ SHORT 0x1F1F 0; WORD 0x2002EA4 //jabber nut sets custom flag 0
 SHORT 0x2D08 2; WORD 0x2002EA4 //buying mushroom sets custom flag 2
 SHORT 0x125C 6; WORD 0x2002CA6 //new melari flag
 SHORT 0x3D07 6; WORD 0x2002CB4 //set the simulation heart piece flag after it ends
+SHORT 0x4803 1; WORD 0x2002CA1 //library quest can be started with flippers
 SHORT 0 0; WORD 0 //terminator
 
 //sanctuary stuff is wip and probably doesn't even work right now
