@@ -77,6 +77,7 @@ WORD 0 0 0 //terminator
 	PUSH; ORG $F4A9C; BYTE 0xFF; ORG $F4C18; POIN $F4AAC; POP//sanctuary switches door never closes
 
 #include "newGame.event"
+#include "progressiveItems.event"
 #include "logicfixes/installer.event"
 #include "gamefixes/installer.event"
 #include "improvements/installer.event"
