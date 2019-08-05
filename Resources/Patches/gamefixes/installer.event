@@ -34,3 +34,9 @@ PUSH; ORG $4E0C8; SHORT 0 0; POP
 
 //stop dws lilypad from going away after getting flippers
 PUSH; ORG $84EF0; SHORT 0x4280; POP
+
+//prevent tod from being unbetable if the left lever is used first
+PUSH; ORG $1D5F4; jumpToHack(todLevers); POP
+ALIGN 4
+todLevers:
+#incbin "asm/todLevers.dmp"
