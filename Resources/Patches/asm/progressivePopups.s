@@ -2,15 +2,6 @@
 push	{r4}
 mov	r4,r2
 
-@check if item was already collected
-mov	r0,r2
-ldr	r3,=#0x807C4A8
-mov	lr,r3
-.short	0xF800
-@if not, popup
-cmp	r0,#0
-bne	popup
-
 @check if the item is in the progressive list, if so, popup
 ldr	r0,progressiveTable
 mov	r1,#1
@@ -29,6 +20,15 @@ bne	loopsmall
 nextbig:
 add	r0,#8
 b	loopbig
+
+@check if item was already collected
+mov	r0,r4
+ldr	r3,=#0x807C4A8
+mov	lr,r3
+.short	0xF800
+@if not, popup
+cmp	r0,#0
+beq	popup
 
 nopopup:
 mov	r0,#0
