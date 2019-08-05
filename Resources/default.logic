@@ -36,7 +36,7 @@ IntroItem2; Major; F253B;; Items.Shield
 HyruleWellRight; Minor; 41-00-04
 HyruleWellLeft; Major; 41-00-01; Items.MoleMitts; Items.GreenSword # Temporary for Testing
 #SwiftbladeFirst; ScrollItem; 110D7B; Helpers.HasSword
-#CafeLady; Minor; 00EDDA;; Items.KinstoneX.RedSpike
+CafeLady; Minor; 00EDDA;; Items.KinstoneX.RedSpike
 HearthLedge; Major; 02-00-06; Items.LanternOff; Items.BlueSword # Temporary for Testing
 SchoolTop; Major; 02-00-07; Items.PacciCane; Items.FourSword # Temporary for Testing
 SchoolGardenLeft; Minor; 11-02-00; Items.PacciCane, Helpers.CanSplit4
@@ -47,8 +47,8 @@ TownDiggingRight; Major; 0F-00-01; Items.MoleMitts; Items.SpinAttack #Temporary 
 TownDiggingLeft; Minor; 0F-00-02; Items.MoleMitts
 
 
-#FlipsCaveBig; Major; 62-10-00; Items.Flippers, Items.Ocarina, Items.PacciCane, Helpers.HasSword
-#FlipsCaveSmall; Minor; 62-12-00; Items.Flippers, Items.Ocarina, Items.PacciCane, Items.LanternOff
+FlipsCaveBig; Major; 62-10-00; Items.Flippers, Items.Ocarina, Items.PacciCane, Helpers.HasSword
+FlipsCaveSmall; Minor; 62-12-00; Items.Flippers, Items.Ocarina, Items.PacciCane, Items.LanternOff
 
 
 AccessEastField; Helper;; (|Helpers.CanDestroyTrees, Items.Ocarina)
@@ -122,11 +122,11 @@ HyliaCapeCaveBottomMiddle; Minor; 19-01-07; Locations.AccessTreasureCave
 # Royal Valley Locations
 AccessValley; Helper;; Helpers.CanSplit3, Items.BombBag, Items.LanternOff
 DampeKey; Major; 0096B6; Locations.AccessValley
-#KingGift:Prizes; Major; 00DA5A; Locations.AccessValley, Items.GraveyardKey, Helpers.CanSplit3, Items.PegasusBoots; Items.KinstoneX.YellowCrown
+KingGift:Prizes; Major; 00DA5A; Locations.AccessValley, Items.GraveyardKey, Helpers.CanSplit3, Items.PegasusBoots; Items.KinstoneX.YellowCrown
 
 # Veil Falls Locations
 AccessFallsNorth; Helper;; Items.BombBag, Items.KinstoneX.YellowCrown
-FallsBehindWall; Major; 33-05-00; Locations.AccessFallsNorth, Items.BombBag; Items.KinstoneX.YellowCrown ; Temp
+FallsBehindWall; Minor; 33-05-00; Locations.AccessFallsNorth, Items.BombBag
 FallsCliff; Minor; 0A-00-00; Locations.AccessFallsNorth, Items.BombBag, Helpers.CanSplit3
 FallsTopCaveBomb; Minor; 33-02-00; Locations.AccessFallsNorth, Items.GripRing, Items.BombBag
 FallsTopCaveFree; Minor; 33-00-00; Locations.AccessFallsNorth, Items.GripRing
@@ -148,7 +148,7 @@ CloudsSouthLeft; Minor; 08-01-05; Locations.AccessClouds,  Items.MoleMitts
 CloudsSouthRight; Minor; 08-01-06; Locations.AccessClouds, (|Items.RocsCape, Items.MoleMitts)
 
 AccessUpperClouds; Helper;; Locations.AccessClouds, (|Items.RocsCape, Items.MoleMitts), Items.KinstoneX.YellowTornadoProng::5
-TowerBottomLeft; Major; 30-00-00; Locations.AccessUpperClouds; Items.Flippers # Temp
+TowerBottomLeft; Minor; 30-00-00; Locations.AccessUpperClouds
 TowerBottomRight; Major; 30-00-01; Locations.AccessUpperClouds; Items.PowerBracelets # Temp
 TowerF2; Minor; 30-01-00; Locations.AccessUpperClouds
 #GregalOne; Half; 014C5A; Locations.AccessUpperClouds, Items.GustJar
