@@ -9,12 +9,14 @@ ORG FreeSpace
 //#define neverSkipFusionCutscene 0 //define to never skip
 #define alwaysSkipFusionCutscene 0 //set to non-0 to skip, set to 0 to skip on button held
 
-PUSH
-ORG $EDD8+2; BYTE 0x5C 0x70  //lady kinstone
-ORG $DA58+2; BYTE 0x5C 0x6C  //ghost kinstone
-ORG $F2528+3; BYTE 0x01 0x00 //new item in smith's room, write item to $F252B
-ORG $F2538+3; BYTE 0x0D 0x00 //new item in smith's room, write item to $F253B
-POP
+#ifdef TEST
+	PUSH
+	ORG $EDD8+2; BYTE 0x5C 0x70  //lady kinstone
+	ORG $DA58+2; BYTE 0x5C 0x6C  //ghost kinstone
+	ORG $F2528+3; BYTE 0x01 0x00 //new item in smith's room, write item to $F252B
+	ORG $F2538+3; BYTE 0x0D 0x00 //new item in smith's room, write item to $F253B
+	POP
+#endif
 
 //unify golden kinstone fusions (obviously no need to change the royal piece)
 PUSH
