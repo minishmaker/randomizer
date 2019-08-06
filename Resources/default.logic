@@ -203,12 +203,12 @@ FortressOutsideF3Right:Fortress; Minor; 18-02-01; Locations.AccessFortress, Item
 FortressOutsideBombWallBigChest:Fortress; Major; 18-03-00; Locations.AccessFortress, Items.BombBag, Helpers.HasBow, Helpers.CanSplit2
 FortressOutsideBombWallSmallChest:Fortress; Minor; 18-03-01; Locations.FortressOutsideBombWallBigChest, Items.MoleMitts
 FortressEyegoreKill:Fortress; DungeonItem; 58-00-00; Locations.AccessFortress, Helpers.HasBow, Helpers.CanSplit2
-FortressPedestal:Fortress; DungeonItem; 58-19-00; Locations.AccessFortress
+FortressPedestal:Fortress; DungeonItem; 58-19-00; Locations.AccessFortress, Helpers.HasBow
 FortressSkullFall:Fortress; DungeonItem; 58-1B-00; Locations.AccessFortress, Items.MoleMitts, Helpers.CanSplit2, Helpers.HasBow
 FortressSkullRoomLeft:Fortress; Minor; 58-1D-00; Locations.AccessFortress
 FortressSkullRoomRight:Fortress; Minor; 58-1D-01; Locations.AccessFortress
 FortressWizrobes:Fortress; Minor; 58-23-00; Locations.AccessFortress, Items.MoleMitts
-CompleteFortress:Fortress; Helper;; Locations.AccessFortress, Items.MoleMitts, Helpers.CanSplit2, Items.Bow, Items.BigKey:Fortress
+CompleteFortress:Fortress; Helper;; Locations.AccessFortress, Items.MoleMitts, Helpers.CanSplit2, Helpers.HasBow, Items.BigKey:Fortress
 #FortressPrize:Prizes; Half; 09C9E6; Locations.CompleteFortress
 
 # Temple of Droplets Locations
@@ -216,8 +216,8 @@ AccessDroplets:Droplets; Helper;; Locations.AccessHyliaSouth, (|Items.Flippers, 
 # Temporary modification
 DropletsFirstIceblockConst:Droplets; Unshuffled; ; Locations.AccessDroplets; Items.SmallKey:Droplets
 DropletsSecondIceblockConst:Droplets; Unshuffled; ; Locations.AccessDroplets; Items.BigKey:Droplets
-DropletsMulldoserDropConst:Droplets; Unshuffled; ; Locations.AccessDroplets, (|Items.LanternOff, Helpers.DropletsEastLever), Helpers.HasDamageSource; Items.Smallkey:Droplets
-DropletsWaterPotConst:Droplets; Unshuffled; ; Locations.AccessDroplets, Items.Flippers, (|Items.RocsCape, Items.GustJar); Items.Smallkey:Droplets
+DropletsMulldoserDropConst:Droplets; Unshuffled; ; Locations.AccessDroplets, Items.BigKey:Droplets, (|Items.LanternOff, Helpers.DropletsEastLever), Helpers.HasDamageSource; Items.SmallKey:Droplets
+DropletsWaterPotConst:Droplets; Unshuffled; ; Locations.AccessDroplets, Items.BigKey:Droplets, Items.Flippers, (|Items.RocsCape, Items.GustJar); Items.SmallKey:Droplets
 # Eventual replacement
 #DropletsFirstIceblock:Droplets; DungeonItem; ; Locations.AccessDroplets; Items.SmallKey:Droplets
 #DropletsSecondIceblock:Droplets; DungeonItem; ; Locations.AccessDroplets, Helpers.DropletsOpenDoors; Items.BigKey:Droplets
