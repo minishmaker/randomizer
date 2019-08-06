@@ -33,3 +33,6 @@ pegasusShortcut2:
 #incbin "asm/pegasusShortcut2.dmp"
 POIN ($77950+0x08)|1 //return offset if false
 POIN ($77950+0x26)|1 //return offset if true
+
+//no wait when visiting a new area
+PUSH; ORG $52D64; SHORT 0xE006; POP
