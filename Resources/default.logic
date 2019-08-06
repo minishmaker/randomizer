@@ -90,7 +90,7 @@ AccessWilds; Helper;; Locations.AccessWestField, Helpers.CanSplit2, (|Items.Pega
 WildsSouthCave; Major; 2A-00-00; Locations.AccessWilds, (|Items.Flippers, Items.RocsCape, Helpers.HasBow); Items.KinstoneX.YellowTotemProng
 WildsDarknutCave; Major; 2B-00-00; Locations.AccessWilds, Helpers.HasSword; Items.KinstoneX.YellowTotemProng
 WildsDekuCaveRight; Major; 2A-01-00; Locations.AccessWilds, Helpers.HasBow; Items.KinstoneX.YellowTotemProng
-WildsMulldozerHole; Major; 27-06-00; Locations.AccessWilds, (|Items.Flippers, Items.GustJar)
+WildsMulldozerHole; Major; 27-06-00; Locations.AccessWilds, (|Items.Flippers, Items.GustJar); Items.Bow
 WildsDiggingCaveLeft; Minor; 17-00-00; Locations.AccessWilds, Items.MoleMitts
 WildsDiggingCaveRight; Minor; 17-00-01; Locations.AccessWilds, Items.MoleMitts
 WildsTopChest; Minor; 04-00-00; Locations.AccessWilds, Helpers.HasBow
@@ -152,7 +152,7 @@ TowerBottomLeft; Minor; 30-00-00; Locations.AccessUpperClouds
 TowerBottomRight; Major; 30-00-01; Locations.AccessUpperClouds; Items.PowerBracelets # Temp
 TowerF2; Minor; 30-01-00; Locations.AccessUpperClouds
 #GregalOne; Half; 014C5A; Locations.AccessUpperClouds, Items.GustJar
-GregalTwo; Half; 014CBC; Locations.AccessUpperClouds, Items.GustJar
+GregalTwo; Half; 014CBC; Locations.AccessUpperClouds, Items.GustJar; Items.Bow
 TowerRightBed; Minor; 30-02-00; Locations.AccessUpperClouds
 TowerMiddleBed; Minor; 30-02-01; Locations.AccessUpperClouds
 TowerLeftBed; Minor; 30-02-02; Locations.AccessUpperClouds
