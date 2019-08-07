@@ -72,7 +72,7 @@ MinishLikeLikeDiggingCaveRight; Minor; 0C-00-02; Locations.AccessMinishWoods, It
 MinishNorthHole; Minor; 35-05-00; Locations.AccessHyliaSouth, Items.Flippers, Items.PegasusBoots
 
 # Mount Crenel Locations 
-AccessCrenel; Helper;; Locations.AccessWestField, Helpers.HasBottle, (|Items.GripRing,(&Items.BombBag, Items.RocsCape, Items.GustJar))
+AccessCrenel; Helper;; Locations.AccessWestField, Helpers.HasBottle, (|Items.BombBag, Items.GripRing)
 AccessLowerCrenel; Helper;; Locations.AccessWestField, Helpers.HasBottle, (|Items.BombBag, (&Items.RocsCape, Items.GustJar))
 #CrenelLowerScrub; PurchaseItem; 0CC09C; Locations.AccessWestField, Helpers.HasBottle
 CrenelVineHole; Minor; 35-00-00; Locations.AccessLowerCrenel
