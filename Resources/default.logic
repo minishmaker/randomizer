@@ -71,14 +71,15 @@ MinishLikeLikeDiggingCaveLeft; Minor; 0C-00-01; Locations.AccessMinishWoods, Ite
 MinishLikeLikeDiggingCaveRight; Minor; 0C-00-02; Locations.AccessMinishWoods, Items.MoleMitts
 MinishNorthHole; Minor; 35-05-00; Locations.AccessHyliaSouth, Items.Flippers, Items.PegasusBoots
 
-# Mount Crenel Locations
-AccessCrenel; Helper;; Locations.AccessWestField, Helpers.HasBottle, (|Items.BombBag, Items.GripRing,(&Items.RocsCape, Items.GustJar))
+# Mount Crenel Locations 
+AccessCrenel; Helper;; Locations.AccessWestField, Helpers.HasBottle, (|Items.GripRing,(&Items.BombBag, Items.RocsCape, Items.GustJar))
+AccessLowerCrenel; Helper;; Locations.AccessWestField, Helpers.HasBottle, (|Items.BombBag, (&Items.RocsCape, Items.GustJar))
 #CrenelLowerScrub; PurchaseItem; 0CC09C; Locations.AccessWestField, Helpers.HasBottle
-CrenelVineHole; Minor; 35-00-00; Locations.AccessCrenel, (|Items.GustJar, Items.BombBag)
-CrenelMinishHouse; Minor; 27-03-00; Locations.AccessCrenel, (|Items.GustJar, Items.BombBag)
+CrenelVineHole; Minor; 35-00-00; Locations.AccessLowerCrenel
+CrenelMinishHouse; Minor; 27-03-00; Locations.AccessLowerCrenel
 CrenelCaveDownstairs; Minor; 26-07-00; Locations.AccessCrenel, Items.BombBag
-CrenelHeartCaveLeft; Minor; 26-08-00; Locations.AccessCrenel, Items.BombBag
-CrenelHeartCaveRight; Major; 26-08-01; Locations.AccessCrenel, Items.BombBag; Items.GripRing # Temp
+CrenelHeartCaveLeft; Minor; 26-08-00; Locations.AccessLowerCrenel, Items.BombBag
+CrenelHeartCaveRight; Major; 26-08-01; Locations.AccessLowerCrenel, Items.BombBag; Items.GripRing # Temp
 #CrenelGripScrub; PurchaseItem; 0CC0A8; Locations.AccessCrenel, Items.Shield, Items.BombBag
 GraybladeLeft; Minor; 25-00-00; Locations.AccessCrenel, Helpers.CanSplit2, Items.GripRing
 GraybladeRight; Minor; 25-00-01; Locations.AccessCrenel, Helpers.CanSplit2, Items.GripRing
