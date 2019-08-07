@@ -36,3 +36,6 @@ POIN ($77950+0x26)|1 //return offset if true
 
 //no wait when visiting a new area
 PUSH; ORG $52D64; SHORT 0xE006; POP
+
+//allow more freedom to pause the game
+PUSH; ORG $70044; SHORT 0x2000; ORG $7004E; SHORT 0x2000; POP
