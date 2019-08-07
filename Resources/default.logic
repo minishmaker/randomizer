@@ -262,10 +262,10 @@ CompletePalace:Palace; Helper;; Locations.AccessPalace, Items.RocsCape, Items.Pa
 
 #BakeryAttic; Minor; 2E-03-00; (|Items.PacciCane, Items.Flippers, Items.RocsCape)
 #StockWellAttic; Minor; 2E-01-01; (|Items.PacciCane, Items.Flippers, Items.RocsCape)
-#StockWellDogfood; Major; NON-STANDARD (|Items.PacciCane, Items.Flippers, Items.RocsCape) #23-00
+#StockWellDogfood; Major; NON-STANDARD; (|Items.PacciCane, Items.Flippers, Items.RocsCape) #23-00
 #HyruleWellTop; Minor; 41-00-00; Items.BombBag
-#HyruleWellPillar; Minor; 41-00-03;  Locations.HyruleWellLeft, Locations.HyruleWellRight, Locations.HyruleWellBottom
-#HyruleWellBottom; Minor; 41-00-02; Items.Flippers
+#HyruleWellPillar; Minor; 41-00-03;  Locations.HyruleWellLeft, Locations.HyruleWellRight, Locations.HyruleWellBottom, Helpers.CanSplit3
+#HyruleWellBottom; Minor; 41-00-02; (|Items.Flippers, Items.RocsCape)
 #TrilbyBombCave; Minor; 32-07-00; Locations.AccessWestField, Helpers.CanSplit2, Items.BombBag
 #TrilbyMoleCaveLeft; Minor; 13-03-00; Locations.AccessWestField, Items.MoleMitts
 #TrilbyMoleCaveRight; Minor; 13-03-02; Locations.AccessWestField, Items.MoleMitts
