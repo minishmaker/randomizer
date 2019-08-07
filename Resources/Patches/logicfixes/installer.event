@@ -142,3 +142,6 @@ PUSH; ORG $4C558; SHORT 0x4280; POP
 
 //yellow book quest minish spawns even if you have flippers
 PUSH; ORG $4C434; SHORT 0; POP
+
+//carpentes no longer spawn by the farm
+PUSH; ORG $4EFB4; SHORT 0xE017; POP
