@@ -242,7 +242,7 @@ CompleteDroplets:Droplets; Helper;; Locations.DropletsEastLever, Locations.Dropl
 
 # Palace of Winds Locations
 AccessPalace:Palace; Helper;; Locations.AccessUpperClouds, Helpers.CanSplit3, (|Items.RocsCape, Items.BombBag, Items.GustJar, Helpers.HasBoomerang, Helpers.HasBow)
-PalacePreBigDoor:Palace; DungeonItem; 70-01-00; Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.PowerBracelets, Items.SmallKey:Palace:2
+PalacePreBigDoor:Palace; DungeonItem; 70-01-00; Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.PowerBracelets, Items.SmallKey:Palace:4
 PalacePreBoss:Palace; DungeonItem; 70-03-00; Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.LanternOff, Items.PowerBracelets, Items.BigKey:Palace, Items.SmallKey:Palace:3
 PalaceDetour:Palace; Minor; 70-04-00; Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.LanternOff, Items.PowerBracelets, Items.BigKey:Palace, Items.SmallKey:Palace:4
 PalaceFanLoop:Palace; DungeonItem; 70-07-00; Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.PowerBracelets
