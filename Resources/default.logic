@@ -33,8 +33,11 @@ CanDestroyTrees; Helper;; (|Helpers.HasSword, Helpers.HasLightBow, Items.BombBag
 SmithHouse; Minor; 22-11-00
 IntroItem1; Major; F252B;; Items.SmithSword
 IntroItem2; Major; F253B;; Items.Shield
-HyruleWellRight; Minor; 41-00-04
+HyruleWellTop; Minor; 41-00-00; Items.BombBag
 HyruleWellLeft; Major; 41-00-01; Items.MoleMitts; Items.SmithSword # Temporary for Testing
+HyruleWellBottom; Minor; 41-00-02; (|Items.Flippers, Items.RocsCape)
+HyruleWellPillar; Minor; 41-00-03;  Locations.HyruleWellLeft, Locations.HyruleWellRight, Locations.HyruleWellBottom, Helpers.CanSplit3
+HyruleWellRight; Minor; 41-00-04
 #SwiftbladeFirst; ScrollItem; 110D7B; Helpers.HasSword
 CafeLady; Minor; 00EDDA;; Items.KinstoneX.RedSpike
 HearthLedge; Major; 02-00-06; Items.LanternOff; Items.SmithSword # Temporary for Testing
@@ -45,11 +48,11 @@ SchoolGardenRight; Minor; 11-02-02; Items.PacciCane, Helpers.CanSplit4
 TownDiggingTop; Major; 0F-00-00; Items.MoleMitts; Items.SmithSword # Temporary for Testing
 TownDiggingRight; Major; 0F-00-01; Items.MoleMitts; Items.SpinAttack #Temporary for Testing
 TownDiggingLeft; Minor; 0F-00-02; Items.MoleMitts
-
+BakeryAttic; Minor; 2E-03-00; (|Items.PacciCane, Items.Flippers, Items.RocsCape)
+StockWellAttic; Minor; 2E-01-01; (|Items.PacciCane, Items.Flippers, Items.RocsCape)
 
 FlipsCaveBig; Major; 62-10-00; Items.Flippers, Items.Ocarina, Items.PacciCane, Helpers.HasSword
 FlipsCaveSmall; Minor; 62-12-00; Items.Flippers, Items.Ocarina, Items.PacciCane, Items.LanternOff
-
 
 AccessEastField; Helper;; (|Helpers.CanDestroyTrees, Items.Ocarina)
 SouthKeeseCave; Minor; 32-13-00; Items.BombBag
@@ -58,6 +61,9 @@ LonLonPot; Half; 0F2C9B; Locations.AccessEastField
 LonLonCave; Major; 32-0C-00; (|Items.Ocarina, Items.LonLonKey, Items.RocsCape), Helpers.CanSplit2; Items.Bottle1 #Temp
 
 AccessWestField; Helper;; (|Items.RocsCape, (&Helpers.HasSword, Items.SpinAttack), Items.Flippers, (&Items.BombBag, Helpers.CanSplit3))
+TrilbyBombCave; Minor; 32-07-00; Locations.AccessWestField, Helpers.CanSplit2, Items.BombBag
+TrilbyMoleCaveLeft; Minor; 13-03-00; Locations.AccessWestField, Items.MoleMitts
+TrilbyMoleCaveRight; Minor; 13-03-02; Locations.AccessWestField, Items.MoleMitts
 #BottleScrub; PurchaseItem; 0CC0C0; Items.Shield, Items.BombBag, Locations.AccessWestField
 
 # Minish Woods Locations
@@ -210,7 +216,7 @@ FortressSkullRoomLeft:Fortress; Minor; 58-1D-00; Locations.AccessFortress
 FortressSkullRoomRight:Fortress; Minor; 58-1D-01; Locations.AccessFortress
 FortressWizrobes:Fortress; Minor; 58-23-00; Locations.AccessFortress, Items.MoleMitts
 CompleteFortress:Fortress; Helper;; Locations.AccessFortress, Items.MoleMitts, Helpers.CanSplit2, Helpers.HasBow, Items.BigKey:Fortress
-#FortressPrize:Prizes; Half; 09C9E6; Locations.CompleteFortress
+FortressPrize:Prizes; Half; 09C9E6; Locations.CompleteFortress
 
 # Temple of Droplets Locations
 AccessDroplets:Droplets; Helper;; Locations.AccessHyliaSouth, (|Items.Flippers, Items.RocsCape)
@@ -260,15 +266,7 @@ CompletePalace:Palace; Helper;; Locations.AccessPalace, Items.RocsCape, Items.Pa
 
 #Unrandomized locations
 
-#BakeryAttic; Minor; 2E-03-00; (|Items.PacciCane, Items.Flippers, Items.RocsCape)
-#StockWellAttic; Minor; 2E-01-01; (|Items.PacciCane, Items.Flippers, Items.RocsCape)
 #StockWellDogfood; Major; NON-STANDARD; (|Items.PacciCane, Items.Flippers, Items.RocsCape) #23-00
-#HyruleWellTop; Minor; 41-00-00; Items.BombBag
-#HyruleWellPillar; Minor; 41-00-03;  Locations.HyruleWellLeft, Locations.HyruleWellRight, Locations.HyruleWellBottom, Helpers.CanSplit3
-#HyruleWellBottom; Minor; 41-00-02; (|Items.Flippers, Items.RocsCape)
-#TrilbyBombCave; Minor; 32-07-00; Locations.AccessWestField, Helpers.CanSplit2, Items.BombBag
-#TrilbyMoleCaveLeft; Minor; 13-03-00; Locations.AccessWestField, Items.MoleMitts
-#TrilbyMoleCaveRight; Minor; 13-03-02; Locations.AccessWestField, Items.MoleMitts
 
 #Obscure locations
 #WildsSunkenKinstoneTop; Minor; NON-STANDARD #04-00
