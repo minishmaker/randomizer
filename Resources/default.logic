@@ -248,21 +248,22 @@ CompleteDroplets:Droplets; Helper;; Locations.DropletsEastLever, Locations.Dropl
 
 # Palace of Winds Locations
 AccessPalace:Palace; Helper;; Locations.AccessUpperClouds, Helpers.CanSplit3, (|Items.RocsCape, Items.BombBag, Items.GustJar, Helpers.HasBoomerang, Helpers.HasBow)
-PalacePreBigDoor:Palace; DungeonItem; 70-01-00; Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.PowerBracelets, Items.SmallKey:Palace:4
-PalacePreBoss:Palace; DungeonItem; 70-03-00; Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.LanternOff, Items.PowerBracelets, Items.BigKey:Palace, Items.SmallKey:Palace:3
-PalaceDetour:Palace; Minor; 70-04-00; Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.LanternOff, Items.PowerBracelets, Items.BigKey:Palace, Items.SmallKey:Palace:4
-PalaceFanLoop:Palace; DungeonItem; 70-07-00; Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.PowerBracelets
-PalaceWideGap:Palace; Minor; 70-0F-00; Locations.AccessPalace, Items.RocsCape, Items.PacciCane
-PalaceBlockMaze:Palace; Minor; 70-10-00; Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.LanternOff, Items.PowerBracelets, Items.BigKey:Palace, Items.SmallKey:Palace:4
-PalaceSwitchHit:Palace; Minor; 70-15-00;  Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.LanternOff, Items.PowerBracelets, Items.BigKey:Palace, Items.SmallKey:Palace:2
-PalaceFirerobeTrio:Palace; DungeonItem; 70-1C-00; Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.LanternOff, Items.PowerBracelets, Items.BigKey:Palace, Items.SmallKey:Palace:2
-PalaceTwinWizrobes:Palace; Minor; 70-29-00; Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.LanternOff, Items.PowerBracelets, Items.BigKey:Palace, Items.SmallKey:Palace:2
-PalaceManyRollers:Palace; DungeonItem; 70-2B-00; Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.LanternOff, Items.PowerBracelets, Items.BigKey:Palace
+PalaceBraceletPuzzleKey:Palace; Unshuffled; ; Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.PowerBracelets, (|Items.BombBag, Helpers.HasBoomerang, Helpers.HasBow); Items.SmallKey:Palace
+PalacePreBigDoor:Palace; DungeonItem; 70-01-00; Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.SmallKey:Palace:5
+PalacePreBoss:Palace; DungeonItem; 70-03-00; Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.LanternOff, Items.BigKey:Palace, Items.SmallKey:Palace:4
+PalaceDetour:Palace; Minor; 70-04-00; Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.LanternOff, Items.BigKey:Palace, Items.SmallKey:Palace:5
+PalaceFanLoop:Palace; DungeonItem; 70-07-00; Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.SmallKey:Palace
+PalaceWideGap:Palace; Minor; 70-0F-00; Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.SmallKey:Palace
+PalaceBlockMaze:Palace; Minor; 70-10-00; Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.LanternOff, Items.BigKey:Palace, Items.SmallKey:Palace:5
+PalaceSwitchHit:Palace; Minor; 70-15-00;  Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.LanternOff, Items.BigKey:Palace, Items.SmallKey:Palace:3
+PalaceFirerobeTrio:Palace; DungeonItem; 70-1C-00; Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.LanternOff, Items.BigKey:Palace, Items.SmallKey:Palace:3
+PalaceTwinWizrobes:Palace; Minor; 70-29-00; Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.LanternOff, Items.BigKey:Palace, Items.SmallKey:Palace:3
+PalaceManyRollers:Palace; DungeonItem; 70-2B-00; Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.LanternOff, Items.BigKey:Palace, Items.SmallKey:Palace
 PalaceWizrobeKill:Palace; Major; 70-2C-00; Locations.AccessPalace, (|Items.RocsCape, Items.BombBag, Helpers.HasBoomerang)
 PalaceFirstGrate:Palace; Major; 70-2D-00; Locations.AccessPalace, Items.RocsCape
-PalaceDarkBig:Palace; DungeonItem; 70-32-00; Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.LanternOff, Items.PowerBracelets, Items.BigKey:Palace
-PalaceDarkSmall:Palace; DungeonItem; 70-32-01; Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.LanternOff, Items.PowerBracelets, Items.BigKey:Palace
-CompletePalace:Palace; Helper;; Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.LanternOff, Items.PowerBracelets, Items.BigKey:Palace, Items.SmallKey:Palace:4
+PalaceDarkBig:Palace; DungeonItem; 70-32-00; Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.LanternOff, Items.BigKey:Palace, Items.SmallKey:Palace
+PalaceDarkSmall:Palace; DungeonItem; 70-32-01; Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.LanternOff, Items.BigKey:Palace, Items.SmallKey:Palace
+CompletePalace:Palace; Helper;; Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.LanternOff, Items.BigKey:Palace, Items.SmallKey:Palace:5
 
 #Unrandomized locations
 
