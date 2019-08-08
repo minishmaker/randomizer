@@ -9,7 +9,6 @@ ORG FreeSpace
 //#define neverSkipFusionCutscene 0 //define to never skip
 #define alwaysSkipFusionCutscene 0 //set to non-0 to skip, set to 0 to skip on button held
 
-
 #ifdef TEST
 	PUSH
 	ORG $EDD8+2; BYTE 0x5C 0x70  //lady kinstone
@@ -17,20 +16,21 @@ ORG FreeSpace
 	ORG $F2528+3; BYTE 0x01 0x00 //new item in smith's room, write item to $F252B
 	ORG $F2538+3; BYTE 0x0D 0x00 //new item in smith's room, write item to $F253B
 	POP
-	//unify golden kinstone fusions (obviously no need to change the royal piece)
-	PUSH
-	//tornado pieces first, all set to match with 0x65
-	ORG $C93E4+(8*1)+1; BYTE 0x8; ORG $C93E4+(8*1)+5; BYTE 0x1
-	ORG $C93E4+(8*2)+1; BYTE 0x8; ORG $C93E4+(8*2)+5; BYTE 0x1
-	ORG $C93E4+(8*3)+1; BYTE 0x8; ORG $C93E4+(8*3)+5; BYTE 0x1
-	ORG $C93E4+(8*4)+1; BYTE 0x8; ORG $C93E4+(8*4)+5; BYTE 0x1
-	ORG $C93E4+(8*5)+1; BYTE 0x8; ORG $C93E4+(8*5)+5; BYTE 0x1
-	//swamp second, all set to match with 0x6A
-	ORG $C93E4+(8*6)+1; BYTE 0xD; ORG $C93E4+(8*6)+5; BYTE 0x6
-	ORG $C93E4+(8*7)+1; BYTE 0xD; ORG $C93E4+(8*7)+5; BYTE 0x6
-	ORG $C93E4+(8*8)+1; BYTE 0xD; ORG $C93E4+(8*8)+5; BYTE 0x6
-	POP
 #endif
+
+//unify golden kinstone fusions (obviously no need to change the royal piece)
+PUSH
+//tornado pieces first, all set to match with 0x65
+ORG $C93E4+(8*1)+1; BYTE 0x8; ORG $C93E4+(8*1)+5; BYTE 0x1
+ORG $C93E4+(8*2)+1; BYTE 0x8; ORG $C93E4+(8*2)+5; BYTE 0x1
+ORG $C93E4+(8*3)+1; BYTE 0x8; ORG $C93E4+(8*3)+5; BYTE 0x1
+ORG $C93E4+(8*4)+1; BYTE 0x8; ORG $C93E4+(8*4)+5; BYTE 0x1
+ORG $C93E4+(8*5)+1; BYTE 0x8; ORG $C93E4+(8*5)+5; BYTE 0x1
+//swamp second, all set to match with 0x6A
+ORG $C93E4+(8*6)+1; BYTE 0xD; ORG $C93E4+(8*6)+5; BYTE 0x6
+ORG $C93E4+(8*7)+1; BYTE 0xD; ORG $C93E4+(8*7)+5; BYTE 0x6
+ORG $C93E4+(8*8)+1; BYTE 0xD; ORG $C93E4+(8*8)+5; BYTE 0x6
+POP
 
 //text ids set flags hacks
 PUSH; ORG $5E93C; jumpToHack(textFlags); POP
@@ -46,6 +46,7 @@ SHORT 0x1F1F 0; WORD 0x2002EA4 //jabber nut sets custom flag 0
 SHORT 0x2D08 2; WORD 0x2002EA4 //buying mushroom sets custom flag 2
 SHORT 0x125C 6; WORD 0x2002CA6 //new melari flag
 SHORT 0x3D07 6; WORD 0x2002CB4 //set the simulation heart piece flag after it ends
+SHORT 0x4803 1; WORD 0x2002CA1 //library quest can be started with flippers
 SHORT 0 0; WORD 0 //terminator
 
 //sanctuary stuff is wip and probably doesn't even work right now
@@ -79,6 +80,7 @@ WORD 0 0 0 //terminator
 	PUSH; ORG $F4A9C; BYTE 0xFF; ORG $F4C18; POIN $F4AAC; POP//sanctuary switches door never closes
 
 #include "newGame.event"
+#include "progressiveItems.event"
 #include "logicfixes/installer.event"
 #include "gamefixes/installer.event"
 #include "improvements/installer.event"
