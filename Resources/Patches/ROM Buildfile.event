@@ -44,6 +44,7 @@ textFlagsTable: //SHORT textid flag; WORD baseoffset
 SHORT 0x1F1F 0; WORD 0x2002EA4 //jabber nut sets custom flag 0
 //custom flag 1 is used for the ocarina
 SHORT 0x2D08 2; WORD 0x2002EA4 //buying mushroom sets custom flag 2
+SHORT 0x4404 3; WORD 0x2002EA4 //giving mushroom to rem sets custom flag 3
 SHORT 0x125C 6; WORD 0x2002CA6 //new melari flag
 SHORT 0x3D07 6; WORD 0x2002CB4 //set the simulation heart piece flag after it ends
 SHORT 0x4803 1; WORD 0x2002CA1 //library quest can be started with flippers
@@ -73,6 +74,7 @@ WORD 0x800D980 0x2002EA4 0x02 //Ocarina - check for a new flag for the ocarina b
 	WORD 0x8014070 0x2002B32 0xFF //Sanctuary - Ezlo doesn't nag you about the first stone tablet
 	WORD 0x8013BA8 0x2002B32 0xFF //Sanctuary - Ezlo doesn't nag you about the second stone tablet
 	//WORD 0x8014014 0x2002B32 0xFF //Sanctuary - yet more stone tablet
+WORD 0x8012F9C 0x2002EA4 0x08 //Rem - check a custom flag instead of boots
 WORD 0 0 0 //terminator
 
 	//sanctuary fixes
