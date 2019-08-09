@@ -60,14 +60,14 @@ AccessEastField; Helper;; (|Helpers.CanDestroyTrees, Items.Ocarina)
 SouthKeeseCave; Minor; 32-13-00; Items.BombBag
 AboveHPHole; Minor; 27-00-00; Locations.AccessEastField, (|Items.Ocarina, Items.LonLonKey, Items.RocsCape), (|Items.PacciCane, Items.RocsCape)
 LonLonPot; Half; 0F2C9B; Locations.AccessEastField
-LonLonCave; Major; 32-0C-00; (|Items.Ocarina, Items.LonLonKey, Items.RocsCape), Helpers.CanSplit2;
+LonLonCave; Major; 32-0C-00; (|Items.Ocarina, Items.LonLonKey, Items.RocsCape), Helpers.CanSplit2; Items.Bottle1 #Temp
 MinishRupeeFairy; Major; 00B7B4; Locations.AccessEastField, Items.PacciCane
 
 AccessWestField; Helper;; (|Items.RocsCape, (&Helpers.HasSword, Items.SpinAttack), Items.Flippers, (&Items.BombBag, Helpers.CanSplit3))
 TrilbyBombCave; Minor; 32-07-00; Locations.AccessWestField, Helpers.CanSplit2, Items.BombBag
 TrilbyMoleCaveLeft; Minor; 13-03-00; Locations.AccessWestField, Items.MoleMitts
 TrilbyMoleCaveRight; Minor; 13-03-02; Locations.AccessWestField, Items.MoleMitts
-BottleScrub; Major; 0CC0BA; Items.Shield, Items.BombBag, Locations.AccessWestField
+#BottleScrub; Major; Definitions.bottleScrub; Items.Shield, Items.BombBag, Locations.AccessWestField
 
 # Minish Woods Locations
 AccessMinishWoods; Helper;; Locations.AccessEastField
@@ -89,8 +89,8 @@ CrenelVineHole; Minor; 35-00-00; Locations.AccessLowerCrenel
 CrenelMinishHouse; Minor; 27-03-00; Locations.AccessLowerCrenel
 CrenelCaveDownstairs; Minor; 26-07-00; Locations.AccessCrenel, Items.BombBag
 CrenelHeartCaveLeft; Minor; 26-08-00; Locations.AccessLowerCrenel, Items.BombBag
-CrenelHeartCaveRight; Major; 26-08-01; Locations.AccessLowerCrenel, Items.BombBag;
-CrenelGripScrub; Major; 0CC0A2; Locations.AccessCrenel, Items.Shield, Items.BombBag
+CrenelHeartCaveRight; Major; 26-08-01; Locations.AccessLowerCrenel, Items.BombBag; Items.GripRing # Temp
+#CrenelGripScrub; Major; Definitions.gripScrub; Locations.AccessCrenel, Items.Shield, Items.BombBag
 GraybladeLeft; Minor; 25-00-00; Locations.AccessCrenel, Helpers.CanSplit2, Items.GripRing
 GraybladeRight; Minor; 25-00-01; Locations.AccessCrenel, Helpers.CanSplit2, Items.GripRing
 CrenelBombFairy; Major; 00B828; Locations.AccessCrenel, Items.BombBag, Items.GripRing
