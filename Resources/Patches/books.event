@@ -1,0 +1,66 @@
+#ifndef redBookItem
+	#define redBookItem		0x39
+#endif
+#ifndef redBookSub
+	#define redBookSub		0x00
+#endif
+#ifndef greenBookItem
+	#define greenBookItem	0x3A
+#endif
+#ifndef greenBookSub
+	#define greenBookSub	0x00
+#endif
+#ifndef blueBookItem
+	#define blueBookItem	0x3B
+#endif
+#ifndef blueBookSub
+	#define blueBookSub		0x00
+#endif
+
+//flippers don't stop link from returning books
+PUSH; ORG $4B46C; SHORT 0; POP
+
+//flippers don't stop link from entering the flipper cave through the trapdoor
+PUSH; ORG $4C462; SHORT 0; ORG $6ACEE; SHORT 0; ORG $9968A; SHORT 0xE003; POP
+
+PUSH; ORG $9AC58; jumpToHack(bookHack1); POP
+ALIGN 4
+bookHack1:
+#incbin "asm/bookHack1.dmp"
+POIN bookTable
+
+PUSH; ORG $9ACBC; jumpToHack(bookHack2); POP
+ALIGN 4
+bookHack2:
+#incbin "asm/bookHack2.dmp"
+POIN bookTable
+
+PUSH; ORG $9AE6C; jumpToHack(bookHack3); POP
+ALIGN 4
+bookHack3:
+#incbin "asm/bookHack3.dmp"
+POIN bookTable
+
+ALIGN 4
+bookTable:
+SHORT redBookItem redBookSub; WORD 0x2002EA4 4 //custom flag
+SHORT greenBookItem greenBookSub; WORD 0x2002EA4 5 //custom flag
+SHORT blueBookItem blueBookSub; WORD 0x2002EA4 6 //custom flag
+WORD 0 0 0 //terminator
+
+PUSH; ORG $4E258; jumpToHack(redBook); POP //red book only checks custom flag instead of flippers, library quest and red book
+ALIGN 4
+redBook:
+#incbin "asm/redBook.dmp"
+PUSH; ORG $4E210; SHORT 0x2005; POP //red book house is in town state 5 permanently
+
+PUSH; ORG $4E184; jumpToHack(greenBook); POP //green book checks custom flag instead of green book
+ALIGN 4
+greenBook:
+#incbin "asm/greenBook.dmp"
+
+PUSH; ORG $4E5EC; jumpToHack(blueBook); POP //blue book only checks custom flag instead of flippers, library quest and blue book
+ALIGN 4
+blueBook:
+#incbin "asm/blueBook.dmp"
+PUSH; ORG $9AC6A; SHORT 0xE010; POP //blue book doesn't stop spawning if you have blue book

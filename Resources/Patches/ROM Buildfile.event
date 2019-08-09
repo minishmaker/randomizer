@@ -47,6 +47,7 @@ SHORT 0x1F1F 0; WORD 0x2002EA4 //jabber nut sets custom flag 0
 SHORT 0x2D08 2; WORD 0x2002EA4 //buying mushroom sets custom flag 2
 SHORT 0x4404 3; WORD 0x2002EA4 //giving mushroom to rem sets custom flag 3
 SHORT 0x1F01 4; WORD 0x2002EA4 //getting bombs from belari sets custom flag 4
+//custom flags 4, 5 and 6 are used by the library book item spots
 SHORT 0x125C 6; WORD 0x2002CA6 //new melari flag
 SHORT 0x3D07 6; WORD 0x2002CB4 //set the simulation heart piece flag after it ends
 SHORT 0x4803 1; WORD 0x2002CA1 //library quest can be started with flippers
@@ -87,6 +88,7 @@ WORD 0 0 0 //terminator
 #include "newGame.event"
 #include "progressiveItems.event"
 #include "scrubs.event"
+#include "books.event"
 #include "logicfixes/installer.event"
 #include "gamefixes/installer.event"
 #include "improvements/installer.event"
