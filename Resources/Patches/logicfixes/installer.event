@@ -149,3 +149,6 @@ PUSH; ORG $4C434; SHORT 0; POP
 
 //carpentes no longer spawn by the farm
 PUSH; ORG $4EFB4; SHORT 0xE017; POP
+
+//make rem item have a sub id
+PUSH; ORG $7EA5E; SHORT 0x7890; ORG $7EA66; SHORT 0x7890 0x78D1; POP
