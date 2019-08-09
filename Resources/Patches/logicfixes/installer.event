@@ -152,3 +152,6 @@ PUSH; ORG $4EFB4; SHORT 0xE017; POP
 
 //make rem item have a sub id
 PUSH; ORG $7EA5E; SHORT 0x7890; ORG $7EA66; SHORT 0x7890 0x78D1; POP
+
+//simulation chest always spawns the same pattern if the first chest hasn't been opened
+PUSH; ORG $F030C; BYTE 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0; POP
