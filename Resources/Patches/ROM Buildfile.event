@@ -1,4 +1,5 @@
 #define jumpToHack(offset) "BYTE 0x00 0x4B 0x18 0x47; POIN (offset|0x1)"
+#include "extDefinitions.event" //a file reserved for the randomizer to output definitions for the patches
 
 //#define DEBUG 0
 //#define TEST 0
@@ -85,6 +86,7 @@ WORD 0 0 0 //terminator
 
 #include "newGame.event"
 #include "progressiveItems.event"
+#include "scrubs.event"
 #include "logicfixes/installer.event"
 #include "gamefixes/installer.event"
 #include "improvements/installer.event"

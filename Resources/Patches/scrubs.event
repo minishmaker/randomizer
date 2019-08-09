@@ -1,0 +1,46 @@
+#ifndef bottleScrubItem
+	#define bottleScrubItem	0x1C
+#endif
+#ifndef bottleScrubSub
+	#define bottleScrubSub	0xFF
+#endif
+#ifndef gripScrubItem
+	#define gripScrubItem	0x44
+#endif
+#ifndef gripScrubSub
+	#define gripScrubSub	0xFF
+#endif
+#ifndef stoneScrubItem
+	#define stoneScrubItem	0x5C
+#endif
+#ifndef stoneScrubSub
+	#define stoneScrubSub	0xFF
+#endif
+
+PUSH; ORG $28D70; jumpToHack(scrubHackBottle); POP
+ALIGN 4
+scrubHackBottle:
+#incbin "asm/scrubHack.dmp"
+POIN scrubTable
+POIN $28D7B
+
+PUSH; ORG $28D80; jumpToHack(scrubHackGrip); POP
+ALIGN 4
+scrubHackGrip:
+#incbin "asm/scrubHack.dmp"
+POIN scrubTable
+POIN $28D89
+
+PUSH; ORG $28D4C; jumpToHack(scrubHackStone); POP
+ALIGN 4
+scrubHackStone:
+#incbin "asm/scrubHack.dmp"
+POIN scrubTable
+POIN $28D55
+
+ALIGN 4
+scrubTable: //POIN scrub's shop data; SHORT newItemID newItemSubID
+POIN $CC0B8; SHORT bottleScrubItem bottleScrubSub
+POIN $CC0A0; SHORT gripScrubItem gripScrubSub
+POIN $CC0DC; SHORT stoneScrubItem stoneScrubSub
+WORD 0 0 //terminator
