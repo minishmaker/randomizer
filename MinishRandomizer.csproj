@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -98,6 +101,9 @@
       <Project>{b98f7ccf-9caa-406e-88d7-2040fa99f631}</Project>
       <Name>ColorzCore</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
