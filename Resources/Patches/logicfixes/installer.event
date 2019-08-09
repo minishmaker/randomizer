@@ -45,6 +45,9 @@ ALIGN 4
 swordFixPointers:
 POIN $D26C //melari
 POIN $96B4 //dampe
+POIN $B720 //arrow fairy
+POIN $B7B2 //rupee fairy
+POIN $B826 //bomb fairy
 WORD 0
 
 //stone fix: makes kinstone spots act like normal item spots
