@@ -12,8 +12,14 @@ add	r0,#8
 b	loop
 
 match:
-pop	{r1}
 ldrh	r1,[r0,#6]
+cmp	r1,#0xFF
+beq	replace
+pop	{r2}
+b	jump
+replace:
+pop	{r1}
+jump:
 ldrh	r0,[r0,#4]
 b	end
 
