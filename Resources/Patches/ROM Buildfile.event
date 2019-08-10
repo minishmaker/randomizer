@@ -48,7 +48,7 @@ SHORT 0x2D08 2; WORD 0x2002EA4 //buying mushroom sets custom flag 2
 SHORT 0x4404 3; WORD 0x2002EA4 //giving mushroom to rem sets custom flag 3
 SHORT 0x1F01 4; WORD 0x2002EA4 //getting bombs from belari sets custom flag 4
 //custom flags 4, 5 and 6 are used by the library book item spots
-SHORT 0x125C 6; WORD 0x2002CA6 //new melari flag
+SHORT 0x125C 7; WORD 0x2002EA4 //melari uses custom flag 7
 SHORT 0x3D07 6; WORD 0x2002CB4 //set the simulation heart piece flag after it ends
 SHORT 0x4803 1; WORD 0x2002CA1 //library quest can be started with flippers
 SHORT 0 0; WORD 0 //terminator
@@ -69,8 +69,8 @@ WORD 0x800D30E 0x2002C9C 0x08 //Melari - instead of having fire element, check d
 WORD 0x800D04A 0x2002C9C 0x08 //Melari - instead of having fire element, check defeated gleerok
 WORD 0x800D066 0x2002C9C 0x08 //Melari - instead of having fire element, check defeated gleerok
 WORD 0x800D0BE 0x2002C9C 0x08 //Melari - instead of having fire element, check defeated gleerok
-WORD 0x800D0A0 0x2002CA6 0x40 //Melari - instead of having white sword, check exited mines with sword (repurposed)
-WORD 0x800D05E 0x2002CA6 0x40 //Melari - instead of having white sword, check exited mines with sword (repurposed)
+WORD 0x800D0A0 0x2002EA4 0x80 //Melari - instead of having white sword, get item from melari
+WORD 0x800D05E 0x2002EA4 0x80 //Melari - instead of having white sword, get item from melari
 WORD 0x800D944 0x2002D74 0x20 //Zeffa - check for ocarina being dropped instead of ocarina being collected
 WORD 0x800D976 0x2002EA4 0x02 //Ocarina - check for a new flag for the ocarina being collected
 WORD 0x800D980 0x2002EA4 0x02 //Ocarina - check for a new flag for the ocarina being collected
