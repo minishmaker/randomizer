@@ -167,5 +167,5 @@ fusionLock:
 POIN fusionLockTable
 ALIGN 4
 fusionLockTable: //WORD offsetoflockerflag; SHORT lockerflagid fusionflagid
-WORD 0x2002EA4; SHORT 4 0x1C //belari won't talk about remote bombs until he has handed the first item
+WORD 0x2002EA4; SHORT 8 0x1C //belari won't talk about remote bombs until he has handed the first item
 WORD 0 0 //terminator
