@@ -72,10 +72,10 @@ TrilbyMoleCaveRight; Minor; 13-03-02; Locations.AccessWestField, Items.MoleMitts
 # Minish Woods Locations
 AccessMinishWoods; Helper;; Locations.AccessEastField
 JabberNut; Split; 09498C; Locations.AccessMinishWoods
-BelariBombs; Major; 00A00C; Locations.AccessMinishWoods
-MinishMiddleFlipperHole; Major; 35-09-00; Locations.AccessMinishWoods, Items.Flippers;
-MinishRightFlipperHole; Minor; 35-09-01; Locations.AccessMinishWoods, Items.Flippers
-MinishLeftFlipperHole; Minor; 35-09-02; Locations.AccessMinishWoods, Items.Flippers
+BelariBombs; Major; 00A00C; Locations.AccessMinishWoods, (|Locations.CompleteDeepwood,Items.BombBag)
+MinishMiddleFlipperHole; Major; 35-09-00; Locations.AccessMinishWoods, (|Locations.CompleteDeepwood,Items.BombBag), Items.Flippers;
+MinishRightFlipperHole; Minor; 35-09-01; Locations.AccessMinishWoods, (|Locations.CompleteDeepwood,Items.BombBag), Items.Flippers
+MinishLeftFlipperHole; Minor; 35-09-02; Locations.AccessMinishWoods, (|Locations.CompleteDeepwood,Items.BombBag), Items.Flippers
 MinishLikeLikeDiggingCaveLeft; Minor; 0C-00-01; Locations.AccessMinishWoods, Items.MoleMitts
 MinishLikeLikeDiggingCaveRight; Minor; 0C-00-02; Locations.AccessMinishWoods, Items.MoleMitts
 MinishNorthHole; Minor; 35-05-00; Locations.AccessHyliaSouth, Items.Flippers, Items.PegasusBoots
