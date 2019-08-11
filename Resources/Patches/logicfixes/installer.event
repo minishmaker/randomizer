@@ -188,3 +188,9 @@ ALIGN 4
 ranchDoorData:
 BYTE 0x06 0x0F 0x5D 0x00 0x03 0x01; SHORT 0 0x18 0x58 0 0
 BYTE 0xFF 0x00 0x00 0x00 0x00 0x00; SHORT 0 0x00 0x00 0 0
+
+//gentari's curtain opens if you kill the green chu (or have bombs but that's handled somewhere else)
+PUSH; ORG $91924; jumpToHack(openCurtain); POP
+ALIGN 4
+openCurtain:
+#incbin "asm/openCurtain.dmp"
