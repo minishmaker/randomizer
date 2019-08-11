@@ -57,7 +57,7 @@ FlipsCaveBig; Major; 62-10-00; Items.Flippers, Items.Ocarina, Items.PacciCane, H
 FlipsCaveSmall; Minor; 62-12-00; Items.Flippers, Items.Ocarina, Items.PacciCane, Items.LanternOff
 
 AccessEastField; Helper;; (|Helpers.CanDestroyTrees, Items.Ocarina)
-SouthKeeseCave; Minor; 32-13-00; Items.BombBag
+HillsKeeseCave; Minor; 32-13-00; Items.BombBag
 AboveHPHole; Minor; 27-00-00; Locations.AccessEastField, (|Items.Ocarina, Items.LonLonKey, Items.RocsCape), (|Items.PacciCane, Items.RocsCape)
 LonLonPot; Half; 0F2C9B; Locations.AccessEastField
 LonLonCave; Major; 32-0C-00; (|Items.Ocarina, Items.LonLonKey, Items.RocsCape), Helpers.CanSplit2; Items.Bottle1 #Temp
@@ -119,7 +119,7 @@ AccessHyliaSouth; Helper;; Locations.AccessHyliaNorth,(|Items.Flippers,Items.Roc
 #StockwellDog; Major; ; Locations.AccessHyliaNorth, Items.DogFoodBottle
 HyliaNorthMinishHole; Major; 35-07-00; Locations.AccessHyliaNorth, Items.Flippers, Items.PegasusBoots;
 
-WitchDiggingCaveRight; Minor; 0C-00-00; Locations.AccessHyliaSouth, Items.MoleMitts
+WitchDiggingCave; Minor; 0C-00-00; Locations.AccessHyliaSouth, Items.MoleMitts
 
 AccessTreasureCave; Helper;; Locations.AccessHyliaNorth, Items.MoleMitts, Items.RocsCape
 HyliaCapeCaveTopRight; Minor; 19-01-00; Locations.AccessTreasureCave 
