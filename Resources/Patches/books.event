@@ -59,6 +59,7 @@ ALIGN 4
 greenBook:
 #incbin "asm/greenBook.dmp"
 PUSH; ORG $4BFCC; SHORT 0; POP //don't check for library quest flag for green book
+PUSH; ORG $E806; SHORT 20; POP //minish is always on top of the green book
 
 PUSH; ORG $4E5EC; jumpToHack(blueBook); POP //blue book only checks custom flag instead of flippers, library quest and blue book
 ALIGN 4
