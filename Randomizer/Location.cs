@@ -12,6 +12,8 @@ namespace MinishRandomizer.Randomizer
 {
     public class Location
     {
+        
+
         public static Location GetLocation(string locationText)
         {
             // Location format: Type;Name;Address;Large;Logic
@@ -26,6 +28,13 @@ namespace MinishRandomizer.Randomizer
             string[] names = locationParts[0].Split(':');
             string name = names[0];
 
+            string dungeon = "";
+            // Colon, must have a dungeon specified
+            if (names.Length >= 2)
+            {
+                dungeon = names[1];
+            }
+
             string locationType = locationParts[1];
             if (!Enum.TryParse(locationType, out LocationType type) || type == LocationType.Untyped)
             {
@@ -33,9 +42,26 @@ namespace MinishRandomizer.Randomizer
                 throw new ShuffleException($"Location \"{name}\" has invalid type \"{locationType}\"!");
             }
 
-            int address = GetAddressFromString(locationParts[2]);
+            // Get all comma-separated addresses and properly parse them
+            string[] addressStrings = locationParts[2].Split(',');
+            List<LocationAddress> addresses = new List<LocationAddress>(addressStrings.Length);
+            List<EventLocationAddress> defines = new List<EventLocationAddress>();
+            foreach (string address in addressStrings)
+            {
+                LocationAddress parsedAddress = GetAddressFromString(address);
+                if (parsedAddress is EventLocationAddress)
+                {
+                    defines.Add((EventLocationAddress)parsedAddress);
+                }
+                else
+                {
+                    addresses.Add(parsedAddress);
+                }
+                
+            }
 
             string logic = "";
+            // Looks like logic is specified
             if (locationParts.Length >= 4)
             {
                 logic = locationParts[3];
@@ -43,14 +69,8 @@ namespace MinishRandomizer.Randomizer
 
             List<Dependency> dependencies = Dependency.GetDependencies(logic);
 
-            string dungeon = "";
-            if (names.Length >= 2)
-            {
-                dungeon = names[1];
-            }
-
-            Location location = new Location(type, name, dungeon, address, dependencies);
-
+            Item? itemOverride = null;
+            // Has enough parts for an extra item
             if (locationParts.Length >= 5)
             {
                 string[] itemParts = locationParts[4].Split(':');
@@ -58,6 +78,7 @@ namespace MinishRandomizer.Randomizer
 
                 if (subParts[0] == "Items")
                 {
+                    // TODO: Break this into another function somewhere later, really not sure where. Maybe a LogicUtil?
                     if (Enum.TryParse(subParts[1], out ItemType replacementType))
                     {
                         byte subType = 0;
@@ -84,10 +105,13 @@ namespace MinishRandomizer.Randomizer
                             itemDungeon = itemParts[1];
                         }
 
-                        location.SetItem(new Item(replacementType, subType, itemDungeon));
+                        
+                        itemOverride = new Item(replacementType, subType, itemDungeon);
                     }
                 }
             }
+
+            Location location = new Location(type, name, dungeon, addresses, defines, dependencies, itemOverride);
 
             return location;
         }
@@ -109,50 +133,98 @@ namespace MinishRandomizer.Randomizer
         /// </summary>
         /// <param name="addressString">String representing the address</param>
         /// <returns></returns>
-        public static int GetAddressFromString(string addressString)
+        public static LocationAddress GetAddressFromString(string addressString)
         {
             // Either direct address or area-room-chest
             if (addressString == "")
             {
-                return 0;
+                return new LocationAddress(AddressType.None, 0);
+            }
+
+            // Get the types of the address
+            string[] addressParts = addressString.Split(':');
+
+            AddressType addressType = AddressType.None;
+            if (addressParts.Length > 1)
+            {
+                for (int i = 1; i < addressParts.Length; i++)
+                {
+                    if (Enum.TryParse(addressParts[i], out AddressType subType))
+                    {
+                        // Set the flag(s) indicated by the given type
+                        addressType |= subType;
+                    }
+                    else
+                    {
+                        throw new ShuffleException($"{addressParts[i]} in address {addressString} is not a valid address type!");
+                    }
+                }
+            }
+            
+            // If a byte isn't set, default to both
+            if (((addressType & AddressType.FirstByte) | (addressType & AddressType.SecondByte)) == AddressType.None)
+            {
+                // Set the type of the address to the default
+                addressType = AddressType.BothBytes;
+            }
+
+            // If the address is an event define, make it an EventLocationAddress
+            if ((addressType & AddressType.Define) == AddressType.Define)
+            {
+                // The first part refers to the name of the define
+                return new EventLocationAddress(addressType, addressParts[0]);
             }
 
             // The address is a hexadecimal number, so it can simply be parsed
-            if (int.TryParse(addressString, NumberStyles.HexNumber, null, out int address))
+            if (int.TryParse(addressParts[0], NumberStyles.HexNumber, null, out int address))
             {
-                return address;
+                return new LocationAddress(addressType, address);
             }
             
-            // The address is a chest, so it should
-            string[] chestDetails = addressString.Split('-');
-            if (chestDetails.Length != 3)
+            // The address is an entity, so it should be parsed as an area-room-entity number
+            string[] entityDetails = addressParts[0].Split('-');
+            if (entityDetails.Length != 3)
             {
-                throw new ShuffleException($"Chest data \"{addressString}\" does not have a full address!");
+                throw new ShuffleException($"Entity data \"{addressString}\" does not have a full address!");
             }
 
-            if (!int.TryParse(chestDetails[0], NumberStyles.HexNumber, null, out int area))
+            if (!int.TryParse(entityDetails[0], NumberStyles.HexNumber, null, out int area))
             {
-                throw new ShuffleException($"Chest data \"{addressString}\" has an invalid area index!");
+                throw new ShuffleException($"Entity data \"{addressString}\" has an invalid area index!");
             }
 
-            if (!int.TryParse(chestDetails[1], NumberStyles.HexNumber, null, out int room))
+            if (!int.TryParse(entityDetails[1], NumberStyles.HexNumber, null, out int room))
             {
-                throw new ShuffleException($"Chest data \"{addressString}\" has an invalid room index!");
+                throw new ShuffleException($"Entity data \"{addressString}\" has an invalid room index!");
             }
 
-            if (!int.TryParse(chestDetails[2], NumberStyles.HexNumber, null, out int chest))
+            if (!int.TryParse(entityDetails[2], NumberStyles.HexNumber, null, out int chest))
             {
-                throw new ShuffleException($"Chest data \"{addressString}\" has an invalid chest index!");
+                throw new ShuffleException($"Entity data \"{addressString}\" has an invalid entity index!");
             }
 
-            // Look chest address up in table
-            int areaTableAddr = ROM.Instance.reader.ReadAddr(ROM.Instance.headers.AreaMetadataBase + (area << 2));
-            int roomTableAddr = ROM.Instance.reader.ReadAddr(areaTableAddr + (room << 2));
-            int chestTableAddr = ROM.Instance.reader.ReadAddr(roomTableAddr + 0x0C);
+            int addressValue = 0;
 
-            // Chests are 8 bytes long, and the item is stored 2 bytes in
-            return chestTableAddr + chest * 8 + 0x02;
+            if ((addressType & AddressType.GroundItem) == AddressType.GroundItem)
+            {
+                throw new NotImplementedException();
+            }
+            else
+            {
+                // Look chest address up in table
+                int areaTableAddr = ROM.Instance.reader.ReadAddr(ROM.Instance.headers.AreaMetadataBase + (area << 2));
+                int roomTableAddr = ROM.Instance.reader.ReadAddr(areaTableAddr + (room << 2));
+                int chestTableAddr = ROM.Instance.reader.ReadAddr(roomTableAddr + 0x0C);
+
+                // Chests are 8 bytes long, and the item is stored 2 bytes in
+                addressValue = chestTableAddr + chest * 8 + 0x02;
+            }
+
+            
+            return new LocationAddress(addressType, addressValue);
         }
+
+        
 
         public enum LocationType
         {
@@ -170,25 +242,58 @@ namespace MinishRandomizer.Randomizer
         public LocationType Type;
         public string Name;
         public string Dungeon;
+        public bool Addressed;
         public bool Filled;
         public Item Contents { get; private set; }
         private bool? AvailableCache;
         private Item DefaultContents;
-        private int Address;
+        private List<LocationAddress> Addresses;
+        private List<EventLocationAddress> Defines;
 
-        public Location(LocationType type, string name, string dungeon, int address, List<Dependency> dependencies)
+        public Location(LocationType type, string name, string dungeon, List<LocationAddress> addresses, List<EventLocationAddress> defines, List<Dependency> dependencies, Item? replacementContents = null)
         {
             Type = type;
             Name = name;
             Dungeon = dungeon;
 
-            Address = address;
+            // One location can have several addresses
+            Addresses = addresses;
+
+            foreach (LocationAddress address in addresses)
+            {
+                // If any of the location's addresses validly index the first byte, it can be written to
+                if ((address.Type & AddressType.FirstByte) == AddressType.FirstByte && address.Address != 0)
+                {
+                    Addressed = true;
+                    break;
+                }
+            }
+
+            // Because the two have zero overlap, the EventLocationAddresses are separate.
+            Defines = defines;
+
+            foreach (EventLocationAddress define in defines)
+            {
+                // If any of the defined addresses isn't 
+                if ((define.Type & AddressType.FirstByte) == AddressType.FirstByte && !string.IsNullOrEmpty(define.Define.Name))
+                {
+                    Addressed = true;
+                    break;
+                }
+            }
 
             Dependencies = dependencies;
 
-            if (address != 0)
+            if (replacementContents == null)
             {
+                // Need to get the item from the ROM
                 DefaultContents = GetItemContents();
+                Contents = DefaultContents;
+            }
+            else
+            {
+                // The item is specified by the logic rather than the ROM
+                DefaultContents = (Item)replacementContents;
                 Contents = DefaultContents;
             }
 
@@ -198,38 +303,18 @@ namespace MinishRandomizer.Randomizer
 
         public void WriteLocation(Writer w)
         {
-            if (Address == 0)
+            // Write each address to ROM
+            foreach (LocationAddress address in Addresses)
             {
-                return;
+                address.WriteAddress(w, Contents);
             }
 
-            switch (Type)
-            {
-                case LocationType.Helper:
-                case LocationType.Untyped:
-                    return;
-                case LocationType.Split:
-                    w.WriteByte((byte)Contents.Type, Address);
-                    w.WriteByte(Contents.SubValue, Address + 2);
-                    break;
-                case LocationType.Half:
-                    w.SetPosition(Address);
-                    if (Contents.Type == ItemType.KinstoneX || Contents.Type == ItemType.ShellsX)
-                    {
-                        w.WriteByte((byte)ItemType.Shells30);
-                    }
-                    else
-                    {
-                        w.WriteByte((byte)Contents.Type);
-                    }
-                    break;
-                case LocationType.Major:
-                case LocationType.Minor:
-                default:
-                    w.SetPosition(Address);
-                    w.WriteByte((byte)Contents.Type);
-                    w.WriteByte(Contents.SubValue);
-                    break;
+        }
+
+        public void WriteLocationEvent(StreamWriter w)
+        {
+            foreach (EventLocationAddress define in Defines) {
+                define.WriteDefine(w, Contents);
             }
         }
 
@@ -239,25 +324,13 @@ namespace MinishRandomizer.Randomizer
         /// <returns>The item contained at the address</returns>
         public Item GetItemContents()
         {
-            ItemType type;
-            byte subType;
+            ItemType type = ItemType.Untyped;
+            byte subType = 0;
 
-            switch (Type)
+            foreach (LocationAddress address in Addresses)
             {
-                case LocationType.Split:
-                    type = (ItemType)ROM.Instance.reader.ReadByte(Address);
-                    subType = ROM.Instance.reader.ReadByte(Address + 2);
-                    break;
-                case LocationType.Half:
-                    type = (ItemType)ROM.Instance.reader.ReadByte(Address);
-                    subType = 0x00;
-                    break;
-                default:
-                    type = (ItemType)ROM.Instance.reader.ReadByte(Address);
-                    subType = ROM.Instance.reader.ReadByte();
-                    break;
+                address.ReadAddress(ROM.Instance.reader, ref type, ref subType);
             }
-
             
             if (Type == LocationType.DungeonItem)
             {
@@ -299,7 +372,7 @@ namespace MinishRandomizer.Randomizer
                 }
             }
 
-            if (Address == 0)
+            if (!Addressed)
             {
                 return false;
             }

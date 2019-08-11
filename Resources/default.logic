@@ -67,11 +67,11 @@ AccessWestField; Helper;; (|Items.RocsCape, (&Helpers.HasSword, Items.SpinAttack
 TrilbyBombCave; Minor; 32-07-00; Locations.AccessWestField, Helpers.CanSplit2, Items.BombBag
 TrilbyMoleCaveLeft; Minor; 13-03-00; Locations.AccessWestField, Items.MoleMitts
 TrilbyMoleCaveRight; Minor; 13-03-02; Locations.AccessWestField, Items.MoleMitts
-BottleScrub; Major; 0CC0BA; Items.Shield, Items.BombBag, Locations.AccessWestField
+BottleScrub; Major; bottleScrubItem:Define:FirstByte, bottleScrubSub:Define:SecondByte; Items.Shield, Items.BombBag, Locations.AccessWestField
 
 # Minish Woods Locations
 AccessMinishWoods; Helper;; Locations.AccessEastField
-JabberNut; Split; 09498C; Locations.AccessMinishWoods
+JabberNut; Major; 09498C:FirstByte, 09498E:SecondByte; Locations.AccessMinishWoods
 BelariBombs; Major; 00A00C; Locations.AccessMinishWoods
 MinishMiddleFlipperHole; Major; 35-09-00; Locations.AccessMinishWoods, Items.Flippers;
 MinishRightFlipperHole; Minor; 35-09-01; Locations.AccessMinishWoods, Items.Flippers
@@ -84,13 +84,12 @@ MinishWitchHut; Major; 0F94D7; Locations.AccessHyliaNorth, (|Items.Flippers,Item
 # Mount Crenel Locations 
 AccessCrenel; Helper;; Locations.AccessWestField, Helpers.HasBottle, (|Items.BombBag, Items.GripRing)
 AccessLowerCrenel; Helper;; Locations.AccessWestField, Helpers.HasBottle, (|Items.BombBag, (&Items.RocsCape, Items.GustJar))
-#CrenelLowerScrub; PurchaseItem; 0CC09C; Locations.AccessWestField, Helpers.HasBottle
 CrenelVineHole; Minor; 35-00-00; Locations.AccessLowerCrenel
 CrenelMinishHouse; Minor; 27-03-00; Locations.AccessLowerCrenel
 CrenelCaveDownstairs; Minor; 26-07-00; Locations.AccessCrenel, Items.BombBag
 CrenelHeartCaveLeft; Minor; 26-08-00; Locations.AccessLowerCrenel, Items.BombBag
 CrenelHeartCaveRight; Major; 26-08-01; Locations.AccessLowerCrenel, Items.BombBag;
-CrenelGripScrub; Major; 0CC0A2; Locations.AccessCrenel, Items.Shield, Items.BombBag
+CrenelGripScrub; Major; gripScrubItem:Define:FirstByte, gripScrubSub:Define:SecondByte; Locations.AccessCrenel, Items.Shield, Items.BombBag
 GraybladeLeft; Minor; 25-00-00; Locations.AccessCrenel, Helpers.CanSplit2, Items.GripRing
 GraybladeRight; Minor; 25-00-01; Locations.AccessCrenel, Helpers.CanSplit2, Items.GripRing
 CrenelBombFairy; Major; 00B828; Locations.AccessCrenel, Items.BombBag, Items.GripRing
@@ -226,14 +225,10 @@ FortressPrize:Prizes; Half; 09C9E6; Locations.CompleteFortress
 
 # Temple of Droplets Locations
 AccessDroplets:Droplets; Helper;; Locations.AccessHyliaSouth, (|Items.Flippers, Items.RocsCape)
-# Temporary modification
-DropletsFirstIceblockConst:Droplets; Unshuffled; ; Locations.AccessDroplets; Items.SmallKey:Droplets
-DropletsSecondIceblockConst:Droplets; Unshuffled; ; Locations.AccessDroplets; Items.BigKey:Droplets
 DropletsMulldoserDropConst:Droplets; Unshuffled; ; Locations.AccessDroplets, Items.BigKey:Droplets, (|Items.LanternOff, Helpers.DropletsEastLever), Helpers.HasDamageSource; Items.SmallKey:Droplets
 DropletsWaterPotConst:Droplets; Unshuffled; ; Locations.AccessDroplets, Items.BigKey:Droplets, Items.Flippers, (|Items.RocsCape, Items.GustJar); Items.SmallKey:Droplets
-# Eventual replacement
-#DropletsFirstIceblock:Droplets; DungeonItem; ; Locations.AccessDroplets; Items.SmallKey:Droplets
-#DropletsSecondIceblock:Droplets; DungeonItem; ; Locations.AccessDroplets, Helpers.DropletsOpenDoors; Items.BigKey:Droplets
+DropletsFirstIceblock:Droplets; DungeonItem; 098C1B:FirstByte, 098C1D:SecondByte; Locations.AccessDroplets; Items.SmallKey:Droplets
+DropletsSecondIceblock:Droplets; DungeonItem; 098C3D:FirstByte, 098C3F:SecondByte ; Locations.AccessDroplets, Helpers.DropletsOpenDoors; Items.BigKey:Droplets
 DropletsEastLever:Droplets; Helper;; Locations.AccessDroplets, Items.BigKey:Droplets, Helpers.DropletsOpenDoors, (|Items.GustJar, (&Items.LanternOff, Items.RocsCape)), Helpers.CanSplit2
 DropletsWestLever:Droplets; Helper;; Locations.AccessDroplets, Items.BigKey:Droplets, Helpers.DropletsOpenDoors, Items.LanternOff, Helpers.CanSplit2
 DropletsOpenDoors:Droplets; Helper;; Items.SmallKey:Droplets:4, Items.Flippers, (|Items.GustJar, Items.RocsCape), Items.BombBag, Items.LanternOff, Helpers.HasSword
@@ -286,6 +281,8 @@ CompletePalace:Palace; Helper;; Locations.AccessPalace, Items.RocsCape, Items.Pa
 #RoyalValleyLostWoodsChest; Minor; 0D8A84; Locations.AccessValley
 #LonLonCaveSecret; Minor; 32-0D-00; (|Items.Ocarina, Items.LonLonKey), Items.BombBag, Items.LanternOff, Helpers.CanSplit2;
 
+# This one's probably never going to get randomized because that'd be mean
+#CrenelLowerScrub; PurchaseItem; 0CC09C; Locations.AccessWestField, Helpers.HasBottle 
 
 # Skipping ahead to DHC so the game can be considered beatable...
 BeatVaati; Helper;; Locations.CompleteDeepwood, Locations.CompleteCoF, Locations.CompleteDroplets, Locations.CompletePalace, Helpers.CanSplit4, Items.BombBag, Helpers.HasBow, Items.RocsCape, Items.LanternOff, Items.GustJar, Items.PacciCane
