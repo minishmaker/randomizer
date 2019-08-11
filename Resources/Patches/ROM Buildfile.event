@@ -51,6 +51,7 @@ SHORT 0x125C 7; WORD 0x2002EA4 //melari uses custom flag 7
 SHORT 0x1F01 8; WORD 0x2002EA4 //getting bombs from belari sets custom flag 8
 SHORT 0x3D07 6; WORD 0x2002CB4 //set the simulation heart piece flag after it ends
 SHORT 0x4803 1; WORD 0x2002CA1 //library quest can be started with flippers
+SHORT 0x0517 1; WORD 0x2002CA1 //picking up the ocarina automatically starts the library quest
 SHORT 0 0; WORD 0 //terminator
 
 //sanctuary stuff is wip and probably doesn't even work right now
