@@ -207,7 +207,7 @@ CompleteCoF:FlameCave; Helper;; Locations.CoFAccess, Items.PacciCane, Items.Smal
 
 # Fortress of Winds Locations
 AccessFortress:Fortress; Helper;; Locations.AccessWilds, Items.KinstoneX.YellowTotemProng::3
-FortressEntrance:Fortress; Major; 18-00-00; Locations.AccessFortress, Items.MoleMitts; Items.Ocarina # Temp
+FortressEntrance:Fortress; Minor; 18-00-00; Locations.AccessFortress, Items.MoleMitts
 FortressOutsideF2Left:Fortress; Minor; 18-01-00; Locations.AccessFortress, Items.MoleMitts, Helpers.HasBow
 FortressOutsideF2Middle:Fortress; Minor; 18-01-01; Locations.AccessFortress, Items.MoleMitts
 FortressOutsideF2Right:Fortress; Minor; 18-01-02; Locations.AccessFortress, Items.MoleMitts
