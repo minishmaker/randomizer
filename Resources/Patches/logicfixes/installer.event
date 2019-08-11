@@ -45,6 +45,9 @@ ALIGN 4
 swordFixPointers:
 POIN $D26C //melari
 POIN $96B4 //dampe
+POIN $B720 //arrow fairy
+POIN $B7B2 //rupee fairy
+POIN $B826 //bomb fairy
 WORD 0
 
 //stone fix: makes kinstone spots act like normal item spots
@@ -96,6 +99,14 @@ PUSH; ORG $4F908; jumpToHack(mushroomFlag); POP
 ALIGN 4
 mushroomFlag:
 #incbin "asm/mushroomFlag.dmp"
+//make all items at the potion shop have a consistent price
+PUSH; ORG $7DE64; jumpToHack(mushroomPrice); POP
+ALIGN 4
+mushroomPrice:
+#incbin "asm/mushroomPrice.dmp"
+WORD 60 //mushroom spot price
+WORD 60 //blue potion price
+WORD 150 //red potion price
 
 //set flag when ocarina is collected, custom flag 1
 PUSH; ORG $9C9F4; jumpToHack(ocarinaFlag1); POP
@@ -146,3 +157,40 @@ PUSH; ORG $4C434; SHORT 0; POP
 
 //carpentes no longer spawn by the farm
 PUSH; ORG $4EFB4; SHORT 0xE017; POP
+
+//make rem item have a sub id
+PUSH; ORG $7EA5E; SHORT 0x7890; ORG $7EA66; SHORT 0x7890 0x78D1; POP
+
+//simulation chest always spawns the same pattern if the first chest hasn't been opened
+PUSH; ORG $F030C; BYTE 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0; POP
+
+//yellow library minish rewards link even if he has the flippers
+PUSH; ORG $6AAA4; SHORT 0; POP
+
+//fusion flag requirements: fusion flags will return false if these aren't set
+PUSH; ORG $1E82C; jumpToHack(fusionLock); POP
+ALIGN 4
+fusionLock:
+#incbin "asm/fusionLock.dmp"
+POIN fusionLockTable
+ALIGN 4
+fusionLockTable: //WORD offsetoflockerflag; SHORT lockerflagid fusionflagid
+WORD 0x2002EA4; SHORT 8 0x1C //belari won't talk about remote bombs until he has handed the first item
+WORD 0 0 //terminator
+
+//ranch door is closed on both sides insetad of just one
+PUSH; ORG $F2F34; POIN ranchDoor|1; POP
+ALIGN 4
+ranchDoor:
+#incbin "asm/ranchDoor.dmp"
+POIN ranchDoorData
+ALIGN 4
+ranchDoorData:
+BYTE 0x06 0x0F 0x5D 0x00 0x03 0x01; SHORT 0 0x18 0x58 0 0
+BYTE 0xFF 0x00 0x00 0x00 0x00 0x00; SHORT 0 0x00 0x00 0 0
+
+//gentari's curtain opens if you kill the green chu (or have bombs but that's handled somewhere else)
+PUSH; ORG $91924; jumpToHack(openCurtain); POP
+ALIGN 4
+openCurtain:
+#incbin "asm/openCurtain.dmp"

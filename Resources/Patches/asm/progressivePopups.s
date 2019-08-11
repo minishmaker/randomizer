@@ -9,7 +9,7 @@ neg	r1,r1
 loopbig:
 ldr	r2,[r0]
 cmp	r2,r1
-beq	nopopup
+beq	notprogressive
 loopsmall:
 ldrb	r3,[r2]
 cmp	r3,r4
@@ -22,6 +22,7 @@ add	r0,#8
 b	loopbig
 
 @check if item was already collected
+notprogressive:
 mov	r0,r4
 ldr	r3,=#0x807C4A8
 mov	lr,r3

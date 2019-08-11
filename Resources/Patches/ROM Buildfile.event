@@ -1,4 +1,5 @@
 #define jumpToHack(offset) "BYTE 0x00 0x4B 0x18 0x47; POIN (offset|0x1)"
+#include "extDefinitions.event" //a file reserved for the randomizer to output definitions for the patches
 
 //#define DEBUG 0
 //#define TEST 0
@@ -44,9 +45,17 @@ textFlagsTable: //SHORT textid flag; WORD baseoffset
 SHORT 0x1F1F 0; WORD 0x2002EA4 //jabber nut sets custom flag 0
 //custom flag 1 is used for the ocarina
 SHORT 0x2D08 2; WORD 0x2002EA4 //buying mushroom sets custom flag 2
-SHORT 0x125C 6; WORD 0x2002CA6 //new melari flag
+SHORT 0x4404 3; WORD 0x2002EA4 //giving mushroom to rem sets custom flag 3
+//custom flags 4, 5 and 6 are used by the library book item spots
+SHORT 0x125C 7; WORD 0x2002EA4 //melari uses custom flag 7
+SHORT 0x1F01 8; WORD 0x2002EA4 //getting bombs from belari sets custom flag 8
 SHORT 0x3D07 6; WORD 0x2002CB4 //set the simulation heart piece flag after it ends
 SHORT 0x4803 1; WORD 0x2002CA1 //library quest can be started with flippers
+SHORT 0x0517 1; WORD 0x2002CA1 //picking up the ocarina automatically starts the library quest
+SHORT 0x0508 3; WORD 0x2002CEC //gentari door opens when getting bombs
+SHORT 0x051C 3; WORD 0x2002CEC //gentari door opens when getting bombs
+SHORT 0x0507 3; WORD 0x2002CEC //gentari door opens when getting bombs
+SHORT 0x0563 3; WORD 0x2002CEC //gentari door opens when getting bombs
 SHORT 0 0; WORD 0 //terminator
 
 //sanctuary stuff is wip and probably doesn't even work right now
@@ -65,14 +74,16 @@ WORD 0x800D30E 0x2002C9C 0x08 //Melari - instead of having fire element, check d
 WORD 0x800D04A 0x2002C9C 0x08 //Melari - instead of having fire element, check defeated gleerok
 WORD 0x800D066 0x2002C9C 0x08 //Melari - instead of having fire element, check defeated gleerok
 WORD 0x800D0BE 0x2002C9C 0x08 //Melari - instead of having fire element, check defeated gleerok
-WORD 0x800D0A0 0x2002CA6 0x40 //Melari - instead of having white sword, check exited mines with sword (repurposed)
-WORD 0x800D05E 0x2002CA6 0x40 //Melari - instead of having white sword, check exited mines with sword (repurposed)
+WORD 0x800D0A0 0x2002EA4 0x80 //Melari - instead of having white sword, get item from melari
+WORD 0x800D05E 0x2002EA4 0x80 //Melari - instead of having white sword, get item from melari
 WORD 0x800D944 0x2002D74 0x20 //Zeffa - check for ocarina being dropped instead of ocarina being collected
 WORD 0x800D976 0x2002EA4 0x02 //Ocarina - check for a new flag for the ocarina being collected
 WORD 0x800D980 0x2002EA4 0x02 //Ocarina - check for a new flag for the ocarina being collected
 	WORD 0x8014070 0x2002B32 0xFF //Sanctuary - Ezlo doesn't nag you about the first stone tablet
 	WORD 0x8013BA8 0x2002B32 0xFF //Sanctuary - Ezlo doesn't nag you about the second stone tablet
 	//WORD 0x8014014 0x2002B32 0xFF //Sanctuary - yet more stone tablet
+WORD 0x8012F9C 0x2002EA4 0x08 //Rem - check a custom flag instead of boots
+WORD 0x8009FC4 0x2002EA4 0x10 //Belari - check a custom flag instead of bombs
 WORD 0 0 0 //terminator
 
 	//sanctuary fixes
@@ -81,6 +92,8 @@ WORD 0 0 0 //terminator
 
 #include "newGame.event"
 #include "progressiveItems.event"
+#include "scrubs.event"
+#include "books.event"
 #include "logicfixes/installer.event"
 #include "gamefixes/installer.event"
 #include "improvements/installer.event"
