@@ -39,3 +39,16 @@ PUSH; ORG $52D64; SHORT 0xE006; POP
 
 //allow more freedom to pause the game
 PUSH; ORG $70044; SHORT 0x2000; ORG $7004E; SHORT 0x2000; POP
+
+//adding some stuff that's missing from vanilla eur
+//missing lon lon tornado
+PUSH; ORG $F7188; POIN lonlontornado; POP
+ALIGN 4
+lonlontornado:
+BYTE 0x5E 0 0 1; SHORT 0x188 0x078 0 0 0 0xFFFF
+BYTE 0x5E 0 0 1; SHORT 0x268 0x188 0 0 0 0xFFFF
+BYTE 0x5E 0 0 1; SHORT 0x198 0x358 0 0 0 0xFFFF
+BYTE 0x5E 0 0 1; SHORT 0x108 0x328 0 0 0 0xFFFF
+BYTE 0xFF 0 0 0; SHORT 0x000 0x000 0 0 0 0xFFFF
+//allow link to use the ocarina in the room right before palace of winds
+PUSH; ORG $12752C; BYTE 1; POP
