@@ -52,3 +52,9 @@ BYTE 0x5E 0 0 1; SHORT 0x108 0x328 0 0 0 0xFFFF
 BYTE 0xFF 0 0 0; SHORT 0x000 0x000 0 0 0 0xFFFF
 //allow link to use the ocarina in the room right before palace of winds
 PUSH; ORG $12752C; BYTE 1; POP
+
+//items on the floor don't despawn as long as a flag is tied to them
+PUSH; ORG $80E94; jumpToHack(itemDespawnSafety); POP
+ALIGN 4
+itemDespawnSafety:
+#incbin "asm/itemDespawnSafety.dmp"
