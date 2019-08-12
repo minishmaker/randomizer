@@ -63,6 +63,7 @@ SHORT 0x0548 3; WORD 0x2002CD5 //the soldier goes away when you get the spin att
 SHORT 0x0546 3; WORD 0x2002CD5 //the soldier goes away when you get the flippers
 SHORT 0x0514 3; WORD 0x2002CD5 //the soldier goes away when you get the cape
 SHORT 0x055B 2; WORD 0x2002CEC //festari moves automatically when getting the nut
+SHORT 0x0596 6; WORD 0x2002CD5//getting carlov medal opens figurine house
 SHORT 0 0; WORD 0 //terminator
 
 //sanctuary stuff is wip and probably doesn't even work right now
