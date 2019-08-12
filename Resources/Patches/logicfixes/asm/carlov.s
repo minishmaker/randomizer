@@ -5,6 +5,17 @@ mov	r4,r0
 mov	r1,#0
 str	r1,[r4,#20]
 
+@check if area and room are correct
+ldr	r0,=#0x3000BF0
+mov	r1,#0x23
+ldrb	r2,[r0,#4]
+cmp	r2,r1
+bne	end
+mov	r1,#0x07
+ldrb	r2,[r0,#5]
+cmp	r2,r1
+bne	end
+
 @check if custom flag is set
 ldr	r0,=#0x2002EA4
 ldr	r1,=#9
@@ -26,9 +37,6 @@ mov	r1,#9
 ldr	r3,=#0x801D5F4	@vanilla flag set routine
 mov	lr,r3
 .short	0xF800
-ldr	r0,=#0x3000C20
-mov	r1,#0
-str	r1,[r0]
 
 end:
 ldr	r3,=#0x807DC75
