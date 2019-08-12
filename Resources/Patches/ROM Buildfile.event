@@ -51,6 +51,7 @@ SHORT 0x4404 3; WORD 0x2002EA4 //giving mushroom to rem sets custom flag 3
 //custom flags 4, 5 and 6 are used by the library book item spots
 SHORT 0x125C 7; WORD 0x2002EA4 //melari uses custom flag 7
 SHORT 0x1F01 8; WORD 0x2002EA4 //getting bombs from belari sets custom flag 8
+//getting medal from carlov sets custom flag 9
 SHORT 0x3D07 6; WORD 0x2002CB4 //set the simulation heart piece flag after it ends
 SHORT 0x4803 1; WORD 0x2002CA1 //library quest can be started with flippers
 SHORT 0x0517 1; WORD 0x2002CA1 //picking up the ocarina automatically starts the library quest

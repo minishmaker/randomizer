@@ -1,0 +1,39 @@
+.equ sub, item+4
+.thumb
+push	{r4,lr}
+mov	r4,r0
+mov	r1,#0
+str	r1,[r4,#20]
+
+@check if custom flag is set
+ldr	r0,=#0x2002EA4
+ldr	r1,=#9
+ldr	r3,=#0x801D5E0	@vanilla flag check routine
+mov	lr,r3
+.short	0xF800
+cmp	r0,#0
+bne	end
+
+@if not set, hand out item
+ldr	r0,item
+ldr	r1,sub
+mov	r2,#0
+ldr	r3,=#0x80A7410
+mov	lr,r3
+.short	0xF800
+ldr	r0,=#0x2002EA4
+mov	r1,#9
+ldr	r3,=#0x801D5F4	@vanilla flag set routine
+mov	lr,r3
+.short	0xF800
+ldr	r0,=#0x3000C20
+mov	r1,#0
+str	r1,[r0]
+
+end:
+ldr	r3,=#0x807DC75
+bx	r3
+
+.align
+.ltorg
+item:

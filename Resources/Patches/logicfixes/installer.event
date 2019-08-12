@@ -205,3 +205,18 @@ PUSH; ORG $5D606; SHORT 0; jumpToHack(bellHeart); POP
 ALIGN 4
 bellHeart:
 #incbin "asm/bellHeart.dmp"
+
+#ifndef carlovSpotItem
+	#define carlovSpotItem 0x16
+#endif
+#ifndef carlovSpotSub
+	#define carlovSpotSub 0x00
+#endif
+
+//carlov gives out medal when you talk to him
+PUSH; ORG $7DC64; jumpToHack(carlov); POP
+ALIGN 4
+carlov:
+#incbin "asm/carlov.dmp"
+WORD carlovSpotItem
+WORD carlovSpotSub
