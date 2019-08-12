@@ -101,6 +101,12 @@ WORD 0 0 0 //terminator
 	PUSH; ORG $4E98E; SHORT 0; POP //sanctuary garden door always open
 	PUSH; ORG $F4A9C; BYTE 0xFF; ORG $F4C18; POIN $F4AAC; POP//sanctuary switches door never closes
 
+//ice blocks have a question mark inside
+PUSH
+ORG $5EE3D0
+#incbin "ice.img.bin"
+POP
+
 #include "newGame.event"
 #include "progressiveItems.event"
 #include "scrubs.event"
