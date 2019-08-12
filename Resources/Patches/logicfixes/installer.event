@@ -212,7 +212,6 @@ bellHeart:
 #ifndef carlovSpotSub
 	#define carlovSpotSub 0x00
 #endif
-
 //carlov gives out medal when you talk to him
 PUSH; ORG $7DC64; jumpToHack(carlov); POP
 ALIGN 4
@@ -220,3 +219,5 @@ carlov:
 #incbin "asm/carlov.dmp"
 WORD carlovSpotItem
 WORD carlovSpotSub
+PUSH; ORG $9EA77C; String("RNG manipulation is"); BYTE 0x20 2 1; String("illegal"); BYTE 2 0; String("!"); BYTE 0; POP //carlov has some insight
+PUSH; ORG $A3EA2; SHORT 0xE000; ORG $A41BE; SHORT 0xE000; ORG $A416E; SHORT 0xE000; ORG $A440E; SHORT 0xE000; ORG $A40FE; SHORT 0xE000; POP //can always see all figurines
