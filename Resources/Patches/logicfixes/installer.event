@@ -197,3 +197,10 @@ PUSH; ORG $91924; jumpToHack(openCurtain); POP
 ALIGN 4
 openCurtain:
 #incbin "asm/openCurtain.dmp"
+
+//make the bell heart piece randomizable
+PUSH; ORG $5D600; SHORT 0x2000; POP
+PUSH; ORG $5D606; SHORT 0; jumpToHack(bellHeart); POP
+ALIGN 4
+bellHeart:
+#incbin "asm/bellHeart.dmp"
