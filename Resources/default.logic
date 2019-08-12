@@ -59,7 +59,7 @@ FlipsCaveSmall; Minor; 62-12-00; Items.Flippers, Items.Ocarina, Items.PacciCane,
 AccessEastField; Helper;; (|Helpers.CanDestroyTrees, Items.Ocarina)
 SouthKeeseCave; Minor; 32-13-00; Items.BombBag
 AboveHPHole; Minor; 27-00-00; Locations.AccessEastField, (|Items.Ocarina, Items.LonLonKey, Items.RocsCape), (|Items.PacciCane, Items.RocsCape)
-LonLonPot; Half; 0F2C9B; Locations.AccessEastField
+LonLonPot; Half; 0F2C9B:FirstByte; Locations.AccessEastField
 LonLonCave; Major; 32-0C-00; (|Items.Ocarina, Items.LonLonKey, Items.RocsCape), Helpers.CanSplit2;
 MinishRupeeFairy; Major; 00B7B4; Locations.AccessEastField, Items.PacciCane
 
@@ -164,7 +164,7 @@ TowerBottomLeft; Minor; 30-00-00; Locations.AccessUpperClouds
 TowerBottomRight; Major; 30-00-01; Locations.AccessUpperClouds; Items.PowerBracelets # Temp
 TowerF2; Minor; 30-01-00; Locations.AccessUpperClouds
 #GregalOne; Half; 014C5A; Locations.AccessUpperClouds, Items.GustJar
-GregalTwo; Half; 014CBC; Locations.AccessUpperClouds, Items.GustJar; Items.Bow
+GregalTwo; Major; 014CBC:FirstByte; Locations.AccessUpperClouds, Items.GustJar; Items.Bow
 TowerRightBed; Minor; 30-02-00; Locations.AccessUpperClouds
 TowerMiddleBed; Minor; 30-02-01; Locations.AccessUpperClouds
 TowerLeftBed; Minor; 30-02-02; Locations.AccessUpperClouds
@@ -221,7 +221,7 @@ FortressSkullRoomLeft:Fortress; Minor; 58-1D-00; Locations.AccessFortress
 FortressSkullRoomRight:Fortress; Minor; 58-1D-01; Locations.AccessFortress
 FortressWizrobes:Fortress; Minor; 58-23-00; Locations.AccessFortress, Items.MoleMitts
 CompleteFortress:Fortress; Helper;; Locations.AccessFortress, Items.MoleMitts, Helpers.CanSplit2, Helpers.HasBow, Items.BigKey:Fortress
-FortressPrize:Prizes; Half; 09C9E6; Locations.CompleteFortress
+FortressPrize:Prizes; Major; 09C9E6:FirstByte; Locations.CompleteFortress
 
 # Temple of Droplets Locations
 AccessDroplets:Droplets; Helper;; Locations.AccessHyliaSouth, (|Items.Flippers, Items.RocsCape)
