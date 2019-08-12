@@ -59,6 +59,8 @@ SHORT 0x051C 3; WORD 0x2002CEC //gentari door opens when getting bombs
 SHORT 0x0507 3; WORD 0x2002CEC //gentari door opens when getting bombs
 SHORT 0x0563 3; WORD 0x2002CEC //gentari door opens when getting bombs
 SHORT 0x0548 3; WORD 0x2002CD5 //the soldier goes away when you get the spin attack
+SHORT 0x0546 3; WORD 0x2002CD5 //the soldier goes away when you get the flippers
+SHORT 0x0514 3; WORD 0x2002CD5 //the soldier goes away when you get the cape
 SHORT 0x055B 2; WORD 0x2002CEC //festari moves automatically when getting the nut
 SHORT 0 0; WORD 0 //terminator
 
