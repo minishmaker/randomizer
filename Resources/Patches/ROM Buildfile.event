@@ -94,7 +94,7 @@ WORD 0x800D980 0x2002EA4 0x02 //Ocarina - check for a new flag for the ocarina b
 	WORD 0x8013BA8 0x2002B32 0xFF //Sanctuary - Ezlo doesn't nag you about the second stone tablet
 	//WORD 0x8014014 0x2002B32 0xFF //Sanctuary - yet more stone tablet
 WORD 0x8012F9C 0x2002EA4 0x08 //Rem - check a custom flag instead of boots
-WORD 0x8009FC4 0x2002EA4 0x10 //Belari - check a custom flag instead of bombs
+WORD 0x8009FC4 0x2002EA5 0x01 //Belari - check a custom flag instead of bombs
 WORD 0 0 0 //terminator
 
 	//sanctuary fixes
