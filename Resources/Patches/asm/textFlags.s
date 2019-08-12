@@ -12,6 +12,7 @@ cmp	r0,#0
 beq	done
 cmp	r0,r4
 beq	match
+next:
 add	r7,#8
 b	loop
 
@@ -21,6 +22,7 @@ ldrh	r1,[r7,#2]	@flag id to set
 ldr	r3,=#0x801D5F4	@vanilla flag set routine
 mov	lr,r3
 .short	0xF800
+b	next
 
 done:
 pop	{r0-r7}

@@ -32,8 +32,11 @@ BYTE 0x06 0x0F 0x18 0x00 0x00 0x00 0x00 0x00 0xA0 0x00 0x28 0x00 0x00 0x00 0x00 
 BYTE 0x07 0x4F 0x4A 0x00 0x00 0x00 0x00 0x00 0xA0 0x00 0x38 0x00 0x7C 0x4B 0x01 0x08
 WORD 0xFFFFFFFF
 
-//melari fixes, most of them are in the flag hack
-PUSH; ORG $4FAE6; SHORT 0 0; POP //having white sword or higher in the mountain does not set any flag anymore
+//check a custom flag to move melari
+PUSH; ORG $4C6DC; jumpToHack(melari); POP
+ALIGN 4
+melari:
+#incbin "asm/melari.dmp"
 
 //sword fix: makes sword spots act like normal item spots (also dampe apparently)
 PUSH; ORG $7EA9C; jumpToHack(swordFix); POP
@@ -134,6 +137,7 @@ ALIGN 4
 jabberNut2:
 #incbin "asm/jabberNut2.dmp"
 PUSH; ORG $9D6411; String("Go get the nut!"); BYTE 0; POP //gentari sends you get the nut
+PUSH; ORG $DA280+2; BYTE 0; ORG $DA280+5; BYTE 4; ORG $DA280+8; SHORT 0x3C; POP //made the nut a normal item
 
 //hyrule town fixes
 PUSH; ORG $4F0C8; SHORT 0x46C0 0x2000; POP //no carpenters blocking north exit
@@ -194,3 +198,26 @@ PUSH; ORG $91924; jumpToHack(openCurtain); POP
 ALIGN 4
 openCurtain:
 #incbin "asm/openCurtain.dmp"
+
+//make the bell heart piece randomizable
+PUSH; ORG $5D600; SHORT 0x2000; POP
+PUSH; ORG $5D606; SHORT 0; jumpToHack(bellHeart); POP
+ALIGN 4
+bellHeart:
+#incbin "asm/bellHeart.dmp"
+
+#ifndef carlovSpotItem
+	#define carlovSpotItem 0x3E
+#endif
+#ifndef carlovSpotSub
+	#define carlovSpotSub 0x00
+#endif
+//carlov gives out medal when you talk to him
+PUSH; ORG $7DC64; jumpToHack(carlov); POP
+ALIGN 4
+carlov:
+#incbin "asm/carlov.dmp"
+WORD carlovSpotItem
+WORD carlovSpotSub
+PUSH; ORG $9EA77C; String("RNG manipulation is"); BYTE 0x20 2 1; String("illegal"); BYTE 2 0; String("!"); BYTE 0; POP //carlov has some insight
+PUSH; ORG $A3EA2; SHORT 0xE000; ORG $A41BE; SHORT 0xE000; ORG $A416E; SHORT 0xE000; ORG $A440E; SHORT 0xE000; ORG $A40FE; SHORT 0xE000; POP //can always see all figurines
