@@ -67,7 +67,7 @@ AccessWestField; Helper;; (|Items.RocsCape, (&Helpers.HasSword, Items.SpinAttack
 TrilbyBombCave; Minor; 32-07-00; Locations.AccessWestField, Helpers.CanSplit2, Items.BombBag
 TrilbyMoleCaveLeft; Minor; 13-03-00; Locations.AccessWestField, Items.MoleMitts
 TrilbyMoleCaveRight; Minor; 13-03-02; Locations.AccessWestField, Items.MoleMitts
-BottleScrub; Major; bottleScrubItem:Define:FirstByte, bottleScrubSub:Define:SecondByte; Items.Shield, Items.BombBag, Locations.AccessWestField
+BottleScrub; Major; bottleScrubItem:Define:FirstByte, bottleScrubSub:Define:SecondByte; Items.Shield, Items.BombBag, Locations.AccessWestField; Items.Bottle1
 
 # Minish Woods Locations
 AccessMinishWoods; Helper;; Locations.AccessEastField
@@ -89,7 +89,7 @@ CrenelMinishHouse; Minor; 27-03-00; Locations.AccessLowerCrenel
 CrenelCaveDownstairs; Minor; 26-07-00; Locations.AccessCrenel, Items.BombBag
 CrenelHeartCaveLeft; Minor; 26-08-00; Locations.AccessLowerCrenel, Items.BombBag
 CrenelHeartCaveRight; Major; 26-08-01; Locations.AccessLowerCrenel, Items.BombBag;
-CrenelGripScrub; Major; gripScrubItem:Define:FirstByte, gripScrubSub:Define:SecondByte; Locations.AccessCrenel, Items.Shield, Items.BombBag
+CrenelGripScrub; Major; gripScrubItem:Define:FirstByte, gripScrubSub:Define:SecondByte; Locations.AccessCrenel, Items.Shield, Items.BombBag; Items.GripRing
 GraybladeLeft; Minor; 25-00-00; Locations.AccessCrenel, Helpers.CanSplit2, Items.GripRing
 GraybladeRight; Minor; 25-00-01; Locations.AccessCrenel, Helpers.CanSplit2, Items.GripRing
 CrenelBombFairy; Major; 00B828; Locations.AccessCrenel, Items.BombBag, Items.GripRing
@@ -118,7 +118,7 @@ AccessHyliaSouth; Helper;; Locations.AccessHyliaNorth,(|Items.Flippers,Items.Roc
 #StockwellDog; Major; ; Locations.AccessHyliaNorth, Items.DogFoodBottle
 HyliaNorthMinishHole; Major; 35-07-00; Locations.AccessHyliaNorth, Items.Flippers, Items.PegasusBoots;
 
-WitchDiggingCaveRight; Minor; 0C-00-00; Locations.AccessHyliaSouth, Items.MoleMitts
+WitchDiggingCave; Minor; 0C-00-00; Locations.AccessHyliaSouth, Items.MoleMitts
 
 AccessTreasureCave; Helper;; Locations.AccessHyliaNorth, Items.MoleMitts, Items.RocsCape
 HyliaCapeCaveTopRight; Minor; 19-01-00; Locations.AccessTreasureCave 
