@@ -45,7 +45,7 @@ SchoolTop; Major; 02-00-07; Items.PacciCane; Items.SmithSword # Temporary for Te
 SchoolGardenLeft; Minor; 11-02-00; Items.PacciCane, Helpers.CanSplit4
 SchoolGardenMiddle; Minor; 11-02-01; Items.PacciCane, Helpers.CanSplit4
 SchoolGardenRight; Minor; 11-02-02; Items.PacciCane, Helpers.CanSplit4
-TownDiggingTop; Major; 0F-00-00; Items.MoleMitts; 
+TownDiggingTop; Minor; 0F-00-00; Items.MoleMitts
 TownDiggingRight; Major; 0F-00-01; Items.MoleMitts; Items.SpinAttack #Temporary for Testing
 TownDiggingLeft; Minor; 0F-00-02; Items.MoleMitts
 BakeryAttic; Minor; 2E-03-00; (|Items.PacciCane, Items.Flippers, Items.RocsCape)
@@ -71,9 +71,9 @@ TrilbyMoleCaveRight; Minor; 13-03-02; Locations.AccessWestField, Items.MoleMitts
 
 # Minish Woods Locations
 AccessMinishWoods; Helper;; Locations.AccessEastField
-JabberNut; Split; 09498C; Locations.AccessMinishWoods
+JabberNut; Major; 0DA283; Locations.AccessMinishWoods
 BelariBombs; Major; 00A00C; Locations.AccessMinishWoods, (|Locations.CompleteDeepwood,Items.BombBag)
-MinishMiddleFlipperHole; Major; 35-09-00; Locations.AccessMinishWoods, (|Locations.CompleteDeepwood,Items.BombBag), Items.Flippers;
+MinishMiddleFlipperHole; Minor; 35-09-00; Locations.AccessMinishWoods, (|Locations.CompleteDeepwood,Items.BombBag), Items.Flippers
 MinishRightFlipperHole; Minor; 35-09-01; Locations.AccessMinishWoods, (|Locations.CompleteDeepwood,Items.BombBag), Items.Flippers
 MinishLeftFlipperHole; Minor; 35-09-02; Locations.AccessMinishWoods, (|Locations.CompleteDeepwood,Items.BombBag), Items.Flippers
 MinishLikeLikeDiggingCaveLeft; Minor; 0C-00-01; Locations.AccessMinishWoods, Items.MoleMitts
@@ -117,7 +117,7 @@ AccessHyliaNorth; Helper;; Locations.AccessEastField,(|Items.RocsCape, Items.Lon
 AccessHyliaSouth; Helper;; Locations.AccessHyliaNorth,(|Items.Flippers,Items.RocsCape,(&Items.MoleMitts,Items.PacciCane))
 
 #StockwellDog; Major; ; Locations.AccessHyliaNorth, Items.DogFoodBottle
-HyliaNorthMinishHole; Major; 35-07-00; Locations.AccessHyliaNorth, Items.Flippers, Items.PegasusBoots;
+HyliaNorthMinishHole; Minor; 35-07-00; Locations.AccessHyliaNorth, Items.Flippers, Items.PegasusBoots
 
 WitchDiggingCave; Minor; 0C-00-00; Locations.AccessHyliaSouth, Items.MoleMitts
 
@@ -155,8 +155,8 @@ CloudsNorthKill; Major; 0DCEDF; Locations.AccessClouds, (|Items.RocsCape, Items.
 CloudsSouthKill; Major; 0DCEEF; Locations.AccessClouds, (|Items.RocsCape, Items.MoleMitts); Items.KinstoneX.YellowTornadoProng
 CloudsSouthMiddle; Major; 08-01-01; Locations.AccessClouds, (|Items.RocsCape, Items.MoleMitts); Items.KinstoneX.YellowTornadoProng
 CloudsWestBottom; Major; 08-01-02; Locations.AccessClouds, (|Items.RocsCape, Items.MoleMitts); Items.KinstoneX.YellowTornadoProng
-CloudsWestLeft; Major; 08-01-03; Locations.AccessClouds, Items.MoleMitts;
-CloudsWestRight; Major; 08-01-04; Locations.AccessClouds, Items.MoleMitts;
+CloudsWestLeft; Minor; 08-01-03; Locations.AccessClouds, Items.MoleMitts
+CloudsWestRight; Minor; 08-01-04; Locations.AccessClouds, Items.MoleMitts
 CloudsSouthLeft; Minor; 08-01-05; Locations.AccessClouds,  Items.MoleMitts
 CloudsSouthRight; Minor; 08-01-06; Locations.AccessClouds, (|Items.RocsCape, Items.MoleMitts)
 
