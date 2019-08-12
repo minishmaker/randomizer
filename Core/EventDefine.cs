@@ -15,9 +15,9 @@ namespace MinishRandomizer.Core
             Name = name;
         }
 
-        public void WriteDefine(StreamWriter w, string value)
+        public void WriteDefine(StringBuilder w, string value)
         {
-            w.WriteLine($"#define {Name} {value}");
+            w.AppendLine($"#define {Name} {value}");
         }
     }
 }

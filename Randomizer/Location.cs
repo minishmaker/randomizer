@@ -311,7 +311,7 @@ namespace MinishRandomizer.Randomizer
 
         }
 
-        public void WriteLocationEvent(StreamWriter w)
+        public void WriteLocationEvent(StringBuilder w)
         {
             foreach (EventLocationAddress define in Defines) {
                 define.WriteDefine(w, Contents);

@@ -114,19 +114,19 @@ namespace MinishRandomizer.Randomizer
         /// </summary>
         /// <param name="w">A writer to the event stream</param>
         /// <param name="item">The item to write to the define</param>
-        public void WriteDefine(StreamWriter w, Item item)
+        public void WriteDefine(StringBuilder stringBuilder, Item item)
         {
             if ((Type & AddressType.FirstByte) == AddressType.FirstByte)
             {
                 // Write the hex representation of the item ID to the define
-                Define.WriteDefine(w, StringUtil.AsStringHex2((byte)item.Type));
+                Define.WriteDefine(stringBuilder, "0x" + StringUtil.AsStringHex2((byte)item.Type));
             }
 
             if ((Type & AddressType.SecondByte) == AddressType.SecondByte)
             {
                 // Write the hex representation of the subvalue
                 // Probably a very bad thing if the first was also written, might kill EA
-                Define.WriteDefine(w, StringUtil.AsStringHex2(item.SubValue));
+                Define.WriteDefine(stringBuilder, "0x" + StringUtil.AsStringHex2(item.SubValue));
             }
         }
     }
