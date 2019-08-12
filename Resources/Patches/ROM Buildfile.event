@@ -12,11 +12,12 @@ ORG FreeSpace
 
 #ifdef TEST
 	PUSH
-	ORG $EDD8+2; BYTE 0x5C 0x70  //lady kinstone
-	ORG $DA58+2; BYTE 0x5C 0x6C  //ghost kinstone
-	ORG $F2528+3; BYTE 0x01 0x00 //new item in smith's room, write item to $F252B
-	ORG $F2538+3; BYTE 0x0D 0x00 //new item in smith's room, write item to $F253B
-	ORG $5D602; BYTE 0x63 //bell heart piece
+	ORG  $EDD8+2; BYTE 0x5C 0x70	//lady kinstone
+	ORG  $DA58+2; BYTE 0x5C 0x6C	//ghost kinstone
+	ORG $F2528+3; BYTE 0x01 0x00	//new item in smith's room, write item to $F252B
+	ORG $F2538+3; BYTE 0x0D 0x00	//new item in smith's room, write item to $F253B
+	ORG   $5D602; BYTE 0x63	//bell heart piece
+	ORG $DA280+3; BYTE 0x5B 0x00	//nut
 	POP
 #endif
 

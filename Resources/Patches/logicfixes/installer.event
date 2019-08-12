@@ -137,6 +137,7 @@ ALIGN 4
 jabberNut2:
 #incbin "asm/jabberNut2.dmp"
 PUSH; ORG $9D6411; String("Go get the nut!"); BYTE 0; POP //gentari sends you get the nut
+PUSH; ORG $DA280+2; BYTE 0; ORG $DA280+5; BYTE 4; ORG $DA280+8; SHORT 0x3C; POP //made the nut a normal item
 
 //hyrule town fixes
 PUSH; ORG $4F0C8; SHORT 0x46C0 0x2000; POP //no carpenters blocking north exit
