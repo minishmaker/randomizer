@@ -52,9 +52,17 @@ BakeryAttic; Minor; 2E-03-00; (|Items.PacciCane, Items.Flippers, Items.RocsCape)
 StockWellAttic; Minor; 2E-01-01; (|Items.PacciCane, Items.Flippers, Items.RocsCape)
 SimulationChest; Minor; 0F04C2; Helpers.HasSword
 RemShoeShop; Major; 0130EE; Items.WakeUpMushroom
-
-FlipsCaveBig; Major; 62-10-00; Items.Flippers, Items.Ocarina, Items.PacciCane, Helpers.HasSword
+CarlovReward; Unshuffled;; (|Items.Flippers, Items.PacciCane, Items.RocsCape); Items.CarlovMedal
+FigurineHouseLeft; Minor; 23-05-00; Items.CarlovMedal
+FigurineHouseMiddle; Minor; 23-05-01; Items.CarlovMedal
+FigurineHouseRight; Minor; 23-05-02; Items.CarlovMedal
+FlipsCaveBig; Major; 62-10-00; Items.Ocarina, Helpers.HasDamageSource, Items.PacciCane, (|Items.Flippers, (&Items.HyruleanBestiary,Items.PicoriLegend,Items.MaskHistory, Items.GripRing)) 
 FlipsCaveSmall; Minor; 62-12-00; Items.Flippers, Items.Ocarina, Items.PacciCane, Items.LanternOff
+JullietaBook; Unshuffled;; (|Items.Flippers, Items.PacciCane, Items.RocsCape)
+WrightAtticBook; Unshuffled;; Items.PowerBracelets, (|Items.Flippers, Items.PacciCane, Items.RocsCape),(|Items.GustJar, Items.BombBag), Helpers.CanSplit2
+FountainBig; Major; 62-03-00; Helpers.HasBottle, Items.PacciCane, Helpers.HasDamageSource
+FountainSmall; Minor; 62-04-00; Helpers.HasBottle, (|Items.Flippers, Items.RocsCape)
+
 
 AccessEastField; Helper;; (|Helpers.CanDestroyTrees, Items.Ocarina)
 HillsKeeseCave; Minor; 32-13-00; Items.BombBag
@@ -112,13 +120,11 @@ RuinsArmosKillLeft; Minor; 05-05-00; Locations.AccessWilds, Items.KinstoneX.Yell
 RuinsArmosKillRight; Minor; 05-05-01; Locations.AccessWilds, Items.KinstoneX.YellowTotemProng::3, Helpers.HasSword
 
 # Lake Hylia Locations
-
 AccessHyliaNorth; Helper;; Locations.AccessEastField,(|Items.RocsCape, Items.LonLonKey,Items.Ocarina,(&Items.Flippers, Items.MoleMitts))
 AccessHyliaSouth; Helper;; Locations.AccessHyliaNorth,(|Items.Flippers,Items.RocsCape,(&Items.MoleMitts,Items.PacciCane))
-
 #StockwellDog; Major; ; Locations.AccessHyliaNorth, Items.DogFoodBottle
 HyliaNorthMinishHole; Minor; 35-07-00; Locations.AccessHyliaNorth, Items.Flippers, Items.PegasusBoots
-
+HyliaMayorCabin; Unshuffled;; Locations.AccessHyliaSouth, Items.PegasusBoots, (|Items.GustJar, Items.Flippers); Items.PicoriLegend
 WitchDiggingCave; Minor; 0C-00-00; Locations.AccessHyliaSouth, Items.MoleMitts
 
 AccessTreasureCave; Helper;; Locations.AccessHyliaNorth, Items.MoleMitts, Items.RocsCape
@@ -162,7 +168,7 @@ CloudsSouthRight; Minor; 08-01-06; Locations.AccessClouds, (|Items.RocsCape, Ite
 
 AccessUpperClouds; Helper;; Locations.AccessClouds, (|Items.RocsCape, Items.MoleMitts), Items.KinstoneX.YellowTornadoProng::5
 TowerBottomLeft; Minor; 30-00-00; Locations.AccessUpperClouds
-TowerBottomRight; Major; 30-00-01; Locations.AccessUpperClouds; Items.PowerBracelets # Temp
+TowerBottomRight; Minor; 30-00-01; Locations.AccessUpperClouds;
 TowerF2; Minor; 30-01-00; Locations.AccessUpperClouds
 #GregalOne; Half; 014C5A; Locations.AccessUpperClouds, Items.GustJar
 GregalTwo; Half; 014CBC; Locations.AccessUpperClouds, Items.GustJar; Items.Bow
