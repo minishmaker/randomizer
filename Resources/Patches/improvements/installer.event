@@ -71,3 +71,6 @@ questItemSlideshow2:
 
 //wind element icon in map goes away when you get the element instead of the ocarina
 PUSH; ORG $128677; BYTE 0x43; POP
+
+//finding remote bombs does not remove regular bombs from link and vice versa
+PUSH; ORG $53D34; SHORT 0 0; ORG $53D3E; SHORT 0 0; POP
