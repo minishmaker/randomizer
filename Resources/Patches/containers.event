@@ -35,7 +35,7 @@ BYTE 0x49 0x00 chuContainerItem chuContainerSub
 BYTE 0x51 0x00 gleerokContainerItem gleerokContainerSub
 BYTE 0x58 0x16 mazaalContainerItem mazaalContainerSub
 BYTE 0x60 0x0E octoContainerItem octoContainerSub
-BYTE 0x71 0x00 gyorgContainerSub gyorgContainerSub
+BYTE 0x70 0x00 gyorgContainerItem gyorgContainerSub
 WORD 0 //terminator
 
 PUSH; ORG $8DF88; jumpToHack(containerGraphics); POP
