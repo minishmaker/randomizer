@@ -72,7 +72,7 @@ FountainSmall; Minor; 62-04-00; Helpers.HasBottle, (|Items.Flippers, Items.RocsC
 FountainHeartPiece; Minor; 0EF3B7; Helpers.HasBottle, Items.RocsCape
 LibraryMinish; Minor; 00E7BE; Items.HyruleanBestiary, Items.PicoriLegend, Items.MaskHistory, Items.Ocarina
 CuccoMinigame; Minor; 12460C; (|Items.RocsCape, Item.Flippers)
-TownBell; Unshuffled; ; Items.RocsCape; Items.HeartPiece #05D602 requires byte skip
+TownBell; Unshuffled; ; Items.RocsCape; Items.PieceOfHeart #05D602 requires byte skip
 
 AccessEastField; Helper;; (|Helpers.CanDestroyTrees, Items.Ocarina)
 HillsKeeseCave; Minor; 32-13-00; Items.BombBag
@@ -90,7 +90,7 @@ TrilbyMoleCaveRight; Minor; 13-03-02; Locations.AccessWestField, Items.MoleMitts
 
 # Minish Woods Locations
 AccessMinishWoods; Helper;; Locations.AccessEastField
-JabberNut; Major; 0DA283; Locations.AccessMinishWoods
+JabberNut; Major; 0DA283; Locations.AccessMinishWoods; Items.JabberNut
 BelariBombs; Major; 00A00C; Locations.AccessMinishWoods, (|Locations.CompleteDeepwood,Items.BombBag)
 MinishMiddleFlipperHole; Minor; 35-09-00; Locations.AccessMinishWoods, (|Locations.CompleteDeepwood,Items.BombBag), Items.Flippers
 MinishRightFlipperHole; Minor; 35-09-01; Locations.AccessMinishWoods, (|Locations.CompleteDeepwood,Items.BombBag), Items.Flippers
