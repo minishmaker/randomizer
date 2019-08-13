@@ -58,3 +58,13 @@ PUSH; ORG $80E94; jumpToHack(itemDespawnSafety); POP
 ALIGN 4
 itemDespawnSafety:
 #incbin "asm/itemDespawnSafety.dmp"
+
+//show all quest items
+PUSH; ORG $A4DEC; jumpToHack(questItemSlideshow1); POP
+ALIGN 4
+questItemSlideshow1:
+#incbin "asm/questItemSlideshow1.dmp"
+PUSH; ORG $A5008; jumpToHack(questItemSlideshow2); POP
+ALIGN 4
+questItemSlideshow2:
+#incbin "asm/questItemSlideshow2.dmp"
