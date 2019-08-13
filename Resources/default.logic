@@ -34,7 +34,7 @@ SmithHouse; Minor; 22-11-00
 IntroItem1; Major; F252B;; Items.SmithSword
 IntroItem2; Major; F253B;; Items.Shield
 LinkHouseTreeHeartPiece; Minor; 0F9BA7; Helpers.CanDestroyTrees
-LinkMinishWaterHoleHeartPiece; Minor; 0DB55F; Items.PegasusBoots, Items.Flippers
+LinkMinishWaterHoleHeartPiece; Minor; 0DB55F; Helpers.CanDestroyTrees ,Items.PegasusBoots, Items.Flippers
 HyruleWellTop; Minor; 41-00-00; Items.BombBag
 HyruleWellLeft; Major; 41-00-01; Items.MoleMitts; Items.SmithSword # Temporary for Testing
 HyruleWellBottom; Minor; 41-00-02; (|Items.Flippers, Items.RocsCape)
@@ -99,8 +99,8 @@ MinishLeftFlipperHoleHeartPiece; Minor; 0DB8BF; Locations.AccessMinishWoods, (|L
 MinishLikeLikeDiggingCaveLeft; Minor; 0C-00-01; Locations.AccessMinishWoods, Items.MoleMitts
 MinishLikeLikeDiggingCaveRight; Minor; 0C-00-02; Locations.AccessMinishWoods, Items.MoleMitts
 MinishNorthHole; Minor; 35-05-00; Locations.AccessHyliaSouth, Items.Flippers, Items.PegasusBoots
-MinishWitchHut; Major; 0F94D7; Locations.AccessMinishWoods, (|Items.Flippers, Items.RocsCape,(&Items.LonLonKey, Items.PacciCane))
-MinishHeartPieceTop; Minor; 0F4347; Locations.AccessMinishWoods, (|Items.Flippers, Items.RocsCape,(&Items.LonLonKey, Items.PacciCane))
+MinishWitchHut; Major; 0F94D7; Locations.AccessMinishWoods, (|Items.Flippers, Items.RocsCape,(&Items.PacciCane,(|Items.Ocarina, Items.LonLonKey)))
+MinishHeartPieceTop; Minor; 0F4347; Locations.AccessMinishWoods, (|Items.Flippers, Items.RocsCape,(&Items.PacciCane,(|Items.Ocarina, Items.LonLonKey)))
 MinishHeartPieceBottom; Minor; 0F4357; Locations.AccessMinishWoods
 MinishVillageHeartPiece; Minor; 0DBCC7; Locations.AccessMinishWoods
 
@@ -134,7 +134,7 @@ WildsDiggingCaveLeft; Minor; 17-00-00; Locations.AccessWilds, Items.MoleMitts
 WildsDiggingCaveRight; Minor; 17-00-01; Locations.AccessWilds, Items.MoleMitts
 WildsTopChest; Minor; 04-00-00; Locations.AccessWilds, Helpers.HasBow
 WildsTopRightCaveHeartPiece; Minor; 0D9907; Locations.AccessWilds, Helpers.HasBow, (|Items.Flippers, Items.RocsCape)
-SwiftbladeTheFirstHeartPiece; Minor; 0D78CD; Locations.AccessWilds, (|Helpers.HasBow, Items.RocsCape, Items.Flippers)
+SwiftbladeTheFirstHeartPiece; Minor; 0D78CB; Locations.AccessWilds, (|Helpers.HasBow, Items.RocsCape, Items.Flippers)
 RuinsBombCave; Minor; 2A-02-00; Locations.AccessWilds, (|Helpers.HasBow, Items.RocsCape, Items.Flippers), Items.KinstoneX.YellowTotemProng::3, Items.BombBag
 RuinsMinishHome; Minor; 27-07-00; Locations.AccessWilds, (|Helpers.HasBow, Items.RocsCape, Items.Flippers), Items.KinstoneX.YellowTotemProng::3, Helpers.HasSword
 RuinsMinishCaveHeartPiece; Minor; 0DB4BF; Locations.AccessWilds, (|Helpers.HasBow, Items.RocsCape, Items.Flippers), Items.KinstoneX.YellowTotemProng::3, Helpers.HasSword
@@ -177,7 +177,7 @@ FallsBehindWall; Minor; 33-05-00; Locations.AccessFallsNorth, Items.BombBag
 FallsCliff; Minor; 0A-00-00; Locations.AccessFallsNorth, Items.BombBag, Helpers.CanSplit3
 FallsTopCaveBomb; Minor; 33-02-00; Locations.AccessFallsNorth, Items.GripRing, Items.BombBag
 FallsTopCaveFree; Minor; 33-00-00; Locations.AccessFallsNorth, Items.GripRing
-FallsUpperHeartPiece; Minor; 0F87C3; Items.BombBag, Items.Flippers
+FallsUpperHeartPiece; Minor; 0F87C3; Items.BombBag, (|Items.RocsCape, Items.Flippers)
 
 AccessFallsSouth; Helper;; Locations.AccessEastField, Items.PacciCane
 FallsLowerCaveLeft; Minor; 16-00-01; Locations.AccessFallsSouth, (|Items.RocsCape, Items.Flippers), Items.MoleMitts
