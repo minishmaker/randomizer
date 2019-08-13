@@ -65,8 +65,8 @@ FigurineHouseRight; Minor; 23-05-02; Items.CarlovMedal
 FigurineHouseHeartPiece; Minor; 0F5407; Items.CarlovMedal
 FlipsCaveBig; Major; 62-10-00; Items.Ocarina, Helpers.HasDamageSource, Items.PacciCane, (|Items.Flippers, (&Items.HyruleanBestiary,Items.PicoriLegend,Items.MaskHistory, Items.GripRing)) 
 FlipsCaveSmall; Minor; 62-12-00; Items.Flippers, Items.Ocarina, Items.PacciCane, Items.LanternOff
-JullietaBook; Unshuffled;; Helpers.HasBottle, (|Items.Flippers, Items.PacciCane, Items.RocsCape)
-WrightAtticBook; Unshuffled;; Items.PowerBracelets, (|Items.Flippers, Items.PacciCane, Items.RocsCape),(|Items.GustJar, Items.BombBag), Helpers.CanSplit2
+JullietaBook; Unshuffled;; Helpers.HasBottle, (|Items.Flippers, Items.PacciCane, Items.RocsCape); Items.HyruleanBestiary
+WrightAtticBook; Unshuffled;; Items.PowerBracelets, (|Items.Flippers, Items.PacciCane, Items.RocsCape),(|Items.GustJar, Items.BombBag), Helpers.CanSplit2; Items.PicoriLegend
 FountainBig; Major; 62-03-00; Helpers.HasBottle, Items.PacciCane, Helpers.HasDamageSource
 FountainSmall; Minor; 62-04-00; Helpers.HasBottle, (|Items.Flippers, Items.RocsCape)
 FountainHeartPiece; Minor; 0EF3B7; Helpers.HasBottle, Items.RocsCape
