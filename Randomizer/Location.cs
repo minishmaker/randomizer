@@ -165,7 +165,7 @@ namespace MinishRandomizer.Randomizer
             if (((addressType & AddressType.FirstByte) | (addressType & AddressType.SecondByte)) == AddressType.None)
             {
                 // Set the type of the address to the default
-                addressType = AddressType.BothBytes;
+                addressType |= AddressType.BothBytes;
             }
 
             // If the address is an event define, make it an EventLocationAddress
