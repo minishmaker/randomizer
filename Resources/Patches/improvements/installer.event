@@ -95,11 +95,6 @@ ALIGN 4
 firstBag:
 #incbin "asm/firstBag.dmp"
 
-/*
-a2ef8
-a301c
-*/
-
 //hold R on credits for 8x speed, press A to skip page, press Start to skip credits
 PUSH; ORG $A2EF8; jumpToHack(creditsFlow1); POP
 ALIGN 4
