@@ -63,10 +63,12 @@ SHORT 0x0548 3; WORD 0x2002CD5 //the soldier goes away when you get the spin att
 SHORT 0x0546 3; WORD 0x2002CD5 //the soldier goes away when you get the flippers
 SHORT 0x0514 3; WORD 0x2002CD5 //the soldier goes away when you get the cape
 SHORT 0x055B 2; WORD 0x2002CEC //festari moves automatically when getting the nut
+SHORT 0x0546 2; WORD 0x2002CEC //festari moves automatically when getting the flippers
 SHORT 0x0596 6; WORD 0x2002CD5//getting carlov medal opens figurine house
 SHORT 0x0514 4; WORD 0x2002CD5 //stairs dog moves when you get the cape
 SHORT 0x0512 4; WORD 0x2002CD5 //stairs dog moves when you get the cane
 SHORT 0x0546 4; WORD 0x2002CD5 //stairs dog moves when you get the flippers
+SHORT 0x1639 2; WORD 0x2002DC1 //killing vaati 2 opens the first dhc key door
 SHORT 0 0; WORD 0 //terminator
 
 //sanctuary stuff is wip and probably doesn't even work right now
@@ -94,7 +96,7 @@ WORD 0x800D980 0x2002EA4 0x02 //Ocarina - check for a new flag for the ocarina b
 	WORD 0x8013BA8 0x2002B32 0xFF //Sanctuary - Ezlo doesn't nag you about the second stone tablet
 	//WORD 0x8014014 0x2002B32 0xFF //Sanctuary - yet more stone tablet
 WORD 0x8012F9C 0x2002EA4 0x08 //Rem - check a custom flag instead of boots
-WORD 0x8009FC4 0x2002EA4 0x10 //Belari - check a custom flag instead of bombs
+WORD 0x8009FC4 0x2002EA5 0x01 //Belari - check a custom flag instead of bombs
 WORD 0 0 0 //terminator
 
 	//sanctuary fixes
@@ -111,6 +113,7 @@ POP
 #include "progressiveItems.event"
 #include "scrubs.event"
 #include "books.event"
+#include "containers.event"
 #include "logicfixes/installer.event"
 #include "gamefixes/installer.event"
 #include "improvements/installer.event"

@@ -11,7 +11,7 @@ POIN progressiveSwordIDs progressiveSwordFlags
 //POIN progressiveBombIDs progressiveBombFlags
 POIN progressiveBowIDs progressiveBowFlags
 POIN progressiveBoomerangIDs progressiveBoomerangFlags
-//POIN progressiveShieldIDs progressiveShieldFlags
+POIN progressiveShieldIDs progressiveShieldFlags
 WORD -1 //terminator
 
 progressiveSwordIDs:
@@ -23,11 +23,11 @@ BYTE 0x06 //Four Sword
 BYTE 0xFF //terminator
 BYTE 0x00 //item to give if the progressive item is maxed
 
-progressiveBombIDs:
-BYTE 0x07 //Bombs
-BYTE 0x08 //Remote Bombs
-BYTE 0xFF //terminator
-BYTE 0x00 //item to give if the progressive item is maxed
+//progressiveBombIDs:
+//BYTE 0x07 //Bombs
+//BYTE 0x08 //Remote Bombs
+//BYTE 0xFF //terminator
+//BYTE 0x00 //item to give if the progressive item is maxed
 
 progressiveBowIDs:
 BYTE 0x09 //Bow
@@ -43,7 +43,7 @@ BYTE 0x00 //item to give if the progressive item is maxed
 
 progressiveShieldIDs:
 BYTE 0x0D //Small Shield
-BYTE 0x0E //Mirrow Shield
+BYTE 0x0E //Mirror Shield
 BYTE 0xFF //terminator
 BYTE 0x00 //item to give if the progressive item is maxed
 
@@ -55,10 +55,10 @@ BYTE 0x01 0x03 //White Sword (3 elements)
 BYTE 0x01 0x30 //Four Sword
 BYTE 0xFF //terminator
 
-progressiveBombFlags:
-BYTE 0x01 0xC0 //Bombs
-BYTE 0x02 0x03 //Remote Bombs
-BYTE 0xFF //terminator
+//progressiveBombFlags:
+//BYTE 0x01 0xC0 //Bombs
+//BYTE 0x02 0x03 //Remote Bombs
+//BYTE 0xFF //terminator
 
 progressiveBowFlags:
 BYTE 0x02 0x0C //Bow
@@ -72,7 +72,26 @@ BYTE 0xFF //terminator
 
 progressiveShieldFlags:
 BYTE 0x03 0x0C //Small Shield
-BYTE 0x03 0x30 //Mirrow Shield
+BYTE 0x03 0x30 //Mirror Shield
+BYTE 0xFF //terminator
+
+PUSH; ORG $A4AC8; jumpToHack(progressiveSwap); POP
+ALIGN 4
+progressiveSwap:
+#incbin "asm/progressiveSwap.dmp"
+POIN progressiveSwapTable
+POIN ($A4AC8+0x08)|1 //return offset if false
+POIN ($A4AC8+0x18)|1 //return offset if true
+
+progressiveSwapTable:
+BYTE 0x07 0x08 //Bombs -> Remote Bombs
+BYTE 0x08 0x07 //Remote Bombs -> Bombs
+BYTE 0x09 0x0A //Bow -> Light Arrow
+BYTE 0x0A 0x09 //Light Arrow -> Bow
+BYTE 0x0B 0x0C //Boomerang -> Magical Boomerang
+BYTE 0x0C 0x0B //Magical Boomerang -> Boomerang
+BYTE 0x0D 0x0E //Small Shield -> Mirror Shield
+BYTE 0x0E 0x0D //Mirror Shield -> Small Shield
 BYTE 0xFF //terminator
 
 PUSH; ORG $80E3C; jumpToHack(progressivePopups); POP //makes the game show text for items you already own if they are on the progressive list
@@ -80,3 +99,8 @@ ALIGN 4
 progressivePopups:
 #incbin "asm/progressivePopups.dmp"
 POIN progressiveItemsTable
+
+PUSH; ORG $52F28; jumpToHack(progressiveGraphics); POP //update graphics based on swapped items
+ALIGN 4
+progressiveGraphics:
+#incbin "asm/progressiveGraphics.dmp"

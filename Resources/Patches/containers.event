@@ -1,0 +1,51 @@
+#ifndef chuContainerItem
+	#define chuContainerItem 0x62
+#endif
+#ifndef chuContainerSub
+	#define chuContainerSub 0x00
+#endif
+#ifndef gleerokContainerItem
+	#define gleerokContainerItem 0x62
+#endif
+#ifndef gleerokContainerSub
+	#define gleerokContainerSub 0x00
+#endif
+#ifndef mazaalContainerItem
+	#define mazaalContainerItem 0x62
+#endif
+#ifndef mazaalContainerSub
+	#define mazaalContainerSub 0x00
+#endif
+#ifndef octoContainerItem
+	#define octoContainerItem 0x62
+#endif
+#ifndef octoContainerSub
+	#define octoContainerSub 0x00
+#endif
+#ifndef gyorgContainerItem
+	#define gyorgContainerItem 0x62
+#endif
+#ifndef gyorgContainerSub
+	#define gyorgContainerSub 0x00
+#endif
+
+ALIGN 4
+containerTable:
+BYTE 0x49 0x00 chuContainerItem chuContainerSub
+BYTE 0x51 0x00 gleerokContainerItem gleerokContainerSub
+BYTE 0x58 0x16 mazaalContainerItem mazaalContainerSub
+BYTE 0x60 0x0E octoContainerItem octoContainerSub
+BYTE 0x70 0x00 gyorgContainerItem gyorgContainerSub
+WORD 0 //terminator
+
+PUSH; ORG $8DF88; jumpToHack(containerGraphics); POP
+ALIGN 4
+containerGraphics:
+#incbin "asm/containerGraphics.dmp"
+POIN containerTable
+
+PUSH; ORG $8E05C; jumpToHack(containerDrop); POP
+ALIGN 4
+containerDrop:
+#incbin "asm/containerDrop.dmp"
+POIN containerTable

@@ -58,3 +58,39 @@ PUSH; ORG $80E94; jumpToHack(itemDespawnSafety); POP
 ALIGN 4
 itemDespawnSafety:
 #incbin "asm/itemDespawnSafety.dmp"
+
+//show all quest items
+PUSH; ORG $A4DEC; jumpToHack(questItemSlideshow1); POP
+ALIGN 4
+questItemSlideshow1:
+#incbin "asm/questItemSlideshow1.dmp"
+PUSH; ORG $A5008; jumpToHack(questItemSlideshow2); POP
+ALIGN 4
+questItemSlideshow2:
+#incbin "asm/questItemSlideshow2.dmp"
+
+//wind element icon in map goes away when you get the element instead of the ocarina
+PUSH; ORG $128677; BYTE 0x43; POP
+
+//finding remote bombs does not remove regular bombs from link and vice versa
+PUSH; ORG $53D34; SHORT 0 0; ORG $53D3E; SHORT 0 0; POP
+//same but for boomerang
+PUSH; ORG $53D1C; SHORT 0 0; ORG $53D26; SHORT 0 0; POP
+
+//getting remote bombs does not count as getting a bomb bag
+PUSH
+ORG $1CD80; POIN bombLimits
+ORG $291D0; POIN bombLimits
+ORG $4EBF4; POIN bombLimits
+ORG $53EB4; POIN bombLimits
+ORG $5FD8C; POIN bombLimits
+ORG $64E7C; POIN bombLimits
+ORG $A4C24; POIN bombLimits
+POP
+bombLimits:
+BYTE 0 10 30 50 99
+PUSH; ORG $53D74; SHORT 0xE001; POP //bag upgrades uncapped
+PUSH; ORG $83610; jumpToHack(firstBag); POP
+ALIGN 4
+firstBag:
+#incbin "asm/firstBag.dmp"

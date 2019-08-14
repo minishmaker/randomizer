@@ -221,3 +221,8 @@ WORD carlovSpotItem
 WORD carlovSpotSub
 PUSH; ORG $9EA77C; String("RNG manipulation is"); BYTE 0x20 2 1; String("illegal"); BYTE 2 0; String("!"); BYTE 0; POP //carlov has some insight
 PUSH; ORG $A3EA2; SHORT 0xE000; ORG $A41BE; SHORT 0xE000; ORG $A416E; SHORT 0xE000; ORG $A440E; SHORT 0xE000; ORG $A40FE; SHORT 0xE000; POP //can always see all figurines
+PUSH; ORG $63338; SHORT 0; POP //man outside cafe doesn't open the figurine house
+PUSH; ORG $9E2A27; String("You should try"); BYTE 0x20 2 1; String("Figuresanity"); BYTE 2 0 0x2E 0x0A; String("You'll"); BYTE 0x20 2 1; String("love"); BYTE 0x20 2 0; String("it, trust me"); BYTE 0; POP
+PUSH; ORG $9E39AA; String("You should try"); BYTE 0x20 2 1; String("Figuresanity"); BYTE 2 0 0x2E 0x0A; String("You'll"); BYTE 0x20 2 1; String("love"); BYTE 0x20 2 0; String("it, trust me"); BYTE 0; POP
+PUSH; ORG $9E4A08; String("You should try"); BYTE 0x20 2 1; String("Figuresanity"); BYTE 2 0 0x2E 0x0A; String("You'll"); BYTE 0x20 2 1; String("love"); BYTE 0x20 2 0; String("it, trust me"); BYTE 0; POP
+PUSH; ORG $9E54A7; String("You should try"); BYTE 0x20 2 1; String("Figuresanity"); BYTE 2 0 0x2E 0x0A; String("You'll"); BYTE 0x20 2 1; String("love"); BYTE 0x20 2 0; String("it, trust me"); BYTE 0; POP
