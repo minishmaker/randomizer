@@ -22,13 +22,13 @@ namespace MinishRandomizer.Core
             Instance = this;
             path = filePath;
             byte[] smallData = File.ReadAllBytes(filePath);
-            if (smallData.Length >= 0x02000000)
+            if (smallData.Length >= 0x01000000)
             {
                 romData = smallData;
             }
             else
             {
-                romData = new byte[0x2000000];
+                romData = new byte[0x1000000];
                 smallData.CopyTo(romData, 0);
             }
 
