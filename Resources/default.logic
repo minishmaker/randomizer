@@ -76,10 +76,10 @@ TownBell; Unshuffled; ; Items.RocsCape; Items.PieceOfHeart #05D602 requires byte
 
 AccessEastField; Helper;; (|Helpers.CanDestroyTrees, Items.Ocarina)
 HillsKeeseCave; Minor; 32-13-00; Items.BombBag
-AboveHPHole; Minor; 27-00-00; Locations.AccessNorthHylia, (|Items.PacciCane, Items.RocsCape)
+AboveHPHole; Minor; 27-00-00; Locations.AccessHyliaNorth, (|Items.PacciCane, Items.RocsCape)
 LonLonPot; Half; 0F2C9B; Locations.AccessEastField
-LonLonCave; Major; 32-0C-00; Locations.AccessNorthHylia, Helpers.CanSplit2; Items.Bottle1 #Temp
-LonLonHeartPiece; Minor; 0D56EF; Locations.AccessNorthHylia, Items.PegasusBoots
+LonLonCave; Major; 32-0C-00; Locations.AccessHyliaNorth, Helpers.CanSplit2; Items.Bottle1 #Temp
+LonLonHeartPiece; Minor; 0D56EF; Locations.AccessHyliaNorth, Items.PegasusBoots
 MinishRupeeFairy; Major; 00B7B4; Locations.AccessEastField, Items.PacciCane
 
 AccessWestField; Helper;; (|Items.RocsCape, (&Helpers.HasSword, Items.SpinAttack), Items.Flippers, (&Items.BombBag, Helpers.CanSplit3))
