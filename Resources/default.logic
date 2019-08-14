@@ -76,10 +76,10 @@ TownBell; Unshuffled; ; Items.RocsCape; Items.PieceOfHeart #05D602 requires byte
 
 AccessEastField; Helper;; (|Helpers.CanDestroyTrees, Items.Ocarina)
 HillsKeeseCave; Minor; 32-13-00; Items.BombBag
-AboveHPHole; Minor; 27-00-00; Locations.AccessEastField, (|Items.Ocarina, Items.LonLonKey, Items.RocsCape), (|Items.PacciCane, Items.RocsCape)
+AboveHPHole; Minor; 27-00-00; Locations.AccessNorthHylia, (|Items.PacciCane, Items.RocsCape)
 LonLonPot; Half; 0F2C9B; Locations.AccessEastField
-LonLonCave; Major; 32-0C-00; (|Items.Ocarina, Items.LonLonKey, Items.RocsCape), Helpers.CanSplit2; Items.Bottle1 #Temp
-LonLonHeartPiece; Minor; 0D56EF; Locations.AccessEastField, (|Items.Ocarina, Items.LonLonKey, Items.RocsCape), Items.PegasusBoots
+LonLonCave; Major; 32-0C-00; Locations.AccessNorthHylia, Helpers.CanSplit2; Items.Bottle1 #Temp
+LonLonHeartPiece; Minor; 0D56EF; Locations.AccessNorthHylia, Items.PegasusBoots
 MinishRupeeFairy; Major; 00B7B4; Locations.AccessEastField, Items.PacciCane
 
 AccessWestField; Helper;; (|Items.RocsCape, (&Helpers.HasSword, Items.SpinAttack), Items.Flippers, (&Items.BombBag, Helpers.CanSplit3))
@@ -229,7 +229,7 @@ CompleteDeepwood:Deepwood; Helper;; Locations.DeepwoodAccess, Items.GustJar, Hel
 # Cave of Flames locations
 CoFAccess:FlameCave; Helper;; Locations.AccessCrenel,(|Items.PacciCane, (&Items.GripRing, (|Items.RocsCape, Helpers.HasLightBow,(&Items.GustJar, (|Items.BombBag, Helpers.HasBow, Helpers.HasBoomerang))))), (|Items.BombBag, Items.Shield, Items.PacciCane), Helpers.HasDamageSource
 CoFFlippedCart:FlameCave; DungeonItem; 50-01-01; Locations.CoFAccess, Helpers.HasSword, Items.PacciCane, Items.SmallKey:FlameCave
-CoFHeartPiece:FlameCave; Minor; 0DFC9F; Locations.CoFAccess, Items.BombBag, Helpers.HasSword
+CoFHeartPiece:FlameCave; Minor; 0DFC9F; Locations.CoFAccess, Items.BombBag, Helpers.HasSword, Items.SmallKey:FlameCave
 CoFChuPit:FlameCave; Major; 50-01-02; Locations.CoFAccess, Items.SmallKey:FlameCave, Helpers.HasSword
 CoFPillBugsPillarChest:FlameCave; DungeonItem; 50-08-00; Locations.CoFAccess
 CoFPillBugsHoleChest:FlameCave; Minor; 50-08-01; Locations.CoFAccess
@@ -247,7 +247,7 @@ CompleteCoF:FlameCave; Helper;; Locations.CoFAccess, Items.PacciCane, Items.Smal
 # Fortress of Winds Locations
 AccessFortress:Fortress; Helper;; Locations.AccessWilds, Items.KinstoneX.YellowTotemProng::3
 FortressEntrance:Fortress; Minor; 18-00-00; Locations.AccessFortress, Items.MoleMitts
-FortressHeartPiece:Fortress; Minor; 0E2DD7; Locations.AccessFortress
+FortressHeartPiece:Fortress; Minor; 0E2DD7; Locations.AccessFortress, Helpers.CanSplit2
 FortressOutsideF2Left:Fortress; Minor; 18-01-00; Locations.AccessFortress, Items.MoleMitts, Helpers.HasBow
 FortressOutsideF2Middle:Fortress; Minor; 18-01-01; Locations.AccessFortress, Items.MoleMitts
 FortressOutsideF2Right:Fortress; Minor; 18-01-02; Locations.AccessFortress, Items.MoleMitts
