@@ -152,7 +152,6 @@ namespace MinishRandomizer.Randomizer
                     break;
                 // Major/etc items are fully randomized
                 case Location.LocationType.Major:
-                case Location.LocationType.Split:
                 default:
                     MajorItems.Add(location.Contents);
                     break;
