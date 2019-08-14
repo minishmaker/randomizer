@@ -94,3 +94,22 @@ PUSH; ORG $83610; jumpToHack(firstBag); POP
 ALIGN 4
 firstBag:
 #incbin "asm/firstBag.dmp"
+
+/*
+a2ef8
+a301c
+*/
+
+//hold R on credits for 8x speed, press A to skip page, press Start to skip credits
+PUSH; ORG $A2EF8; jumpToHack(creditsFlow1); POP
+ALIGN 4
+creditsFlow1:
+#incbin "asm/creditsFlow1.dmp"
+PUSH; ORG $A301C; jumpToHack(creditsFlow2); POP
+ALIGN 4
+creditsFlow2:
+#incbin "asm/creditsFlow2.dmp"
+PUSH; ORG $A3080; jumpToHack(creditsFlow3); POP
+ALIGN 4
+creditsFlow3:
+#incbin "asm/creditsFlow3.dmp"
