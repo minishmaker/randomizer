@@ -51,8 +51,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\Constants.cs" />
+    <Compile Include="Core\EventDefine.cs" />
     <Compile Include="Core\ROM.cs" />
     <Compile Include="Randomizer\Dependency.cs" />
+    <Compile Include="Randomizer\LocationAddress.cs" />
     <Compile Include="UI\MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>

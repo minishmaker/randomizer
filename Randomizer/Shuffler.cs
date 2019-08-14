@@ -152,7 +152,6 @@ namespace MinishRandomizer.Randomizer
                     break;
                 // Major/etc items are fully randomized
                 case Location.LocationType.Major:
-                case Location.LocationType.Split:
                 default:
                     MajorItems.Add(location.Contents);
                     break;
@@ -167,6 +166,9 @@ namespace MinishRandomizer.Randomizer
                 string assemblyPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
                 patchFile = assemblyPath + "/Patches/ROM buildfile.event";
             }
+
+            // Write new patch file to patch folder/extDefinitions.event
+            File.WriteAllText(Path.GetDirectoryName(patchFile) + "/extDefinitions.event", GetEventWrites());
 
             string[] args = new[] { "A", "FE8", "-input:" + patchFile, "-output:" + romLocation };
 
@@ -441,6 +443,18 @@ namespace MinishRandomizer.Randomizer
             {
                 spoilerBuilder.AppendLine($"Dungeon: {location.Contents.Dungeon}");
             }
+        }
+
+        public string GetEventWrites()
+        {
+            StringBuilder eventBuilder = new StringBuilder();
+
+            foreach (Location location in Locations)
+            {
+                location.WriteLocationEvent(eventBuilder);
+            }
+
+            return eventBuilder.ToString();
         }
     }
 }
