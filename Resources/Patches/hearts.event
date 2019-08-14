@@ -19,14 +19,14 @@
 
 #ifdef heartscolorblue
 	#define heartspalette "0x10"
-	#define fill1 "0x2"
-	#define back1 "0xB"
+	#define fill1 "0x3"
+	#define back1 "0xA"
 	#define edge1 "0xE"
 #endif
 
 #ifdef heartscolorsky
 	#define heartspalette "0x10"
-	#define fill1 "0x4"
+	#define fill1 "0x5"
 	#define back1 "0xA"
 	#define edge1 "0xF"
 #endif
@@ -53,7 +53,9 @@
 PUSH
 //in-game hearts, tiles
 //change the palette
-ORG $C8654; BYTE 0x15 heartspalette 0x15 heartspalette 0x15 heartspalette 0x15 heartspalette 0x15 heartspalette 0x15 heartspalette 0x15 heartspalette 0x15 heartspalette 0x15 heartspalette 0x15 heartspalette
+ORG $C8654
+BYTE 0x15 heartspalette 0x15 heartspalette 0x15 heartspalette 0x15 heartspalette 0x15 heartspalette 0x15 heartspalette 0x15 heartspalette 0x15 heartspalette 0x15 heartspalette 0x15 heartspalette
+BYTE 0x11 heartspalette 0x11 heartspalette 0x11 heartspalette 0x11 heartspalette 0x11 heartspalette 0x11 heartspalette 0x11 heartspalette 0x11 heartspalette 0x11 heartspalette 0x11 heartspalette
 ORG $1C849; BYTE heartspalette
 ORG $1C82C; BYTE heartspalette 0x23; SHORT 0x021A 0x4311
 //and the graphics
