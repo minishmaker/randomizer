@@ -332,6 +332,11 @@ namespace MinishRandomizer.Randomizer
                 address.ReadAddress(ROM.Instance.reader, ref type, ref subType);
             }
             
+            if (type == ItemType.Untyped && Type != LocationType.Helper && Type != LocationType.Unshuffled)
+            {
+                Console.WriteLine($"Untyped contents in {Name}! Addresses may be bad");
+            }
+
             if (Type == LocationType.DungeonItem)
             {
                 return new Item(type, subType, Dungeon);
