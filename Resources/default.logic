@@ -52,6 +52,10 @@ BakeryAttic; Minor; 2E-03-00; (|Items.PacciCane, Items.Flippers, Items.RocsCape)
 StockWellAttic; Minor; 2E-01-01; (|Items.PacciCane, Items.Flippers, Items.RocsCape)
 SimulationChest; Minor; 0F04C2; Helpers.HasSword
 RemShoeShop; Major; 0130EE; Items.WakeUpMushroom
+CarlovReward; Major; carlovSpotItem:Define:FirstByte, carlovSpotSub:Define:SecondByte; (|Items.Flippers, Items.PacciCane, Items.RocsCape); Items.CarlovMedal
+JullietaBook; Major; redBookItem:Define:FirstByte, redBookSub:Define:SecondByte; Helpers.HasBottle, (|Items.Flippers, Items.PacciCane, Items.RocsCape); Items.HyruleanBestiary
+WrightAtticBook; Major; greenBookItem:Define:FirstByte, greenBookSub:Define:SecondByte; Items.PowerBracelets, (|Items.Flippers, Items.PacciCane, Items.RocsCape),(|Items.GustJar, Items.BombBag), Helpers.CanSplit2; Items.PicoriLegend
+TownBell; Minor; 05D602:FirstByte, 5D604:SecondByte; Items.RocsCape; Items.PieceOfHeart
 
 FlipsCaveBig; Major; 62-10-00; Items.Flippers, Items.Ocarina, Items.PacciCane, Helpers.HasSword
 FlipsCaveSmall; Minor; 62-12-00; Items.Flippers, Items.Ocarina, Items.PacciCane, Items.LanternOff
@@ -59,7 +63,7 @@ FlipsCaveSmall; Minor; 62-12-00; Items.Flippers, Items.Ocarina, Items.PacciCane,
 AccessEastField; Helper;; (|Helpers.CanDestroyTrees, Items.Ocarina)
 SouthKeeseCave; Minor; 32-13-00; Items.BombBag
 AboveHPHole; Minor; 27-00-00; Locations.AccessEastField, (|Items.Ocarina, Items.LonLonKey, Items.RocsCape), (|Items.PacciCane, Items.RocsCape)
-LonLonPot; Half; 0F2C9B:FirstByte; Locations.AccessEastField
+LonLonPot; Major; 0F2C9B:FirstByte; Locations.AccessEastField
 LonLonCave; Major; 32-0C-00; (|Items.Ocarina, Items.LonLonKey, Items.RocsCape), Helpers.CanSplit2;
 MinishRupeeFairy; Major; 00B7B4; Locations.AccessEastField, Items.PacciCane
 
@@ -71,7 +75,7 @@ BottleScrub; Major; bottleScrubItem:Define:FirstByte, bottleScrubSub:Define:Seco
 
 # Minish Woods Locations
 AccessMinishWoods; Helper;; Locations.AccessEastField
-JabberNut; Major; 09498C:FirstByte, 09498E:SecondByte; Locations.AccessMinishWoods
+JabberNut; Major; 09498C:FirstByte, 09498E:SecondByte; Locations.AccessMinishWoods; Items.JabberNut
 BelariBombs; Major; 00A00C; Locations.AccessMinishWoods
 MinishMiddleFlipperHole; Major; 35-09-00; Locations.AccessMinishWoods, Items.Flippers;
 MinishRightFlipperHole; Minor; 35-09-01; Locations.AccessMinishWoods, Items.Flippers
@@ -117,7 +121,7 @@ AccessHyliaSouth; Helper;; Locations.AccessHyliaNorth,(|Items.Flippers,Items.Roc
 
 #StockwellDog; Major; ; Locations.AccessHyliaNorth, Items.DogFoodBottle
 HyliaNorthMinishHole; Major; 35-07-00; Locations.AccessHyliaNorth, Items.Flippers, Items.PegasusBoots;
-
+HyliaMayorCabin; Major; blueBookItem:Define:FirstByte, blueBookSub:Define:SecondByte; Locations.AccessHyliaSouth, Items.PegasusBoots, Items.PowerBracelets, (|Items.GustJar, Items.Flippers); Items.MaskHistory
 WitchDiggingCave; Minor; 0C-00-00; Locations.AccessHyliaSouth, Items.MoleMitts
 
 AccessTreasureCave; Helper;; Locations.AccessHyliaNorth, Items.MoleMitts, Items.RocsCape
@@ -163,7 +167,7 @@ AccessUpperClouds; Helper;; Locations.AccessClouds, (|Items.RocsCape, Items.Mole
 TowerBottomLeft; Minor; 30-00-00; Locations.AccessUpperClouds
 TowerBottomRight; Major; 30-00-01; Locations.AccessUpperClouds; Items.PowerBracelets # Temp
 TowerF2; Minor; 30-01-00; Locations.AccessUpperClouds
-GregalOne; Half; 014C5C:FirstByte; Locations.AccessUpperClouds, Items.GustJar
+GregalOne; Major; 014C5C:FirstByte; Locations.AccessUpperClouds, Items.GustJar
 GregalTwo; Major; 014CBC:FirstByte; Locations.AccessUpperClouds, Items.GustJar; Items.Bow
 TowerRightBed; Minor; 30-02-00; Locations.AccessUpperClouds
 TowerMiddleBed; Minor; 30-02-01; Locations.AccessUpperClouds
