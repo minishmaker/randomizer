@@ -326,7 +326,7 @@ namespace MinishRandomizer.Randomizer
                 }
             }
 
-            Console.WriteLine("Untippitytyped");
+            Console.WriteLine($"Can't place subvalued items in {Name}");
             return false;
         }
 
