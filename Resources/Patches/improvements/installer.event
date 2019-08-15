@@ -119,3 +119,9 @@ PUSH; ORG $53CF4; jumpToHack(dungeonSub); POP
 ALIGN 4
 dungeonSub:
 #incbin "asm/dungeonSub.dmp"
+
+//press select in dungeon map to look at world map (and select again to go back)
+PUSH; ORG $A47E4; jumpToHack(mapSwap); POP
+ALIGN 4
+mapSwap:
+#incbin "asm/mapSwap.dmp"
