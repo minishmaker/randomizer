@@ -108,3 +108,14 @@ PUSH; ORG $A3080; jumpToHack(creditsFlow3); POP
 ALIGN 4
 creditsFlow3:
 #incbin "asm/creditsFlow3.dmp"
+
+//keys, maps, etc, can have the area they are for as a sub id
+PUSH; ORG $5231E; SHORT 0; POP //keys can be collected anywhere
+PUSH; ORG $52320; jumpToHack(keysSub); POP
+ALIGN 4
+keysSub:
+#incbin "asm/keysSub.dmp"
+PUSH; ORG $53CF4; jumpToHack(dungeonSub); POP
+ALIGN 4
+dungeonSub:
+#incbin "asm/dungeonSub.dmp"
