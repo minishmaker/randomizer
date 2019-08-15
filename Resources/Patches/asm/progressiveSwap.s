@@ -138,6 +138,12 @@ ldr	r3,=#0x80A4A4C
 mov	lr,r3
 .short	0xF800
 
+@and play a sound
+mov	r0,#0x6A
+ldr	r3,=#0x80A2A80
+mov	lr,r3
+.short	0xF800
+
 EndTrue:
 ldr	r3,returnOffsetTrue
 mov	lr,r3

@@ -82,6 +82,7 @@ progressiveSwap:
 POIN progressiveSwapTable
 POIN ($A4AC8+0x08)|1 //return offset if false
 POIN ($A4AC8+0x18)|1 //return offset if true
+WORD 1
 
 progressiveSwapTable:
 BYTE 0x07 0x08 //Bombs -> Remote Bombs
