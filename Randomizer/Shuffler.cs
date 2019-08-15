@@ -17,9 +17,7 @@ namespace MinishRandomizer.Randomizer
         Red,
         Yellow,
         Blue,
-        Sky,
-        Green,
-        Lime
+        Sky
     }
 
     public class ShuffleException : Exception {
