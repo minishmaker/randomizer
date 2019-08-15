@@ -1,4 +1,5 @@
 #define jumpToHack(offset) "BYTE 0x00 0x4B 0x18 0x47; POIN (offset|0x1)"
+#include "extDefinitions.event" //a file reserved for the randomizer to output definitions for the patches
 
 //#define DEBUG 0
 //#define TEST 0
@@ -9,28 +10,30 @@ ORG FreeSpace
 //#define neverSkipFusionCutscene 0 //define to never skip
 #define alwaysSkipFusionCutscene 0 //set to non-0 to skip, set to 0 to skip on button held
 
-
 #ifdef TEST
 	PUSH
-	ORG $EDD8+2; BYTE 0x5C 0x70  //lady kinstone
-	ORG $DA58+2; BYTE 0x5C 0x6C  //ghost kinstone
-	ORG $F2528+3; BYTE 0x01 0x00 //new item in smith's room, write item to $F252B
-	ORG $F2538+3; BYTE 0x0D 0x00 //new item in smith's room, write item to $F253B
-	POP
-	//unify golden kinstone fusions (obviously no need to change the royal piece)
-	PUSH
-	//tornado pieces first, all set to match with 0x65
-	ORG $C93E4+(8*1)+1; BYTE 0x8; ORG $C93E4+(8*1)+5; BYTE 0x1
-	ORG $C93E4+(8*2)+1; BYTE 0x8; ORG $C93E4+(8*2)+5; BYTE 0x1
-	ORG $C93E4+(8*3)+1; BYTE 0x8; ORG $C93E4+(8*3)+5; BYTE 0x1
-	ORG $C93E4+(8*4)+1; BYTE 0x8; ORG $C93E4+(8*4)+5; BYTE 0x1
-	ORG $C93E4+(8*5)+1; BYTE 0x8; ORG $C93E4+(8*5)+5; BYTE 0x1
-	//swamp second, all set to match with 0x6A
-	ORG $C93E4+(8*6)+1; BYTE 0xD; ORG $C93E4+(8*6)+5; BYTE 0x6
-	ORG $C93E4+(8*7)+1; BYTE 0xD; ORG $C93E4+(8*7)+5; BYTE 0x6
-	ORG $C93E4+(8*8)+1; BYTE 0xD; ORG $C93E4+(8*8)+5; BYTE 0x6
+	ORG  $EDD8+2; BYTE 0x5C 0x70	//lady kinstone
+	ORG  $DA58+2; BYTE 0x5C 0x6C	//ghost kinstone
+	ORG $F2528+3; BYTE 0x01 0x00	//new item in smith's room, write item to $F252B
+	ORG $F2538+3; BYTE 0x0D 0x00	//new item in smith's room, write item to $F253B
+	ORG   $5D602; BYTE 0x63	//bell heart piece
+	ORG $DA280+3; BYTE 0x5B 0x00	//nut
 	POP
 #endif
+
+//unify golden kinstone fusions (obviously no need to change the royal piece)
+PUSH
+//tornado pieces first, all set to match with 0x65
+ORG $C93E4+(8*1)+1; BYTE 0x8; ORG $C93E4+(8*1)+5; BYTE 0x1
+ORG $C93E4+(8*2)+1; BYTE 0x8; ORG $C93E4+(8*2)+5; BYTE 0x1
+ORG $C93E4+(8*3)+1; BYTE 0x8; ORG $C93E4+(8*3)+5; BYTE 0x1
+ORG $C93E4+(8*4)+1; BYTE 0x8; ORG $C93E4+(8*4)+5; BYTE 0x1
+ORG $C93E4+(8*5)+1; BYTE 0x8; ORG $C93E4+(8*5)+5; BYTE 0x1
+//swamp second, all set to match with 0x6A
+ORG $C93E4+(8*6)+1; BYTE 0xD; ORG $C93E4+(8*6)+5; BYTE 0x6
+ORG $C93E4+(8*7)+1; BYTE 0xD; ORG $C93E4+(8*7)+5; BYTE 0x6
+ORG $C93E4+(8*8)+1; BYTE 0xD; ORG $C93E4+(8*8)+5; BYTE 0x6
+POP
 
 //text ids set flags hacks
 PUSH; ORG $5E93C; jumpToHack(textFlags); POP
@@ -44,8 +47,28 @@ textFlagsTable: //SHORT textid flag; WORD baseoffset
 SHORT 0x1F1F 0; WORD 0x2002EA4 //jabber nut sets custom flag 0
 //custom flag 1 is used for the ocarina
 SHORT 0x2D08 2; WORD 0x2002EA4 //buying mushroom sets custom flag 2
-SHORT 0x125C 6; WORD 0x2002CA6 //new melari flag
+SHORT 0x4404 3; WORD 0x2002EA4 //giving mushroom to rem sets custom flag 3
+//custom flags 4, 5 and 6 are used by the library book item spots
+SHORT 0x125C 7; WORD 0x2002EA4 //melari uses custom flag 7
+SHORT 0x1F01 8; WORD 0x2002EA4 //getting bombs from belari sets custom flag 8
+//getting medal from carlov sets custom flag 9
 SHORT 0x3D07 6; WORD 0x2002CB4 //set the simulation heart piece flag after it ends
+SHORT 0x4803 1; WORD 0x2002CA1 //library quest can be started with flippers
+SHORT 0x0517 1; WORD 0x2002CA1 //picking up the ocarina automatically starts the library quest
+SHORT 0x0508 3; WORD 0x2002CEC //gentari door opens when getting bombs
+SHORT 0x051C 3; WORD 0x2002CEC //gentari door opens when getting bombs
+SHORT 0x0507 3; WORD 0x2002CEC //gentari door opens when getting bombs
+SHORT 0x0563 3; WORD 0x2002CEC //gentari door opens when getting bombs
+SHORT 0x0548 3; WORD 0x2002CD5 //the soldier goes away when you get the spin attack
+SHORT 0x0546 3; WORD 0x2002CD5 //the soldier goes away when you get the flippers
+SHORT 0x0514 3; WORD 0x2002CD5 //the soldier goes away when you get the cape
+SHORT 0x055B 2; WORD 0x2002CEC //festari moves automatically when getting the nut
+SHORT 0x0546 2; WORD 0x2002CEC //festari moves automatically when getting the flippers
+SHORT 0x0596 6; WORD 0x2002CD5//getting carlov medal opens figurine house
+SHORT 0x0514 4; WORD 0x2002CD5 //stairs dog moves when you get the cape
+SHORT 0x0512 4; WORD 0x2002CD5 //stairs dog moves when you get the cane
+SHORT 0x0546 4; WORD 0x2002CD5 //stairs dog moves when you get the flippers
+SHORT 0x1639 2; WORD 0x2002DC1 //killing vaati 2 opens the first dhc key door
 SHORT 0 0; WORD 0 //terminator
 
 //sanctuary stuff is wip and probably doesn't even work right now
@@ -64,21 +87,34 @@ WORD 0x800D30E 0x2002C9C 0x08 //Melari - instead of having fire element, check d
 WORD 0x800D04A 0x2002C9C 0x08 //Melari - instead of having fire element, check defeated gleerok
 WORD 0x800D066 0x2002C9C 0x08 //Melari - instead of having fire element, check defeated gleerok
 WORD 0x800D0BE 0x2002C9C 0x08 //Melari - instead of having fire element, check defeated gleerok
-WORD 0x800D0A0 0x2002CA6 0x40 //Melari - instead of having white sword, check exited mines with sword (repurposed)
-WORD 0x800D05E 0x2002CA6 0x40 //Melari - instead of having white sword, check exited mines with sword (repurposed)
+WORD 0x800D0A0 0x2002EA4 0x80 //Melari - instead of having white sword, get item from melari
+WORD 0x800D05E 0x2002EA4 0x80 //Melari - instead of having white sword, get item from melari
 WORD 0x800D944 0x2002D74 0x20 //Zeffa - check for ocarina being dropped instead of ocarina being collected
 WORD 0x800D976 0x2002EA4 0x02 //Ocarina - check for a new flag for the ocarina being collected
 WORD 0x800D980 0x2002EA4 0x02 //Ocarina - check for a new flag for the ocarina being collected
 	WORD 0x8014070 0x2002B32 0xFF //Sanctuary - Ezlo doesn't nag you about the first stone tablet
 	WORD 0x8013BA8 0x2002B32 0xFF //Sanctuary - Ezlo doesn't nag you about the second stone tablet
 	//WORD 0x8014014 0x2002B32 0xFF //Sanctuary - yet more stone tablet
+WORD 0x8012F9C 0x2002EA4 0x08 //Rem - check a custom flag instead of boots
+WORD 0x8009FC4 0x2002EA5 0x01 //Belari - check a custom flag instead of bombs
 WORD 0 0 0 //terminator
 
 	//sanctuary fixes
 	PUSH; ORG $4E98E; SHORT 0; POP //sanctuary garden door always open
 	PUSH; ORG $F4A9C; BYTE 0xFF; ORG $F4C18; POIN $F4AAC; POP//sanctuary switches door never closes
 
+//ice blocks have a question mark inside
+PUSH
+ORG $5EE3D0
+#incbin "ice.img.bin"
+POP
+
 #include "newGame.event"
+#include "progressiveItems.event"
+#include "scrubs.event"
+#include "books.event"
+#include "containers.event"
 #include "logicfixes/installer.event"
 #include "gamefixes/installer.event"
 #include "improvements/installer.event"
+#include "hearts.event"

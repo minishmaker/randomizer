@@ -15,7 +15,6 @@ namespace MinishRandomizer
 {
     public partial class MainWindow : Form
     {
-
         private ROM ROM_;
         private Shuffler shuffler;
         private bool randomized;
@@ -26,6 +25,9 @@ namespace MinishRandomizer
 
             // Initialize seed to random value
             seedField.Text = new Random().Next().ToString();
+
+            // Fill heart color options
+            this.heartColorSelect.DataSource = Enum.GetValues(typeof(HeartColorType));
         }
 
         private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
@@ -194,8 +196,11 @@ namespace MinishRandomizer
             byte[] outputRom = shuffler.GetRandomizedRom();
             File.WriteAllBytes(sfd.FileName, outputRom);
 
+            shuffler.SetHeartColor((HeartColorType)heartColorSelect.SelectedItem);
+
             if (customPatchCheckBox.Checked)
             {
+                
                 shuffler.ApplyPatch(sfd.FileName, customPatchPath.Text);
             }
             else
@@ -228,10 +233,6 @@ namespace MinishRandomizer
             {
                 return;
             }
-
-            // Get UPS patch of ROM 
-            //byte[] patch = 
-            //File.WriteAllText(sfd.FileName, spoilerLog);
         }
 
         private void SaveSpoilerButton_Click(object sender, EventArgs e)

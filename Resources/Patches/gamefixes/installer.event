@@ -21,7 +21,7 @@ PUSH; ORG $4BCE4; jumpToHack(graveyardGate); POP //new graveyard gate area check
 ALIGN 4
 graveyardGate:
 #incbin "asm/graveyardGate.dmp"
-PUSH; ORG $9A608; jumpToHack(dampeHouse); POP //dampe's house, dampe is at house if not talekd to or gate is open
+PUSH; ORG $4E414; jumpToHack(dampeHouse); POP //dampe's house, dampe is at house if not talekd to or gate is open
 ALIGN 4
 dampeHouse:
 #incbin "asm/dampeHouse.dmp"
@@ -31,3 +31,29 @@ PUSH; ORG $DF8CB; BYTE 1; POP
 
 //don't set simulation heart piece flag on enterting it (it's instead set when you exit it after winning by the text id set flags hack)
 PUSH; ORG $4E0C8; SHORT 0 0; POP
+
+//stop dws lilypad from going away after getting flippers
+PUSH; ORG $84EF0; SHORT 0x4280; POP
+
+//prevent tod from being unbetable if the left lever is used first
+PUSH; ORG $1D5F4; jumpToHack(todLevers); POP
+ALIGN 4
+todLevers:
+#incbin "asm/todLevers.dmp"
+
+//add door to match keyhole door in dhc
+PUSH; ORG $EDC6C; WORD 0; ORG $EDAE0; BYTE 0x06 0x0F 0x08 0x00 0 0 0 0; SHORT 0x58 0x28 0xFFFF 0x6A; POP
+
+//use a boulder to prevent people from climbing down the incomplete vine
+PUSH; ORG $FA9C8; POIN vineBoulder|1; POP
+ALIGN 4
+vineBoulder:
+#incbin "asm/vineBoulder.dmp"
+POIN vineBoulderData
+ALIGN 4
+vineBoulderData:
+BYTE 0x06 0x0F 0x2E 0x00 0 0 0 0; SHORT 0x118 0x118 0 0
+BYTE 0xFF 0x00 0x00 0x00 0 0 0 0; SHORT 0x000 0x000 0 0
+
+//fix mailman line
+PUSH; ORG $9E37B0; String("It's tough work, being the"); BYTE 0x20 2 2; String("mailman"); BYTE 2 0 0x2E 0x0A; String("Always runnin' around!"); BYTE 0; POP

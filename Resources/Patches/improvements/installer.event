@@ -19,3 +19,130 @@ PUSH; ORG $562AC; SHORT 0x2501; POP
 //skip minish transformation cutscenes automatically
 PUSH; ORG $70DFA; SHORT 0; POP
 
+//pressing L uses pegasus boots, if owned
+PUSH; ORG $772AC; jumpToHack(pegasusShortcut1); POP
+ALIGN 4
+pegasusShortcut1:
+#incbin "asm/pegasusShortcut1.dmp"
+POIN ($772AC+0x08)|1 //return offset if false
+POIN ($772AC+0x2C)|1 //return offset if true
+POIN $778C4 //something about buttons
+PUSH; ORG $77950; jumpToHack(pegasusShortcut2); POP
+ALIGN 4
+pegasusShortcut2:
+#incbin "asm/pegasusShortcut2.dmp"
+POIN ($77950+0x08)|1 //return offset if false
+POIN ($77950+0x26)|1 //return offset if true
+
+//no wait when visiting a new area
+PUSH; ORG $52D64; SHORT 0xE006; POP
+
+//allow more freedom to pause the game
+PUSH; ORG $70044; SHORT 0x2000; ORG $7004E; SHORT 0x2000; POP
+
+//adding some stuff that's missing from vanilla eur
+//missing lon lon tornado
+PUSH; ORG $F7188; POIN lonlontornado; POP
+ALIGN 4
+lonlontornado:
+BYTE 0x5E 0 0 1; SHORT 0x188 0x078 0 0 0 0xFFFF
+BYTE 0x5E 0 0 1; SHORT 0x268 0x188 0 0 0 0xFFFF
+BYTE 0x5E 0 0 1; SHORT 0x198 0x358 0 0 0 0xFFFF
+BYTE 0x5E 0 0 1; SHORT 0x108 0x328 0 0 0 0xFFFF
+BYTE 0xFF 0 0 0; SHORT 0x000 0x000 0 0 0 0xFFFF
+//allow link to use the ocarina in the room right before palace of winds
+PUSH; ORG $12752C; BYTE 1; POP
+
+//items on the floor don't despawn as long as a flag is tied to them
+PUSH; ORG $80E94; jumpToHack(itemDespawnSafety); POP
+ALIGN 4
+itemDespawnSafety:
+#incbin "asm/itemDespawnSafety.dmp"
+
+//show all quest items
+PUSH; ORG $A4DEC; jumpToHack(questItemSlideshow1); POP
+ALIGN 4
+questItemSlideshow1:
+#incbin "asm/questItemSlideshow1.dmp"
+PUSH; ORG $A5008; jumpToHack(questItemSlideshow2); POP
+ALIGN 4
+questItemSlideshow2:
+#incbin "asm/questItemSlideshow2.dmp"
+
+//wind element icon in map goes away when you get the element instead of the ocarina
+PUSH; ORG $128677; BYTE 0x43; POP
+
+//finding remote bombs does not remove regular bombs from link and vice versa
+PUSH; ORG $53D34; SHORT 0 0; ORG $53D3E; SHORT 0 0; POP
+//same but for boomerang
+PUSH; ORG $53D1C; SHORT 0 0; ORG $53D26; SHORT 0 0; POP
+
+//getting remote bombs does not count as getting a bomb bag
+PUSH
+ORG $1CD80; POIN bombLimits
+ORG $291D0; POIN bombLimits
+ORG $4EBF4; POIN bombLimits
+ORG $53EB4; POIN bombLimits
+ORG $5FD8C; POIN bombLimits
+ORG $64E7C; POIN bombLimits
+ORG $A4C24; POIN bombLimits
+POP
+bombLimits:
+BYTE 0 10 30 50 99
+PUSH; ORG $53D74; SHORT 0xE001; POP //bag upgrades uncapped
+PUSH; ORG $83610; jumpToHack(firstBag); POP
+ALIGN 4
+firstBag:
+#incbin "asm/firstBag.dmp"
+
+//hold R on credits for 8x speed, press A to skip page, press Start to skip credits
+PUSH; ORG $A2EF8; jumpToHack(creditsFlow1); POP
+ALIGN 4
+creditsFlow1:
+#incbin "asm/creditsFlow1.dmp"
+PUSH; ORG $A301C; jumpToHack(creditsFlow2); POP
+ALIGN 4
+creditsFlow2:
+#incbin "asm/creditsFlow2.dmp"
+PUSH; ORG $A3080; jumpToHack(creditsFlow3); POP
+ALIGN 4
+creditsFlow3:
+#incbin "asm/creditsFlow3.dmp"
+
+//keys, maps, etc, can have the area they are for as a sub id
+PUSH; ORG $5231E; SHORT 0; POP //keys can be collected anywhere
+PUSH; ORG $52320; jumpToHack(keysSub); POP
+ALIGN 4
+keysSub:
+#incbin "asm/keysSub.dmp"
+PUSH; ORG $53CF4; jumpToHack(dungeonSub); POP
+ALIGN 4
+dungeonSub:
+#incbin "asm/dungeonSub.dmp"
+
+//press select in dungeon map to look at world map (and select again to go back)
+PUSH; ORG $A47E4; jumpToHack(mapSwap); POP
+ALIGN 4
+mapSwap:
+#incbin "asm/mapSwap.dmp"
+
+//show small keys and other items for the dungeons on hover in the world map
+PUSH; ORG $A67FC; jumpToHack(dungeonDisplay); POP
+ALIGN 4
+dungeonDisplay:
+#incbin "asm/dungeonDisplay.dmp"
+POIN dungeonDisplayGraphics
+POIN dungeonDisplayTable
+ALIGN 4
+dungeonDisplayGraphics:
+#incbin "dungeonItems.img.bin"
+ALIGN 4
+dungeonDisplayTable:
+BYTE 0x1C 0x18 //dws
+BYTE 0x0B 0x19 //cof
+BYTE 0x0E 0x1A //fow
+BYTE 0x1B 0x1B //tod
+BYTE 0x1A 0x1C //pow
+BYTE 0x12 0x1D //dhc
+BYTE 0x0F 0x1E //rc
+BYTE 0x00 0x00 //terminator

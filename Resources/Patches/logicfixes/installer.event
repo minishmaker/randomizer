@@ -10,6 +10,7 @@ BYTE 0x58 0xFF 1 //all of fortress
 BYTE 0x60 0xFF 1 //all of droplets
 BYTE 0x09 0x00 2 //graveyard
 BYTE 0x68 0x04 2 //crypt
+BYTE 0x2E 0x02 1 //big book
 BYTE 0 0 0
 
 PUSH //new items
@@ -31,8 +32,11 @@ BYTE 0x06 0x0F 0x18 0x00 0x00 0x00 0x00 0x00 0xA0 0x00 0x28 0x00 0x00 0x00 0x00 
 BYTE 0x07 0x4F 0x4A 0x00 0x00 0x00 0x00 0x00 0xA0 0x00 0x38 0x00 0x7C 0x4B 0x01 0x08
 WORD 0xFFFFFFFF
 
-//melari fixes, most of them are in the flag hack
-PUSH; ORG $4FAE6; SHORT 0 0; POP //having white sword or higher in the mountain does not set any flag anymore
+//check a custom flag to move melari
+PUSH; ORG $4C6DC; jumpToHack(melari); POP
+ALIGN 4
+melari:
+#incbin "asm/melari.dmp"
 
 //sword fix: makes sword spots act like normal item spots (also dampe apparently)
 PUSH; ORG $7EA9C; jumpToHack(swordFix); POP
@@ -44,6 +48,9 @@ ALIGN 4
 swordFixPointers:
 POIN $D26C //melari
 POIN $96B4 //dampe
+POIN $B720 //arrow fairy
+POIN $B7B2 //rupee fairy
+POIN $B826 //bomb fairy
 WORD 0
 
 //stone fix: makes kinstone spots act like normal item spots
@@ -95,6 +102,14 @@ PUSH; ORG $4F908; jumpToHack(mushroomFlag); POP
 ALIGN 4
 mushroomFlag:
 #incbin "asm/mushroomFlag.dmp"
+//make all items at the potion shop have a consistent price
+PUSH; ORG $7DE64; jumpToHack(mushroomPrice); POP
+ALIGN 4
+mushroomPrice:
+#incbin "asm/mushroomPrice.dmp"
+WORD 60 //mushroom spot price
+WORD 60 //blue potion price
+WORD 150 //red potion price
 
 //set flag when ocarina is collected, custom flag 1
 PUSH; ORG $9C9F4; jumpToHack(ocarinaFlag1); POP
@@ -122,6 +137,7 @@ ALIGN 4
 jabberNut2:
 #incbin "asm/jabberNut2.dmp"
 PUSH; ORG $9D6411; String("Go get the nut!"); BYTE 0; POP //gentari sends you get the nut
+PUSH; ORG $DA280+2; BYTE 0; ORG $DA280+5; BYTE 4; ORG $DA280+8; SHORT 0x3C; ORG $DA280+0xE; SHORT 0xCA; POP //made the nut a normal item
 
 //hyrule town fixes
 PUSH; ORG $4F0C8; SHORT 0x46C0 0x2000; POP //no carpenters blocking north exit
@@ -138,4 +154,77 @@ PUSH; ORG $6D082; SHORT 0x2000; POP //no timer for mirror shield
 PUSH; ORG $1E9C2; SHORT 0x46C0; POP
 
 //minish village is always in the post-temple state, except for festari which asks for the nut
-PUSH; ORG $4C558; SHORT 0x4280; POP
+PUSH; ORG $4C55A; SHORT 0xE011; ORG $4C5AC; SHORT 0xE002; POP
+
+//yellow book quest minish spawns even if you have flippers
+PUSH; ORG $4C434; SHORT 0; POP
+
+//carpentes no longer spawn by the farm
+PUSH; ORG $4EFB4; SHORT 0xE017; POP
+
+//make rem item have a sub id
+PUSH; ORG $7EA5E; SHORT 0x7890; ORG $7EA66; SHORT 0x7890 0x78D1; POP
+
+//simulation chest always spawns the same pattern if the first chest hasn't been opened
+PUSH; ORG $F030C; BYTE 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0; POP
+
+//yellow library minish rewards link even if he has the flippers
+PUSH; ORG $6AAA4; SHORT 0; POP
+
+//fusion flag requirements: fusion flags will return false if these aren't set
+PUSH; ORG $1E82C; jumpToHack(fusionLock); POP
+ALIGN 4
+fusionLock:
+#incbin "asm/fusionLock.dmp"
+POIN fusionLockTable
+ALIGN 4
+fusionLockTable: //WORD offsetoflockerflag; SHORT lockerflagid fusionflagid
+WORD 0x2002EA4; SHORT 8 0x1C //belari won't talk about remote bombs until he has handed the first item
+WORD 0 0 //terminator
+
+//ranch door is closed on both sides insetad of just one
+PUSH; ORG $F2F34; POIN ranchDoor|1; POP
+ALIGN 4
+ranchDoor:
+#incbin "asm/ranchDoor.dmp"
+POIN ranchDoorData
+ALIGN 4
+ranchDoorData:
+BYTE 0x06 0x0F 0x5D 0x00 0x03 0x01; SHORT 0 0x18 0x58 0 0
+BYTE 0xFF 0x00 0x00 0x00 0x00 0x00; SHORT 0 0x00 0x00 0 0
+
+//gentari's curtain opens if you kill the green chu (or have bombs but that's handled somewhere else)
+PUSH; ORG $91924; jumpToHack(openCurtain); POP
+ALIGN 4
+openCurtain:
+#incbin "asm/openCurtain.dmp"
+
+//make the bell heart piece randomizable
+PUSH; ORG $5D600; SHORT 0x2000; POP
+PUSH; ORG $5D606; SHORT 0; jumpToHack(bellHeart); POP
+ALIGN 4
+bellHeart:
+#incbin "asm/bellHeart.dmp"
+
+#ifndef carlovSpotItem
+	#define carlovSpotItem 0x3E
+#endif
+#ifndef carlovSpotSub
+	#define carlovSpotSub 0x00
+#endif
+//carlov gives out medal when you talk to him
+PUSH; ORG $87EF4; jumpToHack(carlov); POP
+ALIGN 4
+carlov:
+#incbin "asm/carlov.dmp"
+WORD carlovSpotItem
+WORD carlovSpotSub
+PUSH; ORG $146F2; SHORT 0; POP //carlov doesn't check for medal
+PUSH; ORG $7DDEE; SHORT 0x2100; ORG $14812; SHORT 0x432B; POP //carlov thinks you never have shells
+PUSH; ORG $9EA77C; String("RNG manipulation is"); BYTE 0x20 2 1; String("illegal"); BYTE 2 0; String("!"); BYTE 0; POP //carlov has some insight
+PUSH; ORG $A3EA2; SHORT 0xE000; ORG $A41BE; SHORT 0xE000; ORG $A416E; SHORT 0xE000; ORG $A440E; SHORT 0xE000; ORG $A40FE; SHORT 0xE000; POP //can always see all figurines
+PUSH; ORG $63338; SHORT 0; POP //man outside cafe doesn't open the figurine house
+PUSH; ORG $9E2A27; String("You should try"); BYTE 0x20 2 1; String("Figuresanity"); BYTE 2 0 0x2E 0x0A; String("You'll"); BYTE 0x20 2 1; String("love"); BYTE 0x20 2 0; String("it, trust me"); BYTE 0; POP
+PUSH; ORG $9E39AA; String("You should try"); BYTE 0x20 2 1; String("Figuresanity"); BYTE 2 0 0x2E 0x0A; String("You'll"); BYTE 0x20 2 1; String("love"); BYTE 0x20 2 0; String("it, trust me"); BYTE 0; POP
+PUSH; ORG $9E4A08; String("You should try"); BYTE 0x20 2 1; String("Figuresanity"); BYTE 2 0 0x2E 0x0A; String("You'll"); BYTE 0x20 2 1; String("love"); BYTE 0x20 2 0; String("it, trust me"); BYTE 0; POP
+PUSH; ORG $9E54A7; String("You should try"); BYTE 0x20 2 1; String("Figuresanity"); BYTE 2 0 0x2E 0x0A; String("You'll"); BYTE 0x20 2 1; String("love"); BYTE 0x20 2 0; String("it, trust me"); BYTE 0; POP
