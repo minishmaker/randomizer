@@ -51,11 +51,15 @@
             this.saveSpoilerButton = new System.Windows.Forms.Button();
             this.savePatchButton = new System.Windows.Forms.Button();
             this.saveRomButton = new System.Windows.Forms.Button();
+            this.gimmicksTabPage = new System.Windows.Forms.TabPage();
+            this.heartColorLabel = new System.Windows.Forms.Label();
+            this.heartColorSelect = new System.Windows.Forms.ComboBox();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.generalTab.SuspendLayout();
             this.mainTabs.SuspendLayout();
             this.generatedTab.SuspendLayout();
+            this.gimmicksTabPage.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -205,7 +209,7 @@
             // mainTabs
             // 
             this.mainTabs.Controls.Add(this.generalTab);
-            //this.mainTabs.Controls.Add(this.generatedTab);
+            this.mainTabs.Controls.Add(this.gimmicksTabPage);
             this.mainTabs.Location = new System.Drawing.Point(9, 27);
             this.mainTabs.Name = "mainTabs";
             this.mainTabs.SelectedIndex = 0;
@@ -275,6 +279,35 @@
             this.saveRomButton.UseVisualStyleBackColor = true;
             this.saveRomButton.Click += new System.EventHandler(this.SaveRomButton_Click);
             // 
+            // gimmicksTabPage
+            // 
+            this.gimmicksTabPage.Controls.Add(this.heartColorSelect);
+            this.gimmicksTabPage.Controls.Add(this.heartColorLabel);
+            this.gimmicksTabPage.Location = new System.Drawing.Point(4, 22);
+            this.gimmicksTabPage.Name = "gimmicksTabPage";
+            this.gimmicksTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.gimmicksTabPage.Size = new System.Drawing.Size(361, 209);
+            this.gimmicksTabPage.TabIndex = 1;
+            this.gimmicksTabPage.Text = "Gimmicks";
+            this.gimmicksTabPage.UseVisualStyleBackColor = true;
+            // 
+            // heartColorLabel
+            // 
+            this.heartColorLabel.AutoSize = true;
+            this.heartColorLabel.Location = new System.Drawing.Point(6, 10);
+            this.heartColorLabel.Name = "heartColorLabel";
+            this.heartColorLabel.Size = new System.Drawing.Size(66, 13);
+            this.heartColorLabel.TabIndex = 0;
+            this.heartColorLabel.Text = "Heart Color: ";
+            // 
+            // heartColorSelect
+            // 
+            this.heartColorSelect.FormattingEnabled = true;
+            this.heartColorSelect.Location = new System.Drawing.Point(79, 7);
+            this.heartColorSelect.Name = "heartColorSelect";
+            this.heartColorSelect.Size = new System.Drawing.Size(121, 21);
+            this.heartColorSelect.TabIndex = 1;
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -297,6 +330,8 @@
             this.mainTabs.ResumeLayout(false);
             this.generatedTab.ResumeLayout(false);
             this.generatedTab.PerformLayout();
+            this.gimmicksTabPage.ResumeLayout(false);
+            this.gimmicksTabPage.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -326,6 +361,9 @@
         private System.Windows.Forms.Button saveRomButton;
         private System.Windows.Forms.Label generatedSeedLabel;
         private System.Windows.Forms.Label generatedSeedValue;
+        private System.Windows.Forms.TabPage gimmicksTabPage;
+        private System.Windows.Forms.ComboBox heartColorSelect;
+        private System.Windows.Forms.Label heartColorLabel;
     }
 }
 

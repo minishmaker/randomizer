@@ -11,6 +11,17 @@ using MinishRandomizer.Utilities;
 
 namespace MinishRandomizer.Randomizer
 {
+    public enum HeartColorType
+    {
+        Default,
+        Red,
+        Yellow,
+        Blue,
+        Sky,
+        Green,
+        Lime
+    }
+
     public class ShuffleException : Exception {
         public ShuffleException(string message) : base(message) { }
     }
@@ -64,6 +75,7 @@ namespace MinishRandomizer.Randomizer
         private List<Item> MajorItems;
         private List<Item> MinorItems;
         private string OutputDirectory;
+        private HeartColorType HeartColor = HeartColorType.Default;
 
         public Shuffler(string outputDirectory)
         {
@@ -78,6 +90,11 @@ namespace MinishRandomizer.Randomizer
         {
             Seed = seed;
             RNG = new Random(seed);
+        }
+
+        public void SetHeartColor(HeartColorType color)
+        {
+            HeartColor = color;
         }
 
         /// <summary>
@@ -452,6 +469,13 @@ namespace MinishRandomizer.Randomizer
             foreach (Location location in Locations)
             {
                 location.WriteLocationEvent(eventBuilder);
+            }
+
+            if (HeartColor != HeartColorType.Default)
+            {
+                // Write the heart color defines to change the heart color properly, with the lowercase version of the enum
+                eventBuilder.AppendLine("#define heartscolor");
+                eventBuilder.AppendLine("#define heartscolor" + HeartColor.ToString().ToLower());
             }
 
             return eventBuilder.ToString();
