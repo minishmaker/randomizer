@@ -273,8 +273,8 @@ FortressPrize:Prizes; Major; 09C9E6:FirstByte; Locations.CompleteFortress
 AccessDroplets:Droplets; Helper;; Locations.AccessHyliaSouth, (|Items.Flippers, Items.RocsCape)
 DropletsMulldoserDropConst:Droplets; Unshuffled; ; Locations.AccessDroplets, Items.BigKey:Droplets, (|Items.LanternOff, Helpers.DropletsEastLever), Helpers.HasDamageSource; Items.SmallKey:Droplets
 DropletsWaterPotConst:Droplets; Unshuffled; ; Locations.AccessDroplets, Items.BigKey:Droplets, Items.Flippers, (|Items.RocsCape, Items.GustJar); Items.SmallKey:Droplets
-DropletsFirstIceblock:Droplets; DungeonItem; 098C1B:FirstByte, 098C1D:SecondByte; Locations.AccessDroplets; Items.SmallKey:Droplets
-DropletsSecondIceblock:Droplets; DungeonItem; 098C3D:FirstByte, 098C3F:SecondByte ; Locations.AccessDroplets, Helpers.DropletsOpenDoors; Items.BigKey:Droplets
+DropletsFirstIceblock:Droplets; DungeonItem; 098C1A:FirstByte, 098C1C:SecondByte; Locations.AccessDroplets; Items.SmallKey:Droplets
+DropletsSecondIceblock:Droplets; DungeonItem; 098C3C:FirstByte, 098C3E:SecondByte ; Locations.AccessDroplets, Helpers.DropletsOpenDoors; Items.BigKey:Droplets
 DropletsEastLever:Droplets; Helper;; Locations.AccessDroplets, Items.BigKey:Droplets, Helpers.DropletsOpenDoors, (|Items.GustJar, (&Items.LanternOff, Items.RocsCape)), Helpers.CanSplit2
 DropletsWestLever:Droplets; Helper;; Locations.AccessDroplets, Items.BigKey:Droplets, Helpers.DropletsOpenDoors, Items.LanternOff, Helpers.CanSplit2
 DropletsOpenDoors:Droplets; Helper;; Items.SmallKey:Droplets:4, Items.Flippers, (|Items.GustJar, Items.RocsCape), Items.BombBag, Items.LanternOff, Helpers.HasSword
