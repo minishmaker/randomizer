@@ -228,3 +228,17 @@ PUSH; ORG $9E2A27; String("You should try"); BYTE 0x20 2 1; String("Figuresanity
 PUSH; ORG $9E39AA; String("You should try"); BYTE 0x20 2 1; String("Figuresanity"); BYTE 2 0 0x2E 0x0A; String("You'll"); BYTE 0x20 2 1; String("love"); BYTE 0x20 2 0; String("it, trust me"); BYTE 0; POP
 PUSH; ORG $9E4A08; String("You should try"); BYTE 0x20 2 1; String("Figuresanity"); BYTE 2 0 0x2E 0x0A; String("You'll"); BYTE 0x20 2 1; String("love"); BYTE 0x20 2 0; String("it, trust me"); BYTE 0; POP
 PUSH; ORG $9E54A7; String("You should try"); BYTE 0x20 2 1; String("Figuresanity"); BYTE 2 0 0x2E 0x0A; String("You'll"); BYTE 0x20 2 1; String("love"); BYTE 0x20 2 0; String("it, trust me"); BYTE 0; POP
+
+//fix elements hardcoded movement
+PUSH; ORG $9FA70; jumpToHack(elementsFix); POP
+ALIGN 4
+elementsFix:
+#incbin "asm/elementsFix.dmp"
+POIN elementsTable
+ALIGN 4
+elementsTable:
+BYTE 0x49 0x00 0x40
+BYTE 0x51 0x00 0x41
+BYTE 0x60 0x0E 0x42
+BYTE 0x70 0x00 0x43
+BYTE 0x00 0x00 0x00 //terminator
