@@ -360,6 +360,8 @@ namespace MinishRandomizer.Randomizer
                 {
                     location.WriteLocation(writer);
                 }
+
+                WriteElementPositions(writer);
             }
 
             return outputBytes;
@@ -479,6 +481,122 @@ namespace MinishRandomizer.Randomizer
             }
 
             return eventBuilder.ToString();
+        }
+
+        /// <summary>
+        /// Move the elements around in a randomized ROM
+        /// </summary>
+        /// <param name="w">Writer to write with</param>
+        private void WriteElementPositions(Writer w)
+        {
+            // Write coordinates for each element
+            Location earthLocation = Locations.Where(loc => loc.Contents.Type == ItemType.EarthElement).First();
+            MoveElement(w, earthLocation);
+
+            Location fireLocation = Locations.Where(loc => loc.Contents.Type == ItemType.FireElement).First();
+            MoveElement(w, fireLocation);
+
+            Location waterLocation = Locations.Where(loc => loc.Contents.Type == ItemType.WaterElement).First();
+            MoveElement(w, waterLocation);
+
+            Location windLocation = Locations.Where(loc => loc.Contents.Type == ItemType.WindElement).First();
+            MoveElement(w, windLocation);
+        }
+
+        /// <summary>
+        /// Moves a single element marker to the location that contains it
+        /// </summary>
+        /// <param name="w">The writer to write to</param>
+        /// <param name="location">The location that contains the element</param>
+        private void MoveElement(Writer w, Location location)
+        {
+            // Coordinates for the unzoomed map
+            byte[] largeCoords = new byte[2];
+
+            // Coordinates for the zoomed in map
+            ushort[] smallCoords = new ushort[2];
+            switch (location.Name)
+            {
+                case "DeepwoodPrize":
+                    largeCoords[0] = 0xB2;
+                    largeCoords[1] = 0x7A;
+
+                    smallCoords[0] = 0x0D7D;
+                    smallCoords[1] = 0x0AC8;
+                    break;
+                case "CoFPrize":
+                    largeCoords[0] = 0x3B;
+                    largeCoords[1] = 0x1B;
+
+                    smallCoords[0] = 0x01E8;
+                    smallCoords[1] = 0x0178;
+                    break;
+                case "FortressPrize":
+                    largeCoords[0] = 0x4B;
+                    largeCoords[1] = 0x77;
+
+                    smallCoords[0] = 0x0378;
+                    smallCoords[1] = 0x0A78;
+                    break;
+                case "DropletsPrize":
+                    largeCoords[0] = 0xB5;
+                    largeCoords[1] = 0x4B;
+
+                    smallCoords[0] = 0x0DB8;
+                    smallCoords[1] = 0x0638;
+                    break;
+                case "KingGift":
+                    largeCoords[0] = 0x5A;
+                    largeCoords[1] = 0x15;
+
+                    smallCoords[0] = 0x04DC;
+                    smallCoords[1] = 0x0148;
+                    break;
+                case "PalacePrize":
+                    largeCoords[0] = 0xB5;
+                    largeCoords[1] = 0x1B;
+
+                    smallCoords[0] = 0x0D88;
+                    smallCoords[1] = 0x00E8;
+                    break;
+                default:
+                    return;
+            }
+
+            int largeAddress;
+            int smallAddress;
+
+            switch (location.Contents.Type)
+            {
+                case ItemType.EarthElement:
+                    largeAddress = 0x128699;
+                    smallAddress = 0x12869C;
+                    break;
+                case ItemType.FireElement:
+                    largeAddress = 0x1286A1;
+                    smallAddress = 0x1286A4;
+                    break;
+                case ItemType.WaterElement:
+                    largeAddress = 0x1286B1;
+                    smallAddress = 0x1286B4;
+                    break;
+                case ItemType.WindElement:
+                    largeAddress = 0x1286A9;
+                    smallAddress = 0x1286AC;
+                    break;
+                default:
+                    return;
+            }
+
+            // Write zoomed out coordinates
+            w.SetPosition(largeAddress);
+            w.WriteByte(largeCoords[0]);
+            w.WriteByte(largeCoords[1]);
+
+            // Write zoomed in coordinates
+            w.SetPosition(smallAddress);
+            w.WriteUInt16(smallCoords[0]);
+            w.WriteUInt16(smallCoords[1]);
         }
     }
 }
