@@ -5,7 +5,7 @@
 
 This program creates a randomized version of The Legend of Zelda: The Minish Cap.
 
-Current version: `0.2.0a`
+Current version: `0.2.1a`
 
 ### Logic
 The following things are randomized:
