@@ -8,6 +8,17 @@ ldr	r3,=#0x801D668
 mov	lr,r3
 .short	0xF800
 
+clean:
+ldr	r0,=#0x2034CB0
+ldr	r1,=#0x440
+add	r1,r0
+mov	r2,#0
+cleanLoop:
+str	r2,[r0]
+add	r0,#4
+cmp	r0,r1
+bne	cleanLoop
+
 @check current map mode
 ldr	r2,=#0x20344A4
 ldrb	r2,[r2]
@@ -21,7 +32,7 @@ and	r4,r1
 loop:
 ldrb	r1,[r0]
 cmp	r1,#0
-beq	clean
+beq	end
 cmp	r1,r4
 beq	match
 add	r0,#2
@@ -102,17 +113,6 @@ ldr	r0,=#0x3C4
 add	r0,r5
 bl	draw
 b	end
-
-clean:
-ldr	r0,=#0x2034CB0
-ldr	r1,=#0x440
-add	r1,r0
-mov	r2,#0
-cleanLoop:
-str	r2,[r0]
-add	r0,#4
-cmp	r0,r1
-bne	cleanLoop
 
 end:
 pop	{r4-r7}
