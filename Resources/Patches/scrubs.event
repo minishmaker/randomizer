@@ -44,3 +44,17 @@ POIN $CC0B8; SHORT bottleScrubItem bottleScrubSub
 POIN $CC0A0; SHORT gripScrubItem gripScrubSub
 //POIN $CC0DC; SHORT stoneScrubItem stoneScrubSub
 WORD 0 0 //terminator
+
+//fix grip scrub flag
+PUSH; ORG $29130; jumpToHack(gripScrub1); POP
+ALIGN 4
+gripScrub1:
+#incbin "asm/gripScrub1.dmp"
+PUSH; ORG $2916C; jumpToHack(gripScrub2); POP
+ALIGN 4
+gripScrub2:
+#incbin "asm/gripScrub2.dmp"
+PUSH; ORG $29200; jumpToHack(gripScrub3); POP
+ALIGN 4
+gripScrub3:
+#incbin "asm/gripScrub3.dmp"
