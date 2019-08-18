@@ -65,13 +65,17 @@ namespace MinishRandomizer.Randomizer
 
     public class Shuffler
     {
-        private Random RNG;
+        
         public int Seed;
+        public List<LogicFlag> Flags;
+        private Random RNG;
         private List<Location> Locations;
         //private List<Location> StartingLocations;
         private List<Item> DungeonItems;
         private List<Item> MajorItems;
         private List<Item> MinorItems;
+        private List<LogicDefine> Defines;
+        
         private string OutputDirectory;
         private HeartColorType HeartColor = HeartColorType.Default;
 
@@ -81,6 +85,8 @@ namespace MinishRandomizer.Randomizer
             DungeonItems = new List<Item>();
             MajorItems = new List<Item>();
             MinorItems = new List<Item>();
+            Defines = new List<LogicDefine>();
+            Flags = new List<LogicFlag>();
             OutputDirectory = outputDirectory;
         }
 
@@ -96,19 +102,84 @@ namespace MinishRandomizer.Randomizer
         }
 
         /// <summary>
+        /// Load the flags that a logic file uses to customize itself
+        /// </summary>
+        public void LoadFlags(string logicFile = null)
+        {
+            Flags.Clear();
+
+            string[] logicStrings;
+
+            if (logicFile == null)
+            {
+                // Load default logic if no alternative is specified
+                Assembly assembly = Assembly.GetExecutingAssembly();
+                using (Stream stream = assembly.GetManifestResourceStream("MinishRandomizer.Resources.default.logic"))
+                using (StreamReader reader = new StreamReader(stream))
+                {
+                    string allLocations = reader.ReadToEnd();
+                    // Each line is a different location, split regardless of return form
+                    logicStrings = allLocations.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+                }
+            }
+            else
+            {
+                logicStrings = File.ReadAllLines(logicFile);
+            }
+
+            foreach (string fullLine in logicStrings)
+            {
+                // Make sure there's something in the line
+                if (string.IsNullOrEmpty(fullLine))
+                {
+                    continue;
+                }
+
+                // If the line isn't a logic directive, it can be ignored
+                if (fullLine[0] != '!')
+                {
+                    continue;
+                }
+
+                // Remove comments cause they can be on the same line
+                string trimmedLine = fullLine.Split('#')[0];
+                Console.WriteLine(trimmedLine);
+
+                // Get command from string (will be replaced with a proper method later, I promise)
+                // And it'll support multi-word flags. Bear with me.
+                string[] splits = trimmedLine.Split(' ');
+
+                Console.WriteLine(splits.Length);
+
+                if (splits[0] != "!flag")
+                {
+                    return;
+                }
+
+                LogicFlag newFlag = new LogicFlag(splits[1], splits[2]);
+
+                Flags.Add(newFlag);
+            }
+        }
+
+        /// <summary>
         /// Reads the list of locations from a file, or the default logic if none is specified
         /// </summary>
-        /// <param name="locationFile">The file to read locations from</param>
-        public void LoadLocations(string locationFile = null)
+        /// <param name="logicFile">The file to read locations from</param>
+        public void LoadLocations(string logicFile = null)
         {
             Locations.Clear();
             DungeonItems.Clear();
             MajorItems.Clear();
             MinorItems.Clear();
+            Defines.Clear();
+
+            // Add active flags to defines, leave inactive ones out
+            Defines.AddRange(Flags.Where(flag => flag.Active));
 
             string[] locationStrings;
 
-            if (locationFile == null)
+            if (logicFile == null)
             {
                 // Load default logic if no alternative is specified
                 Assembly assembly = Assembly.GetExecutingAssembly();
@@ -122,13 +193,13 @@ namespace MinishRandomizer.Randomizer
             }
             else
             {
-                locationStrings = File.ReadAllLines(locationFile);
+                locationStrings = File.ReadAllLines(logicFile);
             }
             
             foreach (string locationLine in locationStrings)
             {
                 // Spaces are ignored, and everything after a # is a comment
-                string locationString = locationLine.Split('#')[0].Replace(" ", "");
+                string locationString = locationLine.Split('#')[0];
 
                 // Empty lines or locations are ignored
                 if (string.IsNullOrWhiteSpace(locationString))
@@ -136,8 +207,18 @@ namespace MinishRandomizer.Randomizer
                     continue;
                 }
 
-                Location newLocation = Location.GetLocation(locationString);
-                AddLocation(newLocation);
+                if (locationString[0] == '!')
+                {
+                    // TODO: Parse new thing
+                }
+                else
+                {
+                    locationString = locationString.Replace(" ", "");
+                    Location newLocation = Location.GetLocation(locationString);
+                    AddLocation(newLocation);
+                }
+
+                    
             }
         }
 

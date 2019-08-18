@@ -72,17 +72,19 @@ namespace MinishRandomizer
                 else
                 {
                     MessageBox.Show("The seed value is not valid!\nMake sure it's not too large and only contains numeric characters.");
-                }
-
-                // First randomization needs to change the tab
-                if (!randomized)
-                {
-                    // Change the tab to the seed output tab
-                    mainTabs.Controls.Add(generatedTab);
-                    mainTabs.SelectedTab = generatedTab;
+                    return;
                 }
 
                 randomized = true;
+
+                if (!mainTabs.TabPages.Contains(generatedTab))
+                {
+                    // Change the tab to the seed output tab
+                    mainTabs.TabPages.Add(generatedTab);
+                    mainTabs.SelectedTab = generatedTab;
+                }
+
+                
 
                 // Show ROM information on seed page
                 generatedSeedValue.Text = seed.ToString();
@@ -124,12 +126,44 @@ namespace MinishRandomizer
             }
 
             shuffler = new Shuffler(Path.GetDirectoryName(ROM.Instance.path));
+
+            if (customLogicCheckBox.Checked)
+            {
+                shuffler.LoadFlags(customLogicPath.Text);
+            }
+            else
+            {
+                shuffler.LoadFlags();
+            }
+
+            LoadFlagCheckboxes(shuffler.Flags);
         }
 
         private void CustomLogicCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             browseLogicButton.Enabled = customLogicCheckBox.Checked;
             customLogicPath.Enabled = customLogicCheckBox.Checked;
+        }
+
+        private void CustomLogicPath_TextChanged(object sender, EventArgs e)
+        {
+            // Load flags into shuffler if the logic file is available
+            if (!File.Exists(customLogicPath.Text))
+            {
+                return;
+            }
+
+            if (shuffler == null)
+            {
+                return;
+            }
+
+            if (customLogicCheckBox.Checked)
+            {
+                shuffler.LoadFlags(customLogicPath.Text);
+
+                LoadFlagCheckboxes(shuffler.Flags);
+            }
         }
 
         private void CustomPatchCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -260,6 +294,38 @@ namespace MinishRandomizer
             // Write output to ROM, then add patches
             string spoilerLog = shuffler.GetSpoiler();
             File.WriteAllText(sfd.FileName, spoilerLog);
+        }
+
+        private void LoadFlagCheckboxes(List<LogicFlag> flags)
+        {
+            // If there flags, show the flag tab
+            if (flags.Count >= 1)
+            {
+                // Make sure not to add the tab multiple times
+                if (!mainTabs.TabPages.Contains(flagTabPage))
+                {
+                    // Insert logic tab at the right place
+                    mainTabs.TabPages.Insert(1, flagTabPage);
+                }
+            }
+            else
+            {
+                mainTabs.TabPages.Remove(flagTabPage);
+                return;
+            }
+
+            flagBoxesLayout.Controls.Clear();
+
+            foreach (LogicFlag flag in flags)
+            {
+                CheckBox flagCheckBox = new CheckBox();
+                flagCheckBox.Text = flag.NiceName;
+
+                // Make the Active status of the flag depend on whether the checkbox is checked or not
+                flagCheckBox.CheckedChanged += (object sender, EventArgs e) => { flag.Active = flagCheckBox.Checked; Console.WriteLine(flag.Name); };
+
+                flagBoxesLayout.Controls.Add(flagCheckBox);
+            }
         }
     }
 }

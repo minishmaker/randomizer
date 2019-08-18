@@ -1,5 +1,10 @@
 # Default logic for the randomizer - Doesn't allow glitches, but allows unintuitive tricks
 
+!flag KEYSANITY Keysanity
+!flag TEST1 test
+!flag TEST2 retest
+!flag TEST3 threetest
+
 # Location format:
 #	Name;Type;Address[;Logic][;Item Override]
 #		Name can be anything unique, hopefully without spaces
