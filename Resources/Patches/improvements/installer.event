@@ -167,3 +167,7 @@ PUSH; ORG $83618; jumpToHack(scrollFix); POP
 ALIGN 4
 scrollFix:
 #incbin "asm/scrollFix.dmp"
+
+//technique upgrades now also have scroll icons
+PUSH; ORG $FD6E8; POIN $FD505 $FD505 $FD505; POP
+PUSH; ORG $125EB8; SHORT 0x001 0x401 0x0B8 0x2541 0x001 0x401 0x0B8 0x2541 0x001 0x401 0x0B8 0x2541; POP
