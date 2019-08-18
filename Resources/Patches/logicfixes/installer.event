@@ -242,3 +242,8 @@ BYTE 0x51 0x00 0x41
 BYTE 0x60 0x0E 0x42
 BYTE 0x70 0x00 0x43
 BYTE 0x00 0x00 0x00 //terminator
+//and give the wind element object a custom flag to check
+PUSH; ORG $4D08C; jumpToHack(windFix); POP
+ALIGN 4
+windFix:
+#incbin "asm/windFix.dmp"

@@ -28,6 +28,15 @@ b	end
 
 match:
 ldrb	r0,[r3,#2]
+cmp	r0,#0x43
+bne	end
+push	{r0}
+ldr	r0,=#0x2002EA4
+mov	r1,#11
+ldr	r3,=#0x801D5F4	@vanilla flag set routine
+mov	lr,r3
+.short	0xF800
+pop	{r0}
 
 end:
 ldr	r3,=#0x809FA7B
