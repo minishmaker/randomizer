@@ -27,8 +27,8 @@ mov	r0,r6
 ldr	r3,=#0x807C4A8
 mov	lr,r3
 .short	0xF800
-cmp	r0,#0
-bne	match
+cmp	r0,#1
+beq	match
 start:
 cmp	r6,#0x3C
 bne	increase
