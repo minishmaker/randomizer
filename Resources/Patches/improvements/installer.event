@@ -161,3 +161,9 @@ PUSH; ORG $80A18; jumpToHack(boomerangFix); POP
 ALIGN 4
 boomerangFix:
 #incbin "asm/boomerangFix.dmp"
+
+//sword techniques are unlocked instantly
+PUSH; ORG $83618; jumpToHack(scrollFix); POP
+ALIGN 4
+scrollFix:
+#incbin "asm/scrollFix.dmp"
