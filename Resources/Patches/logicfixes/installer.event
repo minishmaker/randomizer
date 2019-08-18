@@ -110,6 +110,10 @@ mushroomPrice:
 WORD 60 //mushroom spot price
 WORD 60 //blue potion price
 WORD 150 //red potion price
+WORD 20 //brioche price
+WORD 30 //croissant price
+WORD 40 //pie price
+WORD 60 //cake price
 
 //set flag when ocarina is collected, custom flag 1
 PUSH; ORG $9C9F4; jumpToHack(ocarinaFlag1); POP
