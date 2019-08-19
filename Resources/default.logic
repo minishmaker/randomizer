@@ -31,7 +31,9 @@ IntroItem1; Major; F252B;; Items.SmithSword
 IntroItem2; Major; F253B;; Items.Shield
 HyruleWellRight; Minor; 41-00-04
 HyruleWellLeft; Major; 40-00-01; Items.MoleMitts; Items.GreenSword # Temporary for Testing
-#SwiftbladeFirst; ScrollItem; 110D7B; Helpers.HasSword
+Townblade1; Major; swiftblade1DojoItem:Define:FirstByte, swiftblade1DojoSub:Define:SecondByte; Helpers.HasSword; Items.SpinAttack
+Townblade2; Major; swiftblade2DojoItem:Define:FirstByte, swiftblade2DojoSub:Define:SecondByte; (|Items.SmithSword::2, Items.WhiteSword), Items.SpinAttack; Items.RockBreaker
+Grimblade; Major; grimbladeDojoItem:Define:FirstByte, grimbladeDojoSub:Define:SecondByte; Items.LanternOff; Items.SwordBeam
 #CafeLady; Minor; 00EDDA;; Items.KinstoneX.RedSpike
 HearthLedge; Major; 02-00-06; Items.LanternOff; Items.BlueSword # Temporary for Testing
 SchoolTop; Major; 02-00-07; Items.PacciCane; Items.FourSword # Temporary for Testing
@@ -76,6 +78,7 @@ CrenelCaveDownstairs; Minor; 26-07-00; Locations.AccessCrenel, Items.BombBag, (|
 CrenelHeartCaveLeft; Minor; 26-08-00; Locations.AccessCrenel, Items.BombBag
 CrenelHeartCaveRight; Major; 26-08-01; Locations.AccessCrenel, Items.BombBag; Items.GripRing # Temp
 #CrenelGripScrub; PurchaseItem; 0CC0A8; Locations.AccessCrenel, Items.Shield, Items.BombBag
+Grayblade; Major; graybladeDojoItem:Define:FirstByte, graybladeDojoItem:Define:SecondByte; Locations.AccessCrenel, Helpers.CanSplit2; Items.RollAttack
 GraybladeLeft; Minor; 25-00-00; Locations.AccessCrenel, Helpers.CanSplit2
 GraybladeRight; Minor; 25-00-01; Locations.AccessCrenel, Helpers.CanSplit2
 CrenelBlockChest; Minor; 26-03-00; Locations.AccessCrenel, (|Items.GripRing, Helpers.HasBottle), (|Items.PacciCane, (&Items.GripRing, (|Items.GustJar, Helpers.HasLightBow)))
@@ -90,6 +93,7 @@ WildsMulldozerHole; Major; 27-06-00; Locations.AccessWilds, (|Items.Flippers, It
 WildsDiggingCave1; Minor; 17-00-00; Locations.AccessWilds, Items.MoleMitts
 WildsDiggingCave2; Minor; 17-00-01; Locations.AccessWilds, Items.MoleMitts
 WildsTopChest; Minor; 04-00-00; Locations.AccessWilds, Helpers.HasBow
+Graveblade; Major; swiftbladeIDojoItem:Define:FirstByte, swiftbladeIDojoSub:Define:SecondByte; Locations.AccessWilds, Items.PegasusBoots, Items.SpinAttack, Items.RollAttack, Items.DashAttack, Items.RockBreaker, Items.SwordBeam, Items.DownThrust, Items.PerilBeam; Items.SpinAttack
 RuinsBombCave; Minor; 2A-02-00; Locations.AccessWilds, Items.KinstoneX.YellowTotemProng::3, Items.BombBag
 RuinsMinishCave; Minor; 27-07-00; Locations.AccessWilds, Items.KinstoneX.YellowTotemProng::3, Helpers.HasSword
 RuinsArmosKillLeft; Minor; 05-05-00; Locations.AccessWilds, Items.KinstoneX.YellowTotemProng::3, Helpers.HasSword
@@ -102,6 +106,7 @@ HyliaNorthMinishHole; Major; 35-07-00; Locations.AccessHylia, Items.Flippers, It
 
 AccessSouthHylia; Helper;; Locations.AccessHylia, (|Items.RocsCape, Items.Flippers, (&Items.MoleMitts, Items.PacciCane, (|Items.Ocarina, Items.LonLonKey)))
 WitchDiggingCaveRight; Minor; 0C-00-00; Locations.AccessMinishWoods, Items.MoleMitts, (|Items.Flippers, Items.RocsCape, (&Items.LonLonKey, Items.PacciCane))
+Waveblade; Major; wavebladeDojoItem:Define:FirstByte, wavebladeDojoSub:Define:SecondByte; Helpers.AccessSouthHylia, (|Items.Flippers,Items.RocsCape); Items.PerilBeam
 
 AccessTreasureCave; Helper;; Locations.AccessHylia, Items.MoleMitts, Items.RocsCape
 TreasureCave0; Minor; 19-01-00; Locations.AccessTreasureCave
