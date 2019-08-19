@@ -1,0 +1,9 @@
+#ifdef glitchless
+
+//prevent ocarina glitch from triggering
+PUSH; ORG $772D8; jumpToHack(ocarinaGlitchFix); POP
+ALIGN 4
+ocarinaGlitchFix:
+#incbin "asm/ocarinaGlitchFix.dmp"
+
+#endif

@@ -134,4 +134,5 @@ scrollFix:
 PUSH; ORG $FD6E8; POIN $FD505 $FD505 $FD505; POP
 PUSH; ORG $125EB8; SHORT 0x001 0x401 0x0B8 0x2541 0x001 0x401 0x0B8 0x2541 0x001 0x401 0x0B8 0x2541; POP
 
+#include "glitchless.event"
 #include "dungeon.event"
