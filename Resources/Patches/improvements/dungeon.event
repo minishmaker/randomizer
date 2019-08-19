@@ -1,0 +1,85 @@
+//keys, maps, etc, can have the area they are for as a sub id
+PUSH; ORG $5231E; SHORT 0; POP //keys can be collected anywhere
+PUSH; ORG $52320; jumpToHack(keysSub); POP
+ALIGN 4
+keysSub:
+#incbin "asm/keysSub.dmp"
+PUSH; ORG $53CF4; jumpToHack(dungeonSub); POP
+ALIGN 4
+dungeonSub:
+#incbin "asm/dungeonSub.dmp"
+
+//press select in dungeon map to look at world map (and select again to go back)
+PUSH; ORG $A47E4; jumpToHack(mapSwap); POP
+ALIGN 4
+mapSwap:
+#incbin "asm/mapSwap.dmp"
+
+//show small keys and other items for the dungeons on hover in the world map
+PUSH; ORG $A67FC; jumpToHack(dungeonDisplay); POP
+ALIGN 4
+dungeonDisplay:
+#incbin "asm/dungeonDisplay.dmp"
+POIN dungeonDisplayGraphics
+POIN dungeonDisplayTable
+POIN dungeonMapsTable
+POIN dungeonDisplayKeys
+ALIGN 4
+dungeonDisplayGraphics:
+#incbin "dungeonItems.img.bin"
+ALIGN 4
+dungeonDisplayKeys:
+#incbin "dungeonKeys.img.bin"
+ALIGN 4
+dungeonDisplayTable:
+BYTE 0x1C 0x18 //dws
+BYTE 0x0B 0x19 //cof
+BYTE 0x0E 0x1A //fow
+BYTE 0x1B 0x1B //tod
+BYTE 0x1A 0x1C //pow
+BYTE 0x12 0x1D //dhc
+BYTE 0x0F 0x1E //rc
+BYTE 0x00 0x00 //terminator
+ALIGN 4
+dungeonMapsTable:
+BYTE 0x02 //0x00
+BYTE 0x00 //0x01
+BYTE 0x00 //0x02
+BYTE 0x03 //0x03
+BYTE 0x00 //0x04
+BYTE 0x00 //0x05
+BYTE 0x00 //0x06
+BYTE 0x06 //0x07
+BYTE 0x00 //0x08
+BYTE 0x00 //0x09
+BYTE 0x00 //0x0A
+BYTE 0x00 //0x0B
+BYTE 0x00 //0x0C
+BYTE 0x00 //0x0D
+BYTE 0x05 //0x0E
+BYTE 0x04 //0x0F
+BYTE 0x01 //0x10
+
+//restore dungeon map constantly
+PUSH; ORG $517FC; jumpToHack(dungeonRestore); POP
+ALIGN 4
+dungeonRestore:
+#incbin "asm/dungeonRestore.dmp"
+
+//when looking at a dungeon map other than the current one, start at floor 0
+PUSH; ORG $A4610; jumpToHack(dungeonFloor); POP
+ALIGN 4
+dungeonFloor:
+#incbin "asm/dungeonFloor.dmp"
+
+//when looking at a map for a dungeon we are not in, do not display link
+PUSH; ORG $A552C; jumpToHack(dungeonNoLink); POP
+ALIGN 4
+dungeonNoLink:
+#incbin "asm/dungeonNoLink.dmp"
+
+//fix dungeon maps when looking at them from overwrold
+PUSH; ORG $1DDEC; SHORT 0xE000; POP
+PUSH; ORG $52388; SHORT 0; POP
+PUSH; ORG $523C0; SHORT 0; POP
+PUSH; ORG $523F0; SHORT 0; POP

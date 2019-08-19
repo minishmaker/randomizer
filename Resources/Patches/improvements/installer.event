@@ -109,44 +109,6 @@ ALIGN 4
 creditsFlow3:
 #incbin "asm/creditsFlow3.dmp"
 
-//keys, maps, etc, can have the area they are for as a sub id
-PUSH; ORG $5231E; SHORT 0; POP //keys can be collected anywhere
-PUSH; ORG $52320; jumpToHack(keysSub); POP
-ALIGN 4
-keysSub:
-#incbin "asm/keysSub.dmp"
-PUSH; ORG $53CF4; jumpToHack(dungeonSub); POP
-ALIGN 4
-dungeonSub:
-#incbin "asm/dungeonSub.dmp"
-
-//press select in dungeon map to look at world map (and select again to go back)
-PUSH; ORG $A47E4; jumpToHack(mapSwap); POP
-ALIGN 4
-mapSwap:
-#incbin "asm/mapSwap.dmp"
-
-//show small keys and other items for the dungeons on hover in the world map
-PUSH; ORG $A67FC; jumpToHack(dungeonDisplay); POP
-ALIGN 4
-dungeonDisplay:
-#incbin "asm/dungeonDisplay.dmp"
-POIN dungeonDisplayGraphics
-POIN dungeonDisplayTable
-ALIGN 4
-dungeonDisplayGraphics:
-#incbin "dungeonItems.img.bin"
-ALIGN 4
-dungeonDisplayTable:
-BYTE 0x1C 0x18 //dws
-BYTE 0x0B 0x19 //cof
-BYTE 0x0E 0x1A //fow
-BYTE 0x1B 0x1B //tod
-BYTE 0x1A 0x1C //pow
-BYTE 0x12 0x1D //dhc
-BYTE 0x0F 0x1E //rc
-BYTE 0x00 0x00 //terminator
-
 //element object can have sub ids
 PUSH; ORG $9FB64; SHORT 0x7AE1; POP
 
@@ -171,3 +133,5 @@ scrollFix:
 //technique upgrades now also have scroll icons
 PUSH; ORG $FD6E8; POIN $FD505 $FD505 $FD505; POP
 PUSH; ORG $125EB8; SHORT 0x001 0x401 0x0B8 0x2541 0x001 0x401 0x0B8 0x2541 0x001 0x401 0x0B8 0x2541; POP
+
+#include "dungeon.event"
