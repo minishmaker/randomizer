@@ -74,7 +74,7 @@ namespace MinishRandomizer.Randomizer
         private List<Item> DungeonItems;
         private List<Item> MajorItems;
         private List<Item> MinorItems;
-        private List<LogicDefine> Defines;
+        private List<LogicDefine> LogicDefines;
         
         private string OutputDirectory;
         private HeartColorType HeartColor = HeartColorType.Default;
@@ -85,7 +85,7 @@ namespace MinishRandomizer.Randomizer
             DungeonItems = new List<Item>();
             MajorItems = new List<Item>();
             MinorItems = new List<Item>();
-            Defines = new List<LogicDefine>();
+            LogicDefines = new List<LogicDefine>();
             Flags = new List<LogicFlag>();
             OutputDirectory = outputDirectory;
         }
@@ -172,10 +172,10 @@ namespace MinishRandomizer.Randomizer
             DungeonItems.Clear();
             MajorItems.Clear();
             MinorItems.Clear();
-            Defines.Clear();
+            LogicDefines.Clear();
 
             // Add active flags to defines, leave inactive ones out
-            Defines.AddRange(Flags.Where(flag => flag.Active));
+            LogicDefines.AddRange(Flags.Where(flag => flag.Active));
 
             string[] locationStrings;
 
@@ -207,13 +207,30 @@ namespace MinishRandomizer.Randomizer
                     continue;
                 }
 
+                // Replace defines between `
+                // Probably a more efficient way to do it
+                if (locationString.IndexOf("`") != -1)
+                {
+                    foreach (LogicDefine define in LogicDefines)
+                    {
+                        locationString = define.Replace(locationString);
+
+                        if (locationString.IndexOf("`") == -1)
+                        {
+                            break;
+                        }
+                    }
+                }
+
                 if (locationString[0] == '!')
                 {
-                    // TODO: Parse new thing
+                    // TODO: Parse new things
                 }
                 else
                 {
+                    // Remove spaces as they're ignored in locations
                     locationString = locationString.Replace(" ", "");
+
                     Location newLocation = Location.GetLocation(locationString);
                     AddLocation(newLocation);
                 }

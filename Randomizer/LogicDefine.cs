@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace MinishRandomizer.Randomizer
@@ -10,6 +11,7 @@ namespace MinishRandomizer.Randomizer
     {
         public string Name;
         public string Replacement;
+        private Regex Expression;
 
         public LogicDefine(string name)
         {
@@ -20,12 +22,12 @@ namespace MinishRandomizer.Randomizer
         {
             Name = name;
             Replacement = replacement;
-
+            Expression = new Regex($"`{Name}`");
         }
 
         public string Replace(string input)
         {
-            return "";
+            return Expression.Replace(input, Replacement);
         }
     }
 
