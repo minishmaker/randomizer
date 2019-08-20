@@ -4,6 +4,7 @@ progressiveItems:
 #incbin "asm/progressiveItems.dmp"
 POIN progressiveItemsTable
 POIN ($A7430+0x08)|1 //return offset
+POIN dojoProgessive
 
 ALIGN 4
 progressiveItemsTable:

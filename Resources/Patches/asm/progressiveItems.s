@@ -1,10 +1,18 @@
 .equ	returnOffset, progressiveTable+4
+.equ	dojo, returnOffset+4
 .thumb
 push	{r4-r7,lr}
 push	{r1-r7}
 @set up the data
 mov	r4,r0	@item ID
 ldr	r5,progressiveTable
+
+@run dojo progressive
+mov	r0,r4
+ldr	r3,dojo
+mov	lr,r3
+.short	0xF800
+mov	r4,r0
 
 @first we need to check if this item is progressive
 tableLoop:
