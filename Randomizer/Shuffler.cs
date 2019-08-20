@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using MinishRandomizer.Core;
+using MinishRandomizer.Randomizer.Logic;
 using MinishRandomizer.Utilities;
 
 namespace MinishRandomizer.Randomizer

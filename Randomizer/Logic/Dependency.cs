@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Text.RegularExpressions;
 
-namespace MinishRandomizer.Randomizer
+namespace MinishRandomizer.Randomizer.Logic
 {
     public class Dependency
     {
@@ -27,7 +27,7 @@ namespace MinishRandomizer.Randomizer
                     continue;
                 }
 
-                switch(sequence[0])
+                switch (sequence[0])
                 {
                     // If the first character of the string is & or |, it's a compound dependency
                     // These are handled recursively, with the first character chopped off

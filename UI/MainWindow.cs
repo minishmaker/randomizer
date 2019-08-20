@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MinishRandomizer.Core;
 using MinishRandomizer.Randomizer;
+using MinishRandomizer.Randomizer.Logic;
 
 namespace MinishRandomizer
 {

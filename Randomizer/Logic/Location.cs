@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 using MinishRandomizer.Core;
 using MinishRandomizer.Utilities;
 
-namespace MinishRandomizer.Randomizer
+namespace MinishRandomizer.Randomizer.Logic
 {
     public class Location
     {
-        
+
 
         public static Location GetLocation(string locationText)
         {
@@ -57,7 +57,7 @@ namespace MinishRandomizer.Randomizer
                 {
                     addresses.Add(parsedAddress);
                 }
-                
+
             }
 
             string logic = "";
@@ -105,7 +105,7 @@ namespace MinishRandomizer.Randomizer
                             itemDungeon = itemParts[1];
                         }
 
-                        
+
                         itemOverride = new Item(replacementType, subType, itemDungeon);
                     }
                 }
@@ -160,9 +160,9 @@ namespace MinishRandomizer.Randomizer
                     }
                 }
             }
-            
+
             // If a byte isn't set, default to both
-            if (((addressType & AddressType.FirstByte) | (addressType & AddressType.SecondByte)) == AddressType.None)
+            if ((addressType & AddressType.FirstByte | addressType & AddressType.SecondByte) == AddressType.None)
             {
                 // Set the type of the address to the default
                 addressType |= AddressType.BothBytes;
@@ -180,7 +180,7 @@ namespace MinishRandomizer.Randomizer
             {
                 return new LocationAddress(addressType, address);
             }
-            
+
             // The address is an entity, so it should be parsed as an area-room-entity number
             string[] entityDetails = addressParts[0].Split('-');
             if (entityDetails.Length != 3)
@@ -220,11 +220,11 @@ namespace MinishRandomizer.Randomizer
                 addressValue = chestTableAddr + chest * 8 + 0x02;
             }
 
-            
+
             return new LocationAddress(addressType, addressValue);
         }
 
-        
+
 
         public enum LocationType
         {
@@ -342,7 +342,8 @@ namespace MinishRandomizer.Randomizer
 
         public void WriteLocationEvent(StringBuilder w)
         {
-            foreach (EventLocationAddress define in Defines) {
+            foreach (EventLocationAddress define in Defines)
+            {
                 define.WriteDefine(w, Contents);
             }
         }
@@ -361,7 +362,7 @@ namespace MinishRandomizer.Randomizer
             {
                 address.ReadAddress(ROM.Instance.reader, ref type, ref subType);
             }
-            
+
             // If the contents of the address aren't defined/are untyped, it's probably broken
             if (type == ItemType.Untyped && Type != LocationType.Helper && Type != LocationType.Unshuffled)
             {
@@ -435,7 +436,7 @@ namespace MinishRandomizer.Randomizer
                         AvailableCache = false;
                         Console.WriteLine($"Can't reach {Name}");
                     }
-                    
+
                     return false;
                 }
             }
@@ -445,7 +446,7 @@ namespace MinishRandomizer.Randomizer
                 Console.WriteLine($"Can reach {Name}");
                 AvailableCache = true;
             }
-            
+
             return true;
         }
 
