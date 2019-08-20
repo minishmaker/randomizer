@@ -83,3 +83,9 @@ PUSH; ORG $1DDEC; SHORT 0xE000; POP
 PUSH; ORG $52388; SHORT 0; POP
 PUSH; ORG $523C0; SHORT 0; POP
 PUSH; ORG $523F0; SHORT 0; POP
+
+//dungeon items tell you what dungeon they are for if sub id is not 0
+PUSH; ORG $53E14; jumpToHack(keysanityPopup); POP
+ALIGN 4
+keysanityPopup:
+#incbin "asm/keysanityPopup.dmp"
