@@ -2,10 +2,6 @@
 push	{r4-r7,lr}
 mov	r4,r0	@item
 
-@0x48 -> 0x73
-@0x48 -> 0x74
-@0x48 -> 0x4D -> 0x75
-
 @check what chain this item is from
 cmp	r4,#0x73
 beq	fastSpin
