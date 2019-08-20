@@ -255,3 +255,9 @@ PUSH; ORG $4D08C; jumpToHack(windFix); POP
 ALIGN 4
 windFix:
 #incbin "asm/windFix.dmp"
+
+//fix the graphics for the two fancy fow keys
+PUSH; ORG $58BA0; jumpToHack(holeKeys); POP
+ALIGN 4
+holeKeys:
+#incbin "asm/holeKeys.dmp"
