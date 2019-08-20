@@ -261,6 +261,11 @@ ALIGN 4
 elementsFixAgain:
 #incbin "asm/elementsFixAgain.dmp"
 POIN elementsTable
+//fix element spot text
+PUSH; ORG $9FC2E; SHORT 0; jumpToHack(elementsFixText); POP
+ALIGN 4
+elementsFixText:
+#incbin "asm/elementsFixText.dmp"
 
 //fix the graphics for the two fancy fow keys
 PUSH; ORG $58BA0; jumpToHack(holeKeys); POP
