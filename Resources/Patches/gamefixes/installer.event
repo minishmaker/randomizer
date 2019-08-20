@@ -63,3 +63,12 @@ PUSH; ORG $4F140; jumpToHack(bridgeLock); POP
 ALIGN 4
 bridgeLock:
 #incbin "asm/bridgeLock.dmp"
+
+//game doesn't reset boss flags based on elements not being collected
+PUSH; ORG $530CC; SHORT 0xBD00; POP
+
+//fix the clouds sometimes not being transparent
+PUSH; ORG $5A874; jumpToHack(cloudFix); POP
+ALIGN 4
+cloudFix:
+#incbin "asm/cloudFix.dmp"
