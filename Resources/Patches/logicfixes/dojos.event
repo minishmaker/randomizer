@@ -110,3 +110,10 @@ PUSH; ORG $68908; jumpToHack(dojosTutorialSpin); POP
 ALIGN 4
 dojosTutorialSpin:
 #incbin "asm/dojosTutorialSpin.dmp"
+
+//swiftblade I now checks for 7 scrolls total, instead of 7 specific scrolls
+PUSH; ORG $687D8; jumpToHack(dojosScrollCount); POP
+ALIGN 4
+dojosScrollCount:
+#incbin "asm/dojosScrollCount.dmp"
+
