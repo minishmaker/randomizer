@@ -143,5 +143,17 @@ scrollFix:
 PUSH; ORG $FD6E8; POIN $FD505 $FD505 $FD505; POP
 PUSH; ORG $125EB8; SHORT 0x001 0x401 0x0B8 0x2541 0x001 0x401 0x0B8 0x2541 0x001 0x401 0x0B8 0x2541; POP
 
+//allow gibdos to hold any item, instead of just bombs or keys
+PUSH; ORG $A1D58; SHORT 0x7AC3
+ORG $A1C9A; SHORT 0x7BA8
+ORG $1264D4; POIN $125B20
+ORG $A1D2C; SHORT 0x7AE3
+ORG $E688D; BYTE 0x3B 0x00 0x00
+ORG $E68AD; BYTE 0x3B 0x00 0x00
+ORG $A1C88; jumpToHack(gibdoFix); POP
+ALIGN 4
+gibdoFix:
+#incbin "asm/gibdoFix.dmp"
+
 #include "glitchless.event"
 #include "dungeon.event"
