@@ -123,3 +123,12 @@ POP
 #include "improvements/installer.event"
 #include "hearts.event"
 #include "randomLanguage.event"
+
+#ifdef fuzzy //size of the mosaic, 0 to 14
+	PUSH; ORG $4FD90; jumpToHack(fuzzyMode); POP
+	ALIGN 4
+	fuzzyMode:
+	#incbin "asm/fuzzyMode.dmp"
+	WORD ((fuzzy))|((fuzzy)<<4)|((fuzzy)<<8)|((fuzzy)<<12)
+	WORD ((fuzzy+1))|((fuzzy+1)<<4)|((fuzzy+1)<<8)|((fuzzy+1)<<12)
+#endif
