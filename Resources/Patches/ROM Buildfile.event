@@ -129,3 +129,15 @@ POP
 	WORD ((fuzzy))|((fuzzy)<<4)|((fuzzy)<<8)|((fuzzy)<<12)
 	WORD ((fuzzy+1))|((fuzzy+1)<<4)|((fuzzy+1)<<8)|((fuzzy+1)<<12)
 #endif
+
+#ifdef follower
+	#ifndef followerID
+		#define followerID 0x2E
+	#endif
+	PUSH; ORG $6043E; SHORT 0; POP //always have zelda companion
+	PUSH; ORG $6E690; jumpToHack(randomFollower); POP //if sprite is 0x2E, change it
+	ALIGN 4
+	randomFollower:
+	#incbin "asm/randomFollower.dmp"
+	WORD followerID
+#endif
