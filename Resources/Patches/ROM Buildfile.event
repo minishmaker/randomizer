@@ -7,9 +7,6 @@
 #define FreeSpace $EF3340
 ORG FreeSpace
 
-//#define neverSkipFusionCutscene 0 //define to never skip
-#define alwaysSkipFusionCutscene 0 //set to non-0 to skip, set to 0 to skip on button held
-
 #ifdef TEST
 	PUSH
 	ORG  $EDD8+2; BYTE 0x5C 0x70	//lady kinstone

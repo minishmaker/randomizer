@@ -1,3 +1,9 @@
+#ifndef neverSkipFusionCutscene //define to never skip
+	#ifndef alwaysSkipFusionCutscene
+		#define alwaysSkipFusionCutscene 0 //set to non-0 to skip, set to 0 to skip on button held
+	#endif
+#endif
+
 //remove all ezlo stepping triggers
 PUSH; ORG $4AB14; jumpToHack(ezloPleaseStop); POP
 ALIGN 4
