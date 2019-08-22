@@ -132,7 +132,7 @@ POP
 
 #ifdef follower
 	#ifndef followerID
-		#define followerID 0x2E
+		#define followerID 0x05
 	#endif
 	PUSH; ORG $6043E; SHORT 0; POP //always have zelda companion
 	PUSH; ORG $6E690; jumpToHack(randomFollower); POP //if sprite is 0x2E, change it
