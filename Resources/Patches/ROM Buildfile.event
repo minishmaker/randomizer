@@ -142,3 +142,16 @@ POP
 	#incbin "asm/randomFollower.dmp"
 	WORD followerID
 #endif
+
+PUSH
+//temporary, turn shop items into shells
+ORG $F4D3F; BYTE 0x61 //shield
+ORG $F4D8F; BYTE 0x61 //wallet
+ORG $F4DCF; BYTE 0x61 //dog food
+ORG $F4E0F; BYTE 0x61 //quiver
+ORG $F4E6F; BYTE 0x61 //boomerang
+//stop pedestal from giving anything
+ORG $13672; SHORT 0x00 0x00
+ORG $138CC; SHORT 0x00 0x00
+ORG $13A80; SHORT 0x00 0x00
+POP
