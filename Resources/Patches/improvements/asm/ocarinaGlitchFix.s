@@ -1,7 +1,10 @@
 .thumb
+ldr	r0,=#0x300116C
+ldrb	r1,[r0,#3]
+cmp	r1,#6
+bhs	end
 cmp	r4,#0x17
 bne	notOcarina
-ldr	r0,=#0x300116C
 ldrb	r0,[r0]
 cmp	r0,#1
 bne	end
