@@ -10,4 +10,10 @@ PUSH; ORG $7FD48; jumpToHack(moleFix); POP
 ALIGN 4
 moleFix:
 #incbin "asm/moleFix.dmp"
+
+//prevent link from jumping diagonally out of holes
+PUSH; ORG $5E88C; jumpToHack(holeFix); POP
+ALIGN 4
+holeFix:
+#incbin "asm/holeFix.dmp"
 #endif
