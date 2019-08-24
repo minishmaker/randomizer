@@ -1,19 +1,25 @@
 .thumb
 push	{r4,r5,lr}
-push	{r1-r7}
-@check if in a hole
-ldr	r1,=#0x300116C
-ldrb	r1,[r1]
-cmp	r1,#0x1A
-bne	end
-@check if holding up or down
-mov	r1,#0xC0
-and	r1,r0
+push	{r0-r7}
+@check if pressing A/B/L/R
+ldr	r0,=#0x3000FF0
+ldrh	r1,[r0,#0]
+ldrh	r2,[r0,#2]
+ldrh	r3,[r0,#4]
+orr	r1,r2
+orr	r1,r3
+ldr	r2,=#0x0303
+and	r1,r2
 cmp	r1,#0
 beq	end
-mov	r0,r1
+@unset diagonal angle
+ldr	r0,=#0x3001174
+ldrb	r1,[r0]
+mov	r2,#0xFE
+and	r1,r2
+strb	r1,[r0]
 end:
-pop	{r1-r7}
+pop	{r0-r7}
 mov	r2,r0
 mov	r5,#0x80
 lsl	r5,#2
