@@ -45,8 +45,8 @@
             this.browseLogicButton = new System.Windows.Forms.Button();
             this.customLogicCheckBox = new System.Windows.Forms.CheckBox();
             this.mainTabs = new System.Windows.Forms.TabControl();
-            this.flagTabPage = new System.Windows.Forms.TabPage();
-            this.flagBoxesLayout = new System.Windows.Forms.FlowLayoutPanel();
+            this.optionTabPage = new System.Windows.Forms.TabPage();
+            this.optionControlLayout = new System.Windows.Forms.FlowLayoutPanel();
             this.gimmicksTabPage = new System.Windows.Forms.TabPage();
             this.heartColorSelect = new System.Windows.Forms.ComboBox();
             this.heartColorLabel = new System.Windows.Forms.Label();
@@ -60,7 +60,7 @@
             this.menuStrip1.SuspendLayout();
             this.generalTab.SuspendLayout();
             this.mainTabs.SuspendLayout();
-            this.flagTabPage.SuspendLayout();
+            this.optionTabPage.SuspendLayout();
             this.gimmicksTabPage.SuspendLayout();
             this.generatedTab.SuspendLayout();
             this.SuspendLayout();
@@ -213,7 +213,7 @@
             // mainTabs
             // 
             this.mainTabs.Controls.Add(this.generalTab);
-            this.mainTabs.Controls.Add(this.flagTabPage);
+            this.mainTabs.Controls.Add(this.optionTabPage);
             this.mainTabs.Controls.Add(this.gimmicksTabPage);
             this.mainTabs.Location = new System.Drawing.Point(9, 27);
             this.mainTabs.Name = "mainTabs";
@@ -223,22 +223,22 @@
             // 
             // flagTabPage
             // 
-            this.flagTabPage.Controls.Add(this.flagBoxesLayout);
-            this.flagTabPage.Location = new System.Drawing.Point(4, 22);
-            this.flagTabPage.Name = "flagTabPage";
-            this.flagTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.flagTabPage.Size = new System.Drawing.Size(361, 209);
-            this.flagTabPage.TabIndex = 2;
-            this.flagTabPage.Text = "Flags";
-            this.flagTabPage.UseVisualStyleBackColor = true;
+            this.optionTabPage.Controls.Add(this.optionControlLayout);
+            this.optionTabPage.Location = new System.Drawing.Point(4, 22);
+            this.optionTabPage.Name = "optionTabPage";
+            this.optionTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.optionTabPage.Size = new System.Drawing.Size(361, 209);
+            this.optionTabPage.TabIndex = 2;
+            this.optionTabPage.Text = "Options";
+            this.optionTabPage.UseVisualStyleBackColor = true;
             // 
             // flagBoxesLayout
             // 
-            this.flagBoxesLayout.AutoScroll = true;
-            this.flagBoxesLayout.Location = new System.Drawing.Point(0, 3);
-            this.flagBoxesLayout.Name = "flagBoxesLayout";
-            this.flagBoxesLayout.Size = new System.Drawing.Size(365, 206);
-            this.flagBoxesLayout.TabIndex = 0;
+            this.optionControlLayout.AutoScroll = true;
+            this.optionControlLayout.Location = new System.Drawing.Point(0, 3);
+            this.optionControlLayout.Name = "flagBoxesLayout";
+            this.optionControlLayout.Size = new System.Drawing.Size(365, 206);
+            this.optionControlLayout.TabIndex = 0;
             // 
             // gimmicksTabPage
             // 
@@ -352,7 +352,7 @@
             this.generalTab.ResumeLayout(false);
             this.generalTab.PerformLayout();
             this.mainTabs.ResumeLayout(false);
-            this.flagTabPage.ResumeLayout(false);
+            this.optionTabPage.ResumeLayout(false);
             this.gimmicksTabPage.ResumeLayout(false);
             this.gimmicksTabPage.PerformLayout();
             this.generatedTab.ResumeLayout(false);
@@ -389,8 +389,8 @@
         private System.Windows.Forms.TabPage gimmicksTabPage;
         private System.Windows.Forms.ComboBox heartColorSelect;
         private System.Windows.Forms.Label heartColorLabel;
-        private System.Windows.Forms.TabPage flagTabPage;
-        private System.Windows.Forms.FlowLayoutPanel flagBoxesLayout;
+        private System.Windows.Forms.TabPage optionTabPage;
+        private System.Windows.Forms.FlowLayoutPanel optionControlLayout;
     }
 }
 

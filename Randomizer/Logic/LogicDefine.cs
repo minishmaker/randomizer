@@ -30,16 +30,4 @@ namespace MinishRandomizer.Randomizer.Logic
             return Expression.Replace(input, Replacement);
         }
     }
-
-    public class LogicFlag : LogicDefine
-    {
-        public string NiceName;
-        public bool Active;
-
-        public LogicFlag(string name, string niceName) : base(name)
-        {
-            NiceName = niceName;
-            Active = false;
-        }
-    }
 }

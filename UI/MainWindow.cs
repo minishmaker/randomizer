@@ -29,14 +29,14 @@ namespace MinishRandomizer
 
             if (customLogicCheckBox.Checked)
             {
-                shuffler.LoadFlags(customLogicPath.Text);
+                shuffler.LoadOptions(customLogicPath.Text);
             }
             else
             {
-                shuffler.LoadFlags();
+                shuffler.LoadOptions();
             }
 
-            LoadOptionControls(shuffler.Flags);
+            LoadOptionControls(shuffler.Options);
         }
 
         private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
@@ -146,20 +146,20 @@ namespace MinishRandomizer
                 // Only load logic for custom if the file exists
                 if (File.Exists(customLogicPath.Text))
                 {
-                    shuffler.LoadFlags(customLogicPath.Text);
+                    shuffler.LoadOptions(customLogicPath.Text);
                 }
             }
             else
             {
-                shuffler.LoadFlags();
+                shuffler.LoadOptions();
             }
 
-            LoadOptionControls(shuffler.Flags);
+            LoadOptionControls(shuffler.Options);
         }
 
         private void CustomLogicPath_TextChanged(object sender, EventArgs e)
         {
-            // Load flags into shuffler if the logic file is available
+            // Load options into shuffler if the logic file is available
             if (!File.Exists(customLogicPath.Text))
             {
                 return;
@@ -172,9 +172,9 @@ namespace MinishRandomizer
 
             if (customLogicCheckBox.Checked)
             {
-                shuffler.LoadFlags(customLogicPath.Text);
+                shuffler.LoadOptions(customLogicPath.Text);
 
-                LoadOptionControls(shuffler.Flags);
+                LoadOptionControls(shuffler.Options);
             }
         }
 
@@ -309,36 +309,32 @@ namespace MinishRandomizer
             File.WriteAllText(sfd.FileName, spoilerLog);
         }
 
-        private void LoadOptionControls(List<LogicFlag> flags)
+        private void LoadOptionControls(List<LogicOption> options)
         {
-            // If there flags, show the flag tab
-            if (flags.Count >= 1)
+            // If there options, show the options tab
+            if (options.Count >= 1)
             {
                 
                 // Make sure not to add the tab multiple times
-                if (!mainTabs.TabPages.Contains(flagTabPage))
+                if (!mainTabs.TabPages.Contains(optionTabPage))
                 {
                     // Insert logic tab at the right place
-                    mainTabs.TabPages.Insert(1, flagTabPage);
+                    mainTabs.TabPages.Insert(1, optionTabPage);
                 }
             }
             else
             {
-                mainTabs.TabPages.Remove(flagTabPage);
+                mainTabs.TabPages.Remove(optionTabPage);
                 return;
             }
 
-            flagBoxesLayout.Controls.Clear();
+            optionControlLayout.Controls.Clear();
 
-            foreach (LogicFlag flag in flags)
+            foreach (LogicOption option in options)
             {
-                CheckBox flagCheckBox = new CheckBox();
-                flagCheckBox.Text = flag.NiceName;
+                Control optionControl = option.GetControl();
 
-                // Make the Active status of the flag depend on whether the checkbox is checked or not
-                flagCheckBox.CheckedChanged += (object sender, EventArgs e) => { flag.Active = flagCheckBox.Checked; Console.WriteLine(flag.Name); };
-
-                flagBoxesLayout.Controls.Add(flagCheckBox);
+                optionControlLayout.Controls.Add(optionControl);
             }
         }
     }

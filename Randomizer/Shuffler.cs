@@ -68,7 +68,7 @@ namespace MinishRandomizer.Randomizer
     {
         
         public int Seed;
-        public List<LogicFlag> Flags;
+        public List<LogicOption> Options;
         private Random RNG;
         private List<Location> Locations;
         //private List<Location> StartingLocations;
@@ -85,7 +85,7 @@ namespace MinishRandomizer.Randomizer
             MajorItems = new List<Item>();
             MinorItems = new List<Item>();
             LogicDefines = new List<LogicDefine>();
-            Flags = new List<LogicFlag>();
+            Options = new List<LogicOption>();
         }
 
         public void SetSeed(int seed)
@@ -102,9 +102,9 @@ namespace MinishRandomizer.Randomizer
         /// <summary>
         /// Load the flags that a logic file uses to customize itself
         /// </summary>
-        public void LoadFlags(string logicFile = null)
+        public void LoadOptions(string logicFile = null)
         {
-            Flags.Clear();
+            Options.Clear();
 
             string[] logicStrings;
 
@@ -154,9 +154,9 @@ namespace MinishRandomizer.Randomizer
                     return;
                 }
 
-                LogicFlag newFlag = new LogicFlag(splits[1], splits[2]);
+                LogicFlag newFlag = new LogicFlag(splits[1], splits[2], false);
 
-                Flags.Add(newFlag);
+                Options.Add(newFlag);
             }
         }
 
@@ -174,7 +174,7 @@ namespace MinishRandomizer.Randomizer
             LogicDefines.Clear();
 
             // Add active flags to defines, leave inactive ones out
-            LogicDefines.AddRange(Flags.Where(flag => flag.Active));
+            LogicDefines.AddRange(Options.Where(option => option.Active));
 
             string[] locationStrings;
 
