@@ -1,4 +1,4 @@
-# Default logic for the randomizer - Doesn't allow glitches, but allows unintuitive tricks
+﻿# Default logic for the randomizer - Doesn't allow glitches, but allows unintuitive tricks
 
 # Location format:
 #	Name;Type;Address[;Logic][;Item Override]
@@ -14,10 +14,9 @@
 
 # Item Macro Helpers
 HasSword; Helper;; (|Items.SmithSword, Items.GreenSword, Items.RedSword, Items.BlueSword, Items.FourSword)
-CanSpin; Helper;; (|Items.SpinAttack, Items.FastSpin, Items.FastSplit, Items.LongSpin)
-CanSplit2; Helper;; (|Items.SmithSword::3, Items.RedSword, Items.BlueSword, Items.FourSword), Helpers.CanSpin
-CanSplit3; Helper;; (|Items.SmithSword::4, Items.BlueSword, Items.FourSword), Helpers.CanSpin
-CanSplit4; Helper;; (|Items.SmithSword::5, Items.FourSword), Helpers.CanSpin
+CanSplit2; Helper;; (|Items.SmithSword::3, Items.RedSword, Items.BlueSword, Items.FourSword), Items.SpinAttack
+CanSplit3; Helper;; (|Items.SmithSword::4, Items.BlueSword, Items.FourSword), Items.SpinAttack
+CanSplit4; Helper;; (|Items.SmithSword::5, Items.FourSword), Items.SpinAttack
 
 HasBottle; Helper;; (|Items.Bottle1, Items.Bottle2, Items.Bottle3, Items.Bottle4)
 
@@ -33,12 +32,12 @@ CanDestroyTrees; Helper;; (|Helpers.HasSword, Helpers.HasLightBow, Items.BombBag
 Inaccessible; Helper;; Items.Untyped.FF
 
 # Settings 
-noFusionDefine;						Unshuffled; noFusions:Define:BothBytes;				Helpers.Inaccessible; Items.Untyped.01	# if defined, fusions other than golden kinstone fusions are not available
-#glitchlessDefine;					Unshuffled; glitchless:Define:SecondByte;				Helpers.Inaccessible; Items.Untyped.01	# if defined, bugfixes are installed (currently just ocarina glitch fix)
-#randomLanguageDefine;				Unshuffled; randomLanguage:Define:SecondByte;			Helpers.Inaccessible; Items.Untyped.01	# if defined, text changes language constantly
-#fuzzyDefine;						Unshuffled; fuzzy:Define:SecondByte;					Helpers.Inaccessible; Items.Untyped.14	# if defined with a value of 0 to 14, makes the screen fuzzy and the pixels bigger
-#neverSkipFusionCutsceneDefine;		Unshuffled; neverSkipFusionCutscene:Define:SecondByte;	Helpers.Inaccessible; Items.Untyped.01	# if defined, fusion cutscenes are just like vanilla, overrides the below option
-#alwaysSkipFusionCutsceneDefine;	Unshuffled; alwaysSkipFusionCutscene:Define:SecondByte; Helpers.Inaccessible; Items.Untyped.01	# if 0 fusion cutscenes are skipped when the buttons are held, if non-0 they are always instantly skipped
+noFusionDefine;						Unshuffled; noFusions:Define;					Helpers.Inaccessible; Items.Untyped.01	# if defined, fusions other than golden kinstone fusions are not available
+#glitchlessDefine;					Unshuffled; glitchless:Define;					Helpers.Inaccessible; Items.Untyped.01	# if defined, bugfixes are installed (currently just ocarina glitch fix)
+#randomLanguageDefine;				Unshuffled; randomLanguage:Define;				Helpers.Inaccessible; Items.Untyped.01	# if defined, text changes language constantly
+#fuzzyDefine;						Unshuffled; fuzzy:Define;						Helpers.Inaccessible; Items.Untyped.14	# if defined with a value of 0 to 14, makes the screen fuzzy and the pixels bigger
+#neverSkipFusionCutsceneDefine;		Unshuffled; neverSkipFusionCutscene:Define;		Helpers.Inaccessible; Items.Untyped.01	# if defined, fusion cutscenes are just like vanilla, overrides the below option
+#alwaysSkipFusionCutsceneDefine;	Unshuffled; alwaysSkipFusionCutscene:Define;	Helpers.Inaccessible; Items.Untyped.01	# if 0 fusion cutscenes are skipped when the buttons are held, if non-0 they are always instantly skipped
 
 # Central Hyrule Locations
 SmithHouse; Minor; 22-11-00
@@ -69,7 +68,7 @@ SchoolGardenMiddle; Minor; 11-02-01; Items.PacciCane, Helpers.CanSplit4
 SchoolGardenRight; Minor; 11-02-02; Items.PacciCane, Helpers.CanSplit4
 SchoolGardenHeartPiece; Minor; 0D5557; Items.PacciCane, Helpers.CanSplit4
 TownDiggingTop; Minor; 0F-00-00; Items.MoleMitts
-TownDiggingRight; Minor; 0F-00-01; Items.MoleMitts
+TownDiggingRight; Major; 0F-00-01; Items.MoleMitts; Items.SpinAttack #Temporary for Testing
 TownDiggingLeft; Minor; 0F-00-02; Items.MoleMitts
 BakeryAttic; Minor; 2E-03-00; (|Items.PacciCane, Items.Flippers, Items.RocsCape)
 StockWellAttic; Minor; 2E-01-01; (|Items.PacciCane, Items.Flippers, Items.RocsCape)
@@ -99,7 +98,7 @@ LonLonCave; Major; 32-0C-00; Locations.AccessHyliaNorth, Helpers.CanSplit2
 LonLonHeartPiece; Minor; 0D56EF; Locations.AccessHyliaNorth, Items.PegasusBoots
 MinishRupeeFairy; Major; 00B7B4; Locations.AccessEastField, Items.PacciCane
 
-AccessWestField; Helper;; (|Items.RocsCape, (&Helpers.HasSword, Helpers.CanSpin), Items.Flippers, (&Items.BombBag, Helpers.CanSplit3))
+AccessWestField; Helper;; (|Items.RocsCape, (&Helpers.HasSword, Items.SpinAttack), Items.Flippers, (&Items.BombBag, Helpers.CanSplit3))
 TrilbyBombCave; Minor; 32-07-00; Locations.AccessWestField, Helpers.CanSplit2, Items.BombBag
 TrilbyMoleCaveLeft; Minor; 13-03-00; Locations.AccessWestField, Items.MoleMitts
 TrilbyMoleCaveRight; Minor; 13-03-02; Locations.AccessWestField, Items.MoleMitts
@@ -188,7 +187,14 @@ AccessValley; Helper;; Helpers.CanSplit3, (|Items.BombBag, Items.RocsCape, Items
 ArrowFairy; Major; 00B722; Locations.AccessValley, Items.BombBag
 DampeKey; Major; 0096B6; Locations.AccessValley
 RoyalGraveHeartPiece; Minor; 0D8AE7; Locations.AccessValley, Items.GraveyardKey, Helpers.CanSplit3, Items.PegasusBoots
-KingGift:Prizes; Major; 00DA5A; Locations.AccessValley, Items.GraveyardKey, Helpers.CanSplit3, Items.PegasusBoots; Items.KinstoneX.YellowCrown
+
+#keysanity only
+AccessCrypt; Helper;; Locations.AccessValley, Items.GraveyardKey, Helpers.CanSplit3, Items.PegasusBoots
+CryptLeft; Major; 0E6357; Locations.AccessCrypt; Items.SmallKey.1E
+CryptRight; Major; 0E63A7; Locations.AccessCrypt; Items.SmallKey.1E
+#end of above statement
+
+KingGift:Prizes; Major; 00DA5A; Locations.AccessValley, Items.GraveyardKey, Helpers.CanSplit3, Items.PegasusBoots, Items.SmallKey.1E::2; Items.KinstoneX.YellowCrown
 
 # Veil Falls Locations
 AccessFallsNorth; Helper;; Items.BombBag, Items.KinstoneX.YellowCrown
@@ -229,42 +235,42 @@ TowerTopRight; Minor; 30-03-01; Locations.AccessUpperClouds
 
 # Deepwood locations
 DeepwoodAccess:Deepwood; Helper;; Locations.AccessMinishWoods, (|Items.JabberNut, Items.Flippers)
-DeepwoodWiggler:Deepwood; Major; 48-00-01; Locations.DeepwoodAccess, Helpers.HasSword, Items.SmallKey:Deepwood:4
-DeepwoodMulldozers:Deepwood; DungeonItem; 0DE51B; Locations.DeepwoodAccess, Items.SmallKey:Deepwood:4
-DeepwoodPostWigglerHeartPiece:Deepwood; Minor; 0DE1F7; Locations.DeepwoodAccess, Helpers.HasSword, (|Items.GustJar, Items.LanternOff), Items.SmallKey:Deepwood:4
-DeepwoodPreWigglerLeft:Deepwood; Minor; 48-01-01; Locations.DeepwoodAccess, (|(&Items.GustJar, Items.SmallKey:Deepwood), (&Items.BombBag, Items.SmallKey:Deepwood:2))
-DeepwoodPreWigglerRight:Deepwood; Minor; 48-01-02; Locations.DeepwoodAccess, (|(&Items.GustJar, Items.SmallKey:Deepwood), (&Items.BombBag, Items.SmallKey:Deepwood:2))
-DeepwoodPreWigglerHeartPiece:DeepWood; Minor; 0DDE03; Locations.DeepwoodAccess, (|(&Items.GustJar, Items.SmallKey:Deepwood), (&Items.BombBag, Items.SmallKey:Deepwood:2))
-DeepwoodPreCompass:Deepwood; Minor; 48-02-01; Locations.DeepwoodAccess, (|(&Items.GustJar, Items.SmallKey:Deepwood), (&Items.BombBag, Items.SmallKey:Deepwood:2))
-DeepwoodStatueRoom:Deepwood; DungeonItem; 48-04-01; Locations.DeepwoodAccess, Items.SmallKey:Deepwood
-DeepwoodWestWing:Deepwood; DungeonItem; 48-05-01; Locations.DeepwoodAccess, Items.SmallKey:Deepwood
-DeepwoodPreBarrel:Deepwood; Minor; 48-06-01; Locations.DeepwoodAccess, (|Items.GustJar, Items.BombBag), Items.SmallKey:Deepwood
-DeepwoodSlugTorches:Deepwood; DungeonItem; 48-10-01; Locations.DeepwoodAccess
-DeepwoodBasementNorth:Deepwood; DungeonItem; 48-11-01; Locations.DeepwoodAccess, Items.GustJar, Items.SmallKey:Deepwood:4
-DeepwoodBasementSwitch:Deepwood; DungeonItem; 48-12-01; Locations.DeepwoodAccess,  (|(&Items.GustJar, Items.SmallKey:Deepwood), (&Items.SmallKey:Deepwood:2, Items.RocsCape))
-DeepwoodBasementEast:Deepwood; DungeonItem; 48-12-02; Locations.DeepwoodAccess, (|(&Items.GustJar, Items.SmallKey:Deepwood), Items.SmallKey:Deepwood:2)
+DeepwoodWiggler:Deepwood; Major; 48-00-01; Locations.DeepwoodAccess, Helpers.HasSword, Items.SmallKey.18::4
+DeepwoodMulldozers:Deepwood; Major; 0DE51B; Locations.DeepwoodAccess, Items.SmallKey.18::4
+DeepwoodPostWigglerHeartPiece:Deepwood; Minor; 0DE1F7; Locations.DeepwoodAccess, Helpers.HasSword, (|Items.GustJar, Items.LanternOff), Items.SmallKey.18::4
+DeepwoodPreWigglerLeft:Deepwood; Minor; 48-01-01; Locations.DeepwoodAccess, (|(&Items.GustJar, Items.SmallKey.18), (&Items.BombBag, Items.SmallKey.18::2))
+DeepwoodPreWigglerRight:Deepwood; Minor; 48-01-02; Locations.DeepwoodAccess, (|(&Items.GustJar, Items.SmallKey.18), (&Items.BombBag, Items.SmallKey.18::2))
+DeepwoodPreWigglerHeartPiece:DeepWood; Minor; 0DDE03; Locations.DeepwoodAccess, (|(&Items.GustJar, Items.SmallKey.18), (&Items.BombBag, Items.SmallKey.18::2))
+DeepwoodPreCompass:Deepwood; Minor; 48-02-01; Locations.DeepwoodAccess, (|(&Items.GustJar, Items.SmallKey.18), (&Items.BombBag, Items.SmallKey.18::2))
+DeepwoodStatueRoom:Deepwood; Major; 48-04-01; Locations.DeepwoodAccess, Items.SmallKey.18; Items.SmallKey.18
+DeepwoodWestWing:Deepwood; Major; 48-05-01; Locations.DeepwoodAccess, Items.SmallKey.18; Items.SmallKey.18
+DeepwoodPreBarrel:Deepwood; Minor; 48-06-01; Locations.DeepwoodAccess, (|Items.GustJar, Items.BombBag), Items.SmallKey.18
+DeepwoodSlugTorches:Deepwood; Major; 48-10-01; Locations.DeepwoodAccess; Items.SmallKey.18
+DeepwoodBasementNorth:Deepwood; Major; 48-11-01; Locations.DeepwoodAccess, Items.GustJar, Items.SmallKey.18::4; Items.BigKey.18
+DeepwoodBasementSwitch:Deepwood; Major; 48-12-01; Locations.DeepwoodAccess,  (|(&Items.GustJar, Items.SmallKey.18), (&Items.SmallKey.18::2, Items.RocsCape)); Items.Compass.18
+DeepwoodBasementEast:Deepwood; Major; 48-12-02; Locations.DeepwoodAccess, (|(&Items.GustJar, Items.SmallKey.18), Items.SmallKey.18::2); Items.DungeonMap.18
 DeepwoodUpstairsChest:Deepwood; Minor; 48-17-01; Locations.DeepwoodAccess, (|Items.GustJar, Items.LanternOff)
-CompleteDeepwood:Deepwood; Helper;; Locations.DeepwoodAccess, Items.GustJar, Helpers.HasSword, Items.BigKey:Deepwood
+CompleteDeepwood:Deepwood; Helper;; Locations.DeepwoodAccess, Items.GustJar, Helpers.HasSword, Items.BigKey.18
 DeepwoodBossItem:Deepwood; Minor; chuContainerItem:Define:FirstByte, chuContainerSub:Define:SecondByte; Locations.CompleteDeepwood; Items.HeartContainer
 DeepwoodPrize:Prizes; DungeonItem; 0DF03B; Locations.CompleteDeepwood
 
 # Cave of Flames locations
 CoFAccess:FlameCave; Helper;; Locations.AccessCrenel,(|Items.PacciCane, (&Items.GripRing, (|Items.RocsCape, Helpers.HasLightBow,(&Items.GustJar, (|Items.BombBag, Helpers.HasBow, Helpers.HasBoomerang))))), (|Items.BombBag, Items.Shield, Items.PacciCane), Helpers.HasDamageSource
-CoFFlippedCart:FlameCave; DungeonItem; 50-01-01; Locations.CoFAccess, Helpers.HasSword, Items.PacciCane, Items.SmallKey:FlameCave
-CoFHeartPiece:FlameCave; Minor; 0DFC9F; Locations.CoFAccess, Items.BombBag, Helpers.HasSword, Items.SmallKey:FlameCave
-CoFChuPit:FlameCave; Major; 50-01-02; Locations.CoFAccess, Items.SmallKey:FlameCave, Helpers.HasSword
-CoFPillBugsPillarChest:FlameCave; DungeonItem; 50-08-00; Locations.CoFAccess
+CoFFlippedCart:FlameCave; Major; 50-01-01; Locations.CoFAccess, Helpers.HasSword, Items.PacciCane, Items.SmallKey.19; Items.SmallKey.19
+CoFHeartPiece:FlameCave; Minor; 0DFC9F; Locations.CoFAccess, Items.BombBag, Helpers.HasSword, Items.SmallKey.19
+CoFChuPit:FlameCave; Major; 50-01-02; Locations.CoFAccess, Items.SmallKey.19, Helpers.HasSword
+CoFPillBugsPillarChest:FlameCave; Major; 50-08-00; Locations.CoFAccess; Items.SmallKey.19
 CoFPillBugsHoleChest:FlameCave; Minor; 50-08-01; Locations.CoFAccess
 CoFSoutheastSmall:FlameCave; Minor; 50-09-00; Locations.CoFAccess
-CoFSoutheastBig:FlameCave; DungeonItem; 50-09-01; Locations.CoFAccess
-CoFBasementTop:FlameCave; Minor; 50-10-00; Locations.CoFAccess, Items.PacciCane, Helpers.HasSword, Items.SmallKey:FlameCave:2
-CoFBasementBottom:FlameCave; Minor; 50-10-01; Locations.CoFAccess, Items.PacciCane, Helpers.HasSword, Items.SmallKey:FlameCave:2
-CoFBlades:FlameCave; Minor; 50-14-00; Locations.CoFAccess, Items.PacciCane, Helpers.HasSword, Items.SmallKey:FlameCave:2
-CoFSpinies:FlameCave; DungeonItem; 50-15-00; Locations.CoFAccess
-CoFBasementLavaLeft:FlameCave; Minor; 50-17-00; Locations.CoFAccess, Items.PacciCane, Helpers.HasSword, Items.SmallKey:FlameCave:2
-CoFBasementLavaRight:FlameCave; Minor; 50-17-01; Locations.CoFAccess, Items.PacciCane, Helpers.HasSword, Items.SmallKey:FlameCave:2
-CoFBasementLavaBig:FlameCave; DungeonItem; 50-17-02; Locations.CoFAccess, Items.PacciCane, Helpers.HasSword, Items.SmallKey:FlameCave:2
-CompleteCoF:FlameCave; Helper;; Locations.CoFAccess, Items.PacciCane, Items.SmallKey:FlameCave:2, Items.BigKey:FlameCave
+CoFSoutheastBig:FlameCave; Major; 50-09-01; Locations.CoFAccess; Items.Compass.19
+CoFBasementTop:FlameCave; Minor; 50-10-00; Locations.CoFAccess, Items.PacciCane, Helpers.HasSword, Items.SmallKey.19::2
+CoFBasementBottom:FlameCave; Minor; 50-10-01; Locations.CoFAccess, Items.PacciCane, Helpers.HasSword, Items.SmallKey.19::2
+CoFBlades:FlameCave; Minor; 50-14-00; Locations.CoFAccess, Items.PacciCane, Helpers.HasSword, Items.SmallKey.19::2
+CoFSpinies:FlameCave; Major; 50-15-00; Locations.CoFAccess; Items.DungeonMap.19
+CoFBasementLavaLeft:FlameCave; Minor; 50-17-00; Locations.CoFAccess, Items.PacciCane, Helpers.HasSword, Items.SmallKey.19::2
+CoFBasementLavaRight:FlameCave; Minor; 50-17-01; Locations.CoFAccess, Items.PacciCane, Helpers.HasSword, Items.SmallKey.19::2
+CoFBasementLavaBig:FlameCave; Major; 50-17-02; Locations.CoFAccess, Items.PacciCane, Helpers.HasSword, Items.SmallKey.19::2; Items.BigKey.19
+CompleteCoF:FlameCave; Helper;; Locations.CoFAccess, Items.PacciCane, Items.SmallKey.19::2, Items.BigKey.19
 CoFBossItem:FlameCave; Minor; gleerokContainerItem:Define:FirstByte, gleerokContainerSub:Define:SecondByte; Locations.CompleteCoF; Items.HeartContainer
 CoFPrize:Prizes; DungeonItem; 0E0F03; Locations.CompleteCoF
 
@@ -277,44 +283,44 @@ FortressOutsideF2Middle:Fortress; Minor; 18-01-01; Locations.AccessFortress, Ite
 FortressOutsideF2Right:Fortress; Minor; 18-01-02; Locations.AccessFortress, Items.MoleMitts
 FortressOutsideF3Left:Fortress; Minor; 18-02-00; Locations.AccessFortress, Items.MoleMitts, Helpers.HasBow
 FortressOutsideF3Right:Fortress; Minor; 18-02-01; Locations.AccessFortress, Items.MoleMitts
-FortressOutsideBombWallBigChest:Fortress; Major; 18-03-00; Locations.AccessFortress, Items.BombBag, Helpers.HasBow, Helpers.CanSplit2, Items.SmallKey:Fortress:2
-FortressOutsideBombWallSmallChest:Fortress; Minor; 18-03-01; Locations.FortressOutsideBombWallBigChest, Items.MoleMitts, Items.SmallKey:Fortress:2
-FortressOutsideMinishHole:Fortress; DungeonItem; 0F424F; Locations.AccessFortress, Helpers.HasBow, Items.SmallKey:Fortress:3
-FortressRightDrop:Fortress; DungeonItem; 0E2C4B; Locations.AccessFortress, Helpers.CanSplit2
-FortressLeftDrop:Fortress; DungeonItem; 0E2B0B; Locations.AccessFortress, (|Helpers.CanSplit2, Items.RocsCape)
-FortressClonePuzzle:Fortress; DungeonItem; 0E1E8B; Locations.AccessFortress, Helpers.HasBow, Helpers.CanSplit2 ,Items.SmallKey:Fortress:2
-FortressEyegoreKill:Fortress; DungeonItem; 58-00-00; Locations.AccessFortress, Helpers.HasBow, Helpers.CanSplit2
-FortressPedestal:Fortress; DungeonItem; 58-19-00; Locations.AccessFortress, Helpers.HasBow
-FortressSkullFall:Fortress; DungeonItem; 58-1B-00; Locations.AccessFortress, Items.MoleMitts, Helpers.CanSplit2, Helpers.HasBow, Items.SmallKey:Fortress:4
+FortressOutsideBombWallBigChest:Fortress; Major; 18-03-00; Locations.AccessFortress, Items.BombBag, Helpers.HasBow, Helpers.CanSplit2, Items.SmallKey.1A::2
+FortressOutsideBombWallSmallChest:Fortress; Minor; 18-03-01; Locations.FortressOutsideBombWallBigChest, Items.MoleMitts, Items.SmallKey.1A::2
+FortressOutsideMinishHole:Fortress; Major; 0F424F; Locations.AccessFortress, Helpers.HasBow, Items.SmallKey.1A::3; Items.SmallKey.1A
+FortressRightDrop:Fortress; Major; 0E2C4B; Locations.AccessFortress, Helpers.CanSplit2; Items.SmallKey.1A
+FortressLeftDrop:Fortress; Major; 0E2B0B; Locations.AccessFortress, (|Helpers.CanSplit2, Items.RocsCape); Items.SmallKey.1A
+FortressClonePuzzle:Fortress; Major; 0E1E8B; Locations.AccessFortress, Helpers.HasBow, Helpers.CanSplit2 ,Items.SmallKey.1A::2; Items.SmallKey.1A
+FortressEyegoreKill:Fortress; Major; 58-00-00; Locations.AccessFortress, Helpers.HasBow, Helpers.CanSplit2; Items.DungeonMap.1A
+FortressPedestal:Fortress; Major; 58-19-00; Locations.AccessFortress, Helpers.HasBow; Items.Compass.1A
+FortressSkullFall:Fortress; Major; 58-1B-00; Locations.AccessFortress, Items.MoleMitts, Helpers.CanSplit2, Helpers.HasBow, Items.SmallKey.1A::4; Items.BigKey.1A
 FortressSkullRoomLeft:Fortress; Minor; 58-1D-00; Locations.AccessFortress
 FortressSkullRoomRight:Fortress; Minor; 58-1D-01; Locations.AccessFortress
 FortressWizrobes:Fortress; Minor; 58-23-00; Locations.AccessFortress, Items.MoleMitts
-CompleteFortress:Fortress; Helper;; Locations.AccessFortress, Items.MoleMitts, Helpers.CanSplit2, Helpers.HasBow, Items.BigKey:Fortress
+CompleteFortress:Fortress; Helper;; Locations.AccessFortress, Items.MoleMitts, Helpers.CanSplit2, Helpers.HasBow, Items.BigKey.1A
 FortressBossItem:Fortress; Minor; mazaalContainerItem:Define:FirstByte, mazaalContainerSub:Define:SecondByte; Locations.CompleteFortress; Items.HeartContainer
 FortressPrize:Prizes; Major; 09C9E6:FirstByte, 09C9E8:SecondByte; Locations.CompleteFortress
 
 # Temple of Droplets Locations
 AccessDroplets:Droplets; Helper;; Locations.AccessHyliaSouth, (|Items.Flippers, Items.RocsCape)
-DropletsMulldozers:Droplets; DungeonItem; 0E55CB; Locations.AccessDroplets, Items.BigKey:Droplets, (|Items.LanternOff, Helpers.DropletsEastLever), Items.BombBag, Helpers.HasDamageSource
-DropletsWaterPot:Droplets; DungeonItem; 0E5BC7; Locations.AccessDroplets, Items.BigKey:Droplets, Items.Flippers, (|Items.RocsCape, Items.GustJar)
-DropletsFirstIceblock:Droplets; DungeonItem; 098C1A:FirstByte, 098C1C:SecondByte; Locations.AccessDroplets; Items.SmallKey:Droplets
-DropletsSecondIceblock:Droplets; DungeonItem; 098C3C:FirstByte, 098C3E:SecondByte ; Locations.AccessDroplets, Helpers.DropletsOpenDoors; Items.BigKey:Droplets
-DropletsEastLever:Droplets; Helper;; Locations.AccessDroplets, Items.BigKey:Droplets, Helpers.DropletsOpenDoors, (|Items.GustJar, (&Items.LanternOff, Items.RocsCape)), Helpers.CanSplit2
-DropletsWestLever:Droplets; Helper;; Locations.AccessDroplets, Items.BigKey:Droplets, Helpers.DropletsOpenDoors, Items.LanternOff, Helpers.CanSplit2
-DropletsOpenDoors:Droplets; Helper;; Items.SmallKey:Droplets:4, Items.Flippers, (|Items.GustJar, Items.RocsCape), Items.BombBag, Items.LanternOff, Helpers.HasSword
-DropletsEastFirst:Droplets; Minor; 60-09-00; Locations.AccessDroplets, Items.BigKey:Droplets, (|Items.LanternOff, Locations.DropletsEastLever)
-DropletsIceMaze:Droplets; Minor; 60-0A-00; Locations.AccessDroplets, Items.BigKey:Droplets,  (|Items.LanternOff, Locations.DropletsEastLever)
-DropletsOverhang:Droplets; DungeonItem; 60-0D-00; Locations.AccessDroplets, Items.BigKey:Droplets
-DropletsBluChu:Droplets; Major; 60-10-01; Locations.AccessDroplets, Items.BigKey:Droplets,  (|Items.LanternOff, Locations.DropletsEastLever), Items.GustJar, Helpers.DropletsOpenDoors
-DropletsBasement:Droplets; DungeonItem; 60-11-00; Locations.AccessDroplets, Items.BigKey:Droplets,  (|Items.LanternOff, Locations.DropletsEastLever)
-DropletsFrozenIcePlain:Droplets; Minor; 60-28-00; Locations.AccessDroplets, Items.GustJar, Items.BigKey:Droplets, Helpers.DropletsOpenDoors
-DropletsFreeIcePlain:Droplets; Minor; 60-28-01; Locations.AccessDroplets, Items.GustJar, Items.BigKey:Droplets, Helpers.DropletsOpenDoors
-DropletsDarkMazeRight:Droplets; Minor; 60-2B-01; Locations.AccessDroplets, Items.BigKey:Droplets, Items.LanternOff, Helpers.HasDamageSource
-DropletsDarkMazeLeft:Droplets; Minor; 60-2B-02; Locations.AccessDroplets, Items.BigKey:Droplets, Items.LanternOff, Helpers.HasDamageSource
-DropletsDarkMazeMiddle:Droplets; Minor; 60-2B-03; Locations.AccessDroplets, Items.BigKey:Droplets, Items.LanternOff, Helpers.HasDamageSource
-DropletsPostTwinFrozen:Droplets; Minor; 60-2D-00; Locations.AccessDroplets, Items.GustJar, Items.BigKey:Droplets, Helpers.DropletsOpenDoors
-DropletsPreviewFrozen:Droplets; Minor; 60-32-00; Locations.AccessDroplets, Items.BigKey:Droplets, Items.LanternOff
-DropletsIceWiggler:Droplets; DungeonItem; 60-32-01; Locations.AccessDroplets, Items.GustJar, Items.BigKey:Droplets, Helpers.DropletsOpenDoors
+DropletsMulldozers:Droplets; Major; 0E55CB; Locations.AccessDroplets, Items.BigKey.1B, (|Items.LanternOff, Helpers.DropletsEastLever), Items.BombBag, Helpers.HasDamageSource; Items.SmallKey.1B
+DropletsWaterPot:Droplets; Major; 0E5BC7; Locations.AccessDroplets, Items.BigKey.1B, Items.Flippers, (|Items.RocsCape, Items.GustJar); Items.SmallKey.1B
+DropletsFirstIceblock:Droplets; Major; 098C1A:FirstByte, 098C1C:SecondByte; Locations.AccessDroplets; Items.SmallKey.1B
+DropletsSecondIceblock:Droplets; Major; 098C3C:FirstByte, 098C3E:SecondByte ; Locations.AccessDroplets, Helpers.DropletsOpenDoors; Items.BigKey.1B
+DropletsEastLever:Droplets; Helper;; Locations.AccessDroplets, Items.BigKey.1B, Helpers.DropletsOpenDoors, (|Items.GustJar, (&Items.LanternOff, Items.RocsCape)), Helpers.CanSplit2
+DropletsWestLever:Droplets; Helper;; Locations.AccessDroplets, Items.BigKey.1B, Helpers.DropletsOpenDoors, Items.LanternOff, Helpers.CanSplit2
+DropletsOpenDoors:Droplets; Helper;; Items.SmallKey.1B::4, Items.Flippers, (|Items.GustJar, Items.RocsCape), Items.BombBag, Items.LanternOff, Helpers.HasSword
+DropletsEastFirst:Droplets; Minor; 60-09-00; Locations.AccessDroplets, Items.BigKey.1B, (|Items.LanternOff, Locations.DropletsEastLever)
+DropletsIceMaze:Droplets; Minor; 60-0A-00; Locations.AccessDroplets, Items.BigKey.1B,  (|Items.LanternOff, Locations.DropletsEastLever)
+DropletsOverhang:Droplets; Major; 60-0D-00; Locations.AccessDroplets, Items.BigKey.1B; Items.SmallKey.1B
+DropletsBluChu:Droplets; Major; 60-10-01; Locations.AccessDroplets, Items.BigKey.1B,  (|Items.LanternOff, Locations.DropletsEastLever), Items.GustJar, Helpers.DropletsOpenDoors
+DropletsBasement:Droplets; Major; 60-11-00; Locations.AccessDroplets, Items.BigKey.1B,  (|Items.LanternOff, Locations.DropletsEastLever); Items.Compass.1B
+DropletsFrozenIcePlain:Droplets; Minor; 60-28-00; Locations.AccessDroplets, Items.GustJar, Items.BigKey.1B, Helpers.DropletsOpenDoors
+DropletsFreeIcePlain:Droplets; Minor; 60-28-01; Locations.AccessDroplets, Items.GustJar, Items.BigKey.1B, Helpers.DropletsOpenDoors
+DropletsDarkMazeRight:Droplets; Minor; 60-2B-01; Locations.AccessDroplets, Items.BigKey.1B, Items.LanternOff, Helpers.HasDamageSource
+DropletsDarkMazeLeft:Droplets; Minor; 60-2B-02; Locations.AccessDroplets, Items.BigKey.1B, Items.LanternOff, Helpers.HasDamageSource
+DropletsDarkMazeMiddle:Droplets; Minor; 60-2B-03; Locations.AccessDroplets, Items.BigKey.1B, Items.LanternOff, Helpers.HasDamageSource
+DropletsPostTwinFrozen:Droplets; Minor; 60-2D-00; Locations.AccessDroplets, Items.GustJar, Items.BigKey.1B, Helpers.DropletsOpenDoors
+DropletsPreviewFrozen:Droplets; Minor; 60-32-00; Locations.AccessDroplets, Items.BigKey.1B, Items.LanternOff
+DropletsIceWiggler:Droplets; Major; 60-32-01; Locations.AccessDroplets, Items.GustJar, Items.BigKey.1B, Helpers.DropletsOpenDoors; Items.DungeonMap.1B
 CompleteDroplets:Droplets; Helper;; Locations.DropletsEastLever, Locations.DropletsWestLever, Items.LanternOff, Helpers.HasSword
 DropletsBossItem:Droplets; Minor; octoContainerItem:Define:FirstByte, octoContainerSub:Define:SecondByte; Locations.CompleteDroplets; Items.HeartContainer
 DropletsPrize:Prizes; DungeonItem; 0E40C3; Locations.CompleteDroplets
@@ -323,37 +329,37 @@ DropletsPrize:Prizes; DungeonItem; 0E40C3; Locations.CompleteDroplets
 AccessPalace:Palace; Helper;; Locations.AccessUpperClouds, Helpers.CanSplit3, (|Items.RocsCape, Items.BombBag, Items.GustJar, Helpers.HasBoomerang, Helpers.HasBow)
 PalaceWizrobeKill:Palace; Major; 70-2C-00; Locations.AccessPalace, (|Items.RocsCape, Items.BombBag, Helpers.HasBoomerang)
 PalaceFirstGrate:Palace; Major; 70-2D-00; Locations.AccessPalace, Items.RocsCape
-PalaceBraceletPuzzleKey:Palace; DungeonItem; 0E896F; Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.PowerBracelets, (|Items.BombBag, Helpers.HasBoomerang, Helpers.HasBow)
-PalaceWideGap:Palace; Minor; 70-0F-00; Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.SmallKey:Palace
-PalaceBallAndChainSoldiers:Palace; DungeonItem; 0E719F; Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.SmallKey:Palace
-PalaceFanLoop:Palace; DungeonItem; 70-07-00; Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.SmallKey:Palace:2
-PalacePreBigDoor:Palace; DungeonItem; 70-01-00; Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.SmallKey:Palace:6
-PalaceDarkBig:Palace; DungeonItem; 70-32-00; Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.LanternOff, Items.BigKey:Palace, Items.SmallKey:Palace
-PalaceDarkSmall:Palace; DungeonItem; 70-32-01; Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.LanternOff, Items.BigKey:Palace, Items.SmallKey:Palace
-PalaceManyRollers:Palace; DungeonItem; 70-2B-00; Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.LanternOff, Items.BigKey:Palace, Items.SmallKey:Palace
-PalaceTwinWizrobes:Palace; Minor; 70-29-00; Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.LanternOff, Items.BigKey:Palace, Items.SmallKey:Palace:4
-PalaceFirerobeTrio:Palace; DungeonItem; 70-1C-00; Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.LanternOff, Items.BigKey:Palace, Items.SmallKey:Palace:4
-PalaceHeartPiece:Palace; Minor; 0E77A7; Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.LanternOff, Items.BigKey:Palace, Items.SmallKey:Palace:4
-PalaceSwitchHit:Palace; Minor; 70-15-00;  Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.LanternOff, (|Items.BombBag,Items.MagicBoomerang), Items.BigKey:Palace, Items.SmallKey:Palace:4
-PalacePreBoss:Palace; DungeonItem; 70-03-00; Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.LanternOff, Items.BigKey:Palace, Items.SmallKey:Palace:5
-PalaceBlockMaze:Palace; Minor; 70-10-00; Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.LanternOff, Items.BigKey:Palace, Items.SmallKey:Palace:6
-PalaceDetour:Palace; Minor; 70-04-00; Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.LanternOff, Items.BigKey:Palace, Items.SmallKey:Palace:6
-CompletePalace:Palace; Helper;; Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.LanternOff, Items.BigKey:Palace, Items.SmallKey:Palace:6
+PalaceBraceletPuzzleKey:Palace; Major; 0E896F; Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.PowerBracelets, (|Items.BombBag, Helpers.HasBoomerang, Helpers.HasBow); Items.SmallKey.1C
+PalaceWideGap:Palace; Minor; 70-0F-00; Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.SmallKey.1C
+PalaceBallAndChainSoldiers:Palace; Major; 0E719F; Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.SmallKey.1C
+PalaceFanLoop:Palace; Major; 70-07-00; Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.SmallKey.1C::2; Items.Compass.1C
+PalacePreBigDoor:Palace; Major; 70-01-00; Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.SmallKey.1C::6; Items.BigKey.1C
+PalaceDarkBig:Palace; Major; 70-32-00; Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.LanternOff, Items.BigKey.1C, Items.SmallKey.1C; Items.SmallKey.1C
+PalaceDarkSmall:Palace; Major; 70-32-01; Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.LanternOff, Items.BigKey.1C, Items.SmallKey.1C; Items.SmallKey.1C
+PalaceManyRollers:Palace; Major; 70-2B-00; Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.LanternOff, Items.BigKey.1C, Items.SmallKey.1C; Items.SmallKey.1C
+PalaceTwinWizrobes:Palace; Minor; 70-29-00; Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.LanternOff, Items.BigKey.1C, Items.SmallKey.1C::4
+PalaceFirerobeTrio:Palace; Major; 70-1C-00; Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.LanternOff, Items.BigKey.1C, Items.SmallKey.1C::4; Items.SmallKey.1C
+PalaceHeartPiece:Palace; Minor; 0E77A7; Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.LanternOff, Items.BigKey.1C, Items.SmallKey.1C::4
+PalaceSwitchHit:Palace; Minor; 70-15-00;  Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.LanternOff, Items.BigKey.1C, Items.SmallKey.1C::4
+PalacePreBoss:Palace; Major; 70-03-00; Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.LanternOff, Items.BigKey.1C, Items.SmallKey.1C::5; Items.DungeonMap.1C
+PalaceBlockMaze:Palace; Minor; 70-10-00; Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.LanternOff, Items.BigKey.1C, Items.SmallKey.1C::6
+PalaceDetour:Palace; Minor; 70-04-00; Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.LanternOff, Items.BigKey.1C, Items.SmallKey.1C::6
+CompletePalace:Palace; Helper;; Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.LanternOff, Items.BigKey.1C, Items.SmallKey.1C::6
 PalaceBossItem:Palace; Minor; gyorgContainerItem:Define:FirstByte, gyorgContainerSub:Define:SecondByte; Locations.CompletePalace; Items.HeartContainer
 PalacePrize:Prizes; DungeonItem; 0E69E3; Locations.CompletePalace
 
 # Skipping ahead to DHC so the game can be considered beatable...
 DHCAccess:DHC; Helper;; Helpers.CanSplit4, Items.EarthElement:Prizes, Items.FireElement:Prizes, Items.WaterElement:Prizes, Items.WindElement:Prizes, Items.BombBag
-CastleBigDoorsOpen:DHC; Helper;; Locations.DHCAccess, Items.SmallKey:DHC:2, Items.RocsCape, (|Items.Boomerang, Helpers.HasBow)
-CastleKing:DHC; Unshuffled;; Locations.DHCAccess; Items.SmallKey:DHC
-CastleBasement:DHC; DungeonItem; 88-37-00; Locations.DHCAccess, Items.SmallKey:DHC
-CastleClones:DHC; DungeonItem; 88-27-00; Locations.DHCAccess, Items.SmallKey:DHC
-CastlePostThrone:DHC; DungeonItem; 88-20-00; Locations.DHCAccess, Items.SmallKey:DHC:2
-CastleTopLeftTower:DHC; DungeonItem; 88-01-00; Helpers.CastleBigDoorsOpen, Helpers.HasBow
-CastleTopRightTower:DHC; DungeonItem; 88-02-00; Helpers.CastleBigDoorsOpen, Items.LanternOff
-CastleLowerLeftTower:DHC; DungeonItem; 88-03-00; Helpers.CastleBigDoorsOpen
-CastleLowerRightTower:DHC; DungeonItem; 88-04-00; Helpers.CastleBigDoorsOpen
-CastleBigBlock:DHC; Unshuffled;; Helpers.CastleBigDoorsOpen, Items.SmallKey:DHC:6; Items.BigKey:DHC
+CastleBigDoorsOpen:DHC; Helper;; Locations.DHCAccess, Items.SmallKey.1D::2, Items.RocsCape, (|Items.Boomerang, Helpers.HasBow)
+CastleKing:DHC; Unshuffled;; Locations.DHCAccess; Items.SmallKey.1D
+CastleBasement:DHC; Major; 88-37-00; Locations.DHCAccess, Items.SmallKey.1D; Items.DungeonMap.1D
+CastleClones:DHC; Major; 88-27-00; Locations.DHCAccess, Items.SmallKey.1D; Items.SmallKey.1D
+CastlePostThrone:DHC; Major; 88-20-00; Locations.DHCAccess, Items.SmallKey.1D::2; Items.Compass.1D
+CastleTopLeftTower:DHC; Major; 88-01-00; Helpers.CastleBigDoorsOpen, Helpers.HasBow; Items.SmallKey.1D
+CastleTopRightTower:DHC; Major; 88-02-00; Helpers.CastleBigDoorsOpen, Items.LanternOff; Items.SmallKey.1D
+CastleLowerLeftTower:DHC; Major; 88-03-00; Helpers.CastleBigDoorsOpen; Items.SmallKey.1D
+CastleLowerRightTower:DHC; Major; 88-04-00; Helpers.CastleBigDoorsOpen; Items.SmallKey.1D
+CastleBigBlock:DHC; Major; 88-09-00; Helpers.CastleBigDoorsOpen, Items.SmallKey.1D::6; Items.BigKey.1D
 
 BeatVaati; Helper;; Items.EarthElement:Prizes, Items.FireElement:Prizes, Items.WaterElement:Prizes, Items.WindElement:Prizes, Helpers.CanSplit4, Items.BombBag, Helpers.HasBow, Items.RocsCape, Items.LanternOff, Items.GustJar, Items.PacciCane
 
