@@ -46,6 +46,7 @@
             this.customLogicCheckBox = new System.Windows.Forms.CheckBox();
             this.mainTabs = new System.Windows.Forms.TabControl();
             this.flagTabPage = new System.Windows.Forms.TabPage();
+            this.flagBoxesLayout = new System.Windows.Forms.FlowLayoutPanel();
             this.gimmicksTabPage = new System.Windows.Forms.TabPage();
             this.heartColorSelect = new System.Windows.Forms.ComboBox();
             this.heartColorLabel = new System.Windows.Forms.Label();
@@ -55,7 +56,6 @@
             this.saveSpoilerButton = new System.Windows.Forms.Button();
             this.savePatchButton = new System.Windows.Forms.Button();
             this.saveRomButton = new System.Windows.Forms.Button();
-            this.flagBoxesLayout = new System.Windows.Forms.FlowLayoutPanel();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.generalTab.SuspendLayout();
@@ -186,6 +186,7 @@
             this.customLogicPath.Name = "customLogicPath";
             this.customLogicPath.Size = new System.Drawing.Size(206, 20);
             this.customLogicPath.TabIndex = 8;
+            this.customLogicPath.TextChanged += CustomLogicPath_TextChanged;
             // 
             // browseLogicButton
             // 
@@ -212,7 +213,7 @@
             // mainTabs
             // 
             this.mainTabs.Controls.Add(this.generalTab);
-            //this.mainTabs.Controls.Add(this.flagTabPage);
+            this.mainTabs.Controls.Add(this.flagTabPage);
             this.mainTabs.Controls.Add(this.gimmicksTabPage);
             this.mainTabs.Location = new System.Drawing.Point(9, 27);
             this.mainTabs.Name = "mainTabs";
@@ -230,6 +231,14 @@
             this.flagTabPage.TabIndex = 2;
             this.flagTabPage.Text = "Flags";
             this.flagTabPage.UseVisualStyleBackColor = true;
+            // 
+            // flagBoxesLayout
+            // 
+            this.flagBoxesLayout.AutoScroll = true;
+            this.flagBoxesLayout.Location = new System.Drawing.Point(0, 3);
+            this.flagBoxesLayout.Name = "flagBoxesLayout";
+            this.flagBoxesLayout.Size = new System.Drawing.Size(365, 206);
+            this.flagBoxesLayout.TabIndex = 0;
             // 
             // gimmicksTabPage
             // 
@@ -322,13 +331,6 @@
             this.saveRomButton.Text = "Save ROM";
             this.saveRomButton.UseVisualStyleBackColor = true;
             this.saveRomButton.Click += new System.EventHandler(this.SaveRomButton_Click);
-            // 
-            // flagBoxesLayout
-            // 
-            this.flagBoxesLayout.Location = new System.Drawing.Point(0, 3);
-            this.flagBoxesLayout.Name = "flagBoxesLayout";
-            this.flagBoxesLayout.Size = new System.Drawing.Size(365, 206);
-            this.flagBoxesLayout.TabIndex = 0;
             // 
             // MainWindow
             // 

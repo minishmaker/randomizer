@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using MinishRandomizer.Core;
+﻿using MinishRandomizer.Core;
 using MinishRandomizer.Randomizer;
 using MinishRandomizer.Randomizer.Logic;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Windows.Forms;
 
 namespace MinishRandomizer
 {
@@ -18,7 +12,7 @@ namespace MinishRandomizer
     {
         private ROM ROM_;
         private Shuffler shuffler;
-        private bool randomized;
+        private bool Randomized;
 
         public MainWindow()
         {
@@ -29,6 +23,20 @@ namespace MinishRandomizer
 
             // Fill heart color options
             this.heartColorSelect.DataSource = Enum.GetValues(typeof(HeartColorType));
+
+            // Create shuffler and populate logic options
+            shuffler = new Shuffler();
+
+            if (customLogicCheckBox.Checked)
+            {
+                shuffler.LoadFlags(customLogicPath.Text);
+            }
+            else
+            {
+                shuffler.LoadFlags();
+            }
+
+            LoadOptionControls(shuffler.Flags);
         }
 
         private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
@@ -56,6 +64,7 @@ namespace MinishRandomizer
 
             try
             {
+                // If the seed is valid, load locations from the logic and randomize their contents
                 if (int.TryParse(seedField.Text, out int seed))
                 {
                     if (customLogicCheckBox.Checked)
@@ -76,7 +85,8 @@ namespace MinishRandomizer
                     return;
                 }
 
-                randomized = true;
+                // Mark that a seed has been generated so seed-specific options can be used
+                Randomized = true;
 
                 if (!mainTabs.TabPages.Contains(generatedTab))
                 {
@@ -84,8 +94,6 @@ namespace MinishRandomizer
                     mainTabs.TabPages.Add(generatedTab);
                     mainTabs.SelectedTab = generatedTab;
                 }
-
-                
 
                 // Show ROM information on seed page
                 generatedSeedValue.Text = seed.ToString();
@@ -125,25 +133,28 @@ namespace MinishRandomizer
                 statusText.Text = "Unable to determine ROM.";
                 return;
             }
-
-            shuffler = new Shuffler(Path.GetDirectoryName(ROM.Instance.path));
-
-            if (customLogicCheckBox.Checked)
-            {
-                shuffler.LoadFlags(customLogicPath.Text);
-            }
-            else
-            {
-                shuffler.LoadFlags();
-            }
-
-            LoadFlagCheckboxes(shuffler.Flags);
         }
 
         private void CustomLogicCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             browseLogicButton.Enabled = customLogicCheckBox.Checked;
             customLogicPath.Enabled = customLogicCheckBox.Checked;
+
+            // Reload logic options to make sure they're correct
+            if (customLogicCheckBox.Checked)
+            {
+                // Only load logic for custom if the file exists
+                if (File.Exists(customLogicPath.Text))
+                {
+                    shuffler.LoadFlags(customLogicPath.Text);
+                }
+            }
+            else
+            {
+                shuffler.LoadFlags();
+            }
+
+            LoadOptionControls(shuffler.Flags);
         }
 
         private void CustomLogicPath_TextChanged(object sender, EventArgs e)
@@ -163,12 +174,13 @@ namespace MinishRandomizer
             {
                 shuffler.LoadFlags(customLogicPath.Text);
 
-                LoadFlagCheckboxes(shuffler.Flags);
+                LoadOptionControls(shuffler.Flags);
             }
         }
 
         private void CustomPatchCheckBox_CheckedChanged(object sender, EventArgs e)
         {
+            // Enable/disable UI for checkedness
             browsePatchButton.Enabled = customPatchCheckBox.Checked;
             customPatchPath.Enabled = customPatchCheckBox.Checked;
         }
@@ -207,7 +219,7 @@ namespace MinishRandomizer
 
         private void SaveRomButton_Click(object sender, EventArgs e)
         {
-            if (!randomized)
+            if (!Randomized)
             {
                 return;
             }
@@ -249,7 +261,7 @@ namespace MinishRandomizer
 
         private void SavePatchButton_Click(object sender, EventArgs e)
         {
-            if (!randomized)
+            if (!Randomized)
             {
                 return;
             }
@@ -272,7 +284,7 @@ namespace MinishRandomizer
 
         private void SaveSpoilerButton_Click(object sender, EventArgs e)
         {
-            if (!randomized)
+            if (!Randomized)
             {
                 return;
             }
@@ -297,11 +309,12 @@ namespace MinishRandomizer
             File.WriteAllText(sfd.FileName, spoilerLog);
         }
 
-        private void LoadFlagCheckboxes(List<LogicFlag> flags)
+        private void LoadOptionControls(List<LogicFlag> flags)
         {
             // If there flags, show the flag tab
             if (flags.Count >= 1)
             {
+                
                 // Make sure not to add the tab multiple times
                 if (!mainTabs.TabPages.Contains(flagTabPage))
                 {

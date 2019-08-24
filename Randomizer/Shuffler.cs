@@ -76,11 +76,9 @@ namespace MinishRandomizer.Randomizer
         private List<Item> MajorItems;
         private List<Item> MinorItems;
         private List<LogicDefine> LogicDefines;
-        
-        private string OutputDirectory;
         private HeartColorType HeartColor = HeartColorType.Default;
 
-        public Shuffler(string outputDirectory)
+        public Shuffler()
         {
             Locations = new List<Location>();
             DungeonItems = new List<Item>();
@@ -88,7 +86,6 @@ namespace MinishRandomizer.Randomizer
             MinorItems = new List<Item>();
             LogicDefines = new List<LogicDefine>();
             Flags = new List<LogicFlag>();
-            OutputDirectory = outputDirectory;
         }
 
         public void SetSeed(int seed)
@@ -169,6 +166,7 @@ namespace MinishRandomizer.Randomizer
         /// <param name="logicFile">The file to read locations from</param>
         public void LoadLocations(string logicFile = null)
         {
+            // Reset everything to allow rerandomization
             Locations.Clear();
             DungeonItems.Clear();
             MajorItems.Clear();
@@ -180,6 +178,7 @@ namespace MinishRandomizer.Randomizer
 
             string[] locationStrings;
 
+            // Get the logic file as an array of strings that can be parsed
             if (logicFile == null)
             {
                 // Load default logic if no alternative is specified
@@ -196,51 +195,11 @@ namespace MinishRandomizer.Randomizer
             {
                 locationStrings = File.ReadAllLines(logicFile);
             }
-            
-            foreach (string locationLine in locationStrings)
-            {
-                // Spaces are ignored, and everything after a # is a comment
-                string locationString = locationLine.Split('#')[0];
 
-                // Empty lines or locations are ignored
-                if (string.IsNullOrWhiteSpace(locationString))
-                {
-                    continue;
-                }
-
-                // Replace defines between `
-                // Probably a more efficient way to do it
-                if (locationString.IndexOf("`") != -1)
-                {
-                    foreach (LogicDefine define in LogicDefines)
-                    {
-                        locationString = define.Replace(locationString);
-
-                        if (locationString.IndexOf("`") == -1)
-                        {
-                            break;
-                        }
-                    }
-                }
-
-                if (locationString[0] == '!')
-                {
-                    // TODO: Parse new things
-                }
-                else
-                {
-                    // Remove spaces as they're ignored in locations
-                    locationString = locationString.Replace(" ", "");
-
-                    Location newLocation = Location.GetLocation(locationString);
-                    AddLocation(newLocation);
-                }
-
-                    
-            }
+            Parser.ParseLocations(this, locationStrings, LogicDefines);
         }
 
-        private void AddLocation(Location location)
+        public void AddLocation(Location location)
         {
             // All locations are in the master location list
             Locations.Add(location);
