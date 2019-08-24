@@ -13,6 +13,10 @@ ezloPleaseStop:
 //instant text
 PUSH; ORG $562AC; SHORT 0x2501; POP
 
+//holding = mashing for text
+PUSH; ORG $566B2; SHORT 0x8801; POP
+PUSH; ORG $56726; SHORT 0x8801; POP
+
 //skip fusion cutscene if A, B or START are held
 #ifndef neverSkipFusionCutscene
 	PUSH; ORG $A35E4; jumpToHack(skipFusionCutscene); POP
