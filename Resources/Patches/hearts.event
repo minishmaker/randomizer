@@ -1,3 +1,5 @@
+#define heartscolorrainbow
+#define heartscolor
 #ifndef heartscolor
 	#define heartscolor
 	#define heartscolorred
@@ -33,6 +35,37 @@
 	#define heartFillColor "0x0FC9"
 	#define heartBackColor "0x318E"
 	#define heartEdgeColor "0x0000"
+#endif
+
+//rainbow hearts
+#ifdef heartscolorrainbow
+#define heartFillColor "0x5749"
+#define heartBackColor "0x318E"
+#define heartEdgeColor "0x7FFF"
+PUSH; ORG $55AC0; jumpToHack(animatedHearts); POP
+ALIGN 4
+animatedHearts:
+#incbin "asm/animatedHearts.dmp"
+POIN rainbowHearts
+ALIGN 4
+rainbowHearts:
+SHORT 0x5749 12
+SHORT 0x3F49 12
+SHORT 0x3B49 12
+SHORT 0x274A 12
+SHORT 0x2753 12
+SHORT 0x2759 12
+SHORT 0x26BA 12
+SHORT 0x261A 12
+SHORT 0x25DA 12
+SHORT 0x257A 12
+SHORT 0x253A 12
+SHORT 0x3D3A 12
+SHORT 0x613A 12
+SHORT 0x61B6 12
+SHORT 0x5E13 12
+SHORT 0x5A90 12
+SHORT 0xFFFF 0xFFFF //terminator
 #endif
 
 //safety definitions
