@@ -2,54 +2,84 @@
 	#define heartscolor
 	#define heartscolorred
 #endif
-
+#ifdef heartscolor
+//backwards compatibility for the old hearts
 #ifdef heartscolorred
-	#define heartspalette "0x00"
-	#define fill1 "0x4"
-	#define back1 "0xA"
-	#define edge1 "0xE"
+	#define heartFillColor "0x095F"
+	#define heartBackColor "0x318E"
+	#define heartEdgeColor "0x7FFF"
 #endif
-
 #ifdef heartscoloryellow
-	#define heartspalette "0x00"
-	#define fill1 "0x8"
-	#define back1 "0xA"
-	#define edge1 "0xF"
+	#define heartFillColor "0x1F9F"
+	#define heartBackColor "0x318E"
+	#define heartEdgeColor "0x0000"
 #endif
-
 #ifdef heartscolorblue
-	#define heartspalette "0x10"
-	#define fill1 "0x3"
-	#define back1 "0xA"
-	#define edge1 "0xE"
+	#define heartFillColor "0x7A85"
+	#define heartBackColor "0x318E"
+	#define heartEdgeColor "0x7FFF"
 #endif
-
 #ifdef heartscolorsky
-	#define heartspalette "0x10"
-	#define fill1 "0x5"
-	#define back1 "0xA"
-	#define edge1 "0xF"
+	#define heartFillColor "0x7FB5"
+	#define heartBackColor "0x318E"
+	#define heartEdgeColor "0x0000"
 #endif
-
 #ifdef heartscolorgreen
-	#define heartspalette "0x20"
-	#define fill1 "0x2"
-	#define back1 "0xA"
-	#define edge1 "0xE"
+	#define heartFillColor "0x0EA4"
+	#define heartBackColor "0x318E"
+	#define heartEdgeColor "0x7FFF"
 #endif
-
 #ifdef heartscolorlime
-	#define heartspalette "0x20"
-	#define fill1 "0x4"
-	#define back1 "0xA"
-	#define edge1 "0xF"
+	#define heartFillColor "0x0FC9"
+	#define heartBackColor "0x318E"
+	#define heartEdgeColor "0x0000"
 #endif
 
+//safety definitions
+#ifndef heartFillColor
+	#define heartFillColor "0x095F"
+#endif
+#ifndef heartBackColor
+	#define heartBackColor "0x318E"
+#endif
+#ifndef heartEdgeColor
+	#define heartEdgeColor "0x7FFF"
+#endif
+
+//get the new colors in
+PUSH; ORG $5A2552; SHORT heartFillColor heartBackColor; ORG $5A2558; SHORT heartEdgeColor; POP
+
+//make the wallets share colors
+PUSH; ORG $1C54A; SHORT 0xB408; jumpToHack(walletPalette); POP
+ALIGN 4
+walletPalette:
+#incbin "asm/walletPalette.dmp"
+POIN walletColors
+ALIGN 4
+walletColors:
+SHORT 0x0E06 0x0F28 //green
+SHORT 0x5163 0x7E65 //blue
+SHORT 0x0CAF 0x10D7 //red
+SHORT 0x0CAF 0x10D7 //bigger red
+
+//new wallet graphics for the color sharing
+PUSH
+ORG $5C3770
+#incbin "wallets.img.bin"
+POP
+
+//make the heart sprites invisible
+PUSH; ORG $2E8F60; WORD 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0; POP
+
+//update the heart tile colors to the new free ones
+#define heartspalette "0xF0"
+#define fill1 "0x1"
+#define back1 "0x2"
+#define edge1 "0x4"
 #define fill2 "(fill1<<4)"
 #define back2 "(back1<<4)"
 #define edge2 "(edge1<<4)"
 #define emptypixels "0x00"
-
 PUSH
 //in-game hearts, tiles
 //change the palette
@@ -73,52 +103,6 @@ BYTE edge1|fill2 fill1|fill2 fill1|fill2 edge1|0x000 0x000|edge2 fill1|fill2 fil
 BYTE edge1|edge2 edge1|0x000 edge1|edge2 edge1|0x000 fill1|fill2 fill1|edge2 fill1|fill2 fill1|edge2 fill1|fill2 fill1|fill2 fill1|fill2 fill1|edge2 fill1|fill2 fill1|fill2 fill1|fill2 fill1|edge2
 BYTE edge1|fill2 fill1|fill2 fill1|fill2 edge1|0x000 0x000|edge2 fill1|fill2 fill1|edge2 emptypixels emptypixels edge1|fill2 edge1|0x000 emptypixels emptypixels 0x000|edge2 emptypixels emptypixels
 
-//in-game hearts, sprites
-//change the palette
-ORG $31D757; BYTE heartspalette
-//and the graphics
-ORG $2E8F60
-BYTE emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels 0x000|edge2 edge1|edge2
-BYTE emptypixels emptypixels edge1|back2 back1|back2 emptypixels 0x000|edge2 back1|back2 back1|back2 emptypixels 0x000|edge2 back1|back2 back1|back2 emptypixels 0x000|edge2 back1|back2 back1|back2
-BYTE emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels 0x000|edge2 edge1|edge2 emptypixels emptypixels
-BYTE edge1|back2 back1|back2 edge1|0x000 emptypixels back1|back2 back1|back2 back1|edge2 emptypixels back1|back2 back1|back2 back1|edge2 emptypixels back1|back2 back1|back2 back1|edge2 emptypixels
-BYTE emptypixels emptypixels edge1|back2 back1|back2 emptypixels emptypixels 0x000|edge2 back1|back2 emptypixels emptypixels emptypixels edge1|back2 emptypixels emptypixels emptypixels 0x000|edge2
-BYTE emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels
-BYTE back1|back2 back1|back2 edge1|0x000 emptypixels back1|back2 back1|edge2 emptypixels emptypixels back1|back2 edge1|0x000 emptypixels emptypixels back1|edge2 emptypixels emptypixels emptypixels
-BYTE edge1|0x000 emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels
-BYTE emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels 0x000|edge2 edge1|edge2
-BYTE emptypixels emptypixels edge1|fill2 fill1|fill2 emptypixels 0x000|edge2 fill1|fill2 fill1|fill2 emptypixels 0x000|edge2 fill1|fill2 fill1|fill2 emptypixels 0x000|edge2 fill1|fill2 fill1|fill2
-BYTE emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels 0x000|edge2 edge1|edge2 emptypixels emptypixels
-BYTE edge1|back2 back1|back2 edge1|0x000 emptypixels fill1|back2 back1|back2 back1|edge2 emptypixels fill1|back2 back1|back2 back1|edge2 emptypixels fill1|back2 back1|back2 back1|edge2 emptypixels
-BYTE emptypixels emptypixels edge1|back2 back1|back2 emptypixels emptypixels 0x000|edge2 back1|back2 emptypixels emptypixels emptypixels edge1|back2 emptypixels emptypixels emptypixels 0x000|edge2
-BYTE emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels
-BYTE back1|back2 back1|back2 edge1|0x000 emptypixels back1|back2 back1|edge2 emptypixels emptypixels back1|back2 edge1|0x000 emptypixels emptypixels back1|edge2 emptypixels emptypixels emptypixels
-BYTE edge1|0x000 emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels
-BYTE emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels 0x000|edge2 edge1|edge2
-BYTE emptypixels emptypixels edge1|fill2 fill1|fill2 emptypixels 0x000|edge2 fill1|fill2 fill1|fill2 emptypixels 0x000|edge2 fill1|fill2 fill1|fill2 emptypixels 0x000|edge2 fill1|fill2 fill1|fill2
-BYTE emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels 0x000|edge2 edge1|edge2 emptypixels emptypixels
-BYTE edge1|back2 back1|back2 edge1|0x000 emptypixels fill1|back2 back1|back2 back1|edge2 emptypixels fill1|back2 back1|back2 back1|edge2 emptypixels fill1|back2 back1|back2 back1|edge2 emptypixels
-BYTE emptypixels emptypixels edge1|fill2 fill1|fill2 emptypixels emptypixels 0x000|edge2 fill1|fill2 emptypixels emptypixels emptypixels edge1|fill2 emptypixels emptypixels emptypixels 0x000|edge2
-BYTE emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels
-BYTE fill1|back2 back1|back2 edge1|0x000 emptypixels fill1|back2 back1|edge2 emptypixels emptypixels fill1|back2 edge1|0x000 emptypixels emptypixels fill1|edge2 emptypixels emptypixels emptypixels
-BYTE edge1|0x000 emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels
-BYTE emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels 0x000|edge2 edge1|edge2
-BYTE emptypixels emptypixels edge1|fill2 fill1|fill2 emptypixels 0x000|edge2 fill1|fill2 fill1|fill2 emptypixels 0x000|edge2 fill1|fill2 fill1|fill2 emptypixels 0x000|edge2 fill1|fill2 fill1|fill2
-BYTE emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels 0x000|edge2 edge1|edge2 emptypixels emptypixels
-BYTE edge1|back2 back1|back2 edge1|0x000 emptypixels fill1|back2 back1|back2 back1|edge2 emptypixels fill1|back2 back1|back2 back1|edge2 emptypixels fill1|back2 back1|back2 back1|edge2 emptypixels
-BYTE emptypixels emptypixels edge1|fill2 fill1|fill2 emptypixels emptypixels 0x000|edge2 fill1|fill2 emptypixels emptypixels emptypixels edge1|fill2 emptypixels emptypixels emptypixels 0x000|edge2
-BYTE emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels
-BYTE fill1|fill2 fill1|fill2 edge1|0x000 emptypixels fill1|fill2 fill1|edge2 emptypixels emptypixels fill1|fill2 edge1|0x000 emptypixels emptypixels fill1|edge2 emptypixels emptypixels emptypixels
-BYTE edge1|0x000 emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels
-BYTE emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels 0x000|edge2 edge1|edge2
-BYTE emptypixels emptypixels edge1|fill2 fill1|fill2 emptypixels 0x000|edge2 fill1|fill2 fill1|fill2 emptypixels 0x000|edge2 fill1|fill2 fill1|fill2 emptypixels 0x000|edge2 fill1|fill2 fill1|fill2
-BYTE emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels 0x000|edge2 edge1|edge2 emptypixels emptypixels
-BYTE edge1|fill2 fill1|fill2 edge1|0x000 emptypixels fill1|fill2 fill1|fill2 fill1|edge2 emptypixels fill1|fill2 fill1|fill2 fill1|edge2 emptypixels fill1|fill2 fill1|fill2 fill1|edge2 emptypixels
-BYTE emptypixels emptypixels edge1|fill2 fill1|fill2 emptypixels emptypixels 0x000|edge2 fill1|fill2 emptypixels emptypixels emptypixels edge1|fill2 emptypixels emptypixels emptypixels 0x000|edge2
-BYTE emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels
-BYTE fill1|fill2 fill1|fill2 edge1|0x000 emptypixels fill1|fill2 fill1|edge2 emptypixels emptypixels fill1|fill2 edge1|0x000 emptypixels emptypixels fill1|edge2 emptypixels emptypixels emptypixels
-BYTE edge1|0x000 emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels emptypixels
-
 //titlescreen hearts
 //change the palette
 ORG $FBE58; SHORT (0x251|heartspalette<<8) (0x251|heartspalette<<8) (0x251|heartspalette<<8) (0x251|heartspalette<<8) (0x251|heartspalette<<8) (0x251|heartspalette<<8) (0x251|heartspalette<<8) (0x251|heartspalette<<8) (0x251|heartspalette<<8) (0x251|heartspalette<<8) (0x24D|heartspalette<<8) (0x24D|heartspalette<<8) (0x24D|heartspalette<<8) (0x24D|heartspalette<<8) (0x24D|heartspalette<<8) (0x24D|heartspalette<<8) (0x24D|heartspalette<<8) (0x24D|heartspalette<<8) (0x24D|heartspalette<<8) (0x24D|heartspalette<<8)
@@ -139,3 +123,4 @@ BYTE edge1|fill2 fill1|fill2 fill1|fill2 edge1|0x000 0x000|edge2 fill1|fill2 fil
 BYTE edge1|edge2 edge1|0x000 edge1|edge2 edge1|0x000 fill1|fill2 fill1|edge2 fill1|fill2 fill1|edge2 fill1|fill2 fill1|fill2 fill1|fill2 fill1|edge2 fill1|fill2 fill1|fill2 fill1|fill2 fill1|edge2
 BYTE edge1|fill2 fill1|fill2 fill1|fill2 edge1|0x000 0x000|edge2 fill1|fill2 fill1|edge2 emptypixels emptypixels edge1|fill2 edge1|0x000 emptypixels emptypixels 0x000|edge2 emptypixels emptypixels
 POP
+#endif
