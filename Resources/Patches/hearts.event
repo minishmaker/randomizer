@@ -6,32 +6,26 @@
 //backwards compatibility for the old hearts
 #ifdef heartscolorred
 	#define heartFillColor "0x095F"
-	#define heartBackColor "0x318E"
 	#define heartEdgeColor "0x7FFF"
 #endif
 #ifdef heartscoloryellow
 	#define heartFillColor "0x1F9F"
-	#define heartBackColor "0x318E"
 	#define heartEdgeColor "0x0000"
 #endif
 #ifdef heartscolorblue
 	#define heartFillColor "0x7A85"
-	#define heartBackColor "0x318E"
 	#define heartEdgeColor "0x7FFF"
 #endif
 #ifdef heartscolorsky
 	#define heartFillColor "0x7FB5"
-	#define heartBackColor "0x318E"
 	#define heartEdgeColor "0x0000"
 #endif
 #ifdef heartscolorgreen
 	#define heartFillColor "0x0EA4"
-	#define heartBackColor "0x318E"
 	#define heartEdgeColor "0x7FFF"
 #endif
 #ifdef heartscolorlime
 	#define heartFillColor "0x0FC9"
-	#define heartBackColor "0x318E"
 	#define heartEdgeColor "0x0000"
 #endif
 
@@ -78,7 +72,7 @@ SHORT 0xFFFF 0xFFFF //terminator
 #endif
 
 //get the new colors in
-PUSH; ORG $5A2552; SHORT heartFillColor heartBackColor; ORG $5A2558; SHORT heartEdgeColor; POP
+PUSH; ORG $5A2558; SHORT heartFillColor heartEdgeColor; POP
 
 //make the wallets share colors
 PUSH; ORG $1C54A; SHORT 0xB408; jumpToHack(walletPalette); POP
@@ -104,9 +98,9 @@ PUSH; ORG $2E8F60; WORD 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
 
 //update the heart tile colors to the new free ones
 #define heartspalette "0xF0"
-#define fill1 "0x1"
-#define back1 "0x2"
-#define edge1 "0x4"
+#define fill1 "0x4"
+#define back1 "0xB"
+#define edge1 "0x5"
 #define fill2 "(fill1<<4)"
 #define back2 "(back1<<4)"
 #define edge2 "(edge1<<4)"

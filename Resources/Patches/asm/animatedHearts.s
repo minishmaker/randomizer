@@ -33,8 +33,8 @@ ldr	r1,table
 end:
 @load the color
 ldrh	r2,[r1]
-ldr	r0,=#0x50001E2
-ldr	r1,=#0x2017882
+ldr	r0,=#0x50001E8
+ldr	r1,=#0x2017888
 strh	r2,[r1]
 @check if we are doing a fade
 ldr	r1,=#0x20354FE
