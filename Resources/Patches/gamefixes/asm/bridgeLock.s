@@ -1,5 +1,21 @@
 .thumb
 push	{r4,lr}
+@check if we have ocarina
+ldr	r0,=#0x2002B32
+ldrb	r0,[r0,#5]
+mov	r1,#0x40
+and	r0,r1
+cmp	r0,#0
+bne	end
+
+@check if we have cape
+ldr	r0,=#0x2002B32
+ldrb	r0,[r0,#5]
+mov	r1,#1
+and	r0,r1
+cmp	r0,#0
+bne	end
+
 @check if we have a bomb bag
 ldr	r0,=#0x2002AC0
 add	r0,#0x2E
