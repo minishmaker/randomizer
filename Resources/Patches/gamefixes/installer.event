@@ -44,6 +44,13 @@ todLevers:
 //add door to match keyhole door in dhc
 PUSH; ORG $EDC6C; WORD 0; ORG $EDAE0; BYTE 0x06 0x0F 0x08 0x00 0 0 0 0; SHORT 0x58 0x28 0xFFFF 0x6A; POP
 
+//add door to match keyhole door in tod
+PUSH; ORG $E4FBC; POIN todDoor; POP
+ALIGN 4
+todDoor:
+BYTE 0x06 0x0F 0x08 0x01 0 0 0 0; SHORT 0xC8 0x68 0xFFFF 0x63
+WORD 0xFFFFFFFF 0xFFFFFFFF 0xFFFFFFFF 0xFFFFFFFF
+
 //use a boulder to prevent people from climbing down the incomplete vine
 PUSH; ORG $FA9C8; POIN vineBoulder|1; POP
 ALIGN 4
