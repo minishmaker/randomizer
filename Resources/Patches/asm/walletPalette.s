@@ -6,8 +6,8 @@ lsl	r0,#2
 push	{r0-r3}
 ldr	r1,table
 add	r1,r0
-ldr	r2,=#0x50001EE
-ldr	r3,=#0x201788E
+ldr	r2,=#0x50001E2
+ldr	r3,=#0x2017882
 ldrh	r0,[r1]
 strh	r0,[r2]
 strh	r0,[r3]

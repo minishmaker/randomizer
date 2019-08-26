@@ -149,3 +149,33 @@ BYTE edge1|edge2 edge1|0x000 edge1|edge2 edge1|0x000 fill1|fill2 fill1|edge2 fil
 BYTE edge1|fill2 fill1|fill2 fill1|fill2 edge1|0x000 0x000|edge2 fill1|fill2 fill1|edge2 emptypixels emptypixels edge1|fill2 edge1|0x000 emptypixels emptypixels 0x000|edge2 emptypixels emptypixels
 POP
 #endif
+
+#ifndef barcolor
+	#define barcolor
+	#define barcolorgreen
+#endif
+#ifdef barcolor
+#ifdef barcolorred
+	#define barpalette "0x0000"
+#endif
+#ifdef barcolorblue
+	#define barpalette "0x1000"
+#endif
+#ifdef barcolorgreen
+	#define barpalette "0x2000"
+#endif
+//change the graphics for the split bar
+PUSH
+ORG $5C2E30
+#incbin "bar1.img.bin"
+ORG $5C42B0
+#incbin "bar2.img.bin"
+POP
+//change the palette of the split bar
+PUSH
+ORG $1C96C; WORD 0x0016+barpalette 0x0416+barpalette
+ORG $1C93A; SHORT 0x2300+(barpalette>>8)
+ORG $C867C; SHORT 0x001B+barpalette 0x001B+barpalette 0x001B+barpalette 0x001B+barpalette 0x001B+barpalette 0x001B+barpalette 0x001B+barpalette 0x001B+barpalette 0x001B+barpalette 0x001B+barpalette
+ORG $C8690; SHORT 0x0017+barpalette 0x0017+barpalette 0x0017+barpalette 0x0017+barpalette 0x0017+barpalette 0x0017+barpalette 0x0017+barpalette 0x0017+barpalette 0x0017+barpalette 0x0017+barpalette
+POP
+#endif
