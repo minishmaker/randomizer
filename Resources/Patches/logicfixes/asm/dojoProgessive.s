@@ -18,7 +18,7 @@ b	end
 normalSpin:
 bl	hasSpin
 cmp	r0,#0
-beq	end
+beq	giveSpin
 b	findSpot
 
 giveSpin:
