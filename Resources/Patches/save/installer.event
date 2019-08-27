@@ -1,0 +1,14 @@
+//remove save checksum and corrupted save deletion
+PUSH; ORG $7CA68; SHORT 0xE015; POP
+
+//handle saving, copying, erasing and creating the new save space
+PUSH; ORG $7CC30; jumpToHack(newSaveSpace); POP
+ALIGN 4
+newSaveSpace:
+#incbin "asm/newSaveSpace.dmp"
+
+//handle loading the new save space into ram
+PUSH; ORG $515F0; jumpToHack(newSaveLoad); POP
+ALIGN 4
+newSaveLoad:
+#incbin "asm/newSaveLoad.dmp"
