@@ -269,3 +269,17 @@ ALIGN 4
 bonks:
 #incbin "asm/bonks.dmp"
 WORD 0x203FE00+(01*2) //offset
+
+//keep track of times link died
+PUSH; ORG $51958; jumpToHack(gameOvers); POP
+ALIGN 4
+gameOvers:
+#incbin "asm/gameOvers.dmp"
+//WORD 0x203FE00+(02*2) //offset
+
+//keep track of times link has been revived by a fairy
+PUSH; ORG $7177A; SHORT 0xB408; jumpToHack(fairies); POP
+ALIGN 4
+fairies:
+#incbin "asm/fairies.dmp"
+//WORD 0x203FE00+(03*2) //offset
