@@ -103,3 +103,10 @@ BYTE 0x22*2 //0x4C Ball and Chain Soldier
 BYTE 0xFF   //0x4D
 BYTE 0x23*2 //0x4E Ghini
 BYTE 0xFF   //0x4F
+
+//keep track of total time spent in-game, time spent in menus, time spent rolling, time spent in cutscenes
+PUSH; ORG $55AC8; jumpToHack(timer); POP
+ALIGN 4
+timer:
+#incbin "asm/timer.dmp"
+WORD 0x203FB00 //base offset
