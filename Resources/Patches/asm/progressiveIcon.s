@@ -4,17 +4,22 @@ ldr	r0,=#0x20350F0
 mov	r1,#0x80
 lsl	r1,#1
 push	{r0-r7}
-@check if item screen
+@check if item or quest screen
 ldr	r0,=#0x20344A4
 ldrb	r0,[r0]
 cmp	r0,#1
-bne	end
+beq	loadGraphics
+cmp	r0,#2
+beq	skipbranch1
+b	end
+skipbranch1:
 
+loadGraphics:
 ldr	r7,=#0x2034CB0
 @load the icons
 ldr	r0,graphics
 ldr	r1,=#0x600C020
-ldr	r2,=#0x600C2C0
+ldr	r2,=#0x600C800
 loop:
 ldr	r3,[r0]
 str	r3,[r1]
@@ -23,6 +28,71 @@ add	r1,#4
 cmp	r1,r2
 bne	loop
 
+@check if quest screen
+ldr	r0,=#0x20344A4
+ldrb	r0,[r0]
+cmp	r0,#2
+bne	notQuest
+
+@check if we have swim butterfly
+ldr	r3,=#0x2002B4E
+ldrb	r0,[r3]
+mov	r1,#0x10
+and	r0,r1
+cmp	r0,#0
+bne	skipbranch2
+b	end
+skipbranch2:
+@draw the butterfly
+ldr	r0,=#0x2B0
+add	r0,r7
+ldr	r1,=#0x1019
+bl	drawIcon
+b	end
+
+notQuest:
+@check if we have dig butterfly
+ldr	r3,=#0x2002B4E
+ldrb	r0,[r3]
+mov	r1,#4
+and	r0,r1
+cmp	r0,#0
+beq	noDig
+@draw the butterfly
+ldr	r0,=#0x1DA
+add	r0,r7
+ldr	r1,=#0x101F
+bl	drawIcon
+
+noDig:
+@check if we have shoot butterfly
+ldr	r3,=#0x2002B4E
+ldrb	r0,[r3]
+mov	r1,#1
+and	r0,r1
+cmp	r0,#0
+beq	noShoot
+@draw the butterfly
+ldr	r0,=#0x2AC
+add	r0,r7
+ldr	r1,=#0x1025
+bl	drawIcon
+
+noShoot:
+@check if we have boots
+ldr	r3,=#0x2002B37
+ldrb	r0,[r3]
+mov	r1,#0x0C
+and	r1,r0
+cmp	r1,#0
+beq	noBoots
+@draw boots icon
+ldr	r0,=#0x292
+add	r0,r7
+mov	r1,#0x13
+bl	drawIcon
+
+noBoots:
 @check if we can swap shield
 ldr	r3,=#0x2002B35
 ldrb	r0,[r3]
