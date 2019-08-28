@@ -261,4 +261,11 @@ PUSH; ORG $78932; SHORT 0xB408; jumpToHack(rolls); POP
 ALIGN 4
 rolls:
 #incbin "asm/rolls.dmp"
-WORD 0x203FE00 //offset
+WORD 0x203FE00+(00*2) //offset
+
+//keep track of times bonked
+PUSH; ORG $76512; SHORT 0xB408; jumpToHack(bonks); POP
+ALIGN 4
+bonks:
+#incbin "asm/bonks.dmp"
+WORD 0x203FE00+(01*2) //offset
