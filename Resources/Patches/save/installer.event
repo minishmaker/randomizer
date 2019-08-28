@@ -18,8 +18,9 @@ PUSH; ORG $4A59C; jumpToHack(killCounter); POP
 ALIGN 4
 killCounter:
 #incbin "asm/killCounter.dmp"
-WORD 0x203FB00 //base offset
+WORD 0x203FB00 //base offset of kill counters
 POIN enemyKillTable
+WORD (0x203FB00+(0x23*2)+3)&(0xFFFFFFFC) //base offset of kill timestamps, 4 aligned
 
 ALIGN 4
 enemyKillTable:
