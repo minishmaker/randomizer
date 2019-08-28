@@ -2,6 +2,8 @@
 .thumb
 push	{r4,lr}
 push	{r0-r7}
+cmp	r0,#0x7F
+bhi	end
 ldr	r1,table
 ldrb	r0,[r1,r0]
 cmp	r0,#0xFF

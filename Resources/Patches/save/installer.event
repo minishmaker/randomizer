@@ -21,7 +21,6 @@ killCounter:
 WORD 0x203FB00 //base offset of kill counters
 POIN enemyKillTable
 WORD (0x203FB00+(0x24*2)+3)&(0xFFFFFFFC) //base offset of kill timestamps, 4 aligned
-
 ALIGN 4
 enemyKillTable:
 BYTE 0x00*2 //0x00 Octorok
@@ -111,6 +110,13 @@ ALIGN 4
 itemTimestamps:
 #incbin "asm/itemTimestamps.dmp"
 WORD 0x203FC00 //base offset of item timestamps
+POIN itemGetTable
+//save how many times each item was (attempted to be) used
+PUSH; ORG $772E4; jumpToHack(itemTimesUsed); POP
+ALIGN 4
+itemTimesUsed:
+#incbin "asm/itemTimesUsed.dmp"
+WORD 0x203FC00+(0x33*4) //base offset of item uses
 POIN itemGetTable
 ALIGN 4
 itemGetTable:
