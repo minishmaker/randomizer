@@ -255,3 +255,10 @@ ALIGN 4
 timer:
 #incbin "asm/timer.dmp"
 WORD 0x203FB00 //base offset
+
+//keep track of times rolled
+PUSH; ORG $78932; SHORT 0xB408; jumpToHack(rolls); POP
+ALIGN 4
+rolls:
+#incbin "asm/rolls.dmp"
+WORD 0x203FE00 //offset
