@@ -20,7 +20,7 @@ killCounter:
 #incbin "asm/killCounter.dmp"
 WORD 0x203FB00 //base offset of kill counters
 POIN enemyKillTable
-WORD (0x203FB00+(0x23*2)+3)&(0xFFFFFFFC) //base offset of kill timestamps, 4 aligned
+WORD (0x203FB00+(0x24*2)+3)&(0xFFFFFFFC) //base offset of kill timestamps, 4 aligned
 
 ALIGN 4
 enemyKillTable:
@@ -76,7 +76,7 @@ BYTE 0x19*2 //0x30 Keaton
 BYTE 0x1A*2 //0x31 Crow
 BYTE 0x1B*2 //0x32 Mulldozer
 BYTE 0x1C*2 //0x33 Bombarossa
-BYTE 0xFF   //0x34
+BYTE 0x24*2 //0x34 Bubble
 BYTE 0x1D*2 //0x35 Spiny Beetle
 BYTE 0xFF   //0x36
 BYTE 0xFF   //0x37
