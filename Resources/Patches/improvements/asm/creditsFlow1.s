@@ -5,6 +5,9 @@ ldr	r2,[r3]
 ldr	r3,=#0x8127370
 cmp	r2,r3
 bhs	vanilla
+ldr	r3,=#0x81270DC
+cmp	r2,r3
+blo	vanilla
 ldr	r3,=#0x3000FF0
 ldrh	r3,[r3]
 mov	r2,#8
