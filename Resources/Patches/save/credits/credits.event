@@ -1,0 +1,205 @@
+//hold R on credits for 8x speed, press A to skip page, press Start to skip credits
+PUSH; ORG $A2EF8; jumpToHack(creditsFlow1); POP //also controls stats screen
+ALIGN 4
+creditsFlow1:
+#incbin "asm/creditsFlow1.dmp"
+POIN statPages
+PUSH; ORG $A301C; jumpToHack(creditsFlow2); POP
+ALIGN 4
+creditsFlow2:
+#incbin "asm/creditsFlow2.dmp"
+PUSH; ORG $A3080; jumpToHack(creditsFlow3); POP
+ALIGN 4
+creditsFlow3:
+#incbin "asm/creditsFlow3.dmp"
+
+ALIGN 4
+statPages:
+POIN itemCollectionPage
+WORD 0 //terminator
+
+ALIGN 4
+itemCollectionPage:
+#incbin "asm/itemCollectionPage.dmp"
+POIN collectionPageData
+POIN collectionPageGraphics
+POIN collectionPagePalette
+POIN collectionPageBigGraphics
+
+ALIGN 4
+collectionPageData:
+//SHORT itemID baseTileLayer1 baseTileLayer2; BYTE X Y; WORD
+SHORT 0x01 (04<<12)|(01*9) (0<<12)|(00*9); BYTE 01 04; SHORT (6<<12)|(01*9) (0<<12)|(00*9) //smith's sword
+SHORT 0x02 (02<<12)|(02*9) (0<<12)|(00*9); BYTE 01 04; SHORT (0<<12)|(00*9) (0<<12)|(00*9) //white sword 1
+SHORT 0x03 (00<<12)|(02*9) (0<<12)|(00*9); BYTE 01 04; SHORT (0<<12)|(00*9) (0<<12)|(00*9) //white sword 2
+SHORT 0x04 (01<<12)|(02*9) (0<<12)|(00*9); BYTE 01 04; SHORT (0<<12)|(00*9) (0<<12)|(00*9) //white sword 3
+SHORT 0x06 (04<<12)|(03*9) (0<<12)|(04*9); BYTE 01 04; SHORT (0<<12)|(00*9) (0<<12)|(00*9) //four sword
+SHORT 0x11 (01<<12)|(14*9) (0<<12)|(00*9); BYTE 04 04; SHORT (6<<12)|(14*9) (0<<12)|(00*9) //gust jar
+SHORT 0x12 (04<<12)|(15*9) (0<<12)|(00*9); BYTE 07 04; SHORT (6<<12)|(15*9) (0<<12)|(00*9) //cane of pacci
+SHORT 0x0B (00<<12)|(09*9) (0<<12)|(00*9); BYTE 10 04; SHORT (6<<12)|(09*9) (0<<12)|(00*9) //boomerang
+SHORT 0x0C (00<<12)|(10*9) (0<<12)|(00*9); BYTE 10 04; SHORT (6<<12)|(10*9) (0<<12)|(00*9) //magic boomerang
+
+SHORT 0x0D (01<<12)|(11*9) (0<<12)|(00*9); BYTE 01 07; SHORT (6<<12)|(11*9) (0<<12)|(00*9) //small shield
+SHORT 0x0E (01<<12)|(12*9) (0<<12)|(00*9); BYTE 01 07; SHORT (0<<12)|(00*9) (0<<12)|(00*9) //mirror shield
+SHORT 0x13 (01<<12)|(16*9) (0<<12)|(00*9); BYTE 04 07; SHORT (6<<12)|(16*9) (0<<12)|(00*9) //mole mitts
+SHORT 0x0F (00<<12)|(13*9) (0<<12)|(00*9); BYTE 07 07; SHORT (6<<12)|(13*9) (0<<12)|(00*9) //lantern
+SHORT 0x10 (00<<12)|(13*9) (0<<12)|(00*9); BYTE 07 07; SHORT (6<<12)|(13*9) (0<<12)|(00*9) //lantern
+SHORT 0x0F (00<<12)|(13*9) (0<<12)|(00*9); BYTE 07 07; SHORT (0<<12)|(00*9) (0<<12)|(00*9) //lantern
+SHORT 0x10 (00<<12)|(13*9) (0<<12)|(00*9); BYTE 07 07; SHORT (0<<12)|(00*9) (0<<12)|(00*9) //lantern
+SHORT 0x07 (01<<12)|(05*9) (0<<12)|(00*9); BYTE 10 07; SHORT (6<<12)|(05*9) (0<<12)|(00*9) //bombs
+SHORT 0x08 (00<<12)|(06*9) (0<<12)|(00*9); BYTE 10 07; SHORT (0<<12)|(00*9) (0<<12)|(00*9) //remote bombs
+
+SHORT 0x15 (01<<12)|(18*9) (0<<12)|(00*9); BYTE 01 10; SHORT (6<<12)|(18*9) (0<<12)|(00*9) //pegasus boots
+SHORT 0x14 (01<<12)|(17*9) (0<<12)|(00*9); BYTE 04 10; SHORT (6<<12)|(17*9) (0<<12)|(00*9) //roc's cape
+SHORT 0x17 (01<<12)|(19*9) (0<<12)|(00*9); BYTE 07 10; SHORT (6<<12)|(19*9) (0<<12)|(00*9) //ocarina
+SHORT 0x09 (01<<12)|(07*9) (0<<12)|(00*9); BYTE 10 10; SHORT (6<<12)|(07*9) (0<<12)|(00*9) //bow
+SHORT 0x0A (01<<12)|(08*9) (0<<12)|(00*9); BYTE 10 10; SHORT (0<<12)|(00*9) (0<<12)|(00*9) //light arrows
+
+SHORT 0x1C (01<<12)|(20*9) (0<<12)|(00*9); BYTE 01 13; SHORT (6<<12)|(20*9) (0<<12)|(00*9) //bottle
+SHORT 0x1D (01<<12)|(20*9) (0<<12)|(00*9); BYTE 04 13; SHORT (6<<12)|(20*9) (0<<12)|(00*9) //bottle
+SHORT 0x1E (01<<12)|(20*9) (0<<12)|(00*9); BYTE 07 13; SHORT (6<<12)|(20*9) (0<<12)|(00*9) //bottle
+SHORT 0x1F (01<<12)|(20*9) (0<<12)|(00*9); BYTE 10 13; SHORT (6<<12)|(20*9) (0<<12)|(00*9) //bottle
+
+SHORT 0x36 (01<<12)|(42*9) (0<<12)|(00*9); BYTE 03 16; SHORT (6<<12)|(42*9) (0<<12)|(00*9) //bottle of dog food
+SHORT 0x37 (01<<12)|(28*9) (0<<12)|(00*9); BYTE 06 16; SHORT (6<<12)|(28*9) (0<<12)|(00*9) //spare key
+SHORT 0x38 (04<<12)|(25*9) (0<<12)|(26*9); BYTE 09 16; SHORT (6<<12)|(25*9) (6<<12)|(26*9) //wake-up mushroom
+SHORT 0x39 (00<<12)|(21*9) (0<<12)|(00*9); BYTE 12 16; SHORT (6<<12)|(21*9) (0<<12)|(00*9) //red book
+SHORT 0x3A (02<<12)|(22*9) (4<<12)|(24*9); BYTE 15 16; SHORT (6<<12)|(22*9) (6<<12)|(24*9) //green book
+SHORT 0x3B (01<<12)|(23*9) (0<<12)|(00*9); BYTE 18 16; SHORT (6<<12)|(23*9) (0<<12)|(00*9) //blue book
+SHORT 0x3C (04<<12)|(27*9) (0<<12)|(00*9); BYTE 21 16; SHORT (6<<12)|(27*9) (0<<12)|(00*9) //graveyard key
+SHORT 0x5B (00<<12)|(43*9) (2<<12)|(44*9); BYTE 24 16; SHORT (6<<12)|(43*9) (6<<12)|(44*9) //jabber nut
+
+SHORT 0x44 (04<<12)|(29*9) (0<<12)|(30*9); BYTE 20 12; SHORT (6<<12)|(29*9) (6<<12)|(30*9) //grip ring
+SHORT 0x45 (04<<12)|(31*9) (0<<12)|(00*9); BYTE 23 12; SHORT (6<<12)|(31*9) (0<<12)|(00*9) //power bracelets
+SHORT 0x46 (01<<12)|(32*9) (0<<12)|(00*9); BYTE 26 12; SHORT (6<<12)|(32*9) (0<<12)|(00*9) //flippers
+
+SHORT 0x40 (05<<12)|(33*9) (0<<12)|(00*9); BYTE 23 05; SHORT (6<<12)|(33*9) (0<<12)|(00*9) //earth element
+SHORT 0x41 (00<<12)|(34*9) (0<<12)|(00*9); BYTE 20 07; SHORT (7<<12)|(34*9) (0<<12)|(00*9) //fire element
+SHORT 0x42 (01<<12)|(35*9) (0<<12)|(00*9); BYTE 26 07; SHORT (6<<12)|(35*9) (0<<12)|(00*9) //water element
+SHORT 0x43 (02<<12)|(36*9) (0<<12)|(00*9); BYTE 23 09; SHORT (6<<12)|(36*9) (0<<12)|(00*9) //wind element
+
+SHORT 0x48 (08<<12)|(38*9) (0<<12)|(00*9); BYTE 13 00; SHORT (6<<12)|(38*9) (0<<12)|(00*9) //Spin Attack
+SHORT 0x49 (09<<12)|(39*9) (0<<12)|(00*9); BYTE 14 00; SHORT (6<<12)|(39*9) (0<<12)|(00*9) //Roll Attack
+SHORT 0x4A (08<<12)|(38*9) (0<<12)|(00*9); BYTE 16 00; SHORT (6<<12)|(38*9) (0<<12)|(00*9) //Dash Attack
+SHORT 0x4B (08<<12)|(39*9) (0<<12)|(00*9); BYTE 17 00; SHORT (6<<12)|(39*9) (0<<12)|(00*9) //Rock Breaker
+SHORT 0x4C (10<<12)|(38*9) (0<<12)|(00*9); BYTE 19 00; SHORT (6<<12)|(38*9) (0<<12)|(00*9) //Sword Beam
+SHORT 0x4D (11<<12)|(39*9) (0<<12)|(00*9); BYTE 20 00; SHORT (6<<12)|(39*9) (0<<12)|(00*9) //Great Spin Attack
+SHORT 0x4E (08<<12)|(38*9) (0<<12)|(00*9); BYTE 22 00; SHORT (6<<12)|(38*9) (0<<12)|(00*9) //Down Thrust
+SHORT 0x4F (12<<12)|(39*9) (0<<12)|(00*9); BYTE 23 00; SHORT (6<<12)|(39*9) (0<<12)|(00*9) //Peril Beam
+SHORT 0x73 (08<<12)|(38*9) (0<<12)|(00*9); BYTE 25 00; SHORT (6<<12)|(38*9) (0<<12)|(00*9) //Fast Spin
+SHORT 0x74 (08<<12)|(39*9) (0<<12)|(00*9); BYTE 26 00; SHORT (6<<12)|(39*9) (0<<12)|(00*9) //Fast Split
+SHORT 0x75 (08<<12)|(38*9) (0<<12)|(00*9); BYTE 28 00; SHORT (6<<12)|(38*9) (0<<12)|(00*9) //Longer Great Spin
+SHORT 0 0 0 0 //terminator
+
+ALIGN 4
+collectionPageGraphics:
+#incbin "items.img.bin"
+
+ALIGN 4
+collectionPageBigGraphics:
+#incbin "bigitems.img.bin"
+
+ALIGN 4
+collectionPagePalette:
+#incbin "items.pal.bin"
+
+PUSH
+//remove the palette for the background image, essentially making it a black background
+ORG $5B52B0
+WORD 0 0 0 0 0 0 0 0
+WORD 0 0 0 0 0 0 0 0
+WORD 0 0 0 0 0 0 0 0
+WORD 0 0 0 0 0 0 0 0
+WORD 0 0 0 0 0 0 0 0
+WORD 0 0 0 0 0 0 0 0
+WORD 0 0 0 0 0 0 0 0
+WORD 0 0 0 0 0 0 0 0
+//set the text entries to be centered
+ORG $A2E3A
+SHORT 0x2001
+ORG $127380
+BYTE 1
+ORG $127388
+BYTE 2 2 0 0; SHORT 0x0B4 0x119 0 0
+BYTE 2 2 0 0; SHORT 0x0B4 0x11A 0 0
+BYTE 2 2 0 0; SHORT 0x0B4 0x11B 0 0
+BYTE 2 2 0 0; SHORT 0x0B4 0x11C 0 0
+BYTE 0 0 0 0; SHORT 0x001 0x000 0 0 //BYTE 2 2 0 0; SHORT 0x0B4 0x119 0 0
+BYTE 0 0 0 0; SHORT 0x001 0x000 0 0 //BYTE 2 2 0 0; SHORT 0x0B4 0x119 0 0
+BYTE 0 0 0 0; SHORT 0x001 0x000 0 0 //BYTE 2 2 0 0; SHORT 0x0B4 0x119 0 0
+BYTE 0 0 0 0; SHORT 0x001 0x000 0 0 //BYTE 2 2 0 0; SHORT 0x0B4 0x119 0 0
+BYTE 0 0 0 0; SHORT 0x001 0x000 0 0 //BYTE 2 2 0 0; SHORT 0x0B4 0x119 0 0
+BYTE 0 0 0 0; SHORT 0x001 0x000 0 0 //BYTE 2 2 0 0; SHORT 0x0B4 0x119 0 0
+BYTE 0 0 0 0; SHORT 0x001 0x000 0 0 //BYTE 2 2 0 0; SHORT 0x0B4 0x119 0 0
+BYTE 0 0 0 0; SHORT 0x001 0x000 0 0 //BYTE 2 2 0 0; SHORT 0x0B4 0x119 0 0
+BYTE 0 0 0 0; SHORT 0x001 0x000 0 0 //BYTE 2 2 0 0; SHORT 0x0B4 0x119 0 0
+BYTE 0 0 0 0; SHORT 0x001 0x000 0 0 //BYTE 2 2 0 0; SHORT 0x0B4 0x119 0 0
+BYTE 6 0 0 0; SHORT 0x03C 0x000 0 0
+BYTE 2 2 0 0; SHORT 0x12C 0x118 0 0
+BYTE 0 0 0 0; SHORT 0x0B4 0x000 0 0
+BYTE 7 0 0 0; SHORT 0x03C 0x000 0 0
+POP
+
+//repoint some stuff to get more credits entries
+PUSH; ORG $A2F74; POIN repointedCredits1; POP
+ALIGN 4
+repointedCredits1:
+BYTE 0xAB 0x40 0xAC 0x41 0xAD 0x42 0xAE 0x43 0xAF 0x44 0xB0 0x45 0xB1 0x46 0xB2 0x47 0xB3 0x48 0x00 0x00
+PUSH; ORG $A2E18; POIN repointedCredits2; POP
+ALIGN 4
+repointedCredits2:
+POIN $A2E21 $A2ED9 $A31AD $A3199
+PUSH; ORG $A2EEC; POIN repointedCredits3; POP
+repointedCredits3:
+POIN $A2EF5 $A2F11 $A2F81 $A307D $A30A1 $A30CD $A30E9 $A3149
+
+//repoint text IDs in all languages
+PUSH
+ORG $9AEF9C
+WORD credits1-$9AEF38
+WORD credits2-$9AEF38
+WORD credits3-$9AEF38
+WORD credits4-$9AEF38
+ORG $9F789C
+WORD credits1-$9F7838
+WORD credits2-$9F7838
+WORD credits3-$9F7838
+WORD credits4-$9F7838
+ORG $A3F32C
+WORD credits1-$A3F2C8
+WORD credits2-$A3F2C8
+WORD credits3-$A3F2C8
+WORD credits4-$A3F2C8
+ORG $A822AC
+WORD credits1-$A82248
+WORD credits2-$A82248
+WORD credits3-$A82248
+WORD credits4-$A82248
+ORG $AC3C9C
+WORD credits1-$AC3C38
+WORD credits2-$AC3C38
+WORD credits3-$AC3C38
+WORD credits4-$AC3C38
+POP
+
+credits1:
+BYTE 2 0x01; String("Test Credits 1"); BYTE 2 0 0x0A
+String("Test"); BYTE 0x0A
+String("Test"); BYTE 0x0A
+String("Test"); BYTE 0x0A
+String("Test"); BYTE 0
+
+credits2:
+BYTE 2 0x02; String("Test Credits 2"); BYTE 2 0 0x0A
+String("Test"); BYTE 0x0A
+String("Test"); BYTE 0x0A
+String("Test"); BYTE 0
+
+credits3:
+BYTE 2 0x03; String("Test Credits 3"); BYTE 2 0 0x0A
+String("Test"); BYTE 0x0A
+String("Test"); BYTE 0
+
+credits4:
+BYTE 2 0x1A; String("Test Credits 4"); BYTE 2 0 0x0A
+String("Test"); BYTE 0

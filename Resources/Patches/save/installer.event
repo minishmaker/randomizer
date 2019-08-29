@@ -292,3 +292,5 @@ ALIGN 4
 rupees:
 #incbin "asm/rupees.dmp"
 WORD 0x203FE00+(06*2) //offset
+
+#include "credits/credits.event"

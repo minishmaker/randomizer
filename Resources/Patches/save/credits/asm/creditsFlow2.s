@@ -1,13 +1,13 @@
 .thumb
-ldrh	r0,[r1,#8]
+ldrh	r0,[r4,#8]
 ldr	r3,=#0x200008C
 ldr	r2,[r3]
-ldr	r3,=#0x8127370
+ldr	r3,=#0x8127430
 cmp	r2,r3
 bhs	vanilla
-ldr	r3,=#0x81270DC
+ldr	r3,=#0x8127370
 cmp	r2,r3
-blo	vanilla
+bhi	check2
 ldr	r3,=#0x3000FF0
 ldrh	r3,[r3]
 mov	r2,#8
@@ -44,7 +44,20 @@ ldr	r3,=#0x200008C
 str	r2,[r3]
 mov	r0,#0
 store:
-strh	r0,[r1,#8]
+strh	r0,[r4,#8]
 lsl	r0,#0x10
-ldr	r3,=#0x80A2F01
+ldr	r3,=#0x80A3025
 bx	r3
+
+check2:
+ldr	r3,=#0x3000FF0
+ldrh	r3,[r3]
+mov	r2,#8
+and	r2,r3
+cmp	r2,#0
+beq	vanilla
+ldr	r2,=#0x8127430
+ldr	r3,=#0x200008C
+str	r2,[r3]
+mov	r0,#0
+b	store
