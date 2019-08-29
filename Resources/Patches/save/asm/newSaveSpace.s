@@ -49,6 +49,7 @@ bne	copyLoop
 b	end
 
 saveSave:
+@check so we save only once
 ldr	r0,=#0x1080
 cmp	r0,r7
 beq	match
@@ -59,6 +60,16 @@ ldr	r0,=#0x1A80
 cmp	r0,r7
 bne	end
 match:
+@increase times saved
+ldr	r0,=#0x203FE00
+ldrh	r1,[r0,#8]
+ldr	r2,=#10000
+cmp	r1,r2
+beq	noincrease
+add	r1,#1
+noincrease:
+strh	r1,[r0,#8]
+@and save
 ldr	r0,=#0x203FB00
 ldr	r1,=#0x2000004
 ldrb	r1,[r1]

@@ -283,3 +283,6 @@ ALIGN 4
 fairies:
 #incbin "asm/fairies.dmp"
 //WORD 0x203FE00+(03*2) //offset
+
+//WORD 0x203FE00+(04*2) //offset of times saved
+//WORD 0x203FE00+(05*2) //offset of times loaded

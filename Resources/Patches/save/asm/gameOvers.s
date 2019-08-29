@@ -11,7 +11,7 @@ ldr	r2,=#0x2000004
 ldrb	r2,[r2]
 ldr	r0,=#0x500
 mul	r2,r0
-ldr	r3,=#0xE001F00
+ldr	r3,=#0xE001400
 add	r2,r3
 ldrb	r0,[r1,#4]
 strb	r0,[r2,#4]
