@@ -286,3 +286,9 @@ fairies:
 
 //WORD 0x203FE00+(04*2) //offset of times saved
 //WORD 0x203FE00+(05*2) //offset of times loaded
+
+PUSH; ORG $522E8; jumpToHack(rupees); POP
+ALIGN 4
+rupees:
+#incbin "asm/rupees.dmp"
+WORD 0x203FE00+(06*2) //offset
