@@ -145,6 +145,8 @@ str	r0,[r1,#12]
 ldr	r0,=#0x3000F50
 ldr	r1,=#0x640
 strh	r1,[r0]
+ldr	r1,=#0x1F0C
+strh	r1,[r0,#8]
 ldr	r1,=#0x1E4D
 strh	r1,[r0,#0x14]
 ldr	r1,=#0x1DC3
