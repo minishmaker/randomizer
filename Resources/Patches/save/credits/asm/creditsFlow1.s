@@ -54,15 +54,111 @@ bx	r3
 
 stats:
 push	{r0-r7}
+ldr	r4,=#0x3000FF0
+ldr	r5,=#0x20000B0
+ldr	r6,routines
+ldrb	r0,[r5,#2]
+cmp	r0,#0xFF
+beq	endFade
 ldr	r3,=#0x3000FF0
 ldrh	r3,[r3]
 mov	r2,#8
 and	r2,r3
 cmp	r2,#0
-bne	endStats
-ldr	r4,=#0x3000FF0
-ldr	r5,=#0x20000B0
-ldr	r6,routines
+bne	startEnd
+@check if we are doing a fade
+ldrb	r0,[r5,#2]
+cmp	r0,#0
+beq	firstFade
+cmp	r0,#1
+beq	noFade
+cmp	r0,#2
+beq	fadeOut
+b	fadeIn
+firstFade:
+ldr	r0,=#0x3000FA8
+ldr	r1,=#0x3FFF
+strh	r1,[r0,#0x0E]
+mov	r1,#16
+strb	r1,[r5,#4]
+strh	r1,[r0,#0x12]
+ldrb	r0,[r5,#3]
+add	r0,#1
+strb	r0,[r5,#3]
+cmp	r0,#0x3C
+blo	skipPage
+mov	r0,#3
+strb	r0,[r5,#2]
+b	runPage
+
+fadeOut:
+ldrb	r0,[r5,#4]
+cmp	r0,#16
+bhs	startFadeIn
+add	r0,#1
+strb	r0,[r5,#4]
+ldr	r0,=#0x3000FA8
+ldr	r2,=#0x4000050
+ldr	r1,=#0x3FFF
+strh	r1,[r0,#0x0E]
+strh	r1,[r2]
+ldrb	r1,[r5,#4]
+strh	r1,[r0,#0x12]
+strh	r1,[r2,#4]
+b	skipPage
+
+startFadeIn:
+mov	r0,#3
+strb	r0,[r5,#2]
+b	runPage
+
+fadeIn:
+ldrb	r0,[r5,#4]
+cmp	r0,#0
+beq	fadeStop
+sub	r0,#1
+strb	r0,[r5,#4]
+ldr	r0,=#0x3000FA8
+ldr	r2,=#0x4000050
+ldr	r1,=#0x3FFF
+strh	r1,[r0,#0x0E]
+strh	r1,[r2]
+ldrb	r1,[r5,#4]
+strh	r1,[r0,#0x12]
+strh	r1,[r2,#4]
+b	skipPage
+
+startEnd:
+mov	r0,#0xFF
+strb	r0,[r5,#2]
+b	skipPage
+
+endFade:
+ldrb	r0,[r5,#4]
+cmp	r0,#16
+bhs	endStats
+add	r0,#1
+strb	r0,[r5,#4]
+ldr	r0,=#0x3000FA8
+ldr	r2,=#0x4000050
+ldr	r1,=#0x3FFF
+strh	r1,[r0,#0x0E]
+strh	r1,[r2]
+ldrb	r1,[r5,#4]
+strh	r1,[r0,#0x12]
+strh	r1,[r2,#4]
+b	skipPage
+
+fadeStop:
+swi	#5
+mov	r0,#1
+strb	r0,[r5,#2]
+mov	r1,#0
+strh	r1,[r0,#0x0E]
+strh	r1,[r0,#0x12]
+strb	r1,[r5,#4]
+
+noFade:
 @check if we are changing pages
 @L first
 ldrh	r3,[r4,#2]
@@ -112,6 +208,9 @@ strh	r0,[r5,#2]
 str	r0,[r5,#4]
 str	r0,[r5,#8]
 str	r0,[r5,#12]
+mov	r0,#2
+strb	r0,[r5,#2]
+b	skipPage
 runPage:
 @run the page
 ldrb	r0,[r5]
@@ -119,6 +218,7 @@ lsl	r0,#2
 ldr	r0,[r6,r0]
 mov	lr,r0
 .short	0xF800
+skipPage:
 mov	r0,#0x10
 pop	{r0-r7}
 b	store
@@ -153,6 +253,11 @@ ldr	r1,=#0x1DC3
 strh	r1,[r0,#0x20]
 ldr	r1,=#0x1E03
 strh	r1,[r0,#0x2C]
+ldr	r0,=#0x3000FA8
+mov	r1,#0
+strh	r1,[r0,#0x0E]
+mov	r1,#0
+strh	r1,[r0,#0x12]
 pop	{r0-r7}
 mov	r0,#0
 b	store

@@ -79,8 +79,8 @@ bne	backgroundgraphicsLoop
 
 @load the palettes
 ldr	r0,collectionPagePalette
-ldr	r1,=#0x20176A0
-ldr	r2,=#0x2017880
+ldr	r1,=#0x5000000
+ldr	r2,=#0x50001E0
 paletteLoop:
 ldr	r3,[r0]
 str	r3,[r1]
@@ -94,8 +94,8 @@ strh	r0,[r1]
 
 @load the bg palette
 ldr	r0,collectionPageBackgroundPalette
-ldr	r1,=#0x2017840
-ldr	r2,=#0x2017880
+ldr	r1,=#0x50001A0
+ldr	r2,=#0x50001E0
 bgpaletteLoop:
 ldr	r3,[r0]
 str	r3,[r1]
@@ -104,7 +104,7 @@ add	r1,#4
 cmp	r1,r2
 bne	bgpaletteLoop
 mov	r0,#0
-ldr	r1,=#0x20176A0
+ldr	r1,=#0x5000000
 strh	r0,[r1]
 
 @draw the hearts
