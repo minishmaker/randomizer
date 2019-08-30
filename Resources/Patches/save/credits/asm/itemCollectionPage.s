@@ -312,13 +312,13 @@ mov	r1,#0x10
 and	r0,r1
 cmp	r0,#0
 beq	noSwim
-ldr	r0,=#0x1195
+ldr	r0,=#0x116F
 b	wasSwim
 noSwim:
 ldr	r0,=#0x616F
 wasSwim:
 ldr	r1,=#0x600F000
-mov	r2,#27
+mov	r2,#28
 mov	r3,#10
 bl	drawSquare
 
