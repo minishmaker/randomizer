@@ -17,6 +17,7 @@ ALIGN 4
 statPages:
 POIN itemCollectionPage
 POIN enemyPage
+POIN itemPage
 WORD 0 //terminator
 
 ALIGN 4
@@ -95,26 +96,6 @@ SHORT 0x75 (08<<12)|(38*9) (0<<12)|(00*9); BYTE 28 00; SHORT (6<<12)|(38*9) (0<<
 SHORT 0 0 0 0 //terminator
 
 ALIGN 4
-collectionPageGraphics:
-#incbin "items.img.bin"
-
-ALIGN 4
-collectionPageBigGraphics:
-#incbin "bigitems.img.bin"
-
-ALIGN 4
-collectionPagePalette:
-#incbin "items.pal.bin"
-
-ALIGN 4
-collectionPageBackgroundGraphics:
-#incbin "bgitems.img.bin"
-
-ALIGN 4
-collectionPageBackgroundPalette:
-#incbin "bgitems.pal.bin"
-
-ALIGN 4
 scrollingPage:
 #incbin "asm/scrollingPage.dmp"
 POIN bgscrollbotImage
@@ -141,6 +122,41 @@ POIN killCredits3
 POIN highCredits
 
 ALIGN 4
+itemPage:
+#incbin "asm/itemPage.dmp"
+POIN itemsPageData
+POIN scrollingPage
+POIN drawText
+POIN drawNumber
+POIN drawTime
+POIN getTextOffset
+POIN neverCredits
+POIN NACredits
+POIN timesUsedCredits
+POIN timeFoundCredits
+POIN highCredits
+
+ALIGN 4
+collectionPageGraphics:
+#incbin "items.img.bin"
+
+ALIGN 4
+collectionPageBigGraphics:
+#incbin "bigitems.img.bin"
+
+ALIGN 4
+collectionPagePalette:
+#incbin "items.pal.bin"
+
+ALIGN 4
+collectionPageBackgroundGraphics:
+#incbin "bgitems.img.bin"
+
+ALIGN 4
+collectionPageBackgroundPalette:
+#incbin "bgitems.pal.bin"
+
+ALIGN 4
 bgscrollbotImage:
 #incbin "bgscrollbot.img.bin"
 
@@ -159,6 +175,27 @@ bgscrolltopPalette:
 ALIGN 4
 bgscrolltopscroll:
 #incbin "bgscrolltopscroll.img.bin"
+
+killCredits1:
+String("Total killed:"); BYTE 0
+killCredits2:
+String("First kill:"); BYTE 0
+notDefeatedCredits:
+String("Never Defeated"); BYTE 0
+defeatedCredits:
+String("Defeated"); BYTE 0
+NACredits:
+String("N/A"); BYTE 0
+killCredits3:
+String("Defeated at:"); BYTE 0
+highCredits:
+String("Too many!"); BYTE 0
+neverCredits:
+String("Not Found"); BYTE 0
+timesUsedCredits:
+String("Times used:"); BYTE 0
+timeFoundCredits:
+String("Found at:"); BYTE 0
 
 ALIGN 4
 killsPageData:
@@ -209,21 +246,6 @@ SHORT 0x0000 0x084D; WORD 0x203FB00+(2*35) ((0x203FB00+(0x24*2)+3)&(0xFFFFFFFC))
 SHORT 0x0000 0x086D; WORD 0x203FB00+(2*36) ((0x203FB00+(0x24*2)+3)&(0xFFFFFFFC))+(4*36) //Bubble
 WORD 0 0 0 //terminator
 
-killCredits1:
-String("Total killed:"); BYTE 0
-killCredits2:
-String("First kill:"); BYTE 0
-notDefeatedCredits:
-String("Never Defeated"); BYTE 0
-defeatedCredits:
-String("Defeated"); BYTE 0
-NACredits:
-String("N/A"); BYTE 0
-killCredits3:
-String("Defeated at:"); BYTE 0
-highCredits:
-String("Too many!"); BYTE 0
-
 octoCredits:
 String("Big Octorok"); BYTE 0
 gibdoCredits:
@@ -236,6 +258,88 @@ masterCredits:
 String("Wall & Floor Master"); BYTE 0
 chainCredits:
 String("Ball & Chain Soldier"); BYTE 0
+
+ALIGN 4
+itemsPageData:
+//POIN string OR SHORT 0 textID; WORD offsetToCounter (0 if not aplicable or quest item) offsetToTime
+SHORT 0 0x0401            ; WORD (0x203FC00+(0x33*4)+(0x00*2)) 0x203FC00+(0x00*4) //Smith's Sword
+POIN sword1Credits        ; WORD (0x203FC00+(0x33*4)+(0x01*2)) 0x203FC00+(0x01*4) //White Sword
+POIN sword2Credits        ; WORD (0x203FC00+(0x33*4)+(0x02*2)) 0x203FC00+(0x02*4) //White Sword 2
+POIN sword3Credits        ; WORD (0x203FC00+(0x33*4)+(0x03*2)) 0x203FC00+(0x03*4) //White Sword 3
+SHORT 0 0x0406            ; WORD (0x203FC00+(0x33*4)+(0x04*2)) 0x203FC00+(0x04*4) //Four Sword
+SHORT 0 0x0407            ; WORD (0x203FC00+(0x33*4)+(0x05*2)) 0x203FC00+(0x05*4) //Bombs
+SHORT 0 0x0408            ; WORD (0x203FC00+(0x33*4)+(0x06*2)) 0x203FC00+(0x06*4) //Remote Bombs
+SHORT 0 0x0409            ; WORD (0x203FC00+(0x33*4)+(0x07*2)) 0x203FC00+(0x07*4) //Bow
+SHORT 0 0x040A            ; WORD (0x203FC00+(0x33*4)+(0x08*2)) 0x203FC00+(0x08*4) //Light Arrows
+SHORT 0 0x040B            ; WORD (0x203FC00+(0x33*4)+(0x09*2)) 0x203FC00+(0x09*4) //Boomerang
+SHORT 0 0x040C            ; WORD (0x203FC00+(0x33*4)+(0x0A*2)) 0x203FC00+(0x0A*4) //Magic Boomerang
+SHORT 0 0x040D            ; WORD (0x203FC00+(0x33*4)+(0x0B*2)) 0x203FC00+(0x0B*4) //Shield
+SHORT 0 0x040E            ; WORD (0x203FC00+(0x33*4)+(0x0C*2)) 0x203FC00+(0x0C*4) //Mirror Shield
+SHORT 0 0x040F            ; WORD (0x203FC00+(0x33*4)+(0x0D*2)) 0x203FC00+(0x0D*4) //Lantern
+SHORT 0 0x0411            ; WORD (0x203FC00+(0x33*4)+(0x0E*2)) 0x203FC00+(0x0E*4) //Gust Jar
+SHORT 0 0x0412            ; WORD (0x203FC00+(0x33*4)+(0x0F*2)) 0x203FC00+(0x0F*4) //Cane of Pacci
+SHORT 0 0x0413            ; WORD (0x203FC00+(0x33*4)+(0x10*2)) 0x203FC00+(0x10*4) //Mole Mitts
+SHORT 0 0x0414            ; WORD (0x203FC00+(0x33*4)+(0x11*2)) 0x203FC00+(0x11*4) //Roc's Cape
+SHORT 0 0x0415            ; WORD (0x203FC00+(0x33*4)+(0x12*2)) 0x203FC00+(0x12*4) //Pegasus Boots
+SHORT 0 0x0417            ; WORD (0x203FC00+(0x33*4)+(0x13*2)) 0x203FC00+(0x13*4) //Ocarina
+SHORT 0 0x041C            ; WORD (0x203FC00+(0x33*4)+(0x14*2)) 0x203FC00+(0x14*4) //Bottle
+SHORT 0 0x0436            ; WORD 0                             0x203FC00+(0x15*4) //Bottle of Dog Food
+SHORT 0 0x0437            ; WORD 0                             0x203FC00+(0x16*4) //Lon Lon Ranch Key
+SHORT 0 0x0438            ; WORD 0                             0x203FC00+(0x17*4) //Wake-Up Mushroom
+POIN book1Credits         ; WORD 0                             0x203FC00+(0x18*4) //A Hyrulean Bestiary
+POIN book2Credits         ; WORD 0                             0x203FC00+(0x19*4) //Legend of the Picori
+POIN book3Credits         ; WORD 0                             0x203FC00+(0x1A*4) //A History of Masks
+SHORT 0 0x043C            ; WORD 0                             0x203FC00+(0x1B*4) //Graveyard Key
+SHORT 0 0x043D            ; WORD 0                             0x203FC00+(0x1C*4) //Tingle Trophy
+SHORT 0 0x043E            ; WORD 0                             0x203FC00+(0x1D*4) //Carlov Medal
+SHORT 0 0x0440            ; WORD 0                             0x203FC00+(0x1E*4) //Earth Element
+SHORT 0 0x0441            ; WORD 0                             0x203FC00+(0x1F*4) //Fire Element
+SHORT 0 0x0442            ; WORD 0                             0x203FC00+(0x20*4) //Water Element
+SHORT 0 0x0443            ; WORD 0                             0x203FC00+(0x21*4) //Wind Element
+SHORT 0 0x0444            ; WORD 0                             0x203FC00+(0x22*4) //Grip Ring
+SHORT 0 0x0445            ; WORD 0                             0x203FC00+(0x23*4) //Power Bracelets
+SHORT 0 0x0446            ; WORD 0                             0x203FC00+(0x24*4) //Flippers
+SHORT 0 0x0448            ; WORD 0                             0x203FC00+(0x25*4) //Spin Attack
+SHORT 0 0x0449            ; WORD 0                             0x203FC00+(0x26*4) //Roll Attack
+SHORT 0 0x044A            ; WORD 0                             0x203FC00+(0x27*4) //Dash Attack
+SHORT 0 0x044B            ; WORD 0                             0x203FC00+(0x28*4) //Rock Breaker
+SHORT 0 0x044C            ; WORD 0                             0x203FC00+(0x29*4) //Sword Beam
+SHORT 0 0x044D            ; WORD 0                             0x203FC00+(0x2A*4) //Great Spin Attack
+SHORT 0 0x044E            ; WORD 0                             0x203FC00+(0x2B*4) //Down Thrust
+SHORT 0 0x044F            ; WORD 0                             0x203FC00+(0x2C*4) //Peril Beam
+SHORT 0 0x045B            ; WORD 0                             0x203FC00+(0x2D*4) //Jabber Nut
+POIN shootbutterflyCredits; WORD 0                             0x203FC00+(0x2E*4) //Joy Butterfly (Shoot)
+POIN digbutterflyCredits  ; WORD 0                             0x203FC00+(0x2F*4) //Joy Butterfly (Dig)
+POIN swimbutterflyCredits ; WORD 0                             0x203FC00+(0x30*4) //Joy Butterfly (Swim)
+POIN fastspinCredits      ; WORD 0                             0x203FC00+(0x31*4) //Fast Spin
+POIN fastsplitCredits     ; WORD 0                             0x203FC00+(0x32*4) //Fast Split
+POIN longspinCredits      ; WORD 0                             0x203FC00+(0x33*4) //Long Great Spin
+WORD 0 0 0
+
+sword1Credits:
+String("White Sword (1)"); BYTE 0
+sword2Credits:
+String("White Sword (2)"); BYTE 0
+sword3Credits:
+String("White Sword (3)"); BYTE 0
+book1Credits:
+String("A Hyrulean Bestiary"); BYTE 0
+book2Credits:
+String("Legend of the Picori"); BYTE 0
+book3Credits:
+String("A History of Masks"); BYTE 0
+shootbutterflyCredits:
+String("Shoot Butterfly"); BYTE 0
+digbutterflyCredits:
+String("Dig Butterfly"); BYTE 0
+swimbutterflyCredits:
+String("Swim Butterfly"); BYTE 0
+fastspinCredits:
+String("Faster Spin Attack"); BYTE 0
+fastsplitCredits:
+String("Faster Split Gauge"); BYTE 0
+longspinCredits:
+String("Longer Great Spin"); BYTE 0
 
 PUSH
 //remove the palette for the background image, essentially making it a black background

@@ -3,7 +3,7 @@ push	{r4-r7,lr}
 ldr	r3,=#21502799
 cmp	r0,r3
 blo	notmax
-mov	r0,r1
+mov	r0,r3
 notmax:
 mov	r4,r0	@number
 mov	r5,r1	@x
