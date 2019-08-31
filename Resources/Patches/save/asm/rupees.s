@@ -3,7 +3,7 @@ push	{r0-r7}
 ldr	r1,offset
 ldrh	r2,[r1]
 add	r2,r0
-ldr	r3,=#10000
+ldr	r3,=#0xFFFF
 cmp	r2,r3
 blo	store
 mov	r2,r3

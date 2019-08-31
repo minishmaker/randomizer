@@ -31,7 +31,7 @@ ldr	r2,[r2]
 str	r2,[r0,r1]
 pop	{r0-r3}
 notFirst:
-ldr	r3,=#10000
+ldr	r3,=#0xFFFF
 cmp	r0,r3
 beq	end
 add	r0,#1

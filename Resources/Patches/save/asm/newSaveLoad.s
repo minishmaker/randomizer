@@ -19,7 +19,7 @@ bne	copyLoop
 @increase load counter
 ldr	r0,=#0x203FE00
 ldrh	r1,[r0,#10]
-ldr	r2,=#10000
+ldr	r2,=#0xFFFF
 cmp	r1,r2
 beq	end
 add	r1,#1

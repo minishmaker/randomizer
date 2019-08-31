@@ -3,7 +3,7 @@ pop	{r3}
 push	{r0-r7}
 ldr	r1,offset
 ldrh	r2,[r1]
-ldr	r3,=#10000
+ldr	r3,=#0xFFFF
 cmp	r2,r3
 beq	end
 add	r2,#1

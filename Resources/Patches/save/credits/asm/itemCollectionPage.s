@@ -5,6 +5,7 @@
 .equ collectionPageBackgroundPalette, collectionPageBackgroundGraphics+4
 .thumb
 push	{r4-r7,lr}
+@check if first frame
 ldr	r4,=#0x20000B0
 ldrb	r0,[r4,#1]
 cmp	r0,#0
@@ -36,9 +37,8 @@ ldr	r1,=#0x1D42
 strh	r1,[r0,#0x20]
 ldr	r1,=#0x1C00
 strh	r1,[r0,#0x2C]
-ldr	r0,=#0x3000FB0
 mov	r1,#0
-strh	r1,[r0,#6]
+strh	r1,[r0,#0x30]
 
 @load the graphics
 ldr	r0,collectionPageGraphics
@@ -76,7 +76,6 @@ add	r1,#4
 cmp	r1,r2
 bne	backgroundgraphicsLoop
 
-
 @load the palettes
 ldr	r0,collectionPagePalette
 ldr	r1,=#0x5000000
@@ -89,7 +88,7 @@ add	r1,#4
 cmp	r1,r2
 bne	paletteLoop
 mov	r0,#0
-ldr	r1,=#0x20176A0
+ldr	r1,=#0x5000000
 strh	r0,[r1]
 
 @load the bg palette

@@ -110,6 +110,24 @@ ORG $5EE3D0
 #incbin "ice.img.bin"
 POP
 
+//given text id, get text offset
+ALIGN 4
+getTextOffset:
+#incbin "asm/getTextOffset.dmp"
+
+//draw to layer 0 using the debug font
+ALIGN 4
+drawText:
+#incbin "asm/drawText.dmp"
+ALIGN 4
+drawNumber:
+#incbin "asm/drawNumber.dmp"
+POIN drawText
+ALIGN 4
+drawTime:
+#incbin "asm/drawTime.dmp"
+POIN drawText
+
 #include "newGame.event"
 #include "progressiveItems.event"
 #include "scrubs.event"

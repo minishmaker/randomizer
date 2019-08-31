@@ -21,6 +21,12 @@ killCounter:
 WORD 0x203FB00 //base offset of kill counters
 POIN enemyKillTable
 WORD (0x203FB00+(0x24*2)+3)&(0xFFFFFFFC) //base offset of kill timestamps, 4 aligned
+//timestamp time killed for the bosses
+PUSH; ORG $7C6C0; jumpToHack(bossKills); POP
+ALIGN 4
+bossKills:
+#incbin "asm/bossKills.dmp"
+WORD 0x203FBE0 //offset for boss times
 ALIGN 4
 enemyKillTable:
 BYTE 0x00*2 //0x00 Octorok

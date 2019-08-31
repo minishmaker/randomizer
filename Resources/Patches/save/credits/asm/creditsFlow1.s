@@ -95,7 +95,7 @@ fadeOut:
 ldrb	r0,[r5,#4]
 cmp	r0,#16
 bhs	startFadeIn
-add	r0,#1
+add	r0,#2
 strb	r0,[r5,#4]
 ldr	r0,=#0x3000FA8
 ldr	r2,=#0x4000050
@@ -116,7 +116,7 @@ fadeIn:
 ldrb	r0,[r5,#4]
 cmp	r0,#0
 beq	fadeStop
-sub	r0,#1
+sub	r0,#2
 strb	r0,[r5,#4]
 ldr	r0,=#0x3000FA8
 ldr	r2,=#0x4000050
@@ -201,6 +201,9 @@ incrasePage:
 add	r0,#1
 storePage:
 @store the page
+ldrb	r1,[r5]
+cmp	r0,r1
+beq	runPage
 strb	r0,[r5]
 mov	r0,#0
 strb	r0,[r5,#1]
@@ -253,11 +256,32 @@ ldr	r1,=#0x1DC3
 strh	r1,[r0,#0x20]
 ldr	r1,=#0x1E03
 strh	r1,[r0,#0x2C]
+mov	r1,#0
+strh	r1,[r0,#0x30]
 ldr	r0,=#0x3000FA8
 mov	r1,#0
 strh	r1,[r0,#0x0E]
 mov	r1,#0
 strh	r1,[r0,#0x12]
+@clean first two tiles
+ldr	r0,=#0x6000000
+mov	r1,#0
+str	r1,[r0,#0x00]
+str	r1,[r0,#0x04]
+str	r1,[r0,#0x08]
+str	r1,[r0,#0x0C]
+str	r1,[r0,#0x10]
+str	r1,[r0,#0x14]
+str	r1,[r0,#0x18]
+str	r1,[r0,#0x1C]
+str	r1,[r0,#0x20]
+str	r1,[r0,#0x24]
+str	r1,[r0,#0x28]
+str	r1,[r0,#0x2C]
+str	r1,[r0,#0x30]
+str	r1,[r0,#0x34]
+str	r1,[r0,#0x38]
+str	r1,[r0,#0x3C]
 pop	{r0-r7}
 mov	r0,#0
 b	store
