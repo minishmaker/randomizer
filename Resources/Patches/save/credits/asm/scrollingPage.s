@@ -242,7 +242,6 @@ mov	r5,r1		@remainder, % to scroll
 mov	r0,#0x64		@difference between highest and lowest scroll position (0x9C = bottom, 0x100 = top)
 lsl	r0,#20
 ldrh	r1,[r4,#12]	@max line
-sub	r1,#1
 swi	#6		@divided
 mov	r6,r0
 mul	r6,r5		@ammount to scroll
