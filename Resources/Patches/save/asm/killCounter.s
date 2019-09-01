@@ -11,7 +11,21 @@ str	r0,[r1,#0x50]
 noIncrease:
 ldrb	r0,[r4]
 push	{r0-r7}
-
+@if the bloom flag is set, increase bloom kill counter
+ldr	r0,=#0x2002CA6
+ldrb	r0,[r0]
+mov	r1,#0x10
+and	r0,r1
+cmp	r0,#0
+beq	nobloom
+ldr	r0,=#0x2002ED0
+ldr	r1,[r0]
+ldr	r2,=#0xFFFFFFFF
+cmp	r1,r2
+beq	nobloom
+add	r1,#1
+str	r1,[r0]
+nobloom:
 ldrb	r0,[r5,#9]
 cmp	r0,#0x4F
 bhi	end
