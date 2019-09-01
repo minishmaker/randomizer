@@ -172,3 +172,12 @@ ORG $13672; SHORT 0x00 0x00
 ORG $138CC; SHORT 0x00 0x00
 ORG $13A80; SHORT 0x00 0x00
 POP
+
+#ifdef timer
+	PUSH; ORG $1C4E8; jumpToHack(timerDisplay); POP
+	ALIGN 4
+	timerDisplay:
+	#incbin "asm/timerDisplay.dmp"
+	POIN drawTime
+	WORD 0 //if 0, draw total time, it non-0, draw timer returned by routine called
+#endif

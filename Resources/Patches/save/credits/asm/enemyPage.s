@@ -105,6 +105,7 @@ mov	r1,#3
 mov	r2,r5
 ldr	r3,drawText
 mov	lr,r3
+mov	r3,#0
 .short	0xF800
 ldr	r0,[r4,#4]
 cmp	r0,#0
@@ -122,6 +123,7 @@ mov	r2,r5
 add	r2,#1
 ldr	r3,drawText
 mov	lr,r3
+mov	r3,#0
 .short	0xF800
 @draw timestamp label
 ldr	r0,killCredits3
@@ -130,6 +132,7 @@ mov	r2,r5
 add	r2,#2
 ldr	r3,drawText
 mov	lr,r3
+mov	r3,#0
 .short	0xF800
 @draw time killed at
 ldr	r0,[r4,#8]
@@ -139,6 +142,7 @@ mov	r2,r5
 add	r2,#2
 ldr	r3,drawTime
 mov	lr,r3
+mov	r3,#0
 .short	0xF800
 b	enddraw
 never:
@@ -148,6 +152,7 @@ mov	r2,r5
 add	r2,#1
 ldr	r3,drawText
 mov	lr,r3
+mov	r3,#0
 .short	0xF800
 b	enddraw
 normalEnemy:
@@ -158,6 +163,7 @@ mov	r2,r5
 add	r2,#1
 ldr	r3,drawText
 mov	lr,r3
+mov	r3,#0
 .short	0xF800
 @draw timestamp label
 ldr	r0,killCredits2
@@ -166,6 +172,7 @@ mov	r2,r5
 add	r2,#2
 ldr	r3,drawText
 mov	lr,r3
+mov	r3,#0
 .short	0xF800
 @draw times killed
 ldr	r0,[r4,#4]
@@ -178,6 +185,7 @@ mov	r2,r5
 add	r2,#1
 ldr	r3,drawNumber
 mov	lr,r3
+mov	r3,#0
 .short	0xF800
 b	drawtimeregular
 toomany:
@@ -187,6 +195,7 @@ mov	r2,r5
 add	r2,#1
 ldr	r3,drawText
 mov	lr,r3
+mov	r3,#0
 .short	0xF800
 @draw time killed at
 drawtimeregular:
@@ -199,6 +208,7 @@ mov	r2,r5
 add	r2,#2
 ldr	r3,drawTime
 mov	lr,r3
+mov	r3,#0
 .short	0xF800
 b	enddraw
 neverkilled:
@@ -208,6 +218,7 @@ mov	r2,r5
 add	r2,#2
 ldr	r3,drawText
 mov	lr,r3
+mov	r3,#0
 .short	0xF800
 enddraw:
 pop	{r4-r7,pc}

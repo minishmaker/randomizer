@@ -90,6 +90,7 @@ mov	r1,#3
 mov	r2,r5
 ldr	r3,drawText
 mov	lr,r3
+mov	r3,#0
 .short	0xF800
 @check if timer or not
 ldr	r0,[r4,#4]
@@ -102,6 +103,7 @@ mov	r2,r5
 add	r2,#1
 ldr	r3,drawText
 mov	lr,r3
+mov	r3,#0
 .short	0xF800
 @draw times used, or too high
 ldr	r0,[r4,#4]
@@ -114,6 +116,7 @@ mov	r2,r5
 add	r2,#1
 ldr	r3,drawNumber
 mov	lr,r3
+mov	r3,#0
 .short	0xF800
 b	enddraw
 toohigh:
@@ -123,6 +126,7 @@ mov	r2,r5
 add	r2,#1
 ldr	r3,drawText
 mov	lr,r3
+mov	r3,#0
 .short	0xF800
 b	enddraw
 timer:
@@ -133,6 +137,7 @@ mov	r2,r5
 add	r2,#1
 ldr	r3,drawText
 mov	lr,r3
+mov	r3,#0
 .short	0xF800
 @draw timer
 ldr	r0,[r4,#8]
@@ -142,6 +147,7 @@ mov	r2,r5
 add	r2,#1
 ldr	r3,drawTime
 mov	lr,r3
+mov	r3,#0
 .short	0xF800
 enddraw:
 pop	{r4-r7,pc}

@@ -3,6 +3,7 @@ push	{r4-r7,lr}
 mov	r4,r0	@number
 mov	r5,r1	@x
 mov	r6,r2	@y
+push	{r3}	@offset
 ldr	r7,=#0x203F100
 mov	r0,#0
 strb	r0,[r7]
@@ -45,6 +46,7 @@ mov	r1,r5
 mov	r2,r6
 ldr	r3,drawText
 mov	lr,r3
+pop	{r3}
 .short	0xF800
 pop	{r4-r7,pc}
 .align

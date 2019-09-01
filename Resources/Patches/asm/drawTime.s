@@ -1,13 +1,14 @@
 .thumb
 push	{r4-r7,lr}
-ldr	r3,=#21502799
-cmp	r0,r3
+ldr	r4,=#21502799
+cmp	r0,r4
 blo	notmax
-mov	r0,r3
+mov	r0,r4
 notmax:
 mov	r4,r0	@number
 mov	r5,r1	@x
 mov	r6,r2	@y
+push	{r3}	@offset
 ldr	r7,=#0x203F000
 
 @draw hours
@@ -71,6 +72,7 @@ mov	r1,r5
 mov	r2,r6
 ldr	r3,drawText
 mov	lr,r3
+pop	{r3}
 .short	0xF800
 pop	{r4-r7,pc}
 .align

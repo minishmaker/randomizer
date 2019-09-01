@@ -2,7 +2,10 @@
 @r0 is string
 @r1 is x
 @r2 is y
+@r3 is offset or 0
 
+cmp	r3,#0
+bne	custom
 @get offset
 lsl	r1,#1
 mov	r3,#0x40
@@ -10,6 +13,10 @@ mul	r2,r3
 add	r1,r2
 ldr	r2,=#0x600F800
 add	r1,r2
+b	draw
+
+custom:
+mov	r1,r3
 
 draw:
 mov	r3,#0

@@ -103,6 +103,7 @@ mov	r1,#3
 mov	r2,r5
 ldr	r3,drawText
 mov	lr,r3
+mov	r3,#0
 .short	0xF800
 @draw times used label
 ldr	r0,timesUsedCredits
@@ -111,6 +112,7 @@ mov	r2,r5
 add	r2,#1
 ldr	r3,drawText
 mov	lr,r3
+mov	r3,#0
 .short	0xF800
 @draw timestamp label
 ldr	r0,timeFoundCredits
@@ -119,6 +121,7 @@ mov	r2,r5
 add	r2,#2
 ldr	r3,drawText
 mov	lr,r3
+mov	r3,#0
 .short	0xF800
 @draw times used if aplicable
 ldr	r0,[r4,#4]
@@ -133,6 +136,7 @@ mov	r2,r5
 add	r2,#1
 ldr	r3,drawNumber
 mov	lr,r3
+mov	r3,#0
 .short	0xF800
 b	drawTimestamp
 toomany:
@@ -146,6 +150,7 @@ mov	r2,r5
 add	r2,#1
 ldr	r3,drawText
 mov	lr,r3
+mov	r3,#0
 .short	0xF800
 @draw time found if ever
 drawTimestamp:
@@ -158,6 +163,7 @@ mov	r2,r5
 add	r2,#2
 ldr	r3,drawTime
 mov	lr,r3
+mov	r3,#0
 .short	0xF800
 b	enddraw
 neverfound:
@@ -167,6 +173,7 @@ mov	r2,r5
 add	r2,#2
 ldr	r3,drawText
 mov	lr,r3
+mov	r3,#0
 .short	0xF800
 enddraw:
 pop	{r4-r7,pc}
