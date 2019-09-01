@@ -280,3 +280,6 @@ PUSH; ORG $4C166; SHORT 0; ORG $4C16E; SHORT 0xE001; POP
 PUSH; ORG $5FDD0; SHORT 0x2000; POP //store 0 instead of kill counter
 PUSH; ORG $5FDEA; SHORT 0x1C04; POP //don't use kill counter for the check
 //pico bloom kill counter is now increased every time an enemy is killed, handled at the enemies killed tracker
+
+//librari always spawns at lake house
+PUSH; ORG $4C338; SHORT 0; POP
