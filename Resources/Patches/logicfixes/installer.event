@@ -283,3 +283,9 @@ PUSH; ORG $5FDEA; SHORT 0x1C04; POP //don't use kill counter for the check
 
 //librari always spawns at lake house
 PUSH; ORG $4C338; SHORT 0; POP
+
+//librari will drop you down again if you talk to him again, instead of automatically dropping you on entry
+PUSH; ORG $EF87C; POIN libraryTrapdoor|1; POP
+ALIGN 4
+libraryTrapdoor:
+#incbin "asm/libraryTrapdoor.dmp"
