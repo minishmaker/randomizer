@@ -13,6 +13,12 @@ ALIGN 4
 creditsFlow3:
 #incbin "asm/creditsFlow3.dmp"
 
+//change text colors and screen possition for the credits
+PUSH; ORG $A316C; jumpToHack(customCredits); POP
+ALIGN 4
+customCredits:
+#incbin "asm/customCredits.dmp"
+
 ALIGN 4
 statPages:
 POIN itemCollectionPage
@@ -418,7 +424,7 @@ BYTE 2 2 0 0; SHORT 0x0B4 0x119 0 0
 BYTE 2 2 0 0; SHORT 0x0B4 0x11A 0 0
 BYTE 2 2 0 0; SHORT 0x0B4 0x11B 0 0
 BYTE 2 2 0 0; SHORT 0x0B4 0x11C 0 0
-BYTE 0 0 0 0; SHORT 0x001 0x000 0 0 //BYTE 2 2 0 0; SHORT 0x0B4 0x119 0 0
+BYTE 2 2 0 0; SHORT 0x0B4 0x109 0 0
 BYTE 0 0 0 0; SHORT 0x001 0x000 0 0 //BYTE 2 2 0 0; SHORT 0x0B4 0x119 0 0
 BYTE 0 0 0 0; SHORT 0x001 0x000 0 0 //BYTE 2 2 0 0; SHORT 0x0B4 0x119 0 0
 BYTE 0 0 0 0; SHORT 0x001 0x000 0 0 //BYTE 2 2 0 0; SHORT 0x0B4 0x119 0 0
@@ -449,51 +455,68 @@ POIN $A2EF5 $A2F11 $A2F81 $A307D $A30A1 $A30CD $A30E9 $A3149
 
 //repoint text IDs in all languages
 PUSH
-ORG $9AEF9C
-WORD credits1-$9AEF38
-WORD credits2-$9AEF38
-WORD credits3-$9AEF38
-WORD credits4-$9AEF38
+ORG $5E95A
+SHORT 0
 ORG $9F789C
 WORD credits1-$9F7838
 WORD credits2-$9F7838
 WORD credits3-$9F7838
 WORD credits4-$9F7838
-ORG $A3F32C
-WORD credits1-$A3F2C8
-WORD credits2-$A3F2C8
-WORD credits3-$A3F2C8
-WORD credits4-$A3F2C8
-ORG $A822AC
-WORD credits1-$A82248
-WORD credits2-$A82248
-WORD credits3-$A82248
-WORD credits4-$A82248
-ORG $AC3C9C
-WORD credits1-$AC3C38
-WORD credits2-$AC3C38
-WORD credits3-$AC3C38
-WORD credits4-$AC3C38
+ORG $9F785C
+WORD credits5-$9F7838
 POP
 
 credits1:
-BYTE 2 0x01; String("Test Credits 1"); BYTE 2 0 0x0A
-String("Test"); BYTE 0x0A
-String("Test"); BYTE 0x0A
-String("Test"); BYTE 0x0A
-String("Test"); BYTE 0
+BYTE 0x0A
+BYTE 0x0A
+BYTE 0x0A
+BYTE 2 0x01; String("Programming"); BYTE 2 0 0x0A
+String("Berylliosis"); BYTE 0x0A
+BYTE 0x0A
+BYTE 2 0x02; String("Logic"); BYTE 2 0 0x0A
+String("wjg"); BYTE 0x0A
+String("Berylliosis"); BYTE 0
 
 credits2:
-BYTE 2 0x02; String("Test Credits 2"); BYTE 2 0 0x0A
-String("Test"); BYTE 0x0A
-String("Test"); BYTE 0x0A
-String("Test"); BYTE 0
+BYTE 0x0A
+BYTE 0x0A
+BYTE 0x0A
+BYTE 0x0A
+BYTE 2 0x03; String("Patches and Assembly"); BYTE 2 0 0x0A
+String("Leonarth"); BYTE 0x0A
+BYTE 0x0A
+BYTE 2 0x01; String("Tracker Package"); BYTE 2 0 0x0A
+String("Cubesolver"); BYTE 0
 
 credits3:
-BYTE 2 0x03; String("Test Credits 3"); BYTE 2 0 0x0A
-String("Test"); BYTE 0x0A
-String("Test"); BYTE 0
+BYTE 2 0x11; String("Team MinishMaker"); BYTE 2 0 0x0A
+String("Mikesky"); BYTE 0x0A
+String("ppltoast"); BYTE 0x0A
+String("ToadsWoot"); BYTE 0x0A
+String("wjg"); BYTE 0x0A
+String("Berylliosis"); BYTE 0x0A
+String("Leonarth"); BYTE 0x0A
+String("UselessHobo"); BYTE 0x0A
+String("Cubesolver"); BYTE 0
 
 credits4:
-BYTE 2 0x1A; String("Test Credits 4"); BYTE 2 0 0x0A
-String("Test"); BYTE 0
+BYTE 0x0A
+BYTE 0x0A
+BYTE 2 0x1A; String("Additional Contributors"); BYTE 2 0 0x0A
+String("Myth"); BYTE 0x0A
+String("Maro"); BYTE 0x0A
+BYTE 0x0A
+BYTE 2 0x12; String("Special Thanks"); BYTE 2 0 0x0A
+String("ALTTP Randomizer Team"); BYTE 0x0A
+String("EmoTracker Developers"); BYTE 0
+
+credits5:
+BYTE 0x0A
+BYTE 0x0A
+BYTE 0x0A
+BYTE 0x0A
+BYTE 0x0A
+BYTE 0x0A
+BYTE 2 0x1B; String("minishmaker.com"); BYTE 0x0F 0x15; String("discord"); BYTE 2 0 0x0A
+BYTE 0x0A
+BYTE 2 0x1B; String("github.com"); BYTE 0x0F 0x15; String("minishmaker"); BYTE 2 0 0
