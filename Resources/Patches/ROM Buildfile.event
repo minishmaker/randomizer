@@ -181,3 +181,11 @@ POP
 	POIN drawTime
 	WORD 0 //if 0, draw total time, it non-0, draw timer returned by routine called
 #endif
+
+#ifdef ohko
+	PUSH; ORG $522BC; jumpToHack(ohkoCheck); POP
+	ALIGN 4
+	ohkoCheck:
+	#incbin "asm/ohkoCheck.dmp"
+	WORD 0 //if 0, any damage will kill link, if non-8 this will be used as a pointer to a routine to determine if link will die
+#endif
