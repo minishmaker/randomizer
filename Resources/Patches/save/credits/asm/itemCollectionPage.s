@@ -193,9 +193,9 @@ bl	drawBigSquare
 noTotem:
 
 @draw king stone
-ldr	r0,=#0x2002C83
+ldr	r0,=#0x2002C82
 ldrb	r0,[r0]
-mov	r1,#8
+mov	r1,#2
 and	r0,r1
 cmp	r0,#0
 beq	noKing
