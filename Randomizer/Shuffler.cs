@@ -68,15 +68,14 @@ namespace MinishRandomizer.Randomizer
     {
         
         public int Seed;
-        public List<LogicOption> Options;
         private Random RNG;
         private List<Location> Locations;
         //private List<Location> StartingLocations;
         private List<Item> DungeonItems;
         private List<Item> MajorItems;
         private List<Item> MinorItems;
-        private List<LogicDefine> LogicDefines;
         private HeartColorType HeartColor = HeartColorType.Default;
+        private Parser LogicParser;
 
         public Shuffler()
         {
@@ -84,8 +83,7 @@ namespace MinishRandomizer.Randomizer
             DungeonItems = new List<Item>();
             MajorItems = new List<Item>();
             MinorItems = new List<Item>();
-            LogicDefines = new List<LogicDefine>();
-            Options = new List<LogicOption>();
+            LogicParser = new Parser();
         }
 
         public void SetSeed(int seed)
@@ -99,12 +97,17 @@ namespace MinishRandomizer.Randomizer
             HeartColor = color;
         }
 
+        public List<LogicOption> GetOptions()
+        {
+            return LogicParser.SubParser.Options;
+        }
+
         /// <summary>
         /// Load the flags that a logic file uses to customize itself
         /// </summary>
         public void LoadOptions(string logicFile = null)
         {
-            Options.Clear();
+            LogicParser.SubParser.ClearOptions();
 
             string[] logicStrings;
 
@@ -125,39 +128,7 @@ namespace MinishRandomizer.Randomizer
                 logicStrings = File.ReadAllLines(logicFile);
             }
 
-            foreach (string fullLine in logicStrings)
-            {
-                // Make sure there's something in the line
-                if (string.IsNullOrEmpty(fullLine))
-                {
-                    continue;
-                }
-
-                // If the line isn't a logic directive, it can be ignored
-                if (fullLine[0] != '!')
-                {
-                    continue;
-                }
-
-                // Remove comments cause they can be on the same line
-                string trimmedLine = fullLine.Split('#')[0];
-                Console.WriteLine(trimmedLine);
-
-                // Get command from string (will be replaced with a proper method later, I promise)
-                // And it'll support multi-word flags. Bear with me.
-                string[] splits = trimmedLine.Split(' ');
-
-                Console.WriteLine(splits.Length);
-
-                if (splits[0] != "!flag")
-                {
-                    return;
-                }
-
-                LogicFlag newFlag = new LogicFlag(splits[1], splits[2], false);
-
-                Options.Add(newFlag);
-            }
+            LogicParser.PreParse(logicStrings);
         }
 
         /// <summary>
@@ -171,10 +142,9 @@ namespace MinishRandomizer.Randomizer
             DungeonItems.Clear();
             MajorItems.Clear();
             MinorItems.Clear();
-            LogicDefines.Clear();
 
-            // Add active flags to defines, leave inactive ones out
-            LogicDefines.AddRange(Options.Where(option => option.Active));
+            LogicParser.SubParser.ClearDefines();
+            LogicParser.SubParser.AddOptions();
 
             string[] locationStrings;
 
@@ -196,7 +166,9 @@ namespace MinishRandomizer.Randomizer
                 locationStrings = File.ReadAllLines(logicFile);
             }
 
-            Parser.ParseLocations(this, locationStrings, LogicDefines);
+            List<Location> parsedLocations = LogicParser.ParseLocations(locationStrings);
+
+            parsedLocations.ForEach(location => { AddLocation(location); });
         }
 
         public void AddLocation(Location location)

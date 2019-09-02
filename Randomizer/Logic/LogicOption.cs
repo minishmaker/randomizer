@@ -26,16 +26,14 @@ namespace MinishRandomizer.Randomizer.Logic
 
     public class LogicFlag : LogicOption
     {
-        public LogicFlag(string name, string niceName, bool active) : base(name, niceName, active)
-        {
-
-        }
+        public LogicFlag(string name, string niceName, bool active) : base(name, niceName, active) { }
 
         public override Control GetControl()
         {
             CheckBox flagCheckBox = new CheckBox
             {
-                Text = NiceName
+                Text = NiceName,
+                Checked = Active
             };
 
             flagCheckBox.CheckedChanged += (object sender, EventArgs e) => { Active = flagCheckBox.Checked; };

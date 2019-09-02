@@ -14,12 +14,19 @@ namespace MinishRandomizer.Randomizer.Logic
 
     public class Parser
     {
+        public DirectiveParser SubParser;
+
+        public Parser()
+        {
+            SubParser = new DirectiveParser();
+        }
+
         /// <summary>
         /// Get a list of the dependencies contained within a given logic string. Compound dependencies call this recursively
         /// </summary>
         /// <param name="logic">The logic string to parse</param>
         /// <returns>The list of dependencies contained in the logic</returns>
-        public static List<Dependency> GetDependencies(string logic)
+        public List<Dependency> GetDependencies(string logic)
         {
             List<Dependency> dependencies = new List<Dependency>();
 
@@ -38,11 +45,13 @@ namespace MinishRandomizer.Randomizer.Logic
                     // If the first character of the string is & or |, it's a compound dependency
                     // These are handled recursively, with the first character chopped off
                     case '&':
-                        AndDependency andDependency = new AndDependency(sequence.Substring(1));
+                        List<Dependency> andList = GetDependencies(sequence.Substring(1));
+                        AndDependency andDependency = new AndDependency(andList);
                         dependencies.Add(andDependency);
                         break;
                     case '|':
-                        OrDependency orDependency = new OrDependency(sequence.Substring(1));
+                        List<Dependency> orList = GetDependencies(sequence.Substring(1));
+                        OrDependency orDependency = new OrDependency(orList);
                         dependencies.Add(orDependency);
                         break;
                     default:
@@ -113,7 +122,7 @@ namespace MinishRandomizer.Randomizer.Logic
         /// </summary>
         /// <param name="logic">The logic string to split</param>
         /// <returns>A list of the individual dependencies within the logic</returns>
-        public static List<string> SplitDependencies(string logic)
+        public List<string> SplitDependencies(string logic)
         {
             List<string> subLogic = new List<string>();
 
@@ -175,7 +184,7 @@ namespace MinishRandomizer.Randomizer.Logic
             return subLogic;
         }
 
-        public static Location GetLocation(string locationText)
+        public Location GetLocation(string locationText)
         {
             // Location format: Type;Name;Address;Large;Logic
             string[] locationParts = locationText.Split(';');
@@ -195,6 +204,8 @@ namespace MinishRandomizer.Randomizer.Logic
             {
                 dungeon = names[1];
             }
+
+            Console.WriteLine(name);
 
             string locationType = locationParts[1];
             if (!Enum.TryParse(locationType, out Location.LocationType type) || type == Location.LocationType.Untyped)
@@ -281,7 +292,7 @@ namespace MinishRandomizer.Randomizer.Logic
         /// </summary>
         /// <param name="addressString">String representing the address</param>
         /// <returns></returns>
-        public static LocationAddress GetAddressFromString(string addressString)
+        public LocationAddress GetAddressFromString(string addressString)
         {
             // Either direct address or area-room-chest
             if (addressString == "")
@@ -372,12 +383,13 @@ namespace MinishRandomizer.Randomizer.Logic
             return new LocationAddress(addressType, addressValue);
         }
 
-        public static void ParseLocations(Shuffler shuffler, string[] lines, List<LogicDefine> logicDefines)
+        public List<Location> ParseLocations(string[] lines)
         {
+            List<Location> outList = new List<Location>();
             foreach (string locationLine in lines)
             {
                 // Spaces are ignored, and everything after a # is a comment
-                string locationString = locationLine.Split('#')[0];
+                string locationString = locationLine.Split('#')[0].Trim();
 
                 // Empty lines or locations are ignored
                 if (string.IsNullOrWhiteSpace(locationString))
@@ -389,29 +401,61 @@ namespace MinishRandomizer.Randomizer.Logic
                 // Probably a more efficient way to do it, but eh
                 if (locationString.IndexOf("`") != -1)
                 {
-                    foreach (LogicDefine define in logicDefines)
-                    {
-                        locationString = define.Replace(locationString);
-
-                        if (locationString.IndexOf("`") == -1)
-                        {
-                            break;
-                        }
-                    }
+                    locationString = SubParser.ReplaceDefines(locationString);
                 }
 
-                
-                if (locationString[0] == '!')
+                if (!SubParser.ShouldIgnoreLines())
                 {
-                    // Check if string is a valid 
+                    if (locationString[0] == '!')
+                    {
+                        // Parse the string as a directive, ignoring preparsed directives
+                        if (!SubParser.ParseOnLoad(locationString))
+                        {
+                            SubParser.ParseDirective(locationString);
+                        }
+
+                    }
+                    else
+                    {
+                        // Remove spaces as they're ignored in locations
+                        locationString = locationString.Replace(" ", "");
+
+                        Location newLocation = GetLocation(locationString);
+                        outList.Add(newLocation);
+                    }
                 }
                 else
                 {
-                    // Remove spaces as they're ignored in locations
-                    locationString = locationString.Replace(" ", "");
+                    // Only parse directives to check for conditionals
+                    if (locationString[0] == '!')
+                    {
+                        SubParser.ParseDirective(locationString);
+                    }
+                    Console.WriteLine("Ignorem");
+                }
+            }
 
-                    Location newLocation = GetLocation(locationString);
-                    shuffler.AddLocation(newLocation);
+            return outList;
+        }
+
+        public void PreParse(string[] lines)
+        {
+            foreach (string line in lines)
+            {
+                if (string.IsNullOrWhiteSpace(line))
+                {
+                    continue;
+                }
+
+                if (line[0] == '!')
+                {
+                    // Remove comments and excess whitespace
+                    string trimmedLine = line.Split('#')[0].Trim();
+
+                    if (SubParser.ParseOnLoad(trimmedLine))
+                    {
+                        SubParser.ParseDirective(trimmedLine);
+                    }
                 }
             }
         }

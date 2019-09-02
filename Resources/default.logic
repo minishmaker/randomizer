@@ -1,9 +1,25 @@
 # Default logic for the randomizer - Doesn't allow glitches, but allows unintuitive tricks
 
-!flag KEYSANITY Keysanity
-!flag TEST1 test
-!flag TEST2 retest
-!flag TEST3 threetest
+!flag - KEYSANITY - Keysanity - false
+!flag - SHUFFLE_ELEMENTS - Elements Anywhere
+!flag - TEST2 - retest
+!flag - TEST3 - threetest
+
+!ifdef - KEYSANITY
+    !define - KEYSANITY_MAJOR - Major
+    !define - KEYSANITY_MINOR - Minor
+!else
+    !define - KEYSANITY_MAJOR - DungeonItem
+    !define - KEYSANITY_MINOR - DungeonItem
+!endif
+
+!ifdef - SHUFFLE_ELEMENTS
+    !define - ELEMENT - Major
+	!define - ELEMENT_DUNGEON - 
+!else
+    !define - ELEMENT - DungeonItem
+	!define - ELEMENT_DUNGEON - Prizes
+!endif
 
 # Location format:
 #	Name;Type;Address[;Logic][;Item Override]
@@ -35,7 +51,7 @@ HasDamageSource; Helper;; (|Helpers.HasSword, Helpers.HasBow, Items.BombBag)
 CanDestroyTrees; Helper;; (|Helpers.HasSword, Helpers.HasLightBow, Items.BombBag ,Items.LanternOff)
 
 # Central Hyrule Locations
-SmithHouse; Minor; 22-11-00
+SmithHouse:Smithness; Minor; 22-11-00
 IntroItem1; Major; F252B;; Items.SmithSword
 IntroItem2; Major; F253B;; Items.Shield
 LinkHouseTreeHeartPiece; Minor; 0F9BA7; Helpers.CanDestroyTrees
@@ -174,7 +190,7 @@ AccessValley; Helper;; Helpers.CanSplit3, (|Items.BombBag, Items.RocsCape, Items
 ArrowFairy; Major; 00B722; Locations.AccessValley, Items.BombBag
 DampeKey; Major; 0096B6; Locations.AccessValley
 RoyalGraveHeartPiece; Minor; 0D8AE7; Locations.AccessValley, Items.GraveyardKey, Helpers.CanSplit3, Items.PegasusBoots
-KingGift:Prizes; Major; 00DA5A; Locations.AccessValley, Items.GraveyardKey, Helpers.CanSplit3, Items.PegasusBoots; Items.KinstoneX.YellowCrown
+KingGift:`ELEMENT_DUNGEON`; Major; 00DA5A; Locations.AccessValley, Items.GraveyardKey, Helpers.CanSplit3, Items.PegasusBoots; Items.KinstoneX.YellowCrown
 
 # Veil Falls Locations
 AccessFallsNorth; Helper;; Items.BombBag, Items.KinstoneX.YellowCrown
@@ -221,17 +237,17 @@ DeepwoodPreWigglerLeft:Deepwood; Minor; 48-01-01; Locations.DeepwoodAccess, (|(&
 DeepwoodPreWigglerRight:Deepwood; Minor; 48-01-02; Locations.DeepwoodAccess, (|(&Items.GustJar, Items.SmallKey:Deepwood), (&Items.BombBag, Items.SmallKey:Deepwood:2))
 DeepwoodPreWigglerHeartPiece:DeepWood; Minor; 0DDE03; Locations.DeepwoodAccess, (|(&Items.GustJar, Items.SmallKey:Deepwood), (&Items.BombBag, Items.SmallKey:Deepwood:2))
 DeepwoodPreCompass:Deepwood; Minor; 48-02-01; Locations.DeepwoodAccess, (|(&Items.GustJar, Items.SmallKey:Deepwood), (&Items.BombBag, Items.SmallKey:Deepwood:2))
-DeepwoodStatueRoom:Deepwood; DungeonItem; 48-04-01; Locations.DeepwoodAccess, Items.SmallKey:Deepwood
+DeepwoodStatueRoom:Deepwood; `KEYSANITY_MAJOR`; 48-04-01; Locations.DeepwoodAccess, Items.SmallKey:Deepwood
 DeepwoodWestWing:Deepwood; DungeonItem; 48-05-01; Locations.DeepwoodAccess, Items.SmallKey:Deepwood
 DeepwoodPreBarrel:Deepwood; Minor; 48-06-01; Locations.DeepwoodAccess, (|Items.GustJar, Items.BombBag), Items.SmallKey:Deepwood
-DeepwoodSlugTorches:Deepwood; DungeonItem; 48-10-01; Locations.DeepwoodAccess
+DeepwoodSlugTorches:Deepwood; `KEYSANITY_MAJOR`; 48-10-01; Locations.DeepwoodAccess
 DeepwoodBasementNorth:Deepwood; DungeonItem; 48-11-01; Locations.DeepwoodAccess, Items.GustJar, Items.SmallKey:Deepwood:3
 DeepwoodBasementSwitch:Deepwood; DungeonItem; 48-12-01; Locations.DeepwoodAccess,  (|(&Items.GustJar, Items.SmallKey:Deepwood), (&Items.SmallKey:Deepwood:2, Items.RocsCape))
 DeepwoodBasementEast:Deepwood; DungeonItem; 48-12-02; Locations.DeepwoodAccess, (|(&Items.GustJar, Items.SmallKey:Deepwood), Items.SmallKey:Deepwood:2)
 DeepwoodUpstairsChest:Deepwood; Minor; 48-17-01; Locations.DeepwoodAccess, (|Items.GustJar, Items.LanternOff)
 CompleteDeepwood:Deepwood; Helper;; Locations.DeepwoodAccess, Items.GustJar, Helpers.HasSword, Items.BigKey:Deepwood
 DeepwoodBossItem:Deepwood; Minor; chuContainerItem:Define:FirstByte, chuContainerSub:Define:SecondByte; Locations.CompleteDeepwood; Items.HeartContainer
-DeepwoodPrize:Prizes; DungeonItem; 0DF03B; Locations.CompleteDeepwood
+DeepwoodPrize:`ELEMENT_DUNGEON`; `ELEMENT`; 0DF03B; Locations.CompleteDeepwood
 
 # Cave of Flames locations
 CoFAccess:FlameCave; Helper;; Locations.AccessCrenel,(|Items.PacciCane, (&Items.GripRing, (|Items.RocsCape, Helpers.HasLightBow,(&Items.GustJar, (|Items.BombBag, Helpers.HasBow, Helpers.HasBoomerang))))), (|Items.BombBag, Items.Shield, Items.PacciCane), Helpers.HasDamageSource
@@ -251,7 +267,7 @@ CoFBasementLavaRight:FlameCave; Minor; 50-17-01; Locations.CoFAccess, Items.Pacc
 CoFBasementLavaBig:FlameCave; DungeonItem; 50-17-02; Locations.CoFAccess, Items.PacciCane, Helpers.HasSword, Items.SmallKey:FlameCave:2
 CompleteCoF:FlameCave; Helper;; Locations.CoFAccess, Items.PacciCane, Items.SmallKey:FlameCave:2, Items.BigKey:FlameCave
 CoFBossItem:FlameCave; Minor; gleerokContainerItem:Define:FirstByte, gleerokContainerSub:Define:SecondByte; Locations.CompleteCoF; Items.HeartContainer
-CoFPrize:Prizes; DungeonItem; 0E0F03; Locations.CompleteCoF
+CoFPrize:`ELEMENT_DUNGEON`; `ELEMENT`; 0E0F03; Locations.CompleteCoF
 
 # Fortress of Winds Locations
 AccessFortress:Fortress; Helper;; Locations.AccessWilds, Items.KinstoneX.YellowTotemProng::3
@@ -272,7 +288,7 @@ FortressSkullRoomRight:Fortress; Minor; 58-1D-01; Locations.AccessFortress
 FortressWizrobes:Fortress; Minor; 58-23-00; Locations.AccessFortress, Items.MoleMitts
 CompleteFortress:Fortress; Helper;; Locations.AccessFortress, Items.MoleMitts, Helpers.CanSplit2, Helpers.HasBow, Items.BigKey:Fortress
 FortressBossItem:Fortress; Minor; mazaalContainerItem:Define:FirstByte, mazaalContainerSub:Define:SecondByte; Locations.CompleteFortress; Items.HeartContainer
-FortressPrize:Prizes; Major; 09C9E6:FirstByte; Locations.CompleteFortress
+FortressPrize:`ELEMENT_DUNGEON`; Major; 09C9E6:FirstByte; Locations.CompleteFortress
 
 # Temple of Droplets Locations
 AccessDroplets:Droplets; Helper;; Locations.AccessHyliaSouth, (|Items.Flippers, Items.RocsCape)
@@ -298,7 +314,7 @@ DropletsPreviewFrozen:Droplets; Minor; 60-32-00; Locations.AccessDroplets, Items
 DropletsIceWiggler:Droplets; DungeonItem; 60-32-01; Locations.AccessDroplets, Items.GustJar, Items.BigKey:Droplets, Helpers.DropletsOpenDoors
 CompleteDroplets:Droplets; Helper;; Locations.DropletsEastLever, Locations.DropletsWestLever, Items.LanternOff, Helpers.HasSword
 DropletsBossItem:Droplets; Minor; octoContainerItem:Define:FirstByte, octoContainerSub:Define:SecondByte; Locations.CompleteDroplets; Items.HeartContainer
-DropletsPrize:Prizes; DungeonItem; 0E40C3; Locations.CompleteDroplets
+DropletsPrize:`ELEMENT_DUNGEON`; `ELEMENT`; 0E40C3; Locations.CompleteDroplets
 
 # Palace of Winds Locations
 AccessPalace:Palace; Helper;; Locations.AccessUpperClouds, Helpers.CanSplit3, (|Items.RocsCape, Items.BombBag, Items.GustJar, Helpers.HasBoomerang, Helpers.HasBow)
@@ -320,7 +336,7 @@ PalaceDarkBig:Palace; DungeonItem; 70-32-00; Locations.AccessPalace, Items.RocsC
 PalaceDarkSmall:Palace; DungeonItem; 70-32-01; Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.LanternOff, Items.BigKey:Palace, Items.SmallKey:Palace
 CompletePalace:Palace; Helper;; Locations.AccessPalace, Items.RocsCape, Items.PacciCane, Items.LanternOff, Items.BigKey:Palace, Items.SmallKey:Palace:5
 PalaceBossItem:Palace; Minor; gyorgContainerItem:Define:FirstByte, gyorgContainerSub:Define:SecondByte; Locations.CompletePalace; Items.HeartContainer
-PalacePrize:Prizes; DungeonItem; 0E69E3; Locations.CompletePalace
+PalacePrize:`ELEMENT_DUNGEON`; `ELEMENT`; 0E69E3; Locations.CompletePalace
 
 #Unrandomized locations
 
@@ -341,4 +357,4 @@ PalacePrize:Prizes; DungeonItem; 0E69E3; Locations.CompletePalace
 #CrenelLowerScrub; PurchaseItem; 0CC09C; Locations.AccessWestField, Helpers.HasBottle 
 
 # Skipping ahead to DHC so the game can be considered beatable...
-BeatVaati; Helper;; Items.EarthElement:Prizes, Items.FireElement:Prizes, Items.WaterElement:Prizes, Items.WindElement:Prizes, Helpers.CanSplit4, Items.BombBag, Helpers.HasBow, Items.RocsCape, Items.LanternOff, Items.GustJar, Items.PacciCane
+BeatVaati; Helper;; Items.EarthElement:`ELEMENT_DUNGEON`, Items.FireElement:`ELEMENT_DUNGEON`, Items.WaterElement:`ELEMENT_DUNGEON`, Items.WindElement:`ELEMENT_DUNGEON`, Helpers.CanSplit4, Items.BombBag, Helpers.HasBow, Items.RocsCape, Items.LanternOff, Items.GustJar, Items.PacciCane

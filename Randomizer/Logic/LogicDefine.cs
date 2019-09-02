@@ -23,6 +23,13 @@ namespace MinishRandomizer.Randomizer.Logic
             Name = name;
             Replacement = replacement;
             Expression = new Regex($"`{Name}`");
+            Console.WriteLine(Expression);
+        }
+
+        public bool CanReplace(string input)
+        {
+            Console.WriteLine(Expression != null);
+            return Expression != null && Expression.IsMatch(input);
         }
 
         public string Replace(string input)

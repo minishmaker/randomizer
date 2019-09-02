@@ -36,7 +36,7 @@ namespace MinishRandomizer
                 shuffler.LoadOptions();
             }
 
-            LoadOptionControls(shuffler.Options);
+            LoadOptionControls(shuffler.GetOptions());
         }
 
         private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
@@ -154,7 +154,7 @@ namespace MinishRandomizer
                 shuffler.LoadOptions();
             }
 
-            LoadOptionControls(shuffler.Options);
+            LoadOptionControls(shuffler.GetOptions());
         }
 
         private void CustomLogicPath_TextChanged(object sender, EventArgs e)
@@ -174,7 +174,7 @@ namespace MinishRandomizer
             {
                 shuffler.LoadOptions(customLogicPath.Text);
 
-                LoadOptionControls(shuffler.Options);
+                LoadOptionControls(shuffler.GetOptions());
             }
         }
 

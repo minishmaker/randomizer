@@ -72,9 +72,9 @@ namespace MinishRandomizer.Randomizer.Logic
     {
         public List<Dependency> AndList;
 
-        public AndDependency(string dependencyText)
+        public AndDependency(List<Dependency> dependencyList)
         {
-            AndList = Parser.GetDependencies(dependencyText);
+            AndList = dependencyList;
         }
 
         public override bool DependencyFulfilled(List<Item> availableItems, List<Location> locations)
@@ -94,9 +94,9 @@ namespace MinishRandomizer.Randomizer.Logic
     {
         public List<Dependency> OrList;
 
-        public OrDependency(string dependencyText)
+        public OrDependency(List<Dependency> dependencyList)
         {
-            OrList = Parser.GetDependencies(dependencyText);
+            OrList = dependencyList;
         }
 
         public override bool DependencyFulfilled(List<Item> availableItems, List<Location> locations)
