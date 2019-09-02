@@ -126,6 +126,7 @@ drawTime:
 #incbin "asm/drawTime.dmp"
 POIN drawText
 
+#include "timedohko.event"
 #include "newGame.event"
 #include "progressiveItems.event"
 #include "scrubs.event"
@@ -173,19 +174,25 @@ ORG $138CC; SHORT 0x00 0x00
 ORG $13A80; SHORT 0x00 0x00
 POP
 
-#ifdef timer
+#ifdef timerOption
 	PUSH; ORG $1C4E8; jumpToHack(timerDisplay); POP
 	ALIGN 4
 	timerDisplay:
 	#incbin "asm/timerDisplay.dmp"
 	POIN drawTime
+	#ifdef timedohkoOption
+		POIN timedohkoGetTime
+	#endif
 	WORD 0 //if 0, draw total time, it non-0, draw timer returned by routine called
 #endif
 
-#ifdef ohko
+#ifdef ohkoOption
 	PUSH; ORG $522BC; jumpToHack(ohkoCheck); POP
 	ALIGN 4
 	ohkoCheck:
 	#incbin "asm/ohkoCheck.dmp"
+	#ifdef timedohkoOption
+		POIN timedohkoCheckTime
+	#endif
 	WORD 0 //if 0, any damage will kill link, if non-8 this will be used as a pointer to a routine to determine if link will die
 #endif

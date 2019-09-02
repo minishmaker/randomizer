@@ -29,6 +29,9 @@ POIN map; WORD 0x2002A80 3
 	POIN DEBUGSTUFF; WORD 0x2002AE8 7
 	POIN DEBUGWIND; WORD 0x2002A83 1
 #endif
+#ifdef	timedohkoClock
+	POIN timedohkoStartingTime; WORD 0x203FFE0 4
+#endif
 WORD 0 0 0 //terminator
 
 #ifdef DEBUG
