@@ -79,3 +79,6 @@ PUSH; ORG $5A874; jumpToHack(cloudFix); POP
 ALIGN 4
 cloudFix:
 #incbin "asm/cloudFix.dmp"
+
+//fix some weird coloring issue with red potion text
+PUSH; ORG $9DBD62; BYTE 0x20 0x20; POP
