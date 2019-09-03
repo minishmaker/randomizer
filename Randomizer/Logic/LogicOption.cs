@@ -33,6 +33,7 @@ namespace MinishRandomizer.Randomizer.Logic
             CheckBox flagCheckBox = new CheckBox
             {
                 Text = NiceName,
+                AutoSize = true,
                 Checked = Active
             };
 
