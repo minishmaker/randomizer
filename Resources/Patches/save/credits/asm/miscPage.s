@@ -107,7 +107,7 @@ mov	r3,#0
 .short	0xF800
 @draw times used, or too high
 ldr	r0,[r4,#4]
-ldrh	r0,[r4]
+ldrh	r0,[r0]
 ldr	r1,=#0xFFFF
 cmp	r0,r1
 beq	toohigh
