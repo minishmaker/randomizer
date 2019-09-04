@@ -48,7 +48,7 @@ SHORT 0x06 (04<<12)|(03*9) (0<<12)|(04*9); BYTE 01 04; SHORT (0<<12)|(00*9) (0<<
 SHORT 0x11 (01<<12)|(14*9) (0<<12)|(00*9); BYTE 04 04; SHORT (6<<12)|(14*9) (0<<12)|(00*9) //gust jar
 SHORT 0x12 (04<<12)|(15*9) (0<<12)|(00*9); BYTE 07 04; SHORT (6<<12)|(15*9) (0<<12)|(00*9) //cane of pacci
 SHORT 0x0B (00<<12)|(09*9) (0<<12)|(00*9); BYTE 10 04; SHORT (6<<12)|(09*9) (0<<12)|(00*9) //boomerang
-SHORT 0x0C (00<<12)|(10*9) (0<<12)|(00*9); BYTE 10 04; SHORT (6<<12)|(10*9) (0<<12)|(00*9) //magic boomerang
+SHORT 0x0C (00<<12)|(10*9) (0<<12)|(00*9); BYTE 10 04; SHORT (6<<12)|(00*9) (0<<12)|(00*9) //magic boomerang
 
 SHORT 0x0D (01<<12)|(11*9) (0<<12)|(00*9); BYTE 01 07; SHORT (6<<12)|(11*9) (0<<12)|(00*9) //small shield
 SHORT 0x0E (01<<12)|(12*9) (0<<12)|(00*9); BYTE 01 07; SHORT (0<<12)|(00*9) (0<<12)|(00*9) //mirror shield
@@ -258,7 +258,6 @@ SHORT 0x0000 0x085B; WORD 0x203FB00+(2*24) ((0x203FB00+(0x24*2)+3)&(0xFFFFFFFC))
 SHORT 0x0000 0x084C; WORD 0x203FB00+(2*25) ((0x203FB00+(0x24*2)+3)&(0xFFFFFFFC))+(4*25) //Keaton
 POIN crowCredits   ; WORD 0x203FB00+(2*26) ((0x203FB00+(0x24*2)+3)&(0xFFFFFFFC))+(4*26) //Crow
 SHORT 0x0000 0x0867; WORD 0x203FB00+(2*27) ((0x203FB00+(0x24*2)+3)&(0xFFFFFFFC))+(4*27) //Mulldozer
-SHORT 0x0000 0x085D; WORD 0x203FB00+(2*28) ((0x203FB00+(0x24*2)+3)&(0xFFFFFFFC))+(4*28) //Bombarossa
 SHORT 0x0000 0x0863; WORD 0x203FB00+(2*29) ((0x203FB00+(0x24*2)+3)&(0xFFFFFFFC))+(4*29) //Spiny Beetle
 POIN gibdoCredits  ; WORD 0x203FB00+(2*30) ((0x203FB00+(0x24*2)+3)&(0xFFFFFFFC))+(4*30) //Gibdo
 SHORT 0x0000 0x0866; WORD 0x203FB00+(2*31) ((0x203FB00+(0x24*2)+3)&(0xFFFFFFFC))+(4*31) //Cloud Piranha
@@ -266,7 +265,7 @@ SHORT 0x0000 0x0845; WORD 0x203FB00+(2*32) ((0x203FB00+(0x24*2)+3)&(0xFFFFFFFC))
 SHORT 0x0000 0x0873; WORD 0x203FB00+(2*33) ((0x203FB00+(0x24*2)+3)&(0xFFFFFFFC))+(4*33) //Lakitu
 POIN chainCredits  ; WORD 0x203FB00+(2*34) ((0x203FB00+(0x24*2)+3)&(0xFFFFFFFC))+(4*34) //Ball and Chain Soldier
 SHORT 0x0000 0x084D; WORD 0x203FB00+(2*35) ((0x203FB00+(0x24*2)+3)&(0xFFFFFFFC))+(4*35) //Ghini
-SHORT 0x0000 0x086D; WORD 0x203FB00+(2*36) ((0x203FB00+(0x24*2)+3)&(0xFFFFFFFC))+(4*36) //Bubble
+SHORT 0x0000 0x086D; WORD 0x203FB00+(2*28) ((0x203FB00+(0x24*2)+3)&(0xFFFFFFFC))+(4*28) //Bubble
 WORD 0 0 0 //terminator
 
 octoCredits:
