@@ -19,7 +19,7 @@ The following things are randomized:
 
 Please see the [releases](https://github.com/minishmaker/randomizer/releases) page for the latest changes.
 
-We plan to extend this as far as possible in the game, including future modes such as 'Kinsanity' and 'Keysanity'. **Due to the alpha nature of the software, we can't promise every seed is completable! Let us know where you got stuck in our [Discord server](https://discord.gg/ndFuWbV) and we'll check it out.**
+We plan to extend this as far as possible in the game, including future modes such as 'Kinsanity'. **Due to the alpha nature of the software, we can't promise every seed is completable! Let us know where you got stuck in our [Discord server](https://discord.gg/ndFuWbV) and we'll check it out.**
 
 ### Usage
 Download the latest zip from the [releases](https://github.com/minishmaker/randomizer/releases) page, you'll need all the files it comes with. Choose a seed or leave it default, then hit randomize. You'll need to provide an EU copy of Minish Cap, don't ask us where to get one. Hitting 'Save ROM' will prompt you to save the randomized game. You can also save a spoiler log if you get stuck.
