@@ -97,50 +97,55 @@ CanDestroyTrees; Helper;; (|Helpers.HasSword, Helpers.HasLightBow, Items.BombBag
 Inaccessible;    Helper;; Items.Untyped.FF
 
 # Central Hyrule Locations
-SmithHouse;                    Minor; 22-11-00;                                                         ;
-IntroItem1;                    Major; 0F252B;                                                           ;                                                                                                                                 Items.SmithSword
-IntroItem2;                    Major; 0F253B;                                                           ;                                                                                                                                 Items.Shield
-LinkHouseTreeHeartPiece;       Minor; 0F9BA7;                                                           Helpers.CanDestroyTrees										                                                                      
-LinkMinishWaterHoleHeartPiece; Minor; 0DB55F;                                                           Helpers.CanDestroyTrees ,Items.PegasusBoots, Items.Flippers	                                                                      
-HyruleWellTop;                 Major; 41-00-00;                                                         Items.BombBag;                                                                                                                    Items.RemoteBombs # Permanent unless kinsanity
-HyruleWellLeft;                Major; 41-00-01;                                                         Items.MoleMitts;                                                                                                                  Items.SmithSword # Temporary for Testing
-HyruleWellBottom;              Major; 41-00-02;                                                         (|Items.Flippers, Items.RocsCape);                                                                                                Items.Boomerang # Temporary until shop
-HyruleWellPillar;              Major; 41-00-03;                                                         Locations.HyruleWellLeft, Locations.HyruleWellRight, Locations.HyruleWellBottom, Helpers.CanSplit3;                               Items.LargeQuiver # Temporary until shop
-HyruleWellRight;               Major; 41-00-04;                                                         ;                                                                                                                                 Items.Wallet # Temporary until shop
-PreCastleCaveHeartPiece;       Minor; 0F864B;                                                           (|Items.Flippers, Items.RocsCape, Items.BombBag)													                              
-GrimbladeHeartPiece;           Minor; 0D79BB;							                                ;																									                              
-HyruleCastleWaterLeft;         Major; 07-00-01;                                                         Items.Flippers;                                                                                                                   Items.BombBag # Temporary until shop
-HyruleCastleWaterRight;        Major; 07-00-02;                                                         Items.Flippers;                                                                                                                   Items.Bottle2 # Temporary until shop 
-CafeLady;                      Minor; 00EDDA;                                                           ;                                                                                                                                 Items.KinstoneX.RedSpike
-HearthLedge;                   Major; 02-00-06;                                                         Items.LanternOff;                                                                                                                 Items.SmithSword # Temporary for Testing
-HearthBackdoor;                Minor; 0D66D7;                                                           (|Items.Flippers, Items.PacciCane, Items.RocsCape)													                              
-SchoolTop;                     Major; 02-00-07;                                                         Items.PacciCane;                                                                                                                  Items.SmithSword # Temporary for Testing
-SchoolGardenLeft;              Minor; 11-02-00;                                                         Items.PacciCane, Helpers.CanSplit4
-SchoolGardenMiddle;            Minor; 11-02-01;                                                         Items.PacciCane, Helpers.CanSplit4
-SchoolGardenRight;             Minor; 11-02-02;                                                         Items.PacciCane, Helpers.CanSplit4
-SchoolGardenHeartPiece;        Minor; 0D5557;                                                           Items.PacciCane, Helpers.CanSplit4
-TownDiggingTop;                Minor; 0F-00-00;                                                         Items.MoleMitts
-TownDiggingRight;              Major; 0F-00-01;                                                         Items.MoleMitts;                                                                                                                  Items.SpinAttack #Temporary for Testing
-TownDiggingLeft;               Minor; 0F-00-02;                                                         Items.MoleMitts
-BakeryAttic;                   Minor; 2E-03-00;                                                         (|Items.PacciCane, Items.Flippers, Items.RocsCape)
-StockWellAttic;                Minor; 2E-01-01;                                                         (|Items.PacciCane, Items.Flippers, Items.RocsCape)
-SimulationChest;               Minor; 0F04C2;                                                           Helpers.HasSword
-RemShoeShop;                   Major; 0130EE;                                                           Items.WakeUpMushroom
-CarlovReward;                  Major; carlovSpotItem:Define:FirstByte, carlovSpotSub:Define:SecondByte; (|Items.Flippers, Items.PacciCane, Items.RocsCape);                                                                               Items.CarlovMedal
-FigurineHouseLeft;             Minor; 23-05-00;                                                         Items.CarlovMedal
-FigurineHouseMiddle;           Minor; 23-05-01;                                                         Items.CarlovMedal
-FigurineHouseRight;            Minor; 23-05-02;                                                         Items.CarlovMedal
-FigurineHouseHeartPiece;       Minor; 0F5407;                                                           Items.CarlovMedal
-JullietaBook;                  Major; redBookItem:Define:FirstByte, redBookSub:Define:SecondByte;       Helpers.HasBottle, (|Items.Flippers, Items.PacciCane, Items.RocsCape);                                                            Items.HyruleanBestiary
-WrightAtticBook;               Major; greenBookItem:Define:FirstByte, greenBookSub:Define:SecondByte;   Items.PowerBracelets, (|Items.Flippers, Items.PacciCane, Items.RocsCape), (|Items.GustJar, Items.BombBag), Helpers.CanSplit2;     Items.PicoriLegend
-FountainBig;                   Major; 62-03-00;                                                         Helpers.HasBottle, Items.PacciCane, Helpers.HasDamageSource																	      
-FountainSmall;                 Minor; 62-04-00;                                                         Helpers.HasBottle, (|Items.Flippers, Items.RocsCape)																		      
-FountainHeartPiece;            Minor; 0EF3B7;                                                           Helpers.HasBottle, Items.RocsCape																							      
-LibraryMinish;                 Minor; 00E7BE;                                                           Items.HyruleanBestiary, Items.PicoriLegend, Items.MaskHistory, Items.Ocarina, Items.PacciCane								      
-CuccoMinigame;                 Minor; 12460C;                                                           (|Items.RocsCape, Item.Flippers)																							      
-TownBell;                      Minor; 05D602:FirstByte, 5D604:SecondByte;                               Items.RocsCape;                                                                                                                   Items.PieceOfHeart
-FlipsCaveBig;                  Major; 62-10-00;                                                         Items.Ocarina, Helpers.HasDamageSource, Items.PacciCane, (|Items.Flippers, (&Items.HyruleanBestiary,Items.PicoriLegend,Items.MaskHistory, Items.GripRing, (|Items.GustJar, Items.RocsCape))) 
-FlipsCaveSmall;                Minor; 62-12-00;                                                         Items.Flippers, Items.Ocarina, Items.PacciCane, Items.LanternOff
+SmithHouse;                    Minor; 22-11-00;                                                                   ;
+IntroItem1;                    Major; 0F252B;                                                                     ;                                                                                                                                 Items.SmithSword
+IntroItem2;                    Major; 0F253B;                                                                     ;                                                                                                                                 Items.Shield
+LinkHouseTreeHeartPiece;       Minor; 0F9BA7;                                                                     Helpers.CanDestroyTrees										                                                                      
+LinkMinishWaterHoleHeartPiece; Minor; 0DB55F;                                                                     Helpers.CanDestroyTrees ,Items.PegasusBoots, Items.Flippers	                                                                      
+HyruleWellTop;                 Major; 41-00-00;                                                                   Items.BombBag;                                                                                                                    Items.RemoteBombs # Permanent unless kinsanity
+HyruleWellLeft;                Major; 41-00-01;                                                                   Items.MoleMitts;                                                                                                                  Items.SmithSword # Temporary for Testing
+HyruleWellBottom;              Major; 41-00-02;                                                                   (|Items.Flippers, Items.RocsCape);                                                                                                Items.Boomerang # Temporary until shop
+HyruleWellPillar;              Major; 41-00-03;                                                                   Locations.HyruleWellLeft, Locations.HyruleWellRight, Locations.HyruleWellBottom, Helpers.CanSplit3;                               Items.LargeQuiver # Temporary until shop
+HyruleWellRight;               Major; 41-00-04;                                                                   ;                                                                                                                                 Items.Wallet # Temporary until shop
+PreCastleCaveHeartPiece;       Minor; 0F864B;                                                                     (|Items.Flippers, Items.RocsCape, Items.BombBag)													                              
+SwiftbladeScroll1;             Major; swiftblade1DojoItem:Define:FirstByte, swiftblade1DojoSub:Define:SecondByte; Helpers.HasSword;                                                                                                                 Items.SpinAttack
+SwiftbladeScroll2;             Major; swiftblade2DojoItem:Define:FirstByte, swiftblade2DojoSub:Define:SecondByte; Items.SmithSword::2;                                                                                                              Items.RockBreaker
+SwiftbladeScroll3;             Major; swiftblade3DojoItem:Define:FirstByte, swiftblade3DojoSub:Define:SecondByte; Locations.SwiftbladeScroll2, Items.PegasusBoots;                                                                                  Items.DashAttack
+SwiftbladeScroll4;             Major; swiftblade4DojoItem:Define:FirstByte, swiftblade4DojoSub:Define:SecondByte; Locations.SwiftbladeScroll3, Items.RocsCape;                                                                                      Items.DownThrust
+GrimbladeHeartPiece;           Minor; 0D79BB;							                                          ;																									                              
+GrimbladeScroll;               Major; grimbladeDojoItem:Define:FirstByte, grimbladeDojoSub:Define:SecondByte;     Items.LanternOff;                                                                                                                 Items.SwordBeam
+HyruleCastleWaterLeft;         Major; 07-00-01;                                                                   Items.Flippers;                                                                                                                   Items.BombBag # Temporary until shop
+HyruleCastleWaterRight;        Major; 07-00-02;                                                                   Items.Flippers;                                                                                                                   Items.Bottle2 # Temporary until shop 
+CafeLady;                      Minor; 00EDDA;                                                                     ;                                                                                                                                 Items.KinstoneX.RedSpike
+HearthLedge;                   Major; 02-00-06;                                                                   Items.LanternOff;                                                                                                                 Items.SmithSword # Temporary for Testing
+HearthBackdoor;                Minor; 0D66D7;                                                                     (|Items.Flippers, Items.PacciCane, Items.RocsCape)													                              
+SchoolTop;                     Major; 02-00-07;                                                                   Items.PacciCane;                                                                                                                  Items.SmithSword # Temporary for Testing
+SchoolGardenLeft;              Minor; 11-02-00;                                                                   Items.PacciCane, Helpers.CanSplit4
+SchoolGardenMiddle;            Minor; 11-02-01;                                                                   Items.PacciCane, Helpers.CanSplit4
+SchoolGardenRight;             Minor; 11-02-02;                                                                   Items.PacciCane, Helpers.CanSplit4
+SchoolGardenHeartPiece;        Minor; 0D5557;                                                                     Items.PacciCane, Helpers.CanSplit4
+TownDiggingTop;                Minor; 0F-00-00;                                                                   Items.MoleMitts
+TownDiggingRight;              Major; 0F-00-01;                                                                   Items.MoleMitts;                                                                                                                  Items.SpinAttack #Temporary for Testing
+TownDiggingLeft;               Minor; 0F-00-02;                                                                   Items.MoleMitts
+BakeryAttic;                   Minor; 2E-03-00;                                                                   (|Items.PacciCane, Items.Flippers, Items.RocsCape)
+StockWellAttic;                Minor; 2E-01-01;                                                                   (|Items.PacciCane, Items.Flippers, Items.RocsCape)
+SimulationChest;               Minor; 0F04C2;                                                                     Helpers.HasSword
+RemShoeShop;                   Major; 0130EE;                                                                     Items.WakeUpMushroom
+CarlovReward;                  Major; carlovSpotItem:Define:FirstByte, carlovSpotSub:Define:SecondByte;           (|Items.Flippers, Items.PacciCane, Items.RocsCape);                                                                               Items.CarlovMedal
+FigurineHouseLeft;             Minor; 23-05-00;                                                                   Items.CarlovMedal
+FigurineHouseMiddle;           Minor; 23-05-01;                                                                   Items.CarlovMedal
+FigurineHouseRight;            Minor; 23-05-02;                                                                   Items.CarlovMedal
+FigurineHouseHeartPiece;       Minor; 0F5407;                                                                     Items.CarlovMedal
+JullietaBook;                  Major; redBookItem:Define:FirstByte, redBookSub:Define:SecondByte;                 Helpers.HasBottle, (|Items.Flippers, Items.PacciCane, Items.RocsCape);                                                            Items.HyruleanBestiary
+WrightAtticBook;               Major; greenBookItem:Define:FirstByte, greenBookSub:Define:SecondByte;             Items.PowerBracelets, (|Items.Flippers, Items.PacciCane, Items.RocsCape), (|Items.GustJar, Items.BombBag), Helpers.CanSplit2;     Items.PicoriLegend
+FountainBig;                   Major; 62-03-00;                                                                   Helpers.HasBottle, Items.PacciCane, Helpers.HasDamageSource																	      
+FountainSmall;                 Minor; 62-04-00;                                                                   Helpers.HasBottle, (|Items.Flippers, Items.RocsCape)																		      
+FountainHeartPiece;            Minor; 0EF3B7;                                                                     Helpers.HasBottle, Items.RocsCape																							      
+LibraryMinish;                 Minor; 00E7BE;                                                                     Items.HyruleanBestiary, Items.PicoriLegend, Items.MaskHistory, Items.Ocarina, Items.PacciCane								      
+CuccoMinigame;                 Minor; 12460C;                                                                     (|Items.RocsCape, Item.Flippers)																							      
+TownBell;                      Minor; 05D602:FirstByte, 5D604:SecondByte;                                         Items.RocsCape;                                                                                                                   Items.PieceOfHeart
+FlipsCaveBig;                  Major; 62-10-00;                                                                   Items.Ocarina, Helpers.HasDamageSource, Items.PacciCane, (|Items.Flippers, (&Items.HyruleanBestiary,Items.PicoriLegend,Items.MaskHistory, Items.GripRing, (|Items.GustJar, Items.RocsCape))) 
+FlipsCaveSmall;                Minor; 62-12-00;                                                                   Items.Flippers, Items.Ocarina, Items.PacciCane, Items.LanternOff
 
 AccessEastField;  Helper;;                                    (|Helpers.CanDestroyTrees, Items.Ocarina)
 HillsKeeseCave;   Minor; 32-13-00;                            Items.BombBag
@@ -173,51 +178,54 @@ MinishHeartPieceBottom;          Minor; 0F4357;   Locations.AccessMinishWoods
 MinishVillageHeartPiece;         Minor; 0DBCC7;   Locations.AccessMinishWoods
 
 # Mount Crenel Locations 
-AccessCrenel;              Helper;;                                                               Locations.AccessWestField, Helpers.HasBottle, (|Items.BombBag, Items.GripRing)
-AccessLowerCrenel;         Helper;;                                                               Locations.AccessWestField, Helpers.HasBottle, (|Items.BombBag, (&Items.RocsCape, Items.GustJar))
-CrenelVineHole;            Minor; 35-00-00;                                                       Locations.AccessLowerCrenel
-CrenelMinishHouse;         Minor; 27-03-00;                                                       Locations.AccessLowerCrenel
-CrenelCaveDownstairs;      Minor; 26-07-00;                                                       Locations.AccessCrenel, Items.BombBag
-CrenelHeartCaveLeft;       Minor; 26-08-00;                                                       Locations.AccessLowerCrenel, Items.BombBag
-CrenelHeartCaveRight;      Minor; 26-08-01;                                                       Locations.AccessLowerCrenel, Items.BombBag
-CrenelHeartCaveHeartPiece; Minor; 0FB32B;                                                         Locations.AccessLowerCrenel, Items.BombBag
-CrenelFairyHeartPiece;     Minor; 0FB0BB;                                                         Locations.AccessCrenel, Items.BombBag
-CrenelGripScrub;           Major; gripScrubItem:Define:FirstByte, gripScrubSub:Define:SecondByte; Locations.AccessCrenel, Items.Shield, Items.BombBag;                                                                                                                             Items.GripRing
-GraybladeLeft;             Minor; 25-00-00;                                                       Locations.AccessCrenel, Helpers.CanSplit2, Items.GripRing
-GraybladeRight;            Minor; 25-00-01;                                                       Locations.AccessCrenel, Helpers.CanSplit2, Items.GripRing
-GraybladeHeartPiece;       Minor; 0D752B;                                                         Locations.AccessCrenel, Helpers.CanSplit2, Items.GripRing
-CrenelBombFairy;           Major; 00B828;                                                         Locations.AccessCrenel, Items.BombBag, Items.GripRing
-CrenelDigCaveHeartPiece;   Minor; 0F3BA7;                                                         Locations.AccessCrenel, Items.GripRing, Items.MoleMitts
-CrenelBlockChest;          Minor; 26-03-00;                                                       Locations.AccessCrenel, (|Items.PacciCane, (&Items.GripRing, (|Items.RocsCape, Helpers.HasLightBow,(&Items.GustJar, (|Items.BombBag, Helpers.HasBow, Helpers.HasBoomerang)))))
-Melari;                    Major; 00D26E;                                                         Locations.CompleteCoF;                                                                                                                                                           Items.SmithSword
+AccessCrenel;              Helper;;                                                                       Locations.AccessWestField, Helpers.HasBottle, (|Items.BombBag, Items.GripRing)
+AccessLowerCrenel;         Helper;;                                                                       Locations.AccessWestField, Helpers.HasBottle, (|Items.BombBag, (&Items.RocsCape, Items.GustJar))
+CrenelVineHole;            Minor; 35-00-00;                                                               Locations.AccessLowerCrenel
+CrenelMinishHouse;         Minor; 27-03-00;                                                               Locations.AccessLowerCrenel
+CrenelCaveDownstairs;      Minor; 26-07-00;                                                               Locations.AccessCrenel, Items.BombBag
+CrenelHeartCaveLeft;       Minor; 26-08-00;                                                               Locations.AccessLowerCrenel, Items.BombBag
+CrenelHeartCaveRight;      Minor; 26-08-01;                                                               Locations.AccessLowerCrenel, Items.BombBag
+CrenelHeartCaveHeartPiece; Minor; 0FB32B;                                                                 Locations.AccessLowerCrenel, Items.BombBag
+CrenelFairyHeartPiece;     Minor; 0FB0BB;                                                                 Locations.AccessCrenel, Items.BombBag
+CrenelGripScrub;           Major; gripScrubItem:Define:FirstByte, gripScrubSub:Define:SecondByte;         Locations.AccessCrenel, Items.Shield, Items.BombBag;                                                                                                                             Items.GripRing
+GraybladeLeft;             Minor; 25-00-00;                                                               Locations.AccessCrenel, Helpers.CanSplit2, Items.GripRing
+GraybladeRight;            Minor; 25-00-01;                                                               Locations.AccessCrenel, Helpers.CanSplit2, Items.GripRing
+GraybladeHeartPiece;       Minor; 0D752B;                                                                 Locations.AccessCrenel, Helpers.CanSplit2, Items.GripRing
+GraybladeScroll;           Major; graybladeDojoItem:Define:FirstByte, graybladeDojoSub:Define:SecondByte; Locations.GraybladeHeartPiece;                                                                                                                                                   Items.RollAttack
+CrenelBombFairy;           Major; 00B828;                                                                 Locations.AccessCrenel, Items.BombBag, Items.GripRing
+CrenelDigCaveHeartPiece;   Minor; 0F3BA7;                                                                 Locations.AccessCrenel, Items.GripRing, Items.MoleMitts
+CrenelBlockChest;          Minor; 26-03-00;                                                               Locations.AccessCrenel, (|Items.PacciCane, (&Items.GripRing, (|Items.RocsCape, Helpers.HasLightBow,(&Items.GustJar, (|Items.BombBag, Helpers.HasBow, Helpers.HasBoomerang)))))
+Melari;                    Major; 00D26E;                                                                 Locations.CompleteCoF;                                                                                                                                                           Items.SmithSword
 
 # Castor Wilds Locations
-AccessWilds;                  Helper;;         Locations.AccessWestField, Helpers.CanSplit2, (|Items.PegasusBoots, Items.RocsCape)
-WildsSouthCave;               Major; 2A-00-00; Locations.AccessWilds, (|Items.Flippers, Items.RocsCape, Helpers.HasBow);             Items.KinstoneX.YellowTotemProng
-WildsDarknutCave;             Major; 2B-00-00; Locations.AccessWilds, Helpers.HasSword;                                              Items.KinstoneX.YellowTotemProng
-WildsDekuCaveRight;           Major; 2A-01-00; Locations.AccessWilds, Helpers.HasBow;                                                Items.KinstoneX.YellowTotemProng
-WildsMulldozerHole;           Major; 27-06-00; Locations.AccessWilds, (|Items.Flippers, Items.GustJar);                              Items.Bow
-WildsDiggingCaveLeft;         Minor; 17-00-00; Locations.AccessWilds, Items.MoleMitts
-WildsDiggingCaveRight;        Minor; 17-00-01; Locations.AccessWilds, Items.MoleMitts
-WildsTopChest;                Minor; 04-00-00; Locations.AccessWilds, Helpers.HasBow
-WildsTopRightCaveHeartPiece;  Minor; 0D9907;   Locations.AccessWilds, Helpers.HasBow, (|Items.Flippers, Items.RocsCape)
-SwiftbladeTheFirstHeartPiece; Minor; 0D78CB;   Locations.AccessWilds, (|Helpers.HasBow, Items.RocsCape, Items.Flippers)
-RuinsBombCave;                Minor; 2A-02-00; Locations.AccessWilds, (|Helpers.HasBow, Items.RocsCape, Items.Flippers), Items.KinstoneX.YellowTotemProng::3, Items.BombBag
-RuinsMinishHome;              Minor; 27-07-00; Locations.AccessWilds, (|Helpers.HasBow, Items.RocsCape, Items.Flippers), Items.KinstoneX.YellowTotemProng::3, Helpers.HasSword
-RuinsMinishCaveHeartPiece;    Minor; 0DB4BF;   Locations.AccessWilds, (|Helpers.HasBow, Items.RocsCape, Items.Flippers), Items.KinstoneX.YellowTotemProng::3, Helpers.HasSword
-RuinsArmosKillLeft;           Minor; 05-05-00; Locations.AccessWilds, (|Helpers.HasBow, Items.RocsCape, Items.Flippers), Items.KinstoneX.YellowTotemProng::3, Helpers.HasSword
-RuinsArmosKillRight;          Minor; 05-05-01; Locations.AccessWilds, (|Helpers.HasBow, Items.RocsCape, Items.Flippers), Items.KinstoneX.YellowTotemProng::3, Helpers.HasSword
+AccessWilds;                  Helper;;                                                                           Locations.AccessWestField, Helpers.CanSplit2, (|Items.PegasusBoots, Items.RocsCape)
+WildsSouthCave;               Major; 2A-00-00;                                                                   Locations.AccessWilds, (|Items.Flippers, Items.RocsCape, Helpers.HasBow);                                                                                                                       Items.KinstoneX.YellowTotemProng
+WildsDarknutCave;             Major; 2B-00-00;                                                                   Locations.AccessWilds, Helpers.HasSword;                                                                                                                                                        Items.KinstoneX.YellowTotemProng
+WildsDekuCaveRight;           Major; 2A-01-00;                                                                   Locations.AccessWilds, Helpers.HasBow;                                                                                                                                                          Items.KinstoneX.YellowTotemProng
+WildsMulldozerHole;           Major; 27-06-00;                                                                   Locations.AccessWilds, (|Items.Flippers, Items.GustJar);                                                                                                                                        Items.Bow
+WildsDiggingCaveLeft;         Minor; 17-00-00;                                                                   Locations.AccessWilds, Items.MoleMitts
+WildsDiggingCaveRight;        Minor; 17-00-01;                                                                   Locations.AccessWilds, Items.MoleMitts
+WildsTopChest;                Minor; 04-00-00;                                                                   Locations.AccessWilds, Helpers.HasBow
+WildsTopRightCaveHeartPiece;  Minor; 0D9907;                                                                     Locations.AccessWilds, Helpers.HasBow, (|Items.Flippers, Items.RocsCape)
+SwiftbladeTheFirstHeartPiece; Minor; 0D78CB;                                                                     Locations.AccessWilds, (|Helpers.HasBow, Items.RocsCape, Items.Flippers)
+SwiftbladeTheFirstScroll;     Major; swiftbladeIDojoItem:Define:FirstByte, swiftbladeIDojoSub:Define:SecondByte; Helpers.Inaccessible, Locations.SwiftbladeTheFirstHeartPiece, Items.SpinAttack, Items.RollAttack, Items.RockBreaker, Items.SwordBeam, Items.DashAttack, Items.DownThrust, Items.PerilBeam;      Items.GreatSpin
+RuinsBombCave;                Minor; 2A-02-00;                                                                   Locations.AccessWilds, (|Helpers.HasBow, Items.RocsCape, Items.Flippers), Items.KinstoneX.YellowTotemProng::3, Items.BombBag
+RuinsMinishHome;              Minor; 27-07-00;                                                                   Locations.AccessWilds, (|Helpers.HasBow, Items.RocsCape, Items.Flippers), Items.KinstoneX.YellowTotemProng::3, Helpers.HasSword
+RuinsMinishCaveHeartPiece;    Minor; 0DB4BF;                                                                     Locations.AccessWilds, (|Helpers.HasBow, Items.RocsCape, Items.Flippers), Items.KinstoneX.YellowTotemProng::3, Helpers.HasSword
+RuinsArmosKillLeft;           Minor; 05-05-00;                                                                   Locations.AccessWilds, (|Helpers.HasBow, Items.RocsCape, Items.Flippers), Items.KinstoneX.YellowTotemProng::3, Helpers.HasSword
+RuinsArmosKillRight;          Minor; 05-05-01;                                                                   Locations.AccessWilds, (|Helpers.HasBow, Items.RocsCape, Items.Flippers), Items.KinstoneX.YellowTotemProng::3, Helpers.HasSword
 
 # Lake Hylia Locations
-AccessHyliaNorth;      Helper;;                                                             Locations.AccessEastField,(|Items.RocsCape, Items.LonLonKey,Items.Ocarina,(&Items.Flippers, Items.MoleMitts))
-AccessHyliaSouth;      Helper;;                                                             Locations.AccessHyliaNorth,(|Items.Flippers,Items.RocsCape,(&Items.MoleMitts,Items.PacciCane))
-#StockwellDog;         Major; ;                                                             Locations.AccessHyliaNorth, Items.DogFoodBottle
-HyliaNorthMinishHole;  Minor; 35-07-00;                                                     Locations.AccessHyliaNorth, Items.Flippers, Items.PegasusBoots
-HyliaMayorCabin;       Major; blueBookItem:Define:FirstByte, blueBookSub:Define:SecondByte; Locations.AccessHyliaSouth, Items.PegasusBoots, Items.PowerBracelets, (|Items.GustJar, Items.Flippers);        Items.MaskHistory
-WitchDiggingCave;      Minor; 0C-00-00;                                                     Locations.AccessHyliaSouth, Items.MoleMitts
-HyliaSunkenHeartPiece; Minor; 0F323B;                                                       Locations.AccessHyliaNorth, Items.Flippers
-HyliaBottomHeartPiece; Minor; 0F324B;                                                       Locations.AccessHyliaNorth, (|Items.Flippers, Items.RocsCape)
-WavebladeHeartPiece;   Minor; 0D7B03;                                                       Locations.AccessHyliaNorth, (|Items.Flippers, Items.RocsCape)
+AccessHyliaNorth;      Helper;;                                                                       Locations.AccessEastField,(|Items.RocsCape, Items.LonLonKey,Items.Ocarina,(&Items.Flippers, Items.MoleMitts))
+AccessHyliaSouth;      Helper;;                                                                       Locations.AccessHyliaNorth,(|Items.Flippers,Items.RocsCape,(&Items.MoleMitts,Items.PacciCane))
+#StockwellDog;         Major; ;                                                                       Locations.AccessHyliaNorth, Items.DogFoodBottle
+HyliaNorthMinishHole;  Minor; 35-07-00;                                                               Locations.AccessHyliaNorth, Items.Flippers, Items.PegasusBoots
+HyliaMayorCabin;       Major; blueBookItem:Define:FirstByte, blueBookSub:Define:SecondByte;           Locations.AccessHyliaSouth, Items.PegasusBoots, Items.PowerBracelets, (|Items.GustJar, Items.Flippers);        Items.MaskHistory
+WitchDiggingCave;      Minor; 0C-00-00;                                                               Locations.AccessHyliaSouth, Items.MoleMitts
+HyliaSunkenHeartPiece; Minor; 0F323B;                                                                 Locations.AccessHyliaNorth, Items.Flippers
+HyliaBottomHeartPiece; Minor; 0F324B;                                                                 Locations.AccessHyliaNorth, (|Items.Flippers, Items.RocsCape)
+WavebladeHeartPiece;   Minor; 0D7B03;                                                                 Locations.AccessHyliaNorth, (|Items.Flippers, Items.RocsCape)
+WavebladeScroll;       Major; wavebladeDojoItem:Define:FirstByte, wavebladeDojoSub:Define:SecondByte; Helpers.Inaccessible, Locations.WavebladeHeartPiece;                                                           Items.PerilBeam
 
 AccessTreasureCave;          Helper;;         Locations.AccessHyliaNorth, Items.MoleMitts, Items.RocsCape
 HyliaCapeCaveTopRight;       Minor; 19-01-00; Locations.AccessTreasureCave 
@@ -438,6 +446,10 @@ FallsWaterDigCaveHP;     Minor; 0F3DD7;   Helpers.Inaccessible;
 FallsWaterfallHP;        Minor; 0F906F;   Helpers.Inaccessible;
 CastorMinishWaterCaveHP; Minor; 0DB3F7;   Helpers.Inaccessible;
 CastleDrainedFountainHP; Minor; 0D9C2B;   Helpers.Inaccessible;
+
+ScarbladeScroll;         Major; scarbladeDojoItem:Define:FirstByte, scarbladeDojoSub:Define:SecondByte; Helpers.Inaccessible;   Items.FastSpin
+SplitbladeScroll;        Major; splitbladeDojoItem:Define:FirstByte, splitbladeDojoSub:Define:SecondByte; Helpers.Inaccessible; Items.FastSplit
+GreatbladeScroll;        Major; greatbladeDojoItem:Define:FirstByte, greatbladeDojoSub:Define:SecondByte; Helpers.Inaccessible; Items.LongSpin
 
 
 #Unrandomized locations
