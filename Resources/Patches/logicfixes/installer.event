@@ -255,6 +255,7 @@ PUSH; ORG $4D08C; jumpToHack(windFix); POP
 ALIGN 4
 windFix:
 #incbin "asm/windFix.dmp"
+
 //fix yet another element spots issue
 PUSH; ORG $9FAB8; jumpToHack(elementsFixAgain); POP
 ALIGN 4
@@ -289,3 +290,6 @@ PUSH; ORG $EF87C; POIN libraryTrapdoor|1; POP
 ALIGN 4
 libraryTrapdoor:
 #incbin "asm/libraryTrapdoor.dmp"
+
+#include "dojos.event"
+
