@@ -98,9 +98,10 @@
 
 # Item Macro Helpers
 HasSword;        Helper;; (|Items.SmithSword, Items.GreenSword, Items.RedSword, Items.BlueSword, Items.FourSword)
-CanSplit2;       Helper;; (|Items.SmithSword::3, Items.RedSword, Items.BlueSword, Items.FourSword), Items.SpinAttack
-CanSplit3;       Helper;; (|Items.SmithSword::4, Items.BlueSword, Items.FourSword), Items.SpinAttack
-CanSplit4;       Helper;; (|Items.SmithSword::5, Items.FourSword), Items.SpinAttack
+HasSpin;         Helper;; (|Items.SpinAttack, Items.FastSpin, Items.FastSplit, Items.GreatSpin, Items.LongSpin)
+CanSplit2;       Helper;; (|Items.SmithSword::3, Items.RedSword, Items.BlueSword, Items.FourSword), Helpers.HasSpin
+CanSplit3;       Helper;; (|Items.SmithSword::4, Items.BlueSword, Items.FourSword), Helpers.HasSpin
+CanSplit4;       Helper;; (|Items.SmithSword::5, Items.FourSword), Helpers.HasSpin
 
 HasBottle;       Helper;; (|Items.Bottle1, Items.Bottle2, Items.Bottle3, Items.Bottle4)
 
@@ -144,7 +145,7 @@ SchoolGardenMiddle;            Minor; 11-02-01;                                 
 SchoolGardenRight;             Minor; 11-02-02;                                                                   Items.PacciCane, Helpers.CanSplit4
 SchoolGardenHeartPiece;        Minor; 0D5557;                                                                     Items.PacciCane, Helpers.CanSplit4
 TownDiggingTop;                Minor; 0F-00-00;                                                                   Items.MoleMitts
-TownDiggingRight;              Major; 0F-00-01;                                                                   Items.MoleMitts;                                                                                                                  Items.SpinAttack #Temporary for Testing
+TownDiggingRight;              Major; 0F-00-01;                                                                   Items.MoleMitts
 TownDiggingLeft;               Minor; 0F-00-02;                                                                   Items.MoleMitts
 BakeryAttic;                   Minor; 2E-03-00;                                                                   (|Items.PacciCane, Items.Flippers, Items.RocsCape)
 StockWellAttic;                Minor; 2E-01-01;                                                                   (|Items.PacciCane, Items.Flippers, Items.RocsCape)
@@ -174,7 +175,7 @@ LonLonCave;       Major; 32-0C-00;                            Locations.AccessHy
 LonLonHeartPiece; Minor; 0D56EF;                              Locations.AccessHyliaNorth, Items.PegasusBoots
 MinishRupeeFairy; Major; 00B7B4;                              Locations.AccessEastField, Items.PacciCane
 
-AccessWestField;     Helper;;                                                                   (|Items.RocsCape, (&Helpers.HasSword, Items.SpinAttack), Items.Flippers, (&Items.BombBag, Helpers.CanSplit3))
+AccessWestField;     Helper;;                                                                   (|Items.RocsCape, (&Helpers.HasSword, Helpers.HasSpin), Items.Flippers, (&Items.BombBag, Helpers.CanSplit3))
 TrilbyBombCave;      Minor; 32-07-00;                                                           Locations.AccessWestField, Helpers.CanSplit2, Items.BombBag
 TrilbyMoleCaveLeft;  Minor; 13-03-00;                                                           Locations.AccessWestField, Items.MoleMitts
 TrilbyMoleCaveRight; Minor; 13-03-02;                                                           Locations.AccessWestField, Items.MoleMitts
