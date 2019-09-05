@@ -45,21 +45,24 @@
             this.browseLogicButton = new System.Windows.Forms.Button();
             this.customLogicCheckBox = new System.Windows.Forms.CheckBox();
             this.mainTabs = new System.Windows.Forms.TabControl();
+            this.optionTabPage = new System.Windows.Forms.TabPage();
+            this.optionControlLayout = new System.Windows.Forms.FlowLayoutPanel();
+            this.gimmicksTabPage = new System.Windows.Forms.TabPage();
+            this.heartColorSelect = new System.Windows.Forms.ComboBox();
+            this.heartColorLabel = new System.Windows.Forms.Label();
             this.generatedTab = new System.Windows.Forms.TabPage();
             this.generatedSeedValue = new System.Windows.Forms.Label();
             this.generatedSeedLabel = new System.Windows.Forms.Label();
             this.saveSpoilerButton = new System.Windows.Forms.Button();
             this.savePatchButton = new System.Windows.Forms.Button();
             this.saveRomButton = new System.Windows.Forms.Button();
-            this.gimmicksTabPage = new System.Windows.Forms.TabPage();
-            this.heartColorLabel = new System.Windows.Forms.Label();
-            this.heartColorSelect = new System.Windows.Forms.ComboBox();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.generalTab.SuspendLayout();
             this.mainTabs.SuspendLayout();
-            this.generatedTab.SuspendLayout();
+            this.optionTabPage.SuspendLayout();
             this.gimmicksTabPage.SuspendLayout();
+            this.generatedTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -183,6 +186,7 @@
             this.customLogicPath.Name = "customLogicPath";
             this.customLogicPath.Size = new System.Drawing.Size(206, 20);
             this.customLogicPath.TabIndex = 8;
+            this.customLogicPath.TextChanged += CustomLogicPath_TextChanged;
             // 
             // browseLogicButton
             // 
@@ -209,12 +213,61 @@
             // mainTabs
             // 
             this.mainTabs.Controls.Add(this.generalTab);
+            this.mainTabs.Controls.Add(this.optionTabPage);
             this.mainTabs.Controls.Add(this.gimmicksTabPage);
             this.mainTabs.Location = new System.Drawing.Point(9, 27);
             this.mainTabs.Name = "mainTabs";
             this.mainTabs.SelectedIndex = 0;
             this.mainTabs.Size = new System.Drawing.Size(369, 235);
             this.mainTabs.TabIndex = 9;
+            // 
+            // flagTabPage
+            // 
+            this.optionTabPage.Controls.Add(this.optionControlLayout);
+            this.optionTabPage.Location = new System.Drawing.Point(4, 22);
+            this.optionTabPage.Name = "optionTabPage";
+            this.optionTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.optionTabPage.Size = new System.Drawing.Size(361, 209);
+            this.optionTabPage.TabIndex = 2;
+            this.optionTabPage.Text = "Options";
+            this.optionTabPage.UseVisualStyleBackColor = true;
+            // 
+            // flagBoxesLayout
+            // 
+            this.optionControlLayout.AutoScroll = true;
+            this.optionControlLayout.Location = new System.Drawing.Point(0, 3);
+            this.optionControlLayout.Name = "flagBoxesLayout";
+            this.optionControlLayout.Size = new System.Drawing.Size(365, 206);
+            this.optionControlLayout.TabIndex = 0;
+            // 
+            // gimmicksTabPage
+            // 
+            this.gimmicksTabPage.Controls.Add(this.heartColorSelect);
+            this.gimmicksTabPage.Controls.Add(this.heartColorLabel);
+            this.gimmicksTabPage.Location = new System.Drawing.Point(4, 22);
+            this.gimmicksTabPage.Name = "gimmicksTabPage";
+            this.gimmicksTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.gimmicksTabPage.Size = new System.Drawing.Size(361, 209);
+            this.gimmicksTabPage.TabIndex = 1;
+            this.gimmicksTabPage.Text = "Gimmicks";
+            this.gimmicksTabPage.UseVisualStyleBackColor = true;
+            // 
+            // heartColorSelect
+            // 
+            this.heartColorSelect.FormattingEnabled = true;
+            this.heartColorSelect.Location = new System.Drawing.Point(79, 7);
+            this.heartColorSelect.Name = "heartColorSelect";
+            this.heartColorSelect.Size = new System.Drawing.Size(121, 21);
+            this.heartColorSelect.TabIndex = 1;
+            // 
+            // heartColorLabel
+            // 
+            this.heartColorLabel.AutoSize = true;
+            this.heartColorLabel.Location = new System.Drawing.Point(6, 10);
+            this.heartColorLabel.Name = "heartColorLabel";
+            this.heartColorLabel.Size = new System.Drawing.Size(66, 13);
+            this.heartColorLabel.TabIndex = 0;
+            this.heartColorLabel.Text = "Heart Color: ";
             // 
             // generatedTab
             // 
@@ -279,35 +332,6 @@
             this.saveRomButton.UseVisualStyleBackColor = true;
             this.saveRomButton.Click += new System.EventHandler(this.SaveRomButton_Click);
             // 
-            // gimmicksTabPage
-            // 
-            this.gimmicksTabPage.Controls.Add(this.heartColorSelect);
-            this.gimmicksTabPage.Controls.Add(this.heartColorLabel);
-            this.gimmicksTabPage.Location = new System.Drawing.Point(4, 22);
-            this.gimmicksTabPage.Name = "gimmicksTabPage";
-            this.gimmicksTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.gimmicksTabPage.Size = new System.Drawing.Size(361, 209);
-            this.gimmicksTabPage.TabIndex = 1;
-            this.gimmicksTabPage.Text = "Gimmicks";
-            this.gimmicksTabPage.UseVisualStyleBackColor = true;
-            // 
-            // heartColorLabel
-            // 
-            this.heartColorLabel.AutoSize = true;
-            this.heartColorLabel.Location = new System.Drawing.Point(6, 10);
-            this.heartColorLabel.Name = "heartColorLabel";
-            this.heartColorLabel.Size = new System.Drawing.Size(66, 13);
-            this.heartColorLabel.TabIndex = 0;
-            this.heartColorLabel.Text = "Heart Color: ";
-            // 
-            // heartColorSelect
-            // 
-            this.heartColorSelect.FormattingEnabled = true;
-            this.heartColorSelect.Location = new System.Drawing.Point(79, 7);
-            this.heartColorSelect.Name = "heartColorSelect";
-            this.heartColorSelect.Size = new System.Drawing.Size(121, 21);
-            this.heartColorSelect.TabIndex = 1;
-            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -328,10 +352,11 @@
             this.generalTab.ResumeLayout(false);
             this.generalTab.PerformLayout();
             this.mainTabs.ResumeLayout(false);
-            this.generatedTab.ResumeLayout(false);
-            this.generatedTab.PerformLayout();
+            this.optionTabPage.ResumeLayout(false);
             this.gimmicksTabPage.ResumeLayout(false);
             this.gimmicksTabPage.PerformLayout();
+            this.generatedTab.ResumeLayout(false);
+            this.generatedTab.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -364,6 +389,8 @@
         private System.Windows.Forms.TabPage gimmicksTabPage;
         private System.Windows.Forms.ComboBox heartColorSelect;
         private System.Windows.Forms.Label heartColorLabel;
+        private System.Windows.Forms.TabPage optionTabPage;
+        private System.Windows.Forms.FlowLayoutPanel optionControlLayout;
     }
 }
 

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using MinishRandomizer.Core;
 using System.IO;
 
-namespace MinishRandomizer.Randomizer
+namespace MinishRandomizer.Randomizer.Logic
 {
     [Flags]
     public enum AddressType
