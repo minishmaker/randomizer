@@ -11,7 +11,9 @@ ldr	r7,=#0x2000080
 @check if we are hovering over save
 ldrb	r0,[r7,#3]
 cmp	r0,#0x10
-beq	EndFalse
+bne	skipbranch1
+b	EndFalse
+skipbranch1:
 
 @check if select has been pressed
 ldr	r0,=#0x3000FF0
@@ -19,7 +21,9 @@ ldrh	r2,[r0,#2]
 mov	r0,#4
 and	r0,r2
 cmp	r0,#0
-beq	EndFalse
+bne	skipbranch2	
+b	EndFalse
+skipbranch2:
 
 @check if the item we are hovering over is in the list
 ldrb	r0,[r7,#3]
@@ -36,6 +40,48 @@ add	r5,#2
 b	findIDLoop
 matchedID:
 ldrb	r5,[r5,#1]	@Item ID to swap for
+
+@check if the item is bombs, if so then check that no bombs are being used
+cmp	r5,#0x07
+beq	isBomb
+cmp	r5,#0x08
+bne	noBomb
+isBomb:
+mov	r0,#8
+mov	r1,#2
+mov	r2,#2
+bl	checkItemObject
+cmp	r0,#0
+bne	EndFalse
+noBomb:
+
+@check if the item is arrows, if so then check that no arrows are being used
+cmp	r5,#0x09
+beq	isBow
+cmp	r5,#0x0A
+bne	noBow
+isBow:
+mov	r0,#8
+mov	r1,#4
+mov	r2,#2
+bl	checkItemObject
+cmp	r0,#0
+bne	EndFalse
+noBow:
+
+@check if the item is boomerang, same as the others
+cmp	r5,#0x0B
+beq	isBoom
+cmp	r5,#0x0C
+bne	noBoom
+isBoom:
+mov	r0,#8
+mov	r1,#3
+mov	r2,#2
+bl	checkItemObject
+cmp	r0,#0
+bne	EndFalse
+noBoom:
 
 @check if the player owns both items
 mov	r2,r4
@@ -157,6 +203,34 @@ mov	lr,r3
 pop	{r0-r7}
 cmp	r2,#0x01
 .short	0xF800
+
+checkItemObject:
+push	{r4-r5,lr}
+mov	r3,r0
+lsl	r2,#3
+ldr	r0,=#0x20369F0
+ldr	r5,=#0x3003D70
+add	r5,r2
+ldr	r5,[r5]
+add	r2,r0
+ldr	r0,[r2,#4]
+cmp	r0,r5
+beq	noObject
+objectLoop:
+ldrb	r4,[r0,#8]
+cmp	r3,r4
+bne	nextObject
+ldrb	r4,[r0,#9]
+cmp	r1,r4
+beq	returnObject
+nextObject:
+ldr	r0,[r0,#4]
+cmp	r0,r5
+bne	objectLoop
+noObject:
+mov	r0,#0
+returnObject:
+pop	{r4-r5,pc}
 
 .align
 .ltorg

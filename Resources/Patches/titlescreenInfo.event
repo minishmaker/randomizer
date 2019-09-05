@@ -1,0 +1,34 @@
+#ifndef string1
+	#define string1
+	string1pointer:
+	BYTE 0x00
+#endif
+#ifndef string2
+	#define string2
+	string2pointer:
+	BYTE 0x00
+#endif
+#ifndef string3
+	#define string3
+	string3pointer:
+	BYTE 0x00
+#endif
+#ifndef string4
+	#define string4
+	string4pointer:
+	BYTE 0x00
+#endif
+
+PUSH; ORG $ACD70; jumpToHack(titleInfo); POP
+ALIGN 4
+titleInfo:
+#incbin "asm/titleInfo.dmp"
+POIN string1pointer
+POIN string2pointer
+POIN string3pointer
+POIN string4pointer
+POIN swordMap
+
+ALIGN 4
+swordMap:
+#incbin "swordMap.bin"

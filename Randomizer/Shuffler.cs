@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using MinishRandomizer.Core;
+using MinishRandomizer.Randomizer.Logic;
 using MinishRandomizer.Utilities;
 
 namespace MinishRandomizer.Randomizer
@@ -65,23 +66,24 @@ namespace MinishRandomizer.Randomizer
 
     public class Shuffler
     {
-        private Random RNG;
+        
         public int Seed;
+        private Random RNG;
         private List<Location> Locations;
         //private List<Location> StartingLocations;
         private List<Item> DungeonItems;
         private List<Item> MajorItems;
         private List<Item> MinorItems;
-        private string OutputDirectory;
         private HeartColorType HeartColor = HeartColorType.Default;
+        private Parser LogicParser;
 
-        public Shuffler(string outputDirectory)
+        public Shuffler()
         {
             Locations = new List<Location>();
             DungeonItems = new List<Item>();
             MajorItems = new List<Item>();
             MinorItems = new List<Item>();
-            OutputDirectory = outputDirectory;
+            LogicParser = new Parser();
         }
 
         public void SetSeed(int seed)
@@ -95,20 +97,59 @@ namespace MinishRandomizer.Randomizer
             HeartColor = color;
         }
 
+        public List<LogicOption> GetOptions()
+        {
+            return LogicParser.SubParser.Options;
+        }
+
+        /// <summary>
+        /// Load the flags that a logic file uses to customize itself
+        /// </summary>
+        public void LoadOptions(string logicFile = null)
+        {
+            LogicParser.SubParser.ClearOptions();
+
+            string[] logicStrings;
+
+            if (logicFile == null)
+            {
+                // Load default logic if no alternative is specified
+                Assembly assembly = Assembly.GetExecutingAssembly();
+                using (Stream stream = assembly.GetManifestResourceStream("MinishRandomizer.Resources.default.logic"))
+                using (StreamReader reader = new StreamReader(stream))
+                {
+                    string allLocations = reader.ReadToEnd();
+                    // Each line is a different location, split regardless of return form
+                    logicStrings = allLocations.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+                }
+            }
+            else
+            {
+                logicStrings = File.ReadAllLines(logicFile);
+            }
+
+            LogicParser.PreParse(logicStrings);
+        }
+
         /// <summary>
         /// Reads the list of locations from a file, or the default logic if none is specified
         /// </summary>
-        /// <param name="locationFile">The file to read locations from</param>
-        public void LoadLocations(string locationFile = null)
+        /// <param name="logicFile">The file to read locations from</param>
+        public void LoadLocations(string logicFile = null)
         {
+            // Reset everything to allow rerandomization
             Locations.Clear();
             DungeonItems.Clear();
             MajorItems.Clear();
             MinorItems.Clear();
 
+            LogicParser.SubParser.ClearDefines();
+            LogicParser.SubParser.AddOptions();
+
             string[] locationStrings;
 
-            if (locationFile == null)
+            // Get the logic file as an array of strings that can be parsed
+            if (logicFile == null)
             {
                 // Load default logic if no alternative is specified
                 Assembly assembly = Assembly.GetExecutingAssembly();
@@ -122,26 +163,15 @@ namespace MinishRandomizer.Randomizer
             }
             else
             {
-                locationStrings = File.ReadAllLines(locationFile);
+                locationStrings = File.ReadAllLines(logicFile);
             }
-            
-            foreach (string locationLine in locationStrings)
-            {
-                // Spaces are ignored, and everything after a # is a comment
-                string locationString = locationLine.Split('#')[0].Replace(" ", "");
 
-                // Empty lines or locations are ignored
-                if (string.IsNullOrWhiteSpace(locationString))
-                {
-                    continue;
-                }
+            List<Location> parsedLocations = LogicParser.ParseLocations(locationStrings);
 
-                Location newLocation = Location.GetLocation(locationString);
-                AddLocation(newLocation);
-            }
+            parsedLocations.ForEach(location => { AddLocation(location); });
         }
 
-        private void AddLocation(Location location)
+        public void AddLocation(Location location)
         {
             // All locations are in the master location list
             Locations.Add(location);

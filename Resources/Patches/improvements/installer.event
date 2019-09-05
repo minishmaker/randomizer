@@ -1,3 +1,9 @@
+#ifndef neverSkipFusionCutscene //define to never skip
+	#ifndef alwaysSkipFusionCutscene
+		#define alwaysSkipFusionCutscene 0 //set to non-0 to skip, set to 0 to skip on button held
+	#endif
+#endif
+
 //remove all ezlo stepping triggers
 PUSH; ORG $4AB14; jumpToHack(ezloPleaseStop); POP
 ALIGN 4
@@ -6,6 +12,10 @@ ezloPleaseStop:
 
 //instant text
 PUSH; ORG $562AC; SHORT 0x2501; POP
+
+//holding = mashing for text
+PUSH; ORG $566B2; SHORT 0x8801; POP
+PUSH; ORG $56726; SHORT 0x8801; POP
 
 //skip fusion cutscene if A, B or START are held
 #ifndef neverSkipFusionCutscene
@@ -52,6 +62,15 @@ BYTE 0x5E 0 0 1; SHORT 0x108 0x328 0 0 0 0xFFFF
 BYTE 0xFF 0 0 0; SHORT 0x000 0x000 0 0 0 0xFFFF
 //allow link to use the ocarina in the room right before palace of winds
 PUSH; ORG $12752C; BYTE 1; POP
+//heart pots in vaati 1
+PUSH; ORG $EB264; POIN vaatiPots; POP
+ALIGN 4
+vaatiPots:
+BYTE 0x16 0x0F 0x05 0x5F; SHORT 0 0 0x038 0x038 0 0
+BYTE 0x16 0x0F 0x05 0x5F; SHORT 0 0 0x038 0x0C8 0 0
+BYTE 0x16 0x0F 0x05 0x5F; SHORT 0 0 0x118 0x038 0 0
+BYTE 0x16 0x0F 0x05 0x5F; SHORT 0 0 0x118 0x0C8 0 0
+BYTE 0xFF 0xFF 0xFF 0xFF; SHORT 0 0 0x000 0x000 0 0
 
 //items on the floor don't despawn as long as a flag is tied to them
 PUSH; ORG $80E94; jumpToHack(itemDespawnSafety); POP
@@ -95,57 +114,67 @@ ALIGN 4
 firstBag:
 #incbin "asm/firstBag.dmp"
 
-//hold R on credits for 8x speed, press A to skip page, press Start to skip credits
-PUSH; ORG $A2EF8; jumpToHack(creditsFlow1); POP
-ALIGN 4
-creditsFlow1:
-#incbin "asm/creditsFlow1.dmp"
-PUSH; ORG $A301C; jumpToHack(creditsFlow2); POP
-ALIGN 4
-creditsFlow2:
-#incbin "asm/creditsFlow2.dmp"
-PUSH; ORG $A3080; jumpToHack(creditsFlow3); POP
-ALIGN 4
-creditsFlow3:
-#incbin "asm/creditsFlow3.dmp"
-
-//keys, maps, etc, can have the area they are for as a sub id
-PUSH; ORG $5231E; SHORT 0; POP //keys can be collected anywhere
-PUSH; ORG $52320; jumpToHack(keysSub); POP
-ALIGN 4
-keysSub:
-#incbin "asm/keysSub.dmp"
-PUSH; ORG $53CF4; jumpToHack(dungeonSub); POP
-ALIGN 4
-dungeonSub:
-#incbin "asm/dungeonSub.dmp"
-
-//press select in dungeon map to look at world map (and select again to go back)
-PUSH; ORG $A47E4; jumpToHack(mapSwap); POP
-ALIGN 4
-mapSwap:
-#incbin "asm/mapSwap.dmp"
-
-//show small keys and other items for the dungeons on hover in the world map
-PUSH; ORG $A67FC; jumpToHack(dungeonDisplay); POP
-ALIGN 4
-dungeonDisplay:
-#incbin "asm/dungeonDisplay.dmp"
-POIN dungeonDisplayGraphics
-POIN dungeonDisplayTable
-ALIGN 4
-dungeonDisplayGraphics:
-#incbin "dungeonItems.img.bin"
-ALIGN 4
-dungeonDisplayTable:
-BYTE 0x1C 0x18 //dws
-BYTE 0x0B 0x19 //cof
-BYTE 0x0E 0x1A //fow
-BYTE 0x1B 0x1B //tod
-BYTE 0x1A 0x1C //pow
-BYTE 0x12 0x1D //dhc
-BYTE 0x0F 0x1E //rc
-BYTE 0x00 0x00 //terminator
-
 //element object can have sub ids
 PUSH; ORG $9FB64; SHORT 0x7AE1; POP
+
+//soldier goes away if you have both spin and a sword
+PUSH; ORG $59488; jumpToHack(spinSoldier); POP
+ALIGN 4
+spinSoldier:
+#incbin "asm/spinSoldier.dmp"
+
+//boomerang con no longer grab golden kinstones
+PUSH; ORG $80A18; jumpToHack(boomerangFix); POP
+ALIGN 4
+boomerangFix:
+#incbin "asm/boomerangFix.dmp"
+
+//sword techniques are unlocked instantly
+PUSH; ORG $83618; jumpToHack(scrollFix); POP
+ALIGN 4
+scrollFix:
+#incbin "asm/scrollFix.dmp"
+
+//technique upgrades now also have scroll icons
+PUSH; ORG $FD6E8; POIN $FD505 $FD505 $FD505; POP
+PUSH; ORG $125EB8; SHORT 0x001 0x401 0x0B8 0x2541 0x001 0x401 0x0B8 0x2541 0x001 0x401 0x0B8 0x2541; POP
+
+//allow gibdos to hold any item, instead of just bombs or keys
+PUSH; ORG $A1D58; SHORT 0x7AC3
+ORG $A1C9A; SHORT 0x7BA8
+ORG $1264D4; POIN $125B20
+ORG $A1D2C; SHORT 0x7AE3
+ORG $E688D; BYTE 0x3B 0x00 0x00
+ORG $E68AD; BYTE 0x3B 0x00 0x00
+ORG $A1C88; jumpToHack(gibdoFix); POP
+ALIGN 4
+gibdoFix:
+#incbin "asm/gibdoFix.dmp"
+
+//allow the ocarina spot to be any item
+PUSH; ORG $E2F51; BYTE 0xFE
+ORG $9C8F4; WORD 0xFECEF7E3
+ORG $9C9B8; WORD 0xFE6CF7E3
+ORG $9C7B8; jumpToHack(birdFix1)
+ORG $A2058; jumpToHack(birdFix2)
+ORG $9C844; jumpToHack(birdFix3)
+ORG $9C94E; SHORT 0x20FE 0x73A0; POP
+ALIGN 4
+birdFix1:
+#incbin "asm/birdFix1.dmp"
+ALIGN 4
+birdFix2:
+#incbin "asm/birdFix2.dmp"
+ALIGN 4
+birdFix3:
+#incbin "asm/birdFix3.dmp"
+
+//more colors for text
+PUSH; ORG $5F18E; SHORT 0x28FF; ORG $5F348; POIN newColors; POP
+#define textColor(color) "BYTE 0x00 0x01 0x02 0x03 0x04 0x05 0x06 0x07 0x08 0x09 0x0A 0x0B color 0x0D color 0x00 0x00 0x10 0x20 0x30 0x40 0x50 0x60 0x70 0x80 0x90 0xA0 0xB0 color<<4 color<<4 color<<4 0x00"
+newColors:
+#incbin "colors.bin"
+textColor(0x01); textColor(0x02); textColor(0x03); textColor(0x04); textColor(0x05); textColor(0x06); textColor(0x07); textColor(0x08); textColor(0x09); textColor(0x0A); textColor(0x0B); textColor(0x0C); textColor(0x0D); textColor(0x0E); textColor(0x0F)
+
+#include "glitchless.event"
+#include "dungeon.event"

@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using MinishRandomizer.Core;
+﻿using MinishRandomizer.Core;
 using MinishRandomizer.Randomizer;
+using MinishRandomizer.Randomizer.Logic;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Windows.Forms;
 
 namespace MinishRandomizer
 {
@@ -17,7 +12,7 @@ namespace MinishRandomizer
     {
         private ROM ROM_;
         private Shuffler shuffler;
-        private bool randomized;
+        private bool Randomized;
 
         public MainWindow()
         {
@@ -28,6 +23,20 @@ namespace MinishRandomizer
 
             // Fill heart color options
             this.heartColorSelect.DataSource = Enum.GetValues(typeof(HeartColorType));
+
+            // Create shuffler and populate logic options
+            shuffler = new Shuffler();
+
+            if (customLogicCheckBox.Checked)
+            {
+                shuffler.LoadOptions(customLogicPath.Text);
+            }
+            else
+            {
+                shuffler.LoadOptions();
+            }
+
+            LoadOptionControls(shuffler.GetOptions());
         }
 
         private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
@@ -55,6 +64,7 @@ namespace MinishRandomizer
 
             try
             {
+                // If the seed is valid, load locations from the logic and randomize their contents
                 if (int.TryParse(seedField.Text, out int seed))
                 {
                     if (customLogicCheckBox.Checked)
@@ -72,17 +82,18 @@ namespace MinishRandomizer
                 else
                 {
                     MessageBox.Show("The seed value is not valid!\nMake sure it's not too large and only contains numeric characters.");
+                    return;
                 }
 
-                // First randomization needs to change the tab
-                if (!randomized)
+                // Mark that a seed has been generated so seed-specific options can be used
+                Randomized = true;
+
+                if (!mainTabs.TabPages.Contains(generatedTab))
                 {
                     // Change the tab to the seed output tab
-                    mainTabs.Controls.Add(generatedTab);
+                    mainTabs.TabPages.Add(generatedTab);
                     mainTabs.SelectedTab = generatedTab;
                 }
-
-                randomized = true;
 
                 // Show ROM information on seed page
                 generatedSeedValue.Text = seed.ToString();
@@ -122,18 +133,54 @@ namespace MinishRandomizer
                 statusText.Text = "Unable to determine ROM.";
                 return;
             }
-
-            shuffler = new Shuffler(Path.GetDirectoryName(ROM.Instance.path));
         }
 
         private void CustomLogicCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             browseLogicButton.Enabled = customLogicCheckBox.Checked;
             customLogicPath.Enabled = customLogicCheckBox.Checked;
+
+            // Reload logic options to make sure they're correct
+            if (customLogicCheckBox.Checked)
+            {
+                // Only load logic for custom if the file exists
+                if (File.Exists(customLogicPath.Text))
+                {
+                    shuffler.LoadOptions(customLogicPath.Text);
+                }
+            }
+            else
+            {
+                shuffler.LoadOptions();
+            }
+
+            LoadOptionControls(shuffler.GetOptions());
+        }
+
+        private void CustomLogicPath_TextChanged(object sender, EventArgs e)
+        {
+            // Load options into shuffler if the logic file is available
+            if (!File.Exists(customLogicPath.Text))
+            {
+                return;
+            }
+
+            if (shuffler == null)
+            {
+                return;
+            }
+
+            if (customLogicCheckBox.Checked)
+            {
+                shuffler.LoadOptions(customLogicPath.Text);
+
+                LoadOptionControls(shuffler.GetOptions());
+            }
         }
 
         private void CustomPatchCheckBox_CheckedChanged(object sender, EventArgs e)
         {
+            // Enable/disable UI for checkedness
             browsePatchButton.Enabled = customPatchCheckBox.Checked;
             customPatchPath.Enabled = customPatchCheckBox.Checked;
         }
@@ -172,7 +219,7 @@ namespace MinishRandomizer
 
         private void SaveRomButton_Click(object sender, EventArgs e)
         {
-            if (!randomized)
+            if (!Randomized)
             {
                 return;
             }
@@ -214,7 +261,7 @@ namespace MinishRandomizer
 
         private void SavePatchButton_Click(object sender, EventArgs e)
         {
-            if (!randomized)
+            if (!Randomized)
             {
                 return;
             }
@@ -237,7 +284,7 @@ namespace MinishRandomizer
 
         private void SaveSpoilerButton_Click(object sender, EventArgs e)
         {
-            if (!randomized)
+            if (!Randomized)
             {
                 return;
             }
@@ -260,6 +307,35 @@ namespace MinishRandomizer
             // Write output to ROM, then add patches
             string spoilerLog = shuffler.GetSpoiler();
             File.WriteAllText(sfd.FileName, spoilerLog);
+        }
+
+        private void LoadOptionControls(List<LogicOption> options)
+        {
+            // If there options, show the options tab
+            if (options.Count >= 1)
+            {
+                
+                // Make sure not to add the tab multiple times
+                if (!mainTabs.TabPages.Contains(optionTabPage))
+                {
+                    // Insert logic tab at the right place
+                    mainTabs.TabPages.Insert(1, optionTabPage);
+                }
+            }
+            else
+            {
+                mainTabs.TabPages.Remove(optionTabPage);
+                return;
+            }
+
+            optionControlLayout.Controls.Clear();
+
+            foreach (LogicOption option in options)
+            {
+                Control optionControl = option.GetControl();
+
+                optionControlLayout.Controls.Add(optionControl);
+            }
         }
     }
 }

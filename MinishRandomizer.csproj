@@ -53,8 +53,12 @@
     <Compile Include="Core\Constants.cs" />
     <Compile Include="Core\EventDefine.cs" />
     <Compile Include="Core\ROM.cs" />
-    <Compile Include="Randomizer\Dependency.cs" />
-    <Compile Include="Randomizer\LocationAddress.cs" />
+    <Compile Include="Randomizer\Logic\DirectiveParser.cs" />
+    <Compile Include="Randomizer\Logic\LogicDefine.cs" />
+    <Compile Include="Randomizer\Logic\Dependency.cs" />
+    <Compile Include="Randomizer\Logic\LocationAddress.cs" />
+    <Compile Include="Randomizer\Logic\LogicOption.cs" />
+    <Compile Include="Randomizer\Logic\Parser.cs" />
     <Compile Include="UI\MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -63,7 +67,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Randomizer\Location.cs" />
+    <Compile Include="Randomizer\Logic\Location.cs" />
     <Compile Include="Randomizer\Shuffler.cs" />
     <Compile Include="Utilities\ExtensionMethods.cs" />
     <Compile Include="Utilities\PatchUtil.cs" />
