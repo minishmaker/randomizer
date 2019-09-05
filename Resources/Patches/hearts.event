@@ -32,7 +32,6 @@
 //rainbow hearts
 #ifdef heartscolorrainbow
 #define heartFillColor "0x5749"
-#define heartBackColor "0x318E"
 #define heartEdgeColor "0x7FFF"
 PUSH; ORG $55AC0; jumpToHack(animatedHearts); POP
 ALIGN 4
@@ -60,12 +59,26 @@ SHORT 0x5A90 12
 SHORT 0xFFFF 0xFFFF //terminator
 #endif
 
+//custom color
+#ifdef heartFillR
+	#ifdef heartFillG
+		#ifdef heartFillB
+			#define heartFillColor "(((heartFillB&0x1F)<<10)|((heartFillG&0x1F)<<05)|((heartFillR&0x1F)<<00))"
+		#endif
+	#endif
+#endif
+
+#ifdef heartEdgeR
+	#ifdef heartEdgeG
+		#ifdef heartEdgeB
+			#define heartEdgeColor "(((heartEdgeB&0x1F)<<10)|((heartEdgeG&0x1F)<<05)|((heartEdgeR&0x1F)<<00))"
+		#endif
+	#endif
+#endif
+
 //safety definitions
 #ifndef heartFillColor
 	#define heartFillColor "0x095F"
-#endif
-#ifndef heartBackColor
-	#define heartBackColor "0x318E"
 #endif
 #ifndef heartEdgeColor
 	#define heartEdgeColor "0x7FFF"
