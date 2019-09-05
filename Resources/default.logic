@@ -64,6 +64,25 @@
 !endif
 
 #fuzzyDefine;						        Unshuffled; fuzzy:Define:SecondByte;                        Helpers.Inaccessible; Items.Untyped.14	# if defined with a value of 0 to 14, makes the screen fuzzy and the pixels bigger
+#followerDefine;                            Unshuffled; follower:Define:SecondByte;                     Helpers.Inaccessible; Items.Untyped.1	# if defined, a follower with the given id below will follow you throught he game
+#followerIDDefine;                          Unshuffled; followerID:Define:SecondByte;                   Helpers.Inaccessible; Items.Untyped.1	# id for the above: 4=Mailman, 5=Zelda, 1E=Malon, 22=Smith, 24=King Gustaf, 27=Dummy hero, 31=Cow, 32=Goron, 3C=Bow moblin, 45=Anju
+#timedOhkoDefine;                           Unshuffled; timedohkoOption:Define:SecondByte;              Helpers.Inaccessible; Items.Untyped.1	# if defined, will enable ohko mode 30 minutes into the game
+#timerDefine;                               Unshuffled; timerOption:Define:SecondByte;                  Helpers.Inaccessible; Items.Untyped.1	# if defined, will show a timer that counts up
+#ohkoDefine;                                Unshuffled; ohkoOption:Define:SecondByte;                   Helpers.Inaccessible; Items.Untyped.1	# if defined link will die from any hit taken
+
+
+#heartscolorDefine;                         Unshuffled; heartscolor:Define:SecondByte;                  Helpers.Inaccessible; Items.Untyped.1	# if defined will allow for special colored hearts
+#heartFillRDefine;                          Unshuffled; heartFillR:Define:SecondByte;                   Helpers.Inaccessible; Items.Untyped.1	# red   fill component (0-31)
+#heartFillGDefine;                          Unshuffled; heartFillG:Define:SecondByte;                   Helpers.Inaccessible; Items.Untyped.1	# green fill component (0-31)
+#heartFillBDefine;                          Unshuffled; heartFillB:Define:SecondByte;                   Helpers.Inaccessible; Items.Untyped.1	# blue  fill component (0-31)
+#heartEdgeRDefine;                          Unshuffled; heartEdgeR:Define:SecondByte;                   Helpers.Inaccessible; Items.Untyped.1	# red   edge component (0-31)
+#heartEdgeGDefine;                          Unshuffled; heartEdgeG:Define:SecondByte;                   Helpers.Inaccessible; Items.Untyped.1	# green edge component (0-31)
+#heartEdgeBDefine;                          Unshuffled; heartEdgeB:Define:SecondByte;                   Helpers.Inaccessible; Items.Untyped.1	# blue  edge component (0-31)
+
+
+#barcolorDefine;                            Unshuffled; barcolor:Define:SecondByte;                     Helpers.Inaccessible; Items.Untyped.1	# if defined will allow for a different colored bar
+#barcolorTypeDefine;                        Unshuffled; barcolorred:Define:SecondByte;                  Helpers.Inaccessible; Items.Untyped.1	# change the red in barcolorred to either red blue or green
+
 
 # Location format:
 #	Name;Type;Address[;Logic][;Item Override]
