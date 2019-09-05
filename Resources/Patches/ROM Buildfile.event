@@ -7,9 +7,6 @@
 #define FreeSpace $EF3340
 ORG FreeSpace
 
-//#define neverSkipFusionCutscene 0 //define to never skip
-#define alwaysSkipFusionCutscene 0 //set to non-0 to skip, set to 0 to skip on button held
-
 #ifdef TEST
 	PUSH
 	ORG  $EDD8+2; BYTE 0x5C 0x70	//lady kinstone
@@ -18,6 +15,9 @@ ORG FreeSpace
 	ORG $F2538+3; BYTE 0x0D 0x00	//new item in smith's room, write item to $F253B
 	ORG   $5D602; BYTE 0x63	//bell heart piece
 	ORG $DA280+3; BYTE 0x5B 0x00	//nut
+	ORG $E688B; BYTE 0x5D 0x00 0x3B 0x00 0x00 //gibdo 1
+	ORG $E68AB; BYTE 0x53 0x00 0x3B 0x00 0x00 //gibdo 2
+	ORG $E2F4F; BYTE 0x17 0x00 0xFE //ocarina
 	POP
 #endif
 
@@ -52,14 +52,13 @@ SHORT 0x4404 3; WORD 0x2002EA4 //giving mushroom to rem sets custom flag 3
 SHORT 0x125C 7; WORD 0x2002EA4 //melari uses custom flag 7
 SHORT 0x1F01 8; WORD 0x2002EA4 //getting bombs from belari sets custom flag 8
 //getting medal from carlov sets custom flag 9
+//grip scrub sets custom flag 10
+//wind element spot sets custom flag 11
 SHORT 0x3D07 6; WORD 0x2002CB4 //set the simulation heart piece flag after it ends
 SHORT 0x4803 1; WORD 0x2002CA1 //library quest can be started with flippers
 SHORT 0x0517 1; WORD 0x2002CA1 //picking up the ocarina automatically starts the library quest
-SHORT 0x0508 3; WORD 0x2002CEC //gentari door opens when getting bombs
-SHORT 0x051C 3; WORD 0x2002CEC //gentari door opens when getting bombs
 SHORT 0x0507 3; WORD 0x2002CEC //gentari door opens when getting bombs
 SHORT 0x0563 3; WORD 0x2002CEC //gentari door opens when getting bombs
-SHORT 0x0548 3; WORD 0x2002CD5 //the soldier goes away when you get the spin attack
 SHORT 0x0546 3; WORD 0x2002CD5 //the soldier goes away when you get the flippers
 SHORT 0x0514 3; WORD 0x2002CD5 //the soldier goes away when you get the cape
 SHORT 0x055B 2; WORD 0x2002CEC //festari moves automatically when getting the nut
@@ -109,12 +108,91 @@ ORG $5EE3D0
 #incbin "ice.img.bin"
 POP
 
+//given text id, get text offset
+ALIGN 4
+getTextOffset:
+#incbin "asm/getTextOffset.dmp"
+
+//draw to layer 0 using the debug font
+ALIGN 4
+drawText:
+#incbin "asm/drawText.dmp"
+ALIGN 4
+drawNumber:
+#incbin "asm/drawNumber.dmp"
+POIN drawText
+ALIGN 4
+drawTime:
+#incbin "asm/drawTime.dmp"
+POIN drawText
+
+#include "timedohko.event"
 #include "newGame.event"
 #include "progressiveItems.event"
 #include "scrubs.event"
 #include "books.event"
 #include "containers.event"
+#include "titlescreenInfo.event"
 #include "logicfixes/installer.event"
 #include "gamefixes/installer.event"
 #include "improvements/installer.event"
+#include "save/installer.event"
 #include "hearts.event"
+#include "randomLanguage.event"
+
+#ifdef fuzzy //size of the mosaic, 0 to 14
+	PUSH; ORG $4FD90; jumpToHack(fuzzyMode); POP
+	ALIGN 4
+	fuzzyMode:
+	#incbin "asm/fuzzyMode.dmp"
+	WORD ((fuzzy))|((fuzzy)<<4)|((fuzzy)<<8)|((fuzzy)<<12)
+	WORD ((fuzzy+1))|((fuzzy+1)<<4)|((fuzzy+1)<<8)|((fuzzy+1)<<12)
+#endif
+
+#ifdef follower
+	#ifndef followerID
+		#define followerID 0x05
+	#endif
+	PUSH; ORG $6043E; SHORT 0; POP //always have zelda companion
+	PUSH; ORG $6E690; jumpToHack(randomFollower); POP //if sprite is 0x2E, change it
+	ALIGN 4
+	randomFollower:
+	#incbin "asm/randomFollower.dmp"
+	WORD followerID
+#endif
+
+PUSH
+//temporary, turn shop items into shells
+ORG $F4D3F; BYTE 0x61 //shield
+ORG $F4D8F; BYTE 0x61 //wallet
+ORG $F4DCF; BYTE 0x61 //dog food
+ORG $F4E0F; BYTE 0x61 //quiver
+ORG $F4E6F; BYTE 0x61 //boomerang
+//stop pedestal from giving anything
+ORG $13672; SHORT 0x00 0x00
+ORG $138CC; SHORT 0x00 0x00
+ORG $13A80; SHORT 0x00 0x00
+POP
+
+#ifdef timerOption
+	PUSH; ORG $1C4E8; jumpToHack(timerDisplay); POP
+	ALIGN 4
+	timerDisplay:
+	#incbin "asm/timerDisplay.dmp"
+	POIN drawTime
+	#ifdef timedohkoOption
+		POIN timedohkoGetTime
+	#endif
+	WORD 0 //if 0, draw total time, it non-0, draw timer returned by routine called
+#endif
+
+#ifdef ohkoOption
+	PUSH; ORG $522BC; jumpToHack(ohkoCheck); POP
+	ALIGN 4
+	ohkoCheck:
+	#incbin "asm/ohkoCheck.dmp"
+	#ifdef timedohkoOption
+		POIN timedohkoCheckTime
+	#endif
+	WORD 0 //if 0, any damage will kill link, if non-8 this will be used as a pointer to a routine to determine if link will die
+#endif

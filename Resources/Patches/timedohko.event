@@ -1,0 +1,36 @@
+#ifdef timedohkoOption
+	#ifndef timerOption
+		#define timerOption
+	#endif
+	#ifndef ohkoOption
+		#define ohkoOption
+	#endif
+	#ifndef timedohkoClock
+		#define timedohkoClock "107514"
+	#endif
+
+ALIGN 4
+timedohkoStartingTime:
+WORD timedohkoClock
+
+ALIGN 4
+timedohkoGetTime: //also drecreases the counter
+#incbin "asm/timedohkoGetTime.dmp"
+WORD 35838 //when the counter hits this, the debug font becomes yellow
+WORD 0 //when the counter hits 0, the debug font becomes red
+POIN $5C3170 //debugFontWhite
+POIN debugFontYellow
+POIN debugFontRed
+
+ALIGN 4
+debugFontYellow:
+#incbin "debugFontYellow.img.bin"
+
+ALIGN 4
+debugFontRed:
+#incbin "debugFontRed.img.bin"
+
+ALIGN 4
+timedohkoCheckTime:
+#incbin "asm/timedohkoCheckTime.dmp"
+#endif

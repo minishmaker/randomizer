@@ -1,6 +1,9 @@
 .equ dungeonDisplayTable, dungeonDisplayGraphics+4
+.equ dungeonMapsTable, dungeonDisplayTable+4
+.equ dungeonDisplayKeys, dungeonMapsTable+4
 .thumb
 push	{r4-r7}
+
 ldr	r0,=#0x20350F0
 mov	r1,#0x80
 lsl	r1,#1
@@ -22,8 +25,18 @@ bne	cleanLoop
 @check current map mode
 ldr	r2,=#0x20344A4
 ldrb	r2,[r2]
+cmp	r2,#5
+beq	dungeon
 cmp	r2,#4
 bne	end
+
+@update dungeon map based on current square
+ldr	r3,=#0x2000083
+ldrb	r0,[r3]
+ldr	r1,dungeonMapsTable
+ldrb	r0,[r1,r0]
+ldr	r3,=#0x2033A93
+strb	r0,[r3]
 
 @find out if this map is in our list
 ldr	r0,dungeonDisplayTable
@@ -118,6 +131,46 @@ end:
 pop	{r4-r7}
 ldr	r3,=#0x80A6807
 bx	r3
+
+dungeon:
+ldr	r4,=#0x2033A90
+ldrb	r4,[r4,#3]
+ldr	r5,=#0x2034CB0
+ldr	r6,=#0x2002E9C
+ldr	r7,=#0x2002EAC
+
+@load the graphics
+ldr	r0,=#0x600C020
+ldr	r1,dungeonDisplayKeys
+ldr	r2,=#0x600CC00
+graphics2:
+ldr	r3,[r1]
+str	r3,[r0]
+add	r0,#4
+add	r1,#4
+cmp	r0,r2
+bne	graphics2
+
+@draw the key icon
+mov	r0,#0x88
+add	r0,r5
+mov	r1,#1
+bl	draw
+
+@draw the key ammount
+ldrb	r0,[r6,r4]
+cmp	r0,#9
+bls	np2
+mov	r0,#9
+np2:
+mov	r1,#6
+mul	r0,r1
+mov	r1,#7
+add	r1,r0
+mov	r0,#0x8E
+add	r0,r5
+bl	draw
+b	end
 
 draw:
 strh	r1,[r0]

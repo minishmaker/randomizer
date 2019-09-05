@@ -11,13 +11,17 @@ cmp	r1,#4
 blo	notMap
 
 map:
-@check if we are in a dungeon
-ldr	r0,=#0x2033A90
-ldrb	r2,[r0]
-mov	r3,#8
-and	r2,r3
-cmp	r2,#0
+@check if we are in dungeon map mode
+ldr	r0,=#0x20344A4
+ldrb	r0,[r0]
+cmp	r0,#5
+beq	dungeonMode
+@check if we are hovering over a dungeon
+ldr	r0,=#0x2033A93
+ldrb	r0,[r0]
+cmp	r0,#0
 beq	notMap
+dungeonMode:
 @check if select is pressed
 ldr	r0,=#0x3000FF0
 ldrh	r2,[r0,#2]

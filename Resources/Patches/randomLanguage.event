@@ -1,0 +1,6 @@
+#ifdef randomLanguage
+PUSH; ORG $5E946; SHORT 0xB40D; jumpToHack(randomLanguage1); POP
+ALIGN 4
+randomLanguage1:
+#incbin "asm/randomLanguage1.dmp"
+#endif

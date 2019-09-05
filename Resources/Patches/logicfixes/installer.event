@@ -110,6 +110,10 @@ mushroomPrice:
 WORD 60 //mushroom spot price
 WORD 60 //blue potion price
 WORD 150 //red potion price
+WORD 20 //brioche price
+WORD 30 //croissant price
+WORD 40 //pie price
+WORD 60 //cake price
 
 //set flag when ocarina is collected, custom flag 1
 PUSH; ORG $9C9F4; jumpToHack(ocarinaFlag1); POP
@@ -151,7 +155,11 @@ PUSH; ORG $9402; SHORT 21; POP //biggoron doesn't ask for a major feat (checks i
 PUSH; ORG $6D082; SHORT 0x2000; POP //no timer for mirror shield
 
 //all fusions are available in all town states
-PUSH; ORG $1E9C2; SHORT 0x46C0; POP
+#ifdef noFusions
+	PUSH; ORG $1E9C2; SHORT 0xE048; POP
+#else
+	PUSH; ORG $1E9C2; SHORT 0x46C0; POP
+#endif
 
 //minish village is always in the post-temple state, except for festari which asks for the nut
 PUSH; ORG $4C55A; SHORT 0xE011; ORG $4C5AC; SHORT 0xE002; POP
@@ -242,3 +250,42 @@ BYTE 0x51 0x00 0x41
 BYTE 0x60 0x0E 0x42
 BYTE 0x70 0x00 0x43
 BYTE 0x00 0x00 0x00 //terminator
+//and give the wind element object a custom flag to check
+PUSH; ORG $4D08C; jumpToHack(windFix); POP
+ALIGN 4
+windFix:
+#incbin "asm/windFix.dmp"
+//fix yet another element spots issue
+PUSH; ORG $9FAB8; jumpToHack(elementsFixAgain); POP
+ALIGN 4
+elementsFixAgain:
+#incbin "asm/elementsFixAgain.dmp"
+POIN elementsTable
+//fix element spot text
+PUSH; ORG $9FC2E; SHORT 0; jumpToHack(elementsFixText); POP
+ALIGN 4
+elementsFixText:
+#incbin "asm/elementsFixText.dmp"
+
+//fix the graphics for the two fancy fow keys
+PUSH; ORG $58BA0; jumpToHack(holeKeys); POP
+ALIGN 4
+holeKeys:
+#incbin "asm/holeKeys.dmp"
+
+//bloomboy always spawns
+PUSH; ORG $4C166; SHORT 0; ORG $4C16E; SHORT 0xE001; POP
+
+//fix how pico bloom kill counters work: count up from 0 instead of from kill counters
+PUSH; ORG $5FDD0; SHORT 0x2000; POP //store 0 instead of kill counter
+PUSH; ORG $5FDEA; SHORT 0x1C04; POP //don't use kill counter for the check
+//pico bloom kill counter is now increased every time an enemy is killed, handled at the enemies killed tracker
+
+//librari always spawns at lake house
+PUSH; ORG $4C338; SHORT 0; POP
+
+//librari will drop you down again if you talk to him again, instead of automatically dropping you on entry
+PUSH; ORG $EF87C; POIN libraryTrapdoor|1; POP
+ALIGN 4
+libraryTrapdoor:
+#incbin "asm/libraryTrapdoor.dmp"

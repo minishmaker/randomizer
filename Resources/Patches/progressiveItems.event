@@ -105,3 +105,12 @@ PUSH; ORG $52F28; jumpToHack(progressiveGraphics); POP //update graphics based o
 ALIGN 4
 progressiveGraphics:
 #incbin "asm/progressiveGraphics.dmp"
+
+PUSH; ORG $A6770; jumpToHack(progressiveIcon); POP //show an icon over the items that can be swapped
+ALIGN 4
+progressiveIcon:
+#incbin "asm/progressiveIcon.dmp"
+POIN progressiveIconGraphics
+ALIGN 4
+progressiveIconGraphics:
+#incbin "swapicon.img.bin"
