@@ -1,0 +1,28 @@
+.thumb
+lsl	r0,#9
+and	r1,r0
+cmp	r1,#0
+beq	checkTOD
+
+end:
+ldr	r3,=#0x8078EB5
+bx	r3
+
+checkTOD:
+ldr	r0,=#0x3000BF0
+ldrb	r1,[r0,#4]
+cmp	r1,#0x60
+bne	nottod
+ldrb	r1,[r0,#5]
+cmp	r1,#0x28
+beq	end
+cmp	r1,#0x2D
+beq	end
+cmp	r1,#0x34
+beq	end
+cmp	r1,#0x35
+beq	end
+
+nottod:
+ldr	r3,=#0x8078F11
+bx	r3

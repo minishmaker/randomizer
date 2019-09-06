@@ -82,3 +82,9 @@ cloudFix:
 
 //fix some weird coloring issue with red potion text
 PUSH; ORG $9DBD62; BYTE 0x20 0x20; POP
+
+//fix the tod lilypad+ice issues
+PUSH; ORG $78EAC; jumpToHack(todPads); POP
+ALIGN 4
+todPads:
+#incbin "asm/todPads.dmp"
