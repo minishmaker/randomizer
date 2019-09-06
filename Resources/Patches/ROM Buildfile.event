@@ -55,6 +55,10 @@ SHORT 0x1F01 8; WORD 0x2002EA4 //getting bombs from belari sets custom flag 8
 //grip scrub sets custom flag 10
 //wind element spot sets custom flag 11
 //dojos use custom flags 12 through 22
+SHORT 0x050D 23; WORD 0x2002EA4 //shield sets flag 23, which makes small shields spawn at the store
+SHORT 0x051D 23; WORD 0x2002EA4 //buying a shield at the store also sets it
+SHORT 0x050E 23; WORD 0x2002EA4 //mirror shield also sets flag 23, just in case
+//the shop uses flags 24, 25 and 26
 SHORT 0x3D07 6; WORD 0x2002CB4 //set the simulation heart piece flag after it ends
 SHORT 0x4803 1; WORD 0x2002CA1 //library quest can be started with flippers
 SHORT 0x0517 1; WORD 0x2002CA1 //picking up the ocarina automatically starts the library quest
@@ -166,12 +170,6 @@ PUSH; ORG $4F05A; SHORT 0xE002; POP //remove soldiers near lon lon
 #endif
 
 PUSH
-//temporary, turn shop items into shells
-ORG $F4D3F; BYTE 0x61 //shield
-ORG $F4D8F; BYTE 0x61 //wallet
-ORG $F4DCF; BYTE 0x61 //dog food
-ORG $F4E0F; BYTE 0x61 //quiver
-ORG $F4E6F; BYTE 0x61 //boomerang
 //stop pedestal from giving anything
 ORG $13672; SHORT 0x00 0x00
 ORG $138CC; SHORT 0x00 0x00
