@@ -150,6 +150,9 @@ POIN drawText
 	WORD ((fuzzy+1))|((fuzzy+1)<<4)|((fuzzy+1)<<8)|((fuzzy+1)<<12)
 #endif
 
+//some fixes for followers
+PUSH; ORG $D8F3F; BYTE 0; POP //make the green minish blue in left's attic
+PUSH; ORG $4F05A; SHORT 0xE002; POP //remove soldiers near lon lon
 #ifdef follower
 	#ifndef followerID
 		#define followerID 0x05
