@@ -72,12 +72,12 @@
 
 
 #heartscolorDefine;                         Unshuffled; heartscolor:Define:SecondByte;                  Helpers.Inaccessible; Items.Untyped.1	# if defined will allow for special colored hearts
-#heartFillRDefine;                          Unshuffled; heartFillR:Define:SecondByte;                   Helpers.Inaccessible; Items.Untyped.1	# red   fill component (0-31)
-#heartFillGDefine;                          Unshuffled; heartFillG:Define:SecondByte;                   Helpers.Inaccessible; Items.Untyped.1	# green fill component (0-31)
-#heartFillBDefine;                          Unshuffled; heartFillB:Define:SecondByte;                   Helpers.Inaccessible; Items.Untyped.1	# blue  fill component (0-31)
-#heartEdgeRDefine;                          Unshuffled; heartEdgeR:Define:SecondByte;                   Helpers.Inaccessible; Items.Untyped.1	# red   edge component (0-31)
-#heartEdgeGDefine;                          Unshuffled; heartEdgeG:Define:SecondByte;                   Helpers.Inaccessible; Items.Untyped.1	# green edge component (0-31)
-#heartEdgeBDefine;                          Unshuffled; heartEdgeB:Define:SecondByte;                   Helpers.Inaccessible; Items.Untyped.1	# blue  edge component (0-31)
+#heartFillRDefine;                          Unshuffled; heartFillR:Define:SecondByte;                   Helpers.Inaccessible; Items.Untyped.1F	# red   fill component (0-1F)
+#heartFillGDefine;                          Unshuffled; heartFillG:Define:SecondByte;                   Helpers.Inaccessible; Items.Untyped.1F	# green fill component (0-1F)
+#heartFillBDefine;                          Unshuffled; heartFillB:Define:SecondByte;                   Helpers.Inaccessible; Items.Untyped.1F	# blue  fill component (0-1F)
+#heartEdgeRDefine;                          Unshuffled; heartEdgeR:Define:SecondByte;                   Helpers.Inaccessible; Items.Untyped.1F	# red   edge component (0-1F)
+#heartEdgeGDefine;                          Unshuffled; heartEdgeG:Define:SecondByte;                   Helpers.Inaccessible; Items.Untyped.1F	# green edge component (0-1F)
+#heartEdgeBDefine;                          Unshuffled; heartEdgeB:Define:SecondByte;                   Helpers.Inaccessible; Items.Untyped.1F	# blue  edge component (0-1F)
 
 
 #barcolorDefine;                            Unshuffled; barcolor:Define:SecondByte;                     Helpers.Inaccessible; Items.Untyped.1	# if defined will allow for a different colored bar
@@ -133,7 +133,7 @@ SwiftbladeScroll2;             Major; swiftblade2DojoItem:Define:FirstByte, swif
 SwiftbladeScroll3;             Major; swiftblade3DojoItem:Define:FirstByte, swiftblade3DojoSub:Define:SecondByte; Locations.SwiftbladeScroll2, Items.PegasusBoots;                                                                                  Items.DashAttack
 SwiftbladeScroll4;             Major; swiftblade4DojoItem:Define:FirstByte, swiftblade4DojoSub:Define:SecondByte; Locations.SwiftbladeScroll3, Items.RocsCape;                                                                                      Items.DownThrust
 GrimbladeHeartPiece;           Minor; 0D79BB;							                                          ;																									                              
-GrimbladeScroll;               Major; grimbladeDojoItem:Define:FirstByte, grimbladeDojoSub:Define:SecondByte;     Items.LanternOff;                                                                                                                 Items.SwordBeam
+GrimbladeScroll;               Major; grimbladeDojoItem:Define:FirstByte, grimbladeDojoSub:Define:SecondByte;     Helpers.HasSword, Items.LanternOff;                                                                                                                 Items.SwordBeam
 HyruleCastleWaterLeft;         Major; 07-00-01;                                                                   Items.Flippers;                                                                                                                   Items.BombBag # Temporary until shop
 HyruleCastleWaterRight;        Major; 07-00-02;                                                                   Items.Flippers;                                                                                                                   Items.Bottle2 # Temporary until shop 
 CafeLady;                      Minor; 00EDDA;                                                                     ;                                                                                                                                 Items.KinstoneX.RedSpike
@@ -211,7 +211,7 @@ CrenelGripScrub;           Major; gripScrubItem:Define:FirstByte, gripScrubSub:D
 GraybladeLeft;             Minor; 25-00-00;                                                               Locations.AccessCrenel, Helpers.CanSplit2, Items.GripRing
 GraybladeRight;            Minor; 25-00-01;                                                               Locations.AccessCrenel, Helpers.CanSplit2, Items.GripRing
 GraybladeHeartPiece;       Minor; 0D752B;                                                                 Locations.AccessCrenel, Helpers.CanSplit2, Items.GripRing
-GraybladeScroll;           Major; graybladeDojoItem:Define:FirstByte, graybladeDojoSub:Define:SecondByte; Locations.GraybladeHeartPiece;                                                                                                                                                   Items.RollAttack
+GraybladeScroll;           Major; graybladeDojoItem:Define:FirstByte, graybladeDojoSub:Define:SecondByte; Locations.GraybladeHeartPiece, Helpers.HasSword;                                                                                                                                                   Items.RollAttack
 CrenelBombFairy;           Major; 00B828;                                                                 Locations.AccessCrenel, Items.BombBag, Items.GripRing
 CrenelDigCaveHeartPiece;   Minor; 0F3BA7;                                                                 Locations.AccessCrenel, Items.GripRing, Items.MoleMitts
 CrenelBlockChest;          Minor; 26-03-00;                                                               Locations.AccessCrenel, (|Items.PacciCane, (&Items.GripRing, (|Items.RocsCape, Helpers.HasLightBow,(&Items.GustJar, (|Items.BombBag, Helpers.HasBow, Helpers.HasBoomerang)))))
@@ -228,7 +228,7 @@ WildsDiggingCaveRight;        Minor; 17-00-01;                                  
 WildsTopChest;                Minor; 04-00-00;                                                                   Locations.AccessWilds, Helpers.HasBow
 WildsTopRightCaveHeartPiece;  Minor; 0D9907;                                                                     Locations.AccessWilds, Helpers.HasBow, (|Items.Flippers, Items.RocsCape)
 SwiftbladeTheFirstHeartPiece; Minor; 0D78CB;                                                                     Locations.AccessWilds, (|Helpers.HasBow, Items.RocsCape, Items.Flippers)
-SwiftbladeTheFirstScroll;     Major; swiftbladeIDojoItem:Define:FirstByte, swiftbladeIDojoSub:Define:SecondByte; Helpers.Inaccessible, Locations.SwiftbladeTheFirstHeartPiece, Items.SpinAttack, Items.RollAttack, Items.RockBreaker, Items.SwordBeam, Items.DashAttack, Items.DownThrust, Items.PerilBeam;      Items.GreatSpin
+SwiftbladeTheFirstScroll;     Major; swiftbladeIDojoItem:Define:FirstByte, swiftbladeIDojoSub:Define:SecondByte; Helpers.Inaccessible, Helpers.HasSword, Locations.SwiftbladeTheFirstHeartPiece, Items.SpinAttack, Items.RollAttack, Items.RockBreaker, Items.SwordBeam, Items.DashAttack, Items.DownThrust, Items.PerilBeam;      Items.GreatSpin
 RuinsBombCave;                Minor; 2A-02-00;                                                                   Locations.AccessWilds, (|Helpers.HasBow, Items.RocsCape, Items.Flippers), Items.KinstoneX.YellowTotemProng::3, Items.BombBag
 RuinsMinishHome;              Minor; 27-07-00;                                                                   Locations.AccessWilds, (|Helpers.HasBow, Items.RocsCape, Items.Flippers), Items.KinstoneX.YellowTotemProng::3, Helpers.HasSword
 RuinsMinishCaveHeartPiece;    Minor; 0DB4BF;                                                                     Locations.AccessWilds, (|Helpers.HasBow, Items.RocsCape, Items.Flippers), Items.KinstoneX.YellowTotemProng::3, Helpers.HasSword
@@ -245,7 +245,7 @@ WitchDiggingCave;      Minor; 0C-00-00;                                         
 HyliaSunkenHeartPiece; Minor; 0F323B;                                                                 Locations.AccessHyliaNorth, Items.Flippers
 HyliaBottomHeartPiece; Minor; 0F324B;                                                                 Locations.AccessHyliaNorth, (|Items.Flippers, Items.RocsCape)
 WavebladeHeartPiece;   Minor; 0D7B03;                                                                 Locations.AccessHyliaNorth, (|Items.Flippers, Items.RocsCape)
-WavebladeScroll;       Major; wavebladeDojoItem:Define:FirstByte, wavebladeDojoSub:Define:SecondByte; Helpers.Inaccessible, Locations.WavebladeHeartPiece;                                                           Items.PerilBeam
+WavebladeScroll;       Major; wavebladeDojoItem:Define:FirstByte, wavebladeDojoSub:Define:SecondByte; Helpers.Inaccessible, Helpers.HasSword, Locations.WavebladeHeartPiece;                                                           Items.PerilBeam
 
 AccessTreasureCave;          Helper;;         Locations.AccessHyliaNorth, Items.MoleMitts, Items.RocsCape
 HyliaCapeCaveTopRight;       Minor; 19-01-00; Locations.AccessTreasureCave 
