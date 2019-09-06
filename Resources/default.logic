@@ -1,9 +1,9 @@
 # Default logic for the randomizer - Doesn't allow glitches, but allows unintuitive tricks
 
 !flag - KEYSANITY - Keysanity - false
-!flag - SHUFFLE_ELEMENTS - Global elements
+!flag - SHUFFLE_ELEMENTS - Shuffle elements into item pool
 !flag - NO_FUSIONS - No normal fusions - true
-!flag - GLITCHLESS - Disable glitches - true
+!flag - GLITCHLESS - Fix glitches - true
 !flag - RANDOM_LANGUAGE - Randomize language
 !flag - ALLOW_FUSION_SKIPS - Allow fusion skips - true
 !flag - INSTANT_SKIP - Instant fusion skip
@@ -46,7 +46,7 @@
 !endif
 
 !ifdef - GLITCHLESS
-	glitchlessDefine;						Unshuffled; glitchless:Define:SecondByte;					Helpers.Inaccessible; Items.Untyped.01	# if defined, bugfixes are installed (currently just ocarina glitch fix)
+	glitchlessDefine;						Unshuffled; glitchless:Define:SecondByte;					Helpers.Inaccessible; Items.Untyped.01	# if defined, bugfixes are installed
 !endif
 
 !ifdef - RANDOM_LANGUAGE
@@ -60,12 +60,12 @@
 		alwaysSkipFusionCutsceneDefine;		Unshuffled; alwaysSkipFusionCutscene:Define:SecondByte;		Helpers.Inaccessible; Items.Untyped.00
 	!endif
 !else
-	neverSkipFusionCutsceneDefine;			Unshuffled; neverSkipFusionCutscene:Define:SecondByte;		Helpers.Inaccessible; Items.Untyped.01	# if defined, fusion cutscenes are just like vanilla, overrides the below option 
+	neverSkipFusionCutsceneDefine;			Unshuffled; neverSkipFusionCutscene:Define:SecondByte;		Helpers.Inaccessible; Items.Untyped.01	# if defined, fusion cutscenes are just like vanilla
 !endif
 
-#fuzzyDefine;						        Unshuffled; fuzzy:Define:SecondByte;                        Helpers.Inaccessible; Items.Untyped.14	# if defined with a value of 0 to 14, makes the screen fuzzy and the pixels bigger
+#fuzzyDefine;						        Unshuffled; fuzzy:Define:SecondByte;                        Helpers.Inaccessible; Items.Untyped.14	# if defined with a value of 0 to E, makes the screen fuzzy and the pixels bigger
 #followerDefine;                            Unshuffled; follower:Define:SecondByte;                     Helpers.Inaccessible; Items.Untyped.1	# if defined, a follower with the given id below will follow you throught he game
-#followerIDDefine;                          Unshuffled; followerID:Define:SecondByte;                   Helpers.Inaccessible; Items.Untyped.1	# id for the above: 4=Mailman, 5=Zelda, 1E=Malon, 22=Smith, 24=King Gustaf, 27=Dummy hero, 31=Cow, 32=Goron, 3C=Bow moblin, 45=Anju
+#followerIDDefine;                          Unshuffled; followerID:Define:SecondByte;                   Helpers.Inaccessible; Items.Untyped.1	# id for the above: 4=Mailman, 5=Zelda, 1E=Malon, 22=Smith, 24=King Dalton, 27=Dummy hero, 31=Cow, 32=Goron, 3C=Bow moblin, 45=Anju
 #timedOhkoDefine;                           Unshuffled; timedohkoOption:Define:SecondByte;              Helpers.Inaccessible; Items.Untyped.1	# if defined, will enable ohko mode 30 minutes into the game
 #timerDefine;                               Unshuffled; timerOption:Define:SecondByte;                  Helpers.Inaccessible; Items.Untyped.1	# if defined, will show a timer that counts up
 #ohkoDefine;                                Unshuffled; ohkoOption:Define:SecondByte;                   Helpers.Inaccessible; Items.Untyped.1	# if defined link will die from any hit taken
