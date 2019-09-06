@@ -176,5 +176,25 @@ newColors:
 #incbin "colors.bin"
 textColor(0x01); textColor(0x02); textColor(0x03); textColor(0x04); textColor(0x05); textColor(0x06); textColor(0x07); textColor(0x08); textColor(0x09); textColor(0x0A); textColor(0x0B); textColor(0x0C); textColor(0x0D); textColor(0x0E); textColor(0x0F)
 
+//technique upgrades are also counted towards the scroll total
+PUSH; ORG $A4E6C; jumpToHack(countScrolls); POP
+ALIGN 4
+countScrolls:
+#incbin "asm/countScrolls.dmp"
+POIN scrollNumbers
+ALIGN 4
+scrollNumbers:
+#incbin "scrollNumbers.img.bin"
+
+//technique upgrades are drawn in the scrolls screen
+PUSH; ORG $A5970; jumpToHack(drawScrolls); POP
+ALIGN 4
+drawScrolls:
+#incbin "asm/drawScrolls.dmp"
+POIN scrollIcons
+ALIGN 4
+scrollIcons:
+#incbin "scrollIcons.img.bin"
+
 #include "glitchless.event"
 #include "dungeon.event"
