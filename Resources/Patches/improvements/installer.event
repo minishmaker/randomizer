@@ -196,5 +196,11 @@ ALIGN 4
 scrollIcons:
 #incbin "scrollIcons.img.bin"
 
+//when vaati dies, jump to the credits
+PUSH; ORG $41D00; jumpToHack(vaatiCredits); POP
+ALIGN 4
+vaatiCredits:
+#incbin "asm/vaatiCredits.dmp"
+
 #include "glitchless.event"
 #include "dungeon.event"
