@@ -1,0 +1,21 @@
+//when item 0x1B is collected from a chest, trigger a trap based on subID instead of giving an item
+PUSH; ORG $A74C0; jumpToHack(chestTrapSmall); POP
+ALIGN 4
+chestTrapSmall:
+#incbin "asm/chestTrapSmall.dmp"
+POIN chestTrapTable
+
+//same but for big chests
+PUSH; ORG $83A6E; jumpToHack(chestTrapBig); POP
+ALIGN 4
+chestTrapBig:
+#incbin "asm/chestTrapBig.dmp"
+POIN chestTrapTable
+
+ALIGN 4
+chestTrapTable: //pointers to routines for each trap, based on subID of the 0x1B item
+POIN iceTrap
+
+ALIGN 4
+iceTrap:
+#incbin "asm/iceTrap.dmp"
