@@ -71,6 +71,15 @@ BYTE 0x16 0x0F 0x05 0x5F; SHORT 0 0 0x038 0x0C8 0 0
 BYTE 0x16 0x0F 0x05 0x5F; SHORT 0 0 0x118 0x038 0 0
 BYTE 0x16 0x0F 0x05 0x5F; SHORT 0 0 0x118 0x0C8 0 0
 BYTE 0xFF 0xFF 0xFF 0xFF; SHORT 0 0 0x000 0x000 0 0
+//start with cursor on first save file instead of language
+PUSH; ORG $50180; SHORT 0x2100; POP
+//vaati eyes take only one hit to kill
+PUSH; ORG $4445E; SHORT 0; POP
+//make the vaati2 3 cycle the same as other regions, I hope
+PUSH; ORG $D01EA; BYTE 0xC0; POP
+//floor and wall masters die in one arrow hit
+PUSH; ORG $C2E18; BYTE 100; POP
+PUSH; ORG $C2C80; BYTE 100; POP
 
 //items on the floor don't despawn as long as a flag is tied to them
 PUSH; ORG $80E94; jumpToHack(itemDespawnSafety); POP
@@ -206,9 +215,6 @@ PUSH; ORG $41D00; jumpToHack(vaatiCredits); POP
 ALIGN 4
 vaatiCredits:
 #incbin "asm/vaatiCredits.dmp"
-
-//start with cursor on first save file instead of language
-PUSH; ORG $50180; SHORT 0x2100; POP
 
 #include "glitchless.event"
 #include "dungeon.event"
