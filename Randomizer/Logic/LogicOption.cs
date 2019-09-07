@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace MinishRandomizer.Randomizer.Logic
 {
@@ -40,6 +41,36 @@ namespace MinishRandomizer.Randomizer.Logic
             flagCheckBox.CheckedChanged += (object sender, EventArgs e) => { Active = flagCheckBox.Checked; };
 
             return flagCheckBox;
+        }
+    }
+
+    public class LogicColorPicker : LogicOption
+    {
+        Color DefinedColor;
+
+        public LogicColorPicker(string name, string niceName, Color startingColor) : base(name, niceName, false)
+        {
+            DefinedColor = startingColor;
+        }
+
+        public override Control GetControl()
+        {
+            Button colorSwapButton = new Button
+            {
+                Text = NiceName
+            };
+
+            colorSwapButton.Click += OpenColors;
+
+            return colorSwapButton;
+        }
+
+        private void OpenColors(object sender, EventArgs e)
+        {
+            ColorDialog colorPicker = new ColorDialog
+            {
+
+            };
         }
     }
 }
