@@ -14,8 +14,9 @@ POIN chestTrapTable
 
 ALIGN 4
 chestTrapTable: //pointers to routines for each trap, based on subID of the 0x1B item
-POIN iceTrap
-POIN fireTrap
+POIN iceTrap; WORD 8
+POIN fireTrap; WORD 8
+POIN $797B0; WORD 8
 
 ALIGN 4
 iceTrap:
