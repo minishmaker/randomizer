@@ -88,8 +88,13 @@ ALIGN 4
 questItemSlideshow2:
 #incbin "asm/questItemSlideshow2.dmp"
 
-//wind element icon in map goes away when you get the element instead of the ocarina
-PUSH; ORG $128677; BYTE 0x43; POP
+#ifdef globalElements
+	//if global elements, don't display elements
+	PUSH; ORG $128673; BYTE 0 0xF 0 0xF 0 0xF 0; POP
+#else
+	//wind element icon in map goes away when you get the element instead of the ocarina
+	PUSH; ORG $128677; BYTE 0x43; POP
+#endif
 
 //finding remote bombs does not remove regular bombs from link and vice versa
 PUSH; ORG $53D34; SHORT 0 0; ORG $53D3E; SHORT 0 0; POP
