@@ -202,5 +202,8 @@ ALIGN 4
 vaatiCredits:
 #incbin "asm/vaatiCredits.dmp"
 
+//start with cursor on first save file instead of language
+PUSH; ORG $50180; SHORT 0x2100; POP
+
 #include "glitchless.event"
 #include "dungeon.event"
