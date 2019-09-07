@@ -67,7 +67,7 @@ ldrb	r0,[r0]
 mov	r1,#4
 and	r0,r1
 cmp	r0,#0
-beq	end
+beq	thrust
 mov	r0,#2
 b	store
 
