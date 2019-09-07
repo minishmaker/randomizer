@@ -17,6 +17,16 @@ beq	end
 mov	lr,r0
 .short	0xF800
 
+mov	r0,#0x74
+mov	r1,r5
+mov	r2,r6
+ldr	r3,=#0x807B1FC
+mov	lr,r3
+.short	0xF800
+
+ldr	r3,=#0x80A74ED
+bx	r3
+
 end:
 ldr	r3,=#0x80A74D5
 bx	r3

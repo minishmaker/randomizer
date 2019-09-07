@@ -1,5 +1,6 @@
 .thumb
-ldrb	r1,[r4,#3]
+ldrb	r0,[r1,#2]
+ldrb	r1,[r1,#3]
 mov	r2,#0
 cmp	r0,#0x1B
 beq	isTrap
