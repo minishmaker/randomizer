@@ -16,7 +16,8 @@ ALIGN 4
 chestTrapTable: //pointers to routines for each trap, based on subID of the 0x1B item
 POIN iceTrap; WORD 8
 POIN fireTrap; WORD 8
-POIN $797B0; WORD 8
+POIN $797B0; WORD 8 //zapTrap
+POIN bombTrap; WORD 0
 WORD 0 0 //terminator
 
 ALIGN 4
@@ -26,3 +27,7 @@ iceTrap:
 ALIGN 4
 fireTrap:
 #incbin "asm/fireTrap.dmp"
+
+ALIGN 4
+bombTrap:
+#incbin "asm/bombTrap.dmp"

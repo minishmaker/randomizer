@@ -32,7 +32,7 @@ beq	end
 mov	lr,r0
 .short	0xF800
 pop	{r0,r1}
-add	r1,r0
+add	r0,r1
 ldr	r1,[r0,#4]
 mov	r0,#0
 sub	r0,r1
