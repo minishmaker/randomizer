@@ -233,5 +233,30 @@ BYTE 0x32
 BYTE 0x33
 BYTE 0 //terminator
 
+//make the dws torches work when the lantern is used on them
+PUSH
+ORG $DE973; BYTE 4
+ORG $DE983; BYTE 4
+ORG $DE993; BYTE 4
+ORG $DE9A3; BYTE 4
+POP
+PUSH; ORG $DE3A8; POIN barrelTorch; POP
+ALIGN 4
+barrelTorch:
+BYTE 9 0xF 0x23 4 1 0x20; SHORT 0 0x188 0xC8 0 0x16
+BYTE 9 0xF 0x23 4 1 0x20; SHORT 0 0x048 0xC8 0 0x15
+WORD 0xFFFFFFFF 0xFFFFFFFF 0xFFFFFFFF 0xFFFFFFFF
+PUSH; ORG $5B724; POIN torchTable; POP
+ALIGN 4
+torchTable:
+POIN $5B728|1
+POIN $5B720|1
+POIN $5B7F8|1
+POIN $5B850|1
+POIN newTorch|1
+ALIGN 4
+newTorch:
+#incbin "asm/newTorch.dmp"
+
 #include "glitchless.event"
 #include "dungeon.event"
