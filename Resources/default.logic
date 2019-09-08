@@ -484,7 +484,7 @@ GreatbladeScroll;        Major; greatbladeDojoItem:Define:FirstByte, greatbladeD
 	DropletsIceMazePot:Droplets;    Minor; 0E3A73:FirstByte, 0E3A75:SecondByte; Locations.AccessDroplets, Items.BigKey:Droplets,  (|Items.LanternOff, Locations.DropletsEastLever)
 	FoWRightSideTopPot:Fortress;    Minor; 0F3FC7:FirstByte, 0F3FC9:SecondByte; Locations.AccessFortress, Items.MoleMitts, Helpers.CanSplit2, Helpers.HasBow, Items.SmallKey`FOW_SET`:3
 	FoWRightSideBottomPot:Fortress; Minor; 0F3FD7:FirstByte, 0F3FD9:SecondByte; Locations.AccessFortress, Items.MoleMitts, Helpers.CanSplit2, Helpers.HasBow, Items.SmallKey`FOW_SET`:3
-    RoyalValleyLostWoodsChest;      Minor; 0D8A84;                              Locations.AccessValley
+    RoyalValleyLostWoodsChest;      Minor; 0D8A86;                              Locations.AccessValley
 	LonLonCaveSecret;               Minor; 32-0D-00;                            Locations.LonLonCave, Items.BombBag, Items.LanternOff;
     
 	#digging
