@@ -130,7 +130,7 @@ PUSH; ORG $772E4; jumpToHack(itemTimesUsed); POP
 ALIGN 4
 itemTimesUsed:
 #incbin "asm/itemTimesUsed.dmp"
-WORD 0x203FC00+(0x33*4) //base offset of item uses
+WORD 0x203FC00+(0x34*4) //base offset of item uses
 POIN itemGetTable
 ALIGN 4
 itemGetTable:
