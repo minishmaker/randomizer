@@ -115,7 +115,7 @@ HasLightBow;     Helper;; (|Items.Bow::2, Items.LightArrow)
 HasBoomerang;    Helper;; (|Items.Boomerang, Items.MagicBoomerang)
 
 HasDamageSource; Helper;; (|Helpers.HasSword, Helpers.HasBow, Items.BombBag)
-
+HasBeam;         Helper;; Helpers.HasSword, (|Items.SwordBeam, Items.PerilBeam)
 CanDestroyTrees; Helper;; (|Helpers.HasSword, Helpers.HasLightBow, Items.BombBag ,Items.LanternOff)
 
 Inaccessible;    Helper;; Items.Untyped.FF
@@ -222,7 +222,7 @@ GraybladeHeartPiece;       Minor; 0D752B;                                       
 GraybladeScroll;           Major; graybladeDojoItem:Define:FirstByte, graybladeDojoSub:Define:SecondByte; Locations.GraybladeHeartPiece, Helpers.HasSword;                                                                                                                                 Items.RollAttack
 CrenelBombFairy;           Major; 00B828;                                                                 Locations.AccessCrenel, Items.BombBag, Items.GripRing
 CrenelDigCaveHeartPiece;   Minor; 0F3BA7;                                                                 Locations.AccessCrenel, Items.GripRing, Items.MoleMitts
-CrenelBlockChest;          Minor; 26-03-00;                                                               Locations.AccessCrenel, (|Items.PacciCane, (&Items.GripRing, (|Items.RocsCape, Helpers.HasLightBow,(&Items.GustJar, (|Items.BombBag, Helpers.HasBow, Helpers.HasBoomerang, Items.SwordBeam, Items.PerilBeam)))))
+CrenelBlockChest;          Minor; 26-03-00;                                                               Locations.AccessCrenel, (|Items.PacciCane, (&Items.GripRing, (|Items.RocsCape, Helpers.HasLightBow,(&Items.GustJar, (|Items.BombBag, Helpers.HasBow, Helpers.HasBoomerang, Helpers.HasBeam)))))
 Melari;                    Major; 00D26E;                                                                 Locations.CompleteCoF;                                                                                                                                                           Items.SmithSword
 
 # Castor Wilds Locations
@@ -246,7 +246,7 @@ RuinsArmosKillRight;          Minor; 05-05-01;                                  
 # Lake Hylia Locations
 AccessHyliaNorth;      Helper;;                                                                       Locations.AccessEastField,(|Items.RocsCape, Items.LonLonKey,Items.Ocarina,(&Items.Flippers, Items.MoleMitts))
 AccessHyliaSouth;      Helper;;                                                                       Locations.AccessHyliaNorth,(|Items.Flippers,Items.RocsCape,(&Items.MoleMitts,Items.PacciCane))
-StockwellDog;          Major; 094908:FirstByte, 094910:SecondByte;                                                                       Locations.AccessHyliaNorth, Items.DogFoodBottle
+StockwellDog;          Major; 094908:FirstByte, 09490A:SecondByte;                                                                       Locations.AccessHyliaNorth, Items.DogFoodBottle
 HyliaNorthMinishHole;  Minor; 35-07-00;                                                               Locations.AccessHyliaNorth, Items.Flippers, Items.PegasusBoots
 HyliaMayorCabin;       Major; blueBookItem:Define:FirstByte, blueBookSub:Define:SecondByte;           Locations.AccessHyliaSouth, Items.PegasusBoots, Items.PowerBracelets, (|Items.GustJar, Items.Flippers);        Items.MaskHistory
 WitchDiggingCave;      Minor; 0C-00-00;                                                               Locations.AccessHyliaSouth, Items.MoleMitts
