@@ -117,6 +117,7 @@ BYTE 0x22 //0x4C Ball and Chain Soldier
 BYTE 0xFF //0x4D
 BYTE 0x23 //0x4E Ghini
 BYTE 0xFF //0x4F
+BYTE 0x23 //0x50 DHC Special Ghini
 
 //save timestamps of when each item was (first) obtained
 PUSH; ORG $7C4C4; jumpToHack(itemTimestamps); POP
