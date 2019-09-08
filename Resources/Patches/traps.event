@@ -18,6 +18,7 @@ POIN iceTrap; WORD 8
 POIN fireTrap; WORD 8
 POIN $797B0; WORD 8 //zapTrap
 POIN bombTrap; WORD 0
+POIN moneyTrap; WORD 0
 WORD 0 0 //terminator
 
 ALIGN 4
@@ -31,3 +32,7 @@ fireTrap:
 ALIGN 4
 bombTrap:
 #incbin "asm/bombTrap.dmp"
+
+ALIGN 4
+moneyTrap:
+#incbin "asm/moneyTrap.dmp"
