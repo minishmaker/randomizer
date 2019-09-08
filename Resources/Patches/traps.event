@@ -17,6 +17,7 @@ chestTrapTable: //pointers to routines for each trap, based on subID of the 0x1B
 POIN iceTrap; WORD 8
 POIN fireTrap; WORD 8
 POIN $797B0; WORD 8
+WORD 0 0 //terminator
 
 ALIGN 4
 iceTrap:

@@ -10,6 +10,20 @@ mov	lr,r3
 b	end
 
 isTrap:
+cmp	r1,#0xFF
+bne	notRandom
+ldr	r0,table
+mov	r1,#0
+randomLoop:
+ldr	r2,[r0]
+add	r1,#1
+add	r0,#8
+cmp	r2,#0
+bne	randomLoop
+ldr	r0,=#0x300100C
+ldrb	r0,[r0]
+swi	#6
+notRandom:
 ldr	r0,table
 lsl	r1,#3
 push	{r0,r1}
