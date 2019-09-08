@@ -211,7 +211,7 @@ scrollIcons:
 #incbin "scrollIcons.img.bin"
 
 //when vaati dies, jump to the credits
-PUSH; ORG $41D00; jumpToHack(vaatiCredits); POP
+PUSH; ORG $41D14; jumpToHack(vaatiCredits); POP
 ALIGN 4
 vaatiCredits:
 #incbin "asm/vaatiCredits.dmp"
