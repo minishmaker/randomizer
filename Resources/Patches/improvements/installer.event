@@ -258,5 +258,8 @@ ALIGN 4
 newTorch:
 #incbin "asm/newTorch.dmp"
 
+//skip escape sequence
+PUSH; ORG $13A312; SHORT 0x88 0x68; BYTE 0 0x89 0x01 0x01; POP
+
 #include "glitchless.event"
 #include "dungeon.event"
