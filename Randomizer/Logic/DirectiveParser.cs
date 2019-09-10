@@ -1,6 +1,8 @@
 ﻿using MinishRandomizer.Core;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +14,7 @@ namespace MinishRandomizer.Randomizer.Logic
     {
         public List<LogicOption> Options;
         private List<LogicDefine> Defines;
-        private List<EventDefine> EventDefines;
+        public List<EventDefine> EventDefines;
         private int IfCounter;
 
         public DirectiveParser()
@@ -49,12 +51,14 @@ namespace MinishRandomizer.Randomizer.Logic
             switch (directive)
             {
                 case "!flag":
+                case "!color":
                 case "!number":
                 case "!name":
                 case "!version":
                 case "!date":
                     return true;
                 case "!define":
+                case "!eventDefine":
                 case "!ifdef":
                 case "!ifndef":
                 case "!else":
@@ -90,8 +94,14 @@ namespace MinishRandomizer.Randomizer.Logic
                     case "!flag":
                         Options.Add(ParseFlagDirective(mainDirectiveParts));
                         break;
+                    case "!color":
+                        Options.Add(ParseColorDirective(mainDirectiveParts));
+                        break;
                     case "!define":
                         Defines.Add(ParseDefineDirective(mainDirectiveParts));
+                        break;
+                    case "!eventDefine":
+                        EventDefines.Add(ParseEventDefine(mainDirectiveParts));
                         break;
                     case "!number":
                     case "!name":
@@ -193,9 +203,10 @@ namespace MinishRandomizer.Randomizer.Logic
 
         public void AddOptions()
         {
-            Console.WriteLine("Pre" + Defines.Count);
-            Defines.AddRange(Options.Where(option => option.Active));
-            Console.WriteLine("Post" + Defines.Count);
+            foreach (LogicOption option in Options)
+            {
+                Defines.AddRange(option.GetLogicDefines());
+            }
         }
 
         public string ReplaceDefines(string locationString)
@@ -212,8 +223,6 @@ namespace MinishRandomizer.Randomizer.Logic
                 {
                     return outString;
                 }
-
-                Console.WriteLine(define.Name);
             }
 
             throw new ParserException($"{locationString} has an invalid/undefined define!");
@@ -260,7 +269,55 @@ namespace MinishRandomizer.Randomizer.Logic
             }
             else
             {
-                throw new ParserException($"A define somewhere has an incorrect number of parameters! {directiveParts.Length}");
+                throw new ParserException($"A define somewhere has an incorrect number of parameters! ({directiveParts.Length})");
+            }
+        }
+
+        private LogicColorPicker ParseColorDirective(string[] directiveParts)
+        {
+            if (directiveParts.Length == 3)
+            {
+                return new LogicColorPicker(directiveParts[1], directiveParts[2], Color.White);
+            }
+            else if (directiveParts.Length % 3 == 0)
+            {
+
+                List<Color> colors = new List<Color>();
+                for (int i = 3; i < directiveParts.Length; i += 3)
+                {
+                    // This parses the color components out, in groups of three.
+                    if (int.TryParse(directiveParts[i], NumberStyles.HexNumber, null, out int rComponent))
+                    {
+                        if (int.TryParse(directiveParts[i + 1], NumberStyles.HexNumber, null, out int gComponent))
+                        {
+                            if (int.TryParse(directiveParts[i + 2], NumberStyles.HexNumber, null, out int bComponent))
+                            {
+                                colors.Add(Color.FromArgb(rComponent, gComponent, bComponent));
+                            }
+                        }
+                    }
+                }
+
+                return new LogicColorPicker(directiveParts[1], directiveParts[2], colors);
+            }
+            else
+            {
+                throw new ParserException($"A color somewhere has an incorrect number of parameters! ({directiveParts.Length})");
+            }
+        }
+
+        private EventDefine ParseEventDefine(string[] directiveParts)
+        {
+            if (directiveParts.Length == 2)
+            {
+                return new EventDefine(directiveParts[1]);
+            }
+            else if (directiveParts.Length == 3) {
+                return new EventDefine(directiveParts[1], directiveParts[2]);
+            }
+            else
+            {
+                throw new ParserException($"An event define somewhere has an incorrect number of parameters! ({directiveParts.Length})");
             }
         }
     }

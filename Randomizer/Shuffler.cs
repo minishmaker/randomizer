@@ -508,6 +508,11 @@ namespace MinishRandomizer.Randomizer
                 eventBuilder.AppendLine("#define heartscolor" + HeartColor.ToString().ToLower());
             }
 
+            foreach (EventDefine define in LogicParser.GetEventDefines())
+            {
+                define.WriteDefine(eventBuilder);
+            }
+
             return eventBuilder.ToString();
         }
 

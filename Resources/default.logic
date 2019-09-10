@@ -7,7 +7,15 @@
 !flag - RANDOM_LANGUAGE - Randomize language
 !flag - ALLOW_FUSION_SKIPS - Allow fusion skips - true
 !flag - INSTANT_SKIP - Instant fusion skip
+!color - TUNIC_COLOR - Change Tunic Color -    10 - F8 - 08    -    10 - 78 - 28    -    64 - A0 - 28    -    B8 - F8 - A0
 
+!ifdef - TUNIC_COLOR
+    !eventDefine - TUNIC_COLORED
+	!eventDefine - TUNIC_COLOR_DARKEST - 0x`TUNIC_COLOR_1`
+	!eventDefine - TUNIC_COLOR_DARK - 0x`TUNIC_COLOR_2`
+    !eventDefine - TUNIC_COLOR_MAIN - 0x`TUNIC_COLOR_0`
+	!eventDefine - TUNIC_COLOR_LIGHT - 0x`TUNIC_COLOR_3`
+!endif
 
 #Settings
 

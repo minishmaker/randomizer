@@ -140,6 +140,7 @@ POIN drawText
 #include "save/installer.event"
 #include "hearts.event"
 #include "randomLanguage.event"
+#include "tunic.event"
 
 #ifdef fuzzy //size of the mosaic, 0 to 14
 	PUSH; ORG $4FD90; jumpToHack(fuzzyMode); POP

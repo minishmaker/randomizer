@@ -205,8 +205,6 @@ namespace MinishRandomizer.Randomizer.Logic
                 dungeon = names[1];
             }
 
-            Console.WriteLine(name);
-
             string locationType = locationParts[1];
             if (!Enum.TryParse(locationType, out Location.LocationType type) || type == Location.LocationType.Untyped)
             {
@@ -431,7 +429,6 @@ namespace MinishRandomizer.Randomizer.Logic
                     {
                         SubParser.ParseDirective(locationString);
                     }
-                    Console.WriteLine("Ignorem");
                 }
             }
 
@@ -458,6 +455,15 @@ namespace MinishRandomizer.Randomizer.Logic
                     }
                 }
             }
+        }
+
+        public List<EventDefine> GetEventDefines()
+        {
+            List<EventDefine> usedDefines = new List<EventDefine>();
+
+            usedDefines.AddRange(SubParser.EventDefines);
+
+            return usedDefines;
         }
     }
 }
