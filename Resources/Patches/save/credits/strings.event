@@ -1,0 +1,531 @@
+ALIGN 4
+killCredits1:
+/*English*/ POIN killCredits1English
+/*English*/ POIN killCredits1English
+/*English*/ POIN killCredits1English
+/*French */ POIN killCredits1English
+/*German */ POIN killCredits1English
+/*Spanish*/ POIN killCredits1English
+/*Italian*/ POIN killCredits1English
+
+killCredits1English:
+String("Total killed:"); BYTE 0
+
+ALIGN 4
+killCredits2:
+/*English*/ POIN killCredits2English
+/*English*/ POIN killCredits2English
+/*English*/ POIN killCredits2English
+/*French */ POIN killCredits2English
+/*German */ POIN killCredits2English
+/*Spanish*/ POIN killCredits2English
+/*Italian*/ POIN killCredits2English
+
+killCredits2English:
+String("First kill:"); BYTE 0
+
+ALIGN 4
+killCredits3:
+/*English*/ POIN killCredits3English
+/*English*/ POIN killCredits3English
+/*English*/ POIN killCredits3English
+/*French */ POIN killCredits3English
+/*German */ POIN killCredits3English
+/*Spanish*/ POIN killCredits3English
+/*Italian*/ POIN killCredits3English
+
+killCredits3English:
+String("Defeated at:"); BYTE 0
+
+ALIGN 4
+notDefeatedCredits:
+/*English*/ POIN notDefeatedCreditsEnglish
+/*English*/ POIN notDefeatedCreditsEnglish
+/*English*/ POIN notDefeatedCreditsEnglish
+/*French */ POIN notDefeatedCreditsEnglish
+/*German */ POIN notDefeatedCreditsEnglish
+/*Spanish*/ POIN notDefeatedCreditsEnglish
+/*Italian*/ POIN notDefeatedCreditsEnglish
+
+notDefeatedCreditsEnglish:
+String("Never Defeated"); BYTE 0
+
+ALIGN 4
+defeatedCredits:
+/*English*/ POIN defeatedCreditsEnglish
+/*English*/ POIN defeatedCreditsEnglish
+/*English*/ POIN defeatedCreditsEnglish
+/*French */ POIN defeatedCreditsEnglish
+/*German */ POIN defeatedCreditsEnglish
+/*Spanish*/ POIN defeatedCreditsEnglish
+/*Italian*/ POIN defeatedCreditsEnglish
+
+defeatedCreditsEnglish:
+String("Defeated"); BYTE 0
+
+ALIGN 4
+NACredits:
+/*English*/ POIN NACreditsEnglish
+/*English*/ POIN NACreditsEnglish
+/*English*/ POIN NACreditsEnglish
+/*French */ POIN NACreditsEnglish
+/*German */ POIN NACreditsEnglish
+/*Spanish*/ POIN NACreditsEnglish
+/*Italian*/ POIN NACreditsEnglish
+
+NACreditsEnglish:
+String("N/A"); BYTE 0
+
+ALIGN 4
+highCredits:
+/*English*/ POIN highCreditsEnglish
+/*English*/ POIN highCreditsEnglish
+/*English*/ POIN highCreditsEnglish
+/*French */ POIN highCreditsEnglish
+/*German */ POIN highCreditsEnglish
+/*Spanish*/ POIN highCreditsEnglish
+/*Italian*/ POIN highCreditsEnglish
+
+highCreditsEnglish:
+String("Too many!"); BYTE 0
+
+ALIGN 4
+neverCredits:
+/*English*/ POIN neverCreditsEnglish
+/*English*/ POIN neverCreditsEnglish
+/*English*/ POIN neverCreditsEnglish
+/*French */ POIN neverCreditsEnglish
+/*German */ POIN neverCreditsEnglish
+/*Spanish*/ POIN neverCreditsEnglish
+/*Italian*/ POIN neverCreditsEnglish
+
+neverCreditsEnglish:
+String("Not Found"); BYTE 0
+
+ALIGN 4
+timesUsedCredits:
+/*English*/ POIN timesUsedCreditsEnglish
+/*English*/ POIN timesUsedCreditsEnglish
+/*English*/ POIN timesUsedCreditsEnglish
+/*French */ POIN timesUsedCreditsEnglish
+/*German */ POIN timesUsedCreditsEnglish
+/*Spanish*/ POIN timesUsedCreditsEnglish
+/*Italian*/ POIN timesUsedCreditsEnglish
+
+timesUsedCreditsEnglish:
+String("Times used:"); BYTE 0
+
+ALIGN 4
+timeFoundCredits:
+/*English*/ POIN timeFoundCreditsEnglish
+/*English*/ POIN timeFoundCreditsEnglish
+/*English*/ POIN timeFoundCreditsEnglish
+/*French */ POIN timeFoundCreditsEnglish
+/*German */ POIN timeFoundCreditsEnglish
+/*Spanish*/ POIN timeFoundCreditsEnglish
+/*Italian*/ POIN timeFoundCreditsEnglish
+
+timeFoundCreditsEnglish:
+String("Found at:"); BYTE 0
+
+ALIGN 4
+timesCredits:
+/*English*/ POIN timesCreditsEnglish
+/*English*/ POIN timesCreditsEnglish
+/*English*/ POIN timesCreditsEnglish
+/*French */ POIN timesCreditsEnglish
+/*German */ POIN timesCreditsEnglish
+/*Spanish*/ POIN timesCreditsEnglish
+/*Italian*/ POIN timesCreditsEnglish
+
+timesCreditsEnglish:
+String("Total:"); BYTE 0
+
+ALIGN 4
+timeCredits:
+/*English*/ POIN timeCreditsEnglish
+/*English*/ POIN timeCreditsEnglish
+/*English*/ POIN timeCreditsEnglish
+/*French */ POIN timeCreditsEnglish
+/*German */ POIN timeCreditsEnglish
+/*Spanish*/ POIN timeCreditsEnglish
+/*Italian*/ POIN timeCreditsEnglish
+
+timeCreditsEnglish:
+String("Time:"); BYTE 0
+
+ALIGN 4
+octoCredits:
+/*English*/ POIN octoCreditsEnglish
+/*English*/ POIN octoCreditsEnglish
+/*English*/ POIN octoCreditsEnglish
+/*French */ POIN octoCreditsEnglish
+/*German */ POIN octoCreditsEnglish
+/*Spanish*/ POIN octoCreditsEnglish
+/*Italian*/ POIN octoCreditsEnglish
+
+octoCreditsEnglish:
+String("Big Octorok"); BYTE 0
+
+ALIGN 4
+gibdoCredits:
+/*English*/ POIN gibdoCreditsEnglish
+/*English*/ POIN gibdoCreditsEnglish
+/*English*/ POIN gibdoCreditsEnglish
+/*French */ POIN gibdoCreditsEnglish
+/*German */ POIN gibdoCreditsEnglish
+/*Spanish*/ POIN gibdoCreditsEnglish
+/*Italian*/ POIN gibdoCreditsEnglish
+
+gibdoCreditsEnglish:
+String("Gibdo & Stalfos"); BYTE 0
+
+ALIGN 4
+crowCredits:
+/*English*/ POIN crowCreditsEnglish
+/*English*/ POIN crowCreditsEnglish
+/*English*/ POIN crowCreditsEnglish
+/*French */ POIN crowCreditsEnglish
+/*German */ POIN crowCreditsEnglish
+/*Spanish*/ POIN crowCreditsEnglish
+/*Italian*/ POIN crowCreditsEnglish
+
+crowCreditsEnglish:
+String("Crow & Takkuri"); BYTE 0
+
+ALIGN 4
+moblinCredits:
+/*English*/ POIN moblinCreditsEnglish
+/*English*/ POIN moblinCreditsEnglish
+/*English*/ POIN moblinCreditsEnglish
+/*French */ POIN moblinCreditsEnglish
+/*German */ POIN moblinCreditsEnglish
+/*Spanish*/ POIN moblinCreditsEnglish
+/*Italian*/ POIN moblinCreditsEnglish
+
+moblinCreditsEnglish:
+String("Moblin"); BYTE 0
+
+ALIGN 4
+masterCredits:
+/*English*/ POIN masterCreditsEnglish
+/*English*/ POIN masterCreditsEnglish
+/*English*/ POIN masterCreditsEnglish
+/*French */ POIN masterCreditsEnglish
+/*German */ POIN masterCreditsEnglish
+/*Spanish*/ POIN masterCreditsEnglish
+/*Italian*/ POIN masterCreditsEnglish
+
+masterCreditsEnglish:
+String("Wall & Floor Master"); BYTE 0
+
+ALIGN 4
+chainCredits:
+/*English*/ POIN chainCreditsEnglish
+/*English*/ POIN chainCreditsEnglish
+/*English*/ POIN chainCreditsEnglish
+/*French */ POIN chainCreditsEnglish
+/*German */ POIN chainCreditsEnglish
+/*Spanish*/ POIN chainCreditsEnglish
+/*Italian*/ POIN chainCreditsEnglish
+
+chainCreditsEnglish:
+String("Ball & Chain Soldier"); BYTE 0
+
+ALIGN 4
+sword1Credits:
+/*English*/ POIN sword1CreditsEnglish
+/*English*/ POIN sword1CreditsEnglish
+/*English*/ POIN sword1CreditsEnglish
+/*French */ POIN sword1CreditsEnglish
+/*German */ POIN sword1CreditsEnglish
+/*Spanish*/ POIN sword1CreditsEnglish
+/*Italian*/ POIN sword1CreditsEnglish
+
+sword1CreditsEnglish:
+String("White Sword (1)"); BYTE 0
+
+ALIGN 4
+sword2Credits:
+/*English*/ POIN sword2CreditsEnglish
+/*English*/ POIN sword2CreditsEnglish
+/*English*/ POIN sword2CreditsEnglish
+/*French */ POIN sword2CreditsEnglish
+/*German */ POIN sword2CreditsEnglish
+/*Spanish*/ POIN sword2CreditsEnglish
+/*Italian*/ POIN sword2CreditsEnglish
+
+sword2CreditsEnglish:
+String("White Sword (2)"); BYTE 0
+
+ALIGN 4
+sword3Credits:
+/*English*/ POIN sword3CreditsEnglish
+/*English*/ POIN sword3CreditsEnglish
+/*English*/ POIN sword3CreditsEnglish
+/*French */ POIN sword3CreditsEnglish
+/*German */ POIN sword3CreditsEnglish
+/*Spanish*/ POIN sword3CreditsEnglish
+/*Italian*/ POIN sword3CreditsEnglish
+
+sword3CreditsEnglish:
+String("White Sword (3)"); BYTE 0
+
+ALIGN 4
+book1Credits:
+/*English*/ POIN book1CreditsEnglish
+/*English*/ POIN book1CreditsEnglish
+/*English*/ POIN book1CreditsEnglish
+/*French */ POIN book1CreditsEnglish
+/*German */ POIN book1CreditsEnglish
+/*Spanish*/ POIN book1CreditsEnglish
+/*Italian*/ POIN book1CreditsEnglish
+
+book1CreditsEnglish:
+String("A Hyrulean Bestiary"); BYTE 0
+
+ALIGN 4
+book2Credits:
+/*English*/ POIN book2CreditsEnglish
+/*English*/ POIN book2CreditsEnglish
+/*English*/ POIN book2CreditsEnglish
+/*French */ POIN book2CreditsEnglish
+/*German */ POIN book2CreditsEnglish
+/*Spanish*/ POIN book2CreditsEnglish
+/*Italian*/ POIN book2CreditsEnglish
+
+book2CreditsEnglish:
+String("Legend of the Picori"); BYTE 0
+
+ALIGN 4
+book3Credits:
+/*English*/ POIN book3CreditsEnglish
+/*English*/ POIN book3CreditsEnglish
+/*English*/ POIN book3CreditsEnglish
+/*French */ POIN book3CreditsEnglish
+/*German */ POIN book3CreditsEnglish
+/*Spanish*/ POIN book3CreditsEnglish
+/*Italian*/ POIN book3CreditsEnglish
+
+book3CreditsEnglish:
+String("A History of Masks"); BYTE 0
+
+ALIGN 4
+shootbutterflyCredits:
+/*English*/ POIN shootbutterflyCreditsEnglish
+/*English*/ POIN shootbutterflyCreditsEnglish
+/*English*/ POIN shootbutterflyCreditsEnglish
+/*French */ POIN shootbutterflyCreditsEnglish
+/*German */ POIN shootbutterflyCreditsEnglish
+/*Spanish*/ POIN shootbutterflyCreditsEnglish
+/*Italian*/ POIN shootbutterflyCreditsEnglish
+
+shootbutterflyCreditsEnglish:
+String("Shoot Butterfly"); BYTE 0
+
+ALIGN 4
+digbutterflyCredits:
+/*English*/ POIN digbutterflyCreditsEnglish
+/*English*/ POIN digbutterflyCreditsEnglish
+/*English*/ POIN digbutterflyCreditsEnglish
+/*French */ POIN digbutterflyCreditsEnglish
+/*German */ POIN digbutterflyCreditsEnglish
+/*Spanish*/ POIN digbutterflyCreditsEnglish
+/*Italian*/ POIN digbutterflyCreditsEnglish
+
+digbutterflyCreditsEnglish:
+String("Dig Butterfly"); BYTE 0
+
+ALIGN 4
+swimbutterflyCredits:
+/*English*/ POIN swimbutterflyCreditsEnglish
+/*English*/ POIN swimbutterflyCreditsEnglish
+/*English*/ POIN swimbutterflyCreditsEnglish
+/*French */ POIN swimbutterflyCreditsEnglish
+/*German */ POIN swimbutterflyCreditsEnglish
+/*Spanish*/ POIN swimbutterflyCreditsEnglish
+/*Italian*/ POIN swimbutterflyCreditsEnglish
+
+swimbutterflyCreditsEnglish:
+String("Swim Butterfly"); BYTE 0
+
+ALIGN 4
+fastspinCredits:
+/*English*/ POIN fastspinCreditsEnglish
+/*English*/ POIN fastspinCreditsEnglish
+/*English*/ POIN fastspinCreditsEnglish
+/*French */ POIN fastspinCreditsEnglish
+/*German */ POIN fastspinCreditsEnglish
+/*Spanish*/ POIN fastspinCreditsEnglish
+/*Italian*/ POIN fastspinCreditsEnglish
+
+fastspinCreditsEnglish:
+String("Faster Spin Attack"); BYTE 0
+
+ALIGN 4
+fastsplitCredits:
+/*English*/ POIN fastsplitCreditsEnglish
+/*English*/ POIN fastsplitCreditsEnglish
+/*English*/ POIN fastsplitCreditsEnglish
+/*French */ POIN fastsplitCreditsEnglish
+/*German */ POIN fastsplitCreditsEnglish
+/*Spanish*/ POIN fastsplitCreditsEnglish
+/*Italian*/ POIN fastsplitCreditsEnglish
+
+fastsplitCreditsEnglish:
+String("Faster Split Gauge"); BYTE 0
+
+ALIGN 4
+longspinCredits:
+/*English*/ POIN longspinCreditsEnglish
+/*English*/ POIN longspinCreditsEnglish
+/*English*/ POIN longspinCreditsEnglish
+/*French */ POIN longspinCreditsEnglish
+/*German */ POIN longspinCreditsEnglish
+/*Spanish*/ POIN longspinCreditsEnglish
+/*Italian*/ POIN longspinCreditsEnglish
+
+longspinCreditsEnglish:
+String("Longer Great Spin"); BYTE 0
+
+ALIGN 4
+totalTimeCredits:
+/*English*/ POIN totalTimeCreditsEnglish
+/*English*/ POIN totalTimeCreditsEnglish
+/*English*/ POIN totalTimeCreditsEnglish
+/*French */ POIN totalTimeCreditsEnglish
+/*German */ POIN totalTimeCreditsEnglish
+/*Spanish*/ POIN totalTimeCreditsEnglish
+/*Italian*/ POIN totalTimeCreditsEnglish
+
+totalTimeCreditsEnglish:
+String("Total Time"); BYTE 0
+
+ALIGN 4
+menuTimeCredits:
+/*English*/ POIN menuTimeCreditsEnglish
+/*English*/ POIN menuTimeCreditsEnglish
+/*English*/ POIN menuTimeCreditsEnglish
+/*French */ POIN menuTimeCreditsEnglish
+/*German */ POIN menuTimeCreditsEnglish
+/*Spanish*/ POIN menuTimeCreditsEnglish
+/*Italian*/ POIN menuTimeCreditsEnglish
+
+menuTimeCreditsEnglish:
+String("Menu Time"); BYTE 0
+
+ALIGN 4
+cutsceneTimeCredits:
+/*English*/ POIN cutsceneTimeCreditsEnglish
+/*English*/ POIN cutsceneTimeCreditsEnglish
+/*English*/ POIN cutsceneTimeCreditsEnglish
+/*French */ POIN cutsceneTimeCreditsEnglish
+/*German */ POIN cutsceneTimeCreditsEnglish
+/*Spanish*/ POIN cutsceneTimeCreditsEnglish
+/*Italian*/ POIN cutsceneTimeCreditsEnglish
+
+cutsceneTimeCreditsEnglish:
+String("Cutscene Time"); BYTE 0
+
+ALIGN 4
+rollingTimeCredits:
+/*English*/ POIN rollingTimeCreditsEnglish
+/*English*/ POIN rollingTimeCreditsEnglish
+/*English*/ POIN rollingTimeCreditsEnglish
+/*French */ POIN rollingTimeCreditsEnglish
+/*German */ POIN rollingTimeCreditsEnglish
+/*Spanish*/ POIN rollingTimeCreditsEnglish
+/*Italian*/ POIN rollingTimeCreditsEnglish
+
+rollingTimeCreditsEnglish:
+String("Rolling Time"); BYTE 0
+
+ALIGN 4
+timesRolledCredits:
+/*English*/ POIN timesRolledCreditsEnglish
+/*English*/ POIN timesRolledCreditsEnglish
+/*English*/ POIN timesRolledCreditsEnglish
+/*French */ POIN timesRolledCreditsEnglish
+/*German */ POIN timesRolledCreditsEnglish
+/*Spanish*/ POIN timesRolledCreditsEnglish
+/*Italian*/ POIN timesRolledCreditsEnglish
+
+timesRolledCreditsEnglish:
+String("Rolls"); BYTE 0
+
+ALIGN 4
+timesBonkedCredits:
+/*English*/ POIN timesBonkedCreditsEnglish
+/*English*/ POIN timesBonkedCreditsEnglish
+/*English*/ POIN timesBonkedCreditsEnglish
+/*French */ POIN timesBonkedCreditsEnglish
+/*German */ POIN timesBonkedCreditsEnglish
+/*Spanish*/ POIN timesBonkedCreditsEnglish
+/*Italian*/ POIN timesBonkedCreditsEnglish
+
+timesBonkedCreditsEnglish:
+String("Bonks"); BYTE 0
+
+ALIGN 4
+timesDiedCredits:
+/*English*/ POIN timesDiedCreditsEnglish
+/*English*/ POIN timesDiedCreditsEnglish
+/*English*/ POIN timesDiedCreditsEnglish
+/*French */ POIN timesDiedCreditsEnglish
+/*German */ POIN timesDiedCreditsEnglish
+/*Spanish*/ POIN timesDiedCreditsEnglish
+/*Italian*/ POIN timesDiedCreditsEnglish
+
+timesDiedCreditsEnglish:
+String("Game Overs"); BYTE 0
+
+ALIGN 4
+timesRevivedCredits:
+/*English*/ POIN timesRevivedCreditsEnglish
+/*English*/ POIN timesRevivedCreditsEnglish
+/*English*/ POIN timesRevivedCreditsEnglish
+/*French */ POIN timesRevivedCreditsEnglish
+/*German */ POIN timesRevivedCreditsEnglish
+/*Spanish*/ POIN timesRevivedCreditsEnglish
+/*Italian*/ POIN timesRevivedCreditsEnglish
+
+timesRevivedCreditsEnglish:
+String("Fairy Revivals"); BYTE 0
+ALIGN 4
+timesSavedCredits:
+/*English*/ POIN timesSavedCreditsEnglish
+/*English*/ POIN timesSavedCreditsEnglish
+/*English*/ POIN timesSavedCreditsEnglish
+/*French */ POIN timesSavedCreditsEnglish
+/*German */ POIN timesSavedCreditsEnglish
+/*Spanish*/ POIN timesSavedCreditsEnglish
+/*Italian*/ POIN timesSavedCreditsEnglish
+
+timesSavedCreditsEnglish:
+String("Times Saved"); BYTE 0
+
+ALIGN 4
+timesLoadedCredits:
+/*English*/ POIN timesLoadedCreditsEnglish
+/*English*/ POIN timesLoadedCreditsEnglish
+/*English*/ POIN timesLoadedCreditsEnglish
+/*French */ POIN timesLoadedCreditsEnglish
+/*German */ POIN timesLoadedCreditsEnglish
+/*Spanish*/ POIN timesLoadedCreditsEnglish
+/*Italian*/ POIN timesLoadedCreditsEnglish
+
+timesLoadedCreditsEnglish:
+String("Times Loaded"); BYTE 0
+
+ALIGN 4
+totalRupeesCredits:
+/*English*/ POIN totalRupeesCreditsEnglish
+/*English*/ POIN totalRupeesCreditsEnglish
+/*English*/ POIN totalRupeesCreditsEnglish
+/*French */ POIN totalRupeesCreditsEnglish
+/*German */ POIN totalRupeesCreditsEnglish
+/*Spanish*/ POIN totalRupeesCreditsEnglish
+/*Italian*/ POIN totalRupeesCreditsEnglish
+
+totalRupeesCreditsEnglish:
+String("Total Rupees"); BYTE 0

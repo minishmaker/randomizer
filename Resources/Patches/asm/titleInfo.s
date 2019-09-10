@@ -46,18 +46,22 @@ ldr	r4,=#0x600FB00
 
 @and draw each string
 ldr	r0,string1
+ldr	r0,[r0]
 mov	r1,r4
 bl	draw
 add	r4,#0x40
 ldr	r0,string2
+ldr	r0,[r0]
 mov	r1,r4
 bl	draw
 add	r4,#0x40
 ldr	r0,string3
+ldr	r0,[r0]
 mov	r1,r4
 bl	draw
 add	r4,#0x40
 ldr	r0,string4
+ldr	r0,[r0]
 mov	r1,r4
 bl	draw
 

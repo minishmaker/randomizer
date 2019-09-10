@@ -1,3 +1,5 @@
+#include "strings.event"
+
 //hold R on credits for 8x speed, press A to skip page, press Start to skip credits
 PUSH; ORG $A2EF8; jumpToHack(creditsFlow1); POP //also controls stats screen
 ALIGN 4
@@ -196,31 +198,6 @@ ALIGN 4
 bgscrolltopscroll:
 #incbin "bgscrolltopscroll.img.bin"
 
-killCredits1:
-String("Total killed:"); BYTE 0
-killCredits2:
-String("First kill:"); BYTE 0
-notDefeatedCredits:
-String("Never Defeated"); BYTE 0
-defeatedCredits:
-String("Defeated"); BYTE 0
-NACredits:
-String("N/A"); BYTE 0
-killCredits3:
-String("Defeated at:"); BYTE 0
-highCredits:
-String("Too many!"); BYTE 0
-neverCredits:
-String("Not Found"); BYTE 0
-timesUsedCredits:
-String("Times used:"); BYTE 0
-timeFoundCredits:
-String("Found at:"); BYTE 0
-timesCredits:
-String("Total:"); BYTE 0
-timeCredits:
-String("Time:"); BYTE 0
-
 ALIGN 4
 killsPageData:
 //POIN string OR SHORT 0 textID; WORD offsetToCounter (0 = 0 if time is 0, 1 otherwise) offsetToTime
@@ -268,19 +245,6 @@ POIN chainCredits  ; WORD 0x203FB00+(2*34) ((0x203FB00+(0x24*2)+3)&(0xFFFFFFFC))
 SHORT 0x0000 0x084D; WORD 0x203FB00+(2*35) ((0x203FB00+(0x24*2)+3)&(0xFFFFFFFC))+(4*35) //Ghini
 SHORT 0x0000 0x086D; WORD 0x203FB00+(2*28) ((0x203FB00+(0x24*2)+3)&(0xFFFFFFFC))+(4*28) //Bubble
 WORD 0 0 0 //terminator
-
-octoCredits:
-String("Big Octorok"); BYTE 0
-gibdoCredits:
-String("Gibdo & Stalfos"); BYTE 0
-crowCredits:
-String("Crow & Takkuri"); BYTE 0
-moblinCredits:
-String("Moblin"); BYTE 0
-masterCredits:
-String("Wall & Floor Master"); BYTE 0
-chainCredits:
-String("Ball & Chain Soldier"); BYTE 0
 
 ALIGN 4
 itemsPageData:
@@ -339,31 +303,6 @@ POIN fastsplitCredits     ; WORD 0                             0x203FC00+(0x32*4
 POIN longspinCredits      ; WORD 0                             0x203FC00+(0x33*4) //Long Great Spin
 WORD 0 0 0 //terminator
 
-sword1Credits:
-String("White Sword (1)"); BYTE 0
-sword2Credits:
-String("White Sword (2)"); BYTE 0
-sword3Credits:
-String("White Sword (3)"); BYTE 0
-book1Credits:
-String("A Hyrulean Bestiary"); BYTE 0
-book2Credits:
-String("Legend of the Picori"); BYTE 0
-book3Credits:
-String("A History of Masks"); BYTE 0
-shootbutterflyCredits:
-String("Shoot Butterfly"); BYTE 0
-digbutterflyCredits:
-String("Dig Butterfly"); BYTE 0
-swimbutterflyCredits:
-String("Swim Butterfly"); BYTE 0
-fastspinCredits:
-String("Faster Spin Attack"); BYTE 0
-fastsplitCredits:
-String("Faster Split Gauge"); BYTE 0
-longspinCredits:
-String("Longer Great Spin"); BYTE 0
-
 ALIGN 4
 miscPageData:
 //POIN string; WORD offsetToCounter offsetToTime (only one of the two)
@@ -379,29 +318,6 @@ POIN timesSavedCredits  ; WORD 0x203FE00+(04*2) 0
 POIN timesLoadedCredits ; WORD 0x203FE00+(05*2) 0
 POIN totalRupeesCredits ; WORD 0x203FE00+(06*2) 0
 WORD 0 0 0 //terminator
-
-totalTimeCredits:
-String("Total Time"); BYTE 0
-menuTimeCredits:
-String("Menu Time"); BYTE 0
-cutsceneTimeCredits:
-String("Cutscene Time"); BYTE 0
-rollingTimeCredits:
-String("Rolling Time"); BYTE 0
-timesRolledCredits:
-String("Rolls"); BYTE 0
-timesBonkedCredits:
-String("Bonks"); BYTE 0
-timesDiedCredits:
-String("Game Overs"); BYTE 0
-timesRevivedCredits:
-String("Fairy Revivals"); BYTE 0
-timesSavedCredits:
-String("Times Saved"); BYTE 0
-timesLoadedCredits:
-String("Times Loaded"); BYTE 0
-totalRupeesCredits:
-String("Total Rupees"); BYTE 0
 
 PUSH
 //remove the palette for the background image, essentially making it a black background

@@ -23,11 +23,51 @@ PUSH; ORG $ACD70; jumpToHack(titleInfo); POP
 ALIGN 4
 titleInfo:
 #incbin "asm/titleInfo.dmp"
-POIN string1pointer
-POIN string2pointer
-POIN string3pointer
-POIN string4pointer
+POIN string1pointerTable
+POIN string2pointerTable
+POIN string3pointerTable
+POIN string4pointerTable
 POIN swordMap
+
+ALIGN 4
+string1pointerTable:
+/*English*/ POIN string1pointer
+/*English*/ POIN string1pointer
+/*English*/ POIN string1pointer
+/*French */ POIN string1pointer
+/*German */ POIN string1pointer
+/*Spanish*/ POIN string1pointer
+/*Italian*/ POIN string1pointer
+
+ALIGN 4
+string2pointerTable:
+/*English*/ POIN string2pointer
+/*English*/ POIN string2pointer
+/*English*/ POIN string2pointer
+/*French */ POIN string2pointer
+/*German */ POIN string2pointer
+/*Spanish*/ POIN string2pointer
+/*Italian*/ POIN string2pointer
+
+ALIGN 4
+string3pointerTable:
+/*English*/ POIN string3pointer
+/*English*/ POIN string3pointer
+/*English*/ POIN string3pointer
+/*French */ POIN string3pointer
+/*German */ POIN string3pointer
+/*Spanish*/ POIN string3pointer
+/*Italian*/ POIN string3pointer
+
+ALIGN 4
+string4pointerTable:
+/*English*/ POIN string4pointer
+/*English*/ POIN string4pointer
+/*English*/ POIN string4pointer
+/*French */ POIN string4pointer
+/*German */ POIN string4pointer
+/*Spanish*/ POIN string4pointer
+/*Italian*/ POIN string4pointer
 
 ALIGN 4
 swordMap:
