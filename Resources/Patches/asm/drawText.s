@@ -31,7 +31,7 @@ blo	np
 cmp	r2,#0x60
 beq	space
 cmp	r2,#0x7A
-bhi	space
+bhi	np
 sub	r2,#0x20
 b	np
 space:

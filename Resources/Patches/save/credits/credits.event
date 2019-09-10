@@ -110,6 +110,7 @@ POIN bgscrollbotPalette
 POIN bgscrolltopImage
 POIN bgscrolltopPalette
 POIN bgscrolltopscroll
+POIN debugFontCredits
 
 ALIGN 4
 enemyPage:
@@ -519,3 +520,7 @@ BYTE 0x0A
 BYTE 2 0x1B; String("minishmaker.com"); BYTE 0x0F 0x15; String("discord"); BYTE 2 0 0x0A
 BYTE 0x0A
 BYTE 2 0x1B; String("github.com"); BYTE 0x0F 0x15; String("minishmaker"); BYTE 2 0 0
+
+ALIGN 4
+debugFontCredits:
+#incbin "font.img.bin"

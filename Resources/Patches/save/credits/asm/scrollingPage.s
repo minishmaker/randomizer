@@ -2,6 +2,7 @@
 .equ bgscrolltopImage, bgscrollbotPalette+4
 .equ bgscrolltopPalette, bgscrolltopImage+4
 .equ bgscrolltopscroll, bgscrolltopPalette+4
+.equ debugFont, bgscrolltopscroll+4
 .thumb
 push	{r4-r7,lr}
 mov	r7,r0
@@ -86,9 +87,9 @@ cmp	r1,r2
 bne	graphicsLoopScroll
 
 @load the debug font
-ldr	r0,=#0x85C2F70
+ldr	r0,debugFont
 ldr	r1,=#0x600C400
-ldr	r2,=#0x600CC00
+ldr	r2,=#0x600E000
 debug:
 ldr	r3,[r0]
 str	r3,[r1]
@@ -273,3 +274,4 @@ bgscrollbotImage:
 @POIN bgscrolltopImage
 @POIN bgscrolltopPalette
 @POIN bgscrolltopscroll
+@POIN debugFont
