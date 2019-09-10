@@ -163,32 +163,58 @@ BYTE edge1|fill2 fill1|fill2 fill1|fill2 edge1|0x000 0x000|edge2 fill1|fill2 fil
 POP
 #endif
 
+//change the color of the text arrow
+PUSH
+ORG $56AD4; SHORT 0x0080
+ORG $691E70
+#incbin "textBorders.img.bin"
+POP
+
 #ifndef barcolor
 	#define barcolor
 	#define barcolorgreen
 #endif
 #ifdef barcolor
-#ifdef barcolorred
-	#define barpalette "0x0000"
+#ifdef barcolorgreen
+	#define splitBackground "0x0E06"
+	#define splitFirst "0x0FE9"
+	#define splitSecond "0x7FFF"
+	#define splitThird "0x0F28"
+	#define splitFourth "0x0E06"
 #endif
 #ifdef barcolorblue
-	#define barpalette "0x1000"
+	#define splitBackground "0x5163"
+	#define splitFirst "0x7F89"
+	#define splitSecond "0x7FFF"
+	#define splitThird "0x7E65"
+	#define splitFourth "0x5163"
 #endif
-#ifdef barcolorgreen
-	#define barpalette "0x2000"
+#ifdef barcolorred
+	#define splitBackground "0x0CAF"
+	#define splitFirst "0x195F"
+	#define splitSecond "0x7FFF"
+	#define splitThird "0x10D7"
+	#define splitFourth "0x0CAF"
 #endif
 //change the graphics for the split bar
 PUSH
 ORG $5C2E30
-#incbin "bar1.img.bin"
+#incbin "bar.img.bin"
 ORG $5C42B0
-#incbin "bar2.img.bin"
+#incbin "bar.img.bin"
+#incbin "bar.img.bin"
+#incbin "bar.img.bin"
+#incbin "bar.img.bin"
 POP
-//change the palette of the split bar
-PUSH
-ORG $1C96C; WORD 0x0016+barpalette 0x0416+barpalette
-ORG $1C93A; SHORT 0x2300+(barpalette>>8)
-ORG $C867C; SHORT 0x001B+barpalette 0x001B+barpalette 0x001B+barpalette 0x001B+barpalette 0x001B+barpalette 0x001B+barpalette 0x001B+barpalette 0x001B+barpalette 0x001B+barpalette 0x001B+barpalette
-ORG $C8690; SHORT 0x0017+barpalette 0x0017+barpalette 0x0017+barpalette 0x0017+barpalette 0x0017+barpalette 0x0017+barpalette 0x0017+barpalette 0x0017+barpalette 0x0017+barpalette 0x0017+barpalette
-POP
+//change the colors of the split bar
+PUSH; ORG $5A255E; SHORT splitBackground splitFirst; POP
+//and change the code so the right colors load in
+PUSH; ORG $1C9AE; SHORT 0xB408; jumpToHack(splitColor); POP
+ALIGN 4
+splitColor:
+#incbin "asm/splitColor.dmp"
+WORD splitFirst
+WORD splitSecond
+WORD splitThird
+WORD splitFourth
 #endif
