@@ -307,5 +307,10 @@ ALIGN 4
 fastKinstone:
 #incbin "asm/fastKinstone.dmp"
 
+//normal kinstones don't get added to the bag in nofusions
+#ifdef noFusions
+	PUSH; ORG $1E77A; SHORT 0 0x286D; POP
+#endif
+
 #include "glitchless.event"
 #include "dungeon.event"
