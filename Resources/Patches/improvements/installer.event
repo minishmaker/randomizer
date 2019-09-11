@@ -301,5 +301,11 @@ ALIGN 4
 escapeWalls:
 #incbin "asm/escapeWalls.dmp"
 
+//normal kinstones have no popups
+PUSH; ORG $80DF4; jumpToHack(fastKinstone); POP
+ALIGN 4
+fastKinstone:
+#incbin "asm/fastKinstone.dmp"
+
 #include "glitchless.event"
 #include "dungeon.event"
