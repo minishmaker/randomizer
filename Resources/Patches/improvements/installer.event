@@ -219,9 +219,19 @@ ALIGN 4
 drawScrolls:
 #incbin "asm/drawScrolls.dmp"
 POIN scrollIcons
+POIN scrollTable
 ALIGN 4
 scrollIcons:
 #incbin "scrollIcons.img.bin"
+scrollTable:
+BYTE 0x48
+BYTE 0x4C
+BYTE 0x4A
+BYTE 0x4F
+BYTE 0x4B
+BYTE 0x49
+BYTE 0x4E
+BYTE 0x4D
 
 //when vaati dies, jump to the credits
 PUSH; ORG $41D14; jumpToHack(vaatiCredits); POP
