@@ -196,6 +196,25 @@ POP
 	#define splitThird "0x10D7"
 	#define splitFourth "0x0CAF"
 #endif
+#ifndef splitBackground
+	#ifdef splitFourth
+		#define splitBackground splitFourth
+	#else
+		#define splitBackground "0x0E06"
+	#endif
+#endif
+#ifndef splitFirst
+	#define splitFirst "0x0FE9"
+#endif
+#ifndef splitSecond
+	#define splitSecond "0x7FFF"
+#endif
+#ifndef splitThird
+	#define splitThird "0x0F28"
+#endif
+#ifndef splitFourth
+	#define splitFourth splitBackground
+#endif
 //change the graphics for the split bar
 PUSH
 ORG $5C2E30
