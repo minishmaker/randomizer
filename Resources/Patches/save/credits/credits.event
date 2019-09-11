@@ -234,7 +234,7 @@ SHORT 0x0000 0x0848; WORD 0x203FB00+(2*22) ((0x203FB00+(0x24*2)+3)&(0xFFFFFFFC))
 SHORT 0x0000 0x0860; WORD 0x203FB00+(2*23) ((0x203FB00+(0x24*2)+3)&(0xFFFFFFFC))+(4*23) //Rope
 SHORT 0x0000 0x085B; WORD 0x203FB00+(2*24) ((0x203FB00+(0x24*2)+3)&(0xFFFFFFFC))+(4*24) //Acro-Bandits
 SHORT 0x0000 0x084C; WORD 0x203FB00+(2*25) ((0x203FB00+(0x24*2)+3)&(0xFFFFFFFC))+(4*25) //Keaton
-POIN crowCredits   ; WORD 0x203FB00+(2*26) ((0x203FB00+(0x24*2)+3)&(0xFFFFFFFC))+(4*26) //Crow
+SHORT 0x0000 0x0872; WORD 0x203FB00+(2*26) ((0x203FB00+(0x24*2)+3)&(0xFFFFFFFC))+(4*26) //Crow
 SHORT 0x0000 0x0867; WORD 0x203FB00+(2*27) ((0x203FB00+(0x24*2)+3)&(0xFFFFFFFC))+(4*27) //Mulldozer
 SHORT 0x0000 0x0863; WORD 0x203FB00+(2*29) ((0x203FB00+(0x24*2)+3)&(0xFFFFFFFC))+(4*29) //Spiny Beetle
 POIN gibdoCredits  ; WORD 0x203FB00+(2*30) ((0x203FB00+(0x24*2)+3)&(0xFFFFFFFC))+(4*30) //Gibdo
@@ -270,7 +270,7 @@ SHORT 0 0x0414            ; WORD (0x203FC00+(0x34*4)+(0x11*2)) 0x203FC00+(0x11*4
 SHORT 0 0x0415            ; WORD (0x203FC00+(0x34*4)+(0x12*2)) 0x203FC00+(0x12*4) //Pegasus Boots
 SHORT 0 0x0417            ; WORD (0x203FC00+(0x34*4)+(0x13*2)) 0x203FC00+(0x13*4) //Ocarina
 SHORT 0 0x041C            ; WORD (0x203FC00+(0x34*4)+(0x14*2)) 0x203FC00+(0x14*4) //Bottle
-SHORT 0 0x0436            ; WORD 0                             0x203FC00+(0x15*4) //Bottle of Dog Food
+POIN dogCredits           ; WORD 0                             0x203FC00+(0x15*4) //Bottle of Dog Food
 SHORT 0 0x0437            ; WORD 0                             0x203FC00+(0x16*4) //Lon Lon Ranch Key
 SHORT 0 0x0438            ; WORD 0                             0x203FC00+(0x17*4) //Wake-Up Mushroom
 POIN book1Credits         ; WORD 0                             0x203FC00+(0x18*4) //A Hyrulean Bestiary
@@ -278,7 +278,7 @@ POIN book2Credits         ; WORD 0                             0x203FC00+(0x19*4
 POIN book3Credits         ; WORD 0                             0x203FC00+(0x1A*4) //A History of Masks
 SHORT 0 0x043C            ; WORD 0                             0x203FC00+(0x1B*4) //Graveyard Key
 SHORT 0 0x043D            ; WORD 0                             0x203FC00+(0x1C*4) //Tingle Trophy
-SHORT 0 0x043E            ; WORD 0                             0x203FC00+(0x1D*4) //Carlov Medal
+POIN carlovCredits        ; WORD 0                             0x203FC00+(0x1D*4) //Carlov Medal
 SHORT 0 0x0440            ; WORD 0                             0x203FC00+(0x1E*4) //Earth Element
 SHORT 0 0x0441            ; WORD 0                             0x203FC00+(0x1F*4) //Fire Element
 SHORT 0 0x0442            ; WORD 0                             0x203FC00+(0x20*4) //Water Element
@@ -338,10 +338,10 @@ BYTE 1
 ORG $127388
 BYTE 2 2 0 0; SHORT 0x0B4 0x119 0 0
 BYTE 2 2 0 0; SHORT 0x0B4 0x11A 0 0
+BYTE 2 2 0 0; SHORT 0x0B4 0x112 0 0
 BYTE 2 2 0 0; SHORT 0x0B4 0x11B 0 0
 BYTE 2 2 0 0; SHORT 0x0B4 0x11C 0 0
 BYTE 2 2 0 0; SHORT 0x0B4 0x109 0 0
-BYTE 0 0 0 0; SHORT 0x001 0x000 0 0 //BYTE 2 2 0 0; SHORT 0x0B4 0x119 0 0
 BYTE 0 0 0 0; SHORT 0x001 0x000 0 0 //BYTE 2 2 0 0; SHORT 0x0B4 0x119 0 0
 BYTE 0 0 0 0; SHORT 0x001 0x000 0 0 //BYTE 2 2 0 0; SHORT 0x0B4 0x119 0 0
 BYTE 0 0 0 0; SHORT 0x001 0x000 0 0 //BYTE 2 2 0 0; SHORT 0x0B4 0x119 0 0
@@ -380,6 +380,8 @@ WORD credits3-$9F7838
 WORD credits4-$9F7838
 ORG $9F785C
 WORD credits5-$9F7838
+ORG $9F7880
+WORD credits6-$9F7838
 POP
 
 credits1:
@@ -436,6 +438,16 @@ BYTE 0x0A
 BYTE 2 0x1B; String("minishmaker.com"); BYTE 0x0F 0x15; String("discord"); BYTE 2 0 0x0A
 BYTE 0x0A
 BYTE 2 0x1B; String("github.com"); BYTE 0x0F 0x15; String("minishmaker"); BYTE 2 0 0
+
+credits6:
+BYTE 0x0A
+BYTE 0x0A
+BYTE 0x0A
+BYTE 2 0x01; String("Translators"); BYTE 2 0 0x0A
+String("ToadsHoot (French)"); BYTE 0x0A
+String("Martin (German)"); BYTE 0x0A
+String("Leonarth (Spanish)"); BYTE 0x0A
+String("Please someone do this (Italian)"); BYTE 0
 
 ALIGN 4
 debugFontCredits:
