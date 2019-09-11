@@ -75,9 +75,10 @@ namespace MinishRandomizer.Randomizer.Logic
         {
             BaseColor = startingColor;
             DefinedColor = startingColor;
-            InitialColors = new List<Color>(1);
-
-            InitialColors.Add(startingColor);
+            InitialColors = new List<Color>(1)
+            {
+                startingColor
+            };
         }
 
         // Can specify other colors to be defined relative to the first color

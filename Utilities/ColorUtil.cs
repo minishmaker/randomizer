@@ -7,8 +7,54 @@ using System.Threading.Tasks;
 
 namespace MinishRandomizer.Utilities
 {
-    class ColorUtil
+    public static class ColorExtensions
     {
+        
+
+        
+    }
+
+    public static class ColorUtil
+    {
+        // Hsb converions from https://www.rapidtables.com/convert/color/rgb-to-hsv.html
+        public static float GetHsbSaturation(this Color color)
+        {
+            float divR = color.R / 255f;
+            float divG = color.G / 255f;
+            float divB = color.B / 255f;
+
+            // Get minimum and maximum color values
+            float colorMin = Math.Min(divR, Math.Min(divG, divB));
+            float colorMax = Math.Max(divR, Math.Max(divG, divB));
+
+            float colorChange = colorMax - colorMin;
+
+            return colorMax == 0 ? 0 : colorChange / colorMax;
+        }
+
+        public static float GetHsbValue(this Color color)
+        {
+            float divR = color.R / 255f;
+            float divG = color.G / 255f;
+            float divB = color.B / 255f;
+
+            // Get maximum color value, that's value
+            float colorMax = Math.Max(divR, Math.Max(divG, divB));
+
+            return colorMax;
+        }
+
+        public static float GetHslSaturation(this Color color)
+        {
+            return color.GetSaturation();
+        }
+
+        public static float GetHslLightness(this Color color)
+        {
+            return color.GetBrightness();
+        }
+
+
         // https://stackoverflow.com/questions/4106363/converting-rgb-to-hsb-colors
         /// <summary>
         /// Creates a Color from alpha, hue, saturation and brightness.
@@ -96,6 +142,12 @@ namespace MinishRandomizer.Utilities
                 fMid = fMin - (hue * (fMax - fMin));
             }
 
+            Console.WriteLine("MidS_" + saturation);
+            Console.WriteLine("MidL_" + brightness);
+            Console.WriteLine("Max_" + fMax);
+            Console.WriteLine("Min_" + fMin);
+            Console.WriteLine("Mid_" + fMid);
+
             iMax = Convert.ToInt32(fMax * 255);
             iMid = Convert.ToInt32(fMid * 255);
             iMin = Convert.ToInt32(fMin * 255);
@@ -119,19 +171,38 @@ namespace MinishRandomizer.Utilities
 
         public static Color AdjustHue(Color change, Color baseColor, Color newColor)
         {
+            // Okay, this code kinda uses HSL and HSV incorrectly. But, whatever, it works.
+            // At least I think. As of writing this it hasn't worked yet.
             float newHue = newColor.GetHue() - (baseColor.GetHue() - change.GetHue());
-            float newSaturation = newColor.GetSaturation() - (baseColor.GetSaturation() - change.GetSaturation());
-            float newValue = newColor.GetBrightness() - (baseColor.GetBrightness() - change.GetBrightness());
+            float newSaturation = newColor.GetHslSaturation() - (baseColor.GetHslSaturation() - change.GetHslSaturation());
+            float newValue = newColor.GetHslLightness() - (baseColor.GetHslLightness() - change.GetHslLightness());
 
-            if (newHue < 0)
+            Console.WriteLine("Hue1_" + newColor.GetHue());
+            Console.WriteLine("Sat1_" + newColor.GetHsbSaturation());
+            Console.WriteLine("Bri1_" + newColor.GetHsbValue());
+            Console.WriteLine("R1_" + newColor.R);
+            Console.WriteLine("G1_" + newColor.G);
+            Console.WriteLine("B1_" + newColor.B);
+
+            newHue %= 360f;
+            if (newHue < 0f)
             {
-                newHue += 1;
-            }
+                newHue += 360f;
+            };
+
+            Console.WriteLine("Hue2_" + newHue);
+            Console.WriteLine("Sat2_" + newSaturation);
+            Console.WriteLine("Bri2_" + newValue);
 
             newSaturation = Math.Max(0, Math.Min(1, newSaturation));
             newValue = Math.Max(0, Math.Min(1, newValue));
 
-            return FromAhsb(0, newHue, newSaturation, newValue);
+            Color outColor = FromAhsb(255, newHue, newSaturation, newValue);
+            Console.WriteLine("R2_" + outColor.R);
+            Console.WriteLine("G2_" + outColor.G);
+            Console.WriteLine("B2_" + outColor.B);
+
+            return FromAhsb(255, newHue, newSaturation, newValue);
         }
 
         public struct GBAColor
@@ -144,7 +215,7 @@ namespace MinishRandomizer.Utilities
                 get
                 {
                     // Each component needs to be shifted to the proper place in the short
-                    return (short)((R << 10) | (G << 5) | (B << 0));
+                    return (short)((B << 10) | (G << 5) | (R << 0));
                 }
             }
 
@@ -168,13 +239,13 @@ namespace MinishRandomizer.Utilities
                 B = b & 0x1F;
             }
 
-            public GBAColor(short combinedColor)
+            /*public GBAColor(short combinedColor)
             {
                 // Each color part comes from a different 5 bits of the combined color
                 R = (combinedColor >> 10) & 0x1F;
                 G = (combinedColor >> 05) & 0x1F;
                 B = (combinedColor >> 00) & 0x1F;
-            }
+            }*/
 
             public Color ToColor()
             {
