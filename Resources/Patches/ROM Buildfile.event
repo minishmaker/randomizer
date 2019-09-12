@@ -204,6 +204,10 @@ POP
 	PUSH; ORG $7175C; SHORT 0x4289; POP
 #endif
 
+#ifdef chocolateLink //link with a brown layer on top
+	PUSH; ORG $79A80; SHORT 0x22FF; ORG $79AC8; SHORT 0x20FF; POP
+#endif
+
 PUSH //change the jabber nut so it doesn't share a palette with link
 ORG $5C26B0 //new graphics
 #incbin "nut.img.bin"
