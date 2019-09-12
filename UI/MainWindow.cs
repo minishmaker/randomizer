@@ -21,9 +21,6 @@ namespace MinishRandomizer
             // Initialize seed to random value
             seedField.Text = new Random().Next().ToString();
 
-            // Fill heart color options
-            this.heartColorSelect.DataSource = Enum.GetValues(typeof(HeartColorType));
-
             // Create shuffler and populate logic options
             shuffler = new Shuffler();
 
@@ -243,8 +240,6 @@ namespace MinishRandomizer
             byte[] outputRom = shuffler.GetRandomizedRom();
             File.WriteAllBytes(sfd.FileName, outputRom);
 
-            shuffler.SetHeartColor((HeartColorType)heartColorSelect.SelectedItem);
-
             if (customPatchCheckBox.Checked)
             {
                 
@@ -334,7 +329,14 @@ namespace MinishRandomizer
             {
                 Control optionControl = option.GetControl();
 
-                optionControlLayout.Controls.Add(optionControl);
+                if (option.Type == LogicOptionType.Setting)
+                {
+                    optionControlLayout.Controls.Add(optionControl);
+                }
+                else if (option.Type == LogicOptionType.Gimmick)
+                {
+                    gimmickControlLayout.Controls.Add(optionControl);
+                }
             }
         }
     }

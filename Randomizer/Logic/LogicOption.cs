@@ -9,17 +9,26 @@ using MinishRandomizer.Utilities;
 
 namespace MinishRandomizer.Randomizer.Logic
 {
+    public enum LogicOptionType
+    {
+        Untyped,
+        Setting,
+        Gimmick
+    }
+
     public class LogicOption
     {
         public string Name;
         public string NiceName;
         public bool Active;
+        public LogicOptionType Type;
 
-        public LogicOption(string name, string niceName, bool active)
+        public LogicOption(string name, string niceName, bool active, LogicOptionType type = LogicOptionType.Setting)
         {
             Name = name;
             NiceName = niceName;
             Active = active;
+            Type = type;
         }
 
         public virtual Control GetControl()
@@ -35,7 +44,7 @@ namespace MinishRandomizer.Randomizer.Logic
 
     public class LogicFlag : LogicOption
     {
-        public LogicFlag(string name, string niceName, bool active) : base(name, niceName, active) { }
+        public LogicFlag(string name, string niceName, bool active, LogicOptionType type) : base(name, niceName, active, type) { }
 
         public override Control GetControl()
         {
@@ -71,7 +80,7 @@ namespace MinishRandomizer.Randomizer.Logic
         private Color DefinedColor;
         private List<Color> InitialColors;
 
-        public LogicColorPicker(string name, string niceName, Color startingColor) : base(name, niceName, true)
+        public LogicColorPicker(string name, string niceName, LogicOptionType type, Color startingColor) : base(name, niceName, true, type)
         {
             BaseColor = startingColor;
             DefinedColor = startingColor;
@@ -82,7 +91,7 @@ namespace MinishRandomizer.Randomizer.Logic
         }
 
         // Can specify other colors to be defined relative to the first color
-        public LogicColorPicker(string name, string niceName, List<Color> colors) : base(name, niceName, true)
+        public LogicColorPicker(string name, string niceName, LogicOptionType type, List<Color> colors) : base(name, niceName, true, type)
         {
             BaseColor = colors[0];
             DefinedColor = colors[0];

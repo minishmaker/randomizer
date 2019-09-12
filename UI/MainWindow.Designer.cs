@@ -48,8 +48,7 @@
             this.optionTabPage = new System.Windows.Forms.TabPage();
             this.optionControlLayout = new System.Windows.Forms.FlowLayoutPanel();
             this.gimmicksTabPage = new System.Windows.Forms.TabPage();
-            this.heartColorSelect = new System.Windows.Forms.ComboBox();
-            this.heartColorLabel = new System.Windows.Forms.Label();
+            this.gimmickControlLayout = new System.Windows.Forms.FlowLayoutPanel();
             this.generatedTab = new System.Windows.Forms.TabPage();
             this.generatedSeedValue = new System.Windows.Forms.Label();
             this.generatedSeedLabel = new System.Windows.Forms.Label();
@@ -225,25 +224,24 @@
             // 
             this.optionTabPage.Controls.Add(this.optionControlLayout);
             this.optionTabPage.Location = new System.Drawing.Point(4, 22);
-            this.optionTabPage.Name = "optionTabPage";
+            this.optionTabPage.Name = "settingsTabPage";
             this.optionTabPage.Padding = new System.Windows.Forms.Padding(3);
             this.optionTabPage.Size = new System.Drawing.Size(361, 209);
             this.optionTabPage.TabIndex = 2;
-            this.optionTabPage.Text = "Options";
+            this.optionTabPage.Text = "Settings";
             this.optionTabPage.UseVisualStyleBackColor = true;
             // 
             // flagBoxesLayout
             // 
             this.optionControlLayout.AutoScroll = true;
-            this.optionControlLayout.Location = new System.Drawing.Point(0, 3);
+            this.optionControlLayout.Location = new System.Drawing.Point(0, 0);
             this.optionControlLayout.Name = "flagBoxesLayout";
-            this.optionControlLayout.Size = new System.Drawing.Size(365, 206);
+            this.optionControlLayout.Size = new System.Drawing.Size(361, 209);
             this.optionControlLayout.TabIndex = 0;
             // 
             // gimmicksTabPage
             // 
-            this.gimmicksTabPage.Controls.Add(this.heartColorSelect);
-            this.gimmicksTabPage.Controls.Add(this.heartColorLabel);
+            this.gimmicksTabPage.Controls.Add(this.gimmickControlLayout);
             this.gimmicksTabPage.Location = new System.Drawing.Point(4, 22);
             this.gimmicksTabPage.Name = "gimmicksTabPage";
             this.gimmicksTabPage.Padding = new System.Windows.Forms.Padding(3);
@@ -252,23 +250,14 @@
             this.gimmicksTabPage.Text = "Gimmicks";
             this.gimmicksTabPage.UseVisualStyleBackColor = true;
             // 
-            // heartColorSelect
+            // gimmickBoxesLayout
             // 
-            this.heartColorSelect.FormattingEnabled = true;
-            this.heartColorSelect.Location = new System.Drawing.Point(79, 7);
-            this.heartColorSelect.Name = "heartColorSelect";
-            this.heartColorSelect.Size = new System.Drawing.Size(121, 21);
-            this.heartColorSelect.TabIndex = 1;
-            // 
-            // heartColorLabel
-            // 
-            this.heartColorLabel.AutoSize = true;
-            this.heartColorLabel.Location = new System.Drawing.Point(6, 10);
-            this.heartColorLabel.Name = "heartColorLabel";
-            this.heartColorLabel.Size = new System.Drawing.Size(66, 13);
-            this.heartColorLabel.TabIndex = 0;
-            this.heartColorLabel.Text = "Heart Color: ";
-            // 
+            this.gimmickControlLayout.AutoScroll = true;
+            this.gimmickControlLayout.Location = new System.Drawing.Point(0, 0);
+            this.gimmickControlLayout.Name = "gimmickBoxesLayout";
+            this.gimmickControlLayout.Size = new System.Drawing.Size(361, 209);
+            this.gimmickControlLayout.TabIndex = 0;
+            //
             // generatedTab
             // 
             this.generatedTab.Controls.Add(this.generatedSeedValue);
@@ -387,10 +376,9 @@
         private System.Windows.Forms.Label generatedSeedLabel;
         private System.Windows.Forms.Label generatedSeedValue;
         private System.Windows.Forms.TabPage gimmicksTabPage;
-        private System.Windows.Forms.ComboBox heartColorSelect;
-        private System.Windows.Forms.Label heartColorLabel;
         private System.Windows.Forms.TabPage optionTabPage;
         private System.Windows.Forms.FlowLayoutPanel optionControlLayout;
+        private System.Windows.Forms.FlowLayoutPanel gimmickControlLayout;
     }
 }
 

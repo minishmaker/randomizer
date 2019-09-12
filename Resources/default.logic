@@ -1,13 +1,13 @@
 # Default logic for the randomizer - Doesn't allow glitches, but allows unintuitive tricks
 
-!flag - KEYSANITY - Keysanity - false
-!flag - SHUFFLE_ELEMENTS - Global elements
-!flag - NO_FUSIONS - No normal fusions - true
-!flag - GLITCHLESS - Disable glitches - true
-!flag - RANDOM_LANGUAGE - Randomize language
-!flag - ALLOW_FUSION_SKIPS - Allow fusion skips - true
-!flag - INSTANT_SKIP - Instant fusion skip
-!color - TUNIC_COLOR - Change Tunic Color -    10 - F8 - 08    -    10 - 78 - 28    -    64 - A0 - 28    -    B8 - F8 - A0
+!flag - Setting - KEYSANITY - Keysanity - false
+!flag - Setting - SHUFFLE_ELEMENTS - Global elements
+!flag - Setting - NO_FUSIONS - No normal fusions - true
+!flag - Setting - GLITCHLESS - Disable glitches - true
+!flag - Gimmick - RANDOM_LANGUAGE - Randomize language
+!flag - Setting - ALLOW_FUSION_SKIPS - Allow fusion skips - true
+!flag - Setting - INSTANT_SKIP - Instant fusion skip
+!color - Gimmick - TUNIC_COLOR - Change Tunic Color -    10 - F8 - 08    -    10 - 78 - 28    -    64 - A0 - 28    -    B8 - F8 - A0
 
 !ifdef - TUNIC_COLOR
     !eventDefine - TUNIC_COLORED

@@ -236,17 +236,24 @@ namespace MinishRandomizer.Randomizer.Logic
 
         private LogicFlag ParseFlagDirective(string[] directiveParts)
         {
-            if (directiveParts.Length < 3)
+            if (directiveParts.Length < 4)
             {
                 throw new ParserException("A flag somewhere has an incorrect number of parameters!");
             }
 
-            bool defaultActive;
-            if (directiveParts.Length >= 4)
+            LogicOptionType optionType = GetOptionType(directiveParts[1]);
+
+            if (optionType == LogicOptionType.Untyped)
             {
-                if (!bool.TryParse(directiveParts[3], out defaultActive))
+                throw new ParserException($"A flag somewhere has an invalid type! ({directiveParts[1]})");
+            }
+
+            bool defaultActive;
+            if (directiveParts.Length >= 5)
+            {
+                if (!bool.TryParse(directiveParts[4], out defaultActive))
                 {
-                    throw new ParserException($"{directiveParts[3]} is not a valid boolean value");
+                    throw new ParserException($"{directiveParts[4]} is not a valid boolean value");
                 }
             }
             else
@@ -254,7 +261,7 @@ namespace MinishRandomizer.Randomizer.Logic
                 defaultActive = false;
             }
 
-            return new LogicFlag(directiveParts[1], directiveParts[2], defaultActive);
+            return new LogicFlag(directiveParts[2], directiveParts[3], defaultActive, optionType);
         }
 
         private LogicDefine ParseDefineDirective(string[] directiveParts)
@@ -275,15 +282,22 @@ namespace MinishRandomizer.Randomizer.Logic
 
         private LogicColorPicker ParseColorDirective(string[] directiveParts)
         {
-            if (directiveParts.Length == 3)
+            LogicOptionType optionType = GetOptionType(directiveParts[1]);
+
+            if (optionType == LogicOptionType.Untyped)
             {
-                return new LogicColorPicker(directiveParts[1], directiveParts[2], Color.White);
+                throw new ParserException($"A color somewhere has an invalid type! ({directiveParts[1]})");
             }
-            else if (directiveParts.Length % 3 == 0)
+
+            if (directiveParts.Length == 4)
+            {
+                return new LogicColorPicker(directiveParts[2], directiveParts[3], optionType, Color.White);
+            }
+            else if (directiveParts.Length % 3 == 1)
             {
 
                 List<Color> colors = new List<Color>();
-                for (int i = 3; i < directiveParts.Length; i += 3)
+                for (int i = 4; i < directiveParts.Length; i += 3)
                 {
                     // This parses the color components out, in groups of three.
                     if (int.TryParse(directiveParts[i], NumberStyles.HexNumber, null, out int rComponent))
@@ -298,7 +312,7 @@ namespace MinishRandomizer.Randomizer.Logic
                     }
                 }
 
-                return new LogicColorPicker(directiveParts[1], directiveParts[2], colors);
+                return new LogicColorPicker(directiveParts[2], directiveParts[3], optionType, colors);
             }
             else
             {
@@ -318,6 +332,18 @@ namespace MinishRandomizer.Randomizer.Logic
             else
             {
                 throw new ParserException($"An event define somewhere has an incorrect number of parameters! ({directiveParts.Length})");
+            }
+        }
+
+        private LogicOptionType GetOptionType(string typeString)
+        {
+            if (Enum.TryParse(typeString, out LogicOptionType result))
+            {
+                return result;
+            }
+            else
+            {
+                return LogicOptionType.Untyped;
             }
         }
     }
