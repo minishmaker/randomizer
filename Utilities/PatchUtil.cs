@@ -47,13 +47,13 @@ namespace MinishRandomizer.Utilities
                         return;
                     }
 
-                    if (checkCRC && crc32(inputData, inputSize) != inputCRC)
+                    if (checkCRC && Crc32(inputData, inputSize) != inputCRC)
                     {
                         Console.WriteLine("Input ROM has an invalid CRC!");
                         return;
                     }
 
-                    if (checkCRC && crc32(patchData, patchData.Length - 4) != patchCRC)
+                    if (checkCRC && Crc32(patchData, patchData.Length - 4) != patchCRC)
                     {
                         Console.WriteLine("Patch has an invalid CRC!");
                         return;
@@ -80,7 +80,7 @@ namespace MinishRandomizer.Utilities
                         dataReader.ReadByte(); // Advance the read/write head one byte
                     }
 
-                    if (crc32(inputData, outputSize) != outputCRC)
+                    if (Crc32(inputData, outputSize) != outputCRC)
                     {
                         Console.WriteLine("Output ROM has an invalid CRC! ...but the array was already patched!");
                         return;
@@ -125,7 +125,7 @@ namespace MinishRandomizer.Utilities
         /// </summary>
         /// <param name="data">The byte array to checksum</param>
         /// <param name="length">The size of the array to checksum, negative values equal the size of data</param>
-        private static uint crc32(byte[] data, long length)
+        public static uint Crc32(byte[] data, long length)
         {
             uint[] crcTable = new uint[256];
 

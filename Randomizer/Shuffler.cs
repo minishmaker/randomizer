@@ -116,6 +116,18 @@ namespace MinishRandomizer.Randomizer
             LogicParser.PreParse(logicStrings);
         }
 
+        public bool RomCrcValid(ROM rom)
+        {
+            if (LogicParser.SubParser.RomCrc != null)
+            {
+                return PatchUtil.Crc32(rom.romData, rom.romData.Length) == LogicParser.SubParser.RomCrc;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
         /// <summary>
         /// Reads the list of locations from a file, or the default logic if none is specified
         /// </summary>

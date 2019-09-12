@@ -128,6 +128,15 @@ namespace MinishRandomizer
             {
                 MessageBox.Show("Invalid TMC ROM. Please Open a valid ROM.", "Incorrect ROM", MessageBoxButtons.OK);
                 statusText.Text = "Unable to determine ROM.";
+                ROM_ = null;
+                return;
+            }
+
+            if (!shuffler.RomCrcValid(ROM_))
+            {
+                MessageBox.Show("ROM does not match the expected CRC for the logic file", "Incorrect ROM", MessageBoxButtons.OK);
+                statusText.Text = "Unable to determine ROM.";
+                ROM_ = null;
                 return;
             }
         }

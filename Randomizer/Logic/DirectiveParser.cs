@@ -12,6 +12,7 @@ namespace MinishRandomizer.Randomizer.Logic
 
     public class DirectiveParser
     {
+        public uint? RomCrc;
         public List<LogicOption> Options;
         private List<LogicDefine> Defines;
         public List<EventDefine> EventDefines;
@@ -56,6 +57,7 @@ namespace MinishRandomizer.Randomizer.Logic
                 case "!name":
                 case "!version":
                 case "!date":
+                case "!crc":
                     return true;
                 case "!define":
                 case "!eventDefine":
@@ -91,6 +93,9 @@ namespace MinishRandomizer.Randomizer.Logic
             {
                 switch (mainDirectiveParts[0])
                 {
+                    case "!crc":
+                        RomCrc = ParseCrcDirective(mainDirectiveParts);
+                        break;
                     case "!flag":
                         Options.Add(ParseFlagDirective(mainDirectiveParts));
                         break;
@@ -344,6 +349,18 @@ namespace MinishRandomizer.Randomizer.Logic
             else
             {
                 return LogicOptionType.Untyped;
+            }
+        }
+
+        private uint ParseCrcDirective(string[] directiveParts)
+        {
+            if (uint.TryParse(directiveParts[1], NumberStyles.HexNumber, null, out uint outCrc))
+            {
+                return outCrc;
+            }
+            else
+            {
+                throw new ParserException($"\"{directiveParts[1]}\" is not a valid crc!");
             }
         }
     }
