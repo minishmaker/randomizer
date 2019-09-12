@@ -199,3 +199,21 @@ POP
 	#endif
 	WORD 0 //if 0, any damage will kill link, if non-8 this will be used as a pointer to a routine to determine if link will die
 #endif
+
+PUSH //change the jabber nut so it doesn't share a palette with link
+ORG $5C26B0 //new graphics
+#incbin "nut.img.bin"
+ORG $125DFC; BYTE 2 //new palette ids
+ORG $2FE210; WORD newNut1-$2F3460 newNut2-$2F3460; POP //repoint the sprite data
+ALIGN 4
+newNut1:
+BYTE 3
+BYTE 0xF8 0xF4 0x40 0x00 0
+BYTE 0xF8 0xF4 0x81 0x04 0
+BYTE 0x00 0xFB 0x01 0x07 0
+ALIGN 4
+newNut2:
+BYTE 3
+BYTE 0xF8 0xF4 0x40 0x02 0
+BYTE 0xF8 0xFB 0x01 0x06 0
+BYTE 0x00 0xFB 0x01 0x07 0
