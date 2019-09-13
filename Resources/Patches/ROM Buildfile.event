@@ -15,12 +15,24 @@ saveTypeCheck:
 POIN badSave1
 POIN badSave2
 POIN badSave3
+POIN badEmu1
+POIN badEmu2
+POIN badEmu3
+POIN badEmu4
 badSave1:
 String("save type mismatch detected!"); BYTE 0
 badSave2:
 String("make sure to use sram"); BYTE 0
 badSave3:
 String("minishmaker.com"); BYTE 0x2F; String("discord"); BYTE 0
+badEmu1:
+String("this emulator is inaccurate!"); BYTE 0
+badEmu2:
+String("please, consider switching"); BYTE 0
+badEmu3:
+String("mgba.io"); BYTE 0x2F; String("downloads.html"); BYTE 0
+badEmu4:
+String("press any button to play"); BYTE 0
 
 #ifdef TEST
 	PUSH
