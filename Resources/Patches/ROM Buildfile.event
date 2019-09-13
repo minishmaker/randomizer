@@ -7,6 +7,21 @@
 #define FreeSpace $EF3340
 ORG FreeSpace
 
+//savetype check
+PUSH; ORG $559FA; SHORT 0; jumpToHack(saveTypeCheck); POP
+ALIGN 4
+saveTypeCheck:
+#incbin "asm/saveTypeCheck.dmp"
+POIN badSave1
+POIN badSave2
+POIN badSave3
+badSave1:
+String("save type mismatch detected!"); BYTE 0
+badSave2:
+String("make sure to use sram"); BYTE 0
+badSave3:
+String("minishmaker.com"); BYTE 0x2F; String("discord"); BYTE 0
+
 #ifdef TEST
 	PUSH
 	ORG  $EDD8+2; BYTE 0x5C 0x70	//lady kinstone
