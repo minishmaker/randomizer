@@ -237,3 +237,9 @@ WORD splitSecond
 WORD splitThird
 WORD splitFourth
 #endif
+
+//and make the yellow numbers always the same, instead of being tied to the split bar
+PUSH
+ORG $5C4030
+#incbin "numbers.img.bin"
+POP
