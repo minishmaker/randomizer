@@ -56,6 +56,38 @@ ldr	r1,=#0x4E75
 strh	r1,[r0,#24]
 ldr	r1,=#0x631A
 strh	r1,[r0,#26]
+@restore wallet color
+ldr	r3,=#0x2017880
+ldr	r2,=#0x2002AE8
+ldrb	r2,[r2]
+cmp	r2,#0
+beq	green
+cmp	r0,#1
+bne	red
+b	blue
+green:
+ldr	r1,=#0x0E06
+strh	r1,[r0,#02]
+strh	r1,[r3,#02]
+ldr	r1,=#0x0F28
+strh	r1,[r0,#04]
+strh	r1,[r3,#04]
+b	end
+blue:
+ldr	r1,=#0x5163
+strh	r1,[r0,#02]
+strh	r1,[r3,#02]
+ldr	r1,=#0x7E65
+strh	r1,[r0,#04]
+strh	r1,[r3,#04]
+b	end
+red:
+ldr	r1,=#0x0CAF
+strh	r1,[r0,#02]
+strh	r1,[r3,#02]
+ldr	r1,=#0x10D7
+strh	r1,[r0,#04]
+strh	r1,[r3,#04]
 end:
 pop	{r0-r7}
 ldrb	r0,[r1]

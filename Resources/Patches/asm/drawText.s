@@ -19,6 +19,14 @@ custom:
 mov	r1,r3
 
 draw:
+ldr	r3,=#0x8EF3340
+cmp	r0,r3
+blo	vanilla
+ldr	r3,=#0x2000007
+ldrb	r3,[r3]
+lsl	r3,#2
+ldr	r0,[r0,r3]
+vanilla:
 mov	r3,#0
 drawloop:
 ldrb	r2,[r0,r3]
@@ -31,7 +39,7 @@ blo	np
 cmp	r2,#0x60
 beq	space
 cmp	r2,#0x7A
-bhi	space
+bhi	np
 sub	r2,#0x20
 b	np
 space:

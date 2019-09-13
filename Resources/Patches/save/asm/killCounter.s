@@ -27,7 +27,7 @@ add	r1,#1
 str	r1,[r0]
 nobloom:
 ldrb	r0,[r5,#9]
-cmp	r0,#0x4F
+cmp	r0,#0x50
 bhi	end
 ldr	r1,table
 ldrb	r5,[r1,r0]

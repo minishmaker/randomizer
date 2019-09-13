@@ -1,5 +1,10 @@
 .thumb
+@check if this is a kinstone
+cmp	r6,#0x5C
+beq	kinstone
+
 @check if this is a dungeon item
+checkKey:
 cmp	r6,#0x50
 blo	end
 cmp	r6,#0x53
@@ -52,6 +57,39 @@ b	return
 
 rc:
 ldr	r0,=#0x724
+b	return
+
+kinstone:
+cmp	r7,#0x65
+beq	tornado
+cmp	r7,#0x66
+beq	tornado
+cmp	r7,#0x67
+beq	tornado
+cmp	r7,#0x68
+beq	tornado
+cmp	r7,#0x69
+beq	tornado
+cmp	r7,#0x6A
+beq	totem
+cmp	r7,#0x6B
+beq	totem
+cmp	r7,#0x6C
+beq	totem
+cmp	r7,#0x6D
+beq	crown
+b	end
+
+tornado:
+ldr	r0,=#0x71A
+b	return
+
+totem:
+ldr	r0,=#0x70D
+b	return
+
+crown:
+ldr	r0,=#0x717
 b	return
 
 end:

@@ -88,6 +88,7 @@ BYTE 0xFF //0x2F
 BYTE 0x19 //0x30 Keaton
 BYTE 0x1A //0x31 Crow
 BYTE 0x1B //0x32 Mulldozer
+BYTE 0xFF //0x33
 BYTE 0x1C //0x34 Bubble
 BYTE 0x1D //0x35 Spiny Beetle
 BYTE 0xFF //0x36
@@ -116,6 +117,7 @@ BYTE 0x22 //0x4C Ball and Chain Soldier
 BYTE 0xFF //0x4D
 BYTE 0x23 //0x4E Ghini
 BYTE 0xFF //0x4F
+BYTE 0x23 //0x50 DHC Special Ghini
 
 //save timestamps of when each item was (first) obtained
 PUSH; ORG $7C4C4; jumpToHack(itemTimestamps); POP
@@ -129,7 +131,7 @@ PUSH; ORG $772E4; jumpToHack(itemTimesUsed); POP
 ALIGN 4
 itemTimesUsed:
 #incbin "asm/itemTimesUsed.dmp"
-WORD 0x203FC00+(0x33*4) //base offset of item uses
+WORD 0x203FC00+(0x34*4) //base offset of item uses
 POIN itemGetTable
 ALIGN 4
 itemGetTable:

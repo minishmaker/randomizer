@@ -137,7 +137,7 @@ mov	r3,#0
 @draw time killed at
 ldr	r0,[r4,#8]
 ldr	r0,[r0]
-mov	r1,#17
+mov	r1,#19
 mov	r2,r5
 add	r2,#2
 ldr	r3,drawTime
@@ -180,7 +180,7 @@ ldrh	r0,[r0]
 ldr	r1,=#0xFFFF
 cmp	r0,r1
 beq	toomany
-mov	r1,#17
+mov	r1,#19
 mov	r2,r5
 add	r2,#1
 ldr	r3,drawNumber
@@ -190,7 +190,7 @@ mov	r3,#0
 b	drawtimeregular
 toomany:
 ldr	r0,highCredits
-mov	r1,#17
+mov	r1,#19
 mov	r2,r5
 add	r2,#1
 ldr	r3,drawText
@@ -203,7 +203,7 @@ ldr	r0,[r4,#8]
 ldr	r0,[r0]
 cmp	r0,#0
 beq	neverkilled
-mov	r1,#17
+mov	r1,#19
 mov	r2,r5
 add	r2,#2
 ldr	r3,drawTime
@@ -213,7 +213,7 @@ mov	r3,#0
 b	enddraw
 neverkilled:
 ldr	r0,NACredits
-mov	r1,#17
+mov	r1,#19
 mov	r2,r5
 add	r2,#2
 ldr	r3,drawText

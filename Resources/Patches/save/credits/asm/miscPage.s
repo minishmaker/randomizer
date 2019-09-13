@@ -111,7 +111,7 @@ ldrh	r0,[r0]
 ldr	r1,=#0xFFFF
 cmp	r0,r1
 beq	toohigh
-mov	r1,#17
+mov	r1,#19
 mov	r2,r5
 add	r2,#1
 ldr	r3,drawNumber
@@ -121,7 +121,7 @@ mov	r3,#0
 b	enddraw
 toohigh:
 ldr	r0,highCredits
-mov	r1,#17
+mov	r1,#19
 mov	r2,r5
 add	r2,#1
 ldr	r3,drawText
@@ -142,7 +142,7 @@ mov	r3,#0
 @draw timer
 ldr	r0,[r4,#8]
 ldr	r0,[r0]
-mov	r1,#17
+mov	r1,#19
 mov	r2,r5
 add	r2,#1
 ldr	r3,drawTime

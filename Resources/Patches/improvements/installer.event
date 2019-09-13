@@ -62,15 +62,37 @@ BYTE 0x5E 0 0 1; SHORT 0x108 0x328 0 0 0 0xFFFF
 BYTE 0xFF 0 0 0; SHORT 0x000 0x000 0 0 0 0xFFFF
 //allow link to use the ocarina in the room right before palace of winds
 PUSH; ORG $12752C; BYTE 1; POP
-//heart pots in vaati 1
-PUSH; ORG $EB264; POIN vaatiPots; POP
+//heart pots in vaati 1 room
+PUSH; ORG $4D714; jumpToHack(vaatiPots); POP
 ALIGN 4
 vaatiPots:
+#incbin "asm/vaatiPots.dmp"
+POIN vaatiPotsNuts
+POIN vaatiPotsVaati
+ALIGN 4
+vaatiPotsNuts:
 BYTE 0x16 0x0F 0x05 0x5F; SHORT 0 0 0x038 0x038 0 0
 BYTE 0x16 0x0F 0x05 0x5F; SHORT 0 0 0x038 0x0C8 0 0
 BYTE 0x16 0x0F 0x05 0x5F; SHORT 0 0 0x118 0x038 0 0
 BYTE 0x16 0x0F 0x05 0x5F; SHORT 0 0 0x118 0x0C8 0 0
 BYTE 0xFF 0xFF 0xFF 0xFF; SHORT 0 0 0x000 0x000 0 0
+ALIGN 4
+vaatiPotsVaati:
+BYTE 0x16 0x0F 0x05 0x5F; SHORT 0 0 0x038 0x038 0 0
+BYTE 0x16 0x0F 0x05 0x5E; SHORT 0 0 0x038 0x0C8 0 0
+BYTE 0x16 0x0F 0x05 0x5F; SHORT 0 0 0x118 0x038 0 0
+BYTE 0x16 0x0F 0x05 0x60; SHORT 0 0 0x118 0x0C8 0 0
+BYTE 0xFF 0xFF 0xFF 0xFF; SHORT 0 0 0x000 0x000 0 0
+
+//start with cursor on first save file instead of language
+PUSH; ORG $50180; SHORT 0x2100; POP
+//vaati eyes take only one hit to kill
+PUSH; ORG $4445C; SHORT 0x28FB; POP
+//make the vaati2 3 cycle the same as other regions, I hope
+PUSH; ORG $D01EA; BYTE 0xC0; POP
+//floor and wall masters die in one arrow hit
+PUSH; ORG $C2E18; BYTE 100; POP
+PUSH; ORG $C2C80; BYTE 100; POP
 
 //items on the floor don't despawn as long as a flag is tied to them
 PUSH; ORG $80E94; jumpToHack(itemDespawnSafety); POP
@@ -88,8 +110,13 @@ ALIGN 4
 questItemSlideshow2:
 #incbin "asm/questItemSlideshow2.dmp"
 
-//wind element icon in map goes away when you get the element instead of the ocarina
-PUSH; ORG $128677; BYTE 0x43; POP
+#ifdef globalElements
+	//if global elements, don't display elements
+	PUSH; ORG $128673; BYTE 0 0xF 0 0xF 0 0xF 0; POP
+#else
+	//wind element icon in map goes away when you get the element instead of the ocarina
+	PUSH; ORG $128677; BYTE 0x43; POP
+#endif
 
 //finding remote bombs does not remove regular bombs from link and vice versa
 PUSH; ORG $53D34; SHORT 0 0; ORG $53D3E; SHORT 0 0; POP
@@ -176,5 +203,131 @@ newColors:
 #incbin "colors.bin"
 textColor(0x01); textColor(0x02); textColor(0x03); textColor(0x04); textColor(0x05); textColor(0x06); textColor(0x07); textColor(0x08); textColor(0x09); textColor(0x0A); textColor(0x0B); textColor(0x0C); textColor(0x0D); textColor(0x0E); textColor(0x0F)
 
+//technique upgrades are also counted towards the scroll total
+PUSH; ORG $A4E6C; jumpToHack(countScrolls); POP
+ALIGN 4
+countScrolls:
+#incbin "asm/countScrolls.dmp"
+POIN scrollNumbers
+ALIGN 4
+scrollNumbers:
+#incbin "scrollNumbers.img.bin"
+
+//technique upgrades are drawn in the scrolls screen
+PUSH; ORG $A5970; jumpToHack(drawScrolls); POP
+ALIGN 4
+drawScrolls:
+#incbin "asm/drawScrolls.dmp"
+POIN scrollIcons
+POIN scrollTable
+ALIGN 4
+scrollIcons:
+#incbin "scrollIcons.img.bin"
+scrollTable:
+BYTE 0x48
+BYTE 0x4C
+BYTE 0x4A
+BYTE 0x4F
+BYTE 0x4B
+BYTE 0x49
+BYTE 0x4E
+BYTE 0x4D
+
+//when vaati dies, jump to the credits
+PUSH; ORG $41D14; jumpToHack(vaatiCredits); POP
+ALIGN 4
+vaatiCredits:
+#incbin "asm/vaatiCredits.dmp"
+
+//debug items don't get equipped when picked up
+PUSH; ORG $53F30; jumpToHack(noEquip); POP
+ALIGN 4
+noEquip:
+#incbin "asm/noEquip.dmp"
+POIN noEquipList
+noEquipList:
+BYTE 0x05
+BYTE 0x16
+BYTE 0x18
+BYTE 0x19
+BYTE 0x1A
+BYTE 0x1B
+BYTE 0x32
+BYTE 0x33
+BYTE 0 //terminator
+
+//make the dws torches work when the lantern is used on them
+PUSH
+ORG $DE973; BYTE 4
+ORG $DE983; BYTE 4
+ORG $DE993; BYTE 4
+ORG $DE9A3; BYTE 4
+POP
+PUSH; ORG $DE3A8; POIN barrelTorch; POP
+ALIGN 4
+barrelTorch:
+BYTE 9 0xF 0x23 4 1 0x20; SHORT 0 0x188 0xC8 0 0x16
+BYTE 9 0xF 0x23 4 1 0x20; SHORT 0 0x048 0xC8 0 0x15
+WORD 0xFFFFFFFF 0xFFFFFFFF 0xFFFFFFFF 0xFFFFFFFF
+PUSH; ORG $5B724; POIN torchTable; POP
+ALIGN 4
+torchTable:
+POIN $5B728|1
+POIN $5B720|1
+POIN $5B7F8|1
+POIN $5B850|1
+POIN newTorch|1
+ALIGN 4
+newTorch:
+#incbin "asm/newTorch.dmp"
+
+//skip escape sequence
+PUSH
+ORG $13A312; SHORT 0x198 0x38; BYTE 0 0x88 0x37 0x01
+ORG $4D8AA; SHORT 0x207B
+ORG $4D8D8; POIN escapeRocks
+ORG $4D8B4; jumpToHack(escapeWalls)
+POP
+ALIGN 4
+escapeRocks:
+BYTE 0x16 0x0F 0x6A 0x05 0x02 0x01; SHORT 0 0x108 0x30 0 0
+BYTE 0x16 0x0F 0x6A 0x05 0x02 0x03; SHORT 0 0x108 0x50 0 0
+BYTE 0x16 0x0F 0x6A 0x05 0x02 0x01; SHORT 0 0x108 0x70 0 0
+BYTE 0x16 0x0F 0x6A 0x05 0x02 0x01; SHORT 0 0x008 0x30 0 0
+BYTE 0x16 0x0F 0x6A 0x05 0x02 0x03; SHORT 0 0x008 0x50 0 0
+BYTE 0x16 0x0F 0x6A 0x05 0x02 0x01; SHORT 0 0x008 0x70 0 0
+WORD 0xFFFFFFFF 0xFFFFFFFF 0xFFFFFFFF 0xFFFFFFFF
+ALIGN 4
+escapeWalls:
+#incbin "asm/escapeWalls.dmp"
+
+//normal kinstones have no popups
+PUSH; ORG $80DF4; jumpToHack(fastKinstone); POP
+ALIGN 4
+fastKinstone:
+#incbin "asm/fastKinstone.dmp"
+
+//normal kinstones don't get added to the bag in nofusions
+#ifdef noFusions
+	PUSH; ORG $1E778; SHORT 0x2C00 0xD025 0x2C6D; POP
+#endif
+
+//elements at cloud tops are only drawn if looking at the top layer
+PUSH; ORG $A611C; jumpToHack(cloudsElements); POP
+ALIGN 4
+cloudsElements:
+#incbin "asm/cloudsElements.dmp"
+
+//add bomb drops in the sewers puzzle
+PUSH; ORG $EFBF0; POIN freeSewerBombs; POP
+freeSewerBombs:
+BYTE 6 0xF 0 0x5D 0 0x07; SHORT 0 0x118 0x98 0 0
+BYTE 6 0xF 0 0x5D 0 0x07; SHORT 0 0x1B8 0x98 0 0
+WORD 0xFFFFFFFF 0xFFFFFFFF 0xFFFFFFFF 0xFFFFFFFF
+
+//respawn in lake hylia shallow water
+PUSH; ORG $41C; BYTE 0x22; POP
+
 #include "glitchless.event"
 #include "dungeon.event"
+#include "fairy.event"

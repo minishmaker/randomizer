@@ -1,3 +1,5 @@
+#include "strings.event"
+
 //hold R on credits for 8x speed, press A to skip page, press Start to skip credits
 PUSH; ORG $A2EF8; jumpToHack(creditsFlow1); POP //also controls stats screen
 ALIGN 4
@@ -110,6 +112,7 @@ POIN bgscrollbotPalette
 POIN bgscrolltopImage
 POIN bgscrolltopPalette
 POIN bgscrolltopscroll
+POIN debugFontCredits
 
 ALIGN 4
 enemyPage:
@@ -195,31 +198,6 @@ ALIGN 4
 bgscrolltopscroll:
 #incbin "bgscrolltopscroll.img.bin"
 
-killCredits1:
-String("Total killed:"); BYTE 0
-killCredits2:
-String("First kill:"); BYTE 0
-notDefeatedCredits:
-String("Never Defeated"); BYTE 0
-defeatedCredits:
-String("Defeated"); BYTE 0
-NACredits:
-String("N/A"); BYTE 0
-killCredits3:
-String("Defeated at:"); BYTE 0
-highCredits:
-String("Too many!"); BYTE 0
-neverCredits:
-String("Not Found"); BYTE 0
-timesUsedCredits:
-String("Times used:"); BYTE 0
-timeFoundCredits:
-String("Found at:"); BYTE 0
-timesCredits:
-String("Times:"); BYTE 0
-timeCredits:
-String("Time:"); BYTE 0
-
 ALIGN 4
 killsPageData:
 //POIN string OR SHORT 0 textID; WORD offsetToCounter (0 = 0 if time is 0, 1 otherwise) offsetToTime
@@ -244,7 +222,7 @@ SHORT 0x0000 0x0844; WORD 0x203FB00+(2*09) ((0x203FB00+(0x24*2)+3)&(0xFFFFFFFC))
 SHORT 0x0000 0x0868; WORD 0x203FB00+(2*10) ((0x203FB00+(0x24*2)+3)&(0xFFFFFFFC))+(4*10) //Pesto
 SHORT 0x0000 0x0869; WORD 0x203FB00+(2*11) ((0x203FB00+(0x24*2)+3)&(0xFFFFFFFC))+(4*11) //Puffstool
 SHORT 0x0000 0x085E; WORD 0x203FB00+(2*12) ((0x203FB00+(0x24*2)+3)&(0xFFFFFFFC))+(4*12) //Like Like
-POIN moblinCredits ; WORD 0x203FB00+(2*13) ((0x203FB00+(0x24*2)+3)&(0xFFFFFFFC))+(4*13) //Spear Moblin
+POIN moblinCredits ; WORD 0x203FB00+(2*13) ((0x203FB00+(0x24*2)+3)&(0xFFFFFFFC))+(4*13) //Moblin
 POIN masterCredits ; WORD 0x203FB00+(2*15) ((0x203FB00+(0x24*2)+3)&(0xFFFFFFFC))+(4*15) //Wallmaster
 SHORT 0x0000 0x0847; WORD 0x203FB00+(2*16) ((0x203FB00+(0x24*2)+3)&(0xFFFFFFFC))+(4*16) //Spiked Beetle
 SHORT 0x0000 0x0858; WORD 0x203FB00+(2*17) ((0x203FB00+(0x24*2)+3)&(0xFFFFFFFC))+(4*17) //Helmasaur
@@ -268,44 +246,31 @@ SHORT 0x0000 0x084D; WORD 0x203FB00+(2*35) ((0x203FB00+(0x24*2)+3)&(0xFFFFFFFC))
 SHORT 0x0000 0x086D; WORD 0x203FB00+(2*28) ((0x203FB00+(0x24*2)+3)&(0xFFFFFFFC))+(4*28) //Bubble
 WORD 0 0 0 //terminator
 
-octoCredits:
-String("Big Octorok"); BYTE 0
-gibdoCredits:
-String("Gibdo & Stalfos"); BYTE 0
-crowCredits:
-String("Crow & Takkuri"); BYTE 0
-moblinCredits:
-String("Moblin"); BYTE 0
-masterCredits:
-String("Wall & Floor Master"); BYTE 0
-chainCredits:
-String("Ball & Chain Soldier"); BYTE 0
-
 ALIGN 4
 itemsPageData:
 //POIN string OR SHORT 0 textID; WORD offsetToCounter (0 if not aplicable or quest item) offsetToTime
-SHORT 0 0x0401            ; WORD (0x203FC00+(0x33*4)+(0x00*2)) 0x203FC00+(0x00*4) //Smith's Sword
-POIN sword1Credits        ; WORD (0x203FC00+(0x33*4)+(0x01*2)) 0x203FC00+(0x01*4) //White Sword
-POIN sword2Credits        ; WORD (0x203FC00+(0x33*4)+(0x02*2)) 0x203FC00+(0x02*4) //White Sword 2
-POIN sword3Credits        ; WORD (0x203FC00+(0x33*4)+(0x03*2)) 0x203FC00+(0x03*4) //White Sword 3
-SHORT 0 0x0406            ; WORD (0x203FC00+(0x33*4)+(0x04*2)) 0x203FC00+(0x04*4) //Four Sword
-SHORT 0 0x0407            ; WORD (0x203FC00+(0x33*4)+(0x05*2)) 0x203FC00+(0x05*4) //Bombs
-SHORT 0 0x0408            ; WORD (0x203FC00+(0x33*4)+(0x06*2)) 0x203FC00+(0x06*4) //Remote Bombs
-SHORT 0 0x0409            ; WORD (0x203FC00+(0x33*4)+(0x07*2)) 0x203FC00+(0x07*4) //Bow
-SHORT 0 0x040A            ; WORD (0x203FC00+(0x33*4)+(0x08*2)) 0x203FC00+(0x08*4) //Light Arrows
-SHORT 0 0x040B            ; WORD (0x203FC00+(0x33*4)+(0x09*2)) 0x203FC00+(0x09*4) //Boomerang
-SHORT 0 0x040C            ; WORD (0x203FC00+(0x33*4)+(0x0A*2)) 0x203FC00+(0x0A*4) //Magic Boomerang
-SHORT 0 0x040D            ; WORD (0x203FC00+(0x33*4)+(0x0B*2)) 0x203FC00+(0x0B*4) //Shield
-SHORT 0 0x040E            ; WORD (0x203FC00+(0x33*4)+(0x0C*2)) 0x203FC00+(0x0C*4) //Mirror Shield
-SHORT 0 0x040F            ; WORD (0x203FC00+(0x33*4)+(0x0D*2)) 0x203FC00+(0x0D*4) //Lantern
-SHORT 0 0x0411            ; WORD (0x203FC00+(0x33*4)+(0x0E*2)) 0x203FC00+(0x0E*4) //Gust Jar
-SHORT 0 0x0412            ; WORD (0x203FC00+(0x33*4)+(0x0F*2)) 0x203FC00+(0x0F*4) //Cane of Pacci
-SHORT 0 0x0413            ; WORD (0x203FC00+(0x33*4)+(0x10*2)) 0x203FC00+(0x10*4) //Mole Mitts
-SHORT 0 0x0414            ; WORD (0x203FC00+(0x33*4)+(0x11*2)) 0x203FC00+(0x11*4) //Roc's Cape
-SHORT 0 0x0415            ; WORD (0x203FC00+(0x33*4)+(0x12*2)) 0x203FC00+(0x12*4) //Pegasus Boots
-SHORT 0 0x0417            ; WORD (0x203FC00+(0x33*4)+(0x13*2)) 0x203FC00+(0x13*4) //Ocarina
-SHORT 0 0x041C            ; WORD (0x203FC00+(0x33*4)+(0x14*2)) 0x203FC00+(0x14*4) //Bottle
-SHORT 0 0x0436            ; WORD 0                             0x203FC00+(0x15*4) //Bottle of Dog Food
+SHORT 0 0x0401            ; WORD (0x203FC00+(0x34*4)+(0x00*2)) 0x203FC00+(0x00*4) //Smith's Sword
+POIN sword1Credits        ; WORD (0x203FC00+(0x34*4)+(0x01*2)) 0x203FC00+(0x01*4) //White Sword
+POIN sword2Credits        ; WORD (0x203FC00+(0x34*4)+(0x02*2)) 0x203FC00+(0x02*4) //White Sword 2
+POIN sword3Credits        ; WORD (0x203FC00+(0x34*4)+(0x03*2)) 0x203FC00+(0x03*4) //White Sword 3
+SHORT 0 0x0406            ; WORD (0x203FC00+(0x34*4)+(0x04*2)) 0x203FC00+(0x04*4) //Four Sword
+SHORT 0 0x0407            ; WORD (0x203FC00+(0x34*4)+(0x05*2)) 0x203FC00+(0x05*4) //Bombs
+SHORT 0 0x0408            ; WORD (0x203FC00+(0x34*4)+(0x06*2)) 0x203FC00+(0x06*4) //Remote Bombs
+SHORT 0 0x0409            ; WORD (0x203FC00+(0x34*4)+(0x07*2)) 0x203FC00+(0x07*4) //Bow
+SHORT 0 0x040A            ; WORD (0x203FC00+(0x34*4)+(0x08*2)) 0x203FC00+(0x08*4) //Light Arrows
+SHORT 0 0x040B            ; WORD (0x203FC00+(0x34*4)+(0x09*2)) 0x203FC00+(0x09*4) //Boomerang
+SHORT 0 0x040C            ; WORD (0x203FC00+(0x34*4)+(0x0A*2)) 0x203FC00+(0x0A*4) //Magic Boomerang
+SHORT 0 0x040D            ; WORD (0x203FC00+(0x34*4)+(0x0B*2)) 0x203FC00+(0x0B*4) //Shield
+SHORT 0 0x040E            ; WORD (0x203FC00+(0x34*4)+(0x0C*2)) 0x203FC00+(0x0C*4) //Mirror Shield
+SHORT 0 0x040F            ; WORD (0x203FC00+(0x34*4)+(0x0D*2)) 0x203FC00+(0x0D*4) //Lantern
+SHORT 0 0x0411            ; WORD (0x203FC00+(0x34*4)+(0x0E*2)) 0x203FC00+(0x0E*4) //Gust Jar
+SHORT 0 0x0412            ; WORD (0x203FC00+(0x34*4)+(0x0F*2)) 0x203FC00+(0x0F*4) //Cane of Pacci
+SHORT 0 0x0413            ; WORD (0x203FC00+(0x34*4)+(0x10*2)) 0x203FC00+(0x10*4) //Mole Mitts
+SHORT 0 0x0414            ; WORD (0x203FC00+(0x34*4)+(0x11*2)) 0x203FC00+(0x11*4) //Roc's Cape
+SHORT 0 0x0415            ; WORD (0x203FC00+(0x34*4)+(0x12*2)) 0x203FC00+(0x12*4) //Pegasus Boots
+SHORT 0 0x0417            ; WORD (0x203FC00+(0x34*4)+(0x13*2)) 0x203FC00+(0x13*4) //Ocarina
+POIN bottleCredits        ; WORD (0x203FC00+(0x34*4)+(0x14*2)) 0x203FC00+(0x14*4) //Bottle
+POIN dogCredits           ; WORD 0                             0x203FC00+(0x15*4) //Bottle of Dog Food
 SHORT 0 0x0437            ; WORD 0                             0x203FC00+(0x16*4) //Lon Lon Ranch Key
 SHORT 0 0x0438            ; WORD 0                             0x203FC00+(0x17*4) //Wake-Up Mushroom
 POIN book1Credits         ; WORD 0                             0x203FC00+(0x18*4) //A Hyrulean Bestiary
@@ -313,7 +278,7 @@ POIN book2Credits         ; WORD 0                             0x203FC00+(0x19*4
 POIN book3Credits         ; WORD 0                             0x203FC00+(0x1A*4) //A History of Masks
 SHORT 0 0x043C            ; WORD 0                             0x203FC00+(0x1B*4) //Graveyard Key
 SHORT 0 0x043D            ; WORD 0                             0x203FC00+(0x1C*4) //Tingle Trophy
-SHORT 0 0x043E            ; WORD 0                             0x203FC00+(0x1D*4) //Carlov Medal
+POIN carlovCredits        ; WORD 0                             0x203FC00+(0x1D*4) //Carlov Medal
 SHORT 0 0x0440            ; WORD 0                             0x203FC00+(0x1E*4) //Earth Element
 SHORT 0 0x0441            ; WORD 0                             0x203FC00+(0x1F*4) //Fire Element
 SHORT 0 0x0442            ; WORD 0                             0x203FC00+(0x20*4) //Water Element
@@ -338,31 +303,6 @@ POIN fastsplitCredits     ; WORD 0                             0x203FC00+(0x32*4
 POIN longspinCredits      ; WORD 0                             0x203FC00+(0x33*4) //Long Great Spin
 WORD 0 0 0 //terminator
 
-sword1Credits:
-String("White Sword (1)"); BYTE 0
-sword2Credits:
-String("White Sword (2)"); BYTE 0
-sword3Credits:
-String("White Sword (3)"); BYTE 0
-book1Credits:
-String("A Hyrulean Bestiary"); BYTE 0
-book2Credits:
-String("Legend of the Picori"); BYTE 0
-book3Credits:
-String("A History of Masks"); BYTE 0
-shootbutterflyCredits:
-String("Shoot Butterfly"); BYTE 0
-digbutterflyCredits:
-String("Dig Butterfly"); BYTE 0
-swimbutterflyCredits:
-String("Swim Butterfly"); BYTE 0
-fastspinCredits:
-String("Faster Spin Attack"); BYTE 0
-fastsplitCredits:
-String("Faster Split Gauge"); BYTE 0
-longspinCredits:
-String("Longer Great Spin"); BYTE 0
-
 ALIGN 4
 miscPageData:
 //POIN string; WORD offsetToCounter offsetToTime (only one of the two)
@@ -378,29 +318,6 @@ POIN timesSavedCredits  ; WORD 0x203FE00+(04*2) 0
 POIN timesLoadedCredits ; WORD 0x203FE00+(05*2) 0
 POIN totalRupeesCredits ; WORD 0x203FE00+(06*2) 0
 WORD 0 0 0 //terminator
-
-totalTimeCredits:
-String("Total Time"); BYTE 0
-menuTimeCredits:
-String("Menu Time"); BYTE 0
-cutsceneTimeCredits:
-String("Cutscene Time"); BYTE 0
-rollingTimeCredits:
-String("Rolling Time"); BYTE 0
-timesRolledCredits:
-String("Rolls"); BYTE 0
-timesBonkedCredits:
-String("Bonks"); BYTE 0
-timesDiedCredits:
-String("Game Overs"); BYTE 0
-timesRevivedCredits:
-String("Fairy Revivals"); BYTE 0
-timesSavedCredits:
-String("Times Saved"); BYTE 0
-timesLoadedCredits:
-String("Times Loaded"); BYTE 0
-totalRupeesCredits:
-String("Total Rupees"); BYTE 0
 
 PUSH
 //remove the palette for the background image, essentially making it a black background
@@ -421,10 +338,10 @@ BYTE 1
 ORG $127388
 BYTE 2 2 0 0; SHORT 0x0B4 0x119 0 0
 BYTE 2 2 0 0; SHORT 0x0B4 0x11A 0 0
+BYTE 2 2 0 0; SHORT 0x0B4 0x112 0 0
 BYTE 2 2 0 0; SHORT 0x0B4 0x11B 0 0
 BYTE 2 2 0 0; SHORT 0x0B4 0x11C 0 0
 BYTE 2 2 0 0; SHORT 0x0B4 0x109 0 0
-BYTE 0 0 0 0; SHORT 0x001 0x000 0 0 //BYTE 2 2 0 0; SHORT 0x0B4 0x119 0 0
 BYTE 0 0 0 0; SHORT 0x001 0x000 0 0 //BYTE 2 2 0 0; SHORT 0x0B4 0x119 0 0
 BYTE 0 0 0 0; SHORT 0x001 0x000 0 0 //BYTE 2 2 0 0; SHORT 0x0B4 0x119 0 0
 BYTE 0 0 0 0; SHORT 0x001 0x000 0 0 //BYTE 2 2 0 0; SHORT 0x0B4 0x119 0 0
@@ -463,6 +380,8 @@ WORD credits3-$9F7838
 WORD credits4-$9F7838
 ORG $9F785C
 WORD credits5-$9F7838
+ORG $9F7880
+WORD credits6-$9F7838
 POP
 
 credits1:
@@ -519,3 +438,17 @@ BYTE 0x0A
 BYTE 2 0x1B; String("minishmaker.com"); BYTE 0x0F 0x15; String("discord"); BYTE 2 0 0x0A
 BYTE 0x0A
 BYTE 2 0x1B; String("github.com"); BYTE 0x0F 0x15; String("minishmaker"); BYTE 2 0 0
+
+credits6:
+BYTE 0x0A
+BYTE 0x0A
+BYTE 0x0A
+BYTE 2 0x01; String("Translators"); BYTE 2 0 0x0A
+String("ToadsWoot betrayed us (French, pending)"); BYTE 0x0A
+String("Martin (German, pending)"); BYTE 0x0A
+String("Leonarth (Spanish)"); BYTE 0x0A
+String("Please someone do this (Italian)"); BYTE 0
+
+ALIGN 4
+debugFontCredits:
+#incbin "font.img.bin"

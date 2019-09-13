@@ -97,6 +97,9 @@ pop	{r4-r7,pc}
 setTime:
 lsl	r0,#2
 ldr	r1,offset
+ldr	r2,[r1,r0]
+cmp	r2,#0
+bne	end
 ldr	r2,=#0x203FFF0
 ldr	r2,[r2]
 str	r2,[r1,r0]

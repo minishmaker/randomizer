@@ -131,7 +131,7 @@ ldrh	r0,[r0]
 ldr	r1,=#0xFFFF
 cmp	r0,r1
 beq	toomany
-mov	r1,#17
+mov	r1,#19
 mov	r2,r5
 add	r2,#1
 ldr	r3,drawNumber
@@ -145,7 +145,7 @@ b	drawuse
 nouses:
 ldr	r0,NACredits
 drawuse:
-mov	r1,#17
+mov	r1,#19
 mov	r2,r5
 add	r2,#1
 ldr	r3,drawText
@@ -158,7 +158,7 @@ ldr	r0,[r4,#8]
 ldr	r0,[r0]
 cmp	r0,#0
 beq	neverfound
-mov	r1,#17
+mov	r1,#19
 mov	r2,r5
 add	r2,#2
 ldr	r3,drawTime
@@ -168,7 +168,7 @@ mov	r3,#0
 b	enddraw
 neverfound:
 ldr	r0,neverCredits
-mov	r1,#17
+mov	r1,#19
 mov	r2,r5
 add	r2,#2
 ldr	r3,drawText
