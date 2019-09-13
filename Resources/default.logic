@@ -5,7 +5,7 @@
 !crc - E8637292
 
 !flag - Setting - KEYSANITY - Keysanity - false
-!flag - Setting - SHUFFLE_ELEMENTS - Global elements
+!flag - Setting - SHUFFLE_ELEMENTS -  Shuffle elements into item pool
 !flag - Setting - NO_FUSIONS - No normal fusions - true
 !flag - Setting - GLITCHLESS - Disable glitches - true
 !flag - Gimmick - RANDOM_LANGUAGE - Randomize language
@@ -31,13 +31,13 @@
     !eventdefine - heartFillB - (0x`HEART_COLOR_0` >> 10) & 0x1F
 !endif
 
-!ifdef - SPLIT_COLOR
-    !eventdefine - barcolor
-    !eventdefine - splitBackground - `SPLIT_COLOR_1`
-    !eventdefine - splitFirst - `SPLIT_COLOR_2`
-    !eventdefine - splitThird - `SPLIT_COLOR_0`
-    !eventdefine - splitFourth - `SPLIT_COLOR_3`
-!endif
+#!ifdef - SPLIT_COLOR
+#    !eventdefine - barcolor
+#    !eventdefine - splitBackground - `SPLIT_COLOR_1`
+#    !eventdefine - splitFirst - `SPLIT_COLOR_2`
+#    !eventdefine - splitSecond - `SPLIT_COLOR_0`
+#    !eventdefine - splitThird - `SPLIT_COLOR_3`
+#!endif
 
 
 #Settings
