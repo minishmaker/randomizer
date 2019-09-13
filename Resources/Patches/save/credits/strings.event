@@ -324,6 +324,31 @@ octoCreditsItalian:
 String(""); BYTE 0
 
 ALIGN 4
+crowCredits:
+/*English*/ POIN crowCreditsEnglish
+/*English*/ POIN crowCreditsEnglish
+/*English*/ POIN crowCreditsEnglish
+/*French */ POIN crowCreditsEnglish //POIN gibdoCreditsFrench
+/*German */ POIN crowCreditsEnglish //POIN gibdoCreditsGerman
+/*Spanish*/ POIN crowCreditsSpanish
+/*Italian*/ POIN crowCreditsEnglish //POIN gibdoCreditsItalian
+
+crowCreditsEnglish:
+String("Crow & Takkuri"); BYTE 0
+
+crowCreditsFrench:
+String(""); BYTE 0
+
+crowCreditsGerman:
+String(""); BYTE 0
+
+crowCreditsSpanish:
+String("Negri y Golpri"); BYTE 0
+
+crowCreditsItalian:
+String(""); BYTE 0
+
+ALIGN 4
 gibdoCredits:
 /*English*/ POIN gibdoCreditsEnglish
 /*English*/ POIN gibdoCreditsEnglish
@@ -496,6 +521,31 @@ sword3CreditsSpanish:
 String("Espada Blanca (3)"); BYTE 0
 
 sword3CreditsItalian:
+String(""); BYTE 0
+
+ALIGN 4
+bottleCredits:
+/*English*/ POIN bottleCreditsEnglish
+/*English*/ POIN bottleCreditsEnglish
+/*English*/ POIN bottleCreditsEnglish
+/*French */ POIN bottleCreditsEnglish //POIN sword3CreditsFrench
+/*German */ POIN bottleCreditsEnglish //POIN sword3CreditsGerman
+/*Spanish*/ POIN bottleCreditsSpanish
+/*Italian*/ POIN bottleCreditsEnglish //POIN sword3CreditsItalian
+
+bottleCreditsEnglish:
+String("Bottles"); BYTE 0
+
+bottleCreditsFrench:
+String(""); BYTE 0
+
+bottleCreditsGerman:
+String(""); BYTE 0
+
+bottleCreditsSpanish:
+String("Botellas"); BYTE 0
+
+bottleCreditsItalian:
 String(""); BYTE 0
 
 ALIGN 4
