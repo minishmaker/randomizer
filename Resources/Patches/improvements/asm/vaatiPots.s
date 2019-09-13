@@ -21,7 +21,12 @@ loadPots:
 ldr	r3,=#0x804AAF8
 mov	lr,r3
 .short	0xF800
-pop	{pc}
+
+mov	r0,#0x77
+ldr	r3,=#0x807C5F4
+mov	lr,r3
+ldr	r3,=#0x804D71D
+bx	r3
 .align
 .ltorg
 pots:

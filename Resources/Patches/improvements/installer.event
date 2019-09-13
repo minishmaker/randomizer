@@ -63,7 +63,7 @@ BYTE 0xFF 0 0 0; SHORT 0x000 0x000 0 0 0 0xFFFF
 //allow link to use the ocarina in the room right before palace of winds
 PUSH; ORG $12752C; BYTE 1; POP
 //heart pots in vaati 1 room
-PUSH; ORG $EB274; POIN vaatiPots|1; POP
+PUSH; ORG $4D714; jumpToHack(vaatiPots); POP
 ALIGN 4
 vaatiPots:
 #incbin "asm/vaatiPots.dmp"
