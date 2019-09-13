@@ -135,7 +135,7 @@ ORG $A4C24; POIN bombLimits
 POP
 bombLimits:
 BYTE 0 10 30 50 99 99 99 99
-PUSH; ORG $53D50; SHORT 0xE007; POP //shops too
+PUSH; ORG $53D50; SHORT 0; ORG $53D60; SHORT 0; POP //shops too
 PUSH; ORG $53D74; SHORT 0xE001; POP //bag upgrades uncapped
 PUSH; ORG $83610; jumpToHack(firstBag); POP
 ALIGN 4
