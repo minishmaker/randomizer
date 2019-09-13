@@ -12,13 +12,21 @@
 !flag - Setting - ALLOW_FUSION_SKIPS - Allow fusion skips - true
 !flag - Setting - INSTANT_SKIP - Instant fusion skip
 !color - Gimmick - TUNIC_COLOR - Change Tunic Color -    10 - F8 - 08    -    10 - 78 - 28    -    64 - A0 - 28    -    B8 - F8 - A0
+!color - Gimmick - HEART_COLOR - Change Heart Color -    F8 - 50 - 10
 
 !ifdef - TUNIC_COLOR
     !eventdefine - TUNIC_COLORED
-	!eventdefine - TUNIC_COLOR_DARKEST - 0x`TUNIC_COLOR_1`
-	!eventdefine - TUNIC_COLOR_DARK - 0x`TUNIC_COLOR_2`
+    !eventdefine - TUNIC_COLOR_DARKEST - 0x`TUNIC_COLOR_1`
+    !eventdefine - TUNIC_COLOR_DARK - 0x`TUNIC_COLOR_2`
     !eventdefine - TUNIC_COLOR_MAIN - 0x`TUNIC_COLOR_0`
-	!eventdefine - TUNIC_COLOR_LIGHT - 0x`TUNIC_COLOR_3`
+    !eventdefine - TUNIC_COLOR_LIGHT - 0x`TUNIC_COLOR_3`
+!endif
+
+!ifdef - HEART_COLOR
+    !eventdefine - heartscolor
+    !eventdefine - heartFillR - (0x`HEART_COLOR_0` & 0x1F)
+    !eventdefine - heartFillG - (0x`HEART_COLOR_0` >> 5)   & 0x1F
+    !eventdefine - heartFillB - (0x`HEART_COLOR_0` >> 10) & 0x1F
 !endif
 
 #Settings
@@ -95,7 +103,7 @@
 #barcolorDefine;                            Unshuffled; barcolor:Define:SecondByte;                     Helpers.Inaccessible; Items.Untyped.1	# if defined will allow for a different colored bar
 #barcolorTypeDefine;                        Unshuffled; barcolorred:Define:SecondByte;                  Helpers.Inaccessible; Items.Untyped.1	# change the red in barcolorred to either red blue or green
 
-
+# OUTDATED, will get some kind of logic readme at some point
 # Location format:
 #	Name;Type;Address[;Logic][;Item Override]
 #		Name can be anything unique, hopefully without spaces
