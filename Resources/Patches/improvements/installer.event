@@ -87,7 +87,7 @@ BYTE 0xFF 0xFF 0xFF 0xFF; SHORT 0 0 0x000 0x000 0 0
 //start with cursor on first save file instead of language
 PUSH; ORG $50180; SHORT 0x2100; POP
 //vaati eyes take only one hit to kill
-PUSH; ORG $4445E; SHORT 0; POP
+PUSH; ORG $4445C; SHORT 0x28FB; POP
 //make the vaati2 3 cycle the same as other regions, I hope
 PUSH; ORG $D01EA; BYTE 0xC0; POP
 //floor and wall masters die in one arrow hit
