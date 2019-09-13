@@ -237,7 +237,7 @@ namespace MinishRandomizer
             }
 
             // Get the default name for the saved ROM
-            string fileName = $"MinishRandomizer_{shuffler.Seed}";
+            string fileName = $"MinishRandomizer_{shuffler.Version}_{shuffler.GetLogicIdentifier()}_{shuffler.Seed}";
 
             SaveFileDialog sfd = new SaveFileDialog
             {
