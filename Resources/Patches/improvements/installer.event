@@ -309,7 +309,7 @@ fastKinstone:
 
 //normal kinstones don't get added to the bag in nofusions
 #ifdef noFusions
-	PUSH; ORG $1E77A; SHORT 0 0x286D; POP
+	PUSH; ORG $1E778; SHORT 0x2800 0xD025 0x286D; POP
 #endif
 
 #include "glitchless.event"
