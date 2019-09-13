@@ -1,5 +1,5 @@
 #ifdef glitchless
-//prevent ocarina glitch from triggering, also prevents portal items
+//prevent ocarina glitch from triggering, also prevents portal items, also also lantern glitch
 PUSH; ORG $772D8; jumpToHack(ocarinaGlitchFix); POP
 ALIGN 4
 ocarinaGlitchFix:
