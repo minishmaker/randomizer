@@ -14,7 +14,7 @@
 !flag - Setting - WHYWOULDYOUDOTHISTOYOURSELF - Obscure spots
 !color - Gimmick - TUNIC_COLOR - Change Tunic Color -    10 - F8 - 08    -    10 - 78 - 28    -    64 - A0 - 28    -    B8 - F8 - A0
 !color - Gimmick - HEART_COLOR - Change Heart Color -    F8 - 50 - 10
-#!color - Gimmick - SPLIT_COLOR - Change Split Bar Color -    
+!color - Gimmick - SPLIT_COLOR - Change Split Bar Color -    4A - FF - 18     -    31 - 9C - 18    -   31 - 52 - 18
 
 !ifdef - TUNIC_COLOR
     !eventdefine - TUNIC_COLORED
@@ -31,13 +31,12 @@
     !eventdefine - heartFillB - (0x`HEART_COLOR_0` >> 10) & 0x1F
 !endif
 
-#!ifdef - SPLIT_COLOR
-#    !eventdefine - barcolor
-#    !eventdefine - splitBackground - `SPLIT_COLOR_1`
-#    !eventdefine - splitFirst - `SPLIT_COLOR_2`
-#    !eventdefine - splitSecond - `SPLIT_COLOR_0`
-#    !eventdefine - splitThird - `SPLIT_COLOR_3`
-#!endif
+!ifdef - SPLIT_COLOR
+    !eventdefine - barcolor
+    !eventdefine - splitFirst - 0x`SPLIT_COLOR_0`
+    !eventdefine - splitThird - 0x`SPLIT_COLOR_1`
+	!eventdefine - splitFourth - 0x`SPLIT_COLOR_2`
+!endif
 
 
 #Settings
