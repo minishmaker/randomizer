@@ -50,11 +50,13 @@
             this.gimmicksTabPage = new System.Windows.Forms.TabPage();
             this.gimmickControlLayout = new System.Windows.Forms.FlowLayoutPanel();
             this.generatedTab = new System.Windows.Forms.TabPage();
+            this.label1 = new System.Windows.Forms.Label();
             this.generatedSeedValue = new System.Windows.Forms.Label();
             this.generatedSeedLabel = new System.Windows.Forms.Label();
             this.saveSpoilerButton = new System.Windows.Forms.Button();
             this.savePatchButton = new System.Windows.Forms.Button();
             this.saveRomButton = new System.Windows.Forms.Button();
+            this.generatedLogicLabel = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.generalTab.SuspendLayout();
@@ -185,7 +187,6 @@
             this.customLogicPath.Name = "customLogicPath";
             this.customLogicPath.Size = new System.Drawing.Size(206, 20);
             this.customLogicPath.TabIndex = 8;
-            this.customLogicPath.TextChanged += CustomLogicPath_TextChanged;
             // 
             // browseLogicButton
             // 
@@ -214,28 +215,29 @@
             this.mainTabs.Controls.Add(this.generalTab);
             this.mainTabs.Controls.Add(this.optionTabPage);
             this.mainTabs.Controls.Add(this.gimmicksTabPage);
+            this.mainTabs.Controls.Add(this.generatedTab);
             this.mainTabs.Location = new System.Drawing.Point(9, 27);
             this.mainTabs.Name = "mainTabs";
             this.mainTabs.SelectedIndex = 0;
             this.mainTabs.Size = new System.Drawing.Size(369, 235);
             this.mainTabs.TabIndex = 9;
             // 
-            // flagTabPage
+            // optionTabPage
             // 
             this.optionTabPage.Controls.Add(this.optionControlLayout);
             this.optionTabPage.Location = new System.Drawing.Point(4, 22);
-            this.optionTabPage.Name = "settingsTabPage";
+            this.optionTabPage.Name = "optionTabPage";
             this.optionTabPage.Padding = new System.Windows.Forms.Padding(3);
             this.optionTabPage.Size = new System.Drawing.Size(361, 209);
             this.optionTabPage.TabIndex = 2;
             this.optionTabPage.Text = "Settings";
             this.optionTabPage.UseVisualStyleBackColor = true;
             // 
-            // flagBoxesLayout
+            // optionControlLayout
             // 
             this.optionControlLayout.AutoScroll = true;
             this.optionControlLayout.Location = new System.Drawing.Point(0, 0);
-            this.optionControlLayout.Name = "flagBoxesLayout";
+            this.optionControlLayout.Name = "optionControlLayout";
             this.optionControlLayout.Size = new System.Drawing.Size(361, 209);
             this.optionControlLayout.TabIndex = 0;
             // 
@@ -250,16 +252,18 @@
             this.gimmicksTabPage.Text = "Gimmicks";
             this.gimmicksTabPage.UseVisualStyleBackColor = true;
             // 
-            // gimmickBoxesLayout
+            // gimmickControlLayout
             // 
             this.gimmickControlLayout.AutoScroll = true;
             this.gimmickControlLayout.Location = new System.Drawing.Point(0, 0);
-            this.gimmickControlLayout.Name = "gimmickBoxesLayout";
+            this.gimmickControlLayout.Name = "gimmickControlLayout";
             this.gimmickControlLayout.Size = new System.Drawing.Size(361, 209);
             this.gimmickControlLayout.TabIndex = 0;
-            //
+            // 
             // generatedTab
             // 
+            this.generatedTab.Controls.Add(this.generatedLogicLabel);
+            this.generatedTab.Controls.Add(this.label1);
             this.generatedTab.Controls.Add(this.generatedSeedValue);
             this.generatedTab.Controls.Add(this.generatedSeedLabel);
             this.generatedTab.Controls.Add(this.saveSpoilerButton);
@@ -272,6 +276,15 @@
             this.generatedTab.TabIndex = 1;
             this.generatedTab.Text = "Seed";
             this.generatedTab.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(16, 36);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(39, 13);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Logic: ";
             // 
             // generatedSeedValue
             // 
@@ -321,6 +334,14 @@
             this.saveRomButton.UseVisualStyleBackColor = true;
             this.saveRomButton.Click += new System.EventHandler(this.SaveRomButton_Click);
             // 
+            // generatedLogicLabel
+            // 
+            this.generatedLogicLabel.AutoSize = true;
+            this.generatedLogicLabel.Location = new System.Drawing.Point(54, 36);
+            this.generatedLogicLabel.Name = "generatedLogicLabel";
+            this.generatedLogicLabel.Size = new System.Drawing.Size(0, 13);
+            this.generatedLogicLabel.TabIndex = 6;
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -343,7 +364,6 @@
             this.mainTabs.ResumeLayout(false);
             this.optionTabPage.ResumeLayout(false);
             this.gimmicksTabPage.ResumeLayout(false);
-            this.gimmicksTabPage.PerformLayout();
             this.generatedTab.ResumeLayout(false);
             this.generatedTab.PerformLayout();
             this.ResumeLayout(false);
@@ -379,6 +399,8 @@
         private System.Windows.Forms.TabPage optionTabPage;
         private System.Windows.Forms.FlowLayoutPanel optionControlLayout;
         private System.Windows.Forms.FlowLayoutPanel gimmickControlLayout;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label generatedLogicLabel;
     }
 }
 

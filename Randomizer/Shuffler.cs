@@ -57,7 +57,8 @@ namespace MinishRandomizer.Randomizer
 
     public class Shuffler
     {
-        
+        // Will replace this with something better...
+        public readonly string Version = "0.4";
         public int Seed;
         private Random RNG;
         private List<Location> Locations;
@@ -66,6 +67,7 @@ namespace MinishRandomizer.Randomizer
         private List<Item> MajorItems;
         private List<Item> MinorItems;
         private Parser LogicParser;
+        private string LogicPath;
 
         public Shuffler()
         {
@@ -74,6 +76,27 @@ namespace MinishRandomizer.Randomizer
             MajorItems = new List<Item>();
             MinorItems = new List<Item>();
             LogicParser = new Parser();
+        }
+
+        public string GetLogicIdentifier()
+        {
+            string fallbackName;
+            string fallbackVersion;
+            if (LogicPath != null)
+            {
+                fallbackName = Path.GetFileNameWithoutExtension(LogicPath);
+                fallbackVersion = File.GetLastWriteTime(LogicPath).ToShortDateString();
+            }
+            else
+            {
+                fallbackName = "Default";
+                fallbackVersion = Version;
+            }
+
+            string name = LogicParser.SubParser.LogicName ?? fallbackName;
+            string version = LogicParser.SubParser.LogicVersion ?? fallbackVersion;
+
+            return name + "-" + version;
         }
 
         public void SetSeed(int seed)
@@ -134,6 +157,9 @@ namespace MinishRandomizer.Randomizer
         /// <param name="logicFile">The file to read locations from</param>
         public void LoadLocations(string logicFile = null)
         {
+            // Change the logic file path to match
+            LogicPath = logicFile;
+
             // Reset everything to allow rerandomization
             Locations.Clear();
             DungeonItems.Clear();

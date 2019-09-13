@@ -13,6 +13,8 @@ namespace MinishRandomizer.Randomizer.Logic
     public class DirectiveParser
     {
         public uint? RomCrc;
+        public string LogicName;
+        public string LogicVersion;
         public List<LogicOption> Options;
         private List<LogicDefine> Defines;
         public List<EventDefine> EventDefines;
@@ -53,14 +55,12 @@ namespace MinishRandomizer.Randomizer.Logic
             {
                 case "!flag":
                 case "!color":
-                case "!number":
                 case "!name":
                 case "!version":
-                case "!date":
                 case "!crc":
                     return true;
                 case "!define":
-                case "!eventDefine":
+                case "!eventdefine":
                 case "!ifdef":
                 case "!ifndef":
                 case "!else":
@@ -105,13 +105,15 @@ namespace MinishRandomizer.Randomizer.Logic
                     case "!define":
                         Defines.Add(ParseDefineDirective(mainDirectiveParts));
                         break;
-                    case "!eventDefine":
+                    case "!eventdefine":
                         EventDefines.Add(ParseEventDefine(mainDirectiveParts));
                         break;
-                    case "!number":
                     case "!name":
+                        LogicName = mainDirectiveParts[1];
+                        break;
                     case "!version":
-                    case "!date":
+                        LogicVersion = mainDirectiveParts[1];
+                        break;
                     default:
                         throw new ParserException($"\"{mainDirectiveParts[0]}\" is not a valid directive!");
                 }
@@ -199,6 +201,7 @@ namespace MinishRandomizer.Randomizer.Logic
         public void ClearDefines()
         {
             Defines.Clear();
+            EventDefines.Clear();
         }
 
         public void ClearOptions()

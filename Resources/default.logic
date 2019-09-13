@@ -1,5 +1,7 @@
 # Default logic for the randomizer - Doesn't allow glitches, but allows unintuitive tricks
 
+!name - Default
+!version - 0.4
 !crc - E8637292
 
 !flag - Setting - KEYSANITY - Keysanity - false
@@ -12,11 +14,11 @@
 !color - Gimmick - TUNIC_COLOR - Change Tunic Color -    10 - F8 - 08    -    10 - 78 - 28    -    64 - A0 - 28    -    B8 - F8 - A0
 
 !ifdef - TUNIC_COLOR
-    !eventDefine - TUNIC_COLORED
-	!eventDefine - TUNIC_COLOR_DARKEST - 0x`TUNIC_COLOR_1`
-	!eventDefine - TUNIC_COLOR_DARK - 0x`TUNIC_COLOR_2`
-    !eventDefine - TUNIC_COLOR_MAIN - 0x`TUNIC_COLOR_0`
-	!eventDefine - TUNIC_COLOR_LIGHT - 0x`TUNIC_COLOR_3`
+    !eventdefine - TUNIC_COLORED
+	!eventdefine - TUNIC_COLOR_DARKEST - 0x`TUNIC_COLOR_1`
+	!eventdefine - TUNIC_COLOR_DARK - 0x`TUNIC_COLOR_2`
+    !eventdefine - TUNIC_COLOR_MAIN - 0x`TUNIC_COLOR_0`
+	!eventdefine - TUNIC_COLOR_LIGHT - 0x`TUNIC_COLOR_3`
 !endif
 
 #Settings

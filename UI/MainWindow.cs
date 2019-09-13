@@ -90,11 +90,13 @@ namespace MinishRandomizer
                 {
                     // Change the tab to the seed output tab
                     mainTabs.TabPages.Add(generatedTab);
-                    mainTabs.SelectedTab = generatedTab;
                 }
+
+                mainTabs.SelectedTab = generatedTab;
 
                 // Show ROM information on seed page
                 generatedSeedValue.Text = seed.ToString();
+                generatedLogicLabel.Text = shuffler.GetLogicIdentifier();
 
                 statusText.Text = $"Successfully randomzied seed {seed}";
             }
@@ -359,7 +361,7 @@ namespace MinishRandomizer
             }
             else
             {
-                statusText.Text = $"Loaded options for default logic";
+                statusText.Text = "Loaded options for default logic";
             }
         }
     }
