@@ -1,6 +1,7 @@
 ﻿using MinishRandomizer.Core;
 using MinishRandomizer.Randomizer;
 using MinishRandomizer.Randomizer.Logic;
+using MinishRandomizer.Utilities;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -94,6 +95,8 @@ namespace MinishRandomizer
 
                 // Show ROM information on seed page
                 generatedSeedValue.Text = seed.ToString();
+
+                statusText.Text = $"Successfully randomzied seed {seed}";
             }
             catch (ShuffleException error)
             {
@@ -134,8 +137,9 @@ namespace MinishRandomizer
 
             if (!shuffler.RomCrcValid(ROM_))
             {
+                Console.WriteLine(StringUtil.AsStringHex8((int)PatchUtil.Crc32(ROM_.romData, ROM_.romData.Length)));
                 MessageBox.Show("ROM does not match the expected CRC for the logic file", "Incorrect ROM", MessageBoxButtons.OK);
-                statusText.Text = "Unable to determine ROM.";
+                statusText.Text = "ROM not valid";
                 ROM_ = null;
                 return;
             }
@@ -261,6 +265,7 @@ namespace MinishRandomizer
             }
 
             MessageBox.Show("ROM successfully saved.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            statusText.Text = $"Successfully saved \"{sfd.FileName}\"";
         }
 
         private void SavePatchButton_Click(object sender, EventArgs e)
@@ -346,6 +351,15 @@ namespace MinishRandomizer
                 {
                     gimmickControlLayout.Controls.Add(optionControl);
                 }
+            }
+
+            if (customLogicCheckBox.Checked)
+            {
+                statusText.Text = $"Loaded options for {customLogicPath.Text}";
+            }
+            else
+            {
+                statusText.Text = $"Loaded options for default logic";
             }
         }
     }
