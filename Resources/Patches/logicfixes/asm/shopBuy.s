@@ -13,7 +13,7 @@ beq	quiver
 vanilla:
 mov	r0,r5
 end:
-mov	r2,#2
+mov	r2,#0
 ldr	r3,=#0x80A7410
 mov	lr,r3
 .short	0xF800

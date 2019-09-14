@@ -1074,6 +1074,31 @@ timesLoadedCreditsItalian:
 String(""); BYTE 0
 
 ALIGN 4
+timesWarpedCredits:
+/*English*/ POIN timesWarpedCreditsEnglish
+/*English*/ POIN timesWarpedCreditsEnglish
+/*English*/ POIN timesWarpedCreditsEnglish
+/*French */ POIN timesWarpedCreditsEnglish //POIN timesWarpedCreditsFrench
+/*German */ POIN timesWarpedCreditsEnglish //POIN timesWarpedCreditsGerman
+/*Spanish*/ POIN timesWarpedCreditsSpanish
+/*Italian*/ POIN timesWarpedCreditsEnglish //POIN timesWarpedCreditsItalian
+
+timesWarpedCreditsEnglish:
+String("Quickwarps used"); BYTE 0
+
+timesWarpedCreditsFrench:
+String(""); BYTE 0
+
+timesWarpedCreditsGerman:
+String(""); BYTE 0
+
+timesWarpedCreditsSpanish:
+String("Quickwarps usados"); BYTE 0
+
+timesWarpedCreditsItalian:
+String(""); BYTE 0
+
+ALIGN 4
 totalRupeesCredits:
 /*English*/ POIN totalRupeesCreditsEnglish
 /*English*/ POIN totalRupeesCreditsEnglish

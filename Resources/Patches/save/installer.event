@@ -307,4 +307,6 @@ rupees:
 #incbin "asm/rupees.dmp"
 WORD 0x203FE00+(06*2) //offset
 
+//WORD 0x203FE00+(07*2) //offset of times quickwarped
+
 #include "credits/credits.event"

@@ -25,6 +25,7 @@ mov	lr,r3
 mov	r0,#0x77
 ldr	r3,=#0x807C5F4
 mov	lr,r3
+.short	0xF800
 ldr	r3,=#0x804D71D
 bx	r3
 .align

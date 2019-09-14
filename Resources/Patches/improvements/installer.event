@@ -329,6 +329,42 @@ WORD 0xFFFFFFFF 0xFFFFFFFF 0xFFFFFFFF 0xFFFFFFFF
 //respawn in lake hylia shallow water
 PUSH; ORG $41C; BYTE 0x22; POP
 
+//add quick warp option
+PUSH; ORG $A5216; SHORT 0x2201 0xE004; POP
+PUSH; ORG $A5242; SHORT 0xB408; jumpToHack(quickwarpOption); POP
+ALIGN 4
+quickwarpOption:
+#incbin "asm/quickwarpOption.dmp"
+//change the warp text
+PUSH
+ORG $9AECA8; WORD quickWarpEnglish-$9AECA0
+ORG $9F7568; WORD  quickWarpFrench-$9F7560
+ORG $A3EFF8; WORD  quickWarpGerman-$A3EFF0
+ORG $A81FB8; WORD quickWarpSpanish-$A81FB0
+ORG $AC38E8; WORD quickWarpItalian-$AC38E0
+POP
+quickWarpEnglish:
+BYTE 6 1 0x20; String(Save); BYTE 10 10 6 2 0x20; String(Quickwarp); BYTE 0
+quickWarpFrench:
+BYTE 6 1 0x20; String(Sauvegarder); BYTE 10 10 6 2 0x20; String(Quickwarp); BYTE 0
+quickWarpGerman:
+BYTE 6 1 0x20; String(Speichern); BYTE 0x2E 10 10 6 2 0x20; String(Quickwarp); BYTE 0x2E 0
+quickWarpSpanish:
+BYTE 6 1 0x20; String(Guardar); BYTE 0x2E 10 10 6 2 0x20; String(Quickwarp); BYTE 0x2E 0
+quickWarpItalian:
+BYTE 6 1 0x20; String(Salva); BYTE 10 10 6 2 0x20; String(Quickwarp); BYTE 0
+//load the right text
+PUSH; ORG $520A8; jumpToHack(quickwarpText); POP
+ALIGN 4
+quickwarpText:
+#incbin "asm/quickwarpText.dmp"
+
+//hold button to skip through choices, like regular dialogues
+PUSH; ORG $5655C; jumpToHack(skipChoice); POP
+ALIGN 4
+skipChoice:
+#incbin "asm/skipChoice.dmp"
+
 #include "glitchless.event"
 #include "dungeon.event"
 #include "fairy.event"
