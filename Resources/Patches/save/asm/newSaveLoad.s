@@ -1,6 +1,11 @@
 .thumb
 push	{r4-r5,lr}
 push	{r0-r7}
+@check if quickwarp
+ldr	r0,=#0x2000088
+ldrb	r0,[r0]
+cmp	r0,#0xFF
+beq	end
 @load the save
 ldr	r0,=#0x2000004
 ldr	r1,=#0x203FB00
