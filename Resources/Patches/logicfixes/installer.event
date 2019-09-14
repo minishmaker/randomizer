@@ -274,6 +274,26 @@ PUSH; ORG $58BA0; jumpToHack(holeKeys); POP
 ALIGN 4
 holeKeys:
 #incbin "asm/holeKeys.dmp"
+#ifndef fowLeftItem
+	#define fowLeftItem "0x53"
+#endif
+#ifndef fowLeftSub
+	#define fowLeftSub "0x00"
+#endif
+#ifndef fowRightItem
+	#define fowRightItem "0x53"
+#endif
+#ifndef fowRightSub
+	#define fowRightSub "0x00"
+#endif
+PUSH
+ORG $E2B0B; BYTE fowLeftItem  fowLeftSub
+ORG $FC46B; BYTE fowLeftItem  fowLeftSub
+ORG $FC48B; BYTE fowLeftItem  fowLeftSub
+ORG $E2C4B; BYTE fowRightItem fowRightSub
+ORG $FC4AB; BYTE fowRightItem fowRightSub
+ORG $FC4CB; BYTE fowRightItem fowRightSub
+POP
 
 //bloomboy always spawns
 PUSH; ORG $4C166; SHORT 0; ORG $4C16E; SHORT 0xE001; POP
