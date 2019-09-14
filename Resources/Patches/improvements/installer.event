@@ -367,6 +367,17 @@ skipChoice:
 //skip darknut spawning cutscene in dhc
 PUSH; ORG $E672; SHORT 0; POP
 
+//give butterflies custom flags to check
+PUSH; ORG $18894; jumpToHack(butterflyFix1); POP
+ALIGN 4
+butterflyFix1:
+#incbin "asm/butterflyFix1.dmp"
+//set the flags when the spots are taken
+PUSH; ORG $9F2EC; jumpToHack(butterflyFix2); POP
+ALIGN 4
+butterflyFix2:
+#incbin "asm/butterflyFix2.dmp"
+
 #include "glitchless.event"
 #include "dungeon.event"
 #include "fairy.event"
