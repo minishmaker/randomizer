@@ -312,5 +312,8 @@ ALIGN 4
 libraryTrapdoor:
 #incbin "asm/libraryTrapdoor.dmp"
 
+//carpenters don't need cane to spawn
+PUSH; ORG $4E53A; SHORT 0; POP
+
 #include "dojos.event"
 #include "shop.event"
