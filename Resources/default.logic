@@ -1,7 +1,7 @@
 # Default logic for the randomizer - Doesn't allow glitches, but allows unintuitive tricks
 
 !name - Default
-!version - 0.4
+!version - 0.4.2
 !crc - E8637292
 
 !flag - Setting - KEYSANITY - Keysanity - false
@@ -187,7 +187,7 @@ SimulationChest;               Minor; 0F04C2;                                   
 RemShoeShop;                   Major; 0130EE;                                                                     Items.WakeUpMushroom
 Shop80Item;                    Major; walletShopItem:Define:FirstByte, walletShopSub:Define:SecondByte;           ;                                                                                                                                 Items.Wallet
 Shop300Item;                   Major; boomerangShopItem:Define:FirstByte, boomerangShopSub:Define:SecondByte;     Items.Wallet;                                                                                                                     Items.Boomerang
-Shop600Item;                   Major; quiverShopItem:Define:FirstByte, quiverShopSub:Define:SecondByte;           Items.Wallet::2;                                                                                                                  Items.LargeQuiver
+Shop600Item;                   Major; quiverShopItem:Define:FirstByte, quiverShopSub:Define:SecondByte;           Items.Wallet::3;                                                                                                                  Items.LargeQuiver
 ShopDogfoodItem;               Major; dogShopItem:Define:FirstByte, dogShopSub:Define:SecondByte;                 (|Items.Flippers, Items.PacciCane, Items.RocsCape);                                                                               Items.DogFoodBottle
 CarlovReward;                  Major; carlovSpotItem:Define:FirstByte, carlovSpotSub:Define:SecondByte;           (|Items.Flippers, Items.PacciCane, Items.RocsCape);                                                                               Items.CarlovMedal
 FigurineHouseLeft;             Minor; 23-05-00;                                                                   Items.CarlovMedal
