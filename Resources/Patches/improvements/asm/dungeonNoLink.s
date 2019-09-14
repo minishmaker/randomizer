@@ -1,14 +1,23 @@
 .thumb
 ldr	r3,=#0x2033A90
 ldrb	r3,[r3,#3]
-ldr	r1,=#0x2032EE0
-ldrb	r1,[r1]
+ldr	r2,=#0x2032EE0
+ldrb	r1,[r2]
+cmp	r1,#0x2C
+bne	notarmos
+ldrb	r2,[r2,#1]
+cmp	r2,#9
+blo	notarmos
+mov	r1,#3
+b	got
+notarmos:
 lsl	r1,#2
 ldr	r2,=#0x80528E8
 ldr	r2,[r2]
 add	r1,r2
 ldrb	r1,[r1,#1]
 sub	r1,#0x17
+got:
 cmp	r3,r1
 beq	match
 ldr	r0,=#0x6014000
