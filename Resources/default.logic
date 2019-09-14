@@ -154,7 +154,6 @@ Inaccessible;    Helper;; Items.Untyped.FF
 SmithHouse;                    Minor; 22-11-00;                                                                   ;
 IntroItem1;                    Major; 0F252B;                                                                     ;                                                                                                                                 Items.SmithSword
 IntroItem2;                    Major; 0F253B;                                                                     ;                                                                                                                                 Items.Shield
-LinkHouseTreeHeartPiece;       Minor; 0F9BA7;                                                                     Helpers.CanDestroyTrees										                                                                      
 LinkMinishWaterHoleHeartPiece; Minor; 0DB55F;                                                                     Helpers.CanDestroyTrees ,Items.PegasusBoots, Items.Flippers	                                                                      
 HyruleWellTop;                 Major; 41-00-00;                                                                   Items.BombBag;                                                                                                                    Items.RemoteBombs # Permanent unless kinsanity
 HyruleWellLeft;                Major; 41-00-01;                                                                   Items.MoleMitts;                                                                                                                  Items.SmithSword # Temporary for Testing
@@ -400,8 +399,8 @@ FortressOutsideF3Right:Fortress;            Minor;             18-02-01;        
 FortressOutsideBombWallBigChest:Fortress;   Major;             18-03-00;                                                                   Locations.AccessFortress, Items.BombBag, Helpers.HasBow, Helpers.CanSplit2, Items.SmallKey`FOW_SET`:2
 FortressOutsideBombWallSmallChest:Fortress; Minor;             18-03-01;                                                                   Locations.FortressOutsideBombWallBigChest, Items.MoleMitts, Items.SmallKey`FOW_SET`:2
 FortressOutsideMinishHole:Fortress;         `KEYSANITY_MAJOR`; 0F424F;                                                                     Locations.AccessFortress, Helpers.HasBow, Items.SmallKey`FOW_SET`:3;                                      Items.SmallKey`FOW_SET`
-FortressRightDrop:Fortress;                 `KEYSANITY_MAJOR`; 0E2C4B;                                                                     Locations.AccessFortress, Helpers.CanSplit2;                                                              Items.SmallKey`FOW_SET`
-FortressLeftDrop:Fortress;                  `KEYSANITY_MAJOR`; 0E2B0B;                                                                     Locations.AccessFortress, (|Helpers.CanSplit2, Items.RocsCape);                                           Items.SmallKey`FOW_SET`
+FortressRightDrop:Fortress;                 `KEYSANITY_MAJOR`; fowRightItem:Define:FirstByte,fowRightSub:Define:SecondByte;                                                                     Locations.AccessFortress, Helpers.CanSplit2;                                                              Items.SmallKey`FOW_SET`
+FortressLeftDrop:Fortress;                  `KEYSANITY_MAJOR`; fowLeftItem:Define:FirstByte,fowLeftSub:Define:SecondByte;                                                                       Locations.AccessFortress, (|Helpers.CanSplit2, Items.RocsCape);                                           Items.SmallKey`FOW_SET`
 FortressClonePuzzle:Fortress;               `KEYSANITY_MAJOR`; 0E1E8B;                                                                     Locations.AccessFortress, Helpers.HasBow, Helpers.CanSplit2 ,Items.SmallKey`FOW_SET`:2;                   Items.SmallKey`FOW_SET`
 FortressEyegoreKill:Fortress;               `KEYSANITY_MINOR`; 58-00-00;                                                                   Locations.AccessFortress, Helpers.HasBow, Helpers.CanSplit2;                                              Items.DungeonMap`FOW_SET`
 FortressPedestal:Fortress;                  `KEYSANITY_MINOR`; 58-19-00;                                                                   Locations.AccessFortress, Helpers.HasBow;                                                                 Items.Compass`FOW_SET`
@@ -489,7 +488,7 @@ RuinsBombBag;            Major; 0FE0AE;   Helpers.Inaccessible;
 LonLonWallet;            Major; 32-0F-00; Helpers.Inaccessible;
 LonLonBottle3;           Major; 0FE05E;   Helpers.Inaccessible;
 GoronBottle4;            Major; 2F-01-01; Helpers.Inaccessible;
-TingleBoomerang;         Major; 32-00-04; Helpers.Inaccessible; Items.Boomerang #consistency
+TingleBoomerang;         Major; 32-00-04; Helpers.Inaccessible;                          Items.Boomerang #consistency
 RuinsBeanStalk;          Major; 0D-02-00; Helpers.Inaccessible;
 					     
 RuinsArrowButterfly;     Major; 0FE12F;   Helpers.Inaccessible;
@@ -500,6 +499,7 @@ CrenelBeanstalkHP;       Minor; 0F5D9B;   Helpers.Inaccessible;
 HyliaBeanstalkHP;        Minor; 0F5EDB;   Helpers.Inaccessible;
 HillsBeanstalkHP;        Minor; 0F6073;   Helpers.Inaccessible;
 SouthTreeHouseHP;        Minor; 0F9E1F;   Helpers.Inaccessible;
+LinkHouseTreeHP;         Minor; 0F9BA7;   Helpers.Inaccessible, Helpers.CanDestroyTrees;
 FallsWaterDigCaveHP;     Minor; 0F3DD7;   Helpers.Inaccessible;
 FallsWaterfallHP;        Minor; 0F906F;   Helpers.Inaccessible;
 CastorMinishWaterCaveHP; Minor; 0DB3F7;   Helpers.Inaccessible;
