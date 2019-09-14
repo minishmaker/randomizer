@@ -1,5 +1,20 @@
 .thumb
 push	{lr}
+@check if remote bombs are equipped
+ldr	r0,=#0x2002AF4
+ldrb	r1,[r0]
+cmp	r1,#8
+beq	remote
+ldrb	r2,[r0,#1]
+cmp	r2,#8
+beq	remote
+
+@check if bombs are equipped
+cmp	r1,#7
+beq	noRemote
+cmp	r2,#7
+beq	noRemote
+
 @check if remote bombs unlocked and not off
 mov	r0,#0x08
 ldr	r3,=#0x807C4A8
@@ -11,6 +26,7 @@ cmp	r1,#0
 bne	noRemote
 cmp	r0,#0
 beq	noRemote
+remote:
 mov	r0,#0x18
 mov	r1,r0
 ldr	r3,=#0x801D824
