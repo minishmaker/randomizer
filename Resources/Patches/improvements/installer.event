@@ -377,6 +377,15 @@ PUSH; ORG $9F2EC; jumpToHack(butterflyFix2); POP
 ALIGN 4
 butterflyFix2:
 #incbin "asm/butterflyFix2.dmp"
+//fix the butterfly graphics
+PUSH; ORG $9F23C; jumpToHack(butterflyFix3); POP
+ALIGN 4
+butterflyFix3:
+#incbin "asm/butterflyFix3.dmp"
+PUSH; ORG $9F504; jumpToHack(butterflyFix4); POP
+ALIGN 4
+butterflyFix4:
+#incbin "asm/butterflyFix4.dmp"
 
 #include "glitchless.event"
 #include "dungeon.event"
