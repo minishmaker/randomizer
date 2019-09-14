@@ -93,3 +93,9 @@ PUSH; ORG $78EAC; jumpToHack(todPads); POP
 ALIGN 4
 todPads:
 #incbin "asm/todPads.dmp"
+
+//first fusion can be done at any point in the game
+PUSH; ORG $1EA3C; jumpToHack(hurdyFix); POP
+ALIGN 4
+hurdyFix:
+#incbin "asm/hurdyFix.dmp"

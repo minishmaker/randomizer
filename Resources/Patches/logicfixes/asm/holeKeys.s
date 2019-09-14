@@ -19,13 +19,13 @@ mov	r2,#0
 b	end
 
 left:
-ldr	r3,=#0x80FC46B
+ldr	r3,=#0x80E2B0B
 ldrb	r1,[r3]
 ldrb	r2,[r3,#1]
 b	end
 
 right:
-ldr	r3,=#0x80FC4AB
+ldr	r3,=#0x80E2C4B
 ldrb	r1,[r3]
 ldrb	r2,[r3,#1]
 b	end

@@ -189,6 +189,12 @@ ALIGN 4
 fusionLockTable: //WORD offsetoflockerflag; SHORT lockerflagid fusionflagid
 WORD 0x2002EA4; SHORT 8 0x1C //belari won't talk about remote bombs until he has handed the first item
 WORD 0 0 //terminator
+//belari will not trade bombs more than once
+PUSH; ORG $A0EC; BYTE 9; POP
+PUSH; ORG $7EA68; jumpToHack(noSwaps); POP
+ALIGN 4
+noSwaps:
+#incbin "asm/noSwaps.dmp"
 
 //ranch door is closed on both sides insetad of just one
 PUSH; ORG $F2F34; POIN ranchDoor|1; POP
@@ -274,6 +280,26 @@ PUSH; ORG $58BA0; jumpToHack(holeKeys); POP
 ALIGN 4
 holeKeys:
 #incbin "asm/holeKeys.dmp"
+#ifndef fowLeftItem
+	#define fowLeftItem "0x53"
+#endif
+#ifndef fowLeftSub
+	#define fowLeftSub "0x00"
+#endif
+#ifndef fowRightItem
+	#define fowRightItem "0x53"
+#endif
+#ifndef fowRightSub
+	#define fowRightSub "0x00"
+#endif
+PUSH
+ORG $E2B0B; BYTE fowLeftItem  fowLeftSub
+ORG $FC46B; BYTE fowLeftItem  fowLeftSub
+ORG $FC48B; BYTE fowLeftItem  fowLeftSub
+ORG $E2C4B; BYTE fowRightItem fowRightSub
+ORG $FC4AB; BYTE fowRightItem fowRightSub
+ORG $FC4CB; BYTE fowRightItem fowRightSub
+POP
 
 //bloomboy always spawns
 PUSH; ORG $4C166; SHORT 0; ORG $4C16E; SHORT 0xE001; POP
@@ -291,6 +317,9 @@ PUSH; ORG $EF87C; POIN libraryTrapdoor|1; POP
 ALIGN 4
 libraryTrapdoor:
 #incbin "asm/libraryTrapdoor.dmp"
+
+//carpenters don't need cane to spawn
+PUSH; ORG $4E53A; SHORT 0; POP
 
 #include "dojos.event"
 #include "shop.event"

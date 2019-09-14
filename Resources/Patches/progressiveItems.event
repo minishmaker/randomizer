@@ -135,3 +135,10 @@ POIN progressiveIconGraphics
 ALIGN 4
 progressiveIconGraphics:
 #incbin "swapicon.img.bin"
+
+PUSH; ORG $53F44; SHORT 0xD82E; POP //don't switch equipped bombs when getting new ones
+PUSH; ORG $53FA0; SHORT 0xD000; POP
+PUSH; ORG $53FA4; jumpToHack(bombequipFix); POP
+ALIGN 4
+bombequipFix:
+#incbin "asm/bombequipFix.dmp"

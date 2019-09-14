@@ -1,5 +1,9 @@
 .thumb
 push	{r0-r7}
+ldr	r1,=#0x80000000
+and	r1,r0
+cmp	r1,#0
+bne	end
 ldr	r1,offset
 ldrh	r2,[r1]
 add	r2,r0
