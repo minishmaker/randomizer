@@ -364,6 +364,9 @@ ALIGN 4
 skipChoice:
 #incbin "asm/skipChoice.dmp"
 
+//skip darknut spawning cutscene in dhc
+PUSH; ORG $E672; SHORT 0; POP
+
 #include "glitchless.event"
 #include "dungeon.event"
 #include "fairy.event"
