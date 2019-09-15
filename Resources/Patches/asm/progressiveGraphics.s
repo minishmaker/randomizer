@@ -86,4 +86,68 @@ mov	lr,r3
 .short	0xF800
 
 doneBoomerang:
+@fix the bomb flags, check if we own both type of bombs
+ldr	r0,=#0x2002B33
+ldrb	r1,[r0]
+mov	r2,#0xC0
+and	r2,r1
+cmp	r2,#0
+beq	end
+ldrb	r1,[r0,#1]
+mov	r2,#0x03
+and	r2,r1
+cmp	r2,#0
+beq	end
+
+@check if we have bombs equipped
+ldr	r0,=#0x2002AF4
+ldrb	r1,[r0]
+cmp	r1,#7
+beq	setbomb
+ldrb	r2,[r0,#1]
+cmp	r2,#7
+beq	setbomb
+
+@check if we have remote bombs equipped
+ldr	r0,=#0x2002AF4
+ldrb	r1,[r0]
+cmp	r1,#8
+beq	setremote
+ldrb	r2,[r0,#1]
+cmp	r2,#8
+beq	setremote
+
+end:
 pop	{pc}
+
+setbomb:
+ldr	r0,=#0x2002B33
+ldrb	r1,[r0]
+mov	r2,#0x7F
+and	r1,r2
+mov	r2,#0x40
+orr	r1,r2
+strb	r1,[r0]
+ldrb	r1,[r0,#1]
+mov	r2,#0xFE
+and	r1,r2
+mov	r2,#0x02
+orr	r1,r2
+strb	r1,[r0,#1]
+b	end
+
+setremote:
+ldr	r0,=#0x2002B33
+ldrb	r1,[r0]
+mov	r2,#0xBF
+and	r1,r2
+mov	r2,#0x80
+orr	r1,r2
+strb	r1,[r0]
+ldrb	r1,[r0,#1]
+mov	r2,#0xFD
+and	r1,r2
+mov	r2,#0x01
+orr	r1,r2
+strb	r1,[r0,#1]
+b	end
