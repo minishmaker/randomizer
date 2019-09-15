@@ -390,6 +390,16 @@ butterflyFix4:
 //unlock all songs, why not
 PUSH; ORG $6E446; SHORT 0; POP
 
+//faster TOD transitions
+PUSH
+ORG $70FB6; SHORT 0x2104
+ORG $739CC; SHORT 0x2001
+ORG $7AC12; SHORT 0x2101
+ORG $7AC72; SHORT 0x46C0
+ORG $7AC76; SHORT 0x2001
+ORG $7ACC0; SHORT 0x201E
+POP
+
 #include "glitchless.event"
 #include "dungeon.event"
 #include "fairy.event"
