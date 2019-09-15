@@ -151,7 +151,7 @@ ALIGN 4
 spinSoldier:
 #incbin "asm/spinSoldier.dmp"
 
-//boomerang con no longer grab golden kinstones
+//boomerang can no longer grab golden kinstones
 PUSH; ORG $80A18; jumpToHack(boomerangFix); POP
 ALIGN 4
 boomerangFix:
@@ -327,7 +327,7 @@ BYTE 6 0xF 0 0x5D 0 0x07; SHORT 0 0x1B8 0x98 0 0
 WORD 0xFFFFFFFF 0xFFFFFFFF 0xFFFFFFFF 0xFFFFFFFF
 
 //respawn in lake hylia shallow water
-PUSH; ORG $41C; BYTE 0x22; POP
+PUSH; ORG $41C; BYTE 0x20; POP
 
 //add quick warp option
 PUSH; ORG $A5216; SHORT 0x2201 0xE004; POP
@@ -387,6 +387,26 @@ PUSH; ORG $9F504; jumpToHack(butterflyFix4); POP
 ALIGN 4
 butterflyFix4:
 #incbin "asm/butterflyFix4.dmp"
+
+//unlock all songs, why not
+PUSH; ORG $6E446; SHORT 0; POP
+
+//faster TOD transitions
+PUSH
+ORG $70FB6; SHORT 0x2104
+ORG $739CC; SHORT 0x2001
+ORG $77232; SHORT 0x3003
+ORG $7AC12; SHORT 0x2101
+ORG $7AC72; SHORT 0x46C0
+ORG $7AC76; SHORT 0x2001
+ORG $7ACC0; SHORT 0x201E
+POP
+
+//cucco game ends instantly if you won
+PUSH; ORG $A0B26; SHORT 0xB408; jumpToHack(cuccoWin); POP
+ALIGN 4
+cuccoWin:
+#incbin "asm/cuccoWin.dmp"
 
 #include "glitchless.event"
 #include "dungeon.event"
