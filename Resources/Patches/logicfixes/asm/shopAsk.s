@@ -4,6 +4,12 @@
 .equ quiverShopItem, boomerangShopSub+4
 .equ quiverShopSub, quiverShopItem+4
 .equ getTextOffset, quiverShopSub+4
+.equ shootbutterflyCredits, getTextOffset+4
+.equ digbutterflyCredits, shootbutterflyCredits+4
+.equ swimbutterflyCredits, digbutterflyCredits+4
+.equ fastspinCredits, swimbutterflyCredits+4
+.equ fastsplitCredits, fastspinCredits+4
+.equ longspinCredits, fastsplitCredits+4
 .thumb
 ldrb	r0,[r6,#6]
 cmp	r0,#0x64
@@ -46,23 +52,19 @@ mov	r5,r1		@special
 mov	r6,r2		@price
 @write the item name to ram
 mov	r0,r4
-ldr	r3,getTextOffset
-mov	lr,r3
-.short	0xF800
+bl	getTextWrap
 mov	r1,r7
 bl	writeText
 mov	r7,r1
 
 @write the special line if any
-cmp	r5,#0
-beq	nospecial
+cmp	r5,#2
+blo	nospecial
 mov	r0,#0x0A
 strb	r0,[r7]
 add	r7,#1
 mov	r0,r5
-ldr	r3,getTextOffset
-mov	lr,r3
-.short	0xF800
+bl	getTextWrap
 mov	r1,r7
 bl	writeText
 mov	r7,r1
@@ -138,9 +140,7 @@ nonew:
 
 @write the buy text to ram
 ldr	r0,=#0x2C14
-ldr	r3,getTextOffset
-mov	lr,r3
-.short	0xF800
+bl	getTextWrap
 mov	r1,r7
 bl	writeText
 mov	r7,r1
@@ -173,6 +173,20 @@ bx	lr
 
 getText:
 mov	r3,#0
+cmp	r0,#0x61
+beq	shells
+cmp	r0,#0x70
+beq	shootbutterfly
+cmp	r0,#0x71
+beq	digbutterfly
+cmp	r0,#0x72
+beq	swimbutterfly
+cmp	r0,#0x73
+beq	fastspin
+cmp	r0,#0x74
+beq	fastsplit
+cmp	r0,#0x75
+beq	longspin
 cmp	r0,#0x5C
 beq	kinstone
 cmp	r0,#0x50
@@ -184,6 +198,34 @@ b	dungeon
 normal:
 ldr	r1,=#0x0400
 orr	r0,r1
+bx	lr
+
+shells:
+ldr	r0,=#0x043F
+bx	lr
+
+shootbutterfly:
+ldr	r0,shootbutterflyCredits
+bx	lr
+
+digbutterfly:
+ldr	r0,digbutterflyCredits
+bx	lr
+
+swimbutterfly:
+ldr	r0,swimbutterflyCredits
+bx	lr
+
+fastspin:
+ldr	r0,fastspinCredits
+bx	lr
+
+longspin:
+ldr	r0,fastsplitCredits
+bx	lr
+
+fastsplit:
+ldr	r0,longspinCredits
 bx	lr
 
 dungeon:
@@ -262,6 +304,22 @@ crown:
 ldr	r3,=#0x717
 b	normal
 
+getTextWrap:
+push	{lr}
+ldr	r3,=#0xFFFF
+cmp	r0,r3
+bhi	isoffset
+ldr	r3,getTextOffset
+mov	lr,r3
+.short	0xF800
+pop	{pc}
+isoffset:
+ldr	r3,=#0x2000007
+ldrb	r3,[r3]
+lsl	r3,#2
+ldr	r0,[r0,r3]
+pop	{pc}
+
 .align
 .ltorg
 walletShopItem:
@@ -272,3 +330,9 @@ walletShopItem:
 @WORD quiverShopItem
 @WORD quiverShopSub
 @POIN getTextOffset
+@POIN shootbutterflyCredits
+@POIN digbutterflyCredits
+@POIN swimbutterflyCredits
+@POIN fastspinCredits
+@POIN fastsplitCredits
+@POIN longspinCredits
