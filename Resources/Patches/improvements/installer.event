@@ -387,6 +387,9 @@ ALIGN 4
 butterflyFix4:
 #incbin "asm/butterflyFix4.dmp"
 
+//unlock all songs, why not
+PUSH; ORG $6E446; SHORT 0; POP
+
 #include "glitchless.event"
 #include "dungeon.event"
 #include "fairy.event"
