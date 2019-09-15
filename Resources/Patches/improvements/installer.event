@@ -150,7 +150,7 @@ ALIGN 4
 spinSoldier:
 #incbin "asm/spinSoldier.dmp"
 
-//boomerang con no longer grab golden kinstones
+//boomerang can no longer grab golden kinstones
 PUSH; ORG $80A18; jumpToHack(boomerangFix); POP
 ALIGN 4
 boomerangFix:
