@@ -364,5 +364,10 @@ namespace MinishRandomizer
                 statusText.Text = "Loaded options for default logic";
             }
         }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            seedField.Text = new Random().Next().ToString();
+        }
     }
 }

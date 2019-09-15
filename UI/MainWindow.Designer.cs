@@ -50,13 +50,14 @@
             this.gimmicksTabPage = new System.Windows.Forms.TabPage();
             this.gimmickControlLayout = new System.Windows.Forms.FlowLayoutPanel();
             this.generatedTab = new System.Windows.Forms.TabPage();
+            this.generatedLogicLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.generatedSeedValue = new System.Windows.Forms.Label();
             this.generatedSeedLabel = new System.Windows.Forms.Label();
             this.saveSpoilerButton = new System.Windows.Forms.Button();
             this.savePatchButton = new System.Windows.Forms.Button();
             this.saveRomButton = new System.Windows.Forms.Button();
-            this.generatedLogicLabel = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.generalTab.SuspendLayout();
@@ -118,6 +119,7 @@
             // 
             // generalTab
             // 
+            this.generalTab.Controls.Add(this.button1);
             this.generalTab.Controls.Add(this.seedLabel);
             this.generalTab.Controls.Add(this.seedField);
             this.generalTab.Controls.Add(this.customPatchCheckBox);
@@ -276,6 +278,14 @@
             this.generatedTab.Text = "Seed";
             this.generatedTab.UseVisualStyleBackColor = true;
             // 
+            // generatedLogicLabel
+            // 
+            this.generatedLogicLabel.AutoSize = true;
+            this.generatedLogicLabel.Location = new System.Drawing.Point(54, 36);
+            this.generatedLogicLabel.Name = "generatedLogicLabel";
+            this.generatedLogicLabel.Size = new System.Drawing.Size(0, 13);
+            this.generatedLogicLabel.TabIndex = 6;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -333,13 +343,16 @@
             this.saveRomButton.UseVisualStyleBackColor = true;
             this.saveRomButton.Click += new System.EventHandler(this.SaveRomButton_Click);
             // 
-            // generatedLogicLabel
+            // button1
             // 
-            this.generatedLogicLabel.AutoSize = true;
-            this.generatedLogicLabel.Location = new System.Drawing.Point(54, 36);
-            this.generatedLogicLabel.Name = "generatedLogicLabel";
-            this.generatedLogicLabel.Size = new System.Drawing.Size(0, 13);
-            this.generatedLogicLabel.TabIndex = 6;
+            this.button1.AutoSize = true;
+            this.button1.Location = new System.Drawing.Point(153, 8);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(85, 23);
+            this.button1.TabIndex = 13;
+            this.button1.Text = "Random Seed";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // MainWindow
             // 
@@ -400,6 +413,7 @@
         private System.Windows.Forms.FlowLayoutPanel gimmickControlLayout;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label generatedLogicLabel;
+        private System.Windows.Forms.Button button1;
     }
 }
 
