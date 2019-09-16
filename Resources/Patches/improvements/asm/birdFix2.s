@@ -7,6 +7,14 @@ cmp	r1,#0x12
 bne	checkbird
 ldrb	r1,[r4,#0x0B]
 cmp	r1,#0x09
+bne	checkbird
+ldr	r0,=#0x3000BF0
+ldrb	r1,[r0,#4]
+cmp	r1,#0x68
+bne	checkbird
+ldrb	r1,[r0,#5]
+cmp	r1,#0
+bne	checkbird
 ldr	r1,=#0x800DA5B
 ldrb	r1,[r1]
 strb	r1,[r4,#0x0B]
