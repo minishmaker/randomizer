@@ -414,6 +414,23 @@ ALIGN 4
 deadKingFix:
 #incbin "asm/deadKingFix.dmp"
 
+//scrubs and witch tell you what you are about to buy
+PUSH; ORG $560AC; jumpToHack(smallShopsText); POP
+ALIGN 4
+smallShopsText:
+#incbin "asm/smallShopsText.dmp"
+WORD bottleScrubItem
+WORD bottleScrubSub
+WORD gripScrubItem
+WORD gripScrubSub
+POIN getTextOffset
+POIN shootbutterflyCredits
+POIN digbutterflyCredits
+POIN swimbutterflyCredits
+POIN fastspinCredits
+POIN fastsplitCredits
+POIN longspinCredits
+
 #include "glitchless.event"
 #include "dungeon.event"
 #include "fairy.event"
