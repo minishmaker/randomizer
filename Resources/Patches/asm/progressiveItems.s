@@ -2,10 +2,35 @@
 .equ	dojo, returnOffset+4
 .thumb
 push	{r4-r7,lr}
+@check if this is buy mode
+cmp	r2,#2
+bne	notshop
+@check if we are in stockwell shop
+ldr	r4,=#0x3000BF0
+ldrb	r5,[r4,#5]
+cmp	r5,#0
+bne	notshop
+ldrb	r4,[r4,#4]
+cmp	r4,#0x23
+beq	wasshop
+notshop:
+mov	r2,#0
+wasshop:
+
 push	{r1-r7}
 @set up the data
 mov	r4,r0	@item ID
 ldr	r5,progressiveTable
+
+@check if we are in the biggoron room
+ldr	r0,=#0x3000BF0
+ldrb	r1,[r0,#5]
+cmp	r1,#0
+bne	notgoron
+ldrb	r0,[r0,#4]
+cmp	r0,#0x1A
+beq	End
+notgoron:
 
 @run dojo progressive
 mov	r0,r4
@@ -14,7 +39,7 @@ mov	lr,r3
 .short	0xF800
 mov	r4,r0
 
-@first we need to check if this item is progressive
+@now need to check if this item is progressive
 tableLoop:
 ldr	r0,[r5]
 mov	r1,#0

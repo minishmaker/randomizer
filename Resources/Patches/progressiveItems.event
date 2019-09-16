@@ -12,7 +12,7 @@ POIN progressiveSwordIDs progressiveSwordFlags
 //POIN progressiveBombIDs progressiveBombFlags
 POIN progressiveBowIDs progressiveBowFlags
 POIN progressiveBoomerangIDs progressiveBoomerangFlags
-//POIN progressiveShieldIDs progressiveShieldFlags
+POIN progressiveShieldIDs progressiveShieldFlags
 POIN progressiveSpinScrollIDs progressiveSpinScrollFlags
 POIN progressiveGreatScrollIDs progressiveGreatScrollFlags
 WORD -1 //terminator
@@ -83,10 +83,10 @@ BYTE 0x02 0xC0 //Boomerang
 BYTE 0x03 0x03 //Magical Boomerang
 BYTE 0xFF //terminator
 
-//progressiveShieldFlags:
-//BYTE 0x03 0x0C //Small Shield
-//BYTE 0x03 0x30 //Mirror Shield
-//BYTE 0xFF //terminator
+progressiveShieldFlags:
+BYTE 0x03 0x0C //Small Shield
+BYTE 0x03 0x30 //Mirror Shield
+BYTE 0xFF //terminator
 
 progressiveSpinScrollFlags:
 BYTE 0x12 0x03 //Spin attack
@@ -112,8 +112,8 @@ BYTE 0x09 0x0A //Bow -> Light Arrow
 BYTE 0x0A 0x09 //Light Arrow -> Bow
 BYTE 0x0B 0x0C //Boomerang -> Magical Boomerang
 BYTE 0x0C 0x0B //Magical Boomerang -> Boomerang
-BYTE 0x0D 0x0E //Small Shield -> Mirror Shield
-BYTE 0x0E 0x0D //Mirror Shield -> Small Shield
+//BYTE 0x0D 0x0E //Small Shield -> Mirror Shield
+//BYTE 0x0E 0x0D //Mirror Shield -> Small Shield
 BYTE 0xFF //terminator
 
 PUSH; ORG $80E3C; jumpToHack(progressivePopups); POP //makes the game show text for items you already own if they are on the progressive list
