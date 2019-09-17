@@ -44,6 +44,23 @@ ALIGN 4
 swordFix:
 #incbin "asm/swordFix.dmp"
 POIN swordFixPointers
+#ifdef pedestalItems
+WORD 1
+WORD pedestalSpot1Item
+WORD pedestalSpot1Sub
+WORD pedestalSpot2Item
+WORD pedestalSpot2Sub
+WORD pedestalSpot3Item
+WORD pedestalSpot3Sub
+#else
+WORD 0
+WORD 0
+WORD 0
+WORD 0
+WORD 0
+WORD 0
+WORD 0
+#endif
 ALIGN 4
 swordFixPointers:
 POIN $D26C //melari
@@ -85,8 +102,10 @@ POIN $96A4
 POIN $96A8
 POIN $96AC
 POIN $96B0
+#ifndef pedestalItems
 //pedestal skip
 POIN $13A7E
+#endif
 WORD 0
 
 //soldiers always on patrol in the garden

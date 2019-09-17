@@ -1,7 +1,34 @@
+#ifdef noDHC 
+	#undef openDHC
+#endif
+
+#ifdef openDHC 
+	#undef noDHC
+#endif
+
 #ifdef pedestalItems
 	#ifndef openDHC
 		#define openDHC
 	#endif
+#endif
+
+#ifndef pedestalSpot1Item
+	#define pedestalSpot1Item "0x16"
+#endif
+#ifndef pedestalSpot1Sub
+	#define pedestalSpot1Sub "0x00"
+#endif
+#ifndef pedestalSpot2Item
+	#define pedestalSpot2Item "0x0B"
+#endif
+#ifndef pedestalSpot2Sub
+	#define pedestalSpot2Sub "0x00"
+#endif
+#ifndef pedestalSpot3Item
+	#define pedestalSpot3Item "0x0D"
+#endif
+#ifndef pedestalSpot3Sub
+	#define pedestalSpot3Sub "0x00"
 #endif
 
 //sanctuary fixes

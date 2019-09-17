@@ -154,6 +154,7 @@ drawTime:
 #incbin "asm/drawTime.dmp"
 POIN drawText
 
+#include "pedestal.event"
 #include "timedohko.event"
 #include "traps.event"
 #include "newGame.event"
@@ -169,7 +170,6 @@ POIN drawText
 #include "hearts.event"
 #include "randomLanguage.event"
 #include "tunic.event"
-#include "pedestal.event"
 
 #ifdef fuzzy //size of the mosaic, 0 to 14
 	PUSH; ORG $4FD90; jumpToHack(fuzzyMode); POP
