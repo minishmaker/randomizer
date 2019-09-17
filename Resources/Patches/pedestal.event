@@ -161,3 +161,15 @@ PUSH; ORG $4BA1C; jumpToHack(pedestalBasement); POP
 ALIGN 4
 pedestalBasement:
 #incbin "asm/pedestalBasement.dmp"
+
+//new tingle tv graphics
+PUSH
+ORG $625C30
+#incbin "dhcBlocker.img.bin"
+POP
+
+//new tingle tv palette
+PUSH
+ORG $5A4510
+#incbin "dhcBlocker.pal.bin"
+POP
