@@ -4,7 +4,7 @@
 push	{r4-r7,lr}
 @check if this is buy mode
 cmp	r2,#2
-bne	notshop
+bne	doneshop
 @check if we are in stockwell shop
 ldr	r4,=#0x3000BF0
 ldrb	r5,[r4,#5]
@@ -12,10 +12,10 @@ cmp	r5,#0
 bne	notshop
 ldrb	r4,[r4,#4]
 cmp	r4,#0x23
-beq	wasshop
+beq	doneshop
 notshop:
 mov	r2,#0
-wasshop:
+doneshop:
 
 push	{r1-r7}
 @set up the data
