@@ -2,6 +2,21 @@
 PUSH; ORG $4E98E; SHORT 0; POP //sanctuary garden door always open
 PUSH; ORG $F4A9C; BYTE 0xFF; ORG $F4C18; POIN $F4AAC; POP//sanctuary switches door never closes
 
+//remove wind element from pedestal animation
+PUSH; ORG $13EDC; POIN $670402; POP
+
+#ifndef noDHC
+//remove the stained glass scene
+PUSH; ORG $532F6; SHORT 0x2310; POP
+
+#else
+//jump to credits on the stained glass
+PUSH; ORG $532F4; jumpToHack(pedestalWin); POP
+ALIGN 4
+pedestalWin:
+#incbin "asm/pedestalWin.dmp"
+#endif
+
 //logic for pedestal pull
 PUSH; ORG $4E9F4; jumpToHack(pedestalPull); POP
 ALIGN 4
