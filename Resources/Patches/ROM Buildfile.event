@@ -87,6 +87,7 @@ SHORT 0x050E 23; WORD 0x2002EA4 //mirror shield also sets flag 23, just in case
 //the shop uses custom flags 24, 25 and 26
 //butterflies use custom flags 27, 28 and 29
 //flag 30 means link found two shields (shops do not count)
+//flags 31, 32 and 33 are used for the items in pedestals mode
 SHORT 0x3D07 6; WORD 0x2002CB4 //set the simulation heart piece flag after it ends
 SHORT 0x4803 1; WORD 0x2002CA1 //library quest can be started with flippers
 SHORT 0x0517 1; WORD 0x2002CA1 //picking up the ocarina automatically starts the library quest

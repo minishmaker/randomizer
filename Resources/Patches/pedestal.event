@@ -1,3 +1,9 @@
+#ifdef pedestalItems
+	#ifndef openDHC
+		#define openDHC
+	#endif
+#endif
+
 //sanctuary fixes
 PUSH; ORG $4E98E; SHORT 0; POP //sanctuary garden door always open
 PUSH; ORG $F4A9C; BYTE 0xFF; ORG $F4C18; POIN $F4AAC; POP//sanctuary switches door never closes
@@ -8,7 +14,6 @@ PUSH; ORG $13EDC; POIN $670402; POP
 #ifndef noDHC
 //remove the stained glass scene
 PUSH; ORG $532F6; SHORT 0x2310; POP
-
 #else
 //jump to credits on the stained glass
 PUSH; ORG $532F4; jumpToHack(pedestalWin); POP
@@ -17,7 +22,17 @@ pedestalWin:
 #incbin "asm/pedestalWin.dmp"
 #endif
 
-//logic for pedestal pull
+//logic for pedestal pulls
+#ifdef pedestalItems
+PUSH; ORG $4E9F4; jumpToHack(pedestalItemsPull); POP
+ALIGN 4
+pedestalItemsPull:
+#incbin "asm/pedestalItemsPull.dmp"
+POIN pedestalearth
+POIN pedestalfire
+POIN pedestalwater
+POIN pedestalwind
+#else
 PUSH; ORG $4E9F4; jumpToHack(pedestalPull); POP
 ALIGN 4
 pedestalPull:
@@ -28,6 +43,7 @@ POIN pedestalearth
 POIN pedestalfire
 POIN pedestalwater
 POIN pedestalwind
+#endif
 
 ALIGN 4
 pedestalearth:
@@ -77,18 +93,26 @@ ALIGN 4
 defaultRequirement:
 #incbin "asm/pedestalElements.dmp"
 
+#ifdef pedestalItems
+//do not equip swords when pulled, also set flags
+PUSH; ORG $7EC68; jumpToHack(pedestalItemsNoEquip); POP
+ALIGN 4
+pedestalItemsNoEquip:
+#incbin "asm/pedestalItemsNoEquip.dmp"
+#else
 //do not equip four sword when pulled
 PUSH; ORG $7EC68; jumpToHack(pedestalNoEquip); POP
 ALIGN 4
 pedestalNoEquip:
 #incbin "asm/pedestalNoEquip.dmp"
+#endif
 
 //sanctuary pedestal pull check
 PUSH; ORG $AE844; jumpToHack(pedestalSanctuary); POP
 ALIGN 4
 pedestalSanctuary:
 #incbin "asm/pedestalSanctuary.dmp"
-#define openDHC
+
 //hyrule garden pedestal pull check, also blocks the entrance if the flag isn't set
 PUSH; ORG $AE81C; jumpToHack(pedestalGarden); POP
 ALIGN 4
