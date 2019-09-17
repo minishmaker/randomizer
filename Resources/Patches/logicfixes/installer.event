@@ -149,6 +149,10 @@ PUSH; ORG $52C60; SHORT 0x481D 0x2107 0x7201 0x46F7; POP //permanent town state
 PUSH; ORG $4DDA4; SHORT 0x46C0; POP //old man in front of library always attempted to load
 PUSH; ORG $EEDF2; SHORT 0xFFFF; POP //and old man in front of library is in all town states
 PUSH; ORG $EEA12; SHORT 0xFFFF; POP //soldier that wants you to spin is in all town states
+//remove some annoying soldiers
+PUSH; ORG $EEA32; SHORT 0; POP
+PUSH; ORG $EEA82; SHORT 0; POP
+PUSH; ORG $EEA92; SHORT 0; POP
 
 //biggoron changes
 PUSH; ORG $9402; SHORT 21; POP //biggoron doesn't ask for a major feat (checks if you have ezlo instead)
