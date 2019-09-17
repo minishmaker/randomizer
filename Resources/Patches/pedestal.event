@@ -1,15 +1,15 @@
-#ifdef noDHC 
-	#undef openDHC
+#ifdef pedestalItems
+	#ifndef openDHC
+		#define openDHC
+	#endif
 #endif
 
 #ifdef openDHC 
 	#undef noDHC
 #endif
 
-#ifdef pedestalItems
-	#ifndef openDHC
-		#define openDHC
-	#endif
+#ifdef noDHC 
+	#undef openDHC
 #endif
 
 #ifndef pedestalSpot1Item
