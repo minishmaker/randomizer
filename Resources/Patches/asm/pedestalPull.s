@@ -33,12 +33,11 @@ cmp	r0,#0
 beq	elements
 add	r4,#4
 b	loop
-beq	endLoop
 
 endLoop:
 ldr	r0,requirementTable
 cmp	r0,r4
-bne	elements
+bne	drop
 @run the default requirement
 ldr	r0,defaultRequirement
 mov	lr,r0
@@ -47,6 +46,7 @@ cmp	r0,#0
 beq	elements
 
 @place the drop object
+drop:
 ldr	r0,=#0x80F4B9C
 ldr	r3,=#0x804AAF8
 mov	lr,r3
