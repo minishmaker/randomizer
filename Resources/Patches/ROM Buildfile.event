@@ -103,8 +103,6 @@ SHORT 0x0546 4; WORD 0x2002CD5 //stairs dog moves when you get the flippers
 SHORT 0x1639 2; WORD 0x2002DC1 //killing vaati 2 opens the first dhc key door
 SHORT 0 0; WORD 0 //terminator
 
-//sanctuary stuff is wip and probably doesn't even work right now
-
 //flag hacks
 PUSH; ORG $7DBAC; jumpToHack(flagHack); POP
 ALIGN 4
@@ -130,10 +128,6 @@ WORD 0x800D980 0x2002EA4 0x02 //Ocarina - check for a new flag for the ocarina b
 WORD 0x8012F9C 0x2002EA4 0x08 //Rem - check a custom flag instead of boots
 WORD 0x8009FC4 0x2002EA5 0x01 //Belari - check a custom flag instead of bombs
 WORD 0 0 0 //terminator
-
-	//sanctuary fixes
-	PUSH; ORG $4E98E; SHORT 0; POP //sanctuary garden door always open
-	PUSH; ORG $F4A9C; BYTE 0xFF; ORG $F4C18; POIN $F4AAC; POP//sanctuary switches door never closes
 
 //ice blocks have a question mark inside
 PUSH
@@ -174,6 +168,7 @@ POIN drawText
 #include "hearts.event"
 #include "randomLanguage.event"
 #include "tunic.event"
+#include "pedestal.event"
 
 #ifdef fuzzy //size of the mosaic, 0 to 14
 	PUSH; ORG $4FD90; jumpToHack(fuzzyMode); POP
@@ -198,13 +193,6 @@ PUSH; ORG $4F05A; SHORT 0xE002; POP //remove soldiers near lon lon
 	#incbin "asm/randomFollower.dmp"
 	WORD followerID
 #endif
-
-PUSH; ORG $F4A40; POIN pedestalLocked; POP
-pedestalLocked:
-BYTE 6 0x0F 0x33 0x00 0x00 0x00; SHORT 0 0xBC 0x3C 0 0
-BYTE 6 0x0F 0x33 0x00 0x00 0x00; SHORT 0 0xD4 0x3C 0 0
-BYTE 6 0x0F 0x33 0x00 0x00 0x00; SHORT 0 0xC8 0x3C 0 0
-WORD 0xFFFFFFFF 0xFFFFFFFF 0xFFFFFFFF 0xFFFFFFFF
 
 #ifdef timerOption
 	PUSH; ORG $1C4E8; jumpToHack(timerDisplay); POP

@@ -1,0 +1,72 @@
+//sanctuary fixes
+PUSH; ORG $4E98E; SHORT 0; POP //sanctuary garden door always open
+PUSH; ORG $F4A9C; BYTE 0xFF; ORG $F4C18; POIN $F4AAC; POP//sanctuary switches door never closes
+
+//logic for pedestal pull
+PUSH; ORG $4E9F4; jumpToHack(pedestalPull); POP
+ALIGN 4
+pedestalPull:
+#incbin "asm/pedestalPull.dmp"
+POIN requirementTable
+POIN defaultRequirement
+POIN pedestalearth
+POIN pedestalfire
+POIN pedestalwater
+POIN pedestalwind
+
+ALIGN 4
+pedestalearth:
+BYTE 6 0x4F 0x6A 0x1C; SHORT 0 0 0x0B0 0x0F8; WORD 0x8013F00
+WORD 0xFFFFFFFF 0xFFFFFFFF 0xFFFFFFFF 0xFFFFFFFF
+
+ALIGN 4
+pedestalfire:
+BYTE 6 0x4F 0x6A 0x1C; SHORT 0 0 0x120 0x0F8; WORD 0x8013F1C
+WORD 0xFFFFFFFF 0xFFFFFFFF 0xFFFFFFFF 0xFFFFFFFF
+
+ALIGN 4
+pedestalwater:
+BYTE 6 0x4F 0x6A 0x1C; SHORT 0 0 0x120 0x168; WORD 0x8013F38
+WORD 0xFFFFFFFF 0xFFFFFFFF 0xFFFFFFFF 0xFFFFFFFF
+
+ALIGN 4
+pedestalwind:
+BYTE 6 0x4F 0x6A 0x1C; SHORT 0 0 0x0B0 0x168; WORD 0x8013F54
+WORD 0xFFFFFFFF 0xFFFFFFFF 0xFFFFFFFF 0xFFFFFFFF
+
+ALIGN 4
+requirementTable:
+WORD 0 //terminator
+
+ALIGN 4
+defaultRequirement:
+#incbin "asm/pedestalElements.dmp"
+
+//do not equip four sword when pulled
+PUSH; ORG $7EC68; jumpToHack(pedestalNoEquip); POP
+ALIGN 4
+pedestalNoEquip:
+#incbin "asm/pedestalNoEquip.dmp"
+
+//sanctuary pedestal pull check
+PUSH; ORG $AE844; jumpToHack(pedestalSanctuary); POP
+ALIGN 4
+pedestalSanctuary:
+#incbin "asm/pedestalSanctuary.dmp"
+
+//hyrule garden pedestal pull check, also blocks the entrance if the flag isn't set
+PUSH; ORG $AE81C; jumpToHack(pedestalGarden); POP
+ALIGN 4
+pedestalGarden:
+#incbin "asm/pedestalGarden.dmp"
+POIN dhcBlocker
+ALIGN 4
+dhcBlocker:
+BYTE 6 0xF 0x4D 0x38 0 0; SHORT 0 0x1F8 0x24 0 0
+WORD 0xFFFFFFFF 0xFFFFFFFF 0xFFFFFFFF 0xFFFFFFFF
+
+//hyrule garden basement pedestal pull check
+PUSH; ORG $4BA1C; jumpToHack(pedestalBasement); POP
+ALIGN 4
+pedestalBasement:
+#incbin "asm/pedestalBasement.dmp"
