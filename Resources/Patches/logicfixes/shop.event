@@ -27,7 +27,7 @@
 #define shopTerminator "WORD (-1) (-1) (-1) (-1)"
 
 //remove dog food special case
-PUSH; ORG $812A2; SHORT 0xE014; POP
+PUSH; ORG $812A0; SHORT 0xE014; POP
 
 PUSH; ORG $4EB54; jumpToHack(shopLoad); POP
 ALIGN 4
