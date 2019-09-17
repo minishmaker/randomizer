@@ -88,13 +88,18 @@ PUSH; ORG $AE844; jumpToHack(pedestalSanctuary); POP
 ALIGN 4
 pedestalSanctuary:
 #incbin "asm/pedestalSanctuary.dmp"
-
+#define openDHC
 //hyrule garden pedestal pull check, also blocks the entrance if the flag isn't set
 PUSH; ORG $AE81C; jumpToHack(pedestalGarden); POP
 ALIGN 4
 pedestalGarden:
 #incbin "asm/pedestalGarden.dmp"
 POIN dhcBlocker
+#ifdef openDHC
+WORD 1
+#else
+WORD 0
+#endif
 ALIGN 4
 dhcBlocker:
 BYTE 6 0xF 0x4D 0x38 0 0; SHORT 0 0x1F8 0x24 0 0
