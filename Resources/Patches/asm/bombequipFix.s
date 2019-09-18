@@ -1,4 +1,5 @@
 .thumb
+push	{r0,r1}
 @check if we are ending
 cmp	r1,#2
 beq	end
@@ -25,10 +26,13 @@ cmp	r1,#8
 beq	end
 
 switch:
+pop	{r0,r1}
 mov	r0,r5
 ldr	r3,=#0x8053FAC
 mov	lr,r3
 .short	0xF800
+pop	{r4,r5,pc}
 
 end:
+pop	{r0,r1}
 pop	{r4,r5,pc}
