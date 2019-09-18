@@ -437,6 +437,10 @@ PUSH; ORG $2640C; SHORT 0; POP
 PUSH; ORG $263D0; SHORT 0; POP
 PUSH; ORG $1215D0; POIN $8EB19; POP
 
+//faster great fairy
+PUSH; ORG $86508; SHORT 0x2100; POP
+PUSH; ORG $86A20; SHORT 0x2001; POP
+
 #include "glitchless.event"
 #include "dungeon.event"
 #include "fairy.event"
