@@ -11,7 +11,7 @@ cmp	r0,#0
 beq	end
 
 @check if we have a timer
-ldr	r7,=#0x2035132
+ldr	r7,=#0x2035134
 ldr	r0,timer
 cmp	r0,#0
 beq	notimer
@@ -42,20 +42,6 @@ add	r2,#2
 cmp	r0,#7
 bne	loop1
 
-@draw target
-ldr	r3,drawNumber
-mov	lr,r3
-mov	r3,r7
-add	r3,#8
-ldr	r0,target
-mov	r1,#0
-mov	r2,#0
-.short	0xF800
-
-@draw slash
-mov	r0,#0x2F
-strb	r0,[r7,#6]
-
 @draw counter
 ldr	r0,counter
 mov	lr,r0
@@ -65,7 +51,28 @@ mov	r2,#0
 ldr	r3,drawNumber
 mov	lr,r3
 mov	r3,r7
-add	r3,#4
+cmp	r0,#100
+bhs	hashundreds
+cmp	r0,#10
+bhs	hastens
+add	r3,#2
+hastens:
+add	r3,#2
+hashundreds:
+.short	0xF800
+
+@draw slash
+mov	r0,#0x2F
+strb	r0,[r7,#6]
+
+@draw target
+ldr	r3,drawNumber
+mov	lr,r3
+mov	r3,r7
+add	r3,#8
+ldr	r0,target
+mov	r1,#0
+mov	r2,#0
 .short	0xF800
 
 @offset the tile ids
