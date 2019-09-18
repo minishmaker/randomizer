@@ -362,7 +362,7 @@ namespace MinishRandomizer.Randomizer.Logic
                 throw new ShuffleException($"Entity data \"{addressString}\" has an invalid entity index!");
             }
 
-            int addressValue = 0;
+            int addressValue;
 
             if ((addressType & AddressType.GroundItem) == AddressType.GroundItem)
             {
@@ -383,7 +383,7 @@ namespace MinishRandomizer.Randomizer.Logic
             return new LocationAddress(addressType, addressValue);
         }
 
-        public List<Location> ParseLocations(string[] lines)
+        public List<Location> ParseLocations(string[] lines, Random rng)
         {
             List<Location> outList = new List<Location>();
             foreach (string locationLine in lines)
@@ -397,15 +397,18 @@ namespace MinishRandomizer.Randomizer.Logic
                     continue;
                 }
 
-                // Replace defines between `
-                // Probably a more efficient way to do it, but eh
-                if (locationString.IndexOf("`") != -1)
-                {
-                    locationString = SubParser.ReplaceDefines(locationString);
-                }
-
                 if (!SubParser.ShouldIgnoreLines())
                 {
+                    // Replace defines between `
+                    // Probably a more efficient way to do it, but eh
+                    if (locationString.IndexOf("`") != -1)
+                    {
+                        // Add random numbers in
+                        locationString = locationString.Replace("`RAND_INT`", rng.Next().ToString());
+
+                        locationString = SubParser.ReplaceDefines(locationString);
+                    }
+
                     if (locationString[0] == '!')
                     {
                         // Parse the string as a directive, ignoring preparsed directives

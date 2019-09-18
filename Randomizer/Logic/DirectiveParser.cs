@@ -60,6 +60,7 @@ namespace MinishRandomizer.Randomizer.Logic
                 case "!crc":
                     return true;
                 case "!define":
+                case "!undefine":
                 case "!eventdefine":
                 case "!ifdef":
                 case "!ifndef":
@@ -103,7 +104,10 @@ namespace MinishRandomizer.Randomizer.Logic
                         Options.Add(ParseColorDirective(mainDirectiveParts));
                         break;
                     case "!define":
-                        Defines.Add(ParseDefineDirective(mainDirectiveParts));
+                        AddDefine(ParseDefineDirective(mainDirectiveParts));
+                        break;
+                    case "!undefine":
+                        RemoveDefine(ParseDefineDirective(mainDirectiveParts));
                         break;
                     case "!eventdefine":
                         EventDefines.Add(ParseEventDefine(mainDirectiveParts));
@@ -204,6 +208,32 @@ namespace MinishRandomizer.Randomizer.Logic
             EventDefines.Clear();
         }
 
+        public void AddDefine(LogicDefine define)
+        {
+            foreach (LogicDefine predefined in Defines)
+            {
+                if (define.Name == predefined.Name)
+                {
+                    predefined.Replacement = define.Replacement;
+                    return;
+                }
+            }
+
+            Defines.Add(define);
+        }
+
+        public void RemoveDefine(LogicDefine define)
+        {
+            foreach (LogicDefine predefined in Defines)
+            {
+                if (define.Name == predefined.Name)
+                {
+                    Defines.Remove(predefined);
+                    return;
+                }
+            }
+        }
+
         public void ClearOptions()
         {
             Options.Clear();
@@ -276,10 +306,18 @@ namespace MinishRandomizer.Randomizer.Logic
         {
             if (directiveParts.Length == 2)
             {
+                if (directiveParts[1] == "RAND_INT")
+                {
+                    throw new ParserException("Cannot redefine/undefine RAND_INT!");
+                }
                 return new LogicDefine(directiveParts[1]);
             }
             else if (directiveParts.Length == 3)
             {
+                if (directiveParts[1] == "RAND_INT")
+                {
+                    throw new ParserException("Cannot redefine/undefine RAND_INT!");
+                }
                 return new LogicDefine(directiveParts[1], directiveParts[2]);
             }
             else

@@ -189,7 +189,7 @@ namespace MinishRandomizer.Randomizer
                 locationStrings = File.ReadAllLines(logicFile);
             }
 
-            List<Location> parsedLocations = LogicParser.ParseLocations(locationStrings);
+            List<Location> parsedLocations = LogicParser.ParseLocations(locationStrings, RNG);
 
             parsedLocations.ForEach(location => { AddLocation(location); });
         }
@@ -247,10 +247,13 @@ namespace MinishRandomizer.Randomizer
         /// Loads and shuffles all locations
         /// </summary>
         /// <param name="seed">The RNG seed used for generation</param>
-        public void RandomizeLocations(int seed)
+        public void RandomizeLocations(int? seed = null)
         {
             // Make sure the RNG is set to the seed, so the seed can be regenerated
-            SetSeed(seed);
+            if (seed != null)
+            {
+                SetSeed(seed ?? 0);
+            }
 
             List<Item> unplacedItems = MajorItems.ToList();
             List<Item> dungeonSpecificItems = DungeonItems.ToList();
