@@ -15,6 +15,35 @@
 !color - Gimmick - TUNIC_COLOR - Change Tunic Color -    10 - F8 - 08    -    10 - 78 - 28    -    64 - A0 - 28    -    B8 - F8 - A0
 !color - Gimmick - HEART_COLOR - Change Heart Color -    F8 - 50 - 10
 !color - Gimmick - SPLIT_COLOR - Change Split Bar Color -    4A - FF - 18     -    31 - 9C - 18    -   31 - 52 - 18
+!flag - Setting - OPENDHC - Open DHC
+!flag - Setting - PEDITEMS - Open DHC + Pedestal Items
+!flag - Setting - NODHC - Pedestal Finish/No DHC
+
+
+!ifdef - OPENDHC
+    !eventdefine - openDHC  
+	DHCAccess:DHC; Helper; ;
+	BeatVaati;     Helper; ;                                                                    Items.BigKey`DHC_SET`, Items.SmallKey`DHC_SET`, Helpers.CanSplit4, Items.BombBag, Helpers.HasBow, Items.RocsCape, Items.LanternOff, Items.GustJar, Items.PacciCane
+
+!elseifdef - PEDITEMS
+	DHCAccess:DHC; Helper; ;
+    !eventdefine - pedestalItems 
+    PedItem1;  Major;   pedestalSpot1Item:Define:FirstByte, pedestalSpot1Sub:Define:SecondByte; Items.EarthElement, Items.FireElement; Items.SmithSword                                        #to be changed to a count
+    PedItem2;  Major;   pedestalSpot2Item:Define:FirstByte, pedestalSpot2Sub:Define:SecondByte; Items.EarthElement, Items.FireElement, Items.WaterElement; Items.SmithSword                    #to be changed to a count
+    PedItem3;  Major;   pedestalSpot3Item:Define:FirstByte, pedestalSpot3Sub:Define:SecondByte; Items.EarthElement, Items.FireElement, Items.WaterElement, Items.WindElement; Items.SmithSword #to be changed to a count
+	BeatVaati; Helper;  ;                                                                       Items.BigKey`DHC_SET`, Items.SmallKey`DHC_SET`, Helpers.CanSplit4, Items.BombBag, Helpers.HasBow, Items.RocsCape, Items.LanternOff, Items.GustJar, Items.PacciCane
+!else
+    #!eventdefine - requirementSwordTier       - 5 #if defined with a value from 1-5, requires this level of sword in order to activate the pedestal (0 if commented out, only works outside of Open DHC)
+    #!eventdefine - requirementElementsAmmount - 4 #if defined with a value from 1-4, requires this amount of elements in order to activate the pedestal (0 if commented out, 4 if both this and the above are commented, only works outside of Open DHC)
+    
+	!ifdef - NODHC
+	    !eventdefine - noDHC 
+		BeatVaati;     Helper; ;Items.EarthElement:`ELEMENT_DUNGEON`, Items.FireElement:`ELEMENT_DUNGEON`, Items.WaterElement:`ELEMENT_DUNGEON`, Items.WindElement:`ELEMENT_DUNGEON`, Helpers.CanSplit4 #to be changed to count as the pedestal ends the game
+	!else
+	    DHCAccess:DHC; Helper; ; Items.EarthElement:`ELEMENT_DUNGEON`, Items.FireElement:`ELEMENT_DUNGEON`, Items.WaterElement:`ELEMENT_DUNGEON`, Items.WindElement:`ELEMENT_DUNGEON` #to be changed into a count of elements and a count of swords
+		BeatVaati; Helper;  ; Locations.DHCAccess, Items.BigKey`DHC_SET`, Items.SmallKey`DHC_SET`, Helpers.CanSplit4, Items.BombBag, Helpers.HasBow, Items.RocsCape, Items.LanternOff, Items.GustJar, Items.PacciCane
+	!endif
+!endif
 
 !ifdef - TUNIC_COLOR
     !eventdefine - TUNIC_COLORED
@@ -151,12 +180,22 @@ CanDestroyTrees; Helper;; (|Helpers.HasSword, Helpers.HasLightBow, Items.BombBag
 Inaccessible;    Helper;; Items.Untyped.FF
 
 # Central Hyrule Locations
+
+!ifdef - PEDITEMS
+    HyruleWellLeft; Major; 41-00-01; Items.MoleMitts; 
+    SchoolTop;      Major; 02-00-07; Items.PacciCane; 
+    HearthLedge;    Major; 02-00-06; Items.LanternOff;
+!else
+    HyruleWellLeft; Major; 41-00-01; Items.MoleMitts;  Items.SmithSword
+    SchoolTop;      Major; 02-00-07; Items.PacciCane;  Items.SmithSword 
+    HearthLedge;    Major; 02-00-06; Items.LanternOff; Items.SmithSword
+!endif
+
 SmithHouse;                    Minor; 22-11-00;                                                                   ;
 IntroItem1;                    Major; 0F252B;                                                                     ;                                                                                                                                 Items.SmithSword
 IntroItem2;                    Major; 0F253B;                                                                     ;                                                                                                                                 Items.Shield
 LinkMinishWaterHoleHeartPiece; Minor; 0DB55F;                                                                     Helpers.CanDestroyTrees ,Items.PegasusBoots, Items.Flippers;                                                                      Items.Shield
 HyruleWellTop;                 Major; 41-00-00;                                                                   Items.BombBag;                                                                                                                    
-HyruleWellLeft;                Major; 41-00-01;                                                                   Items.MoleMitts;                                                                                                                  Items.SmithSword # Temporary for Testing
 HyruleWellBottom;              Major; 41-00-02;                                                                   (|Items.Flippers, Items.RocsCape)
 HyruleWellPillar;              Major; 41-00-03;                                                                   Locations.HyruleWellLeft, Locations.HyruleWellRight, Locations.HyruleWellBottom, Helpers.CanSplit3
 HyruleWellRight;               Major; 41-00-04;                                                                   ; 
@@ -170,9 +209,7 @@ GrimbladeScroll;               Major; grimbladeDojoItem:Define:FirstByte, grimbl
 HyruleCastleWaterLeft;         Major; 07-00-01;                                                                   Items.Flippers;                                                                                                                   Items.BombBag # extra bomb bag for EU
 HyruleCastleWaterRight;        Major; 07-00-02;                                                                   Items.Flippers
 CafeLady;                      Minor; 00EDDA;                                                                     ;                                                                                                                                 Items.KinstoneX.RedSpike
-HearthLedge;                   Major; 02-00-06;                                                                   Items.LanternOff;                                                                                                                 Items.SmithSword # Temporary for Testing
 HearthBackdoor;                Minor; 0D66D7;                                                                     (|Items.Flippers, Items.PacciCane, Items.RocsCape)													                              
-SchoolTop;                     Major; 02-00-07;                                                                   Items.PacciCane;                                                                                                                  Items.SmithSword # Temporary for Testing
 SchoolGardenLeft;              Minor; 11-02-00;                                                                   Items.PacciCane, Helpers.CanSplit4
 SchoolGardenMiddle;            Minor; 11-02-01;                                                                   Items.PacciCane, Helpers.CanSplit4
 SchoolGardenRight;             Minor; 11-02-02;                                                                   Items.PacciCane, Helpers.CanSplit4
@@ -462,23 +499,24 @@ PalaceBossItem:Palace;             Minor;             gyorgContainerItem:Define:
 PalacePrize:`ELEMENT_DUNGEON`;     `ELEMENT`;         0E69E3;                                                                   Locations.CompletePalace
 
 # Skipping ahead to DHC so the game can be considered beatable...
+!ifndef - NODHC
 DHCAccess:DHC;             Helper;            ;         Helpers.CanSplit4, Items.EarthElement:`ELEMENT_DUNGEON`, Items.FireElement:`ELEMENT_DUNGEON`, Items.WaterElement:`ELEMENT_DUNGEON`, Items.WindElement:`ELEMENT_DUNGEON`, Items.BombBag
 CastleBigDoorsOpen:DHC;    Helper;            ;         Locations.DHCAccess, Items.SmallKey`DHC_SET`:2, Items.RocsCape, (|Items.Boomerang, Helpers.HasBow)
-CastleKing:DHC;            Unshuffled;        ;         Locations.DHCAccess;                                   Items.SmallKey`DHC_SET`
-CastleBasement:DHC;        `KEYSANITY_MINOR`; 88-37-00; Locations.DHCAccess, Items.SmallKey`DHC_SET`;          Items.DungeonMap`DHC_SET`
-CastleClones:DHC;          `KEYSANITY_MAJOR`; 88-27-00; Locations.DHCAccess, Items.SmallKey`DHC_SET`;          Items.SmallKey`DHC_SET`
-CastlePostThrone:DHC;      `KEYSANITY_MINOR`; 88-20-00; Locations.DHCAccess, Items.SmallKey`DHC_SET`:2;        Items.Compass`DHC_SET`
+CastleKing:DHC;            Minor;             ;         Locations.DHCAccess;                                   Items.Rupee200
+CastleBasement:DHC;        `KEYSANITY_MINOR`; 88-37-00; Locations.DHCAccess;          Items.DungeonMap`DHC_SET`
+CastleClones:DHC;          `KEYSANITY_MAJOR`; 88-27-00; Locations.DHCAccess;          Items.SmallKey`DHC_SET`
+CastlePostThrone:DHC;      `KEYSANITY_MINOR`; 88-20-00; Locations.DHCAccess, Items.SmallKey`DHC_SET`;        Items.Compass`DHC_SET`
 CastleTopLeftTower:DHC;    `KEYSANITY_MAJOR`; 88-01-00; Helpers.CastleBigDoorsOpen, Helpers.HasBow;            Items.SmallKey`DHC_SET`
 CastleTopRightTower:DHC;   `KEYSANITY_MAJOR`; 88-02-00; Helpers.CastleBigDoorsOpen, Items.LanternOff;          Items.SmallKey`DHC_SET`
 CastleLowerLeftTower:DHC;  `KEYSANITY_MAJOR`; 88-03-00; Helpers.CastleBigDoorsOpen;                            Items.SmallKey`DHC_SET`
 CastleLowerRightTower:DHC; `KEYSANITY_MAJOR`; 88-04-00; Helpers.CastleBigDoorsOpen;                            Items.SmallKey`DHC_SET`
 
 !ifdef - KEYSANITY	#temp will be changed on fixing generation issues 
-	CastleBigBlock:DHC;    Major;             88-09-00; Helpers.CastleBigDoorsOpen, Items.SmallKey`DHC_SET`:6; Items.BigKey`DHC_SET`
+	CastleBigBlock:DHC;    Major;             88-09-00; Helpers.CastleBigDoorsOpen, Items.SmallKey`DHC_SET`:5; Items.BigKey`DHC_SET`
 !else
-	CastleBigBlock:DHC;    Unshuffled;        88-09-00; Helpers.CastleBigDoorsOpen, Items.SmallKey`DHC_SET`:6; Items.BigKey`DHC_SET`
+	CastleBigBlock:DHC;    Unshuffled;        88-09-00; Helpers.CastleBigDoorsOpen, Items.SmallKey`DHC_SET`:5; Items.BigKey`DHC_SET`
 !endif
-
+!
 BeatVaati;                 Helper;            ;         Items.EarthElement:`ELEMENT_DUNGEON`, Items.FireElement:`ELEMENT_DUNGEON`, Items.WaterElement:`ELEMENT_DUNGEON`, Items.WindElement:`ELEMENT_DUNGEON`, Helpers.CanSplit4, Items.BombBag, Helpers.HasBow, Items.RocsCape, Items.LanternOff, Items.GustJar, Items.PacciCane
 
 
