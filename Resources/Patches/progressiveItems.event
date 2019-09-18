@@ -15,6 +15,7 @@ POIN progressiveBoomerangIDs progressiveBoomerangFlags
 POIN progressiveShieldIDs progressiveShieldFlags
 POIN progressiveSpinScrollIDs progressiveSpinScrollFlags
 POIN progressiveGreatScrollIDs progressiveGreatScrollFlags
+POIN progressiveKinstoneBagIDs progressiveKinstoneBagFlags
 WORD -1 //terminator
 
 progressiveSwordIDs:
@@ -60,6 +61,11 @@ BYTE 0x4D //Great spin attack
 BYTE 0xFF //terminator
 BYTE 0x00 //item to give if the progressive item is maxed
 
+progressiveKinstoneBagIDs:
+BYTE 0x67 //Kinstone Bag
+BYTE 0xFF //terminator
+BYTE 0x67 //item to give if the progressive item is maxed
+
 progressiveSwordFlags:
 BYTE 0x00 0x0C //Smith's Sword
 BYTE 0x00 0x30 //White Sword
@@ -94,6 +100,10 @@ BYTE 0xFF //terminator
 
 progressiveGreatScrollFlags:
 BYTE 0x13 0x0C //Great spin attack
+BYTE 0xFF //terminator
+
+progressiveKinstoneBagFlags:
+BYTE 0x19 0xC0 //Kinstone Bag
 BYTE 0xFF //terminator
 
 PUSH; ORG $A4AC8; jumpToHack(progressiveSwap); POP

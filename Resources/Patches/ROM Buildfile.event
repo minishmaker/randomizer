@@ -243,3 +243,10 @@ BYTE 3
 BYTE 0xF8 0xF4 0x40 0x02 0
 BYTE 0xF8 0xFB 0x01 0x06 0
 BYTE 0x00 0xFB 0x01 0x07 0
+
+PUSH //replace kinstone bag with the new figurine item
+ORG $2E84C0
+#incbin "figurine.img.bin"
+WORD 0 0 0 0 0 0 0 0
+ORG $31EB51; BYTE 0xF6
+POP

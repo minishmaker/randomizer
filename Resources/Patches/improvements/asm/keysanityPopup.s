@@ -1,4 +1,8 @@
 .thumb
+@check if this is a figurine
+cmp	r6,#0x67
+beq	figurine
+
 @check if this is a kinstone
 cmp	r6,#0x5C
 beq	kinstone
@@ -98,3 +102,104 @@ return:
 pop	{r3}
 mov	r8,r3
 pop	{r4-r7,pc}
+
+figurine:
+push	{r4-r7}
+@check if the we already had this figurine
+ldr	r0,=#0x2002B0E
+mov	r1,r7
+ldr	r3,=#0x801D5E0	@vanilla flag check routine
+mov	lr,r3
+.short	0xF800
+cmp	r0,#0
+bne	notnewfigurine
+
+@incrase figurine total
+ldr	r0,=#0x2002AF0
+ldrb	r1,[r0]
+cmp	r1,#0xFF
+beq	maxfigurines
+add	r1,#1
+strb	r1,[r0]
+maxfigurines:
+
+@set the figurine as collected
+ldr	r0,=#0x2002B0E
+mov	r1,r7
+ldr	r3,=#0x801D5F4	@vanilla flag set routine
+mov	lr,r3
+.short	0xF800
+
+@do the text
+notnewfigurine:
+ldr	r4,=#0x0800
+orr	r4,r7
+ldr	r5,=#0x0900
+orr	r5,r7
+ldr	r7,=#0x203F000	@offset
+@write the figurine name in red
+mov	r0,#2
+strb	r0,[r7]
+mov	r0,#1
+strb	r0,[r7,#1]
+add	r7,#2
+mov	r0,r4
+bl	getTextWrap
+mov	r1,r7
+bl	writeText
+mov	r7,r1
+mov	r0,#2
+strb	r0,[r7]
+mov	r0,#0
+strb	r0,[r7,#1]
+add	r7,#2
+
+@add : and two newlines
+mov	r0,#0x3A
+strb	r0,[r7]
+mov	r0,#0x0A
+strb	r0,[r7,#1]
+strb	r0,[r7,#2]
+add	r7,#3
+
+@and write the figurine description
+mov	r0,r5
+bl	getTextWrap
+mov	r1,r7
+bl	writeText
+
+@ram text
+ldr	r0,=#0x2C05
+pop	{r4-r7}
+b	return
+
+writeText:
+ldrb	r2,[r0]
+strb	r2,[r1]
+cmp	r2,#0
+beq	endwrite
+add	r0,#1
+add	r1,#1
+b	writeText
+endwrite:
+bx	lr
+
+getTextWrap:
+push	{lr}
+ldr	r3,=#0xFFFF
+cmp	r0,r3
+bhi	isoffset
+ldr	r3,getTextOffset
+mov	lr,r3
+.short	0xF800
+pop	{pc}
+isoffset:
+ldr	r3,=#0x2000007
+ldrb	r3,[r3]
+lsl	r3,#2
+ldr	r0,[r0,r3]
+pop	{pc}
+
+.ltorg
+.align
+getTextOffset:
