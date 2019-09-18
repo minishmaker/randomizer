@@ -100,6 +100,9 @@ POIN requirementElementsASM
 #ifdef requirementSwordTier
 POIN requirementSwordTierASM
 #endif
+#ifdef requirementFigurinesAmmount
+POIN requirementFigurinesASM
+#endif
 WORD 0 //terminator
 
 #ifdef requirementElementsAmmount
@@ -114,6 +117,13 @@ ALIGN 4
 requirementSwordTierASM:
 #incbin "asm/pedestalRequirements/requirementSwordTierASM.dmp"
 WORD requirementSwordTier
+#endif
+
+#ifdef requirementFigurinesAmmount
+ALIGN 4
+requirementFigurinesASM:
+#incbin "asm/pedestalRequirements/requirementFigurinesASM.dmp"
+WORD requirementFigurinesAmmount
 #endif
 
 ALIGN 4
