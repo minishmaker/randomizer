@@ -12,6 +12,8 @@ mov	r2,#0
 ldr	r3,=#0x80A217C
 mov	lr,r3
 .short	0xF800
+cmp	r0,#0
+beq	end
 
 str	r4,[r0,#0x54]
 ldr	r0,[r5,#0x30]
