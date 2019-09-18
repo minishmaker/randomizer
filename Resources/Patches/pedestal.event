@@ -31,6 +31,10 @@
 	#define pedestalSpot3Sub "0x00"
 #endif
 
+#ifdef requirementFigurinesAmmount
+	#define counterOption
+#endif
+
 //sanctuary fixes
 PUSH; ORG $4E98E; SHORT 0; POP //sanctuary garden door always open
 PUSH; ORG $F4A9C; BYTE 0xFF; ORG $F4C18; POIN $F4AAC; POP//sanctuary switches door never closes
@@ -124,6 +128,8 @@ ALIGN 4
 requirementFigurinesASM:
 #incbin "asm/pedestalRequirements/requirementFigurinesASM.dmp"
 WORD requirementFigurinesAmmount
+requirementFigurinesCounter:
+#incbin "asm/pedestalRequirements/requirementFigurinesCounter.dmp"
 #endif
 
 ALIGN 4

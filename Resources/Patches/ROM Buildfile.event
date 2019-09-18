@@ -218,6 +218,24 @@ PUSH; ORG $4F05A; SHORT 0xE002; POP //remove soldiers near lon lon
 	WORD 0 //if 0, any damage will kill link, if non-8 this will be used as a pointer to a routine to determine if link will die
 #endif
 
+#ifdef counterOption
+	PUSH; ORG $1C4F0; jumpToHack(counterDisplay); POP
+	ALIGN 4
+	counterDisplay:
+	#incbin "asm/counterDisplay.dmp"
+	POIN drawNumber
+	#ifdef timerOption
+		WORD 1
+	#else
+		WORD 0
+	#endif
+	#ifdef requirementFigurinesAmmount
+		WORD requirementFigurinesAmmount
+		POIN requirementFigurinesCounter
+	#endif
+	WORD 0 0
+#endif
+
 #ifdef noFairy //shy fairies patch (fairies don't come out of bottles automatically)
 	PUSH; ORG $7175C; SHORT 0x4289; POP
 #endif
