@@ -199,7 +199,7 @@ FountainBig;                   Major; 62-03-00;                                 
 FountainSmall;                 Minor; 62-04-00;                                                                   Helpers.HasBottle, (|Items.Flippers, Items.RocsCape)																		      
 FountainHeartPiece;            Minor; 0EF3B7;                                                                     Helpers.HasBottle, Items.RocsCape																							      
 LibraryMinish;                 Minor; 00E7BE;                                                                     Items.HyruleanBestiary, Items.PicoriLegend, Items.MaskHistory, Items.Ocarina, Items.PacciCane								      
-CuccoMinigame;                 Minor; 12460C;                                                                     (|Items.RocsCape, Item.Flippers)																							      
+CuccoMinigame;                 Minor; 12460C;                                                                     (|Items.RocsCape, Items.Flippers)																							      
 TownBell;                      Minor; 05D602:FirstByte, 5D604:SecondByte;                                         Items.RocsCape;                                                                                                                   Items.PieceOfHeart
 FlipsCaveBig;                  Major; 62-10-00;                                                                   Items.Ocarina, Helpers.HasDamageSource, Items.PacciCane, (|Items.Flippers, (&Items.HyruleanBestiary,Items.PicoriLegend,Items.MaskHistory, Items.GripRing, (|Items.GustJar, Items.RocsCape))) 
 FlipsCaveSmall;                Minor; 62-12-00;                                                                   Items.Flippers, Items.Ocarina, Items.PacciCane, Items.LanternOff
