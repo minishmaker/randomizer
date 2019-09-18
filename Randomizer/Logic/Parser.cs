@@ -109,6 +109,8 @@ namespace MinishRandomizer.Randomizer.Logic
                                     throw new ParserException($"Item {dependencyParts[1]} could not be found!");
                                 }
                                 break;
+                            default:
+                                throw new ParserException($"\"{dependencyParts[0]}\" is not a valid dependency type!");
                         }
                         break;
                 }
