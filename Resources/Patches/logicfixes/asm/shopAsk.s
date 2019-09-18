@@ -46,7 +46,7 @@ b	buildText
 
 buildText:
 push	{r4-r7}
-ldr	r7,=#0x203F000	@offset
+ldr	r7,=#0x203F200	@offset
 mov	r4,r0		@name
 mov	r5,r1		@special
 mov	r6,r2		@price

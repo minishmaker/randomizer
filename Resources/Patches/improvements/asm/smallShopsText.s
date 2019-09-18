@@ -53,7 +53,7 @@ mov	r2,#2
 b	buildText
 
 buildText:
-ldr	r7,=#0x203F000	@offset
+ldr	r7,=#0x203F200	@offset
 mov	r4,r0		@name
 mov	r5,r1		@special
 mov	r6,r2		@price

@@ -136,7 +136,7 @@ ldr	r4,=#0x0800
 orr	r4,r7
 ldr	r5,=#0x0900
 orr	r5,r7
-ldr	r7,=#0x203F000	@offset
+ldr	r7,=#0x203F200	@offset
 @write the figurine name in red
 mov	r0,#2
 strb	r0,[r7]
