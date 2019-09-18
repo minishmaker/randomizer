@@ -34,7 +34,25 @@ ldrb	r0,[r0]
 cmp	r0,#2
 bne	notQuest
 
+@check if we have the nut
+ldr	r3,=#0x2002B48
+ldrb	r0,[r3]
+mov	r1,#0x40
+and	r0,r1
+cmp	r0,#0
+beq	checkswim
+@draw the nut
+ldr	r0,=#0x0F2
+add	r0,r7
+ldr	r1,=#0x202B
+bl	drawIcon
+ldr	r0,=#0x132
+add	r0,r7
+ldr	r1,=#0x0031
+bl	drawIcon
+
 @check if we have swim butterfly
+checkswim:
 ldr	r3,=#0x2002B4E
 ldrb	r0,[r3]
 mov	r1,#0x10
