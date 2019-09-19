@@ -17,3 +17,6 @@ ALIGN 4
 holeFix:
 #incbin "asm/holeFix.dmp"
 #endif
+
+//fix spin soldier skip
+PUSH; ORG $C1A; SHORT 0x20; POP
