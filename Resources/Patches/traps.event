@@ -45,3 +45,9 @@ stinkTrap:
 //give trap item the smith sword icon, why not
 PUSH; ORG $125BF8; BYTE 1 0 1 4 0 0 0x41 5; POP
 PUSH; ORG $FD588; POIN $FD25D; POP
+
+PUSH; ORG $85C60; jumpToHack(moneyTrapEffect); POP
+ALIGN 4
+moneyTrapEffect:
+#incbin "asm/moneyTrapEffect.dmp"
+
