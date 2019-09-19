@@ -111,4 +111,28 @@ namespace MinishRandomizer.Randomizer.Logic
             return false;
         }
     }
+
+    public class CounterDependency : Dependency
+    {
+        public Dictionary<Item, int> ItemValues;
+        public int RequiredCount = 0;
+        public CounterDependency(Dictionary<Item, int> itemValues, int reqValue)
+        {
+            ItemValues = itemValues;
+            RequiredCount = reqValue;
+        }
+
+        public override bool DependencyFulfilled(List<Item> availableItems, List<Location> locations)
+        {
+            var counter = 0;
+            foreach (Item item in availableItems)
+            {
+                if (ItemValues.ContainsKey(item))
+                {
+                    counter += ItemValues[item];
+                }
+            }
+            return counter >= RequiredCount;
+        }
+    }
 }

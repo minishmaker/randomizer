@@ -23,7 +23,15 @@
 #!define - SWORDLEVEL - 5    #if defined with a value from 1-5, requires this level of sword in order to activate the pedestal (0 if commented out)
 #!define - ELEMENTAMOUNT - 4 #if defined with a value from 1-4, requires this amount of elements in order to activate the pedestal (0 if commented out)
 
+!ifndef - SWORDLEVEL
+    !define - SWORDEX
+	!define - SWORDLEVEL - 0
+!endif
 
+!ifndef - ELEMENTAMOUNT
+    !define - ELEMENTEX
+	!define - ELEMENTAMOUNT - 0
+!endif
     
 #make sure that only 1 of these settings is active at the same time
 !ifdef - PEDITEMSF
@@ -38,28 +46,32 @@
 		    !define NODHC
 		    !eventdefine - noDHC
         !endif
-        !ifdef - SWORDLEVEL
-		    !eventdefine - requirementSwordTier       - `SWORDLEVEL`    
-        !endif
-        !ifdef - ELEMENTAMOUNT
-		    !eventdefine - requirementElementsAmmount - `ELEMENTAMOUNT` 
+
+        !ifndef - SWORDEX
+		    !eventdefine - requirementSwordTier       - `SWORDLEVEL`
+			GotSwords; Helper; ; (+`SWORDLEVEL`, Items.SmithSword)
         !endif
 
-        !ifdef - SWORDLEVEL
-            !ifdef - ELEMENTAMOUNT
+        !ifndef - ELEMENTEX
+		    !eventdefine - requirementElementsAmmount - `ELEMENTAMOUNT` 
+			GotElements; Helper; ; (+`ELEMENTAMOUNT`, Items.WaterElement, Items.FireElement, Items.WindElement, Items.EarthElement)
+        !endif
+
+        !ifndef - SWORDEX
+            !ifndef - ELEMENTEX
                 #both
-                CompletePed; Helper; ; Items.SmithSword::`SWORDLEVEL`, Counts.Elements::`ELEMENTAMOUNT` # to be changed on actual counting
+                CompletePed; Helper; ; Helpers.GotSwords, Helpers.GotElements
 		    !else
                 #sword
-                CompletePed; Helper; ; Items.SmithSword::`SWORDLEVEL`
+                CompletePed; Helper; ; Helpers.GotSwords
 		    !endif
 	    !else
-	        !ifdef - ELEMENTAMOUNT
+	        !ifndef - ELEMENTEX
 		        #element
-			    CompletePed; Helper; ; Counts.Elements::`ELEMENTAMOUNT`
+			    CompletePed; Helper; ; Helpers.GotElements
 		    !else
 		        #neither
-			    CompletePed; Helper; ; Counts.Elements::4
+			    CompletePed; Helper; ; (+4, Items.WaterElement, Items.FireElement, Items.WindElement, Items.EarthElement)
 		    !endif
 	    !endif
 	!endif
@@ -198,9 +210,9 @@ Inaccessible;    Helper;; Items.Untyped.FF::FF  # ask for 255 of them for good m
 
 !ifdef - PEDITEMS
     #to be changed once actual counting happens
-    PedItem1;  Major;   pedestalSpot1Item:Define:FirstByte, pedestalSpot1Sub:Define:SecondByte; Counts.Elements::2;   Items.SmithSword
-    PedItem2;  Major;   pedestalSpot2Item:Define:FirstByte, pedestalSpot2Sub:Define:SecondByte; Counts.Elements::3;   Items.SmithSword
-    PedItem3;  Major;   pedestalSpot3Item:Define:FirstByte, pedestalSpot3Sub:Define:SecondByte; Counts.Elements::4;   Items.SmithSword
+    PedItem1;  Major;   pedestalSpot1Item:Define:FirstByte, pedestalSpot1Sub:Define:SecondByte; (+2, Items.WaterElement, Items.FireElement, Items.WindElement, Items.EarthElement);   Items.SmithSword
+    PedItem2;  Major;   pedestalSpot2Item:Define:FirstByte, pedestalSpot2Sub:Define:SecondByte; (+3, Items.WaterElement, Items.FireElement, Items.WindElement, Items.EarthElement);   Items.SmithSword
+    PedItem3;  Major;   pedestalSpot3Item:Define:FirstByte, pedestalSpot3Sub:Define:SecondByte; (+4, Items.WaterElement, Items.FireElement, Items.WindElement, Items.EarthElement);   Items.SmithSword
 !else
     PedItem1;  Major;   pedestalSpot1Item:Define:FirstByte, pedestalSpot1Sub:Define:SecondByte; Helpers.Inaccessible; Items.SmithSword
     PedItem2;  Major;   pedestalSpot2Item:Define:FirstByte, pedestalSpot2Sub:Define:SecondByte; Helpers.Inaccessible; Items.SmithSword
@@ -311,6 +323,7 @@ CrenelBlockChest;          Minor; 26-03-00;                                     
 Melari;                    Major; 00D26E;                                                                 Locations.CompleteCoF;                                                                                                                                                           Items.SmithSword
 
 # Castor Wilds Locations
+GotScrolls;                   Helper;;                                                                           (+7, Items.SpinAttack, Items.RockBreaker, Items.DashAttack, Items.DownThrust, Items.RollAttack, Items.SwordBeam, Items.PerilBeam, Items.GreatSpin, Items.FastSpin, Items.FastSplit, Items.LongSpin);
 AccessWilds;                  Helper;;                                                                           Locations.AccessWestField, Helpers.CanSplit2, (|Items.PegasusBoots, Items.RocsCape)
 WildsSouthCave;               Major; 2A-00-00;                                                                   Locations.AccessWilds, (|Items.Flippers, Items.RocsCape, Helpers.HasBow);                                                          Items.KinstoneX.YellowTotemProng
 WildsDarknutCave;             Major; 2B-00-00;                                                                   Locations.AccessWilds, Helpers.HasSword;                                                                                           Items.KinstoneX.YellowTotemProng
@@ -321,7 +334,7 @@ WildsDiggingCaveRight;        Minor; 17-00-01;                                  
 WildsTopChest;                Minor; 04-00-00;                                                                   Locations.AccessWilds, Helpers.HasBow
 WildsTopRightCaveHeartPiece;  Minor; 0D9907;                                                                     Locations.AccessWilds, Helpers.HasBow, (|Items.Flippers, Items.RocsCape)
 SwiftbladeTheFirstHeartPiece; Minor; 0D78CB;                                                                     Locations.AccessWilds, (|Helpers.HasBow, Items.RocsCape, Items.Flippers)
-SwiftbladeTheFirstScroll;     Major; swiftbladeIDojoItem:Define:FirstByte, swiftbladeIDojoSub:Define:SecondByte; Counts.Scrolls::7, Helpers.HasSword, Locations.SwiftbladeTheFirstHeartPiece;                                                       Items.GreatSpin
+SwiftbladeTheFirstScroll;     Major; swiftbladeIDojoItem:Define:FirstByte, swiftbladeIDojoSub:Define:SecondByte; Helpers.HasSword, Locations.SwiftbladeTheFirstHeartPiece, Helpers.GotScrolls;                                                      Items.GreatSpin
 RuinsBombCave;                Minor; 2A-02-00;                                                                   Locations.AccessWilds, (|Helpers.HasBow, Items.RocsCape, Items.Flippers), Items.KinstoneX.YellowTotemProng::3, Items.BombBag
 RuinsMinishHome;              Minor; 27-07-00;                                                                   Locations.AccessWilds, (|Helpers.HasBow, Items.RocsCape, Items.Flippers), Items.KinstoneX.YellowTotemProng::3, Helpers.HasSword
 RuinsMinishCaveHeartPiece;    Minor; 0DB4BF;                                                                     Locations.AccessWilds, (|Helpers.HasBow, Items.RocsCape, Items.Flippers), Items.KinstoneX.YellowTotemProng::3, Helpers.HasSword
@@ -338,7 +351,7 @@ WitchDiggingCave;      Minor; 0C-00-00;                                         
 HyliaSunkenHeartPiece; Minor; 0F323B;                                                                 Locations.AccessHyliaNorth, Items.Flippers
 HyliaBottomHeartPiece; Minor; 0F324B;                                                                 Locations.AccessHyliaNorth, (|Items.Flippers, Items.RocsCape)
 WavebladeHeartPiece;   Minor; 0D7B03;                                                                 Locations.AccessHyliaNorth, (|Items.Flippers, Items.RocsCape)
-WavebladeScroll;       Major; wavebladeDojoItem:Define:FirstByte, wavebladeDojoSub:Define:SecondByte; Counts.HeartContainers::7, Helpers.HasSword, Locations.WavebladeHeartPiece;                                         Items.PerilBeam
+WavebladeScroll;       Major; wavebladeDojoItem:Define:FirstByte, wavebladeDojoSub:Define:SecondByte; (+28, Items.PieceOfHeart, Items.HeartContainer::4), Helpers.HasSword, Locations.WavebladeHeartPiece;                                         Items.PerilBeam
 
 AccessTreasureCave;          Helper;;         Locations.AccessHyliaNorth, Items.MoleMitts, Items.RocsCape
 HyliaCapeCaveTopRight;       Minor; 19-01-00; Locations.AccessTreasureCave 

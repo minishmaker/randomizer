@@ -54,6 +54,56 @@ namespace MinishRandomizer.Randomizer.Logic
                         OrDependency orDependency = new OrDependency(orList);
                         dependencies.Add(orDependency);
                         break;
+                    case '+':
+                        Dictionary<Item, int> valueDict = new Dictionary<Item, int>();
+                        var reqValueString = sequence.Split(',')[0];
+                        if (!int.TryParse(reqValueString.Substring(1), out int reqValue))
+                        {
+                            throw new ParserException($"Invalid total for counter! {reqValueString.Substring(1)}");
+                        }
+                        string[] itemStrings = sequence.Substring(reqValueString.Length+1).Split(',');
+
+                        foreach (var itemString in itemStrings)
+                        {
+                            string dungeonval = "";
+                            int itemval = 1;
+                            string[] values = itemString.Split(':');
+                            if (values.Length >= 2)
+                            {
+                                dungeonval = values[1];
+                                if (values.Length >= 3)
+                                {
+                                    if (!int.TryParse(values[2], out itemval))
+                                    {
+                                        itemval = 1;
+                                    }
+                                }
+                            }
+                            var itemParts = values[0].Split('.');
+
+                            ItemType type = ItemType.Untyped;
+                            if (!Enum.TryParse(itemParts[1], out type))
+                            {
+                                throw new ParserException($"Could not parse item value! {itemParts[1]}");
+                            }
+
+
+                            byte itemSub = 0;
+
+                            if (itemParts.Length >= 3) 
+                            {
+                                if (!byte.TryParse(itemParts[2], out itemSub))
+                                {
+                                    throw new ParserException($"Could not parse item subvalue! {itemParts[2]}");
+                                }
+                            }
+
+                            var item = new Item(type, itemSub, dungeonval);
+
+                            valueDict.Add(item, itemval);
+                        }
+                        dependencies.Add(new CounterDependency(valueDict, reqValue));
+                        break;
                     default:
                         string[] splitSequence = sequence.Split(':');
                         string requirement = splitSequence[0];
