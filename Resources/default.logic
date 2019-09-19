@@ -15,35 +15,56 @@
 !color - Gimmick - TUNIC_COLOR - Change Tunic Color -    10 - F8 - 08    -    10 - 78 - 28    -    64 - A0 - 28    -    B8 - F8 - A0
 !color - Gimmick - HEART_COLOR - Change Heart Color -    F8 - 50 - 10
 !color - Gimmick - SPLIT_COLOR - Change Split Bar Color -    4A - FF - 18     -    31 - 9C - 18    -   31 - 52 - 18
-!flag - Setting - OPENDHC - Open DHC
-!flag - Setting - PEDITEMS - Open DHC + Pedestal Items
-!flag - Setting - NODHC - Pedestal Finish/No DHC
+!flag - Setting - OPENDHCF - Open DHC
+!flag - Setting - PEDITEMSF - Open DHC + Pedestal Items
+!flag - Setting - NODHCF - Pedestal Finish/No DHC
+
+# these 2 are only valid outside of openDHC modes, if neither are defined it defaults to 4 elements
+#!define - SWORDLEVEL - 5    #if defined with a value from 1-5, requires this level of sword in order to activate the pedestal (0 if commented out)
+#!define - ELEMENTAMOUNT - 4 #if defined with a value from 1-4, requires this amount of elements in order to activate the pedestal (0 if commented out)
 
 
-!ifdef - OPENDHC
-    !eventdefine - openDHC  
-	DHCAccess:DHC; Helper; ;
-	BeatVaati;     Helper; ;                                                                    Items.BigKey`DHC_SET`, Items.SmallKey`DHC_SET`, Helpers.CanSplit4, Items.BombBag, Helpers.HasBow, Items.RocsCape, Items.LanternOff, Items.GustJar, Items.PacciCane
-
-!elseifdef - PEDITEMS
-	DHCAccess:DHC; Helper; ;
-    !eventdefine - pedestalItems 
-    PedItem1;  Major;   pedestalSpot1Item:Define:FirstByte, pedestalSpot1Sub:Define:SecondByte; Items.EarthElement, Items.FireElement; Items.SmithSword                                        #to be changed to a count
-    PedItem2;  Major;   pedestalSpot2Item:Define:FirstByte, pedestalSpot2Sub:Define:SecondByte; Items.EarthElement, Items.FireElement, Items.WaterElement; Items.SmithSword                    #to be changed to a count
-    PedItem3;  Major;   pedestalSpot3Item:Define:FirstByte, pedestalSpot3Sub:Define:SecondByte; Items.EarthElement, Items.FireElement, Items.WaterElement, Items.WindElement; Items.SmithSword #to be changed to a count
-	BeatVaati; Helper;  ;                                                                       Items.BigKey`DHC_SET`, Items.SmallKey`DHC_SET`, Helpers.CanSplit4, Items.BombBag, Helpers.HasBow, Items.RocsCape, Items.LanternOff, Items.GustJar, Items.PacciCane
-!else
-    #!eventdefine - requirementSwordTier       - 5 #if defined with a value from 1-5, requires this level of sword in order to activate the pedestal (0 if commented out, only works outside of Open DHC)
-    #!eventdefine - requirementElementsAmmount - 4 #if defined with a value from 1-4, requires this amount of elements in order to activate the pedestal (0 if commented out, 4 if both this and the above are commented, only works outside of Open DHC)
     
-	!ifdef - NODHC
-	    !eventdefine - noDHC 
-		BeatVaati;     Helper; ;Items.EarthElement:`ELEMENT_DUNGEON`, Items.FireElement:`ELEMENT_DUNGEON`, Items.WaterElement:`ELEMENT_DUNGEON`, Items.WindElement:`ELEMENT_DUNGEON`, Helpers.CanSplit4 #to be changed to count as the pedestal ends the game
-	!else
-	    DHCAccess:DHC; Helper; ; Items.EarthElement:`ELEMENT_DUNGEON`, Items.FireElement:`ELEMENT_DUNGEON`, Items.WaterElement:`ELEMENT_DUNGEON`, Items.WindElement:`ELEMENT_DUNGEON` #to be changed into a count of elements and a count of swords
-		BeatVaati; Helper;  ; Locations.DHCAccess, Items.BigKey`DHC_SET`, Items.SmallKey`DHC_SET`, Helpers.CanSplit4, Items.BombBag, Helpers.HasBow, Items.RocsCape, Items.LanternOff, Items.GustJar, Items.PacciCane
+#make sure that only 1 of these settings is active at the same time
+!ifdef - PEDITEMSF
+    !define - PEDITEMS
+    !eventdefine - pedestalItems
+!else
+    !ifdef - OPENDHCF
+        !define - OPENDHC
+        !eventdefine - openDHC
+    !else
+	    !ifdef - NODHCF
+		    !define NODHC
+		    !eventdefine - noDHC
+        !endif
+        !ifdef - SWORDLEVEL
+		    !eventdefine - requirementSwordTier       - `SWORDLEVEL`    
+        !endif
+        !ifdef - ELEMENTAMOUNT
+		    !eventdefine - requirementElementsAmmount - `ELEMENTAMOUNT` 
+        !endif
+
+        !ifdef - SWORDLEVEL
+            !ifdef - ELEMENTAMOUNT
+                #both
+                CompletePed; Helper; ; Items.SmithSword::`SWORDLEVEL`, Counts.Elements::`ELEMENTAMOUNT` # to be changed on actual counting
+		    !else
+                #sword
+                CompletePed; Helper; ; Items.SmithSword::`SWORDLEVEL`
+		    !endif
+	    !else
+	        !ifdef - ELEMENTAMOUNT
+		        #element
+			    CompletePed; Helper; ; Counts.Elements::`ELEMENTAMOUNT`
+		    !else
+		        #neither
+			    CompletePed; Helper; ; Counts.Elements::4
+		    !endif
+	    !endif
 	!endif
 !endif
+
 
 !ifdef - TUNIC_COLOR
     !eventdefine - TUNIC_COLORED
@@ -71,7 +92,7 @@
 #Settings
 
 !ifdef - SHUFFLE_ELEMENTS
-    globalElementsDefine;    Unshuffled; globalElements:Define:SecondByte;    Helpers.Inaccessible; Items.Untyped.01    # if defined, does not draw elements on map (during full shuffle)
+    !eventdefine - globalElements - 1   # if defined, does not draw elements on map (during full shuffle)
 !endif
 
 !ifdef - KEYSANITY
@@ -105,46 +126,40 @@
 !endif
 
 !ifdef - NO_FUSIONS
-	noFusionDefine;							Unshuffled; noFusions:Define:SecondByte;					Helpers.Inaccessible; Items.Untyped.01	# if defined, fusions other than golden kinstone fusions are not available
+	!eventdefine - noFusions                         # if defined, fusions other than golden kinstone fusions are not available
 !endif
 
 !ifdef - GLITCHLESS
-	glitchlessDefine;						Unshuffled; glitchless:Define:SecondByte;					Helpers.Inaccessible; Items.Untyped.01	# if defined, bugfixes are installed
+	!eventdefine - glitchless                        # if defined, bugfixes are installed
 !endif
 
 !ifdef - RANDOM_LANGUAGE
-	randomLanguageDefine;					Unshuffled; randomLanguage:Define:SecondByte;				Helpers.Inaccessible; Items.Untyped.01	# if defined, text changes language constantly
+	!eventdefine -randomLanguage                     # if defined, text changes language constantly
 !endif
 
 !ifdef - ALLOW_FUSION_SKIPS
 	!ifdef - INSTANT_SKIP
-		alwaysSkipFusionCutsceneDefine;		Unshuffled; alwaysSkipFusionCutscene:Define:SecondByte;		Helpers.Inaccessible; Items.Untyped.01	# if 0 fusion cutscenes are skipped when the buttons are held, if non-0 they are always instantly skipped
+		!eventdefine - alwaysSkipFusionCutscene - 1  # if 0 fusion cutscenes are skipped when the buttons are held, if non-0 they are always instantly skipped
 	!else
-		alwaysSkipFusionCutsceneDefine;		Unshuffled; alwaysSkipFusionCutscene:Define:SecondByte;		Helpers.Inaccessible; Items.Untyped.00
+		!eventdefine - alwaysSkipFusionCutscene - 0
 	!endif
 !else
-	neverSkipFusionCutsceneDefine;			Unshuffled; neverSkipFusionCutscene:Define:SecondByte;		Helpers.Inaccessible; Items.Untyped.01	# if defined, fusion cutscenes are just like vanilla
+	!eventdefine - neverSkipFusionCutscene           # if defined, fusion cutscenes are just like vanilla
 !endif
 
-#fuzzyDefine;						        Unshuffled; fuzzy:Define:SecondByte;                        Helpers.Inaccessible; Items.Untyped.14	# if defined with a value of 0 to E, makes the screen fuzzy and the pixels bigger
-#followerDefine;                            Unshuffled; follower:Define:SecondByte;                     Helpers.Inaccessible; Items.Untyped.1	# if defined, a follower with the given id below will follow you throught he game
-#followerIDDefine;                          Unshuffled; followerID:Define:SecondByte;                   Helpers.Inaccessible; Items.Untyped.1	# id for the above: 4=Mailman, 5=Zelda, 1E=Malon, 22=Smith, 24=King Dalton, 27=Dummy hero, 31=Cow, 32=Goron, 3C=Bow moblin, 45=Anju
-#timedOhkoDefine;                           Unshuffled; timedohkoOption:Define:SecondByte;              Helpers.Inaccessible; Items.Untyped.1	# if defined, will enable ohko mode 30 minutes into the game
-#timerDefine;                               Unshuffled; timerOption:Define:SecondByte;                  Helpers.Inaccessible; Items.Untyped.1	# if defined, will show a timer that counts up
-#ohkoDefine;                                Unshuffled; ohkoOption:Define:SecondByte;                   Helpers.Inaccessible; Items.Untyped.1	# if defined link will die from any hit taken
+#!eventdefine - fuzzy - E       # if defined with a value of 0 to E, makes the screen fuzzy and the pixels bigger
+#!eventdefine - follower        # if defined, a follower with the given id below will follow you throught he game
+#!eventdefine - followerID - 1  # id for the above: 4=Mailman, 5=Zelda, 1E=Malon, 22=Smith, 24=King Dalton, 27=Dummy hero, 31=Cow, 32=Goron, 3C=Bow moblin, 45=Anju
+#!eventdefine - timedohkoOption # if defined, will enable ohko mode 30 minutes into the game
+#!eventdefine - timerOption     # if defined, will show a timer that counts up
+#!eventdefine - ohkoOption      # if defined link will die from any hit taken
 
 
-#heartscolorDefine;                         Unshuffled; heartscolor:Define:SecondByte;                  Helpers.Inaccessible; Items.Untyped.1	# if defined will allow for special colored hearts
-#heartFillRDefine;                          Unshuffled; heartFillR:Define:SecondByte;                   Helpers.Inaccessible; Items.Untyped.1F	# red   fill component (0-1F)
-#heartFillGDefine;                          Unshuffled; heartFillG:Define:SecondByte;                   Helpers.Inaccessible; Items.Untyped.1F	# green fill component (0-1F)
-#heartFillBDefine;                          Unshuffled; heartFillB:Define:SecondByte;                   Helpers.Inaccessible; Items.Untyped.1F	# blue  fill component (0-1F)
-#heartEdgeRDefine;                          Unshuffled; heartEdgeR:Define:SecondByte;                   Helpers.Inaccessible; Items.Untyped.1F	# red   edge component (0-1F)
-#heartEdgeGDefine;                          Unshuffled; heartEdgeG:Define:SecondByte;                   Helpers.Inaccessible; Items.Untyped.1F	# green edge component (0-1F)
-#heartEdgeBDefine;                          Unshuffled; heartEdgeB:Define:SecondByte;                   Helpers.Inaccessible; Items.Untyped.1F	# blue  edge component (0-1F)
+#!eventdefine -heartscolor      # if defined will allow for special colored hearts
+#!eventdefine - heartEdgeR - 1F	# red   edge component (0-1F)
+#!eventdefine - heartEdgeG - 1F	# green edge component (0-1F)
+#!eventdefine - heartEdgeB - 1F	# blue  edge component (0-1F)
 
-
-#barcolorDefine;                            Unshuffled; barcolor:Define:SecondByte;                     Helpers.Inaccessible; Items.Untyped.1	# if defined will allow for a different colored bar
-#barcolorTypeDefine;                        Unshuffled; barcolorred:Define:SecondByte;                  Helpers.Inaccessible; Items.Untyped.1	# change the red in barcolorred to either red blue or green
 
 # OUTDATED, will get some kind of logic readme at some point
 # Location format:
@@ -177,18 +192,19 @@ HasDamageSource; Helper;; (|Helpers.HasSword, Helpers.HasBow, Items.BombBag)
 HasBeam;         Helper;; Helpers.HasSword, (|Items.SwordBeam, Items.PerilBeam)
 CanDestroyTrees; Helper;; (|Helpers.HasSword, Helpers.HasLightBow, Items.BombBag ,Items.LanternOff)
 
-Inaccessible;    Helper;; Items.Untyped.FF
+Inaccessible;    Helper;; Items.Untyped.FF::FF  # ask for 255 of them for good measure
 
 # Central Hyrule Locations
 
 !ifdef - PEDITEMS
-    HyruleWellLeft; Major; 41-00-01; Items.MoleMitts; 
-    SchoolTop;      Major; 02-00-07; Items.PacciCane; 
-    HearthLedge;    Major; 02-00-06; Items.LanternOff;
+    #to be changed once actual counting happens
+    PedItem1;  Major;   pedestalSpot1Item:Define:FirstByte, pedestalSpot1Sub:Define:SecondByte; Counts.Elements::2;   Items.SmithSword
+    PedItem2;  Major;   pedestalSpot2Item:Define:FirstByte, pedestalSpot2Sub:Define:SecondByte; Counts.Elements::3;   Items.SmithSword
+    PedItem3;  Major;   pedestalSpot3Item:Define:FirstByte, pedestalSpot3Sub:Define:SecondByte; Counts.Elements::4;   Items.SmithSword
 !else
-    HyruleWellLeft; Major; 41-00-01; Items.MoleMitts;  Items.SmithSword
-    SchoolTop;      Major; 02-00-07; Items.PacciCane;  Items.SmithSword 
-    HearthLedge;    Major; 02-00-06; Items.LanternOff; Items.SmithSword
+    PedItem1;  Major;   pedestalSpot1Item:Define:FirstByte, pedestalSpot1Sub:Define:SecondByte; Helpers.Inaccessible; Items.SmithSword
+    PedItem2;  Major;   pedestalSpot2Item:Define:FirstByte, pedestalSpot2Sub:Define:SecondByte; Helpers.Inaccessible; Items.SmithSword
+    PedItem3;  Major;   pedestalSpot3Item:Define:FirstByte, pedestalSpot3Sub:Define:SecondByte; Helpers.Inaccessible; Items.SmithSword
 !endif
 
 SmithHouse;                    Minor; 22-11-00;                                                                   ;
@@ -196,6 +212,7 @@ IntroItem1;                    Major; 0F252B;                                   
 IntroItem2;                    Major; 0F253B;                                                                     ;                                                                                                                                 Items.Shield
 LinkMinishWaterHoleHeartPiece; Minor; 0DB55F;                                                                     Helpers.CanDestroyTrees ,Items.PegasusBoots, Items.Flippers;                                                                      Items.Shield
 HyruleWellTop;                 Major; 41-00-00;                                                                   Items.BombBag;                                                                                                                    
+HyruleWellLeft;                Major; 41-00-01;                                                                   Items.MoleMitts;
 HyruleWellBottom;              Major; 41-00-02;                                                                   (|Items.Flippers, Items.RocsCape)
 HyruleWellPillar;              Major; 41-00-03;                                                                   Locations.HyruleWellLeft, Locations.HyruleWellRight, Locations.HyruleWellBottom, Helpers.CanSplit3
 HyruleWellRight;               Major; 41-00-04;                                                                   ; 
@@ -209,7 +226,9 @@ GrimbladeScroll;               Major; grimbladeDojoItem:Define:FirstByte, grimbl
 HyruleCastleWaterLeft;         Major; 07-00-01;                                                                   Items.Flippers;                                                                                                                   Items.BombBag # extra bomb bag for EU
 HyruleCastleWaterRight;        Major; 07-00-02;                                                                   Items.Flippers
 CafeLady;                      Minor; 00EDDA;                                                                     ;                                                                                                                                 Items.KinstoneX.RedSpike
+HearthLedge;                   Major; 02-00-06;                                                                   Items.LanternOff;
 HearthBackdoor;                Minor; 0D66D7;                                                                     (|Items.Flippers, Items.PacciCane, Items.RocsCape)													                              
+SchoolTop;                     Major; 02-00-07;                                                                   Items.PacciCane;
 SchoolGardenLeft;              Minor; 11-02-00;                                                                   Items.PacciCane, Helpers.CanSplit4
 SchoolGardenMiddle;            Minor; 11-02-01;                                                                   Items.PacciCane, Helpers.CanSplit4
 SchoolGardenRight;             Minor; 11-02-02;                                                                   Items.PacciCane, Helpers.CanSplit4
@@ -236,7 +255,7 @@ FountainBig;                   Major; 62-03-00;                                 
 FountainSmall;                 Minor; 62-04-00;                                                                   Helpers.HasBottle, (|Items.Flippers, Items.RocsCape)																		      
 FountainHeartPiece;            Minor; 0EF3B7;                                                                     Helpers.HasBottle, Items.RocsCape																							      
 LibraryMinish;                 Minor; 00E7BE;                                                                     Items.HyruleanBestiary, Items.PicoriLegend, Items.MaskHistory, Items.Ocarina, Items.PacciCane								      
-CuccoMinigame;                 Minor; 12460C;                                                                     (|Items.RocsCape, Item.Flippers)																							      
+CuccoMinigame;                 Minor; 12460C;                                                                     (|Items.RocsCape, Items.Flippers)																							      
 TownBell;                      Minor; 05D602:FirstByte, 5D604:SecondByte;                                         Items.RocsCape;                                                                                                                   Items.PieceOfHeart
 FlipsCaveBig;                  Major; 62-10-00;                                                                   Items.Ocarina, Helpers.HasDamageSource, Items.PacciCane, (|Items.Flippers, (&Items.HyruleanBestiary,Items.PicoriLegend,Items.MaskHistory, Items.GripRing, (|Items.GustJar, Items.RocsCape))) 
 FlipsCaveSmall;                Minor; 62-12-00;                                                                   Items.Flippers, Items.Ocarina, Items.PacciCane, Items.LanternOff
@@ -293,16 +312,16 @@ Melari;                    Major; 00D26E;                                       
 
 # Castor Wilds Locations
 AccessWilds;                  Helper;;                                                                           Locations.AccessWestField, Helpers.CanSplit2, (|Items.PegasusBoots, Items.RocsCape)
-WildsSouthCave;               Major; 2A-00-00;                                                                   Locations.AccessWilds, (|Items.Flippers, Items.RocsCape, Helpers.HasBow);                                                                                                                       Items.KinstoneX.YellowTotemProng
-WildsDarknutCave;             Major; 2B-00-00;                                                                   Locations.AccessWilds, Helpers.HasSword;                                                                                                                                                        Items.KinstoneX.YellowTotemProng
-WildsDekuCaveRight;           Major; 2A-01-00;                                                                   Locations.AccessWilds, Helpers.HasBow;                                                                                                                                                          Items.KinstoneX.YellowTotemProng
-WildsMulldozerHole;           Major; 27-06-00;                                                                   Locations.AccessWilds, (|Items.Flippers, Items.GustJar);                                                                                                                                        Items.Bow
+WildsSouthCave;               Major; 2A-00-00;                                                                   Locations.AccessWilds, (|Items.Flippers, Items.RocsCape, Helpers.HasBow);                                                          Items.KinstoneX.YellowTotemProng
+WildsDarknutCave;             Major; 2B-00-00;                                                                   Locations.AccessWilds, Helpers.HasSword;                                                                                           Items.KinstoneX.YellowTotemProng
+WildsDekuCaveRight;           Major; 2A-01-00;                                                                   Locations.AccessWilds, Helpers.HasBow;                                                                                             Items.KinstoneX.YellowTotemProng
+WildsMulldozerHole;           Major; 27-06-00;                                                                   Locations.AccessWilds, (|Items.Flippers, Items.GustJar);                                                                           Items.Bow
 WildsDiggingCaveLeft;         Minor; 17-00-00;                                                                   Locations.AccessWilds, Items.MoleMitts
 WildsDiggingCaveRight;        Minor; 17-00-01;                                                                   Locations.AccessWilds, Items.MoleMitts
 WildsTopChest;                Minor; 04-00-00;                                                                   Locations.AccessWilds, Helpers.HasBow
 WildsTopRightCaveHeartPiece;  Minor; 0D9907;                                                                     Locations.AccessWilds, Helpers.HasBow, (|Items.Flippers, Items.RocsCape)
 SwiftbladeTheFirstHeartPiece; Minor; 0D78CB;                                                                     Locations.AccessWilds, (|Helpers.HasBow, Items.RocsCape, Items.Flippers)
-SwiftbladeTheFirstScroll;     Major; swiftbladeIDojoItem:Define:FirstByte, swiftbladeIDojoSub:Define:SecondByte; Helpers.Inaccessible, Helpers.HasSword, Locations.SwiftbladeTheFirstHeartPiece, Items.SpinAttack, Items.RollAttack, Items.RockBreaker, Items.SwordBeam, Items.DashAttack, Items.DownThrust, Items.PerilBeam;      Items.GreatSpin
+SwiftbladeTheFirstScroll;     Major; swiftbladeIDojoItem:Define:FirstByte, swiftbladeIDojoSub:Define:SecondByte; Counts.Scrolls::7, Helpers.HasSword, Locations.SwiftbladeTheFirstHeartPiece;                                                       Items.GreatSpin
 RuinsBombCave;                Minor; 2A-02-00;                                                                   Locations.AccessWilds, (|Helpers.HasBow, Items.RocsCape, Items.Flippers), Items.KinstoneX.YellowTotemProng::3, Items.BombBag
 RuinsMinishHome;              Minor; 27-07-00;                                                                   Locations.AccessWilds, (|Helpers.HasBow, Items.RocsCape, Items.Flippers), Items.KinstoneX.YellowTotemProng::3, Helpers.HasSword
 RuinsMinishCaveHeartPiece;    Minor; 0DB4BF;                                                                     Locations.AccessWilds, (|Helpers.HasBow, Items.RocsCape, Items.Flippers), Items.KinstoneX.YellowTotemProng::3, Helpers.HasSword
@@ -319,7 +338,7 @@ WitchDiggingCave;      Minor; 0C-00-00;                                         
 HyliaSunkenHeartPiece; Minor; 0F323B;                                                                 Locations.AccessHyliaNorth, Items.Flippers
 HyliaBottomHeartPiece; Minor; 0F324B;                                                                 Locations.AccessHyliaNorth, (|Items.Flippers, Items.RocsCape)
 WavebladeHeartPiece;   Minor; 0D7B03;                                                                 Locations.AccessHyliaNorth, (|Items.Flippers, Items.RocsCape)
-WavebladeScroll;       Major; wavebladeDojoItem:Define:FirstByte, wavebladeDojoSub:Define:SecondByte; Helpers.Inaccessible, Helpers.HasSword, Locations.WavebladeHeartPiece;                                         Items.PerilBeam
+WavebladeScroll;       Major; wavebladeDojoItem:Define:FirstByte, wavebladeDojoSub:Define:SecondByte; Counts.HeartContainers::7, Helpers.HasSword, Locations.WavebladeHeartPiece;                                         Items.PerilBeam
 
 AccessTreasureCave;          Helper;;         Locations.AccessHyliaNorth, Items.MoleMitts, Items.RocsCape
 HyliaCapeCaveTopRight;       Minor; 19-01-00; Locations.AccessTreasureCave 
@@ -499,27 +518,39 @@ PalaceBossItem:Palace;             Minor;             gyorgContainerItem:Define:
 PalacePrize:`ELEMENT_DUNGEON`;     `ELEMENT`;         0E69E3;                                                                   Locations.CompletePalace
 
 # Skipping ahead to DHC so the game can be considered beatable...
-!ifndef - NODHC
-DHCAccess:DHC;             Helper;            ;         Helpers.CanSplit4, Items.EarthElement:`ELEMENT_DUNGEON`, Items.FireElement:`ELEMENT_DUNGEON`, Items.WaterElement:`ELEMENT_DUNGEON`, Items.WindElement:`ELEMENT_DUNGEON`, Items.BombBag
-CastleBigDoorsOpen:DHC;    Helper;            ;         Locations.DHCAccess, Items.SmallKey`DHC_SET`:2, Items.RocsCape, (|Items.Boomerang, Helpers.HasBow)
-CastleKing:DHC;            Minor;             ;         Locations.DHCAccess;                                   Items.Rupee200
-CastleBasement:DHC;        `KEYSANITY_MINOR`; 88-37-00; Locations.DHCAccess;          Items.DungeonMap`DHC_SET`
-CastleClones:DHC;          `KEYSANITY_MAJOR`; 88-27-00; Locations.DHCAccess;          Items.SmallKey`DHC_SET`
-CastlePostThrone:DHC;      `KEYSANITY_MINOR`; 88-20-00; Locations.DHCAccess, Items.SmallKey`DHC_SET`;        Items.Compass`DHC_SET`
-CastleTopLeftTower:DHC;    `KEYSANITY_MAJOR`; 88-01-00; Helpers.CastleBigDoorsOpen, Helpers.HasBow;            Items.SmallKey`DHC_SET`
-CastleTopRightTower:DHC;   `KEYSANITY_MAJOR`; 88-02-00; Helpers.CastleBigDoorsOpen, Items.LanternOff;          Items.SmallKey`DHC_SET`
-CastleLowerLeftTower:DHC;  `KEYSANITY_MAJOR`; 88-03-00; Helpers.CastleBigDoorsOpen;                            Items.SmallKey`DHC_SET`
-CastleLowerRightTower:DHC; `KEYSANITY_MAJOR`; 88-04-00; Helpers.CastleBigDoorsOpen;                            Items.SmallKey`DHC_SET`
 
-!ifdef - KEYSANITY	#temp will be changed on fixing generation issues 
-	CastleBigBlock:DHC;    Major;             88-09-00; Helpers.CastleBigDoorsOpen, Items.SmallKey`DHC_SET`:5; Items.BigKey`DHC_SET`
+!ifdef - NODHC
+    BeatVaati;                 Helper;            ;         Locations.CompletePed 
 !else
-	CastleBigBlock:DHC;    Unshuffled;        88-09-00; Helpers.CastleBigDoorsOpen, Items.SmallKey`DHC_SET`:5; Items.BigKey`DHC_SET`
+    !ifdef - OPENDHC
+        DHCAccess:DHC;         Helper;            ;
+	    BeatVaati;             Helper;            ;         Items.BigKey`DHC_SET`,Items.SmallKey`DHC_SET`,Helpers.CanSplit4, Items.BombBag, Helpers.HasBow, Items.RocsCape, Items.LanternOff, Items.GustJar, Items.PacciCane
+	!else
+	    !ifdef - PEDITEMS
+		    DHCAccess:DHC;     Helper;            ;
+	        BeatVaati;         Helper;            ;         Items.BigKey`DHC_SET`,Items.SmallKey`DHC_SET`,Helpers.CanSplit4, Items.BombBag, Helpers.HasBow, Items.RocsCape, Items.LanternOff, Items.GustJar, Items.PacciCane
+		!else
+		    DHCAccess:DHC;     Helper;            ;         Locations.CompletePed
+		    BeatVaati;         Helper;            ;         Locations.DHCAccess,Items.BigKey`DHC_SET`,Items.SmallKey`DHC_SET`,Helpers.CanSplit4, Items.BombBag, Helpers.HasBow, Items.LanternOff, Items.GustJar, Items.PacciCane
+		!endif
+	!endif
+
+	CastleBigDoorsOpen:DHC;    Helper;            ;         Locations.DHCAccess, Items.SmallKey`DHC_SET`:1, Helpers.CanSplit4, Items.RocsCape, (|Items.Boomerang::2, Helpers.HasBow), Items.BombBag
+    CastleKing:DHC;            Minor;             ;         Locations.DHCAccess, Helpers.CanSplit4, Items.BombBag;        Items.Rupee200
+    CastleBasement:DHC;        `KEYSANITY_MINOR`; 88-37-00; Locations.DHCAccess;                                          Items.DungeonMap`DHC_SET`
+    CastleClones:DHC;          `KEYSANITY_MAJOR`; 88-27-00; Locations.DHCAccess, Helpers.CanSplit4;                       Items.SmallKey`DHC_SET`
+    CastlePostThrone:DHC;      `KEYSANITY_MINOR`; 88-20-00; Locations.DHCAccess, Items.SmallKey`DHC_SET`, Items.BombBag;  Items.Compass`DHC_SET`
+    CastleTopLeftTower:DHC;    `KEYSANITY_MAJOR`; 88-01-00; Helpers.CastleBigDoorsOpen, Helpers.HasBow;                   Items.SmallKey`DHC_SET`
+    CastleTopRightTower:DHC;   `KEYSANITY_MAJOR`; 88-02-00; Helpers.CastleBigDoorsOpen, Items.LanternOff;                 Items.SmallKey`DHC_SET`
+    CastleLowerLeftTower:DHC;  `KEYSANITY_MAJOR`; 88-03-00; Helpers.CastleBigDoorsOpen;                                   Items.SmallKey`DHC_SET`
+    CastleLowerRightTower:DHC; `KEYSANITY_MAJOR`; 88-04-00; Helpers.CastleBigDoorsOpen;                                   Items.SmallKey`DHC_SET`
+    
+	!ifdef - KEYSANITY	#temp will be changed on fixing generation issues 
+        CastleBigBlock:DHC;    Major;             88-09-00; Helpers.CastleBigDoorsOpen, Items.SmallKey`DHC_SET`:5; Items.BigKey`DHC_SET`
+    !else
+        CastleBigBlock:DHC;    Unshuffled;        88-09-00; Helpers.CastleBigDoorsOpen, Items.SmallKey`DHC_SET`:5; Items.BigKey`DHC_SET`
+    !endif
 !endif
-!
-BeatVaati;                 Helper;            ;         Items.EarthElement:`ELEMENT_DUNGEON`, Items.FireElement:`ELEMENT_DUNGEON`, Items.WaterElement:`ELEMENT_DUNGEON`, Items.WindElement:`ELEMENT_DUNGEON`, Helpers.CanSplit4, Items.BombBag, Helpers.HasBow, Items.RocsCape, Items.LanternOff, Items.GustJar, Items.PacciCane
-
-
 
 #Kinstone changes 02017660
 RuinsBombBag;            Major; 0FE0AE;   Helpers.Inaccessible;
@@ -581,8 +612,6 @@ GreatbladeScroll;        Major; greatbladeDojoItem:Define:FirstByte, greatbladeD
 	WildsSunkenKinstoneTop;         Minor; 0D9347;                              Locations.AccessWilds, Items.Flippers
 	WildsSunkenKinstoneMiddle;      Minor; 0D9357;                              Locations.AccessWilds, Items.Flippers
 	WildsSunkenKinstoneBottom;      Minor; 0D9367;                              Locations.AccessWilds, Items.Flippers
-
-	
 !endif
 
 #Unrandomized locations
