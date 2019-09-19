@@ -1,6 +1,10 @@
 #define jumpToHack(offset) "BYTE 0x00 0x4B 0x18 0x47; POIN (offset|0x1)"
 #include "extDefinitions.event" //a file reserved for the randomizer to output definitions for the patches
 
+#ifndef customRNG
+	#define customRNG "0x20120825"
+#endif
+
 //#define DEBUG 0
 //#define TEST 0
 
@@ -153,6 +157,11 @@ ALIGN 4
 drawTime:
 #incbin "asm/drawTime.dmp"
 POIN drawText
+
+//get a number from the custom rng and advance it
+getRNG:
+#incbin "asm/getRNG.dmp"
+WORD customRNG
 
 #include "pedestal.event"
 #include "timedohko.event"
