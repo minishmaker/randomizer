@@ -138,6 +138,8 @@ WORD 0 0 0 //terminator
 PUSH
 ORG $5EE3D0
 #incbin "ice.img.bin"
+ORG $5F12D0
+#incbin "bigice.img.bin"
 POP
 
 //given text id, get text offset
