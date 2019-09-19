@@ -43,7 +43,7 @@
         !eventdefine - openDHC
     !else
 	    !ifdef - NODHCF
-		    !define NODHC
+		    !define - NODHC
 		    !eventdefine - noDHC
         !endif
 
