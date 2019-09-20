@@ -350,5 +350,8 @@ libraryTrapdoor:
 //carpenters don't need cane to spawn
 PUSH; ORG $4E53A; SHORT 0; POP
 
+//set cucco minigame whenever you win, not only when you win a heart
+PUSH; ORG $A0C48; SHORT 0x2800 0xD10F; POP
+
 #include "dojos.event"
 #include "shop.event"
