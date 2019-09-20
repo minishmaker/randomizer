@@ -107,6 +107,9 @@ POIN requirementSwordTierASM
 #ifdef requirementFigurinesAmmount
 POIN requirementFigurinesASM
 #endif
+#ifdef requirementDungeonsAmmount
+POIN requirementDungeonsASM
+#endif
 WORD 0 //terminator
 
 #ifdef requirementElementsAmmount
@@ -130,6 +133,13 @@ requirementFigurinesASM:
 WORD requirementFigurinesAmmount
 requirementFigurinesCounter:
 #incbin "asm/pedestalRequirements/requirementFigurinesCounter.dmp"
+#endif
+
+#ifdef requirementDungeonsAmmount
+ALIGN 4
+requirementDungeonsASM:
+#incbin "asm/pedestalRequirements/requirementDungeonsASM.dmp"
+WORD requirementDungeonsAmmount
 #endif
 
 ALIGN 4
