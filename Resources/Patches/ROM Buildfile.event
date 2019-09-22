@@ -181,6 +181,7 @@ WORD customRNG
 #include "hearts.event"
 #include "randomLanguage.event"
 #include "tunic.event"
+#include "hash.event"
 
 #ifdef fuzzy //size of the mosaic, 0 to 14
 	PUSH; ORG $4FD90; jumpToHack(fuzzyMode); POP
