@@ -211,6 +211,10 @@ namespace MinishRandomizer
             }
 
             customLogicPath.Text = ofd.FileName;
+
+            shuffler.LoadOptions(customLogicPath.Text);
+
+            LoadOptionControls(shuffler.GetOptions());
         }
 
         private void BrowsePatchButton_Click(object sender, EventArgs e)
@@ -340,7 +344,7 @@ namespace MinishRandomizer
             }
 
             optionControlLayout.Controls.Clear();
-
+            gimmickControlLayout.Controls.Clear();
             foreach (LogicOption option in options)
             {
                 Control optionControl = option.GetControl();
