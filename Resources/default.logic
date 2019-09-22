@@ -224,11 +224,11 @@ SmithHouse;                    Minor; 22-11-00;                                 
 IntroItem1;                    Major; 0F252B;                                                                     ;                                                                                                                                 Items.SmithSword
 IntroItem2;                    Major; 0F253B;                                                                     ;                                                                                                                                 Items.Shield
 LinkMinishWaterHoleHeartPiece; Major; 0DB55F;                                                                     Helpers.CanDestroyTrees ,Items.PegasusBoots, Items.Flippers;                                                                      Items.Shield
-HyruleWellTop;                 Major; 41-00-00;                                                                   Items.BombBag;                                                                                                                    
-HyruleWellLeft;                Major; 41-00-01;                                                                   Items.MoleMitts;
-HyruleWellBottom;              Major; 41-00-02;                                                                   (|Items.Flippers, Items.RocsCape)
-HyruleWellPillar;              Major; 41-00-03;                                                                   Locations.HyruleWellLeft, Locations.HyruleWellRight, Locations.HyruleWellBottom, Helpers.CanSplit3
-HyruleWellRight;               Major; 41-00-04;                                                                   ; 
+HyruleWellTop;                 Minor; 41-00-00;                                                                   Items.BombBag;                                                                                                                    
+HyruleWellLeft;                Minor; 41-00-01;                                                                   Items.MoleMitts;
+HyruleWellBottom;              Minor; 41-00-02;                                                                   (|Items.Flippers, Items.RocsCape)
+HyruleWellPillar;              Minor; 41-00-03;                                                                   Locations.HyruleWellLeft, Locations.HyruleWellRight, Locations.HyruleWellBottom, Helpers.CanSplit3
+HyruleWellRight;               Minor; 41-00-04;                                                                   ; 
 PreCastleCaveHeartPiece;       Major; 0F864B;                                                                     (|Items.Flippers, Items.RocsCape, Items.BombBag)													                              
 SwiftbladeScroll1;             Major; swiftblade1DojoItem:Define:FirstByte, swiftblade1DojoSub:Define:SecondByte; Helpers.HasSword;                                                                                                                 Items.SpinAttack
 SwiftbladeScroll2;             Major; swiftblade2DojoItem:Define:FirstByte, swiftblade2DojoSub:Define:SecondByte; Items.SmithSword::2;                                                                                                              Items.RockBreaker
@@ -237,7 +237,7 @@ SwiftbladeScroll4;             Major; swiftblade4DojoItem:Define:FirstByte, swif
 GrimbladeHeartPiece;           Major; 0D79BB;							                                          ;																									                              
 GrimbladeScroll;               Major; grimbladeDojoItem:Define:FirstByte, grimbladeDojoSub:Define:SecondByte;     Helpers.HasSword, Items.LanternOff;                                                                                               Items.SwordBeam
 HyruleCastleWaterLeft;         Major; 07-00-01;                                                                   Items.Flippers;                                                                                                                   Items.BombBag # extra bomb bag for EU
-HyruleCastleWaterRight;        Major; 07-00-02;                                                                   Items.Flippers
+HyruleCastleWaterRight;        Minor; 07-00-02;                                                                   Items.Flippers
 CafeLady;                      Minor; 00EDDA;                                                                     ;                                                                                                                                 Items.KinstoneX.RedSpike
 HearthLedge;                   Major; 02-00-06;                                                                   Items.LanternOff;
 HearthBackdoor;                Minor; 0D66D7;                                                                     (|Items.Flippers, Items.PacciCane, Items.RocsCape)													                              
@@ -278,7 +278,7 @@ AccessEastField;  Helper;;                                    (|Helpers.CanDestr
 HillsKeeseCave;   Minor; 32-13-00;                            Items.BombBag
 AboveHPHole;      Minor; 27-00-00;                            Locations.AccessHyliaNorth, (|Items.PacciCane, Items.RocsCape)
 LonLonPot;        Major; 0F2C9B:FirstByte, 0F2C9D:SecondByte; Locations.AccessEastField
-LonLonCave;       Major; 32-0C-00;                            Locations.AccessHyliaNorth, Helpers.CanSplit2
+LonLonCave;       Minor; 32-0C-00;                            Locations.AccessHyliaNorth, Helpers.CanSplit2
 LonLonHeartPiece; Major; 0D56EF;                              Locations.AccessHyliaNorth, Items.PegasusBoots
 MinishRupeeFairy; Major; 00B7B4;                              Locations.AccessEastField, Items.PacciCane
 
@@ -585,15 +585,16 @@ PalacePrize:`ELEMENT_DUNGEON`;     `ELEMENT`;         0E69E3;                   
 	MinishMiddleLeftFusion;  Minor; 0FE0CE;                                                                   Locations.AccessMinishWoods;
 	MinishTopLeftFusion;     Minor; 0FE07E;                                                                   Locations.MinishWitchHut;
 	MinishMinishPathFusion;  Minor; 0FE08E;                                                                   Locations.AccessMinishWoods;
-
-    HyliaMinishPathFusion;   Minor; 0FE09E;                                                                   Locations.AccessHyliaSouth, Items.PegasusBoots, (|Items.GustJar, Items.Flippers);
+	MinishCrackChest;        Minor; 27-08-00;                                                                 Locations.AccessMinishWoods;
+    
+	HyliaMinishPathFusion;   Minor; 0FE09E;                                                                   Locations.AccessHyliaSouth, Items.PegasusBoots, (|Items.GustJar, Items.Flippers);
 
 	SchoolMinishPathFusion;  Minor; 0FE076;                                                                   Items.PacciCane;
 	TownWaterfallChest;      Minor; 32-0B-00;                                                                 Items.Flippers;
-	TingleTreeTopLeft;       Minor; 32-00-00;
-	TingleTreeTopRight;      Minor; 32-00-01;
-	TingleTreeBottomLeft;    Minor; 32-00-02;
-	TingleTreeBottomRight;   Minor; 32-00-03;
+	TingleTreeTopLeft;       Minor; 32-00-00;                                                                 ;
+	TingleTreeTopRight;      Minor; 32-00-01;                                                                 ;
+	TingleTreeBottomLeft;    Minor; 32-00-02;                                                                 ;
+	TingleTreeBottomRight;   Minor; 32-00-03;                                                                 ;
     CastleRightMinishHole;   Minor; 36-00-00;                                                                 Items.PegasusBoots;                                                                 
 	CastleLeftMinishHole;    Minor; 36-01-00;                                                                 Items.PegasusBoots;
 
@@ -601,9 +602,10 @@ PalacePrize:`ELEMENT_DUNGEON`;     `ELEMENT`;         0E69E3;                   
 	
 	LonLonFallsFusion;       Minor; 0FE0FE;                                                                   Locations.AccessFallsSouth;
 	LonLonMinishPathFusion;  Minor; 0FE086;                                                                   Locations.AccessHyliaNorth, Items.PegasusBoots;
+	GoronSmallChest;         Minor; 2F-01-00;                                                                 Locations.MinishWitchHut;
 
 	TrilbyTopFusion;         Minor; 0FE0BE;                                                                   Locations.AccessWestField;
-	TrilbyMiddleFusion;      Minor; 0FE0EE;
+	TrilbyMiddleFusion;      Minor; 0FE0EE;                                                                   Locations.AccessWestField;
 	TrilbyWaterCave;         Minor; 13-03-01;                                                                 Locations.AccessWestField, (|Items.RocsCape,Items.Flippers), Items.MoleMitts;
 
 	SouthernWoodChest;       Minor; 03-08-01;                                                                 Helpers.CanSplit2;
@@ -618,13 +620,19 @@ PalacePrize:`ELEMENT_DUNGEON`;     `ELEMENT`;         0E69E3;                   
 	PercyHouseMoblin;        Minor; 0123D6;                                                                   Helpers.CanSplit2, Items.LanternOff;
 	PercyHouseReward;        Minor; 06B058:FirstByte, 06B05A:SecondByte;                                      Helpers.CanSplit2, Items.LanternOff;
 	
-	HyliaWaterDigCave;       Minor; 19-00-00;                                                                 Locations.AccessHyliaSouth;
+	HyliaWaterDigCave;       Minor; 19-00-00;                                                                 Locations.AccessHyliaSouth, Items.MoleMitts;
 
 	CrenelGreenWaterFusion;  Minor; 0FE06E;                                                                   Locations.AccessWestField, Helpers.HasBottle, Items.BombBag;
 	CrenelClimbFusion;       Minor; 0FE10E;                                                                   Locations.AccessCrenel, Items.GripRing;
 	CrenelRainPath;          Minor; 0FE066;                                                                   Locations.AccessCrenel, Items.GripRing;
-	CrenelLowerLeftFusion;   Minor; 0FE116;                                                                   Locations.AccessWestField, Helpers.HasBottle;
+	CrenelLowerLeftFusion;   Minor; 0FE116;                                                                   Locations.AccessWestField, Helpers.HasBottle, (|Items.BombBag, Items.RocsCape);
 	PreMelariFusion;         Minor; 0FE096;                                                                   Locations.CrenelBlockChest;
+
+	CastorTopRightCrack;     Minor; 27-09-00;                                                                 Locations.AccessWilds;
+	CastorTopLeftCrack;      Minor; 27-0D-00;                                                                 Locations.AccessWilds, (|Items.GustJar, Items.Flippers);
+	CastorMiddleLeftCrack;   Minor; 27-0A-00;                                                                 Locations.AccessWilds;
+	CastorLongJourneyCrack;  Minor; 27-0B-00;                                                                 Locations.AccessWilds;
+	CastorMinishWaterCaveChest; Minor; 35-01-00;                                                              Locations.AccessWilds, Items.Flippers;
 
 	RuinsPillarsFusion;      Minor; 0FE11E;                                                                   Locations.AccessFortress;
 	RuinsCrackFusion;        Minor; 27-0C-00;                                                                 Locations.AccessFortress;
@@ -632,9 +640,10 @@ PalacePrize:`ELEMENT_DUNGEON`;     `ELEMENT`;         0E69E3;                   
 	PreValleyFusion;         Minor; 0FE0F6;                                                                   Helpers.CanSplit3;
 	RoyalValleyLeftFusion;   Minor; 0FE0DE;                                                                   Locations.AccessValley, Items.GraveyardKey, Items.PegasusBoots;
 	RoyalValleyRightFusion;  Minor; 0FE0E6;                                                                   Locations.AccessValley, Items.GraveyardKey, Items.PegasusBoots;                                                                 
-	GinaGrave;               Minor; 34-01-00
+	GinaGrave;               Minor; 34-01-00;                                                                 Locations.AccessValley, Items.GraveyardKey, Items.PegasusBoots;
 
 	FallsNearCrestFusion;    Minor; 0FE106;                                                                   Locations.AccessFallsNorth, Items.GripRing;
+	FallsWaterCaveEnd;       Minor; 16-00-00;                                                                 Locations.AccessFallsNorth, (|Items.RocsCape, Items.Flippers), Items.MoleMitts
 
     RuinsBombBag;            Major; 0FE0AE;                                                                   Locations.AccessFortress;
     LonLonWallet;            Major; 32-0F-00;                                                                 Locations.AccessHyliaNorth;
