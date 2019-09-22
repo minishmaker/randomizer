@@ -406,10 +406,20 @@ CloudsSouthLeft;   Minor; 08-01-05; Locations.AccessClouds, Items.MoleMitts
 CloudsSouthRight;  Minor; 08-01-06; Locations.AccessClouds, (|Items.RocsCape, Items.MoleMitts)
 
 AccessUpperClouds; Helper;;         Locations.AccessClouds, (|Items.RocsCape, Items.MoleMitts), Items.KinstoneX.YellowTornadoProng::5
-TowerBottomLeft;   Minor; 30-00-00; Locations.AccessUpperClouds
-TowerBottomRight;  Minor; 30-00-01; Locations.AccessUpperClouds;
-TowerF2;           Minor; 30-01-00; Locations.AccessUpperClouds
-GregalOne;         Minor; 014C5C;   Locations.AccessUpperClouds, Items.GustJar
+
+!ifdef - NO_FUSIONS
+    TowerBottomLeft;   Minor; 30-00-00; Locations.AccessUpperClouds;
+    TowerBottomRight;  Minor; 30-00-01; Locations.AccessUpperClouds;
+    TowerF2;           Minor; 30-01-00; Locations.AccessUpperClouds;
+    GregalOne;         Minor; 014C5C;   Locations.AccessUpperClouds, Items.GustJar
+    
+!else
+    TowerBottomLeft;   Minor; 30-00-00; ;
+    TowerBottomRight;  Minor; 30-00-01; ;
+    TowerF2;           Minor; 30-01-00; ;
+    GregalOne;         Minor; 014C5C;   Items.GustJar
+!endif
+
 GregalTwo;         Major; 014CBC;   Locations.AccessUpperClouds, Items.GustJar;            Items.Bow
 TowerRightBed;     Minor; 30-02-00; Locations.AccessUpperClouds
 TowerMiddleBed;    Minor; 30-02-01; Locations.AccessUpperClouds
@@ -605,8 +615,8 @@ PalacePrize:`ELEMENT_DUNGEON`;     `ELEMENT`;         0E69E3;                   
 	SouthernWoodTopDig6;     Minor; 0F781F;                                                                   Helpers.CanSplit2, Items.MoleMitts;
 	SouthernWoodBottomDig1;  Minor; 0F782F;                                                                   Helpers.CanSplit2, Items.MoleMitts;
 	SouthernWoodBottomDig2;  Minor; 0F783F;                                                                   Helpers.CanSplit2, Items.MoleMitts;
-	#PercyHouseMoblin;        Minor; ------;                                                                   Helpers.CanSplit2, Items.LanternOff;
-	#PercyHouseReward;        Minor; ------;                                                                   Helpers.CanSplit2, Items.LanternOff;
+	PercyHouseMoblin;        Minor; 0123D6;                                                                   Helpers.CanSplit2, Items.LanternOff;
+	PercyHouseReward;        Minor; 06B058:FirstByte, 06B05A:SecondByte;                                      Helpers.CanSplit2, Items.LanternOff;
 	
 	HyliaWaterDigCave;       Minor; 19-00-00;                                                                 Locations.AccessHyliaSouth;
 
