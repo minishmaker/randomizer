@@ -1,24 +1,24 @@
 #ifdef hash
 #ifndef seedHash1
-	#define seedHash1 "24"
+	#define seedHash1 "0"
 #endif
 #ifndef seedHash2
-	#define seedHash2 "65"
+	#define seedHash2 "0"
 #endif
 #ifndef seedHash3
-	#define seedHash3 "24"
+	#define seedHash3 "0"
 #endif
 #ifndef seedHash4
-	#define seedHash4 "122"
+	#define seedHash4 "0"
 #endif
 #ifndef seedHash5
-	#define seedHash5 "87"
+	#define seedHash5 "0"
 #endif
 #ifndef optionsHash1
-	#define optionsHash1 "32"
+	#define optionsHash1 "0"
 #endif
 #ifndef optionsHash2
-	#define optionsHash2 "11"
+	#define optionsHash2 "0"
 #endif
 
 //write hash to save string, file will be erased if hash doesn't match
@@ -29,7 +29,6 @@ PUSH; ORG $559F2; SHORT 0; jumpToHack(hashCheck); POP
 ALIGN 4
 hashCheck:
 #incbin "asm/hashCheck.dmp"
-#endif
 
 //all titlescreen texts are the choose a file one
 PUSH; ORG $121490; BYTE 0x28 0x28 0x28 0x28 0x28 0x28 0x28 0x28; POP
@@ -155,3 +154,4 @@ SHORT 0x0000 //60
 SHORT 0x1000 //61
 SHORT 0x2000 //62
 SHORT 0x4000 //63
+#endif
