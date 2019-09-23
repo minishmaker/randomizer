@@ -16,7 +16,6 @@ mov	r0,r4
 ldr	r3,=#0x8080E24
 mov	lr,r3
 .short	0xF800
-mov	r0,#1
 b	end
 
 fast:
