@@ -19,6 +19,7 @@
 !flag - Setting - PEDITEMSF - Open DHC + Pedestal Items
 !flag - Setting - NODHCF - Pedestal Finish/No DHC
 !flag - Setting - RUPEEMANIA - Add available rupees to pool
+!flag - Setting - WEAPONS - Damaging items other than sword seen as weapons
 
 # these 2 are only valid outside of openDHC modes, if neither are defined it defaults to 4 elements
 #!define - SWORDLEVEL - 5    #if defined with a value from 1-5, requires this level of sword in order to activate the pedestal (0 if commented out)
@@ -201,7 +202,12 @@ HasLightBow;     Helper;; (|Items.Bow::2, Items.LightArrow)
 
 HasBoomerang;    Helper;; (|Items.Boomerang, Items.MagicBoomerang)
 
-HasDamageSource; Helper;; (|Helpers.HasSword, Helpers.HasBow, Items.BombBag)
+!ifdef - WEAPONS
+    HasDamageSource; Helper;; Helpers.HasSword
+!else
+    HasDamageSource; Helper;; (|Helpers.HasSword, Helpers.HasBow, Items.BombBag)
+!endif
+
 HasBeam;         Helper;; Helpers.HasSword, (|Items.SwordBeam, Items.PerilBeam)
 CanDestroyTrees; Helper;; (|Helpers.HasSword, Helpers.HasLightBow, Items.BombBag ,Items.LanternOff)
 
@@ -286,7 +292,7 @@ AccessWestField;     Helper;;                                                   
 TrilbyBombCave;      Minor; 32-07-00;                                                           Locations.AccessWestField, Helpers.CanSplit2, Items.BombBag
 TrilbyMoleCaveLeft;  Minor; 13-03-00;                                                           Locations.AccessWestField, Items.MoleMitts
 TrilbyMoleCaveRight; Minor; 13-03-02;                                                           Locations.AccessWestField, Items.MoleMitts
-BottleScrub;         Major; bottleScrubItem:Define:FirstByte, bottleScrubSub:Define:SecondByte; Items.Shield, Items.BombBag, Locations.AccessWestField;        Items.Bottle4
+BottleScrub;         Major; bottleScrubItem:Define:FirstByte, bottleScrubSub:Define:SecondByte; Items.Shield, Items.BombBag, Locations.AccessWestField;        Items.Bottle4 #consistency
 
 # Minish Woods Locations
 AccessMinishWoods;               Helper;;         Locations.AccessEastField
@@ -346,7 +352,7 @@ RuinsArmosKillRight;          Minor; 05-05-01;                                  
 # Lake Hylia Locations
 AccessHyliaNorth;      Helper;;                                                                       Locations.AccessEastField,(|Items.RocsCape, Items.LonLonKey,Items.Ocarina,(&Items.Flippers, Items.MoleMitts))
 AccessHyliaSouth;      Helper;;                                                                       Locations.AccessHyliaNorth,(|Items.Flippers,Items.RocsCape,(&Items.MoleMitts,Items.PacciCane))
-StockwellDog;          Major; 094908:FirstByte, 09490A:SecondByte;                                    Locations.AccessHyliaNorth, Items.DogFoodBottle                                                                                              Items.Bottle4
+StockwellDog;          Major; 094908:FirstByte, 09490A:SecondByte;                                    Locations.AccessHyliaNorth, Items.DogFoodBottle                                                                                              Items.Bottle4 #consistency
 HyliaNorthMinishHole;  Minor; 35-07-00;                                                               Locations.AccessHyliaNorth, Items.Flippers, Items.PegasusBoots
 HyliaMayorCabin;       Major; blueBookItem:Define:FirstByte, blueBookSub:Define:SecondByte;           Locations.AccessHyliaSouth, Items.PegasusBoots, Items.PowerBracelets, (|Items.GustJar, Items.Flippers);                                      Items.MaskHistory
 WitchDiggingCave;      Minor; 0C-00-00;                                                               Locations.AccessHyliaSouth, Items.MoleMitts
