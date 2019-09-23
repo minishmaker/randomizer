@@ -286,7 +286,7 @@ AccessWestField;     Helper;;                                                   
 TrilbyBombCave;      Minor; 32-07-00;                                                           Locations.AccessWestField, Helpers.CanSplit2, Items.BombBag
 TrilbyMoleCaveLeft;  Minor; 13-03-00;                                                           Locations.AccessWestField, Items.MoleMitts
 TrilbyMoleCaveRight; Minor; 13-03-02;                                                           Locations.AccessWestField, Items.MoleMitts
-BottleScrub;         Major; bottleScrubItem:Define:FirstByte, bottleScrubSub:Define:SecondByte; Items.Shield, Items.BombBag, Locations.AccessWestField;        Items.Bottle1
+BottleScrub;         Major; bottleScrubItem:Define:FirstByte, bottleScrubSub:Define:SecondByte; Items.Shield, Items.BombBag, Locations.AccessWestField;        Items.Bottle4
 
 # Minish Woods Locations
 AccessMinishWoods;               Helper;;         Locations.AccessEastField
@@ -346,9 +346,9 @@ RuinsArmosKillRight;          Minor; 05-05-01;                                  
 # Lake Hylia Locations
 AccessHyliaNorth;      Helper;;                                                                       Locations.AccessEastField,(|Items.RocsCape, Items.LonLonKey,Items.Ocarina,(&Items.Flippers, Items.MoleMitts))
 AccessHyliaSouth;      Helper;;                                                                       Locations.AccessHyliaNorth,(|Items.Flippers,Items.RocsCape,(&Items.MoleMitts,Items.PacciCane))
-StockwellDog;          Major; 094908:FirstByte, 09490A:SecondByte;                                                                       Locations.AccessHyliaNorth, Items.DogFoodBottle
+StockwellDog;          Major; 094908:FirstByte, 09490A:SecondByte;                                    Locations.AccessHyliaNorth, Items.DogFoodBottle                                                                                              Items.Bottle4
 HyliaNorthMinishHole;  Minor; 35-07-00;                                                               Locations.AccessHyliaNorth, Items.Flippers, Items.PegasusBoots
-HyliaMayorCabin;       Major; blueBookItem:Define:FirstByte, blueBookSub:Define:SecondByte;           Locations.AccessHyliaSouth, Items.PegasusBoots, Items.PowerBracelets, (|Items.GustJar, Items.Flippers);        Items.MaskHistory
+HyliaMayorCabin;       Major; blueBookItem:Define:FirstByte, blueBookSub:Define:SecondByte;           Locations.AccessHyliaSouth, Items.PegasusBoots, Items.PowerBracelets, (|Items.GustJar, Items.Flippers);                                      Items.MaskHistory
 WitchDiggingCave;      Minor; 0C-00-00;                                                               Locations.AccessHyliaSouth, Items.MoleMitts
 HyliaSunkenHeartPiece; Major; 0F323B;                                                                 Locations.AccessHyliaNorth, Items.Flippers
 HyliaBottomHeartPiece; Major; 0F324B;                                                                 Locations.AccessHyliaNorth, (|Items.Flippers, Items.RocsCape)
@@ -647,8 +647,8 @@ PalacePrize:`ELEMENT_DUNGEON`;     `ELEMENT`;         0E69E3;                   
 
     RuinsBombBag;            Major; 0FE0AE;                                                                   Locations.AccessFortress;
     LonLonWallet;            Major; 32-0F-00;                                                                 Locations.AccessHyliaNorth;
-    LonLonBottle3;           Major; 0FE05E;                                                                   Helpers.CanDestroyTrees;
-    GoronBottle4;            Major; 2F-01-01;                                                                 Locations.MinishWitchHut;
+    LonLonBottle3;           Major; 0FE05E;                                                                   Helpers.CanDestroyTrees;                                         Items.Bottle4 #consistency
+    GoronBottle4;            Major; 2F-01-01;                                                                 Locations.MinishWitchHut;                                        Items.Bottle4 #consistency
     TingleBoomerang;         Major; 32-00-04;                                                                 ;                                                                Items.Boomerang #consistency
     RuinsBeanStalk;          Major; 0D-02-00;                                                                 Locations.AccessFortress;
     BelariRemote;            Major; 00A0A0;                                                                   Locations.BelariBombs;
