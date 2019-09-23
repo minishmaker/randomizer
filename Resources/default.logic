@@ -352,7 +352,7 @@ RuinsArmosKillRight;          Minor; 05-05-01;                                  
 # Lake Hylia Locations
 AccessHyliaNorth;      Helper;;                                                                       Locations.AccessEastField,(|Items.RocsCape, Items.LonLonKey,Items.Ocarina,(&Items.Flippers, Items.MoleMitts))
 AccessHyliaSouth;      Helper;;                                                                       Locations.AccessHyliaNorth,(|Items.Flippers,Items.RocsCape,(&Items.MoleMitts,Items.PacciCane))
-StockwellDog;          Major; 094908:FirstByte, 09490A:SecondByte;                                    Locations.AccessHyliaNorth, Items.DogFoodBottle                                                                                              Items.Bottle4 #consistency
+StockwellDog;          Major; 094908:FirstByte, 09490A:SecondByte;                                    Locations.AccessHyliaNorth, Items.DogFoodBottle;                                                                                             Items.Bottle4 #consistency
 HyliaNorthMinishHole;  Minor; 35-07-00;                                                               Locations.AccessHyliaNorth, Items.Flippers, Items.PegasusBoots
 HyliaMayorCabin;       Major; blueBookItem:Define:FirstByte, blueBookSub:Define:SecondByte;           Locations.AccessHyliaSouth, Items.PegasusBoots, Items.PowerBracelets, (|Items.GustJar, Items.Flippers);                                      Items.MaskHistory
 WitchDiggingCave;      Minor; 0C-00-00;                                                               Locations.AccessHyliaSouth, Items.MoleMitts
