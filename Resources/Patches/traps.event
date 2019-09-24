@@ -1,19 +1,18 @@
-//when item 0x1B is collected from a chest, trigger a trap based on subID instead of giving an item
-PUSH; ORG $A74C0; jumpToHack(chestTrapSmall); POP
+//when item 0x1B is collected, save the trap type for it to trigger when link regains control
+PUSH; ORG $A744A; SHORT 0; jumpToHack(trapSet); POP
 ALIGN 4
-chestTrapSmall:
-#incbin "asm/chestTrapSmall.dmp"
-POIN chestTrapTable
+trapSet:
+#incbin "asm/trapSet.dmp"
 
-//same but for big chests
-PUSH; ORG $83A6C; jumpToHack(chestTrapBig); POP
+//when links regains control, trigger the trap
+PUSH; ORG $804DA; SHORT 0; jumpToHack(trapTrigger); POP
 ALIGN 4
-chestTrapBig:
-#incbin "asm/chestTrapBig.dmp"
-POIN chestTrapTable
+trapTrigger:
+#incbin "asm/trapTrigger.dmp"
+POIN trapTable
 
 ALIGN 4
-chestTrapTable: //pointers to routines for each trap, based on subID of the 0x1B item
+trapTable: //pointers to routines for each trap, based on subID of the 0x1B item
 POIN iceTrap; WORD 8
 POIN fireTrap; WORD 8
 POIN $797B0; WORD 8 //zapTrap
