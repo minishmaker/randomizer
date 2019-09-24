@@ -58,6 +58,7 @@ ldrb	r2,[r0]
 add	r0,#1
 cmp	r2,#0
 bne	loop
+sub	r1,#1
 
 @and get the icon
 mov	r0,r5

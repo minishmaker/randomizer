@@ -1,3 +1,4 @@
+.equ getRNG, trapTable+4
 .thumb
 ldr	r3,[r7,#0x30]
 mov	r0,#0x32
@@ -28,7 +29,7 @@ ldr	r1,=#0x203F1FF
 ldrb	r1,[r1]
 cmp	r1,#0xFF
 bne	notRandom
-ldr	r0,table
+ldr	r0,trapTable
 mov	r1,#0
 randomLoop:
 ldr	r2,[r0]
@@ -36,16 +37,21 @@ add	r1,#1
 add	r0,#8
 cmp	r2,#0
 bne	randomLoop
-ldr	r0,=#0x300100C
-ldrb	r0,[r0]
+sub	r1,#1
+push	{r1}
+ldr	r3,getRNG
+mov	lr,r3
+.short	0xF800
+pop	{r1}
 swi	#6
+mov	r0,r1
 notRandom:
-ldr	r0,table
+ldr	r0,trapTable
 lsl	r1,#3
 push	{r0,r1}
 ldr	r0,[r0,r1]
 cmp	r0,#0
-beq	end
+beq	endpop
 mov	lr,r0
 .short	0xF800
 pop	{r0,r1}
@@ -61,6 +67,12 @@ end:
 pop	{r0-r7}
 ldr	r0,=#0x80804E5
 bx	r0
+
+endpop:
+pop	{r0,r1}
+b	end
 .align
 .ltorg
-table:
+trapTable:
+@POIN trapTable
+@POIN getRNG

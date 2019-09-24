@@ -10,6 +10,7 @@ ALIGN 4
 trapTrigger:
 #incbin "asm/trapTrigger.dmp"
 POIN trapTable
+POIN getRNG
 
 ALIGN 4
 trapTable: //pointers to routines for each trap, based on subID of the 0x1B item
@@ -76,7 +77,7 @@ BYTE 0x01 //sword
 BYTE 0x08 //remote bombs
 BYTE 0x09 //bow
 BYTE 0x0B //boomerang
-BYTE 0x0E //shield
+BYTE 0x0D //shield
 BYTE 0x10 //lantern
 BYTE 0x11 //jar
 BYTE 0x12 //cane
@@ -97,7 +98,7 @@ BYTE 0x46 //flippers
 BYTE 0x64 //wallet
 BYTE 0x65 //bomb bag
 BYTE 0x66 //quiver
-BYTE 0x3F //tingle trophy
+BYTE 0x3D //tingle trophy
 BYTE 0x3E //carlov medal
 BYTE 0x62 //heart container
 BYTE 0x00 //terminator
