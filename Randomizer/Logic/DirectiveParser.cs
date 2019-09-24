@@ -17,6 +17,8 @@ namespace MinishRandomizer.Randomizer.Logic
         public string LogicVersion;
         public List<LogicOption> Options;
         private List<LogicDefine> Defines;
+        public Dictionary<Item, Location.LocationType> LocationTypeOverrides;
+        public Dictionary<Item, ChanceItemSet> Replacements;
         public List<EventDefine> EventDefines;
         private int IfCounter;
 
@@ -58,6 +60,8 @@ namespace MinishRandomizer.Randomizer.Logic
                 case "!name":
                 case "!version":
                 case "!crc":
+                case "!replace":
+                case "!settype":
                     return true;
                 case "!define":
                 case "!eventdefine":
@@ -99,6 +103,11 @@ namespace MinishRandomizer.Randomizer.Logic
                     case "!flag":
                         Options.Add(ParseFlagDirective(mainDirectiveParts));
                         break;
+                    case "!replace":
+                        ParseReplaceDirective(mainDirectiveParts);
+                        break;
+                    case "!settype":
+
                     case "!color":
                         Options.Add(ParseColorDirective(mainDirectiveParts));
                         break;
@@ -364,6 +373,101 @@ namespace MinishRandomizer.Randomizer.Logic
             else
             {
                 throw new ParserException($"\"{directiveParts[1]}\" is not a valid crc!");
+            }
+        }
+
+        private void ParseReplaceDirective(string[] directiveParts)
+        {
+            var itemList = new List<ChanceItem>();
+            if (directiveParts.Length == 3)
+            {
+                var itemData = directiveParts[1].Split(':');
+                var itemStrings = itemData[0].Split('.');
+
+                Item replacedItem;
+                if (Enum.TryParse(itemStrings[1], out ItemType type))
+                {
+                    byte itemsub = 0;
+                    if (itemStrings.Length >= 3)
+                    {
+                        if(!byte.TryParse(itemStrings[2], out itemsub))
+                        {
+                            throw new ParserException("!replace has an invalid replaced itemSub");
+                        }
+                    }
+                    replacedItem = new Item(type,itemsub,itemData[1]);
+                }
+                else
+                {
+                    throw new ParserException("!replace has an invalid replaced itemType");
+                }
+
+                var chanceItems = directiveParts[2].Split(',');
+                foreach (var chanceItem in chanceItems)
+                {
+                    var chanceItemData = chanceItem.Split(':');
+                    var chanceItemStrings = chanceItemData[0].Split('.');
+                    Item item;
+
+                    if (Enum.TryParse(chanceItemStrings[1], out ItemType itemType))
+                    {
+                        byte itemsub = 0;
+                        if (chanceItemStrings.Length >= 3)
+                        {
+                            if (!byte.TryParse(chanceItemStrings[2], out itemsub))
+                            {
+                                throw new ParserException("!replace has an invalid new item itemSub");
+                            }
+                        }
+
+                        int chance = 0;
+                        if (!int.TryParse(chanceItemData[2], out chance))
+                        {
+                            throw new ParserException("!replace has an invalid new item chance value");
+                        }
+
+                        item = new Item(itemType, itemsub, chanceItemData[1]);
+                        itemList.Add(new ChanceItem(item, chance));
+                    }
+                    else
+                    {
+                        throw new ParserException("!replace has an invalid new item itemType");
+                    }
+                }
+                Replacements.Add(replacedItem, new ChanceItemSet(itemList));
+            }
+            else 
+            {
+                throw new ParserException("!replace has an invalid amount of arguments");
+            }
+        }
+
+        public struct ChanceItemSet
+        {
+            public List<ChanceItem> randomItems;
+            public int totalChance;
+
+            public ChanceItemSet(List<ChanceItem> randomItems)
+            {
+                this.randomItems = randomItems;
+                totalChance = 0;
+
+                foreach (var randomItem in randomItems)
+                {
+                    totalChance += randomItem.chance;
+                }
+            }
+        }
+        
+        public struct ChanceItem
+        {
+            public Item item;
+            public int chance;
+
+            public ChanceItem(Item item, int chance)
+            {
+                this.item = item;
+                this.chance = chance;
             }
         }
     }
