@@ -22,8 +22,7 @@ ldr	r3,=#0x8053F41
 bx	r3
 
 noEquip:
-ldr	r3,=#0x8053FA9
-bx	r3
+pop	{r4,r5,pc}
 .align
 .ltorg
 list:

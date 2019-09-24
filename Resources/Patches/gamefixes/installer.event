@@ -29,6 +29,9 @@ dampeHouse:
 //fix cave of flames two way key door that's in one room, used to eat two keys at once
 PUSH; ORG $DF8CB; BYTE 1; POP
 
+//same fix as above but for fow
+PUSH; ORG $E12AB; BYTE 2; POP
+
 //don't set simulation heart piece flag on enterting it (it's instead set when you exit it after winning by the text id set flags hack)
 PUSH; ORG $4E0C8; SHORT 0 0; POP
 
@@ -99,3 +102,9 @@ PUSH; ORG $1EA3C; jumpToHack(hurdyFix); POP
 ALIGN 4
 hurdyFix:
 #incbin "asm/hurdyFix.dmp"
+
+//fix getting stuck inside ice chest in tod basement
+PUSH; ORG $4CE7C; jumpToHack(iceChestFix); POP
+ALIGN 4
+iceChestFix:
+#incbin "asm/iceChestFix.dmp"

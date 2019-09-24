@@ -1,19 +1,18 @@
-//when item 0x1B is collected from a chest, trigger a trap based on subID instead of giving an item
-PUSH; ORG $A74C0; jumpToHack(chestTrapSmall); POP
+//when item 0x1B is collected, save the trap type for it to trigger when link regains control
+PUSH; ORG $A744A; SHORT 0; jumpToHack(trapSet); POP
 ALIGN 4
-chestTrapSmall:
-#incbin "asm/chestTrapSmall.dmp"
-POIN chestTrapTable
+trapSet:
+#incbin "asm/trapSet.dmp"
 
-//same but for big chests
-PUSH; ORG $83A6C; jumpToHack(chestTrapBig); POP
+//when links regains control, trigger the trap
+PUSH; ORG $804DA; SHORT 0; jumpToHack(trapTrigger); POP
 ALIGN 4
-chestTrapBig:
-#incbin "asm/chestTrapBig.dmp"
-POIN chestTrapTable
+trapTrigger:
+#incbin "asm/trapTrigger.dmp"
+POIN trapTable
 
 ALIGN 4
-chestTrapTable: //pointers to routines for each trap, based on subID of the 0x1B item
+trapTable: //pointers to routines for each trap, based on subID of the 0x1B item
 POIN iceTrap; WORD 8
 POIN fireTrap; WORD 8
 POIN $797B0; WORD 8 //zapTrap
@@ -38,10 +37,67 @@ ALIGN 4
 moneyTrap:
 #incbin "asm/moneyTrap.dmp"
 
+PUSH; ORG $85C60; jumpToHack(moneyTrapEffect); POP
+ALIGN 4
+moneyTrapEffect:
+#incbin "asm/moneyTrapEffect.dmp"
+
 ALIGN 4
 stinkTrap:
 #incbin "asm/stinkTrap.dmp"
 
-//give trap item the smith sword icon, why not
+//set the default icon for traps, this is the icon that displays when you pick them up
 PUSH; ORG $125BF8; BYTE 1 0 1 4 0 0 0x41 5; POP
-PUSH; ORG $FD588; POIN $FD25D; POP
+PUSH; ORG $FD588; POIN trapIconData; POP
+trapIconData:
+BYTE 0x82 0xFF 0x00 0x80 0x01
+
+PUSH //the graphics for the trap icon
+ORG $2E9960
+#incbin "trap.img.bin"
+POP
+
+//give traps "random" icons
+PUSH; ORG $80694; jumpToHack(trapIcon); POP
+ALIGN 4
+trapIcon:
+#incbin "asm/trapIcon.dmp"
+POIN trapGetIcon
+
+//given a pointer to an object, calculate which icon from the table should be used for it
+trapGetIcon:
+#incbin "asm/trapGetIcon.dmp"
+WORD customRNG
+POIN trapIconTable
+
+ALIGN 4
+trapIconTable: //BYTE itemID
+BYTE 0x01 //sword
+BYTE 0x08 //remote bombs
+BYTE 0x09 //bow
+BYTE 0x0B //boomerang
+BYTE 0x0E //shield
+BYTE 0x10 //lantern
+BYTE 0x11 //jar
+BYTE 0x12 //cane
+BYTE 0x13 //mitts
+BYTE 0x14 //cape
+BYTE 0x15 //boots
+BYTE 0x1E //bottle
+BYTE 0x17 //ocarina
+BYTE 0x3B //blue book
+BYTE 0x39 //red book
+BYTE 0x3A //green book
+BYTE 0x38 //mushroom
+BYTE 0x3C //gold key
+BYTE 0x37 //silver key
+BYTE 0x44 //grip ring
+BYTE 0x45 //power bracelet
+BYTE 0x46 //flippers
+BYTE 0x64 //wallet
+BYTE 0x65 //bomb bag
+BYTE 0x66 //quiver
+BYTE 0x3F //tingle trophy
+BYTE 0x3E //carlov medal
+BYTE 0x62 //heart container
+BYTE 0x00 //terminator

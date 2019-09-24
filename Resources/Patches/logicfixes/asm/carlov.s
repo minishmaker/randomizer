@@ -1,6 +1,14 @@
 .equ sub, item+4
+.equ figurines, sub+4
 .thumb
 push	{lr}
+@check figurine count
+ldr	r0,figurines
+ldr	r1,=#0x2002AF0
+ldrb	r1,[r1]
+cmp	r0,r1
+bhi	end
+
 @check if custom flag is set
 ldr	r0,=#0x2002EA4
 ldr	r1,=#9

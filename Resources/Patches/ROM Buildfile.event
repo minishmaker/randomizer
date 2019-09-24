@@ -1,6 +1,10 @@
 #define jumpToHack(offset) "BYTE 0x00 0x4B 0x18 0x47; POIN (offset|0x1)"
 #include "extDefinitions.event" //a file reserved for the randomizer to output definitions for the patches
 
+#ifndef customRNG
+	#define customRNG "0x20120825"
+#endif
+
 //#define DEBUG 0
 //#define TEST 0
 
@@ -83,10 +87,11 @@ SHORT 0x1F01 8; WORD 0x2002EA4 //getting bombs from belari sets custom flag 8
 //wind element spot sets custom flag 11
 //dojos use custom flags 12 through 22
 SHORT 0x050D 23; WORD 0x2002EA4 //shield sets flag 23, which makes small shields spawn at the store
-SHORT 0x051D 23; WORD 0x2002EA4 //buying a shield at the store also sets it
 SHORT 0x050E 23; WORD 0x2002EA4 //mirror shield also sets flag 23, just in case
 //the shop uses custom flags 24, 25 and 26
 //butterflies use custom flags 27, 28 and 29
+//flag 30 means link found two shields (shops do not count)
+//flags 31, 32 and 33 are used for the items in pedestals mode
 SHORT 0x3D07 6; WORD 0x2002CB4 //set the simulation heart piece flag after it ends
 SHORT 0x4803 1; WORD 0x2002CA1 //library quest can be started with flippers
 SHORT 0x0517 1; WORD 0x2002CA1 //picking up the ocarina automatically starts the library quest
@@ -102,8 +107,6 @@ SHORT 0x0512 4; WORD 0x2002CD5 //stairs dog moves when you get the cane
 SHORT 0x0546 4; WORD 0x2002CD5 //stairs dog moves when you get the flippers
 SHORT 0x1639 2; WORD 0x2002DC1 //killing vaati 2 opens the first dhc key door
 SHORT 0 0; WORD 0 //terminator
-
-//sanctuary stuff is wip and probably doesn't even work right now
 
 //flag hacks
 PUSH; ORG $7DBAC; jumpToHack(flagHack); POP
@@ -131,14 +134,12 @@ WORD 0x8012F9C 0x2002EA4 0x08 //Rem - check a custom flag instead of boots
 WORD 0x8009FC4 0x2002EA5 0x01 //Belari - check a custom flag instead of bombs
 WORD 0 0 0 //terminator
 
-	//sanctuary fixes
-	PUSH; ORG $4E98E; SHORT 0; POP //sanctuary garden door always open
-	PUSH; ORG $F4A9C; BYTE 0xFF; ORG $F4C18; POIN $F4AAC; POP//sanctuary switches door never closes
-
 //ice blocks have a question mark inside
 PUSH
 ORG $5EE3D0
 #incbin "ice.img.bin"
+ORG $5F12D0
+#incbin "bigice.img.bin"
 POP
 
 //given text id, get text offset
@@ -159,6 +160,12 @@ drawTime:
 #incbin "asm/drawTime.dmp"
 POIN drawText
 
+//get a number from the custom rng and advance it
+getRNG:
+#incbin "asm/getRNG.dmp"
+WORD customRNG
+
+#include "pedestal.event"
 #include "timedohko.event"
 #include "traps.event"
 #include "newGame.event"
@@ -174,6 +181,7 @@ POIN drawText
 #include "hearts.event"
 #include "randomLanguage.event"
 #include "tunic.event"
+#include "hash.event"
 
 #ifdef fuzzy //size of the mosaic, 0 to 14
 	PUSH; ORG $4FD90; jumpToHack(fuzzyMode); POP
@@ -199,13 +207,6 @@ PUSH; ORG $4F05A; SHORT 0xE002; POP //remove soldiers near lon lon
 	WORD followerID
 #endif
 
-PUSH; ORG $F4A40; POIN pedestalLocked; POP
-pedestalLocked:
-BYTE 6 0x0F 0x33 0x00 0x00 0x00; SHORT 0 0xBC 0x3C 0 0
-BYTE 6 0x0F 0x33 0x00 0x00 0x00; SHORT 0 0xD4 0x3C 0 0
-BYTE 6 0x0F 0x33 0x00 0x00 0x00; SHORT 0 0xC8 0x3C 0 0
-WORD 0xFFFFFFFF 0xFFFFFFFF 0xFFFFFFFF 0xFFFFFFFF
-
 #ifdef timerOption
 	PUSH; ORG $1C4E8; jumpToHack(timerDisplay); POP
 	ALIGN 4
@@ -227,6 +228,24 @@ WORD 0xFFFFFFFF 0xFFFFFFFF 0xFFFFFFFF 0xFFFFFFFF
 		POIN timedohkoCheckTime
 	#endif
 	WORD 0 //if 0, any damage will kill link, if non-8 this will be used as a pointer to a routine to determine if link will die
+#endif
+
+#ifdef counterOption
+	PUSH; ORG $1C4F0; jumpToHack(counterDisplay); POP
+	ALIGN 4
+	counterDisplay:
+	#incbin "asm/counterDisplay.dmp"
+	POIN drawNumber
+	#ifdef timerOption
+		WORD 1
+	#else
+		WORD 0
+	#endif
+	#ifdef requirementFigurinesAmmount
+		WORD requirementFigurinesAmmount
+		POIN requirementFigurinesCounter
+	#endif
+	WORD 0 0
 #endif
 
 #ifdef noFairy //shy fairies patch (fairies don't come out of bottles automatically)
@@ -254,3 +273,10 @@ BYTE 3
 BYTE 0xF8 0xF4 0x40 0x02 0
 BYTE 0xF8 0xFB 0x01 0x06 0
 BYTE 0x00 0xFB 0x01 0x07 0
+
+PUSH //replace kinstone bag with the new figurine item
+ORG $2E84C0
+#incbin "figurine.img.bin"
+WORD 0 0 0 0 0 0 0 0
+ORG $31EB51; BYTE 0xF6
+POP

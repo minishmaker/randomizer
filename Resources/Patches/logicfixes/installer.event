@@ -44,6 +44,23 @@ ALIGN 4
 swordFix:
 #incbin "asm/swordFix.dmp"
 POIN swordFixPointers
+#ifdef pedestalItems
+WORD 1
+WORD pedestalSpot1Item
+WORD pedestalSpot1Sub
+WORD pedestalSpot2Item
+WORD pedestalSpot2Sub
+WORD pedestalSpot3Item
+WORD pedestalSpot3Sub
+#else
+WORD 0
+WORD 0
+WORD 0
+WORD 0
+WORD 0
+WORD 0
+WORD 0
+#endif
 ALIGN 4
 swordFixPointers:
 POIN $D26C //melari
@@ -85,6 +102,10 @@ POIN $96A4
 POIN $96A8
 POIN $96AC
 POIN $96B0
+#ifndef pedestalItems
+//pedestal skip
+POIN $13A7E
+#endif
 WORD 0
 
 //soldiers always on patrol in the garden
@@ -149,6 +170,10 @@ PUSH; ORG $52C60; SHORT 0x481D 0x2107 0x7201 0x46F7; POP //permanent town state
 PUSH; ORG $4DDA4; SHORT 0x46C0; POP //old man in front of library always attempted to load
 PUSH; ORG $EEDF2; SHORT 0xFFFF; POP //and old man in front of library is in all town states
 PUSH; ORG $EEA12; SHORT 0xFFFF; POP //soldier that wants you to spin is in all town states
+//remove some annoying soldiers
+PUSH; ORG $EEA32; SHORT 0; POP
+PUSH; ORG $EEA82; SHORT 0; POP
+PUSH; ORG $EEA92; SHORT 0; POP
 
 //biggoron changes
 PUSH; ORG $9402; SHORT 21; POP //biggoron doesn't ask for a major feat (checks if you have ezlo instead)
@@ -226,6 +251,9 @@ bellHeart:
 #ifndef carlovSpotSub
 	#define carlovSpotSub 0x00
 #endif
+#ifndef carlovFigurineRequirement
+	#define carlovFigurineRequirement 0x00
+#endif
 //carlov gives out medal when you talk to him
 PUSH; ORG $87EF4; jumpToHack(carlov); POP
 ALIGN 4
@@ -233,6 +261,7 @@ carlov:
 #incbin "asm/carlov.dmp"
 WORD carlovSpotItem
 WORD carlovSpotSub
+WORD carlovFigurineRequirement
 PUSH; ORG $146F2; SHORT 0; POP //carlov doesn't check for medal
 PUSH; ORG $7DDEE; SHORT 0x2100; ORG $14812; SHORT 0x432B; POP //carlov thinks you never have shells
 PUSH; ORG $9EA77C; String("RNG manipulation is"); BYTE 0x20 2 1; String("illegal"); BYTE 2 0; String("!"); BYTE 0; POP //carlov has some insight
@@ -320,6 +349,15 @@ libraryTrapdoor:
 
 //carpenters don't need cane to spawn
 PUSH; ORG $4E53A; SHORT 0; POP
+
+//set cucco minigame whenever you win, not only when you win a heart
+PUSH; ORG $A0C48; SHORT 0x2800 0xD10F; POP
+
+//tingle checks for tingle trophy instead of all fusions
+PUSH; ORG $64A1C; jumpToHack(tingleCheck); POP
+ALIGN 4
+tingleCheck:
+#incbin "asm/tingleCheck.dmp"
 
 #include "dojos.event"
 #include "shop.event"

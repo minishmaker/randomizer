@@ -1,15 +1,31 @@
 .thumb
-ldrb	r0,[r1,#2]
-ldrb	r1,[r1,#3]
-mov	r2,#0
-cmp	r0,#0x1B
-beq	isTrap
-ldr	r3,=#0x80A73F8
-mov	lr,r3
-.short	0xF800
-b	end
+ldr	r3,[r7,#0x30]
+mov	r0,#0x32
+ldsh	r1,[r3,r0]
+ldrh	r0,[r7,#0x08]
+sub	r6,r1,r0
+push	{r0-r7}
 
-isTrap:
+@check if link is in control
+ldr	r0,=#0x3003DC0
+ldr	r0,[r0]
+cmp	r0,#0
+bne	end
+
+@check if a trap was collected
+ldr	r0,=#0x2002B38
+ldrb	r1,[r0]
+mov	r2,#0xC0
+and	r2,r1
+cmp	r2,#0
+beq	end
+mov	r2,#0x3F
+and	r1,r2
+strb	r1,[r0]
+
+@trigger it
+ldr	r1,=#0x203F1FF
+ldrb	r1,[r1]
 cmp	r1,#0xFF
 bne	notRandom
 ldr	r0,table
@@ -42,8 +58,9 @@ mov	lr,r3
 .short	0xF800
 
 end:
-ldr	r3,=#0x8083A81
-bx	r3
+pop	{r0-r7}
+ldr	r0,=#0x80804E5
+bx	r0
 .align
 .ltorg
 table:

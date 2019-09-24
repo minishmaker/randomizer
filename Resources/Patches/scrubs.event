@@ -2,19 +2,19 @@
 	#define bottleScrubItem	0x1C
 #endif
 #ifndef bottleScrubSub
-	#define bottleScrubSub	0xFF
+	#define bottleScrubSub	0x00
 #endif
 #ifndef gripScrubItem
 	#define gripScrubItem	0x44
 #endif
 #ifndef gripScrubSub
-	#define gripScrubSub	0xFF
+	#define gripScrubSub	0x00
 #endif
 //#ifndef stoneScrubItem
 //	#define stoneScrubItem	0x5C
 //#endif
 //#ifndef stoneScrubSub
-//	#define stoneScrubSub	0xFF
+//	#define stoneScrubSub	0x00
 //#endif
 
 PUSH; ORG $28D70; jumpToHack(scrubHackBottle); POP
