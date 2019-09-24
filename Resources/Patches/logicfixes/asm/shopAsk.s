@@ -10,6 +10,9 @@
 .equ fastspinCredits, swimbutterflyCredits+4
 .equ fastsplitCredits, fastspinCredits+4
 .equ longspinCredits, fastsplitCredits+4
+.equ greenclockCredits, longspinCredits+4
+.equ blueclockCredits, greenclockCredits+4
+.equ redclockCredits, blueclockCredits+4
 .thumb
 ldrb	r0,[r6,#6]
 cmp	r0,#0x64
@@ -173,6 +176,12 @@ bx	lr
 
 getText:
 mov	r3,#0
+cmp	r0,#0x18
+beq	greenclock
+cmp	r0,#0x19
+beq	blueclock
+cmp	r0,#0x1A
+beq	redclock
 cmp	r0,#0x61
 beq	shells
 cmp	r0,#0x70
@@ -198,6 +207,18 @@ b	dungeon
 normal:
 ldr	r1,=#0x0400
 orr	r0,r1
+bx	lr
+
+greenclock:
+ldr	r0,greenclockCredits
+bx	lr
+
+blueclock:
+ldr	r0,blueclockCredits
+bx	lr
+
+redclock:
+ldr	r0,redclockCredits
 bx	lr
 
 shells:
@@ -336,3 +357,6 @@ walletShopItem:
 @POIN fastspinCredits
 @POIN fastsplitCredits
 @POIN longspinCredits
+@POIN greenclockCredits
+@POIN blueclockCredits
+@POIN redclockCredits

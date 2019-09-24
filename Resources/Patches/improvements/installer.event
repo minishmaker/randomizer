@@ -430,6 +430,9 @@ POIN swimbutterflyCredits
 POIN fastspinCredits
 POIN fastsplitCredits
 POIN longspinCredits
+POIN greenclockCredits
+POIN blueclockCredits
+POIN redclockCredits
 
 //skip big chu cutscenes
 PUSH; ORG $4CA20; SHORT 0xE014; POP
