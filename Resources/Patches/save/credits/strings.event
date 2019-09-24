@@ -899,6 +899,31 @@ redclockCreditsItalian:
 String(""); BYTE 0
 
 ALIGN 4
+figurineCredits:
+/*English*/ POIN figurineCreditsEnglish
+/*English*/ POIN figurineCreditsEnglish
+/*English*/ POIN figurineCreditsEnglish
+/*French */ POIN figurineCreditsEnglish //POIN figurineCreditsFrench
+/*German */ POIN figurineCreditsEnglish //POIN figurineCreditsGerman
+/*Spanish*/ POIN figurineCreditsSpanish
+/*Italian*/ POIN figurineCreditsEnglish //POIN figurineCreditsItalian
+
+figurineCreditsEnglish:
+String("Figurine"); BYTE 0
+
+figurineCreditsFrench:
+String(""); BYTE 0
+
+figurineCreditsGerman:
+String(""); BYTE 0
+
+figurineCreditsSpanish:
+String(""); BYTE 0
+
+figurineCreditsItalian:
+String("Figurita"); BYTE 0
+
+ALIGN 4
 totalTimeCredits:
 /*English*/ POIN totalTimeCreditsEnglish
 /*English*/ POIN totalTimeCreditsEnglish

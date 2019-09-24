@@ -11,6 +11,7 @@
 .equ greenclockCredits, longspinCredits+4
 .equ blueclockCredits, greenclockCredits+4
 .equ redclockCredits, blueclockCredits+4
+.equ figurineCredits, redclockCredits+4
 .thumb
 ldrh	r1,[r4,#8]
 ldr	r3,=#0x2D07
@@ -66,19 +67,6 @@ bl	getTextWrap
 mov	r1,r7
 bl	writeText
 mov	r7,r1
-
-@write the special line if any
-cmp	r5,#2
-blo	nospecial
-mov	r0,#0x0A
-strb	r0,[r7]
-add	r7,#1
-mov	r0,r5
-bl	getTextWrap
-mov	r1,r7
-bl	writeText
-mov	r7,r1
-nospecial:
 
 @write the price to ram
 mov	r0,#0x2C
@@ -136,13 +124,32 @@ mov	r0,#0x0A
 strb	r0,[r7]
 add	r7,#1
 
-@add a new line if there was no special line
-cmp	r5,#0
-bne	nonew
+@write the special line if any
+cmp	r5,#2
+blo	nospecial
+mov	r0,#0x28
+strb	r0,[r7]
+add	r7,#1
+mov	r0,r5
+bl	getTextWrap
+mov	r1,r7
+bl	writeText
+mov	r7,r1
+sub	r7,#1
+ldrb	r0,[r7]
+cmp	r0,#0x2E
+beq	dot
+add	r7,#1
+dot:
+mov	r0,#0x29
+strb	r0,[r7]
+add	r7,#1
+nospecial:
+
+@add a new line
 mov	r0,#0x0A
 strb	r0,[r7]
 add	r7,#1
-nonew:
 
 @write the buy text to ram
 cmp	r6,#0
@@ -181,6 +188,8 @@ bx	lr
 
 getText:
 mov	r3,#0
+cmp	r0,#0x67
+beq	figurine
 cmp	r0,#0x18
 beq	greenclock
 cmp	r0,#0x19
@@ -212,6 +221,12 @@ b	dungeon
 normal:
 ldr	r1,=#0x0400
 orr	r0,r1
+bx	lr
+
+figurine:
+ldr	r0,figurineCredits
+ldr	r3,=#0x0800
+orr	r3,r1
 bx	lr
 
 greenclock:
@@ -363,3 +378,4 @@ bottleScrubItem:
 @POIN greenclockCredits
 @POIN blueclockCredits
 @POIN redclockCredits
+@POIN figurineCredits
