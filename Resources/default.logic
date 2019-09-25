@@ -183,10 +183,10 @@
     !define - TIMER_VALS - 
 !endif
 
-!define - SWAPRED - Items.Rupee20::50, Items.Rupee200::10 `TRAP_VAL` `TIMER_VALS` ;
-!define - SWAPBLUE - Items.Rupee5::50, Items.Rupee100::10 `TRAP_VAL` `TIMER_VALS` ;
-!define - SWAPGREEN - Items.Rupee1::50, Items.Rupee50::10 `TRAP_VAL` `TIMER_VALS` ;
-!define - SWAPSHELL - Items.Rupee50::50 `TRAP_VAL` `TIMER_VALS` ;
+!define - SWAPRED - Items.Rupee20::50, Items.Bomb5::25, Items.Arrow5::25, Items.Rupee200::10 `TRAP_VAL` `TIMER_VALS` ;
+!define - SWAPBLUE - Items.Rupee5::50, Items.Bomb5::25, Items.Arrow5::25 ,Items.Rupee100::10 `TRAP_VAL` `TIMER_VALS` ;
+!define - SWAPGREEN - Items.Rupee1::50, Items.Bomb5::25, Items.Arrow5::25, Items.Rupee50::10 `TRAP_VAL` `TIMER_VALS` ;
+!define - SWAPSHELL - Items.Rupee50::20, Items.Bomb5::40, Items.Arrow5::40 `TRAP_VAL` `TIMER_VALS` ;
 
 !replace - Items.ShellsX - `SWAPSHELL`
 !replace - Items.ShellsX.1 - `SWAPSHELL`
