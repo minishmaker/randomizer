@@ -65,6 +65,9 @@ namespace MinishRandomizer
                 // If the seed is valid, load locations from the logic and randomize their contents
                 if (int.TryParse(seedField.Text, out int seed))
                 {
+                    // Make sure the RNG is set to the seed, so the seed can be regenerated
+                    shuffler.SetSeed(seed);
+
                     if (customLogicCheckBox.Checked)
                     {
                         shuffler.LoadLocations(customLogicPath.Text);
@@ -75,7 +78,7 @@ namespace MinishRandomizer
                     }
 
                     
-                    shuffler.RandomizeLocations(seed);
+                    shuffler.RandomizeLocations();
                 }
                 else
                 {

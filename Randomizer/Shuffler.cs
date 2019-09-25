@@ -166,6 +166,8 @@ namespace MinishRandomizer.Randomizer
             MajorItems.Clear();
             MinorItems.Clear();
 
+            LogicParser.SubParser.ClearTypeOverrides();
+            LogicParser.SubParser.ClearReplacements();
             LogicParser.SubParser.ClearDefines();
             LogicParser.SubParser.AddOptions();
 
@@ -196,6 +198,28 @@ namespace MinishRandomizer.Randomizer
 
         public void AddLocation(Location location)
         {
+            if (LogicParser.SubParser.Replacements.ContainsKey(location.Contents))
+            {
+                var chanceSet = LogicParser.SubParser.Replacements[location.Contents];
+                var number = RNG.Next(chanceSet.totalChance);
+                int val = 0;
+
+                for (int i = 0; i < chanceSet.randomItems.Count(); i++)
+                {
+                    val += chanceSet.randomItems[i].chance;
+                    if (number < val)
+                    {
+                        location.SetItem(chanceSet.randomItems[i].item);
+                        break;
+                    }
+                }
+            }
+
+            if (LogicParser.SubParser.LocationTypeOverrides.ContainsKey(location.Contents))
+            {
+                location.Type = LogicParser.SubParser.LocationTypeOverrides[location.Contents];
+            }
+
             // All locations are in the master location list
             Locations.Add(location);
 
@@ -247,10 +271,10 @@ namespace MinishRandomizer.Randomizer
         /// Loads and shuffles all locations
         /// </summary>
         /// <param name="seed">The RNG seed used for generation</param>
-        public void RandomizeLocations(int seed)
+        public void RandomizeLocations()
         {
             // Make sure the RNG is set to the seed, so the seed can be regenerated
-            SetSeed(seed);
+            //SetSeed(seed);
 
             List<Item> unplacedItems = MajorItems.ToList();
             List<Item> dungeonSpecificItems = DungeonItems.ToList();

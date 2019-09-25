@@ -27,6 +27,8 @@ namespace MinishRandomizer.Randomizer.Logic
             Options = new List<LogicOption>();
             Defines = new List<LogicDefine>();
             EventDefines = new List<EventDefine>();
+            LocationTypeOverrides = new Dictionary<Item, Location.LocationType>();
+            Replacements = new Dictionary<Item, ChanceItemSet>();
             IfCounter = 0;
         }
 
@@ -60,8 +62,6 @@ namespace MinishRandomizer.Randomizer.Logic
                 case "!name":
                 case "!version":
                 case "!crc":
-                case "!replace":
-                case "!settype":
                     return true;
                 case "!define":
                 case "!eventdefine":
@@ -71,6 +71,8 @@ namespace MinishRandomizer.Randomizer.Logic
                 case "!elseifdef":
                 case "!elseifndef":
                 case "!endif":
+                case "!replace":
+                case "!settype":
                     return false;
                 default:
                     throw new ParserException($"\"{directive}\" is not a valid directive! The logic file may be bad.");
@@ -107,7 +109,8 @@ namespace MinishRandomizer.Randomizer.Logic
                         ParseReplaceDirective(mainDirectiveParts);
                         break;
                     case "!settype":
-
+                        ParseSetTypeDirective(mainDirectiveParts);
+                        break;
                     case "!color":
                         Options.Add(ParseColorDirective(mainDirectiveParts));
                         break;
@@ -216,6 +219,16 @@ namespace MinishRandomizer.Randomizer.Logic
         public void ClearOptions()
         {
             Options.Clear();
+        }
+
+        public void ClearReplacements()
+        {
+            Replacements.Clear();
+        }
+
+        public void ClearTypeOverrides()
+        {
+           LocationTypeOverrides.Clear();
         }
 
         public void AddOptions()
@@ -378,69 +391,121 @@ namespace MinishRandomizer.Randomizer.Logic
 
         private void ParseReplaceDirective(string[] directiveParts)
         {
-            var itemList = new List<ChanceItem>();
-            if (directiveParts.Length == 3)
-            {
-                var itemData = directiveParts[1].Split(':');
-                var itemStrings = itemData[0].Split('.');
-
-                Item replacedItem;
-                if (Enum.TryParse(itemStrings[1], out ItemType type))
-                {
-                    byte itemsub = 0;
-                    if (itemStrings.Length >= 3)
-                    {
-                        if(!byte.TryParse(itemStrings[2], out itemsub))
-                        {
-                            throw new ParserException("!replace has an invalid replaced itemSub");
-                        }
-                    }
-                    replacedItem = new Item(type,itemsub,itemData[1]);
-                }
-                else
-                {
-                    throw new ParserException("!replace has an invalid replaced itemType");
-                }
-
-                var chanceItems = directiveParts[2].Split(',');
-                foreach (var chanceItem in chanceItems)
-                {
-                    var chanceItemData = chanceItem.Split(':');
-                    var chanceItemStrings = chanceItemData[0].Split('.');
-                    Item item;
-
-                    if (Enum.TryParse(chanceItemStrings[1], out ItemType itemType))
-                    {
-                        byte itemsub = 0;
-                        if (chanceItemStrings.Length >= 3)
-                        {
-                            if (!byte.TryParse(chanceItemStrings[2], out itemsub))
-                            {
-                                throw new ParserException("!replace has an invalid new item itemSub");
-                            }
-                        }
-
-                        int chance = 0;
-                        if (!int.TryParse(chanceItemData[2], out chance))
-                        {
-                            throw new ParserException("!replace has an invalid new item chance value");
-                        }
-
-                        item = new Item(itemType, itemsub, chanceItemData[1]);
-                        itemList.Add(new ChanceItem(item, chance));
-                    }
-                    else
-                    {
-                        throw new ParserException("!replace has an invalid new item itemType");
-                    }
-                }
-                Replacements.Add(replacedItem, new ChanceItemSet(itemList));
-            }
-            else 
+            if (directiveParts.Length != 3)
             {
                 throw new ParserException("!replace has an invalid amount of arguments");
             }
+
+            var itemData = directiveParts[1].Split(':');
+            var itemStrings = itemData[0].Split('.');
+            var chanceItems = directiveParts[2].Split(',');
+
+            Item replacedItem;
+            var chanceItemList = new List<ChanceItem>();
+
+            ItemType type;
+            byte itemsub = 0;
+
+            if (!Enum.TryParse(itemStrings[1], out type))
+            {
+                throw new ParserException("!replace has an invalid replaced itemType");
+            }
+
+            
+            if (itemStrings.Length >= 3)
+            {
+                if (!byte.TryParse(itemStrings[2], NumberStyles.HexNumber, null, out itemsub))
+                {
+                    throw new ParserException("!replace has an invalid replaced itemSub");
+                }
+            }
+
+            var dungeonString = "";
+            if (itemData.Length > 1)
+            {
+                dungeonString = itemData[1];
+            }
+
+            replacedItem = new Item(type, itemsub, dungeonString);
+            
+            foreach (var chanceItem in chanceItems)
+            {
+                
+                var chanceItemData = chanceItem.TrimEnd(';').Split(':');
+                var chanceItemStrings = chanceItemData[0].Split('.');
+
+                itemsub = 0;
+                if (!Enum.TryParse(chanceItemStrings[1], out type))
+                {
+                    throw new ParserException("!replace has an invalid new item itemType");
+                }
+
+                if (chanceItemStrings.Length >= 3)
+                {
+                    if (!byte.TryParse(chanceItemStrings[2], NumberStyles.HexNumber, null, out itemsub))
+                    {
+                        throw new ParserException("!replace has an invalid new item itemSub");
+                    }
+                }
+
+                int chance = 0;
+                if (!int.TryParse(chanceItemData[2], out chance))
+                {
+                    throw new ParserException("!replace has an invalid new item chance value");
+                }
+
+                Item item = new Item(type, itemsub, chanceItemData[1]);
+                chanceItemList.Add(new ChanceItem(item, chance));
+            }
+            Replacements.Add(replacedItem, new ChanceItemSet(chanceItemList));
         }
+
+        public void ParseSetTypeDirective(string[] directiveParts)
+        {
+            if (directiveParts.Length != 3)
+            {
+                throw new ParserException("!settype has an invalid amount of arguments");
+            }
+
+            var itemData = directiveParts[1].Split(':');
+            var itemStrings = itemData[0].Split('.');
+
+            Item replacedItem;
+            Location.LocationType newType;
+
+            ItemType type;
+            byte itemsub = 0;
+
+            if (!Enum.TryParse(itemStrings[1], out type))
+            {
+                throw new ParserException("!settype has an invalid replaced itemType");
+            }
+
+
+            if (itemStrings.Length >= 3)
+            {
+                if (!byte.TryParse(itemStrings[2], NumberStyles.HexNumber, null, out itemsub))
+                {
+                    throw new ParserException("!settype has an invalid replaced itemSub");
+                }
+            }
+
+            var dungeonString = "";
+            if (itemData.Length > 1)
+            {
+                dungeonString = itemData[1];
+            }
+            replacedItem = new Item(type, itemsub, dungeonString);
+
+            if (!Enum.TryParse(directiveParts[2], out newType))
+            {
+                throw new ParserException("!settype has an invalid replaced location type");
+            }
+
+            LocationTypeOverrides.Add(replacedItem, newType);
+            
+        }
+
 
         public struct ChanceItemSet
         {

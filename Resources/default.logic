@@ -20,6 +20,8 @@
 !flag - Setting - NODHCF - Pedestal Finish/No DHC
 !flag - Setting - RUPEEMANIA - Add available rupees to pool
 !flag - Setting - WEAPONS - Damaging items other than sword seen as weapons
+!flag - Setting - TRAPS - Shuffle traps in itempool
+!flag - Setting - TIMEDOHKO - Die in one hit if the timer runs out
 
 # these 2 are only valid outside of openDHC modes, if neither are defined it defaults to 4 elements
 #!define - SWORDLEVEL - 5    #if defined with a value from 1-5, requires this level of sword in order to activate the pedestal (0 if commented out)
@@ -160,6 +162,57 @@
 !else
 	!eventdefine - neverSkipFusionCutscene           # if defined, fusion cutscenes are just like vanilla
 !endif
+
+!ifdef - TRAPS
+    !define - TRAP_VAL - , Items.Trap.FF::15
+!else
+    !define - TRAP_VAL - 
+!endif
+
+!define - BLUE_CHANCE - 50
+!define - GREEN_CHANCE - 25
+!define - RED_CHANCE - 0
+
+!ifdef - TIMEDOHKO
+    !eventdefine - timedohkoOption
+	!define - TIMER_VALS - , Items.BlueOrb::`BLUE_CHANCE`, Items.GreenOrb::`GREEN_CHANCE`, Items.RedOrb::`RED_CHANCE`
+!else
+    !define - TIMER_VALS - 
+!endif
+
+!define - SWAPRED - Items.Rupee20::50, Items.Rupee200::10 `TRAP_VAL` `TIMER_VALS` ;
+!define - SWAPBLUE - Items.Rupee5::50, Items.Rupee100::10 `TRAP_VAL` `TIMER_VALS` ;
+!define - SWAPGREEN - Items.Rupee1::50, Items.Rupee50::10 `TRAP_VAL` `TIMER_VALS` ;
+!define - SWAPSHELL - Items.Rupee50::50 `TRAP_VAL` `TIMER_VALS` ;
+
+!replace - Items.ShellsX - `SWAPSHELL`
+!replace - Items.ShellsX.1 - `SWAPSHELL`
+!replace - Items.ShellsX.A - `SWAPSHELL`
+!replace - Items.ShellsX.14 - `SWAPSHELL`
+!replace - Items.ShellsX.32 - `SWAPSHELL`
+!replace - Items.ShellsX.50 - `SWAPSHELL` 
+!replace - Items.ShellsX.64 - `SWAPSHELL`
+!replace - Items.ShellsX.C8 - `SWAPSHELL`
+
+!ifdef - NO_FUSIONS
+    !replace - Items.KinstoneX.6E - `SWAPRED`
+    !replace - Items.KinstoneX.6F - `SWAPRED`
+    !replace - Items.KinstoneX.70 - `SWAPRED`
+    
+    !replace - Items.KinstoneX.71 - `SWAPBLUE`
+    !replace - Items.KinstoneX.72 - `SWAPBLUE`
+    
+    !replace - Items.KinstoneX.73 - `SWAPGREEN`
+    !replace - Items.KinstoneX.74 - `SWAPGREEN`
+    !replace - Items.KinstoneX.75 - `SWAPGREEN`
+!endif
+
+!settype - Items.Rupee1 - Major
+!settype - Items.Rupee5 - Major
+!settype - Items.Rupee20 - Major
+!settype - Items.Rupee50 - Major
+!settype - Items.Rupee100 - Major
+!settype - Items.Rupee200 - Major
 
 #!eventdefine - fuzzy - E       # if defined with a value of 0 to E, makes the screen fuzzy and the pixels bigger
 #!eventdefine - follower        # if defined, a follower with the given id below will follow you throught he game
