@@ -1,12 +1,13 @@
 # Default logic for the randomizer - Doesn't allow glitches, but allows unintuitive tricks
 
 !name - Default
-!version - RUPEEMANIA_DEV.0
+!version - DEV.1
 !crc - E8637292
 
 !flag - Setting - KEYSANITY - Keysanity - false
 !flag - Setting - SHUFFLE_ELEMENTS -  Shuffle elements into item pool
 !flag - Setting - NO_FUSIONS - No normal fusions - true
+!flag - Setting - OPENFUSIONS - Open fusion mode
 !flag - Setting - GLITCHLESS - Disable glitches - true
 !flag - Gimmick - RANDOM_LANGUAGE - Randomize language
 !flag - Setting - ALLOW_FUSION_SKIPS - Allow fusion skips - true
@@ -140,11 +141,13 @@
     !define - ELEMENT - DungeonItem
 	!define - ELEMENT_DUNGEON - Prizes
 !endif
-
-!ifdef - NO_FUSIONS
-	!eventdefine - noFusions                         # if defined, fusions other than golden kinstone fusions are not available
+!ifdef - OPENFUSIONS
+    !eventdefine - openFusions
+!else
+    !ifdef - NO_FUSIONS
+        !eventdefine - noFusions                         # if defined, fusions other than golden kinstone fusions are not available
+    !endif
 !endif
-
 !ifdef - GLITCHLESS
 	!eventdefine - glitchless                        # if defined, bugfixes are installed
 !endif
@@ -194,19 +197,20 @@
 !replace - Items.ShellsX.64 - `SWAPSHELL`
 !replace - Items.ShellsX.C8 - `SWAPSHELL`
 
-!ifdef - NO_FUSIONS
-    !replace - Items.KinstoneX.6E - `SWAPRED`
-    !replace - Items.KinstoneX.6F - `SWAPRED`
-    !replace - Items.KinstoneX.70 - `SWAPRED`
-    
-    !replace - Items.KinstoneX.71 - `SWAPBLUE`
-    !replace - Items.KinstoneX.72 - `SWAPBLUE`
-    
-    !replace - Items.KinstoneX.73 - `SWAPGREEN`
-    !replace - Items.KinstoneX.74 - `SWAPGREEN`
-    !replace - Items.KinstoneX.75 - `SWAPGREEN`
+!ifndef - OPENFUSIONS
+    !ifdef - NO_FUSIONS
+        !replace - Items.KinstoneX.6E - `SWAPRED`
+        !replace - Items.KinstoneX.6F - `SWAPRED`
+        !replace - Items.KinstoneX.70 - `SWAPRED`
+        
+        !replace - Items.KinstoneX.71 - `SWAPBLUE`
+        !replace - Items.KinstoneX.72 - `SWAPBLUE`
+        
+        !replace - Items.KinstoneX.73 - `SWAPGREEN`
+        !replace - Items.KinstoneX.74 - `SWAPGREEN`
+        !replace - Items.KinstoneX.75 - `SWAPGREEN`
+    !endif
 !endif
-
 !settype - Items.Rupee1 - Major
 !settype - Items.Rupee5 - Major
 !settype - Items.Rupee20 - Major
@@ -466,7 +470,7 @@ CloudsSouthRight;  Minor; 08-01-06; Locations.AccessClouds, (|Items.RocsCape, It
 
 AccessUpperClouds; Helper;;         Locations.AccessClouds, (|Items.RocsCape, Items.MoleMitts), Items.KinstoneX.YellowTornadoProng::5
 
-!ifdef - NO_FUSIONS
+!ifdef - OPENFUSIONS
     TowerBottomLeft;   Minor; 30-00-00; Locations.AccessUpperClouds;
     TowerBottomRight;  Minor; 30-00-01; Locations.AccessUpperClouds;
     TowerF2;           Minor; 30-01-00; Locations.AccessUpperClouds;
@@ -637,7 +641,7 @@ PalacePrize:`ELEMENT_DUNGEON`;     `ELEMENT`;         0E69E3;                   
 !endif
 
 #Kinstone changes 02017660, be aware that this is open logic, not taking into account getting to anyone who can fuse these
-!ifndef - NO_FUSIONS
+!ifndef - OPENFUSIONS
     MinishBottomLeftFusion;  Minor; 0FE0A6;                                                                   Locations.BelariBombs;
 	MinishMiddleRightFusion; Minor; 0FE0B6;                                                                   Locations.AccessMinishWoods;
 	MinishMiddleFusion;      Minor; 0FE0C6;                                                                   Locations.AccessMinishWoods;
@@ -845,7 +849,7 @@ PalacePrize:`ELEMENT_DUNGEON`;     `ELEMENT`;         0E69E3;                   
 	
 	FlipperCaveWaterfallRupee; Minor; 0EF79B;                                                                 Items.Flippers, Items.PacciCane;
 
-    !ifndef - NO_FUSIONS
+    !ifndef - OPENFUSIONS
 	    CrenelBeanstalkRupee1; Minor; 0F5DAB; Locations.AccessCrenel, Items.GripRing;
 		CrenelBeanstalkRupee2; Minor; 0F5DBB; Locations.AccessCrenel, Items.GripRing;
 		CrenelBeanstalkRupee3; Minor; 0F5DCB; Locations.AccessCrenel, Items.GripRing;
