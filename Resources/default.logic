@@ -197,7 +197,18 @@
 !replace - Items.ShellsX.64 - `SWAPSHELL`
 !replace - Items.ShellsX.C8 - `SWAPSHELL`
 
-!ifndef - OPENFUSIONS
+!ifdef - OPENFUSIONS
+    !replace - Items.KinstoneX.6E - `SWAPRED`
+    !replace - Items.KinstoneX.6F - `SWAPRED`
+    !replace - Items.KinstoneX.70 - `SWAPRED`
+        
+    !replace - Items.KinstoneX.71 - `SWAPBLUE`
+    !replace - Items.KinstoneX.72 - `SWAPBLUE`
+        
+    !replace - Items.KinstoneX.73 - `SWAPGREEN`
+    !replace - Items.KinstoneX.74 - `SWAPGREEN`
+    !replace - Items.KinstoneX.75 - `SWAPGREEN`
+!else
     !ifdef - NO_FUSIONS
         !replace - Items.KinstoneX.6E - `SWAPRED`
         !replace - Items.KinstoneX.6F - `SWAPRED`
