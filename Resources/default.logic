@@ -348,7 +348,7 @@ CuccoMinigame;                 Minor; 12460C;                                   
 TownBell;                      Minor; 05D602:FirstByte, 5D604:SecondByte;                                         Items.RocsCape;                                                                                                                         Items.PieceOfHeart
 FlipsCaveBig;                  Major; 62-10-00;                                                                   Items.Ocarina, Helpers.HasDamageSource, Items.PacciCane, (|Items.Flippers, (&Items.HyruleanBestiary,Items.PicoriLegend,Items.MaskHistory, Items.GripRing, (|Items.GustJar, Items.RocsCape))) 
 FlipsCaveSmall;                Minor; 62-12-00;                                                                   Items.Flippers, Items.Ocarina, Items.PacciCane, Items.LanternOff
-TingleTrophyItem;              Major; 016966;                                                                     Items.PacciCane, Items.TingleTrophy;                                                                                                    Items.TingleTrophy
+TingleTrophyItem;              Major; 016966;                                                                     Helpers.CanDestroyTrees, Items.PacciCane, Items.TingleTrophy;                                                                                                    Items.TingleTrophy
 
 AccessEastField;  Helper;;                                    (|Helpers.CanDestroyTrees, Items.Ocarina)
 HillsKeeseCave;   Minor; 32-13-00;                            Items.BombBag
