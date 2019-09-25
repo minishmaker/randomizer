@@ -65,6 +65,7 @@ namespace MinishRandomizer
                 // If the seed is valid, load locations from the logic and randomize their contents
                 if (int.TryParse(seedField.Text, out int seed))
                 {
+                    // Make sure the RNG is set to the seed, so the seed can be regenerated
                     shuffler.SetSeed(seed);
 
                     if (customLogicCheckBox.Checked)
@@ -213,6 +214,10 @@ namespace MinishRandomizer
             }
 
             customLogicPath.Text = ofd.FileName;
+
+            shuffler.LoadOptions(customLogicPath.Text);
+
+            LoadOptionControls(shuffler.GetOptions());
         }
 
         private void BrowsePatchButton_Click(object sender, EventArgs e)
@@ -342,7 +347,7 @@ namespace MinishRandomizer
             }
 
             optionControlLayout.Controls.Clear();
-
+            gimmickControlLayout.Controls.Clear();
             foreach (LogicOption option in options)
             {
                 Control optionControl = option.GetControl();
