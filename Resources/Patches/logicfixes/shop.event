@@ -27,7 +27,7 @@
 #define shopTerminator "WORD (-1) (-1) (-1) (-1)"
 
 //remove dog food special case
-PUSH; ORG $812A2; SHORT 0xE014; POP
+PUSH; ORG $812A0; SHORT 0xE014; POP
 
 PUSH; ORG $4EB54; jumpToHack(shopLoad); POP
 ALIGN 4
@@ -73,14 +73,18 @@ POIN swimbutterflyCredits
 POIN fastspinCredits
 POIN fastsplitCredits
 POIN longspinCredits
+POIN greenclockCredits
+POIN blueclockCredits
+POIN redclockCredits
+POIN figurineCredits
 
 //repoint this text id (0x2C05) so it points to ram
 PUSH
-ORG $9DAF1C+20; WORD 0x203F000-$89DAF1C
-ORG $A236AC+20; WORD 0x203F000-$8A236AC
-ORG $A689EC+20; WORD 0x203F000-$8A689EC
-ORG $AAAB9C+20; WORD 0x203F000-$8AAAB9C
-ORG $AED2FC+20; WORD 0x203F000-$8AED2FC
+ORG $9DAF1C+20; WORD 0x203F200-$89DAF1C
+ORG $A236AC+20; WORD 0x203F200-$8A236AC
+ORG $A689EC+20; WORD 0x203F200-$8A689EC
+ORG $AAAB9C+20; WORD 0x203F200-$8AAAB9C
+ORG $AED2FC+20; WORD 0x203F200-$8AED2FC
 POP
 
 ALIGN 4

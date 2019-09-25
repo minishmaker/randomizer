@@ -86,7 +86,9 @@ PUSH; ORG $523F0; SHORT 0; POP
 
 //dungeon items tell you what dungeon they are for if sub id is not 0
 //it now also does the same for golden kinstones
+//it also handles pretty much all of figurine hunt... maybe I should rename this sometime
 PUSH; ORG $53E14; jumpToHack(keysanityPopup); POP
 ALIGN 4
 keysanityPopup:
 #incbin "asm/keysanityPopup.dmp"
+POIN getTextOffset

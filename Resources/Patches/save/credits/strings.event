@@ -824,6 +824,106 @@ longspinCreditsItalian:
 String(""); BYTE 0
 
 ALIGN 4
+greenclockCredits:
+/*English*/ POIN greenclockCreditsEnglish
+/*English*/ POIN greenclockCreditsEnglish
+/*English*/ POIN greenclockCreditsEnglish
+/*French */ POIN greenclockCreditsEnglish //POIN greenclockCreditsFrench
+/*German */ POIN greenclockCreditsEnglish //POIN greenclockCreditsGerman
+/*Spanish*/ POIN greenclockCreditsSpanish
+/*Italian*/ POIN greenclockCreditsEnglish //POIN greenclockCreditsItalian
+
+greenclockCreditsEnglish:
+String("Green Clock"); BYTE 0
+
+greenclockCreditsFrench:
+String(""); BYTE 0
+
+greenclockCreditsGerman:
+String(""); BYTE 0
+
+greenclockCreditsSpanish:
+String("Reloj Verde"); BYTE 0
+
+greenclockCreditsItalian:
+String(""); BYTE 0
+
+ALIGN 4
+blueclockCredits:
+/*English*/ POIN blueclockCreditsEnglish
+/*English*/ POIN blueclockCreditsEnglish
+/*English*/ POIN blueclockCreditsEnglish
+/*French */ POIN blueclockCreditsEnglish //POIN blueclockCreditsFrench
+/*German */ POIN blueclockCreditsEnglish //POIN blueclockCreditsGerman
+/*Spanish*/ POIN blueclockCreditsSpanish
+/*Italian*/ POIN blueclockCreditsEnglish //POIN blueclockCreditsItalian
+
+blueclockCreditsEnglish:
+String("Blue Clock"); BYTE 0
+
+blueclockCreditsFrench:
+String(""); BYTE 0
+
+blueclockCreditsGerman:
+String(""); BYTE 0
+
+blueclockCreditsSpanish:
+String("Reloj Azul"); BYTE 0
+
+blueclockCreditsItalian:
+String(""); BYTE 0
+
+ALIGN 4
+redclockCredits:
+/*English*/ POIN redclockCreditsEnglish
+/*English*/ POIN redclockCreditsEnglish
+/*English*/ POIN redclockCreditsEnglish
+/*French */ POIN redclockCreditsEnglish //POIN redclockCreditsFrench
+/*German */ POIN redclockCreditsEnglish //POIN redclockCreditsGerman
+/*Spanish*/ POIN redclockCreditsSpanish
+/*Italian*/ POIN redclockCreditsEnglish //POIN redclockCreditsItalian
+
+redclockCreditsEnglish:
+String("Red Clock"); BYTE 0
+
+redclockCreditsFrench:
+String(""); BYTE 0
+
+redclockCreditsGerman:
+String(""); BYTE 0
+
+redclockCreditsSpanish:
+String("Reloj Rojo"); BYTE 0
+
+redclockCreditsItalian:
+String(""); BYTE 0
+
+ALIGN 4
+figurineCredits:
+/*English*/ POIN figurineCreditsEnglish
+/*English*/ POIN figurineCreditsEnglish
+/*English*/ POIN figurineCreditsEnglish
+/*French */ POIN figurineCreditsEnglish //POIN figurineCreditsFrench
+/*German */ POIN figurineCreditsEnglish //POIN figurineCreditsGerman
+/*Spanish*/ POIN figurineCreditsSpanish
+/*Italian*/ POIN figurineCreditsEnglish //POIN figurineCreditsItalian
+
+figurineCreditsEnglish:
+String("Figurine"); BYTE 0
+
+figurineCreditsFrench:
+String(""); BYTE 0
+
+figurineCreditsGerman:
+String(""); BYTE 0
+
+figurineCreditsSpanish:
+String(""); BYTE 0
+
+figurineCreditsItalian:
+String("Figurita"); BYTE 0
+
+ALIGN 4
 totalTimeCredits:
 /*English*/ POIN totalTimeCreditsEnglish
 /*English*/ POIN totalTimeCreditsEnglish

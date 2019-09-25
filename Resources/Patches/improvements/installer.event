@@ -408,6 +408,43 @@ ALIGN 4
 cuccoWin:
 #incbin "asm/cuccoWin.dmp"
 
+//ghost kinstone fix
+PUSH; ORG $95150; jumpToHack(deadKingFix); POP
+ALIGN 4
+deadKingFix:
+#incbin "asm/deadKingFix.dmp"
+
+//scrubs and witch tell you what you are about to buy
+PUSH; ORG $560AC; jumpToHack(smallShopsText); POP
+ALIGN 4
+smallShopsText:
+#incbin "asm/smallShopsText.dmp"
+WORD bottleScrubItem
+WORD bottleScrubSub
+WORD gripScrubItem
+WORD gripScrubSub
+POIN getTextOffset
+POIN shootbutterflyCredits
+POIN digbutterflyCredits
+POIN swimbutterflyCredits
+POIN fastspinCredits
+POIN fastsplitCredits
+POIN longspinCredits
+POIN greenclockCredits
+POIN blueclockCredits
+POIN redclockCredits
+POIN figurineCredits
+
+//skip big chu cutscenes
+PUSH; ORG $4CA20; SHORT 0xE014; POP
+PUSH; ORG $2640C; SHORT 0; POP
+PUSH; ORG $263D0; SHORT 0; POP
+PUSH; ORG $1215D0; POIN $8EB19; POP
+
+//faster great fairy
+PUSH; ORG $86508; SHORT 0x2100; POP
+PUSH; ORG $86A20; SHORT 0x2001; POP
+
 #include "glitchless.event"
 #include "dungeon.event"
 #include "fairy.event"
