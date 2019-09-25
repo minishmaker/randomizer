@@ -24,6 +24,8 @@
 !flag - Setting - TRAPS - Shuffle traps in itempool
 !flag - Setting - TIMEDOHKO - Die in one hit if the timer runs out
 
+!eventdefine - customRNG - 0x`RAND_INT`
+
 # these 2 are only valid outside of openDHC modes, if neither are defined it defaults to 4 elements
 #!define - SWORDLEVEL - 5    #if defined with a value from 1-5, requires this level of sword in order to activate the pedestal (0 if commented out)
 #!define - ELEMENTAMOUNT - 4 #if defined with a value from 1-4, requires this amount of elements in order to activate the pedestal (0 if commented out)
