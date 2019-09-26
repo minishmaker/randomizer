@@ -6,12 +6,14 @@
 
 !flag - Setting - KEYSANITY - Keysanity - false
 !flag - Setting - SHUFFLE_ELEMENTS -  Shuffle elements into item pool
-!flag - Setting - NO_FUSIONS - No normal fusions - true
-!flag - Setting - OPENFUSIONS - Open fusion mode
+#!flag - Setting - NO_FUSIONS - No normal fusions - true
+#!flag - Setting - OPENFUSIONS - Open fusion mode
+!dropdown - Setting - FUSION_SETTING - No normal fusions - NO_FUSIONS - Open fusion mode - OPENFUSIONS - Vanilla Fusions - VANILLA_FUSIONS - Kinsanity - KINSANITY
 !flag - Setting - GLITCHLESS - Disable glitches - true
 !flag - Gimmick - RANDOM_LANGUAGE - Randomize language
-!flag - Setting - ALLOW_FUSION_SKIPS - Allow fusion skips - true
-!flag - Setting - INSTANT_SKIP - Instant fusion skip
+!dropdown - Setting - FUSION_SKIPS - Allow fusion skips - ALLOW_FUSION_SKIPS - Instant fusion skip - INSTANT_SKIP - No fusion skips - NO_FUSION_SKIP
+#!flag - Setting - ALLOW_FUSION_SKIPS - Allow fusion skips - true
+#!flag - Setting - INSTANT_SKIP - Instant fusion skip
 !flag - Setting - WHYWOULDYOUDOTHISTOYOURSELF - Obscure spots
 !color - Gimmick - TUNIC_COLOR - Change Tunic Color -    10 - F8 - 08    -    10 - 78 - 28    -    64 - A0 - 28    -    B8 - F8 - A0
 !color - Gimmick - HEART_COLOR - Change Heart Color -    F8 - 50 - 10
@@ -27,6 +29,14 @@
 # these 2 are only valid outside of openDHC modes, if neither are defined it defaults to 4 elements
 #!define - SWORDLEVEL - 5    #if defined with a value from 1-5, requires this level of sword in order to activate the pedestal (0 if commented out)
 #!define - ELEMENTAMOUNT - 4 #if defined with a value from 1-4, requires this amount of elements in order to activate the pedestal (0 if commented out)
+
+# Add fusion setting and skip defines so it works like before
+!define - `FUSION_SETTING`
+!define - `FUSION_SKIPS`
+
+!ifdef - NO_FUSION_SKIP
+    !eventdefine - NOFUSE
+!endif
 
 !ifndef - SWORDLEVEL
     !define - SWORDEX
@@ -218,6 +228,7 @@
 !settype - Items.Rupee100 - Major
 !settype - Items.Rupee200 - Major
 
+# Outdated, use options
 #!eventdefine - fuzzy - E       # if defined with a value of 0 to E, makes the screen fuzzy and the pixels bigger
 #!eventdefine - follower        # if defined, a follower with the given id below will follow you throught he game
 #!eventdefine - followerID - 1  # id for the above: 4=Mailman, 5=Zelda, 1E=Malon, 22=Smith, 24=King Dalton, 27=Dummy hero, 31=Cow, 32=Goron, 3C=Bow moblin, 45=Anju

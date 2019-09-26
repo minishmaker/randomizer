@@ -62,6 +62,7 @@ namespace MinishRandomizer.Randomizer.Logic
                 case "!name":
                 case "!version":
                 case "!crc":
+                case "!dropdown":
                     return true;
                 case "!define":
                 case "!undefine":
@@ -114,6 +115,9 @@ namespace MinishRandomizer.Randomizer.Logic
                         break;
                     case "!color":
                         Options.Add(ParseColorDirective(mainDirectiveParts));
+                        break;
+                    case "!dropdown":
+                        Options.Add(ParseDropdownDirective(mainDirectiveParts));
                         break;
                     case "!define":
                         AddDefine(ParseDefineDirective(mainDirectiveParts));
@@ -572,6 +576,29 @@ namespace MinishRandomizer.Randomizer.Logic
                 this.item = item;
                 this.chance = chance;
             }
+        }
+
+        private LogicOption ParseDropdownDirective(string[] directiveParts)
+        {
+            if (directiveParts.Length % 2 != 1 || directiveParts.Length < 5)
+            {
+                throw new ParserException("A dropdown somewhere has an incorrect number of parameters!");
+            }
+
+            LogicOptionType optionType = GetOptionType(directiveParts[1]);
+
+            if (optionType == LogicOptionType.Untyped)
+            {
+                throw new ParserException($"A dropdown somewhere has an invalid type! ({directiveParts[1]})");
+            }
+
+            Dictionary<string, string> selectionDict = new Dictionary<string, string>((directiveParts.Length / 2) - 1);
+            for (int i = 3; i < directiveParts.Length; i += 2)
+            {
+                selectionDict.Add(directiveParts[i], directiveParts[i + 1]);
+            }
+
+            return new LogicDropdown(directiveParts[2], optionType, selectionDict);
         }
     }
 }

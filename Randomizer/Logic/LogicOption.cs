@@ -146,4 +146,47 @@ namespace MinishRandomizer.Randomizer.Logic
             return defineList;
         }
     }
+
+    public class LogicDropdown : LogicOption
+    {
+        Dictionary<string, string> Selections;
+        string Selection;
+
+        public LogicDropdown(string name, LogicOptionType type, Dictionary<string, string> selections) : base(name, name, true, type)
+        {
+            Selections = selections;
+            Selection = selections.Keys.First();
+        }
+
+        public override Control GetControl()
+        {
+            ComboBox comboBox = new ComboBox
+            {
+                SelectedText = Selection,
+                DataSource = Selections.Keys.ToList()
+            };
+
+            comboBox.SelectedValueChanged += (object sender, EventArgs e) => { Selection = (string)comboBox.SelectedValue; };
+
+            return comboBox;
+        }
+
+        public override List<LogicDefine> GetLogicDefines()
+        {
+            List<LogicDefine> defineList = new List<LogicDefine>(3);
+
+            // Only true if a color has been selected
+            if (Active)
+            {
+                Console.WriteLine("Activedefine");
+                if (Selections.TryGetValue(Selection, out string content))
+                {
+                    Console.WriteLine(Name);
+                    defineList.Add(new LogicDefine(Name, content));
+                }
+            }
+
+            return defineList;
+        }
+    }
 }
