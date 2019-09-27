@@ -18,7 +18,7 @@
 !flag - Setting - WEAPONS - Damaging items other than sword seen as weapons
 !flag - Setting - TRAPS - Shuffle traps in itempool
 !flag - Setting - TIMEDOHKO - Die in one hit if the timer runs out
-!dropdown - Setting - FUSION_SETTING - No normal fusions - NO_FUSIONS - Open fusion mode - OPENFUSIONS - Vanilla Fusions - VANILLA_FUSIONS - Kinsanity - KINSANITY
+!dropdown - Setting - FUSION_SETTING - No normal fusions - NO_FUSIONS - Open fusion mode - OPENFUSIONS - Vanilla Fusions - VANILLA_FUSIONS
 !dropdown - Setting - FUSION_SKIPS - Allow fusion skips - ALLOW_FUSION_SKIPS - Instant fusion skip - INSTANT_SKIP - No fusion skips - NO_FUSION_SKIP
 
 !dropdown - Setting - DHC_SETTING - Ped Open/Regular DHC - NORMALDHC - Ped Finish/No DHC - NODHC - Open DHC - OPENDHC - Open DHC + Ped Items - PEDITEMS
@@ -44,6 +44,8 @@
     !eventdefine - fuzzy - `FUZZY_SETTING`
 !endif
 !undefine - `FUZZY_SETTING` 
+
+!flag - Setting - MUSIC_RANDO - Randomize Music
 
 !eventdefine - customRNG - `RAND_INT`
 
@@ -257,10 +259,10 @@
         !replace - Items.KinstoneX.75 - `SWAPGREEN`
     !endif
 !endif
-!settype - Items.Rupee1 - Major
-!settype - Items.Rupee5 - Major
-!settype - Items.Rupee20 - Major
-!settype - Items.Rupee50 - Major
+#!settype - Items.Rupee1 - Major
+#!settype - Items.Rupee5 - Major
+#!settype - Items.Rupee20 - Major
+#!settype - Items.Rupee50 - Major
 !settype - Items.Rupee100 - Major
 !settype - Items.Rupee200 - Major
 
@@ -278,19 +280,150 @@
 #!eventdefine - heartEdgeG - 1F	# green edge component (0-1F)
 #!eventdefine - heartEdgeB - 1F	# blue  edge component (0-1F)
 
-
-# OUTDATED, will get some kind of logic readme at some point
-# Location format:
-#	Name;Type;Address[;Logic][;Item Override]
-#		Name can be anything unique, hopefully without spaces
-#		Type should be one of Location.LocationType
-#		Address can be a hexadecimal address or of the form area-room-chest
-#		Logic should be a comma separated series of conditions, which can take the forms:
-#			(&a,b,c...) and (|a,b,c...) are an and/or of the contents
-#			Items.(itemName)[.subValue] requires the given item for the location
-#			Locations.(locationName) requires the location to be accessible first
-#			Helpers.(helperName) is equivalent for Locations.(locationName), only provided for readability
-#		Item Override should be in the form of Items.(itemName)[.subValue]
+# Music randomization values (kinda hard to read, unfortunately)
+!ifdef - MUSIC_RANDO
+    Area0Music:Music;  DungeonItem; musicScrap:Define:FirstByte, 12746b:SecondByte;; Items.LanternOff.01:Music
+    Area1Music:Music;  DungeonItem; musicScrap:Define:FirstByte, 12746f:SecondByte;; Items.LanternOff.06:Music
+    Area2Music:Music;  DungeonItem; musicScrap:Define:FirstByte, 127473:SecondByte;; Items.LanternOff.07:Music
+    Area3Music:Music;  DungeonItem; musicScrap:Define:FirstByte, 127477:SecondByte;; Items.LanternOff.08:Music
+    Area4Music:Music;  DungeonItem; musicScrap:Define:FirstByte, 12747b:SecondByte;; Items.LanternOff.09:Music
+    Area5Music:Music;  DungeonItem; musicScrap:Define:FirstByte, 12747f:SecondByte;; Items.LanternOff.0a:Music
+    Area6Music:Music;  DungeonItem; musicScrap:Define:FirstByte, 127483:SecondByte;; Items.LanternOff.0b:Music
+    Area7Music:Music;  DungeonItem; musicScrap:Define:FirstByte, 127487:SecondByte;; Items.LanternOff.0d:Music
+    Area8Music:Music;  DungeonItem; musicScrap:Define:FirstByte, 12748b:SecondByte;; Items.LanternOff.0e:Music
+    Area9Music:Music;  DungeonItem; musicScrap:Define:FirstByte, 12748f:SecondByte;; Items.LanternOff.10:Music
+    AreaaMusic:Music;  DungeonItem; musicScrap:Define:FirstByte, 127493:SecondByte;; Items.LanternOff.11:Music
+    AreabMusic:Music;  DungeonItem; musicScrap:Define:FirstByte, 127497:SecondByte;; Items.LanternOff.13:Music
+    AreacMusic:Music;  DungeonItem; musicScrap:Define:FirstByte, 12749b:SecondByte;; Items.LanternOff.14:Music
+    AreadMusic:Music;  DungeonItem; musicScrap:Define:FirstByte, 12749f:SecondByte;; Items.LanternOff.15:Music
+    AreaeMusic:Music;  DungeonItem; musicScrap:Define:FirstByte, 1274a3:SecondByte;; Items.LanternOff.16:Music
+    AreafMusic:Music;  DungeonItem; musicScrap:Define:FirstByte, 1274a7:SecondByte;; Items.LanternOff.17:Music
+    Area10Music:Music; DungeonItem; musicScrap:Define:FirstByte, 1274ab:SecondByte;; Items.LanternOff.18:Music
+    Area11Music:Music; DungeonItem; musicScrap:Define:FirstByte, 1274af:SecondByte;; Items.LanternOff.19:Music
+    Area12Music:Music; DungeonItem; musicScrap:Define:FirstByte, 1274b3:SecondByte;; Items.LanternOff.1a:Music
+    Area13Music:Music; DungeonItem; musicScrap:Define:FirstByte, 1274b7:SecondByte;; Items.LanternOff.1b:Music
+    Area14Music:Music; DungeonItem; musicScrap:Define:FirstByte, 1274bb:SecondByte;; Items.LanternOff.1c:Music
+    Area15Music:Music; DungeonItem; musicScrap:Define:FirstByte, 1274bf:SecondByte;; Items.LanternOff.1d:Music
+    Area16Music:Music; DungeonItem; musicScrap:Define:FirstByte, 1274c3:SecondByte;; Items.LanternOff.1e:Music
+    Area17Music:Music; DungeonItem; musicScrap:Define:FirstByte, 1274c7:SecondByte;; Items.LanternOff.1f:Music
+    Area18Music:Music; DungeonItem; musicScrap:Define:FirstByte, 1274cb:SecondByte;; Items.LanternOff.20:Music
+    Area19Music:Music; DungeonItem; musicScrap:Define:FirstByte, 1274cf:SecondByte;; Items.LanternOff.21:Music
+    Area1aMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 1274d3:SecondByte;; Items.LanternOff.22:Music
+    Area1bMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 1274d7:SecondByte;; Items.LanternOff.23:Music
+    Area1cMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 1274db:SecondByte;; Items.LanternOff.24:Music
+    Area1dMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 1274df:SecondByte;; Items.LanternOff.25:Music
+    Area1eMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 1274e3:SecondByte;; Items.LanternOff.26:Music
+    Area1fMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 1274e7:SecondByte;; Items.LanternOff.27:Music
+    Area20Music:Music; DungeonItem; musicScrap:Define:FirstByte, 1274eb:SecondByte;; Items.LanternOff.28:Music
+    Area21Music:Music; DungeonItem; musicScrap:Define:FirstByte, 1274ef:SecondByte;; Items.LanternOff.29:Music
+    Area22Music:Music; DungeonItem; musicScrap:Define:FirstByte, 1274f3:SecondByte;; Items.LanternOff.2a:Music
+    Area23Music:Music; DungeonItem; musicScrap:Define:FirstByte, 1274f7:SecondByte;; Items.LanternOff.2b:Music
+    Area24Music:Music; DungeonItem; musicScrap:Define:FirstByte, 1274fb:SecondByte;; Items.LanternOff.2c:Music
+    Area25Music:Music; DungeonItem; musicScrap:Define:FirstByte, 1274ff:SecondByte;; Items.LanternOff.2d:Music
+    Area26Music:Music; DungeonItem; musicScrap:Define:FirstByte, 127503:SecondByte;; Items.LanternOff.2e:Music
+    Area27Music:Music; DungeonItem; musicScrap:Define:FirstByte, 127507:SecondByte;; Items.LanternOff.2f:Music
+    Area28Music:Music; DungeonItem; musicScrap:Define:FirstByte, 12750b:SecondByte;; Items.LanternOff.30:Music
+    Area29Music:Music; DungeonItem; musicScrap:Define:FirstByte, 12750f:SecondByte;; Items.LanternOff.31:Music
+    Area2aMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 127513:SecondByte;; Items.LanternOff.32:Music
+    Area2bMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 127517:SecondByte;; Items.LanternOff.33:Music
+    Area2cMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 12751b:SecondByte;; Items.LanternOff.34:Music
+    Area2dMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 12751f:SecondByte;; Items.LanternOff.35:Music
+    Area2eMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 127523:SecondByte;; Items.LanternOff.36:Music
+    Area2fMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 127527:SecondByte;; Items.LanternOff.37:Music
+    Area30Music:Music; DungeonItem; musicScrap:Define:FirstByte, 12752b:SecondByte;; Items.LanternOff.38:Music
+    Area31Music:Music; DungeonItem; musicScrap:Define:FirstByte, 12752f:SecondByte;; Items.LanternOff.39:Music
+    Area32Music:Music; DungeonItem; musicScrap:Define:FirstByte, 127533:SecondByte;; Items.LanternOff.3a:Music
+    Area33Music:Music; DungeonItem; musicScrap:Define:FirstByte, 127537:SecondByte;; Items.LanternOff.3b:Music
+    Area34Music:Music; DungeonItem; musicScrap:Define:FirstByte, 12753b:SecondByte;; Items.LanternOff.01:Music
+    Area35Music:Music; DungeonItem; musicScrap:Define:FirstByte, 12753f:SecondByte;; Items.LanternOff.06:Music
+    Area36Music:Music; DungeonItem; musicScrap:Define:FirstByte, 127543:SecondByte;; Items.LanternOff.07:Music
+    Area37Music:Music; DungeonItem; musicScrap:Define:FirstByte, 127547:SecondByte;; Items.LanternOff.08:Music
+    Area38Music:Music; DungeonItem; musicScrap:Define:FirstByte, 12754b:SecondByte;; Items.LanternOff.09:Music
+    Area39Music:Music; DungeonItem; musicScrap:Define:FirstByte, 12754f:SecondByte;; Items.LanternOff.0a:Music
+    Area3aMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 127553:SecondByte;; Items.LanternOff.0b:Music
+    Area3bMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 127557:SecondByte;; Items.LanternOff.0d:Music
+    Area3cMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 12755b:SecondByte;; Items.LanternOff.0e:Music
+    Area3dMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 12755f:SecondByte;; Items.LanternOff.10:Music
+    Area3eMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 127563:SecondByte;; Items.LanternOff.11:Music
+    Area3fMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 127567:SecondByte;; Items.LanternOff.13:Music
+    Area40Music:Music; DungeonItem; musicScrap:Define:FirstByte, 12756b:SecondByte;; Items.LanternOff.14:Music
+    Area41Music:Music; DungeonItem; musicScrap:Define:FirstByte, 12756f:SecondByte;; Items.LanternOff.15:Music
+    Area42Music:Music; DungeonItem; musicScrap:Define:FirstByte, 127573:SecondByte;; Items.LanternOff.16:Music
+    Area43Music:Music; DungeonItem; musicScrap:Define:FirstByte, 127577:SecondByte;; Items.LanternOff.17:Music
+    Area44Music:Music; DungeonItem; musicScrap:Define:FirstByte, 12757b:SecondByte;; Items.LanternOff.18:Music
+    Area45Music:Music; DungeonItem; musicScrap:Define:FirstByte, 12757f:SecondByte;; Items.LanternOff.19:Music
+    Area46Music:Music; DungeonItem; musicScrap:Define:FirstByte, 127583:SecondByte;; Items.LanternOff.1a:Music
+    Area47Music:Music; DungeonItem; musicScrap:Define:FirstByte, 127587:SecondByte;; Items.LanternOff.1b:Music
+    Area48Music:Music; DungeonItem; musicScrap:Define:FirstByte, 12758b:SecondByte;; Items.LanternOff.1c:Music
+    Area49Music:Music; DungeonItem; musicScrap:Define:FirstByte, 12758f:SecondByte;; Items.LanternOff.1d:Music
+    Area4aMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 127593:SecondByte;; Items.LanternOff.1e:Music
+    Area4bMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 127597:SecondByte;; Items.LanternOff.1f:Music
+    Area4cMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 12759b:SecondByte;; Items.LanternOff.20:Music
+    Area4dMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 12759f:SecondByte;; Items.LanternOff.21:Music
+    Area4eMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 1275a3:SecondByte;; Items.LanternOff.22:Music
+    Area4fMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 1275a7:SecondByte;; Items.LanternOff.23:Music
+    Area50Music:Music; DungeonItem; musicScrap:Define:FirstByte, 1275ab:SecondByte;; Items.LanternOff.24:Music
+    Area51Music:Music; DungeonItem; musicScrap:Define:FirstByte, 1275af:SecondByte;; Items.LanternOff.25:Music
+    Area52Music:Music; DungeonItem; musicScrap:Define:FirstByte, 1275b3:SecondByte;; Items.LanternOff.26:Music
+    Area53Music:Music; DungeonItem; musicScrap:Define:FirstByte, 1275b7:SecondByte;; Items.LanternOff.27:Music
+    Area54Music:Music; DungeonItem; musicScrap:Define:FirstByte, 1275bb:SecondByte;; Items.LanternOff.28:Music
+    Area55Music:Music; DungeonItem; musicScrap:Define:FirstByte, 1275bf:SecondByte;; Items.LanternOff.29:Music
+    Area56Music:Music; DungeonItem; musicScrap:Define:FirstByte, 1275c3:SecondByte;; Items.LanternOff.2a:Music
+    Area57Music:Music; DungeonItem; musicScrap:Define:FirstByte, 1275c7:SecondByte;; Items.LanternOff.2b:Music
+    Area58Music:Music; DungeonItem; musicScrap:Define:FirstByte, 1275cb:SecondByte;; Items.LanternOff.2c:Music
+    Area59Music:Music; DungeonItem; musicScrap:Define:FirstByte, 1275cf:SecondByte;; Items.LanternOff.2d:Music
+    Area5aMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 1275d3:SecondByte;; Items.LanternOff.2e:Music
+    Area5bMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 1275d7:SecondByte;; Items.LanternOff.2f:Music
+    Area5cMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 1275db:SecondByte;; Items.LanternOff.30:Music
+    Area5dMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 1275df:SecondByte;; Items.LanternOff.31:Music
+    Area5eMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 1275e3:SecondByte;; Items.LanternOff.32:Music
+    Area5fMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 1275e7:SecondByte;; Items.LanternOff.33:Music
+    Area60Music:Music; DungeonItem; musicScrap:Define:FirstByte, 1275eb:SecondByte;; Items.LanternOff.34:Music
+    Area61Music:Music; DungeonItem; musicScrap:Define:FirstByte, 1275ef:SecondByte;; Items.LanternOff.35:Music
+    Area62Music:Music; DungeonItem; musicScrap:Define:FirstByte, 1275f3:SecondByte;; Items.LanternOff.36:Music
+    Area63Music:Music; DungeonItem; musicScrap:Define:FirstByte, 1275f7:SecondByte;; Items.LanternOff.37:Music
+    Area64Music:Music; DungeonItem; musicScrap:Define:FirstByte, 1275fb:SecondByte;; Items.LanternOff.38:Music
+    Area65Music:Music; DungeonItem; musicScrap:Define:FirstByte, 1275ff:SecondByte;; Items.LanternOff.39:Music
+    Area66Music:Music; DungeonItem; musicScrap:Define:FirstByte, 127603:SecondByte;; Items.LanternOff.3a:Music
+    Area67Music:Music; DungeonItem; musicScrap:Define:FirstByte, 127607:SecondByte;; Items.LanternOff.3b:Music
+    Area68Music:Music; DungeonItem; musicScrap:Define:FirstByte, 12760b:SecondByte;; Items.LanternOff.01:Music
+    Area69Music:Music; DungeonItem; musicScrap:Define:FirstByte, 12760f:SecondByte;; Items.LanternOff.06:Music
+    Area6aMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 127613:SecondByte;; Items.LanternOff.07:Music
+    Area6bMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 127617:SecondByte;; Items.LanternOff.08:Music
+    Area6cMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 12761b:SecondByte;; Items.LanternOff.09:Music
+    Area6dMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 12761f:SecondByte;; Items.LanternOff.0a:Music
+    Area6eMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 127623:SecondByte;; Items.LanternOff.0b:Music
+    Area6fMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 127627:SecondByte;; Items.LanternOff.0d:Music
+    Area70Music:Music; DungeonItem; musicScrap:Define:FirstByte, 12762b:SecondByte;; Items.LanternOff.0e:Music
+    Area71Music:Music; DungeonItem; musicScrap:Define:FirstByte, 12762f:SecondByte;; Items.LanternOff.10:Music
+    Area72Music:Music; DungeonItem; musicScrap:Define:FirstByte, 127633:SecondByte;; Items.LanternOff.11:Music
+    Area73Music:Music; DungeonItem; musicScrap:Define:FirstByte, 127637:SecondByte;; Items.LanternOff.13:Music
+    Area74Music:Music; DungeonItem; musicScrap:Define:FirstByte, 12763b:SecondByte;; Items.LanternOff.14:Music
+    Area75Music:Music; DungeonItem; musicScrap:Define:FirstByte, 12763f:SecondByte;; Items.LanternOff.15:Music
+    Area76Music:Music; DungeonItem; musicScrap:Define:FirstByte, 127643:SecondByte;; Items.LanternOff.16:Music
+    Area77Music:Music; DungeonItem; musicScrap:Define:FirstByte, 127647:SecondByte;; Items.LanternOff.17:Music
+    Area78Music:Music; DungeonItem; musicScrap:Define:FirstByte, 12764b:SecondByte;; Items.LanternOff.18:Music
+    Area79Music:Music; DungeonItem; musicScrap:Define:FirstByte, 12764f:SecondByte;; Items.LanternOff.19:Music
+    Area7aMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 127653:SecondByte;; Items.LanternOff.1a:Music
+    Area7bMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 127657:SecondByte;; Items.LanternOff.1b:Music
+    Area7cMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 12765b:SecondByte;; Items.LanternOff.1c:Music
+    Area7dMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 12765f:SecondByte;; Items.LanternOff.1d:Music
+    Area7eMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 127663:SecondByte;; Items.LanternOff.1e:Music
+    Area7fMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 127667:SecondByte;; Items.LanternOff.1f:Music
+    Area80Music:Music; DungeonItem; musicScrap:Define:FirstByte, 12766b:SecondByte;; Items.LanternOff.20:Music
+    Area81Music:Music; DungeonItem; musicScrap:Define:FirstByte, 12766f:SecondByte;; Items.LanternOff.21:Music
+    Area82Music:Music; DungeonItem; musicScrap:Define:FirstByte, 127673:SecondByte;; Items.LanternOff.22:Music
+    Area83Music:Music; DungeonItem; musicScrap:Define:FirstByte, 127677:SecondByte;; Items.LanternOff.23:Music
+    Area84Music:Music; DungeonItem; musicScrap:Define:FirstByte, 12767b:SecondByte;; Items.LanternOff.24:Music
+    Area85Music:Music; DungeonItem; musicScrap:Define:FirstByte, 12767f:SecondByte;; Items.LanternOff.25:Music
+    Area86Music:Music; DungeonItem; musicScrap:Define:FirstByte, 127683:SecondByte;; Items.LanternOff.26:Music
+    Area87Music:Music; DungeonItem; musicScrap:Define:FirstByte, 127687:SecondByte;; Items.LanternOff.27:Music
+    Area88Music:Music; DungeonItem; musicScrap:Define:FirstByte, 12768b:SecondByte;; Items.LanternOff.28:Music
+    Area89Music:Music; DungeonItem; musicScrap:Define:FirstByte, 12768f:SecondByte;; Items.LanternOff.29:Music
+    Area8aMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 127693:SecondByte;; Items.LanternOff.2a:Music
+    Area8bMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 127697:SecondByte;; Items.LanternOff.2b:Music
+    Area8cMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 12769b:SecondByte;; Items.LanternOff.2c:Music
+!endif
 
 # Item Macro Helpers
 HasSword;        Helper;; (|Items.SmithSword, Items.GreenSword, Items.RedSword, Items.BlueSword, Items.FourSword)

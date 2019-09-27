@@ -101,11 +101,15 @@ namespace MinishRandomizer
                 generatedSeedValue.Text = seed.ToString();
                 generatedLogicLabel.Text = shuffler.GetLogicIdentifier();
 
+                settingHashValue.Text = StringUtil.AsStringHex8((int)shuffler.GetSettingHash());
+                gimmickHashValue.Text = StringUtil.AsStringHex8((int)shuffler.GetGimmickHash());
+
                 statusText.Text = $"Successfully randomzied seed {seed}";
             }
             catch (ShuffleException error)
             {
                 MessageBox.Show(error.Message);
+                statusText.Text = $"Error randomizing seed: {error.Message}";
             }
         }
 
@@ -244,7 +248,7 @@ namespace MinishRandomizer
             }
 
             // Get the default name for the saved ROM
-            string fileName = $"MinishRandomizer_{shuffler.Version}_{shuffler.GetLogicIdentifier()}_{shuffler.Seed}";
+            string fileName = $"MinishRandomizer_{shuffler.Version}_{shuffler.GetLogicIdentifier()}_{shuffler.GetOptionsIdentifier()}_{shuffler.Seed}";
 
             SaveFileDialog sfd = new SaveFileDialog
             {

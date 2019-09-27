@@ -250,6 +250,32 @@ namespace MinishRandomizer.Randomizer.Logic
             }
         }
 
+        public byte[] GetSettingBytes()
+        {
+            List<LogicOption> settings = Options.Where(option => option.Type == LogicOptionType.Setting).ToList();
+            byte[] bytes = new byte[settings.Count];
+
+            for (int i = 0; i < settings.Count; i++)
+            {
+                bytes[i] = settings[i].GetHashByte();
+            }
+
+            return bytes;
+        }
+
+        public byte[] GetGimmickBytes()
+        {
+            List<LogicOption> gimmicks = Options.Where(option => option.Type == LogicOptionType.Gimmick).ToList();
+            byte[] bytes = new byte[gimmicks.Count];
+            
+            for (int i = 0; i < gimmicks.Count; i++)
+            {
+                bytes[i] = gimmicks[i].GetHashByte();
+            }
+
+            return bytes;
+        }
+
         public void ClearOptions()
         {
             Options.Clear();

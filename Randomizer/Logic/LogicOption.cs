@@ -40,6 +40,11 @@ namespace MinishRandomizer.Randomizer.Logic
         {
             throw new NotImplementedException();
         }
+
+        public virtual byte GetHashByte()
+        {
+            throw new NotImplementedException();
+        }
     }
 
     public class LogicFlag : LogicOption
@@ -71,6 +76,11 @@ namespace MinishRandomizer.Randomizer.Logic
             }
 
             return defineList;
+        }
+
+        public override byte GetHashByte()
+        {
+            return Active ? (byte)01 : (byte)00;
         }
     }
 
@@ -145,12 +155,19 @@ namespace MinishRandomizer.Randomizer.Logic
 
             return defineList;
         }
+
+        public override byte GetHashByte()
+        {
+            // Maybe not a great way to represent, leaves some info out and is likely to cause easy collisions
+            return Active ? (byte)(DefinedColor.R ^ DefinedColor.G ^ DefinedColor.B) : (byte)00;
+        }
     }
 
     public class LogicDropdown : LogicOption
     {
         Dictionary<string, string> Selections;
         string Selection;
+        int SelectedNumber;
 
         public LogicDropdown(string name, LogicOptionType type, Dictionary<string, string> selections) : base(name, name, true, type)
         {
@@ -166,7 +183,7 @@ namespace MinishRandomizer.Randomizer.Logic
                 DataSource = Selections.Keys.ToList()
             };
 
-            comboBox.SelectedValueChanged += (object sender, EventArgs e) => { Selection = (string)comboBox.SelectedValue; };
+            comboBox.SelectedValueChanged += (object sender, EventArgs e) => { Selection = (string)comboBox.SelectedValue;  SelectedNumber = comboBox.SelectedIndex; };
 
             return comboBox;
         }
@@ -187,6 +204,11 @@ namespace MinishRandomizer.Randomizer.Logic
             }
 
             return defineList;
+        }
+
+        public override byte GetHashByte()
+        {
+            return Active ? (byte)(SelectedNumber % 0x100) : (byte)0;
         }
     }
 }

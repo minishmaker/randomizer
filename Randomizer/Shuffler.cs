@@ -1,14 +1,12 @@
-﻿using System;
+﻿using MinishRandomizer.Core;
+using MinishRandomizer.Randomizer.Logic;
+using MinishRandomizer.Utilities;
+using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
-using MinishRandomizer.Core;
-using MinishRandomizer.Randomizer.Logic;
-using MinishRandomizer.Utilities;
 
 namespace MinishRandomizer.Randomizer
 {
@@ -108,6 +106,40 @@ namespace MinishRandomizer.Randomizer
         public List<LogicOption> GetOptions()
         {
             return LogicParser.SubParser.Options;
+        }
+
+        public uint GetSettingHash()
+        {
+            byte[] settingBytes = LogicParser.SubParser.GetSettingBytes();
+
+            if (settingBytes.Length > 0)
+            {
+                return PatchUtil.Crc32(settingBytes, settingBytes.Length);
+            }
+            else
+            {
+                return 0;
+            }
+            
+        }
+
+        public uint GetGimmickHash()
+        {
+            byte[] gimmickBytes = LogicParser.SubParser.GetGimmickBytes();
+
+            if (gimmickBytes.Length > 0)
+            {
+                return PatchUtil.Crc32(gimmickBytes, gimmickBytes.Length);
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+        public string GetOptionsIdentifier()
+        {
+            return StringUtil.AsStringHex8((int)GetSettingHash()) + "-" + StringUtil.AsStringHex8((int)GetGimmickHash());
         }
 
         /// <summary>
@@ -550,6 +582,15 @@ namespace MinishRandomizer.Randomizer
             {
                 define.WriteDefine(eventBuilder);
             }
+
+            byte[] seedValues = new byte[4];
+            seedValues[0] = (byte)((Seed >> 00) & 0xFF);
+            seedValues[1] = (byte)((Seed >> 08) & 0xFF);
+            seedValues[2] = (byte)((Seed >> 16) & 0xFF);
+            seedValues[3] = (byte)((Seed >> 24) & 0xFF);
+
+            eventBuilder.AppendLine("#define seedHashed 0x" + StringUtil.AsStringHex8((int)PatchUtil.Crc32(seedValues, 4)));
+            eventBuilder.AppendLine("#define settingHash 0x" + StringUtil.AsStringHex8((int)GetSettingHash()));
 
             return eventBuilder.ToString();
         }

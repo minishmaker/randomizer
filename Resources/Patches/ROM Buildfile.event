@@ -5,6 +5,16 @@
 	#define customRNG "0x20120825"
 #endif
 
+// Define hash and such
+#define hash
+#define seedHash1 (seedHashed >> 24)
+#define seedHash2 ((seedHashed >> 16) & 0xFF)
+#define seedHash3 ((seedHashed >> 08) & 0xFF)
+#define seedHash4 ((seedHashed >> 00) & 0xFF)
+#define seedHash5 ((customRNG >> 08) & 0xFF)
+#define optionsHash1 ((settingHash >> 08) & 0xFF)
+#define optionsHash2 ((settingHash >> 16) & 0xFF)
+
 //#define DEBUG 0
 //#define TEST 0
 

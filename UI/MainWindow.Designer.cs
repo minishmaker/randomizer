@@ -36,6 +36,7 @@
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.randomize = new System.Windows.Forms.Button();
             this.generalTab = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
             this.seedLabel = new System.Windows.Forms.Label();
             this.seedField = new System.Windows.Forms.TextBox();
             this.customPatchCheckBox = new System.Windows.Forms.CheckBox();
@@ -50,6 +51,8 @@
             this.gimmicksTabPage = new System.Windows.Forms.TabPage();
             this.gimmickControlLayout = new System.Windows.Forms.FlowLayoutPanel();
             this.generatedTab = new System.Windows.Forms.TabPage();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.generatedLogicLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.generatedSeedValue = new System.Windows.Forms.Label();
@@ -57,7 +60,8 @@
             this.saveSpoilerButton = new System.Windows.Forms.Button();
             this.savePatchButton = new System.Windows.Forms.Button();
             this.saveRomButton = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.settingHashValue = new System.Windows.Forms.Label();
+            this.gimmickHashValue = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.generalTab.SuspendLayout();
@@ -135,6 +139,17 @@
             this.generalTab.TabIndex = 0;
             this.generalTab.Text = "General";
             this.generalTab.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.AutoSize = true;
+            this.button1.Location = new System.Drawing.Point(153, 8);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(85, 23);
+            this.button1.TabIndex = 13;
+            this.button1.Text = "Random Seed";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // seedLabel
             // 
@@ -217,6 +232,7 @@
             this.mainTabs.Controls.Add(this.generalTab);
             this.mainTabs.Controls.Add(this.optionTabPage);
             this.mainTabs.Controls.Add(this.gimmicksTabPage);
+            this.mainTabs.Controls.Add(this.generatedTab);
             this.mainTabs.Location = new System.Drawing.Point(9, 27);
             this.mainTabs.Name = "mainTabs";
             this.mainTabs.SelectedIndex = 0;
@@ -263,6 +279,10 @@
             // 
             // generatedTab
             // 
+            this.generatedTab.Controls.Add(this.gimmickHashValue);
+            this.generatedTab.Controls.Add(this.settingHashValue);
+            this.generatedTab.Controls.Add(this.label3);
+            this.generatedTab.Controls.Add(this.label2);
             this.generatedTab.Controls.Add(this.generatedLogicLabel);
             this.generatedTab.Controls.Add(this.label1);
             this.generatedTab.Controls.Add(this.generatedSeedValue);
@@ -277,6 +297,24 @@
             this.generatedTab.TabIndex = 1;
             this.generatedTab.Text = "Seed";
             this.generatedTab.UseVisualStyleBackColor = true;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(16, 83);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(78, 13);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Gimmick Hash:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(16, 59);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(71, 13);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Setting Hash:";
             // 
             // generatedLogicLabel
             // 
@@ -343,16 +381,21 @@
             this.saveRomButton.UseVisualStyleBackColor = true;
             this.saveRomButton.Click += new System.EventHandler(this.SaveRomButton_Click);
             // 
-            // button1
+            // settingHashValue
             // 
-            this.button1.AutoSize = true;
-            this.button1.Location = new System.Drawing.Point(153, 8);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(85, 23);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "Random Seed";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            this.settingHashValue.AutoSize = true;
+            this.settingHashValue.Location = new System.Drawing.Point(93, 59);
+            this.settingHashValue.Name = "settingHashValue";
+            this.settingHashValue.Size = new System.Drawing.Size(0, 13);
+            this.settingHashValue.TabIndex = 9;
+            // 
+            // gimmickHashValue
+            // 
+            this.gimmickHashValue.AutoSize = true;
+            this.gimmickHashValue.Location = new System.Drawing.Point(100, 83);
+            this.gimmickHashValue.Name = "gimmickHashValue";
+            this.gimmickHashValue.Size = new System.Drawing.Size(0, 13);
+            this.gimmickHashValue.TabIndex = 10;
             // 
             // MainWindow
             // 
@@ -414,6 +457,10 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label generatedLogicLabel;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label gimmickHashValue;
+        private System.Windows.Forms.Label settingHashValue;
     }
 }
 
