@@ -20,6 +20,10 @@ POIN $797B0; WORD 8 //zapTrap
 POIN bombTrap; WORD 0
 POIN moneyTrap; WORD 0
 POIN stinkTrap; WORD 0
+POIN snekTrap; WORD 0
+POIN batTrap; WORD 0
+POIN suckTrap; WORD 0
+POIN curseTrap; WORD 0
 WORD 0 0 //terminator
 
 ALIGN 4
@@ -46,6 +50,32 @@ moneyTrapEffect:
 ALIGN 4
 stinkTrap:
 #incbin "asm/stinkTrap.dmp"
+
+ALIGN 4
+snekTrap:
+#incbin "asm/snekTrap.dmp"
+POIN spawnEnemy
+
+ALIGN 4
+batTrap:
+#incbin "asm/batTrap.dmp"
+POIN spawnEnemy
+
+ALIGN 4
+suckTrap:
+#incbin "asm/suckTrap.dmp"
+POIN spawnEnemy
+POIN getRNG
+
+ALIGN 4
+curseTrap:
+#incbin "asm/curseTrap.dmp"
+POIN spawnEnemy
+
+//enemy spawning routine
+ALIGN 4
+spawnEnemy:
+#incbin "asm/spawnEnemy.dmp"
 
 //set the default icon for traps, this is the icon that displays when you pick them up
 PUSH; ORG $125BF8; BYTE 1 0 1 4 0 0 0x41 5; POP
