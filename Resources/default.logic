@@ -37,7 +37,7 @@
 !endif
 !undefine - `FOLLOWER_SETTING` 
 
-!dropdown - Gimmick - FUZZY_SETTING - No Fuzziness - NOFUZZ - Fuzz 1 - 0x1 - Fuzz 2 - 0x2 - Fuzz 3 - 0x3 - Fuzz 4 - 0x4 - Fuzz 5 - 0x5 - Fuzz 6 - 0x6 - Fuzz 7 - 0x7 - Fuzz 8 - 0x8 - Fuzz 9 - 0x9 - Fuzz 10 - 0xA - Fuzz 11 - 0xB - Fuzz 12 - 0xC - Fuzz 13 - 0xD - Fuzz 14 - 0xE
+!dropdown - Gimmick - FUZZY_SETTING - No Fuzziness - NOFUZZ - Fuzz 0 - 0x0 - Fuzz 1 - 0x1 - Fuzz 2 - 0x2 - Fuzz 3 - 0x3 - Fuzz 4 - 0x4 - Fuzz 5 - 0x5 - Fuzz 6 - 0x6 - Fuzz 7 - 0x7 - Fuzz 8 - 0x8 - Fuzz 9 - 0x9 - Fuzz 10 - 0xA - Fuzz 11 - 0xB - Fuzz 12 - 0xC - Fuzz 13 - 0xD - Fuzz 14 - 0xE
 
 !define - `FUZZY_SETTING`
 !ifndef - NOFUZZ
@@ -494,7 +494,7 @@ TownDiggingRight;              Major; 0F-00-01;                                 
 TownDiggingLeft;               Minor; 0F-00-02;                                                                   Items.MoleMitts
 BakeryAttic;                   Minor; 2E-03-00;                                                                   (|Items.PacciCane, Items.Flippers, Items.RocsCape)
 StockWellAttic;                Minor; 2E-01-01;                                                                   (|Items.PacciCane, Items.Flippers, Items.RocsCape)
-SimulationChest;               Minor; 0F04C2;                                                                     Helpers.HasSword
+SimulationChest;               Major; 0F04C2;                                                                     Helpers.HasSword
 RemShoeShop;                   Major; 0130EE;                                                                     Items.WakeUpMushroom
 Shop80Item;                    Major; walletShopItem:Define:FirstByte, walletShopSub:Define:SecondByte;           (+80, Items.Rupee1, Items.Rupee5::5, Items.Rupee20::20, Items.Rupee50::50, Items.Rupee100::100, Items.Rupee200::200);                   Items.Wallet
 Shop300Item;                   Major; boomerangShopItem:Define:FirstByte, boomerangShopSub:Define:SecondByte;     Items.Wallet, (+380, Items.Rupee1, Items.Rupee5::5, Items.Rupee20::20, Items.Rupee50::50, Items.Rupee100::100, Items.Rupee200::200);    Items.Boomerang
@@ -650,7 +650,7 @@ CloudsSouthRight;  Minor; 08-01-06; Locations.AccessClouds, (|Items.RocsCape, It
 
 AccessUpperClouds; Helper;;         Locations.AccessClouds, (|Items.RocsCape, Items.MoleMitts), Items.KinstoneX.YellowTornadoProng::5
 
-!ifdef - OPENFUSIONS
+!ifndef - OPENFUSIONS
     TowerBottomLeft;   Minor; 30-00-00; Locations.AccessUpperClouds;
     TowerBottomRight;  Minor; 30-00-01; Locations.AccessUpperClouds;
     TowerF2;           Minor; 30-01-00; Locations.AccessUpperClouds;
