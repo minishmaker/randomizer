@@ -1,7 +1,7 @@
 # Default logic for the randomizer - Doesn't allow glitches, but allows unintuitive tricks
 
 !name - Default
-!version - 0.5.0
+!version - 0.5.1
 !crc - E8637292
 
 !flag - Setting - KEYSANITY - Keysanity - false
@@ -439,7 +439,7 @@ HasLightBow;     Helper;; (|Items.Bow::2, Items.LightArrow)
 
 HasBoomerang;    Helper;; (|Items.Boomerang, Items.MagicBoomerang)
 
-!ifdef - WEAPONS
+!ifndef - WEAPONS
     HasDamageSource; Helper;; Helpers.HasSword
 !else
     HasDamageSource; Helper;; (|Helpers.HasSword, Helpers.HasBow, Items.BombBag)
@@ -938,7 +938,7 @@ PalacePrize:`ELEMENT_DUNGEON`;     `ELEMENT`;         0E69E3;                   
     HyliaBeanstalkHP;        Major; 0F5EDB;   Helpers.Inaccessible;
     HillsBeanstalkHP;        Major; 0F6073;   Helpers.Inaccessible;
     SouthTreeHouseHP;        Major; 0F9E1F;   Helpers.Inaccessible;
-    LinkHouseTreeHP;         Major; 0F9BA7;   Helpers.Inaccessible, Helpers.CanDestroyTrees;
+    LinkHouseTreeHP;         Major; 0F9BA7;   Helpers.Inaccessible;
     FallsWaterDigCaveHP;     Major; 0F3DD7;   Helpers.Inaccessible;
     FallsWaterfallHP;        Major; 0F906F;   Helpers.Inaccessible;
     CastorMinishWaterCaveHP; Major; 0DB3F7;   Helpers.Inaccessible;
