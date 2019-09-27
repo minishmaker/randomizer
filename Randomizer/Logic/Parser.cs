@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MinishRandomizer.Core;
+using MinishRandomizer.Utilities;
 
 namespace MinishRandomizer.Randomizer.Logic
 {
@@ -453,8 +454,7 @@ namespace MinishRandomizer.Randomizer.Logic
                     // Probably a more efficient way to do it, but eh
                     if (locationString.IndexOf("`") != -1)
                     {
-                        // Add random numbers in
-                        locationString = locationString.Replace("`RAND_INT`", rng.Next().ToString());
+                        locationString = locationString.Replace("`RAND_INT`", StringUtil.AsStringHex8(rng.Next()));
 
                         locationString = SubParser.ReplaceDefines(locationString);
                     }
