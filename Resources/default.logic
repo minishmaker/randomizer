@@ -28,6 +28,22 @@
 !dropdown - Setting - ELEMENT_SETTING - 4 Element Ped - 4 - 3 Element Ped - 3 - 2 Element Ped - 2 - 1 Element Ped - 1 - No Element Ped - 0ELEMENT
 
 
+!dropdown - Gimmick - FOLLOWER_SETTING - No Follower - NOFOLLOWER - Mailman Follower - 0x04 - Zelda Follower - 0x05 - Malon Follower - 0x1E - Smith Follower - 0x22 - King Gustaf Follower - 0x24 - Cow Follower - 0x31 - Goron Follower - 0x32 - Bow Moblin Follower - 0x3C - Anju Follower - 0x45
+
+!define - `FOLLOWER_SETTING`
+!ifndef - NOFOLLOWER
+    !eventdefine - follower
+    !eventdefine - followerID - `FOLLOWER_SETTING`
+!endif
+!undefine - `FOLLOWER_SETTING` 
+
+!dropdown - Gimmick - FUZZY_SETTING - No Fuzziness - NOFUZZ - Fuzz 1 - 0x1 - Fuzz 2 - 0x2 - Fuzz 3 - 0x3 - Fuzz 4 - 0x4 - Fuzz 5 - 0x5 - Fuzz 6 - 0x6 - Fuzz 7 - 0x7 - Fuzz 8 - 0x8 - Fuzz 9 - 0x9 - Fuzz 10 - 0xA - Fuzz 11 - 0xB - Fuzz 12 - 0xC - Fuzz 13 - 0xD - Fuzz 14 - 0xE
+
+!define - `FUZZY_SETTING`
+!ifndef - NOFUZZ
+    !eventdefine - fuzzy - `FUZZY_SETTING`
+!endif
+!undefine - `FUZZY_SETTING` 
 
 !eventdefine - customRNG - `RAND_INT`
 
