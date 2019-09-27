@@ -5,7 +5,7 @@
 
 This program creates a randomized version of The Legend of Zelda: The Minish Cap.
 
-Current version: `0.4.2a`
+Current version: `0.5.1a`
 
 ### Logic
 The following things are randomized:
@@ -17,6 +17,7 @@ The following things are randomized:
 - Great Fairies
 - Dojos
 - Unique Shop Items
+- Music (if set)
 
 Please see the [releases](https://github.com/minishmaker/randomizer/releases) page for the latest changes.
 
