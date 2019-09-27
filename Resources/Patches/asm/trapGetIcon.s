@@ -2,6 +2,13 @@
 .thumb
 push	{r4,r5}
 mov	r4,r0
+@check if witch shop
+ldr	r0,=#0x3000BF0
+ldrb	r0,[r0,#4]	
+cmp	r0,#0x24
+bne	notwitch
+ldr	r4,=#0x3001160
+notwitch:
 
 @check if picking up animation
 ldrb	r0,[r4,#0x09]

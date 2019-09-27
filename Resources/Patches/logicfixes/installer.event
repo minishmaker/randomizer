@@ -216,6 +216,7 @@ WORD 0x2002EA4; SHORT 8 0x1C //belari won't talk about remote bombs until he has
 WORD 0 0 //terminator
 //belari will not trade bombs more than once
 PUSH; ORG $A0EC; BYTE 9; POP
+PUSH; ORG $A0D2; BYTE 0; POP
 PUSH; ORG $7EA68; jumpToHack(noSwaps); POP
 ALIGN 4
 noSwaps:

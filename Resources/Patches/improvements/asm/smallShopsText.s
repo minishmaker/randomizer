@@ -12,6 +12,7 @@
 .equ blueclockCredits, greenclockCredits+4
 .equ redclockCredits, blueclockCredits+4
 .equ figurineCredits, redclockCredits+4
+.equ trapGetIcon, figurineCredits+4
 .thumb
 ldrh	r1,[r4,#8]
 ldr	r3,=#0x2D07
@@ -188,6 +189,10 @@ bx	lr
 
 getText:
 mov	r3,#0
+cmp	r0,#0x1B
+bne	nottrap
+b	trap
+nottrap:
 cmp	r0,#0x67
 beq	figurine
 cmp	r0,#0x18
@@ -361,6 +366,17 @@ lsl	r3,#2
 ldr	r0,[r0,r3]
 pop	{pc}
 
+trap:
+ldr	r0,=#0x3001160
+push	{lr}
+ldr	r3,trapGetIcon
+mov	lr,r3
+.short	0xF800
+ldr	r1,=#0x0400
+orr	r0,r1
+mov	r3,#0
+pop	{pc}
+
 .align
 .ltorg
 bottleScrubItem:
@@ -379,3 +395,4 @@ bottleScrubItem:
 @POIN blueclockCredits
 @POIN redclockCredits
 @POIN figurineCredits
+@POIN trapGetIcon
