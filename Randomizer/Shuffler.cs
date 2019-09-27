@@ -58,7 +58,7 @@ namespace MinishRandomizer.Randomizer
     public class Shuffler
     {
         // Will replace this with something better...
-        public readonly string Version = "0.4.2a";
+        public readonly string Version = "0.5.0a";
         public int Seed;
         private Random RNG;
         private List<Location> Locations;
