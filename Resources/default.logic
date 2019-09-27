@@ -47,7 +47,7 @@
 
 !flag - Setting - MUSIC_RANDO - Randomize Music
 
-!eventdefine - customRNG - `RAND_INT`
+!eventdefine - customRNG - 0x`RAND_INT`
 
 # Add fusion setting and skip defines so it works like before
 !define - `FUSION_SETTING`
