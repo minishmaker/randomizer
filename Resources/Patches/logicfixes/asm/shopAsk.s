@@ -14,6 +14,7 @@
 .equ blueclockCredits, greenclockCredits+4
 .equ redclockCredits, blueclockCredits+4
 .equ figurineCredits, redclockCredits+4
+.equ trapGetIcon, figurineCredits+4
 .thumb
 ldrb	r0,[r6,#6]
 cmp	r0,#0x64
@@ -183,6 +184,10 @@ bx	lr
 
 getText:
 mov	r3,#0
+cmp	r0,#0x1B
+bne	nottrap
+b	trap
+nottrap:
 cmp	r0,#0x67
 beq	figurine
 cmp	r0,#0x18
@@ -356,6 +361,29 @@ lsl	r3,#2
 ldr	r0,[r0,r3]
 pop	{pc}
 
+trap:
+@get the original item
+ldrb	r1,[r6,#6]
+@find the right offset for this item
+ldr	r0,=#0x30017C0
+mov	r2,#0x7E
+traploop:
+ldrb	r3,[r0,r2]
+cmp	r3,r1
+beq	match
+add	r0,#0x88
+b	traploop
+@get the icon
+match:
+push	{lr}
+ldr	r3,trapGetIcon
+mov	lr,r3
+.short	0xF800
+ldr	r1,=#0x0400
+orr	r0,r1
+mov	r3,#0
+pop	{pc}
+
 .align
 .ltorg
 walletShopItem:
@@ -376,3 +404,4 @@ walletShopItem:
 @POIN blueclockCredits
 @POIN redclockCredits
 @POIN figurineCredits
+@POIN trapGetIcon
