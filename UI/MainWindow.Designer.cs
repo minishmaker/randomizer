@@ -232,7 +232,7 @@
             this.mainTabs.Controls.Add(this.generalTab);
             this.mainTabs.Controls.Add(this.optionTabPage);
             this.mainTabs.Controls.Add(this.gimmicksTabPage);
-            this.mainTabs.Controls.Add(this.generatedTab);
+            //this.mainTabs.Controls.Add(this.generatedTab);
             this.mainTabs.Location = new System.Drawing.Point(9, 27);
             this.mainTabs.Name = "mainTabs";
             this.mainTabs.SelectedIndex = 0;
