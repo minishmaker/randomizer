@@ -180,6 +180,7 @@
 !endif
 !ifdef - OPENFUSIONS
     !eventdefine - openFusions
+	!eventdefine - noFusions
 !else
     !ifdef - NO_FUSIONS
         !eventdefine - noFusions                         # if defined, fusions other than golden kinstone fusions are not available
