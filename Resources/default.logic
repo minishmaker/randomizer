@@ -867,8 +867,8 @@ PalacePrize:`ELEMENT_DUNGEON`;     `ELEMENT`;         0E69E3;                   
 	SouthernWoodTopDig6;     Minor; 0F781F;                                                                   Helpers.CanSplit2, Items.MoleMitts;
 	SouthernWoodBottomDig1;  Minor; 0F782F;                                                                   Helpers.CanSplit2, Items.MoleMitts;
 	SouthernWoodBottomDig2;  Minor; 0F783F;                                                                   Helpers.CanSplit2, Items.MoleMitts;
-	PercyHouseMoblin;        Minor; 0123D6;                                                                   Helpers.CanSplit2, Items.LanternOff;
-	PercyHouseReward;        Minor; 06B058:FirstByte, 06B05A:SecondByte;                                      Helpers.CanSplit2, Items.LanternOff;
+	PercyHouseMoblin;        Minor; 0123D6;                                                                   Helpers.CanSplit2, Items.LanternOff, Items.PegasusBoots;
+	PercyHouseReward;        Minor; 06B058:FirstByte, 06B05A:SecondByte;                                      Helpers.CanSplit2, Items.LanternOff, Items.PegasusBoots;
 	
 	HyliaWaterDigCave;       Minor; 19-00-00;                                                                 Locations.AccessHyliaSouth, Items.MoleMitts;
 
@@ -918,9 +918,9 @@ PalacePrize:`ELEMENT_DUNGEON`;     `ELEMENT`;         0E69E3;                   
     CastleDrainedFountainHP; Major; 0D9C2B;                                                                   ;
     LibrariCabinContainer;   Major; 0124EC;                                                                   Items.Ocarina, Items.GustJar, (|Items.Flippers,Items.RocsCape);
     
-    ScarbladeScroll;         Major; scarbladeDojoItem:Define:FirstByte, scarbladeDojoSub:Define:SecondByte;   Locations.AccessWilds, Items.Flippers, Helpers.HasBow;           Items.FastSpin
-    SplitbladeScroll;        Major; splitbladeDojoItem:Define:FirstByte, splitbladeDojoSub:Define:SecondByte; Locations.AccessFallsSouth, Items.Flippers;                      Items.FastSplit
-    GreatbladeScroll;        Major; greatbladeDojoItem:Define:FirstByte, greatbladeDojoSub:Define:SecondByte; Items.Flippers;                                                  Items.LongSpin
+    ScarbladeScroll;         Major; scarbladeDojoItem:Define:FirstByte, scarbladeDojoSub:Define:SecondByte;   Locations.AccessWilds, Items.Flippers, Helpers.HasBow, Helpers.HasSword;           Items.FastSpin
+    SplitbladeScroll;        Major; splitbladeDojoItem:Define:FirstByte, splitbladeDojoSub:Define:SecondByte; Locations.AccessFallsSouth, Items.Flippers, Helpers.HasSword;                      Items.FastSplit
+    GreatbladeScroll;        Major; greatbladeDojoItem:Define:FirstByte, greatbladeDojoSub:Define:SecondByte; Items.Flippers, Helpers.HasSword;                                                  Items.LongSpin
 !else
     RuinsBombBag;            Major; 0FE0AE;   Helpers.Inaccessible;
     LonLonWallet;            Major; 32-0F-00; Helpers.Inaccessible;
