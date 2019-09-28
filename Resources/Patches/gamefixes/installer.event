@@ -108,3 +108,6 @@ PUSH; ORG $4CE7C; jumpToHack(iceChestFix); POP
 ALIGN 4
 iceChestFix:
 #incbin "asm/iceChestFix.dmp"
+
+//remove extra magic boomerang chest check
+PUSH; ORG $4F70E; SHORT 0 0; POP
