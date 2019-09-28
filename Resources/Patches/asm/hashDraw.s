@@ -6,8 +6,13 @@ ldr	r1,=#0x3000F50
 mov	r0,#1
 strh	r0,[r1,#0x0E]
 
-@draw the tiles
+@check if file select
 push	{r0-r7}
+ldr	r0,=#0x3001002
+ldrb	r0,[r0]
+cmp	r0,#1
+bne	end
+@draw the tiles
 ldr	r4,=#0x811DBD5
 mov	r5,#0
 ldr	r6,=#0x2034CB6

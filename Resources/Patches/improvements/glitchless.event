@@ -16,7 +16,7 @@ PUSH; ORG $5E88C; jumpToHack(holeFix); POP
 ALIGN 4
 holeFix:
 #incbin "asm/holeFix.dmp"
-#endif
 
 //fix spin soldier skip
 PUSH; ORG $C1A; SHORT 0x20; POP
+#endif

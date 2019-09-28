@@ -38,7 +38,7 @@ POIN map; WORD 0x2002A80 3
 #endif
 POIN shells; WORD 0x2002AFB 1
 #ifdef openFusions
-POIN allFusions; WORD 0x2002C81 12
+POIN allFusions; WORD 0x2002C81 13
 #endif
 WORD 0 0 0 //terminator
 
