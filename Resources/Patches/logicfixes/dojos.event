@@ -105,6 +105,9 @@ BYTE 20 scarbladeDojoItem scarbladeDojoSub //0x73 Sped Up Charged Great Spin Att
 BYTE 21 splitbladeDojoItem splitbladeDojoSub //0x74 Sped Up Split Gauge
 BYTE 22 greatbladeDojoItem greatbladeDojoSub //0x75 Increased Great Spin Attack Rotation Time
 
+//long great spin bro does not ask for great spin
+PUSH; ORG $68818; SHORT 0x2000; POP
+
 //swiftblade I sets the spin attack as usable for the tutorial
 PUSH; ORG $68908; jumpToHack(dojosTutorialSpin); POP
 ALIGN 4
