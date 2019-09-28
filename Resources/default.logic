@@ -750,7 +750,7 @@ DropletsWaterPot:Droplets;       `KEYSANITY_MAJOR`; 0E5BC7;                     
 !endif
 
 DropletsBottomJump:Droplets;     Helper;            ;                                                                       Items.LanternOff, Items.RocsCape, Helpers.HasDamageSource, Items.SmallKey`TOD_SET`:4;
-DropletsEastLever:Droplets;      Helper;            ;                                                                       Locations.AccessDroplets, Items.BigKey`TOD_SET`, (|Helpers.DropletsBottomJump, (&Items.GustJar, Items.Flippers), Helpers.CanSplit2
+DropletsEastLever:Droplets;      Helper;            ;                                                                       Locations.AccessDroplets, Items.BigKey`TOD_SET`, (|Helpers.DropletsBottomJump, (&Items.GustJar, Items.Flippers)), Helpers.CanSplit2
 DropletsWestLever:Droplets;      Helper;            ;                                                                       Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.LanternOff, (|Items.Flippers, Items.RocsCape), Helpers.CanSplit2
 DropletsEastFirst:Droplets;      Minor;             60-09-00;                                                               Locations.AccessDroplets, Items.BigKey`TOD_SET`, (|Items.LanternOff, Locations.DropletsEastLever)
 DropletsIceMaze:Droplets;        Minor;             60-0A-00;                                                               Locations.AccessDroplets, Items.BigKey`TOD_SET`, (|Items.LanternOff, Locations.DropletsEastLever)
