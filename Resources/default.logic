@@ -1044,11 +1044,11 @@ PalacePrize:`ELEMENT_DUNGEON`;     `ELEMENT`;         0E69E3;                   
 	DropletsLowerWaterRupee5:Droplets; Minor; 0E591F;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.Flippers, (|Items.RocsCape, Items.GustJar);
 	DropletsLowerWaterRupee6:Droplets; Minor; 0E592F;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.Flippers, (|Items.RocsCape, Items.GustJar);
 	
-	CoFRupee1:FlameCave; Minor; 0DFAEB;                                                                       Helper.CoFAccess;
-	CoFRupee2:FlameCave; Minor; 0DFAFB;                                                                       Helper.CoFAccess;
-	CoFRupee3:FlameCave; Minor; 0DFB0B;                                                                       Helper.CoFAccess;
-	CoFRupee4:FlameCave; Minor; 0DFB1B;                                                                       Helper.CoFAccess;
-	CoFRupee5:FlameCave; Minor; 0DFB2B;                                                                       Helper.CoFAccess;
+	CoFRupee1:FlameCave; Minor; 0DFAEB;                                                                       Helpers.CoFAccess;
+	CoFRupee2:FlameCave; Minor; 0DFAFB;                                                                       Helpers.CoFAccess;
+	CoFRupee3:FlameCave; Minor; 0DFB0B;                                                                       Helpers.CoFAccess;
+	CoFRupee4:FlameCave; Minor; 0DFB1B;                                                                       Helpers.CoFAccess;
+	CoFRupee5:FlameCave; Minor; 0DFB2B;                                                                       Helpers.CoFAccess;
 	
 	FlipperCaveWaterfallRupee; Minor; 0EF79B;                                                                 Items.Flippers, Items.PacciCane;
 
