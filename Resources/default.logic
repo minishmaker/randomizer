@@ -908,9 +908,18 @@ PalacePrize:`ELEMENT_DUNGEON`;     `ELEMENT`;         0E69E3;                   
     ValleySwimButterfly;     Major; 0FE14F;                                                                   Locations.AccessValley, Items.GraveyardKey, Items.PegasusBoots;
     					     				                                                                  
     CrenelBeanstalkHP;       Major; 0F5D9B;                                                                   Locations.AccessCrenel, Items.GripRing;
-    HyliaBeanstalkHP;        Major; 0F5EDB;                                                                   Locations.AccessTreasureCave;
-    HillsBeanstalkHP;        Major; 0F6073;                                                                   Helpers.CanDestroyTrees;
-    SouthTreeHouseHP;        Major; 0F9E1F;                                                                   Helpers.CanSplit2;
+    
+	HyliaBeanstalkHP;        Major; 0F5EDB;                                                                   Locations.AccessTreasureCave;
+    HyliaBeanstalkLeft;      Minor; 0D-01-00;                                                                 Locations.AccessTreasureCave;
+	HyliaBeanstalkRight;     Minor; 0D-01-01;                                                                 Locations.AccessTreasureCave;
+	
+	HillsBeanstalkHP;        Major; 0F6073;                                                                   Helpers.CanDestroyTrees;
+    HillsBeanstalkRight;     Minor; 0D-03-00;                                                                 Helpers.CanDestroyTrees;
+	HillsBeanstalkLeft;      Minor; 0D-03-01;                                                                 Helpers.CanDestroyTrees;
+	
+	SouthBeanstalk;          Minor; 0D-04-00;                                                                 Helpers.CanSplit2;
+
+	SouthTreeHouseHP;        Major; 0F9E1F;                                                                   Helpers.CanSplit2;
     LinkHouseTreeHP;         Major; 0F9BA7;                                                                   Helpers.CanDestroyTrees;
     FallsWaterDigCaveHP;     Major; 0F3DD7;                                                                   Items.BombBag, (|Items.RocsCape,Items.Flippers), Items.MoleMitts;
     FallsWaterfallHP;        Major; 0F906F;                                                                   Locations.AccessFallsNorth, Items.Flippers, Items.GripRing;
