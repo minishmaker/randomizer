@@ -153,7 +153,7 @@ mvn	r3,r3
 ldrb	r0,[r1]
 and	r0,r3
 strb	r0,[r1]
-b	update
+b	updatesound
 @turn off
 turnoff:
 ldrb	r0,[r4,r6]
@@ -174,7 +174,13 @@ lsl	r3,r2
 ldrb	r0,[r1]
 orr	r0,r3
 strb	r0,[r1]
-b	update
+b	updatesound
+
+updatesound:
+mov	r0,#0x6A
+ldr	r3,=#0x80A2A80
+mov	lr,r3
+.short	0xF800
 
 update:
 ldr	r3,=#0x807A910
