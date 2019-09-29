@@ -1061,6 +1061,12 @@ PalacePrize:`ELEMENT_DUNGEON`;     `ELEMENT`;         0E69E3;                   
 	CoFRupee4:FlameCave; Minor; 0DFB1B;                                                                       Helpers.CoFAccess;
 	CoFRupee5:FlameCave; Minor; 0DFB2B;                                                                       Helpers.CoFAccess;
 	
+	PalaceRupee1:Palace; Minor; 0E8B1F;                                                                       Locations.AccessPalace, Items.RocsCape, Items.PacciCane, (|Items.BombBag, Helpers.HasBoomerang, Helpers.HasBow);
+	PalaceRupee2:Palace; Minor; 0E8B2F;                                                                       Locations.AccessPalace, Items.RocsCape, Items.PacciCane, (|Items.BombBag, Helpers.HasBoomerang, Helpers.HasBow);
+    PalaceRupee3:Palace; Minor; 0E8B3F;                                                                       Locations.AccessPalace, Items.RocsCape, Items.PacciCane, (|Items.BombBag, Helpers.HasBoomerang, Helpers.HasBow);
+    PalaceRupee4:Palace; Minor; 0E8B4F;                                                                       Locations.AccessPalace, Items.RocsCape, Items.PacciCane, (|Items.BombBag, Helpers.HasBoomerang, Helpers.HasBow);
+    PalaceRupee5:Palace; Minor; 0E8B5F;                                                                       Locations.AccessPalace, Items.RocsCape, Items.PacciCane, (|Items.BombBag, Helpers.HasBoomerang, Helpers.HasBow);
+
 	FlipperCaveWaterfallRupee; Minor; 0EF79B;                                                                 Items.Flippers, Items.PacciCane;
 
     !ifdef - OPENFUSIONS
