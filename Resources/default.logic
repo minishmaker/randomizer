@@ -1049,11 +1049,11 @@ PalacePrize:`ELEMENT_DUNGEON`;     `ELEMENT`;         0E69E3;                   
 	DropletsLeftPathRupee3:Droplets;   Minor; 0E3FAB;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`;
 	DropletsLeftPathRupee4:Droplets;   Minor; 0E3FBB;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`;
 	DropletsLeftPathRupee5:Droplets;   Minor; 0E3FCB;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`;
-	DropletsRightPathRupee1:Droplets;  Minor; 0E483F;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.LanternOff, Items.SmallKey`TOD_SET`:4, Helpers.HasDamageSource;
-	DropletsRightPathRupee2:Droplets;  Minor; 0E484F;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.LanternOff, Items.SmallKey`TOD_SET`:4, Helpers.HasDamageSource;
-	DropletsRightPathRupee3:Droplets;  Minor; 0E485F;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.LanternOff, Items.SmallKey`TOD_SET`:4, Helpers.HasDamageSource;
-	DropletsRightPathRupee4:Droplets;  Minor; 0E486F;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.LanternOff, Items.SmallKey`TOD_SET`:4, Helpers.HasDamageSource;
-	DropletsRightPathRupee5:Droplets;  Minor; 0E487F;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.LanternOff, Items.SmallKey`TOD_SET`:4, Helpers.HasDamageSource;
+	DropletsRightPathRupee1:Droplets;  Minor; 0E483F;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.SmallKey`TOD_SET`:4, Items.LanternOff, (|(&Items.Flippers, Items.GustJar, Items.RocsCape), Helpers.HasDamageSource);
+	DropletsRightPathRupee2:Droplets;  Minor; 0E484F;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.SmallKey`TOD_SET`:4, Items.LanternOff, (|(&Items.Flippers, Items.GustJar, Items.RocsCape), Helpers.HasDamageSource);
+	DropletsRightPathRupee3:Droplets;  Minor; 0E485F;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.SmallKey`TOD_SET`:4, Items.LanternOff, (|(&Items.Flippers, Items.GustJar, Items.RocsCape), Helpers.HasDamageSource);
+	DropletsRightPathRupee4:Droplets;  Minor; 0E486F;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.SmallKey`TOD_SET`:4, Items.LanternOff, (|(&Items.Flippers, Items.GustJar, Items.RocsCape), Helpers.HasDamageSource);
+	DropletsRightPathRupee5:Droplets;  Minor; 0E487F;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.SmallKey`TOD_SET`:4, Items.LanternOff, (|(&Items.Flippers, Items.GustJar, Items.RocsCape), Helpers.HasDamageSource);
 
 	CoFRupee1:FlameCave; Minor; 0DFAEB;                                                                       Helpers.CoFAccess;
 	CoFRupee2:FlameCave; Minor; 0DFAFB;                                                                       Helpers.CoFAccess;
@@ -1061,11 +1061,11 @@ PalacePrize:`ELEMENT_DUNGEON`;     `ELEMENT`;         0E69E3;                   
 	CoFRupee4:FlameCave; Minor; 0DFB1B;                                                                       Helpers.CoFAccess;
 	CoFRupee5:FlameCave; Minor; 0DFB2B;                                                                       Helpers.CoFAccess;
 	
-	PalaceRupee1:Palace; Minor; 0E8B1F;                                                                       Locations.AccessPalace, Items.RocsCape, Items.PacciCane, (|Items.BombBag, Helpers.HasBoomerang, Helpers.HasBow);
-	PalaceRupee2:Palace; Minor; 0E8B2F;                                                                       Locations.AccessPalace, Items.RocsCape, Items.PacciCane, (|Items.BombBag, Helpers.HasBoomerang, Helpers.HasBow);
-    PalaceRupee3:Palace; Minor; 0E8B3F;                                                                       Locations.AccessPalace, Items.RocsCape, Items.PacciCane, (|Items.BombBag, Helpers.HasBoomerang, Helpers.HasBow);
-    PalaceRupee4:Palace; Minor; 0E8B4F;                                                                       Locations.AccessPalace, Items.RocsCape, Items.PacciCane, (|Items.BombBag, Helpers.HasBoomerang, Helpers.HasBow);
-    PalaceRupee5:Palace; Minor; 0E8B5F;                                                                       Locations.AccessPalace, Items.RocsCape, Items.PacciCane, (|Items.BombBag, Helpers.HasBoomerang, Helpers.HasBow);
+	PalaceRupee1:Palace; Minor; 0E8B1F;                                                                       Locations.AccessPalace, Items.RocsCape, Items.PacciCane;
+	PalaceRupee2:Palace; Minor; 0E8B2F;                                                                       Locations.AccessPalace, Items.RocsCape, Items.PacciCane;
+    PalaceRupee3:Palace; Minor; 0E8B3F;                                                                       Locations.AccessPalace, Items.RocsCape, Items.PacciCane;
+    PalaceRupee4:Palace; Minor; 0E8B4F;                                                                       Locations.AccessPalace, Items.RocsCape, Items.PacciCane;
+    PalaceRupee5:Palace; Minor; 0E8B5F;                                                                       Locations.AccessPalace, Items.RocsCape, Items.PacciCane;
 
 	FlipperCaveWaterfallRupee; Minor; 0EF79B;                                                                 Items.Flippers, Items.PacciCane;
 
