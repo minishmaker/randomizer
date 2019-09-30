@@ -1,5 +1,22 @@
 .thumb
 push	{lr}
+@check if we are in the menu
+ldr	r0,=#0x3001004
+ldrb	r0,[r0]
+cmp	r0,#7
+beq	nobombcheck
+
+@check if there are bombs in the room
+mov	r0,#8
+mov	r1,#2
+mov	r2,#2
+ldr	r3,=#0x805E588
+mov	lr,r3
+.short	0xF800
+cmp	r0,#0
+bne	doneBomb
+nobombcheck:
+
 @check if remote bombs are equipped
 ldr	r0,=#0x2002AF4
 ldrb	r1,[r0]

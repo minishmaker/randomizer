@@ -446,6 +446,9 @@ PUSH; ORG $1215D0; POIN $8EB19; POP
 PUSH; ORG $86508; SHORT 0x2100; POP
 PUSH; ORG $86A20; SHORT 0x2001; POP
 
+//give elements a sound when picked up
+PUSH; ORG $83620; SHORT 0x2844; POP
+
 #include "glitchless.event"
 #include "dungeon.event"
 #include "fairy.event"
