@@ -204,6 +204,8 @@ WORD customRNG
 
 //some fixes for followers
 PUSH; ORG $D8F3F; BYTE 0; POP //make the green minish blue in left's attic
+PUSH; ORG $D90C7; BYTE 0; POP //make the green minish blue in the bakery attic
+PUSH; ORG $D90D7; BYTE 3; POP //make the magenta minish red in the bakery attic
 PUSH; ORG $4F05A; SHORT 0xE002; POP //remove soldiers near lon lon
 #ifdef follower
 	#ifndef followerID
