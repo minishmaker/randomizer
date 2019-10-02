@@ -710,7 +710,7 @@ CoFSpinies:FlameCave;             `KEYSANITY_MINOR`;  50-15-00;                 
 CoFBasementLavaLeft:FlameCave;    Minor;              50-17-00;                                                                     Locations.CoFAccess, Items.PacciCane, Helpers.HasSword, Items.SmallKey`COF_SET`:2
 CoFBasementLavaRight:FlameCave;   Minor;              50-17-01;                                                                     Locations.CoFAccess, Items.PacciCane, Helpers.HasSword, Items.SmallKey`COF_SET`:2
 CoFBasementLavaBig:FlameCave;     `KEYSANITY_MAJOR`;  50-17-02;                                                                     Locations.CoFAccess, Items.PacciCane, Helpers.HasSword, Items.SmallKey`COF_SET`:2;      Items.BigKey`COF_SET`
-CompleteCoF:FlameCave;            Helper;             ;                                                                             Locations.CoFAccess, Items.PacciCane, Items.SmallKey.`COF_SET`:2, Items.BigKey`COF_SET`
+CompleteCoF:FlameCave;            Helper;             ;                                                                             Locations.CoFAccess, Items.PacciCane, Items.SmallKey`COF_SET`:2, Items.BigKey`COF_SET`
 CoFBossItem:FlameCave;            Major;              gleerokContainerItem:Define:FirstByte, gleerokContainerSub:Define:SecondByte; Locations.CompleteCoF;                                                                  Items.HeartContainer
 CoFPrize:`ELEMENT_DUNGEON`;       `ELEMENT`;          0E0F03;                                                                       Locations.CompleteCoF
 
