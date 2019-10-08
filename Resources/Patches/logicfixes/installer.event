@@ -360,5 +360,8 @@ ALIGN 4
 tingleCheck:
 #incbin "asm/tingleCheck.dmp"
 
+//remove percy shell check
+PUSH; ORG $6B03C; SHORT 0x2000; POP
+
 #include "dojos.event"
 #include "shop.event"
