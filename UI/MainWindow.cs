@@ -1,11 +1,11 @@
-﻿using MinishRandomizer.Core;
-using MinishRandomizer.Randomizer;
-using MinishRandomizer.Randomizer.Logic;
-using MinishRandomizer.Utilities;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
+using MinishRandomizer.Core;
+using MinishRandomizer.Randomizer;
+using MinishRandomizer.Randomizer.Logic;
+using MinishRandomizer.Utilities;
 
 namespace MinishRandomizer
 {
@@ -77,7 +77,7 @@ namespace MinishRandomizer
                         shuffler.LoadLocations();
                     }
 
-                    
+
                     shuffler.RandomizeLocations();
                 }
                 else
@@ -268,7 +268,7 @@ namespace MinishRandomizer
 
             if (customPatchCheckBox.Checked)
             {
-                
+
                 shuffler.ApplyPatch(sfd.FileName, customPatchPath.Text);
             }
             else
@@ -336,7 +336,7 @@ namespace MinishRandomizer
             // If there options, show the options tab
             if (options.Count >= 1)
             {
-                
+
                 // Make sure not to add the tab multiple times
                 if (!mainTabs.TabPages.Contains(optionTabPage))
                 {

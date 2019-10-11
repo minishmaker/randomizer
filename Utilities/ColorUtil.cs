@@ -1,17 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MinishRandomizer.Utilities
 {
     public static class ColorExtensions
     {
-        
-
-        
     }
 
     public static class ColorUtil

@@ -1,15 +1,12 @@
-﻿using MinishRandomizer.Core;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using MinishRandomizer.Core;
 
 namespace MinishRandomizer.Randomizer.Logic
 {
-
     public class DirectiveParser
     {
         public uint? RomCrc;
@@ -267,7 +264,7 @@ namespace MinishRandomizer.Randomizer.Logic
         {
             List<LogicOption> gimmicks = Options.Where(option => option.Type == LogicOptionType.Gimmick).ToList();
             byte[] bytes = new byte[gimmicks.Count];
-            
+
             for (int i = 0; i < gimmicks.Count; i++)
             {
                 bytes[i] = gimmicks[i].GetHashByte();
@@ -288,7 +285,7 @@ namespace MinishRandomizer.Randomizer.Logic
 
         public void ClearTypeOverrides()
         {
-           LocationTypeOverrides.Clear();
+            LocationTypeOverrides.Clear();
         }
 
         public void AddOptions()
@@ -424,7 +421,8 @@ namespace MinishRandomizer.Randomizer.Logic
             {
                 return new EventDefine(directiveParts[1]);
             }
-            else if (directiveParts.Length == 3) {
+            else if (directiveParts.Length == 3)
+            {
                 return new EventDefine(directiveParts[1], directiveParts[2]);
             }
             else
@@ -479,7 +477,7 @@ namespace MinishRandomizer.Randomizer.Logic
                 throw new ParserException("!replace has an invalid replaced itemType");
             }
 
-            
+
             if (itemStrings.Length >= 3)
             {
                 if (!byte.TryParse(itemStrings[2], NumberStyles.HexNumber, null, out itemsub))
@@ -495,10 +493,10 @@ namespace MinishRandomizer.Randomizer.Logic
             }
 
             replacedItem = new Item(type, itemsub, dungeonString);
-            
+
             foreach (var chanceItem in chanceItems)
             {
-                
+
                 var chanceItemData = chanceItem.TrimEnd(';').Split(':');
                 var chanceItemStrings = chanceItemData[0].Split('.');
 
@@ -571,7 +569,7 @@ namespace MinishRandomizer.Randomizer.Logic
             }
 
             LocationTypeOverrides.Add(replacedItem, newType);
-            
+
         }
 
 
@@ -591,7 +589,7 @@ namespace MinishRandomizer.Randomizer.Logic
                 }
             }
         }
-        
+
         public struct ChanceItem
         {
             public Item item;
