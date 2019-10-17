@@ -122,7 +122,7 @@
 			GotSwords; Helper; ; (+`SWORDLEVEL`, Items.SmithSword)
         !endif
 
-        !ifndef - ELEMENTX
+        !ifndef - ELEMENTEX
 		    !eventdefine - requirementElementsAmmount - `ELEMENTAMOUNT` 
 			GotElements; Helper; ; (+`ELEMENTAMOUNT`, Items.WaterElement, Items.FireElement, Items.WindElement, Items.EarthElement)
         !endif
@@ -485,8 +485,8 @@ GrimbladeScroll;               Major; grimbladeDojoItem:Define:FirstByte, grimbl
 HyruleCastleWaterLeft;         Major; 07-00-01;                                                                   Items.Flippers;                                                                                                                   Items.BombBag # extra bomb bag for EU
 HyruleCastleWaterRight;        Minor; 07-00-02;                                                                   Items.Flippers
 CafeLady;                      Minor; 00EDDA;                                                                     ;                                                                                                                                 Items.KinstoneX.RedSpike
-HearthLedge;                   Major; 02-00-06;                                                                   Items.LanternOff;
-HearthBackdoor;                Minor; 0D66D7;                                                                     (|Items.Flippers, Items.PacciCane, Items.RocsCape)													                              
+HearthLedge;                   Minor; 02-00-06;                                                                   Items.LanternOff;
+HearthBackdoor;                Major; 0D66D7;                                                                     (|Items.Flippers, Items.PacciCane, Items.RocsCape)													                              
 SchoolTop;                     Major; 02-00-07;                                                                   Items.PacciCane;
 SchoolGardenLeft;              Minor; 11-02-00;                                                                   Items.PacciCane, Helpers.CanSplit4
 SchoolGardenMiddle;            Minor; 11-02-01;                                                                   Items.PacciCane, Helpers.CanSplit4
