@@ -580,7 +580,7 @@ namespace MinishRandomizer.Randomizer
 
             foreach (EventDefine define in LogicParser.GetEventDefines())
             {
-                define.WriteDefine(eventBuilder);
+                define.WriteDefineString(eventBuilder);
             }
 
             byte[] seedValues = new byte[4];
