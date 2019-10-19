@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MinishRandomizer.Utilities
 {
-    static class PatchUtil {
+    static class PatchUtil
+    {
         /// <summary>
         /// Apply a UPS patch to a byte array, in place
         /// </summary>

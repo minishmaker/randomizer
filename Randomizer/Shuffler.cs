@@ -1,16 +1,17 @@
-﻿using MinishRandomizer.Core;
-using MinishRandomizer.Randomizer.Logic;
-using MinishRandomizer.Utilities;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using MinishRandomizer.Core;
+using MinishRandomizer.Randomizer.Logic;
+using MinishRandomizer.Utilities;
 
 namespace MinishRandomizer.Randomizer
 {
-    public class ShuffleException : Exception {
+    public class ShuffleException : Exception
+    {
         public ShuffleException(string message) : base(message) { }
     }
 
@@ -120,7 +121,7 @@ namespace MinishRandomizer.Randomizer
             {
                 return 0;
             }
-            
+
         }
 
         public uint GetGimmickHash()
@@ -369,7 +370,7 @@ namespace MinishRandomizer.Randomizer
                 {
                     Console.WriteLine($"Dungeon: {item.Dungeon}");
                 }
-                
+
                 // Take item out of pool
                 items.RemoveAt(itemIndex);
 

@@ -1,15 +1,13 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MinishRandomizer.Core;
 using MinishRandomizer.Utilities;
 
 namespace MinishRandomizer.Randomizer.Logic
 {
-    public class ParserException : Exception {
+    public class ParserException : Exception
+    {
         public ParserException(string message) : base(message) { }
     }
 
@@ -62,7 +60,7 @@ namespace MinishRandomizer.Randomizer.Logic
                         {
                             throw new ParserException($"Invalid total for counter! {reqValueString.Substring(1)}");
                         }
-                        string[] itemStrings = sequence.Substring(reqValueString.Length+1).Split(',');
+                        string[] itemStrings = sequence.Substring(reqValueString.Length + 1).Split(',');
 
                         foreach (var itemString in itemStrings)
                         {
@@ -91,7 +89,7 @@ namespace MinishRandomizer.Randomizer.Logic
 
                             byte itemSub = 0;
 
-                            if (itemParts.Length >= 3) 
+                            if (itemParts.Length >= 3)
                             {
                                 if (!byte.TryParse(itemParts[2], out itemSub))
                                 {
