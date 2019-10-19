@@ -31,7 +31,8 @@ namespace MinishRandomizer.Randomizer.Logic
             Minor,
             DungeonItem,
             Helper,
-            Unshuffled
+            Unshuffled,
+            Nice
         }
 
         public List<Dependency> Dependencies;
@@ -233,8 +234,6 @@ namespace MinishRandomizer.Randomizer.Logic
                 RecursionCount--;
                 return (bool)AvailableCache;
             }
-
-
 
             foreach (Dependency dependency in Dependencies)
             {
