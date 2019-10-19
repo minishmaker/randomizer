@@ -63,7 +63,7 @@ namespace MinishRandomizer.Utilities
                 || 255 < alpha)
             {
                 throw new ArgumentOutOfRangeException(
-                    "alpha",
+                    nameof(alpha),
                     alpha,
                     "Value must be within a range of 0 - 255.");
             }
@@ -72,7 +72,7 @@ namespace MinishRandomizer.Utilities
                 || 360f < hue)
             {
                 throw new ArgumentOutOfRangeException(
-                    "hue",
+                    nameof(hue),
                     hue,
                     "Value must be within a range of 0 - 360.");
             }
@@ -81,7 +81,7 @@ namespace MinishRandomizer.Utilities
                 || 1f < saturation)
             {
                 throw new ArgumentOutOfRangeException(
-                    "saturation",
+                    nameof(saturation),
                     saturation,
                     "Value must be within a range of 0 - 1.");
             }
@@ -90,7 +90,7 @@ namespace MinishRandomizer.Utilities
                 || 1f < brightness)
             {
                 throw new ArgumentOutOfRangeException(
-                    "brightness",
+                    nameof(brightness),
                     brightness,
                     "Value must be within a range of 0 - 1.");
             }
