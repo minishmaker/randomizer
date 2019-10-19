@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using MinishRandomizer.Core;
+using MinishRandomizer.Utilities;
 
 namespace MinishRandomizer.Randomizer.Logic
 {
