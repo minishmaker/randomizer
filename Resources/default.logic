@@ -122,7 +122,7 @@
 			GotSwords; Helper; ; (+`SWORDLEVEL`, Items.SmithSword)
         !endif
 
-        !ifndef - ELEMENTX
+        !ifndef - ELEMENTEX
 		    !eventdefine - requirementElementsAmmount - `ELEMENTAMOUNT` 
 			GotElements; Helper; ; (+`ELEMENTAMOUNT`, Items.WaterElement, Items.FireElement, Items.WindElement, Items.EarthElement)
         !endif
@@ -485,8 +485,8 @@ GrimbladeScroll;               Major; grimbladeDojoItem:Define:FirstByte, grimbl
 HyruleCastleWaterLeft;         Major; 07-00-01;                                                                   Items.Flippers;                                                                                                                   Items.BombBag # extra bomb bag for EU
 HyruleCastleWaterRight;        Minor; 07-00-02;                                                                   Items.Flippers
 CafeLady;                      Minor; 00EDDA;                                                                     ;                                                                                                                                 Items.KinstoneX.RedSpike
-HearthLedge;                   Major; 02-00-06;                                                                   Items.LanternOff;
-HearthBackdoor;                Minor; 0D66D7;                                                                     (|Items.Flippers, Items.PacciCane, Items.RocsCape)													                              
+HearthLedge;                   Minor; 02-00-06;                                                                   Items.LanternOff;
+HearthBackdoor;                Major; 0D66D7;                                                                     (|Items.Flippers, Items.PacciCane, Items.RocsCape)													                              
 SchoolTop;                     Major; 02-00-07;                                                                   Items.PacciCane;
 SchoolGardenLeft;              Minor; 11-02-00;                                                                   Items.PacciCane, Helpers.CanSplit4
 SchoolGardenMiddle;            Minor; 11-02-01;                                                                   Items.PacciCane, Helpers.CanSplit4
@@ -710,7 +710,7 @@ CoFSpinies:FlameCave;             `KEYSANITY_MINOR`;  50-15-00;                 
 CoFBasementLavaLeft:FlameCave;    Minor;              50-17-00;                                                                     Locations.CoFAccess, Items.PacciCane, Helpers.HasSword, Items.SmallKey`COF_SET`:2
 CoFBasementLavaRight:FlameCave;   Minor;              50-17-01;                                                                     Locations.CoFAccess, Items.PacciCane, Helpers.HasSword, Items.SmallKey`COF_SET`:2
 CoFBasementLavaBig:FlameCave;     `KEYSANITY_MAJOR`;  50-17-02;                                                                     Locations.CoFAccess, Items.PacciCane, Helpers.HasSword, Items.SmallKey`COF_SET`:2;      Items.BigKey`COF_SET`
-CompleteCoF:FlameCave;            Helper;             ;                                                                             Locations.CoFAccess, Items.PacciCane, Items.SmallKey.`COF_SET`:2, Items.BigKey`COF_SET`
+CompleteCoF:FlameCave;            Helper;             ;                                                                             Locations.CoFAccess, Items.PacciCane, Items.SmallKey`COF_SET`:2, Items.BigKey`COF_SET`
 CoFBossItem:FlameCave;            Major;              gleerokContainerItem:Define:FirstByte, gleerokContainerSub:Define:SecondByte; Locations.CompleteCoF;                                                                  Items.HeartContainer
 CoFPrize:`ELEMENT_DUNGEON`;       `ELEMENT`;          0E0F03;                                                                       Locations.CompleteCoF
 
@@ -753,13 +753,13 @@ DropletsWaterPot:Droplets;       `KEYSANITY_MAJOR`; 0E5BC7;                     
 !endif
 
 DropletsBottomJump:Droplets;     Helper;            ;                                                                       Items.LanternOff, Items.RocsCape, Helpers.HasDamageSource, Items.SmallKey`TOD_SET`:4;
-DropletsEastLever:Droplets;      Helper;            ;                                                                       Locations.AccessDroplets, Items.BigKey`TOD_SET`, (|Helpers.DropletsBottomJump, (&Items.GustJar, Items.Flippers)), Helpers.CanSplit2
-DropletsWestLever:Droplets;      Helper;            ;                                                                       Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.LanternOff, (|Items.Flippers, Items.RocsCape), Helpers.CanSplit2
+DropletsEastLever:Droplets;      Helper;            ;                                                                       Locations.AccessDroplets, Items.BigKey`TOD_SET`, (|Helpers.DropletsBottomJump, (&Items.GustJar, Items.Flippers, Items.SmallKey`TOD_SET`:4)), Helpers.CanSplit2
+DropletsWestLever:Droplets;      Helper;            ;                                                                       Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.LanternOff, (|Items.Flippers, Items.RocsCape), Items.SmallKey`TOD_SET`:4, Helpers.CanSplit2
 DropletsEastFirst:Droplets;      Minor;             60-09-00;                                                               Locations.AccessDroplets, Items.BigKey`TOD_SET`, (|Items.LanternOff, Locations.DropletsEastLever)
 DropletsIceMaze:Droplets;        Minor;             60-0A-00;                                                               Locations.AccessDroplets, Items.BigKey`TOD_SET`, (|Items.LanternOff, Locations.DropletsEastLever)
-DropletsOverhang:Droplets;       `KEYSANITY_MINOR`; 60-0D-00;                                                               Locations.AccessDroplets, Items.BigKey`TOD_SET`;                                                                                                     Items.DungeonMap`TOD_SET`
-DropletsBluChu:Droplets;         Major;             60-10-01;                                                               Locations.AccessDroplets, Items.BigKey`TOD_SET`, (|Items.LanternOff, Locations.DropletsEastLever), Items.GustJar, Items.SmallKey`TOD_SET`:4;
-DropletsBasement:Droplets;       `KEYSANITY_MAJOR`; 60-11-00;                                                               Locations.AccessDroplets, Items.BigKey`TOD_SET`, (|Items.LanternOff, Locations.DropletsEastLever);                                                  Items.SmallKey`TOD_SET`
+DropletsOverhang:Droplets;       `KEYSANITY_MINOR`; 60-0D-00;                                                               Locations.AccessDroplets, Items.BigKey`TOD_SET`;                                                                                                                                      Items.DungeonMap`TOD_SET`
+DropletsBluChu:Droplets;         Major;             60-10-01;                                                               Locations.AccessDroplets, Items.BigKey`TOD_SET`, (|Items.LanternOff, Locations.DropletsEastLever), Items.GustJar, Items.SmallKey`TOD_SET`:4;		                                  
+DropletsBasement:Droplets;       `KEYSANITY_MAJOR`; 60-11-00;                                                               Locations.AccessDroplets, Items.BigKey`TOD_SET`, (|Items.LanternOff, Locations.DropletsEastLever);                                                                                    Items.SmallKey`TOD_SET`
 DropletsFrozenIcePlain:Droplets; Minor;             60-28-00;                                                               Locations.AccessDroplets, Items.BigKey`TOD_SET`, (|Helpers.DropletsBottomJump,(&Items.SmallKey`TOD_SET`:4, Items.GustJar, Items.Flippers, Items.LanternOff));						                                     
 DropletsFreeIcePlain:Droplets;   Minor;             60-28-01;                                                               Locations.AccessDroplets, Items.BigKey`TOD_SET`, (|Helpers.DropletsBottomJump,(&Items.SmallKey`TOD_SET`:4, Items.GustJar, Items.Flippers));						                                     
 DropletsDarkMazeRight:Droplets;  Minor;             60-2B-01;                                                               Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.LanternOff, Helpers.HasDamageSource						                                     
@@ -767,9 +767,9 @@ DropletsDarkMazeLeft:Droplets;   Minor;             60-2B-02;                   
 DropletsDarkMazeMiddle:Droplets; Minor;             60-2B-03;                                                               Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.LanternOff, Helpers.HasDamageSource						                                     
 DropletsPostTwinFrozen:Droplets; Minor;             60-2D-00;                                                               Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.GustJar, Items.LanternOff, (|Helpers.DropletsBottomJump,(&Items.SmallKey`TOD_SET`:4,Items.Flippers));			                                     
 DropletsPreviewFrozen:Droplets;  Minor;             60-32-00;                                                               Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.LanternOff;												                                     
-DropletsIceWiggler:Droplets;     `KEYSANITY_MINOR`; 60-32-01;                                                               Locations.AccessDroplets, Items.BigKey`TOD_SET`, (|Helpers.DropletsBottomJump,(&Items.SmallKey`TOD_SET`:4, Items.Flippers, Items.GustJar));                                           Items.Compass`TOD_SET`
+DropletsIceWiggler:Droplets;     `KEYSANITY_MINOR`; 60-32-01;                                                               Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.GustJar, (|Helpers.DropletsBottomJump,(&Items.SmallKey`TOD_SET`:4, Items.Flippers));                                           Items.Compass`TOD_SET`
 CompleteDroplets:Droplets;       Helper;            ;                                                                       Locations.DropletsEastLever, Locations.DropletsWestLever, Items.LanternOff, Helpers.HasSword					                                     
-DropletsBossItem:Droplets;       Major;             octoContainerItem:Define:FirstByte, octoContainerSub:Define:SecondByte; Locations.CompleteDroplets;                                                                                                                          Items.HeartContainer
+DropletsBossItem:Droplets;       Major;             octoContainerItem:Define:FirstByte, octoContainerSub:Define:SecondByte; Locations.CompleteDroplets;                                                                                                                                                           Items.HeartContainer
 DropletsPrize:`ELEMENT_DUNGEON`; `ELEMENT`;         0E40C3;                                                                 Locations.CompleteDroplets
 
 # Palace of Winds Locations
@@ -873,7 +873,7 @@ PalacePrize:`ELEMENT_DUNGEON`;     `ELEMENT`;         0E69E3;                   
 	PercyHouseMoblin;        Minor; 0123D6;                                                                   Helpers.CanSplit2, Items.LanternOff, Items.PegasusBoots;
 	PercyHouseReward;        Minor; 06B058:FirstByte, 06B05A:SecondByte;                                      Helpers.CanSplit2, Items.LanternOff, Items.PegasusBoots;
 	
-	HyliaWaterDigCave;       Minor; 19-00-00;                                                                 Locations.AccessHyliaSouth, Items.MoleMitts;
+	HyliaWaterDigCave;       Minor; 19-00-00;                                                                 Locations.AccessHyliaSouth, Items.MoleMitts, (|Items.Flippers, Items.RocsCape);
 
 	CrenelGreenWaterFusion;  Minor; 0FE06E;                                                                   Locations.AccessWestField, Helpers.HasBottle, Items.BombBag;
 	CrenelClimbFusion;       Minor; 0FE10E;                                                                   Locations.AccessCrenel, Items.GripRing;

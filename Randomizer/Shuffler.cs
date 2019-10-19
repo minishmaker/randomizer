@@ -57,13 +57,14 @@ namespace MinishRandomizer.Randomizer
     public class Shuffler
     {
         // Will replace this with something better...
-        public readonly string Version = "0.5.0a";
+        public readonly string Version = "DEV 0.6.0";
         public int Seed;
         private Random RNG;
         private List<Location> Locations;
         //private List<Location> StartingLocations;
         private List<Item> DungeonItems;
         private List<Item> MajorItems;
+        private List<Item> NiceItems;
         private List<Item> MinorItems;
         private Parser LogicParser;
         private string LogicPath;
@@ -73,6 +74,7 @@ namespace MinishRandomizer.Randomizer
             Locations = new List<Location>();
             DungeonItems = new List<Item>();
             MajorItems = new List<Item>();
+            NiceItems = new List<Item>();
             MinorItems = new List<Item>();
             LogicParser = new Parser();
         }
@@ -194,15 +196,7 @@ namespace MinishRandomizer.Randomizer
             LogicPath = logicFile;
 
             // Reset everything to allow rerandomization
-            Locations.Clear();
-            DungeonItems.Clear();
-            MajorItems.Clear();
-            MinorItems.Clear();
-
-            LogicParser.SubParser.ClearTypeOverrides();
-            LogicParser.SubParser.ClearReplacements();
-            LogicParser.SubParser.ClearDefines();
-            LogicParser.SubParser.AddOptions();
+            ClearLogic();
 
             string[] locationStrings;
 
@@ -275,7 +269,11 @@ namespace MinishRandomizer.Randomizer
                 case Location.LocationType.DungeonItem:
                     DungeonItems.Add(location.Contents);
                     break;
-                // Major/etc items are fully randomized
+                // Nice items check logic but cannot affect it
+                case Location.LocationType.Nice:
+                    NiceItems.Add(location.Contents);
+                    break;
+                // Major/etc items are fully randomized and check logic
                 case Location.LocationType.Major:
                 default:
                     MajorItems.Add(location.Contents);
@@ -301,10 +299,8 @@ namespace MinishRandomizer.Randomizer
         }
 
         /// <summary>
-        /// Loads and shuffles all locations
+        /// Shuffles all locations, ensuring the game is beatable within the logic and all Major/Nice items are reachable.
         /// </summary>
-        /// <param name="seed">The RNG seed used for generation</param>
-
         public void RandomizeLocations()
         {
             List<Item> unplacedItems = MajorItems.ToList();
@@ -329,7 +325,11 @@ namespace MinishRandomizer.Randomizer
                 throw new ShuffleException($"Randomization succeded, but could not beat Vaati!");
             }
 
-            // Put the remaining items into the place wherever
+            // Put nice items in locations, logic is checked but not updated
+            unfilledLocations.Shuffle(RNG);
+            CheckedFastFillLocations(NiceItems, unfilledLocations);
+
+            // Put minor items in locations, not checking logic
             unfilledLocations.Shuffle(RNG);
             FastFillLocations(MinorItems.ToList(), unfilledLocations);
 
@@ -351,26 +351,14 @@ namespace MinishRandomizer.Randomizer
         {
             List<Location> filledLocations = new List<Location>();
 
-            assumedItems = assumedItems ?? new List<Item>();
+            assumedItems ??= new List<Item>();
 
             for (int i = items.Count - 1; i >= 0; i--)
             {
                 // Get a random item from the list and save its index
                 int itemIndex = RNG.Next(items.Count);
                 Item item = items[itemIndex];
-
-                // Write placing information to spoiler log
-                Console.WriteLine($"Placing: {item.Type.ToString()}");
-                if (item.Type == ItemType.KinstoneX)
-                {
-                    Console.WriteLine($"Type: {item.Kinstone.ToString()}");
-                }
-
-                if (item.Dungeon != "")
-                {
-                    Console.WriteLine($"Dungeon: {item.Dungeon}");
-                }
-
+                
                 // Take item out of pool
                 items.RemoveAt(itemIndex);
 
@@ -383,7 +371,7 @@ namespace MinishRandomizer.Randomizer
                 {
                     // The filler broke, show all available items and get out
                     availableItems.ForEach(itm => Console.WriteLine($"{itm.Type} sub {itm.SubValue}"));
-                    throw new ShuffleException($"Could not place {item.Type}!");
+                    throw new ShuffleException($"Could not place {item.Type}! Subvalue: {StringUtil.AsStringHex2(item.SubValue)}, Dungeon: {item.Dungeon}");
                 }
 
                 int locationIndex = RNG.Next(availableLocations.Count);
@@ -403,9 +391,27 @@ namespace MinishRandomizer.Randomizer
         }
 
         /// <summary>
+        /// Fill items in locations that are available at the start of the fill.
+        /// Slower than FastFillLocations, but will not place in unavailable locations.
+        /// </summary>
+        /// <param name="items">The items to fill with</param>
+        /// <param name="locations">The locations in which to fill the items</param>
+        private void CheckedFastFillLocations(List<Item> items, List<Location> locations)
+        {
+            List<Item> finalMajorItems = GetAvailableItems(new List<Item>());
+            List<Location> availableLocations = locations.Where(location => location.IsAccessible(finalMajorItems, Locations, false)).ToList();
+
+            foreach (Item item in items)
+            {
+                int locationIndex = RNG.Next(0, availableLocations.Count);
+                availableLocations[locationIndex].Fill(item);
+            }
+        }
+
+        /// <summary>
         /// Fill items in locations without checking logic for speed
         /// </summary>
-        /// <param name="items">The items to be filled</param>
+        /// <param name="items">The items to fill with</param>
         /// <param name="locations">The locations in which to fill the items</param>
         private void FastFillLocations(List<Item> items, List<Location> locations)
         {
@@ -581,7 +587,7 @@ namespace MinishRandomizer.Randomizer
 
             foreach (EventDefine define in LogicParser.GetEventDefines())
             {
-                define.WriteDefine(eventBuilder);
+                define.WriteDefineString(eventBuilder);
             }
 
             byte[] seedValues = new byte[4];
@@ -710,6 +716,20 @@ namespace MinishRandomizer.Randomizer
             w.SetPosition(smallAddress);
             w.WriteUInt16(smallCoords[0]);
             w.WriteUInt16(smallCoords[1]);
+        }
+
+        public void ClearLogic()
+        {
+            Locations.Clear();
+            DungeonItems.Clear();
+            MajorItems.Clear();
+            NiceItems.Clear();
+            MinorItems.Clear();
+
+            LogicParser.SubParser.ClearTypeOverrides();
+            LogicParser.SubParser.ClearReplacements();
+            LogicParser.SubParser.ClearDefines();
+            LogicParser.SubParser.AddOptions();
         }
     }
 }

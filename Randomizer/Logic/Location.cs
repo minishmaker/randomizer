@@ -27,7 +27,8 @@ namespace MinishRandomizer.Randomizer.Logic
             Minor,
             DungeonItem,
             Helper,
-            Unshuffled
+            Unshuffled,
+            Nice
         }
 
         public List<Dependency> Dependencies;
@@ -38,6 +39,7 @@ namespace MinishRandomizer.Randomizer.Logic
         public bool SecondaryAddressed;
         public bool Filled;
         public Item Contents { get; private set; }
+        public int RecursionCount { get; private set; }
         private bool? AvailableCache;
         private Item DefaultContents;
         private List<LocationAddress> Addresses;
@@ -216,8 +218,16 @@ namespace MinishRandomizer.Randomizer.Logic
 
         public bool IsAccessible(List<Item> availableItems, List<Location> locations, bool cache = false)
         {
+            if (RecursionCount > 0)
+            {
+                return false;
+            }
+
+            RecursionCount++;
+
             if (AvailableCache != null && cache == true)
             {
+                RecursionCount--;
                 return (bool)AvailableCache;
             }
 
@@ -231,6 +241,7 @@ namespace MinishRandomizer.Randomizer.Logic
                         Console.WriteLine($"Can't reach {Name}");
                     }
 
+                    RecursionCount--;
                     return false;
                 }
             }
@@ -241,6 +252,7 @@ namespace MinishRandomizer.Randomizer.Logic
                 AvailableCache = true;
             }
 
+            RecursionCount--;
             return true;
         }
 

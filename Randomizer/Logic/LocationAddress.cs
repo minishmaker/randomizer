@@ -115,14 +115,14 @@ namespace MinishRandomizer.Randomizer.Logic
             if ((Type & AddressType.FirstByte) == AddressType.FirstByte)
             {
                 // Write the hex representation of the item ID to the define
-                Define.WriteDefine(stringBuilder, "0x" + StringUtil.AsStringHex2((byte)item.Type));
+                Define.WriteDefineString(stringBuilder, "0x" + StringUtil.AsStringHex2((byte)item.Type));
             }
 
             if ((Type & AddressType.SecondByte) == AddressType.SecondByte)
             {
                 // Write the hex representation of the subvalue
                 // Probably a very bad thing if the first was also written, might kill EA
-                Define.WriteDefine(stringBuilder, "0x" + StringUtil.AsStringHex2(item.SubValue));
+                Define.WriteDefineString(stringBuilder, "0x" + StringUtil.AsStringHex2(item.SubValue));
             }
         }
     }

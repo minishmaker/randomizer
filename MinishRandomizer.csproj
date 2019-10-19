@@ -51,7 +51,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\Constants.cs" />
-    <Compile Include="Core\EventDefine.cs" />
     <Compile Include="Core\ROM.cs" />
     <Compile Include="Randomizer\Logic\DirectiveParser.cs" />
     <Compile Include="Randomizer\Logic\LogicDefine.cs" />
@@ -70,6 +69,7 @@
     <Compile Include="Randomizer\Logic\Location.cs" />
     <Compile Include="Randomizer\Shuffler.cs" />
     <Compile Include="Utilities\ColorUtil.cs" />
+    <Compile Include="Utilities\EventUtil.cs" />
     <Compile Include="Utilities\ExtensionMethods.cs" />
     <Compile Include="Utilities\PatchUtil.cs" />
     <Compile Include="Utilities\Reader.cs" />

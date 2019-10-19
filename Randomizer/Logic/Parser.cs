@@ -155,7 +155,7 @@ namespace MinishRandomizer.Randomizer.Logic
                                 }
                                 else
                                 {
-                                    throw new ParserException($"Item {dependencyParts[1]} could not be found!");
+                                    throw new ParserException($"Item {dependencyParts[1]} in string {logic} could not be found!");
                                 }
                                 break;
                             default:
