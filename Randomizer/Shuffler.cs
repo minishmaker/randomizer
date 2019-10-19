@@ -527,7 +527,7 @@ namespace MinishRandomizer.Randomizer
 
             do
             {
-                List<Location> accessibleLocations = filledLocations.Where(location => location.IsAccessible(availableItems, Locations)).ToList();
+                List<Location> accessibleLocations = filledLocations.Where(location => location.IsAccessible(availableItems, Locations, false)).ToList();
                 previousSize = accessibleLocations.Count;
 
                 filledLocations.RemoveAll(location => accessibleLocations.Contains(location));
