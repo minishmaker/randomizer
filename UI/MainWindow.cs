@@ -150,7 +150,6 @@ namespace MinishRandomizer
                 MessageBox.Show("ROM does not match the expected CRC for the logic file", "Incorrect ROM", MessageBoxButtons.OK);
                 statusText.Text = "ROM not valid";
                 ROM_ = null;
-                return;
             }
         }
 

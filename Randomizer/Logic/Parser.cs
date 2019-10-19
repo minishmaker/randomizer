@@ -80,7 +80,7 @@ namespace MinishRandomizer.Randomizer.Logic
                             }
                             var itemParts = values[0].Split('.');
 
-                            ItemType type = ItemType.Untyped;
+                            ItemType type;
                             if (!Enum.TryParse(itemParts[1], out type))
                             {
                                 throw new ParserException($"Could not parse item value! {itemParts[1]}");
@@ -346,7 +346,7 @@ namespace MinishRandomizer.Randomizer.Logic
             // Either direct address or area-room-chest
             if (addressString == "")
             {
-                return new LocationAddress(AddressType.None, 0);
+                return new LocationAddress(AddressType.None);
             }
 
             // Get the types of the address

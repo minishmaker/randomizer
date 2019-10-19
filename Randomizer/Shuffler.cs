@@ -303,8 +303,6 @@ namespace MinishRandomizer.Randomizer
         /// <summary>
         /// Loads and shuffles all locations
         /// </summary>
-        /// <param name="seed">The RNG seed used for generation</param>
-
         public void RandomizeLocations()
         {
             List<Item> unplacedItems = MajorItems.ToList();
@@ -496,7 +494,7 @@ namespace MinishRandomizer.Randomizer
         /// <summary>
         /// Create list of filled locations and their contents
         /// </summary>
-        /// <param name="spoilerBuilder">The running spoiler log builder to append the locations to<</param>
+        /// <param name="spoilerBuilder">The running spoiler log builder to append the locations to</param>
         private void AppendLocationSpoiler(StringBuilder spoilerBuilder)
         {
             spoilerBuilder.AppendLine("Location Contents:");
@@ -529,7 +527,7 @@ namespace MinishRandomizer.Randomizer
 
             do
             {
-                List<Location> accessibleLocations = filledLocations.Where(location => location.IsAccessible(availableItems, Locations, false)).ToList();
+                List<Location> accessibleLocations = filledLocations.Where(location => location.IsAccessible(availableItems, Locations)).ToList();
                 previousSize = accessibleLocations.Count;
 
                 filledLocations.RemoveAll(location => accessibleLocations.Contains(location));

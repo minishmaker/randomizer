@@ -93,7 +93,7 @@ namespace MinishRandomizer.Core
         GreenSword = 0x02,
         RedSword = 0x03,
         BlueSword = 0x04,
-        //      UnusedSword = 0x05,
+        // UnusedSword = 0x05,
         FourSword = 0x06,
         Bombs = 0x07,
         RemoteBombs = 0x08,

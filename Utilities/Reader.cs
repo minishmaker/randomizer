@@ -115,7 +115,7 @@ namespace MinishRandomizer.Utilities
         public int ReadInt(long pos)
         {
             stream_.Position = pos;
-            return reader.ReadInt32(); ;
+            return reader.ReadInt32();
         }
 
         public int ReadAddr()
