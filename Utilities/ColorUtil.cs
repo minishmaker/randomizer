@@ -181,7 +181,7 @@ namespace MinishRandomizer.Utilities
             if (newHue < 0f)
             {
                 newHue += 360f;
-            };
+            }
 
             Console.WriteLine("Hue2_" + newHue);
             Console.WriteLine("Sat2_" + newSaturation);

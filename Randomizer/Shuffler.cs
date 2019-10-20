@@ -502,7 +502,7 @@ namespace MinishRandomizer.Randomizer
         /// <summary>
         /// Create list of filled locations and their contents
         /// </summary>
-        /// <param name="spoilerBuilder">The running spoiler log builder to append the locations to<</param>
+        /// <param name="spoilerBuilder">The running spoiler log builder to append the locations to</param>
         private void AppendLocationSpoiler(StringBuilder spoilerBuilder)
         {
             spoilerBuilder.AppendLine("Location Contents:");
