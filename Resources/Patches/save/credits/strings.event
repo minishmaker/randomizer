@@ -12,7 +12,7 @@ killCredits1English:
 String("Total killed:"); BYTE 0
 
 killCredits1French:
-String("Total tues:"); BYTE 0
+String("Total tu"); BYTE 0xe9; String("s:"); BYTE 0
 
 killCredits1German:
 String(""); BYTE 0
@@ -37,7 +37,7 @@ killCredits2English:
 String("First kill:"); BYTE 0
 
 killCredits2French:
-String("Premier tue:"); BYTE 0
+String("Premier tu"); BYTE 0xe9; String(":"); BYTE 0
 
 killCredits2German:
 String(""); BYTE 0
@@ -62,7 +62,7 @@ killCredits3English:
 String("Defeated at:"); BYTE 0
 
 killCredits3French:
-String("Vaincu en:"); BYTE 0
+String("Vaincu "); BYTE 0xe0; String(":"); BYTE 0
 
 killCredits3German:
 String(""); BYTE 0
@@ -212,7 +212,7 @@ timesUsedCreditsEnglish:
 String("Times used:"); BYTE 0
 
 timesUsedCreditsFrench:
-String("Temps utilise:"); BYTE 0
+String("NB utilis"); BYTE 0xe9; String(":"); BYTE 0
 
 timesUsedCreditsGerman:
 String(""); BYTE 0
@@ -237,7 +237,7 @@ timeFoundCreditsEnglish:
 String("Found at:"); BYTE 0
 
 timeFoundCreditsFrench:
-String("Trouve en:"); BYTE 0
+String("Trouv"); BYTE 0xe9; String(" "); BYTE 0xe0; String(":"); BYTE 0
 
 timeFoundCreditsGerman:
 String(""); BYTE 0
@@ -312,7 +312,7 @@ octoCreditsEnglish:
 String("Big Octorok"); BYTE 0
 
 octoCreditsFrench:
-String("Octorok Geant"); BYTE 0
+String("Octorok G"); BYTE 0xe9; String("ant"); BYTE 0
 
 octoCreditsGerman:
 String(""); BYTE 0
@@ -437,7 +437,7 @@ chainCreditsEnglish:
 String("Ball & Chain Soldier"); BYTE 0
 
 chainCreditsFrench:
-String("Chevalier Fleau"); BYTE 0
+String("Chevalier Fl"); BYTE 0xe9; String("au"); BYTE 0
 
 chainCreditsGerman:
 String(""); BYTE 0
@@ -462,7 +462,7 @@ sword1CreditsEnglish:
 String("White Sword (1)"); BYTE 0
 
 sword1CreditsFrench:
-String("Epee Blanche (1)"); BYTE 0
+BYTE 0xe9; String("p"); BYTE 0xe9; String("e Blanche (1):");
 
 sword1CreditsGerman:
 String(""); BYTE 0
@@ -487,7 +487,7 @@ sword2CreditsEnglish:
 String("White Sword (2)"); BYTE 0
 
 sword2CreditsFrench:
-String("Epee Blanche (2)"); BYTE 0
+BYTE 0xe9; String("p"); BYTE 0xe9; String("e Blanche (2):"); BYTE 0
 
 sword2CreditsGerman:
 String(""); BYTE 0
@@ -512,7 +512,7 @@ sword3CreditsEnglish:
 String("White Sword (3)"); BYTE 0
 
 sword3CreditsFrench:
-String("Epee Blanche (3)"); BYTE 0
+BYTE 0xe9; String("p"); BYTE 0xe9; String("e Blanche (3):");
 
 sword3CreditsGerman:
 String(""); BYTE 0
@@ -562,7 +562,7 @@ dogCreditsEnglish:
 String("Bottle of Dog Food"); BYTE 0
 
 dogCreditsFrench:
-String("Flacon de Patee"); BYTE 0
+String("Flacon de Pat"); BYTE 0xe9; String("e pour chien"); BYTE 0
 
 dogCreditsGerman:
 String(""); BYTE 0
@@ -612,7 +612,7 @@ book2CreditsEnglish:
 String("Legend of the Picori"); BYTE 0
 
 book2CreditsFrench:
-String("La legende des Minish"); BYTE 0
+String("La l"); BYTE 0xe9; String("gende des Minish"); BYTE 0
 
 book2CreditsGerman:
 String(""); BYTE 0
@@ -662,7 +662,7 @@ carlovCreditsEnglish:
 String("Carlov Medal"); BYTE 0
 
 carlovCreditsFrench:
-String("Medaille Tendo"); BYTE 0
+String("M"); BYTE 0xe9; String("daille Tendo"); BYTE 0
 
 carlovCreditsGerman:
 String(""); BYTE 0
@@ -687,7 +687,7 @@ shootbutterflyCreditsEnglish:
 String("Shoot Butterfly"); BYTE 0
 
 shootbutterflyCreditsFrench:
-String("Papillon de tir"); BYTE 0
+String("Papillon pour tirer"); BYTE 0
 
 shootbutterflyCreditsGerman:
 String(""); BYTE 0
@@ -762,7 +762,7 @@ fastspinCreditsEnglish:
 String("Faster Spin Attack"); BYTE 0
 
 fastspinCreditsFrench:
-String("Attaque Tornade Eclair"); BYTE 0
+String("Attaque Tornade "); BYTE 0xe9; String("clair"); BYTE 0
 
 fastspinCreditsGerman:
 String(""); BYTE 0
@@ -787,7 +787,7 @@ fastsplitCreditsEnglish:
 String("Faster Split Gauge"); BYTE 0
 
 fastsplitCreditsFrench:
-String("Dedoublement Eclair"); BYTE 0
+String("D"); BYTE 0xe9; String("doublement "); BYTE 0xe9; String("clair"); BYTE 0
 
 fastsplitCreditsGerman:
 String(""); BYTE 0
@@ -812,7 +812,7 @@ longspinCreditsEnglish:
 String("Longer Great Spin"); BYTE 0
 
 longspinCreditsFrench:
-String("Grande tornade prolongee"); BYTE 0
+String("Grande tornade prolong"); BYTE 0xe9; String("e"); BYTE 0
 
 longspinCreditsGerman:
 String(""); BYTE 0
@@ -837,7 +837,7 @@ greenclockCreditsEnglish:
 String("Green Clock"); BYTE 0
 
 greenclockCreditsFrench:
-String("Horloge Vert"); BYTE 0
+String("Horloge Verte"); BYTE 0
 
 greenclockCreditsGerman:
 String(""); BYTE 0
@@ -862,7 +862,7 @@ blueclockCreditsEnglish:
 String("Blue Clock"); BYTE 0
 
 blueclockCreditsFrench:
-String("Horloge Bleu"); BYTE 0
+String("Horloge Bleue"); BYTE 0
 
 blueclockCreditsGerman:
 String(""); BYTE 0
@@ -962,7 +962,7 @@ menuTimeCreditsEnglish:
 String("Menu Time"); BYTE 0
 
 menuTimeCreditsFrench:
-String("Temps sur le menu"); BYTE 0
+String("Temps du menu"); BYTE 0
 
 menuTimeCreditsGerman:
 String(""); BYTE 0
@@ -987,7 +987,7 @@ cutsceneTimeCreditsEnglish:
 String("Cutscene Time"); BYTE 0
 
 cutsceneTimeCreditsFrench:
-String("Temps des cinematiques"); BYTE 0
+String("Temps des cin"); BYTE 0xe9; String("matiques"); BYTE 0
 
 cutsceneTimeCreditsGerman:
 String(""); BYTE 0
@@ -1012,7 +1012,7 @@ rollingTimeCreditsEnglish:
 String("Rolling Time"); BYTE 0
 
 rollingTimeCreditsFrench:
-String("Temps de Roulage"); BYTE 0
+String("Roulade"); BYTE 0
 
 rollingTimeCreditsGerman:
 String(""); BYTE 0
@@ -1037,7 +1037,7 @@ timesRolledCreditsEnglish:
 String("Rolls"); BYTE 0
 
 timesRolledCreditsFrench:
-String("Roulage"); BYTE 0
+String("Roulade"); BYTE 0
 
 timesRolledCreditsGerman:
 String(""); BYTE 0
@@ -1112,7 +1112,7 @@ timesRevivedCreditsEnglish:
 String("Fairy Revivals"); BYTE 0
 
 timesRevivedCreditsFrench:
-String("Reanimations par les fees"); BYTE 0
+String("R"); BYTE 0xe9; String("animations des f"); BYTE 0xe9; String("es"); BYTE 0
 
 timesRevivedCreditsGerman:
 String(""); BYTE 0
@@ -1187,7 +1187,7 @@ timesWarpedCreditsEnglish:
 String("Quickwarps used"); BYTE 0
 
 timesWarpedCreditsFrench:
-String("Quickwarps utilise"); BYTE 0
+String("Quickwarps utilis"); BYTE 0xe9; String("s"); BYTE 0
 
 timesWarpedCreditsGerman:
 String(""); BYTE 0
