@@ -216,7 +216,7 @@ namespace MinishRandomizer.Randomizer.Logic
             return IsAccessible(availableItems, locations);
         }
 
-        public bool IsAccessible(List<Item> availableItems, List<Location> locations, bool cache = false)
+        public bool IsAccessible(List<Item> availableItems, List<Location> locations)
         {
             if (RecursionCount > 0)
             {
@@ -225,7 +225,7 @@ namespace MinishRandomizer.Randomizer.Logic
 
             RecursionCount++;
 
-            if (AvailableCache != null && cache == true)
+            if (AvailableCache != null)
             {
                 RecursionCount--;
                 return (bool)AvailableCache;
@@ -235,23 +235,13 @@ namespace MinishRandomizer.Randomizer.Logic
             {
                 if (!dependency.DependencyFulfilled(availableItems, locations))
                 {
-                    if (cache)
-                    {
-                        AvailableCache = false;
-                        Console.WriteLine($"Can't reach {Name}");
-                    }
-
+                    AvailableCache = false;
                     RecursionCount--;
                     return false;
                 }
             }
 
-            if (cache)
-            {
-                Console.WriteLine($"Can reach {Name}");
-                AvailableCache = true;
-            }
-
+            AvailableCache = true;
             RecursionCount--;
             return true;
         }

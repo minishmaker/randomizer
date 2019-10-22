@@ -399,7 +399,7 @@ namespace MinishRandomizer.Randomizer
         private void CheckedFastFillLocations(List<Item> items, List<Location> locations)
         {
             List<Item> finalMajorItems = GetAvailableItems(new List<Item>());
-            List<Location> availableLocations = locations.Where(location => location.IsAccessible(finalMajorItems, Locations, false)).ToList();
+            List<Location> availableLocations = locations.Where(location => location.IsAccessible(finalMajorItems, Locations)).ToList();
 
             foreach (Item item in items)
             {
@@ -440,8 +440,7 @@ namespace MinishRandomizer.Randomizer
             // Get "spheres" until the next sphere contains no new items
             do
             {
-                // Doesn't touch the cache to prevent incorrect caching
-                List<Location> accessibleLocations = filledLocations.Where(location => location.IsAccessible(availableItems, Locations, false)).ToList();
+                List<Location> accessibleLocations = filledLocations.Where(location => location.IsAccessible(availableItems, Locations)).ToList();
                 previousSize = accessibleLocations.Count;
 
                 filledLocations.RemoveAll(location => accessibleLocations.Contains(location));
@@ -449,6 +448,9 @@ namespace MinishRandomizer.Randomizer
                 List<Item> newItems = Location.GetItems(accessibleLocations);
 
                 availableItems.AddRange(newItems);
+
+                // Cache is invalidated between each sphere to make sure things work out
+                Locations.ForEach(location => location.InvalidateCache());
             }
             while (previousSize > 0);
 
@@ -535,7 +537,7 @@ namespace MinishRandomizer.Randomizer
 
             do
             {
-                List<Location> accessibleLocations = filledLocations.Where(location => location.IsAccessible(availableItems, Locations, false)).ToList();
+                List<Location> accessibleLocations = filledLocations.Where(location => location.IsAccessible(availableItems, Locations)).ToList();
                 previousSize = accessibleLocations.Count;
 
                 filledLocations.RemoveAll(location => accessibleLocations.Contains(location));
@@ -553,6 +555,9 @@ namespace MinishRandomizer.Randomizer
 
                 sphereCounter++;
                 spoilerBuilder.AppendLine();
+
+                // Evaluating for different items, so cache is invalidated now
+                Locations.ForEach(location => location.InvalidateCache());
             }
             while (previousSize > 0);
         }
