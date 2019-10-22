@@ -351,7 +351,10 @@ namespace MinishRandomizer.Randomizer
         {
             List<Location> filledLocations = new List<Location>();
 
-            assumedItems ??= new List<Item>();
+            if (assumedItems == null)
+            {
+                assumedItems = new List<Item>();
+            }
 
             for (int i = items.Count - 1; i >= 0; i--)
             {

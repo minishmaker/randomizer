@@ -466,6 +466,7 @@ Inaccessible;    Helper;; Items.Untyped.FF::FF  # ask for 255 of them for good m
     PedItem3;  Major;   pedestalSpot3Item:Define:FirstByte, pedestalSpot3Sub:Define:SecondByte; Helpers.Inaccessible; Items.SmithSword
 !endif
 
+#TestCount;                     Minor; 000000;                                                                     (+4, Helpers.CanDestroyTrees::1, Helpers.HasSword::1, Locations.HyruleWellLeft::1, Items.RocsCape::2)
 SmithHouse;                    Minor; 22-11-00;                                                                   ;
 IntroItem1;                    Major; 0F252B;                                                                     ;                                                                                                                                 Items.SmithSword
 IntroItem2;                    Major; 0F253B;                                                                     ;                                                                                                                                 Items.Shield
@@ -487,13 +488,13 @@ HyruleCastleWaterRight;        Minor; 07-00-02;                                 
 CafeLady;                      Minor; 00EDDA;                                                                     ;                                                                                                                                 Items.KinstoneX.RedSpike
 HearthLedge;                   Minor; 02-00-06;                                                                   Items.LanternOff;
 HearthBackdoor;                Major; 0D66D7;                                                                     (|Items.Flippers, Items.PacciCane, Items.RocsCape)													                              
-SchoolTop;                     Major; 02-00-07;                                                                   Items.PacciCane;
+SchoolTop;                     Minor; 02-00-07;                                                                   Items.PacciCane;
 SchoolGardenLeft;              Minor; 11-02-00;                                                                   Items.PacciCane, Helpers.CanSplit4
 SchoolGardenMiddle;            Minor; 11-02-01;                                                                   Items.PacciCane, Helpers.CanSplit4
 SchoolGardenRight;             Minor; 11-02-02;                                                                   Items.PacciCane, Helpers.CanSplit4
 SchoolGardenHeartPiece;        Major; 0D5557;                                                                     Items.PacciCane, Helpers.CanSplit4
 TownDiggingTop;                Minor; 0F-00-00;                                                                   Items.MoleMitts
-TownDiggingRight;              Major; 0F-00-01;                                                                   Items.MoleMitts
+TownDiggingRight;              Minor; 0F-00-01;                                                                   Items.MoleMitts
 TownDiggingLeft;               Minor; 0F-00-02;                                                                   Items.MoleMitts
 BakeryAttic;                   Minor; 2E-03-00;                                                                   (|Items.PacciCane, Items.Flippers, Items.RocsCape)
 StockWellAttic;                Minor; 2E-01-01;                                                                   (|Items.PacciCane, Items.Flippers, Items.RocsCape)

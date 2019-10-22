@@ -110,22 +110,30 @@ namespace MinishRandomizer.Randomizer.Logic
 
     public class CounterDependency : Dependency
     {
-        public Dictionary<Item, int> ItemValues;
+        public Dictionary<Dependency, int> DependencySet;
         public int RequiredCount = 0;
-        public CounterDependency(Dictionary<Item, int> itemValues, int reqValue)
+        public CounterDependency(Dictionary<Dependency, int> dependencySet, int reqValue)
         {
-            ItemValues = itemValues;
+            DependencySet = dependencySet;
             RequiredCount = reqValue;
         }
 
         public override bool DependencyFulfilled(List<Item> availableItems, List<Location> locations)
         {
             var counter = 0;
-            foreach (Item item in availableItems)
+
+            foreach (Dependency dependency in DependencySet.Keys)
             {
-                if (ItemValues.ContainsKey(item))
+                if (dependency.DependencyFulfilled(availableItems, locations) == true)
                 {
-                    counter += ItemValues[item];
+                    var amountFound = 1;
+
+                    if (dependency.GetType() == typeof(ItemDependency))
+                    {
+                        amountFound = availableItems.FindAll(i => dependency.DependencyFulfilled(new List<Item>(new Item[1] { i }), locations)).Count;
+                    }
+
+                    counter += DependencySet[dependency] * amountFound;
                 }
             }
             return counter >= RequiredCount;
