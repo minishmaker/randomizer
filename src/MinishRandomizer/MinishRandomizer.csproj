@@ -104,7 +104,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Vendor\ColorzCore\ColorzCore\ColorzCore.csproj">
+    <ProjectReference Include="..\..\Vendor\ColorzCore\ColorzCore\ColorzCore.csproj">
       <Project>{b98f7ccf-9caa-406e-88d7-2040fa99f631}</Project>
       <Name>ColorzCore</Name>
     </ProjectReference>
@@ -112,6 +112,6 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy /y /d /s "$(ProjectDir)Resources\Patches" "$(TargetDir)Patches\"
-xcopy /y /d /s "$(ProjectDir)Vendor\Language Raws" "$(TargetDir)Language Raws\"</PostBuildEvent>
+xcopy /y /d /s "$(ProjectDir)..\..\Vendor\Language Raws" "$(TargetDir)Language Raws\"</PostBuildEvent>
   </PropertyGroup>
 </Project>
