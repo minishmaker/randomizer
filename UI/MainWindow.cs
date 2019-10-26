@@ -312,7 +312,7 @@ namespace MinishRandomizer
             }
 
             // Get the default name for the saved patch
-            string fileName = $"MinishRandomizer_{shuffler.Seed}_spoiler";
+            string fileName = $"MinishRandomizer_{shuffler.Version}_{shuffler.GetLogicIdentifier()}_{shuffler.GetOptionsIdentifier()}_{shuffler.Seed}_spoiler";
 
             SaveFileDialog sfd = new SaveFileDialog
             {
