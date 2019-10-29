@@ -51,6 +51,8 @@
             this.gimmicksTabPage = new System.Windows.Forms.TabPage();
             this.gimmickControlLayout = new System.Windows.Forms.FlowLayoutPanel();
             this.generatedTab = new System.Windows.Forms.TabPage();
+            this.gimmickHashValue = new System.Windows.Forms.Label();
+            this.settingHashValue = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.generatedLogicLabel = new System.Windows.Forms.Label();
@@ -60,8 +62,10 @@
             this.saveSpoilerButton = new System.Windows.Forms.Button();
             this.savePatchButton = new System.Windows.Forms.Button();
             this.saveRomButton = new System.Windows.Forms.Button();
-            this.settingHashValue = new System.Windows.Forms.Label();
-            this.gimmickHashValue = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.settingsStringBox = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.generalTab.SuspendLayout();
@@ -204,6 +208,7 @@
             this.customLogicPath.Name = "customLogicPath";
             this.customLogicPath.Size = new System.Drawing.Size(206, 20);
             this.customLogicPath.TabIndex = 8;
+            this.customLogicPath.TextChanged += CustomLogicPath_TextChanged;
             // 
             // browseLogicButton
             // 
@@ -232,7 +237,6 @@
             this.mainTabs.Controls.Add(this.generalTab);
             this.mainTabs.Controls.Add(this.optionTabPage);
             this.mainTabs.Controls.Add(this.gimmicksTabPage);
-            //this.mainTabs.Controls.Add(this.generatedTab);
             this.mainTabs.Location = new System.Drawing.Point(9, 27);
             this.mainTabs.Name = "mainTabs";
             this.mainTabs.SelectedIndex = 0;
@@ -241,6 +245,8 @@
             // 
             // optionTabPage
             // 
+            this.optionTabPage.Controls.Add(this.settingsStringBox);
+            this.optionTabPage.Controls.Add(this.label4);
             this.optionTabPage.Controls.Add(this.optionControlLayout);
             this.optionTabPage.Location = new System.Drawing.Point(4, 22);
             this.optionTabPage.Name = "optionTabPage";
@@ -253,13 +259,15 @@
             // optionControlLayout
             // 
             this.optionControlLayout.AutoScroll = true;
-            this.optionControlLayout.Location = new System.Drawing.Point(0, 0);
+            this.optionControlLayout.Location = new System.Drawing.Point(0, 30);
             this.optionControlLayout.Name = "optionControlLayout";
-            this.optionControlLayout.Size = new System.Drawing.Size(361, 209);
+            this.optionControlLayout.Size = new System.Drawing.Size(361, 179);
             this.optionControlLayout.TabIndex = 0;
             // 
             // gimmicksTabPage
             // 
+            this.gimmicksTabPage.Controls.Add(this.textBox1);
+            this.gimmicksTabPage.Controls.Add(this.label5);
             this.gimmicksTabPage.Controls.Add(this.gimmickControlLayout);
             this.gimmicksTabPage.Location = new System.Drawing.Point(4, 22);
             this.gimmicksTabPage.Name = "gimmicksTabPage";
@@ -272,9 +280,9 @@
             // gimmickControlLayout
             // 
             this.gimmickControlLayout.AutoScroll = true;
-            this.gimmickControlLayout.Location = new System.Drawing.Point(0, 0);
+            this.gimmickControlLayout.Location = new System.Drawing.Point(0, 30);
             this.gimmickControlLayout.Name = "gimmickControlLayout";
-            this.gimmickControlLayout.Size = new System.Drawing.Size(361, 209);
+            this.gimmickControlLayout.Size = new System.Drawing.Size(361, 179);
             this.gimmickControlLayout.TabIndex = 0;
             // 
             // generatedTab
@@ -297,6 +305,22 @@
             this.generatedTab.TabIndex = 1;
             this.generatedTab.Text = "Seed";
             this.generatedTab.UseVisualStyleBackColor = true;
+            // 
+            // gimmickHashValue
+            // 
+            this.gimmickHashValue.AutoSize = true;
+            this.gimmickHashValue.Location = new System.Drawing.Point(100, 83);
+            this.gimmickHashValue.Name = "gimmickHashValue";
+            this.gimmickHashValue.Size = new System.Drawing.Size(0, 13);
+            this.gimmickHashValue.TabIndex = 10;
+            // 
+            // settingHashValue
+            // 
+            this.settingHashValue.AutoSize = true;
+            this.settingHashValue.Location = new System.Drawing.Point(93, 59);
+            this.settingHashValue.Name = "settingHashValue";
+            this.settingHashValue.Size = new System.Drawing.Size(0, 13);
+            this.settingHashValue.TabIndex = 9;
             // 
             // label3
             // 
@@ -381,21 +405,37 @@
             this.saveRomButton.UseVisualStyleBackColor = true;
             this.saveRomButton.Click += new System.EventHandler(this.SaveRomButton_Click);
             // 
-            // settingHashValue
+            // label4
             // 
-            this.settingHashValue.AutoSize = true;
-            this.settingHashValue.Location = new System.Drawing.Point(93, 59);
-            this.settingHashValue.Name = "settingHashValue";
-            this.settingHashValue.Size = new System.Drawing.Size(0, 13);
-            this.settingHashValue.TabIndex = 9;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(7, 9);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(78, 13);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "Settings String:";
             // 
-            // gimmickHashValue
+            // settingsStringBox
             // 
-            this.gimmickHashValue.AutoSize = true;
-            this.gimmickHashValue.Location = new System.Drawing.Point(100, 83);
-            this.gimmickHashValue.Name = "gimmickHashValue";
-            this.gimmickHashValue.Size = new System.Drawing.Size(0, 13);
-            this.gimmickHashValue.TabIndex = 10;
+            this.settingsStringBox.Location = new System.Drawing.Point(91, 6);
+            this.settingsStringBox.Name = "settingsStringBox";
+            this.settingsStringBox.Size = new System.Drawing.Size(100, 20);
+            this.settingsStringBox.TabIndex = 2;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(7, 9);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(85, 13);
+            this.label5.TabIndex = 2;
+            this.label5.Text = "Gimmicks String:";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(98, 6);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 3;
             // 
             // MainWindow
             // 
@@ -418,7 +458,9 @@
             this.generalTab.PerformLayout();
             this.mainTabs.ResumeLayout(false);
             this.optionTabPage.ResumeLayout(false);
+            this.optionTabPage.PerformLayout();
             this.gimmicksTabPage.ResumeLayout(false);
+            this.gimmicksTabPage.PerformLayout();
             this.generatedTab.ResumeLayout(false);
             this.generatedTab.PerformLayout();
             this.ResumeLayout(false);
@@ -461,6 +503,10 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label gimmickHashValue;
         private System.Windows.Forms.Label settingHashValue;
+        private System.Windows.Forms.TextBox settingsStringBox;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label5;
     }
 }
 

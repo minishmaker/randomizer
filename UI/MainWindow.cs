@@ -14,6 +14,7 @@ namespace MinishRandomizer
         private ROM ROM_;
         private Shuffler shuffler;
         private bool Randomized;
+        private uint LogicHash;
 
         public MainWindow()
         {
@@ -106,9 +107,14 @@ namespace MinishRandomizer
 
                 statusText.Text = $"Successfully randomzied seed {seed}";
             }
+            catch (ParserException error)
+            {
+                MessageBox.Show(error.Message, "Error Parsing Logic", MessageBoxButtons.OK);
+                statusText.Text = $"Error parsing logic: {error.Message}";
+            }
             catch (ShuffleException error)
             {
-                MessageBox.Show(error.Message);
+                MessageBox.Show(error.Message, "Error Randomizing Seed", MessageBoxButtons.OK);
                 statusText.Text = $"Error randomizing seed: {error.Message}";
             }
         }
@@ -162,18 +168,12 @@ namespace MinishRandomizer
             // Reload logic options to make sure they're correct
             if (customLogicCheckBox.Checked)
             {
-                // Only load logic for custom if the file exists
-                if (File.Exists(customLogicPath.Text))
-                {
-                    shuffler.LoadOptions(customLogicPath.Text);
-                }
+                UpdateOptions(customLogicPath.Text);
             }
             else
             {
-                shuffler.LoadOptions();
+                UpdateOptions();
             }
-
-            LoadOptionControls(shuffler.GetOptions());
         }
 
         private void CustomLogicPath_TextChanged(object sender, EventArgs e)
@@ -191,9 +191,11 @@ namespace MinishRandomizer
 
             if (customLogicCheckBox.Checked)
             {
-                shuffler.LoadOptions(customLogicPath.Text);
-
-                LoadOptionControls(shuffler.GetOptions());
+                UpdateOptions(customLogicPath.Text);
+            }
+            else
+            {
+                UpdateOptions();
             }
         }
 
@@ -218,10 +220,6 @@ namespace MinishRandomizer
             }
 
             customLogicPath.Text = ofd.FileName;
-
-            shuffler.LoadOptions(customLogicPath.Text);
-
-            LoadOptionControls(shuffler.GetOptions());
         }
 
         private void BrowsePatchButton_Click(object sender, EventArgs e)
@@ -331,6 +329,31 @@ namespace MinishRandomizer
             File.WriteAllText(sfd.FileName, spoilerLog);
         }
 
+        private void UpdateOptions(string path = null)
+        {
+            if (!File.Exists(path))
+            {
+                return;
+            }
+
+            try
+            {
+                shuffler.LoadOptions(path);
+            }
+            catch (ParserException e)
+            {
+                MessageBox.Show(e.Message, "Invalid Logic File", MessageBoxButtons.OK);
+                return;
+            }
+
+            LoadOptionControls(shuffler.GetOptions());
+
+            UpdateLogicHash(path);
+
+            UpdateSettingsString();
+            UpdateGimmicksString();
+        }
+
         private void LoadOptionControls(List<LogicOption> options)
         {
             // If there options, show the options tab
@@ -379,6 +402,22 @@ namespace MinishRandomizer
         private void Button1_Click(object sender, EventArgs e)
         {
             seedField.Text = new Random().Next().ToString();
+        }
+
+        private void UpdateLogicHash(string logicLocation)
+        {
+            byte[] logicBytes = File.ReadAllBytes(logicLocation);
+            LogicHash = PatchUtil.Crc32(logicBytes, logicBytes.Length);
+        }
+
+        private void UpdateSettingsString()
+        {
+
+        }
+
+        private void UpdateGimmicksString()
+        {
+
         }
     }
 }
