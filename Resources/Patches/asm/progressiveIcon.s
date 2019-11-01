@@ -111,22 +111,22 @@ mov	r1,#0x13
 bl	drawIcon
 
 noBoots:
-@check if we can swap shield
-ldr	r3,=#0x2002B35
-ldrb	r0,[r3]
-mov	r1,#0x0C
-and	r1,r0
-cmp	r1,#0
-beq	noShield
-mov	r1,#0x30
-and	r1,r0
-cmp	r1,#0
-beq	noShield
-@draw shield icon
-ldr	r0,=#0x24C
-add	r0,r7
-mov	r1,#0x0D
-bl	drawIcon
+@@check if we can swap shield
+@ldr	r3,=#0x2002B35
+@ldrb	r0,[r3]
+@mov	r1,#0x0C
+@and	r1,r0
+@cmp	r1,#0
+@beq	noShield
+@mov	r1,#0x30
+@and	r1,r0
+@cmp	r1,#0
+@beq	noShield
+@@draw shield icon
+@ldr	r0,=#0x24C
+@add	r0,r7
+@mov	r1,#0x0D
+@bl	drawIcon
 
 noShield:
 @check if we can swap boomerang
