@@ -4,7 +4,7 @@ killCredits1:
 /*English*/ POIN killCredits1English
 /*English*/ POIN killCredits1English
 /*French */ POIN killCredits1English //POIN killCredits1French
-/*German */ POIN killCredits1English //POIN killCredits1German
+/*German */ POIN killCredits1German
 /*Spanish*/ POIN killCredits1Spanish
 /*Italian*/ POIN killCredits1English //POIN killCredits1Italian
 
@@ -15,7 +15,7 @@ killCredits1French:
 String(""); BYTE 0
 
 killCredits1German:
-String(""); BYTE 0
+String("Gesamt:"); BYTE 0
 
 killCredits1Spanish:
 String("Vencidos:"); BYTE 0
@@ -29,7 +29,7 @@ killCredits2:
 /*English*/ POIN killCredits2English
 /*English*/ POIN killCredits2English
 /*French */ POIN killCredits2English //POIN killCredits2French
-/*German */ POIN killCredits2English //POIN killCredits2German
+/*German */ POIN killCredits2German
 /*Spanish*/ POIN killCredits2Spanish
 /*Italian*/ POIN killCredits2English //POIN killCredits2Italian
 
@@ -40,7 +40,7 @@ killCredits2French:
 String(""); BYTE 0
 
 killCredits2German:
-String(""); BYTE 0
+String("Spielzeit:"); BYTE 0
 
 killCredits2Spanish:
 String("Vencido en:"); BYTE 0
@@ -54,7 +54,7 @@ killCredits3:
 /*English*/ POIN killCredits3English
 /*English*/ POIN killCredits3English
 /*French */ POIN killCredits3English //POIN killCredits3French
-/*German */ POIN killCredits3English //POIN killCredits3German
+/*German */ POIN killCredits3German
 /*Spanish*/ POIN killCredits3Spanish
 /*Italian*/ POIN killCredits3English //POIN killCredits3Italian
 
@@ -65,7 +65,7 @@ killCredits3French:
 String(""); BYTE 0
 
 killCredits3German:
-String(""); BYTE 0
+String("Besiegt nach:"); BYTE 0
 
 killCredits3Spanish:
 String("Derrotado en:"); BYTE 0
@@ -79,7 +79,7 @@ notDefeatedCredits:
 /*English*/ POIN notDefeatedCreditsEnglish
 /*English*/ POIN notDefeatedCreditsEnglish
 /*French */ POIN notDefeatedCreditsEnglish //POIN notDefeatedCreditsFrench
-/*German */ POIN notDefeatedCreditsEnglish //POIN notDefeatedCreditsGerman
+/*German */ POIN notDefeatedCreditsGerman
 /*Spanish*/ POIN notDefeatedCreditsSpanish
 /*Italian*/ POIN notDefeatedCreditsEnglish //POIN notDefeatedCreditsItalian
 
@@ -90,7 +90,7 @@ notDefeatedCreditsFrench:
 String(""); BYTE 0
 
 notDefeatedCreditsGerman:
-String(""); BYTE 0
+String("Nie besiegt"); BYTE 0
 
 notDefeatedCreditsSpanish:
 String("No Derrotado"); BYTE 0
@@ -104,7 +104,7 @@ defeatedCredits:
 /*English*/ POIN defeatedCreditsEnglish
 /*English*/ POIN defeatedCreditsEnglish
 /*French */ POIN defeatedCreditsEnglish //POIN defeatedCreditsFrench
-/*German */ POIN defeatedCreditsEnglish //POIN defeatedCreditsGerman
+/*German */ POIN defeatedCreditsGerman
 /*Spanish*/ POIN defeatedCreditsSpanish
 /*Italian*/ POIN defeatedCreditsEnglish //POIN defeatedCreditsItalian
 
@@ -115,7 +115,7 @@ defeatedCreditsFrench:
 String(""); BYTE 0
 
 defeatedCreditsGerman:
-String(""); BYTE 0
+String("Besiegt"); BYTE 0
 
 defeatedCreditsSpanish:
 String("Derrotado"); BYTE 0
@@ -129,7 +129,7 @@ NACredits:
 /*English*/ POIN NACreditsEnglish
 /*English*/ POIN NACreditsEnglish
 /*French */ POIN NACreditsEnglish //POIN NACreditsFrench
-/*German */ POIN NACreditsEnglish //POIN NACreditsGerman
+/*German */ POIN NACreditsGerman
 /*Spanish*/ POIN NACreditsSpanish
 /*Italian*/ POIN NACreditsEnglish //POIN NACreditsItalian
 
@@ -140,7 +140,7 @@ NACreditsFrench:
 String(""); BYTE 0
 
 NACreditsGerman:
-String(""); BYTE 0
+String("n.v."); BYTE 0
 
 NACreditsSpanish:
 String("N.D."); BYTE 0
@@ -154,7 +154,7 @@ highCredits:
 /*English*/ POIN highCreditsEnglish
 /*English*/ POIN highCreditsEnglish
 /*French */ POIN highCreditsEnglish //POIN highCreditsFrench
-/*German */ POIN highCreditsEnglish //POIN highCreditsGerman
+/*German */ POIN highCreditsGerman
 /*Spanish*/ POIN highCreditsSpanish
 /*Italian*/ POIN highCreditsEnglish //POIN highCreditsItalian
 
@@ -165,7 +165,7 @@ highCreditsFrench:
 String(""); BYTE 0
 
 highCreditsGerman:
-String(""); BYTE 0
+String("Overflow"); BYTE 0
 
 highCreditsSpanish:
 String("Overflow"); BYTE 0
@@ -179,7 +179,7 @@ neverCredits:
 /*English*/ POIN neverCreditsEnglish
 /*English*/ POIN neverCreditsEnglish
 /*French */ POIN neverCreditsEnglish //POIN neverCreditsFrench
-/*German */ POIN neverCreditsEnglish //POIN neverCreditsGerman
+/*German */ POIN neverCreditsGerman
 /*Spanish*/ POIN neverCreditsSpanish
 /*Italian*/ POIN neverCreditsEnglish //POIN neverCreditsItalian
 
@@ -190,7 +190,7 @@ neverCreditsFrench:
 String(""); BYTE 0
 
 neverCreditsGerman:
-String(""); BYTE 0
+String("Nie"); BYTE 0
 
 neverCreditsSpanish:
 String("Nunca"); BYTE 0
@@ -204,7 +204,7 @@ timesUsedCredits:
 /*English*/ POIN timesUsedCreditsEnglish
 /*English*/ POIN timesUsedCreditsEnglish
 /*French */ POIN timesUsedCreditsEnglish //POIN timesUsedCreditsFrench
-/*German */ POIN timesUsedCreditsEnglish //POIN timesUsedCreditsGerman
+/*German */ POIN timesUsedCreditsGerman
 /*Spanish*/ POIN timesUsedCreditsSpanish
 /*Italian*/ POIN timesUsedCreditsEnglish //POIN timesUsedCreditsItalian
 
@@ -215,7 +215,7 @@ timesUsedCreditsFrench:
 String(""); BYTE 0
 
 timesUsedCreditsGerman:
-String(""); BYTE 0
+String("Anzahl genutzt:"); BYTE 0
 
 timesUsedCreditsSpanish:
 String("Veces usado:"); BYTE 0
@@ -229,7 +229,7 @@ timeFoundCredits:
 /*English*/ POIN timeFoundCreditsEnglish
 /*English*/ POIN timeFoundCreditsEnglish
 /*French */ POIN timeFoundCreditsEnglish //POIN timeFoundCreditsFrench
-/*German */ POIN timeFoundCreditsEnglish //POIN timeFoundCreditsGerman
+/*German */ POIN timeFoundCreditsGerman
 /*Spanish*/ POIN timeFoundCreditsSpanish
 /*Italian*/ POIN timeFoundCreditsEnglish //POIN timeFoundCreditsItalian
 
@@ -240,7 +240,7 @@ timeFoundCreditsFrench:
 String(""); BYTE 0
 
 timeFoundCreditsGerman:
-String(""); BYTE 0
+String("Fundort:"); BYTE 0
 
 timeFoundCreditsSpanish:
 String("Encontrado en:"); BYTE 0
@@ -254,7 +254,7 @@ timesCredits:
 /*English*/ POIN timesCreditsEnglish
 /*English*/ POIN timesCreditsEnglish
 /*French */ POIN timesCreditsEnglish //POIN timesCreditsFrench
-/*German */ POIN timesCreditsEnglish //POIN timesCreditsGerman
+/*German */ POIN timesCreditsGerman
 /*Spanish*/ POIN timesCreditsSpanish
 /*Italian*/ POIN timesCreditsEnglish //POIN timesCreditsItalian
 
@@ -265,7 +265,7 @@ timesCreditsFrench:
 String(""); BYTE 0
 
 timesCreditsGerman:
-String(""); BYTE 0
+String("Gesamt:"); BYTE 0
 
 timesCreditsSpanish:
 String("Total:"); BYTE 0
@@ -279,7 +279,7 @@ timeCredits:
 /*English*/ POIN timeCreditsEnglish
 /*English*/ POIN timeCreditsEnglish
 /*French */ POIN timeCreditsEnglish //POIN timeCreditsFrench
-/*German */ POIN timeCreditsEnglish //POIN timeCreditsGerman
+/*German */ POIN timeCreditsGerman
 /*Spanish*/ POIN timeCreditsSpanish
 /*Italian*/ POIN timeCreditsEnglish //POIN timeCreditsItalian
 
@@ -290,7 +290,7 @@ timeCreditsFrench:
 String(""); BYTE 0
 
 timeCreditsGerman:
-String(""); BYTE 0
+String("Spielzeit:"); BYTE 0
 
 timeCreditsSpanish:
 String("Tiempo:"); BYTE 0
@@ -304,7 +304,7 @@ octoCredits:
 /*English*/ POIN octoCreditsEnglish
 /*English*/ POIN octoCreditsEnglish
 /*French */ POIN octoCreditsEnglish //POIN octoCreditsFrench
-/*German */ POIN octoCreditsEnglish //POIN octoCreditsGerman
+/*German */ POIN octoCreditsGerman
 /*Spanish*/ POIN octoCreditsSpanish
 /*Italian*/ POIN octoCreditsEnglish //POIN octoCreditsItalian
 
@@ -315,7 +315,7 @@ octoCreditsFrench:
 String(""); BYTE 0
 
 octoCreditsGerman:
-String(""); BYTE 0
+String("Gro"); BYTE 0xDF; String("er Oktorok"); BYTE 0
 
 octoCreditsSpanish:
 String("Gran Octorok"); BYTE 0
@@ -328,10 +328,10 @@ crowCredits:
 /*English*/ POIN crowCreditsEnglish
 /*English*/ POIN crowCreditsEnglish
 /*English*/ POIN crowCreditsEnglish
-/*French */ POIN crowCreditsEnglish //POIN gibdoCreditsFrench
-/*German */ POIN crowCreditsEnglish //POIN gibdoCreditsGerman
+/*French */ POIN crowCreditsEnglish //POIN crowCreditsFrench
+/*German */ POIN crowCreditsGerman
 /*Spanish*/ POIN crowCreditsSpanish
-/*Italian*/ POIN crowCreditsEnglish //POIN gibdoCreditsItalian
+/*Italian*/ POIN crowCreditsEnglish //POIN crowCreditsItalian
 
 crowCreditsEnglish:
 String("Crow & Takkuri"); BYTE 0
@@ -340,7 +340,7 @@ crowCreditsFrench:
 String(""); BYTE 0
 
 crowCreditsGerman:
-String(""); BYTE 0
+String("Peckra & Pickra"); BYTE 0
 
 crowCreditsSpanish:
 String("Negri y Golpri"); BYTE 0
@@ -354,7 +354,7 @@ gibdoCredits:
 /*English*/ POIN gibdoCreditsEnglish
 /*English*/ POIN gibdoCreditsEnglish
 /*French */ POIN gibdoCreditsEnglish //POIN gibdoCreditsFrench
-/*German */ POIN gibdoCreditsEnglish //POIN gibdoCreditsGerman
+/*German */ POIN gibdoCreditsGerman
 /*Spanish*/ POIN gibdoCreditsSpanish
 /*Italian*/ POIN gibdoCreditsEnglish //POIN gibdoCreditsItalian
 
@@ -365,7 +365,7 @@ gibdoCreditsFrench:
 String(""); BYTE 0
 
 gibdoCreditsGerman:
-String(""); BYTE 0
+String("Gibdos & Stalfos"); BYTE 0
 
 gibdoCreditsSpanish:
 String("Gibdo y Stalfos"); BYTE 0
@@ -379,7 +379,7 @@ moblinCredits:
 /*English*/ POIN moblinCreditsEnglish
 /*English*/ POIN moblinCreditsEnglish
 /*French */ POIN moblinCreditsEnglish //POIN moblinCreditsFrench
-/*German */ POIN moblinCreditsEnglish //POIN moblinCreditsGerman
+/*German */ POIN moblinCreditsGerman
 /*Spanish*/ POIN moblinCreditsSpanish
 /*Italian*/ POIN moblinCreditsEnglish //POIN moblinCreditsItalian
 
@@ -390,7 +390,7 @@ moblinCreditsFrench:
 String(""); BYTE 0
 
 moblinCreditsGerman:
-String(""); BYTE 0
+String("Moblin"); BYTE 0
 
 moblinCreditsSpanish:
 String("Moblin"); BYTE 0
@@ -415,7 +415,7 @@ masterCreditsFrench:
 String(""); BYTE 0
 
 masterCreditsGerman:
-String(""); BYTE 0
+String("Decken"); BYTE 0x2D 0x20; String("& Bodengrapscher"); BYTE 0
 
 masterCreditsSpanish:
 String("Wall y Floor Master"); BYTE 0
@@ -429,7 +429,7 @@ chainCredits:
 /*English*/ POIN chainCreditsEnglish
 /*English*/ POIN chainCreditsEnglish
 /*French */ POIN chainCreditsEnglish //POIN chainCreditsFrench
-/*German */ POIN chainCreditsEnglish //POIN chainCreditsGerman
+/*German */ POIN chainCreditsGerman
 /*Spanish*/ POIN chainCreditsSpanish
 /*Italian*/ POIN chainCreditsEnglish //POIN chainCreditsItalian
 
@@ -440,7 +440,7 @@ chainCreditsFrench:
 String(""); BYTE 0
 
 chainCreditsGerman:
-String(""); BYTE 0
+String("Eisenkugel"); BYTE 0x2D; String("Soldat"); BYTE 0
 
 chainCreditsSpanish:
 String("Ferrobola"); BYTE 0
@@ -454,7 +454,7 @@ sword1Credits:
 /*English*/ POIN sword1CreditsEnglish
 /*English*/ POIN sword1CreditsEnglish
 /*French */ POIN sword1CreditsEnglish //POIN sword1CreditsFrench
-/*German */ POIN sword1CreditsEnglish //POIN sword1CreditsGerman
+/*German */ POIN sword1CreditsGerman
 /*Spanish*/ POIN sword1CreditsSpanish
 /*Italian*/ POIN sword1CreditsEnglish //POIN sword1CreditsItalian
 
@@ -465,7 +465,7 @@ sword1CreditsFrench:
 String(""); BYTE 0
 
 sword1CreditsGerman:
-String(""); BYTE 0
+String("Wei"); BYTE 0xDF; String("es Schwert"); BYTE 0
 
 sword1CreditsSpanish:
 String("Espada Blanca (1)"); BYTE 0
@@ -479,7 +479,7 @@ sword2Credits:
 /*English*/ POIN sword2CreditsEnglish
 /*English*/ POIN sword2CreditsEnglish
 /*French */ POIN sword2CreditsEnglish //POIN sword2CreditsFrench
-/*German */ POIN sword2CreditsEnglish //POIN sword2CreditsGerman
+/*German */ POIN sword2CreditsGerman
 /*Spanish*/ POIN sword2CreditsSpanish
 /*Italian*/ POIN sword2CreditsEnglish //POIN sword2CreditsItalian
 
@@ -490,7 +490,7 @@ sword2CreditsFrench:
 String(""); BYTE 0
 
 sword2CreditsGerman:
-String(""); BYTE 0
+String("Wei"); BYTE 0xDF; String("es Schwert der Zwei"); BYTE 0
 
 sword2CreditsSpanish:
 String("Espada Blanca (2)"); BYTE 0
@@ -504,7 +504,7 @@ sword3Credits:
 /*English*/ POIN sword3CreditsEnglish
 /*English*/ POIN sword3CreditsEnglish
 /*French */ POIN sword3CreditsEnglish //POIN sword3CreditsFrench
-/*German */ POIN sword3CreditsEnglish //POIN sword3CreditsGerman
+/*German */ POIN sword3CreditsGerman
 /*Spanish*/ POIN sword3CreditsSpanish
 /*Italian*/ POIN sword3CreditsEnglish //POIN sword3CreditsItalian
 
@@ -515,7 +515,7 @@ sword3CreditsFrench:
 String(""); BYTE 0
 
 sword3CreditsGerman:
-String(""); BYTE 0
+String("Wei"); BYTE 0xDF; String("es Schwert der Drei"); BYTE 0
 
 sword3CreditsSpanish:
 String("Espada Blanca (3)"); BYTE 0
@@ -529,7 +529,7 @@ bottleCredits:
 /*English*/ POIN bottleCreditsEnglish
 /*English*/ POIN bottleCreditsEnglish
 /*French */ POIN bottleCreditsEnglish //POIN sword3CreditsFrench
-/*German */ POIN bottleCreditsEnglish //POIN sword3CreditsGerman
+/*German */ POIN sword3CreditsGerman
 /*Spanish*/ POIN bottleCreditsSpanish
 /*Italian*/ POIN bottleCreditsEnglish //POIN sword3CreditsItalian
 
@@ -540,7 +540,7 @@ bottleCreditsFrench:
 String(""); BYTE 0
 
 bottleCreditsGerman:
-String(""); BYTE 0
+String("Flaschen"); BYTE 0
 
 bottleCreditsSpanish:
 String("Botellas"); BYTE 0
@@ -554,7 +554,7 @@ dogCredits:
 /*English*/ POIN dogCreditsEnglish
 /*English*/ POIN dogCreditsEnglish
 /*French */ POIN dogCreditsEnglish //POIN dogCreditsFrench
-/*German */ POIN dogCreditsEnglish //POIN dogCreditsGerman
+/*German */ POIN dogCreditsGerman
 /*Spanish*/ POIN dogCreditsSpanish
 /*Italian*/ POIN dogCreditsEnglish //POIN dogCreditsItalian
 
@@ -565,7 +565,7 @@ dogCreditsFrench:
 String(""); BYTE 0
 
 dogCreditsGerman:
-String(""); BYTE 0
+String("Hundefutter"); BYTE 0
 
 dogCreditsSpanish:
 String("Comida de perro"); BYTE 0
@@ -579,7 +579,7 @@ book1Credits:
 /*English*/ POIN book1CreditsEnglish
 /*English*/ POIN book1CreditsEnglish
 /*French */ POIN book1CreditsEnglish //POIN book1CreditsFrench
-/*German */ POIN book1CreditsEnglish //POIN book1CreditsGerman
+/*German */ POIN book1CreditsGerman
 /*Spanish*/ POIN book1CreditsSpanish
 /*Italian*/ POIN book1CreditsEnglish //POIN book1CreditsItalian
 
@@ -590,7 +590,7 @@ book1CreditsFrench:
 String(""); BYTE 0
 
 book1CreditsGerman:
-String(""); BYTE 0
+String("Bilderlex. der Tierwelt"); BYTE 0
 
 book1CreditsSpanish:
 String("Libro de los Animales"); BYTE 0
@@ -604,7 +604,7 @@ book2Credits:
 /*English*/ POIN book2CreditsEnglish
 /*English*/ POIN book2CreditsEnglish
 /*French */ POIN book2CreditsEnglish //POIN book2CreditsFrench
-/*German */ POIN book2CreditsEnglish //POIN book2CreditsGerman
+/*German */ POIN book2CreditsGerman
 /*Spanish*/ POIN book2CreditsSpanish
 /*Italian*/ POIN book2CreditsEnglish //POIN book2CreditsItalian
 
@@ -615,7 +615,7 @@ book2CreditsFrench:
 String(""); BYTE 0
 
 book2CreditsGerman:
-String(""); BYTE 0
+String("Die Legende der Minish"); BYTE 0
 
 book2CreditsSpanish:
 String("Leyendas de los Minish"); BYTE 0
@@ -629,7 +629,7 @@ book3Credits:
 /*English*/ POIN book3CreditsEnglish
 /*English*/ POIN book3CreditsEnglish
 /*French */ POIN book3CreditsEnglish //POIN book3CreditsFrench
-/*German */ POIN book3CreditsEnglish //POIN book3CreditsGerman
+/*German */ POIN book3CreditsGerman
 /*Spanish*/ POIN book3CreditsSpanish
 /*Italian*/ POIN book3CreditsEnglish //POIN book3CreditsItalian
 
@@ -640,7 +640,7 @@ book3CreditsFrench:
 String(""); BYTE 0
 
 book3CreditsGerman:
-String(""); BYTE 0
+String("Alles"); BYTE 0x20 0xFC; String("ber Masken"); BYTE 0
 
 book3CreditsSpanish:
 String("Todo sobre las M"); BYTE 0xE1; String("scaras"); BYTE 0
@@ -654,7 +654,7 @@ carlovCredits:
 /*English*/ POIN carlovCreditsEnglish
 /*English*/ POIN carlovCreditsEnglish
 /*French */ POIN carlovCreditsEnglish //POIN carlovCreditsFrench
-/*German */ POIN carlovCreditsEnglish //POIN carlovCreditsGerman
+/*German */ POIN carlovCreditsGerman
 /*Spanish*/ POIN carlovCreditsSpanish
 /*Italian*/ POIN carlovCreditsEnglish //POIN carlovCreditsItalian
 
@@ -665,7 +665,7 @@ carlovCreditsFrench:
 String(""); BYTE 0
 
 carlovCreditsGerman:
-String(""); BYTE 0
+String("Minitendo"); BYTE 0x2D; String("Medaille"); BYTE 0
 
 carlovCreditsSpanish:
 String("Medalla Minitendo"); BYTE 0
@@ -679,7 +679,7 @@ shootbutterflyCredits:
 /*English*/ POIN shootbutterflyCreditsEnglish
 /*English*/ POIN shootbutterflyCreditsEnglish
 /*French */ POIN shootbutterflyCreditsEnglish //POIN shootbutterflyCreditsFrench
-/*German */ POIN shootbutterflyCreditsEnglish //POIN shootbutterflyCreditsGerman
+/*German */ POIN shootbutterflyCreditsGerman
 /*Spanish*/ POIN shootbutterflyCreditsSpanish
 /*Italian*/ POIN shootbutterflyCreditsEnglish //POIN shootbutterflyCreditsItalian
 
@@ -690,7 +690,7 @@ shootbutterflyCreditsFrench:
 String(""); BYTE 0
 
 shootbutterflyCreditsGerman:
-String(""); BYTE 0
+String("Schie"); BYTE 0xDF 0x20; String("Schmetterling"); BYTE 0
 
 shootbutterflyCreditsSpanish:
 String("Mariposa de disparar"); BYTE 0
@@ -704,7 +704,7 @@ digbutterflyCredits:
 /*English*/ POIN digbutterflyCreditsEnglish
 /*English*/ POIN digbutterflyCreditsEnglish
 /*French */ POIN digbutterflyCreditsEnglish //POIN digbutterflyCreditsFrench
-/*German */ POIN digbutterflyCreditsEnglish //POIN digbutterflyCreditsGerman
+/*German */ POIN digbutterflyCreditsGerman
 /*Spanish*/ POIN digbutterflyCreditsSpanish
 /*Italian*/ POIN digbutterflyCreditsEnglish //POIN digbutterflyCreditsItalian
 
@@ -715,7 +715,7 @@ digbutterflyCreditsFrench:
 String(""); BYTE 0
 
 digbutterflyCreditsGerman:
-String(""); BYTE 0
+String("Grab Schmetterling"); BYTE 0
 
 digbutterflyCreditsSpanish:
 String("Mariposa de cavar"); BYTE 0
@@ -729,7 +729,7 @@ swimbutterflyCredits:
 /*English*/ POIN swimbutterflyCreditsEnglish
 /*English*/ POIN swimbutterflyCreditsEnglish
 /*French */ POIN swimbutterflyCreditsEnglish //POIN swimbutterflyCreditsFrench
-/*German */ POIN swimbutterflyCreditsEnglish //POIN swimbutterflyCreditsGerman
+/*German */ POIN swimbutterflyCreditsGerman
 /*Spanish*/ POIN swimbutterflyCreditsSpanish
 /*Italian*/ POIN swimbutterflyCreditsEnglish //POIN swimbutterflyCreditsItalian
 
@@ -740,7 +740,7 @@ swimbutterflyCreditsFrench:
 String(""); BYTE 0
 
 swimbutterflyCreditsGerman:
-String(""); BYTE 0
+String("Schwimm Schmetterling"); BYTE 0
 
 swimbutterflyCreditsSpanish:
 String("Mariposa de nadar"); BYTE 0
@@ -754,7 +754,7 @@ fastspinCredits:
 /*English*/ POIN fastspinCreditsEnglish
 /*English*/ POIN fastspinCreditsEnglish
 /*French */ POIN fastspinCreditsEnglish //POIN fastspinCreditsFrench
-/*German */ POIN fastspinCreditsEnglish //POIN fastspinCreditsGerman
+/*German */ POIN fastspinCreditsGerman
 /*Spanish*/ POIN fastspinCreditsSpanish
 /*Italian*/ POIN fastspinCreditsEnglish //POIN fastspinCreditsItalian
 
@@ -765,7 +765,7 @@ fastspinCreditsFrench:
 String(""); BYTE 0
 
 fastspinCreditsGerman:
-String(""); BYTE 0
+String("Schnelle Wirbelattacke"); BYTE 0
 
 fastspinCreditsSpanish:
 String("Ataque Circular veloz"); BYTE 0
@@ -779,7 +779,7 @@ fastsplitCredits:
 /*English*/ POIN fastsplitCreditsEnglish
 /*English*/ POIN fastsplitCreditsEnglish
 /*French */ POIN fastsplitCreditsEnglish //POIN fastsplitCreditsFrench
-/*German */ POIN fastsplitCreditsEnglish //POIN fastsplitCreditsGerman
+/*German */ POIN fastsplitCreditsGerman
 /*Spanish*/ POIN fastsplitCreditsSpanish
 /*Italian*/ POIN fastsplitCreditsEnglish //POIN fastsplitCreditsItalian
 
@@ -790,7 +790,7 @@ fastsplitCreditsFrench:
 String(""); BYTE 0
 
 fastsplitCreditsGerman:
-String(""); BYTE 0
+String("Schnelles Spalten"); BYTE 0
 
 fastsplitCreditsSpanish:
 String("Divisi"); BYTE 0xF3; String("n veloz"); BYTE 0
@@ -804,7 +804,7 @@ longspinCredits:
 /*English*/ POIN longspinCreditsEnglish
 /*English*/ POIN longspinCreditsEnglish
 /*French */ POIN longspinCreditsEnglish //POIN longspinCreditsFrench
-/*German */ POIN longspinCreditsEnglish //POIN longspinCreditsGerman
+/*German */ POIN longspinCreditsGerman
 /*Spanish*/ POIN longspinCreditsSpanish
 /*Italian*/ POIN longspinCreditsEnglish //POIN longspinCreditsItalian
 
@@ -815,7 +815,7 @@ longspinCreditsFrench:
 String(""); BYTE 0
 
 longspinCreditsGerman:
-String(""); BYTE 0
+BYTE 0x4C 0xE4; String("ngere Wirbelattacke"); BYTE 0
 
 longspinCreditsSpanish:
 String("Gran Circular largo"); BYTE 0
@@ -829,7 +829,7 @@ greenclockCredits:
 /*English*/ POIN greenclockCreditsEnglish
 /*English*/ POIN greenclockCreditsEnglish
 /*French */ POIN greenclockCreditsEnglish //POIN greenclockCreditsFrench
-/*German */ POIN greenclockCreditsEnglish //POIN greenclockCreditsGerman
+/*German */ POIN greenclockCreditsGerman
 /*Spanish*/ POIN greenclockCreditsSpanish
 /*Italian*/ POIN greenclockCreditsEnglish //POIN greenclockCreditsItalian
 
@@ -840,7 +840,7 @@ greenclockCreditsFrench:
 String(""); BYTE 0
 
 greenclockCreditsGerman:
-String(""); BYTE 0
+String("Gr"); BYTE 0xFC; String("ne Uhr"); BYTE 0
 
 greenclockCreditsSpanish:
 String("Reloj Verde"); BYTE 0
@@ -854,7 +854,7 @@ blueclockCredits:
 /*English*/ POIN blueclockCreditsEnglish
 /*English*/ POIN blueclockCreditsEnglish
 /*French */ POIN blueclockCreditsEnglish //POIN blueclockCreditsFrench
-/*German */ POIN blueclockCreditsEnglish //POIN blueclockCreditsGerman
+/*German */ POIN blueclockCreditsGerman
 /*Spanish*/ POIN blueclockCreditsSpanish
 /*Italian*/ POIN blueclockCreditsEnglish //POIN blueclockCreditsItalian
 
@@ -865,7 +865,7 @@ blueclockCreditsFrench:
 String(""); BYTE 0
 
 blueclockCreditsGerman:
-String(""); BYTE 0
+String("Blaue Uhr"); BYTE 0
 
 blueclockCreditsSpanish:
 String("Reloj Azul"); BYTE 0
@@ -879,7 +879,7 @@ redclockCredits:
 /*English*/ POIN redclockCreditsEnglish
 /*English*/ POIN redclockCreditsEnglish
 /*French */ POIN redclockCreditsEnglish //POIN redclockCreditsFrench
-/*German */ POIN redclockCreditsEnglish //POIN redclockCreditsGerman
+/*German */ POIN redclockCreditsGerman
 /*Spanish*/ POIN redclockCreditsSpanish
 /*Italian*/ POIN redclockCreditsEnglish //POIN redclockCreditsItalian
 
@@ -890,7 +890,7 @@ redclockCreditsFrench:
 String(""); BYTE 0
 
 redclockCreditsGerman:
-String(""); BYTE 0
+String("Rote Uhr"); BYTE 0
 
 redclockCreditsSpanish:
 String("Reloj Rojo"); BYTE 0
@@ -904,7 +904,7 @@ figurineCredits:
 /*English*/ POIN figurineCreditsEnglish
 /*English*/ POIN figurineCreditsEnglish
 /*French */ POIN figurineCreditsEnglish //POIN figurineCreditsFrench
-/*German */ POIN figurineCreditsEnglish //POIN figurineCreditsGerman
+/*German */ POIN figurineCreditsGerman
 /*Spanish*/ POIN figurineCreditsSpanish
 /*Italian*/ POIN figurineCreditsEnglish //POIN figurineCreditsItalian
 
@@ -915,7 +915,7 @@ figurineCreditsFrench:
 String(""); BYTE 0
 
 figurineCreditsGerman:
-String(""); BYTE 0
+String("Minitendo"); BYTE 0x2D; String("Figur"); BYTE 0
 
 figurineCreditsSpanish:
 String(""); BYTE 0
@@ -929,7 +929,7 @@ totalTimeCredits:
 /*English*/ POIN totalTimeCreditsEnglish
 /*English*/ POIN totalTimeCreditsEnglish
 /*French */ POIN totalTimeCreditsEnglish //POIN totalTimeCreditsFrench
-/*German */ POIN totalTimeCreditsEnglish //POIN totalTimeCreditsGerman
+/*German */ POIN totalTimeCreditsGerman
 /*Spanish*/ POIN totalTimeCreditsSpanish
 /*Italian*/ POIN totalTimeCreditsEnglish //POIN totalTimeCreditsItalian
 
@@ -940,7 +940,7 @@ totalTimeCreditsFrench:
 String(""); BYTE 0
 
 totalTimeCreditsGerman:
-String(""); BYTE 0
+String("Gesamtzeit"); BYTE 0
 
 totalTimeCreditsSpanish:
 String("Tiempo total"); BYTE 0
@@ -954,7 +954,7 @@ menuTimeCredits:
 /*English*/ POIN menuTimeCreditsEnglish
 /*English*/ POIN menuTimeCreditsEnglish
 /*French */ POIN menuTimeCreditsEnglish //POIN menuTimeCreditsFrench
-/*German */ POIN menuTimeCreditsEnglish //POIN menuTimeCreditsGerman
+/*German */ POIN menuTimeCreditsGerman
 /*Spanish*/ POIN menuTimeCreditsSpanish
 /*Italian*/ POIN menuTimeCreditsEnglish //POIN menuTimeCreditsItalian
 
@@ -965,7 +965,7 @@ menuTimeCreditsFrench:
 String(""); BYTE 0
 
 menuTimeCreditsGerman:
-String(""); BYTE 0
+String("Zeit Men"); BYTE  0xFC 0
 
 menuTimeCreditsSpanish:
 String("Tiempo en men"); BYTE 0xFA; String("s"); BYTE 0
@@ -979,7 +979,7 @@ cutsceneTimeCredits:
 /*English*/ POIN cutsceneTimeCreditsEnglish
 /*English*/ POIN cutsceneTimeCreditsEnglish
 /*French */ POIN cutsceneTimeCreditsEnglish //POIN cutsceneTimeCreditsFrench
-/*German */ POIN cutsceneTimeCreditsEnglish //POIN cutsceneTimeCreditsGerman
+/*German */ POIN cutsceneTimeCreditsGerman
 /*Spanish*/ POIN cutsceneTimeCreditsSpanish
 /*Italian*/ POIN cutsceneTimeCreditsEnglish //POIN cutsceneTimeCreditsItalian
 
@@ -990,7 +990,7 @@ cutsceneTimeCreditsFrench:
 String(""); BYTE 0
 
 cutsceneTimeCreditsGerman:
-String(""); BYTE 0
+String("Zeit Zwischenseq."); BYTE 0
 
 cutsceneTimeCreditsSpanish:
 String("Tiempo no jugable"); BYTE 0
@@ -1004,7 +1004,7 @@ rollingTimeCredits:
 /*English*/ POIN rollingTimeCreditsEnglish
 /*English*/ POIN rollingTimeCreditsEnglish
 /*French */ POIN rollingTimeCreditsEnglish //POIN rollingTimeCreditsFrench
-/*German */ POIN rollingTimeCreditsEnglish //POIN rollingTimeCreditsGerman
+/*German */ POIN rollingTimeCreditsGerman
 /*Spanish*/ POIN rollingTimeCreditsSpanish
 /*Italian*/ POIN rollingTimeCreditsEnglish //POIN rollingTimeCreditsItalian
 
@@ -1015,7 +1015,7 @@ rollingTimeCreditsFrench:
 String(""); BYTE 0
 
 rollingTimeCreditsGerman:
-String(""); BYTE 0
+String("Zeit Rollen"); BYTE 0
 
 rollingTimeCreditsSpanish:
 String("Tiempo rodando"); BYTE 0
@@ -1029,7 +1029,7 @@ timesRolledCredits:
 /*English*/ POIN timesRolledCreditsEnglish
 /*English*/ POIN timesRolledCreditsEnglish
 /*French */ POIN timesRolledCreditsEnglish //POIN timesRolledCreditsFrench
-/*German */ POIN timesRolledCreditsEnglish //POIN timesRolledCreditsGerman
+/*German */ POIN timesRolledCreditsGerman
 /*Spanish*/ POIN timesRolledCreditsSpanish
 /*Italian*/ POIN timesRolledCreditsEnglish //POIN timesRolledCreditsItalian
 
@@ -1040,7 +1040,7 @@ timesRolledCreditsFrench:
 String(""); BYTE 0
 
 timesRolledCreditsGerman:
-String(""); BYTE 0
+String("Rollen"); BYTE 0
 
 timesRolledCreditsSpanish:
 String("Volteretas"); BYTE 0
@@ -1054,7 +1054,7 @@ timesBonkedCredits:
 /*English*/ POIN timesBonkedCreditsEnglish
 /*English*/ POIN timesBonkedCreditsEnglish
 /*French */ POIN timesBonkedCreditsEnglish //POIN timesBonkedCreditsFrench
-/*German */ POIN timesBonkedCreditsEnglish //POIN timesBonkedCreditsGerman
+/*German */ POIN timesBonkedCreditsGerman
 /*Spanish*/ POIN timesBonkedCreditsSpanish
 /*Italian*/ POIN timesBonkedCreditsEnglish //POIN timesBonkedCreditsItalian
 
@@ -1065,7 +1065,7 @@ timesBonkedCreditsFrench:
 String(""); BYTE 0
 
 timesBonkedCreditsGerman:
-String(""); BYTE 0
+String("Bonks"); BYTE 0
 
 timesBonkedCreditsSpanish:
 String("Choques"); BYTE 0
@@ -1079,7 +1079,7 @@ timesDiedCredits:
 /*English*/ POIN timesDiedCreditsEnglish
 /*English*/ POIN timesDiedCreditsEnglish
 /*French */ POIN timesDiedCreditsEnglish //POIN timesDiedCreditsFrench
-/*German */ POIN timesDiedCreditsEnglish //POIN timesDiedCreditsGerman
+/*German */ POIN timesDiedCreditsGerman
 /*Spanish*/ POIN timesDiedCreditsSpanish
 /*Italian*/ POIN timesDiedCreditsEnglish //POIN timesDiedCreditsItalian
 
@@ -1090,7 +1090,7 @@ timesDiedCreditsFrench:
 String(""); BYTE 0
 
 timesDiedCreditsGerman:
-String(""); BYTE 0
+String("Game"); BYTE 0x2D; String("Overs"); BYTE 0
 
 timesDiedCreditsSpanish:
 String("Game Overs"); BYTE 0
@@ -1104,7 +1104,7 @@ timesRevivedCredits:
 /*English*/ POIN timesRevivedCreditsEnglish
 /*English*/ POIN timesRevivedCreditsEnglish
 /*French */ POIN timesRevivedCreditsEnglish //POIN timesRevivedCreditsFrench
-/*German */ POIN timesRevivedCreditsEnglish //POIN timesRevivedCreditsGerman
+/*German */ POIN timesRevivedCreditsGerman
 /*Spanish*/ POIN timesRevivedCreditsSpanish
 /*Italian*/ POIN timesRevivedCreditsEnglish //POIN timesRevivedCreditsItalian
 
@@ -1115,7 +1115,7 @@ timesRevivedCreditsFrench:
 String(""); BYTE 0
 
 timesRevivedCreditsGerman:
-String(""); BYTE 0
+String("Anzahl Wiederbelebungen"); BYTE 0
 
 timesRevivedCreditsSpanish:
 String("Reanimaciones por hada"); BYTE 0
@@ -1129,7 +1129,7 @@ timesSavedCredits:
 /*English*/ POIN timesSavedCreditsEnglish
 /*English*/ POIN timesSavedCreditsEnglish
 /*French */ POIN timesSavedCreditsEnglish //POIN timesSavedCreditsFrench
-/*German */ POIN timesSavedCreditsEnglish //POIN timesSavedCreditsGerman
+/*German */ POIN timesSavedCreditsGerman
 /*Spanish*/ POIN timesSavedCreditsSpanish
 /*Italian*/ POIN timesSavedCreditsEnglish //POIN timesSavedCreditsItalian
 
@@ -1140,7 +1140,7 @@ timesSavedCreditsFrench:
 String(""); BYTE 0
 
 timesSavedCreditsGerman:
-String(""); BYTE 0
+String("Anzahl Spiel gesp."); BYTE 0
 
 timesSavedCreditsSpanish:
 String("Partidas guardadas"); BYTE 0
@@ -1154,7 +1154,7 @@ timesLoadedCredits:
 /*English*/ POIN timesLoadedCreditsEnglish
 /*English*/ POIN timesLoadedCreditsEnglish
 /*French */ POIN timesLoadedCreditsEnglish //POIN timesLoadedCreditsFrench
-/*German */ POIN timesLoadedCreditsEnglish //POIN timesLoadedCreditsGerman
+/*German */ POIN timesLoadedCreditsGerman
 /*Spanish*/ POIN timesLoadedCreditsSpanish
 /*Italian*/ POIN timesLoadedCreditsEnglish //POIN timesLoadedCreditsItalian
 
@@ -1165,7 +1165,7 @@ timesLoadedCreditsFrench:
 String(""); BYTE 0
 
 timesLoadedCreditsGerman:
-String(""); BYTE 0
+String("Anzahl Spiel gel."); BYTE 0
 
 timesLoadedCreditsSpanish:
 String("Partidas cargadas"); BYTE 0
@@ -1179,7 +1179,7 @@ timesWarpedCredits:
 /*English*/ POIN timesWarpedCreditsEnglish
 /*English*/ POIN timesWarpedCreditsEnglish
 /*French */ POIN timesWarpedCreditsEnglish //POIN timesWarpedCreditsFrench
-/*German */ POIN timesWarpedCreditsEnglish //POIN timesWarpedCreditsGerman
+/*German */ POIN timesWarpedCreditsGerman
 /*Spanish*/ POIN timesWarpedCreditsSpanish
 /*Italian*/ POIN timesWarpedCreditsEnglish //POIN timesWarpedCreditsItalian
 
@@ -1190,7 +1190,7 @@ timesWarpedCreditsFrench:
 String(""); BYTE 0
 
 timesWarpedCreditsGerman:
-String(""); BYTE 0
+String("Quickwarps genutzt"); BYTE 0
 
 timesWarpedCreditsSpanish:
 String("Quickwarps usados"); BYTE 0
@@ -1204,7 +1204,7 @@ totalRupeesCredits:
 /*English*/ POIN totalRupeesCreditsEnglish
 /*English*/ POIN totalRupeesCreditsEnglish
 /*French */ POIN totalRupeesCreditsEnglish //POIN totalRupeesCreditsFrench
-/*German */ POIN totalRupeesCreditsEnglish //POIN totalRupeesCreditsGerman
+/*German */ POIN totalRupeesCreditsGerman
 /*Spanish*/ POIN totalRupeesCreditsSpanish
 /*Italian*/ POIN totalRupeesCreditsEnglish //POIN totalRupeesCreditsItalian
 
@@ -1215,7 +1215,7 @@ totalRupeesCreditsFrench:
 String(""); BYTE 0
 
 totalRupeesCreditsGerman:
-String(""); BYTE 0
+String("Gesamtrubine"); BYTE 0
 
 totalRupeesCreditsSpanish:
 String("Total de rupias"); BYTE 0
