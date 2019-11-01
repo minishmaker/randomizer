@@ -49,6 +49,10 @@ PUSH; ORG $52D64; SHORT 0xE006; POP
 
 //allow more freedom to pause the game
 PUSH; ORG $70044; SHORT 0x2000; ORG $7004E; SHORT 0x2000; POP
+PUSH; ORG $70074; jumpToHack(pausefreedom); POP
+ALIGN 4
+pausefreedom:
+#incbin "asm/pausefreedom.dmp"
 
 //adding some stuff that's missing from vanilla eur
 //missing lon lon tornado
