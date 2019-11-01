@@ -1,7 +1,7 @@
 .thumb
 @fade check
 ldr	r1,=#0x3000FD0
-ldr	r1,[r1]
+ldrb	r1,[r1]
 cmp	r1,#0
 bne	false
 
