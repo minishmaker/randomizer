@@ -39,6 +39,8 @@ POIN badEmu1
 POIN badEmu2
 POIN badEmu3
 POIN badEmu4
+POIN badEmu5
+POIN badEmu6
 badSave1:
 String("save type mismatch detected!"); BYTE 0
 badSave2:
@@ -53,6 +55,10 @@ badEmu3:
 String("mgba.io"); BYTE 0x2F; String("downloads.html"); BYTE 0
 badEmu4:
 String("press any button to play"); BYTE 0
+badEmu5:
+String("(pedestal will always"); BYTE 0
+badEmu6:
+String("crash on vba and vbam)"); BYTE 0
 
 #ifdef TEST
 	PUSH

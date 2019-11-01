@@ -4,6 +4,8 @@
 .equ badEmu2, badEmu1+4
 .equ badEmu3, badEmu2+4
 .equ badEmu4, badEmu3+4
+.equ badEmu5, badEmu4+4
+.equ badEmu6, badEmu5+4
 .thumb
 push	{r4,r5}
 @emulator detection
@@ -30,7 +32,7 @@ bne	checksave
 bl	loadFont
 
 @write the message
-ldr	r4,=#0x6000182
+ldr	r4,=#0x6000102
 ldr	r0,badEmu1
 mov	r1,r4
 bl	draw
@@ -44,6 +46,14 @@ mov	r1,r4
 bl	draw
 add	r4,#0xBE
 ldr	r0,badEmu4
+mov	r1,r4
+bl	draw
+add	r4,#0xC2
+ldr	r0,badEmu5
+mov	r1,r4
+bl	draw
+add	r4,#0x42
+ldr	r0,badEmu6
 mov	r1,r4
 bl	draw
 
@@ -189,3 +199,5 @@ badSave1:
 @POIN badEmu2
 @POIN badEmu3
 @POIN badEmu4
+@POIN badEmu5
+@POIN badEmu6
