@@ -40,6 +40,41 @@ strh	r1,[r0,#0x2C]
 mov	r1,#0
 strh	r1,[r0,#0x30]
 
+@restore wallet color
+ldr	r0,=#0x50001E0
+ldr	r3,=#0x2017880
+ldr	r2,=#0x2002AE8
+ldrb	r2,[r2]
+cmp	r2,#0
+beq	green
+cmp	r2,#1
+bne	red
+b	blue
+green:
+ldr	r1,=#0x0E06
+strh	r1,[r0,#02]
+strh	r1,[r3,#02]
+ldr	r1,=#0x0F28
+strh	r1,[r0,#04]
+strh	r1,[r3,#04]
+b	endwallet
+blue:
+ldr	r1,=#0x5163
+strh	r1,[r0,#02]
+strh	r1,[r3,#02]
+ldr	r1,=#0x7E65
+strh	r1,[r0,#04]
+strh	r1,[r3,#04]
+b	endwallet
+red:
+ldr	r1,=#0x0CAF
+strh	r1,[r0,#02]
+strh	r1,[r3,#02]
+ldr	r1,=#0x10D7
+strh	r1,[r0,#04]
+strh	r1,[r3,#04]
+endwallet:
+
 @load the graphics
 ldr	r0,collectionPageGraphics
 ldr	r1,=#0x6000000
