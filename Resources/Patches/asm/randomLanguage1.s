@@ -1,6 +1,7 @@
 .thumb
-ldr	r1,=#0x300100C
-ldrb	r0,[r1]
+ldr	r3,getRNG
+mov	lr,r3
+.short	0xF800
 mov	r1,#4
 swi	#6
 add	r1,#2
@@ -11,3 +12,6 @@ ldr	r3,=#0x805E950
 mov	lr,r3
 pop	{r3}
 .short	0xF800
+.align
+.ltorg
+getRNG:
