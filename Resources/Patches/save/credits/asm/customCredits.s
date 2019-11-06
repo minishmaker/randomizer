@@ -62,7 +62,7 @@ ldr	r2,=#0x2002AE8
 ldrb	r2,[r2]
 cmp	r2,#0
 beq	green
-cmp	r0,#1
+cmp	r2,#1
 bne	red
 b	blue
 green:
