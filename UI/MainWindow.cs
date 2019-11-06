@@ -6,6 +6,7 @@ using MinishRandomizer.Core;
 using MinishRandomizer.Randomizer;
 using MinishRandomizer.Randomizer.Logic;
 using MinishRandomizer.Utilities;
+using MinishRandomizer.Properties;
 
 namespace MinishRandomizer
 {
@@ -18,6 +19,7 @@ namespace MinishRandomizer
         public MainWindow()
         {
             InitializeComponent();
+            UpdateWindowTitle();
 
             // Initialize seed to random value
             seedField.Text = new Random().Next().ToString();
@@ -35,6 +37,15 @@ namespace MinishRandomizer
             }
 
             LoadOptionControls(shuffler.GetOptions());
+        }
+
+        private void UpdateWindowTitle()
+        {
+#if DEBUG
+            this.Text = $"{ProductName} {AssemblyInfo.GetGitTag()} DEBUG-{AssemblyInfo.GetGitHash()}";
+#else
+            this.Text = $"{ProductName} {AssemblyInfo.GetGitTag()}";
+#endif
         }
 
         private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
