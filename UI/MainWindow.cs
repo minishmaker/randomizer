@@ -104,7 +104,7 @@ namespace MinishRandomizer
                 settingHashValue.Text = StringUtil.AsStringHex8((int)shuffler.GetSettingHash());
                 gimmickHashValue.Text = StringUtil.AsStringHex8((int)shuffler.GetGimmickHash());
 
-                statusText.Text = $"Successfully randomzied seed {seed}";
+                statusText.Text = $"Successfully randomized seed {seed}";
             }
             catch (ShuffleException error)
             {
