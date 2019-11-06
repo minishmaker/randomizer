@@ -211,7 +211,7 @@ namespace MinishRandomizer.Randomizer.Logic
 
             if (parenCount > 0)
             {
-                throw new ParserException($"Parentheses could not be parsed correctly! Make sure none of them are mismatched.");
+                throw new ParserException($"Parentheses could not be parsed correctly in string \"{logic}\"! Make sure none of them are mismatched.");
             }
 
             return subLogic;

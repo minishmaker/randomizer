@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using System.Windows.Forms;
 using MinishRandomizer.Core;
 using MinishRandomizer.Randomizer;
@@ -311,7 +312,7 @@ namespace MinishRandomizer
             }
 
             // Get the default name for the saved patch
-            string fileName = $"MinishRandomizer_{shuffler.Seed}_spoiler";
+            string fileName = $"MinishRandomizer_{shuffler.Version}_{shuffler.GetLogicIdentifier()}_{shuffler.GetOptionsIdentifier()}_{shuffler.Seed}_spoiler";
 
             SaveFileDialog sfd = new SaveFileDialog
             {
@@ -378,6 +379,43 @@ namespace MinishRandomizer
         private void Button1_Click(object sender, EventArgs e)
         {
             seedField.Text = new Random().Next().ToString();
+        }
+
+        private void ExportDefaultLogicToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string fileName = $"default-{shuffler.Version}.logic";
+
+            SaveFileDialog sfd = new SaveFileDialog
+            {
+                Filter = "UPS Patches|*.ups|All Files|*.*",
+                Title = "Save Patch",
+                FileName = fileName
+            };
+
+            if (sfd.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+
+            string allLocations;
+
+            // Load default logic as a string array
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            using (Stream stream = assembly.GetManifestResourceStream("MinishRandomizer.Resources.default.logic"))
+            using (StreamReader reader = new StreamReader(stream))
+            {
+                allLocations = reader.ReadToEnd();
+            }
+
+            try
+            {
+                File.WriteAllText(sfd.FileName, allLocations);
+                return;
+            }
+            catch (IOException error)
+            {
+                MessageBox.Show($"Error writing logic to file: \"{error.Message}\"", "Error Exporting Logic", MessageBoxButtons.OK);
+            }
         }
     }
 }
