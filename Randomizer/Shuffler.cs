@@ -7,6 +7,7 @@ using System.Text;
 using MinishRandomizer.Core;
 using MinishRandomizer.Randomizer.Logic;
 using MinishRandomizer.Utilities;
+using MinishRandomizer.Properties;
 
 namespace MinishRandomizer.Randomizer
 {
@@ -56,8 +57,7 @@ namespace MinishRandomizer.Randomizer
 
     public class Shuffler
     {
-        // Will replace this with something better...
-        public readonly string Version = "DEV 0.6.0";
+        public readonly string Version;
         public int Seed;
         private Random RNG;
         private List<Location> Locations;
@@ -71,12 +71,23 @@ namespace MinishRandomizer.Randomizer
 
         public Shuffler()
         {
+            Version = GetVersionName();
+
             Locations = new List<Location>();
             DungeonItems = new List<Item>();
             MajorItems = new List<Item>();
             NiceItems = new List<Item>();
             MinorItems = new List<Item>();
             LogicParser = new Parser();
+        }
+
+        public string GetVersionName()
+        {
+#if DEBUG
+                return $"{ProductName} {AssemblyInfo.GetGitTag()} DEBUG-{AssemblyInfo.GetGitHash()}";
+#else
+                return $"{ProductName} {AssemblyInfo.GetGitTag()}";
+#endif
         }
 
         public string GetLogicIdentifier()
