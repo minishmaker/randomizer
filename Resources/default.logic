@@ -1,7 +1,7 @@
 # Default logic for the randomizer - Doesn't allow glitches, but allows unintuitive tricks
 
 !name - Default
-!version - 0.5.3
+!version - 0.6.0
 !crc - E8637292
 
 !flag - Setting - KEYSANITY - Keysanity - false
@@ -525,6 +525,7 @@ HillsKeeseCave;   Minor; 32-13-00;                            Items.BombBag
 AboveHPHole;      Minor; 27-00-00;                            Locations.AccessHyliaNorth, (|Items.PacciCane, Items.RocsCape)
 LonLonPot;        Major; 0F2C9B:FirstByte, 0F2C9D:SecondByte; Locations.AccessEastField
 LonLonCave;       Minor; 32-0C-00;                            Locations.AccessHyliaNorth, Helpers.CanSplit2
+LonLonCaveSecret;               Minor; 32-0D-00;                            Locations.LonLonCave, Items.BombBag, Items.LanternOff;
 LonLonHeartPiece; Major; 0D56EF;                              Locations.AccessHyliaNorth, Items.PegasusBoots
 MinishRupeeFairy; Major; 00B7B4;                              Locations.AccessEastField, Items.PacciCane
 
@@ -618,6 +619,7 @@ AccessValley;         Helper;;       Helpers.CanSplit3, (|Items.BombBag, Items.R
 ArrowFairy;           Major; 00B722; Helpers.CanSplit3, Items.BombBag
 DampeKey;             Major; 0096B6; Locations.AccessValley
 RoyalGraveHeartPiece; Major; 0D8AE7; Locations.AccessValley, Items.GraveyardKey, Items.PegasusBoots
+RoyalValleyLostWoodsChest;      Minor; 0D8A86;                              Locations.AccessValley
 
 AccessCrypt;                Helper;            ;       Locations.AccessValley, Items.GraveyardKey, Helpers.CanSplit3, Items.PegasusBoots
 CryptGibdoLeft:Crypt;       Minor;             0E688B; Locations.AccessCrypt;                                                                                       Items.Bombs5
@@ -862,14 +864,18 @@ PalacePrize:`ELEMENT_DUNGEON`;     `ELEMENT`;         0E69E3;                   
 	TrilbyWaterCave;         Minor; 13-03-01;                                                                 Locations.AccessWestField, (|Items.RocsCape,Items.Flippers), Items.MoleMitts;
 
 	SouthernWoodChest;       Minor; 03-08-01;                                                                 Helpers.CanSplit2;
-	SouthernWoodTopDig1;     Minor; 0F77CF;                                                                   Helpers.CanSplit2, Items.MoleMitts;
-	SouthernWoodTopDig2;     Minor; 0F77DF;                                                                   Helpers.CanSplit2, Items.MoleMitts;                                              
-	SouthernWoodTopDig3;     Minor; 0F77EF;                                                                   Helpers.CanSplit2, Items.MoleMitts;
-	SouthernWoodTopDig4;     Minor; 0F77FF;                                                                   Helpers.CanSplit2, Items.MoleMitts;
-	SouthernWoodTopDig5;     Minor; 0F780F;                                                                   Helpers.CanSplit2, Items.MoleMitts;
-	SouthernWoodTopDig6;     Minor; 0F781F;                                                                   Helpers.CanSplit2, Items.MoleMitts;
-	SouthernWoodBottomDig1;  Minor; 0F782F;                                                                   Helpers.CanSplit2, Items.MoleMitts;
-	SouthernWoodBottomDig2;  Minor; 0F783F;                                                                   Helpers.CanSplit2, Items.MoleMitts;
+
+	!ifdef - WHYWOULDYOUDOTHISTOYOURSELF
+	    SouthernWoodTopDig1;     Minor; 0F77CF;                                                                   Helpers.CanSplit2, Items.MoleMitts;
+	    SouthernWoodTopDig2;     Minor; 0F77DF;                                                                   Helpers.CanSplit2, Items.MoleMitts;                                              
+	    SouthernWoodTopDig3;     Minor; 0F77EF;                                                                   Helpers.CanSplit2, Items.MoleMitts;
+	    SouthernWoodTopDig4;     Minor; 0F77FF;                                                                   Helpers.CanSplit2, Items.MoleMitts;
+	    SouthernWoodTopDig5;     Minor; 0F780F;                                                                   Helpers.CanSplit2, Items.MoleMitts;
+	    SouthernWoodTopDig6;     Minor; 0F781F;                                                                   Helpers.CanSplit2, Items.MoleMitts;
+	    SouthernWoodBottomDig1;  Minor; 0F782F;                                                                   Helpers.CanSplit2, Items.MoleMitts;
+	    SouthernWoodBottomDig2;  Minor; 0F783F;                                                                   Helpers.CanSplit2, Items.MoleMitts;
+	!endif
+
 	PercyHouseMoblin;        Minor; 0123D6;                                                                   Helpers.CanSplit2, Items.LanternOff, Items.PegasusBoots;
 	PercyHouseReward;        Minor; 06B058:FirstByte, 06B05A:SecondByte;                                      Helpers.CanSplit2, Items.LanternOff, Items.PegasusBoots;
 	
@@ -968,8 +974,6 @@ PalacePrize:`ELEMENT_DUNGEON`;     `ELEMENT`;         0E69E3;                   
 	DropletsIceMazePot:Droplets;    Minor; 0E3A73:FirstByte, 0E3A75:SecondByte; Locations.AccessDroplets, Items.BigKey:Droplets,  (|Items.LanternOff, Locations.DropletsEastLever)
 	FoWRightSideTopPot:Fortress;    Minor; 0F3FC7:FirstByte, 0F3FC9:SecondByte; Locations.AccessFortress, Items.MoleMitts, Helpers.CanSplit2, Helpers.HasBow, Items.SmallKey`FOW_SET`:3
 	FoWRightSideBottomPot:Fortress; Minor; 0F3FD7:FirstByte, 0F3FD9:SecondByte; Locations.AccessFortress, Items.MoleMitts, Helpers.CanSplit2, Helpers.HasBow, Items.SmallKey`FOW_SET`:3
-    RoyalValleyLostWoodsChest;      Minor; 0D8A86;                              Locations.AccessValley
-	LonLonCaveSecret;               Minor; 32-0D-00;                            Locations.LonLonCave, Items.BombBag, Items.LanternOff;
     
 	#digging
 	LonLonBuriedTreasure;           Minor; 0F6CFF;                              Locations.AboveHPHole, Items.MoleMitts;
