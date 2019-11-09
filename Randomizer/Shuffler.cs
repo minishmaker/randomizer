@@ -84,9 +84,9 @@ namespace MinishRandomizer.Randomizer
         public string GetVersionName()
         {
 #if DEBUG
-                return $"{ProductName} {AssemblyInfo.GetGitTag()} DEBUG-{AssemblyInfo.GetGitHash()}";
+                return $"{AssemblyInfo.GetGitTag()} DEBUG-{AssemblyInfo.GetGitHash()}";
 #else
-                return $"{ProductName} {AssemblyInfo.GetGitTag()}";
+                return $"{AssemblyInfo.GetGitTag()}";
 #endif
         }
 

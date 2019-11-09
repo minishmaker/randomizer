@@ -43,7 +43,11 @@ namespace MinishRandomizer
 
         private void UpdateWindowTitle()
         {
-            this.Text = shuffler.GetVersionName();
+#if DEBUG
+            this.Text = $"{ProductName} {AssemblyInfo.GetGitTag()} DEBUG-{AssemblyInfo.GetGitHash()}";
+#else
+            this.Text = $"{ProductName} {AssemblyInfo.GetGitTag()}";
+#endif
         }
 
         private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
