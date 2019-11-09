@@ -260,7 +260,7 @@ namespace MinishRandomizer
             }
 
             // Get the default name for the saved ROM
-            string fileName = $"MinishRandomizer_{shuffler.Version}_{shuffler.GetLogicIdentifier()}_{shuffler.GetOptionsIdentifier()}_{shuffler.Seed}";
+            string fileName = $"MinishRandomizer-{shuffler.Version}-{shuffler.Seed}-{shuffler.GetLogicIdentifier()}-{shuffler.GetOptionsIdentifier()}";
 
             SaveFileDialog sfd = new SaveFileDialog
             {
@@ -324,7 +324,7 @@ namespace MinishRandomizer
             }
 
             // Get the default name for the saved patch
-            string fileName = $"MinishRandomizer_{shuffler.Version}_{shuffler.GetLogicIdentifier()}_{shuffler.GetOptionsIdentifier()}_{shuffler.Seed}_spoiler";
+            string fileName = $"MinishRandomizer-{shuffler.Version}-{shuffler.Seed}-{shuffler.GetLogicIdentifier()}-{shuffler.GetOptionsIdentifier()}-spoiler";
 
             SaveFileDialog sfd = new SaveFileDialog
             {

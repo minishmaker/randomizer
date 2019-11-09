@@ -84,7 +84,7 @@ namespace MinishRandomizer.Randomizer
         public string GetVersionName()
         {
 #if DEBUG
-                return $"{AssemblyInfo.GetGitTag()} DEBUG-{AssemblyInfo.GetGitHash()}";
+                return $"{AssemblyInfo.GetGitTag()}-DEBUG-{AssemblyInfo.GetGitHash()}";
 #else
                 return $"{AssemblyInfo.GetGitTag()}";
 #endif
@@ -108,7 +108,7 @@ namespace MinishRandomizer.Randomizer
             string name = LogicParser.SubParser.LogicName ?? fallbackName;
             string version = LogicParser.SubParser.LogicVersion ?? fallbackVersion;
 
-            return name + "-" + version;
+            return name;
         }
 
         public void SetSeed(int seed)
