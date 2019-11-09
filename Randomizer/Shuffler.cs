@@ -349,6 +349,9 @@ namespace MinishRandomizer.Randomizer
                 // All locations should be filled at this point
                 throw new ShuffleException($"There are {unfilledLocations.Count} unfilled locations!");
             }
+
+            // Final cache clear
+            Locations.ForEach(location => location.InvalidateCache());
         }
 
         /// <summary>
