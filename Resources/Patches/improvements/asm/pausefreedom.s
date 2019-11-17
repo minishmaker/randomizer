@@ -1,4 +1,14 @@
 .thumb
+@shrinking check
+ldr	r1,=#0x300116C
+ldrb	r3,[r1]
+cmp	r3,#0x15
+bne	noshrink
+ldrb	r1,[r1]
+cmp	r1,#0x4
+bhs	false
+noshrink:
+
 @fade check
 ldr	r1,=#0x3000FD0
 ldrb	r1,[r1]
