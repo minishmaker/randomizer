@@ -1,17 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MinishRandomizer.Utilities
 {
     public static class ColorExtensions
     {
-        
-
-        
     }
 
     public static class ColorUtil
@@ -70,7 +63,7 @@ namespace MinishRandomizer.Utilities
                 || 255 < alpha)
             {
                 throw new ArgumentOutOfRangeException(
-                    "alpha",
+                    nameof(alpha),
                     alpha,
                     "Value must be within a range of 0 - 255.");
             }
@@ -79,7 +72,7 @@ namespace MinishRandomizer.Utilities
                 || 360f < hue)
             {
                 throw new ArgumentOutOfRangeException(
-                    "hue",
+                    nameof(hue),
                     hue,
                     "Value must be within a range of 0 - 360.");
             }
@@ -88,7 +81,7 @@ namespace MinishRandomizer.Utilities
                 || 1f < saturation)
             {
                 throw new ArgumentOutOfRangeException(
-                    "saturation",
+                    nameof(saturation),
                     saturation,
                     "Value must be within a range of 0 - 1.");
             }
@@ -97,7 +90,7 @@ namespace MinishRandomizer.Utilities
                 || 1f < brightness)
             {
                 throw new ArgumentOutOfRangeException(
-                    "brightness",
+                    nameof(brightness),
                     brightness,
                     "Value must be within a range of 0 - 1.");
             }
@@ -188,7 +181,7 @@ namespace MinishRandomizer.Utilities
             if (newHue < 0f)
             {
                 newHue += 360f;
-            };
+            }
 
             Console.WriteLine("Hue2_" + newHue);
             Console.WriteLine("Sat2_" + newSaturation);

@@ -51,6 +51,8 @@
             this.gimmicksTabPage = new System.Windows.Forms.TabPage();
             this.gimmickControlLayout = new System.Windows.Forms.FlowLayoutPanel();
             this.generatedTab = new System.Windows.Forms.TabPage();
+            this.gimmickHashValue = new System.Windows.Forms.Label();
+            this.settingHashValue = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.generatedLogicLabel = new System.Windows.Forms.Label();
@@ -60,8 +62,8 @@
             this.saveSpoilerButton = new System.Windows.Forms.Button();
             this.savePatchButton = new System.Windows.Forms.Button();
             this.saveRomButton = new System.Windows.Forms.Button();
-            this.settingHashValue = new System.Windows.Forms.Label();
-            this.gimmickHashValue = new System.Windows.Forms.Label();
+            this.logicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportDefaultLogicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.generalTab.SuspendLayout();
@@ -89,7 +91,8 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem});
+            this.fileToolStripMenuItem,
+            this.logicToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(390, 24);
@@ -232,7 +235,6 @@
             this.mainTabs.Controls.Add(this.generalTab);
             this.mainTabs.Controls.Add(this.optionTabPage);
             this.mainTabs.Controls.Add(this.gimmicksTabPage);
-            //this.mainTabs.Controls.Add(this.generatedTab);
             this.mainTabs.Location = new System.Drawing.Point(9, 27);
             this.mainTabs.Name = "mainTabs";
             this.mainTabs.SelectedIndex = 0;
@@ -297,6 +299,22 @@
             this.generatedTab.TabIndex = 1;
             this.generatedTab.Text = "Seed";
             this.generatedTab.UseVisualStyleBackColor = true;
+            // 
+            // gimmickHashValue
+            // 
+            this.gimmickHashValue.AutoSize = true;
+            this.gimmickHashValue.Location = new System.Drawing.Point(100, 83);
+            this.gimmickHashValue.Name = "gimmickHashValue";
+            this.gimmickHashValue.Size = new System.Drawing.Size(0, 13);
+            this.gimmickHashValue.TabIndex = 10;
+            // 
+            // settingHashValue
+            // 
+            this.settingHashValue.AutoSize = true;
+            this.settingHashValue.Location = new System.Drawing.Point(93, 59);
+            this.settingHashValue.Name = "settingHashValue";
+            this.settingHashValue.Size = new System.Drawing.Size(0, 13);
+            this.settingHashValue.TabIndex = 9;
             // 
             // label3
             // 
@@ -381,21 +399,20 @@
             this.saveRomButton.UseVisualStyleBackColor = true;
             this.saveRomButton.Click += new System.EventHandler(this.SaveRomButton_Click);
             // 
-            // settingHashValue
+            // logicToolStripMenuItem
             // 
-            this.settingHashValue.AutoSize = true;
-            this.settingHashValue.Location = new System.Drawing.Point(93, 59);
-            this.settingHashValue.Name = "settingHashValue";
-            this.settingHashValue.Size = new System.Drawing.Size(0, 13);
-            this.settingHashValue.TabIndex = 9;
+            this.logicToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.exportDefaultLogicToolStripMenuItem});
+            this.logicToolStripMenuItem.Name = "logicToolStripMenuItem";
+            this.logicToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            this.logicToolStripMenuItem.Text = "Logic";
             // 
-            // gimmickHashValue
+            // exportDefaultLogicToolStripMenuItem
             // 
-            this.gimmickHashValue.AutoSize = true;
-            this.gimmickHashValue.Location = new System.Drawing.Point(100, 83);
-            this.gimmickHashValue.Name = "gimmickHashValue";
-            this.gimmickHashValue.Size = new System.Drawing.Size(0, 13);
-            this.gimmickHashValue.TabIndex = 10;
+            this.exportDefaultLogicToolStripMenuItem.Name = "exportDefaultLogicToolStripMenuItem";
+            this.exportDefaultLogicToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.exportDefaultLogicToolStripMenuItem.Text = "Export Default Logic";
+            this.exportDefaultLogicToolStripMenuItem.Click += new System.EventHandler(this.ExportDefaultLogicToolStripMenuItem_Click);
             // 
             // MainWindow
             // 
@@ -461,6 +478,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label gimmickHashValue;
         private System.Windows.Forms.Label settingHashValue;
+        private System.Windows.Forms.ToolStripMenuItem logicToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportDefaultLogicToolStripMenuItem;
     }
 }
 

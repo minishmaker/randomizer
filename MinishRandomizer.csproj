@@ -51,7 +51,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\Constants.cs" />
-    <Compile Include="Core\EventDefine.cs" />
     <Compile Include="Core\ROM.cs" />
     <Compile Include="Randomizer\Logic\DirectiveParser.cs" />
     <Compile Include="Randomizer\Logic\LogicDefine.cs" />
@@ -70,6 +69,7 @@
     <Compile Include="Randomizer\Logic\Location.cs" />
     <Compile Include="Randomizer\Shuffler.cs" />
     <Compile Include="Utilities\ColorUtil.cs" />
+    <Compile Include="Utilities\EventUtil.cs" />
     <Compile Include="Utilities\ExtensionMethods.cs" />
     <Compile Include="Utilities\PatchUtil.cs" />
     <Compile Include="Utilities\Reader.cs" />
@@ -88,6 +88,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include=".editorconfig" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -113,4 +114,53 @@
     <PostBuildEvent>xcopy /y /d /s "$(ProjectDir)Resources\Patches" "$(TargetDir)Patches\"
 xcopy /y /d /s "$(ProjectDir)Vendor\Language Raws" "$(TargetDir)Language Raws\"</PostBuildEvent>
   </PropertyGroup>
+  <Target Name="GetGitHash" BeforeTargets="WriteGitHash" Condition="'$(BuildHash)' == ''">
+    <PropertyGroup>
+      <!-- temp file for the git version (lives in "obj" folder)-->
+      <TagFile>$(IntermediateOutputPath)gittag</TagFile>
+      <VerFile>$(IntermediateOutputPath)gitver</VerFile>
+    </PropertyGroup>
+
+    <!-- write the hash to the temp file.-->
+    <Exec Command="git -C $(ProjectDir) describe --abbrev=0 --tags &gt; $(TagFile)" />
+    <Exec Command="git -C $(ProjectDir) rev-parse --short HEAD &gt; $(VerFile)" />
+
+    <!-- read the version into the GitVersion itemGroup-->
+    <ReadLinesFromFile File="$(VerFile)">
+      <Output TaskParameter="Lines" ItemName="GitVersion" />
+    </ReadLinesFromFile>
+    <ReadLinesFromFile File="$(TagFile)">
+      <Output TaskParameter="Lines" ItemName="GitTag" />
+    </ReadLinesFromFile>
+    <!-- Set the BuildHash property to contain the GitVersion, if it wasn't already set.-->
+    <PropertyGroup>
+      <BuildHash>@(GitVersion)</BuildHash>
+    </PropertyGroup>
+    <PropertyGroup>
+      <BuildTag>@(GitTag)</BuildTag>
+    </PropertyGroup>      
+  </Target>
+  <Target Name="WriteGitHash" BeforeTargets="CoreCompile">
+    <!-- names the obj/.../CustomAssemblyInfo.cs file -->
+    <PropertyGroup>
+      <CustomAssemblyInfoFile>$(IntermediateOutputPath)CustomAssemblyInfo.cs</CustomAssemblyInfoFile>
+    </PropertyGroup>
+    <!-- includes the CustomAssemblyInfo for compilation into your project -->
+    <ItemGroup>
+      <Compile Include="$(CustomAssemblyInfoFile)" />
+    </ItemGroup>
+    <!-- defines the AssemblyMetadata attribute that will be written -->
+    <ItemGroup>
+      <AssemblyAttributes Include="AssemblyMetadata">
+        <_Parameter1>GitHash</_Parameter1>
+        <_Parameter2>$(BuildHash)</_Parameter2>
+      </AssemblyAttributes>
+      <AssemblyAttributes Include="AssemblyMetadata">
+        <_Parameter1>GitTag</_Parameter1>
+        <_Parameter2>$(BuildTag)</_Parameter2>
+      </AssemblyAttributes>
+    </ItemGroup>
+    <!-- writes the attribute to the customAssemblyInfo file -->
+    <WriteCodeFragment Language="C#" OutputFile="$(CustomAssemblyInfoFile)" AssemblyAttributes="@(AssemblyAttributes)" />
+  </Target>
 </Project>

@@ -1,10 +1,8 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Drawing;
+using System.Linq;
+using System.Windows.Forms;
 using MinishRandomizer.Utilities;
 
 namespace MinishRandomizer.Randomizer.Logic
@@ -139,7 +137,7 @@ namespace MinishRandomizer.Randomizer.Logic
         public override List<LogicDefine> GetLogicDefines()
         {
             List<LogicDefine> defineList = new List<LogicDefine>(3);
-            
+
             // Only true if a color has been selected
             if (Active)
             {
@@ -183,7 +181,7 @@ namespace MinishRandomizer.Randomizer.Logic
                 DataSource = Selections.Keys.ToList()
             };
 
-            comboBox.SelectedValueChanged += (object sender, EventArgs e) => { Selection = (string)comboBox.SelectedValue;  SelectedNumber = comboBox.SelectedIndex; };
+            comboBox.SelectedValueChanged += (object sender, EventArgs e) => { Selection = (string)comboBox.SelectedValue; SelectedNumber = comboBox.SelectedIndex; };
 
             return comboBox;
         }

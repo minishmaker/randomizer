@@ -1,11 +1,13 @@
-﻿using MinishRandomizer.Core;
-using MinishRandomizer.Randomizer;
-using MinishRandomizer.Randomizer.Logic;
-using MinishRandomizer.Utilities;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using System.Windows.Forms;
+using MinishRandomizer.Core;
+using MinishRandomizer.Randomizer;
+using MinishRandomizer.Randomizer.Logic;
+using MinishRandomizer.Utilities;
+using MinishRandomizer.Properties;
 
 namespace MinishRandomizer
 {
@@ -35,6 +37,17 @@ namespace MinishRandomizer
             }
 
             LoadOptionControls(shuffler.GetOptions());
+
+            UpdateWindowTitle();
+        }
+
+        private void UpdateWindowTitle()
+        {
+#if DEBUG
+            this.Text = $"{ProductName} {AssemblyInfo.GetGitTag()} DEBUG-{AssemblyInfo.GetGitHash()}";
+#else
+            this.Text = $"{ProductName} {AssemblyInfo.GetGitTag()}";
+#endif
         }
 
         private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
@@ -77,7 +90,7 @@ namespace MinishRandomizer
                         shuffler.LoadLocations();
                     }
 
-                    
+
                     shuffler.RandomizeLocations();
                 }
                 else
@@ -104,7 +117,7 @@ namespace MinishRandomizer
                 settingHashValue.Text = StringUtil.AsStringHex8((int)shuffler.GetSettingHash());
                 gimmickHashValue.Text = StringUtil.AsStringHex8((int)shuffler.GetGimmickHash());
 
-                statusText.Text = $"Successfully randomzied seed {seed}";
+                statusText.Text = $"Successfully randomized seed {seed}";
             }
             catch (ShuffleException error)
             {
@@ -150,7 +163,6 @@ namespace MinishRandomizer
                 MessageBox.Show("ROM does not match the expected CRC for the logic file", "Incorrect ROM", MessageBoxButtons.OK);
                 statusText.Text = "ROM not valid";
                 ROM_ = null;
-                return;
             }
         }
 
@@ -248,7 +260,7 @@ namespace MinishRandomizer
             }
 
             // Get the default name for the saved ROM
-            string fileName = $"MinishRandomizer_{shuffler.Version}_{shuffler.GetLogicIdentifier()}_{shuffler.GetOptionsIdentifier()}_{shuffler.Seed}";
+            string fileName = $"MinishRandomizer-{shuffler.Version}-{shuffler.Seed}-{shuffler.GetLogicIdentifier()}-{shuffler.GetOptionsIdentifier()}";
 
             SaveFileDialog sfd = new SaveFileDialog
             {
@@ -268,7 +280,7 @@ namespace MinishRandomizer
 
             if (customPatchCheckBox.Checked)
             {
-                
+
                 shuffler.ApplyPatch(sfd.FileName, customPatchPath.Text);
             }
             else
@@ -312,7 +324,7 @@ namespace MinishRandomizer
             }
 
             // Get the default name for the saved patch
-            string fileName = $"MinishRandomizer_{shuffler.Seed}_spoiler";
+            string fileName = $"MinishRandomizer-{shuffler.Version}-{shuffler.Seed}-{shuffler.GetLogicIdentifier()}-{shuffler.GetOptionsIdentifier()}-spoiler";
 
             SaveFileDialog sfd = new SaveFileDialog
             {
@@ -336,7 +348,7 @@ namespace MinishRandomizer
             // If there options, show the options tab
             if (options.Count >= 1)
             {
-                
+
                 // Make sure not to add the tab multiple times
                 if (!mainTabs.TabPages.Contains(optionTabPage))
                 {
@@ -379,6 +391,43 @@ namespace MinishRandomizer
         private void Button1_Click(object sender, EventArgs e)
         {
             seedField.Text = new Random().Next().ToString();
+        }
+
+        private void ExportDefaultLogicToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string fileName = $"default-{shuffler.Version}.logic";
+
+            SaveFileDialog sfd = new SaveFileDialog
+            {
+                Filter = "UPS Patches|*.ups|All Files|*.*",
+                Title = "Save Patch",
+                FileName = fileName
+            };
+
+            if (sfd.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+
+            string allLocations;
+
+            // Load default logic as a string array
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            using (Stream stream = assembly.GetManifestResourceStream("MinishRandomizer.Resources.default.logic"))
+            using (StreamReader reader = new StreamReader(stream))
+            {
+                allLocations = reader.ReadToEnd();
+            }
+
+            try
+            {
+                File.WriteAllText(sfd.FileName, allLocations);
+                return;
+            }
+            catch (IOException error)
+            {
+                MessageBox.Show($"Error writing logic to file: \"{error.Message}\"", "Error Exporting Logic", MessageBoxButtons.OK);
+            }
         }
     }
 }

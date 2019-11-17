@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-namespace MinishRandomizer.Utilities
+﻿namespace MinishRandomizer.Utilities
 {
     class StringUtil
-    {   
+    {
         // Convert values to hex strings
         public static string AsStringHex(int val, int spacing)
         {

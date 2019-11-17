@@ -1,18 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MinishRandomizer.Utilities
 {
-    static class PatchUtil {
+    static class PatchUtil
+    {
         /// <summary>
         /// Apply a UPS patch to a byte array, in place
         /// </summary>
         /// <param name="inputData">The data to patch</param>
         /// <param name="patchData">The patch to apply</param>
+        /// <param name="checkCRC">A flag indicating whether the CRC value is verified</param>
         public static void ApplyUPS(byte[] inputData, byte[] patchData, bool checkCRC = true)
         {
             using (MemoryStream inputStream = new MemoryStream(inputData))
@@ -83,7 +82,6 @@ namespace MinishRandomizer.Utilities
                     if (Crc32(inputData, outputSize) != outputCRC)
                     {
                         Console.WriteLine("Output ROM has an invalid CRC! ...but the array was already patched!");
-                        return;
                     }
                 }
             }

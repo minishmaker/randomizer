@@ -49,6 +49,10 @@ PUSH; ORG $52D64; SHORT 0xE006; POP
 
 //allow more freedom to pause the game
 PUSH; ORG $70044; SHORT 0x2000; ORG $7004E; SHORT 0x2000; POP
+PUSH; ORG $70074; jumpToHack(pausefreedom); POP
+ALIGN 4
+pausefreedom:
+#incbin "asm/pausefreedom.dmp"
 
 //adding some stuff that's missing from vanilla eur
 //missing lon lon tornado
@@ -304,6 +308,7 @@ escapeWalls:
 
 //normal kinstones have no popups
 PUSH; ORG $80DF4; jumpToHack(fastKinstone); POP
+PUSH; ORG $9D188; SHORT 0 0; POP
 ALIGN 4
 fastKinstone:
 #incbin "asm/fastKinstone.dmp"

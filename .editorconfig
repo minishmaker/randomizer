@@ -1,0 +1,31 @@
+# The editorconfig file inspired by Microsoft's guidelines for Roslyn.
+
+[*]
+# Line endings should use the windows format.
+end_of_line = crlf
+
+# Dotnet code stylings should come first in case we ever mess with VB.
+[*.{cs,vb}]
+indent_size = 4
+indent_style = space
+insert_final_newline = true
+
+# System namespaces come first.
+dotnet_sort_system_directives_first = true
+
+# Language keywords are prefered over framework types.
+dotnet_style_predefined_type_for_locals_parameters_members = true:suggestion
+dotnet_style_predefined_type_for_member_access = true:suggestion
+
+# CSharp specific items come after.
+[*.cs]
+
+csharp_new_line_before_open_brace = all
+
+# Space preferences.
+csharp_space_after_keywords_in_control_flow_statements = true
+csharp_space_after_cast = false
+csharp_space_before_colon_in_inheritance_clause = true
+csharp_space_between_parentheses = false
+csharp_space_between_method_declaration_parameter_list_parentheses = false
+csharp_space_between_method_call_parameter_list_parentheses = false

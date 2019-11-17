@@ -1,10 +1,6 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using MinishRandomizer.Core;
 using MinishRandomizer.Utilities;
 
@@ -31,7 +27,8 @@ namespace MinishRandomizer.Randomizer.Logic
             Minor,
             DungeonItem,
             Helper,
-            Unshuffled
+            Unshuffled,
+            Nice
         }
 
         public List<Dependency> Dependencies;
@@ -42,6 +39,7 @@ namespace MinishRandomizer.Randomizer.Logic
         public bool SecondaryAddressed;
         public bool Filled;
         public Item Contents { get; private set; }
+        public int RecursionCount { get; private set; }
         private bool? AvailableCache;
         private Item DefaultContents;
         private List<LocationAddress> Addresses;
@@ -218,10 +216,18 @@ namespace MinishRandomizer.Randomizer.Logic
             return IsAccessible(availableItems, locations);
         }
 
-        public bool IsAccessible(List<Item> availableItems, List<Location> locations, bool cache = false)
+        public bool IsAccessible(List<Item> availableItems, List<Location> locations)
         {
-            if (AvailableCache != null && cache == true)
+            if (RecursionCount > 0)
             {
+                return false;
+            }
+
+            RecursionCount++;
+
+            if (AvailableCache != null)
+            {
+                RecursionCount--;
                 return (bool)AvailableCache;
             }
 
@@ -229,22 +235,14 @@ namespace MinishRandomizer.Randomizer.Logic
             {
                 if (!dependency.DependencyFulfilled(availableItems, locations))
                 {
-                    if (cache)
-                    {
-                        AvailableCache = false;
-                        Console.WriteLine($"Can't reach {Name}");
-                    }
-
+                    AvailableCache = false;
+                    RecursionCount--;
                     return false;
                 }
             }
 
-            if (cache)
-            {
-                Console.WriteLine($"Can reach {Name}");
-                AvailableCache = true;
-            }
-
+            AvailableCache = true;
+            RecursionCount--;
             return true;
         }
 

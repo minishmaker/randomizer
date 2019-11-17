@@ -1,15 +1,13 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MinishRandomizer.Core;
 using MinishRandomizer.Utilities;
 
 namespace MinishRandomizer.Randomizer.Logic
 {
-    public class ParserException : Exception {
+    public class ParserException : Exception
+    {
         public ParserException(string message) : base(message) { }
     }
 
@@ -56,52 +54,34 @@ namespace MinishRandomizer.Randomizer.Logic
                         dependencies.Add(orDependency);
                         break;
                     case '+':
-                        Dictionary<Item, int> valueDict = new Dictionary<Item, int>();
+                        Dictionary<Dependency, int> valueDict = new Dictionary<Dependency, int>();
                         var reqValueString = sequence.Split(',')[0];
+
                         if (!int.TryParse(reqValueString.Substring(1), out int reqValue))
                         {
                             throw new ParserException($"Invalid total for counter! {reqValueString.Substring(1)}");
                         }
-                        string[] itemStrings = sequence.Substring(reqValueString.Length+1).Split(',');
 
-                        foreach (var itemString in itemStrings)
+                        string[] depStrings = sequence.Substring(reqValueString.Length + 1).Split(',');
+
+                        foreach (var depString in depStrings)
                         {
-                            string dungeonval = "";
-                            int itemval = 1;
-                            string[] values = itemString.Split(':');
-                            if (values.Length >= 2)
+                            string dependencyString = depString;
+                            int depValue = 1;
+                            string[] values = dependencyString.Split(':');
+
+                            if (values.Length >= 3)
                             {
-                                dungeonval = values[1];
-                                if (values.Length >= 3)
+                                if (!int.TryParse(values[2], out depValue))
                                 {
-                                    if (!int.TryParse(values[2], out itemval))
-                                    {
-                                        itemval = 1;
-                                    }
-                                }
-                            }
-                            var itemParts = values[0].Split('.');
-
-                            ItemType type = ItemType.Untyped;
-                            if (!Enum.TryParse(itemParts[1], out type))
-                            {
-                                throw new ParserException($"Could not parse item value! {itemParts[1]}");
-                            }
-
-
-                            byte itemSub = 0;
-
-                            if (itemParts.Length >= 3) 
-                            {
-                                if (!byte.TryParse(itemParts[2], out itemSub))
-                                {
-                                    throw new ParserException($"Could not parse item subvalue! {itemParts[2]}");
+                                    depValue = 1;
+                                    dependencyString = dependencyString.Substring(0, dependencyString.Length - (values[2].Length + 1));
                                 }
                             }
 
-                            var item = new Item(type, itemSub, dungeonval);
+                            List<Dependency> temp = GetDependencies(dependencyString);
 
-                            valueDict.Add(item, itemval);
+                            valueDict.Add(temp[0], depValue);
                         }
                         dependencies.Add(new CounterDependency(valueDict, reqValue));
                         break;
@@ -157,7 +137,7 @@ namespace MinishRandomizer.Randomizer.Logic
                                 }
                                 else
                                 {
-                                    throw new ParserException($"Item {dependencyParts[1]} could not be found!");
+                                    throw new ParserException($"Item {dependencyParts[1]} in string {logic} could not be found!");
                                 }
                                 break;
                             default:
@@ -231,7 +211,7 @@ namespace MinishRandomizer.Randomizer.Logic
 
             if (parenCount > 0)
             {
-                throw new ParserException($"Parentheses could not be parsed correctly! Make sure none of them are mismatched.");
+                throw new ParserException($"Parentheses could not be parsed correctly in string \"{logic}\"! Make sure none of them are mismatched.");
             }
 
             return subLogic;
@@ -348,7 +328,7 @@ namespace MinishRandomizer.Randomizer.Logic
             // Either direct address or area-room-chest
             if (addressString == "")
             {
-                return new LocationAddress(AddressType.None, 0);
+                return new LocationAddress(AddressType.None);
             }
 
             // Get the types of the address
