@@ -308,7 +308,6 @@ escapeWalls:
 
 //normal kinstones have no popups
 PUSH; ORG $80DF4; jumpToHack(fastKinstone); POP
-PUSH; ORG $9D188; SHORT 0 0; POP
 ALIGN 4
 fastKinstone:
 #incbin "asm/fastKinstone.dmp"
