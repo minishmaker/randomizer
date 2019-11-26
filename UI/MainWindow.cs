@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Reflection;
 using System.Windows.Forms;
 using MinishRandomizer.Core;
 using MinishRandomizer.Randomizer;
@@ -15,6 +17,9 @@ namespace MinishRandomizer
         private Shuffler shuffler;
         private bool Randomized;
         private uint LogicHash;
+        private List<LogicOption> Settings;
+        private List<LogicOption> Gimmicks;
+        private readonly uint BuiltinLogicHash;
 
         public MainWindow()
         {
@@ -23,19 +28,21 @@ namespace MinishRandomizer
             // Initialize seed to random value
             seedField.Text = new Random().Next().ToString();
 
+            // Load default logic, get hash
+            byte[] logicBytes;
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            using (Stream stream = assembly.GetManifestResourceStream("MinishRandomizer.Resources.default.logic"))
+            {
+                logicBytes = new byte[stream.Length];
+                stream.Read(logicBytes, 0, (int)stream.Length);
+            }
+
+            BuiltinLogicHash = PatchUtil.Crc32(logicBytes, logicBytes.Length);
+
             // Create shuffler and populate logic options
             shuffler = new Shuffler();
 
-            if (customLogicCheckBox.Checked)
-            {
-                shuffler.LoadOptions(customLogicPath.Text);
-            }
-            else
-            {
-                shuffler.LoadOptions();
-            }
-
-            LoadOptionControls(shuffler.GetOptions());
+            UpdateOptions();
         }
 
         private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
@@ -178,12 +185,6 @@ namespace MinishRandomizer
 
         private void CustomLogicPath_TextChanged(object sender, EventArgs e)
         {
-            // Load options into shuffler if the logic file is available
-            if (!File.Exists(customLogicPath.Text))
-            {
-                return;
-            }
-
             if (shuffler == null)
             {
                 return;
@@ -202,8 +203,38 @@ namespace MinishRandomizer
         private void CustomPatchCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             // Enable/disable UI for checkedness
-            browsePatchButton.Enabled = customPatchCheckBox.Checked;
-            customPatchPath.Enabled = customPatchCheckBox.Checked;
+            if (customPatchCheckBox.Checked)
+            {
+                browsePatchButton.Enabled = true;
+                customPatchPath.Enabled = true;
+
+                if (!File.Exists(customPatchPath.Text))
+                {
+                    patchNotExistLabel.Visible = true;
+                }
+                else
+                {
+                    patchNotExistLabel.Visible = false;
+                }
+            }
+            else
+            {
+                browsePatchButton.Enabled = false;
+                customPatchPath.Enabled = false;
+                patchNotExistLabel.Visible = false;
+            }
+        }
+
+        private void CustomPatchPath_TextChanged(object sender, EventArgs e)
+        {
+            if (!File.Exists(customPatchPath.Text))
+            {
+                patchNotExistLabel.Visible = true;
+            }
+            else
+            {
+                patchNotExistLabel.Visible = false;
+            }
         }
 
         private void BrowseLogicButton_Click(object sender, EventArgs e)
@@ -331,10 +362,18 @@ namespace MinishRandomizer
 
         private void UpdateOptions(string path = null)
         {
-            if (!File.Exists(path))
+            if (path != null && !File.Exists(path))
             {
+                logicNotExistLabel.Visible = true;
+                Console.WriteLine("new'n");
                 return;
             }
+            else
+            {
+                Console.WriteLine("old'n");
+                logicNotExistLabel.Visible = false;
+            }
+
 
             try
             {
@@ -346,7 +385,12 @@ namespace MinishRandomizer
                 return;
             }
 
-            LoadOptionControls(shuffler.GetOptions());
+            List<LogicOption> options = shuffler.GetOptions();
+
+            Settings = options.Where(opt => opt.Type == LogicOptionType.Setting).ToList();
+            Gimmicks = options.Where(opt => opt.Type == LogicOptionType.Gimmick).ToList();
+
+            LoadOptionControls(options);
 
             UpdateLogicHash(path);
 
@@ -381,10 +425,12 @@ namespace MinishRandomizer
 
                 if (option.Type == LogicOptionType.Setting)
                 {
+                    option.ChangeHash = UpdateSettingsString;
                     optionControlLayout.Controls.Add(optionControl);
                 }
                 else if (option.Type == LogicOptionType.Gimmick)
                 {
+                    option.ChangeHash = UpdateGimmicksString;
                     gimmickControlLayout.Controls.Add(optionControl);
                 }
             }
@@ -406,18 +452,86 @@ namespace MinishRandomizer
 
         private void UpdateLogicHash(string logicLocation)
         {
-            byte[] logicBytes = File.ReadAllBytes(logicLocation);
-            LogicHash = PatchUtil.Crc32(logicBytes, logicBytes.Length);
+            byte[] logicBytes;
+
+            if (logicLocation != null)
+            {
+                logicBytes = File.ReadAllBytes(logicLocation);
+                LogicHash = PatchUtil.Crc32(logicBytes, logicBytes.Length);
+            }
+            else
+            {
+                LogicHash = BuiltinLogicHash;
+            }
         }
 
         private void UpdateSettingsString()
         {
+            List<byte> settingsBytes = new List<byte>();
+            foreach (LogicOption setting in Settings)
+            {
+                settingsBytes.AddRange(setting.GetOptionBytes());
+            }
 
+            // Begin with logic hash portion
+            string newSettingsString = StringUtil.AsStringHex4((int)LogicHash & 0xFFFF) + "-";
+
+            ulong accumulation = 0;
+
+            // Notably includes gimmicksBytes.Count, the i-1th entry in gimmicksBytes is used
+            for (int i = 1; i < settingsBytes.Count; i++)
+            {
+                // ulong is full, start next one
+                if (i % 8 == 0 && i != 0)
+                {
+                    newSettingsString += Base36Util.Encode(accumulation);
+                    accumulation = 0;
+                }
+
+                // Shift byte into accumulation as appropriate
+                accumulation += (uint)(settingsBytes[i] << (8 * (i % 8)));
+            }
+
+            if (settingsBytes.Count % 8 != 0)
+            {
+                newSettingsString += Base36Util.Encode(accumulation);
+            }
+
+            settingsStringBox.Text = newSettingsString;
         }
 
         private void UpdateGimmicksString()
         {
+            List<byte> gimmicksBytes = new List<byte>();
+            foreach (LogicOption gimmick in Gimmicks)
+            {
+                gimmicksBytes.AddRange(gimmick.GetOptionBytes());
+            }
 
+            // Begin with logic hash portion
+            string newGimmicksString = StringUtil.AsStringHex4((int)LogicHash & 0xFFFF) + "-";
+
+            ulong accumulation = 0;
+
+            for (int i = 0; i < gimmicksBytes.Count; i++)
+            {
+                // ulong is full, start next one
+                if (i % 8 == 0 && i != 0)
+                {
+                    newGimmicksString += Base36Util.Encode(accumulation);
+                    accumulation = 0;
+                }
+
+                // Shift byte into accumulation as appropriate
+                accumulation += (uint)(gimmicksBytes[i] << (8 * (i % 8)));
+            }
+
+            if (gimmicksBytes.Count % 8 != 0)
+            {
+                newGimmicksString += Base36Util.Encode(accumulation);
+            }
+
+            gimmicksStringBox.Text = newGimmicksString;
         }
     }
 }

@@ -36,6 +36,8 @@
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.randomize = new System.Windows.Forms.Button();
             this.generalTab = new System.Windows.Forms.TabPage();
+            this.patchNotExistLabel = new System.Windows.Forms.Label();
+            this.logicNotExistLabel = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.seedLabel = new System.Windows.Forms.Label();
             this.seedField = new System.Windows.Forms.TextBox();
@@ -47,8 +49,12 @@
             this.customLogicCheckBox = new System.Windows.Forms.CheckBox();
             this.mainTabs = new System.Windows.Forms.TabControl();
             this.optionTabPage = new System.Windows.Forms.TabPage();
+            this.settingsStringBox = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.optionControlLayout = new System.Windows.Forms.FlowLayoutPanel();
             this.gimmicksTabPage = new System.Windows.Forms.TabPage();
+            this.gimmicksStringBox = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.gimmickControlLayout = new System.Windows.Forms.FlowLayoutPanel();
             this.generatedTab = new System.Windows.Forms.TabPage();
             this.gimmickHashValue = new System.Windows.Forms.Label();
@@ -62,10 +68,6 @@
             this.saveSpoilerButton = new System.Windows.Forms.Button();
             this.savePatchButton = new System.Windows.Forms.Button();
             this.saveRomButton = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.settingsStringBox = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.generalTab.SuspendLayout();
@@ -127,6 +129,8 @@
             // 
             // generalTab
             // 
+            this.generalTab.Controls.Add(this.patchNotExistLabel);
+            this.generalTab.Controls.Add(this.logicNotExistLabel);
             this.generalTab.Controls.Add(this.button1);
             this.generalTab.Controls.Add(this.seedLabel);
             this.generalTab.Controls.Add(this.seedField);
@@ -143,6 +147,28 @@
             this.generalTab.TabIndex = 0;
             this.generalTab.Text = "General";
             this.generalTab.UseVisualStyleBackColor = true;
+            // 
+            // patchNotExistLabel
+            // 
+            this.patchNotExistLabel.AutoSize = true;
+            this.patchNotExistLabel.ForeColor = System.Drawing.Color.Red;
+            this.patchNotExistLabel.Location = new System.Drawing.Point(113, 101);
+            this.patchNotExistLabel.Name = "patchNotExistLabel";
+            this.patchNotExistLabel.Size = new System.Drawing.Size(91, 13);
+            this.patchNotExistLabel.TabIndex = 15;
+            this.patchNotExistLabel.Text = "File does not exist";
+            this.patchNotExistLabel.Visible = false;
+            // 
+            // logicNotExistLabel
+            // 
+            this.logicNotExistLabel.AutoSize = true;
+            this.logicNotExistLabel.ForeColor = System.Drawing.Color.Red;
+            this.logicNotExistLabel.Location = new System.Drawing.Point(113, 154);
+            this.logicNotExistLabel.Name = "logicNotExistLabel";
+            this.logicNotExistLabel.Size = new System.Drawing.Size(91, 13);
+            this.logicNotExistLabel.TabIndex = 14;
+            this.logicNotExistLabel.Text = "File does not exist";
+            this.logicNotExistLabel.Visible = false;
             // 
             // button1
             // 
@@ -208,7 +234,6 @@
             this.customLogicPath.Name = "customLogicPath";
             this.customLogicPath.Size = new System.Drawing.Size(206, 20);
             this.customLogicPath.TabIndex = 8;
-            this.customLogicPath.TextChanged += CustomLogicPath_TextChanged;
             // 
             // browseLogicButton
             // 
@@ -256,6 +281,22 @@
             this.optionTabPage.Text = "Settings";
             this.optionTabPage.UseVisualStyleBackColor = true;
             // 
+            // settingsStringBox
+            // 
+            this.settingsStringBox.Location = new System.Drawing.Point(91, 6);
+            this.settingsStringBox.Name = "settingsStringBox";
+            this.settingsStringBox.Size = new System.Drawing.Size(100, 20);
+            this.settingsStringBox.TabIndex = 2;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(7, 9);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(78, 13);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "Settings String:";
+            // 
             // optionControlLayout
             // 
             this.optionControlLayout.AutoScroll = true;
@@ -266,7 +307,7 @@
             // 
             // gimmicksTabPage
             // 
-            this.gimmicksTabPage.Controls.Add(this.textBox1);
+            this.gimmicksTabPage.Controls.Add(this.gimmicksStringBox);
             this.gimmicksTabPage.Controls.Add(this.label5);
             this.gimmicksTabPage.Controls.Add(this.gimmickControlLayout);
             this.gimmicksTabPage.Location = new System.Drawing.Point(4, 22);
@@ -276,6 +317,22 @@
             this.gimmicksTabPage.TabIndex = 1;
             this.gimmicksTabPage.Text = "Gimmicks";
             this.gimmicksTabPage.UseVisualStyleBackColor = true;
+            // 
+            // gimmicksStringBox
+            // 
+            this.gimmicksStringBox.Location = new System.Drawing.Point(98, 6);
+            this.gimmicksStringBox.Name = "gimmicksStringBox";
+            this.gimmicksStringBox.Size = new System.Drawing.Size(100, 20);
+            this.gimmicksStringBox.TabIndex = 3;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(7, 9);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(85, 13);
+            this.label5.TabIndex = 2;
+            this.label5.Text = "Gimmicks String:";
             // 
             // gimmickControlLayout
             // 
@@ -405,38 +462,6 @@
             this.saveRomButton.UseVisualStyleBackColor = true;
             this.saveRomButton.Click += new System.EventHandler(this.SaveRomButton_Click);
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(7, 9);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(78, 13);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "Settings String:";
-            // 
-            // settingsStringBox
-            // 
-            this.settingsStringBox.Location = new System.Drawing.Point(91, 6);
-            this.settingsStringBox.Name = "settingsStringBox";
-            this.settingsStringBox.Size = new System.Drawing.Size(100, 20);
-            this.settingsStringBox.TabIndex = 2;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(7, 9);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(85, 13);
-            this.label5.TabIndex = 2;
-            this.label5.Text = "Gimmicks String:";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(98, 6);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 3;
-            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -505,8 +530,10 @@
         private System.Windows.Forms.Label settingHashValue;
         private System.Windows.Forms.TextBox settingsStringBox;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox gimmicksStringBox;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label patchNotExistLabel;
+        private System.Windows.Forms.Label logicNotExistLabel;
     }
 }
 

@@ -21,10 +21,8 @@ namespace MinishRandomizer.Utilities
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public static String Encode(long input)
+        public static string Encode(ulong input)
         {
-            if (input < 0) throw new ArgumentOutOfRangeException(nameof(input), input, "input cannot be negative");
-
             char[] clistarr = CharList.ToCharArray();
             var result = new Stack<char>();
             while (input != 0)
@@ -40,14 +38,14 @@ namespace MinishRandomizer.Utilities
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public static Int64 Decode(string input)
+        public static ulong Decode(string input)
         {
             var reversed = input.ToLower().Reverse();
-            long result = 0;
+            ulong result = 0;
             int pos = 0;
             foreach (char c in reversed)
             {
-                result += CharList.IndexOf(c) * (long)Math.Pow(36, pos);
+                result += (ulong)CharList.IndexOf(c) * (ulong)Math.Pow(36, pos);
                 pos++;
             }
             return result;

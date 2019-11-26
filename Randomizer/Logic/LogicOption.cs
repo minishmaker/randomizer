@@ -20,6 +20,7 @@ namespace MinishRandomizer.Randomizer.Logic
         public string NiceName;
         public bool Active;
         public LogicOptionType Type;
+        public Action ChangeHash;
 
         public LogicOption(string name, string niceName, bool active, LogicOptionType type = LogicOptionType.Setting)
         {
@@ -43,6 +44,11 @@ namespace MinishRandomizer.Randomizer.Logic
         {
             throw new NotImplementedException();
         }
+
+        public virtual byte[] GetOptionBytes()
+        {
+            throw new NotImplementedException();
+        }
     }
 
     public class LogicFlag : LogicOption
@@ -58,7 +64,7 @@ namespace MinishRandomizer.Randomizer.Logic
                 Checked = Active
             };
 
-            flagCheckBox.CheckedChanged += (object sender, EventArgs e) => { Active = flagCheckBox.Checked; };
+            flagCheckBox.CheckedChanged += (object sender, EventArgs e) => { Active = flagCheckBox.Checked; ChangeHash(); };
 
             return flagCheckBox;
         }
@@ -79,6 +85,11 @@ namespace MinishRandomizer.Randomizer.Logic
         public override byte GetHashByte()
         {
             return Active ? (byte)01 : (byte)00;
+        }
+
+        public override byte[] GetOptionBytes()
+        {
+            return new byte[] { Active ? (byte)01 : (byte)00 };
         }
     }
 
@@ -131,6 +142,8 @@ namespace MinishRandomizer.Randomizer.Logic
             {
                 Active = true;
                 DefinedColor = new ColorUtil.GBAColor(colorPicker.Color).ToColor();
+
+                ChangeHash();
             }
         }
 
@@ -159,6 +172,11 @@ namespace MinishRandomizer.Randomizer.Logic
             // Maybe not a great way to represent, leaves some info out and is likely to cause easy collisions
             return Active ? (byte)(DefinedColor.R ^ DefinedColor.G ^ DefinedColor.B) : (byte)00;
         }
+
+        public override byte[] GetOptionBytes()
+        {
+            return new byte[] { DefinedColor.R, DefinedColor.G, DefinedColor.B };
+        }
     }
 
     public class LogicDropdown : LogicOption
@@ -181,7 +199,7 @@ namespace MinishRandomizer.Randomizer.Logic
                 DataSource = Selections.Keys.ToList()
             };
 
-            comboBox.SelectedValueChanged += (object sender, EventArgs e) => { Selection = (string)comboBox.SelectedValue; SelectedNumber = comboBox.SelectedIndex; };
+            comboBox.SelectedValueChanged += (object sender, EventArgs e) => { Selection = (string)comboBox.SelectedValue; SelectedNumber = comboBox.SelectedIndex; ChangeHash(); };
 
             return comboBox;
         }
@@ -207,6 +225,11 @@ namespace MinishRandomizer.Randomizer.Logic
         public override byte GetHashByte()
         {
             return Active ? (byte)(SelectedNumber % 0x100) : (byte)0;
+        }
+
+        public override byte[] GetOptionBytes()
+        {
+            return new byte[] { Active ? (byte)(SelectedNumber % 0x100) : (byte)0 };
         }
     }
 }
