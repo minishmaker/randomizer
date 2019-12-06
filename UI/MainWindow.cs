@@ -16,6 +16,7 @@ namespace MinishRandomizer
         private ROM ROM_;
         private Shuffler shuffler;
         private bool Randomized;
+        private bool UpdateOptionString;
         private uint LogicHash;
         private List<LogicOption> Settings;
         private List<LogicOption> Gimmicks;
@@ -24,6 +25,8 @@ namespace MinishRandomizer
         public MainWindow()
         {
             InitializeComponent();
+
+            UpdateOptionString = true;
 
             // Initialize seed to random value
             seedField.Text = new Random().Next().ToString();
@@ -467,6 +470,11 @@ namespace MinishRandomizer
 
         private void UpdateSettingsString()
         {
+            if (!UpdateOptionString)
+            {
+                return;
+            }
+
             List<byte> settingsBytes = new List<byte>();
             foreach (LogicOption setting in Settings)
             {
@@ -476,7 +484,7 @@ namespace MinishRandomizer
             // Begin with logic hash portion
             string newSettingsString = StringUtil.AsStringHex4((int)LogicHash & 0xFFFF) + "-";
 
-            ulong accumulation = 0;
+            /*ulong accumulation = 0;
 
             // Notably includes gimmicksBytes.Count, the i-1th entry in gimmicksBytes is used
             for (int i = 1; i < settingsBytes.Count; i++)
@@ -495,13 +503,20 @@ namespace MinishRandomizer
             if (settingsBytes.Count % 8 != 0)
             {
                 newSettingsString += Base36Util.Encode(accumulation);
-            }
+            }*/
+
+            newSettingsString += Convert.ToBase64String(settingsBytes.ToArray());
 
             settingsStringBox.Text = newSettingsString;
         }
 
         private void UpdateGimmicksString()
         {
+            if (!UpdateOptionString)
+            {
+                return;
+            }
+
             List<byte> gimmicksBytes = new List<byte>();
             foreach (LogicOption gimmick in Gimmicks)
             {
@@ -511,7 +526,7 @@ namespace MinishRandomizer
             // Begin with logic hash portion
             string newGimmicksString = StringUtil.AsStringHex4((int)LogicHash & 0xFFFF) + "-";
 
-            ulong accumulation = 0;
+            /*ulong accumulation = 0;
 
             for (int i = 0; i < gimmicksBytes.Count; i++)
             {
@@ -529,7 +544,9 @@ namespace MinishRandomizer
             if (gimmicksBytes.Count % 8 != 0)
             {
                 newGimmicksString += Base36Util.Encode(accumulation);
-            }
+            }*/
+
+            newGimmicksString += Convert.ToBase64String(gimmicksBytes.ToArray());
 
             gimmicksStringBox.Text = newGimmicksString;
         }

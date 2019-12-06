@@ -285,7 +285,7 @@
             // 
             this.settingsStringBox.Location = new System.Drawing.Point(91, 6);
             this.settingsStringBox.Name = "settingsStringBox";
-            this.settingsStringBox.Size = new System.Drawing.Size(100, 20);
+            this.settingsStringBox.Size = new System.Drawing.Size(264, 20);
             this.settingsStringBox.TabIndex = 2;
             // 
             // label4
@@ -322,7 +322,7 @@
             // 
             this.gimmicksStringBox.Location = new System.Drawing.Point(98, 6);
             this.gimmicksStringBox.Name = "gimmicksStringBox";
-            this.gimmicksStringBox.Size = new System.Drawing.Size(100, 20);
+            this.gimmicksStringBox.Size = new System.Drawing.Size(257, 20);
             this.gimmicksStringBox.TabIndex = 3;
             // 
             // label5
