@@ -728,7 +728,7 @@ FortressOutsideF3Left:Fortress;             Minor;             18-02-00;        
 FortressOutsideF3Right:Fortress;            Minor;             18-02-01;                                                                   Locations.AccessFortress, Items.MoleMitts
 FortressOutsideBombWallBigChest:Fortress;   Major;             18-03-00;                                                                   Locations.AccessFortress, Items.BombBag, Helpers.HasBow, Helpers.CanSplit2, Items.SmallKey`FOW_SET`:4
 FortressOutsideBombWallSmallChest:Fortress; Minor;             18-03-01;                                                                   Locations.FortressOutsideBombWallBigChest, Items.MoleMitts
-FortressOutsideMinishHole:Fortress;         `KEYSANITY_MAJOR`; 0F424F;                                                                     Locations.AccessFortress, Helpers.HasBow, Items.SmallKey`FOW_SET`:3;                                      Items.SmallKey`FOW_SET`
+FortressOutsideMinishHole:Fortress;         `KEYSANITY_MAJOR`; 0F424F;                                                                     Locations.AccessFortress, Helpers.HasBow, Items.MoleMitts, Items.SmallKey`FOW_SET`:3;                                      Items.SmallKey`FOW_SET`
 FortressRightDrop:Fortress;                 `KEYSANITY_MAJOR`; fowRightItem:Define:FirstByte,fowRightSub:Define:SecondByte;                Locations.AccessFortress, Helpers.CanSplit2;                                                              Items.SmallKey`FOW_SET`
 FortressLeftDrop:Fortress;                  `KEYSANITY_MAJOR`; fowLeftItem:Define:FirstByte,fowLeftSub:Define:SecondByte;                  Locations.AccessFortress, Helpers.HasBow, (|Helpers.CanSplit2, Items.RocsCape);                           Items.SmallKey`FOW_SET`
 FortressClonePuzzle:Fortress;               `KEYSANITY_MAJOR`; 0E1E8B;                                                                     Locations.AccessFortress, Helpers.HasBow, Helpers.CanSplit2 ,Items.SmallKey`FOW_SET`:2;                   Items.SmallKey`FOW_SET`
@@ -817,14 +817,14 @@ PalacePrize:`ELEMENT_DUNGEON`;     `ELEMENT`;         0E69E3;                   
 	!endif
 
 	CastleBigDoorsOpen:DHC;    Helper;            ;         Locations.DHCAccess, Items.SmallKey`DHC_SET`:1, Helpers.CanSplit4, Items.RocsCape, (|Items.Boomerang::2, Helpers.HasBow), Items.BombBag
-    CastleKing:DHC;            Minor;             00E46A;   Locations.DHCAccess, Helpers.CanSplit4, Items.BombBag;        Items.Rupee200
-    CastleBasement:DHC;        `KEYSANITY_MINOR`; 88-37-00; Locations.DHCAccess;                                          Items.DungeonMap`DHC_SET`
-    CastleClones:DHC;          `KEYSANITY_MAJOR`; 88-27-00; Locations.DHCAccess, Helpers.CanSplit4;                       Items.SmallKey`DHC_SET`
-    CastlePostThrone:DHC;      `KEYSANITY_MINOR`; 88-20-00; Locations.DHCAccess, Items.SmallKey`DHC_SET`, Items.BombBag;  Items.Compass`DHC_SET`
-    CastleTopLeftTower:DHC;    `KEYSANITY_MAJOR`; 88-01-00; Helpers.CastleBigDoorsOpen, Helpers.HasBow;                   Items.SmallKey`DHC_SET`
-    CastleTopRightTower:DHC;   `KEYSANITY_MAJOR`; 88-02-00; Helpers.CastleBigDoorsOpen, Items.LanternOff;                 Items.SmallKey`DHC_SET`
-    CastleLowerLeftTower:DHC;  `KEYSANITY_MAJOR`; 88-03-00; Helpers.CastleBigDoorsOpen;                                   Items.SmallKey`DHC_SET`
-    CastleLowerRightTower:DHC; `KEYSANITY_MAJOR`; 88-04-00; Helpers.CastleBigDoorsOpen;                                   Items.SmallKey`DHC_SET`
+    CastleKing:DHC;            Minor;             00E46A;   Locations.DHCAccess, Helpers.CanSplit4, Items.BombBag;                           Items.Rupee200
+    CastleBasement:DHC;        `KEYSANITY_MINOR`; 88-37-00; Locations.DHCAccess;                                                             Items.DungeonMap`DHC_SET`
+    CastleClones:DHC;          `KEYSANITY_MAJOR`; 88-27-00; Locations.DHCAccess, Helpers.CanSplit4;                                          Items.SmallKey`DHC_SET`
+    CastlePostThrone:DHC;      `KEYSANITY_MINOR`; 88-20-00; Locations.DHCAccess, Helpers.CanSplit4, Items.SmallKey`DHC_SET`, Items.BombBag;  Items.Compass`DHC_SET`
+    CastleTopLeftTower:DHC;    `KEYSANITY_MAJOR`; 88-01-00; Helpers.CastleBigDoorsOpen, Helpers.HasBow;                                      Items.SmallKey`DHC_SET`
+    CastleTopRightTower:DHC;   `KEYSANITY_MAJOR`; 88-02-00; Helpers.CastleBigDoorsOpen, Items.LanternOff;                                    Items.SmallKey`DHC_SET`
+    CastleLowerLeftTower:DHC;  `KEYSANITY_MAJOR`; 88-03-00; Helpers.CastleBigDoorsOpen;                                                      Items.SmallKey`DHC_SET`
+    CastleLowerRightTower:DHC; `KEYSANITY_MAJOR`; 88-04-00; Helpers.CastleBigDoorsOpen;                                                      Items.SmallKey`DHC_SET`
     
 	!ifdef - KEYSANITY	#temp will be changed on fixing generation issues 
         CastleBigBlock:DHC;    Major;             88-09-00; Helpers.CastleBigDoorsOpen, Items.SmallKey`DHC_SET`:5; Items.BigKey`DHC_SET`
