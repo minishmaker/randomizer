@@ -58,6 +58,7 @@
     <Compile Include="Randomizer\Logic\LocationAddress.cs" />
     <Compile Include="Randomizer\Logic\LogicOption.cs" />
     <Compile Include="Randomizer\Logic\Parser.cs" />
+    <Compile Include="Randomizer\RandomizedRom.cs" />
     <Compile Include="UI\MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,7 +69,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Randomizer\Logic\Location.cs" />
     <Compile Include="Randomizer\Shuffler.cs" />
-    <Compile Include="Utilities\Base36Util.cs" />
     <Compile Include="Utilities\ColorUtil.cs" />
     <Compile Include="Utilities\EventUtil.cs" />
     <Compile Include="Utilities\ExtensionMethods.cs" />

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -478,7 +479,7 @@ namespace MinishRandomizer
             List<byte> settingsBytes = new List<byte>();
             foreach (LogicOption setting in Settings)
             {
-                settingsBytes.AddRange(setting.GetOptionBytes());
+                //settingsBytes.AddRange(setting.GetOptionBytes());
             }
 
             // Begin with logic hash portion
@@ -517,34 +518,37 @@ namespace MinishRandomizer
                 return;
             }
 
-            List<byte> gimmicksBytes = new List<byte>();
+            List<BitArray> gimmicksBitArrays = new List<BitArray>();
+            int bitCount = 0;
             foreach (LogicOption gimmick in Gimmicks)
             {
-                gimmicksBytes.AddRange(gimmick.GetOptionBytes());
+                BitArray newBits = gimmick.GetOptionBitArray();
+
+                bitCount += newBits.Count;
+
+                gimmicksBitArrays.Add(newBits);
+            }
+
+            byte[] gimmickBytes;
+
+            if (gimmicksBitArrays.Count > 0)
+            {
+                int bitOffset = gimmicksBitArrays[0].Count;
+
+                gimmicksBitArrays[0].Length = bitCount;
+
+                for (int i = 1; i < gimmicksBitArrays.Count; i++)
+                {
+                    //gimmicksBitArrays[i].CopyTo(gimmicksBitArrays[0], bitOffset);
+                    bitOffset += gimmicksBitArrays.Count;
+                }
+
+                gimmickBytes = new byte[bitCount];
+                gimmicksBitArrays[0];
             }
 
             // Begin with logic hash portion
             string newGimmicksString = StringUtil.AsStringHex4((int)LogicHash & 0xFFFF) + "-";
-
-            /*ulong accumulation = 0;
-
-            for (int i = 0; i < gimmicksBytes.Count; i++)
-            {
-                // ulong is full, start next one
-                if (i % 8 == 0 && i != 0)
-                {
-                    newGimmicksString += Base36Util.Encode(accumulation);
-                    accumulation = 0;
-                }
-
-                // Shift byte into accumulation as appropriate
-                accumulation += (uint)(gimmicksBytes[i] << (8 * (i % 8)));
-            }
-
-            if (gimmicksBytes.Count % 8 != 0)
-            {
-                newGimmicksString += Base36Util.Encode(accumulation);
-            }*/
 
             newGimmicksString += Convert.ToBase64String(gimmicksBytes.ToArray());
 

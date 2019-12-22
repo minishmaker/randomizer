@@ -15,15 +15,21 @@ namespace MinishRandomizer
         [STAThread]
         static void Main(string[] args)
         {
+            
+
             bool showGui = true;
-            bool generateRom = false;
+            bool randomize = false;
+            bool outputRom = false;
             bool outputSpoiler = false;
             bool webOutput = false;
-            string logicPath;
-            string patchPath;
-            string settingsString;
-            string gimmicksString;
+            bool patchOutput = false;
+            string logicPath = null;
+            string patchPath = null;
+            string settingsString = null;
+            string gimmicksString = null;
             int? seed = null;
+
+            Console.WriteLine(args.Length);
 
             foreach (string argument in args)
             {
@@ -42,21 +48,52 @@ namespace MinishRandomizer
                         showGui = false;
                         break;
 
-                    case "--web":
-                    case "-w":
-                        webOutput = true;
-                        break;
-
-                    case "--romgenerate":
+                    case "--randomize":
                     case "-r":
-                        generateRom = true;
-                        break;
+                        randomize = true;
 
-                    case "--spoiler":
-                    case "-s":
-                        outputSpoiler = true;
-                        break;
+                        if (argParts.Length < 2)
+                        {
+                            outputRom = true;
+                            outputSpoiler = false;
+                        }
+                        else
+                        {
+                            switch (argParts[1])
+                            {
+                                case "rom":
+                                case "r":
+                                    outputRom = true;
+                                    break;
 
+                                case "web":
+                                case "w":
+                                    webOutput = true;
+                                    break;
+
+                                case "patch":
+                                case "p":
+                                    patchOutput = true;
+                                    break;
+
+                                case "none":
+                                case "n":
+                                    break;
+
+                                default:
+
+                                    break;
+                            }
+
+                            if (argParts.Length > 2)
+                            {
+                                if (argParts[2] == "spoiler")
+                                {
+                                    outputSpoiler = true;
+                                }
+                            }
+                        }
+                        break;
                     case "--logic":
                     case "-l":
                         if (argParts.Length == 2)
@@ -91,7 +128,7 @@ namespace MinishRandomizer
 
                     case "--seed":
                     case "-d":
-                        if (argParts.Length == 2)
+                        if (argParts.Length >= 2)
                         {
                             if (int.TryParse(argParts[1], out int tempSeed))
                             {
@@ -105,11 +142,48 @@ namespace MinishRandomizer
                         }
                         break;
                 }
+
+                
             }
 
-            if (webOutput || generateRom || outputSpoiler)
+            if (webOutput || outputRom || outputSpoiler)
             {
                 Shuffler shuffler = new Shuffler();
+
+                if (seed != null)
+                {
+                    shuffler.SetSeed(seed ?? 0);
+                }
+                
+                if (logicPath != null)
+                {
+                    shuffler.LoadOptions(logicPath);
+                }
+                else
+                {
+                    shuffler.LoadOptions();
+                }
+
+                if (settingsString != null)
+                {
+                    //shuffler.LoadSettingsString(settingsString);
+                }
+
+                if (gimmicksString != null)
+                {
+                    //shuffler.LoadGimmicksString(gimmicksString);
+                }
+
+                if (logicPath != null)
+                {
+                    shuffler.LoadLocations(logicPath);
+                }
+                else
+                {
+                    shuffler.LoadLocations();
+                }
+
+                shuffler.RandomizeLocations();
             }
 
             if (showGui)

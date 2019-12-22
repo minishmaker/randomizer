@@ -8,22 +8,7 @@ namespace MinishRandomizer.Utilities
 {
     public static class EventUtil
     {
-        public static void WriteEvent(Stream input, Stream output, List<EventDefine> defines)
-        {
-            TextWriter errorStream = Console.Error;
-            ColorzCore.IO.Log log = new ColorzCore.IO.Log
-            {
-                Output = errorStream,
-                WarningsAreErrors = false,
-                NoColoredTags = false
-            };
-
-            Dictionary<string, ColorzCore.Parser.Definition> definitions = GetDefinitions(defines);
-
-            ColorzCore.Program.EAParse("TMC", "Language Raws", ".txt", input, "TMCR", output, log, definitions);
-        }
-
-        private static Dictionary<string, ColorzCore.Parser.Definition> GetDefinitions(List<EventDefine> defines)
+        public static Dictionary<string, ColorzCore.Parser.Definition> GetDefinitions(List<EventDefine> defines)
         {
             Dictionary<string, ColorzCore.Parser.Definition> definitions = new Dictionary<string, ColorzCore.Parser.Definition>();
             foreach (EventDefine define in defines)
@@ -45,7 +30,7 @@ namespace MinishRandomizer.Utilities
         {
             get
             {
-                return null;
+                return Replacement == null ? new ColorzCore.Parser.Definition() : ColorzCore.Program.CreateDefinition(Replacement);
             }
         }
 
@@ -58,24 +43,6 @@ namespace MinishRandomizer.Utilities
         {
             Name = name;
             Replacement = replacement;
-        }
-
-        public void WriteDefineString(StringBuilder w, string value = null)
-        {
-            if (value == null)
-            {
-                value = Replacement;
-            }
-
-            if (string.IsNullOrEmpty(value))
-            {
-                w.AppendLine($"#define {Name}");
-            }
-            else
-            {
-                w.AppendLine($"#define {Name} {value}");
-            }
-
         }
     }
 }

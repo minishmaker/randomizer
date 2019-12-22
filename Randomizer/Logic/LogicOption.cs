@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -45,7 +46,7 @@ namespace MinishRandomizer.Randomizer.Logic
             throw new NotImplementedException();
         }
 
-        public virtual byte[] GetOptionBytes()
+        public virtual BitArray GetOptionBitArray()
         {
             throw new NotImplementedException();
         }
@@ -87,9 +88,9 @@ namespace MinishRandomizer.Randomizer.Logic
             return Active ? (byte)01 : (byte)00;
         }
 
-        public override byte[] GetOptionBytes()
+        public override BitArray GetOptionBitArray()
         {
-            return new byte[] { Active ? (byte)01 : (byte)00 };
+            return new BitArray(1, Active);
         }
     }
 
@@ -173,9 +174,9 @@ namespace MinishRandomizer.Randomizer.Logic
             return Active ? (byte)(DefinedColor.R ^ DefinedColor.G ^ DefinedColor.B) : (byte)00;
         }
 
-        public override byte[] GetOptionBytes()
+        public override BitArray GetOptionBitArray()
         {
-            return new byte[] { DefinedColor.R, DefinedColor.G, DefinedColor.B };
+            return new BitArray(new byte[] { DefinedColor.R, DefinedColor.G, DefinedColor.B });
         }
     }
 
@@ -211,10 +212,8 @@ namespace MinishRandomizer.Randomizer.Logic
             // Only true if a color has been selected
             if (Active)
             {
-                Console.WriteLine("Activedefine");
                 if (Selections.TryGetValue(Selection, out string content))
                 {
-                    Console.WriteLine(Name);
                     defineList.Add(new LogicDefine(Name, content));
                 }
             }
@@ -224,12 +223,14 @@ namespace MinishRandomizer.Randomizer.Logic
 
         public override byte GetHashByte()
         {
-            return Active ? (byte)(SelectedNumber % 0x100) : (byte)0;
+            return Active ? (byte)(SelectedNumber & 0xFF) : (byte)0;
         }
 
-        public override byte[] GetOptionBytes()
+        public override BitArray GetOptionBitArray()
         {
-            return new byte[] { Active ? (byte)(SelectedNumber % 0x100) : (byte)0 };
+            BitArray outputBytes = new BitArray(new byte[] { Active ? (byte)(SelectedNumber & 0xFF) : (byte)0 });
+
+            return outputBytes;
         }
     }
 }

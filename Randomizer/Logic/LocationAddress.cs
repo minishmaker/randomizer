@@ -89,10 +89,10 @@ namespace MinishRandomizer.Randomizer.Logic
     /// </summary>
     public class EventLocationAddress : LocationAddress
     {
-        public EventDefine Define;
+        public string Name;
         public EventLocationAddress(AddressType type, string name) : base(type)
         {
-            Define = new EventDefine(name);
+            Name = name;
         }
 
         public override void WriteAddress(Writer w, Item item)
@@ -105,25 +105,18 @@ namespace MinishRandomizer.Randomizer.Logic
             return;
         }
 
-        /// <summary>
-        /// Write the define and item value to the event file
-        /// </summary>
-        /// <param name="w">A writer to the event stream</param>
-        /// <param name="item">The item to write to the define</param>
-        public void WriteDefine(StringBuilder stringBuilder, Item item)
+        public EventDefine GetEventDefine(Item item)
         {
             if ((Type & AddressType.FirstByte) == AddressType.FirstByte)
             {
-                // Write the hex representation of the item ID to the define
-                Define.WriteDefineString(stringBuilder, "0x" + StringUtil.AsStringHex2((byte)item.Type));
+                return new EventDefine(Name, StringUtil.AsStringHex2((byte)item.Type));
+            }
+            else if ((Type & AddressType.SecondByte) == AddressType.SecondByte)
+            {
+                return new EventDefine(Name, StringUtil.AsStringHex2(item.SubValue));
             }
 
-            if ((Type & AddressType.SecondByte) == AddressType.SecondByte)
-            {
-                // Write the hex representation of the subvalue
-                // Probably a very bad thing if the first was also written, might kill EA
-                Define.WriteDefineString(stringBuilder, "0x" + StringUtil.AsStringHex2(item.SubValue));
-            }
+            throw new Exception($"Improperly typed Event Define \"{Name}\"!");
         }
     }
 }

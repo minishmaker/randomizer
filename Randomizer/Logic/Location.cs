@@ -94,7 +94,7 @@ namespace MinishRandomizer.Randomizer.Logic
             foreach (EventLocationAddress define in Defines)
             {
                 // If any of the defined addresses isn't 
-                if ((define.Type & AddressType.FirstByte) == AddressType.FirstByte && !string.IsNullOrEmpty(define.Define.Name))
+                if ((define.Type & AddressType.FirstByte) == AddressType.FirstByte && !string.IsNullOrEmpty(define.Name))
                 {
                     return true;
                 }
@@ -116,7 +116,7 @@ namespace MinishRandomizer.Randomizer.Logic
             foreach (EventLocationAddress define in Defines)
             {
                 // If any of the defined addresses is first byte, it's valid
-                if ((define.Type & AddressType.SecondByte) == AddressType.SecondByte && !string.IsNullOrEmpty(define.Define.Name))
+                if ((define.Type & AddressType.SecondByte) == AddressType.SecondByte && !string.IsNullOrEmpty(define.Name))
                 {
                     return true;
                 }
@@ -136,12 +136,16 @@ namespace MinishRandomizer.Randomizer.Logic
 
         }
 
-        public void WriteLocationEvent(StringBuilder w)
+        public List<EventDefine> GetEventDefines()
         {
-            foreach (EventLocationAddress define in Defines)
+            List<EventDefine> eventDefines = new List<EventDefine>(Defines.Count);
+
+            foreach (EventLocationAddress address in Defines)
             {
-                define.WriteDefine(w, Contents);
+                eventDefines.Add(address.GetEventDefine(Contents));
             }
+
+            return eventDefines;
         }
 
         /// <summary>
