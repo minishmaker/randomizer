@@ -1,10 +1,10 @@
+using MinishRandomizer.Utilities;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using MinishRandomizer.Utilities;
 
 namespace MinishRandomizer.Randomizer.Logic
 {
@@ -22,6 +22,47 @@ namespace MinishRandomizer.Randomizer.Logic
         public bool Active;
         public LogicOptionType Type;
         public Action ChangeHash;
+        public int BitCount;
+
+        /// <summary>
+        /// Convert a list of options to a byte[] representing their states
+        /// </summary>
+        /// <param name="options">The options to convert</param>
+        /// <returns>The bytes representing the state of the options</returns>
+        public static byte[] ToByteArray(List<LogicOption> options)
+        {
+            int totalBitCount = 0;
+            foreach (LogicOption option in options)
+            {
+                totalBitCount += option.BitCount;
+            }
+
+            BitArray bitArray = new BitArray(totalBitCount);
+            int arrayOffset = 0;
+
+            for (int i = 0; i < options.Count; i++)
+            {
+                options[i].AddState(ref bitArray, ref arrayOffset);
+            }
+
+            return bitArray.ToByteArray();
+        }
+
+        /// <summary>
+        /// Apply the settings from a byte[] to a List<LogicOption>
+        /// </summary>
+        /// <param name="options">The options to change</param>
+        /// <param name="settings">The state to put the options in</param>
+        public static void ApplySettings(List<LogicOption> options, byte[] settings)
+        {
+            BitArray bitArray = new BitArray(settings);
+            int arrayOffset = 0;
+
+            for (int i = 0; i < options.Count; i++)
+            {
+                options[i].SetState(ref bitArray, ref arrayOffset);
+            }
+        }
 
         public LogicOption(string name, string niceName, bool active, LogicOptionType type = LogicOptionType.Setting)
         {
@@ -46,7 +87,12 @@ namespace MinishRandomizer.Randomizer.Logic
             throw new NotImplementedException();
         }
 
-        public virtual BitArray GetOptionBitArray()
+        public virtual void AddState(ref BitArray bitArray, ref int offset)
+        {
+            throw new NotImplementedException();
+        }
+
+        public virtual void SetState(ref BitArray bitArray, ref int offset)
         {
             throw new NotImplementedException();
         }
@@ -54,7 +100,8 @@ namespace MinishRandomizer.Randomizer.Logic
 
     public class LogicFlag : LogicOption
     {
-        public LogicFlag(string name, string niceName, bool active, LogicOptionType type) : base(name, niceName, active, type) { }
+
+        public LogicFlag(string name, string niceName, bool active, LogicOptionType type) : base(name, niceName, active, type) { BitCount = 1; }
 
         public override Control GetControl()
         {
@@ -88,9 +135,18 @@ namespace MinishRandomizer.Randomizer.Logic
             return Active ? (byte)01 : (byte)00;
         }
 
-        public override BitArray GetOptionBitArray()
+        public override void AddState(ref BitArray bitArray, ref int offset)
         {
-            return new BitArray(1, Active);
+            // Add flag to bitArray, got to next bit
+            bitArray[offset] = Active;
+            offset++;
+        }
+
+        public override void SetState(ref BitArray bitArray, ref int offset)
+        {
+            // Take flag from bitArray, go to next bit
+            Active = bitArray[offset];
+            offset++;
         }
     }
 
@@ -108,6 +164,8 @@ namespace MinishRandomizer.Randomizer.Logic
             {
                 startingColor
             };
+
+            BitCount = 24;
         }
 
         // Can specify other colors to be defined relative to the first color
@@ -116,6 +174,8 @@ namespace MinishRandomizer.Randomizer.Logic
             BaseColor = colors[0];
             DefinedColor = colors[0];
             InitialColors = colors;
+
+            BitCount = 24;
         }
 
         public override Control GetControl()
@@ -174,9 +234,51 @@ namespace MinishRandomizer.Randomizer.Logic
             return Active ? (byte)(DefinedColor.R ^ DefinedColor.G ^ DefinedColor.B) : (byte)00;
         }
 
-        public override BitArray GetOptionBitArray()
+        public override void AddState(ref BitArray bitArray, ref int offset)
         {
-            return new BitArray(new byte[] { DefinedColor.R, DefinedColor.G, DefinedColor.B });
+            // Use a loop to add the three bytes in cause convenience
+            for (int i = 0; i < 8; i++)
+            {
+                bitArray[offset + i] = ((DefinedColor.R >> i) & 1) > 0;
+                bitArray[offset + i + 8] = ((DefinedColor.G >> i) & 1) > 0;
+                bitArray[offset + i + 16] = ((DefinedColor.R >> i) & 1) > 0;
+            }
+
+            // Increase the offset by 24
+            offset += 24;
+        }
+
+        public override void SetState(ref BitArray bitArray, ref int offset)
+        {
+            // Initiate new color values
+            byte newR = 0;
+            byte newG = 0;
+            byte newB = 0;
+
+            // Use a loop to fill the bytes
+            for (int i = 0; i < 8; i++)
+            {
+                if (bitArray[offset + i])
+                {
+                    newR |= (byte)(1 << i);
+                }
+
+                if (bitArray[offset + i + 8])
+                {
+                    newG |= (byte)(1 << i);
+                }
+
+                if (bitArray[offset + i + 16])
+                {
+                    newB |= (byte)(1 << i);
+                }
+            }
+
+            // Actually set the new color
+            DefinedColor = Color.FromArgb(newR, newG, newB);
+
+            // Increase the offset by 24
+            offset += 24;
         }
     }
 
@@ -188,8 +290,15 @@ namespace MinishRandomizer.Randomizer.Logic
 
         public LogicDropdown(string name, LogicOptionType type, Dictionary<string, string> selections) : base(name, name, true, type)
         {
+            if (selections.Count > 0xFF)
+            {
+                throw new ArgumentException("LogicDropdowns are limited to 255 selections!");
+            }
+
             Selections = selections;
             Selection = selections.Keys.First();
+
+            BitCount = 8;
         }
 
         public override Control GetControl()
@@ -226,11 +335,39 @@ namespace MinishRandomizer.Randomizer.Logic
             return Active ? (byte)(SelectedNumber & 0xFF) : (byte)0;
         }
 
-        public override BitArray GetOptionBitArray()
+        public override void AddState(ref BitArray bitArray, ref int offset)
         {
-            BitArray outputBytes = new BitArray(new byte[] { Active ? (byte)(SelectedNumber & 0xFF) : (byte)0 });
+            if (Active)
+            {
+                // Use a loop cause I don't want to unroll it
+                for (int i = 0; i < BitCount; i++)
+                {
+                    bitArray[offset + i] = ((SelectedNumber >> i) & 1) > 0;
+                }
 
-            return outputBytes;
+                offset += 8;
+            }
+        }
+
+        public override void SetState(ref BitArray bitArray, ref int offset)
+        {
+            if (Active)
+            {
+                // Temporarily set selected number to 0
+                SelectedNumber = 0;
+
+                // Use a loop to fill the byte
+                for (int i = 0; i < 8; i++)
+                {
+                    if (bitArray[offset + i])
+                    {
+                        SelectedNumber |= (byte)(1 << i);
+                    }
+                }
+
+                // Increase the offset by 24
+                offset += 8;
+            }
         }
     }
 }

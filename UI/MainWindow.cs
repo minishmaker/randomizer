@@ -100,23 +100,6 @@ namespace MinishRandomizer
 
                 // Mark that a seed has been generated so seed-specific options can be used
                 Randomized = true;
-
-                if (!mainTabs.TabPages.Contains(generatedTab))
-                {
-                    // Change the tab to the seed output tab
-                    mainTabs.TabPages.Add(generatedTab);
-                }
-
-                mainTabs.SelectedTab = generatedTab;
-
-                // Show ROM information on seed page
-                generatedSeedValue.Text = seed.ToString();
-                generatedLogicLabel.Text = shuffler.GetLogicIdentifier();
-
-                settingHashValue.Text = StringUtil.AsStringHex8((int)shuffler.GetSettingHash());
-                gimmickHashValue.Text = StringUtil.AsStringHex8((int)shuffler.GetGimmickHash());
-
-                statusText.Text = $"Successfully randomzied seed {seed}";
             }
             catch (ParserException error)
             {
@@ -128,6 +111,26 @@ namespace MinishRandomizer
                 MessageBox.Show(error.Message, "Error Randomizing Seed", MessageBoxButtons.OK);
                 statusText.Text = $"Error randomizing seed: {error.Message}";
             }
+        }
+
+        private void DisplayRandomizedRom(RandomizedRom randomizedRom)
+        {
+            if (!mainTabs.TabPages.Contains(generatedTab))
+            {
+                // Change the tab to the seed output tab
+                mainTabs.TabPages.Add(generatedTab);
+            }
+
+            mainTabs.SelectedTab = generatedTab;
+
+            // Show ROM information on seed page
+            generatedSeedValue.Text = randomizedRom.Seed.ToString();
+            generatedLogicLabel.Text = randomizedRom.GetLogicIdentifier();
+
+            settingHashValue.Text = randomizedRom.SettingsString;
+            gimmickHashValue.Text = randomizedRom.GimmicksString;
+
+            statusText.Text = $"Successfully randomzied seed {Seed}";
         }
 
         private void LoadRom()
@@ -476,35 +479,10 @@ namespace MinishRandomizer
                 return;
             }
 
-            List<byte> settingsBytes = new List<byte>();
-            foreach (LogicOption setting in Settings)
-            {
-                //settingsBytes.AddRange(setting.GetOptionBytes());
-            }
+            byte[] settingsBytes = LogicOption.ToByteArray(Gimmicks);
 
             // Begin with logic hash portion
             string newSettingsString = StringUtil.AsStringHex4((int)LogicHash & 0xFFFF) + "-";
-
-            /*ulong accumulation = 0;
-
-            // Notably includes gimmicksBytes.Count, the i-1th entry in gimmicksBytes is used
-            for (int i = 1; i < settingsBytes.Count; i++)
-            {
-                // ulong is full, start next one
-                if (i % 8 == 0 && i != 0)
-                {
-                    newSettingsString += Base36Util.Encode(accumulation);
-                    accumulation = 0;
-                }
-
-                // Shift byte into accumulation as appropriate
-                accumulation += (uint)(settingsBytes[i] << (8 * (i % 8)));
-            }
-
-            if (settingsBytes.Count % 8 != 0)
-            {
-                newSettingsString += Base36Util.Encode(accumulation);
-            }*/
 
             newSettingsString += Convert.ToBase64String(settingsBytes.ToArray());
 
@@ -518,39 +496,12 @@ namespace MinishRandomizer
                 return;
             }
 
-            List<BitArray> gimmicksBitArrays = new List<BitArray>();
-            int bitCount = 0;
-            foreach (LogicOption gimmick in Gimmicks)
-            {
-                BitArray newBits = gimmick.GetOptionBitArray();
-
-                bitCount += newBits.Count;
-
-                gimmicksBitArrays.Add(newBits);
-            }
-
-            byte[] gimmickBytes;
-
-            if (gimmicksBitArrays.Count > 0)
-            {
-                int bitOffset = gimmicksBitArrays[0].Count;
-
-                gimmicksBitArrays[0].Length = bitCount;
-
-                for (int i = 1; i < gimmicksBitArrays.Count; i++)
-                {
-                    //gimmicksBitArrays[i].CopyTo(gimmicksBitArrays[0], bitOffset);
-                    bitOffset += gimmicksBitArrays.Count;
-                }
-
-                gimmickBytes = new byte[bitCount];
-                gimmicksBitArrays[0];
-            }
+            byte[] gimmicksBytes = LogicOption.ToByteArray(Gimmicks);
 
             // Begin with logic hash portion
             string newGimmicksString = StringUtil.AsStringHex4((int)LogicHash & 0xFFFF) + "-";
 
-            newGimmicksString += Convert.ToBase64String(gimmicksBytes.ToArray());
+            newGimmicksString += Convert.ToBase64String(gimmicksBytes);
 
             gimmicksStringBox.Text = newGimmicksString;
         }
