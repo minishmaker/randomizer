@@ -1,7 +1,7 @@
 # Default logic for the randomizer - Doesn't allow glitches, but allows unintuitive tricks
 
 !name - Default
-!version - 0.5.5
+!version - 0.5.7
 !crc - E8637292
 
 !flag - Setting - KEYSANITY - Keysanity - false
@@ -206,27 +206,31 @@
 	!eventdefine - neverSkipFusionCutscene           # if defined, fusion cutscenes are just like vanilla
 !endif
 
-!ifdef - TRAPS
-    !define - TRAP_VAL - , Items.Trap.FF::15
-!else
-    !define - TRAP_VAL - 
+!define - SWAPRED - Items.Rupee20::50, Items.Bombs5::25, Items.Arrows5::25, Items.Rupee200::10;
+!define - SWAPBLUE - Items.Rupee5::50, Items.Bombs5::25, Items.Arrows5::25 ,Items.Rupee100::10;
+!define - SWAPGREEN - Items.Rupee1::50, Items.Bombs5::25, Items.Arrows5::25, Items.Rupee50::10;
+!define - SWAPSHELL - Items.Rupee50::20, Items.Bombs5::40, Items.Arrows5::40 ;
+
+!ifdef - OPENFUSIONS
+    !define - KINVALS - Items.KinstoneX.6E, Items.KinstoneX.6F, Items.KinstoneX.70, Items.KinstoneX.71, Items.KinstoneX.72, Items.KinstoneX.73, Items.KinstoneX.74, Items.KinstoneX.75,
+!else 
+    !ifdef - NO_FUSIONS
+        !define - KINVALS - Items.KinstoneX.6E, Items.KinstoneX.6F, Items.KinstoneX.70, Items.KinstoneX.71, Items.KinstoneX.72, Items.KinstoneX.73, Items.KinstoneX.74, Items.KinstoneX.75,
+    !else
+        !define - KINVALS - 
+    !endif
 !endif
 
-!define - BLUE_CHANCE - 50
-!define - GREEN_CHANCE - 25
-!define - RED_CHANCE - 0
+!define - SHELLVALS - Items.ShellsX, Items.ShellsX.1, Items.ShellsX.A, Items.ShellsX.14, Items.ShellsX.32, Items.ShellsX.50, Items.ShellsX.64, Items.ShellsX.C8,
 
 !ifdef - TIMEDOHKO
     !eventdefine - timedohkoOption
-	!define - TIMER_VALS - , Items.BlueOrb::`BLUE_CHANCE`, Items.GreenOrb::`GREEN_CHANCE`, Items.RedOrb::`RED_CHANCE`
-!else
-    !define - TIMER_VALS - 
+    !replaceamount - Items.BlueOrb - 10 - `SHELLVALS` `KINVALS`
+    !replaceamount - Items.GreenOrb - 10 - `SHELLVALS` `KINVALS`
+    !replaceamount - Items.RedOrb - 10 - `SHELLVALS` `KINVALS`
 !endif
 
-!define - SWAPRED - Items.Rupee20::50, Items.Bombs5::25, Items.Arrows5::25, Items.Rupee200::10 `TRAP_VAL` `TIMER_VALS` ;
-!define - SWAPBLUE - Items.Rupee5::50, Items.Bombs5::25, Items.Arrows5::25 ,Items.Rupee100::10 `TRAP_VAL` `TIMER_VALS` ;
-!define - SWAPGREEN - Items.Rupee1::50, Items.Bombs5::25, Items.Arrows5::25, Items.Rupee50::10 `TRAP_VAL` `TIMER_VALS` ;
-!define - SWAPSHELL - Items.Rupee50::20, Items.Bombs5::40, Items.Arrows5::40 `TRAP_VAL` `TIMER_VALS` ;
+!replaceamount - Items.Trap.FF - 10 - `SHELLVALS` `KINVALS`
 
 !replace - Items.ShellsX - `SWAPSHELL`
 !replace - Items.ShellsX.1 - `SWAPSHELL`
@@ -471,23 +475,23 @@ SmithHouse;                    Minor; 22-11-00;                                 
 IntroItem1;                    Major; 0F252B;                                                                     ;                                                                                                                                 Items.SmithSword
 IntroItem2;                    Major; 0F253B;                                                                     ;                                                                                                                                 Items.Shield
 LinkMinishWaterHoleHeartPiece; Major; 0DB55F;                                                                     Helpers.CanDestroyTrees ,Items.PegasusBoots, Items.Flippers;
-HyruleWellTop;                 Major; 41-00-00;                                                                   Items.BombBag;                                                                                                                    Items.Shield                                                               
+HyruleWellTop;                 Major; 41-00-00;                                                                   Items.BombBag;                                                                                                                    Items.Shield
 HyruleWellLeft;                Minor; 41-00-01;                                                                   Items.MoleMitts;
 HyruleWellBottom;              Minor; 41-00-02;                                                                   (|Items.Flippers, Items.RocsCape)
 HyruleWellPillar;              Minor; 41-00-03;                                                                   Locations.HyruleWellLeft, Locations.HyruleWellRight, Locations.HyruleWellBottom, Helpers.CanSplit3
 HyruleWellRight;               Minor; 41-00-04;                                                                   ; 
-PreCastleCaveHeartPiece;       Major; 0F864B;                                                                     (|Items.Flippers, Items.RocsCape, Items.BombBag)													                              
+PreCastleCaveHeartPiece;       Major; 0F864B;                                                                     (|Items.Flippers, Items.RocsCape, Items.BombBag)
 SwiftbladeScroll1;             Major; swiftblade1DojoItem:Define:FirstByte, swiftblade1DojoSub:Define:SecondByte; Helpers.HasSword;                                                                                                                 Items.SpinAttack
 SwiftbladeScroll2;             Major; swiftblade2DojoItem:Define:FirstByte, swiftblade2DojoSub:Define:SecondByte; Items.SmithSword::2;                                                                                                              Items.RockBreaker
 SwiftbladeScroll3;             Major; swiftblade3DojoItem:Define:FirstByte, swiftblade3DojoSub:Define:SecondByte; Helpers.HasSword, Items.PegasusBoots;                                                                                             Items.DashAttack
 SwiftbladeScroll4;             Major; swiftblade4DojoItem:Define:FirstByte, swiftblade4DojoSub:Define:SecondByte; Helpers.HasSword, Items.RocsCape;                                                                                                 Items.DownThrust
-GrimbladeHeartPiece;           Major; 0D79BB;							                                          ;																									                              
+GrimbladeHeartPiece;           Major; 0D79BB;							                                          ;
 GrimbladeScroll;               Major; grimbladeDojoItem:Define:FirstByte, grimbladeDojoSub:Define:SecondByte;     Helpers.HasSword, Items.LanternOff;                                                                                               Items.SwordBeam
 HyruleCastleWaterLeft;         Major; 07-00-01;                                                                   Items.Flippers;                                                                                                                   Items.BombBag # extra bomb bag for EU
 HyruleCastleWaterRight;        Minor; 07-00-02;                                                                   Items.Flippers
 CafeLady;                      Minor; 00EDDA;                                                                     ;                                                                                                                                 Items.KinstoneX.RedSpike
 HearthLedge;                   Minor; 02-00-06;                                                                   Items.LanternOff;
-HearthBackdoor;                Major; 0D66D7;                                                                     (|Items.Flippers, Items.PacciCane, Items.RocsCape)													                              
+HearthBackdoor;                Major; 0D66D7;                                                                     (|Items.Flippers, Items.PacciCane, Items.RocsCape)
 SchoolTop;                     Minor; 02-00-07;                                                                   Items.PacciCane;
 SchoolGardenLeft;              Minor; 11-02-00;                                                                   Items.PacciCane, Helpers.CanSplit4
 SchoolGardenMiddle;            Minor; 11-02-01;                                                                   Items.PacciCane, Helpers.CanSplit4
@@ -500,9 +504,9 @@ BakeryAttic;                   Minor; 2E-03-00;                                 
 StockWellAttic;                Minor; 2E-01-01;                                                                   (|Items.PacciCane, Items.Flippers, Items.RocsCape)
 SimulationChest;               Major; 0F04C2;                                                                     Helpers.HasSword
 RemShoeShop;                   Major; 0130EE;                                                                     Items.WakeUpMushroom
-Shop80Item;                    Major; walletShopItem:Define:FirstByte, walletShopSub:Define:SecondByte;           (+80, Items.Rupee1, Items.Rupee5::5, Items.Rupee20::20, Items.Rupee50::50, Items.Rupee100::100, Items.Rupee200::200);                   Items.Wallet
-Shop300Item;                   Major; boomerangShopItem:Define:FirstByte, boomerangShopSub:Define:SecondByte;     Items.Wallet, (+380, Items.Rupee1, Items.Rupee5::5, Items.Rupee20::20, Items.Rupee50::50, Items.Rupee100::100, Items.Rupee200::200);    Items.Boomerang
-Shop600Item;                   Major; quiverShopItem:Define:FirstByte, quiverShopSub:Define:SecondByte;           Items.Wallet::3, (+980, Items.Rupee1, Items.Rupee5::5, Items.Rupee20::20, Items.Rupee50::50, Items.Rupee100::100, Items.Rupee200::200); Items.LargeQuiver
+Shop80Item;                    Major; walletShopItem:Define:FirstByte, walletShopSub:Define:SecondByte;           (+50, Items.Rupee1, Items.Rupee5::5, Items.Rupee20::14, Items.Rupee50::32, Items.Rupee100::64, Items.Rupee200::C8);                     Items.Wallet
+Shop300Item;                   Major; boomerangShopItem:Define:FirstByte, boomerangShopSub:Define:SecondByte;     Items.Wallet, (+17C, Items.Rupee1, Items.Rupee5::5, Items.Rupee20::14, Items.Rupee50::32, Items.Rupee100::64, Items.Rupee200::C8);      Items.Boomerang
+Shop600Item;                   Major; quiverShopItem:Define:FirstByte, quiverShopSub:Define:SecondByte;           Items.Wallet::3, (+3D4, Items.Rupee1, Items.Rupee5::5, Items.Rupee20::14, Items.Rupee50::32, Items.Rupee100::64, Items.Rupee200::C8);   Items.LargeQuiver
 ShopDogfoodItem;               Major; dogShopItem:Define:FirstByte, dogShopSub:Define:SecondByte;                 (|Items.Flippers, Items.PacciCane, Items.RocsCape);                                                                                     Items.DogFoodBottle
 CarlovReward;                  Major; carlovSpotItem:Define:FirstByte, carlovSpotSub:Define:SecondByte;           (|Items.Flippers, Items.PacciCane, Items.RocsCape);                                                                                     Items.CarlovMedal
 FigurineHouseLeft;             Minor; 23-05-00;                                                                   Items.CarlovMedal
@@ -601,7 +605,7 @@ WitchDiggingCave;      Minor; 0C-00-00;                                         
 HyliaSunkenHeartPiece; Major; 0F323B;                                                                 Locations.AccessHyliaNorth, Items.Flippers
 HyliaBottomHeartPiece; Major; 0F324B;                                                                 Locations.AccessHyliaNorth, (|Items.Flippers, Items.RocsCape)
 WavebladeHeartPiece;   Major; 0D7B03;                                                                 Locations.AccessHyliaNorth, (|Items.Flippers, Items.RocsCape)
-WavebladeScroll;       Major; wavebladeDojoItem:Define:FirstByte, wavebladeDojoSub:Define:SecondByte; (+28, Items.PieceOfHeart, Items.HeartContainer::4), Helpers.HasSword, Locations.WavebladeHeartPiece;                                         Items.PerilBeam
+WavebladeScroll;       Major; wavebladeDojoItem:Define:FirstByte, wavebladeDojoSub:Define:SecondByte; (+1C, Items.PieceOfHeart, Items.HeartContainer::4), Helpers.HasSword, Locations.WavebladeHeartPiece;                                         Items.PerilBeam
 
 AccessTreasureCave;          Helper;;         Locations.AccessHyliaNorth, Items.MoleMitts, Items.RocsCape
 HyliaCapeCaveTopRight;       Minor; 19-01-00; Locations.AccessTreasureCave 
@@ -1074,7 +1078,7 @@ PalacePrize:`ELEMENT_DUNGEON`;     `ELEMENT`;         0E69E3;                   
     PalaceRupee4:Palace; Minor; 0E8B4F;                                                                       Locations.AccessPalace, Items.RocsCape, Items.PacciCane;
     PalaceRupee5:Palace; Minor; 0E8B5F;                                                                       Locations.AccessPalace, Items.RocsCape, Items.PacciCane;
 
-	FlipperCaveWaterfallRupee; Minor; 0EF79B;                                                                 Items.Flippers, Items.PacciCane;
+	FlipperCaveWaterfallRupee; Minor; 0EF79B;                                                                 Items.Ocarina, Items.Flippers, Items.PacciCane;
 
 	FarmCaveRupee; Minor; 0F3C9F;                                                                             Locations.AccessEastField, Items.MoleMitts;
 

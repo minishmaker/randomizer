@@ -231,12 +231,31 @@ namespace MinishRandomizer.Randomizer
 
             List<Location> parsedLocations = LogicParser.ParseLocations(locationStrings, RNG);
 
+            LogicParser.SubParser.DuplicateAmountReplacements();
             parsedLocations.ForEach(location => { AddLocation(location); });
         }
 
         public void AddLocation(Location location)
         {
-            if (LogicParser.SubParser.Replacements.ContainsKey(location.Contents))
+            if (LogicParser.SubParser.AmountReplacements.ContainsKey(location.Contents))
+            {
+                var key = location.Contents; 
+                var set = LogicParser.SubParser.AmountReplacements[key];
+                var replacement = set[0];
+                replacement.amount -= 1;
+                location.SetItem(replacement.item);
+
+                if(replacement.amount==0)
+                {
+                    set.RemoveAt(0);
+                    if(LogicParser.SubParser.AmountReplacements[key].Count == 0)
+                    {
+                        LogicParser.SubParser.AmountReplacements.Remove(key);
+                        Console.WriteLine("removed key:" + key.Type);
+                    }
+                }
+            }
+            else if (LogicParser.SubParser.Replacements.ContainsKey(location.Contents))
             {
                 var chanceSet = LogicParser.SubParser.Replacements[location.Contents];
                 var number = RNG.Next(chanceSet.totalChance);
@@ -750,6 +769,7 @@ namespace MinishRandomizer.Randomizer
 
             LogicParser.SubParser.ClearTypeOverrides();
             LogicParser.SubParser.ClearReplacements();
+            LogicParser.SubParser.ClearAmountReplacements();
             LogicParser.SubParser.ClearDefines();
             LogicParser.SubParser.AddOptions();
         }

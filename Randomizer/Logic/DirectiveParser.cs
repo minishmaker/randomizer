@@ -17,6 +17,10 @@ namespace MinishRandomizer.Randomizer.Logic
         private List<LogicDefine> Defines;
         public Dictionary<Item, Location.LocationType> LocationTypeOverrides;
         public Dictionary<Item, ChanceItemSet> Replacements;
+
+        private List<ItemAmountSet> AmountReplacementReferences;
+        private Dictionary<Item, List<int>> AmountReplacementsTemplate;
+        public Dictionary<Item, List<ItemAmountSet>> AmountReplacements; //dont want to modify the original
         public List<EventDefine> EventDefines;
         private int IfCounter;
 
@@ -27,6 +31,8 @@ namespace MinishRandomizer.Randomizer.Logic
             EventDefines = new List<EventDefine>();
             LocationTypeOverrides = new Dictionary<Item, Location.LocationType>();
             Replacements = new Dictionary<Item, ChanceItemSet>();
+            AmountReplacementReferences = new List<ItemAmountSet>();
+            AmountReplacementsTemplate = new Dictionary<Item, List<int>>();
             IfCounter = 0;
         }
 
@@ -72,6 +78,7 @@ namespace MinishRandomizer.Randomizer.Logic
                 case "!elseifndef":
                 case "!endif":
                 case "!replace":
+                case "!replaceamount":
                 case "!settype":
                     return false;
                 default:
@@ -106,7 +113,10 @@ namespace MinishRandomizer.Randomizer.Logic
                         Options.Add(ParseFlagDirective(mainDirectiveParts));
                         break;
                     case "!replace":
-                        ParseReplaceDirective(mainDirectiveParts);
+                        ParseReplaceChanceDirective(mainDirectiveParts);
+                        break;
+                    case "!replaceamount":
+                        ParseReplaceAmountDirective(mainDirectiveParts);
                         break;
                     case "!settype":
                         ParseSetTypeDirective(mainDirectiveParts);
@@ -284,6 +294,32 @@ namespace MinishRandomizer.Randomizer.Logic
             Replacements.Clear();
         }
 
+        public void ClearAmountReplacements()
+        {
+            AmountReplacementsTemplate.Clear();
+        }
+
+        public void DuplicateAmountReplacements()
+        {
+            AmountReplacements = new Dictionary<Item, List<ItemAmountSet>>();
+            var referenceClones = new List<ItemAmountSet>();
+            foreach (var reference in AmountReplacementReferences)
+            {
+                referenceClones.Add(reference.Clone());//making sure we dont change the original reference as those need to be reused
+            }
+
+            foreach (var key in AmountReplacementsTemplate.Keys)
+            {
+                var set = AmountReplacementsTemplate[key];
+                var newList = new List<ItemAmountSet>();
+                foreach (var id in set)
+                {
+                    newList.Add(referenceClones[id]);
+                }
+                AmountReplacements.Add(key, newList);
+            }
+        }
+
         public void ClearTypeOverrides()
         {
             LocationTypeOverrides.Clear();
@@ -456,7 +492,7 @@ namespace MinishRandomizer.Randomizer.Logic
             }
         }
 
-        private void ParseReplaceDirective(string[] directiveParts)
+        private void ParseReplaceChanceDirective(string[] directiveParts)
         {
             if (directiveParts.Length != 3)
             {
@@ -525,6 +561,75 @@ namespace MinishRandomizer.Randomizer.Logic
                 chanceItemList.Add(new ChanceItem(item, chance));
             }
             Replacements.Add(replacedItem, new ChanceItemSet(chanceItemList));
+        }
+
+        private void ParseReplaceAmountDirective(string[] directiveParts)
+        {
+            if (directiveParts.Length != 4)
+            {
+                throw new ParserException("!replaceamount has an invalid amount of arguments");
+            }
+
+            var replacementItem = ParseRegularItem(directiveParts[1],"!replaceamount");
+            
+            byte replacementAmount;
+            if (!byte.TryParse(directiveParts[2], NumberStyles.HexNumber, null, out replacementAmount))
+            {
+                throw new ParserException("!replaceamount has an invalid amount");
+            }
+
+            AmountReplacementReferences.Add(new ItemAmountSet(replacementItem, replacementAmount));
+            var referenceId = AmountReplacementReferences.Count - 1;
+
+            var itemList = new List<Item>();
+            var replacedItems = directiveParts[3].Split(',');
+            foreach (var itemString in replacedItems)
+            {
+                if (itemString == "")
+                    continue;
+                var item = ParseRegularItem(itemString, "!replaceamount");
+                if (AmountReplacementsTemplate.ContainsKey(item))
+                {
+                    var set = AmountReplacementsTemplate[item];
+                    set.Add(referenceId);
+                    AmountReplacementsTemplate[item] = set;
+                }
+                else 
+                {
+                    var list = new List<int>();
+                    list.Add(referenceId);
+                    AmountReplacementsTemplate.Add(item, list);
+                }
+            }
+        }
+
+        private Item ParseRegularItem(String itemString, String errorPrefix)
+        {
+            var itemDungeon = "";
+            ItemType itemType;
+            byte itemSub = 0;
+
+            if (itemString.Split(':').Length >= 2)
+            {
+                itemDungeon = itemString.Split(':')[1];
+            }
+
+            var parts = itemString.Split(':')[0].Split('.');
+
+            if (!Enum.TryParse(parts[1], out itemType))
+            {
+                throw new ParserException($"{errorPrefix} has an invalid itemType");
+            }
+
+            if (parts.Length >= 3)
+            {
+                if (!byte.TryParse(parts[2], NumberStyles.HexNumber, null, out itemSub))
+                {
+                    throw new ParserException($"{errorPrefix} has an invalid itemSub");
+                }
+            }
+
+            return new Item(itemType, itemSub, itemDungeon);
         }
 
         public void ParseSetTypeDirective(string[] directiveParts)
@@ -603,6 +708,22 @@ namespace MinishRandomizer.Randomizer.Logic
             }
         }
 
+        public class ItemAmountSet
+        { 
+            public Item item;
+            public int amount;
+
+            public ItemAmountSet(Item item, int amount)
+            {
+                this.item = item;
+                this.amount = amount;
+            }
+
+            public ItemAmountSet Clone()
+            {
+                return new ItemAmountSet(this.item, this.amount);
+            }
+        }
         private LogicOption ParseDropdownDirective(string[] directiveParts)
         {
             if (directiveParts.Length % 2 != 1 || directiveParts.Length < 5)

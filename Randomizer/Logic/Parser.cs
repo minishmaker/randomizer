@@ -57,7 +57,7 @@ namespace MinishRandomizer.Randomizer.Logic
                         Dictionary<Dependency, int> valueDict = new Dictionary<Dependency, int>();
                         var reqValueString = sequence.Split(',')[0];
 
-                        if (!int.TryParse(reqValueString.Substring(1), out int reqValue))
+                        if (!int.TryParse(reqValueString.Substring(1), NumberStyles.HexNumber, CultureInfo.InvariantCulture, out int reqValue))
                         {
                             throw new ParserException($"Invalid total for counter! {reqValueString.Substring(1)}");
                         }
@@ -72,7 +72,7 @@ namespace MinishRandomizer.Randomizer.Logic
 
                             if (values.Length >= 3)
                             {
-                                if (!int.TryParse(values[2], out depValue))
+                                if (!int.TryParse(values[2], NumberStyles.HexNumber, CultureInfo.InvariantCulture, out depValue))
                                 {
                                     depValue = 1;
                                     dependencyString = dependencyString.Substring(0, dependencyString.Length - (values[2].Length + 1));
