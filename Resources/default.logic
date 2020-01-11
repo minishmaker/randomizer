@@ -877,8 +877,8 @@ PalacePrize:`ELEMENT_DUNGEON`;     `ELEMENT`;         0E69E3;                   
 	    SouthernWoodBottomDig2;  Minor; 0F783F;                                                                   Helpers.CanSplit2, Items.MoleMitts;
 	!endif
 
-	PercyHouseMoblin;        Minor; 0123D6;                                                                   Helpers.CanSplit2, Items.LanternOff, Items.PegasusBoots;
-	PercyHouseReward;        Minor; 06B058:FirstByte, 06B05A:SecondByte;                                      Helpers.CanSplit2, Items.LanternOff, Items.PegasusBoots;
+	PercyHouseMoblin;        Minor; 0123D6;                                                                   Helpers.CanSplit2, Items.LanternOff;
+	PercyHouseReward;        Minor; 06B058:FirstByte, 06B05A:SecondByte;                                      Helpers.CanSplit2, Items.LanternOff;
 	
 	HyliaWaterDigCave;       Minor; 19-00-00;                                                                 Locations.AccessHyliaSouth, Items.MoleMitts, (|Items.Flippers, Items.RocsCape);
 
