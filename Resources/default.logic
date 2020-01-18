@@ -13,9 +13,12 @@
 !flag - Setting - TRAPS - Shuffle traps in itempool
 !flag - Setting - TIMEDOHKO - Die in one hit if the timer runs out
 !flag - Setting - MUSIC_RANDO - Randomize Music
+!flag - Setting - FIGURINE_HUNT - Shuffle figurines into item pool
 !dropdown - Setting - FUSION_SETTING - No normal fusions - NO_FUSIONS - Open fusion mode - OPENFUSIONS - Vanilla Fusions - VANILLA_FUSIONS
 !dropdown - Setting - FUSION_SKIPS - Allow fusion skips - ALLOW_FUSION_SKIPS - Instant fusion skip - INSTANT_SKIP - No fusion skips - NO_FUSION_SKIP
 !dropdown - Setting - DHC_SETTING - Ped Open/Regular DHC - NORMALDHC - Ped Finish/No DHC - NODHC - Open DHC - OPENDHC - Open DHC + Ped Items - PEDITEMS
+!numberbox - Setting - FIGURINE_COUNT - Figurine count
+!numberbox - Setting - FIGURINE_EXTRA - Extra figurines
 
 # these 2 are only valid outside of openDHC modes, if both are set to 0 it defaults to 4 elements
 !dropdown - Setting - SWORD_SETTING - No Sword Ped - 0SWORD - Smith Sword Ped - 1 - White Sword Ped - 2 - Red Sword Ped - 3 - Blue Sword Ped - 4 - Four Sword Ped - 5
@@ -222,6 +225,15 @@
 !endif
 
 !define - SHELLVALS - Items.ShellsX, Items.ShellsX.1, Items.ShellsX.A, Items.ShellsX.14, Items.ShellsX.32, Items.ShellsX.50, Items.ShellsX.64, Items.ShellsX.C8,
+!addition - FIGURINE_TOTAL - `FIGURINE_COUNT`, `FIGURINE_EXTRA`
+!ifndef - PEDITEMS
+    !ifdef - OPENDHC
+        !ifdef - FIGURINE_HUNT
+            !eventdefine - requirementFigurinesAmmount - `FIGURINE_COUNT`
+            !replaceincrement - Items.KinstoneBag:00 - `FIGURINE_TOTAL` - `SHELLVALS` `KINVALS`
+        !endif
+    !endif
+!endif
 
 !ifdef - TIMEDOHKO
     !eventdefine - timedohkoOption
@@ -230,7 +242,9 @@
     !replaceamount - Items.RedOrb - 10 - `SHELLVALS` `KINVALS`
 !endif
 
-!replaceamount - Items.Trap.FF - 10 - `SHELLVALS` `KINVALS`
+!ifdef - TRAPS
+    !replaceamount - Items.Trap.FF - 10 - `SHELLVALS` `KINVALS`
+!endif
 
 !replace - Items.ShellsX - `SWAPSHELL`
 !replace - Items.ShellsX.1 - `SWAPSHELL`

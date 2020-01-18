@@ -21,6 +21,10 @@ namespace MinishRandomizer.Randomizer.Logic
         private List<ItemAmountSet> AmountReplacementReferences;
         private Dictionary<Item, List<int>> AmountReplacementsTemplate;
         public Dictionary<Item, List<ItemAmountSet>> AmountReplacements; //dont want to modify the original
+        private List<ItemAmountSet> IncrementalReplacementReferences;
+        private Dictionary<Item, List<int>> IncrementalReplacementsTemplate;
+        public Dictionary<Item, List<ItemAmountSet>> IncrementalReplacements;
+
         public List<EventDefine> EventDefines;
         private int IfCounter;
 
@@ -33,6 +37,8 @@ namespace MinishRandomizer.Randomizer.Logic
             Replacements = new Dictionary<Item, ChanceItemSet>();
             AmountReplacementReferences = new List<ItemAmountSet>();
             AmountReplacementsTemplate = new Dictionary<Item, List<int>>();
+            IncrementalReplacementReferences = new List<ItemAmountSet>();
+            IncrementalReplacementsTemplate = new Dictionary<Item, List<int>>();
             IfCounter = 0;
         }
 
@@ -67,8 +73,10 @@ namespace MinishRandomizer.Randomizer.Logic
                 case "!version":
                 case "!crc":
                 case "!dropdown":
+                case "!numberbox":
                     return true;
                 case "!define":
+                case "!addition":
                 case "!undefine":
                 case "!eventdefine":
                 case "!ifdef":
@@ -79,6 +87,7 @@ namespace MinishRandomizer.Randomizer.Logic
                 case "!endif":
                 case "!replace":
                 case "!replaceamount":
+                case "!replaceincrement":
                 case "!settype":
                     return false;
                 default:
@@ -118,6 +127,12 @@ namespace MinishRandomizer.Randomizer.Logic
                     case "!replaceamount":
                         ParseReplaceAmountDirective(mainDirectiveParts);
                         break;
+                    case "!replaceincrement":
+                        ParseReplaceIncrementDirective(mainDirectiveParts);
+                        break;
+                    case "!addition":
+                        AddDefine(ParseAdditionDirective(mainDirectiveParts));
+                        break;
                     case "!settype":
                         ParseSetTypeDirective(mainDirectiveParts);
                         break;
@@ -126,6 +141,9 @@ namespace MinishRandomizer.Randomizer.Logic
                         break;
                     case "!dropdown":
                         Options.Add(ParseDropdownDirective(mainDirectiveParts));
+                        break;
+                    case "!numberbox":
+                        Options.Add(ParseNumberboxDirective(mainDirectiveParts));
                         break;
                     case "!define":
                         AddDefine(ParseDefineDirective(mainDirectiveParts));
@@ -294,6 +312,10 @@ namespace MinishRandomizer.Randomizer.Logic
             Replacements.Clear();
         }
 
+        public void ClearIncrementalReplacements()
+        {
+            IncrementalReplacementsTemplate.Clear();
+        }
         public void ClearAmountReplacements()
         {
             AmountReplacementsTemplate.Clear();
@@ -320,6 +342,26 @@ namespace MinishRandomizer.Randomizer.Logic
             }
         }
 
+        public void DuplicateIncrementalReplacements()
+        {
+            IncrementalReplacements = new Dictionary<Item, List<ItemAmountSet>>();
+            var referenceClones = new List<ItemAmountSet>();
+            foreach (var reference in IncrementalReplacementReferences)
+            {
+                referenceClones.Add(reference.Clone());//making sure we dont change the original reference as those need to be reused
+            }
+
+            foreach (var key in IncrementalReplacementsTemplate.Keys)
+            {
+                var set = IncrementalReplacementsTemplate[key];
+                var newList = new List<ItemAmountSet>();
+                foreach (var id in set)
+                {
+                    newList.Add(referenceClones[id]);
+                }
+                IncrementalReplacements.Add(key, newList);
+            }
+        }
         public void ClearTypeOverrides()
         {
             LocationTypeOverrides.Clear();
@@ -603,6 +645,46 @@ namespace MinishRandomizer.Randomizer.Logic
             }
         }
 
+        private void ParseReplaceIncrementDirective(string[] directiveParts)
+        {
+            if (directiveParts.Length != 4)
+            {
+                throw new ParserException("!replaceincrement has an invalid amount of arguments");
+            }
+
+            var replacementItem = ParseRegularItem(directiveParts[1], "!replaceincrement");
+
+            byte replacementAmount;
+            if (!byte.TryParse(directiveParts[2], NumberStyles.HexNumber, null, out replacementAmount))
+            {
+                throw new ParserException("!replaceincrement has an invalid amount");
+            }
+
+            IncrementalReplacementReferences.Add(new ItemAmountSet(replacementItem, replacementAmount));
+            var referenceId = IncrementalReplacementReferences.Count - 1;
+
+            var itemList = new List<Item>();
+            var replacedItems = directiveParts[3].Split(',');
+            foreach (var itemString in replacedItems)
+            {
+                if (itemString == "")
+                    continue;
+                var item = ParseRegularItem(itemString, "!replaceincrement");
+                if (IncrementalReplacementsTemplate.ContainsKey(item))
+                {
+                    var set = IncrementalReplacementsTemplate[item];
+                    set.Add(referenceId);
+                    IncrementalReplacementsTemplate[item] = set;
+                }
+                else
+                {
+                    var list = new List<int>();
+                    list.Add(referenceId);
+                    IncrementalReplacementsTemplate.Add(item, list);
+                }
+            }
+        }
+
         private Item ParseRegularItem(String itemString, String errorPrefix)
         {
             var itemDungeon = "";
@@ -630,6 +712,28 @@ namespace MinishRandomizer.Randomizer.Logic
             }
 
             return new Item(itemType, itemSub, itemDungeon);
+        }
+
+        public LogicDefine ParseAdditionDirective(String[] directiveParts)
+        {
+            var name = directiveParts[1];
+            int totalValue = 0;
+            var values = directiveParts[2].Split(',');
+            foreach(String value in values)
+            {
+                byte number;
+                if (!byte.TryParse(value, NumberStyles.HexNumber, CultureInfo.InvariantCulture, out number)) 
+                {
+                    throw new ParserException("!addition has an invalid value");
+                }
+                totalValue += number;
+
+                if(totalValue>255)
+                {
+                    throw new ParserException("!addition resulted in a value higher than 255 (0xFF)");
+                }
+            }
+            return new LogicDefine( directiveParts[1] ,totalValue.ToString("X2"));
         }
 
         public void ParseSetTypeDirective(string[] directiveParts)
@@ -745,6 +849,23 @@ namespace MinishRandomizer.Randomizer.Logic
             }
 
             return new LogicDropdown(directiveParts[2], optionType, selectionDict);
+        }
+
+        private LogicOption ParseNumberboxDirective(string[] directiveParts)
+        {
+            if (directiveParts.Length != 4)
+            {
+                throw new ParserException("A numberbox somewhere has an incorrect number of parameters!");
+            }
+
+            LogicOptionType optionType = GetOptionType(directiveParts[1]);
+
+            if (optionType == LogicOptionType.Untyped)
+            {
+                throw new ParserException($"A numberbox somewhere has an invalid type! ({directiveParts[1]})");
+            }
+
+            return new LogicNumberBox(directiveParts[2], optionType, directiveParts[3]);
         }
     }
 }

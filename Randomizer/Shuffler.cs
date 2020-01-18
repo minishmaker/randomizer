@@ -232,23 +232,43 @@ namespace MinishRandomizer.Randomizer
             List<Location> parsedLocations = LogicParser.ParseLocations(locationStrings, RNG);
 
             LogicParser.SubParser.DuplicateAmountReplacements();
+            LogicParser.SubParser.DuplicateIncrementalReplacements();
             parsedLocations.ForEach(location => { AddLocation(location); });
         }
 
         public void AddLocation(Location location)
         {
-            if (LogicParser.SubParser.AmountReplacements.ContainsKey(location.Contents))
+            if (LogicParser.SubParser.IncrementalReplacements.ContainsKey(location.Contents))
             {
-                var key = location.Contents; 
+                var key = location.Contents;
+                var set = LogicParser.SubParser.IncrementalReplacements[key];
+                var replacement = set[0];
+                replacement.amount -= 1;
+                var newItem = new Item(replacement.item.Type, (byte)((replacement.item.SubValue + replacement.amount) % 256), replacement.item.Dungeon);
+                location.SetItem(newItem);
+
+                if (replacement.amount == 0)
+                {
+                    set.RemoveAt(0);
+                    if (LogicParser.SubParser.IncrementalReplacements[key].Count == 0)
+                    {
+                        LogicParser.SubParser.IncrementalReplacements.Remove(key);
+                        Console.WriteLine("removed incremental key:" + key.Type);
+                    }
+                }
+            }
+            else if (LogicParser.SubParser.AmountReplacements.ContainsKey(location.Contents))
+            {
+                var key = location.Contents;
                 var set = LogicParser.SubParser.AmountReplacements[key];
                 var replacement = set[0];
                 replacement.amount -= 1;
                 location.SetItem(replacement.item);
 
-                if(replacement.amount==0)
+                if (replacement.amount == 0)
                 {
                     set.RemoveAt(0);
-                    if(LogicParser.SubParser.AmountReplacements[key].Count == 0)
+                    if (LogicParser.SubParser.AmountReplacements[key].Count == 0)
                     {
                         LogicParser.SubParser.AmountReplacements.Remove(key);
                         Console.WriteLine("removed key:" + key.Type);
@@ -768,6 +788,7 @@ namespace MinishRandomizer.Randomizer
             MinorItems.Clear();
 
             LogicParser.SubParser.ClearTypeOverrides();
+            LogicParser.SubParser.ClearIncrementalReplacements();
             LogicParser.SubParser.ClearReplacements();
             LogicParser.SubParser.ClearAmountReplacements();
             LogicParser.SubParser.ClearDefines();
