@@ -230,7 +230,8 @@
     !ifndef - OPENDHC
         !ifdef - FIGURINE_HUNT
             !eventdefine - requirementFigurinesAmmount - `FIGURINE_COUNT`
-            !replaceincrement - Items.KinstoneBag:00 - `FIGURINE_TOTAL` - `SHELLVALS` `KINVALS`
+            !replaceincrement - Items.KinstoneBag.00 - `FIGURINE_TOTAL` - `SHELLVALS` `KINVALS`
+            !settype - Items.KinstoneBag - Major
         !endif
     !endif
 !endif

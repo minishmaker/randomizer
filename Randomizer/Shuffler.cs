@@ -243,9 +243,12 @@ namespace MinishRandomizer.Randomizer
                 var key = location.Contents;
                 var set = LogicParser.SubParser.IncrementalReplacements[key];
                 var replacement = set[0];
-                replacement.amount -= 1;
-                var newItem = new Item(replacement.item.Type, (byte)((replacement.item.SubValue + replacement.amount) % 256), replacement.item.Dungeon);
-                location.SetItem(newItem);
+                if (replacement.amount != 0)
+                {
+                    replacement.amount -= 1;
+                    var newItem = new Item(replacement.item.Type, (byte)((replacement.item.SubValue + replacement.amount) % 256), replacement.item.Dungeon);
+                    location.SetItem(newItem);
+                }
 
                 if (replacement.amount == 0)
                 {
@@ -262,8 +265,11 @@ namespace MinishRandomizer.Randomizer
                 var key = location.Contents;
                 var set = LogicParser.SubParser.AmountReplacements[key];
                 var replacement = set[0];
-                replacement.amount -= 1;
-                location.SetItem(replacement.item);
+                if(replacement.amount!=0)
+                {
+                    replacement.amount -= 1;
+                    location.SetItem(replacement.item);
+                }
 
                 if (replacement.amount == 0)
                 {
