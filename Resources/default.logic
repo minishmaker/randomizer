@@ -227,7 +227,7 @@
 !define - SHELLVALS - Items.ShellsX, Items.ShellsX.1, Items.ShellsX.A, Items.ShellsX.14, Items.ShellsX.32, Items.ShellsX.50, Items.ShellsX.64, Items.ShellsX.C8,
 !addition - FIGURINE_TOTAL - `FIGURINE_COUNT`, `FIGURINE_EXTRA`
 !ifndef - PEDITEMS
-    !ifdef - OPENDHC
+    !ifndef - OPENDHC
         !ifdef - FIGURINE_HUNT
             !eventdefine - requirementFigurinesAmmount - `FIGURINE_COUNT`
             !replaceincrement - Items.KinstoneBag:00 - `FIGURINE_TOTAL` - `SHELLVALS` `KINVALS`
