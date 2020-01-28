@@ -149,10 +149,16 @@
     !eventdefine - neverSkipFusionCutscene           # if defined, fusion cutscenes are just like vanilla
 !endif
 
-!define - SWAPRED - Items.Rupee20::50, Items.Bombs5::25, Items.Arrows5::25, Items.Rupee200::10;
-!define - SWAPBLUE - Items.Rupee5::50, Items.Bombs5::25, Items.Arrows5::25 ,Items.Rupee100::10;
-!define - SWAPGREEN - Items.Rupee1::50, Items.Bombs5::25, Items.Arrows5::25, Items.Rupee50::10;
-!define - SWAPSHELL - Items.Rupee50::20, Items.Bombs5::40, Items.Arrows5::40 ;
+!ifdef - TRAPS
+    !define - TRAP_VAL - , Items.Trap.FF::15
+!else
+    !define - TRAP_VAL - 
+!endif
+
+!define - SWAPRED - Items.Rupee20::50, Items.Bombs5::25, Items.Arrows5::25, Items.Rupee200::10 `TRAP_VAL` ;
+!define - SWAPBLUE - Items.Rupee5::50, Items.Bombs5::25, Items.Arrows5::25 ,Items.Rupee100::10 `TRAP_VAL` ;
+!define - SWAPGREEN - Items.Rupee1::50, Items.Bombs5::25, Items.Arrows5::25, Items.Rupee50::10 `TRAP_VAL` ;
+!define - SWAPSHELL - Items.Rupee50::20, Items.Bombs5::40, Items.Arrows5::40 `TRAP_VAL` ;
 
 !ifdef - OPENFUSIONS
     !define - KINVALS - Items.KinstoneX.6E, Items.KinstoneX.6F, Items.KinstoneX.70, Items.KinstoneX.71, Items.KinstoneX.72, Items.KinstoneX.73, Items.KinstoneX.74, Items.KinstoneX.75,
@@ -184,10 +190,6 @@
     !replaceamount - Items.BlueOrb - 10 - `SHELLVALS` `KINVALS`
     !replaceamount - Items.GreenOrb - 10 - `SHELLVALS` `KINVALS`
     !replaceamount - Items.RedOrb - 10 - `SHELLVALS` `KINVALS`
-!endif
-
-!ifdef - TRAPS
-    !replaceamount - Items.Trap.FF - 10 - `SHELLVALS` `KINVALS`
 !endif
 
 !replace - Items.ShellsX - `SWAPSHELL`
