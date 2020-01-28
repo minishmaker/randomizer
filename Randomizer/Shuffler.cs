@@ -8,6 +8,7 @@ using MinishRandomizer.Core;
 using MinishRandomizer.Randomizer.Logic;
 using MinishRandomizer.Utilities;
 using MinishRandomizer.Properties;
+using System.Globalization;
 
 namespace MinishRandomizer.Randomizer
 {
@@ -22,11 +23,56 @@ namespace MinishRandomizer.Randomizer
         public readonly KinstoneType Kinstone;
         public readonly byte SubValue;
         public readonly string Dungeon;
+        public readonly bool UseAny;
 
-        public Item(ItemType type, byte subValue, string dungeon = "")
+        public Item(string data, string commandScope = "")
+        {
+            var dataChunks = data.Split(':');
+            var itemData = dataChunks[0].Split('.');
+            if (itemData[0].TrimStart(' ').TrimEnd(' ') != "Items") 
+            {
+                throw new ParserException($"{commandScope}: \"{data}\" is not an item, make sure it has \"Items.\" prepended");
+            }
+            if (!Enum.TryParse(itemData[1], out Type))
+            {
+                throw new ParserException($"{commandScope}: \"{data}\" has an invalid itemType");
+            }
+
+            UseAny = false;
+            SubValue = 0;
+            if (itemData.Length >= 3)
+            {
+                if(itemData[2]=="*")
+                {
+                    UseAny = true;
+                }
+                else if (!byte.TryParse(itemData[2], NumberStyles.HexNumber, null, out SubValue))
+                {
+                    throw new ParserException($"{commandScope}: \"{data}\" has an invalid itemSub");
+                }
+            }
+
+            Dungeon = "";
+            if (dataChunks.Length > 1)
+            {
+                Dungeon = dataChunks[1];
+            }
+
+            if (Type == ItemType.KinstoneX)
+            {
+                Kinstone = (KinstoneType)SubValue;
+            }
+            else
+            {
+                Kinstone = KinstoneType.UnTyped;
+            }
+        }
+
+        public Item(ItemType type, byte subValue, string dungeon = "", bool useAny = false)
         {
             Type = type;
             SubValue = subValue;
+            UseAny = useAny;
             if (type == ItemType.KinstoneX)
             {
                 Kinstone = (KinstoneType)subValue;
@@ -52,6 +98,11 @@ namespace MinishRandomizer.Randomizer
         public override int GetHashCode()
         {
             return base.GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            return this.Type.ToString() + ":" + this.SubValue + ":" + this.Dungeon;
         }
     }
 

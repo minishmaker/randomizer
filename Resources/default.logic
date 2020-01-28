@@ -1,7 +1,7 @@
 # Default logic for the randomizer - Doesn't allow glitches, but allows unintuitive tricks
 
 !name - Default
-!version - 0.5.7
+!version - 0.6.0
 !crc - E8637292
 
 !flag - Setting - KEYSANITY - Keysanity - false
@@ -74,7 +74,7 @@
     !eventdefine - barcolor
     !eventdefine - splitFirst - 0x`SPLIT_COLOR_0`
     !eventdefine - splitThird - 0x`SPLIT_COLOR_1`
-	!eventdefine - splitFourth - 0x`SPLIT_COLOR_2`
+    !eventdefine - splitFourth - 0x`SPLIT_COLOR_2`
 !endif
 
 
@@ -90,66 +90,6 @@
     !eventdefine - NOFUSE
 !endif
 
-!define - `SWORD_SETTING`
-!ifdef - 0SWORD
-    !define - SWORDEX
-	!define - SWORDLEVEL - 0
-!else
-    !define - SWORDLEVEL - `SWORD_SETTING`
-!endif
-!undefine - `SWORD_SETTING`
-
-!define - `ELEMENT_SETTING`
-!ifdef - 0ELEMENT
-    !define - ELEMENTEX
-	!define - ELEMENTAMOUNT - 0
-!else
-    !define - ELEMENTAMOUNT - `ELEMENT_SETTING`
-!endif
-!undefine - `ELEMENT_SETTING`
-
-#make sure that only 1 of these settings is active at the same time
-!ifdef - PEDITEMS
-    !eventdefine - openDHC
-    !eventdefine - pedestalItems
-!else
-    !ifdef - OPENDHC
-        !eventdefine - openDHC
-    !else
-	    !ifdef - NODHC
-		    !eventdefine - noDHC
-        !endif
-
-        !ifndef - SWORDEX
-		    !eventdefine - requirementSwordTier       - `SWORDLEVEL`
-			GotSwords; Helper; ; (+`SWORDLEVEL`, Items.SmithSword)
-        !endif
-
-        !ifndef - ELEMENTEX
-		    !eventdefine - requirementElementsAmmount - `ELEMENTAMOUNT` 
-			GotElements; Helper; ; (+`ELEMENTAMOUNT`, Items.WaterElement, Items.FireElement, Items.WindElement, Items.EarthElement)
-        !endif
-
-        !ifndef - SWORDEX
-            !ifndef - ELEMENTEX
-                #both
-                CompletePed; Helper; ; Helpers.GotSwords, Helpers.GotElements
-		    !else
-                #sword
-                CompletePed; Helper; ; Helpers.GotSwords
-		    !endif
-	    !else
-	        !ifndef - ELEMENTEX
-		        #element
-			    CompletePed; Helper; ; Helpers.GotElements
-		    !else
-		        #neither
-			    CompletePed; Helper; ; (+4, Items.WaterElement, Items.FireElement, Items.WindElement, Items.EarthElement)
-		    !endif
-	    !endif
-	!endif
-!endif
-
 !ifdef - SHUFFLE_ELEMENTS
     !eventdefine - globalElements - 1   # if defined, does not draw elements on map (during full shuffle)
 !endif
@@ -157,56 +97,56 @@
 !ifdef - KEYSANITY
     !define - KEYSANITY_MAJOR - Major
     !define - KEYSANITY_MINOR - Minor
-	!define - DWS_SET - .18:
-	!define - COF_SET - .19:
-	!define - FOW_SET - .1A:
-	!define - TOD_SET - .1B:
-	!define - POW_SET - .1C:
-	!define - DHC_SET - .1D:
-	!define - RC_SET - .1E:
+    !define - DWS_SET - .18:
+    !define - COF_SET - .19:
+    !define - FOW_SET - .1A:
+    !define - TOD_SET - .1B:
+    !define - POW_SET - .1C:
+    !define - DHC_SET - .1D:
+    !define - RC_SET - .1E:
 !else
     !define - KEYSANITY_MAJOR - DungeonItem
     !define - KEYSANITY_MINOR - DungeonItem
-	!define - DWS_SET - :Deepwood
-	!define - COF_SET - :FlameCave
-	!define - FOW_SET - :Fortress
-	!define - TOD_SET - :Droplets
-	!define - POW_SET - :Palace
-	!define - DHC_SET - :DHC
-	!define - RC_SET - :Crypt
+    !define - DWS_SET - :Deepwood
+    !define - COF_SET - :FlameCave
+    !define - FOW_SET - :Fortress
+    !define - TOD_SET - :Droplets
+    !define - POW_SET - :Palace
+    !define - DHC_SET - :DHC
+    !define - RC_SET - :Crypt
 !endif
 
 !ifdef - SHUFFLE_ELEMENTS
     !define - ELEMENT - Major
-	!define - ELEMENT_DUNGEON - 
+    !define - ELEMENT_DUNGEON - 
 !else
     !define - ELEMENT - DungeonItem
-	!define - ELEMENT_DUNGEON - Prizes
+    !define - ELEMENT_DUNGEON - Prizes
 !endif
 !ifdef - OPENFUSIONS
     !eventdefine - openFusions
-	!eventdefine - noFusions
+    !eventdefine - noFusions
 !else
     !ifdef - NO_FUSIONS
         !eventdefine - noFusions                         # if defined, fusions other than golden kinstone fusions are not available
     !endif
 !endif
 !ifdef - GLITCHLESS
-	!eventdefine - glitchless                        # if defined, bugfixes are installed
+    !eventdefine - glitchless                        # if defined, bugfixes are installed
 !endif
 
 !ifdef - RANDOM_LANGUAGE
-	!eventdefine -randomLanguage                     # if defined, text changes language constantly
+    !eventdefine - randomLanguage                     # if defined, text changes language constantly
 !endif
 
 !ifdef - ALLOW_FUSION_SKIPS
-	!ifdef - INSTANT_SKIP
-		!eventdefine - alwaysSkipFusionCutscene - 1  # if 0 fusion cutscenes are skipped when the buttons are held, if non-0 they are always instantly skipped
-	!else
-		!eventdefine - alwaysSkipFusionCutscene - 0
-	!endif
+    !ifdef - INSTANT_SKIP
+        !eventdefine - alwaysSkipFusionCutscene - 1  # if 0 fusion cutscenes are skipped when the buttons are held, if non-0 they are always instantly skipped
+    !else
+        !eventdefine - alwaysSkipFusionCutscene - 0
+    !endif
 !else
-	!eventdefine - neverSkipFusionCutscene           # if defined, fusion cutscenes are just like vanilla
+    !eventdefine - neverSkipFusionCutscene           # if defined, fusion cutscenes are just like vanilla
 !endif
 
 !define - SWAPRED - Items.Rupee20::50, Items.Bombs5::25, Items.Arrows5::25, Items.Rupee200::10;
@@ -225,13 +165,16 @@
 !endif
 
 !define - SHELLVALS - Items.ShellsX, Items.ShellsX.1, Items.ShellsX.A, Items.ShellsX.14, Items.ShellsX.32, Items.ShellsX.50, Items.ShellsX.64, Items.ShellsX.C8,
+!define - DHC_FIG -
 !ifndef - PEDITEMS
     !ifndef - OPENDHC
         !ifdef - FIGURINE_HUNT
             !addition - FIGURINE_TOTAL - `FIGURINE_COUNT`, `FIGURINE_EXTRA`
             !eventdefine - requirementFigurinesAmmount - `FIGURINE_COUNT`
-            !replaceincrement - Items.KinstoneBag.00 - `FIGURINE_TOTAL` - `SHELLVALS` `KINVALS`
+            !replaceincrement - Items.KinstoneBag.01 - `FIGURINE_TOTAL` - `SHELLVALS` `KINVALS`
             !settype - Items.KinstoneBag - Major
+            !undefine - DHC_FIG
+            !define - DHC_FIG - ,Items.KinstoneBag.*::`FIGURINE_TOTAL`
         !endif
     !endif
 !endif
@@ -288,19 +231,65 @@
 !settype - Items.Rupee100 - Major
 !settype - Items.Rupee200 - Major
 
-# Outdated, use options
-#!eventdefine - fuzzy - E       # if defined with a value of 0 to E, makes the screen fuzzy and the pixels bigger
-#!eventdefine - follower        # if defined, a follower with the given id below will follow you throught he game
-#!eventdefine - followerID - 1  # id for the above: 4=Mailman, 5=Zelda, 1E=Malon, 22=Smith, 24=King Dalton, 27=Dummy hero, 31=Cow, 32=Goron, 45=Anju
-#!eventdefine - timedohkoOption # if defined, will enable ohko mode 30 minutes into the game
-#!eventdefine - timerOption     # if defined, will show a timer that counts up
-#!eventdefine - ohkoOption      # if defined link will die from any hit taken
+!define - `SWORD_SETTING`
+!ifdef - 0SWORD
+    !define - SWORDEX
+    !define - SWORDLEVEL - 0
+!else
+    !define - SWORDLEVEL - `SWORD_SETTING`
+!endif
+!undefine - `SWORD_SETTING`
 
+!define - `ELEMENT_SETTING`
+!ifdef - 0ELEMENT
+    !define - ELEMENTEX
+    !define - ELEMENTAMOUNT - 0
+!else
+    !define - ELEMENTAMOUNT - `ELEMENT_SETTING`
+!endif
+!undefine - `ELEMENT_SETTING`
 
-#!eventdefine -heartscolor      # if defined will allow for special colored hearts
-#!eventdefine - heartEdgeR - 1F	# red   edge component (0-1F)
-#!eventdefine - heartEdgeG - 1F	# green edge component (0-1F)
-#!eventdefine - heartEdgeB - 1F	# blue  edge component (0-1F)
+#make sure that only 1 of these settings is active at the same time
+!ifdef - PEDITEMS
+    !eventdefine - openDHC
+    !eventdefine - pedestalItems
+!else
+    !ifdef - OPENDHC
+        !eventdefine - openDHC
+    !else
+    !ifdef - NODHC
+        !eventdefine - noDHC
+        !endif
+
+        !ifndef - SWORDEX
+            !eventdefine - requirementSwordTier       - `SWORDLEVEL`
+            GotSwords; Helper; ; (+`SWORDLEVEL`, Items.SmithSword)
+        !endif
+
+        !ifndef - ELEMENTEX
+            !eventdefine - requirementElementsAmmount - `ELEMENTAMOUNT` 
+            GotElements; Helper; ; (+`ELEMENTAMOUNT`, Items.WaterElement, Items.FireElement, Items.WindElement, Items.EarthElement)
+        !endif
+
+        !ifndef - SWORDEX
+            !ifndef - ELEMENTEX
+                #both
+                CompletePed; Helper; ; Helpers.GotSwords, Helpers.GotElements `DHC_FIG`
+            !else
+                #sword
+                CompletePed; Helper; ; Helpers.GotSwords `DHC_FIG`
+            !endif
+        !else
+            !ifndef - ELEMENTEX
+                #element
+                CompletePed; Helper; ; Helpers.GotElements `DHC_FIG`
+            !else
+                #neither
+                CompletePed; Helper; ; (+4, Items.WaterElement, Items.FireElement, Items.WindElement, Items.EarthElement) `DHC_FIG`
+            !endif
+        !endif
+    !endif
+!endif
 
 # Music randomization values (kinda hard to read, unfortunately)
 !ifdef - MUSIC_RANDO
@@ -500,10 +489,10 @@ SwiftbladeScroll1;             Major; swiftblade1DojoItem:Define:FirstByte, swif
 SwiftbladeScroll2;             Major; swiftblade2DojoItem:Define:FirstByte, swiftblade2DojoSub:Define:SecondByte; Items.SmithSword::2;                                                                                                              Items.RockBreaker
 SwiftbladeScroll3;             Major; swiftblade3DojoItem:Define:FirstByte, swiftblade3DojoSub:Define:SecondByte; Helpers.HasSword, Items.PegasusBoots;                                                                                             Items.DashAttack
 SwiftbladeScroll4;             Major; swiftblade4DojoItem:Define:FirstByte, swiftblade4DojoSub:Define:SecondByte; Helpers.HasSword, Items.RocsCape;                                                                                                 Items.DownThrust
-GrimbladeHeartPiece;           Major; 0D79BB;							                                          ;
+GrimbladeHeartPiece;           Major; 0D79BB;                                                                     ;
 GrimbladeScroll;               Major; grimbladeDojoItem:Define:FirstByte, grimbladeDojoSub:Define:SecondByte;     Helpers.HasSword, Items.LanternOff;                                                                                               Items.SwordBeam
-HyruleCastleWaterLeft;         Major; 07-00-01;                                                                   Items.Flippers;                                                                                                                   Items.BombBag # extra bomb bag for EU
-HyruleCastleWaterRight;        Minor; 07-00-02;                                                                   Items.Flippers
+CastleWildsWaterLeft;          Major; 07-00-01;                                                                   Items.Flippers;                                                                                                                   Items.BombBag # extra bomb bag for EU
+CastleWildsWaterRight;         Minor; 07-00-02;                                                                   Items.Flippers
 CafeLady;                      Minor; 00EDDA;                                                                     ;                                                                                                                                 Items.KinstoneX.RedSpike
 HearthLedge;                   Minor; 02-00-06;                                                                   Items.LanternOff;
 HearthBackdoor;                Major; 0D66D7;                                                                     (|Items.Flippers, Items.PacciCane, Items.RocsCape)
@@ -530,11 +519,11 @@ FigurineHouseRight;            Minor; 23-05-02;                                 
 FigurineHouseHeartPiece;       Major; 0F5407;                                                                     Items.CarlovMedal
 JullietaBook;                  Major; redBookItem:Define:FirstByte, redBookSub:Define:SecondByte;                 Helpers.HasBottle, (|Items.Flippers, Items.PacciCane, Items.RocsCape);                                                                  Items.HyruleanBestiary
 WrightAtticBook;               Major; greenBookItem:Define:FirstByte, greenBookSub:Define:SecondByte;             Items.PowerBracelets, (|Items.Flippers, Items.PacciCane, Items.RocsCape), (|Items.GustJar, Items.BombBag), Helpers.CanSplit2;           Items.PicoriLegend
-FountainBig;                   Major; 62-03-00;                                                                   Helpers.HasBottle, Items.PacciCane, Helpers.HasDamageSource																	           
-FountainSmall;                 Minor; 62-04-00;                                                                   Helpers.HasBottle, (|Items.Flippers, Items.RocsCape)																		      	     
-FountainHeartPiece;            Major; 0EF3B7;                                                                     Helpers.HasBottle, Items.RocsCape																							      	     
-LibraryMinish;                 Minor; 00E7BE;                                                                     Items.HyruleanBestiary, Items.PicoriLegend, Items.MaskHistory, Items.Ocarina, Items.PacciCane								      	     
-CuccoMinigame;                 Minor; 12460C;                                                                     (|Items.RocsCape, Items.Flippers)																							      	     
+FountainBig;                   Major; 62-03-00;                                                                   Helpers.HasBottle, Items.PacciCane, Helpers.HasDamageSource
+FountainSmall;                 Minor; 62-04-00;                                                                   Helpers.HasBottle, (|Items.Flippers, Items.RocsCape)
+FountainHeartPiece;            Major; 0EF3B7;                                                                     Helpers.HasBottle, Items.RocsCape
+LibraryMinish;                 Minor; 00E7BE;                                                                     Items.HyruleanBestiary, Items.PicoriLegend, Items.MaskHistory, Items.Ocarina, Items.PacciCane
+CuccoMinigame;                 Minor; 12460C;                                                                     (|Items.RocsCape, Items.Flippers)
 TownBell;                      Minor; 05D602:FirstByte, 5D604:SecondByte;                                         Items.RocsCape;                                                                                                                         Items.PieceOfHeart
 FlipsCaveBig;                  Major; 62-10-00;                                                                   Items.Ocarina, Helpers.HasDamageSource, Items.PacciCane, (|Items.Flippers, (&Items.HyruleanBestiary,Items.PicoriLegend,Items.MaskHistory, Items.GripRing, (|Items.GustJar, Items.RocsCape))) 
 FlipsCaveSmall;                Minor; 62-12-00;                                                                   Items.Flippers, Items.Ocarina, Items.PacciCane, Items.LanternOff
@@ -635,11 +624,11 @@ HyliaPostCapeCaveHeartPiece; Major; 0F6CEF;   Locations.AccessTreasureCave
 HyliaPreCapeCaveHeartPiece;  Major; 0F322B;   Locations.AccessHyliaNorth, Items.RocsCape
 
 # Royal Valley Locations
-AccessValley;         Helper;;       Helpers.CanSplit3, (|Items.BombBag, Items.RocsCape, Items.Flippers), Items.LanternOff
-ArrowFairy;           Major; 00B722; Helpers.CanSplit3, Items.BombBag
-DampeKey;             Major; 0096B6; Locations.AccessValley
-RoyalGraveHeartPiece; Major; 0D8AE7; Locations.AccessValley, Items.GraveyardKey, Items.PegasusBoots
-RoyalValleyLostWoodsChest;      Minor; 0D8A86;                              Locations.AccessValley
+AccessValley;               Helper;;       Helpers.CanSplit3, (|Items.BombBag, Items.RocsCape, Items.Flippers), Items.LanternOff
+ArrowFairy;                 Major; 00B722; Helpers.CanSplit3, Items.BombBag
+DampeKey;                   Major; 0096B6; Locations.AccessValley
+RoyalValleyGraveHeartPiece; Major; 0D8AE7; Locations.AccessValley, Items.GraveyardKey, Items.PegasusBoots
+RoyalValleyLostWoodsChest;  Minor; 0D8A86;                              Locations.AccessValley
 
 AccessCrypt;                Helper;            ;       Locations.AccessValley, Items.GraveyardKey, Helpers.CanSplit3, Items.PegasusBoots
 CryptGibdoLeft:Crypt;       Minor;             0E688B; Locations.AccessCrypt;                                                                                       Items.Bombs5
@@ -706,24 +695,24 @@ DeepwoodPreCompass:Deepwood;            Minor;             48-02-01;            
 DeepwoodMulldozers:Deepwood;            `KEYSANITY_MAJOR`; 0DE51B;                                                               Locations.DeepwoodAccess, Items.SmallKey`DWS_SET`:4, Helpers.HasDamageSource;                                                                           Items.SmallKey`DWS_SET`
 DeepwoodStatueRoom:Deepwood;            `KEYSANITY_MAJOR`; 48-04-01;                                                             Locations.DeepwoodAccess, Items.SmallKey`DWS_SET`;                                                                             Items.SmallKey`DWS_SET`
 DeepwoodWestWing:Deepwood;              `KEYSANITY_MINOR`; 48-05-01;                                                             Locations.DeepwoodAccess, Items.SmallKey`DWS_SET`;                                                                             Items.Compass`DWS_SET`
-DeepwoodPreBarrel:Deepwood;             Minor;             48-06-01;                                                             Locations.DeepwoodAccess, (|Items.GustJar, Items.BombBag), Items.SmallKey`DWS_SET`									            
+DeepwoodPreBarrel:Deepwood;             Minor;             48-06-01;                                                             Locations.DeepwoodAccess, (|Items.GustJar, Items.BombBag), Items.SmallKey`DWS_SET`
 DeepwoodSlugTorches:Deepwood;           `KEYSANITY_MAJOR`; 48-10-01;                                                             Locations.DeepwoodAccess;                                                                                                      Items.SmallKey`DWS_SET`
 DeepwoodBasementNorth:Deepwood;         `KEYSANITY_MAJOR`; 48-11-01;                                                             Locations.DeepwoodAccess, Items.GustJar, Items.SmallKey`DWS_SET`:4;                                                            Items.BigKey`DWS_SET`
 DeepwoodBasementSwitch:Deepwood;        `KEYSANITY_MAJOR`; 48-12-01;                                                             Locations.DeepwoodAccess,  (|(&Items.GustJar, Items.SmallKey`DWS_SET`), (&Items.SmallKey`DWS_SET`:2, Items.RocsCape));         Items.SmallKey`DWS_SET`
 DeepwoodBasementEast:Deepwood;          `KEYSANITY_MINOR`; 48-12-02;                                                             Locations.DeepwoodAccess, (|(&Items.GustJar, Items.SmallKey`DWS_SET`), Items.SmallKey`DWS_SET`:2);                             Items.DungeonMap`DWS_SET`
 DeepwoodUpstairsChest:Deepwood;         Minor;             48-17-01;                                                             Locations.DeepwoodAccess, (|Items.GustJar, Items.LanternOff)
 CompleteDeepwood:Deepwood;              Helper;            ;                                                                     Locations.DeepwoodAccess, Items.GustJar, Helpers.HasSword, Items.BigKey`DWS_SET`
-DeepwoodBossItem:Deepwood;              Major;	           chuContainerItem:Define:FirstByte, chuContainerSub:Define:SecondByte; Locations.CompleteDeepwood;                                                                                                    Items.HeartContainer
-DeepwoodPrize:`ELEMENT_DUNGEON`;        `ELEMENT`;	       0DF03B;                                                               Locations.CompleteDeepwood
+DeepwoodBossItem:Deepwood;              Major;             chuContainerItem:Define:FirstByte, chuContainerSub:Define:SecondByte; Locations.CompleteDeepwood;                                                                                                    Items.HeartContainer
+DeepwoodPrize:`ELEMENT_DUNGEON`;        `ELEMENT`;         0DF03B;                                                               Locations.CompleteDeepwood
 
 # Cave of Flames locations
 CoFAccess:FlameCave;              Helper;             ;                                                                             Locations.AccessCrenel,(|Items.PacciCane, (&Items.GripRing, (|Items.RocsCape, Helpers.HasLightBow,(&Items.GustJar, (|Items.BombBag, Helpers.HasBow, Helpers.HasBoomerang))))), (|Items.BombBag, Items.Shield, Items.PacciCane), Helpers.HasDamageSource
 CoFFlippedCart:FlameCave;         `KEYSANITY_MAJOR`;  50-01-01;                                                                     Locations.CoFAccess, Helpers.HasSword, Items.PacciCane, Items.SmallKey`COF_SET`;        Items.SmallKey`COF_SET`
-CoFHeartPiece:FlameCave;          Major;              0DFC9F;                                                                       Locations.CoFAccess, Items.BombBag, Helpers.HasSword, Items.SmallKey`COF_SET`	     
-CoFChuPit:FlameCave;              Major;              50-01-02;                                                                     Locations.CoFAccess, Items.SmallKey`COF_SET`, Helpers.HasSword					     
+CoFHeartPiece:FlameCave;          Major;              0DFC9F;                                                                       Locations.CoFAccess, Items.BombBag, Helpers.HasSword, Items.SmallKey`COF_SET`
+CoFChuPit:FlameCave;              Major;              50-01-02;                                                                     Locations.CoFAccess, Items.SmallKey`COF_SET`, Helpers.HasSword
 CoFPillBugsPillarChest:FlameCave; `KEYSANITY_MAJOR`;  50-08-00;                                                                     Locations.CoFAccess;                                                                    Items.SmallKey`COF_SET`
-CoFPillBugsHoleChest:FlameCave;   Minor;              50-08-01;                                                                     Locations.CoFAccess	                                                         
-CoFSoutheastSmall:FlameCave;      Minor;              50-09-00;                                                                     Locations.CoFAccess	                                                          
+CoFPillBugsHoleChest:FlameCave;   Minor;              50-08-01;                                                                     Locations.CoFAccess
+CoFSoutheastSmall:FlameCave;      Minor;              50-09-00;                                                                     Locations.CoFAccess
 CoFSoutheastBig:FlameCave;        `KEYSANITY_MINOR`;  50-09-01;                                                                     Locations.CoFAccess;                                                                    Items.Compass`COF_SET`
 CoFBasementTop:FlameCave;         Minor;              50-10-00;                                                                     Locations.CoFAccess, Items.PacciCane, Helpers.HasSword, Items.SmallKey`COF_SET`:2
 CoFBasementBottom:FlameCave;      Minor;              50-10-01;                                                                     Locations.CoFAccess, Items.PacciCane, Helpers.HasSword, Items.SmallKey`COF_SET`:2
@@ -767,10 +756,10 @@ DropletsMulldozers:Droplets;     `KEYSANITY_MAJOR`; 0E55CB;                     
 DropletsWaterPot:Droplets;       `KEYSANITY_MAJOR`; 0E5BC7;                                                                 Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.Flippers, (|Items.RocsCape, Items.GustJar);                                                   Items.SmallKey`TOD_SET`
 
 !ifdef - KEYSANITY
-    DropletsFirstIceblock:Droplets;  `KEYSANITY_MAJOR`; 098C1A:FirstByte, 098C1C:SecondByte;                                Locations.AccessDroplets;                                                                                                                            Items.SmallKey`TOD_SET`																                                     
+    DropletsFirstIceblock:Droplets;  `KEYSANITY_MAJOR`; 098C1A:FirstByte, 098C1C:SecondByte;                                Locations.AccessDroplets;                                                                                                                            Items.SmallKey`TOD_SET`
     DropletsSecondIceblock:Droplets; `KEYSANITY_MAJOR`; 098C3C:FirstByte, 098C3E:SecondByte ;                               Locations.AccessDroplets, Items.SmallKey`TOD_SET`:4;                                                                                                 Items.BigKey`TOD_SET`
 !else
-    DropletsFirstIceblock:Droplets;  Unshuffled;        098C1A:FirstByte, 098C1C:SecondByte;                                Locations.AccessDroplets;                                                                                                                            Items.SmallKey`TOD_SET`																                                     
+    DropletsFirstIceblock:Droplets;  Unshuffled;        098C1A:FirstByte, 098C1C:SecondByte;                                Locations.AccessDroplets;                                                                                                                            Items.SmallKey`TOD_SET`
     DropletsSecondIceblock:Droplets; Unshuffled;        098C3C:FirstByte, 098C3E:SecondByte ;                               Locations.AccessDroplets, Items.SmallKey`TOD_SET`;                                                                                                   Items.BigKey`TOD_SET`
 !endif
 
@@ -780,17 +769,17 @@ DropletsWestLever:Droplets;      Helper;            ;                           
 DropletsEastFirst:Droplets;      Minor;             60-09-00;                                                               Locations.AccessDroplets, Items.BigKey`TOD_SET`, (|Items.LanternOff, Locations.DropletsEastLever)
 DropletsIceMaze:Droplets;        Minor;             60-0A-00;                                                               Locations.AccessDroplets, Items.BigKey`TOD_SET`, (|Items.LanternOff, Locations.DropletsEastLever)
 DropletsOverhang:Droplets;       `KEYSANITY_MINOR`; 60-0D-00;                                                               Locations.AccessDroplets, Items.BigKey`TOD_SET`;                                                                                                                                      Items.DungeonMap`TOD_SET`
-DropletsBluChu:Droplets;         Major;             60-10-01;                                                               Locations.AccessDroplets, Items.BigKey`TOD_SET`, (|Items.LanternOff, Locations.DropletsEastLever), Items.GustJar, Items.SmallKey`TOD_SET`:4;		                                  
+DropletsBluChu:Droplets;         Major;             60-10-01;                                                               Locations.AccessDroplets, Items.BigKey`TOD_SET`, (|Items.LanternOff, Locations.DropletsEastLever), Items.GustJar, Items.SmallKey`TOD_SET`:4;
 DropletsBasement:Droplets;       `KEYSANITY_MAJOR`; 60-11-00;                                                               Locations.AccessDroplets, Items.BigKey`TOD_SET`, (|Items.LanternOff, Locations.DropletsEastLever);                                                                                    Items.SmallKey`TOD_SET`
-DropletsFrozenIcePlain:Droplets; Minor;             60-28-00;                                                               Locations.AccessDroplets, Items.BigKey`TOD_SET`, (|Helpers.DropletsBottomJump,(&Items.SmallKey`TOD_SET`:4, Items.GustJar, Items.Flippers, Items.LanternOff));						                                     
-DropletsFreeIcePlain:Droplets;   Minor;             60-28-01;                                                               Locations.AccessDroplets, Items.BigKey`TOD_SET`, (|Helpers.DropletsBottomJump,(&Items.SmallKey`TOD_SET`:4, Items.GustJar, Items.Flippers));						                                     
-DropletsDarkMazeRight:Droplets;  Minor;             60-2B-01;                                                               Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.LanternOff, Helpers.HasDamageSource						                                     
-DropletsDarkMazeLeft:Droplets;   Minor;             60-2B-02;                                                               Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.LanternOff, Helpers.HasDamageSource						                                     
-DropletsDarkMazeMiddle:Droplets; Minor;             60-2B-03;                                                               Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.LanternOff, Helpers.HasDamageSource						                                     
-DropletsPostTwinFrozen:Droplets; Minor;             60-2D-00;                                                               Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.GustJar, Items.LanternOff, (|Helpers.DropletsBottomJump,(&Items.SmallKey`TOD_SET`:4,Items.Flippers));			                                     
-DropletsPreviewFrozen:Droplets;  Minor;             60-32-00;                                                               Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.LanternOff;												                                     
+DropletsFrozenIcePlain:Droplets; Minor;             60-28-00;                                                               Locations.AccessDroplets, Items.BigKey`TOD_SET`, (|Helpers.DropletsBottomJump,(&Items.SmallKey`TOD_SET`:4, Items.GustJar, Items.Flippers, Items.LanternOff));
+DropletsFreeIcePlain:Droplets;   Minor;             60-28-01;                                                               Locations.AccessDroplets, Items.BigKey`TOD_SET`, (|Helpers.DropletsBottomJump,(&Items.SmallKey`TOD_SET`:4, Items.GustJar, Items.Flippers));
+DropletsDarkMazeRight:Droplets;  Minor;             60-2B-01;                                                               Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.LanternOff, Helpers.HasDamageSource
+DropletsDarkMazeLeft:Droplets;   Minor;             60-2B-02;                                                               Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.LanternOff, Helpers.HasDamageSource
+DropletsDarkMazeMiddle:Droplets; Minor;             60-2B-03;                                                               Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.LanternOff, Helpers.HasDamageSource
+DropletsPostTwinFrozen:Droplets; Minor;             60-2D-00;                                                               Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.GustJar, Items.LanternOff, (|Helpers.DropletsBottomJump,(&Items.SmallKey`TOD_SET`:4,Items.Flippers));
+DropletsPreviewFrozen:Droplets;  Minor;             60-32-00;                                                               Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.LanternOff;
 DropletsIceWiggler:Droplets;     `KEYSANITY_MINOR`; 60-32-01;                                                               Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.GustJar, (|Helpers.DropletsBottomJump,(&Items.SmallKey`TOD_SET`:4, Items.Flippers));                                           Items.Compass`TOD_SET`
-CompleteDroplets:Droplets;       Helper;            ;                                                                       Locations.DropletsEastLever, Locations.DropletsWestLever, Items.LanternOff, Helpers.HasSword					                                     
+CompleteDroplets:Droplets;       Helper;            ;                                                                       Locations.DropletsEastLever, Locations.DropletsWestLever, Items.LanternOff, Helpers.HasSword
 DropletsBossItem:Droplets;       Major;             octoContainerItem:Define:FirstByte, octoContainerSub:Define:SecondByte; Locations.CompleteDroplets;                                                                                                                                                           Items.HeartContainer
 DropletsPrize:`ELEMENT_DUNGEON`; `ELEMENT`;         0E40C3;                                                                 Locations.CompleteDroplets
 
@@ -824,18 +813,18 @@ PalacePrize:`ELEMENT_DUNGEON`;     `ELEMENT`;         0E69E3;                   
 !else
     !ifdef - OPENDHC
         DHCAccess:DHC;         Helper;            ;
-	    BeatVaati;             Helper;            ;         Items.BigKey`DHC_SET`,Items.SmallKey`DHC_SET`,Helpers.CanSplit4, Items.BombBag, Helpers.HasBow, Items.RocsCape, Items.LanternOff, Items.GustJar, Items.PacciCane
-	!else
-	    !ifdef - PEDITEMS
-		    DHCAccess:DHC;     Helper;            ;
-	        BeatVaati;         Helper;            ;         Items.BigKey`DHC_SET`,Items.SmallKey`DHC_SET`,Helpers.CanSplit4, Items.BombBag, Helpers.HasBow, Items.RocsCape, Items.LanternOff, Items.GustJar, Items.PacciCane
-		!else
-		    DHCAccess:DHC;     Helper;            ;         Locations.CompletePed
-		    BeatVaati;         Helper;            ;         Locations.DHCAccess,Items.BigKey`DHC_SET`,Items.SmallKey`DHC_SET`,Helpers.CanSplit4, Items.BombBag, Helpers.HasBow, Items.LanternOff, Items.GustJar, Items.PacciCane
-		!endif
-	!endif
+        BeatVaati;             Helper;            ;         Items.BigKey`DHC_SET`,Items.SmallKey`DHC_SET`,Helpers.CanSplit4, Items.BombBag, Helpers.HasBow, Items.RocsCape, Items.LanternOff, Items.GustJar, Items.PacciCane
+    !else
+        !ifdef - PEDITEMS
+            DHCAccess:DHC;     Helper;            ;
+            BeatVaati;         Helper;            ;         Items.BigKey`DHC_SET`,Items.SmallKey`DHC_SET`,Helpers.CanSplit4, Items.BombBag, Helpers.HasBow, Items.RocsCape, Items.LanternOff, Items.GustJar, Items.PacciCane
+        !else
+            DHCAccess:DHC;     Helper;            ;         Locations.CompletePed
+            BeatVaati;         Helper;            ;         Locations.DHCAccess,Items.BigKey`DHC_SET`,Items.SmallKey`DHC_SET`,Helpers.CanSplit4, Items.BombBag, Helpers.HasBow, Items.LanternOff, Items.GustJar, Items.PacciCane
+        !endif
+    !endif
 
-	CastleBigDoorsOpen:DHC;    Helper;            ;         Locations.DHCAccess, Items.SmallKey`DHC_SET`:1, Helpers.CanSplit4, Items.RocsCape, (|Items.Boomerang::2, Helpers.HasBow), Items.BombBag
+    CastleBigDoorsOpen:DHC;    Helper;            ;         Locations.DHCAccess, Items.SmallKey`DHC_SET`:1, Helpers.CanSplit4, Items.RocsCape, (|Items.Boomerang::2, Helpers.HasBow), Items.BombBag
     CastleKing:DHC;            Minor;             00E46A;   Locations.DHCAccess, Helpers.CanSplit4, Items.BombBag;                           Items.Rupee200
     CastleBasement:DHC;        `KEYSANITY_MINOR`; 88-37-00; Locations.DHCAccess;                                                             Items.DungeonMap`DHC_SET`
     CastleClones:DHC;          `KEYSANITY_MAJOR`; 88-27-00; Locations.DHCAccess, Helpers.CanSplit4;                                          Items.SmallKey`DHC_SET`
@@ -845,7 +834,7 @@ PalacePrize:`ELEMENT_DUNGEON`;     `ELEMENT`;         0E69E3;                   
     CastleLowerLeftTower:DHC;  `KEYSANITY_MAJOR`; 88-03-00; Helpers.CastleBigDoorsOpen;                                                      Items.SmallKey`DHC_SET`
     CastleLowerRightTower:DHC; `KEYSANITY_MAJOR`; 88-04-00; Helpers.CastleBigDoorsOpen;                                                      Items.SmallKey`DHC_SET`
     
-	!ifdef - KEYSANITY	#temp will be changed on fixing generation issues 
+    !ifdef - KEYSANITY #temp will be changed on fixing generation issues 
         CastleBigBlock:DHC;    Major;             88-09-00; Helpers.CastleBigDoorsOpen, Items.SmallKey`DHC_SET`:5; Items.BigKey`DHC_SET`
     !else
         CastleBigBlock:DHC;    Unshuffled;        88-09-00; Helpers.CastleBigDoorsOpen, Items.SmallKey`DHC_SET`:5; Items.BigKey`DHC_SET`
@@ -855,74 +844,74 @@ PalacePrize:`ELEMENT_DUNGEON`;     `ELEMENT`;         0E69E3;                   
 #Kinstone changes 02017660, be aware that this is open logic, not taking into account getting to anyone who can fuse these
 !ifdef - OPENFUSIONS
     MinishBottomLeftFusion;  Minor; 0FE0A6;                                                                   Locations.BelariBombs;
-	MinishMiddleRightFusion; Minor; 0FE0B6;                                                                   Locations.AccessMinishWoods;
-	MinishMiddleFusion;      Minor; 0FE0C6;                                                                   Locations.AccessMinishWoods;
-	MinishMiddleLeftFusion;  Minor; 0FE0CE;                                                                   Locations.AccessMinishWoods;
-	MinishTopLeftFusion;     Minor; 0FE07E;                                                                   Locations.MinishWitchHut;
-	MinishMinishPathFusion;  Minor; 0FE08E;                                                                   Locations.AccessMinishWoods;
-	MinishCrackChest;        Minor; 27-08-00;                                                                 Locations.AccessMinishWoods;
+    MinishMiddleRightFusion; Minor; 0FE0B6;                                                                   Locations.AccessMinishWoods;
+    MinishMiddleFusion;      Minor; 0FE0C6;                                                                   Locations.AccessMinishWoods;
+    MinishMiddleLeftFusion;  Minor; 0FE0CE;                                                                   Locations.AccessMinishWoods;
+    MinishTopLeftFusion;     Minor; 0FE07E;                                                                   Locations.MinishWitchHut;
+    MinishMinishPathFusion;  Minor; 0FE08E;                                                                   Locations.AccessMinishWoods;
+    MinishCrackChest;        Minor; 27-08-00;                                                                 Locations.AccessMinishWoods;
+
+    HyliaMinishPathFusion;   Minor; 0FE09E;                                                                   Locations.AccessHyliaSouth, Items.PegasusBoots, (|Items.GustJar, Items.Flippers);
+
+    SchoolMinishPathFusion;        Minor; 0FE076;                                                                   Items.PacciCane;
+    TownWaterfallChest;            Minor; 32-0B-00;                                                                 Items.Flippers;
+    TingleTreeTopLeft;             Minor; 32-00-00;                                                                 ;
+    TingleTreeTopRight;            Minor; 32-00-01;                                                                 ;
+    TingleTreeBottomLeft;          Minor; 32-00-02;                                                                 ;
+    TingleTreeBottomRight;         Minor; 32-00-03;                                                                 ;
+    CastleGardenRightMinishHole;   Minor; 36-00-00;                                                                 Items.PegasusBoots;
+    CastleGardenLeftMinishHole;    Minor; 36-01-00;                                                                 Items.PegasusBoots;
+
+    LinkHouseFusion;         Minor; 0FE0D6;                                                                   Helpers.CanDestroyTrees;
+
+    LonLonFallsFusion;       Minor; 0FE0FE;                                                                   Locations.AccessFallsSouth;
+    LonLonMinishPathFusion;  Minor; 0FE086;                                                                   Locations.AccessHyliaNorth, Items.PegasusBoots;
+    GoronSmallChest;         Minor; 2F-01-00;                                                                 Locations.MinishWitchHut;
     
-	HyliaMinishPathFusion;   Minor; 0FE09E;                                                                   Locations.AccessHyliaSouth, Items.PegasusBoots, (|Items.GustJar, Items.Flippers);
+    TrilbyTopFusion;         Minor; 0FE0BE;                                                                   Locations.AccessWestField;
+    TrilbyMiddleFusion;      Minor; 0FE0EE;                                                                   Locations.AccessWestField;
+    TrilbyWaterCave;         Minor; 13-03-01;                                                                 Locations.AccessWestField, (|Items.RocsCape,Items.Flippers), Items.MoleMitts;
 
-	SchoolMinishPathFusion;  Minor; 0FE076;                                                                   Items.PacciCane;
-	TownWaterfallChest;      Minor; 32-0B-00;                                                                 Items.Flippers;
-	TingleTreeTopLeft;       Minor; 32-00-00;                                                                 ;
-	TingleTreeTopRight;      Minor; 32-00-01;                                                                 ;
-	TingleTreeBottomLeft;    Minor; 32-00-02;                                                                 ;
-	TingleTreeBottomRight;   Minor; 32-00-03;                                                                 ;
-    CastleRightMinishHole;   Minor; 36-00-00;                                                                 Items.PegasusBoots;                                                                 
-	CastleLeftMinishHole;    Minor; 36-01-00;                                                                 Items.PegasusBoots;
+    WesternWoodChest;       Minor; 03-08-01;                                                                 Helpers.CanSplit2;
 
-	LinkHouseFusion;         Minor; 0FE0D6;                                                                   Helpers.CanDestroyTrees;
+    !ifdef - WHYWOULDYOUDOTHISTOYOURSELF
+        WesternWoodTopDig1;     Minor; 0F77CF;                                                                   Helpers.CanSplit2, Items.MoleMitts;
+        WesternWoodTopDig2;     Minor; 0F77DF;                                                                   Helpers.CanSplit2, Items.MoleMitts;                                              
+        WesternWoodTopDig3;     Minor; 0F77EF;                                                                   Helpers.CanSplit2, Items.MoleMitts;
+        WesternWoodTopDig4;     Minor; 0F77FF;                                                                   Helpers.CanSplit2, Items.MoleMitts;
+        WesternWoodTopDig5;     Minor; 0F780F;                                                                   Helpers.CanSplit2, Items.MoleMitts;
+        WesternWoodTopDig6;     Minor; 0F781F;                                                                   Helpers.CanSplit2, Items.MoleMitts;
+        WesternWoodBottomDig1;  Minor; 0F782F;                                                                   Helpers.CanSplit2, Items.MoleMitts;
+        WesternWoodBottomDig2;  Minor; 0F783F;                                                                   Helpers.CanSplit2, Items.MoleMitts;
+    !endif
+
+    PercyHouseMoblin;        Minor; 0123D6;                                                                   Helpers.CanSplit2, Items.LanternOff;
+    PercyHouseReward;        Minor; 06B058:FirstByte, 06B05A:SecondByte;                                      Helpers.CanSplit2, Items.LanternOff;
 	
-	LonLonFallsFusion;       Minor; 0FE0FE;                                                                   Locations.AccessFallsSouth;
-	LonLonMinishPathFusion;  Minor; 0FE086;                                                                   Locations.AccessHyliaNorth, Items.PegasusBoots;
-	GoronSmallChest;         Minor; 2F-01-00;                                                                 Locations.MinishWitchHut;
+    HyliaWaterDigCave;       Minor; 19-00-00;                                                                 Locations.AccessHyliaSouth, Items.MoleMitts, (|Items.Flippers, Items.RocsCape);
 
-	TrilbyTopFusion;         Minor; 0FE0BE;                                                                   Locations.AccessWestField;
-	TrilbyMiddleFusion;      Minor; 0FE0EE;                                                                   Locations.AccessWestField;
-	TrilbyWaterCave;         Minor; 13-03-01;                                                                 Locations.AccessWestField, (|Items.RocsCape,Items.Flippers), Items.MoleMitts;
+    CrenelGreenWaterFusion;  Minor; 0FE06E;                                                                   Locations.AccessWestField, Helpers.HasBottle, Items.BombBag;
+    CrenelClimbFusion;       Minor; 0FE10E;                                                                   Locations.AccessCrenel, Items.GripRing;
+    CrenelRainPath;          Minor; 0FE066;                                                                   Locations.AccessCrenel, Items.GripRing;
+    CrenelLowerLeftFusion;   Minor; 0FE116;                                                                   Locations.AccessWestField, Helpers.HasBottle, (|Items.BombBag, Items.RocsCape);
+    PreMelariFusion;         Minor; 0FE096;                                                                   Locations.CrenelBlockChest;
 
-	WesternWoodChest;       Minor; 03-08-01;                                                                 Helpers.CanSplit2;
+    WildsTopRightCrack;     Minor; 27-09-00;                                                                   Locations.AccessWilds;
+    WildsTopLeftCrack;      Minor; 27-0D-00;                                                                   Locations.AccessWilds, (|Items.GustJar, Items.Flippers);
+    WildsMiddleLeftCrack;   Minor; 27-0A-00;                                                                   Locations.AccessWilds;
+    WildsLongJourneyCrack;  Minor; 27-0B-00;                                                                   Locations.AccessWilds;
+    WildsMinishWaterCaveChest; Minor; 35-01-00;                                                                Locations.AccessWilds, Items.Flippers;
 
-	!ifdef - WHYWOULDYOUDOTHISTOYOURSELF
-	    WesternWoodTopDig1;     Minor; 0F77CF;                                                                   Helpers.CanSplit2, Items.MoleMitts;
-	    WesternWoodTopDig2;     Minor; 0F77DF;                                                                   Helpers.CanSplit2, Items.MoleMitts;                                              
-	    WesternWoodTopDig3;     Minor; 0F77EF;                                                                   Helpers.CanSplit2, Items.MoleMitts;
-	    WesternWoodTopDig4;     Minor; 0F77FF;                                                                   Helpers.CanSplit2, Items.MoleMitts;
-	    WesternWoodTopDig5;     Minor; 0F780F;                                                                   Helpers.CanSplit2, Items.MoleMitts;
-	    WesternWoodTopDig6;     Minor; 0F781F;                                                                   Helpers.CanSplit2, Items.MoleMitts;
-	    WesternWoodBottomDig1;  Minor; 0F782F;                                                                   Helpers.CanSplit2, Items.MoleMitts;
-	    WesternWoodBottomDig2;  Minor; 0F783F;                                                                   Helpers.CanSplit2, Items.MoleMitts;
-	!endif
+    RuinsPillarsFusion;      Minor; 0FE11E;                                                                   Locations.AccessFortress;
+    RuinsCrackFusion;        Minor; 27-0C-00;                                                                 Locations.AccessFortress;
 
-	PercyHouseMoblin;        Minor; 0123D6;                                                                   Helpers.CanSplit2, Items.LanternOff, Items.PegasusBoots;
-	PercyHouseReward;        Minor; 06B058:FirstByte, 06B05A:SecondByte;                                      Helpers.CanSplit2, Items.LanternOff, Items.PegasusBoots;
-	
-	HyliaWaterDigCave;       Minor; 19-00-00;                                                                 Locations.AccessHyliaSouth, Items.MoleMitts, (|Items.Flippers, Items.RocsCape);
+    PreValleyFusion;         Minor; 0FE0F6;                                                                   Helpers.CanSplit3;
+    RoyalValleyLeftFusion;   Minor; 0FE0DE;                                                                   Locations.AccessValley, Items.GraveyardKey, Items.PegasusBoots;
+    RoyalValleyRightFusion;  Minor; 0FE0E6;                                                                   Locations.AccessValley, Items.GraveyardKey, Items.PegasusBoots;
+    GinaGrave;               Minor; 34-01-00;                                                                 Locations.AccessValley, Items.GraveyardKey, Items.PegasusBoots;
 
-	CrenelGreenWaterFusion;  Minor; 0FE06E;                                                                   Locations.AccessWestField, Helpers.HasBottle, Items.BombBag;
-	CrenelClimbFusion;       Minor; 0FE10E;                                                                   Locations.AccessCrenel, Items.GripRing;
-	CrenelRainPath;          Minor; 0FE066;                                                                   Locations.AccessCrenel, Items.GripRing;
-	CrenelLowerLeftFusion;   Minor; 0FE116;                                                                   Locations.AccessWestField, Helpers.HasBottle, (|Items.BombBag, Items.RocsCape);
-	PreMelariFusion;         Minor; 0FE096;                                                                   Locations.CrenelBlockChest;
-
-	CastorTopRightCrack;     Minor; 27-09-00;                                                                 Locations.AccessWilds;
-	CastorTopLeftCrack;      Minor; 27-0D-00;                                                                 Locations.AccessWilds, (|Items.GustJar, Items.Flippers);
-	CastorMiddleLeftCrack;   Minor; 27-0A-00;                                                                 Locations.AccessWilds;
-	CastorLongJourneyCrack;  Minor; 27-0B-00;                                                                 Locations.AccessWilds;
-	CastorMinishWaterCaveChest; Minor; 35-01-00;                                                              Locations.AccessWilds, Items.Flippers;
-
-	RuinsPillarsFusion;      Minor; 0FE11E;                                                                   Locations.AccessFortress;
-	RuinsCrackFusion;        Minor; 27-0C-00;                                                                 Locations.AccessFortress;
-	
-	PreValleyFusion;         Minor; 0FE0F6;                                                                   Helpers.CanSplit3;
-	RoyalValleyLeftFusion;   Minor; 0FE0DE;                                                                   Locations.AccessValley, Items.GraveyardKey, Items.PegasusBoots;
-	RoyalValleyRightFusion;  Minor; 0FE0E6;                                                                   Locations.AccessValley, Items.GraveyardKey, Items.PegasusBoots;                                                                 
-	GinaGrave;               Minor; 34-01-00;                                                                 Locations.AccessValley, Items.GraveyardKey, Items.PegasusBoots;
-
-	FallsNearCrestFusion;    Minor; 0FE106;                                                                   Locations.AccessFallsNorth, Items.GripRing;
-	FallsWaterCaveEnd;       Minor; 16-00-00;                                                                 Items.BombBag, (|Items.RocsCape, Items.Flippers), Items.MoleMitts
+    FallsNearCrestFusion;    Minor; 0FE106;                                                                   Locations.AccessFallsNorth, Items.GripRing;
+    FallsWaterCaveEnd;       Minor; 16-00-00;                                                                 Items.BombBag, (|Items.RocsCape, Items.Flippers), Items.MoleMitts
 
     RuinsBombBag;            Major; 0FE0AE;                                                                   Locations.AccessFortress;
     LonLonWallet;            Major; 32-0F-00;                                                                 Locations.AccessHyliaNorth;
@@ -931,31 +920,33 @@ PalacePrize:`ELEMENT_DUNGEON`;     `ELEMENT`;         0E69E3;                   
     TingleBoomerang;         Major; 32-00-04;                                                                 ;                                                                Items.Boomerang #consistency
     RuinsBeanStalk;          Major; 0D-02-00;                                                                 Locations.AccessFortress;
     BelariRemote;            Major; 00A0A0;                                                                   Locations.BelariBombs;
-											                                                                  
-	RuinsArrowButterfly;     Major; 0FE12F;                                                                   Locations.AccessFortress
-    CastorDigButterfly;      Major; 0FE13F;                                                                   Locations.AccessWilds;
-    ValleySwimButterfly;     Major; 0FE14F;                                                                   Locations.AccessValley, Items.GraveyardKey, Items.PegasusBoots;
-    					     				                                                                  
-    CrenelBeanstalkHP;       Major; 0F5D9B;                                                                   Locations.AccessCrenel, Items.GripRing;
-    
-	HyliaBeanstalkHP;        Major; 0F5EDB;                                                                   Locations.AccessTreasureCave;
-    HyliaBeanstalkLeft;      Minor; 0D-01-00;                                                                 Locations.AccessTreasureCave;
-	HyliaBeanstalkRight;     Minor; 0D-01-01;                                                                 Locations.AccessTreasureCave;
-	
-	HillsBeanstalkHP;        Major; 0F6073;                                                                   Helpers.CanDestroyTrees;
-    HillsBeanstalkRight;     Minor; 0D-03-00;                                                                 Helpers.CanDestroyTrees;
-	HillsBeanstalkLeft;      Minor; 0D-03-01;                                                                 Helpers.CanDestroyTrees;
-	
-	WesternBeanstalk;          Minor; 0D-04-00;                                                                 Helpers.CanSplit2;
 
-	WesternTreeHouseHP;        Major; 0F9E1F;                                                                   Helpers.CanSplit2;
+    RuinsArrowButterfly;     Major; 0FE12F;                                                                   Locations.AccessFortress
+    WildsDigButterfly;       Major; 0FE13F;                                                                   Locations.AccessWilds;
+    ValleySwimButterfly;     Major; 0FE14F;                                                                   Locations.AccessValley, Items.GraveyardKey, Items.PegasusBoots;
+
+    CrenelBeanstalkHP;       Major; 0F5D9B;                                                                   Locations.AccessCrenel, Items.GripRing;
+
+    HyliaBeanstalkHP;        Major; 0F5EDB;                                                                   Locations.AccessTreasureCave;
+    HyliaBeanstalkLeft;      Minor; 0D-01-00;                                                                 Locations.AccessTreasureCave;
+    HyliaBeanstalkRight;     Minor; 0D-01-01;                                                                 Locations.AccessTreasureCave;
+
+    HillsBeanstalkHP;        Major; 0F6073;                                                                   Helpers.CanDestroyTrees;
+    HillsBeanstalkRight;     Minor; 0D-03-00;                                                                 Helpers.CanDestroyTrees;
+
+    HillsBeanstalkLeft;      Minor; 0D-03-01;                                                                 Helpers.CanDestroyTrees;
+	
+    WesternBeanstalk;          Minor; 0D-04-00;                                                               Helpers.CanSplit2;
+
+    WesternTreeHouseHP;        Major; 0F9E1F;                                                                 Helpers.CanSplit2;
     LinkHouseTreeHP;         Major; 0F9BA7;                                                                   Helpers.CanDestroyTrees;
     FallsWaterDigCaveHP;     Major; 0F3DD7;                                                                   Items.BombBag, (|Items.RocsCape,Items.Flippers), Items.MoleMitts;
     FallsWaterfallHP;        Major; 0F906F;                                                                   Locations.AccessFallsNorth, Items.Flippers, Items.GripRing;
-    CastorMinishWaterCaveHP; Major; 0DB3F7;                                                                   Locations.AccessWilds, Items.Flippers;
-    CastleDrainedFountainHP; Major; 0D9C2B;                                                                   ;
+    WildsMinishWaterCaveHP; Major; 0DB3F7;                                                                    Locations.AccessWilds, Items.Flippers;
+    CastleGardenDrainedFountainHP; Major; 0D9C2B;                                                             ;
     LibrariCabinContainer;   Major; 0124EC;                                                                   Items.Ocarina, (|Items.Flippers,Items.RocsCape);
     
+
     ScarbladeScroll;         Major; scarbladeDojoItem:Define:FirstByte, scarbladeDojoSub:Define:SecondByte;   Locations.AccessWilds, Items.Flippers, Helpers.HasBow, Helpers.HasSword;           Items.FastSpin
     SplitbladeScroll;        Major; splitbladeDojoItem:Define:FirstByte, splitbladeDojoSub:Define:SecondByte; Locations.AccessFallsSouth, Items.Flippers, Helpers.HasSword;                      Items.FastSplit
     GreatbladeScroll;        Major; greatbladeDojoItem:Define:FirstByte, greatbladeDojoSub:Define:SecondByte; Items.Flippers, Helpers.HasSword;                                                  Items.LongSpin
@@ -966,23 +957,24 @@ PalacePrize:`ELEMENT_DUNGEON`;     `ELEMENT`;         0E69E3;                   
     GoronBottle4;            Major; 2F-01-01; Helpers.Inaccessible;
     TingleBoomerang;         Major; 32-00-04; Helpers.Inaccessible; Items.Boomerang #consistency
     RuinsBeanStalk;          Major; 0D-02-00; Helpers.Inaccessible;
-    BelariRemote;            Major; 00A0A0;   Helpers.Inaccessible;					     
-    
+    BelariRemote;            Major; 00A0A0;   Helpers.Inaccessible;
+
     RuinsArrowButterfly;     Major; 0FE12F;   Helpers.Inaccessible;
-    CastorDigButterfly;      Major; 0FE13F;   Helpers.Inaccessible;
+    WildsDigButterfly;       Major; 0FE13F;   Helpers.Inaccessible;
     ValleySwimButterfly;     Major; 0FE14F;   Helpers.Inaccessible;
-    					     				  
-    CrenelBeanstalkHP;       Major; 0F5D9B;   Helpers.Inaccessible;
-    HyliaBeanstalkHP;        Major; 0F5EDB;   Helpers.Inaccessible;
-    HillsBeanstalkHP;        Major; 0F6073;   Helpers.Inaccessible;
-    WesternTreeHouseHP;        Major; 0F9E1F;   Helpers.Inaccessible;
-    LinkHouseTreeHP;         Major; 0F9BA7;   Helpers.Inaccessible;
-    FallsWaterDigCaveHP;     Major; 0F3DD7;   Helpers.Inaccessible;
-    FallsWaterfallHP;        Major; 0F906F;   Helpers.Inaccessible;
-    CastorMinishWaterCaveHP; Major; 0DB3F7;   Helpers.Inaccessible;
-    CastleDrainedFountainHP; Major; 0D9C2B;   Helpers.Inaccessible;
-    LibrariCabinContainer;   Major; 0124EC;   Helpers.Inaccessible;
-    
+
+
+    CrenelBeanstalkHP;             Major; 0F5D9B;   Helpers.Inaccessible;
+    HyliaBeanstalkHP;              Major; 0F5EDB;   Helpers.Inaccessible;
+    HillsBeanstalkHP;              Major; 0F6073;   Helpers.Inaccessible;
+    WesternTreeHouseHP;            Major; 0F9E1F;   Helpers.Inaccessible;
+    LinkHouseTreeHP;               Major; 0F9BA7;   Helpers.Inaccessible;
+    FallsWaterDigCaveHP;           Major; 0F3DD7;   Helpers.Inaccessible;
+    FallsWaterfallHP;              Major; 0F906F;   Helpers.Inaccessible;
+    WildsMinishWaterCaveHP;        Major; 0DB3F7;   Helpers.Inaccessible;
+    CastleGardenDrainedFountainHP; Major; 0D9C2B;   Helpers.Inaccessible;
+    LibrariCabinContainer;         Major; 0124EC;   Helpers.Inaccessible;
+
     ScarbladeScroll;         Major; scarbladeDojoItem:Define:FirstByte, scarbladeDojoSub:Define:SecondByte; Helpers.Inaccessible;   Items.FastSpin
     SplitbladeScroll;        Major; splitbladeDojoItem:Define:FirstByte, splitbladeDojoSub:Define:SecondByte; Helpers.Inaccessible; Items.FastSplit
     GreatbladeScroll;        Major; greatbladeDojoItem:Define:FirstByte, greatbladeDojoSub:Define:SecondByte; Helpers.Inaccessible; Items.LongSpin
@@ -990,172 +982,172 @@ PalacePrize:`ELEMENT_DUNGEON`;     `ELEMENT`;         0E69E3;                   
 
 
 !ifdef - WHYWOULDYOUDOTHISTOYOURSELF
-	HearthPot;                      Minor; 0D663B:FirstByte, 0D663D:SecondByte;
-	DropletsIceMazePot:Droplets;    Minor; 0E3A73:FirstByte, 0E3A75:SecondByte; Locations.AccessDroplets, Items.BigKey:Droplets,  (|Items.LanternOff, Locations.DropletsEastLever)
-	FoWRightSideTopPot:Fortress;    Minor; 0F3FC7:FirstByte, 0F3FC9:SecondByte; Locations.AccessFortress, Items.MoleMitts, Helpers.CanSplit2, Helpers.HasBow, Items.SmallKey`FOW_SET`:3
-	FoWRightSideBottomPot:Fortress; Minor; 0F3FD7:FirstByte, 0F3FD9:SecondByte; Locations.AccessFortress, Items.MoleMitts, Helpers.CanSplit2, Helpers.HasBow, Items.SmallKey`FOW_SET`:3
-    
-	#digging
-	LonLonBuriedTreasure;           Minor; 0F6CFF;                              Locations.AboveHPHole, Items.MoleMitts;
-	NorthHyruleFieldBuriedTreasure; Minor; 0F720F;                              Items.MoleMitts;
-	TopLeftCloudWall;               Minor; 0DCB4B;                              Locations.AccessClouds, Items.MoleMitts
-	TopRightCloudWall;              Minor; 0DCB5B;                              Locations.AccessClouds, Items.MoleMitts
-	BottomMiddleCloudWall;          Minor; 0DCB6B;                              Locations.AccessClouds, Items.MoleMitts
-	BottomRightmostTopCloudWall;    Minor; 0DCB7B;                              Locations.AccessClouds, Items.MoleMitts
-	BottomLeftCloudWall;            Minor; 0DCB8B;                              Locations.AccessClouds, Items.MoleMitts
-	BottomRightCloudWall;           Minor; 0DCB9B;                              Locations.AccessClouds, Items.MoleMitts
-	BottomRightmostBottomCloudWall; Minor; 0DCBAB;                              Locations.AccessClouds, Items.MoleMitts
-	FallsBuriedTopTreasure;         Minor; 0F8813;                              Locations.AccessFallsNorth, Items.GripRing, Items.MoleMitts
-	FallsBuriedBottomTreasure;      Minor; 0F8823;                              Locations.AccessFallsNorth, Items.MoleMitts
-	MelariMining1;                  Minor; 0DC8C3;                              Locations.CrenelBlockChest, Items.MoleMitts
-	MelariMining2;                  Minor; 0DC8D3;                              Locations.CrenelBlockChest, Items.MoleMitts
-	MelariMining3;                  Minor; 0DC8E3;                              Locations.CrenelBlockChest, Items.MoleMitts
-	MelariMining4;                  Minor; 0DC8F3;                              Locations.CrenelBlockChest, Items.MoleMitts
-	MelariMining5;                  Minor; 0DC903;                              Locations.CrenelBlockChest, Items.MoleMitts
-	MelariMining6;                  Minor; 0DC913;                              Locations.CrenelBlockChest, Items.MoleMitts
-	MelariMining7;                  Minor; 0DC923;                              Locations.CrenelBlockChest, Items.MoleMitts
-	MelariMining8;                  Minor; 0DC933;                              Locations.CrenelBlockChest, Items.MoleMitts
+    HearthPot;                      Minor; 0D663B:FirstByte, 0D663D:SecondByte;
+    DropletsIceMazePot:Droplets;    Minor; 0E3A73:FirstByte, 0E3A75:SecondByte; Locations.AccessDroplets, Items.BigKey:Droplets,  (|Items.LanternOff, Locations.DropletsEastLever)
+    FoWRightSideTopPot:Fortress;    Minor; 0F3FC7:FirstByte, 0F3FC9:SecondByte; Locations.AccessFortress, Items.MoleMitts, Helpers.CanSplit2, Helpers.HasBow, Items.SmallKey`FOW_SET`:3
+    FoWRightSideBottomPot:Fortress; Minor; 0F3FD7:FirstByte, 0F3FD9:SecondByte; Locations.AccessFortress, Items.MoleMitts, Helpers.CanSplit2, Helpers.HasBow, Items.SmallKey`FOW_SET`:3
 
-	#diving
-	WildsSunkenKinstoneTop;         Minor; 0D9347;                              Locations.AccessWilds, Items.Flippers
-	WildsSunkenKinstoneMiddle;      Minor; 0D9357;                              Locations.AccessWilds, Items.Flippers
-	WildsSunkenKinstoneBottom;      Minor; 0D9367;                              Locations.AccessWilds, Items.Flippers
+    #digging
+    LonLonBuriedTreasure;           Minor; 0F6CFF;                              Locations.AboveHPHole, Items.MoleMitts;
+    NorthHyruleFieldBuriedTreasure; Minor; 0F720F;                              Items.MoleMitts;
+    TopLeftCloudWall;               Minor; 0DCB4B;                              Locations.AccessClouds, Items.MoleMitts
+    TopRightCloudWall;              Minor; 0DCB5B;                              Locations.AccessClouds, Items.MoleMitts
+    BottomMiddleCloudWall;          Minor; 0DCB6B;                              Locations.AccessClouds, Items.MoleMitts
+    BottomRightmostTopCloudWall;    Minor; 0DCB7B;                              Locations.AccessClouds, Items.MoleMitts
+    BottomLeftCloudWall;            Minor; 0DCB8B;                              Locations.AccessClouds, Items.MoleMitts
+    BottomRightCloudWall;           Minor; 0DCB9B;                              Locations.AccessClouds, Items.MoleMitts
+    BottomRightmostBottomCloudWall; Minor; 0DCBAB;                              Locations.AccessClouds, Items.MoleMitts
+    FallsBuriedTopTreasure;         Minor; 0F8813;                              Locations.AccessFallsNorth, Items.GripRing, Items.MoleMitts
+    FallsBuriedBottomTreasure;      Minor; 0F8823;                              Locations.AccessFallsNorth, Items.MoleMitts
+    MelariMining1;                  Minor; 0DC8C3;                              Locations.CrenelBlockChest, Items.MoleMitts
+    MelariMining2;                  Minor; 0DC8D3;                              Locations.CrenelBlockChest, Items.MoleMitts
+    MelariMining3;                  Minor; 0DC8E3;                              Locations.CrenelBlockChest, Items.MoleMitts
+    MelariMining4;                  Minor; 0DC8F3;                              Locations.CrenelBlockChest, Items.MoleMitts
+    MelariMining5;                  Minor; 0DC903;                              Locations.CrenelBlockChest, Items.MoleMitts
+    MelariMining6;                  Minor; 0DC913;                              Locations.CrenelBlockChest, Items.MoleMitts
+    MelariMining7;                  Minor; 0DC923;                              Locations.CrenelBlockChest, Items.MoleMitts
+    MelariMining8;                  Minor; 0DC933;                              Locations.CrenelBlockChest, Items.MoleMitts
+
+    #diving
+    WildsSunkenKinstoneTop;         Minor; 0D9347;                              Locations.AccessWilds, Items.Flippers
+    WildsSunkenKinstoneMiddle;      Minor; 0D9357;                              Locations.AccessWilds, Items.Flippers
+    WildsSunkenKinstoneBottom;      Minor; 0D9367;                              Locations.AccessWilds, Items.Flippers
 !endif
 
 !ifdef - RUPEEMANIA
     CrenelFairyCaveRupee1; Minor; 0FB3F3; Locations.AccessWestField, Items.BombBag, Helpers.HasBottle;
-	CrenelFairyCaveRupee2; Minor; 0FB403; Locations.AccessWestField, Items.BombBag, Helpers.HasBottle;
-	CrenelFairyCaveRupee3; Minor; 0FB413; Locations.AccessWestField, Items.BombBag, Helpers.HasBottle;
-	CrenelOutsideRupee; Minor; 0FAACF; Locations.AccessWestField;
+    CrenelFairyCaveRupee2; Minor; 0FB403; Locations.AccessWestField, Items.BombBag, Helpers.HasBottle;
+    CrenelFairyCaveRupee3; Minor; 0FB413; Locations.AccessWestField, Items.BombBag, Helpers.HasBottle;
+    CrenelOutsideRupee; Minor; 0FAACF; Locations.AccessWestField;
 
-	FallsLowerRupee1; Minor; 0F87E3; Locations.AccessFallsSouth, (|Items.Flippers, Items.RocsCape);
-	FallsLowerRupee2; Minor; 0F87F3; Locations.AccessFallsSouth, (|Items.Flippers, Items.RocsCape);
-	FallsLowerRupee3; Minor; 0F8803; Locations.AccessFallsSouth, (|Items.Flippers, Items.RocsCape);
+    FallsLowerRupee1; Minor; 0F87E3; Locations.AccessFallsSouth, (|Items.Flippers, Items.RocsCape);
+    FallsLowerRupee2; Minor; 0F87F3; Locations.AccessFallsSouth, (|Items.Flippers, Items.RocsCape);
+    FallsLowerRupee3; Minor; 0F8803; Locations.AccessFallsSouth, (|Items.Flippers, Items.RocsCape);
 
-	FallsUpperCaveRupee1; Minor; 0F8F27; Locations.AccessFallsNorth, Items.GripRing;
-	FallsUpperCaveRupee2; Minor; 0F8F37; Locations.AccessFallsNorth, Items.GripRing;
-	FallsUpperCaveRupee3; Minor; 0F8F47; Locations.AccessFallsNorth, Items.GripRing;
-	FallsUpperCaveRupee4; Minor; 0F8F57; Locations.AccessFallsNorth, Items.GripRing;
-	FallsUpperCaveRupee5; Minor; 0F8F67; Locations.AccessFallsNorth, Items.GripRing;
-	FallsUpperCaveRupee6; Minor; 0F8F77; Locations.AccessFallsNorth, Items.GripRing;
-	FallsUpperCaveRupee7; Minor; 0F8F87; Locations.AccessFallsNorth, Items.GripRing;
-	FallsUpperCaveRupee8; Minor; 0F8F97; Locations.AccessFallsNorth, Items.GripRing;
-	FallsUpperCaveRupee9; Minor; 0F8FA7; Locations.AccessFallsNorth, Items.GripRing;
+    FallsUpperCaveRupee1; Minor; 0F8F27; Locations.AccessFallsNorth, Items.GripRing;
+    FallsUpperCaveRupee2; Minor; 0F8F37; Locations.AccessFallsNorth, Items.GripRing;
+    FallsUpperCaveRupee3; Minor; 0F8F47; Locations.AccessFallsNorth, Items.GripRing;
+    FallsUpperCaveRupee4; Minor; 0F8F57; Locations.AccessFallsNorth, Items.GripRing;
+    FallsUpperCaveRupee5; Minor; 0F8F67; Locations.AccessFallsNorth, Items.GripRing;
+    FallsUpperCaveRupee6; Minor; 0F8F77; Locations.AccessFallsNorth, Items.GripRing;
+    FallsUpperCaveRupee7; Minor; 0F8F87; Locations.AccessFallsNorth, Items.GripRing;
+    FallsUpperCaveRupee8; Minor; 0F8F97; Locations.AccessFallsNorth, Items.GripRing;
+    FallsUpperCaveRupee9; Minor; 0F8FA7; Locations.AccessFallsNorth, Items.GripRing;
 
-	FallsUpperCaveWaterRupee1; Minor; 0F8FB7; Locations.AccessFallsNorth, Items.GripRing, Items.Flippers;
-	FallsUpperCaveWaterRupee2; Minor; 0F8FC7; Locations.AccessFallsNorth, Items.GripRing, Items.Flippers;
-	FallsUpperCaveWaterRupee3; Minor; 0F8FD7; Locations.AccessFallsNorth, Items.GripRing, Items.Flippers;
-	FallsUpperCaveWaterRupee4; Minor; 0F8FE7; Locations.AccessFallsNorth, Items.GripRing, Items.Flippers;
-	FallsUpperCaveWaterRupee5; Minor; 0F8FF7; Locations.AccessFallsNorth, Items.GripRing, Items.Flippers;
-	FallsUpperCaveWaterRupee6; Minor; 0F9007; Locations.AccessFallsNorth, Items.GripRing, Items.Flippers;
+    FallsUpperCaveWaterRupee1; Minor; 0F8FB7; Locations.AccessFallsNorth, Items.GripRing, Items.Flippers;
+    FallsUpperCaveWaterRupee2; Minor; 0F8FC7; Locations.AccessFallsNorth, Items.GripRing, Items.Flippers;
+    FallsUpperCaveWaterRupee3; Minor; 0F8FD7; Locations.AccessFallsNorth, Items.GripRing, Items.Flippers;
+    FallsUpperCaveWaterRupee4; Minor; 0F8FE7; Locations.AccessFallsNorth, Items.GripRing, Items.Flippers;
+    FallsUpperCaveWaterRupee5; Minor; 0F8FF7; Locations.AccessFallsNorth, Items.GripRing, Items.Flippers;
+    FallsUpperCaveWaterRupee6; Minor; 0F9007; Locations.AccessFallsNorth, Items.GripRing, Items.Flippers;
 
-	FortressBigRupee:Fortress; Minor; 0F3E67;                                                                 Locations.AccessFortress, Items.MoleMitts;
-	FortressF1Rupee1:Fortress; Minor; 0F3F37;                                                                 Locations.AccessFortress, Helpers.HasBow;
-	FortressF1Rupee2:Fortress; Minor; 0F3F47;                                                                 Locations.AccessFortress, Helpers.HasBow;
-	FortressF1Rupee3:Fortress; Minor; 0F3F57;                                                                 Locations.AccessFortress, Helpers.HasBow;
-	FortressF1Rupee4:Fortress; Minor; 0F3F67;                                                                 Locations.AccessFortress, Helpers.HasBow;
-	FortressF1Rupee5:Fortress; Minor; 0F3F77;                                                                 Locations.AccessFortress, Helpers.HasBow;
-	FortressF1Rupee6:Fortress; Minor; 0F3F87;                                                                 Locations.AccessFortress, Helpers.HasBow;
-	FortressF1Rupee7:Fortress; Minor; 0F3F97;                                                                 Locations.AccessFortress, Helpers.HasBow;
+    FortressBigRupee:Fortress; Minor; 0F3E67;                                                                 Locations.AccessFortress, Items.MoleMitts;
+    FortressF1Rupee1:Fortress; Minor; 0F3F37;                                                                 Locations.AccessFortress, Helpers.HasBow;
+    FortressF1Rupee2:Fortress; Minor; 0F3F47;                                                                 Locations.AccessFortress, Helpers.HasBow;
+    FortressF1Rupee3:Fortress; Minor; 0F3F57;                                                                 Locations.AccessFortress, Helpers.HasBow;
+    FortressF1Rupee4:Fortress; Minor; 0F3F67;                                                                 Locations.AccessFortress, Helpers.HasBow;
+    FortressF1Rupee5:Fortress; Minor; 0F3F77;                                                                 Locations.AccessFortress, Helpers.HasBow;
+    FortressF1Rupee6:Fortress; Minor; 0F3F87;                                                                 Locations.AccessFortress, Helpers.HasBow;
+    FortressF1Rupee7:Fortress; Minor; 0F3F97;                                                                 Locations.AccessFortress, Helpers.HasBow;
 
-	DropletsUpperWaterRupee1:Droplets; Minor; 0E3593;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.Flippers;
-	DropletsUpperWaterRupee2:Droplets; Minor; 0E35A3;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.Flippers;
-	DropletsUpperWaterRupee3:Droplets; Minor; 0E35B3;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.Flippers;
-	DropletsUpperWaterRupee4:Droplets; Minor; 0E35C3;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.Flippers;
-	DropletsUpperWaterRupee5:Droplets; Minor; 0E35D3;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.Flippers;
-	DropletsUpperWaterRupee6:Droplets; Minor; 0E35E3;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.Flippers;
-	DropletsLowerWaterRupee1:Droplets; Minor; 0E58DF;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.Flippers, (|Items.RocsCape, Items.GustJar);
-	DropletsLowerWaterRupee2:Droplets; Minor; 0E58EF;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.Flippers, (|Items.RocsCape, Items.GustJar);
-	DropletsLowerWaterRupee3:Droplets; Minor; 0E58FF;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.Flippers, (|Items.RocsCape, Items.GustJar);
-	DropletsLowerWaterRupee4:Droplets; Minor; 0E590F;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.Flippers, (|Items.RocsCape, Items.GustJar);
-	DropletsLowerWaterRupee5:Droplets; Minor; 0E591F;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.Flippers, (|Items.RocsCape, Items.GustJar);
-	DropletsLowerWaterRupee6:Droplets; Minor; 0E592F;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.Flippers, (|Items.RocsCape, Items.GustJar);
-	DropletsLeftPathRupee1:Droplets;   Minor; 0E3F8B;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`;
-	DropletsLeftPathRupee2:Droplets;   Minor; 0E3F9B;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`;
-	DropletsLeftPathRupee3:Droplets;   Minor; 0E3FAB;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`;
-	DropletsLeftPathRupee4:Droplets;   Minor; 0E3FBB;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`;
-	DropletsLeftPathRupee5:Droplets;   Minor; 0E3FCB;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`;
-	DropletsRightPathRupee1:Droplets;  Minor; 0E483F;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.SmallKey`TOD_SET`:4, Items.LanternOff, (|(&Items.Flippers, Items.GustJar, Items.RocsCape), Helpers.HasDamageSource);
-	DropletsRightPathRupee2:Droplets;  Minor; 0E484F;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.SmallKey`TOD_SET`:4, Items.LanternOff, (|(&Items.Flippers, Items.GustJar, Items.RocsCape), Helpers.HasDamageSource);
-	DropletsRightPathRupee3:Droplets;  Minor; 0E485F;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.SmallKey`TOD_SET`:4, Items.LanternOff, (|(&Items.Flippers, Items.GustJar, Items.RocsCape), Helpers.HasDamageSource);
-	DropletsRightPathRupee4:Droplets;  Minor; 0E486F;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.SmallKey`TOD_SET`:4, Items.LanternOff, (|(&Items.Flippers, Items.GustJar, Items.RocsCape), Helpers.HasDamageSource);
-	DropletsRightPathRupee5:Droplets;  Minor; 0E487F;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.SmallKey`TOD_SET`:4, Items.LanternOff, (|(&Items.Flippers, Items.GustJar, Items.RocsCape), Helpers.HasDamageSource);
+    DropletsUpperWaterRupee1:Droplets; Minor; 0E3593;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.Flippers;
+    DropletsUpperWaterRupee2:Droplets; Minor; 0E35A3;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.Flippers;
+    DropletsUpperWaterRupee3:Droplets; Minor; 0E35B3;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.Flippers;
+    DropletsUpperWaterRupee4:Droplets; Minor; 0E35C3;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.Flippers;
+    DropletsUpperWaterRupee5:Droplets; Minor; 0E35D3;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.Flippers;
+    DropletsUpperWaterRupee6:Droplets; Minor; 0E35E3;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.Flippers;
+    DropletsLowerWaterRupee1:Droplets; Minor; 0E58DF;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.Flippers, (|Items.RocsCape, Items.GustJar);
+    DropletsLowerWaterRupee2:Droplets; Minor; 0E58EF;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.Flippers, (|Items.RocsCape, Items.GustJar);
+    DropletsLowerWaterRupee3:Droplets; Minor; 0E58FF;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.Flippers, (|Items.RocsCape, Items.GustJar);
+    DropletsLowerWaterRupee4:Droplets; Minor; 0E590F;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.Flippers, (|Items.RocsCape, Items.GustJar);
+    DropletsLowerWaterRupee5:Droplets; Minor; 0E591F;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.Flippers, (|Items.RocsCape, Items.GustJar);
+    DropletsLowerWaterRupee6:Droplets; Minor; 0E592F;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.Flippers, (|Items.RocsCape, Items.GustJar);
+    DropletsLeftPathRupee1:Droplets;   Minor; 0E3F8B;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`;
+    DropletsLeftPathRupee2:Droplets;   Minor; 0E3F9B;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`;
+    DropletsLeftPathRupee3:Droplets;   Minor; 0E3FAB;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`;
+    DropletsLeftPathRupee4:Droplets;   Minor; 0E3FBB;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`;
+    DropletsLeftPathRupee5:Droplets;   Minor; 0E3FCB;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`;
+    DropletsRightPathRupee1:Droplets;  Minor; 0E483F;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.SmallKey`TOD_SET`:4, Items.LanternOff, (|(&Items.Flippers, Items.GustJar, Items.RocsCape), Helpers.HasDamageSource);
+    DropletsRightPathRupee2:Droplets;  Minor; 0E484F;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.SmallKey`TOD_SET`:4, Items.LanternOff, (|(&Items.Flippers, Items.GustJar, Items.RocsCape), Helpers.HasDamageSource);
+    DropletsRightPathRupee3:Droplets;  Minor; 0E485F;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.SmallKey`TOD_SET`:4, Items.LanternOff, (|(&Items.Flippers, Items.GustJar, Items.RocsCape), Helpers.HasDamageSource);
+    DropletsRightPathRupee4:Droplets;  Minor; 0E486F;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.SmallKey`TOD_SET`:4, Items.LanternOff, (|(&Items.Flippers, Items.GustJar, Items.RocsCape), Helpers.HasDamageSource);
+    DropletsRightPathRupee5:Droplets;  Minor; 0E487F;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.SmallKey`TOD_SET`:4, Items.LanternOff, (|(&Items.Flippers, Items.GustJar, Items.RocsCape), Helpers.HasDamageSource);
 
-	CoFRupee1:FlameCave; Minor; 0DFAEB;                                                                       Helpers.CoFAccess;
-	CoFRupee2:FlameCave; Minor; 0DFAFB;                                                                       Helpers.CoFAccess;
-	CoFRupee3:FlameCave; Minor; 0DFB0B;                                                                       Helpers.CoFAccess;
-	CoFRupee4:FlameCave; Minor; 0DFB1B;                                                                       Helpers.CoFAccess;
-	CoFRupee5:FlameCave; Minor; 0DFB2B;                                                                       Helpers.CoFAccess;
-	
-	PalaceRupee1:Palace; Minor; 0E8B1F;                                                                       Locations.AccessPalace, Items.RocsCape, Items.PacciCane;
-	PalaceRupee2:Palace; Minor; 0E8B2F;                                                                       Locations.AccessPalace, Items.RocsCape, Items.PacciCane;
+    CoFRupee1:FlameCave; Minor; 0DFAEB;                                                                       Helpers.CoFAccess;
+    CoFRupee2:FlameCave; Minor; 0DFAFB;                                                                       Helpers.CoFAccess;
+    CoFRupee3:FlameCave; Minor; 0DFB0B;                                                                       Helpers.CoFAccess;
+    CoFRupee4:FlameCave; Minor; 0DFB1B;                                                                       Helpers.CoFAccess;
+    CoFRupee5:FlameCave; Minor; 0DFB2B;                                                                       Helpers.CoFAccess;
+
+    PalaceRupee1:Palace; Minor; 0E8B1F;                                                                       Locations.AccessPalace, Items.RocsCape, Items.PacciCane;
+    PalaceRupee2:Palace; Minor; 0E8B2F;                                                                       Locations.AccessPalace, Items.RocsCape, Items.PacciCane;
     PalaceRupee3:Palace; Minor; 0E8B3F;                                                                       Locations.AccessPalace, Items.RocsCape, Items.PacciCane;
     PalaceRupee4:Palace; Minor; 0E8B4F;                                                                       Locations.AccessPalace, Items.RocsCape, Items.PacciCane;
     PalaceRupee5:Palace; Minor; 0E8B5F;                                                                       Locations.AccessPalace, Items.RocsCape, Items.PacciCane;
 
-	FlipperCaveWaterfallRupee; Minor; 0EF79B;                                                                 Items.Ocarina, Items.Flippers, Items.PacciCane;
+    FlipsCaveWaterfallRupee; Minor; 0EF79B;                                                                 Items.Ocarina, Items.Flippers, Items.PacciCane;
 
-	FarmCaveRupee; Minor; 0F3C9F;                                                                             Locations.AccessEastField, Items.MoleMitts;
+    FarmCaveRupee; Minor; 0F3C9F;                                                                             Locations.AccessEastField, Items.MoleMitts;
 
     !ifdef - OPENFUSIONS
-	    CrenelBeanstalkRupee1; Minor; 0F5DAB; Locations.AccessCrenel, Items.GripRing;
-		CrenelBeanstalkRupee2; Minor; 0F5DBB; Locations.AccessCrenel, Items.GripRing;
-		CrenelBeanstalkRupee3; Minor; 0F5DCB; Locations.AccessCrenel, Items.GripRing;
-		CrenelBeanstalkRupee4; Minor; 0F5DDB; Locations.AccessCrenel, Items.GripRing;
-		CrenelBeanstalkRupee5; Minor; 0F5DEB; Locations.AccessCrenel, Items.GripRing;
-		CrenelBeanstalkRupee6; Minor; 0F5DFB; Locations.AccessCrenel, Items.GripRing;
-		CrenelBeanstalkRupee7; Minor; 0F5E0B; Locations.AccessCrenel, Items.GripRing;
-		CrenelBeanstalkRupee8; Minor; 0F5E1B; Locations.AccessCrenel, Items.GripRing;
+        CrenelBeanstalkRupee1; Minor; 0F5DAB; Locations.AccessCrenel, Items.GripRing;
+        CrenelBeanstalkRupee2; Minor; 0F5DBB; Locations.AccessCrenel, Items.GripRing;
+        CrenelBeanstalkRupee3; Minor; 0F5DCB; Locations.AccessCrenel, Items.GripRing;
+        CrenelBeanstalkRupee4; Minor; 0F5DDB; Locations.AccessCrenel, Items.GripRing;
+        CrenelBeanstalkRupee5; Minor; 0F5DEB; Locations.AccessCrenel, Items.GripRing;
+        CrenelBeanstalkRupee6; Minor; 0F5DFB; Locations.AccessCrenel, Items.GripRing;
+        CrenelBeanstalkRupee7; Minor; 0F5E0B; Locations.AccessCrenel, Items.GripRing;
+        CrenelBeanstalkRupee8; Minor; 0F5E1B; Locations.AccessCrenel, Items.GripRing;
 
-		WesternWoodBeanstalkRupee1;  Minor; 0F6143; Helpers.CanSplit2;
-		WesternWoodBeanstalkRupee2;  Minor; 0F6153; Helpers.CanSplit2;
-		WesternWoodBeanstalkRupee3;  Minor; 0F6163; Helpers.CanSplit2;
-		WesternWoodBeanstalkRupee4;  Minor; 0F6173; Helpers.CanSplit2;
-		WesternWoodBeanstalkRupee5;  Minor; 0F6183; Helpers.CanSplit2;
-		WesternWoodBeanstalkRupee6;  Minor; 0F6193; Helpers.CanSplit2;
-		WesternWoodBeanstalkRupee7;  Minor; 0F61A3; Helpers.CanSplit2;
-		WesternWoodBeanstalkRupee8;  Minor; 0F61B3; Helpers.CanSplit2;
-		WesternWoodBeanstalkRupee9;  Minor; 0F61C3; Helpers.CanSplit2;
-		WesternWoodBeanstalkRupee10; Minor; 0F61D3; Helpers.CanSplit2;
-		WesternWoodBeanstalkRupee11; Minor; 0F61E3; Helpers.CanSplit2;
-		WesternWoodBeanstalkRupee12; Minor; 0F61F3; Helpers.CanSplit2;
-		WesternWoodBeanstalkRupee13; Minor; 0F6203; Helpers.CanSplit2;
-		WesternWoodBeanstalkRupee14; Minor; 0F6213; Helpers.CanSplit2;
-		WesternWoodBeanstalkRupee15; Minor; 0F6223; Helpers.CanSplit2;
-		WesternWoodBeanstalkRupee16; Minor; 0F6233; Helpers.CanSplit2;
+        WesternWoodBeanstalkRupee1;  Minor; 0F6143; Helpers.CanSplit2;
+        WesternWoodBeanstalkRupee2;  Minor; 0F6153; Helpers.CanSplit2;
+        WesternWoodBeanstalkRupee3;  Minor; 0F6163; Helpers.CanSplit2;
+        WesternWoodBeanstalkRupee4;  Minor; 0F6173; Helpers.CanSplit2;
+        WesternWoodBeanstalkRupee5;  Minor; 0F6183; Helpers.CanSplit2;
+        WesternWoodBeanstalkRupee6;  Minor; 0F6193; Helpers.CanSplit2;
+        WesternWoodBeanstalkRupee7;  Minor; 0F61A3; Helpers.CanSplit2;
+        WesternWoodBeanstalkRupee8;  Minor; 0F61B3; Helpers.CanSplit2;
+        WesternWoodBeanstalkRupee9;  Minor; 0F61C3; Helpers.CanSplit2;
+        WesternWoodBeanstalkRupee10; Minor; 0F61D3; Helpers.CanSplit2;
+        WesternWoodBeanstalkRupee11; Minor; 0F61E3; Helpers.CanSplit2;
+        WesternWoodBeanstalkRupee12; Minor; 0F61F3; Helpers.CanSplit2;
+        WesternWoodBeanstalkRupee13; Minor; 0F6203; Helpers.CanSplit2;
+        WesternWoodBeanstalkRupee14; Minor; 0F6213; Helpers.CanSplit2;
+        WesternWoodBeanstalkRupee15; Minor; 0F6223; Helpers.CanSplit2;
+        WesternWoodBeanstalkRupee16; Minor; 0F6233; Helpers.CanSplit2;
 
-		LinkHousePuddleCaveRupee1;  Minor; 0F8283; (|Helpers.CanDestroyTrees,Items.Flippers, Items.RocsCape);
-		LinkHousePuddleCaveRupee2;  Minor; 0F8293; (|Helpers.CanDestroyTrees,Items.Flippers, Items.RocsCape);
-		LinkHousePuddleCaveRupee3;  Minor; 0F82A3; (|Helpers.CanDestroyTrees,Items.Flippers, Items.RocsCape);
-		LinkHousePuddleCaveRupee4;  Minor; 0F82B3; (|Helpers.CanDestroyTrees,Items.Flippers, Items.RocsCape);
-		LinkHousePuddleCaveRupee5;  Minor; 0F82C3; (|Helpers.CanDestroyTrees,Items.Flippers, Items.RocsCape);
-		LinkHousePuddleCaveRupee6;  Minor; 0F82D3; (|Helpers.CanDestroyTrees,Items.Flippers, Items.RocsCape);
-		LinkHousePuddleCaveRupee7;  Minor; 0F82E3; (|Helpers.CanDestroyTrees,Items.Flippers, Items.RocsCape);
-		LinkHousePuddleCaveRupee8;  Minor; 0F82F3; (|Helpers.CanDestroyTrees,Items.Flippers, Items.RocsCape);
-		LinkHousePuddleCaveRupee9;  Minor; 0F8303; (|Helpers.CanDestroyTrees,Items.Flippers, Items.RocsCape);
-		LinkHousePuddleCaveRupee10; Minor; 0F8313; (|Helpers.CanDestroyTrees,Items.Flippers, Items.RocsCape);
-		LinkHousePuddleCaveRupee11; Minor; 0F8323; (|Helpers.CanDestroyTrees,Items.Flippers, Items.RocsCape);
-		LinkHousePuddleCaveRupee12; Minor; 0F8333; (|Helpers.CanDestroyTrees,Items.Flippers, Items.RocsCape);
-		LinkHousePuddleCaveRupee13; Minor; 0F8343; (|Helpers.CanDestroyTrees,Items.Flippers, Items.RocsCape);
-		LinkHousePuddleCaveRupee14; Minor; 0F8353; (|Helpers.CanDestroyTrees,Items.Flippers, Items.RocsCape);
-		LinkHousePuddleCaveRupee15; Minor; 0F8363; (|Helpers.CanDestroyTrees,Items.Flippers, Items.RocsCape);
+        LinkHousePuddleCaveRupee1;  Minor; 0F8283; (|Helpers.CanDestroyTrees,Items.Flippers, Items.RocsCape);
+        LinkHousePuddleCaveRupee2;  Minor; 0F8293; (|Helpers.CanDestroyTrees,Items.Flippers, Items.RocsCape);
+        LinkHousePuddleCaveRupee3;  Minor; 0F82A3; (|Helpers.CanDestroyTrees,Items.Flippers, Items.RocsCape);
+        LinkHousePuddleCaveRupee4;  Minor; 0F82B3; (|Helpers.CanDestroyTrees,Items.Flippers, Items.RocsCape);
+        LinkHousePuddleCaveRupee5;  Minor; 0F82C3; (|Helpers.CanDestroyTrees,Items.Flippers, Items.RocsCape);
+        LinkHousePuddleCaveRupee6;  Minor; 0F82D3; (|Helpers.CanDestroyTrees,Items.Flippers, Items.RocsCape);
+        LinkHousePuddleCaveRupee7;  Minor; 0F82E3; (|Helpers.CanDestroyTrees,Items.Flippers, Items.RocsCape);
+        LinkHousePuddleCaveRupee8;  Minor; 0F82F3; (|Helpers.CanDestroyTrees,Items.Flippers, Items.RocsCape);
+        LinkHousePuddleCaveRupee9;  Minor; 0F8303; (|Helpers.CanDestroyTrees,Items.Flippers, Items.RocsCape);
+        LinkHousePuddleCaveRupee10; Minor; 0F8313; (|Helpers.CanDestroyTrees,Items.Flippers, Items.RocsCape);
+        LinkHousePuddleCaveRupee11; Minor; 0F8323; (|Helpers.CanDestroyTrees,Items.Flippers, Items.RocsCape);
+        LinkHousePuddleCaveRupee12; Minor; 0F8333; (|Helpers.CanDestroyTrees,Items.Flippers, Items.RocsCape);
+        LinkHousePuddleCaveRupee13; Minor; 0F8343; (|Helpers.CanDestroyTrees,Items.Flippers, Items.RocsCape);
+        LinkHousePuddleCaveRupee14; Minor; 0F8353; (|Helpers.CanDestroyTrees,Items.Flippers, Items.RocsCape);
+        LinkHousePuddleCaveRupee15; Minor; 0F8363; (|Helpers.CanDestroyTrees,Items.Flippers, Items.RocsCape);
 
-		TrilbyPuddleCaveRupee1;  Minor; 0F83BB; Helpers.CanSplit2;
-		TrilbyPuddleCaveRupee2;  Minor; 0F83CB; Helpers.CanSplit2;
-		TrilbyPuddleCaveRupee3;  Minor; 0F83DB; Helpers.CanSplit2;
-		TrilbyPuddleCaveRupee4;  Minor; 0F83EB; Helpers.CanSplit2;
-		TrilbyPuddleCaveRupee5;  Minor; 0F83FB; Helpers.CanSplit2;
-		TrilbyPuddleCaveRupee6;  Minor; 0F840B; Helpers.CanSplit2;
-		TrilbyPuddleCaveRupee7;  Minor; 0F841B; Helpers.CanSplit2;
-		TrilbyPuddleCaveRupee8;  Minor; 0F842B; Helpers.CanSplit2;
-		TrilbyPuddleCaveRupee9;  Minor; 0F843B; Helpers.CanSplit2;
-		TrilbyPuddleCaveRupee10; Minor; 0F844B; Helpers.CanSplit2;
-		TrilbyPuddleCaveRupee11; Minor; 0F845B; Helpers.CanSplit2;
-		TrilbyPuddleCaveRupee12; Minor; 0F846B; Helpers.CanSplit2;
-		TrilbyPuddleCaveRupee13; Minor; 0F847B; Helpers.CanSplit2;
-		TrilbyPuddleCaveRupee14; Minor; 0F848B; Helpers.CanSplit2;
-		TrilbyPuddleCaveRupee15; Minor; 0F849B; Helpers.CanSplit2;
-	!endif
+        TrilbyPuddleCaveRupee1;  Minor; 0F83BB; Helpers.CanSplit2;
+        TrilbyPuddleCaveRupee2;  Minor; 0F83CB; Helpers.CanSplit2;
+        TrilbyPuddleCaveRupee3;  Minor; 0F83DB; Helpers.CanSplit2;
+        TrilbyPuddleCaveRupee4;  Minor; 0F83EB; Helpers.CanSplit2;
+        TrilbyPuddleCaveRupee5;  Minor; 0F83FB; Helpers.CanSplit2;
+        TrilbyPuddleCaveRupee6;  Minor; 0F840B; Helpers.CanSplit2;
+        TrilbyPuddleCaveRupee7;  Minor; 0F841B; Helpers.CanSplit2;
+        TrilbyPuddleCaveRupee8;  Minor; 0F842B; Helpers.CanSplit2;
+        TrilbyPuddleCaveRupee9;  Minor; 0F843B; Helpers.CanSplit2;
+        TrilbyPuddleCaveRupee10; Minor; 0F844B; Helpers.CanSplit2;
+        TrilbyPuddleCaveRupee11; Minor; 0F845B; Helpers.CanSplit2;
+        TrilbyPuddleCaveRupee12; Minor; 0F846B; Helpers.CanSplit2;
+        TrilbyPuddleCaveRupee13; Minor; 0F847B; Helpers.CanSplit2;
+        TrilbyPuddleCaveRupee14; Minor; 0F848B; Helpers.CanSplit2;
+        TrilbyPuddleCaveRupee15; Minor; 0F849B; Helpers.CanSplit2;
+    !endif
 !endif
 
 #Unrandomized locations
