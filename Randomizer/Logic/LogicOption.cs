@@ -266,7 +266,6 @@ namespace MinishRandomizer.Randomizer.Logic
 
             if(tb.Text == ""||tb.Text == "0" || tb.Text == "0x" || tb.Text == "0X")
             {
-                Active = false;
                 value = "";
                 return;
             }
@@ -277,7 +276,6 @@ namespace MinishRandomizer.Randomizer.Logic
             {
                 if (byte.TryParse(tb.Text.Substring(2), NumberStyles.HexNumber, CultureInfo.InvariantCulture, out val))
                 {
-                    Active = true;
                     value = val.ToString("X2");
                 }
                 else
@@ -287,7 +285,6 @@ namespace MinishRandomizer.Randomizer.Logic
             }
             else if (byte.TryParse(tb.Text, out val))
             {
-                Active = true;
                 value = val.ToString("X2");
             }
             else
@@ -302,7 +299,7 @@ namespace MinishRandomizer.Randomizer.Logic
             List<LogicDefine> defineList = new List<LogicDefine>(3);
 
             // Only true if valid text has been entered
-            if (Active)
+            if (value!="")
             {
                 Console.WriteLine(Name);
                 defineList.Add(new LogicDefine(Name, value));

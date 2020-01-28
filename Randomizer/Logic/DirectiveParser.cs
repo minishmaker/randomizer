@@ -571,27 +571,15 @@ namespace MinishRandomizer.Randomizer.Logic
                 dungeonString = itemData[1];
             }
 
-            replacedItem = new Item(type, itemsub, dungeonString);
+            replacedItem = new Item(directiveParts[1], "!replace");
 
             foreach (var chanceItem in chanceItems)
             {
-
-                var chanceItemData = chanceItem.TrimEnd(';').Split(':');
+                var trimmed = chanceItem.TrimEnd(';');
+                var chanceItemData = trimmed.Split(':');
                 var chanceItemStrings = chanceItemData[0].Split('.');
 
-                itemsub = 0;
-                if (!Enum.TryParse(chanceItemStrings[1], out type))
-                {
-                    throw new ParserException("!replace has an invalid new item itemType");
-                }
-
-                if (chanceItemStrings.Length >= 3)
-                {
-                    if (!byte.TryParse(chanceItemStrings[2], NumberStyles.HexNumber, null, out itemsub))
-                    {
-                        throw new ParserException("!replace has an invalid new item itemSub");
-                    }
-                }
+                
 
                 int chance = 0;
                 if (!int.TryParse(chanceItemData[2], out chance))
@@ -599,7 +587,7 @@ namespace MinishRandomizer.Randomizer.Logic
                     throw new ParserException("!replace has an invalid new item chance value");
                 }
 
-                Item item = new Item(type, itemsub, chanceItemData[1]);
+                Item item = new Item(trimmed, "!replace");
                 chanceItemList.Add(new ChanceItem(item, chance));
             }
             Replacements.Add(replacedItem, new ChanceItemSet(chanceItemList));
@@ -612,7 +600,7 @@ namespace MinishRandomizer.Randomizer.Logic
                 throw new ParserException("!replaceamount has an invalid amount of arguments");
             }
 
-            var replacementItem = ParseRegularItem(directiveParts[1],"!replaceamount");
+            var replacementItem = new Item(directiveParts[1], "!replaceamount");
             
             byte replacementAmount;
             if (!byte.TryParse(directiveParts[2], NumberStyles.HexNumber, null, out replacementAmount))
@@ -629,7 +617,7 @@ namespace MinishRandomizer.Randomizer.Logic
             {
                 if (itemString == "")
                     continue;
-                var item = ParseRegularItem(itemString, "!replaceamount");
+                var item = new Item(itemString, "!replaceamount");
                 if (AmountReplacementsTemplate.ContainsKey(item))
                 {
                     var set = AmountReplacementsTemplate[item];
@@ -652,7 +640,7 @@ namespace MinishRandomizer.Randomizer.Logic
                 throw new ParserException("!replaceincrement has an invalid amount of arguments");
             }
 
-            var replacementItem = ParseRegularItem(directiveParts[1], "!replaceincrement");
+            var replacementItem = new Item(directiveParts[1], "!replaceincrement");
 
             byte replacementAmount;
             if (!byte.TryParse(directiveParts[2], NumberStyles.HexNumber, null, out replacementAmount))
@@ -669,7 +657,7 @@ namespace MinishRandomizer.Randomizer.Logic
             {
                 if (itemString == "")
                     continue;
-                var item = ParseRegularItem(itemString, "!replaceincrement");
+                var item = new Item(itemString, "!replaceincrement");
                 if (IncrementalReplacementsTemplate.ContainsKey(item))
                 {
                     var set = IncrementalReplacementsTemplate[item];
@@ -683,35 +671,6 @@ namespace MinishRandomizer.Randomizer.Logic
                     IncrementalReplacementsTemplate.Add(item, list);
                 }
             }
-        }
-
-        private Item ParseRegularItem(String itemString, String errorPrefix)
-        {
-            var itemDungeon = "";
-            ItemType itemType;
-            byte itemSub = 0;
-
-            if (itemString.Split(':').Length >= 2)
-            {
-                itemDungeon = itemString.Split(':')[1];
-            }
-
-            var parts = itemString.Split(':')[0].Split('.');
-
-            if (!Enum.TryParse(parts[1], out itemType))
-            {
-                throw new ParserException($"{errorPrefix} has an invalid itemType");
-            }
-
-            if (parts.Length >= 3)
-            {
-                if (!byte.TryParse(parts[2], NumberStyles.HexNumber, null, out itemSub))
-                {
-                    throw new ParserException($"{errorPrefix} has an invalid itemSub");
-                }
-            }
-
-            return new Item(itemType, itemSub, itemDungeon);
         }
 
         public LogicDefine ParseAdditionDirective(String[] directiveParts)
@@ -743,35 +702,9 @@ namespace MinishRandomizer.Randomizer.Logic
                 throw new ParserException("!settype has an invalid amount of arguments");
             }
 
-            var itemData = directiveParts[1].Split(':');
-            var itemStrings = itemData[0].Split('.');
-
-            Item replacedItem;
             Location.LocationType newType;
-
-            ItemType type;
-            byte itemsub = 0;
-
-            if (!Enum.TryParse(itemStrings[1], out type))
-            {
-                throw new ParserException("!settype has an invalid replaced itemType");
-            }
-
-
-            if (itemStrings.Length >= 3)
-            {
-                if (!byte.TryParse(itemStrings[2], NumberStyles.HexNumber, null, out itemsub))
-                {
-                    throw new ParserException("!settype has an invalid replaced itemSub");
-                }
-            }
-
-            var dungeonString = "";
-            if (itemData.Length > 1)
-            {
-                dungeonString = itemData[1];
-            }
-            replacedItem = new Item(type, itemsub, dungeonString);
+            
+            var replacedItem = new Item(directiveParts[1], "!settype");
 
             if (!Enum.TryParse(directiveParts[2], out newType))
             {
@@ -779,7 +712,6 @@ namespace MinishRandomizer.Randomizer.Logic
             }
 
             LocationTypeOverrides.Add(replacedItem, newType);
-
         }
 
 
