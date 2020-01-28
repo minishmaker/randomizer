@@ -42,7 +42,7 @@
 !endif
 !undefine - `FOLLOWER_SETTING` 
 
-!dropdown - Gimmick - FUZZY_SETTING - No Fuzziness - NOFUZZ - Fuzz 0 - 0x0 - Fuzz 1 - 0x1 - Fuzz 2 - 0x2 - Fuzz 3 - 0x3 - Fuzz 4 - 0x4 - Fuzz 5 - 0x5 - Fuzz 6 - 0x6 - Fuzz 7 - 0x7 - Fuzz 8 - 0x8 - Fuzz 9 - 0x9 - Fuzz 10 - 0xA - Fuzz 11 - 0xB - Fuzz 12 - 0xC - Fuzz 13 - 0xD - Fuzz 14 - 0xE
+!dropdown - Gimmick - FUZZY_SETTING - No Fuzziness - NOFUZZ - Fuzz 1 - 0x0 - Fuzz 2 - 0x1 - Fuzz 3 - 0x2 - Fuzz 4 - 0x3 - Fuzz 5 - 0x4 - Fuzz 6 - 0x5 - Fuzz 7 - 0x6 - Fuzz 8 - 0x7 - Fuzz 9 - 0x8 - Fuzz 10 - 0x9 - Fuzz 11 - 0xA - Fuzz 12 - 0xB - Fuzz 13 - 0xC - Fuzz 14 - 0xD - Fuzz 15 - 0xE
 
 !define - `FUZZY_SETTING`
 !ifndef - NOFUZZ
@@ -885,8 +885,8 @@ PalacePrize:`ELEMENT_DUNGEON`;     `ELEMENT`;         0E69E3;                   
         SouthernWoodBottomDig2;  Minor; 0F783F;                                                                   Helpers.CanSplit2, Items.MoleMitts;
     !endif
 
-    PercyHouseMoblin;        Minor; 0123D6;                                                                   Helpers.CanSplit2, Items.LanternOff, Items.PegasusBoots;
-    PercyHouseReward;        Minor; 06B058:FirstByte, 06B05A:SecondByte;                                      Helpers.CanSplit2, Items.LanternOff, Items.PegasusBoots;
+    PercyHouseMoblin;        Minor; 0123D6;                                                                   Helpers.CanSplit2, Items.LanternOff;
+    PercyHouseReward;        Minor; 06B058:FirstByte, 06B05A:SecondByte;                                      Helpers.CanSplit2, Items.LanternOff;
 
     HyliaWaterDigCave;       Minor; 19-00-00;                                                                 Locations.AccessHyliaSouth, Items.MoleMitts, (|Items.Flippers, Items.RocsCape);
 
