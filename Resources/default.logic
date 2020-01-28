@@ -173,8 +173,8 @@
             !eventdefine - requirementFigurinesAmmount - `FIGURINE_COUNT`
             !replaceincrement - Items.KinstoneBag.01 - `FIGURINE_TOTAL` - `SHELLVALS` `KINVALS`
             !settype - Items.KinstoneBag - Major
-			!undefine - DHC_FIG
-			!define - DHC_FIG - ,Items.KinstoneBag.*::`FIGURINE_TOTAL`
+            !undefine - DHC_FIG
+            !define - DHC_FIG - ,Items.KinstoneBag.*::`FIGURINE_TOTAL`
         !endif
     !endif
 !endif
@@ -234,7 +234,7 @@
 !define - `SWORD_SETTING`
 !ifdef - 0SWORD
     !define - SWORDEX
-	!define - SWORDLEVEL - 0
+    !define - SWORDLEVEL - 0
 !else
     !define - SWORDLEVEL - `SWORD_SETTING`
 !endif
@@ -243,7 +243,7 @@
 !define - `ELEMENT_SETTING`
 !ifdef - 0ELEMENT
     !define - ELEMENTEX
-	!define - ELEMENTAMOUNT - 0
+    !define - ELEMENTAMOUNT - 0
 !else
     !define - ELEMENTAMOUNT - `ELEMENT_SETTING`
 !endif
@@ -257,38 +257,38 @@
     !ifdef - OPENDHC
         !eventdefine - openDHC
     !else
-	    !ifdef - NODHC
-		    !eventdefine - noDHC
+    !ifdef - NODHC
+        !eventdefine - noDHC
         !endif
 
         !ifndef - SWORDEX
-		    !eventdefine - requirementSwordTier       - `SWORDLEVEL`
-			GotSwords; Helper; ; (+`SWORDLEVEL`, Items.SmithSword)
+            !eventdefine - requirementSwordTier       - `SWORDLEVEL`
+            GotSwords; Helper; ; (+`SWORDLEVEL`, Items.SmithSword)
         !endif
 
         !ifndef - ELEMENTEX
-		    !eventdefine - requirementElementsAmmount - `ELEMENTAMOUNT` 
-			GotElements; Helper; ; (+`ELEMENTAMOUNT`, Items.WaterElement, Items.FireElement, Items.WindElement, Items.EarthElement)
+            !eventdefine - requirementElementsAmmount - `ELEMENTAMOUNT` 
+            GotElements; Helper; ; (+`ELEMENTAMOUNT`, Items.WaterElement, Items.FireElement, Items.WindElement, Items.EarthElement)
         !endif
 
         !ifndef - SWORDEX
             !ifndef - ELEMENTEX
                 #both
                 CompletePed; Helper; ; Helpers.GotSwords, Helpers.GotElements `DHC_FIG`
-		    !else
+            !else
                 #sword
                 CompletePed; Helper; ; Helpers.GotSwords `DHC_FIG`
-		    !endif
-	    !else
-	        !ifndef - ELEMENTEX
-		        #element
-			    CompletePed; Helper; ; Helpers.GotElements `DHC_FIG`
-		    !else
-		        #neither
-			    CompletePed; Helper; ; (+4, Items.WaterElement, Items.FireElement, Items.WindElement, Items.EarthElement) `DHC_FIG`
-		    !endif
-	    !endif
-	!endif
+            !endif
+        !else
+            !ifndef - ELEMENTEX
+                #element
+                CompletePed; Helper; ; Helpers.GotElements `DHC_FIG`
+            !else
+                #neither
+                CompletePed; Helper; ; (+4, Items.WaterElement, Items.FireElement, Items.WindElement, Items.EarthElement) `DHC_FIG`
+            !endif
+        !endif
+    !endif
 !endif
 
 # Music randomization values (kinda hard to read, unfortunately)
@@ -491,8 +491,8 @@ SwiftbladeScroll3;             Major; swiftblade3DojoItem:Define:FirstByte, swif
 SwiftbladeScroll4;             Major; swiftblade4DojoItem:Define:FirstByte, swiftblade4DojoSub:Define:SecondByte; Helpers.HasSword, Items.RocsCape;                                                                                                 Items.DownThrust
 GrimbladeHeartPiece;           Major; 0D79BB;                                                                     ;
 GrimbladeScroll;               Major; grimbladeDojoItem:Define:FirstByte, grimbladeDojoSub:Define:SecondByte;     Helpers.HasSword, Items.LanternOff;                                                                                               Items.SwordBeam
-HyruleCastleWaterLeft;         Major; 07-00-01;                                                                   Items.Flippers;                                                                                                                   Items.BombBag # extra bomb bag for EU
-HyruleCastleWaterRight;        Minor; 07-00-02;                                                                   Items.Flippers
+CastleWildsWaterLeft;          Major; 07-00-01;                                                                   Items.Flippers;                                                                                                                   Items.BombBag # extra bomb bag for EU
+CastleWildsWaterRight;         Minor; 07-00-02;                                                                   Items.Flippers
 CafeLady;                      Minor; 00EDDA;                                                                     ;                                                                                                                                 Items.KinstoneX.RedSpike
 HearthLedge;                   Minor; 02-00-06;                                                                   Items.LanternOff;
 HearthBackdoor;                Major; 0D66D7;                                                                     (|Items.Flippers, Items.PacciCane, Items.RocsCape)
@@ -624,11 +624,11 @@ HyliaPostCapeCaveHeartPiece; Major; 0F6CEF;   Locations.AccessTreasureCave
 HyliaPreCapeCaveHeartPiece;  Major; 0F322B;   Locations.AccessHyliaNorth, Items.RocsCape
 
 # Royal Valley Locations
-AccessValley;         Helper;;       Helpers.CanSplit3, (|Items.BombBag, Items.RocsCape, Items.Flippers), Items.LanternOff
-ArrowFairy;           Major; 00B722; Helpers.CanSplit3, Items.BombBag
-DampeKey;             Major; 0096B6; Locations.AccessValley
-RoyalGraveHeartPiece; Major; 0D8AE7; Locations.AccessValley, Items.GraveyardKey, Items.PegasusBoots
-RoyalValleyLostWoodsChest;      Minor; 0D8A86;                              Locations.AccessValley
+AccessValley;               Helper;;       Helpers.CanSplit3, (|Items.BombBag, Items.RocsCape, Items.Flippers), Items.LanternOff
+ArrowFairy;                 Major; 00B722; Helpers.CanSplit3, Items.BombBag
+DampeKey;                   Major; 0096B6; Locations.AccessValley
+RoyalValleyGraveHeartPiece; Major; 0D8AE7; Locations.AccessValley, Items.GraveyardKey, Items.PegasusBoots
+RoyalValleyLostWoodsChest;  Minor; 0D8A86;                              Locations.AccessValley
 
 AccessCrypt;                Helper;            ;       Locations.AccessValley, Items.GraveyardKey, Helpers.CanSplit3, Items.PegasusBoots
 CryptGibdoLeft:Crypt;       Minor;             0E688B; Locations.AccessCrypt;                                                                                       Items.Bombs5
@@ -813,7 +813,7 @@ PalacePrize:`ELEMENT_DUNGEON`;     `ELEMENT`;         0E69E3;                   
 !else
     !ifdef - OPENDHC
         DHCAccess:DHC;         Helper;            ;
-	    BeatVaati;             Helper;            ;         Items.BigKey`DHC_SET`,Items.SmallKey`DHC_SET`,Helpers.CanSplit4, Items.BombBag, Helpers.HasBow, Items.RocsCape, Items.LanternOff, Items.GustJar, Items.PacciCane
+        BeatVaati;             Helper;            ;         Items.BigKey`DHC_SET`,Items.SmallKey`DHC_SET`,Helpers.CanSplit4, Items.BombBag, Helpers.HasBow, Items.RocsCape, Items.LanternOff, Items.GustJar, Items.PacciCane
     !else
         !ifdef - PEDITEMS
             DHCAccess:DHC;     Helper;            ;
@@ -834,7 +834,7 @@ PalacePrize:`ELEMENT_DUNGEON`;     `ELEMENT`;         0E69E3;                   
     CastleLowerLeftTower:DHC;  `KEYSANITY_MAJOR`; 88-03-00; Helpers.CastleBigDoorsOpen;                                                      Items.SmallKey`DHC_SET`
     CastleLowerRightTower:DHC; `KEYSANITY_MAJOR`; 88-04-00; Helpers.CastleBigDoorsOpen;                                                      Items.SmallKey`DHC_SET`
     
-    !ifdef - KEYSANITY	#temp will be changed on fixing generation issues 
+    !ifdef - KEYSANITY #temp will be changed on fixing generation issues 
         CastleBigBlock:DHC;    Major;             88-09-00; Helpers.CastleBigDoorsOpen, Items.SmallKey`DHC_SET`:5; Items.BigKey`DHC_SET`
     !else
         CastleBigBlock:DHC;    Unshuffled;        88-09-00; Helpers.CastleBigDoorsOpen, Items.SmallKey`DHC_SET`:5; Items.BigKey`DHC_SET`
@@ -853,14 +853,14 @@ PalacePrize:`ELEMENT_DUNGEON`;     `ELEMENT`;         0E69E3;                   
 
     HyliaMinishPathFusion;   Minor; 0FE09E;                                                                   Locations.AccessHyliaSouth, Items.PegasusBoots, (|Items.GustJar, Items.Flippers);
 
-    SchoolMinishPathFusion;  Minor; 0FE076;                                                                   Items.PacciCane;
-    TownWaterfallChest;      Minor; 32-0B-00;                                                                 Items.Flippers;
-    TingleTreeTopLeft;       Minor; 32-00-00;                                                                 ;
-    TingleTreeTopRight;      Minor; 32-00-01;                                                                 ;
-    TingleTreeBottomLeft;    Minor; 32-00-02;                                                                 ;
-    TingleTreeBottomRight;   Minor; 32-00-03;                                                                 ;
-    CastleRightMinishHole;   Minor; 36-00-00;                                                                 Items.PegasusBoots;                                                                 
-    CastleLeftMinishHole;    Minor; 36-01-00;                                                                 Items.PegasusBoots;
+    SchoolMinishPathFusion;        Minor; 0FE076;                                                                   Items.PacciCane;
+    TownWaterfallChest;            Minor; 32-0B-00;                                                                 Items.Flippers;
+    TingleTreeTopLeft;             Minor; 32-00-00;                                                                 ;
+    TingleTreeTopRight;            Minor; 32-00-01;                                                                 ;
+    TingleTreeBottomLeft;          Minor; 32-00-02;                                                                 ;
+    TingleTreeBottomRight;         Minor; 32-00-03;                                                                 ;
+    CastleGardenRightMinishHole;   Minor; 36-00-00;                                                                 Items.PegasusBoots;
+    CastleGardenLeftMinishHole;    Minor; 36-01-00;                                                                 Items.PegasusBoots;
 
     LinkHouseFusion;         Minor; 0FE0D6;                                                                   Helpers.CanDestroyTrees;
 
@@ -896,18 +896,18 @@ PalacePrize:`ELEMENT_DUNGEON`;     `ELEMENT`;         0E69E3;                   
     CrenelLowerLeftFusion;   Minor; 0FE116;                                                                   Locations.AccessWestField, Helpers.HasBottle, (|Items.BombBag, Items.RocsCape);
     PreMelariFusion;         Minor; 0FE096;                                                                   Locations.CrenelBlockChest;
 
-    CastorTopRightCrack;     Minor; 27-09-00;                                                                 Locations.AccessWilds;
-    CastorTopLeftCrack;      Minor; 27-0D-00;                                                                 Locations.AccessWilds, (|Items.GustJar, Items.Flippers);
-    CastorMiddleLeftCrack;   Minor; 27-0A-00;                                                                 Locations.AccessWilds;
-    CastorLongJourneyCrack;  Minor; 27-0B-00;                                                                 Locations.AccessWilds;
-    CastorMinishWaterCaveChest; Minor; 35-01-00;                                                              Locations.AccessWilds, Items.Flippers;
+    WildsTopRightCrack;     Minor; 27-09-00;                                                                   Locations.AccessWilds;
+    WildsTopLeftCrack;      Minor; 27-0D-00;                                                                   Locations.AccessWilds, (|Items.GustJar, Items.Flippers);
+    WildsMiddleLeftCrack;   Minor; 27-0A-00;                                                                   Locations.AccessWilds;
+    WildsLongJourneyCrack;  Minor; 27-0B-00;                                                                   Locations.AccessWilds;
+    WildsMinishWaterCaveChest; Minor; 35-01-00;                                                                Locations.AccessWilds, Items.Flippers;
 
     RuinsPillarsFusion;      Minor; 0FE11E;                                                                   Locations.AccessFortress;
     RuinsCrackFusion;        Minor; 27-0C-00;                                                                 Locations.AccessFortress;
 
     PreValleyFusion;         Minor; 0FE0F6;                                                                   Helpers.CanSplit3;
     RoyalValleyLeftFusion;   Minor; 0FE0DE;                                                                   Locations.AccessValley, Items.GraveyardKey, Items.PegasusBoots;
-    RoyalValleyRightFusion;  Minor; 0FE0E6;                                                                   Locations.AccessValley, Items.GraveyardKey, Items.PegasusBoots;                                                                 
+    RoyalValleyRightFusion;  Minor; 0FE0E6;                                                                   Locations.AccessValley, Items.GraveyardKey, Items.PegasusBoots;
     GinaGrave;               Minor; 34-01-00;                                                                 Locations.AccessValley, Items.GraveyardKey, Items.PegasusBoots;
 
     FallsNearCrestFusion;    Minor; 0FE106;                                                                   Locations.AccessFallsNorth, Items.GripRing;
@@ -922,7 +922,7 @@ PalacePrize:`ELEMENT_DUNGEON`;     `ELEMENT`;         0E69E3;                   
     BelariRemote;            Major; 00A0A0;                                                                   Locations.BelariBombs;
 
     RuinsArrowButterfly;     Major; 0FE12F;                                                                   Locations.AccessFortress
-    CastorDigButterfly;      Major; 0FE13F;                                                                   Locations.AccessWilds;
+    WildsDigButterfly;       Major; 0FE13F;                                                                   Locations.AccessWilds;
     ValleySwimButterfly;     Major; 0FE14F;                                                                   Locations.AccessValley, Items.GraveyardKey, Items.PegasusBoots;
 
     CrenelBeanstalkHP;       Major; 0F5D9B;                                                                   Locations.AccessCrenel, Items.GripRing;
@@ -937,13 +937,13 @@ PalacePrize:`ELEMENT_DUNGEON`;     `ELEMENT`;         0E69E3;                   
 
     SouthBeanstalk;          Minor; 0D-04-00;                                                                 Helpers.CanSplit2;
 
-    SouthTreeHouseHP;        Major; 0F9E1F;                                                                   Helpers.CanSplit2;
-    LinkHouseTreeHP;         Major; 0F9BA7;                                                                   Helpers.CanDestroyTrees;
-    FallsWaterDigCaveHP;     Major; 0F3DD7;                                                                   Items.BombBag, (|Items.RocsCape,Items.Flippers), Items.MoleMitts;
-    FallsWaterfallHP;        Major; 0F906F;                                                                   Locations.AccessFallsNorth, Items.Flippers, Items.GripRing;
-    CastorMinishWaterCaveHP; Major; 0DB3F7;                                                                   Locations.AccessWilds, Items.Flippers;
-    CastleDrainedFountainHP; Major; 0D9C2B;                                                                   ;
-    LibrariCabinContainer;   Major; 0124EC;                                                                   Items.Ocarina, (|Items.Flippers,Items.RocsCape);
+    SouthTreeHouseHP;              Major; 0F9E1F;                                                                   Helpers.CanSplit2;
+    LinkHouseTreeHP;               Major; 0F9BA7;                                                                   Helpers.CanDestroyTrees;
+    FallsWaterDigCaveHP;           Major; 0F3DD7;                                                                   Items.BombBag, (|Items.RocsCape,Items.Flippers), Items.MoleMitts;
+    FallsWaterfallHP;              Major; 0F906F;                                                                   Locations.AccessFallsNorth, Items.Flippers, Items.GripRing;
+    WildsMinishWaterCaveHP;        Major; 0DB3F7;                                                                   Locations.AccessWilds, Items.Flippers;
+    CastleGardenDrainedFountainHP; Major; 0D9C2B;                                                                   ;
+    LibrariCabinContainer;         Major; 0124EC;                                                                   Items.Ocarina, (|Items.Flippers,Items.RocsCape);
 
     ScarbladeScroll;         Major; scarbladeDojoItem:Define:FirstByte, scarbladeDojoSub:Define:SecondByte;   Locations.AccessWilds, Items.Flippers, Helpers.HasBow, Helpers.HasSword;           Items.FastSpin
     SplitbladeScroll;        Major; splitbladeDojoItem:Define:FirstByte, splitbladeDojoSub:Define:SecondByte; Locations.AccessFallsSouth, Items.Flippers, Helpers.HasSword;                      Items.FastSplit
@@ -955,22 +955,22 @@ PalacePrize:`ELEMENT_DUNGEON`;     `ELEMENT`;         0E69E3;                   
     GoronBottle4;            Major; 2F-01-01; Helpers.Inaccessible;
     TingleBoomerang;         Major; 32-00-04; Helpers.Inaccessible; Items.Boomerang #consistency
     RuinsBeanStalk;          Major; 0D-02-00; Helpers.Inaccessible;
-    BelariRemote;            Major; 00A0A0;   Helpers.Inaccessible;					     
+    BelariRemote;            Major; 00A0A0;   Helpers.Inaccessible;
 
     RuinsArrowButterfly;     Major; 0FE12F;   Helpers.Inaccessible;
-    CastorDigButterfly;      Major; 0FE13F;   Helpers.Inaccessible;
+    WildsDigButterfly;       Major; 0FE13F;   Helpers.Inaccessible;
     ValleySwimButterfly;     Major; 0FE14F;   Helpers.Inaccessible;
 
-    CrenelBeanstalkHP;       Major; 0F5D9B;   Helpers.Inaccessible;
-    HyliaBeanstalkHP;        Major; 0F5EDB;   Helpers.Inaccessible;
-    HillsBeanstalkHP;        Major; 0F6073;   Helpers.Inaccessible;
-    SouthTreeHouseHP;        Major; 0F9E1F;   Helpers.Inaccessible;
-    LinkHouseTreeHP;         Major; 0F9BA7;   Helpers.Inaccessible;
-    FallsWaterDigCaveHP;     Major; 0F3DD7;   Helpers.Inaccessible;
-    FallsWaterfallHP;        Major; 0F906F;   Helpers.Inaccessible;
-    CastorMinishWaterCaveHP; Major; 0DB3F7;   Helpers.Inaccessible;
-    CastleDrainedFountainHP; Major; 0D9C2B;   Helpers.Inaccessible;
-    LibrariCabinContainer;   Major; 0124EC;   Helpers.Inaccessible;
+    CrenelBeanstalkHP;             Major; 0F5D9B;   Helpers.Inaccessible;
+    HyliaBeanstalkHP;              Major; 0F5EDB;   Helpers.Inaccessible;
+    HillsBeanstalkHP;              Major; 0F6073;   Helpers.Inaccessible;
+    SouthTreeHouseHP;              Major; 0F9E1F;   Helpers.Inaccessible;
+    LinkHouseTreeHP;               Major; 0F9BA7;   Helpers.Inaccessible;
+    FallsWaterDigCaveHP;           Major; 0F3DD7;   Helpers.Inaccessible;
+    FallsWaterfallHP;              Major; 0F906F;   Helpers.Inaccessible;
+    WildsMinishWaterCaveHP;        Major; 0DB3F7;   Helpers.Inaccessible;
+    CastleGardenDrainedFountainHP; Major; 0D9C2B;   Helpers.Inaccessible;
+    LibrariCabinContainer;         Major; 0124EC;   Helpers.Inaccessible;
 
     ScarbladeScroll;         Major; scarbladeDojoItem:Define:FirstByte, scarbladeDojoSub:Define:SecondByte; Helpers.Inaccessible;   Items.FastSpin
     SplitbladeScroll;        Major; splitbladeDojoItem:Define:FirstByte, splitbladeDojoSub:Define:SecondByte; Helpers.Inaccessible; Items.FastSplit
@@ -1082,7 +1082,7 @@ PalacePrize:`ELEMENT_DUNGEON`;     `ELEMENT`;         0E69E3;                   
     PalaceRupee4:Palace; Minor; 0E8B4F;                                                                       Locations.AccessPalace, Items.RocsCape, Items.PacciCane;
     PalaceRupee5:Palace; Minor; 0E8B5F;                                                                       Locations.AccessPalace, Items.RocsCape, Items.PacciCane;
 
-    FlipperCaveWaterfallRupee; Minor; 0EF79B;                                                                 Items.Ocarina, Items.Flippers, Items.PacciCane;
+    FlipsCaveWaterfallRupee; Minor; 0EF79B;                                                                 Items.Ocarina, Items.Flippers, Items.PacciCane;
 
     FarmCaveRupee; Minor; 0F3C9F;                                                                             Locations.AccessEastField, Items.MoleMitts;
 
