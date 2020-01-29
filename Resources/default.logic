@@ -178,9 +178,9 @@
             !addition - FIGURINE_TOTAL - `FIGURINE_COUNT`, `FIGURINE_EXTRA`
             !eventdefine - requirementFigurinesAmmount - `FIGURINE_COUNT`
             !replaceincrement - Items.KinstoneBag.01 - `FIGURINE_TOTAL` - `SHELLVALS` `KINVALS`
-            !settype - Items.KinstoneBag - Major
+            !settype - Items.KinstoneBag.* - Major
             !undefine - DHC_FIG
-            !define - DHC_FIG - ,Items.KinstoneBag.*::`FIGURINE_TOTAL`
+            !define - DHC_FIG - ,Items.KinstoneBag.*::`FIGURINE_COUNT`
         !endif
     !endif
 !endif

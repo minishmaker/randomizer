@@ -276,7 +276,7 @@ namespace MinishRandomizer.Randomizer.Logic
             {
                 if (byte.TryParse(tb.Text.Substring(2), NumberStyles.HexNumber, CultureInfo.InvariantCulture, out val))
                 {
-                    value = val.ToString("X2");
+                    value = val.ToString();
                 }
                 else
                 {   //starts with 0X so give a hex representation
@@ -285,7 +285,7 @@ namespace MinishRandomizer.Randomizer.Logic
             }
             else if (byte.TryParse(tb.Text, out val))
             {
-                value = val.ToString("X2");
+                value = val.ToString();
             }
             else
             {   //doesnt start with 0X so give a decimal representation

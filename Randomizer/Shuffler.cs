@@ -42,9 +42,13 @@ namespace MinishRandomizer.Randomizer
             SubValue = 0;
             if (itemData.Length >= 3)
             {
-                if(itemData[2]=="*")
+                if (itemData[2] == "*")
                 {
                     UseAny = true;
+                }
+                else if (Enum.TryParse<KinstoneType>(itemData[2], out Kinstone))
+                {
+                    SubValue = (byte)Kinstone;
                 }
                 else if (!byte.TryParse(itemData[2], NumberStyles.HexNumber, null, out SubValue))
                 {
@@ -92,7 +96,7 @@ namespace MinishRandomizer.Randomizer
                 return false;
             }
             Item asItem = (Item)obj;
-            return asItem.Type == Type && asItem.SubValue == SubValue;
+            return asItem.Type == Type && (asItem.SubValue == SubValue || asItem.UseAny || UseAny);
         }
 
         public override int GetHashCode()
@@ -102,7 +106,7 @@ namespace MinishRandomizer.Randomizer
 
         public override string ToString()
         {
-            return this.Type.ToString() + ":" + this.SubValue + ":" + this.Dungeon;
+            return this.Type.ToString() + "." + this.SubValue + ":" + this.Dungeon;
         }
     }
 
@@ -289,6 +293,7 @@ namespace MinishRandomizer.Randomizer
 
         public void AddLocation(Location location)
         {
+            bool replaced = false;
             if (LogicParser.SubParser.IncrementalReplacements.ContainsKey(location.Contents))
             {
                 var key = location.Contents;
@@ -299,6 +304,7 @@ namespace MinishRandomizer.Randomizer
                     replacement.amount -= 1;
                     var newItem = new Item(replacement.item.Type, (byte)((replacement.item.SubValue + replacement.amount) % 256), replacement.item.Dungeon);
                     location.SetItem(newItem);
+                    replaced = true;
                 }
 
                 if (replacement.amount == 0)
@@ -311,7 +317,7 @@ namespace MinishRandomizer.Randomizer
                     }
                 }
             }
-            else if (LogicParser.SubParser.AmountReplacements.ContainsKey(location.Contents))
+            if (replaced == false && LogicParser.SubParser.AmountReplacements.ContainsKey(location.Contents))
             {
                 var key = location.Contents;
                 var set = LogicParser.SubParser.AmountReplacements[key];
@@ -320,6 +326,7 @@ namespace MinishRandomizer.Randomizer
                 {
                     replacement.amount -= 1;
                     location.SetItem(replacement.item);
+                    replaced = true;
                 }
 
                 if (replacement.amount == 0)
@@ -332,7 +339,8 @@ namespace MinishRandomizer.Randomizer
                     }
                 }
             }
-            else if (LogicParser.SubParser.Replacements.ContainsKey(location.Contents))
+
+            if (replaced == false && LogicParser.SubParser.Replacements.ContainsKey(location.Contents))
             {
                 var chanceSet = LogicParser.SubParser.Replacements[location.Contents];
                 var number = RNG.Next(chanceSet.totalChance);
