@@ -681,7 +681,7 @@ namespace MinishRandomizer.Randomizer.Logic
             foreach(String value in values)
             {
                 byte number;
-                if (!byte.TryParse(value, NumberStyles.HexNumber, CultureInfo.InvariantCulture, out number)) 
+                if (!byte.TryParse(value, out number)) 
                 {
                     throw new ParserException("!addition has an invalid value");
                 }

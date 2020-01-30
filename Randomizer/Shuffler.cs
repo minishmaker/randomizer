@@ -46,13 +46,14 @@ namespace MinishRandomizer.Randomizer
                 {
                     UseAny = true;
                 }
-                else if (Enum.TryParse<KinstoneType>(itemData[2], out Kinstone))
-                {
-                    SubValue = (byte)Kinstone;
-                }
                 else if (!byte.TryParse(itemData[2], NumberStyles.HexNumber, null, out SubValue))
                 {
-                    throw new ParserException($"{commandScope}: \"{data}\" has an invalid itemSub");
+                    if (Enum.TryParse(itemData[2], out Kinstone))
+                    {
+                        SubValue = (byte)Kinstone;
+                    }
+                    else
+                        throw new ParserException($"{commandScope}: \"{data}\" has an invalid itemSub");
                 }
             }
 
@@ -317,6 +318,7 @@ namespace MinishRandomizer.Randomizer
                     }
                 }
             }
+
             if (replaced == false && LogicParser.SubParser.AmountReplacements.ContainsKey(location.Contents))
             {
                 var key = location.Contents;
