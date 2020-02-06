@@ -313,7 +313,7 @@ namespace MinishRandomizer.Randomizer.Logic
 
         public override byte GetHashByte()
         {
-            return value!="" ? byte.Parse(value,NumberStyles.HexNumber) : (byte)0;
+            return value!="" ? byte.Parse(value) : (byte)0;
         }
     }
 }
