@@ -1038,13 +1038,15 @@ PalacePrize:`ELEMENT_DUNGEON`;     `ELEMENT`;         0E69E3;                   
     FallsUpperCaveRupee7; Minor; 0F8F87; Locations.AccessFallsNorth, Items.GripRing;
     FallsUpperCaveRupee8; Minor; 0F8F97; Locations.AccessFallsNorth, Items.GripRing;
     FallsUpperCaveRupee9; Minor; 0F8FA7; Locations.AccessFallsNorth, Items.GripRing;
-
+    
+    !ifdef - WHYWOULDYOUDOTHISTOYOURSELF
     FallsUpperCaveWaterRupee1; Minor; 0F8FB7; Locations.AccessFallsNorth, Items.GripRing, Items.Flippers;
     FallsUpperCaveWaterRupee2; Minor; 0F8FC7; Locations.AccessFallsNorth, Items.GripRing, Items.Flippers;
     FallsUpperCaveWaterRupee3; Minor; 0F8FD7; Locations.AccessFallsNorth, Items.GripRing, Items.Flippers;
     FallsUpperCaveWaterRupee4; Minor; 0F8FE7; Locations.AccessFallsNorth, Items.GripRing, Items.Flippers;
     FallsUpperCaveWaterRupee5; Minor; 0F8FF7; Locations.AccessFallsNorth, Items.GripRing, Items.Flippers;
     FallsUpperCaveWaterRupee6; Minor; 0F9007; Locations.AccessFallsNorth, Items.GripRing, Items.Flippers;
+    !endif
 
     FortressBigRupee:Fortress; Minor; 0F3E67;                                                                 Locations.AccessFortress, Items.MoleMitts;
     FortressF1Rupee1:Fortress; Minor; 0F3F37;                                                                 Locations.AccessFortress, Helpers.HasBow;
@@ -1055,6 +1057,7 @@ PalacePrize:`ELEMENT_DUNGEON`;     `ELEMENT`;         0E69E3;                   
     FortressF1Rupee6:Fortress; Minor; 0F3F87;                                                                 Locations.AccessFortress, Helpers.HasBow;
     FortressF1Rupee7:Fortress; Minor; 0F3F97;                                                                 Locations.AccessFortress, Helpers.HasBow;
 
+    !ifdef - WHYWOULDYOUDOTHISTOYOURSELF
     DropletsUpperWaterRupee1:Droplets; Minor; 0E3593;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.Flippers;
     DropletsUpperWaterRupee2:Droplets; Minor; 0E35A3;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.Flippers;
     DropletsUpperWaterRupee3:Droplets; Minor; 0E35B3;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.Flippers;
@@ -1067,6 +1070,8 @@ PalacePrize:`ELEMENT_DUNGEON`;     `ELEMENT`;         0E69E3;                   
     DropletsLowerWaterRupee4:Droplets; Minor; 0E590F;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.Flippers, (|Items.RocsCape, Items.GustJar);
     DropletsLowerWaterRupee5:Droplets; Minor; 0E591F;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.Flippers, (|Items.RocsCape, Items.GustJar);
     DropletsLowerWaterRupee6:Droplets; Minor; 0E592F;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.Flippers, (|Items.RocsCape, Items.GustJar);
+    !endif
+    
     DropletsLeftPathRupee1:Droplets;   Minor; 0E3F8B;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`;
     DropletsLeftPathRupee2:Droplets;   Minor; 0E3F9B;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`;
     DropletsLeftPathRupee3:Droplets;   Minor; 0E3FAB;                                                         Locations.AccessDroplets, Items.BigKey`TOD_SET`;
@@ -1090,7 +1095,9 @@ PalacePrize:`ELEMENT_DUNGEON`;     `ELEMENT`;         0E69E3;                   
     PalaceRupee4:Palace; Minor; 0E8B4F;                                                                       Locations.AccessPalace, Items.RocsCape, Items.PacciCane;
     PalaceRupee5:Palace; Minor; 0E8B5F;                                                                       Locations.AccessPalace, Items.RocsCape, Items.PacciCane;
 
+    !ifdef - WHYWOULDYOUDOTHISTOYOURSELF
     FlipsCaveWaterfallRupee; Minor; 0EF79B;                                                                 Items.Ocarina, Items.Flippers, Items.PacciCane;
+    !endif
 
     FarmCaveRupee; Minor; 0F3C9F;                                                                             Locations.AccessEastField, Items.MoleMitts;
 
