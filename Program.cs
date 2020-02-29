@@ -166,12 +166,12 @@ namespace MinishRandomizer
 
                 if (settingsString != null)
                 {
-                    //shuffler.LoadSettingsString(settingsString);
+                    shuffler.LoadSettingsString(settingsString);
                 }
 
                 if (gimmicksString != null)
                 {
-                    //shuffler.LoadGimmicksString(gimmicksString);
+                    shuffler.LoadGimmicksString(gimmicksString);
                 }
 
                 if (logicPath != null)

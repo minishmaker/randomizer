@@ -23,6 +23,7 @@ namespace MinishRandomizer.Randomizer.Logic
         public LogicOptionType Type;
         public Action ChangeHash;
         public int BitCount;
+        protected bool SelfChange = false;
 
         /// <summary>
         /// Convert a list of options to a byte[] representing their states
@@ -100,7 +101,6 @@ namespace MinishRandomizer.Randomizer.Logic
 
     public class LogicFlag : LogicOption
     {
-
         public LogicFlag(string name, string niceName, bool active, LogicOptionType type) : base(name, niceName, active, type) { BitCount = 1; }
 
         public override Control GetControl()
@@ -112,7 +112,13 @@ namespace MinishRandomizer.Randomizer.Logic
                 Checked = Active
             };
 
-            flagCheckBox.CheckedChanged += (object sender, EventArgs e) => { Active = flagCheckBox.Checked; ChangeHash(); };
+            flagCheckBox.CheckedChanged += (object sender, EventArgs e) => {
+                if (!SelfChange)
+                {
+                    Active = flagCheckBox.Checked;
+                    ChangeHash();
+                }
+            };
 
             return flagCheckBox;
         }
@@ -147,6 +153,10 @@ namespace MinishRandomizer.Randomizer.Logic
             // Take flag from bitArray, go to next bit
             Active = bitArray[offset];
             offset++;
+
+            // Set visual component
+            SelfChange = false;
+
         }
     }
 
@@ -364,6 +374,9 @@ namespace MinishRandomizer.Randomizer.Logic
                         SelectedNumber |= (byte)(1 << i);
                     }
                 }
+
+                // Set the visual part as well
+
 
                 // Increase the offset by 24
                 offset += 8;

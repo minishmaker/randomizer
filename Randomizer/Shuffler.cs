@@ -227,6 +227,13 @@ namespace MinishRandomizer.Randomizer
             }
         }
 
+        public void LoadSettingsString(string str)
+        {
+
+            
+            LogicOption.ApplySettings(LogicParser.SubParser.Options, null);
+        }
+
         public RandomizedRom GenerateRom(string settingsString, string gimmicksString)
         {
             throw new NotImplementedException();

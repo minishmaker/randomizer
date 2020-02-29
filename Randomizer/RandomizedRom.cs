@@ -16,17 +16,20 @@ namespace MinishRandomizer.Randomizer
 
         public string[] Spoiler { get; private set; }
 
+        public int Seed;
+        public string Settings;
+        public string Gimmicks;
+        public string LogicPath;
+        public string PatchPath;
         private List<Location> Locations;
-        private string Settings;
-        private string Gimmicks;
-        private string LogicPath;
-        private string PatchPath;
         private ROM InputRom;
         private Dictionary<string, ColorzCore.Parser.Definition> Definitions;
         
 
-        public RandomizedRom(List<Location> outputLocations, string logicIdentifier, string settingsString, string gimmickString, string logicPath, string patchPath, Dictionary<string, ColorzCore.Parser.Definition> StartingDefinitions)
+        public RandomizedRom(int seed, List<Location> outputLocations, string logicIdentifier, string settingsString, string gimmickString, string logicPath, string patchPath, Dictionary<string, ColorzCore.Parser.Definition> StartingDefinitions)
         {
+            Seed = seed;
+
             LogicIdentifier = logicIdentifier;
 
             Locations = outputLocations;
