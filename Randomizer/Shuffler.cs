@@ -726,7 +726,28 @@ namespace MinishRandomizer.Randomizer
 
             eventBuilder.AppendLine("#define seedHashed 0x" + StringUtil.AsStringHex8((int)PatchUtil.Crc32(seedValues, 4)));
             eventBuilder.AppendLine("#define settingHash 0x" + StringUtil.AsStringHex8((int)GetSettingHash()));
+            if (!LogicParser.GetEventDefines().Any(d=>d.Name == "FreeSpace"))
+            {
+                if (ROM.Instance != null)
+                {
+                    var lastSpace = ROM.Instance.romData.Length;
+                    for (int i = lastSpace-1; i>0; i--)
+                    {
+                        if (ROM.Instance.romData[i] != 0xFF)
+                        {
+                            lastSpace = i + 1; //+1 because this spot is not free
+                            break;
+                        }
+                    }
 
+                    eventBuilder.AppendLine("#define FreeSpace " + (lastSpace + 0x10));
+                } 
+                else
+                {
+                    throw new NotSupportedException("A ROM is required to find freespace dynamically, otherwise specify freespace in the logic file.");
+                }
+                
+            }
             return eventBuilder.ToString();
         }
 
