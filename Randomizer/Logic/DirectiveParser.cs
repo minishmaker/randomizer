@@ -25,6 +25,11 @@ namespace MinishRandomizer.Randomizer.Logic
         private Dictionary<Item, List<int>> IncrementalReplacementsTemplate;
         public Dictionary<Item, List<ItemAmountSet>> IncrementalReplacements;
 
+        public List<HintArea> HintAreas;
+        public List<HintAddress> HintAddresses;
+        public List<HintString> HintPreText;
+        public List<HintString> HintPostText;
+
         public List<EventDefine> EventDefines;
         private int IfCounter;
 
@@ -365,6 +370,14 @@ namespace MinishRandomizer.Randomizer.Logic
         public void ClearTypeOverrides()
         {
             LocationTypeOverrides.Clear();
+        }
+
+        public void ClearHints()
+        {
+            HintAddresses.Clear();
+            HintPreText.Clear();
+            HintPostText.Clear();
+            HintAreas.Clear();
         }
 
         public void AddOptions()
@@ -760,6 +773,24 @@ namespace MinishRandomizer.Randomizer.Logic
                 return new ItemAmountSet(this.item, this.amount);
             }
         }
+
+        public struct HintAddress
+        {
+            public int address;
+            public int hintId; //in case of multiple state talks
+        }
+        public struct HintArea
+        {
+            public string areaPrefix;
+            public string areaHintName;
+        }
+
+        public struct HintString
+        {
+            public string hintText;
+            public int itemCount;
+        }
+
         private LogicOption ParseDropdownDirective(string[] directiveParts)
         {
             if (directiveParts.Length % 2 != 1 || directiveParts.Length < 5)

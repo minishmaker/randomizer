@@ -731,7 +731,7 @@ namespace MinishRandomizer.Randomizer
                 if (ROM.Instance != null)
                 {
                     var lastSpace = ROM.Instance.romData.Length;
-                    for (int i = lastSpace-1; i>0; i--)
+                    for (int i = lastSpace - 1; i > 0; i--)
                     {
                         if (ROM.Instance.romData[i] != 0xFF)
                         {
@@ -746,7 +746,6 @@ namespace MinishRandomizer.Randomizer
                 {
                     throw new NotSupportedException("A ROM is required to find freespace dynamically, otherwise specify freespace in the logic file.");
                 }
-                
             }
             return eventBuilder.ToString();
         }
@@ -771,6 +770,55 @@ namespace MinishRandomizer.Randomizer
             MoveElement(w, windLocation);
         }
 
+        private void AddHintText(Writer w)
+        {
+            var parser = LogicParser.SubParser;
+            var addresses = parser.HintAddresses;
+            var areas = parser.HintAreas;
+            var preMessages = parser.HintPreText;
+            var postMessages = parser.HintPostText;
+            var messageList = new List<string> ();
+            var hintMap = new List<Tuple<int,int>> ();
+            while(addresses.Count != 0 && areas.Count != 0)
+            {
+                var message = "";
+                var currentAdresses = addresses.Where(a=>a.hintId == addresses.First().hintId);
+                var currentArea = areas[RNG.Next(0,areas.Count)];
+                var majorCount = Locations.Where(l=>l.Name.StartsWith(currentArea.areaPrefix) && l.Type == Location.LocationType.Major).Count();
+                //get closest values downward
+                var preCount = preMessages.Where(m=>m.itemCount <= majorCount).Max(m=>m.itemCount);
+                var postCount = postMessages.Where(m=>m.itemCount <= majorCount).Max(m=>m.itemCount);
+
+                var preEntries = new List<DirectiveParser.HintString>();
+                var postEntries = new List<DirectiveParser.HintString>();
+
+                if (preCount >= postCount) {
+                    preEntries = preMessages.Where(m=>m.itemCount == preCount).ToList();
+                    if(preEntries.Count != 1)
+                    {
+                        throw new ParserException($"Found {preEntries.Count()} pre messages for value {preCount}.");
+                    }
+                }
+                if (postCount >= preCount) {
+                    postEntries = postMessages.Where(m=>m.itemCount == postCount).ToList();
+                    if(postEntries.Count != 1)
+                    {
+                        throw new ParserException($"Found {postEntries.Count()} pre messages for value {postCount}.");
+                    }
+                }
+                
+                message = message + (preEntries.Count() == 0 ? "" : preEntries.First().hintText + " ");
+                message = message + currentArea.areaHintName + " ";
+                message = message + (postEntries.Count() == 0 ? "." : postEntries.First().hintText + ".");
+                
+                foreach(var addressEntry in currentAdresses)
+                {
+                    hintMap.Add(new Tuple<int, int>(addressEntry.address, messageList.Count()));// address, message index
+                }
+
+                messageList.Add(message);
+            }
+        }
         /// <summary>
         /// Moves a single element marker to the location that contains it
         /// </summary>
@@ -880,6 +928,7 @@ namespace MinishRandomizer.Randomizer
             LogicParser.SubParser.ClearReplacements();
             LogicParser.SubParser.ClearAmountReplacements();
             LogicParser.SubParser.ClearDefines();
+            LogicParser.SubParser.ClearHints();
             LogicParser.SubParser.AddOptions();
         }
     }
