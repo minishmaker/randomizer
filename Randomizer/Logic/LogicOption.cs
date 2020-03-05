@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 using MinishRandomizer.Utilities;
@@ -207,6 +208,112 @@ namespace MinishRandomizer.Randomizer.Logic
         public override byte GetHashByte()
         {
             return Active ? (byte)(SelectedNumber % 0x100) : (byte)0;
+        }
+    }
+
+    public class LogicNumberBox : LogicOption 
+    {
+        String value = "";
+        String placeholder = "";
+        Boolean focussing = false;
+        public LogicNumberBox(string name, LogicOptionType type, String placeholder) : base(name, name, true, type)
+        {
+            this.placeholder = placeholder;
+        }
+
+        public override Control GetControl()
+        {
+            TextBox numberBox = new TextBox();
+            focussing = true;
+            numberBox.Text = placeholder;
+            focussing = false;
+            numberBox.LostFocus += (object sender, EventArgs e) => { LostFocus(sender, e); };
+            numberBox.GotFocus += (object sender, EventArgs e) => { GotFocus(sender, e); };
+
+            numberBox.TextChanged += (object sender, EventArgs e) => { TextChanged(sender, e); };
+
+            return numberBox;
+        }
+
+        private void LostFocus(object sender, EventArgs e)
+        {
+            if (value == "")
+            {
+                focussing = true;
+                ((TextBox)sender).Text = placeholder;
+                focussing = false;
+            }
+        }
+
+        private void GotFocus(object sender, EventArgs e)
+        {
+            if(value == "")
+            {
+                focussing = true;
+                ((TextBox)sender).Text = "";
+                focussing = false;
+            }
+        }
+
+        private void TextChanged(object sender, EventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+            byte val;
+            if(focussing)
+            {
+                return;
+            }
+
+            if(tb.Text == ""||tb.Text == "0" || tb.Text == "0x" || tb.Text == "0X")
+            {
+                value = "";
+                return;
+            }
+
+            //dont self trigger, if thats a thing
+            focussing = true;
+            if (tb.Text.StartsWith("0x") || tb.Text.StartsWith("0X"))
+            {
+                if (byte.TryParse(tb.Text.Substring(2), NumberStyles.HexNumber, CultureInfo.InvariantCulture, out val))
+                {
+                    value = val.ToString();
+                }
+                else
+                {   //starts with 0X so give a hex representation
+                    tb.Text = value != "" ? "0x" +value : "";
+                }
+            }
+            else if (byte.TryParse(tb.Text, out val))
+            {
+                value = val.ToString();
+            }
+            else
+            {   //doesnt start with 0X so give a decimal representation
+                tb.Text = value != "" ? byte.Parse(value,NumberStyles.HexNumber,CultureInfo.InvariantCulture).ToString() : "";
+            }
+            focussing = false;
+        }
+
+        public override List<LogicDefine> GetLogicDefines()
+        {
+            List<LogicDefine> defineList = new List<LogicDefine>(3);
+
+            // Only true if valid text has been entered
+            if (value!="")
+            {
+                Console.WriteLine(Name);
+                defineList.Add(new LogicDefine(Name, value));
+            }
+            else
+            {
+                defineList.Add(new LogicDefine(Name, "0"));
+            }
+            return defineList;
+        }
+
+        public override byte GetHashByte()
+        {
+            return value!="" ? byte.Parse(value) : (byte)0;
         }
     }
 }
