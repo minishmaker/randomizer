@@ -23,7 +23,9 @@ POIN startingFlags; WORD 0x2002C9C 308
 POIN kinstoneBag; WORD 0x2002B4B 1
 POIN fusionNumber; WORD 0x2002B57 1
 POIN cityCrest; WORD 0x2002A83 1
-POIN figurines; WORD 0x2002B0E 18
+#ifndef requirementFigurinesAmmount
+	POIN figurines; WORD 0x2002B0E 18
+#endif
 POIN worldmap; WORD 0x2002ADC 4
 POIN elements; WORD 0x2002A60 1
 POIN map; WORD 0x2002A80 3

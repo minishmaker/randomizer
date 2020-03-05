@@ -24,7 +24,9 @@
 //#define DEBUG 0
 //#define TEST 0
 
-#define FreeSpace $EF3340
+#ifndef FreeSpace
+	#define FreeSpace $EF3340
+#endif
 ORG FreeSpace
 
 //savetype check

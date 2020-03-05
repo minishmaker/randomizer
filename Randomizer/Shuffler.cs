@@ -8,6 +8,7 @@ using MinishRandomizer.Core;
 using MinishRandomizer.Randomizer.Logic;
 using MinishRandomizer.Utilities;
 using MinishRandomizer.Properties;
+using System.Globalization;
 
 namespace MinishRandomizer.Randomizer
 {
@@ -22,11 +23,61 @@ namespace MinishRandomizer.Randomizer
         public readonly KinstoneType Kinstone;
         public readonly byte SubValue;
         public readonly string Dungeon;
+        public readonly bool UseAny;
 
-        public Item(ItemType type, byte subValue, string dungeon = "")
+        public Item(string data, string commandScope = "")
+        {
+            var dataChunks = data.Split(':');
+            var itemData = dataChunks[0].Split('.');
+            if (itemData[0].TrimStart(' ').TrimEnd(' ') != "Items") 
+            {
+                throw new ParserException($"{commandScope}: \"{data}\" is not an item, make sure it has \"Items.\" prepended");
+            }
+            if (!Enum.TryParse(itemData[1], out Type))
+            {
+                throw new ParserException($"{commandScope}: \"{data}\" has an invalid itemType");
+            }
+
+            UseAny = false;
+            SubValue = 0;
+            if (itemData.Length >= 3)
+            {
+                if (itemData[2] == "*")
+                {
+                    UseAny = true;
+                }
+                else if (!byte.TryParse(itemData[2], NumberStyles.HexNumber, null, out SubValue))
+                {
+                    if (Enum.TryParse(itemData[2], out Kinstone))
+                    {
+                        SubValue = (byte)Kinstone;
+                    }
+                    else
+                        throw new ParserException($"{commandScope}: \"{data}\" has an invalid itemSub");
+                }
+            }
+
+            Dungeon = "";
+            if (dataChunks.Length > 1)
+            {
+                Dungeon = dataChunks[1];
+            }
+
+            if (Type == ItemType.KinstoneX)
+            {
+                Kinstone = (KinstoneType)SubValue;
+            }
+            else
+            {
+                Kinstone = KinstoneType.UnTyped;
+            }
+        }
+
+        public Item(ItemType type, byte subValue, string dungeon = "", bool useAny = false)
         {
             Type = type;
             SubValue = subValue;
+            UseAny = useAny;
             if (type == ItemType.KinstoneX)
             {
                 Kinstone = (KinstoneType)subValue;
@@ -46,12 +97,17 @@ namespace MinishRandomizer.Randomizer
                 return false;
             }
             Item asItem = (Item)obj;
-            return asItem.Type == Type && asItem.SubValue == SubValue;
+            return asItem.Type == Type && (asItem.SubValue == SubValue || asItem.UseAny || UseAny);
         }
 
         public override int GetHashCode()
         {
             return base.GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            return this.Type.ToString() + "." + this.SubValue + ":" + this.Dungeon;
         }
     }
 
@@ -231,12 +287,62 @@ namespace MinishRandomizer.Randomizer
 
             List<Location> parsedLocations = LogicParser.ParseLocations(locationStrings, RNG);
 
+            LogicParser.SubParser.DuplicateAmountReplacements();
+            LogicParser.SubParser.DuplicateIncrementalReplacements();
             parsedLocations.ForEach(location => { AddLocation(location); });
         }
 
         public void AddLocation(Location location)
         {
-            if (LogicParser.SubParser.Replacements.ContainsKey(location.Contents))
+            bool replaced = false;
+            if (LogicParser.SubParser.IncrementalReplacements.ContainsKey(location.Contents))
+            {
+                var key = location.Contents;
+                var set = LogicParser.SubParser.IncrementalReplacements[key];
+                var replacement = set[0];
+                if (replacement.amount != 0)
+                {
+                    replacement.amount -= 1;
+                    var newItem = new Item(replacement.item.Type, (byte)((replacement.item.SubValue + replacement.amount) % 256), replacement.item.Dungeon);
+                    location.SetItem(newItem);
+                    replaced = true;
+                }
+
+                if (replacement.amount == 0)
+                {
+                    set.RemoveAt(0);
+                    if (LogicParser.SubParser.IncrementalReplacements[key].Count == 0)
+                    {
+                        LogicParser.SubParser.IncrementalReplacements.Remove(key);
+                        Console.WriteLine("removed incremental key:" + key.Type);
+                    }
+                }
+            }
+
+            if (replaced == false && LogicParser.SubParser.AmountReplacements.ContainsKey(location.Contents))
+            {
+                var key = location.Contents;
+                var set = LogicParser.SubParser.AmountReplacements[key];
+                var replacement = set[0];
+                if(replacement.amount!=0)
+                {
+                    replacement.amount -= 1;
+                    location.SetItem(replacement.item);
+                    replaced = true;
+                }
+
+                if (replacement.amount == 0)
+                {
+                    set.RemoveAt(0);
+                    if (LogicParser.SubParser.AmountReplacements[key].Count == 0)
+                    {
+                        LogicParser.SubParser.AmountReplacements.Remove(key);
+                        Console.WriteLine("removed key:" + key.Type);
+                    }
+                }
+            }
+
+            if (replaced == false && LogicParser.SubParser.Replacements.ContainsKey(location.Contents))
             {
                 var chanceSet = LogicParser.SubParser.Replacements[location.Contents];
                 var number = RNG.Next(chanceSet.totalChance);
@@ -749,7 +855,9 @@ namespace MinishRandomizer.Randomizer
             MinorItems.Clear();
 
             LogicParser.SubParser.ClearTypeOverrides();
+            LogicParser.SubParser.ClearIncrementalReplacements();
             LogicParser.SubParser.ClearReplacements();
+            LogicParser.SubParser.ClearAmountReplacements();
             LogicParser.SubParser.ClearDefines();
             LogicParser.SubParser.AddOptions();
         }

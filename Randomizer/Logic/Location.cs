@@ -267,5 +267,10 @@ namespace MinishRandomizer.Randomizer.Logic
         {
             Contents = DefaultContents;
         }
+
+        public override string ToString()
+        {
+            return this.Name + ":" + this.Dungeon;
+        }
     }
 }

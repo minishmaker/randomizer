@@ -57,7 +57,7 @@ namespace MinishRandomizer.Randomizer.Logic
                         Dictionary<Dependency, int> valueDict = new Dictionary<Dependency, int>();
                         var reqValueString = sequence.Split(',')[0];
 
-                        if (!int.TryParse(reqValueString.Substring(1), out int reqValue))
+                        if (!int.TryParse(reqValueString.Substring(1), NumberStyles.HexNumber, CultureInfo.InvariantCulture, out int reqValue))
                         {
                             throw new ParserException($"Invalid total for counter! {reqValueString.Substring(1)}");
                         }
@@ -72,7 +72,7 @@ namespace MinishRandomizer.Randomizer.Logic
 
                             if (values.Length >= 3)
                             {
-                                if (!int.TryParse(values[2], out depValue))
+                                if (!int.TryParse(values[2], NumberStyles.HexNumber, CultureInfo.InvariantCulture, out depValue))
                                 {
                                     depValue = 1;
                                     dependencyString = dependencyString.Substring(0, dependencyString.Length - (values[2].Length + 1));
@@ -118,27 +118,10 @@ namespace MinishRandomizer.Randomizer.Logic
                                 dependencies.Add(locationDependency);
                                 break;
                             case "Items":
-                                if (Enum.TryParse(dependencyParts[1], out ItemType type))
-                                {
-                                    byte subType = 0;
-                                    if (dependencyParts.Length >= 3)
-                                    {
-                                        if (!byte.TryParse(dependencyParts[2], NumberStyles.HexNumber, null, out subType))
-                                        {
-                                            if (Enum.TryParse(dependencyParts[2], out KinstoneType subKinstoneType))
-                                            {
-                                                subType = (byte)subKinstoneType;
-                                            }
-                                        }
-                                    }
-
-                                    ItemDependency itemDependency = new ItemDependency(new Item(type, subType, dungeon), count);
-                                    dependencies.Add(itemDependency);
-                                }
-                                else
-                                {
-                                    throw new ParserException($"Item {dependencyParts[1]} in string {logic} could not be found!");
-                                }
+                                Item item = new Item(sequence);
+                                ItemDependency itemDependency = new ItemDependency(item, count);
+                                dependencies.Add(itemDependency);
+                                
                                 break;
                             default:
                                 throw new ParserException($"\"{dependencyParts[0]}\" is not a valid dependency type!");
