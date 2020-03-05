@@ -114,7 +114,7 @@ mov	lr,r3
 cmp	r0,#0
 bne	notnewfigurine
 
-@incrase figurine total
+@increase figurine total
 ldr	r0,=#0x2002AF0
 ldrb	r1,[r0]
 cmp	r1,#0xFF
@@ -178,6 +178,22 @@ ldrb	r2,[r0]
 strb	r2,[r1]
 cmp	r2,#0
 beq	endwrite
+cmp	r2,#0xF
+bhi	notcode
+cmp	r2,#3
+blo	shortcode
+cmp	r2,#5
+bhi	shortcode
+add	r0,#1
+add	r1,#1
+ldrb	r2,[r0]
+strb	r2,[r1]
+shortcode:
+add	r0,#1
+add	r1,#1
+ldrb	r2,[r0]
+strb	r2,[r1]
+notcode:
 add	r0,#1
 add	r1,#1
 b	writeText
