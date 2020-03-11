@@ -498,8 +498,8 @@ SwiftbladeScroll3;             Major; swiftblade3DojoItem:Define:FirstByte, swif
 SwiftbladeScroll4;             Major; swiftblade4DojoItem:Define:FirstByte, swiftblade4DojoSub:Define:SecondByte; Helpers.HasSword, Items.RocsCape;                                                                                                 Items.DownThrust
 GrimbladeHeartPiece;           Major; 0D79BB;                                                                     ;
 GrimbladeScroll;               Major; grimbladeDojoItem:Define:FirstByte, grimbladeDojoSub:Define:SecondByte;     Helpers.HasSword, Items.LanternOff;                                                                                               Items.SwordBeam
-CastleWildsWaterLeft;          Major; 07-00-01;                                                                   Items.Flippers;                                                                                                                   Items.BombBag # extra bomb bag for EU
-CastleWildsWaterRight;         Minor; 07-00-02;                                                                   Items.Flippers
+CastleWaterLeft;               Major; 07-00-01;                                                                   Items.Flippers;                                                                                                                   Items.BombBag # extra bomb bag for EU
+CastleWaterRight;              Minor; 07-00-02;                                                                   Items.Flippers
 CafeLady;                      Minor; 00EDDA;                                                                     ;                                                                                                                                 Items.KinstoneX.RedSpike
 HearthLedge;                   Minor; 02-00-06;                                                                   Items.LanternOff;
 HearthBackdoor;                Major; 0D66D7;                                                                     (|Items.Flippers, Items.PacciCane, Items.RocsCape)
