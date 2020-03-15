@@ -759,15 +759,14 @@ FortressPrize:`ELEMENT_DUNGEON`;            Major;             09C9E6:FirstByte,
 
 # Temple of Droplets Locations
 AccessDroplets:Droplets;         Helper;            ;                                                                       Locations.AccessHyliaSouth, (|Items.Flippers, Items.RocsCape)
-DropletsMulldozers:Droplets;     `KEYSANITY_MAJOR`; 0E55CB;                                                                 Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.LanternOff, Items.BombBag, Helpers.HasDamageSource;             Items.SmallKey`TOD_SET`
+DropletsMulldozers:Droplets;     `KEYSANITY_MAJOR`; 0E55CB;                                                                 Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.LanternOff, Items.BombBag, Helpers.HasDamageSource;                                           Items.SmallKey`TOD_SET`
 DropletsWaterPot:Droplets;       `KEYSANITY_MAJOR`; 0E5BC7;                                                                 Locations.AccessDroplets, Items.BigKey`TOD_SET`, Items.Flippers, (|Items.RocsCape, Items.GustJar);                                                   Items.SmallKey`TOD_SET`
+DropletsSecondIceblock:Droplets; `KEYSANITY_MAJOR`; 098C3C:FirstByte, 098C3E:SecondByte ;                                   Locations.AccessDroplets, Items.SmallKey`TOD_SET`:4;                                                                                                 Items.SmallKey`TOD_SET`
 
 !ifdef - KEYSANITY
-    DropletsFirstIceblock:Droplets;  `KEYSANITY_MAJOR`; 098C1A:FirstByte, 098C1C:SecondByte;                                Locations.AccessDroplets;                                                                                                                            Items.SmallKey`TOD_SET`
-    DropletsSecondIceblock:Droplets; `KEYSANITY_MAJOR`; 098C3C:FirstByte, 098C3E:SecondByte ;                               Locations.AccessDroplets, Items.SmallKey`TOD_SET`:4;                                                                                                 Items.BigKey`TOD_SET`
+    DropletsFirstIceblock:Droplets;  `KEYSANITY_MAJOR`; 098C1A:FirstByte, 098C1C:SecondByte;                                Locations.AccessDroplets;                                                                                                                            Items.BigKey`TOD_SET`
 !else
-    DropletsFirstIceblock:Droplets;  Unshuffled;        098C1A:FirstByte, 098C1C:SecondByte;                                Locations.AccessDroplets;                                                                                                                            Items.SmallKey`TOD_SET`
-    DropletsSecondIceblock:Droplets; Unshuffled;        098C3C:FirstByte, 098C3E:SecondByte ;                               Locations.AccessDroplets, Items.SmallKey`TOD_SET`;                                                                                                   Items.BigKey`TOD_SET`
+    DropletsFirstIceblock:Droplets;  Unshuffled;        098C1A:FirstByte, 098C1C:SecondByte;                                Locations.AccessDroplets;                                                                                                                            Items.BigKey`TOD_SET`
 !endif
 
 DropletsBottomJump:Droplets;     Helper;            ;                                                                       Items.LanternOff, Items.RocsCape, Helpers.HasDamageSource, Items.SmallKey`TOD_SET`:4;
@@ -840,12 +839,8 @@ PalacePrize:`ELEMENT_DUNGEON`;     `ELEMENT`;         0E69E3;                   
     CastleTopRightTower:DHC;   `KEYSANITY_MAJOR`; 88-02-00; Helpers.CastleBigDoorsOpen, Items.LanternOff;                                    Items.SmallKey`DHC_SET`
     CastleLowerLeftTower:DHC;  `KEYSANITY_MAJOR`; 88-03-00; Helpers.CastleBigDoorsOpen;                                                      Items.SmallKey`DHC_SET`
     CastleLowerRightTower:DHC; `KEYSANITY_MAJOR`; 88-04-00; Helpers.CastleBigDoorsOpen;                                                      Items.SmallKey`DHC_SET`
-    
-    !ifdef - KEYSANITY #temp will be changed on fixing generation issues 
-        CastleBigBlock:DHC;    Major;             88-09-00; Helpers.CastleBigDoorsOpen, Items.SmallKey`DHC_SET`:5; Items.BigKey`DHC_SET`
-    !else
-        CastleBigBlock:DHC;    Unshuffled;        88-09-00; Helpers.CastleBigDoorsOpen, Items.SmallKey`DHC_SET`:5; Items.BigKey`DHC_SET`
-    !endif
+    CastleBigBlock:DHC;        `KEYSANITY_MAJOR`; 88-09-00; Helpers.CastleBigDoorsOpen, Items.SmallKey`DHC_SET`:5; 			     Items.BigKey`DHC_SET`
+ 
 !endif
 
 #Kinstone changes 02017660, be aware that this is open logic, not taking into account getting to anyone who can fuse these
