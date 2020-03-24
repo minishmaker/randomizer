@@ -1,5 +1,13 @@
 .thumb
 push	{r4-r7,lr}
+@stop running
+ldr	r0,=#0x3003F80
+ldr	r1,[r0,#0x30]
+ldr	r2,=#0x400
+mvn	r2,r2
+and	r1,r2
+str	r1,[r0,#0x30]
+
 @check if this is a mole cave
 ldr	r3,=#0x3000BF0
 ldrb	r0,[r3,#4]

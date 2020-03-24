@@ -5,7 +5,7 @@ ALIGN 4
 ocarinaGlitchFix:
 #incbin "asm/ocarinaGlitchFix.dmp"
 
-//fix mole caves
+//fix mole cave walls affecting other mole caves and also make link not run forever
 PUSH; ORG $7FD48; jumpToHack(moleFix); POP
 ALIGN 4
 moleFix:
