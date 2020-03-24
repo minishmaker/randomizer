@@ -1,9 +1,15 @@
 .thumb
+@check if using stairs
+ldr	r0,=#0x3003F8C
+ldrb	r0,[r0]
+cmp	r0,#0
+bne	cutscene
 @check if starting a cutscene
 ldr	r0,=#0x300116C
 ldrb	r1,[r0,#3]
 cmp	r1,#6
 bhs	end
+cutscene:
 @and if ocarina
 cmp	r4,#0x17
 bne	notOcarina
