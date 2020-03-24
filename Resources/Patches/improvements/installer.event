@@ -330,8 +330,11 @@ BYTE 6 0xF 0 0x5D 0 0x07; SHORT 0 0x118 0x98 0 0
 BYTE 6 0xF 0 0x5D 0 0x07; SHORT 0 0x1B8 0x98 0 0
 WORD 0xFFFFFFFF 0xFFFFFFFF 0xFFFFFFFF 0xFFFFFFFF
 
-//respawn in lake hylia shallow water
-PUSH; ORG $41C; BYTE 0x20; POP
+//respawn in lake hylia shallow water, unless minish
+PUSH; ORG $7A39C; jumpToHack(lakeRespawn); POP
+ALIGN 4
+lakeRespawn:
+#incbin "asm/lakeRespawn.dmp"
 
 //add quick warp option
 PUSH; ORG $A5216; SHORT 0x2201 0xE004; POP
