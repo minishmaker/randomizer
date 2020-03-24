@@ -456,6 +456,9 @@ PUSH; ORG $86A20; SHORT 0x2001; POP
 //give elements a sound when picked up
 PUSH; ORG $83620; SHORT 0x2844; POP
 
+//faster textbox opening and closing
+PUSH; ORG $5615A; SHORT 0x2008; ORG $5619C; SHORT 0x2008; POP
+
 #include "glitchless.event"
 #include "dungeon.event"
 #include "fairy.event"
