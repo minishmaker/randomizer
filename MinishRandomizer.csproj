@@ -52,12 +52,14 @@
   <ItemGroup>
     <Compile Include="Core\Constants.cs" />
     <Compile Include="Core\ROM.cs" />
-    <Compile Include="Randomizer\Logic\DirectiveParser.cs" />
-    <Compile Include="Randomizer\Logic\LogicDefine.cs" />
-    <Compile Include="Randomizer\Logic\Dependency.cs" />
-    <Compile Include="Randomizer\Logic\LocationAddress.cs" />
-    <Compile Include="Randomizer\Logic\LogicOption.cs" />
-    <Compile Include="Randomizer\Logic\Parser.cs" />
+    <Compile Include="Randomizer\Logic\Interpreting\Lexer\Token.cs" />
+    <Compile Include="Randomizer\Logic\Interpreting\Lexer\TokenList.cs" />
+    <Compile Include="Randomizer\Logic\Old\DirectiveParser.cs" />
+    <Compile Include="Randomizer\Logic\Old\LogicDefine.cs" />
+    <Compile Include="Randomizer\Logic\Old\Dependency.cs" />
+    <Compile Include="Randomizer\Logic\Old\LocationAddress.cs" />
+    <Compile Include="Randomizer\Logic\Old\LogicOption.cs" />
+    <Compile Include="Randomizer\Logic\Old\Parser.cs" />
     <Compile Include="UI\MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -66,7 +68,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Randomizer\Logic\Location.cs" />
+    <Compile Include="Randomizer\Logic\Old\Location.cs" />
     <Compile Include="Randomizer\Shuffler.cs" />
     <Compile Include="Utilities\ColorUtil.cs" />
     <Compile Include="Utilities\EventUtil.cs" />
@@ -89,6 +91,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include=".editorconfig" />
+    <None Include="graphlogic.md" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -109,6 +112,11 @@
       <Name>ColorzCore</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Randomizer\Fillers\" />
+    <Folder Include="Randomizer\Logic\Interpreting\Parser\" />
+    <Folder Include="Randomizer\Logic\Structures\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy /y /d /s "$(ProjectDir)Resources\Patches" "$(TargetDir)Patches\"
@@ -120,11 +128,9 @@ xcopy /y /d /s "$(ProjectDir)Vendor\Language Raws" "$(TargetDir)Language Raws\"<
       <TagFile>$(IntermediateOutputPath)gittag</TagFile>
       <VerFile>$(IntermediateOutputPath)gitver</VerFile>
     </PropertyGroup>
-
     <!-- write the hash to the temp file.-->
     <Exec Command="git -C $(ProjectDir) describe --abbrev=0 --tags &gt; $(TagFile)" />
     <Exec Command="git -C $(ProjectDir) rev-parse --short HEAD &gt; $(VerFile)" />
-
     <!-- read the version into the GitVersion itemGroup-->
     <ReadLinesFromFile File="$(VerFile)">
       <Output TaskParameter="Lines" ItemName="GitVersion" />
@@ -138,7 +144,7 @@ xcopy /y /d /s "$(ProjectDir)Vendor\Language Raws" "$(TargetDir)Language Raws\"<
     </PropertyGroup>
     <PropertyGroup>
       <BuildTag>@(GitTag)</BuildTag>
-    </PropertyGroup>      
+    </PropertyGroup>
   </Target>
   <Target Name="WriteGitHash" BeforeTargets="CoreCompile">
     <!-- names the obj/.../CustomAssemblyInfo.cs file -->
