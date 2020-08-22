@@ -464,6 +464,7 @@ HasBoomerang;    Helper;; (|Items.Boomerang, Items.MagicBoomerang)
 !endif
 
 HasBeam;         Helper;; Helpers.HasSword, (|Items.SwordBeam, Items.PerilBeam)
+CanDownThrust;   Helper;; Helpers.HasSword, Items.DownThrust, Items.RocsCape
 CanDestroyTrees; Helper;; (|Helpers.HasSword, Helpers.HasLightBow, Items.BombBag ,Items.LanternOff)
 
 Inaccessible;    Helper;; Items.Untyped.FF::FF  # ask for 255 of them for good measure
@@ -713,7 +714,7 @@ DeepwoodBossItem:Deepwood;              Major;             chuContainerItem:Defi
 DeepwoodPrize:`ELEMENT_DUNGEON`;        `ELEMENT`;         0DF03B;                                                               Locations.CompleteDeepwood
 
 # Cave of Flames locations
-CoFAccess:FlameCave;              Helper;             ;                                                                             Locations.AccessCrenel,(|Items.PacciCane, (&Items.GripRing, (|Items.RocsCape, Helpers.HasLightBow,(&Items.GustJar, (|Items.BombBag, Helpers.HasBow, Helpers.HasBoomerang, Helpers.HasBeam))))), (|Items.BombBag, Items.Shield, Items.PacciCane), Helpers.HasDamageSource
+CoFAccess:FlameCave;              Helper;             ;                                                                             Locations.AccessCrenel,(|Items.PacciCane, (&Items.GripRing, (|Items.RocsCape, Helpers.HasLightBow,(&Items.GustJar, (|Items.BombBag, Helpers.HasBow, Helpers.HasBoomerang, Helpers.HasBeam))))), (|Items.BombBag, Items.Shield, Items.PacciCane, Helpers.CanDownThurst), Helpers.HasDamageSource
 CoFFlippedCart:FlameCave;         `KEYSANITY_MAJOR`;  50-01-01;                                                                     Locations.CoFAccess, Helpers.HasSword, Items.PacciCane, Items.SmallKey`COF_SET`;        Items.SmallKey`COF_SET`
 CoFHeartPiece:FlameCave;          Major;              0DFC9F;                                                                       Locations.CoFAccess, Items.BombBag, Helpers.HasSword, Items.SmallKey`COF_SET`
 CoFChuPit:FlameCave;              Major;              50-01-02;                                                                     Locations.CoFAccess, Items.SmallKey`COF_SET`, Helpers.HasSword
