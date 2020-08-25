@@ -467,7 +467,7 @@ HasBeam;         Helper;; Helpers.HasSword, (|Items.SwordBeam, Items.PerilBeam)
 CanDownThrust;   Helper;; Helpers.HasSword, Items.DownThrust, Items.RocsCape
 CanDestroyTrees; Helper;; (|Helpers.HasSword, Helpers.HasLightBow, Items.BombBag ,Items.LanternOff)
 
-Inaccessible;    Helper;; Items.Untyped.FF::FF  # ask for 255 of them for good measure
+Inaccessible;    Helper;; Items.Untyped.FF::255  # ask for 255 of them for good measure
 
 # Central Hyrule Locations
 
@@ -516,9 +516,9 @@ BakeryAttic;                   Minor; 2E-03-00;                                 
 StockWellAttic;                Minor; 2E-01-01;                                                                   (|Items.PacciCane, Items.Flippers, Items.RocsCape)
 SimulationChest;               Major; 0F04C2;                                                                     Helpers.HasSword
 RemShoeShop;                   Major; 0130EE;                                                                     Items.WakeUpMushroom
-Shop80Item;                    Major; walletShopItem:Define:FirstByte, walletShopSub:Define:SecondByte;           (+50, Items.Rupee1, Items.Rupee5::5, Items.Rupee20::14, Items.Rupee50::32, Items.Rupee100::64, Items.Rupee200::C8);                     Items.Wallet
-Shop300Item;                   Major; boomerangShopItem:Define:FirstByte, boomerangShopSub:Define:SecondByte;     Items.Wallet, (+17C, Items.Rupee1, Items.Rupee5::5, Items.Rupee20::14, Items.Rupee50::32, Items.Rupee100::64, Items.Rupee200::C8);      Items.Boomerang
-Shop600Item;                   Major; quiverShopItem:Define:FirstByte, quiverShopSub:Define:SecondByte;           Items.Wallet::3, (+3D4, Items.Rupee1, Items.Rupee5::5, Items.Rupee20::14, Items.Rupee50::32, Items.Rupee100::64, Items.Rupee200::C8);   Items.LargeQuiver
+Shop80Item;                    Major; walletShopItem:Define:FirstByte, walletShopSub:Define:SecondByte;                            (+50,  Items.Rupee1, Items.Rupee5::5, Items.Rupee20::20, Items.Rupee50::50, Items.Rupee100::100, Items.Rupee200::200); Items.Wallet
+Shop300Item;                   Major; boomerangShopItem:Define:FirstByte, boomerangShopSub:Define:SecondByte;     Items.Wallet,    (+300, Items.Rupee1, Items.Rupee5::5, Items.Rupee20::20, Items.Rupee50::50, Items.Rupee100::100, Items.Rupee200::200); Items.Boomerang
+Shop600Item;                   Major; quiverShopItem:Define:FirstByte, quiverShopSub:Define:SecondByte;           Items.Wallet::3, (+600, Items.Rupee1, Items.Rupee5::5, Items.Rupee20::20, Items.Rupee50::50, Items.Rupee100::100, Items.Rupee200::200); Items.LargeQuiver
 ShopDogfoodItem;               Major; dogShopItem:Define:FirstByte, dogShopSub:Define:SecondByte;                 (|Items.Flippers, Items.PacciCane, Items.RocsCape);                                                                                     Items.DogFoodBottle
 CarlovReward;                  Major; carlovSpotItem:Define:FirstByte, carlovSpotSub:Define:SecondByte;           (|Items.Flippers, Items.PacciCane, Items.RocsCape);                                                                                     Items.CarlovMedal
 FigurineHouseLeft;             Minor; 23-05-00;                                                                   Items.CarlovMedal
@@ -617,7 +617,7 @@ WitchDiggingCave;      Minor; 0C-00-00;                                         
 HyliaSunkenHeartPiece; Major; 0F323B;                                                                 Locations.AccessHyliaNorth, Items.Flippers
 HyliaBottomHeartPiece; Major; 0F324B;                                                                 Locations.AccessHyliaNorth, (|Items.Flippers, Items.RocsCape)
 WavebladeHeartPiece;   Major; 0D7B03;                                                                 Locations.AccessHyliaNorth, (|Items.Flippers, Items.RocsCape)
-WavebladeScroll;       Major; wavebladeDojoItem:Define:FirstByte, wavebladeDojoSub:Define:SecondByte; (+1C, Items.PieceOfHeart, Items.HeartContainer::4), Helpers.HasSword, Locations.WavebladeHeartPiece;                                         Items.PerilBeam
+WavebladeScroll;       Major; wavebladeDojoItem:Define:FirstByte, wavebladeDojoSub:Define:SecondByte; (+28, Items.PieceOfHeart, Items.HeartContainer::4), Helpers.HasSword, Locations.WavebladeHeartPiece;                                         Items.PerilBeam
 
 AccessTreasureCave;          Helper;;         Locations.AccessHyliaNorth, Items.MoleMitts, Items.RocsCape
 HyliaCapeCaveTopRight;       Minor; 19-01-00; Locations.AccessTreasureCave 
@@ -840,7 +840,7 @@ PalacePrize:`ELEMENT_DUNGEON`;     `ELEMENT`;         0E69E3;                   
     CastleTopRightTower:DHC;   `KEYSANITY_MAJOR`; 88-02-00; Helpers.CastleBigDoorsOpen, Items.LanternOff;                                    Items.SmallKey`DHC_SET`
     CastleLowerLeftTower:DHC;  `KEYSANITY_MAJOR`; 88-03-00; Helpers.CastleBigDoorsOpen;                                                      Items.SmallKey`DHC_SET`
     CastleLowerRightTower:DHC; `KEYSANITY_MAJOR`; 88-04-00; Helpers.CastleBigDoorsOpen;                                                      Items.SmallKey`DHC_SET`
-    CastleBigBlock:DHC;        `KEYSANITY_MAJOR`; 88-09-00; Helpers.CastleBigDoorsOpen, Items.SmallKey`DHC_SET`:5; 			     Items.BigKey`DHC_SET`
+    CastleBigBlock:DHC;        `KEYSANITY_MAJOR`; 88-09-00; Helpers.CastleBigDoorsOpen, Items.SmallKey`DHC_SET`:5;                           Items.BigKey`DHC_SET`
  
 !endif
 

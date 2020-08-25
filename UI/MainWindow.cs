@@ -119,6 +119,11 @@ namespace MinishRandomizer
 
                 statusText.Text = $"Successfully randomized seed {seed}";
             }
+            catch (ParserException error)
+            {
+                MessageBox.Show(error.Message);
+                statusText.Text = $"Error parsing logic file: {error.Message}";
+            }
             catch (ShuffleException error)
             {
                 MessageBox.Show(error.Message);

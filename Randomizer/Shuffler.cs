@@ -439,7 +439,7 @@ namespace MinishRandomizer.Randomizer
 
             if (!new LocationDependency("BeatVaati").DependencyFulfilled(finalMajorItems, Locations))
             {
-                throw new ShuffleException($"Randomization succeded, but could not beat Vaati!");
+                throw new ShuffleException($"Randomization succeeded, but could not beat Vaati!");
             }
 
             // Put nice items in locations, logic is checked but not updated
