@@ -435,6 +435,7 @@ namespace MinishRandomizer.Randomizer.Logic
                     {
                         // Remove spaces as they're ignored in locations
                         locationString = locationString.Replace(" ", "");
+                        locationString = locationString.Replace("\t", "");
 
                         Location newLocation = GetLocation(locationString);
                         outList.Add(newLocation);
