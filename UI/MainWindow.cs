@@ -346,6 +346,8 @@ namespace MinishRandomizer
             // Write output to ROM, then add patches
             string spoilerLog = shuffler.GetSpoiler();
             File.WriteAllText(sfd.FileName, spoilerLog);
+            MessageBox.Show("Spoiler successfully saved.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            statusText.Text = $"Successfully saved \"{sfd.FileName}\"";
         }
 
         private void LoadOptionControls(List<LogicOption> options)

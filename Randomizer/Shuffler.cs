@@ -46,7 +46,7 @@ namespace MinishRandomizer.Randomizer
                 {
                     UseAny = true;
                 }
-                else if (!byte.TryParse(itemData[2], out SubValue))
+                else if (!StringUtil.ParseString(itemData[2], out SubValue))
                 {
                     if (Enum.TryParse(itemData[2], out Kinstone))
                     {

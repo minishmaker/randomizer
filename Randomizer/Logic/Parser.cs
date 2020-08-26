@@ -57,7 +57,7 @@ namespace MinishRandomizer.Randomizer.Logic
                         Dictionary<Dependency, int> valueDict = new Dictionary<Dependency, int>();
                         var reqValueString = sequence.Split(',')[0];
 
-                        if (!int.TryParse(reqValueString.Substring(1), out int reqValue))
+                        if (!StringUtil.ParseString(reqValueString.Substring(1), out int reqValue))
                         {
                             throw new ParserException($"Invalid total for counter! {reqValueString.Substring(1)}");
                         }
@@ -72,7 +72,7 @@ namespace MinishRandomizer.Randomizer.Logic
 
                             if (values.Length >= 3)
                             {
-                                if (!int.TryParse(values[2], out depValue))
+                                if (!StringUtil.ParseString(values[2], out depValue))
                                 {
                                     depValue = 1;
                                     dependencyString = dependencyString.Substring(0, dependencyString.Length - (values[2].Length + 1));
@@ -96,7 +96,7 @@ namespace MinishRandomizer.Randomizer.Logic
                             dungeon = splitSequence[1];
                             if (splitSequence.Length >= 3)
                             {
-                                if (!int.TryParse(splitSequence[2], out count))
+                                if (!StringUtil.ParseString(splitSequence[2], out count))
                                 {
                                     throw new ParserException($"Invalid amount on\"{sequence}\"!");
                                 }
@@ -208,7 +208,7 @@ namespace MinishRandomizer.Randomizer.Logic
             if (locationParts.Length < 3)
             {
                 Console.WriteLine("Too short");
-                throw new ParserException("A location in the logic file lacks required fields!");
+                throw new ParserException($"{locationText} in the logic file lacks required fields!");
             }
 
             string[] names = locationParts[0].Split(':');
@@ -283,7 +283,7 @@ namespace MinishRandomizer.Randomizer.Logic
                         byte subType = 0;
                         if (subParts.Length >= 3)
                         {
-                            if (!byte.TryParse(subParts[2], out subType))
+                            if (!StringUtil.ParseString(subParts[2], out subType))
                             {
                                 if (Enum.TryParse(subParts[2], out KinstoneType subKinstoneType))
                                 {
@@ -366,8 +366,8 @@ namespace MinishRandomizer.Randomizer.Logic
                 return new EventLocationAddress(addressType, addressParts[0]);
             }
 
-            // The address is a hexadecimal number, so it can simply be parsed
-            if (int.TryParse(addressParts[0], NumberStyles.HexNumber, null, out int address))
+            // The address is a number, so it can simply be parsed
+            if (StringUtil.ParseString(addressParts[0], out int address))
             {
                 return new LocationAddress(addressType, address);
             }
@@ -379,17 +379,17 @@ namespace MinishRandomizer.Randomizer.Logic
                 throw new ParserException($"Entity data \"{addressString}\" does not have a full address!");
             }
 
-            if (!int.TryParse(entityDetails[0], NumberStyles.HexNumber, null, out int area))
+            if (!StringUtil.ParseString(entityDetails[0], out int area))
             {
                 throw new ParserException($"Entity data \"{addressString}\" has an invalid area index!");
             }
 
-            if (!int.TryParse(entityDetails[1], NumberStyles.HexNumber, null, out int room))
+            if (!StringUtil.ParseString(entityDetails[1], out int room))
             {
                 throw new ParserException($"Entity data \"{addressString}\" has an invalid room index!");
             }
 
-            if (!int.TryParse(entityDetails[2], NumberStyles.HexNumber, null, out int chest))
+            if (!StringUtil.ParseString(entityDetails[2], out int chest))
             {
                 throw new ParserException($"Entity data \"{addressString}\" has an invalid entity index!");
             }
