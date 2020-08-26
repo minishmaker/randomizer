@@ -662,7 +662,7 @@ namespace MinishRandomizer.Randomizer.Logic
                     throw new ParserException("!addition resulted in a value higher than 255 (0xFF)");
                 }
             }
-            return new LogicDefine( directiveParts[1] ,totalValue.ToString("X2"));
+            return new LogicDefine( directiveParts[1] ,totalValue.ToString());
         }
 
         public void ParseSetTypeDirective(string[] directiveParts)

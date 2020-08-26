@@ -445,7 +445,14 @@ namespace MinishRandomizer.Randomizer.Logic
                         // Parse the string as a directive, ignoring preparsed directives
                         if (!SubParser.ParseOnLoad(locationString))
                         {
-                            SubParser.ParseDirective(locationString);
+                            try
+                            {
+                                SubParser.ParseDirective(locationString);
+                            }
+                            catch(ParserException error)
+                            {
+                                throw new ParserException($"Error at directive \"{locationString}\": {error.Message}");
+                            } 
                         }
 
                     }
