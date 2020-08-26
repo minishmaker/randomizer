@@ -283,7 +283,7 @@ namespace MinishRandomizer.Randomizer.Logic
                         byte subType = 0;
                         if (subParts.Length >= 3)
                         {
-                            if (!byte.TryParse(subParts[2], NumberStyles.HexNumber, null, out subType))
+                            if (!byte.TryParse(subParts[2], out subType))
                             {
                                 if (Enum.TryParse(subParts[2], out KinstoneType subKinstoneType))
                                 {
