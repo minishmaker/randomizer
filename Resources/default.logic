@@ -738,10 +738,10 @@ AccessUpperClouds; Helper;;               Locations.AccessClouds, (|Items.RocsCa
     GregalOne;         Minor; 0x014C5C;       Locations.AccessUpperClouds, Items.GustJar
     
 !else
-    TowerBottomLeft;   Minor; 30-00-00; ;
-    TowerBottomRight;  Minor; 30-00-01; ;
-    TowerF2;           Minor; 30-01-00; ;
-    GregalOne;         Minor; 014C5C;   Items.GustJar
+    TowerBottomLeft;   Minor; 0x30-0x00-0x00; ;
+    TowerBottomRight;  Minor; 0x30-0x00-0x01; ;
+    TowerF2;           Minor; 0x30-0x01-0x00; ;
+    GregalOne;         Minor; 0x014C5C;   Items.GustJar
 !endif
 
 GregalTwo;         Major; 0x014CBC;       Locations.AccessUpperClouds, Items.GustJar;            Items.Bow
