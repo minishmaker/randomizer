@@ -1,4 +1,25 @@
 #ifdef hash
+#ifdef customHash1
+	#define seedHash1 customHash1
+#endif
+#ifdef customHash2
+	#define seedHash2 customHash2
+#endif
+#ifdef customHash3
+	#define seedHash3 customHash3
+#endif
+#ifdef customHash4
+	#define seedHash4 customHash4
+#endif
+#ifdef customHash5
+	#define seedHash5 customHash5
+#endif
+#ifdef customOptionsHash1
+	#define optionsHash1 customOptionsHash1
+#endif
+#ifdef customOptionsHash2
+	#define optionsHash2 customOptionsHash2
+#endif
 #ifndef seedHash1
 	#define seedHash1 "0"
 #endif

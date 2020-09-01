@@ -46,7 +46,7 @@ namespace MinishRandomizer.Randomizer
                 {
                     UseAny = true;
                 }
-                else if (!byte.TryParse(itemData[2], NumberStyles.HexNumber, null, out SubValue))
+                else if (!StringUtil.ParseString(itemData[2], out SubValue))
                 {
                     if (Enum.TryParse(itemData[2], out Kinstone))
                     {
@@ -439,7 +439,7 @@ namespace MinishRandomizer.Randomizer
 
             if (!new LocationDependency("BeatVaati").DependencyFulfilled(finalMajorItems, Locations))
             {
-                throw new ShuffleException($"Randomization succeded, but could not beat Vaati!");
+                throw new ShuffleException($"Randomization succeeded, but could not beat Vaati!");
             }
 
             // Put nice items in locations, logic is checked but not updated

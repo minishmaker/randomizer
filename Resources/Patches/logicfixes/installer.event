@@ -198,8 +198,13 @@ PUSH; ORG $4EFB4; SHORT 0xE017; POP
 //make rem item have a sub id
 PUSH; ORG $7EA5E; SHORT 0x7890; ORG $7EA66; SHORT 0x7890 0x78D1; POP
 
-//simulation chest always spawns the same pattern if the first chest hasn't been opened
-PUSH; ORG $F030C; BYTE 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0; POP
+//simon fights appear in a consistent order, advancing each time you open the chest; always first fight unless item spot is opened
+//counter at 0x203FFE0 (new save space), one byte
+PUSH; ORG $4E098; SHORT 0x46C0; ORG $4E09E; SHORT 0x1C30; POP
+PUSH; ORG $4E05C; jumpToHack(simonCycle); POP
+ALIGN 4
+simonCycle:
+#incbin "asm/simonCycle.dmp"
 
 //yellow library minish rewards link even if he has the flippers
 PUSH; ORG $6AAA4; SHORT 0; POP

@@ -213,10 +213,10 @@ namespace MinishRandomizer.Randomizer.Logic
 
     public class LogicNumberBox : LogicOption 
     {
-        String value = "";
-        String placeholder = "";
-        Boolean focussing = false;
-        public LogicNumberBox(string name, LogicOptionType type, String placeholder) : base(name, name, true, type)
+        string value = "";
+        string placeholder = "";
+        bool isSelf = false;
+        public LogicNumberBox(string name, LogicOptionType type, string placeholder) : base(name, name, true, type)
         {
             this.placeholder = placeholder;
         }
@@ -224,14 +224,13 @@ namespace MinishRandomizer.Randomizer.Logic
         public override Control GetControl()
         {
             TextBox numberBox = new TextBox();
-            focussing = true;
+            isSelf = true;
             numberBox.Text = placeholder;
-            focussing = false;
+            isSelf = false;
             numberBox.LostFocus += (object sender, EventArgs e) => { LostFocus(sender, e); };
             numberBox.GotFocus += (object sender, EventArgs e) => { GotFocus(sender, e); };
 
             numberBox.TextChanged += (object sender, EventArgs e) => { TextChanged(sender, e); };
-
             return numberBox;
         }
 
@@ -239,9 +238,9 @@ namespace MinishRandomizer.Randomizer.Logic
         {
             if (value == "")
             {
-                focussing = true;
+                isSelf = true;
                 ((TextBox)sender).Text = placeholder;
-                focussing = false;
+                isSelf = false;
             }
         }
 
@@ -249,49 +248,41 @@ namespace MinishRandomizer.Randomizer.Logic
         {
             if(value == "")
             {
-                focussing = true;
+                isSelf = true;
                 ((TextBox)sender).Text = "";
-                focussing = false;
+                isSelf = false;
             }
         }
 
         private void TextChanged(object sender, EventArgs e)
         {
-            TextBox tb = (TextBox)sender;
-            byte val;
-            if(focussing)
+            if (isSelf)
             {
                 return;
             }
+            var tb = ((TextBox)sender);
+            var text = tb.Text;
+            byte val;
 
-            if(tb.Text == ""||tb.Text == "0" || tb.Text == "0x" || tb.Text == "0X")
+            text = text.TrimStart(new char[] { ' ', '0' });
+            if(text == "")
             {
                 value = "";
                 return;
             }
 
-            //dont self trigger, if thats a thing
-            focussing = true;
-            if (tb.Text.StartsWith("0x") || tb.Text.StartsWith("0X"))
-            {
-                if (byte.TryParse(tb.Text.Substring(2), NumberStyles.HexNumber, CultureInfo.InvariantCulture, out val))
-                {
-                    value = val.ToString();
-                }
-                else
-                {   //starts with 0X so give a hex representation
-                    tb.Text = value != "" ? "0x" +value : "";
-                }
-            }
-            else if (byte.TryParse(tb.Text, out val))
+            if (byte.TryParse(text, out val))
             {
                 value = val.ToString();
             }
             else
-            {   //doesnt start with 0X so give a decimal representation
-                tb.Text = value != "" ? byte.Parse(value,NumberStyles.HexNumber,CultureInfo.InvariantCulture).ToString() : "";
+            {
+                var start = tb.SelectionStart;
+                isSelf = true;
+                tb.Text = value;
+                tb.Select(start - 1, 0);
+                isSelf = false;
             }
-            focussing = false;
         }
 
         public override List<LogicDefine> GetLogicDefines()

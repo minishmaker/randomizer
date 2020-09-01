@@ -474,15 +474,16 @@ namespace MinishRandomizer.Randomizer.Logic
                 for (int i = 4; i < directiveParts.Length; i += 3)
                 {
                     // This parses the color components out, in groups of three.
-                    if (int.TryParse(directiveParts[i], NumberStyles.HexNumber, null, out int rComponent))
+                    if (StringUtil.ParseString(directiveParts[i], out int rComponent) &&
+                        StringUtil.ParseString(directiveParts[i + 1], out int gComponent) &&
+                        StringUtil.ParseString(directiveParts[i + 2], out int bComponent)
+                        )
                     {
-                        if (int.TryParse(directiveParts[i + 1], NumberStyles.HexNumber, null, out int gComponent))
-                        {
-                            if (int.TryParse(directiveParts[i + 2], NumberStyles.HexNumber, null, out int bComponent))
-                            {
-                                colors.Add(Color.FromArgb(rComponent, gComponent, bComponent));
-                            }
-                        }
+                        colors.Add(Color.FromArgb(rComponent, gComponent, bComponent));
+                    }
+                    else
+                    {
+                        throw new ParserException($"A color somewhere has an incorrect number! ({directiveParts[i]} - {directiveParts[i+1]} - {directiveParts[i+2]})");
                     }
                 }
 
@@ -524,9 +525,9 @@ namespace MinishRandomizer.Randomizer.Logic
 
         private uint ParseCrcDirective(string[] directiveParts)
         {
-            if (uint.TryParse(directiveParts[1], NumberStyles.HexNumber, null, out uint outCrc))
+            if (StringUtil.ParseString(directiveParts[1], out int outCrc))
             {
-                return outCrc;
+                return (uint)outCrc;
             }
             else
             {
@@ -541,48 +542,20 @@ namespace MinishRandomizer.Randomizer.Logic
                 throw new ParserException("!replace has an invalid amount of arguments");
             }
 
-            var itemData = directiveParts[1].Split(':');
-            var itemStrings = itemData[0].Split('.');
-            var chanceItems = directiveParts[2].Split(',');
-
             Item replacedItem;
             var chanceItemList = new List<ChanceItem>();
 
-            ItemType type;
-            byte itemsub = 0;
-
-            if (!Enum.TryParse(itemStrings[1], out type))
-            {
-                throw new ParserException("!replace has an invalid replaced itemType");
-            }
-
-
-            if (itemStrings.Length >= 3)
-            {
-                if (!byte.TryParse(itemStrings[2], NumberStyles.HexNumber, null, out itemsub))
-                {
-                    throw new ParserException("!replace has an invalid replaced itemSub");
-                }
-            }
-
-            var dungeonString = "";
-            if (itemData.Length > 1)
-            {
-                dungeonString = itemData[1];
-            }
-
             replacedItem = new Item(directiveParts[1], "!replace");
 
+            var chanceItems = directiveParts[2].Split(',');
             foreach (var chanceItem in chanceItems)
             {
                 var trimmed = chanceItem.TrimEnd(';');
                 var chanceItemData = trimmed.Split(':');
                 var chanceItemStrings = chanceItemData[0].Split('.');
 
-                
-
                 int chance = 0;
-                if (!int.TryParse(chanceItemData[2], out chance))
+                if (!StringUtil.ParseString(chanceItemData[2], out chance))
                 {
                     throw new ParserException("!replace has an invalid new item chance value");
                 }
@@ -603,7 +576,7 @@ namespace MinishRandomizer.Randomizer.Logic
             var replacementItem = new Item(directiveParts[1], "!replaceamount");
             
             byte replacementAmount;
-            if (!byte.TryParse(directiveParts[2], NumberStyles.HexNumber, null, out replacementAmount))
+            if (!StringUtil.ParseString(directiveParts[2], out replacementAmount))
             {
                 throw new ParserException("!replaceamount has an invalid amount");
             }
@@ -611,7 +584,6 @@ namespace MinishRandomizer.Randomizer.Logic
             AmountReplacementReferences.Add(new ItemAmountSet(replacementItem, replacementAmount));
             var referenceId = AmountReplacementReferences.Count - 1;
 
-            var itemList = new List<Item>();
             var replacedItems = directiveParts[3].Split(',');
             foreach (var itemString in replacedItems)
             {
@@ -643,7 +615,7 @@ namespace MinishRandomizer.Randomizer.Logic
             var replacementItem = new Item(directiveParts[1], "!replaceincrement");
 
             byte replacementAmount;
-            if (!byte.TryParse(directiveParts[2], NumberStyles.HexNumber, null, out replacementAmount))
+            if (!StringUtil.ParseString(directiveParts[2], out replacementAmount))
             {
                 throw new ParserException("!replaceincrement has an invalid amount");
             }
@@ -651,7 +623,6 @@ namespace MinishRandomizer.Randomizer.Logic
             IncrementalReplacementReferences.Add(new ItemAmountSet(replacementItem, replacementAmount));
             var referenceId = IncrementalReplacementReferences.Count - 1;
 
-            var itemList = new List<Item>();
             var replacedItems = directiveParts[3].Split(',');
             foreach (var itemString in replacedItems)
             {
@@ -673,26 +644,25 @@ namespace MinishRandomizer.Randomizer.Logic
             }
         }
 
-        public LogicDefine ParseAdditionDirective(String[] directiveParts)
+        public LogicDefine ParseAdditionDirective(string[] directiveParts)
         {
-            var name = directiveParts[1];
             int totalValue = 0;
             var values = directiveParts[2].Split(',');
-            foreach(String value in values)
+            foreach(string value in values)
             {
                 byte number;
-                if (!byte.TryParse(value, out number)) 
+                if (!StringUtil.ParseString(value, out number)) 
                 {
                     throw new ParserException("!addition has an invalid value");
                 }
                 totalValue += number;
 
-                if(totalValue>255)
+                if(totalValue > 255)
                 {
                     throw new ParserException("!addition resulted in a value higher than 255 (0xFF)");
                 }
             }
-            return new LogicDefine( directiveParts[1] ,totalValue.ToString("X2"));
+            return new LogicDefine( directiveParts[1] ,totalValue.ToString());
         }
 
         public void ParseSetTypeDirective(string[] directiveParts)

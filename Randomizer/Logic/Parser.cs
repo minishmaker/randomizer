@@ -57,7 +57,7 @@ namespace MinishRandomizer.Randomizer.Logic
                         Dictionary<Dependency, int> valueDict = new Dictionary<Dependency, int>();
                         var reqValueString = sequence.Split(',')[0];
 
-                        if (!int.TryParse(reqValueString.Substring(1), NumberStyles.HexNumber, CultureInfo.InvariantCulture, out int reqValue))
+                        if (!StringUtil.ParseString(reqValueString.Substring(1), out int reqValue))
                         {
                             throw new ParserException($"Invalid total for counter! {reqValueString.Substring(1)}");
                         }
@@ -72,7 +72,7 @@ namespace MinishRandomizer.Randomizer.Logic
 
                             if (values.Length >= 3)
                             {
-                                if (!int.TryParse(values[2], NumberStyles.HexNumber, CultureInfo.InvariantCulture, out depValue))
+                                if (!StringUtil.ParseString(values[2], out depValue))
                                 {
                                     depValue = 1;
                                     dependencyString = dependencyString.Substring(0, dependencyString.Length - (values[2].Length + 1));
@@ -96,9 +96,9 @@ namespace MinishRandomizer.Randomizer.Logic
                             dungeon = splitSequence[1];
                             if (splitSequence.Length >= 3)
                             {
-                                if (!int.TryParse(splitSequence[2], out count))
+                                if (!StringUtil.ParseString(splitSequence[2], out count))
                                 {
-                                    count = 1;
+                                    throw new ParserException($"Invalid amount on\"{sequence}\"!");
                                 }
                             }
                         }
@@ -107,7 +107,7 @@ namespace MinishRandomizer.Randomizer.Logic
 
                         if (dependencyParts.Length < 2)
                         {
-                            break;
+                            throw new ParserException($"Invalid logic \"{logic}\"!");
                         }
 
                         switch (dependencyParts[0])
@@ -118,7 +118,7 @@ namespace MinishRandomizer.Randomizer.Logic
                                 dependencies.Add(locationDependency);
                                 break;
                             case "Items":
-                                Item item = new Item(sequence);
+                                Item item = new Item(sequence, " Parse");
                                 ItemDependency itemDependency = new ItemDependency(item, count);
                                 dependencies.Add(itemDependency);
                                 
@@ -208,7 +208,7 @@ namespace MinishRandomizer.Randomizer.Logic
             if (locationParts.Length < 3)
             {
                 Console.WriteLine("Too short");
-                throw new ParserException("A location in the logic file lacks required fields!");
+                throw new ParserException($"{locationText} in the logic file lacks required fields!");
             }
 
             string[] names = locationParts[0].Split(':');
@@ -232,18 +232,25 @@ namespace MinishRandomizer.Randomizer.Logic
             string[] addressStrings = locationParts[2].Split(',');
             List<LocationAddress> addresses = new List<LocationAddress>(addressStrings.Length);
             List<EventLocationAddress> defines = new List<EventLocationAddress>();
-            foreach (string address in addressStrings)
+            try
             {
-                LocationAddress parsedAddress = GetAddressFromString(address);
-                if (parsedAddress is EventLocationAddress)
+                foreach (string address in addressStrings)
                 {
-                    defines.Add((EventLocationAddress)parsedAddress);
-                }
-                else
-                {
-                    addresses.Add(parsedAddress);
-                }
+                    LocationAddress parsedAddress = GetAddressFromString(address);
+                    if (parsedAddress is EventLocationAddress)
+                    {
+                        defines.Add((EventLocationAddress)parsedAddress);
+                    }
+                    else
+                    {
+                        addresses.Add(parsedAddress);
+                    }
 
+                }
+            }
+            catch(ParserException error)
+            {
+                throw new ParserException($"Error at location \"{name}\": {error.Message}");
             }
 
             string logic = "";
@@ -252,12 +259,19 @@ namespace MinishRandomizer.Randomizer.Logic
             {
                 logic = locationParts[3];
             }
-
-            List<Dependency> dependencies = GetDependencies(logic);
+            List<Dependency> dependencies;
+            try
+            {
+               dependencies = GetDependencies(logic);
+            }
+            catch (ParserException error)
+            {
+                throw new ParserException($"Error at location \"{name}\": {error.Message}");
+            }
 
             Item? itemOverride = null;
             // Has enough parts for an extra item
-            if (locationParts.Length >= 5)
+            if (locationParts.Length >= 5 && locationParts[4].Length != 0)
             {
                 string[] itemParts = locationParts[4].Split(':');
                 string[] subParts = itemParts[0].Split('.');
@@ -269,7 +283,7 @@ namespace MinishRandomizer.Randomizer.Logic
                         byte subType = 0;
                         if (subParts.Length >= 3)
                         {
-                            if (!byte.TryParse(subParts[2], NumberStyles.HexNumber, null, out subType))
+                            if (!StringUtil.ParseString(subParts[2], out subType))
                             {
                                 if (Enum.TryParse(subParts[2], out KinstoneType subKinstoneType))
                                 {
@@ -293,6 +307,10 @@ namespace MinishRandomizer.Randomizer.Logic
 
                         itemOverride = new Item(replacementType, subType, itemDungeon);
                     }
+                }
+                else
+                {
+                    throw new ParserException($"Location \"{name}\" has invalid item override \"{locationParts[4]}\"!");
                 }
             }
 
@@ -348,8 +366,8 @@ namespace MinishRandomizer.Randomizer.Logic
                 return new EventLocationAddress(addressType, addressParts[0]);
             }
 
-            // The address is a hexadecimal number, so it can simply be parsed
-            if (int.TryParse(addressParts[0], NumberStyles.HexNumber, null, out int address))
+            // The address is a number, so it can simply be parsed
+            if (StringUtil.ParseString(addressParts[0], out int address))
             {
                 return new LocationAddress(addressType, address);
             }
@@ -358,22 +376,22 @@ namespace MinishRandomizer.Randomizer.Logic
             string[] entityDetails = addressParts[0].Split('-');
             if (entityDetails.Length != 3)
             {
-                throw new ShuffleException($"Entity data \"{addressString}\" does not have a full address!");
+                throw new ParserException($"Entity data \"{addressString}\" does not have a full address!");
             }
 
-            if (!int.TryParse(entityDetails[0], NumberStyles.HexNumber, null, out int area))
+            if (!StringUtil.ParseString(entityDetails[0], out int area))
             {
-                throw new ShuffleException($"Entity data \"{addressString}\" has an invalid area index!");
+                throw new ParserException($"Entity data \"{addressString}\" has an invalid area index!");
             }
 
-            if (!int.TryParse(entityDetails[1], NumberStyles.HexNumber, null, out int room))
+            if (!StringUtil.ParseString(entityDetails[1], out int room))
             {
-                throw new ShuffleException($"Entity data \"{addressString}\" has an invalid room index!");
+                throw new ParserException($"Entity data \"{addressString}\" has an invalid room index!");
             }
 
-            if (!int.TryParse(entityDetails[2], NumberStyles.HexNumber, null, out int chest))
+            if (!StringUtil.ParseString(entityDetails[2], out int chest))
             {
-                throw new ShuffleException($"Entity data \"{addressString}\" has an invalid entity index!");
+                throw new ParserException($"Entity data \"{addressString}\" has an invalid entity index!");
             }
 
             int addressValue;
@@ -427,7 +445,14 @@ namespace MinishRandomizer.Randomizer.Logic
                         // Parse the string as a directive, ignoring preparsed directives
                         if (!SubParser.ParseOnLoad(locationString))
                         {
-                            SubParser.ParseDirective(locationString);
+                            try
+                            {
+                                SubParser.ParseDirective(locationString);
+                            }
+                            catch(ParserException error)
+                            {
+                                throw new ParserException($"Error at directive \"{locationString}\": {error.Message}");
+                            } 
                         }
 
                     }
@@ -435,6 +460,7 @@ namespace MinishRandomizer.Randomizer.Logic
                     {
                         // Remove spaces as they're ignored in locations
                         locationString = locationString.Replace(" ", "");
+                        locationString = locationString.Replace("\t", "");
 
                         Location newLocation = GetLocation(locationString);
                         outList.Add(newLocation);

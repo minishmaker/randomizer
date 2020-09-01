@@ -119,6 +119,11 @@ namespace MinishRandomizer
 
                 statusText.Text = $"Successfully randomized seed {seed}";
             }
+            catch (ParserException error)
+            {
+                MessageBox.Show(error.Message);
+                statusText.Text = $"Error parsing logic file: {error.Message}";
+            }
             catch (ShuffleException error)
             {
                 MessageBox.Show(error.Message);
@@ -341,6 +346,8 @@ namespace MinishRandomizer
             // Write output to ROM, then add patches
             string spoilerLog = shuffler.GetSpoiler();
             File.WriteAllText(sfd.FileName, spoilerLog);
+            MessageBox.Show("Spoiler successfully saved.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            statusText.Text = $"Successfully saved \"{sfd.FileName}\"";
         }
 
         private void LoadOptionControls(List<LogicOption> options)

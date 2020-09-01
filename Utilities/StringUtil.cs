@@ -1,4 +1,6 @@
-﻿namespace MinishRandomizer.Utilities
+﻿using System.Globalization;
+
+namespace MinishRandomizer.Utilities
 {
     class StringUtil
     {
@@ -36,6 +38,33 @@
         public static string AsStringHex32(int val)
         {
             return AsStringHex(val, 32);
+        }
+
+        //just so its all in one place
+        public static bool ParseString(string val, out int value)
+        {
+            if (val.StartsWith("0x") || val.StartsWith("0X"))
+            {
+                val = val.Substring(2);
+                return int.TryParse(val, NumberStyles.HexNumber, CultureInfo.InvariantCulture, out value);
+            }
+            else
+            {
+                return int.TryParse(val, out value);
+            }
+        }
+
+        public static bool ParseString(string val, out byte value)
+        {
+            if (val.StartsWith("0x") || val.StartsWith("0X"))
+            {
+                val = val.Substring(2);
+                return byte.TryParse(val, NumberStyles.HexNumber, CultureInfo.InvariantCulture, out value);
+            }
+            else
+            {
+                return byte.TryParse(val, out value);
+            }
         }
     }
 }

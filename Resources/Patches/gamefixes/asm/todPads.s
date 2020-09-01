@@ -5,6 +5,12 @@ cmp	r1,#0
 beq	checkTOD
 
 end:
+@check if pad has been touched
+mov	r0,r2
+add	r0,#0x84
+ldr	r0,[r0]
+cmp	r0,#0
+beq	nottod
 ldr	r3,=#0x8078EB5
 bx	r3
 
