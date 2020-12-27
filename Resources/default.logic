@@ -200,13 +200,13 @@
 !endif
 
 !ifdef - ALLOW_FUSION_SKIPS
-    !ifdef - INSTANT_SKIP
+    !eventdefine - alwaysSkipFusionCutscene - 0
+!else
+	!ifdef - INSTANT_SKIP
         !eventdefine - alwaysSkipFusionCutscene - 1  # if 0 fusion cutscenes are skipped when the buttons are held, if non-0 they are always instantly skipped
     !else
-        !eventdefine - alwaysSkipFusionCutscene - 0
+		!eventdefine - neverSkipFusionCutscene           # if defined, fusion cutscenes are just like vanilla
     !endif
-!else
-    !eventdefine - neverSkipFusionCutscene           # if defined, fusion cutscenes are just like vanilla
 !endif
 
 !ifdef - TRAPS
