@@ -74,6 +74,7 @@
 !flag - Setting - TIMEDOHKO - Die in one hit if the timer runs out
 !flag - Setting - MUSIC_RANDO - Randomize Music
 !flag - Setting - FIGURINE_HUNT - Shuffle figurines into item pool
+!flag - Setting - PEDESTAL_HINT - Display Pedstal Requirements in Sanctuary
 !dropdown - Setting - FUSION_SETTING - No normal fusions - NO_FUSIONS - Open fusion mode - OPENFUSIONS - Vanilla Fusions - VANILLA_FUSIONS
 !dropdown - Setting - FUSION_SKIPS - Allow fusion skips - ALLOW_FUSION_SKIPS - Instant fusion skip - INSTANT_SKIP - No fusion skips - NO_FUSION_SKIP
 !dropdown - Setting - DHC_SETTING - Ped Open/Regular DHC - NORMALDHC - Ped Finish/No DHC - NODHC - Open DHC - OPENDHC - Open DHC + Ped Items - PEDITEMS
@@ -143,6 +144,10 @@
 # Add fusion setting and skip defines so it works like before
 !define - `FUSION_SETTING`
 !define - `FUSION_SKIPS`
+
+!ifdef - PEDESTAL_HINT
+	!eventdefine - pedHint
+!endif
 
 !define - `DHC_SETTING`
 

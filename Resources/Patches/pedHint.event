@@ -1,0 +1,124 @@
+enHint:
+#ifndef openDHC
+	#ifndef pedestalItems
+		#ifndef requirementSwordTier
+			#define requirementSwordTier 0 
+		#endif
+		#incbin "pedHints/en/start.bin"
+		BYTE 0x20 (0x30+requirementSwordTier) 0x02 0x00 0x20
+		#incbin "pedHints/en/mid.bin"
+		BYTE 0x20 (0x30+requirementElementsAmmount) 0x02 0x00 0x20
+		#incbin "pedHints/en/end.bin"
+	#endif
+#endif
+#ifdef openDHC 
+	#ifdef pedestalItems
+		#incbin "pedHints/en/pedItems.bin"
+	#endif
+	#ifndef pedestalItems
+		#incbin "pedHints/en/openDHC.bin"
+	#endif
+#endif
+
+frHint:
+#ifndef openDHC
+	#ifndef pedestalItems
+		#ifndef requirementSwordTier
+			#define requirementSwordTier 0
+		#endif
+		#incbin "pedHints/fr/start.bin"
+		BYTE 0x20 (0x30+requirementSwordTier) 0x02 0x00 0x20
+		#incbin "pedHints/fr/mid.bin"
+		BYTE 0x20 (0x30+requirementElementsAmmount) 0x02 0x00 0x20
+		#incbin "pedHints/fr/end.bin"
+	#endif
+#endif
+#ifdef openDHC 
+	#ifdef pedestalItems
+		#incbin "pedHints/fr/pedItems.bin"
+	#endif
+	#ifndef pedestalItems
+		#incbin "pedHints/fr/openDHC.bin"
+	#endif
+#endif
+
+deHint:
+#ifndef openDHC
+	#ifndef pedestalItems
+		#ifndef requirementSwordTier
+			#define requirementSwordTier 0
+		#endif
+		#incbin "pedHints/de/start.bin"
+		BYTE 0x20 (0x30+requirementSwordTier) 0x02 0x00 0x20
+		#incbin "pedHints/de/mid.bin"
+		BYTE 0x20 (0x30+requirementElementsAmmount) 0x02 0x00 0x20
+		#incbin "pedHints/de/end.bin"
+	#endif
+#endif
+#ifdef openDHC 
+	#ifdef pedestalItems
+		#incbin "pedHints/de/pedItems.bin"
+	#endif
+	#ifndef pedestalItems
+		#incbin "pedHints/de/openDHC.bin"
+	#endif
+#endif
+
+esHint:
+#ifndef openDHC
+	#ifndef pedestalItems
+		#ifndef requirementSwordTier
+			#define requirementSwordTier 0
+		#endif
+		#incbin "pedHints/es/start.bin"
+		BYTE 0x20 (0x30+requirementSwordTier) 0x02 0x00 0x20
+		#incbin "pedHints/es/mid.bin"
+		BYTE 0x20 (0x30+requirementElementsAmmount) 0x02 0x00 0x20
+		#incbin "pedHints/es/end.bin"
+	#endif
+#endif
+#ifdef openDHC 
+	#ifdef pedestalItems
+		#incbin "pedHints/es/pedItems.bin"
+	#endif
+	#ifndef pedestalItems
+		#incbin "pedHints/es/openDHC.bin"
+	#endif
+#endif
+
+itHint:
+#ifndef openDHC
+	#ifndef pedestalItems
+		#ifndef requirementSwordTier
+			#define requirementSwordTier 0
+		#endif
+		#incbin "pedHints/it/start.bin"
+		BYTE 0x20 (0x30+requirementSwordTier) 0x02 0x00 0x20
+		#incbin "pedHints/it/mid.bin"
+		BYTE 0x20 (0x30+requirementElementsAmmount) 0x02 0x00 0x20
+		#incbin "pedHints/it/end.bin"
+	#endif
+#endif
+#ifdef openDHC 
+	#ifdef pedestalItems
+		#incbin "pedHints/it/pedItems.bin"
+	#endif
+	#ifndef pedestalItems
+		#incbin "pedHints/it/openDHC.bin"
+	#endif
+#endif
+ALIGN 4
+
+
+PUSH
+ORG 10292200
+WORD (enHint - 10292176)
+ORG 10591816
+WORD (frHint - 10591792)
+ORG 10876952
+WORD (deHint - 10876928)
+ORG 111468888
+WORD (esHint - 11146864)
+ORG 11419096
+WORD (itHint - 11419072)
+POP

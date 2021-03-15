@@ -217,6 +217,10 @@ WORD customRNG
 	WORD ((fuzzy+1))|((fuzzy+1)<<4)|((fuzzy+1)<<8)|((fuzzy+1)<<12)
 #endif
 
+#ifdef pedHint
+	#include "pedHint.event"
+#endif
+
 //some fixes for followers
 PUSH; ORG $D8F3F; BYTE 0; POP //make the green minish blue in left's attic
 PUSH; ORG $D90C7; BYTE 0; POP //make the green minish blue in the bakery attic
