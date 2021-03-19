@@ -73,7 +73,9 @@
 !flag - Setting - TRAPS - Shuffle traps in itempool
 !flag - Setting - TIMEDOHKO - Die in one hit if the timer runs out
 !flag - Setting - MUSIC_RANDO - Randomize Music
+!flag - Setting - PLENTIFUL - Add extra copies of major items to the pool
 !flag - Setting - FIGURINE_HUNT - Shuffle figurines into item pool
+!numberbox - Setting - REQUIS_DONJON - Required Boss Count
 !dropdown - Setting - FUSION_SETTING - No normal fusions - NO_FUSIONS - Open fusion mode - OPENFUSIONS - Vanilla Fusions - VANILLA_FUSIONS
 !dropdown - Setting - FUSION_SKIPS - Allow fusion skips - ALLOW_FUSION_SKIPS - Instant fusion skip - INSTANT_SKIP - No fusion skips - NO_FUSION_SKIP
 !dropdown - Setting - DHC_SETTING - Ped Open/Regular DHC - NORMALDHC - Ped Finish/No DHC - NODHC - Open DHC - OPENDHC - Open DHC + Ped Items - PEDITEMS
@@ -231,6 +233,7 @@
 !endif
 
 !define - SHELLVALS - Items.ShellsX, Items.ShellsX.1, Items.ShellsX.10, Items.ShellsX.20, Items.ShellsX.50, Items.ShellsX.80, Items.ShellsX.100, Items.ShellsX.200,
+!define - RUPEEVALS - Items.Rupee1, Items.Rupee5, Items.Rupee20,
 !define - DHC_FIG -
 !ifndef - PEDITEMS
     !ifndef - OPENDHC
@@ -250,6 +253,25 @@
     !replaceamount - Items.BlueOrb - 0x10 - `SHELLVALS` `KINVALS`
     !replaceamount - Items.GreenOrb - 0x10 - `SHELLVALS` `KINVALS`
     !replaceamount - Items.RedOrb - 0x10 - `SHELLVALS` `KINVALS`
+!endif
+
+!ifdef - PLENTIFUL
+    !replaceamount - Items.GustJar - 2 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+    !replaceamount - Items.PacciCane - 2 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+    !replaceamount - Items.SmithSword - 2 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+    !replaceamount - Items.SpinAttack - 2 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+    !replaceamount - Items.Flippers - 2 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+    !replaceamount - Items.LanternOff - 2 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+    !replaceamount - Items.RocsCape - 2 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+    !replaceamount - Items.Ocarina - 2 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+    !replaceamount - Items.GripRing - 1 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+    !replaceamount - Items.MoleMitts - 1 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+    !replaceamount - Items.Bow - 1 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+    !replaceamount - Items.PegasusBoots - 1 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+    !replaceamount - Items.GraveyardKey - 1 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+    !replaceamount - Items.KinstoneX.YellowTotemProng - 2 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+    !replaceamount - Items.KinstoneX.YellowCrown - 1 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+    !replaceamount - Items.KinstoneX.YellowTornadoProng - 2 - `SHELLVALS` `KINVALS` `RUPEEVALS`
 !endif
 
 !replace - Items.ShellsX - `SWAPSHELL`
@@ -322,7 +344,10 @@
         !ifdef - NODHC
             !eventdefine - noDHC
         !endif
-
+		!ifdef - REQUIS_DONJON
+            !eventdefine - requirementDungeonsAmmount - `REQUIS_DONJON`
+			RequisDonjon; Helper; ; (+`REQUIS_DONJON` ,Locations.CompleteDeepwood,Locations.CompleteCoF,Locations.CompleteFortress,Locations.CompleteDroplets,Locations.CompletePalace,Locations.KingGift)
+		!endif		
         !ifndef - SWORDEX
             !eventdefine - requirementSwordTier       - `SWORDLEVEL`
             GotSwords; Helper; ; (+`SWORDLEVEL`, Items.SmithSword)
@@ -334,26 +359,45 @@
         !endif
 
         !ifndef - SWORDEX
-            !ifndef - ELEMENTEX
-                #both
-                CompletePed; Helper; ; Helpers.GotSwords, Helpers.GotElements `DHC_FIG`
-            !else
-                #sword
-                CompletePed; Helper; ; Helpers.GotSwords `DHC_FIG`
-            !endif
+		    !ifdef - REQUIS_DONJON
+				!ifndef - ELEMENTEX
+					#both
+					CompletePed; Helper; ; Helpers.RequisDonjon, Helpers.GotSwords, Helpers.GotElements `DHC_FIG`
+				!else
+					#sword
+					CompletePed; Helper; ; Helpers.RequisDonjon, Helpers.GotSwords `DHC_FIG`
+				!endif
+			!else
+				!ifndef - ELEMENTEX
+					#both
+					CompletePed; Helper; ; Helpers.GotSwords, Helpers.GotElements `DHC_FIG`
+				!else
+					#sword
+					CompletePed; Helper; ; Helpers.GotSwords `DHC_FIG`
+				!endif
+			!endif
         !else
-            !ifndef - ELEMENTEX
-                #element
-                CompletePed; Helper; ; Helpers.GotElements `DHC_FIG`
-            !else
-                #neither
-                !ifndef - FIGURINE_HUNT
-                    !eventdefine - requirementElementsAmmount - 4
-                    CompletePed; Helper; ; (+4, Items.WaterElement, Items.FireElement, Items.WindElement, Items.EarthElement) `DHC_FIG`
-                !else
-                    CompletePed; Helper; ; `DHC_FIG`
-                !endif
-            !endif
+			!ifdef - REQUIS_DONJON
+				!ifndef - ELEMENTEX
+					#element
+					CompletePed; Helper; ; Helpers.RequisDonjon,Helpers.GotElements `DHC_FIG`
+				!else
+					CompletePed; Helper; ; Helpers.RequisDonjon, `DHC_FIG`
+				!endif
+			!else
+				!ifndef - ELEMENTEX
+					#element
+					CompletePed; Helper; ; Helpers.GotElements `DHC_FIG`
+				!else
+					#neither
+					!ifndef - FIGURINE_HUNT
+						!eventdefine - requirementElementsAmmount - 4
+						CompletePed; Helper; ; (+4, Items.WaterElement, Items.FireElement, Items.WindElement, Items.EarthElement) `DHC_FIG`
+					!else
+						CompletePed; Helper; ; `DHC_FIG`
+					!endif
+				!endif
+			!endif
         !endif
     !endif
 !endif
