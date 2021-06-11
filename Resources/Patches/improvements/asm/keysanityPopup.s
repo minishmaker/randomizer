@@ -1,5 +1,23 @@
 .thumb
+@check if this is a bottle
+cmp	r6, #0x1C
+blo	notBottle
+cmp	r6, #0x1F
+bhi	notBottle
+
+@it's a bottle: we get funky
+ldr	r0, =#0x30011E8
+@change the icon we will get
+strb	r7, [r0, #0x0A]
+mov	r1, #0
+strb	r1, [r0, #0x0B]
+@get text for the corresponding item
+ldr	r0, =#0x500
+add	r0, r7
+b	return
+
 @check if this is a figurine
+notBottle:
 cmp	r6,#0x67
 beq	figurine
 

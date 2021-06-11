@@ -307,3 +307,6 @@ ORG $2E84C0
 WORD 0 0 0 0 0 0 0 0
 ORG $31EB51; BYTE 0xF6
 POP
+
+PUSH; ORG $53C84; SHORT 0x700F; POP // randomizable bottle contents (uses sub id)
+
