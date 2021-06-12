@@ -29,10 +29,10 @@ PUSH; ORG $85818; jumpToHack(lilypadAdventureFix2); POP
 ALIGN 4
 lilypadAdventureFix2:
 #incbin "asm/lilypadAdventureFix2.dmp"
-#endif
 
 //fix bottle glitch
 PUSH; ORG $78A80; jumpToHack(bottleFix); POP
 ALIGN 4
 bottleFix:
 #incbin "asm/bottleFix.dmp"
+#endif
