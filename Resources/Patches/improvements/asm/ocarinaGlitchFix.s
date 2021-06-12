@@ -24,11 +24,10 @@ ldrb	r1,[r0]
 cmp	r1,#0
 beq	noLantern
 @check if using bow or boomerang
-cmp	r4,#0x0C
-bhi	noLantern
-cmp	r4,#0x0B
+cmp	r4,#0x09
 blo	noLantern
-b	return0
+cmp	r4,#0x0C
+bls	return0
 
 noLantern:
 mov	r0,r4
