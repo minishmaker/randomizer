@@ -1,5 +1,13 @@
 .thumb
+@if using the lantern, mark it so already so the combo fix works with either order of items
+cmp	r4,#0x0F
+bne	notLantern
+ldr	r0,=#0x3000BE3
+mov	r1,#6
+strb	r1,[r0]
+
 @check if using stairs
+notLantern:
 ldr	r0,=#0x3003F8C
 ldrb	r0,[r0]
 cmp	r0,#0
@@ -22,14 +30,14 @@ notOcarina:
 ldr	r0,=#0x3000BE3
 ldrb	r1,[r0]
 cmp	r1,#0
-beq	noLantern
+beq	notCombo
 @check if using bow or boomerang
 cmp	r4,#0x09
-blo	noLantern
+blo	notCombo
 cmp	r4,#0x0C
 bls	return0
 
-noLantern:
+notCombo:
 mov	r0,r4
 ldr	r3,=#0x8077378
 mov	lr,r3
