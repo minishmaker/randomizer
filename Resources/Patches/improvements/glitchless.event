@@ -35,4 +35,17 @@ PUSH; ORG $78A80; jumpToHack(bottleFix); POP
 ALIGN 4
 bottleFix:
 #incbin "asm/bottleFix.dmp"
+
+//fix boss door clip with lantern
+PUSH; ORG $77E5C; jumpToHack(bossdoorFix); POP
+ALIGN 4
+bossdoorFix:
+#incbin "asm/bossdoorFix.dmp"
+
+//fix magic boomerang doing weird stuff to just about every other thing
+PUSH; ORG $1B88E; SHORT 0xB408; jumpToHack(magicrangFix); POP
+ALIGN 4
+magicrangFix:
+#incbin "asm/magicrangFix.dmp"
+
 #endif
