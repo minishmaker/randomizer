@@ -318,6 +318,7 @@ POIN timesSavedCredits  ; WORD 0x203FE00+(04*2) 0
 POIN timesLoadedCredits ; WORD 0x203FE00+(05*2) 0
 POIN timesWarpedCredits ; WORD 0x203FE00+(07*2) 0
 POIN totalRupeesCredits ; WORD 0x203FE00+(06*2) 0
+POIN trapsSprungCredits ; WORD 0x203FE00+(08*2) 0
 WORD 0 0 0 //terminator
 
 PUSH

@@ -1221,3 +1221,28 @@ String("Total de rupias"); BYTE 0
 
 totalRupeesCreditsItalian:
 String("Totale di rupie"); BYTE 0
+
+ALIGN 4
+trapsSprungCredits:
+/*English*/ POIN trapsSprungEnglish
+/*English*/ POIN trapsSprungEnglish
+/*English*/ POIN trapsSprungEnglish
+/*French */ POIN trapsSprungFrench
+/*German */ POIN trapsSprungGerman
+/*Spanish*/ POIN trapsSprungSpanish
+/*Italian*/ POIN trapsSprungItalian
+
+trapsSprungEnglish:
+String("Traps sprung"); BYTE 0
+
+trapsSprungFrench:
+String("Traps sprung"); BYTE 0
+
+trapsSprungGerman:
+String("Traps sprung"); BYTE 0
+
+trapsSprungSpanish:
+String("Trampas activadas"); BYTE 0
+
+trapsSprungItalian:
+String("Traps sprung"); BYTE 0
