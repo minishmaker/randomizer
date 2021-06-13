@@ -1,3 +1,4 @@
+.equ versionNumber, hashIconsTable+4
 .thumb
 ldr	r3,=#0x801D668
 mov	lr,r3
@@ -25,7 +26,7 @@ lsl	r0,#1
 ldrh	r0,[r7,r0]
 lsl	r1,r5,#2
 orr	r0,r1
-add	r0,#0x40
+add	r0,#0x04
 strh	r0,[r6]
 add	r0,#1
 strh	r0,[r6,#2]
@@ -47,9 +48,49 @@ np:
 cmp	r5,#7
 blo	iconsLoop
 
+
+@draw version number as well:
+ldr	r0, versionNumber
+cmp	r0, #0
+beq	end
+ldr	r3,=#0x2034CB0 + (0x01*0x20*2) + (0x1C*2)
+mov	r1, #'.'
+lsl	r2, r0, #24
+lsr	r2, #24
+lsr	r0, #8
+cmp	r2, #0xFF
+beq	noLetter
+add	r2, #'A'
+strh	r2, [r3]
+sub	r3, #2
+strh	r1, [r3]
+sub	r3, #2
+noLetter:
+lsl	r2, r0, #24
+lsr	r2, #24
+lsr	r0, #8
+add	r2, #'0'
+strh	r2, [r3]
+sub	r3, #2
+strh	r1, [r3]
+sub	r3, #2
+lsl	r2, r0, #24
+lsr	r2, #24
+lsr	r0, #8
+add	r2, #'0'
+strh	r2, [r3]
+sub	r3, #2
+strh	r1, [r3]
+sub	r3, #2
+add	r0, #'0'
+strh	r0, [r3]
+sub	r3, #2
+
 end:
 pop	{r0-r7}
 pop	{pc}
 .align
 .ltorg
 hashIconsTable:
+@POIN hashIconsTable
+@POIN versionNumber

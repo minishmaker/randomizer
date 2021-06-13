@@ -41,6 +41,9 @@
 #ifndef optionsHash2
 	#define optionsHash2 "0"
 #endif
+#ifndef versionNumbers
+	#define versionNumber "0"
+#endif
 
 //write hash to save string, file will be erased if hash doesn't match
 PUSH; ORG $11DBD5; BYTE seedHash1 seedHash2 seedHash3 seedHash4 seedHash5 optionsHash1 optionsHash2; POP
@@ -93,12 +96,14 @@ hashLoad:
 POIN hashIconsGraphics
 POIN hashIconsPalette
 POIN hashIconsTable
+WORD versionNumber
 
 PUSH; ORG $4FFD0; jumpToHack(hashDraw); POP
 ALIGN 4
 hashDraw:
 #incbin "asm/hashDraw.dmp"
 POIN hashIconsTable
+WORD versionNumber
 
 ALIGN 4
 hashIconsGraphics:
