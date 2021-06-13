@@ -53,7 +53,7 @@ blo	iconsLoop
 ldr	r0, versionNumber
 cmp	r0, #0
 beq	end
-ldr	r3,=#0x2034CB0 + (0x01*0x20*2) + (0x1C*2)
+ldr	r3,=#0x2034CB0 + (0x01*0x20*2) + (0x1B*2)
 mov	r1, #'.'
 lsl	r2, r0, #24
 lsr	r2, #24
@@ -62,8 +62,6 @@ cmp	r2, #0xFF
 beq	noLetter
 add	r2, #'A'
 strh	r2, [r3]
-sub	r3, #2
-strh	r1, [r3]
 sub	r3, #2
 noLetter:
 lsl	r2, r0, #24
