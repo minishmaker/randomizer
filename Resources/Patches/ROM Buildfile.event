@@ -239,11 +239,20 @@ PUSH; ORG $4F05A; SHORT 0xE002; POP //remove soldiers near lon lon
 	ALIGN 4
 	timerDisplay:
 	#incbin "asm/timerDisplay.dmp"
-	POIN drawTime
 	#ifdef timedohkoOption
+		POIN ohkoDrawTime
 		POIN timedohkoGetTime
+		ALIGN 4
+		ohkoDrawTime:
+		#incbin "asm/drawTime.dmp"
+		POIN ohkoDrawText
+		ALIGN 4
+		ohkoDrawText:
+		#incbin "asm/ohkoDrawText.dmp"
+	#else
+		POIN drawTime
+		WORD 0 //if 0, draw total time, it non-0, draw timer returned by routine called
 	#endif
-	WORD 0 //if 0, draw total time, it non-0, draw timer returned by routine called
 #endif
 
 #ifdef ohkoOption
@@ -254,7 +263,7 @@ PUSH; ORG $4F05A; SHORT 0xE002; POP //remove soldiers near lon lon
 	#ifdef timedohkoOption
 		POIN timedohkoCheckTime
 	#endif
-	WORD 0 //if 0, any damage will kill link, if non-8 this will be used as a pointer to a routine to determine if link will die
+	WORD 0 //if 0, any damage will kill link, if non-0 this will be used as a pointer to a routine to determine if link will die
 #endif
 
 #ifdef counterOption

@@ -19,18 +19,6 @@ beq	notimer
 sub	r7,#0x40
 notimer:
 
-@load the numbers
-ldr	r0,=#0x85C3150
-ldr	r1,=#0x600C9E0
-ldr	r2,=#0x600CB40
-debug:
-ldr	r3,[r0]
-str	r3,[r1]
-add	r0,#4
-add	r1,#4
-cmp	r1,r2
-bne	debug
-
 @clean the tile background
 mov	r0,#0
 mov	r1,#0
@@ -74,18 +62,6 @@ ldr	r0,target
 mov	r1,#0
 mov	r2,#0
 .short	0xF800
-
-@offset the tile ids
-mov	r0,#0
-mov	r2,r7
-loop2:
-ldrh	r1,[r2]
-add	r1,#0x20
-strh	r1,[r2]
-add	r0,#1
-add	r2,#2
-cmp	r0,#7
-bne	loop2
 
 @set bg0 to update
 ldr	r0,=#0x3000F5E

@@ -91,8 +91,8 @@ red:
 ldr	r0,debugFontRed
 
 load:
-ldr	r1,=#0x600C600
-ldr	r2,=#0x600C760
+ldr	r1,=#0x600C020
+ldr	r2,=#0x600C180
 debug:
 ldr	r3,[r0]
 str	r3,[r1]
