@@ -94,13 +94,16 @@ keysanityPopup:
 POIN getTextOffset
 
 #ifdef historyOption
-	//figure out how many lines are being occupied by other displays
+	#ifndef counterOption
+		PUSH; ORG $1C4F4; SHORT 0 0; POP
+	#endif
 	PUSH; ORG $1C4F8; jumpToHack(keysanityHistory); POP
 	ALIGN 4
 	keysanityHistory:
 	#incbin "asm/keysanityHistory.dmp"
 	POIN drawTextHistory
 	POIN historyTable
+	//figure out how many lines are being occupied by other displays
 	#ifdef timerOption
 		#ifdef counterOption
 			WORD 2

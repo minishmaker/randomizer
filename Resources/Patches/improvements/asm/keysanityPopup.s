@@ -180,7 +180,7 @@ b	register
 register:
 push	{r0-r4}
 ldr	r0, =#0x203F300
-mov	r4, #13 + 1
+mov	r4, #12 + 1
 ldr	r2, [r0]
 add	r0, #4
 registerLoop:

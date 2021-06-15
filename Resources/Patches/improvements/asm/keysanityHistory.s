@@ -2,11 +2,12 @@
 .equ line, historyTable+4
 .equ time, line+4
 .thumb
-ldrb	r0, [r6, #0x0A]
 push	{r0-r7}
 
 ldr	r4, =#0x203F300
-mov	r5, #13
+mov	r5, #12
+ldr	r0, line
+sub	r5, r0
 ldr	r6, time
 ldr	r0, =#0xFFFF
 cmp	r6, r0
@@ -30,9 +31,10 @@ countLoop:
 bne	countLoop
 
 ldr	r4, =#0x203F300
-mov	r5, #13
-ldr	r6, =#0x2035132
+mov	r5, #12
 ldr	r0, line
+sub	r5, r0
+ldr	r6, =#0x2035132
 lsl	r0, #6
 sub	r6, r0
 ldr	r7, historyTable
@@ -49,12 +51,11 @@ drawLoop:
 	b	next
 	clean:
 		mov	r0, #0
-		mov	r1, #0x10
-		mov	r2, #0
+		mov	r1, #0
 		cleanloop:
-			str	r0, [r6, r2]
-			add	r2, #4
-			sub	r1, #1
+			str	r0, [r6, r1]
+			add	r1, #4
+			cmp	r1, #0x2C
 		bne	cleanloop
 	next:
 	add	r4, #4
@@ -68,18 +69,21 @@ ldr	r0,=#0x3000F5E
 mov	r1,#1
 strh	r1,[r0]
 pop	{r0-r7}
+cmp	r0, #0
+beq	return1
 ldrb	r0, [r6, #0x0A]
 cmp	r0, #0
 bne	return2
-return1:
+return3:
 ldr	r3,=#0x801C609
 bx	r3
 return2:
 ldr	r3,=#0x801C501
 bx	r3
+return1:
+ldr	r3,=#0x801C535
+bx	r3
 
-.ltorg
-.align
 .align
 .ltorg
 drawText:
