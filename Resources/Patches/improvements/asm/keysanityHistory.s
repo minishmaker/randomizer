@@ -39,24 +39,24 @@ lsl	r0, #6
 sub	r6, r0
 ldr	r7, historyTable
 drawLoop:
+	@ clean the line
+	mov	r0, #0
+	mov	r1, #0
+	cleanloop:
+		str	r0, [r6, r1]
+		add	r1, #4
+		cmp	r1, #0x2C
+	bne	cleanloop
+	@ draw the new line, if it exists
 	ldrh	r0, [r4]
 	cmp	r0, #0
-	beq	clean
+	beq	next
 	lsl	r0, #2
 	ldr	r0, [r7, r0]
 	mov	r3, r6
 	ldr	r2, drawText
 	mov	lr, r2
 	.short	0xF800
-	b	next
-	clean:
-		mov	r0, #0
-		mov	r1, #0
-		cleanloop:
-			str	r0, [r6, r1]
-			add	r1, #4
-			cmp	r1, #0x2C
-		bne	cleanloop
 	next:
 	add	r4, #4
 	sub	r6, #0x40
