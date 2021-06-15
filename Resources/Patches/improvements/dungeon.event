@@ -132,20 +132,21 @@ POIN getTextOffset
 	POIN swampHistory
 	POIN fallsHistory
 	//small and big keys
-	POIN smolHistoryDWS
 	POIN bossHistoryDWS
-	POIN smolHistoryCOF
+	POIN smolHistoryDWS
 	POIN bossHistoryCOF
-	POIN smolHistoryFOW
+	POIN smolHistoryCOF
 	POIN bossHistoryFOW
-	POIN smolHistoryTOD
+	POIN smolHistoryFOW
 	POIN bossHistoryTOD
-	POIN smolHistoryPOW
+	POIN smolHistoryTOD
 	POIN bossHistoryPOW
-	POIN smolHistoryDHC
+	POIN smolHistoryPOW
 	POIN bossHistoryDHC
-	POIN smolHistoryRC
+	POIN smolHistoryDHC
 	POIN bossHistoryRC
+	POIN smolHistoryRC
+	
 	//scrolls and butterflies
 	POIN scrollHistorySpinAttack
 	POIN scrollHistoryRollAttack
@@ -169,34 +170,34 @@ POIN getTextOffset
 	fallsHistory:
 	String("Falls stone"); BYTE 0
 
-	smolHistoryDWS:
-	String("DWS Small"); BYTE 0
 	bossHistoryDWS:
 	String("DWS Big"); BYTE 0
-	smolHistoryCOF:
-	String("COF Small"); BYTE 0
+	smolHistoryDWS:
+	String("DWS Small"); BYTE 0
 	bossHistoryCOF:
 	String("COF Big"); BYTE 0
-	smolHistoryFOW:
-	String("FOW Small"); BYTE 0
+	smolHistoryCOF:
+	String("COF Small"); BYTE 0
 	bossHistoryFOW:
 	String("FOW Big"); BYTE 0
-	smolHistoryTOD:
-	String("TOD Small"); BYTE 0
+	smolHistoryFOW:
+	String("FOW Small"); BYTE 0
 	bossHistoryTOD:
 	String("TOD Big"); BYTE 0
-	smolHistoryPOW:
-	String("POW Small"); BYTE 0
+	smolHistoryTOD:
+	String("TOD Small"); BYTE 0
 	bossHistoryPOW:
 	String("POW Big"); BYTE 0
-	smolHistoryDHC:
-	String("DHC Small"); BYTE 0
+	smolHistoryPOW:
+	String("POW Small"); BYTE 0
 	bossHistoryDHC:
 	String("DHC Big"); BYTE 0
-	smolHistoryRC:
-	String("RC  Small"); BYTE 0
+	smolHistoryDHC:
+	String("DHC Small"); BYTE 0
 	bossHistoryRC:
 	String("RC  Big"); BYTE 0
+	smolHistoryRC:
+	String("RC  Small"); BYTE 0
 	
 	scrollHistorySpinAttack:
 	String("Spin attack"); BYTE 0
