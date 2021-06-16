@@ -29,7 +29,11 @@ PUSH; ORG $56726; SHORT 0x8801; POP
 //skip minish transformation cutscenes automatically
 PUSH; ORG $70DFA; SHORT 0; POP
 
+//can't talk to ezlo with Select
+PUSH; ORG $5270A; SHORT 0x4280; POP
+
 //pressing L uses pegasus boots, if owned
+//pressing Select uses the ocarina, if owned
 PUSH; ORG $772AC; jumpToHack(pegasusShortcut1); POP
 ALIGN 4
 pegasusShortcut1:
