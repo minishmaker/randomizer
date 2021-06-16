@@ -25,7 +25,7 @@ BYTE 0x03 //White Sword (2 elements)
 BYTE 0x04 //White Sword (3 elements)
 BYTE 0x06 //Four Sword
 BYTE 0xFF //terminator
-BYTE 0x00 //item to give if the progressive item is maxed
+BYTE 0x06 //item to give if the progressive item is maxed
 
 //progressiveBombIDs:
 //BYTE 0x07 //Bombs
@@ -37,29 +37,29 @@ progressiveBowIDs:
 BYTE 0x09 //Bow
 BYTE 0x0A //Light Arrow
 BYTE 0xFF //terminator
-BYTE 0x00 //item to give if the progressive item is maxed
+BYTE 0x0A //item to give if the progressive item is maxed
 
 progressiveBoomerangIDs:
 BYTE 0x0B //Boomerang
 BYTE 0x0C //Magical Boomerang
 BYTE 0xFF //terminator
-BYTE 0x00 //item to give if the progressive item is maxed
+BYTE 0x0C //item to give if the progressive item is maxed
 
 progressiveShieldIDs:
 BYTE 0x0D //Small Shield
 BYTE 0x0E //Mirror Shield
 BYTE 0xFF //terminator
-BYTE 0x00 //item to give if the progressive item is maxed
+BYTE 0x0E //item to give if the progressive item is maxed
 
 progressiveSpinScrollIDs:
 BYTE 0x48 //Spin attack
 BYTE 0xFF //terminator
-BYTE 0x00 //item to give if the progressive item is maxed
+BYTE 0x48 //item to give if the progressive item is maxed
 
 progressiveGreatScrollIDs:
 BYTE 0x4D //Great spin attack
 BYTE 0xFF //terminator
-BYTE 0x00 //item to give if the progressive item is maxed
+BYTE 0x4D //item to give if the progressive item is maxed
 
 progressiveKinstoneBagIDs:
 BYTE 0x67 //Kinstone Bag
