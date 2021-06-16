@@ -1,4 +1,5 @@
 .equ	returnTrue, returnFalse+4
+.equ	glitchless, returnTrue+4
 .thumb
 push	{lr}
 ldr	r2,=#0x2002AE8
@@ -32,8 +33,13 @@ and	r6,r5
 cmp	r6,#0
 bne	shortcut
 
-@check if we are checking for the ocarina
+@check if glitchless
 noBoots:
+ldr	r5, glitchless
+cmp	r5, #0
+beq	end
+
+@check if we are checking for the ocarina
 cmp	r3, #0x17
 bne	end
 
@@ -81,3 +87,4 @@ pop	{r3}
 returnFalse:
 @POIN returnFalse
 @POIN returnTrue
+@WORD glitchless

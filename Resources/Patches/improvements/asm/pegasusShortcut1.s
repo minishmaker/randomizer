@@ -1,5 +1,6 @@
 .equ	ReturnTrue, ReturnFalse+4
 .equ	buttonTable, ReturnTrue+4
+.equ	glitchless, buttonTable+4
 .thumb
 push	{r4-r6,lr}
 mov	r4,r0
@@ -32,8 +33,13 @@ and	r6,r5
 cmp	r6,#0
 bne	boots
 
-@check if the Select button is pressed
+@check if glitchless
 noBoots:
+ldr	r5, glitchless
+cmp	r5, #0
+beq	end
+
+@check if the Select button is pressed
 ldr	r5,=#0x3000FF0
 ldrh	r5,[r5]
 mov	r6,#4
@@ -86,3 +92,4 @@ ReturnFalse:
 @POIN ReturnFalse
 @POIN ReturnTrue
 @POIN buttonTable
+@WORD glitchless
