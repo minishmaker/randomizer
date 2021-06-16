@@ -129,6 +129,20 @@ noBoots:
 @bl	drawIcon
 
 noShield:
+@check if we have ocarina
+ldr	r3,=#0x2002B37
+ldrb	r0,[r3]
+mov	r1,#0xC0
+and	r1,r0
+cmp	r1,#0
+beq	noOcarina
+@draw boots icon
+ldr	r0,=#0x2A2
+add	r0,r7
+mov	r1,#0x37
+bl	drawIcon
+
+noOcarina:
 @check if we can swap boomerang
 ldr	r3,=#0x2002B34
 ldrb	r0,[r3]
