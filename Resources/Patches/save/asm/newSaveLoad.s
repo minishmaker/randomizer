@@ -1,6 +1,18 @@
 .thumb
 push	{r4-r5,lr}
 push	{r0-r7}
+@check if continue after death
+ldr	r0,=#0x30010A4
+mov	r1,#0
+mov	r2,#8
+continueloop:
+	ldr	r3,[r0]
+	orr	r1,r3
+	add	r0,#4
+	sub	r2,#1
+bne continueloop
+cmp	r1,#0
+bne	end
 @check if quickwarp
 ldr	r0,=#0x2000088
 ldrb	r0,[r0]
