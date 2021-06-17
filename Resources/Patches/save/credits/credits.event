@@ -306,19 +306,20 @@ WORD 0 0 0 //terminator
 ALIGN 4
 miscPageData:
 //POIN string; WORD offsetToCounter offsetToTime (only one of the two)
-POIN totalTimeCredits   ; WORD 0 0x203FFF0+(00*4)
-POIN menuTimeCredits    ; WORD 0 0x203FFF0+(01*4)
-POIN cutsceneTimeCredits; WORD 0 0x203FFF0+(02*4)
-POIN rollingTimeCredits ; WORD 0 0x203FFF0+(03*4)
-POIN timesRolledCredits ; WORD 0x203FE00+(00*2) 0
-POIN timesBonkedCredits ; WORD 0x203FE00+(01*2) 0
-POIN timesDiedCredits   ; WORD 0x203FE00+(02*2) 0
-POIN timesRevivedCredits; WORD 0x203FE00+(03*2) 0
-POIN timesSavedCredits  ; WORD 0x203FE00+(04*2) 0
-POIN timesLoadedCredits ; WORD 0x203FE00+(05*2) 0
-POIN timesWarpedCredits ; WORD 0x203FE00+(07*2) 0
-POIN totalRupeesCredits ; WORD 0x203FE00+(06*2) 0
-POIN trapsSprungCredits ; WORD 0x203FE00+(08*2) 0
+POIN totalTimeCredits     ; WORD 0 0x203FFF0+(00*4)
+POIN menuTimeCredits      ; WORD 0 0x203FFF0+(01*4)
+POIN cutsceneTimeCredits  ; WORD 0 0x203FFF0+(02*4)
+POIN rollingTimeCredits   ; WORD 0 0x203FFF0+(03*4)
+POIN timesRolledCredits   ; WORD 0x203FE00+(00*2) 0
+POIN timesBonkedCredits   ; WORD 0x203FE00+(01*2) 0
+POIN timesDiedCredits     ; WORD 0x203FE00+(02*2) 0
+POIN timesRevivedCredits  ; WORD 0x203FE00+(03*2) 0
+POIN timesSavedCredits    ; WORD 0x203FE00+(04*2) 0
+POIN timesLoadedCredits   ; WORD 0x203FE00+(05*2) 0
+POIN timesWarpedCredits   ; WORD 0x203FE00+(07*2) 0
+POIN timesHomesickCredits ; WORD 0x203FE00+(09*2) 0
+POIN totalRupeesCredits   ; WORD 0x203FE00+(06*2) 0
+POIN trapsSprungCredits   ; WORD 0x203FE00+(08*2) 0
 WORD 0 0 0 //terminator
 
 PUSH

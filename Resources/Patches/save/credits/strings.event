@@ -1198,6 +1198,31 @@ timesWarpedCreditsItalian:
 String("Quickwarp usati"); BYTE 0
 
 ALIGN 4
+timesHomesickCredits:
+/*English*/ POIN timesHomesickCreditsEnglish
+/*English*/ POIN timesHomesickCreditsEnglish
+/*English*/ POIN timesHomesickCreditsEnglish
+/*French */ POIN timesHomesickCreditsFrench
+/*German */ POIN timesHomesickCreditsGerman
+/*Spanish*/ POIN timesHomesickCreditsSpanish
+/*Italian*/ POIN timesHomesickCreditsItalian
+
+timesHomesickCreditsEnglish:
+String("Homewarps used"); BYTE 0
+
+timesHomesickCreditsFrench:
+String("Homewarps utilis"); BYTE 0xE9; String("s"); BYTE 0
+
+timesHomesickCreditsGerman:
+String("Homewarps genutzt"); BYTE 0
+
+timesHomesickCreditsSpanish:
+String("Homewarps usados"); BYTE 0
+
+timesHomesickCreditsItalian:
+String("Homewarp usati"); BYTE 0
+
+ALIGN 4
 totalRupeesCredits:
 /*English*/ POIN totalRupeesCreditsEnglish
 /*English*/ POIN totalRupeesCreditsEnglish

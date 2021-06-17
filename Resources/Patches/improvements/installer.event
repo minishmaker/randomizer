@@ -367,15 +367,15 @@ ORG $A81FB8; WORD quickWarpSpanish-$A81FB0
 ORG $AC38E8; WORD quickWarpItalian-$AC38E0
 POP
 quickWarpEnglish:
-BYTE 6 1 0x20; String(Save); BYTE 10 10 6 2 0x20; String(Quickwarp); BYTE 0
+BYTE 6 1 0x20; String("Save"); BYTE 10 10 6 2 0x20; String("Quickwarp"); BYTE 0
 quickWarpFrench:
-BYTE 6 1 0x20; String(Sauvegarder); BYTE 10 10 6 2 0x20; String(Quickwarp); BYTE 0
+BYTE 6 1 0x20; String("Sauvegarder"); BYTE 10 10 6 2 0x20; String("Quickwarp"); BYTE 0
 quickWarpGerman:
-BYTE 6 1 0x20; String(Speichern); BYTE 0x2E 10 10 6 2 0x20; String(Quickwarp); BYTE 0x2E 0
+BYTE 6 1 0x20; String("Speichern"); BYTE 0x2E 10 10 6 2 0x20; String("Quickwarp"); BYTE 0x2E 0
 quickWarpSpanish:
-BYTE 6 1 0x20; String(Guardar); BYTE 0x2E 10 10 6 2 0x20; String(Quickwarp); BYTE 0x2E 0
+BYTE 6 1 0x20; String("Guardar"); BYTE 0x2E 10 10 6 2 0x20; String("Quickwarp"); BYTE 0x2E 0
 quickWarpItalian:
-BYTE 6 1 0x20; String(Salva); BYTE 10 10 6 2 0x20; String(Quickwarp); BYTE 0
+BYTE 6 1 0x20; String("Salva"); BYTE 10 10 6 2 0x20; String("Quickwarp"); BYTE 0
 //load the right text
 PUSH; ORG $520A8; jumpToHack(quickwarpText); POP
 ALIGN 4
@@ -474,6 +474,63 @@ PUSH; ORG $83620; SHORT 0x2844; POP
 
 //faster textbox opening and closing
 PUSH; ORG $5615A; SHORT 0x2008; ORG $5619C; SHORT 0x2008; POP
+
+//warp home after sleep mode
+PUSH; ORG $55DE8; SHORT 0xE018; POP //remove sleep mode functionality
+//remove white fade
+PUSH
+ORG $A53C2; SHORT 0 0
+ORG $A53C8; SHORT 0 0 0 0 0
+ORG $A538A; SHORT 0 0
+POP
+PUSH; ORG $55E1C; jumpToHack(homewarpOption); POP
+ALIGN 4
+homewarpOption:
+#incbin "asm/homewarpOption.dmp"
+//activate the nap event after warping
+PUSH; ORG $7D5AC; jumpToHack(homewarpEvent); POP
+ALIGN 4
+homewarpEvent:
+#incbin "asm/homewarpEvent.dmp"
+POIN spawnPoint
+//change the sleep text
+PUSH
+ORG $9AECA0 + (0x0D * 4); WORD homeWarpEnglish - $9AECA0
+ORG $9F7560 + (0x0D * 4); WORD  homeWarpFrench - $9F7560
+ORG $A3EFF0 + (0x0D * 4); WORD  homeWarpGerman - $A3EFF0
+ORG $A81FB0 + (0x0D * 4); WORD homeWarpSpanish - $A81FB0
+ORG $AC38E0 + (0x0D * 4); WORD homeWarpItalian - $AC38E0
+POP
+homeWarpEnglish:
+String("Take a nap?"); BYTE 0x0A 0x0A 0x06 0x01
+String(" Yes      "); BYTE 0x06 0x02
+String(" No"); BYTE 0x0A 0x0A
+String("This will warp you back home and"); BYTE 0x0A
+String("set your Quickwarp point there."); BYTE 0x00
+homeWarpFrench:
+String("Take a nap?"); BYTE 0x0A 0x0A 0x06 0x01
+String(" Yes      "); BYTE 0x06 0x02
+String(" No"); BYTE 0x0A 0x0A
+String("This will warp you back home and"); BYTE 0x0A
+String("set your Quickwarp point there."); BYTE 0x00
+homeWarpGerman:
+String("Schlafen gehen?"); BYTE 0x0A 0x0A 0x06 0x01
+String(" Ja       "); BYTE 0x06 0x02
+String(" Nein"); BYTE 0x0A 0x0A
+String("Dies bringt dich nach Hause und"); BYTE 0x0A
+String("setzt deine Quickwarp Position dort."); BYTE 0x00
+homeWarpSpanish:
+BYTE 0xBF; String("Echarse la siesta?"); BYTE 0x0A 0x0A 0x06 0x01
+String(" S"); BYTE 0xED; String("       "); BYTE 0x06 0x02
+String(" No"); BYTE 0x0A 0x0A
+String("Ser"); BYTE 0xE1; String("s teletransportado a casa y se"); BYTE 0x0A
+String("pondr"); BYTE 0xE1; String(" tu punto de Quickwarp all"); BYTE 0xED ;String("."); BYTE 0x00
+homeWarpItalian:
+String("Take a nap?"); BYTE 0x0A 0x0A 0x06 0x01
+String(" Yes      "); BYTE 0x06 0x02
+String(" No"); BYTE 0x0A 0x0A
+String("This will warp you back home and"); BYTE 0x0A
+String("set your Quickwarp point there."); BYTE 0x00
 
 #include "glitchless.event"
 #include "dungeon.event"
