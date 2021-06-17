@@ -319,3 +319,5 @@ POP
 
 PUSH; ORG $53C84; SHORT 0x700F; POP // randomizable bottle contents (uses sub id)
 
+// TESTING: boots still work while small
+PUSH; ORG $11B694; BYTE 1; POP
