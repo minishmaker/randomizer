@@ -1,3 +1,4 @@
+.equ	glitchless, graphics+4
 .thumb
 strh	r4,[r1,#0x2E]
 ldr	r0,=#0x20350F0
@@ -130,6 +131,9 @@ noBoots:
 
 noShield:
 @check if we have ocarina
+ldr	r3,glitchless
+cmp	r3,#0
+beq	noOcarina
 ldr	r3,=#0x2002B37
 ldrb	r0,[r3]
 mov	r1,#0xC0
@@ -291,3 +295,5 @@ pop	{r4-r5,pc}
 .align
 .ltorg
 graphics:
+@POIN graphics
+@WOROD glitchless

@@ -142,6 +142,11 @@ ALIGN 4
 progressiveIcon:
 #incbin "asm/progressiveIcon.dmp"
 POIN progressiveIconGraphics
+#ifdef glitchless
+	WORD 1
+#else
+	WORD 0
+#endif
 ALIGN 4
 progressiveIconGraphics:
 #incbin "swapicon.img.bin"
