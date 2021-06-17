@@ -58,10 +58,23 @@ mov	r0,#0x96
 lsl	r0,#1
 strh	r0,[r2,#8]
 pop	{r4}
+
 @set the corresponding flag
-ldr	r3,=#0x8055134
-mov	lr,r3
+push	{r4-r5}
+ldr	r5, =#0x2000080
+ldr	r4, [r5, #0x0C]
+ldr	r1, =#0x8055180
+ldr	r1, [r1]
+ldrb	r0, [r4, #0x11]
+lsl	r0, #1
+add	r0, r1
+ldrh	r0, [r0]
+ldrh	r1, [r4, #0x12]
+ldr	r3, =#0x807C6C0
+mov	lr, r3
 .short	0xF800
+pop	{r4-r5}
+
 @and return
 ldr	r3,=#0x80A3601
 bx	r3
