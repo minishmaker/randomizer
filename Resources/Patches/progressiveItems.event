@@ -4,7 +4,15 @@ progressiveItems:
 #incbin "asm/progressiveItems.dmp"
 POIN progressiveItemsTable
 POIN ($A7430+0x08)|1 //return offset
-POIN dojoProgessive
+POIN dojoProgressive
+POIN extraProgressive
+
+//table to determine which item each sub id of item 0x05 gives
+extraProgressive:
+BYTE 0x01 //0x00 -> Sword
+BYTE 0x09 //0x01 -> Bow
+BYTE 0x0B //0x02 -> Boomerang
+BYTE 0x0D //0x03 -> Shield
 
 ALIGN 4
 progressiveItemsTable:
@@ -16,6 +24,7 @@ POIN progressiveShieldIDs progressiveShieldFlags
 POIN progressiveSpinScrollIDs progressiveSpinScrollFlags
 POIN progressiveGreatScrollIDs progressiveGreatScrollFlags
 POIN progressiveKinstoneBagIDs progressiveKinstoneBagFlags
+POIN progressiveBadSwordIDs progressiveBadSwordFlags
 WORD -1 //terminator
 
 progressiveSwordIDs:
@@ -66,6 +75,11 @@ BYTE 0x67 //Kinstone Bag
 BYTE 0xFF //terminator
 BYTE 0x67 //item to give if the progressive item is maxed
 
+progressiveBadSwordIDs:
+BYTE 0x05 //Lantern Sword
+BYTE 0xFF //terminator
+BYTE 0x05 //item to give if the progressive item is maxed
+
 progressiveSwordFlags:
 BYTE 0x00 0x0C //Smith's Sword
 BYTE 0x00 0x30 //White Sword
@@ -104,6 +118,10 @@ BYTE 0xFF //terminator
 
 progressiveKinstoneBagFlags:
 BYTE 0x19 0xC0 //Kinstone Bag
+BYTE 0xFF //terminator
+
+progressiveBadSwordFlags:
+BYTE 0x01 0x0C //Lantern Sword
 BYTE 0xFF //terminator
 
 PUSH; ORG $A4AC8; jumpToHack(progressiveSwap); POP
@@ -157,3 +175,94 @@ PUSH; ORG $53FA4; jumpToHack(bombequipFix); POP
 ALIGN 4
 bombequipFix:
 #incbin "asm/bombequipFix.dmp"
+
+PUSH
+ORG $2EAB60
+#incbin "extras.img.bin"
+POP
+
+//make the lantern sword use the right icon group
+PUSH; ORG $125B48; BYTE 1 0 1 4 0 0 0x41 1; POP
+
+PUSH; ORG $42FC; jumpToHack(extraItemIcons); POP
+ALIGN 4
+extraItemIcons:
+#incbin "asm/extraItemIcons.dmp"
+POIN extraIconTable
+
+ALIGN 4
+extraIconTable:
+POIN extraIcon0
+POIN extraIcon1
+POIN extraIcon2
+POIN extraIcon3
+POIN extraIcon4
+
+//0x8A to 0x91
+ALIGN 4
+extraIcon0: 
+BYTE 0x8A 0xFF 0x00 0x80 0x01
+extraIcon1: 
+BYTE 0x8B 0xFF 0x00 0x80 0x01
+extraIcon2: 
+BYTE 0x8C 0xFF 0x00 0x80 0x01
+extraIcon3: 
+BYTE 0x8D 0xFF 0x00 0x80 0x01
+extraIcon4: 
+BYTE 0x8E 0xFF 0x00 0x80 0x01
+extraIcon5: 
+BYTE 0x8F 0xFF 0x00 0x80 0x01
+extraIcon6: 
+BYTE 0x90 0xFF 0x00 0x80 0x01
+extraIcon7: 
+BYTE 0x91 0xFF 0x00 0x80 0x01
+
+//some more sprite data
+PUSH
+ORG $11AEE8 //SHORT ammount of tiles, base tile
+SHORT 4 0x25C
+SHORT 4 0x25C+4
+SHORT 4 0x25C+4+4
+SHORT 4 0x25C+4+4+4
+SHORT 4 0x25C+4+4+4+4
+SHORT 4 0x25C+4+4+4+4+4
+SHORT 4 0x25C+4+4+4+4+4+4
+SHORT 4 0x25C+4+4+4+4+4+4+4
+POP
+
+PUSH
+ORG $2FE02C
+WORD extraOAM0-$2F3460
+WORD extraOAM1-$2F3460
+WORD extraOAM2-$2F3460
+WORD extraOAM3-$2F3460
+WORD extraOAM4-$2F3460
+WORD extraOAM5-$2F3460
+WORD extraOAM6-$2F3460
+WORD extraOAM7-$2F3460
+POP
+
+extraOAM0:
+BYTE 1
+BYTE 0xF6 0xF6 0x11 0 0x10
+extraOAM1:
+BYTE 1
+BYTE 0xF6 0xF6 0x11 0 0x10
+extraOAM2:
+BYTE 1
+BYTE 0xF6 0xF6 0x11 0 0x10
+extraOAM3:
+BYTE 1
+BYTE 0xF6 0xF6 0x11 0 0x10
+extraOAM4:
+BYTE 1
+BYTE 0xF6 0xF6 0x11 0 0x10
+extraOAM5:
+BYTE 1
+BYTE 0xF6 0xF6 0x11 0 0x10
+extraOAM6:
+BYTE 1
+BYTE 0xF6 0xF6 0x11 0 0x10
+extraOAM7:
+BYTE 1
+BYTE 0xF6 0xF6 0x11 0 0x10

@@ -1,5 +1,6 @@
 .equ	returnOffset, progressiveTable+4
-.equ	dojo, returnOffset+4
+.equ	dojoProgressive, returnOffset+4
+.equ	extraProgressive, dojoProgressive+4
 .thumb
 push	{r4-r7,lr}
 @check if this is buy mode
@@ -20,6 +21,7 @@ doneshop:
 push	{r1-r7}
 @set up the data
 mov	r4,r0	@item ID
+mov	r7,r1	@sub ID
 ldr	r5,progressiveTable
 
 @check if we are in the biggoron room
@@ -32,9 +34,16 @@ cmp	r0,#0x1A
 beq	End
 notgoron:
 
+@check if this is the extra item
+cmp	r4, #0x05
+bne	notExtra
+ldr	r0,extraProgressive
+ldrb	r4, [r0, r7]
+
 @run dojo progressive
+notExtra:
 mov	r0,r4
-ldr	r3,dojo
+ldr	r3,dojoProgressive
 mov	lr,r3
 .short	0xF800
 mov	r4,r0
@@ -67,14 +76,14 @@ tableMatch:
 mov	r4,#0		@number of flags met
 ldr	r6,[r5,#4]	@flags table
 ldr	r5,[r5]		@item id table
-ldr	r7,=#0x2002B32	@location of flags
+ldr	r3,=#0x2002B32	@location of flags
 @check how many flags are met
 checkFlag:
 ldrb	r0,[r6]
 cmp	r0,#0xFF
 beq	doneFlags
 ldrb	r1,[r6,#1]
-ldrb	r0,[r7,r0]
+ldrb	r0,[r3,r0]
 and	r0,r1
 cmp	r0,#0
 beq	doneFlags
@@ -83,16 +92,16 @@ add	r4,#1
 b	checkFlag
 doneFlags:
 @check how many items there are in the table
-mov	r7,#0
+mov	r3,#0
 ammountLoop:
-ldrb	r0,[r5,r7]
+ldrb	r0,[r5,r3]
 cmp	r0,#0xFF
 beq	gotAmmount
-add	r7,#1
+add	r3,#1
 b	ammountLoop
 gotAmmount:
 @check if we went overboard
-cmp	r4,r7
+cmp	r4,r3
 bhs	overboardItem
 ldrb	r4,[r5,r4]
 b	End
@@ -125,3 +134,5 @@ bx	r3
 progressiveTable:
 @POIN progressiveTable
 @POIN returnOffset
+@POIN dojoProgressive
+@POIN extraProgressive
