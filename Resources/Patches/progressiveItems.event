@@ -1,3 +1,18 @@
+#ifdef arbitraryItems
+	#ifndef arbitrarySwords
+		#define arbitrarySwords
+	#endif
+	#ifndef arbitraryBows
+		#define arbitraryBows
+	#endif
+	#ifndef arbitraryBoomerangs
+		#define arbitraryBoomerangs
+	#endif
+	#ifndef arbitraryShields
+		#define arbitraryShields
+	#endif
+#endif
+
 PUSH; ORG $A7430; jumpToHack(progressiveItems); POP
 ALIGN 4
 progressiveItems:
@@ -16,11 +31,19 @@ BYTE 0x0D //0x03 -> Shield
 
 ALIGN 4
 progressiveItemsTable:
-POIN progressiveSwordIDs progressiveSwordFlags
+#ifndef arbitrarySwords
+	POIN progressiveSwordIDs progressiveSwordFlags
+#endif
 //POIN progressiveBombIDs progressiveBombFlags
-POIN progressiveBowIDs progressiveBowFlags
-POIN progressiveBoomerangIDs progressiveBoomerangFlags
-POIN progressiveShieldIDs progressiveShieldFlags
+#ifndef arbitraryBows
+	POIN progressiveBowIDs progressiveBowFlags
+#endif
+#ifndef arbitraryBoomerangs
+	POIN progressiveBoomerangIDs progressiveBoomerangFlags
+#endif
+#ifndef arbitraryShields
+	POIN progressiveShieldIDs progressiveShieldFlags
+#endif
 POIN progressiveSpinScrollIDs progressiveSpinScrollFlags
 POIN progressiveGreatScrollIDs progressiveGreatScrollFlags
 POIN progressiveKinstoneBagIDs progressiveKinstoneBagFlags
@@ -175,6 +198,14 @@ PUSH; ORG $53FA4; jumpToHack(bombequipFix); POP
 ALIGN 4
 bombequipFix:
 #incbin "asm/bombequipFix.dmp"
+POIN equipFixLists
+
+ALIGN 4
+equipFixLists:
+POIN progressiveSwordIDs
+POIN progressiveBoomerangIDs
+POIN progressiveShieldIDs
+WORD 0
 
 PUSH
 ORG $2EAB60
