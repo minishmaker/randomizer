@@ -13,6 +13,7 @@
 .equ redclockCredits, blueclockCredits+4
 .equ figurineCredits, redclockCredits+4
 .equ trapGetIcon, figurineCredits+4
+.equ extraText, trapGetIcon+4
 .thumb
 ldrh	r1,[r4,#8]
 ldr	r3,=#0x2D07
@@ -70,10 +71,10 @@ bl	writeText
 mov	r7,r1
 
 @write the price to ram
-mov	r0,#0x2C
+mov	r0,#','
 strb	r0,[r7]
 add	r7,#1
-mov	r0,#0x20
+mov	r0,#' '
 strb	r0,[r7]
 add	r7,#1
 mov	r0,#0x02
@@ -86,31 +87,39 @@ cmp	r6,#0
 beq	is60
 cmp	r6,#1
 beq	is20
-b	is40
+cmp	r6,#2
+beq	is40
+b	isFree
 is60:
-mov	r0,#0x36
+mov	r0,#'6'
 strb	r0,[r7]
-add	r7,#1
-mov	r0,#0x30
-strb	r0,[r7]
-add	r7,#1
+mov	r0,#'0'
+strb	r0,[r7, #1]
+add	r7,#2
 b	doneprice
 is20:
-mov	r0,#0x32
+mov	r0,#'2'
 strb	r0,[r7]
-add	r7,#1
-mov	r0,#0x30
-strb	r0,[r7]
-add	r7,#1
+mov	r0,#'0'
+strb	r0,[r7, #1]
+add	r7,#2
 b	doneprice
 is40:
-mov	r0,#0x34
+mov	r0,#'4'
 strb	r0,[r7]
-add	r7,#1
-mov	r0,#0x30
-strb	r0,[r7]
-add	r7,#1
+mov	r0,#'0'
+strb	r0,[r7, #1]
+add	r7,#4
 b	doneprice
+isFree:
+sub	r7, #4
+mov	r0, #'?'
+strb	r0, [r7]
+mov	r0,#0x0A
+strb	r0,[r7, #1]
+add	r7, #2
+b	donefree
+
 doneprice:
 mov	r0,#0x02
 strb	r0,[r7]
@@ -118,7 +127,7 @@ add	r7,#1
 mov	r0,#0x00
 strb	r0,[r7]
 add	r7,#1
-mov	r0,#0x2E
+mov	r0,#'.'
 strb	r0,[r7]
 add	r7,#1
 mov	r0,#0x0A
@@ -126,6 +135,7 @@ strb	r0,[r7]
 add	r7,#1
 
 @write the special line if any
+donefree:
 cmp	r5,#2
 blo	nospecial
 mov	r0,#0x28
@@ -153,10 +163,17 @@ strb	r0,[r7]
 add	r7,#1
 
 @write the buy text to ram
+cmp	r6,#3
+beq	anjuhelp
 cmp	r6,#0
 beq	witchbuy
 ldr	r0,=#0x2901
 b	buytext
+anjuhelp:
+ldr	r0, =#0x89DD802
+mov	r1,r7
+bl	writeText
+b	buydone
 witchbuy:
 ldr	r0,=#0x2D00
 buytext:
@@ -164,6 +181,7 @@ bl	getTextWrap
 mov	r1,r7
 bl	writeText
 mov	r7,r1
+buydone:
 pop	{r0-r7}
 b	end
 
@@ -193,6 +211,8 @@ cmp	r0,#0x1B
 bne	nottrap
 b	trap
 nottrap:
+cmp	r0,#0x05
+beq	extra
 cmp	r0,#0x67
 beq	figurine
 cmp	r0,#0x18
@@ -222,6 +242,12 @@ blo	normal
 cmp	r0,#0x53
 bhi	normal
 b	dungeon
+
+extra:
+ldr	r0,extraText
+lsl	r1,#2
+ldr	r0,[r1, r0]
+bx	lr
 
 normal:
 ldr	r1,=#0x0400
@@ -396,3 +422,4 @@ bottleScrubItem:
 @POIN redclockCredits
 @POIN figurineCredits
 @POIN trapGetIcon
+@POIN extraText

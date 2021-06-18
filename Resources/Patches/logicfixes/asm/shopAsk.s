@@ -15,6 +15,7 @@
 .equ redclockCredits, blueclockCredits+4
 .equ figurineCredits, redclockCredits+4
 .equ trapGetIcon, figurineCredits+4
+.equ extraText, trapGetIcon+4
 .thumb
 ldrb	r0,[r6,#6]
 cmp	r0,#0x64
@@ -204,6 +205,8 @@ cmp	r0,#0x1B
 bne	nottrap
 b	trap
 nottrap:
+cmp	r0,#0x05
+beq	extra
 cmp	r0,#0x67
 beq	figurine
 cmp	r0,#0x18
@@ -233,6 +236,12 @@ blo	normal
 cmp	r0,#0x53
 bhi	normal
 b	dungeon
+
+extra:
+ldr	r0,extraText
+lsl	r1,#2
+ldr	r0,[r1, r0]
+bx	lr
 
 normal:
 ldr	r1,=#0x0400
@@ -421,3 +430,4 @@ walletShopItem:
 @POIN redclockCredits
 @POIN figurineCredits
 @POIN trapGetIcon
+@POIN extraText

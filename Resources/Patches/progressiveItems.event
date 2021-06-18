@@ -297,3 +297,94 @@ BYTE 0xF6 0xF6 0x11 0 0x10
 extraOAM7:
 BYTE 1
 BYTE 0xF6 0xF6 0x11 0 0x10
+
+ALIGN 4
+extraText:
+POIN extraSwordText
+POIN extraBowText
+POIN extraBoomerangText
+POIN extraShieldText
+
+ALIGN 4
+extraSwordText:
+POIN extraSwordTextEnglish
+POIN extraSwordTextEnglish
+POIN extraSwordTextEnglish
+POIN extraSwordTextFrench
+POIN extraSwordTextGerman
+POIN extraSwordTextSpanish
+POIN extraSwordTextItalian
+
+extraSwordTextEnglish:
+String("Progressive sword"); BYTE 0
+extraSwordTextFrench:
+String("Progressive sword"); BYTE 0
+extraSwordTextGerman:
+String("Progressive sword"); BYTE 0
+extraSwordTextSpanish:
+String("Espada progresiva"); BYTE 0
+extraSwordTextItalian:
+String("Progressive sword"); BYTE 0
+
+ALIGN 4
+extraBowText:
+POIN extraBowTextEnglish
+POIN extraBowTextEnglish
+POIN extraBowTextEnglish
+POIN extraBowTextFrench
+POIN extraBowTextGerman
+POIN extraBowTextSpanish
+POIN extraBowTextItalian
+
+extraBowTextEnglish:
+String("Progressive bow"); BYTE 0
+extraBowTextFrench:
+String("Progressive bow"); BYTE 0
+extraBowTextGerman:
+String("Progressive bow"); BYTE 0
+extraBowTextSpanish:
+String("Arco progresivo"); BYTE 0
+extraBowTextItalian:
+String("Progressive bow"); BYTE 0
+
+ALIGN 4
+extraBoomerangText:
+POIN extraBoomerangTextEnglish
+POIN extraBoomerangTextEnglish
+POIN extraBoomerangTextEnglish
+POIN extraBoomerangTextFrench
+POIN extraBoomerangTextGerman
+POIN extraBoomerangTextSpanish
+POIN extraBoomerangTextItalian
+
+extraBoomerangTextEnglish:
+String("Progressive boomerang"); BYTE 0
+extraBoomerangTextFrench:
+String("Progressive boomerang"); BYTE 0
+extraBoomerangTextGerman:
+String("Progressive boomerang"); BYTE 0
+extraBoomerangTextSpanish:
+String("Bumer"); BYTE 0xE1; String("n progresivo"); BYTE 0
+extraBoomerangTextItalian:
+String("Progressive boomerang"); BYTE 0
+
+ALIGN 4
+extraShieldText:
+POIN extraShieldTextEnglish
+POIN extraShieldTextEnglish
+POIN extraShieldTextEnglish
+POIN extraShieldTextFrench
+POIN extraShieldTextGerman
+POIN extraShieldTextSpanish
+POIN extraShieldTextItalian
+
+extraShieldTextEnglish:
+String("Progressive shield"); BYTE 0
+extraShieldTextFrench:
+String("Progressive shield"); BYTE 0
+extraShieldTextGerman:
+String("Progressive shield"); BYTE 0
+extraShieldTextSpanish:
+String("Escudo progresivo"); BYTE 0
+extraShieldTextItalian:
+String("Progressive shield"); BYTE 0
