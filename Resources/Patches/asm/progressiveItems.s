@@ -1,6 +1,5 @@
 .equ	returnOffset, progressiveTable+4
-.equ	dojoProgressive, returnOffset+4
-.equ	extraProgressive, dojoProgressive+4
+.equ	extraProgressive, returnOffset+4
 .thumb
 push	{r4-r7,lr}
 @check if this is buy mode
@@ -39,14 +38,7 @@ cmp	r4, #0x05
 bne	notExtra
 ldr	r0,extraProgressive
 ldrb	r4, [r0, r7]
-
-@run dojo progressive
 notExtra:
-mov	r0,r4
-ldr	r3,dojoProgressive
-mov	lr,r3
-.short	0xF800
-mov	r4,r0
 
 @now need to check if this item is progressive
 tableLoop:
@@ -209,5 +201,4 @@ bx	r3
 progressiveTable:
 @POIN progressiveTable
 @POIN returnOffset
-@POIN dojoProgressive
 @POIN extraProgressive

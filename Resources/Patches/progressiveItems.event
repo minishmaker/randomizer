@@ -11,6 +11,25 @@
 	#ifndef arbitraryShields
 		#define arbitraryShields
 	#endif
+	#ifndef arbitraryScrolls
+		#define arbitraryScrolls
+	#endif
+#endif
+
+#ifndef progressiveScroll1
+	#define progressiveScroll1 0x48
+#endif
+#ifndef progressiveScroll2
+	#define progressiveScroll2 0x73
+#endif
+#ifndef progressiveScroll3
+	#define progressiveScroll3 0x74
+#endif
+#ifndef progressiveScroll4
+	#define progressiveScroll4 0x4D
+#endif
+#ifndef progressiveScroll5
+	#define progressiveScroll5 0x75
 #endif
 
 PUSH; ORG $A7430; jumpToHack(progressiveItems); POP
@@ -19,7 +38,6 @@ progressiveItems:
 #incbin "asm/progressiveItems.dmp"
 POIN progressiveItemsTable
 POIN ($A7430+0x08)|1 //return offset
-POIN dojoProgressive
 POIN extraProgressive
 
 //table to determine which item each sub id of item 0x05 gives
@@ -28,6 +46,7 @@ BYTE 0x01 //0x00 -> Sword
 BYTE 0x09 //0x01 -> Bow
 BYTE 0x0B //0x02 -> Boomerang
 BYTE 0x0D //0x03 -> Shield
+BYTE progressiveScroll1 //0x03 -> Spin Scroll (or whatever is the first scroll in the chain)
 
 //table to determine which sub id each item icon translates to
 progressiveTraps:
@@ -78,10 +97,11 @@ progressiveItemsTable:
 #ifndef arbitraryShields
 	POIN progressiveShieldIDs progressiveShieldFlags
 #endif
-POIN progressiveSpinScrollIDs progressiveSpinScrollFlags
-POIN progressiveGreatScrollIDs progressiveGreatScrollFlags
 POIN progressiveKinstoneBagIDs progressiveKinstoneBagFlags
 POIN progressiveBadSwordIDs progressiveBadSwordFlags
+#ifndef arbitraryScrolls
+	POIN progressiveScrollIDs progressiveScrollFlags
+#endif
 WORD -1 //terminator
 
 progressiveSwordIDs:
@@ -117,16 +137,6 @@ BYTE 0x0E //Mirror Shield
 BYTE 0xFF //terminator
 BYTE 0x0E //item to give if the progressive item is maxed
 
-progressiveSpinScrollIDs:
-BYTE 0x48 //Spin attack
-BYTE 0xFF //terminator
-BYTE 0x48 //item to give if the progressive item is maxed
-
-progressiveGreatScrollIDs:
-BYTE 0x4D //Great spin attack
-BYTE 0xFF //terminator
-BYTE 0x4D //item to give if the progressive item is maxed
-
 progressiveKinstoneBagIDs:
 BYTE 0x67 //Kinstone Bag
 BYTE 0xFF //terminator
@@ -136,6 +146,15 @@ progressiveBadSwordIDs:
 BYTE 0x05 //Lantern Sword
 BYTE 0xFF //terminator
 BYTE 0x05 //item to give if the progressive item is maxed
+
+progressiveScrollIDs:
+BYTE progressiveScroll1
+BYTE progressiveScroll2
+BYTE progressiveScroll3
+BYTE progressiveScroll4
+BYTE progressiveScroll5
+BYTE 0xFF //terminator
+BYTE progressiveScroll1 //item to give if the progressive item is maxed
 
 progressiveSwordFlags:
 BYTE 0x00 0x0C //Smith's Sword
@@ -165,20 +184,20 @@ BYTE 0x03 0x0C //Small Shield
 BYTE 0x03 0x30 //Mirror Shield
 BYTE 0xFF //terminator
 
-progressiveSpinScrollFlags:
-BYTE 0x12 0x03 //Spin attack
-BYTE 0xFF //terminator
-
-progressiveGreatScrollFlags:
-BYTE 0x13 0x0C //Great spin attack
-BYTE 0xFF //terminator
-
 progressiveKinstoneBagFlags:
 BYTE 0x19 0xC0 //Kinstone Bag
 BYTE 0xFF //terminator
 
 progressiveBadSwordFlags:
 BYTE 0x01 0x0C //Lantern Sword
+BYTE 0xFF //terminator
+
+progressiveScrollFlags:
+BYTE (progressiveScroll1 >> 2) (3 << ((progressiveScroll1 & 3) << 1))
+BYTE (progressiveScroll2 >> 2) (3 << ((progressiveScroll2 & 3) << 1))
+BYTE (progressiveScroll3 >> 2) (3 << ((progressiveScroll3 & 3) << 1))
+BYTE (progressiveScroll4 >> 2) (3 << ((progressiveScroll4 & 3) << 1))
+BYTE (progressiveScroll5 >> 2) (3 << ((progressiveScroll5 & 3) << 1))
 BYTE 0xFF //terminator
 
 PUSH; ORG $A4AC8; jumpToHack(progressiveSwap); POP
@@ -290,10 +309,10 @@ SHORT 4 0x25C
 SHORT 4 0x25C+4
 SHORT 4 0x25C+4+4
 SHORT 4 0x25C+4+4+4
-SHORT 4 0x25C+4+4+4+4
-SHORT 4 0x25C+4+4+4+4+4
-SHORT 4 0x25C+4+4+4+4+4+4
-SHORT 4 0x25C+4+4+4+4+4+4+4
+SHORT 8 0x25C+4+4+4+4
+SHORT 4 0x25C+4+4+4+4+8
+SHORT 4 0x25C+4+4+4+4+8+4
+SHORT 4 0x25C+4+4+4+4+8+4+4
 POP
 
 PUSH
@@ -321,8 +340,9 @@ extraOAM3:
 BYTE 1
 BYTE 0xF6 0xF6 0x11 0 0x10
 extraOAM4:
-BYTE 1
-BYTE 0xF6 0xF6 0x11 0 0x10
+BYTE 2
+BYTE 0xF6 0xE6 0x11 0 0x10
+BYTE 0xF6 0xF6 0x11 4 0x10
 extraOAM5:
 BYTE 1
 BYTE 0xF6 0xF6 0x11 0 0x10
@@ -339,6 +359,7 @@ POIN extraSwordText
 POIN extraBowText
 POIN extraBoomerangText
 POIN extraShieldText
+POIN extraScrollText
 
 ALIGN 4
 extraSwordText:
@@ -423,3 +444,24 @@ extraShieldTextSpanish:
 String("Escudo progresivo"); BYTE 0
 extraShieldTextItalian:
 String("Progressive shield"); BYTE 0
+
+ALIGN 4
+extraScrollText:
+POIN extraScrollTextEnglish
+POIN extraScrollTextEnglish
+POIN extraScrollTextEnglish
+POIN extraScrollTextFrench
+POIN extraScrollTextGerman
+POIN extraScrollTextSpanish
+POIN extraScrollTextItalian
+
+extraScrollTextEnglish:
+String("Progressive scroll"); BYTE 0
+extraScrollTextFrench:
+String("Progressive scroll"); BYTE 0
+extraScrollTextGerman:
+String("Progressive scroll"); BYTE 0
+extraScrollTextSpanish:
+String("Pergamino progresivo"); BYTE 0
+extraScrollTextItalian:
+String("Progressive scroll"); BYTE 0

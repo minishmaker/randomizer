@@ -120,9 +120,5 @@ ALIGN 4
 dojosScrollCount:
 #incbin "asm/dojosScrollCount.dmp"
 
-ALIGN 4
-dojoProgressive:
-#incbin "asm/dojoProgressive.dmp"
-
 //dojo tutorial is automatically completed
 PUSH; ORG $6894A; SHORT 0; POP
