@@ -25,10 +25,120 @@ bne	skipbranch2
 b	EndFalse
 skipbranch2:
 
-@check if the item we are hovering over is in the list
+@check if the item we are hovering over is a sword
 ldrb	r0,[r7,#3]
 add	r0,#0x10
 ldrb	r4,[r7,r0]	@Item ID
+cmp	r4, #1
+blo	notSword
+cmp	r4, #5
+beq	notSword
+cmp	r4, #6
+bhi	notSword
+
+@check if we own multiple clone possibilities
+mov	r2, #0
+ldr	r3, =#0x2002B32
+ldrb	r0, [r3, #0]
+mov	r1, #0x3C
+and	r1, r0
+beq	donezero
+add	r2, #1
+donezero:
+mov	r1, #0xC0
+and	r1, r0
+beq	doneone
+add	r2, #1
+doneone:
+ldrb	r0, [r3, #1]
+mov	r1, #0x03
+and	r1, r0
+beq	donetwo
+add	r2, #1
+donetwo:
+mov	r1, #0x30
+and	r1, r0
+beq	donethree
+add	r2, #1
+donethree:
+cmp	r2, #2
+blo	notSword
+
+@get the current clone count
+ldr	r1, =#0x203FE00+(10*2)
+ldrh	r0, [r1]
+lsl	r0, #32 - 2
+lsr	r0, #32 - 2
+ldr	r1, =#0x2002B32
+@find the next possible one...
+cloneLoop:
+	add	r0, #1
+	lsl	r0, #32 - 2
+	lsr	r0, #32 - 2
+	cmp	r0, #0
+	beq	checkOne
+	cmp	r0, #1
+	beq	checkTwo
+	cmp	r0, #2
+	beq	checkThree
+	b	checkFour
+	
+	checkOne:
+	ldrb	r2, [r1, #0]
+	mov	r3, #0x3C
+	and	r2, r3
+	bne	newClones
+b	cloneLoop
+	
+	checkTwo:
+	ldrb	r2, [r1, #0]
+	mov	r3, #0xC0
+	and	r2, r3
+	bne	newClones
+b	cloneLoop
+	
+	checkThree:
+	ldrb	r2, [r1, #1]
+	mov	r3, #0x03
+	and	r2, r3
+	bne	newClones
+b	cloneLoop
+	
+	checkFour:
+	ldrb	r2, [r1, #1]
+	mov	r3, #0x30
+	and	r2, r3
+	bne	newClones
+b	cloneLoop
+
+newClones:
+ldr	r1, =#0x203FE00+(10*2)
+ldrh	r2, [r1]
+lsr	r2, #2
+lsl	r2, #2
+orr	r0, r2
+strh	r0, [r1]
+
+@mark the page to be updated
+ldr	r0, =#0x2000080
+ldrh	r1, [r0, #0x2E]
+add	r1, #1
+strh	r1, [r0, #0x2E]
+
+@redraw item sprites
+ldr	r3,=#0x80A4A4C
+mov	lr,r3
+.short	0xF800
+
+@and play a sound
+mov	r0,#0x6A
+ldr	r3,=#0x80A2A80
+mov	lr,r3
+.short	0xF800
+b	EndTrue
+
+@check if the item we are hovering over is in the list
+notSword:
 ldr	r5,progressiveSwapTable
 findIDLoop:
 ldrb	r0,[r5]

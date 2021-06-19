@@ -20,14 +20,28 @@ ldr	r7,=#0x2034CB0
 @load the icons
 ldr	r0,graphics
 ldr	r1,=#0x600C020
-ldr	r2,=#0x600C800
-loop:
+ldr	r2,=#0x600CC00
+loop1:
 ldr	r3,[r0]
 str	r3,[r1]
 add	r0,#4
 add	r1,#4
 cmp	r1,r2
-bne	loop
+bne	loop1
+
+loadpalette:
+@load the palette
+mov	r6,#0
+ldr	r0,=0x85A2590
+ldr	r1,=#0x2017800
+ldr	r2,=#0x5000160
+loop2:
+ldr	r3,[r0, r6]
+str	r3,[r1, r6]
+str	r3,[r2, r6]
+add	r6,#4
+cmp	r6,#0x20
+bne	loop2
 
 @check if quest screen
 ldr	r0,=#0x20344A4
@@ -98,7 +112,114 @@ ldr	r1,=#0x1025
 bl	drawIcon
 
 noShoot:
+@check how many clone possibilities we have
+mov	r6, #0
+ldr	r3, =#0x2002B32
+ldrb	r0, [r3, #0]
+mov	r1, #0x3C
+and	r1, r0
+beq	donezero
+add	r6, #1
+donezero:
+mov	r1, #0xC0
+and	r1, r0
+beq	doneone
+add	r6, #1
+doneone:
+ldrb	r0, [r3, #1]
+mov	r1, #0x03
+and	r1, r0
+beq	donetwo
+add	r6, #1
+donetwo:
+mov	r1, #0x30
+and	r1, r0
+beq	donethree
+add	r6, #1
+donethree:
+cmp	r6, #2
+blo	donemulti
+@draw the select icon on the sword
+ldr	r0,=#0x18C
+add	r0,r7
+mov	r1,#0x0D
+bl	drawIcon
+donemulti:
+@draw the arrow
+ldr	r0, =#0x10E
+add	r0, r7
+mov	r1, #0x4C
+strh	r1, [r0, #0x00]
+add	r1, #1
+strh	r1, [r0, #0x02]
+@draw the right number of links
+ldr	r6, =#0x203FE00+(10*2)
+ldrh	r6, [r6]
+lsl	r6, #32 - 2
+lsr	r6, #32 - 2
+sub	r0, #0x44
+mov	r2, #0
+cmp	r6, #0
+beq	drawOne
+cmp	r6, #1
+beq	drawTwo
+cmp	r6, #2
+beq	drawThree
+cmp	r6, #3
+beq	drawFour
+
+drawOne:
+ldr	r1, =#0xB03E
+strh	r2, [r0, #0x00]
+strh	r2, [r0, #0x02]
+strh	r1, [r0, #0x04]
+add	r1, #1
+strh	r1, [r0, #0x06]
+strh	r2, [r0, #0x08]
+strh	r2, [r0, #0x0A]
+b	doneDrawLinks
+
+drawTwo:
+ldr	r1, =#0xB040
+strh	r2, [r0, #0x00]
+strh	r2, [r0, #0x02]
+strh	r1, [r0, #0x04]
+add	r1, #1
+strh	r1, [r0, #0x06]
+add	r1, #1
+strh	r1, [r0, #0x08]
+strh	r2, [r0, #0x0A]
+b	doneDrawLinks
+
+drawThree:
+ldr	r1, =#0xB043
+strh	r2, [r0, #0x00]
+strh	r1, [r0, #0x02]
+add	r1, #1
+strh	r1, [r0, #0x04]
+add	r1, #1
+strh	r1, [r0, #0x06]
+add	r1, #1
+strh	r1, [r0, #0x08]
+strh	r2, [r0, #0x0A]
+b	doneDrawLinks
+
+drawFour:
+ldr	r1, =#0xB047
+strh	r2, [r0, #0x00]
+strh	r1, [r0, #0x02]
+add	r1, #1
+strh	r1, [r0, #0x04]
+add	r1, #1
+strh	r1, [r0, #0x06]
+add	r1, #1
+strh	r1, [r0, #0x08]
+add	r1, #1
+strh	r1, [r0, #0x0A]
+b	doneDrawLinks
+
 @check if we have boots
+doneDrawLinks:
 ldr	r3,=#0x2002B37
 ldrb	r0,[r3]
 mov	r1,#0x0C
