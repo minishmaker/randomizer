@@ -25,10 +25,18 @@ bne	skipbranch2
 b	EndFalse
 skipbranch2:
 
-@check if the item we are hovering over is a sword
+@get the item we are hovering over
 ldrb	r0,[r7,#3]
 add	r0,#0x10
 ldrb	r4,[r7,r0]	@Item ID
+
+@check if we have clones active
+ldr	r0,=#0x3004040
+ldr	r0, [r0]
+cmp	r0, #0
+bne	notSword
+
+@check if the item we are hovering over is a sword
 cmp	r4, #1
 blo	notSword
 cmp	r4, #5

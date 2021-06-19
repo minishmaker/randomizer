@@ -134,7 +134,18 @@ add	r6, #1
 donethree:
 cmp	r6, #2
 blo	donemulti
-@draw the select icon on the sword
+@if we have clones, draw select in red
+ldr	r0,=#0x3004040
+ldr	r0, [r0]
+cmp	r0, #0
+beq	noclones
+ldr	r0,=#0x18C
+add	r0,r7
+mov	r1,#0x4F
+bl	drawIcon
+b	donemulti
+@otherwise draw the select icon on the sword
+noclones:
 ldr	r0,=#0x18C
 add	r0,r7
 mov	r1,#0x0D
