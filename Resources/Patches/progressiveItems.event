@@ -29,6 +29,40 @@ BYTE 0x09 //0x01 -> Bow
 BYTE 0x0B //0x02 -> Boomerang
 BYTE 0x0D //0x03 -> Shield
 
+//table to determine which sub id each item icon translates to
+progressiveTraps:
+ORG currentoffset + 1
+#ifndef arbitrarySwords
+	BYTE 0 //smith's sword
+	BYTE 0 //white sword (0)
+	BYTE 0 //white sword (2)
+	BYTE 0 //white sword (3)
+	BYTE -1//lantern sword
+	BYTE 0 //four sword
+#else
+	ORG currentoffset + 6
+#endif
+ORG currentoffset + 2
+#ifndef arbitraryBows
+	BYTE 1 //bow
+	BYTE 1 //light arrow
+#else
+	ORG currentoffset + 2
+#endif
+#ifndef arbitraryBoomerangs
+	BYTE 2 //boomerang
+	BYTE 2 //magic boomerang
+#else
+	ORG currentoffset + 2
+#endif
+#ifndef arbitraryShields
+	BYTE 3 //shield
+	BYTE 3 //magic shield
+#else
+	ORG currentoffset + 2
+#endif
+ORG currentoffset + 0xFF
+
 ALIGN 4
 progressiveItemsTable:
 #ifndef arbitrarySwords
@@ -220,6 +254,7 @@ ALIGN 4
 extraItemIcons:
 #incbin "asm/extraItemIcons.dmp"
 POIN extraIconTable
+POIN progressiveTraps
 
 ALIGN 4
 extraIconTable:

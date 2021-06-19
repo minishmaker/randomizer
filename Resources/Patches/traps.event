@@ -103,11 +103,18 @@ POIN trapIconTable
 
 ALIGN 4
 trapIconTable: //BYTE itemID
-BYTE 0x01 //sword
+BYTE 0x01 //smith's sword
+BYTE 0x02 //white sword (0)
+BYTE 0x03 //white sword (2)
+BYTE 0x04 //white sword (3)
+BYTE 0x06 //four sword
 BYTE 0x08 //remote bombs
 BYTE 0x09 //bow
+BYTE 0x0A //light arrow
 BYTE 0x0B //boomerang
+BYTE 0x0C //magic boomerang
 BYTE 0x0D //shield
+BYTE 0x0E //mirror shield
 BYTE 0x0F //lantern
 BYTE 0x11 //jar
 BYTE 0x12 //cane
@@ -131,4 +138,4 @@ BYTE 0x66 //quiver
 BYTE 0x3D //tingle trophy
 BYTE 0x3E //carlov medal
 BYTE 0x62 //heart container
-BYTE 0x00 //terminator
+BYTE 0 //terminator

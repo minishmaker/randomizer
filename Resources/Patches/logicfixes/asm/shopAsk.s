@@ -16,6 +16,7 @@
 .equ figurineCredits, redclockCredits+4
 .equ trapGetIcon, figurineCredits+4
 .equ extraText, trapGetIcon+4
+.equ progressiveTraps, extraText+4
 .thumb
 ldrb	r0,[r6,#6]
 cmp	r0,#0x64
@@ -404,6 +405,17 @@ push	{lr}
 ldr	r3,trapGetIcon
 mov	lr,r3
 .short	0xF800
+@check if it's in the list
+ldr	r2,progressiveTraps
+ldrb	r2, [r2, r0]
+cmp	r2, #0xFF
+beq	noExtra
+mov	r1, r2
+pop	{r0}
+mov	lr, r0
+mov	r3, #0
+b	extra
+noExtra:
 ldr	r1,=#0x0400
 orr	r0,r1
 mov	r3,#0
@@ -431,3 +443,4 @@ walletShopItem:
 @POIN figurineCredits
 @POIN trapGetIcon
 @POIN extraText
+@POIN progressiveTraps

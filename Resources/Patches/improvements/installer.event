@@ -459,6 +459,7 @@ POIN redclockCredits
 POIN figurineCredits
 POIN trapGetIcon
 POIN extraText
+POIN progressiveTraps
 
 //skip big chu cutscenes
 PUSH; ORG $4CA20; SHORT 0xE014; POP
