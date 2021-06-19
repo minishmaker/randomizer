@@ -121,6 +121,81 @@ ldrb	r4,[r5,r0]
 b	End
 
 End:
+@check if what we got was a sword with clones
+cmp	r4, #3
+beq	oneClone
+cmp	r4, #4
+beq	twoClones
+cmp	r4, #6
+beq	threeClones
+b	notSword
+
+@update clone limit if the new sword has a higher one
+oneClone:
+mov	r3, #1 @new count
+@get current clone count
+ldr	r0, =#0x203FE00+(10*2)
+ldrh	r0, [r0]
+lsl	r0, #32 - 2
+lsr	r0, #32 - 2
+@if we've never had clones, update
+cmp	r0, #0
+beq	storeClones
+b	notSword
+
+twoClones:
+mov	r3, #2 @new count
+@get current clone count
+ldr	r0, =#0x203FE00+(10*2)
+ldrh	r0, [r0]
+lsl	r0, #32 - 2
+lsr	r0, #32 - 2
+@if we've never had clones, update
+cmp	r0, #0
+beq	storeClones
+@if using three clones, ignore
+cmp	r0, #3
+beq	notSword
+@check if four sword unlocked
+ldr	r0, =#0x2002B32
+ldrb	r0, [r0, #1]
+mov	r1, #0x30
+and	r0, r1
+beq	storeClones
+@four sword is unlocked, so we leave the one clone setting alone
+b	notSword
+
+threeClones:
+mov	r3, #3 @new count
+@get current clone count
+ldr	r0, =#0x203FE00+(10*2)
+ldrh	r0, [r0]
+lsl	r0, #32 - 2
+lsr	r0, #32 - 2
+@if we've never had clones, update
+cmp	r0, #0
+beq	storeClones
+@if we are using two clones, update
+cmp	r0, #2
+beq	storeClones
+@check if blue sowrd unlocked
+ldr	r0, =#0x2002B32
+ldrb	r0, [r0, #1]
+mov	r1, #0x03
+and	r0, r1
+beq	storeClones
+@blue sword is unlocked, so we leave the one clone setting alone
+b	notSword
+
+storeClones:
+ldr	r0, =#0x203FE00+(10*2)
+ldrh	r1, [r0]
+lsr	r1, #2
+lsl	r1, #2
+orr	r1, r3
+strh	r1, [r0]
+
+notSword:
 mov	r0,r4
 pop	{r1-r7}
 mov	r5,r0
