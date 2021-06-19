@@ -76,19 +76,12 @@ cloneLoop:
 	lsl	r0, #32 - 2
 	lsr	r0, #32 - 2
 	cmp	r0, #0
-	beq	checkOne
+	beq	cloneLoop
 	cmp	r0, #1
 	beq	checkTwo
 	cmp	r0, #2
 	beq	checkThree
 	b	checkFour
-	
-	checkOne:
-	ldrb	r2, [r1, #0]
-	mov	r3, #0x3C
-	and	r2, r3
-	bne	newClones
-b	cloneLoop
 	
 	checkTwo:
 	ldrb	r2, [r1, #0]
@@ -114,6 +107,10 @@ b	cloneLoop
 newClones:
 ldr	r1, =#0x203FE00+(10*2)
 ldrh	r2, [r1]
+lsl	r3, r2, #32 - 2
+lsr	r3, #32 - 2
+cmp	r0, r3
+beq	notSword
 lsr	r2, #2
 lsl	r2, #2
 orr	r0, r2

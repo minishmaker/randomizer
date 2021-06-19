@@ -116,11 +116,6 @@ noShoot:
 mov	r6, #0
 ldr	r3, =#0x2002B32
 ldrb	r0, [r3, #0]
-mov	r1, #0x3C
-and	r1, r0
-beq	donezero
-add	r6, #1
-donezero:
 mov	r1, #0xC0
 and	r1, r0
 beq	doneone
@@ -169,14 +164,16 @@ cmp	r6, #3
 beq	drawFour
 
 drawOne:
-ldr	r1, =#0xB03E
 strh	r2, [r0, #0x00]
 strh	r2, [r0, #0x02]
-strh	r1, [r0, #0x04]
-add	r1, #1
-strh	r1, [r0, #0x06]
+strh	r2, [r0, #0x04]
+strh	r2, [r0, #0x06]
 strh	r2, [r0, #0x08]
 strh	r2, [r0, #0x0A]
+@erase the arrow
+add	r0, #0x44
+strh	r2, [r0, #0x00]
+strh	r2, [r0, #0x02]
 b	doneDrawLinks
 
 drawTwo:
