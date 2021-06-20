@@ -362,6 +362,23 @@ tingleCheck:
 //remove percy shell check
 PUSH; ORG $6B03C; SHORT 0x2000; POP
 
+//peril beam always active under ohko, or when out of time in timed ohko
+#ifdef ohkoOption
+	PUSH; ORG $7AA80; jumpToHack(ohkoPeril); POP
+	ALIGN 4
+	ohkoPeril:
+	#incbin "asm/ohkoPeril.dmp"
+	WORD 0
+#else
+	#ifdef timedohkoOption
+		PUSH; ORG $7AA80; jumpToHack(ohkoPeril); POP
+		ALIGN 4
+		ohkoPeril:
+		#incbin "asm/ohkoPeril.dmp"
+		POIN timedohkoCheckTime
+	#endif
+#endif
+
 #include "dojos.event"
 #include "shop.event"
 #include "golden.event"
