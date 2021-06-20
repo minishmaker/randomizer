@@ -12,10 +12,15 @@ moleFix:
 #incbin "asm/moleFix.dmp"
 
 //prevent link from jumping diagonally out of holes
-PUSH; ORG $5E88C; jumpToHack(holeFix); POP
+PUSH; ORG $72558; jumpToHack(angleFix1); POP
 ALIGN 4
-holeFix:
-#incbin "asm/holeFix.dmp"
+angleFix1:
+#incbin "asm/angleFix1.dmp"
+//pretty sure this second fix is not needed but better safe
+PUSH; ORG $7893C; jumpToHack(angleFix2); POP
+ALIGN 4
+angleFix2:
+#incbin "asm/angleFix2.dmp"
 
 //fix spin soldier skip
 PUSH; ORG $C1A; SHORT 0x20; POP
