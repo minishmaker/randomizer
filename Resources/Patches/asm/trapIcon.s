@@ -5,8 +5,15 @@ mov	r1,r4
 add	r1,#0x58
 push	{r1-r7}
 
-@check if trap
+@check if bottle
 ldrb	r0,[r4,#0x0A]
+cmp	r0, #0x1C
+blo	checkTrap
+cmp	r0, #0x20
+blo	isBottle
+
+@check if trap
+checkTrap:
 cmp	r0,#0x1B
 bne	end
 
@@ -20,6 +27,12 @@ end:
 pop	{r1-r7}
 ldrb	r3,=#0x808069F
 bx	r3
+
+@get the new icon to use
+isBottle:
+ldrb	r0,[r4,#0x0B]
+b	end
+
 .align
 .ltorg
 trapGetIcon:
