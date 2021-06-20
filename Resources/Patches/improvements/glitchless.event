@@ -48,4 +48,10 @@ ALIGN 4
 magicrangFix:
 #incbin "asm/magicrangFix.dmp"
 
+//link can no longer climb while on fire
+PUSH; ORG $7A6BE; SHORT 0xB408; jumpToHack(fireStairsFix); POP
+ALIGN 4
+fireStairsFix:
+#incbin "asm/fireStairsFix.dmp"
+
 #endif
