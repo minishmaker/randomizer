@@ -54,4 +54,10 @@ ALIGN 4
 fireStairsFix:
 #incbin "asm/fireStairsFix.dmp"
 
+//can no longer buy nothing at shops
+PUSH; ORG $81390; jumpToHack(buyNothingFix); POP
+ALIGN 4
+buyNothingFix:
+#incbin "asm/buyNothingFix.dmp"
+
 #endif
