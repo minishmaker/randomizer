@@ -206,6 +206,11 @@ cmp	r0,#0x1B
 bne	nottrap
 b	trap
 nottrap:
+cmp	r0,#0x1C
+blo	notBottle
+cmp	r0,#0x20
+blo	bottle
+notBottle:
 cmp	r0,#0x05
 beq	extra
 cmp	r0,#0x67
@@ -237,6 +242,14 @@ blo	normal
 cmp	r0,#0x53
 bhi	normal
 b	dungeon
+
+bottle:
+cmp	r0, #0x20
+beq	normal
+ldr	r3,=#0x0400
+orr	r0,r3
+orr	r3, r1
+bx	lr
 
 extra:
 ldr	r0,extraText
@@ -405,6 +418,11 @@ push	{lr}
 ldr	r3,trapGetIcon
 mov	lr,r3
 .short	0xF800
+@check if key/big key
+cmp	r0, #0x52
+beq	fakeKey
+cmp	r0, #0x53
+beq	fakeKey
 @check if it's in the list
 ldr	r2,progressiveTraps
 ldrb	r2, [r2, r0]
@@ -420,6 +438,12 @@ ldr	r1,=#0x0400
 orr	r0,r1
 mov	r3,#0
 pop	{pc}
+
+fakeKey:
+pop	{r1}
+mov	lr, r1
+ldr	r3, =#0x726
+b	normal
 
 .align
 .ltorg
