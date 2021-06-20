@@ -38,7 +38,26 @@ lsl	r2,#3
 ldr	r0,=#0x80A2074
 ldr	r0,[r0]
 add	r2,r0
-ldrb	r1,[r4,#0x0A]
+
+@check if this is a trap
+push	{r2}
+ldrb	r1, [r4, #0x0A]
+cmp	r1, #0x1B
+bne	notTrap
+ldrb	r1, [r4,#0x08]
+cmp	r1, #0x06
+bne	notTrap
+mov	r0, r4
+ldr	r1, trapGetIcon
+mov	lr, r1
+.short	0xF800
+mov	r1, r0
+
+notTrap:
+pop	{r2}
 mov	r0,r4
 ldr	r3,=#0x80A2065
 bx	r3
+.align
+.ltorg
+trapGetIcon:

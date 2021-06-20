@@ -81,6 +81,7 @@ ORG currentoffset + 2
 	ORG currentoffset + 2
 #endif
 ORG currentoffset + 0xFF
+PUSH; ORG progressiveTraps + 0x48; BYTE 4; POP
 
 ALIGN 4
 progressiveItemsTable:
