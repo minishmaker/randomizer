@@ -277,6 +277,13 @@ BYTE 0x32
 BYTE 0x33
 BYTE 0 //terminator
 
+//make the tingle tree torches work when lantern is used on them
+PUSH
+ORG $F7B07; BYTE 4
+ORG $F7B17; BYTE 4
+ORG $F7B27; BYTE 4
+ORG $F7B37; BYTE 4
+POP
 //make the dws torches work when the lantern is used on them
 PUSH
 ORG $DE973; BYTE 4
