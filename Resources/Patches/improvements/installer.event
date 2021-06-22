@@ -552,6 +552,27 @@ ALIGN 4
 charmFix2:
 #incbin "asm/charmFix2.dmp"
 
+//swap the entity crates at the cafe for background versions of them
+//first we remove them
+PUSH
+ORG $F4FCC
+BYTE 0x16 0x0F 0x4E 0x00; SHORT 0x800 0 0x48 0x28 0 0
+BYTE 0x16 0x0F 0x4E 0x00; SHORT 0x902 0 0x38 0xB0 0 0
+BYTE 0x16 0x0F 0x4E 0x00; SHORT 0xA01 0 0xD0 0x48 0 0
+BYTE 0x06 0x00 0x38 0x58; SHORT 0x000 0 0xC0 0x8E 0 0
+BYTE 0xFF
+POP
+//and now we include the new map
+PUSH
+ORG 1064732
+WORD cafe-3293164+$0
+ORG currentoffset+4
+WORD $800003FC
+POP
+ALIGN 4
+cafe:
+#incbin "cafe.bin"
+
 #include "glitchless.event"
 #include "dungeon.event"
 #include "fairy.event"
