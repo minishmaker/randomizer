@@ -542,6 +542,16 @@ String(" No"); BYTE 0x0A 0x0A
 String("This will warp you back home and"); BYTE 0x0A
 String("set your Quickwarp point there."); BYTE 0x00
 
+//fix charm palette allocation
+PUSH; ORG $1D084; jumpToHack(charmFix1); POP
+ALIGN 4
+charmFix1:
+#incbin "asm/charmFix1.dmp"
+PUSH; ORG $1D120; jumpToHack(charmFix2); POP
+ALIGN 4
+charmFix2:
+#incbin "asm/charmFix2.dmp"
+
 #include "glitchless.event"
 #include "dungeon.event"
 #include "fairy.event"
