@@ -521,8 +521,8 @@ homeWarpFrench:
 String("Faire une sieste ?"); BYTE 0x0A 0x0A 0x06 0x01
 String(" Oui      "); BYTE 0x06 0x02
 String(" Non"); BYTE 0x0A 0x0A
-String("Cela vous ramènera chez vous et"); BYTE 0x0A
-String("fixera votre Quickwarp à cet endroit."); BYTE 0x00
+String("Cela vous ram"); BYTE 0xE8; String("nera chez vous et"); BYTE 0x0A
+String("fixera votre Quickwarp "); BYTE 0xE0; String(" cet endroit."); BYTE 0x00
 homeWarpGerman:
 String("Schlafen gehen?"); BYTE 0x0A 0x0A 0x06 0x01
 String(" Ja       "); BYTE 0x06 0x02
