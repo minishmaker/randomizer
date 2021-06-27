@@ -375,7 +375,7 @@ POIN extraSwordTextItalian
 extraSwordTextEnglish:
 String("Progressive sword"); BYTE 0
 extraSwordTextFrench:
-String("Progressive sword"); BYTE 0
+0xE9; String("p"); BYTE 0xE9;String("e Progressive"); BYTE 0
 extraSwordTextGerman:
 String("Progressive sword"); BYTE 0
 extraSwordTextSpanish:
@@ -396,7 +396,7 @@ POIN extraBowTextItalian
 extraBowTextEnglish:
 String("Progressive bow"); BYTE 0
 extraBowTextFrench:
-String("Progressive bow"); BYTE 0
+String("Arc progressif"); BYTE 0
 extraBowTextGerman:
 String("Progressive bow"); BYTE 0
 extraBowTextSpanish:
@@ -417,7 +417,7 @@ POIN extraBoomerangTextItalian
 extraBoomerangTextEnglish:
 String("Progressive boomerang"); BYTE 0
 extraBoomerangTextFrench:
-String("Progressive boomerang"); BYTE 0
+String("Boomerang Progressif"); BYTE 0
 extraBoomerangTextGerman:
 String("Progressive boomerang"); BYTE 0
 extraBoomerangTextSpanish:
@@ -438,7 +438,7 @@ POIN extraShieldTextItalian
 extraShieldTextEnglish:
 String("Progressive shield"); BYTE 0
 extraShieldTextFrench:
-String("Progressive shield"); BYTE 0
+String("Bouclier progressif"); BYTE 0
 extraShieldTextGerman:
 String("Progressive shield"); BYTE 0
 extraShieldTextSpanish:
@@ -459,7 +459,7 @@ POIN extraScrollTextItalian
 extraScrollTextEnglish:
 String("Progressive scroll"); BYTE 0
 extraScrollTextFrench:
-String("Progressive scroll"); BYTE 0
+String("Parchemin progressif"); BYTE 0
 extraScrollTextGerman:
 String("Progressive scroll"); BYTE 0
 extraScrollTextSpanish:
