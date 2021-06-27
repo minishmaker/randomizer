@@ -518,11 +518,589 @@ String(" No"); BYTE 0x0A 0x0A
 String("This will warp you back home and"); BYTE 0x0A
 String("set your Quickwarp point there."); BYTE 0x00
 homeWarpFrench:
+String("Faire une sieste ?"); BYTE 0x0A 0x0A 0x06 0x01
+String(" Oui      "); BYTE 0x06 0x02
+String(" Non"); BYTE 0x0A 0x0A
+String("Cela vous ramènera chez vous et"); BYTE 0x0A
+String("fixera votre Quickwarp à cet endroit."); BYTE 0x00
+homeWarpGerman:
+String("Schlafen gehen?"); BYTE 0x0A 0x0A 0x06 0x01
+String(" Ja       "); BYTE 0x06 0x02
+String(" Nein"); BYTE 0x0A 0x0A
+String("Dies bringt dich nach Hause und"); BYTE 0x0A
+String("setzt deine Quickwarp Position dort."); BYTE 0x00
+homeWarpSpanish:
+BYTE 0xBF; String("Echarse la siesta?"); BYTE 0x0A 0x0A 0x06 0x01
+String(" S"); BYTE 0xED; String("       "); BYTE 0x06 0x02
+String(" No"); BYTE 0x0A 0x0A
+String("Ser"); BYTE 0xE1; String("s teletransportado a casa y se"); BYTE 0x0A
+String("pondr"); BYTE 0xE1; String(" tu punto de Quickwarp all"); BYTE 0xED ;String("."); BYTE 0x00
+homeWarpItalian:
 String("Take a nap?"); BYTE 0x0A 0x0A 0x06 0x01
 String(" Yes      "); BYTE 0x06 0x02
 String(" No"); BYTE 0x0A 0x0A
 String("This will warp you back home and"); BYTE 0x0A
 String("set your Quickwarp point there."); BYTE 0x00
+
+//fix charm palette allocation
+PUSH; ORG $1D084; jumpToHack(charmFix1); POP
+ALIGN 4
+charmFix1:
+#incbin "asm/charmFix1.dmp"
+PUSH; ORG $1D120; jumpToHack(charmFix2); POP
+ALIGN 4
+charmFix2:
+#incbin "asm/charmFix2.dmp"
+
+//swap the entity crates at the cafe for background versions of them
+//first we remove them
+PUSH
+ORG $F4FCC
+BYTE 0x16 0x0F 0x4E 0x00; SHORT 0x800 0 0x48 0x28 0 0
+BYTE 0x16 0x0F 0x4E 0x00; SHORT 0x902 0 0x38 0xB0 0 0
+BYTE 0x16 0x0F 0x4E 0x00; SHORT 0xA01 0 0xD0 0x48 0 0
+BYTE 0x06 0x00 0x38 0x58; SHORT 0x000 0 0xC0 0x8E 0 0
+BYTE 0xFF
+POP
+//and now we include the new map
+PUSH
+ORG 1064732
+WORD cafe-3293164+$0
+ORG currentoffset+4
+WORD $800003FC
+POP
+ALIGN 4
+cafe:
+#incbin "cafe.bin"
+
+#include "glitchless.event"
+#include "dungeon.event"
+#include "fairy.event"
+#ifndef neverSkipFusionCutscene //define to never skip
+	#ifndef alwaysSkipFusionCutscene
+		#define alwaysSkipFusionCutscene 0 //set to non-0 to skip, set to 0 to skip on button held
+	#endif
+#endif
+
+//remove all ezlo stepping triggers
+PUSH; ORG $4AB14; jumpToHack(ezloPleaseStop); POP
+ALIGN 4
+ezloPleaseStop:
+#incbin "asm/ezloPleaseStop.dmp"
+
+//instant text
+PUSH; ORG $562AC; SHORT 0x2501; POP
+
+//holding = mashing for text
+PUSH; ORG $566B2; SHORT 0x8801; POP
+PUSH; ORG $56726; SHORT 0x8801; POP
+
+//skip fusion cutscene if A, B or START are held
+#ifndef neverSkipFusionCutscene
+	PUSH; ORG $A35E4; jumpToHack(skipFusionCutscene); POP
+	ALIGN 4
+	skipFusionCutscene:
+	#incbin "asm/skipFusionCutscene.dmp"
+	WORD alwaysSkipFusionCutscene //set to non-0 to always skip fusion cutscene
+#endif
+
+//skip minish transformation cutscenes automatically
+PUSH; ORG $70DFA; SHORT 0; POP
+
+#ifdef glitchless
+	//can't talk to ezlo with Select
+	PUSH; ORG $5270A; SHORT 0x4280; POP
+#endif
+
+//pressing L uses pegasus boots, if owned
+//pressing Select uses the ocarina, if owned
+PUSH; ORG $772AC; jumpToHack(pegasusShortcut1); POP
+ALIGN 4
+pegasusShortcut1:
+#incbin "asm/pegasusShortcut1.dmp"
+POIN ($772AC+0x08)|1 //return offset if false
+POIN ($772AC+0x2C)|1 //return offset if true
+POIN $778C4 //something about buttons
+#ifdef glitchless
+	WORD 1
+#else
+	WORD 0
+#endif
+PUSH; ORG $77950; jumpToHack(pegasusShortcut2); POP
+ALIGN 4
+pegasusShortcut2:
+#incbin "asm/pegasusShortcut2.dmp"
+POIN ($77950+0x08)|1 //return offset if false
+POIN ($77950+0x26)|1 //return offset if true
+#ifdef glitchless
+	WORD 1
+#else
+	WORD 0
+#endif
+
+//no wait when visiting a new area
+PUSH; ORG $52D64; SHORT 0xE006; POP
+
+//allow more freedom to pause the game
+PUSH; ORG $70044; SHORT 0x2000; ORG $7004E; SHORT 0x2000; POP
+PUSH; ORG $70074; jumpToHack(pausefreedom); POP
+ALIGN 4
+pausefreedom:
+#incbin "asm/pausefreedom.dmp"
+
+//adding some stuff that's missing from vanilla eur
+//missing lon lon tornado
+PUSH; ORG $F7188; POIN lonlontornado; POP
+ALIGN 4
+lonlontornado:
+BYTE 0x5E 0 0 1; SHORT 0x188 0x078 0 0 0 0xFFFF
+BYTE 0x5E 0 0 1; SHORT 0x268 0x188 0 0 0 0xFFFF
+BYTE 0x5E 0 0 1; SHORT 0x198 0x358 0 0 0 0xFFFF
+BYTE 0x5E 0 0 1; SHORT 0x108 0x328 0 0 0 0xFFFF
+BYTE 0xFF 0 0 0; SHORT 0x000 0x000 0 0 0 0xFFFF
+//allow link to use the ocarina in the room right before palace of winds
+PUSH; ORG $12752C; BYTE 1; POP
+//heart pots in vaati 1 room
+PUSH; ORG $4D714; jumpToHack(vaatiPots); POP
+ALIGN 4
+vaatiPots:
+#incbin "asm/vaatiPots.dmp"
+POIN vaatiPotsNuts
+POIN vaatiPotsVaati
+ALIGN 4
+vaatiPotsNuts:
+BYTE 0x16 0x0F 0x05 0x5F; SHORT 0 0 0x038 0x038 0 0
+BYTE 0x16 0x0F 0x05 0x5F; SHORT 0 0 0x038 0x0C8 0 0
+BYTE 0x16 0x0F 0x05 0x5F; SHORT 0 0 0x118 0x038 0 0
+BYTE 0x16 0x0F 0x05 0x5F; SHORT 0 0 0x118 0x0C8 0 0
+BYTE 0xFF 0xFF 0xFF 0xFF; SHORT 0 0 0x000 0x000 0 0
+ALIGN 4
+vaatiPotsVaati:
+BYTE 0x16 0x0F 0x05 0x5F; SHORT 0 0 0x038 0x038 0 0
+BYTE 0x16 0x0F 0x05 0x5E; SHORT 0 0 0x038 0x0C8 0 0
+BYTE 0x16 0x0F 0x05 0x5F; SHORT 0 0 0x118 0x038 0 0
+BYTE 0x16 0x0F 0x05 0x60; SHORT 0 0 0x118 0x0C8 0 0
+BYTE 0xFF 0xFF 0xFF 0xFF; SHORT 0 0 0x000 0x000 0 0
+
+//start with cursor on first save file instead of language
+PUSH; ORG $50180; SHORT 0x2100; POP
+//vaati eyes take only one hit to kill
+PUSH; ORG $4445C; SHORT 0x28FB; POP
+//make the vaati2 3 cycle the same as other regions, I hope
+PUSH; ORG $D01EA; BYTE 0xC0; POP
+//floor and wall masters die in one arrow hit
+PUSH; ORG $C2E18; BYTE 100; POP
+PUSH; ORG $C2C80; BYTE 100; POP
+
+//items on the floor don't despawn as long as a flag is tied to them
+PUSH; ORG $80E94; jumpToHack(itemDespawnSafety); POP
+ALIGN 4
+itemDespawnSafety:
+#incbin "asm/itemDespawnSafety.dmp"
+
+//show all quest items
+PUSH; ORG $A4DEC; jumpToHack(questItemSlideshow1); POP
+ALIGN 4
+questItemSlideshow1:
+#incbin "asm/questItemSlideshow1.dmp"
+PUSH; ORG $A5008; jumpToHack(questItemSlideshow2); POP
+ALIGN 4
+questItemSlideshow2:
+#incbin "asm/questItemSlideshow2.dmp"
+
+#ifdef globalElements
+	//if global elements, don't display elements
+	PUSH; ORG $128673; BYTE 0 0xF 0 0xF 0 0xF 0; POP
+#else
+	//wind element icon in map goes away when you get the element instead of the ocarina
+	PUSH; ORG $128677; BYTE 0x43; POP
+#endif
+
+//finding remote bombs does not remove regular bombs from link and vice versa
+PUSH; ORG $53D34; SHORT 0 0; ORG $53D3E; SHORT 0 0; POP
+//same but for boomerang
+PUSH; ORG $53D1C; SHORT 0 0; ORG $53D26; SHORT 0 0; POP
+
+//getting remote bombs does not count as getting a bomb bag
+PUSH
+ORG $1CD80; POIN bombLimits
+ORG $291D0; POIN bombLimits
+ORG $4EBF4; POIN bombLimits
+ORG $53EB4; POIN bombLimits
+ORG $5FD8C; POIN bombLimits
+ORG $64E7C; POIN bombLimits
+ORG $A4C24; POIN bombLimits
+POP
+bombLimits:
+BYTE 0 10 30 50 99 99 99 99
+PUSH; ORG $53D50; SHORT 0; ORG $53D60; SHORT 0; POP //shops too
+PUSH; ORG $53D74; SHORT 0xE001; POP //bag upgrades uncapped
+PUSH; ORG $83610; jumpToHack(firstBag); POP
+ALIGN 4
+firstBag:
+#incbin "asm/firstBag.dmp"
+
+//element object can have sub ids
+PUSH; ORG $9FB64; SHORT 0x7AE1; POP
+
+//soldier goes away if you have both spin and a sword
+PUSH; ORG $59488; jumpToHack(spinSoldier); POP
+ALIGN 4
+spinSoldier:
+#incbin "asm/spinSoldier.dmp"
+
+//boomerang can no longer grab golden kinstones
+PUSH; ORG $80A18; jumpToHack(boomerangFix); POP
+ALIGN 4
+boomerangFix:
+#incbin "asm/boomerangFix.dmp"
+
+//sword techniques are unlocked instantly
+PUSH; ORG $83618; jumpToHack(scrollFix); POP
+ALIGN 4
+scrollFix:
+#incbin "asm/scrollFix.dmp"
+
+//technique upgrades now also have scroll icons
+PUSH; ORG $FD6E8; POIN $FD505 $FD505 $FD505; POP
+PUSH; ORG $125EB8; SHORT 0x001 0x401 0x0B8 0x2541 0x001 0x401 0x0B8 0x2541 0x001 0x401 0x0B8 0x2541; POP
+
+//allow gibdos to hold any item, instead of just bombs or keys
+PUSH; ORG $A1D58; SHORT 0x7AC3
+ORG $A1C9A; SHORT 0x7BA8
+ORG $1264D4; POIN $125B20
+ORG $A1D2C; SHORT 0x7AE3
+ORG $E688D; BYTE 0x3B 0x00 0x00
+ORG $E68AD; BYTE 0x3B 0x00 0x00
+ORG $A1C88; jumpToHack(gibdoFix); POP
+ALIGN 4
+gibdoFix:
+#incbin "asm/gibdoFix.dmp"
+
+//allow the ocarina spot to be any item
+PUSH; ORG $E2F51; BYTE 0xFE
+ORG $9C8F4; WORD 0xFECEF7E3
+ORG $9C9B8; WORD 0xFE6CF7E3
+ORG $9C7B8; jumpToHack(birdFix1)
+ORG $A2058; jumpToHack(birdFix2)
+ORG $9C844; jumpToHack(birdFix3)
+ORG $9C94E; SHORT 0x20FE 0x73A0; POP
+ALIGN 4
+birdFix1:
+#incbin "asm/birdFix1.dmp"
+ALIGN 4
+birdFix2:
+#incbin "asm/birdFix2.dmp"
+POIN trapGetIcon
+ALIGN 4
+birdFix3:
+#incbin "asm/birdFix3.dmp"
+
+//more colors for text
+PUSH; ORG $5F18E; SHORT 0x28FF; ORG $5F348; POIN newColors; POP
+#define textColor(color) "BYTE 0x00 0x01 0x02 0x03 0x04 0x05 0x06 0x07 0x08 0x09 0x0A 0x0B color 0x0D color 0x00 0x00 0x10 0x20 0x30 0x40 0x50 0x60 0x70 0x80 0x90 0xA0 0xB0 color<<4 color<<4 color<<4 0x00"
+newColors:
+#incbin "colors.bin"
+textColor(0x01); textColor(0x02); textColor(0x03); textColor(0x04); textColor(0x05); textColor(0x06); textColor(0x07); textColor(0x08); textColor(0x09); textColor(0x0A); textColor(0x0B); textColor(0x0C); textColor(0x0D); textColor(0x0E); textColor(0x0F)
+
+//technique upgrades are also counted towards the scroll total
+PUSH; ORG $A4E6C; jumpToHack(countScrolls); POP
+ALIGN 4
+countScrolls:
+#incbin "asm/countScrolls.dmp"
+POIN scrollNumbers
+ALIGN 4
+scrollNumbers:
+#incbin "scrollNumbers.img.bin"
+
+//technique upgrades are drawn in the scrolls screen
+PUSH; ORG $A5970; jumpToHack(drawScrolls); POP
+ALIGN 4
+drawScrolls:
+#incbin "asm/drawScrolls.dmp"
+POIN scrollIcons
+POIN scrollTable
+ALIGN 4
+scrollIcons:
+#incbin "scrollIcons.img.bin"
+scrollTable:
+BYTE 0x48
+BYTE 0x4C
+BYTE 0x4A
+BYTE 0x4F
+BYTE 0x4B
+BYTE 0x49
+BYTE 0x4E
+BYTE 0x4D
+
+//when vaati dies, jump to the credits
+PUSH; ORG $41D14; jumpToHack(vaatiCredits); POP
+ALIGN 4
+vaatiCredits:
+#incbin "asm/vaatiCredits.dmp"
+
+//debug items don't get equipped when picked up
+PUSH; ORG $53F30; jumpToHack(noEquip); POP
+ALIGN 4
+noEquip:
+#incbin "asm/noEquip.dmp"
+POIN noEquipList
+noEquipList:
+BYTE 0x05
+BYTE 0x16
+BYTE 0x18
+BYTE 0x19
+BYTE 0x1A
+BYTE 0x1B
+BYTE 0x32
+BYTE 0x33
+BYTE 0 //terminator
+
+//make the tingle tree torches work when lantern is used on them
+PUSH
+ORG $F7B07; BYTE 4
+ORG $F7B17; BYTE 4
+ORG $F7B27; BYTE 4
+ORG $F7B37; BYTE 4
+POP
+//make the dws torches work when the lantern is used on them
+PUSH
+ORG $DE973; BYTE 4
+ORG $DE983; BYTE 4
+ORG $DE993; BYTE 4
+ORG $DE9A3; BYTE 4
+POP
+PUSH; ORG $DE3A8; POIN barrelTorch; POP
+ALIGN 4
+barrelTorch:
+BYTE 9 0xF 0x23 4 1 0x20; SHORT 0 0x188 0xC8 0 0x16
+BYTE 9 0xF 0x23 4 1 0x20; SHORT 0 0x048 0xC8 0 0x15
+WORD 0xFFFFFFFF 0xFFFFFFFF 0xFFFFFFFF 0xFFFFFFFF
+PUSH; ORG $5B724; POIN torchTable; POP
+ALIGN 4
+torchTable:
+POIN $5B728|1
+POIN $5B720|1
+POIN $5B7F8|1
+POIN $5B850|1
+POIN newTorch|1
+ALIGN 4
+newTorch:
+#incbin "asm/newTorch.dmp"
+
+//skip escape sequence
+PUSH
+ORG $13A312; SHORT 0x198 0x38; BYTE 0 0x88 0x37 0x01
+ORG $4D8AA; SHORT 0x207B
+ORG $4D8D8; POIN escapeRocks
+ORG $4D8B4; jumpToHack(escapeWalls)
+POP
+ALIGN 4
+escapeRocks:
+BYTE 0x16 0x0F 0x6A 0x05 0x02 0x01; SHORT 0 0x108 0x30 0 0
+BYTE 0x16 0x0F 0x6A 0x05 0x02 0x03; SHORT 0 0x108 0x50 0 0
+BYTE 0x16 0x0F 0x6A 0x05 0x02 0x01; SHORT 0 0x108 0x70 0 0
+BYTE 0x16 0x0F 0x6A 0x05 0x02 0x01; SHORT 0 0x008 0x30 0 0
+BYTE 0x16 0x0F 0x6A 0x05 0x02 0x03; SHORT 0 0x008 0x50 0 0
+BYTE 0x16 0x0F 0x6A 0x05 0x02 0x01; SHORT 0 0x008 0x70 0 0
+WORD 0xFFFFFFFF 0xFFFFFFFF 0xFFFFFFFF 0xFFFFFFFF
+ALIGN 4
+escapeWalls:
+#incbin "asm/escapeWalls.dmp"
+
+//normal kinstones have no popups
+PUSH; ORG $80DF4; jumpToHack(fastKinstone); POP
+ALIGN 4
+fastKinstone:
+#incbin "asm/fastKinstone.dmp"
+
+//normal kinstones don't get added to the bag in nofusions
+#ifdef noFusions
+	PUSH; ORG $1E778; SHORT 0x2C00 0xD025 0x2C6D; POP
+#endif
+
+//elements at cloud tops are only drawn if looking at the top layer
+PUSH; ORG $A611C; jumpToHack(cloudsElements); POP
+ALIGN 4
+cloudsElements:
+#incbin "asm/cloudsElements.dmp"
+
+//add bomb drops in the sewers puzzle
+PUSH; ORG $EFBF0; POIN freeSewerBombs; POP
+freeSewerBombs:
+BYTE 6 0xF 0 0x5D 0 0x07; SHORT 0 0x118 0x98 0 0
+BYTE 6 0xF 0 0x5D 0 0x07; SHORT 0 0x1B8 0x98 0 0
+WORD 0xFFFFFFFF 0xFFFFFFFF 0xFFFFFFFF 0xFFFFFFFF
+
+//respawn in lake hylia shallow water, unless minish
+PUSH; ORG $7A39C; jumpToHack(lakeRespawn); POP
+ALIGN 4
+lakeRespawn:
+#incbin "asm/lakeRespawn.dmp"
+
+//add quick warp option
+PUSH; ORG $A5216; SHORT 0x2201 0xE004; POP
+PUSH; ORG $A5242; SHORT 0xB408; jumpToHack(quickwarpOption); POP
+ALIGN 4
+quickwarpOption:
+#incbin "asm/quickwarpOption.dmp"
+//change the warp text
+PUSH
+ORG $9AECA8; WORD quickWarpEnglish-$9AECA0
+ORG $9F7568; WORD  quickWarpFrench-$9F7560
+ORG $A3EFF8; WORD  quickWarpGerman-$A3EFF0
+ORG $A81FB8; WORD quickWarpSpanish-$A81FB0
+ORG $AC38E8; WORD quickWarpItalian-$AC38E0
+POP
+quickWarpEnglish:
+BYTE 6 1 0x20; String("Save"); BYTE 10 10 6 2 0x20; String("Quickwarp"); BYTE 0
+quickWarpFrench:
+BYTE 6 1 0x20; String("Sauvegarder"); BYTE 10 10 6 2 0x20; String("Quickwarp"); BYTE 0
+quickWarpGerman:
+BYTE 6 1 0x20; String("Speichern"); BYTE 0x2E 10 10 6 2 0x20; String("Quickwarp"); BYTE 0x2E 0
+quickWarpSpanish:
+BYTE 6 1 0x20; String("Guardar"); BYTE 0x2E 10 10 6 2 0x20; String("Quickwarp"); BYTE 0x2E 0
+quickWarpItalian:
+BYTE 6 1 0x20; String("Salva"); BYTE 10 10 6 2 0x20; String("Quickwarp"); BYTE 0
+//load the right text
+PUSH; ORG $520A8; jumpToHack(quickwarpText); POP
+ALIGN 4
+quickwarpText:
+#incbin "asm/quickwarpText.dmp"
+
+//hold button to skip through choices, like regular dialogues
+PUSH; ORG $5655C; jumpToHack(skipChoice); POP
+ALIGN 4
+skipChoice:
+#incbin "asm/skipChoice.dmp"
+
+//skip darknut spawning cutscene in dhc
+PUSH; ORG $E672; SHORT 0; POP
+
+//give butterflies custom flags to check
+PUSH; ORG $18894; jumpToHack(butterflyFix1); POP
+ALIGN 4
+butterflyFix1:
+#incbin "asm/butterflyFix1.dmp"
+//set the flags when the spots are taken
+PUSH; ORG $9F2EC; jumpToHack(butterflyFix2); POP
+ALIGN 4
+butterflyFix2:
+#incbin "asm/butterflyFix2.dmp"
+//fix the butterfly graphics
+PUSH; ORG $9F23C; jumpToHack(butterflyFix3); POP
+ALIGN 4
+butterflyFix3:
+#incbin "asm/butterflyFix3.dmp"
+PUSH; ORG $9F504; jumpToHack(butterflyFix4); POP
+ALIGN 4
+butterflyFix4:
+#incbin "asm/butterflyFix4.dmp"
+
+//unlock all songs, why not
+PUSH; ORG $6E446; SHORT 0; POP
+
+//faster TOD transitions
+PUSH
+ORG $70FB6; SHORT 0x2104
+ORG $739CC; SHORT 0x2001
+ORG $77232; SHORT 0x3003
+ORG $7AC12; SHORT 0x2101
+ORG $7AC72; SHORT 0x46C0
+ORG $7AC76; SHORT 0x2001
+ORG $7ACC0; SHORT 0x201E
+POP
+
+//cucco game ends instantly if you won
+PUSH; ORG $A0B26; SHORT 0xB408; jumpToHack(cuccoWin); POP
+ALIGN 4
+cuccoWin:
+#incbin "asm/cuccoWin.dmp"
+
+//ghost kinstone fix
+PUSH; ORG $95150; jumpToHack(deadKingFix); POP
+ALIGN 4
+deadKingFix:
+#incbin "asm/deadKingFix.dmp"
+
+//scrubs and witch tell you what you are about to buy
+PUSH; ORG $560AC; jumpToHack(smallShopsText); POP
+ALIGN 4
+smallShopsText:
+#incbin "asm/smallShopsText.dmp"
+WORD bottleScrubItem
+WORD bottleScrubSub
+WORD gripScrubItem
+WORD gripScrubSub
+POIN getTextOffset
+POIN shootbutterflyCredits
+POIN digbutterflyCredits
+POIN swimbutterflyCredits
+POIN fastspinCredits
+POIN fastsplitCredits
+POIN longspinCredits
+POIN greenclockCredits
+POIN blueclockCredits
+POIN redclockCredits
+POIN figurineCredits
+POIN trapGetIcon
+POIN extraText
+POIN progressiveTraps
+
+//skip big chu cutscenes
+PUSH; ORG $4CA20; SHORT 0xE014; POP
+PUSH; ORG $2640C; SHORT 0; POP
+PUSH; ORG $263D0; SHORT 0; POP
+PUSH; ORG $1215D0; POIN $8EB19; POP
+
+//faster great fairy
+PUSH; ORG $86508; SHORT 0x2100; POP
+PUSH; ORG $86A20; SHORT 0x2001; POP
+
+//give elements a sound when picked up
+PUSH; ORG $83620; SHORT 0x2844; POP
+
+//faster textbox opening and closing
+PUSH; ORG $5615A; SHORT 0x2008; ORG $5619C; SHORT 0x2008; POP
+
+//warp home after sleep mode
+PUSH; ORG $55DE8; SHORT 0xE018; POP //remove sleep mode functionality
+//remove white fade
+PUSH
+ORG $A53C2; SHORT 0 0
+ORG $A53C8; SHORT 0 0 0 0 0
+ORG $A538A; SHORT 0 0
+POP
+PUSH; ORG $55E1C; jumpToHack(homewarpOption); POP
+ALIGN 4
+homewarpOption:
+#incbin "asm/homewarpOption.dmp"
+//activate the nap event after warping
+PUSH; ORG $7D5AC; jumpToHack(homewarpEvent); POP
+ALIGN 4
+homewarpEvent:
+#incbin "asm/homewarpEvent.dmp"
+POIN spawnPoint
+//change the sleep text
+PUSH
+ORG $9AECA0 + (0x0D * 4); WORD homeWarpEnglish - $9AECA0
+ORG $9F7560 + (0x0D * 4); WORD  homeWarpFrench - $9F7560
+ORG $A3EFF0 + (0x0D * 4); WORD  homeWarpGerman - $A3EFF0
+ORG $A81FB0 + (0x0D * 4); WORD homeWarpSpanish - $A81FB0
+ORG $AC38E0 + (0x0D * 4); WORD homeWarpItalian - $AC38E0
+POP
+homeWarpEnglish:
+String("Take a nap?"); BYTE 0x0A 0x0A 0x06 0x01
+String(" Yes      "); BYTE 0x06 0x02
+String(" No"); BYTE 0x0A 0x0A
+String("This will warp you back home and"); BYTE 0x0A
+String("set your Quickwarp point there."); BYTE 0x00
+homeWarpFrench:
+String("Faire une sieste ?"); BYTE 0x0A 0x0A 0x06 0x01
+String(" Oui      "); BYTE 0x06 0x02
+String(" Non"); BYTE 0x0A 0x0A
+String("Cela vous ramènera chez vous et"); BYTE 0x0A
+String("fixera votre Quickwarp à cet endroit."); BYTE 0x00
 homeWarpGerman:
 String("Schlafen gehen?"); BYTE 0x0A 0x0A 0x06 0x01
 String(" Ja       "); BYTE 0x06 0x02
