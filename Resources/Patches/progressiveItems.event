@@ -375,7 +375,7 @@ POIN extraSwordTextItalian
 extraSwordTextEnglish:
 String("Progressive sword"); BYTE 0
 extraSwordTextFrench:
-0xE9; String("p"); BYTE 0xE9;String("e Progressive"); BYTE 0
+BYTE 0xE9; String("p"); BYTE 0xE9;String("e Progressive"); BYTE 0
 extraSwordTextGerman:
 String("Progressive sword"); BYTE 0
 extraSwordTextSpanish:
