@@ -518,11 +518,11 @@ String(" No"); BYTE 0x0A 0x0A
 String("This will warp you back home and"); BYTE 0x0A
 String("set your Quickwarp point there."); BYTE 0x00
 homeWarpFrench:
-String("Take a nap?"); BYTE 0x0A 0x0A 0x06 0x01
-String(" Yes      "); BYTE 0x06 0x02
-String(" No"); BYTE 0x0A 0x0A
-String("This will warp you back home and"); BYTE 0x0A
-String("set your Quickwarp point there."); BYTE 0x00
+String("Faire une sieste ?"); BYTE 0x0A 0x0A 0x06 0x01
+String(" Oui      "); BYTE 0x06 0x02
+String(" Non"); BYTE 0x0A 0x0A
+String("Cela vous ramènera chez vous et"); BYTE 0x0A
+String("fixera votre Quickwarp à cet endroit."); BYTE 0x00
 homeWarpGerman:
 String("Schlafen gehen?"); BYTE 0x0A 0x0A 0x06 0x01
 String(" Ja       "); BYTE 0x06 0x02
