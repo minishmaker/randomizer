@@ -235,6 +235,8 @@ PUSH; ORG $91924; jumpToHack(openCurtain); POP
 ALIGN 4
 openCurtain:
 #incbin "asm/openCurtain.dmp"
+//and it does not open even if you have the earth element
+PUSH; ORG $C826; BYTE 0; POP
 
 //make the bell heart piece randomizable
 PUSH; ORG $5D600; SHORT 0x2000; POP
