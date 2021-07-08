@@ -172,6 +172,9 @@ ALIGN 4
 getTextOffset:
 #incbin "asm/getTextOffset.dmp"
 
+//fix the D in the debug font
+PUSH; ORG $5C33FD; BYTE 0xFE; POP
+
 //draw to layer 0 using the debug font
 ALIGN 4
 drawText:
