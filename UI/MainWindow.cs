@@ -283,19 +283,25 @@ namespace MinishRandomizer
             byte[] outputRom = shuffler.GetRandomizedRom();
             File.WriteAllBytes(sfd.FileName, outputRom);
 
+	    int exitCode;
             if (customPatchCheckBox.Checked)
             {
 
-                shuffler.ApplyPatch(sfd.FileName, customPatchPath.Text);
+                exitCode = shuffler.ApplyPatch(sfd.FileName, customPatchPath.Text);
             }
             else
             {
                 // Use the default patch
-                shuffler.ApplyPatch(sfd.FileName);
+                exitCode = shuffler.ApplyPatch(sfd.FileName);
             }
 
-            MessageBox.Show("ROM successfully saved.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            statusText.Text = $"Successfully saved \"{sfd.FileName}\"";
+	    if (exitCode == 0) {
+                MessageBox.Show("ROM successfully saved.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                statusText.Text = $"Successfully saved \"{sfd.FileName}\"";
+	    } else {
+                MessageBox.Show("Errors occured when saving the rom", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                statusText.Text = $"Error when writing \"{sfd.FileName}\"";
+	    }
         }
 
         private void SavePatchButton_Click(object sender, EventArgs e)

@@ -398,7 +398,7 @@ namespace MinishRandomizer.Randomizer
             }
         }
 
-        public void ApplyPatch(string romLocation, string patchFile = null)
+        public int ApplyPatch(string romLocation, string patchFile = null)
         {
             if (string.IsNullOrEmpty(patchFile))
             {
@@ -412,7 +412,7 @@ namespace MinishRandomizer.Randomizer
 
             string[] args = new[] { "A", "FE8", "-input:" + patchFile, "-output:" + romLocation };
 
-            ColorzCore.Program.Main(args);
+            return ColorzCore.Program.Main(args);
         }
 
         /// <summary>
