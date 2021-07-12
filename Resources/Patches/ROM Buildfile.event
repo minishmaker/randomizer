@@ -195,7 +195,6 @@ WORD customRNG
 
 #include "pedestal.event"
 #include "timedohko.event"
-#include "traps.event"
 #include "newGame.event"
 #include "progressiveItems.event"
 #include "scrubs.event"
@@ -210,6 +209,25 @@ WORD customRNG
 #include "randomLanguage.event"
 #include "tunic.event"
 #include "hash.event"
+#include "traps.event"
+
+#ifdef heartLimited // extra hearts do not grant extra hp
+
+	// when checking for beeps, max hp is 3 hearts
+	PUSH; ORG $17128; jumpToHack(heartLimitBeeps); POP
+	ALIGN 4
+	heartLimitBeeps:
+	#incbin "asm/heartLimitBeeps.dmp"
+	WORD (heartLimited << 3)
+	
+	// when healing, max hp is 3 hearts
+	PUSH; ORG $522CC; jumpToHack(heartLimitHeals); POP
+	ALIGN 4
+	heartLimitHeals:
+	#incbin "asm/heartLimitHeals.dmp"
+	WORD (heartLimited << 3)
+	
+#endif
 
 #ifdef fuzzy //size of the mosaic, 0 to 14
 	PUSH; ORG $4FD90; jumpToHack(fuzzyMode); POP
