@@ -75,8 +75,8 @@ namespace MinishRandomizer.Randomizer.Logic
                                 if (!StringUtil.ParseString(values[2], out depValue))
                                 {
                                     depValue = 1;
-                                    dependencyString = dependencyString.Substring(0, dependencyString.Length - (values[2].Length + 1));
                                 }
+                                dependencyString = dependencyString.Substring(0, dependencyString.Length - (values[2].Length + 1));
                             }
 
                             List<Dependency> temp = GetDependencies(dependencyString);
@@ -435,8 +435,10 @@ namespace MinishRandomizer.Randomizer.Logic
                     // Probably a more efficient way to do it, but eh
                     if (locationString.IndexOf("`") != -1)
                     {
-                        locationString = locationString.Replace("`RAND_INT`", StringUtil.AsStringHex8(rng.Next()));
-
+                        if (locationString.Contains("`RAND_INT`"))
+                        {
+                            locationString = locationString.Replace("`RAND_INT`", StringUtil.AsStringHex8(rng.Next()));
+                        }
                         locationString = SubParser.ReplaceDefines(locationString);
                     }
 
