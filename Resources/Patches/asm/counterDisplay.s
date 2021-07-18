@@ -70,8 +70,17 @@ strh	r1,[r0]
 
 end:
 pop	{r0-r7}
+cmp	r0, #0
+beq	end2
+
+end1:
 ldr	r3,=#0x801C4F9
 bx	r3
+
+end2:
+ldr	r3,=#0x801C535
+bx	r3
+
 .align
 .ltorg
 drawNumber:
