@@ -1,7 +1,15 @@
 .thumb
 
 push	{lr}
-push	{r4-r6}
+push	{r4-r7}
+
+@ check if this was the golden enemy
+mov	r7, r0 @ enemy data
+ldrb	r0, [r7, #0x0A]
+cmp	r0, #0x3C
+blo	rupeelike
+cmp	r0, #0x3E
+bhi	rupeelike
 
 	@ get the data we need
 	ldr	r4, list
@@ -29,6 +37,7 @@ push	{r4-r6}
 
 @ right area and room, spawn the item
 match:
+mov	r0, r7
 ldrb	r1, [r4, #2]
 ldrb	r2, [r4, #3]
 ldr	r3, =#0x80542D4
@@ -41,8 +50,20 @@ mov	r2, #0x86
 strh	r0, [r1, r2]
 	
 end:
-pop	{r4-r6}
+pop	{r4-r7}
 pop	{pc}
+
+@ not the golden enemy, spawn normal item
+rupeelike:
+mov	r0, r7
+mov	r1, #0x6E
+ldrb	r1, [r7, r1]
+mov	r2, #0x6F
+ldrb	r2, [r7, r2]
+ldr	r3, =#0x80542D4
+mov	lr, r3
+.short	0xF800
+b	end
 
 .align
 .ltorg
