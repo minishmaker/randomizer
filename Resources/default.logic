@@ -1221,12 +1221,12 @@ PalacePrize:`ELEMENT_DUNGEON`;     `ELEMENT`;         0x0E69E3;                 
 !ifdef - GOLDEN_ENEMY
     !ifdef - OPENFUSIONS
 		RuinsGoldenOcto; Minor; golden1Item:Define:FirstByte, golden1Sub:Define:SecondByte; Locations.AccessWilds, (|Helpers.HasBow, Items.RocsCape, Items.Flippers), Items.KinstoneX.YellowTotemProng::3, Helpers.HasSword;Items.Rupee200
-		CrenelGoldenTektiteLower; Minor; golden2Item:Define:FirstByte, golden2Sub:Define:SecondByte; Locations.AccessLowerCrenel, Helpers.HasSword;Items.Rupee200
+		CrenelGoldenTektiteLower; Minor; golden2Item:Define:FirstByte, golden2Sub:Define:SecondByte; Locations.AccessCrenel, Helpers.HasSword;Items.Rupee200
 		WildGoldenRope; Minor; golden3Item:Define:FirstByte, golden3Sub:Define:SecondByte; Locations.AccessWilds, Helpers.HasSword;Items.Rupee200
 		EastGoldenRope; Minor; golden4Item:Define:FirstByte, golden4Sub:Define:SecondByte; Helpers.CanDestroyTrees, Helpers.HasSword;Items.Rupee200
 		PreCastleGoldenRope; Minor; golden5Item:Define:FirstByte, golden5Sub:Define:SecondByte; Helpers.HasSword;Items.Rupee200
 		FallsGoldenRope; Minor; golden6Item:Define:FirstByte, golden6Sub:Define:SecondByte; Locations.AccessFallsNorth, Items.GripRing, Helpers.HasSword;Items.Rupee200
-		CrenelGoldenTektiteMiddle; Minor; golden7Item:Define:FirstByte, golden7Sub:Define:SecondByte; Locations.AccessLowerCrenel, Helpers.HasSword;Items.Rupee200
+		CrenelGoldenTektiteMiddle; Minor; golden7Item:Define:FirstByte, golden7Sub:Define:SecondByte; Locations.AccessCrenel, Helpers.HasSword;Items.Rupee200
 		MinishGoldenOcto; Minor; golden8Item:Define:FirstByte, golden8Sub:Define:SecondByte; Locations.AccessMinishWoods, (|Items.Flippers, Items.RocsCape,(&Items.PacciCane,(|Items.Ocarina, Items.LonLonKey))), Helpers.HasSword;Items.Rupee200
 		WesternWoodGoldenOcto; Minor; golden9Item:Define:FirstByte, golden9Sub:Define:SecondByte; Helpers.CanSplit2, Helpers.HasSword;Items.Rupee200
 	!endif
