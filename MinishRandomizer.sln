@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33110.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RandomizerCore", "RandomizerCore\RandomizerCore.csproj", "{026480FB-89D6-4B8A-9CFD-FB802ADA4874}"
+	ProjectSection(ProjectDependencies) = postProject
+		{543270C3-D6FB-48AB-90EB-4E153FC4FE79} = {543270C3-D6FB-48AB-90EB-4E153FC4FE79}
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ColorzCore", "Vendor\ColorzCore\ColorzCore\ColorzCore.csproj", "{543270C3-D6FB-48AB-90EB-4E153FC4FE79}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinishCapRandomizerUI", "MinishCapRandomizerUI\MinishCapRandomizerUI.csproj", "{0B6035E9-E168-4E27-A128-8FF63B9E7B46}"
+	ProjectSection(ProjectDependencies) = postProject
+		{026480FB-89D6-4B8A-9CFD-FB802ADA4874} = {026480FB-89D6-4B8A-9CFD-FB802ADA4874}
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinishCapRandomizerCLI", "..\MinishCapRandomizerCLI\MinishCapRandomizerCLI.csproj", "{997C4989-9FAA-4166-B59E-B2F824891805}"
+	ProjectSection(ProjectDependencies) = postProject
+		{026480FB-89D6-4B8A-9CFD-FB802ADA4874} = {026480FB-89D6-4B8A-9CFD-FB802ADA4874}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{026480FB-89D6-4B8A-9CFD-FB802ADA4874}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{026480FB-89D6-4B8A-9CFD-FB802ADA4874}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{026480FB-89D6-4B8A-9CFD-FB802ADA4874}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{026480FB-89D6-4B8A-9CFD-FB802ADA4874}.Release|Any CPU.Build.0 = Release|Any CPU
+		{543270C3-D6FB-48AB-90EB-4E153FC4FE79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{543270C3-D6FB-48AB-90EB-4E153FC4FE79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{543270C3-D6FB-48AB-90EB-4E153FC4FE79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{543270C3-D6FB-48AB-90EB-4E153FC4FE79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B6035E9-E168-4E27-A128-8FF63B9E7B46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B6035E9-E168-4E27-A128-8FF63B9E7B46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B6035E9-E168-4E27-A128-8FF63B9E7B46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B6035E9-E168-4E27-A128-8FF63B9E7B46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{997C4989-9FAA-4166-B59E-B2F824891805}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{997C4989-9FAA-4166-B59E-B2F824891805}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{997C4989-9FAA-4166-B59E-B2F824891805}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{997C4989-9FAA-4166-B59E-B2F824891805}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3200685A-8233-4883-B294-A2CBC408902C}
+	EndGlobalSection
+EndGlobal
