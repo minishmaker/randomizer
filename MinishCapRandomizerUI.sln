@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33110.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinishCapRandomizerUI", "MinishCapRandomizerUI\MinishCapRandomizerUI.csproj", "{DF3D615C-018C-4FC3-B546-3831C043EBB8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinishCapRandomizerCore", "MinishCapRandomizerCore\MinishCapRandomizerCore.csproj", "{7EB33B25-FCCB-494E-81D5-7D27E83166D6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ColorzCore", "ColorzCore", "{BCA166E5-29D7-43C4-AF9F-42A545135EE2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorzCore", "ColorzCore\ColorzCore\ColorzCore\ColorzCore.csproj", "{B98F7CCF-9CAA-406E-88D7-2040FA99F631}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DF3D615C-018C-4FC3-B546-3831C043EBB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF3D615C-018C-4FC3-B546-3831C043EBB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF3D615C-018C-4FC3-B546-3831C043EBB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF3D615C-018C-4FC3-B546-3831C043EBB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7EB33B25-FCCB-494E-81D5-7D27E83166D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EB33B25-FCCB-494E-81D5-7D27E83166D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EB33B25-FCCB-494E-81D5-7D27E83166D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EB33B25-FCCB-494E-81D5-7D27E83166D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B98F7CCF-9CAA-406E-88D7-2040FA99F631}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B98F7CCF-9CAA-406E-88D7-2040FA99F631}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B98F7CCF-9CAA-406E-88D7-2040FA99F631}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B98F7CCF-9CAA-406E-88D7-2040FA99F631}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B98F7CCF-9CAA-406E-88D7-2040FA99F631} = {BCA166E5-29D7-43C4-AF9F-42A545135EE2}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D8605066-E38E-43F8-8985-F9F431934613}
+	EndGlobalSection
+EndGlobal
