@@ -13,4 +13,10 @@
       <ProjectReference Include="..\RandomizerCore\RandomizerCore.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Compile Update="UI\MinishCapRandomizerUI.cs">
+        <SubType>Form</SubType>
+      </Compile>
+    </ItemGroup>
+
 </Project>

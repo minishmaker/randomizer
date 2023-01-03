@@ -1,6 +1,6 @@
-﻿namespace MinishCapRandomizerUI
+﻿namespace MinishCapRandomizerUI.UI
 {
-    partial class Form1
+    partial class MinishCapRandomizerUI
     {
         /// <summary>
         ///  Required designer variable.
@@ -31,8 +31,8 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.Randomizer = new System.Windows.Forms.TabPage();
+            this.TabPane = new System.Windows.Forms.TabControl();
+            this.OldConcept = new System.Windows.Forms.TabPage();
             this.label53 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
@@ -84,28 +84,17 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label40 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.Cosmetics = new System.Windows.Forms.TabPage();
-            this.checkBox20 = new System.Windows.Forms.CheckBox();
-            this.checkBox19 = new System.Windows.Forms.CheckBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.checkBox18 = new System.Windows.Forms.CheckBox();
-            this.checkBox17 = new System.Windows.Forms.CheckBox();
             this.button2 = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.comboBox5 = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
-            this.tabControl1.SuspendLayout();
-            this.Randomizer.SuspendLayout();
+            this.TabPane.SuspendLayout();
+            this.OldConcept.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.Cosmetics.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -131,41 +120,40 @@
             this.logicToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.logicToolStripMenuItem.Text = "Logic";
             // 
-            // tabControl1
+            // TabPane
             // 
-            this.tabControl1.Controls.Add(this.Randomizer);
-            this.tabControl1.Controls.Add(this.Cosmetics);
-            this.tabControl1.Location = new System.Drawing.Point(12, 27);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(780, 663);
-            this.tabControl1.TabIndex = 1;
+            this.TabPane.Controls.Add(this.OldConcept);
+            this.TabPane.Location = new System.Drawing.Point(12, 27);
+            this.TabPane.Name = "TabPane";
+            this.TabPane.SelectedIndex = 0;
+            this.TabPane.Size = new System.Drawing.Size(780, 663);
+            this.TabPane.TabIndex = 1;
             // 
-            // Randomizer
+            // OldConcept
             // 
-            this.Randomizer.Controls.Add(this.label53);
-            this.Randomizer.Controls.Add(this.panel5);
-            this.Randomizer.Controls.Add(this.label49);
-            this.Randomizer.Controls.Add(this.panel4);
-            this.Randomizer.Controls.Add(this.label47);
-            this.Randomizer.Controls.Add(this.panel3);
-            this.Randomizer.Controls.Add(this.label46);
-            this.Randomizer.Controls.Add(this.panel2);
-            this.Randomizer.Controls.Add(this.label41);
-            this.Randomizer.Controls.Add(this.panel1);
-            this.Randomizer.Controls.Add(this.button4);
-            this.Randomizer.Controls.Add(this.textBox3);
-            this.Randomizer.Controls.Add(this.button3);
-            this.Randomizer.Controls.Add(this.textBox2);
-            this.Randomizer.Controls.Add(this.label40);
-            this.Randomizer.Controls.Add(this.label1);
-            this.Randomizer.Location = new System.Drawing.Point(4, 24);
-            this.Randomizer.Name = "Randomizer";
-            this.Randomizer.Padding = new System.Windows.Forms.Padding(3);
-            this.Randomizer.Size = new System.Drawing.Size(772, 635);
-            this.Randomizer.TabIndex = 0;
-            this.Randomizer.Text = "Randomizer Settings";
-            this.Randomizer.UseVisualStyleBackColor = true;
+            this.OldConcept.Controls.Add(this.label53);
+            this.OldConcept.Controls.Add(this.panel5);
+            this.OldConcept.Controls.Add(this.label49);
+            this.OldConcept.Controls.Add(this.panel4);
+            this.OldConcept.Controls.Add(this.label47);
+            this.OldConcept.Controls.Add(this.panel3);
+            this.OldConcept.Controls.Add(this.label46);
+            this.OldConcept.Controls.Add(this.panel2);
+            this.OldConcept.Controls.Add(this.label41);
+            this.OldConcept.Controls.Add(this.panel1);
+            this.OldConcept.Controls.Add(this.button4);
+            this.OldConcept.Controls.Add(this.textBox3);
+            this.OldConcept.Controls.Add(this.button3);
+            this.OldConcept.Controls.Add(this.textBox2);
+            this.OldConcept.Controls.Add(this.label40);
+            this.OldConcept.Controls.Add(this.label1);
+            this.OldConcept.Location = new System.Drawing.Point(4, 24);
+            this.OldConcept.Name = "OldConcept";
+            this.OldConcept.Padding = new System.Windows.Forms.Padding(3);
+            this.OldConcept.Size = new System.Drawing.Size(772, 635);
+            this.OldConcept.TabIndex = 0;
+            this.OldConcept.Text = "Old Concept";
+            this.OldConcept.UseVisualStyleBackColor = true;
             // 
             // label53
             // 
@@ -720,69 +708,6 @@
             this.label1.Text = "Randomizer Seed";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // Cosmetics
-            // 
-            this.Cosmetics.Controls.Add(this.comboBox5);
-            this.Cosmetics.Controls.Add(this.label3);
-            this.Cosmetics.Controls.Add(this.button6);
-            this.Cosmetics.Controls.Add(this.button5);
-            this.Cosmetics.Controls.Add(this.checkBox20);
-            this.Cosmetics.Controls.Add(this.checkBox19);
-            this.Cosmetics.Controls.Add(this.button1);
-            this.Cosmetics.Controls.Add(this.checkBox18);
-            this.Cosmetics.Controls.Add(this.checkBox17);
-            this.Cosmetics.Location = new System.Drawing.Point(4, 24);
-            this.Cosmetics.Name = "Cosmetics";
-            this.Cosmetics.Size = new System.Drawing.Size(772, 635);
-            this.Cosmetics.TabIndex = 3;
-            this.Cosmetics.Text = "Cosmetics";
-            this.Cosmetics.UseVisualStyleBackColor = true;
-            // 
-            // checkBox20
-            // 
-            this.checkBox20.Location = new System.Drawing.Point(10, 40);
-            this.checkBox20.Name = "checkBox20";
-            this.checkBox20.Size = new System.Drawing.Size(244, 19);
-            this.checkBox20.TabIndex = 19;
-            this.checkBox20.Text = "Use Rainbow Hearts";
-            this.checkBox20.UseVisualStyleBackColor = true;
-            // 
-            // checkBox19
-            // 
-            this.checkBox19.Location = new System.Drawing.Point(518, 15);
-            this.checkBox19.Name = "checkBox19";
-            this.checkBox19.Size = new System.Drawing.Size(244, 19);
-            this.checkBox19.TabIndex = 18;
-            this.checkBox19.Text = "Show Recently Collected Item Names";
-            this.checkBox19.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(264, 37);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(244, 23);
-            this.button1.TabIndex = 17;
-            this.button1.Text = "Select Custom Heart Color";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // checkBox18
-            // 
-            this.checkBox18.Location = new System.Drawing.Point(264, 15);
-            this.checkBox18.Name = "checkBox18";
-            this.checkBox18.Size = new System.Drawing.Size(244, 19);
-            this.checkBox18.TabIndex = 16;
-            this.checkBox18.Text = "Randomize Music";
-            this.checkBox18.UseVisualStyleBackColor = true;
-            // 
-            // checkBox17
-            // 
-            this.checkBox17.Location = new System.Drawing.Point(10, 15);
-            this.checkBox17.Name = "checkBox17";
-            this.checkBox17.Size = new System.Drawing.Size(244, 19);
-            this.checkBox17.TabIndex = 15;
-            this.checkBox17.Text = "Randomize Language";
-            this.checkBox17.UseVisualStyleBackColor = true;
-            // 
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(570, 696);
@@ -796,75 +721,28 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(10, 65);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(244, 23);
-            this.button5.TabIndex = 20;
-            this.button5.Text = "Select Custom Tunic Color";
-            this.button5.UseVisualStyleBackColor = true;
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(264, 65);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(244, 23);
-            this.button6.TabIndex = 21;
-            this.button6.Text = "Select Custom Split Bar Color";
-            this.button6.UseVisualStyleBackColor = true;
-            // 
-            // comboBox5
-            // 
-            this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Items.AddRange(new object[] {
-            "Mailman",
-            "Zelda",
-            "Malon",
-            "Smith",
-            "King Gustaf",
-            "Cow",
-            "Goron",
-            "Anju"});
-            this.comboBox5.Location = new System.Drawing.Point(245, 94);
-            this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(130, 23);
-            this.comboBox5.TabIndex = 23;
-            // 
-            // label3
-            // 
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label3.Location = new System.Drawing.Point(10, 96);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(225, 15);
-            this.label3.TabIndex = 22;
-            this.label3.Text = "NPC Follower";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // Form1
+            // MinishCapRandomizerUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(804, 731);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.TabPane);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Form1";
+            this.Name = "MinishCapRandomizerUI";
             this.Text = "Minish Cap Randomizer v0.7.0a (UNDER DEVELOPMENT)";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.tabControl1.ResumeLayout(false);
-            this.Randomizer.ResumeLayout(false);
-            this.Randomizer.PerformLayout();
+            this.TabPane.ResumeLayout(false);
+            this.OldConcept.ResumeLayout(false);
+            this.OldConcept.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
-            this.Cosmetics.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -875,9 +753,8 @@
         private MenuStrip menuStrip1;
         private ToolStripMenuItem fileToolStripMenuItem;
         private ToolStripMenuItem logicToolStripMenuItem;
-        private TabControl tabControl1;
-        private TabPage Randomizer;
-        private TabPage Cosmetics;
+        private TabControl TabPane;
+        private TabPage OldConcept;
         private Label label1;
         private Button button2;
         private Label label40;
@@ -931,15 +808,6 @@
         private CheckBox checkBox16;
         private ComboBox comboBox2;
         private Label label54;
-        private CheckBox checkBox18;
-        private CheckBox checkBox17;
-        private Button button1;
         private ColorDialog colorDialog1;
-        private CheckBox checkBox19;
-        private CheckBox checkBox20;
-        private Button button6;
-        private Button button5;
-        private ComboBox comboBox5;
-        private Label label3;
     }
 }
