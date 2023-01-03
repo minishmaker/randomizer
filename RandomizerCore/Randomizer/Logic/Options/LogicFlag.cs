@@ -25,4 +25,14 @@ public class LogicFlag : LogicOptionBase
     {
         return Active ? (byte)01 : (byte)00;
     }
+
+    public override string GetOptions()
+    {
+        return "True or False";
+    }
+
+    public override string GetOptionUIType()
+    {
+        return "Flag";
+    }
 }

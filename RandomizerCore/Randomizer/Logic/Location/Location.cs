@@ -4,6 +4,7 @@ using RandomizerCore.Randomizer.Enumerables;
 using RandomizerCore.Randomizer.Logic.Dependency;
 using RandomizerCore.Randomizer.Models;
 using RandomizerCore.Utilities.IO;
+using RandomizerCore.Utilities.Logging;
 
 namespace RandomizerCore.Randomizer.Logic.Location;
 
@@ -98,7 +99,7 @@ public class Location
                 !string.IsNullOrEmpty(define.Define.Name))
                 return true;
 
-        Console.WriteLine($"Can't place subvalued items in {Name}");
+        Logger.Instance.LogWarning($"Can't place subvalued items in {Name}");
         return false;
     }
 
@@ -127,7 +128,7 @@ public class Location
 
         // If the contents of the address aren't defined/are untyped, it's probably broken
         if (type == ItemType.Untyped && Type != LocationType.Helper && Type != LocationType.Unshuffled)
-            Console.WriteLine($"Untyped contents in {Name}! Addresses may be bad");
+            Logger.Instance.LogWarning($"Untyped contents in {Name}! Addresses may be bad");
 
         // Dungeon items get the Dungeon part defined
         if (Type == LocationType.DungeonItem)

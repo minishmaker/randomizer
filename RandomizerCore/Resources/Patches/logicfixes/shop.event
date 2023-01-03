@@ -1,0 +1,122 @@
+#ifndef dogShopItem
+	#define dogShopItem "0x36"
+#endif
+#ifndef dogShopSub
+	#define dogShopSub "0x00"
+#endif
+#ifndef walletShopItem
+	#define walletShopItem "0x64"
+#endif
+#ifndef walletShopSub
+	#define walletShopSub "0x00"
+#endif
+#ifndef boomerangShopItem
+	#define boomerangShopItem "0x0B"
+#endif
+#ifndef boomerangShopSub
+	#define boomerangShopSub "0x00"
+#endif
+#ifndef quiverShopItem
+	#define quiverShopItem "0x66"
+#endif
+#ifndef quiverShopSub
+	#define quiverShopSub "0x00"
+#endif
+
+#define shopItem(itemID,subID,originalItem,itemX,itemY) "BYTE 0x06 0x0F 0x02 itemID subID 0; SHORT originalItem itemX itemY 0 0"
+#define shopTerminator "WORD (-1) (-1) (-1) (-1)"
+
+//remove dog food special case
+PUSH; ORG $812A0; SHORT 0xE014; POP
+
+PUSH; ORG $4EB54; jumpToHack(shopLoad); POP
+ALIGN 4
+shopLoad:
+#incbin "asm/shopLoad.dmp"
+POIN shopFloor
+POIN shopShield
+POIN shopConsumables
+POIN shopBuy1
+POIN shopBuy2
+POIN shopBuy3
+
+PUSH; ORG $77EE8; jumpToHack(shopGrab); POP
+ALIGN 4
+shopGrab:
+#incbin "asm/shopGrab.dmp"
+
+PUSH; ORG $64ECC; jumpToHack(shopBuy); POP
+ALIGN 4
+shopBuy:
+#incbin "asm/shopBuy.dmp"
+WORD walletShopItem
+WORD walletShopSub
+WORD boomerangShopItem
+WORD boomerangShopSub
+WORD quiverShopItem
+WORD quiverShopSub
+
+PUSH; ORG $64BB4; jumpToHack(shopAsk); POP
+ALIGN 4
+shopAsk:
+#incbin "asm/shopAsk.dmp"
+WORD walletShopItem
+WORD walletShopSub
+WORD boomerangShopItem
+WORD boomerangShopSub
+WORD quiverShopItem
+WORD quiverShopSub
+POIN getTextOffset
+POIN shootbutterflyCredits
+POIN digbutterflyCredits
+POIN swimbutterflyCredits
+POIN fastspinCredits
+POIN fastsplitCredits
+POIN longspinCredits
+POIN greenclockCredits
+POIN blueclockCredits
+POIN redclockCredits
+POIN figurineCredits
+POIN trapGetIcon
+
+//repoint this text id (0x2C05) so it points to ram
+PUSH
+ORG $9DAF1C+20; WORD 0x203F200-$89DAF1C
+ORG $A236AC+20; WORD 0x203F200-$8A236AC
+ORG $A689EC+20; WORD 0x203F200-$8A689EC
+ORG $AAAB9C+20; WORD 0x203F200-$8AAAB9C
+ORG $AED2FC+20; WORD 0x203F200-$8AED2FC
+POP
+
+ALIGN 4
+shopFloor:
+BYTE 0x06 0x0F 0x00 dogShopItem dogShopSub 0x04; SHORT 0 0x90 0x54 0 0x53 //floor item
+shopTerminator
+
+ALIGN 4
+shopShield:
+shopItem(0x0D,0x00,0x0D,0xC8,0x80) //small shield, spawns if you have had a shield
+shopTerminator
+
+ALIGN 4
+shopConsumables:
+shopItem(0x6C,0x00,0x6C,0x2D,0x40) //10 bombs, always spawns
+shopItem(0x6D,0x00,0x6D,0x40,0x40) //30 bombs, always spawns
+shopItem(0x6E,0x00,0x6E,0x52,0x40) //20 arrows, always spawns
+shopItem(0x6F,0x00,0x6F,0x64,0x40) //50 arrows, always spawns
+shopTerminator
+
+ALIGN 4
+shopBuy1:
+shopItem(walletShopItem,walletShopSub,0x64,0x2D,0x80) //first randomized item
+shopTerminator
+
+ALIGN 4
+shopBuy2:
+shopItem(boomerangShopItem,boomerangShopSub,0x0B,0x40,0x80) //second randomized item
+shopTerminator
+
+ALIGN 4
+shopBuy3:
+shopItem(quiverShopItem,quiverShopSub,0x66,0x52,0x80) //third randomized item
+shopTerminator

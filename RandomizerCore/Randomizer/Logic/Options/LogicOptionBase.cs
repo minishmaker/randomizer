@@ -25,5 +25,9 @@ public abstract class LogicOptionBase
 
     public abstract List<LogicDefine> GetLogicDefines();
 
+    public abstract string GetOptions();
+
     public abstract byte GetHashByte();
+
+    public abstract string GetOptionUIType();
 }

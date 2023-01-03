@@ -1,7 +1,8 @@
 ﻿using System.Text;
 using RandomizerCore.Randomizer.Enumerables;
 using RandomizerCore.Randomizer.Logic.Defines;
-using RandomizerCore.Utilities.Extensions;
+using RandomizerCore.Utilities.Logging;
+using RandomizerCore.Utilities.Util;
 
 namespace RandomizerCore.Randomizer.Logic.Options;
 
@@ -25,13 +26,10 @@ public class LogicDropdown : LogicOptionBase
         // Only true if a color has been selected
         if (!Active) return defineList;
 
-#if DEBUG
-        Console.WriteLine("Activedefine");
-#endif
 
         if (!Selections.TryGetValue(Selection, out var content)) return defineList;
 
-        Console.WriteLine(Name);
+        Logger.Instance.LogInfo($"Active Define: {Name}");
         defineList.Add(new LogicDefine(Name, content));
 
         return defineList;
@@ -40,5 +38,21 @@ public class LogicDropdown : LogicOptionBase
     public override byte GetHashByte()
     {
         return Active ? Encoding.ASCII.GetBytes(Selection).Crc8() : (byte)0x0b;
+    }
+
+    public override string GetOptions()
+    {
+        var builder = new StringBuilder();
+        foreach (var selection in Selections)
+        {
+            builder.Append("{Key: ").Append(selection.Key).Append(" Value: ").Append(selection.Value).Append("}, ");
+        }
+
+        return builder.ToString();
+    }
+
+    public override string GetOptionUIType()
+    {
+        return "Dropdown";
     }
 }

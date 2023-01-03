@@ -1,4 +1,5 @@
 using System.Text.RegularExpressions;
+using RandomizerCore.Utilities.Logging;
 
 namespace RandomizerCore.Randomizer.Logic.Defines;
 
@@ -18,12 +19,12 @@ public class LogicDefine
         Name = name;
         Replacement = replacement;
         _expression = new Regex($"`{Name}`");
-        Console.WriteLine(_expression);
+        Logger.Instance.LogInfo($"Define Expression: {name}");
     }
 
     public bool CanReplace(string input)
     {
-        Console.WriteLine(_expression != null);
+        Logger.Instance.LogInfo($"Can replace: {_expression != null}");
         return _expression != null && _expression.IsMatch(input);
     }
 

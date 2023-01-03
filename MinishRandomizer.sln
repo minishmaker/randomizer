@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinishCapRandomizerUI", "Mi
 		{026480FB-89D6-4B8A-9CFD-FB802ADA4874} = {026480FB-89D6-4B8A-9CFD-FB802ADA4874}
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinishCapRandomizerCLI", "..\MinishCapRandomizerCLI\MinishCapRandomizerCLI.csproj", "{997C4989-9FAA-4166-B59E-B2F824891805}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinishCapRandomizerCLI", "MinishCapRandomizerCLI\MinishCapRandomizerCLI.csproj", "{1639ECF2-E3CE-431E-9C39-769B03597942}"
 	ProjectSection(ProjectDependencies) = postProject
 		{026480FB-89D6-4B8A-9CFD-FB802ADA4874} = {026480FB-89D6-4B8A-9CFD-FB802ADA4874}
 	EndProjectSection
@@ -38,10 +38,10 @@ Global
 		{0B6035E9-E168-4E27-A128-8FF63B9E7B46}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B6035E9-E168-4E27-A128-8FF63B9E7B46}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B6035E9-E168-4E27-A128-8FF63B9E7B46}.Release|Any CPU.Build.0 = Release|Any CPU
-		{997C4989-9FAA-4166-B59E-B2F824891805}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{997C4989-9FAA-4166-B59E-B2F824891805}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{997C4989-9FAA-4166-B59E-B2F824891805}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{997C4989-9FAA-4166-B59E-B2F824891805}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1639ECF2-E3CE-431E-9C39-769B03597942}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1639ECF2-E3CE-431E-9C39-769B03597942}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1639ECF2-E3CE-431E-9C39-769B03597942}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1639ECF2-E3CE-431E-9C39-769B03597942}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

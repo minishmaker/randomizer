@@ -1,5 +1,6 @@
 ﻿using RandomizerCore.Randomizer.Enumerables;
 using RandomizerCore.Randomizer.Logic.Defines;
+using RandomizerCore.Utilities.Logging;
 
 namespace RandomizerCore.Randomizer.Logic.Options;
 
@@ -7,7 +8,7 @@ public class LogicNumberBox : LogicOptionBase
 {
     public bool isSelf = false;
     public string placeholder = "";
-    private readonly string _value = "";
+    public string Value = "";
 
     public LogicNumberBox(string name, string niceName, string settingGroup, string settingPage, LogicOptionType type) :
         base(name, niceName, true, settingGroup, settingPage, type)
@@ -19,10 +20,10 @@ public class LogicNumberBox : LogicOptionBase
         var defineList = new List<LogicDefine>(3);
 
         // Only true if valid text has been entered
-        if (_value != "")
+        if (Value != "")
         {
-            Console.WriteLine(Name);
-            defineList.Add(new LogicDefine(Name, _value));
+            Logger.Instance.LogInfo($"Number box name: {Name}");
+            defineList.Add(new LogicDefine(Name, Value));
         }
         else
         {
@@ -34,6 +35,16 @@ public class LogicNumberBox : LogicOptionBase
 
     public override byte GetHashByte()
     {
-        return _value != "" ? byte.Parse(_value) : (byte)0;
+        return Value != "" ? byte.Parse(Value) : (byte)0;
+    }
+
+    public override string GetOptions()
+    {
+        return "A number between 0 and 255";
+    }
+
+    public override string GetOptionUIType()
+    {
+        return "Number Box";
     }
 }

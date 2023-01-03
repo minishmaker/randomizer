@@ -1,0 +1,469 @@
+//***
+//
+// MusicPlayDef.s (MPlayDef.s) ver1.05
+//
+//                    Copyright (C) 1999-2001 NINTENDO Co. Ltd.
+//**************************************************************//
+
+#ifndef MPlayDefs
+#define MPlayDefs
+
+//***
+// MML (without running status)
+//******************************************************//
+
+	#define	W00 	0x80		// WAIT
+	#define	W01 	W00+1		//
+	#define	W02 	W00+2		//
+	#define	W03 	W00+3		//
+	#define	W04 	W00+4		//
+	#define	W05 	W00+5		//
+	#define	W06 	W00+6		//
+	#define	W07 	W00+7		//
+	#define	W08 	W00+8		//
+	#define	W09 	W00+9		//
+	#define	W10 	W00+10		//
+	#define	W11 	W00+11		//
+	#define	W12 	W00+12		//
+	#define	W13 	W00+13		//
+	#define	W14 	W00+14		//
+	#define	W15 	W00+15		//
+	#define	W16 	W00+16		//
+	#define	W17 	W00+17		//
+	#define	W18 	W00+18		//
+	#define	W19 	W00+19		//
+	#define	W20 	W00+20		//
+	#define	W21 	W00+21		//
+	#define	W22 	W00+22		//
+	#define	W23 	W00+23		//
+	#define	W24 	W00+24		//
+	#define	W28 	W00+25		//
+	#define	W30 	W00+26		//
+	#define	W32 	W00+27		//
+	#define	W36 	W00+28		//
+	#define	W40 	W00+29		//
+	#define	W42 	W00+30		//
+	#define	W44 	W00+31		//
+	#define	W48 	W00+32		//
+	#define	W52 	W00+33		//
+	#define	W54 	W00+34		//
+	#define	W56 	W00+35		//
+	#define	W60 	W00+36		//
+	#define	W64 	W00+37		//
+	#define	W66 	W00+38		//
+	#define	W68 	W00+39		//
+	#define	W72 	W00+40		//
+	#define	W76 	W00+41		//
+	#define	W78 	W00+42		//
+	#define	W80 	W00+43		//
+	#define	W84 	W00+44		//
+	#define	W88 	W00+45		//
+	#define	W90 	W00+46		//
+	#define	W92 	W00+47		//
+	#define	W96 	W00+48		//
+
+	#define	FINE 	0xb1		// fine
+	#define	GoTo 	0xb2		// goto
+	#define	PATT 	0xb3		// pattern play
+	#define	PEND 	0xb4		// pattern end
+	#define	REPT 	0xb5		// repeat
+	#define	MEMACC 	0xb9		// memacc op adr dat ***lib
+	#define	PRIO 	0xba		// priority
+	#define	TEMPO 	0xbb		// tempo (BPM/2)
+	#define	KEYSH 	0xbc		// key shift
+
+//***
+// MML (within running status)
+//******************************************************//
+
+	#define	VOICE 	0xbd		// voice #
+	#define	VOL 	0xbe		// volume
+	#define	PAN 	0xbf		// panpot (c_v+??)
+	#define	BEND 	0xc0		// pitch bend (c_v+??)
+	#define	BENDR 	0xc1		// bend range
+	#define	LFOS 	0xc2		// LFO speed
+	#define	LFODL 	0xc3		// LFO delay
+	#define	MOD 	0xc4		// modulation depth
+	#define	MODT 	0xc5		// modulation type
+	#define	TUNE 	0xc8		// micro tuning (c_v+??)
+
+	#define	XCMD 	0xcd		// extend command  ***lib
+	 #define	xIECV 	0x08		//  imi.echo vol   ***lib
+	 #define	xIECL 	0x09		//  imi.echo len   ***lib
+
+	#define	EOT 	0xce		// End of Tie
+	#define	TIE 	0xcf		//
+	#define	N01 	TIE+1		// NOTE
+	#define	N02 	N01+1		//
+	#define	N03 	N01+2		//
+	#define	N04 	N01+3		//
+	#define	N05 	N01+4		//
+	#define	N06 	N01+5		//
+	#define	N07 	N01+6		//
+	#define	N08 	N01+7		//
+	#define	N09 	N01+8		//
+	#define	N10 	N01+9		//
+	#define	N11 	N01+10		//
+	#define	N12 	N01+11		//
+	#define	N13 	N01+12		//
+	#define	N14 	N01+13		//
+	#define	N15 	N01+14		//
+	#define	N16 	N01+15		//
+	#define	N17 	N01+16		//
+	#define	N18 	N01+17		//
+	#define	N19 	N01+18		//
+	#define	N20 	N01+19		//
+	#define	N21 	N01+20		//
+	#define	N22 	N01+21		//
+	#define	N23 	N01+22		//
+	#define	N24 	N01+23		//
+	#define	N28 	N01+24		//
+	#define	N30 	N01+25		//
+	#define	N32 	N01+26		//
+	#define	N36 	N01+27		//
+	#define	N40 	N01+28		//
+	#define	N42 	N01+29		//
+	#define	N44 	N01+30		//
+	#define	N48 	N01+31		//
+	#define	N52 	N01+32		//
+	#define	N54 	N01+33		//
+	#define	N56 	N01+34		//
+	#define	N60 	N01+35		//
+	#define	N64 	N01+36		//
+	#define	N66 	N01+37		//
+	#define	N68 	N01+38		//
+	#define	N72 	N01+39		//
+	#define	N76 	N01+40		//
+	#define	N78 	N01+41		//
+	#define	N80 	N01+42		//
+	#define	N84 	N01+43		//
+	#define	N88 	N01+44		//
+	#define	N90 	N01+45		//
+	#define	N92 	N01+46		//
+	#define	N96 	N01+47		//
+
+//***
+// Max value of operators
+//******************************************************//
+
+	#define	mxv 	0x7F		//
+
+//***
+// center value of PAN  BEND  TUNE
+//******************************************************//
+
+	#define	c_v 	0x40		// -64 ~ +63
+
+//***
+// parameter of N??  TIE  EOT
+//******************************************************//
+
+	#define	CnM2 	0		//
+	#define	CsM2 	1		//
+	#define	DnM2 	2		//
+	#define	DsM2 	3		//
+	#define	EnM2 	4		//
+	#define	FnM2 	5		//
+	#define	FsM2 	6		//
+	#define	GnM2 	7		//
+	#define	GsM2 	8		//
+	#define	AnM2 	9		//
+	#define	AsM2 	10		//
+	#define	BnM2 	11		//
+	#define	CnM1 	12		//
+	#define	CsM1 	13		//
+	#define	DnM1 	14		//
+	#define	DsM1 	15		//
+	#define	EnM1 	16		//
+	#define	FnM1 	17		//
+	#define	FsM1 	18		//
+	#define	GnM1 	19		//
+	#define	GsM1 	20		//
+	#define	AnM1 	21		//
+	#define	AsM1 	22		//
+	#define	BnM1 	23		//
+	#define	Cn0 	24		//
+	#define	Cs0 	25		//
+	#define	Dn0 	26		//
+	#define	Ds0 	27		//
+	#define	En0 	28		//
+	#define	Fn0 	29		//
+	#define	Fs0 	30		//
+	#define	Gn0 	31		//
+	#define	Gs0 	32		//
+	#define	An0 	33		//
+	#define	As0 	34		//
+	#define	Bn0 	35		//
+	#define	Cn1 	36		//
+	#define	Cs1 	37		//
+	#define	Dn1 	38		//
+	#define	Ds1 	39		//
+	#define	En1 	40		//
+	#define	Fn1 	41		//
+	#define	Fs1 	42		//
+	#define	Gn1 	43		//
+	#define	Gs1 	44		//
+	#define	An1 	45		//
+	#define	As1 	46		//
+	#define	Bn1 	47		//
+	#define	Cn2 	48		//
+	#define	Cs2 	49		//
+	#define	Dn2 	50		//
+	#define	Ds2 	51		//
+	#define	En2 	52		//
+	#define	Fn2 	53		//
+	#define	Fs2 	54		//
+	#define	Gn2 	55		//
+	#define	Gs2 	56		//
+	#define	An2 	57		//
+	#define	As2 	58		//
+	#define	Bn2 	59		//
+	#define	Cn3 	60		//
+	#define	Cs3 	61		//
+	#define	Dn3 	62		//
+	#define	Ds3 	63		//
+	#define	En3 	64		//
+	#define	Fn3 	65		//
+	#define	Fs3 	66		//
+	#define	Gn3 	67		//
+	#define	Gs3 	68		//
+	#define	An3 	69		// 440Hz
+	#define	As3 	70		//
+	#define	Bn3 	71		//
+	#define	Cn4 	72		//
+	#define	Cs4 	73		//
+	#define	Dn4 	74		//
+	#define	Ds4 	75		//
+	#define	En4 	76		//
+	#define	Fn4 	77		//
+	#define	Fs4 	78		//
+	#define	Gn4 	79		//
+	#define	Gs4 	80		//
+	#define	An4 	81		//
+	#define	As4 	82		//
+	#define	Bn4 	83		//
+	#define	Cn5 	84		//
+	#define	Cs5 	85		//
+	#define	Dn5 	86		//
+	#define	Ds5 	87		//
+	#define	En5 	88		//
+	#define	Fn5 	89		//
+	#define	Fs5 	90		//
+	#define	Gn5 	91		//
+	#define	Gs5 	92		//
+	#define	An5 	93		//
+	#define	As5 	94		//
+	#define	Bn5 	95		//
+	#define	Cn6 	96		//
+	#define	Cs6 	97		//
+	#define	Dn6 	98		//
+	#define	Ds6 	99		//
+	#define	En6 	100		//
+	#define	Fn6 	101		//
+	#define	Fs6 	102		//
+	#define	Gn6 	103		//
+	#define	Gs6 	104		//
+	#define	An6 	105		//
+	#define	As6 	106		//
+	#define	Bn6 	107		//
+	#define	Cn7 	108		//
+	#define	Cs7 	109		//
+	#define	Dn7 	110		//
+	#define	Ds7 	111		//
+	#define	En7 	112		//
+	#define	Fn7 	113		//
+	#define	Fs7 	114		//
+	#define	Gn7 	115		//
+	#define	Gs7 	116		//
+	#define	An7 	117		//
+	#define	As7 	118		//
+	#define	Bn7 	119		//
+	#define	Cn8 	120		//
+	#define	Cs8 	121		//
+	#define	Dn8 	122		//
+	#define	Ds8 	123		//
+	#define	En8 	124		//
+	#define	Fn8 	125		//
+	#define	Fs8 	126		//
+	#define	Gn8 	127		//
+
+//***
+// parameter of velocity
+//******************************************************//
+
+	#define	v000 	0		//
+	#define	v001 	1		//
+	#define	v002 	2		//
+	#define	v003 	3		//
+	#define	v004 	4		//
+	#define	v005 	5		//
+	#define	v006 	6		//
+	#define	v007 	7		//
+	#define	v008 	8		//
+	#define	v009 	9		//
+	#define	v010 	10		//
+	#define	v011 	11		//
+	#define	v012 	12		//
+	#define	v013 	13		//
+	#define	v014 	14		//
+	#define	v015 	15		//
+	#define	v016 	16		//
+	#define	v017 	17		//
+	#define	v018 	18		//
+	#define	v019 	19		//
+	#define	v020 	20		//
+	#define	v021 	21		//
+	#define	v022 	22		//
+	#define	v023 	23		//
+	#define	v024 	24		//
+	#define	v025 	25		//
+	#define	v026 	26		//
+	#define	v027 	27		//
+	#define	v028 	28		//
+	#define	v029 	29		//
+	#define	v030 	30		//
+	#define	v031 	31		//
+	#define	v032 	32		//
+	#define	v033 	33		//
+	#define	v034 	34		//
+	#define	v035 	35		//
+	#define	v036 	36		//
+	#define	v037 	37		//
+	#define	v038 	38		//
+	#define	v039 	39		//
+	#define	v040 	40		//
+	#define	v041 	41		//
+	#define	v042 	42		//
+	#define	v043 	43		//
+	#define	v044 	44		//
+	#define	v045 	45		//
+	#define	v046 	46		//
+	#define	v047 	47		//
+	#define	v048 	48		//
+	#define	v049 	49		//
+	#define	v050 	50		//
+	#define	v051 	51		//
+	#define	v052 	52		//
+	#define	v053 	53		//
+	#define	v054 	54		//
+	#define	v055 	55		//
+	#define	v056 	56		//
+	#define	v057 	57		//
+	#define	v058 	58		//
+	#define	v059 	59		//
+	#define	v060 	60		//
+	#define	v061 	61		//
+	#define	v062 	62		//
+	#define	v063 	63		//
+	#define	v064 	64		//
+	#define	v065 	65		//
+	#define	v066 	66		//
+	#define	v067 	67		//
+	#define	v068 	68		//
+	#define	v069 	79		//
+	#define	v070 	70		//
+	#define	v071 	71		//
+	#define	v072 	72		//
+	#define	v073 	73		//
+	#define	v074 	74		//
+	#define	v075 	75		//
+	#define	v076 	76		//
+	#define	v077 	77		//
+	#define	v078 	78		//
+	#define	v079 	79		//
+	#define	v080 	80		//
+	#define	v081 	81		//
+	#define	v082 	82		//
+	#define	v083 	83		//
+	#define	v084 	84		//
+	#define	v085 	85		//
+	#define	v086 	86		//
+	#define	v087 	87		//
+	#define	v088 	88		//
+	#define	v089 	89		//
+	#define	v090 	90		//
+	#define	v091 	91		//
+	#define	v092 	92		//
+	#define	v093 	93		//
+	#define	v094 	94		//
+	#define	v095 	95		//
+	#define	v096 	96		//
+	#define	v097 	97		//
+	#define	v098 	98		//
+	#define	v099 	99		//
+	#define	v100 	100		//
+	#define	v101 	101		//
+	#define	v102 	102		//
+	#define	v103 	103		//
+	#define	v104 	104		//
+	#define	v105 	105		//
+	#define	v106 	106		//
+	#define	v107 	107		//
+	#define	v108 	108		//
+	#define	v109 	109		//
+	#define	v110 	110		//
+	#define	v111 	111		//
+	#define	v112 	112		//
+	#define	v113 	113		//
+	#define	v114 	114		//
+	#define	v115 	115		//
+	#define	v116 	116		//
+	#define	v117 	117		//
+	#define	v118 	118		//
+	#define	v119 	119		//
+	#define	v120 	120		//
+	#define	v121 	121		//
+	#define	v122 	122		//
+	#define	v123 	123		//
+	#define	v124 	124		//
+	#define	v125 	125		//
+	#define	v126 	126		//
+	#define	v127 	127		//
+
+//***
+// parameter of gate+
+//******************************************************//
+
+	#define	gtp1 	1		//
+	#define	gtp2 	2		//
+	#define	gtp3 	3		//
+
+//***
+// parameter of MODT  BRET
+//******************************************************//
+
+	#define	mod_vib 0		// vibrate
+	#define	mod_tre 1		// tremolo
+	#define	mod_pan 2		// auto-panpot
+
+//***
+// parameter of MEMACC
+//******************************************************//
+
+	#define	mem_set 0		//
+	#define	mem_add 1		//
+	#define	mem_sub 2		//
+	#define	mem_mem_set 3		//
+	#define	mem_mem_add 4		//
+	#define	mem_mem_sub 5		//
+	#define	mem_beq 6		//
+	#define	mem_bne 7		//
+	#define	mem_bhi 8		//
+	#define	mem_bhs 9		//
+	#define	mem_bls 10		//
+	#define	mem_blo 11		//
+	#define	mem_mem_beq 12		//
+	#define	mem_mem_bne 13		//
+	#define	mem_mem_bhi 14		//
+	#define	mem_mem_bhs 15		//
+	#define	mem_mem_bls 16		//
+	#define	mem_mem_blo 17		//
+
+//***
+// etc.
+//******************************************************//
+
+	#define	reverb_set 0x80		// SOUND_MODE_REVERB_SET
+	#define	PAM  PAN		// 
+
+#endif

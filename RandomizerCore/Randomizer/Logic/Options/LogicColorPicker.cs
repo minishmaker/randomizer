@@ -8,6 +8,10 @@ namespace RandomizerCore.Randomizer.Logic.Options;
 
 public class LogicColorPicker : LogicOptionBase
 {
+    public Color BaseColor { get; set; }
+    public Color DefinedColor { get; set; }
+    public List<Color> InitialColors { get; set; }
+    
     public LogicColorPicker(string name, string niceName, string settingPage, string settingGroup, LogicOptionType type,
         Color startingColor) :
         base(name, niceName, true, settingGroup, settingPage, type)
@@ -29,9 +33,11 @@ public class LogicColorPicker : LogicOptionBase
         InitialColors = colors;
     }
 
-    public Color BaseColor { get; set; }
-    public Color DefinedColor { get; set; }
-    public List<Color> InitialColors { get; set; }
+    public void PickRandomColor()
+    {
+        var random = new Random();
+        DefinedColor = Color.FromArgb(random.Next(256), random.Next(256), random.Next(256));
+    }
 
     public override List<LogicDefine> GetLogicDefines()
     {
@@ -53,5 +59,15 @@ public class LogicColorPicker : LogicOptionBase
     {
         // Maybe not a great way to represent, leaves some info out and is likely to cause easy collisions
         return Active ? (byte)(DefinedColor.R ^ DefinedColor.G ^ DefinedColor.B) : (byte)00;
+    }
+
+    public override string GetOptions()
+    {
+        return "A color code in ARGB format";
+    }
+
+    public override string GetOptionUIType()
+    {
+        return "Color Picker";
     }
 }

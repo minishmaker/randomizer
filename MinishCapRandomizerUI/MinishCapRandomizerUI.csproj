@@ -9,4 +9,8 @@
         <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\RandomizerCore\RandomizerCore.csproj" />
+    </ItemGroup>
+
 </Project>

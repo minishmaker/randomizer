@@ -1,0 +1,32 @@
+#ifdef glitchless
+//prevent ocarina glitch from triggering, also prevents portal items, also also lantern glitch
+PUSH; ORG $772D8; jumpToHack(ocarinaGlitchFix); POP
+ALIGN 4
+ocarinaGlitchFix:
+#incbin "asm/ocarinaGlitchFix.dmp"
+
+//fix mole cave walls affecting other mole caves and also make link not run forever
+PUSH; ORG $7FD48; jumpToHack(moleFix); POP
+ALIGN 4
+moleFix:
+#incbin "asm/moleFix.dmp"
+
+//prevent link from jumping diagonally out of holes
+PUSH; ORG $5E88C; jumpToHack(holeFix); POP
+ALIGN 4
+holeFix:
+#incbin "asm/holeFix.dmp"
+
+//fix spin soldier skip
+PUSH; ORG $C1A; SHORT 0x20; POP
+
+//fixes for lilypad adventure
+PUSH; ORG $857D0; jumpToHack(lilypadAdventureFix1); POP
+ALIGN 4
+lilypadAdventureFix1:
+#incbin "asm/lilypadAdventureFix1.dmp"
+PUSH; ORG $85818; jumpToHack(lilypadAdventureFix2); POP
+ALIGN 4
+lilypadAdventureFix2:
+#incbin "asm/lilypadAdventureFix2.dmp"
+#endif

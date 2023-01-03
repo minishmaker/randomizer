@@ -1,0 +1,16 @@
+PUSH
+ORG $a4a4c
+jumpToHack(hack2)
+ORG $a4aec
+WORD (hack1 | 0x08000000)
+ORG $a4c20
+WORD (hack1 | 0x08000000)
+ORG $a4d54
+WORD (hack1 | 0x08000000)
+POP
+ALIGN 4
+hack1:
+#incbin "./hack1.bin"
+ALIGN 4
+hack2:
+#incbin "./hack2.bin"

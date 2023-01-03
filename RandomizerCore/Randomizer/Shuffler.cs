@@ -11,6 +11,7 @@ using RandomizerCore.Randomizer.Logic.Options;
 using RandomizerCore.Randomizer.Models;
 using RandomizerCore.Utilities.Extensions;
 using RandomizerCore.Utilities.IO;
+using RandomizerCore.Utilities.Logging;
 using RandomizerCore.Utilities.Util;
 
 namespace RandomizerCore.Randomizer;
@@ -23,12 +24,12 @@ internal class Shuffler
     private readonly List<Item> _dungeonItems;
     private readonly List<Location> _locations;
     private readonly Parser.Parser _logicParser;
-    private string _logicPath;
+    private string? _logicPath;
     private readonly List<Item> _majorItems;
     private readonly List<Item> _minorItems;
     private readonly List<Item> _niceItems;
-    private Random _rng;
-    public int Seed;
+    private Random? _rng;
+    public int Seed { get; set; }
 
     public Shuffler()
     {
@@ -87,29 +88,25 @@ internal class Shuffler
     {
         var settingBytes = _logicParser.SubParser.GetSettingBytes();
 
-        if (settingBytes.Length > 0)
-            return PatchUtil.Crc32(settingBytes, settingBytes.Length);
-        return 0;
+        return settingBytes.Length > 0 ? settingBytes.Crc32() : 0;
     }
 
-    public uint GetGimmickHash()
+    public uint GetCosmeticsHash()
     {
-        var gimmickBytes = _logicParser.SubParser.GetGimmickBytes();
+        var cosmeticBytes = _logicParser.SubParser.GetCosmeticBytes();
 
-        if (gimmickBytes.Length > 0)
-            return PatchUtil.Crc32(gimmickBytes, gimmickBytes.Length);
-        return 0;
+        return cosmeticBytes.Length > 0 ? cosmeticBytes.Crc32() : 0;
     }
 
     public string GetOptionsIdentifier()
     {
-        return StringUtil.AsStringHex8((int)GetSettingHash()) + "-" + StringUtil.AsStringHex8((int)GetGimmickHash());
+        return StringUtil.AsStringHex8((int)GetSettingHash()) + "-" + StringUtil.AsStringHex8((int)GetCosmeticsHash());
     }
 
     /// <summary>
     ///     Load the flags that a logic file uses to customize itself
     /// </summary>
-    public void LoadOptions(string logicFile = null)
+    public void LoadOptions(string? logicFile = null)
     {
         _logicParser.SubParser.ClearOptions();
 
@@ -118,8 +115,9 @@ internal class Shuffler
         if (logicFile == null)
         {
             // Load default logic if no alternative is specified
-            var assembly = Assembly.GetExecutingAssembly();
-            using (var stream = assembly.GetManifestResourceStream("MinishRandomizer.Resources.default.logic"))
+            // var assembly = Assembly.GetExecutingAssembly();
+            var assembly = Assembly.GetAssembly(typeof(Shuffler));
+            using (var stream = assembly.GetManifestResourceStream("RandomizerCore.Resources.default.logic"))
             using (var reader = new StreamReader(stream))
             {
                 var allLocations = reader.ReadToEnd();
@@ -138,7 +136,7 @@ internal class Shuffler
     public bool RomCrcValid(Rom rom)
     {
         if (_logicParser.SubParser.RomCrc != null)
-            return PatchUtil.Crc32(rom.romData, rom.romData.Length) == _logicParser.SubParser.RomCrc;
+            return rom.romData.Crc32() == _logicParser.SubParser.RomCrc;
         return true;
     }
 
@@ -146,7 +144,7 @@ internal class Shuffler
     ///     Reads the list of locations from a file, or the default logic if none is specified
     /// </summary>
     /// <param name="logicFile">The file to read locations from</param>
-    public void LoadLocations(string logicFile = null)
+    public void LoadLocations(string? logicFile = null)
     {
         // Change the logic file path to match
         _logicPath = logicFile;
@@ -160,8 +158,8 @@ internal class Shuffler
         if (logicFile == null)
         {
             // Load default logic if no alternative is specified
-            var assembly = Assembly.GetExecutingAssembly();
-            using (var stream = assembly.GetManifestResourceStream("MinishRandomizer.Resources.default.logic"))
+            var assembly = Assembly.GetAssembly(typeof(Shuffler));
+            using (var stream = assembly?.GetManifestResourceStream("RandomizerCore.Resources.default.logic"))
             using (var reader = new StreamReader(stream))
             {
                 var allLocations = reader.ReadToEnd();
@@ -204,7 +202,7 @@ internal class Shuffler
                 if (_logicParser.SubParser.IncrementalReplacements[key].Count == 0)
                 {
                     _logicParser.SubParser.IncrementalReplacements.Remove(key);
-                    Console.WriteLine("removed incremental key:" + key.Type);
+                    Logger.Instance.LogInfo($"Removed incremental item, key {key.Type}");
                 }
             }
         }
@@ -286,12 +284,12 @@ internal class Shuffler
         }
     }
 
-    public void ApplyPatch(string romLocation, string patchFile = null)
+    public void ApplyPatch(string romLocation, string? patchFile = null)
     {
         if (string.IsNullOrEmpty(patchFile))
         {
             // Get directory of MinishRandomizer 
-            var assemblyPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            var assemblyPath = Path.GetDirectoryName(Assembly.GetAssembly(typeof(Shuffler))?.Location);
             patchFile = assemblyPath + "/Patches/ROM buildfile.event";
         }
 
@@ -299,6 +297,27 @@ internal class Shuffler
         File.WriteAllText(Path.GetDirectoryName(patchFile) + "/extDefinitions.event", GetEventWrites());
 
         string[] args = { "A", "FE8", "-input:" + patchFile, "-output:" + romLocation };
+
+        Program.CustomOutputStream = null;
+
+        Program.Main(args);
+    }
+
+    public void ApplyPatch(Stream patchedRom, string? patchFile = null)
+    {
+        if (string.IsNullOrEmpty(patchFile))
+        {
+            // Get directory of MinishRandomizer 
+            var assemblyPath = Path.GetDirectoryName(Assembly.GetAssembly(typeof(Shuffler))?.Location);
+            patchFile = assemblyPath + "/Patches/ROM buildfile.event";
+        }
+
+        // Write new patch file to patch folder/extDefinitions.event
+        File.WriteAllText(Path.GetDirectoryName(patchFile) + "/extDefinitions.event", GetEventWrites());
+
+        string[] args = { "A", "FE8", "-input:" + patchFile, "-output:" + "usingAlternateStream" };
+
+        Program.CustomOutputStream = patchedRom;
 
         Program.Main(args);
     }
@@ -601,7 +620,7 @@ internal class Shuffler
         seedValues[2] = (byte)((Seed >> 16) & 0xFF);
         seedValues[3] = (byte)((Seed >> 24) & 0xFF);
 
-        eventBuilder.AppendLine("#define seedHashed 0x" + StringUtil.AsStringHex8((int)PatchUtil.Crc32(seedValues, 4)));
+        eventBuilder.AppendLine("#define seedHashed 0x" + StringUtil.AsStringHex8((int)CrcUtil.Crc32(seedValues, 4)));
         eventBuilder.AppendLine("#define settingHash 0x" + StringUtil.AsStringHex8((int)GetSettingHash()));
 
         return eventBuilder.ToString();

@@ -1,0 +1,90 @@
+#ifdef timedohkoOption
+	#ifndef timerOption
+		#define timerOption
+	#endif
+	#ifndef ohkoOption
+		#define ohkoOption
+	#endif
+	#ifndef timedohkoClock
+		#define timedohkoClock "35838" //10 minutes
+	#endif
+	#ifndef greenClockTime
+		#define greenClockTime "14335" //4 minutes
+	#endif
+	#ifndef blueClockTime
+		#define blueClockTime "7167" //2 minutes
+	#endif
+	#ifndef redClockTime
+		#define redClockTime "(-1)" //all time
+	#endif
+ALIGN 4
+timedohkoStartingTime:
+WORD timedohkoClock
+
+ALIGN 4
+timedohkoGetTime: //also drecreases the counter
+#incbin "asm/timedohkoGetTime.dmp"
+WORD 17919 //when the counter hits this, the debug font becomes yellow (5 minutes)
+WORD 0 //when the counter hits 0, the debug font becomes red
+POIN $5C3170 //debugFontWhite
+POIN debugFontYellow
+POIN debugFontRed
+WORD greenClockTime
+WORD blueClockTime
+WORD redClockTime
+
+ALIGN 4
+debugFontYellow:
+#incbin "debugFontYellow.img.bin"
+
+ALIGN 4
+debugFontRed:
+#incbin "debugFontRed.img.bin"
+
+ALIGN 4
+timedohkoCheckTime:
+#incbin "asm/timedohkoCheckTime.dmp"
+#endif
+
+//fix the icons, give items 0x18, 0x19 and 0x1A the orb icons
+PUSH
+ORG $125BE0
+BYTE 1 0 1 4 0 0 0x41 5
+BYTE 1 0 1 4 0 0 0x41 5
+BYTE 1 0 1 4 0 0 0x41 5
+ORG $FD57C; POIN clockIconData1 clockIconData2 clockIconData3
+ORG $2FDF44; WORD clockSpriteData1-$2F3460 clockSpriteData2-$2F3460 clockSpriteData3-$2F3460
+ORG $11AE00; SHORT 8 0xD8 8 0xD8 8 0xD8
+POP
+ALIGN 4
+clockIconData1:
+BYTE 0x51 0xFF 0x00 0x80 0x01 //green
+ALIGN 4
+clockIconData2:
+BYTE 0x50 0xFF 0x00 0x80 0x01 //blue
+ALIGN 4
+clockIconData3:
+BYTE 0x52 0xFF 0x00 0x80 0x01 //red
+ALIGN 4
+clockSpriteData2:
+BYTE 3 //green
+BYTE 0xF6 0xF6 0x01 4 0x10
+BYTE 0xF6 0xF6 0x11 0 0x20
+BYTE 0xF6 0xF6 0x10 4 0x00
+ALIGN 4
+clockSpriteData1:
+BYTE 3 //blue
+BYTE 0xF6 0xF6 0x01 4 0x10
+BYTE 0xF6 0xF6 0x12 0 0x10
+BYTE 0xF6 0xF6 0x10 4 0x00
+ALIGN 4
+clockSpriteData3:
+BYTE 3 //red
+BYTE 0xF6 0xF6 0x01 4 0x10
+BYTE 0xF6 0xF6 0x10 0 0x00
+BYTE 0xF6 0xF6 0x10 4 0x00
+
+PUSH //replace pearls with clocks
+ORG $2E7AE0
+#incbin "clock.img.bin"
+POP

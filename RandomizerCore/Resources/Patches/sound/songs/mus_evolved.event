@@ -1,0 +1,386 @@
+//Event file generated from Sappy .s format.
+	#include "MPlayDef.event"
+
+	#define	mus_evolved_grp  voicegroup012
+	#define	mus_evolved_pri  5
+	#define	mus_evolved_rev  reverb_set+50
+	#define	mus_evolved_mvl  90
+	#define	mus_evolved_key  0
+	#define	mus_evolved_tbs  1
+	#define	mus_evolved_exg  1
+	#define	mus_evolved_cmp  1
+
+	// .rodata
+	//	mus_evolved
+	ALIGN 4
+
+//**************** Track 1 (Midi-Chn.1) ****************//
+
+mus_evolved_1:
+	BYTE	KEYSH   mus_evolved_key+0
+// 000   ----------------------------------------
+	BYTE	W12
+// 001   ----------------------------------------
+	BYTE	TEMPO   150*mus_evolved_tbs/2
+	BYTE		VOICE   56
+	BYTE		PAN     c_v+18
+	BYTE		VOL     127*mus_evolved_mvl/mxv
+	BYTE		N22     Ds4   v104
+	BYTE	W16
+	BYTE		VOL     96*mus_evolved_mvl/mxv
+	BYTE	W04
+	BYTE		        51*mus_evolved_mvl/mxv
+	BYTE	W04
+	BYTE		        127*mus_evolved_mvl/mxv
+	BYTE		N22     Cn4 
+	BYTE	W16
+	BYTE		VOL     96*mus_evolved_mvl/mxv
+	BYTE	W04
+	BYTE		        51*mus_evolved_mvl/mxv
+	BYTE	W04
+	BYTE		        127*mus_evolved_mvl/mxv
+	BYTE		N16     Gs3 
+	BYTE	W16
+	BYTE		N06     Ds3 
+	BYTE	W08
+	BYTE		        Cn3 
+	BYTE	W08
+	BYTE		        Gs3 
+	BYTE	W08
+	BYTE		        Cn4 
+	BYTE	W08
+// 002   ----------------------------------------
+	BYTE		N04     Fs4 
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W08
+	BYTE		        As4 
+	BYTE	W08
+	BYTE		N48     Gs4 
+	BYTE	W16
+	BYTE		MOD     6
+	BYTE	W32
+// 003   ----------------------------------------
+	BYTE		        0
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 2 (Midi-Chn.2) ****************//
+
+mus_evolved_2:
+	BYTE	KEYSH   mus_evolved_key+0
+// 000   ----------------------------------------
+	BYTE	W12
+// 001   ----------------------------------------
+	BYTE		VOICE   56
+	BYTE		PAN     c_v-16
+	BYTE		VOL     127*mus_evolved_mvl/mxv
+	BYTE		N22     Cn5   v104
+	BYTE	W16
+	BYTE		VOL     96*mus_evolved_mvl/mxv
+	BYTE	W04
+	BYTE		        51*mus_evolved_mvl/mxv
+	BYTE	W04
+	BYTE		        127*mus_evolved_mvl/mxv
+	BYTE		N22     Gs4 
+	BYTE	W16
+	BYTE		VOL     96*mus_evolved_mvl/mxv
+	BYTE	W04
+	BYTE		        51*mus_evolved_mvl/mxv
+	BYTE	W04
+	BYTE		        127*mus_evolved_mvl/mxv
+	BYTE		N40     Ds4 
+	BYTE	W12
+	BYTE		MOD     6
+	BYTE	W28
+	BYTE		VOL     96*mus_evolved_mvl/mxv
+	BYTE		MOD     0
+	BYTE	W04
+	BYTE		VOL     51*mus_evolved_mvl/mxv
+	BYTE	W04
+// 002   ----------------------------------------
+	BYTE		        127*mus_evolved_mvl/mxv
+	BYTE		N04     Cs5 
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W08
+	BYTE		        As4 
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W08
+	BYTE		        Cs5 
+	BYTE	W08
+	BYTE		N48     Cn5 
+	BYTE	W16
+	BYTE		MOD     6
+	BYTE	W32
+// 003   ----------------------------------------
+	BYTE		        0
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 3 (Midi-Chn.3) ****************//
+
+mus_evolved_3:
+	BYTE	KEYSH   mus_evolved_key+0
+// 000   ----------------------------------------
+	BYTE	W12
+// 001   ----------------------------------------
+	BYTE		VOICE   88
+	BYTE		VOL     127*mus_evolved_mvl/mxv
+	BYTE		N12     Ds1   v112
+	BYTE	W24
+	BYTE		N12   
+	BYTE	W24
+	BYTE		N12   
+	BYTE	W24
+	BYTE		N08     Cn1 
+	BYTE	W08
+	BYTE		        Ds1 
+	BYTE	W08
+	BYTE		        Gs1 
+	BYTE	W08
+// 002   ----------------------------------------
+	BYTE		N16     As1 
+	BYTE	W24
+	BYTE		        Cs2 
+	BYTE	W24
+	BYTE		N40     Cn2 
+	BYTE	W48
+// 003   ----------------------------------------
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 4 (Midi-Chn.4) ****************//
+
+mus_evolved_4:
+	BYTE	KEYSH   mus_evolved_key+0
+// 000   ----------------------------------------
+	BYTE	W12
+// 001   ----------------------------------------
+	BYTE		VOICE   82
+	BYTE		PAN     c_v-48
+	BYTE		VOL     127*mus_evolved_mvl/mxv
+	BYTE		N08     Gs4   v040
+	BYTE	W08
+	BYTE		        Ds4 
+	BYTE	W08
+	BYTE		        Cn4 
+	BYTE	W08
+	BYTE		VOL     127*mus_evolved_mvl/mxv
+	BYTE		N08     Gs4 
+	BYTE	W08
+	BYTE		        Ds4 
+	BYTE	W08
+	BYTE		        Cn4 
+	BYTE	W08
+	BYTE		        Ds4 
+	BYTE	W08
+	BYTE		        Cn4 
+	BYTE	W08
+	BYTE		        Gs3 
+	BYTE	W08
+	BYTE		        Cn4 
+	BYTE	W08
+	BYTE		        Gs3 
+	BYTE	W08
+	BYTE		        Ds3 
+	BYTE	W08
+// 002   ----------------------------------------
+	BYTE		        Cs3 
+	BYTE	W08
+	BYTE		        As2 
+	BYTE	W08
+	BYTE		        Fs2 
+	BYTE	W08
+	BYTE		        Cs2 
+	BYTE	W08
+	BYTE		        As2 
+	BYTE	W08
+	BYTE		        Cs3 
+	BYTE	W08
+	BYTE		N48     Ds3 
+	BYTE	W16
+	BYTE		MOD     6
+	BYTE	W32
+// 003   ----------------------------------------
+	BYTE		        0
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 5 (Midi-Chn.5) ****************//
+
+mus_evolved_5:
+	BYTE	KEYSH   mus_evolved_key+0
+// 000   ----------------------------------------
+	BYTE	W12
+// 001   ----------------------------------------
+	BYTE		VOICE   83
+	BYTE		PAN     c_v+48
+	BYTE		VOL     127*mus_evolved_mvl/mxv
+	BYTE	W04
+	BYTE		N08     Gs4   v040
+	BYTE	W08
+	BYTE		        Ds4 
+	BYTE	W08
+	BYTE		        Cn4 
+	BYTE	W04
+	BYTE		VOL     127*mus_evolved_mvl/mxv
+	BYTE	W04
+	BYTE		N08     Gs4 
+	BYTE	W08
+	BYTE		        Ds4 
+	BYTE	W08
+	BYTE		        Cn4 
+	BYTE	W08
+	BYTE		        Ds4 
+	BYTE	W08
+	BYTE		        Cn4 
+	BYTE	W08
+	BYTE		        Gs3 
+	BYTE	W08
+	BYTE		        Cn4 
+	BYTE	W08
+	BYTE		        Gs3 
+	BYTE	W08
+	BYTE		        Ds3 
+	BYTE	W04
+// 002   ----------------------------------------
+	BYTE	W04
+	BYTE		        Cs3 
+	BYTE	W08
+	BYTE		        As2 
+	BYTE	W08
+	BYTE		        Fs2 
+	BYTE	W08
+	BYTE		        Cs2 
+	BYTE	W08
+	BYTE		        As2 
+	BYTE	W08
+	BYTE		        Cs3 
+	BYTE	W08
+	BYTE		N44     Ds3 
+	BYTE	W12
+	BYTE		MOD     6
+	BYTE	W32
+// 003   ----------------------------------------
+	BYTE		        0
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 6 (Midi-Chn.6) ****************//
+
+mus_evolved_6:
+	BYTE	KEYSH   mus_evolved_key+0
+// 000   ----------------------------------------
+	BYTE	W12
+// 001   ----------------------------------------
+	BYTE		VOICE   47
+	BYTE		VOL     127*mus_evolved_mvl/mxv
+	BYTE	W24
+	BYTE		        127*mus_evolved_mvl/mxv
+	BYTE	W56
+	BYTE		N08     Cn2   v127
+	BYTE	W08
+	BYTE		N08   
+	BYTE	W08
+// 002   ----------------------------------------
+	BYTE		        Fs2 
+	BYTE	W24
+	BYTE		        Cs2 
+	BYTE	W08
+	BYTE		        As1   v112
+	BYTE	W08
+	BYTE		N08   
+	BYTE	W08
+	BYTE		N12     Cn2   v127
+	BYTE	W48
+// 003   ----------------------------------------
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 7 (Midi-Chn.7) ****************//
+
+mus_evolved_7:
+	BYTE	KEYSH   mus_evolved_key+0
+// 000   ----------------------------------------
+	BYTE	W12
+// 001   ----------------------------------------
+	BYTE		VOICE   0
+	BYTE		VOL     127*mus_evolved_mvl/mxv
+	BYTE		N04     En1   v112
+	BYTE		N80     An2   v120
+	BYTE	W24
+	BYTE		VOL     127*mus_evolved_mvl/mxv
+	BYTE		N04     En1   v112
+	BYTE	W08
+	BYTE		        En1   v092
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W08
+	BYTE		        En1   v112
+	BYTE	W16
+	BYTE		        En1   v092
+	BYTE	W08
+	BYTE		        En1   v112
+	BYTE	W08
+	BYTE		        En1   v092
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W08
+// 002   ----------------------------------------
+	BYTE		        En1   v112
+	BYTE	W16
+	BYTE		        En1   v092
+	BYTE	W08
+	BYTE		        En1   v112
+	BYTE	W08
+	BYTE		        En1   v092
+	BYTE	W04
+	BYTE		        En1   v112
+	BYTE	W04
+	BYTE		        En1   v092
+	BYTE	W04
+	BYTE		N04   
+	BYTE	W04
+	BYTE		        En1   v112
+	BYTE	W48
+// 003   ----------------------------------------
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	FINE
+
+//******************************************************//
+	ALIGN 4
+
+mus_evolved:
+	BYTE	7	// NumTrks
+	BYTE	0	// NumBlks
+	BYTE	mus_evolved_pri	// Priority
+	BYTE	mus_evolved_rev	// Reverb.
+
+	POIN2	mus_evolved_grp
+
+	POIN2	mus_evolved_1
+	POIN2	mus_evolved_2
+	POIN2	mus_evolved_3
+	POIN2	mus_evolved_4
+	POIN2	mus_evolved_5
+	POIN2	mus_evolved_6
+	POIN2	mus_evolved_7
+
+	

@@ -1,0 +1,628 @@
+//Event file generated from Sappy .s format.
+	#include "MPlayDef.event"
+
+	#define	mus_obtain_b_points_grp  voicegroup103
+	#define	mus_obtain_b_points_pri  5
+	#define	mus_obtain_b_points_rev  reverb_set+50
+	#define	mus_obtain_b_points_mvl  90
+	#define	mus_obtain_b_points_key  0
+	#define	mus_obtain_b_points_tbs  1
+	#define	mus_obtain_b_points_exg  1
+	#define	mus_obtain_b_points_cmp  1
+
+	// .rodata
+	//	mus_obtain_b_points
+	ALIGN 4
+
+//**************** Track 1 (Midi-Chn.1) ****************//
+
+mus_obtain_b_points_1:
+	BYTE	KEYSH   mus_obtain_b_points_key+0
+// 000   ----------------------------------------
+	BYTE	TEMPO   122*mus_obtain_b_points_tbs/2
+	BYTE		VOICE   56
+	BYTE		LFOS    44
+	BYTE		BENDR   12
+	BYTE		VOL     127*mus_obtain_b_points_mvl/mxv
+	BYTE		PAN     c_v-16
+	BYTE	W12
+// 001   ----------------------------------------
+	BYTE		N04     Bn3   v100
+	BYTE	W04
+	BYTE		        En4 
+	BYTE	W04
+	BYTE		        Fs4 
+	BYTE	W04
+// 002   ----------------------------------------
+	BYTE		        Bn4 
+	BYTE	W12
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N02   
+	BYTE	W08
+	BYTE		N02   
+	BYTE	W08
+	BYTE		N02   
+	BYTE	W08
+	BYTE		        En4 
+	BYTE	W08
+	BYTE		        Bn4 
+	BYTE	W08
+	BYTE		        Ds5 
+	BYTE	W08
+	BYTE		        Bn4 
+	BYTE	W08
+	BYTE		        Ds5 
+	BYTE	W08
+// 003   ----------------------------------------
+	BYTE	TEMPO   118*mus_obtain_b_points_tbs/2
+	BYTE		MOD     4
+	BYTE		N32     En5 
+	BYTE	W12
+	BYTE		VOL     112*mus_obtain_b_points_mvl/mxv
+	BYTE	W03
+	BYTE	TEMPO   114*mus_obtain_b_points_tbs/2
+	BYTE	W09
+	BYTE		MOD     0
+	BYTE		VOL     96*mus_obtain_b_points_mvl/mxv
+	BYTE	W06
+	BYTE		        80*mus_obtain_b_points_mvl/mxv
+	BYTE	W06
+	BYTE	TEMPO   106*mus_obtain_b_points_tbs/2
+	BYTE		        127*mus_obtain_b_points_mvl/mxv
+	BYTE		N02     En4 
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W04
+	BYTE		MOD     4
+	BYTE		N06   
+	BYTE	W24
+	BYTE	FINE
+
+//**************** Track 2 (Midi-Chn.2) ****************//
+
+mus_obtain_b_points_2:
+	BYTE	KEYSH   mus_obtain_b_points_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   48
+	BYTE		LFOS    44
+	BYTE		BENDR   12
+	BYTE		PAN     c_v-32
+	BYTE		VOL     64*mus_obtain_b_points_mvl/mxv
+	BYTE	W12
+// 001   ----------------------------------------
+	BYTE	W12
+// 002   ----------------------------------------
+	BYTE		PAN     c_v-32
+	BYTE		N04     Bn4   v100
+	BYTE	W08
+	BYTE		PAN     c_v+32
+	BYTE		N04     Bn3 
+	BYTE	W08
+	BYTE		PAN     c_v-32
+	BYTE		N04     En4 
+	BYTE	W08
+	BYTE		PAN     c_v+32
+	BYTE		N04     Fs4 
+	BYTE	W08
+	BYTE		PAN     c_v-32
+	BYTE		N04     En4 
+	BYTE	W08
+	BYTE		PAN     c_v+32
+	BYTE		N04     Fs4 
+	BYTE	W08
+	BYTE		PAN     c_v-32
+	BYTE		N04     Bn4 
+	BYTE	W08
+	BYTE		PAN     c_v+32
+	BYTE		N04     En4 
+	BYTE	W08
+	BYTE		PAN     c_v-32
+	BYTE		N04     Fs4 
+	BYTE	W08
+	BYTE		PAN     c_v+32
+	BYTE		N04     Bn4 
+	BYTE	W08
+	BYTE		PAN     c_v-32
+	BYTE		N04     Fs5 
+	BYTE	W08
+	BYTE		PAN     c_v+32
+	BYTE		N04     Ds5 
+	BYTE	W08
+// 003   ----------------------------------------
+	BYTE		MOD     4
+	BYTE		PAN     c_v-32
+	BYTE		N04     Bn4 
+	BYTE	W08
+	BYTE		PAN     c_v+32
+	BYTE		N04     En4 
+	BYTE	W08
+	BYTE		PAN     c_v-32
+	BYTE		N04     Fs4 
+	BYTE	W08
+	BYTE		MOD     0
+	BYTE		PAN     c_v+32
+	BYTE		N04     Bn4 
+	BYTE	W08
+	BYTE		PAN     c_v-32
+	BYTE		N04     An4 
+	BYTE	W08
+	BYTE		PAN     c_v+32
+	BYTE		N04     Fs4 
+	BYTE	W08
+	BYTE		MOD     3
+	BYTE		PAN     c_v-32
+	BYTE	W24
+	BYTE	FINE
+
+//**************** Track 3 (Midi-Chn.3) ****************//
+
+mus_obtain_b_points_3:
+	BYTE	KEYSH   mus_obtain_b_points_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   87
+	BYTE		BENDR   12
+	BYTE		LFOS    44
+	BYTE		BENDR   12
+	BYTE		LFOS    44
+	BYTE		VOL     101*mus_obtain_b_points_mvl/mxv
+	BYTE		PAN     c_v+0
+	BYTE	W12
+// 001   ----------------------------------------
+	BYTE		N02     Fs1   v100
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W04
+// 002   ----------------------------------------
+	BYTE		N48     Bn1 
+	BYTE	W12
+	BYTE		VOL     87*mus_obtain_b_points_mvl/mxv
+	BYTE		MOD     8
+	BYTE	W12
+	BYTE		VOL     74*mus_obtain_b_points_mvl/mxv
+	BYTE	W12
+	BYTE		        60*mus_obtain_b_points_mvl/mxv
+	BYTE	W12
+	BYTE		        101*mus_obtain_b_points_mvl/mxv
+	BYTE		MOD     1
+	BYTE		N24     An1 
+	BYTE	W12
+	BYTE		VOL     85*mus_obtain_b_points_mvl/mxv
+	BYTE		MOD     8
+	BYTE	W12
+	BYTE		VOL     101*mus_obtain_b_points_mvl/mxv
+	BYTE		MOD     1
+	BYTE		N24     Fs1 
+	BYTE	W12
+	BYTE		VOL     85*mus_obtain_b_points_mvl/mxv
+	BYTE		MOD     8
+	BYTE	W12
+// 003   ----------------------------------------
+	BYTE		VOL     101*mus_obtain_b_points_mvl/mxv
+	BYTE		MOD     1
+	BYTE		N36     En1 
+	BYTE	W12
+	BYTE		VOL     85*mus_obtain_b_points_mvl/mxv
+	BYTE		MOD     7
+	BYTE	W12
+	BYTE		VOL     71*mus_obtain_b_points_mvl/mxv
+	BYTE	W12
+	BYTE		        101*mus_obtain_b_points_mvl/mxv
+	BYTE		MOD     1
+	BYTE		N02     Gs1 
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N06     En1 
+	BYTE	W24
+	BYTE	FINE
+
+//**************** Track 4 (Midi-Chn.4) ****************//
+
+mus_obtain_b_points_4:
+	BYTE	KEYSH   mus_obtain_b_points_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   56
+	BYTE		LFOS    44
+	BYTE		BENDR   12
+	BYTE		PAN     c_v+48
+	BYTE		VOL     96*mus_obtain_b_points_mvl/mxv
+	BYTE	W12
+// 001   ----------------------------------------
+	BYTE		N04     En3   v100
+	BYTE	W04
+	BYTE		        Fs3 
+	BYTE	W04
+	BYTE		        Bn3 
+	BYTE	W04
+// 002   ----------------------------------------
+	BYTE		        En4 
+	BYTE	W12
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N02   
+	BYTE	W08
+	BYTE		N02   
+	BYTE	W08
+	BYTE		N02   
+	BYTE	W08
+	BYTE		        Bn3 
+	BYTE	W08
+	BYTE		        En4 
+	BYTE	W08
+	BYTE		        Fs4 
+	BYTE	W08
+	BYTE		        Ds4 
+	BYTE	W08
+	BYTE		        Fs4 
+	BYTE	W08
+// 003   ----------------------------------------
+	BYTE		MOD     4
+	BYTE		N32     Bn4 
+	BYTE	W12
+	BYTE		VOL     80*mus_obtain_b_points_mvl/mxv
+	BYTE	W12
+	BYTE		MOD     0
+	BYTE		VOL     64*mus_obtain_b_points_mvl/mxv
+	BYTE	W06
+	BYTE		        48*mus_obtain_b_points_mvl/mxv
+	BYTE	W06
+	BYTE		        94*mus_obtain_b_points_mvl/mxv
+	BYTE		N02     Bn3 
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W04
+	BYTE		MOD     4
+	BYTE		N06   
+	BYTE	W24
+	BYTE	FINE
+
+//**************** Track 5 (Midi-Chn.5) ****************//
+
+mus_obtain_b_points_5:
+	BYTE	KEYSH   mus_obtain_b_points_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   47
+	BYTE		LFOS    44
+	BYTE		BENDR   12
+	BYTE		VOL     112*mus_obtain_b_points_mvl/mxv
+	BYTE		PAN     c_v+0
+	BYTE	W12
+// 001   ----------------------------------------
+	BYTE		N02     Bn1   v100
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W04
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE		N32     En2 
+	BYTE	W36
+	BYTE		N02     Gs2 
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N06     En1 
+	BYTE	W24
+	BYTE	FINE
+
+//**************** Track 6 (Midi-Chn.6) ****************//
+
+mus_obtain_b_points_6:
+	BYTE	KEYSH   mus_obtain_b_points_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   83
+	BYTE		LFOS    51
+	BYTE		XCMD    xIECV   18
+	BYTE		        xIECV   16
+	BYTE		BENDR   12
+	BYTE		VOL     64*mus_obtain_b_points_mvl/mxv
+	BYTE		PAN     c_v-62
+	BYTE	W12
+// 001   ----------------------------------------
+	BYTE	W12
+// 002   ----------------------------------------
+	BYTE		N04     Fs3   v088
+	BYTE	W12
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N02   
+	BYTE	W08
+	BYTE		N02   
+	BYTE	W08
+	BYTE		N24     An3 
+	BYTE	W12
+	BYTE		MOD     6
+	BYTE		VOL     32*mus_obtain_b_points_mvl/mxv
+	BYTE	W12
+	BYTE		MOD     1
+	BYTE		VOL     64*mus_obtain_b_points_mvl/mxv
+	BYTE		N24     Fs3   v084
+	BYTE	W12
+	BYTE		MOD     6
+	BYTE		VOL     32*mus_obtain_b_points_mvl/mxv
+	BYTE	W12
+// 003   ----------------------------------------
+	BYTE		MOD     1
+	BYTE		VOL     64*mus_obtain_b_points_mvl/mxv
+	BYTE		N32     Gs2   v088
+	BYTE	W12
+	BYTE		VOL     48*mus_obtain_b_points_mvl/mxv
+	BYTE		MOD     7
+	BYTE	W12
+	BYTE		VOL     32*mus_obtain_b_points_mvl/mxv
+	BYTE	W06
+	BYTE		        16*mus_obtain_b_points_mvl/mxv
+	BYTE	W06
+	BYTE		        64*mus_obtain_b_points_mvl/mxv
+	BYTE		MOD     1
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N06     Gs2   v100
+	BYTE	W24
+	BYTE	FINE
+
+//**************** Track 7 (Midi-Chn.7) ****************//
+
+mus_obtain_b_points_7:
+	BYTE	KEYSH   mus_obtain_b_points_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   80
+	BYTE		LFOS    44
+	BYTE		XCMD    xIECV   18
+	BYTE		        xIECV   16
+	BYTE		BENDR   12
+	BYTE		PAN     c_v+0
+	BYTE		VOL     48*mus_obtain_b_points_mvl/mxv
+	BYTE		BEND    c_v+0
+	BYTE	W12
+// 001   ----------------------------------------
+	BYTE		N04     Bn3   v100
+	BYTE	W04
+	BYTE		        En4 
+	BYTE	W04
+	BYTE		        Fs4 
+	BYTE	W04
+// 002   ----------------------------------------
+	BYTE		        Bn3 
+	BYTE	W12
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N02   
+	BYTE	W08
+	BYTE		N02   
+	BYTE	W08
+	BYTE		N24     Cs4 
+	BYTE	W08
+	BYTE		VOL     40*mus_obtain_b_points_mvl/mxv
+	BYTE	W04
+	BYTE		MOD     6
+	BYTE		VOL     36*mus_obtain_b_points_mvl/mxv
+	BYTE	W04
+	BYTE		        30*mus_obtain_b_points_mvl/mxv
+	BYTE	W04
+	BYTE		        22*mus_obtain_b_points_mvl/mxv
+	BYTE	W04
+	BYTE		MOD     1
+	BYTE		VOL     48*mus_obtain_b_points_mvl/mxv
+	BYTE		N24     Bn3   v096
+	BYTE	W08
+	BYTE		VOL     43*mus_obtain_b_points_mvl/mxv
+	BYTE	W04
+	BYTE		MOD     6
+	BYTE		VOL     37*mus_obtain_b_points_mvl/mxv
+	BYTE	W04
+	BYTE		        30*mus_obtain_b_points_mvl/mxv
+	BYTE	W04
+	BYTE		        20*mus_obtain_b_points_mvl/mxv
+	BYTE	W04
+// 003   ----------------------------------------
+	BYTE		MOD     1
+	BYTE		VOL     48*mus_obtain_b_points_mvl/mxv
+	BYTE		N32     En3   v100
+	BYTE	W12
+	BYTE		VOL     32*mus_obtain_b_points_mvl/mxv
+	BYTE		MOD     7
+	BYTE	W06
+	BYTE		VOL     24*mus_obtain_b_points_mvl/mxv
+	BYTE	W06
+	BYTE		        16*mus_obtain_b_points_mvl/mxv
+	BYTE	W06
+	BYTE		        9*mus_obtain_b_points_mvl/mxv
+	BYTE	W06
+	BYTE		        48*mus_obtain_b_points_mvl/mxv
+	BYTE		MOD     1
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N06   
+	BYTE	W24
+	BYTE	FINE
+
+//**************** Track 8 (Midi-Chn.8) ****************//
+
+mus_obtain_b_points_8:
+	BYTE	KEYSH   mus_obtain_b_points_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   1
+	BYTE		PAN     c_v+0
+	BYTE		VOL     122*mus_obtain_b_points_mvl/mxv
+	BYTE	W12
+// 001   ----------------------------------------
+	BYTE	W12
+// 002   ----------------------------------------
+	BYTE		N48     An2   v100
+	BYTE	W48
+	BYTE		N24     En2 
+	BYTE	W24
+	BYTE		        Cs2 
+	BYTE	W24
+// 003   ----------------------------------------
+	BYTE	W48
+	BYTE		N06   
+	BYTE	W24
+	BYTE	FINE
+
+//**************** Track 9 (Midi-Chn.9) ****************//
+
+mus_obtain_b_points_9:
+	BYTE	KEYSH   mus_obtain_b_points_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   127
+	BYTE		LFOS    44
+	BYTE		XCMD    xIECV   18
+	BYTE		        xIECV   16
+	BYTE		BENDR   12
+	BYTE		PAN     c_v+0
+	BYTE		VOL     64*mus_obtain_b_points_mvl/mxv
+	BYTE	W12
+// 001   ----------------------------------------
+	BYTE		N01     An3   v064
+	BYTE	W02
+	BYTE		N01   
+	BYTE	W02
+	BYTE		N01   
+	BYTE	W02
+	BYTE		N01   
+	BYTE	W02
+	BYTE		N01   
+	BYTE	W02
+	BYTE		N01   
+	BYTE	W02
+// 002   ----------------------------------------
+	BYTE		        An3   v096
+	BYTE	W12
+	BYTE		        An3   v064
+	BYTE	W04
+	BYTE		N01   
+	BYTE	W04
+	BYTE		N01   
+	BYTE	W04
+	BYTE		N01   
+	BYTE	W08
+	BYTE		N01   
+	BYTE	W08
+	BYTE		N01   
+	BYTE	W08
+	BYTE		N01   
+	BYTE	W08
+	BYTE		N01   
+	BYTE	W08
+	BYTE		N01   
+	BYTE	W08
+	BYTE		N01   
+	BYTE	W08
+	BYTE		        An3   v080
+	BYTE	W08
+	BYTE		N01   
+	BYTE	W08
+// 003   ----------------------------------------
+	BYTE		N02     Cn5 
+	BYTE	W04
+	BYTE		N01     An3   v048
+	BYTE	W02
+	BYTE		N01   
+	BYTE	W02
+	BYTE		N01   
+	BYTE	W02
+	BYTE		N01   
+	BYTE	W02
+	BYTE		N01   
+	BYTE	W02
+	BYTE		N01   
+	BYTE	W02
+	BYTE		N01   
+	BYTE	W02
+	BYTE		N01   
+	BYTE	W02
+	BYTE		N01   
+	BYTE	W02
+	BYTE		N01   
+	BYTE	W02
+	BYTE		N01   
+	BYTE	W02
+	BYTE		N01   
+	BYTE	W02
+	BYTE		N01   
+	BYTE	W02
+	BYTE		N01   
+	BYTE	W02
+	BYTE		N01   
+	BYTE	W02
+	BYTE		N01   
+	BYTE	W02
+	BYTE		        An3   v064
+	BYTE	W04
+	BYTE		N01   
+	BYTE	W04
+	BYTE		N01   
+	BYTE	W04
+	BYTE		N02     Cn5   v080
+	BYTE	W24
+	BYTE	FINE
+
+//******************************************************//
+	ALIGN 4
+
+mus_obtain_b_points:
+	BYTE	9	// NumTrks
+	BYTE	0	// NumBlks
+	BYTE	mus_obtain_b_points_pri	// Priority
+	BYTE	mus_obtain_b_points_rev	// Reverb.
+
+	POIN2	mus_obtain_b_points_grp
+
+	POIN2	mus_obtain_b_points_1
+	POIN2	mus_obtain_b_points_2
+	POIN2	mus_obtain_b_points_3
+	POIN2	mus_obtain_b_points_4
+	POIN2	mus_obtain_b_points_5
+	POIN2	mus_obtain_b_points_6
+	POIN2	mus_obtain_b_points_7
+	POIN2	mus_obtain_b_points_8
+	POIN2	mus_obtain_b_points_9
+
+	

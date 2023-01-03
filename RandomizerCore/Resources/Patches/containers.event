@@ -1,0 +1,44 @@
+#ifndef chuContainerItem
+	#define chuContainerItem 0x62
+#endif
+#ifndef chuContainerSub
+	#define chuContainerSub 0x00
+#endif
+#ifndef gleerokContainerItem
+	#define gleerokContainerItem 0x62
+#endif
+#ifndef gleerokContainerSub
+	#define gleerokContainerSub 0x00
+#endif
+#ifndef mazaalContainerItem
+	#define mazaalContainerItem 0x62
+#endif
+#ifndef mazaalContainerSub
+	#define mazaalContainerSub 0x00
+#endif
+#ifndef octoContainerItem
+	#define octoContainerItem 0x62
+#endif
+#ifndef octoContainerSub
+	#define octoContainerSub 0x00
+#endif
+#ifndef gyorgContainerItem
+	#define gyorgContainerItem 0x62
+#endif
+#ifndef gyorgContainerSub
+	#define gyorgContainerSub 0x00
+#endif
+
+//set the new container items
+PUSH; ORG $DF07B; BYTE chuContainerItem chuContainerSub; POP
+PUSH; ORG $E0F43; BYTE gleerokContainerItem gleerokContainerSub; POP
+PUSH; ORG $E22E7; BYTE mazaalContainerItem mazaalContainerSub; POP
+PUSH; ORG $E4103; BYTE octoContainerItem octoContainerSub; POP
+PUSH; ORG $E6A23; BYTE gyorgContainerItem gyorgContainerSub; POP
+
+//change the sprite loading routine
+PUSH; ORG $126108; WORD 2; POIN $125B20; POP
+
+//use ids and sub ids for the containers
+PUSH; ORG $8E05C; SHORT 0x7AA0 0x7AE1; POP
+PUSH; ORG $8DF8A; SHORT 0; POP

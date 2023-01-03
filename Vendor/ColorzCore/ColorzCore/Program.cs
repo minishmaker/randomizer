@@ -13,6 +13,7 @@ namespace ColorzCore
         private const int ExitSuccess = 0;
         private const int ExitFailure = 1;
         public static bool Debug = false;
+        public static Stream CustomOutputStream { get; set; }
 
         private static string[] _helpstringarr =
         {
@@ -91,7 +92,7 @@ namespace ColorzCore
 
                             case "output":
                                 outFileName = flag[1];
-                                outStream = File.Open(outFileName, FileMode.Open,
+                                outStream = CustomOutputStream ?? File.Open(outFileName, FileMode.Open,
                                     FileAccess.ReadWrite); //TODO: Handle file not found exceptions
                                 break;
 

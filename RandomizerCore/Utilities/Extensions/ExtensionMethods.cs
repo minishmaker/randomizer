@@ -42,28 +42,7 @@ public static class ExtensionMethods
         }
     }
 
-    public static byte Crc8(this byte[] bytes)
-    {
-        var table = new byte[256];
-        const byte poly = 0xd5; //See wikipedia for CRC
 
-        for (var i = 0; i < 256; ++i)
-        {
-            var temp = i;
-            for (var j = 0; j < 8; ++j)
-                if ((temp & 0x80) != 0)
-                    temp = (temp << 1) ^ poly;
-                else
-                    temp <<= 1;
-            table[i] = (byte)temp;
-        }
-
-        byte crc = 0;
-        if (bytes != null && bytes.Length > 0)
-            crc = bytes.Aggregate(crc, (current, b) => table[current ^ b]);
-
-        return crc;
-    }
 
     public static BigInteger ParseBigIntegerFromByteArray(this byte[] bytes, int stoppingIndex = 0)
     {
@@ -76,5 +55,21 @@ public static class ExtensionMethods
         }
 
         return value;
+    }
+
+    public static byte[] UintToByteArrayLE(this uint value)
+    {
+        return new[]
+        {
+            (byte)(value & 0xFF),
+            (byte)((value & 0xFF00) >> 8),
+            (byte)((value & 0xFF0000) >> 16),
+            (byte)((value & 0xFF000000) >> 24),
+        };
+    }
+
+    public static uint ByteArrayToUintLE(this byte[] bytes, ref int offset)
+    {
+        return (uint)(bytes[offset] | (bytes[offset + 1] << 8) | (bytes[offset + 2] << 16) | (bytes[offset + 3] << 24));
     }
 }

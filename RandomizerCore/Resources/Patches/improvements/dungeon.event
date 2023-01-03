@@ -1,0 +1,232 @@
+//keys, maps, etc, can have the area they are for as a sub id
+PUSH; ORG $5231E; SHORT 0; POP //keys can be collected anywhere
+PUSH; ORG $52320; jumpToHack(keysSub); POP
+ALIGN 4
+keysSub:
+#incbin "asm/keysSub.dmp"
+PUSH; ORG $53CF4; jumpToHack(dungeonSub); POP
+ALIGN 4
+dungeonSub:
+#incbin "asm/dungeonSub.dmp"
+
+//press select in dungeon map to look at world map (and select again to go back)
+PUSH; ORG $A47E4; jumpToHack(mapSwap); POP
+ALIGN 4
+mapSwap:
+#incbin "asm/mapSwap.dmp"
+
+//show small keys and other items for the dungeons on hover in the world map
+PUSH; ORG $A67FC; jumpToHack(dungeonDisplay); POP
+ALIGN 4
+dungeonDisplay:
+#incbin "asm/dungeonDisplay.dmp"
+POIN dungeonDisplayGraphics
+POIN dungeonDisplayTable
+POIN dungeonMapsTable
+POIN dungeonDisplayKeys
+ALIGN 4
+dungeonDisplayGraphics:
+#incbin "dungeonItems.img.bin"
+ALIGN 4
+dungeonDisplayKeys:
+#incbin "dungeonKeys.img.bin"
+ALIGN 4
+dungeonDisplayTable:
+BYTE 0x1C 0x18 //dws
+BYTE 0x0B 0x19 //cof
+BYTE 0x0E 0x1A //fow
+BYTE 0x1B 0x1B //tod
+BYTE 0x1A 0x1C //pow
+BYTE 0x12 0x1D //dhc
+BYTE 0x0F 0x1E //rc
+BYTE 0x00 0x00 //terminator
+ALIGN 4
+dungeonMapsTable:
+BYTE 0x02 //0x00
+BYTE 0x00 //0x01
+BYTE 0x00 //0x02
+BYTE 0x03 //0x03
+BYTE 0x00 //0x04
+BYTE 0x00 //0x05
+BYTE 0x00 //0x06
+BYTE 0x06 //0x07
+BYTE 0x00 //0x08
+BYTE 0x00 //0x09
+BYTE 0x00 //0x0A
+BYTE 0x00 //0x0B
+BYTE 0x00 //0x0C
+BYTE 0x00 //0x0D
+BYTE 0x05 //0x0E
+BYTE 0x04 //0x0F
+BYTE 0x01 //0x10
+
+//restore dungeon map constantly
+PUSH; ORG $517FC; jumpToHack(dungeonRestore); POP
+ALIGN 4
+dungeonRestore:
+#incbin "asm/dungeonRestore.dmp"
+
+//when looking at a dungeon map other than the current one, start at floor 0
+PUSH; ORG $A4610; jumpToHack(dungeonFloor); POP
+ALIGN 4
+dungeonFloor:
+#incbin "asm/dungeonFloor.dmp"
+
+//when looking at a map for a dungeon we are not in, do not display link
+PUSH; ORG $A552C; jumpToHack(dungeonNoLink); POP
+ALIGN 4
+dungeonNoLink:
+#incbin "asm/dungeonNoLink.dmp"
+
+//fix dungeon maps when looking at them from overwrold
+PUSH; ORG $1DDEC; SHORT 0xE000; POP
+PUSH; ORG $52388; SHORT 0; POP
+PUSH; ORG $523C0; SHORT 0; POP
+PUSH; ORG $523F0; SHORT 0; POP
+
+//dungeon items tell you what dungeon they are for if sub id is not 0
+//it now also does the same for golden kinstones
+//it also handles pretty much all of figurine hunt... maybe I should rename this sometime
+PUSH; ORG $53E14; jumpToHack(keysanityPopup); POP
+ALIGN 4
+keysanityPopup:
+#incbin "asm/keysanityPopup.dmp"
+POIN getTextOffset
+
+#ifdef historyOption
+	#ifndef counterOption
+		PUSH; ORG $1C4F4; SHORT 0 0; POP
+	#endif
+	PUSH; ORG $1C4F8; jumpToHack(keysanityHistory); POP
+	ALIGN 4
+	keysanityHistory:
+	#incbin "asm/keysanityHistory.dmp"
+	POIN drawTextHistory
+	POIN historyTable
+	//figure out how many lines are being occupied by other displays
+	#ifdef timerOption
+		#ifdef counterOption
+			WORD 2
+		#else
+			WORD 1
+		#endif
+	#else
+		#ifdef counterOption
+			WORD 1
+		#else
+			WORD 0
+		#endif
+	#endif
+	WORD historyOption
+	
+	ALIGN 4
+	drawTextHistory:
+	#incbin "asm/drawTextHistory.dmp"
+
+	//a table of short strings for the pickup history display
+	ALIGN 4
+	historyTable:
+	WORD 0 //first entry goes unused
+	//golden kinstones
+	POIN cloudHistory
+	POIN swampHistory
+	POIN fallsHistory
+	//small and big keys
+	POIN bossHistoryDWS
+	POIN smolHistoryDWS
+	POIN bossHistoryCOF
+	POIN smolHistoryCOF
+	POIN bossHistoryFOW
+	POIN smolHistoryFOW
+	POIN bossHistoryTOD
+	POIN smolHistoryTOD
+	POIN bossHistoryPOW
+	POIN smolHistoryPOW
+	POIN bossHistoryDHC
+	POIN smolHistoryDHC
+	POIN bossHistoryRC
+	POIN smolHistoryRC
+	
+	//scrolls and butterflies
+	POIN scrollHistorySpinAttack
+	POIN scrollHistoryRollAttack
+	POIN scrollHistoryDashAttack
+	POIN scrollHistoryRockBreaker
+	POIN scrollHistorySwordBeam
+	POIN scrollHistoryGreatSpin
+	POIN scrollHistoryDownThrust
+	POIN scrollHistoryPerilBeam
+	POIN butterflyHistoryBow
+	POIN butterflyHistoryDig
+	POIN butterflyHistorySwim
+	POIN scrollHistoryFastSpin
+	POIN scrollHistoryFastSplit
+	POIN scrollHistoryLongSpin
+
+	cloudHistory:
+	String("Cloud stone"); BYTE 0
+	swampHistory:
+	String("Swamp stone"); BYTE 0
+	fallsHistory:
+	String("Falls stone"); BYTE 0
+
+	bossHistoryDWS:
+	String("DWS Big"); BYTE 0
+	smolHistoryDWS:
+	String("DWS Small"); BYTE 0
+	bossHistoryCOF:
+	String("COF Big"); BYTE 0
+	smolHistoryCOF:
+	String("COF Small"); BYTE 0
+	bossHistoryFOW:
+	String("FOW Big"); BYTE 0
+	smolHistoryFOW:
+	String("FOW Small"); BYTE 0
+	bossHistoryTOD:
+	String("TOD Big"); BYTE 0
+	smolHistoryTOD:
+	String("TOD Small"); BYTE 0
+	bossHistoryPOW:
+	String("POW Big"); BYTE 0
+	smolHistoryPOW:
+	String("POW Small"); BYTE 0
+	bossHistoryDHC:
+	String("DHC Big"); BYTE 0
+	smolHistoryDHC:
+	String("DHC Small"); BYTE 0
+	bossHistoryRC:
+	String("RC  Big"); BYTE 0
+	smolHistoryRC:
+	String("RC  Small"); BYTE 0
+	
+	scrollHistorySpinAttack:
+	String("Spin attack"); BYTE 0
+	scrollHistoryRollAttack:
+	String("Roll attack"); BYTE 0
+	scrollHistoryDashAttack:
+	String("Dash attack"); BYTE 0
+	scrollHistoryRockBreaker:
+	String("Rock breaker"); BYTE 0
+	scrollHistorySwordBeam:
+	String("Sword beam"); BYTE 0
+	scrollHistoryGreatSpin:
+	String("Great spin"); BYTE 0
+	scrollHistoryDownThrust:
+	String("Down thrust"); BYTE 0
+	scrollHistoryPerilBeam:
+	String("Peril beam"); BYTE 0
+	
+	butterflyHistoryBow:
+	String("Bow butterfly"); BYTE 0
+	butterflyHistoryDig:
+	String("Dig butterfly"); BYTE 0
+	butterflyHistorySwim:
+	String("Swim butterfly"); BYTE 0
+	
+	scrollHistoryFastSpin:
+	String("Fast spin"); BYTE 0
+	scrollHistoryFastSplit:
+	String("Fast split"); BYTE 0
+	scrollHistoryLongSpin:
+	String("Long spin"); BYTE 0
+#endif

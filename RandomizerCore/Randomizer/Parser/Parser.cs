@@ -4,6 +4,7 @@ using RandomizerCore.Randomizer.Exceptions;
 using RandomizerCore.Randomizer.Logic.Dependency;
 using RandomizerCore.Randomizer.Logic.Location;
 using RandomizerCore.Randomizer.Models;
+using RandomizerCore.Utilities.Logging;
 using RandomizerCore.Utilities.Models;
 using RandomizerCore.Utilities.Util;
 
@@ -345,9 +346,12 @@ public class Parser
 
     public List<Location> ParseLocations(string[] lines, Random rng)
     {
+        Logger.Instance.BeginLogTransaction();
         var outList = new List<Location>();
-        foreach (var locationLine in lines)
+        for (var index = 0; index < lines.Length; ++index)
         {
+            var locationLine = lines[index];
+            
             // Spaces are ignored, and everything after a # is a comment
             var locationString = locationLine.Split('#')[0].Trim();
 
@@ -375,7 +379,8 @@ public class Parser
                         }
                         catch (ParserException error)
                         {
-                            throw new ParserException($"Error at directive \"{locationString}\": {error.Message}");
+                            Logger.Instance.LogError($"Failed to parse line {index + 1}!");
+                            throw new ParserException($"Error at line \"{index + 1}\", directive \"{locationString}\": {error.Message}");
                         }
                 }
                 else
@@ -393,6 +398,7 @@ public class Parser
                 // Only parse directives to check for conditionals
                 if (locationString[0] == '!') SubParser.ParseDirective(locationString);
             }
+            Logger.Instance.SaveLogTransaction();
         }
 
         return outList;

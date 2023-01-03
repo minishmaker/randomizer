@@ -4,6 +4,7 @@ using RandomizerCore.Randomizer.Exceptions;
 using RandomizerCore.Randomizer.Logic.Defines;
 using RandomizerCore.Randomizer.Logic.Options;
 using RandomizerCore.Randomizer.Models;
+using RandomizerCore.Utilities.Logging;
 using RandomizerCore.Utilities.Models;
 using RandomizerCore.Utilities.Util;
 
@@ -22,8 +23,8 @@ public class DirectiveParser
 	public Dictionary<Item, List<ItemAmountSet>> IncrementalReplacements;
 	private readonly Dictionary<Item, List<int>> _incrementalReplacementsTemplate;
 	public Dictionary<Item, LocationType> LocationTypeOverrides;
-	public string LogicName;
-	public string LogicVersion;
+	public string? LogicName;
+	public string? LogicVersion;
 	public List<LogicOptionBase> Options;
 	public Dictionary<Item, ChanceItemSet> Replacements;
 	public uint? RomCrc;
@@ -276,12 +277,12 @@ public class DirectiveParser
 		return bytes;
 	}
 
-	public byte[] GetGimmickBytes()
+	public byte[] GetCosmeticBytes()
 	{
-		var gimmicks = Options.Where(option => option.Type == LogicOptionType.Cosmetic).ToList();
-		var bytes = new byte[gimmicks.Count];
+		var cosmetics = Options.Where(option => option.Type == LogicOptionType.Cosmetic).ToList();
+		var bytes = new byte[cosmetics.Count];
 
-		for (var i = 0; i < gimmicks.Count; i++) bytes[i] = gimmicks[i].GetHashByte();
+		for (var i = 0; i < cosmetics.Count; i++) bytes[i] = cosmetics[i].GetHashByte();
 
 		return bytes;
 	}
@@ -357,7 +358,7 @@ public class DirectiveParser
 		{
 			if (define.CanReplace(outString)) outString = define.Replace(outString);
 
-			if (outString.IndexOf("`") == -1) return outString;
+			if (outString.IndexOf("`", StringComparison.Ordinal) == -1) return outString;
 		}
 
 		throw new ParserException($"{locationString} has an invalid/undefined define!");
@@ -365,7 +366,7 @@ public class DirectiveParser
 
 	public bool ShouldIgnoreLines()
 	{
-		Console.WriteLine(_ifCounter);
+		Logger.Instance.LogInfo($"If Counter: {_ifCounter}");
 		return _ifCounter != 0;
 	}
 
@@ -563,7 +564,7 @@ public class DirectiveParser
 
 	private LogicOptionBase ParseDropdownDirective(string[] directiveParts)
 	{
-		if (directiveParts.Length % 2 != 1 || directiveParts.Length < 7)
+		if (directiveParts.Length % 2 != 0 || directiveParts.Length < 8)
 			throw new ParserException("A dropdown somewhere has an incorrect number of parameters!");
 
 		var optionType = GetOptionType(directiveParts[2]);
@@ -572,7 +573,7 @@ public class DirectiveParser
 			throw new ParserException($"A dropdown somewhere has an invalid type! ({directiveParts[2]})");
 
 		var selectionDict = new Dictionary<string, string>(directiveParts.Length / 2 - 1);
-		for (var i = 5; i < directiveParts.Length; i += 2) selectionDict.Add(directiveParts[i], directiveParts[i + 1]);
+		for (var i = 6; i < directiveParts.Length; i += 2) selectionDict.Add(directiveParts[i], directiveParts[i + 1]);
 
 		return new LogicDropdown(directiveParts[4], directiveParts[5], directiveParts[3], directiveParts[1], optionType, selectionDict);
 	}
