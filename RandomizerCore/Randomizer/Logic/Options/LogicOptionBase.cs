@@ -22,6 +22,7 @@ public abstract class LogicOptionBase
     public LogicOptionType Type { get; set; }
     public string SettingGroup { get; set; }
     public string SettingPage { get; set; }
+    public List<string> ToolTips { get; set; }
 
     public abstract List<LogicDefine> GetLogicDefines();
 

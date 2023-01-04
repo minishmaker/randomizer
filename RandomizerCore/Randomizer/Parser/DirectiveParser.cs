@@ -611,14 +611,17 @@ public class DirectiveParser
 
 	private LogicOptionBase ParseNumberboxDirective(string[] directiveParts)
 	{
-		if (directiveParts.Length != 6)
+		if (directiveParts.Length != 7)
 			throw new ParserException("A numberbox somewhere has an incorrect number of parameters!");
 
 		var optionType = GetOptionType(directiveParts[2]);
 
 		if (optionType == LogicOptionType.Untyped)
 			throw new ParserException($"A numberbox somewhere has an invalid type! ({directiveParts[2]})");
+		
+		if (!int.TryParse(directiveParts[6], out var defaultValue))
+			throw new ParserException($"Numberbox has invalid default value! ({directiveParts[6]})");
 
-		return new LogicNumberBox(directiveParts[4], directiveParts[5], directiveParts[3], directiveParts[1], optionType);
+		return new LogicNumberBox(directiveParts[4], directiveParts[5], directiveParts[3], directiveParts[1], defaultValue, optionType);
 	}
 }

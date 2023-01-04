@@ -3,6 +3,8 @@
 public static class Constants
 {
     public static int TopRowAboveSpacing => 15;
+    public static int FirstElementInRowX => 10;
+    public static int WidthMargin => 10;
 
     public static int CategorySpacing => 20;
 
@@ -13,8 +15,18 @@ public static class Constants
     public static int CategoryWidth => 760;
 
     public static BorderStyle CategoryBorderStyle => BorderStyle.FixedSingle;
+    public static Color DefaultBackgroundColor => Color.White;
 
     public static bool CategoryLabelsUseAutosize => true;
 
     public static bool LabelsAndCheckboxesUseAutoEllipsis => true;
+
+    public static int DefaultStartingPaneX => 6;
+
+    public static int DefaultStartingPaneY => 15;
+    
+    public const int TotalColorPickersPerRow = 1;
+    public const int TotalNumberBoxesPerRow = 2;
+    public const int TotalDropdownsPerRow = 2;
+    public const int TotalFlagsPerRow = 3;
 }

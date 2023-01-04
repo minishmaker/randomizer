@@ -8,12 +8,13 @@ public class FlagWrapper : WrapperBase
     private const int DefaultBottomMargin = 6;
     private const int Width = 240;
     private const int Height = 19;
+    private new const int ElementHeight = Height + DefaultBottomMargin;
 
     private CheckBox? _checkBox;
     
     private LogicFlag _flag;
 
-    public FlagWrapper(LogicFlag flag) : base(DefaultBottomMargin, Width)
+    public FlagWrapper(LogicFlag flag) : base(Width, ElementHeight, flag.SettingGroup, flag.SettingPage)
     {
         _flag = flag;
     }
@@ -32,7 +33,16 @@ public class FlagWrapper : WrapperBase
             Height = Height,
             Width = Width,
             Checked = _flag.Active,
+            Text = _flag.NiceName,
         };
+
+        var tip = new ToolTip();
+
+        tip.UseFading = true;
+        tip.InitialDelay = 1000;
+        tip.ReshowDelay = 500;
+        tip.ShowAlways = true;
+        tip.SetToolTip(_checkBox, _flag.NiceName);
 
         _checkBox.CheckedChanged += (object sender, EventArgs e) =>
         {

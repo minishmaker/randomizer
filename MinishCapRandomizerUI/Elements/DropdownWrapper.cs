@@ -11,13 +11,14 @@ public class DropdownWrapper : WrapperBase
     private const int DropdownWidth = 130;
     private const int DropdownHeight = 23;
     private const int DropdownAlign = -2;
-    private new const int ElementWidth = TextWidth + DropdownWidth + WidthMargin;
+    private new static readonly int ElementWidth = TextWidth + DropdownWidth + Constants.WidthMargin;
+    private new const int ElementHeight = TextHeight + DefaultBottomMargin;
 
     private Label? _label;
     private ComboBox? _comboBox;
     private LogicDropdown _dropdown;
 
-    public DropdownWrapper(LogicDropdown dropdown) : base(DefaultBottomMargin, ElementWidth)
+    public DropdownWrapper(LogicDropdown dropdown) : base(ElementWidth, ElementHeight, dropdown.SettingGroup, dropdown.SettingPage)
     {
         _dropdown = dropdown;
     }
@@ -36,6 +37,7 @@ public class DropdownWrapper : WrapperBase
             Location = new Point(initialX, initialY),
             Height = TextHeight,
             Width = TextWidth,
+            TextAlign = ContentAlignment.MiddleRight,
         };
 
         _comboBox = new ComboBox
@@ -43,7 +45,7 @@ public class DropdownWrapper : WrapperBase
             AutoSize = false,
             Name = _dropdown.Name,
             Text = _dropdown.NiceName,
-            Location = new Point(initialX + TextWidth + WidthMargin, initialY + DropdownAlign),
+            Location = new Point(initialX + TextWidth + Constants.WidthMargin, initialY + DropdownAlign),
             Height = DropdownHeight,
             Width = DropdownWidth,
             SelectedText = _dropdown.Selection,

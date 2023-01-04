@@ -9,10 +9,12 @@ public class LogicNumberBox : LogicOptionBase
     public bool isSelf = false;
     public string placeholder = "";
     public string Value = "";
+    public int DefaultValue { get; }
 
-    public LogicNumberBox(string name, string niceName, string settingGroup, string settingPage, LogicOptionType type) :
+    public LogicNumberBox(string name, string niceName, string settingGroup, string settingPage, int defaultValue, LogicOptionType type) :
         base(name, niceName, true, settingGroup, settingPage, type)
     {
+        DefaultValue = defaultValue;
     }
 
     public override List<LogicDefine> GetLogicDefines()

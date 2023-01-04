@@ -131,6 +131,8 @@
             // 
             // OldConcept
             // 
+            this.OldConcept.AutoScroll = true;
+            this.OldConcept.BackColor = System.Drawing.Color.White;
             this.OldConcept.Controls.Add(this.label53);
             this.OldConcept.Controls.Add(this.panel5);
             this.OldConcept.Controls.Add(this.label49);
@@ -153,7 +155,6 @@
             this.OldConcept.Size = new System.Drawing.Size(772, 635);
             this.OldConcept.TabIndex = 0;
             this.OldConcept.Text = "Old Concept";
-            this.OldConcept.UseVisualStyleBackColor = true;
             // 
             // label53
             // 
@@ -730,6 +731,7 @@
             this.Controls.Add(this.TabPane);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
+            this.MaximizeBox = false;
             this.Name = "MinishCapRandomizerUI";
             this.Text = "Minish Cap Randomizer v0.7.0a (UNDER DEVELOPMENT)";
             this.menuStrip1.ResumeLayout(false);

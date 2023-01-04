@@ -41,11 +41,11 @@
 # !endif                  : needed to mark the end of an ifdef, ifndef and else blocks.
 #
 # = Window Elements =
-# (window tab) is what tab the element shows up in, can be anything, (setting type) is the type of the setting, either Setting or Cosmetic, (setting group) is the grouping for the setting so similar settings can be placed together on the UI, and(readable text) is the text written next to the element
-# !flag - (window tab) - (setting type) - (setting group) - (define name) - (readable text) - [default value] 													: adds a checkbox that sets (define name) if checked, defaults to false unless [default value] exists and is "true".
-# !dropdown - (window tab) - (setting type) - (setting group) - (define name) - (readable text) ~(readable text) - (define name) ~            					: requires sets of "(define name) - (readable name)", each set adds a new entry to the dropdown, the selected option will have its define set, the first option is the default value.
-# !numberbox - (window tab) - (setting type) - (setting group) - (define name) - (readable text) - (default value)             									: a textbox where you can input a number, (define name) will be set to the number that was input, (default value) is the value to set the box to when the UI is drawn and when illegal input is used.
-# !color - (window tab) - (setting type) - (setting group) - (define name) - (readable text) - ~ [default color R] - [default color G] - [default color B] ~ 	: adds a color picker, the default color is white if no hexadecimal [default color R/G/B] is set, (define name) is set if the color is changed, (define name)_X is set to the color in set X starting from 0.
+# (window tab) is what tab the element shows up in, can be anything, (setting type) is the type of the setting, either Setting or Cosmetic, (setting group) is the grouping for the setting so similar settings can be placed together on the UI, (readable text) is the text written next to the element, and (tooltip text) is a detailed description that shows when the use hovers their mouse over the text
+# !flag - (window tab) - (setting type) - (setting group) - (define name) - (readable text) - (tooltip text) - [default value] 													: adds a checkbox that sets (define name) if checked, defaults to false unless [default value] exists and is "true".
+# !dropdown - (window tab) - (setting type) - (setting group) - (define name) - (readable text) - (tooltip text) ~ (readable text) - (define name) - (tooltip text) ~           : requires sets of "(define name) - (readable name)", each set adds a new entry to the dropdown, the selected option will have its define set, the first option is the default value.
+# !numberbox - (window tab) - (setting type) - (setting group) - (define name) - (readable text) - (tooltip text) - (default value)           									: a textbox where you can input a number, (define name) will be set to the number that was input, (default value) is the value to set the box to when the UI is drawn and when illegal input is used.
+# !color - (window tab) - (setting type) - (setting group) - (define name) - (readable text) - (tooltip text) - ~ [default color R] - [default color G] - [default color B] ~ 	: adds a color picker, the default color is white if no hexadecimal [default color R/G/B] is set, (define name) is set if the color is changed, (define name)_X is set to the color in set X starting from 0.
 # 
 # = Parser Commands = 
 # !replace - (item) - (chance set)                     : replaces all occurrences of (item) with a random spread of items in (chance set), (chance set) consists of 1 or more "Items.(type).[subtype]:[dungeon id]:[weight]" entries split up by ,'s and ended with an ; .
@@ -66,42 +66,67 @@
 
 #Settings options displayed in the rando UI
 
-!dropdown - Setting - Setting - Testing - KEYS_SETTING - Shuffle Keys - Keys inside Dungeons - KEYS_STANDARD - Keys not Shuffled - KEYS_VANILLA - Keys in the vicinity of Dungeons - KEYS_OUTSIDE - Keys removed and Doors opened (Keasy) - KEASY - Keys shuffled Anywhere (Keysanity) - KEYSANITY 
-!flag - Setting - Setting - Testing - HUNDO - Items can lock themselves
-!dropdown - Setting - Setting - Testing - DUNGEON - Non-Element Dungeons Required - DUNGEON - Standard Dungeons - NONE - NonElement Dungeons are Unrequired - BARREN - NonElement Dungeons plus Surroundings are Unrequired - BARRENSUR - Shuffle elements into item pool - SHUFFLE_ELEMENTS
-!flag - Setting - Setting - Testing - GLITCHLESS - Disable glitches
-!flag - Setting - Setting - Testing - WHYWOULDYOUDOTHISTOYOURSELF - Obscure spots
-!flag - Setting - Setting - Testing - RUPEEMANIA - Add available rupees to pool
-!flag - Setting - Setting - Testing - WEAPONS - Damaging items other than sword seen as weapons
-!flag - Setting - Setting - Testing - TRAPS - Shuffle traps in itempool
-!flag - Setting - Setting - Testing - TIMEDOHKO - Die in one hit if the timer runs out
-!flag - Setting - Setting - Testing - MUSIC_RANDO - Randomize Music
-!flag - Setting - Setting - Testing - FIREROD - Start with the Firerod
-!flag - Setting - Setting - Testing - AD_PED - Require dungeons to access the pedestal
-!numberbox - Setting - Setting - Testing - AD_PED_NUM - Number of Dungeons required (Max 6)
-!dropdown - Setting - Setting - Testing - ITEM_POOL - Item Pool - Normal item pool - ITEM_POOL_NORMAL - Reduced item pool - ITEM_POOL_RIP - Plentiful item pool - ITEM_POOL_PLENTIFUL
-!dropdown - Setting - Setting - Testing - FUSION_SETTING - Fusion Settings - Removed NonGold fusions - NO_FUSIONS - Completed NonGold fusions - OPENFUSIONS - Open World - OPENWORLD
-!dropdown - Setting - Setting - Testing - FUSION_SKIPS - Fusion Cutscene Skips - Allow fusion skips - ALLOW_FUSION_SKIPS - Instant fusion skip - INSTANT_SKIP - No fusion skips - NO_FUSION_SKIP
-!dropdown - Setting - Setting - Testing - DHC_SETTING - DHC Settings - Ped Open/Regular DHC - NORMALDHC - Ped Finish/No DHC - NODHC - Open DHC - OPENDHC - Open DHC + Ped Items - PEDITEMS
-!flag - Setting - Setting - Testing - FIGURINE_HUNT - Shuffle figurines into item pool (Must set values in following boxes)
-!numberbox - Setting - Setting - Testing - FIGURINE_COUNT - Figurine count
-!numberbox - Setting - Setting - Testing - FIGURINE_EXTRA - Extra figurines
 
-# these 2 are only valid outside of openDHC modes, if both are set to 0 it defaults to 4 elements
-!dropdown - Setting - Setting - Testing - SWORD_SETTING - Pedestal Sword Requirement - No Sword Ped - 0SWORD - Smith Sword Ped - 1 - White Sword Ped - 2 - Red Sword Ped - 3 - Blue Sword Ped - 4 - Four Sword Ped - 5
-!dropdown - Setting - Setting - Testing - ELEMENT_SETTING - Pedestal Element Requirement - 4 Element Ped - 4 - 3 Element Ped - 3 - 2 Element Ped - 2 - 1 Element Ped - 1 - No Element Ped - 0ELEMENT
+!dropdown - Main Settings - Setting - Dungeon Settings - SMALL_KEYS_SETTING - Small Keys are: - In vanilla locations - SMALL_KEYS_VANILLA - In Dungeons - SMALL_KEYS_STANDARD - Removed (Keasy) - SMALL_KEASY - Anywhere (Keysanity) - SMALL_KEYSANITY 
+!dropdown - Main Settings - Setting - Dungeon Settings - BIG_KEYS_SETTING - Big Keys are: - In vanilla locations - BIG_KEYS_VANILLA - In Dungeons - BIG_KEYS_STANDARD - Removed (Keasy) - BIG_KEASY - Anywhere (Keysanity) - BIG_KEYSANITY 
+!dropdown - Main Settings - Setting - Dungeon Settings - COMPASS_SETTING - Maps & Compasses are: - In vanilla locations - COMPASS_VANILLA - In Dungeons - COMPASS_STANDARD - In starting inventory - COMPASS_KEASY - Anywhere (Keysanity) - COMPASS_KEYSANITY 
+!flag - Main Settings - Setting - Dungeon Settings - KEYS_OUTSIDE - Keys/Maps/Compass can be shuffled in the vicinity of their dungeon (Regional)
+!flag - Main Settings - Setting - Dungeon Settings - KEYS_DUNGEONS - Keys/Maps/Compass are shuffled between any dungeon (Leave off for their own Dungeon)
+!dropdown - Main Settings - Setting - Dungeon Settings - DUNGEON - Dungeon Rewards: - Elements Shuffled as Prizes - NONE - NonElement Dungeons are Unrequired - UNREQ - NonElement Dungeons are Barren - BARREN - NonElement Dungeons plus Surroundings are Unrequired - UNREQSUR - NonElement Dungeons plus Surroundings are Barren - BARRENSUR - Elements Shuffled into item pool - SHUFFLE_ELEMENTS
+
+!dropdown - Main Settings - Setting - Dark Hyrule Castle Requirements - DHC_SETTING - DHC Opens: - After Requirements met in Sanctuary - NORMALDHC - Never (Game ends in Sanctuary) - NODHC - From the Start - OPENDHC - From the Start + Pedestal has Items - PEDITEMS
+!dropdown - Main Settings - Setting - Dark Hyrule Castle Requirements - JUNK - Dungeons Required: - 0 - AD_PED_0 - 1 - AD_PED_1 - 2 - AD_PED_2 - 3 - AD_PED_3 - 4 - AD_PED_4 - 5 - AD_PED_5 - 6 - AD_PED_6
+!dropdown - Main Settings - Setting - Dark Hyrule Castle Requirements - SWORD_SETTING - Sword Requirement: - No Sword - 0SWORD - Smith Sword - 1 - Green Sword - 2 - Red Sword - 3 - Blue Sword - 4 - Four Sword - 5
+!dropdown - Main Settings - Setting - Dark Hyrule Castle Requirements - ELEMENT_SETTING - Element Requirement: - 4 - 4 - 3 - 3 - 2 - 2 - 1 - 1 - - 0ELEMENT
+!flag - Main Settings - Setting - Dark Hyrule Castle Requirements - FIGURINE_HUNT - Figurine Hunt
+!numberbox - Main Settings - Setting - Dark Hyrule Castle Requirements - FIGURINE_TOTAL - Figurines added in the Pool (Max 136): - 30
+!numberbox - Main Settings - Setting - Dark Hyrule Castle Requirements - FIGURINE_COUNT - Figurines required for Sanctuary: - 20
+
+!flag - Main Settings - Setting - Shuffle - RUPEEMANIA - Free standing Rupees
+!flag - Main Settings - Setting - Shuffle - WHYWOULDYOUDOTHISTOYOURSELF - Obscure spots (SpecialPots/DigSpots/UnderwaterSpots)
+!flag - Main Settings - Setting - Shuffle - GOLDEN_ENEMY - Golden Enemies dropped item
+
+!flag - World Openess - Setting - Global - OPEN_WORLD - Full Openess
+!dropdown - World Openess - Setting - Fusions - GOLD_FUSION_SETTING - Gold Fusions are: - Removed (Closed) - NO_GOLD_FUSIONS - Vanilla - VANILLA_GOLD_FUSIONS - Vanilla but all kinstones are the same - COMBINED_GOLD_FUSIONS - Completed (Open) - OPEN_GOLD_FUSIONS
+!dropdown - World Openess - Setting - Fusions - RED_FUSION_SETTING - Red Fusions are: - Removed (Closed) - NO_RED_FUSIONS - Vanilla - VANILLA_RED_FUSIONS - Vanilla but all kinstones are the same - COMBINED_RED_FUSIONS - Completed (Open) - OPEN_RED_FUSIONS
+!dropdown - World Openess - Setting - Fusions - BLUE_FUSION_SETTING - Blue Fusions are: - Removed (Closed) - NO_BLUE_FUSIONS - Vanilla - VANILLA_BLUE_FUSIONS - Vanilla but all kinstones are the same - COMBINED_BLUE_FUSIONS - Completed (Open) - OPEN_BLUE_FUSIONS
+!dropdown - World Openess - Setting - Fusions - GREEN_FUSION_SETTING - Green Fusions are: - Removed (Closed) - NO_GREEN_FUSIONS - Vanilla - VANILLA_GREEN_FUSIONS - Vanilla but all kinstones are the same - COMBINED_GREEN_FUSIONS - Completed (Open) - OPEN_GREEN_FUSIONS
+!flag - World Openess - Setting - Fusions - SEEDED_SHARED - Seed determines Shared Fusions order - true
+!flag - World Openess - Setting - Fusions - DEFICKLE - Make all fusers always offer a fusion if they have one available - true
+!dropdown - World Openess - Setting - Fusions - FUSION_SKIPS - Fusion Cutscene are skipped: - When Holding a Button before it starts - ALLOW_FUSION_SKIPS - Always - INSTANT_SKIP - Never - NO_FUSION_SKIP
+!flag - World Openess - Setting - Fusions - SHOW_MAP - Always show the Map during Fusion Cutscenes
+
+!flag - Logic Settings - Setting - Logic Rules - HUNDO - Items can lock themselves
+!flag - Logic Settings - Setting - Difficulty - WEAPONS - Damaging items other than sword considered as weapons
+
+!dropdown - Other - Setting - Item Pool - ITEM_POOL - Item Pool: - Balanced - ITEM_POOL_NORMAL - Reduced (RIP) - ITEM_POOL_RIP - Plentiful - ITEM_POOL_PLENTIFUL
+!flag - Other - Setting - Item Pool - TRAPS - Shuffle traps in itempool
+!flag - Other - Setting - Item Pool - MEME - Add some fun junk items to the pool
+!flag - Other - Setting - Restrictions - GLITCHLESS - Prevent Speedrun Glitches
+!flag - Other - Setting - Restrictions - TIMEDOHKO - Die in one hit if the timer runs out
+!flag - Other - Setting - Restrictions - THREE_HEART - Limit max health to 3 hearts
+!flag - Other - Setting - Extras - ITEM_HISTORY - Display recently collected items - true
+!flag - Other - Setting - Extras - RANDOM_BOTTLE_CONTENT - Bottles start with random contents - true
+!flag - Other - Setting - Extras - HOMEWARP - Enable Homewarp (Sleep in the Pause Menu) - true
+!flag - Other - Setting - Extras - BOOTS_MINISH - Can use boots while small
+!flag - Other - Setting - Extras - FIREROD - Start with the Firerod
+!flag - Other - Setting - Music - MUSIC_RANDO - Randomize Music (Not currently Cosmetic)
 
 # Cosmetic settings
 
-!flag - Cosmetic - Cosmetic - Testing - RANDOM_LANGUAGE - Randomize language
-!flag - Cosmetic - Cosmetic - Testing - POKEEMERALD_MUSIC - Use pokemon emerald music
-!flag - Cosmetic - Cosmetic - Testing - RAINBOW_HEARTS - Enable Rainbow Hearts
-!color - Cosmetic - Cosmetic - Testing - TUNIC_COLOR - Change Tunic Color -    0x10 - 0xFF - 0x08    -    0x10 - 0x7B - 0x29    -    0x41 - 0xA0 - 0x28    -    0xBD - 0xFF - 0xA0
-!color - Cosmetic - Cosmetic - Testing - HEART_COLOR - Change Heart Color -    0xFF - 0x50 - 0x10
-!color - Cosmetic - Cosmetic - Testing - SPLIT_COLOR - Change Split Bar Color -    0x4A - 0xFF - 0x18     -    0x31 - 0x9C - 0x18    -   0x31 - 0x52 - 0x18
-!dropdown - Cosmetic - Cosmetic - Testing - FOLLOWER_SETTING - Have Follower - No Follower - NOFOLLOWER - Mailman Follower - 0x04 - Zelda Follower - 0x05 - Malon Follower - 0x1E - Smith Follower - 0x22 - King Gustaf Follower - 0x24 - Cow Follower - 0x31 - Goron Follower - 0x32 - Anju Follower - 0x45
-!flag - Cosmetic - Cosmetic - Testing - ITEM_HISTORY - Show recently collected Keys/Scrolls/Kinstones - true
-!dropdown - Cosmetic - Cosmetic - Testing - FUZZY_SETTING - Screen Fuzziness - No Fuzziness - NOFUZZ - Fuzz 1 - 0x0 - Fuzz 2 - 0x1 - Fuzz 3 - 0x2 - Fuzz 4 - 0x3 - Fuzz 5 - 0x4 - Fuzz 6 - 0x5 - Fuzz 7 - 0x6 - Fuzz 8 - 0x7 - Fuzz 9 - 0x8 - Fuzz 10 - 0x9 - Fuzz 11 - 0xA - Fuzz 12 - 0xB - Fuzz 13 - 0xC - Fuzz 14 - 0xD - Fuzz 15 - 0xE
+!dropdown - Cosmetic - Cosmetic - Music - MUSIC_SETTING - Music: - Vanilla - VANILLA_MUSIC - Pokemon Emerald - POKEEMERALD_MUSIC - None - NO_MUSIC
+!flag - Cosmetic - Cosmetic - Text - RANDOM_LANGUAGE - Randomize language
+!flag - Cosmetic - Cosmetic - Hearts - RAINBOW_HEARTS - Enable Rainbow Hearts
+!color - Cosmetic - Cosmetic - Hearts - HEART_COLOR - Change Heart Color -    0xFF - 0x50 - 0x10
+!color - Cosmetic - Cosmetic - Tunic - TUNIC_COLOR - Change Tunic Color -    0x10 - 0xFF - 0x08    -    0x10 - 0x7B - 0x29    -    0x41 - 0xA0 - 0x28    -    0xBD - 0xFF - 0xA0
+!color - Cosmetic - Cosmetic - Split Bar - SPLIT_COLOR - Change Split Bar Color -    0x4A - 0xFF - 0x18     -    0x31 - 0x9C - 0x18    -   0x31 - 0x52 - 0x18
+!dropdown - Cosmetic - Cosmetic - Follower - FOLLOWER_SETTING - Have Follower: - No - NOFOLLOWER - Mailman - 0x04 - Zelda - 0x05 - Malon - 0x1E - Smith - 0x22 - King Daltus - 0x24 - Cow - 0x31 - Goron - 0x32 - Anju - 0x45
+!dropdown - Cosmetic - Cosmetic - Don't do this - FUZZY_SETTING - Nausia rating: - No thanks - NOFUZZ - 1 - 0x0 - 2 - 0x1 - 3 - 0x2 - 4 - 0x3 - 5 - 0x4 - 6 - 0x5 - 7 - 0x6 - 8 - 0x7 - 9 - 0x8 - 10 - 0x9 - 11 - 0xA - 12 - 0xB - 13 - 0xC - 14 - 0xD - 15 - 0xE
+
+!dropdown - Legacy Settings (Ignore) - Setting - Testing - KEYS_SETTING - Shuffle Keys - Keys inside Dungeons - KEYS_STANDARD - Keys not Shuffled - KEYS_VANILLA - Keys in the vicinity of Dungeons - KEYS_OUTSIDE - Keys removed and Doors opened (Keasy) - KEASY - Keys shuffled Anywhere (Keysanity) - KEYSANITY 
+!flag - Legacy Settings (Ignore) - Setting - Testing - AD_PED - Require dungeons to access the pedestal
+!numberbox - Legacy Settings (Ignore) - Setting - Testing - AD_PED_NUM - Number of Dungeons required (Max 6) - 0
+!dropdown - Legacy Settings (Ignore) - Setting - Testing - FUSION_SETTING - Fusion Settings - Removed NonGold fusions - NO_FUSIONS - Completed NonGold fusions - OPENFUSIONS - Open World - OPENWORLD
 
 !eventdefine - customRNG - 0x`RAND_INT`
 
@@ -391,7 +416,6 @@
 !ifndef - PEDITEMS
     !ifndef - OPENDHC
         !ifdef - FIGURINE_HUNT
-            !addition - FIGURINE_TOTAL - `FIGURINE_COUNT`, `FIGURINE_EXTRA`									# Adds up the required figurines with the extra figurines for the total
             !eventdefine - requirementFigurinesAmmount - `FIGURINE_COUNT`
             !replaceincrement - Items.KinstoneBag.01 - `FIGURINE_TOTAL` - `SHELLVALS` `KINVALS`
             !settype - Items.KinstoneBag.* - Major
