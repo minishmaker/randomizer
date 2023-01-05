@@ -98,6 +98,7 @@ public partial class MinishCapRandomizerUI : Form
         else if (UseCustomLogic.Checked && LogicFilePath.Text.Length > 0)
         {
             _shufflerController.LoadLogicFile(LogicFilePath.Text);
+            UpdateUIWithLogicOptions();
             _customLogicFileLoaded = true;
         }
     }
@@ -115,6 +116,7 @@ public partial class MinishCapRandomizerUI : Form
         }
 
         _shufflerController.SetRandomizationSeed(seed);
+        _shufflerController.LoadLocations(UseCustomLogic.Checked && LogicFilePath.Text.Length > 0 ? LogicFilePath.Text : null);
         _shufflerController.Randomize();
         _shufflerController.SaveAndPatchRom($"{Directory.GetCurrentDirectory()}/MinishRandomizer-ROM.gba",
             UseCustomPatch.Checked && RomBuildfilePath.Text.Length > 0 ? RomBuildfilePath.Text : null);
