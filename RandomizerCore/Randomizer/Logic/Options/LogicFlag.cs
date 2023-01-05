@@ -5,9 +5,15 @@ namespace RandomizerCore.Randomizer.Logic.Options;
 
 public class LogicFlag : LogicOptionBase
 {
-    public LogicFlag(string name, string niceName, bool active, string settingGroup, string settingPage,
-        LogicOptionType type) :
-        base(name, niceName, active, settingGroup, settingPage, type)
+    public LogicFlag(
+        string name, 
+        string niceName, 
+        bool active, 
+        string settingGroup, 
+        string settingPage, 
+        string descriptionText,
+        LogicOptionType type) : 
+        base(name, niceName, active, settingGroup, settingPage, descriptionText, type)
     {
     }
 

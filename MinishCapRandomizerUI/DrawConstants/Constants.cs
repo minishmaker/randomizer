@@ -16,6 +16,7 @@ public static class Constants
 
     public static BorderStyle CategoryBorderStyle => BorderStyle.FixedSingle;
     public static Color DefaultBackgroundColor => Color.White;
+    public static Color DefaultButtonBackgroundColor => Color.Gainsboro; //Never heard of this color but it matches on the UI
 
     public static bool CategoryLabelsUseAutosize => true;
 
@@ -24,6 +25,8 @@ public static class Constants
     public static int DefaultStartingPaneX => 6;
 
     public static int DefaultStartingPaneY => 15;
+
+    public static bool UseMnemonic => false; //This is used so that way escape characters like & are used literally
     
     public const int TotalColorPickersPerRow = 1;
     public const int TotalNumberBoxesPerRow = 2;

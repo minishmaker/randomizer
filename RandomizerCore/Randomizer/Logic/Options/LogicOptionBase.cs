@@ -5,7 +5,21 @@ namespace RandomizerCore.Randomizer.Logic.Options;
 
 public abstract class LogicOptionBase
 {
-    protected LogicOptionBase(string name, string niceName, bool active, string settingGroup, string settingPage,
+    public string Name { get; set; }
+    public string NiceName { get; set; }
+    public bool Active { get; set; }
+    public LogicOptionType Type { get; set; }
+    public string SettingGroup { get; set; }
+    public string SettingPage { get; set; }
+    public string DescriptionText { get; set; }    
+    
+    protected LogicOptionBase(
+        string name, 
+        string niceName, 
+        bool active, 
+        string settingGroup, 
+        string settingPage, 
+        string descriptionText, 
         LogicOptionType type = LogicOptionType.Untyped)
     {
         Name = name;
@@ -14,15 +28,8 @@ public abstract class LogicOptionBase
         Type = type;
         SettingGroup = settingGroup;
         SettingPage = settingPage;
+        DescriptionText = descriptionText;
     }
-
-    public string Name { get; set; }
-    public string NiceName { get; set; }
-    public bool Active { get; set; }
-    public LogicOptionType Type { get; set; }
-    public string SettingGroup { get; set; }
-    public string SettingPage { get; set; }
-    public List<string> ToolTips { get; set; }
 
     public abstract List<LogicDefine> GetLogicDefines();
 

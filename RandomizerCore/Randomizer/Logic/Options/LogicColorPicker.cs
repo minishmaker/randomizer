@@ -12,9 +12,15 @@ public class LogicColorPicker : LogicOptionBase
     public Color DefinedColor { get; set; }
     public List<Color> InitialColors { get; set; }
     
-    public LogicColorPicker(string name, string niceName, string settingPage, string settingGroup, LogicOptionType type,
+    public LogicColorPicker(
+        string name, 
+        string niceName, 
+        string settingGroup, 
+        string settingPage, 
+        string descriptionText,
+        LogicOptionType type,
         Color startingColor) :
-        base(name, niceName, true, settingGroup, settingPage, type)
+        base(name, niceName, true, settingGroup, settingPage, descriptionText, type)
     {
         BaseColor = startingColor;
         DefinedColor = startingColor;
@@ -24,9 +30,15 @@ public class LogicColorPicker : LogicOptionBase
         };
     }
 
-    public LogicColorPicker(string name, string niceName, string settingPage, string settingGroup, LogicOptionType type,
+    public LogicColorPicker(
+        string name, 
+        string niceName, 
+        string settingGroup, 
+        string settingPage, 
+        string descriptionText,
+        LogicOptionType type,
         List<Color> colors) :
-        base(name, niceName, true, settingGroup, settingPage, type)
+        base(name, niceName, true, settingGroup, settingPage, descriptionText, type)
     {
         BaseColor = colors[0];
         DefinedColor = colors[0];
@@ -49,7 +61,7 @@ public class LogicColorPicker : LogicOptionBase
         defineList.Add(new LogicDefine(Name));
 
         defineList.AddRange(InitialColors
-            .Select(color => new GbaColor(ColorUtil.AdjustHue(color, BaseColor, DefinedColor)))
+            .Select(color => new GBAColor(ColorUtil.AdjustHue(color, BaseColor, DefinedColor)))
             .Select((newColor, i) => new LogicDefine(Name + "_" + i, StringUtil.AsStringHex4(newColor.CombinedValue))));
 
         return defineList;

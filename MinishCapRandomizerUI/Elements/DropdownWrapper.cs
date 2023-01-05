@@ -38,6 +38,7 @@ public class DropdownWrapper : WrapperBase
             Height = TextHeight,
             Width = TextWidth,
             TextAlign = ContentAlignment.MiddleRight,
+            UseMnemonic = Constants.UseMnemonic,
         };
 
         _comboBox = new ComboBox
@@ -51,6 +52,16 @@ public class DropdownWrapper : WrapperBase
             SelectedText = _dropdown.Selection,
             DataSource = _dropdown.Selections.Keys.ToList(),
         };
+
+        if (!string.IsNullOrEmpty(_dropdown.DescriptionText))
+        {
+            var tip = new ToolTip();
+            tip.UseFading = true;
+            tip.InitialDelay = 1000;
+            tip.ReshowDelay = 500;
+            tip.ShowAlways = true;
+            tip.SetToolTip(_label, _dropdown.DescriptionText);
+        }
         
         _comboBox.SelectedIndexChanged += (object sender, EventArgs e) =>
         {

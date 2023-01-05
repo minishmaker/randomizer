@@ -34,15 +34,18 @@ public class FlagWrapper : WrapperBase
             Width = Width,
             Checked = _flag.Active,
             Text = _flag.NiceName,
+            UseMnemonic = Constants.UseMnemonic,
         };
 
-        var tip = new ToolTip();
-
-        tip.UseFading = true;
-        tip.InitialDelay = 1000;
-        tip.ReshowDelay = 500;
-        tip.ShowAlways = true;
-        tip.SetToolTip(_checkBox, _flag.NiceName);
+        if (!string.IsNullOrEmpty(_flag.DescriptionText))
+        {
+            var tip = new ToolTip();
+            tip.UseFading = true;
+            tip.InitialDelay = 1000;
+            tip.ReshowDelay = 500;
+            tip.ShowAlways = true;
+            tip.SetToolTip(_checkBox, _flag.DescriptionText);
+        }
 
         _checkBox.CheckedChanged += (object sender, EventArgs e) =>
         {

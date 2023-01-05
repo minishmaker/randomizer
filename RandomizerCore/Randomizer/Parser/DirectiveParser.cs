@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using System.Text;
 using RandomizerCore.Randomizer.Enumerables;
 using RandomizerCore.Randomizer.Exceptions;
 using RandomizerCore.Randomizer.Logic.Defines;
@@ -540,7 +541,7 @@ public class DirectiveParser
 
 	private LogicFlag ParseFlagDirective(string[] directiveParts)
 	{
-		if (directiveParts.Length < 6)
+		if (directiveParts.Length < 7)
 			throw new ParserException("A flag somewhere has an incorrect number of parameters!");
 
 		var optionType = GetOptionType(directiveParts[2]);
@@ -549,22 +550,23 @@ public class DirectiveParser
 			throw new ParserException($"A flag somewhere has an invalid type! ({directiveParts[2]})");
 
 		bool defaultActive;
-		if (directiveParts.Length > 6)
+		if (directiveParts.Length > 7)
 		{
-			if (!bool.TryParse(directiveParts[6], out defaultActive))
-				throw new ParserException($"{directiveParts[6]} is not a valid boolean value");
+			if (!bool.TryParse(directiveParts[7], out defaultActive))
+				throw new ParserException($"{directiveParts[7]} is not a valid boolean value");
 		}
 		else
 		{
 			defaultActive = false;
 		}
 
-		return new LogicFlag(directiveParts[4], directiveParts[5], defaultActive, directiveParts[3], directiveParts[1], optionType);
+		return new LogicFlag(directiveParts[4], directiveParts[5], defaultActive, 
+			directiveParts[3], directiveParts[1], directiveParts[6], optionType);
 	}
 
 	private LogicOptionBase ParseDropdownDirective(string[] directiveParts)
 	{
-		if (directiveParts.Length % 2 != 0 || directiveParts.Length < 8)
+		if (directiveParts.Length % 3 != 1 || directiveParts.Length < 10)
 			throw new ParserException("A dropdown somewhere has an incorrect number of parameters!");
 
 		var optionType = GetOptionType(directiveParts[2]);
@@ -572,10 +574,18 @@ public class DirectiveParser
 		if (optionType == LogicOptionType.Untyped)
 			throw new ParserException($"A dropdown somewhere has an invalid type! ({directiveParts[2]})");
 
-		var selectionDict = new Dictionary<string, string>(directiveParts.Length / 2 - 1);
-		for (var i = 6; i < directiveParts.Length; i += 2) selectionDict.Add(directiveParts[i], directiveParts[i + 1]);
+		var selectionDict = new Dictionary<string, string>();
+		var descriptionText = new StringBuilder();
+		descriptionText.AppendLine(directiveParts[6]);
+		
+		for (var i = 7; i < directiveParts.Length; )
+		{
+			selectionDict.Add(directiveParts[i++], directiveParts[i++]);
+			descriptionText.AppendLine($"\n{directiveParts[i++]}");
+		}
 
-		return new LogicDropdown(directiveParts[4], directiveParts[5], directiveParts[3], directiveParts[1], optionType, selectionDict);
+		return new LogicDropdown(directiveParts[4], directiveParts[5], directiveParts[3], 
+			directiveParts[1], descriptionText.ToString(), optionType, selectionDict);
 	}
 
 	private LogicColorPicker ParseColorDirective(string[] directiveParts)
@@ -583,45 +593,48 @@ public class DirectiveParser
 		var optionType = GetOptionType(directiveParts[2]);
 
 		if (optionType == LogicOptionType.Untyped)
-			throw new ParserException($"A color somewhere has an invalid type! ({directiveParts[2]})");
+			throw new ParserException($"Colorpicker has invalid type {directiveParts[2]}!");
 
-		if (directiveParts.Length == 6)
-			return new LogicColorPicker(directiveParts[4], directiveParts[5], directiveParts[3], directiveParts[1], optionType, Color.White);
+		if (directiveParts.Length == 7)
+			return new LogicColorPicker(directiveParts[4], directiveParts[5], directiveParts[3],
+				directiveParts[1], directiveParts[6], optionType, Color.White);
 
-		if (directiveParts.Length % 3 == 0)
+		if (directiveParts.Length % 3 == 1)
 		{
 			var colors = new List<Color>();
-			for (var i = 6; i < directiveParts.Length; i += 3)
+			for (var i = 7; i < directiveParts.Length; )
 				// This parses the color components out, in groups of three.
-				if (StringUtil.ParseString(directiveParts[i], out int rComponent) &&
-				    StringUtil.ParseString(directiveParts[i + 1], out int gComponent) &&
-				    StringUtil.ParseString(directiveParts[i + 2], out int bComponent)
+				if (StringUtil.ParseString(directiveParts[i++], out int rComponent) &&
+				    StringUtil.ParseString(directiveParts[i++], out int gComponent) &&
+				    StringUtil.ParseString(directiveParts[i++], out int bComponent)
 				   )
 					colors.Add(Color.FromArgb(rComponent, gComponent, bComponent));
 				else
 					throw new ParserException(
-						$"A color somewhere has an incorrect number! ({directiveParts[i]} - {directiveParts[i + 1]} - {directiveParts[i + 2]})");
+						"Colorpicker has an incorrect color value number!");
 
-			return new LogicColorPicker(directiveParts[4], directiveParts[5], directiveParts[3], directiveParts[1], optionType, colors);
+			return new LogicColorPicker(directiveParts[4], directiveParts[5], directiveParts[3], 
+				directiveParts[1], directiveParts[6], optionType, colors);
 		}
 
 		throw new ParserException(
-			$"A color somewhere has an incorrect number of parameters! ({directiveParts.Length})");
+			"Colorpicker does not have the right number of parameters!");
 	}
 
 	private LogicOptionBase ParseNumberboxDirective(string[] directiveParts)
 	{
-		if (directiveParts.Length != 7)
-			throw new ParserException("A numberbox somewhere has an incorrect number of parameters!");
+		if (directiveParts.Length != 8)
+			throw new ParserException("Numberbox does not have the right number of parameters!");
 
 		var optionType = GetOptionType(directiveParts[2]);
 
 		if (optionType == LogicOptionType.Untyped)
-			throw new ParserException($"A numberbox somewhere has an invalid type! ({directiveParts[2]})");
+			throw new ParserException($"Numberbox has invalid type {directiveParts[2]})!");
 		
-		if (!int.TryParse(directiveParts[6], out var defaultValue))
-			throw new ParserException($"Numberbox has invalid default value! ({directiveParts[6]})");
+		if (!byte.TryParse(directiveParts[7], out var defaultValue))
+			throw new ParserException($"Numberbox has invalid default value {directiveParts[7]}!");
 
-		return new LogicNumberBox(directiveParts[4], directiveParts[5], directiveParts[3], directiveParts[1], defaultValue, optionType);
+		return new LogicNumberBox(directiveParts[4], directiveParts[5], directiveParts[3], 
+			directiveParts[1], defaultValue, directiveParts[6], optionType);
 	}
 }

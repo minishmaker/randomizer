@@ -11,9 +11,15 @@ public class LogicDropdown : LogicOptionBase
     public string Selection;
     public Dictionary<string, string> Selections;
 
-    public LogicDropdown(string name, string niceName, string settingGroup, string settingPage, LogicOptionType type,
+    public LogicDropdown(
+        string name, 
+        string niceName, 
+        string settingGroup, 
+        string settingPage, 
+        string descriptionText,
+        LogicOptionType type,
         Dictionary<string, string> selections) :
-        base(name, niceName, true, settingGroup, settingPage, type)
+        base(name, niceName, true, settingGroup, settingPage, descriptionText, type)
     {
         Selections = selections;
         Selection = selections.Keys.First();

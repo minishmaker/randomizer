@@ -39,6 +39,7 @@ public class NumberBoxWrapper : WrapperBase
             Height = TextHeight,
             Width = TextWidth,
             TextAlign = ContentAlignment.MiddleRight,
+            UseMnemonic = Constants.UseMnemonic,
         };
 
         _textBox = new TextBox
@@ -50,7 +51,17 @@ public class NumberBoxWrapper : WrapperBase
             Height = NumberBoxHeight,
             Width = NumberBoxWidth,
             SelectedText = $"{_numberBox.DefaultValue}",
-        };
+        };        
+        
+        if (!string.IsNullOrEmpty(_numberBox.DescriptionText))
+        {
+            var tip = new ToolTip();
+            tip.UseFading = true;
+            tip.InitialDelay = 1000;
+            tip.ReshowDelay = 500;
+            tip.ShowAlways = true;
+            tip.SetToolTip(_label, _numberBox.DescriptionText);
+        }
 
         _textBox.TextChanged += (object sender, EventArgs e) =>
         {

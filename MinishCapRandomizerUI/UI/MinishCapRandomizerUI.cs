@@ -14,8 +14,7 @@ public partial class MinishCapRandomizerUI : Form
         _shufflerController = new ShufflerController();
         _shufflerController.LoadLogicFile();
         var options = _shufflerController.GetLogicOptions();
-        var settings = options.Where(option => option.Type == LogicOptionType.Setting).ToList();
-        var wrappedOptions = WrappedLogicOptionFactory.BuildGenericWrappedLogicOptions(settings);
+        var wrappedOptions = WrappedLogicOptionFactory.BuildGenericWrappedLogicOptions(options);
         var pages = wrappedOptions.GroupBy(option => option.Page);
 
         foreach (var page in pages)

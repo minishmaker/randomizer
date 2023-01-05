@@ -11,8 +11,15 @@ public class LogicNumberBox : LogicOptionBase
     public string Value = "";
     public int DefaultValue { get; }
 
-    public LogicNumberBox(string name, string niceName, string settingGroup, string settingPage, int defaultValue, LogicOptionType type) :
-        base(name, niceName, true, settingGroup, settingPage, type)
+    public LogicNumberBox(
+        string name, 
+        string niceName, 
+        string settingGroup, 
+        string settingPage, 
+        int defaultValue, 
+        string descriptionText,
+        LogicOptionType type) :
+        base(name, niceName, true, settingGroup, settingPage, descriptionText, type)
     {
         DefaultValue = defaultValue;
     }
