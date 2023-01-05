@@ -73,6 +73,11 @@ public class DropdownWrapper : WrapperBase
             _dropdown.Selection = (string)_comboBox.SelectedValue;
         };
         
+        _comboBox.KeyPress += (object sender, KeyPressEventArgs e) =>
+        {
+            e.Handled = true;
+        };
+
         return new List<Control> { _label, _comboBox };
     }
 }
