@@ -137,21 +137,21 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.button10 = new System.Windows.Forms.Button();
-            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.BrowseCustomPatch = new System.Windows.Forms.Button();
+            this.RomBuildfilePath = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.checkBox19 = new System.Windows.Forms.CheckBox();
-            this.button9 = new System.Windows.Forms.Button();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.checkBox17 = new System.Windows.Forms.CheckBox();
+            this.UseCustomPatch = new System.Windows.Forms.CheckBox();
+            this.BrowseCustomLogicFile = new System.Windows.Forms.Button();
+            this.LogicFilePath = new System.Windows.Forms.TextBox();
+            this.UseCustomLogic = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.button7 = new System.Windows.Forms.Button();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.button8 = new System.Windows.Forms.Button();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.RandomSeed = new System.Windows.Forms.Button();
+            this.Seed = new System.Windows.Forms.TextBox();
+            this.BrowseRom = new System.Windows.Forms.Button();
+            this.RomPath = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
+            this.Randomize = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.menuStrip1.SuspendLayout();
@@ -926,10 +926,10 @@
             this.tabPage1.Controls.Add(this.panel7);
             this.tabPage1.Controls.Add(this.label5);
             this.tabPage1.Controls.Add(this.panel6);
-            this.tabPage1.Controls.Add(this.button7);
-            this.tabPage1.Controls.Add(this.textBox5);
-            this.tabPage1.Controls.Add(this.button8);
-            this.tabPage1.Controls.Add(this.textBox6);
+            this.tabPage1.Controls.Add(this.RandomSeed);
+            this.tabPage1.Controls.Add(this.Seed);
+            this.tabPage1.Controls.Add(this.BrowseRom);
+            this.tabPage1.Controls.Add(this.RomPath);
             this.tabPage1.Controls.Add(this.label3);
             this.tabPage1.Controls.Add(this.label4);
             this.tabPage1.Location = new System.Drawing.Point(4, 24);
@@ -1290,34 +1290,37 @@
             // panel6
             // 
             this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel6.Controls.Add(this.button10);
-            this.panel6.Controls.Add(this.textBox8);
+            this.panel6.Controls.Add(this.BrowseCustomPatch);
+            this.panel6.Controls.Add(this.RomBuildfilePath);
             this.panel6.Controls.Add(this.label7);
-            this.panel6.Controls.Add(this.checkBox19);
-            this.panel6.Controls.Add(this.button9);
-            this.panel6.Controls.Add(this.textBox7);
-            this.panel6.Controls.Add(this.checkBox17);
+            this.panel6.Controls.Add(this.UseCustomPatch);
+            this.panel6.Controls.Add(this.BrowseCustomLogicFile);
+            this.panel6.Controls.Add(this.LogicFilePath);
+            this.panel6.Controls.Add(this.UseCustomLogic);
             this.panel6.Controls.Add(this.label6);
             this.panel6.Location = new System.Drawing.Point(6, 80);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(760, 140);
             this.panel6.TabIndex = 14;
             // 
-            // button10
+            // BrowseCustomPatch
             // 
-            this.button10.Location = new System.Drawing.Point(660, 101);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(90, 23);
-            this.button10.TabIndex = 20;
-            this.button10.Text = "Browse";
-            this.button10.UseVisualStyleBackColor = true;
+            this.BrowseCustomPatch.Enabled = false;
+            this.BrowseCustomPatch.Location = new System.Drawing.Point(660, 101);
+            this.BrowseCustomPatch.Name = "BrowseCustomPatch";
+            this.BrowseCustomPatch.Size = new System.Drawing.Size(90, 23);
+            this.BrowseCustomPatch.TabIndex = 20;
+            this.BrowseCustomPatch.Text = "Browse";
+            this.BrowseCustomPatch.UseVisualStyleBackColor = true;
+            this.BrowseCustomPatch.Click += new System.EventHandler(this.BrowseCustomPatch_Click);
             // 
-            // textBox8
+            // RomBuildfilePath
             // 
-            this.textBox8.Location = new System.Drawing.Point(153, 102);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(501, 23);
-            this.textBox8.TabIndex = 21;
+            this.RomBuildfilePath.Enabled = false;
+            this.RomBuildfilePath.Location = new System.Drawing.Point(153, 102);
+            this.RomBuildfilePath.Name = "RomBuildfilePath";
+            this.RomBuildfilePath.Size = new System.Drawing.Size(501, 23);
+            this.RomBuildfilePath.TabIndex = 21;
             // 
             // label7
             // 
@@ -1330,43 +1333,48 @@
             this.label7.Text = "ROM Buildfile Path:";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // checkBox19
+            // UseCustomPatch
             // 
-            this.checkBox19.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.checkBox19.Location = new System.Drawing.Point(10, 75);
-            this.checkBox19.Name = "checkBox19";
-            this.checkBox19.Size = new System.Drawing.Size(160, 19);
-            this.checkBox19.TabIndex = 19;
-            this.checkBox19.Text = "Use Custom Patch Files";
-            this.checkBox19.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.checkBox19.UseVisualStyleBackColor = true;
+            this.UseCustomPatch.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.UseCustomPatch.Location = new System.Drawing.Point(10, 75);
+            this.UseCustomPatch.Name = "UseCustomPatch";
+            this.UseCustomPatch.Size = new System.Drawing.Size(160, 19);
+            this.UseCustomPatch.TabIndex = 19;
+            this.UseCustomPatch.Text = "Use Custom Patch Files";
+            this.UseCustomPatch.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.UseCustomPatch.UseVisualStyleBackColor = true;
+            this.UseCustomPatch.CheckedChanged += new System.EventHandler(this.UseCustomPatch_CheckedChanged);
             // 
-            // button9
+            // BrowseCustomLogicFile
             // 
-            this.button9.Location = new System.Drawing.Point(660, 41);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(90, 23);
-            this.button9.TabIndex = 16;
-            this.button9.Text = "Browse";
-            this.button9.UseVisualStyleBackColor = true;
+            this.BrowseCustomLogicFile.Enabled = false;
+            this.BrowseCustomLogicFile.Location = new System.Drawing.Point(660, 41);
+            this.BrowseCustomLogicFile.Name = "BrowseCustomLogicFile";
+            this.BrowseCustomLogicFile.Size = new System.Drawing.Size(90, 23);
+            this.BrowseCustomLogicFile.TabIndex = 16;
+            this.BrowseCustomLogicFile.Text = "Browse";
+            this.BrowseCustomLogicFile.UseVisualStyleBackColor = true;
+            this.BrowseCustomLogicFile.Click += new System.EventHandler(this.BrowseCustomLogicFile_Click);
             // 
-            // textBox7
+            // LogicFilePath
             // 
-            this.textBox7.Location = new System.Drawing.Point(153, 42);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(501, 23);
-            this.textBox7.TabIndex = 16;
+            this.LogicFilePath.Enabled = false;
+            this.LogicFilePath.Location = new System.Drawing.Point(153, 42);
+            this.LogicFilePath.Name = "LogicFilePath";
+            this.LogicFilePath.Size = new System.Drawing.Size(501, 23);
+            this.LogicFilePath.TabIndex = 16;
             // 
-            // checkBox17
+            // UseCustomLogic
             // 
-            this.checkBox17.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.checkBox17.Location = new System.Drawing.Point(10, 15);
-            this.checkBox17.Name = "checkBox17";
-            this.checkBox17.Size = new System.Drawing.Size(160, 19);
-            this.checkBox17.TabIndex = 17;
-            this.checkBox17.Text = "Use Custom Logic File";
-            this.checkBox17.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.checkBox17.UseVisualStyleBackColor = true;
+            this.UseCustomLogic.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.UseCustomLogic.Location = new System.Drawing.Point(10, 15);
+            this.UseCustomLogic.Name = "UseCustomLogic";
+            this.UseCustomLogic.Size = new System.Drawing.Size(160, 19);
+            this.UseCustomLogic.TabIndex = 17;
+            this.UseCustomLogic.Text = "Use Custom Logic File";
+            this.UseCustomLogic.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.UseCustomLogic.UseVisualStyleBackColor = true;
+            this.UseCustomLogic.CheckedChanged += new System.EventHandler(this.UseCustomLogic_CheckedChanged);
             // 
             // label6
             // 
@@ -1379,38 +1387,41 @@
             this.label6.Text = "Logic File Path:";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // button7
+            // RandomSeed
             // 
-            this.button7.Location = new System.Drawing.Point(676, 36);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(90, 23);
-            this.button7.TabIndex = 13;
-            this.button7.Text = "New Seed";
-            this.button7.UseVisualStyleBackColor = true;
+            this.RandomSeed.Location = new System.Drawing.Point(676, 36);
+            this.RandomSeed.Name = "RandomSeed";
+            this.RandomSeed.Size = new System.Drawing.Size(90, 23);
+            this.RandomSeed.TabIndex = 13;
+            this.RandomSeed.Text = "New Seed";
+            this.RandomSeed.UseVisualStyleBackColor = true;
+            this.RandomSeed.Click += new System.EventHandler(this.RandomSeed_Click);
             // 
-            // textBox5
+            // Seed
             // 
-            this.textBox5.Location = new System.Drawing.Point(160, 37);
-            this.textBox5.MaxLength = 10;
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(510, 23);
-            this.textBox5.TabIndex = 12;
+            this.Seed.Location = new System.Drawing.Point(160, 37);
+            this.Seed.MaxLength = 10;
+            this.Seed.Name = "Seed";
+            this.Seed.Size = new System.Drawing.Size(510, 23);
+            this.Seed.TabIndex = 12;
             // 
-            // button8
+            // BrowseRom
             // 
-            this.button8.Location = new System.Drawing.Point(676, 6);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(90, 23);
-            this.button8.TabIndex = 11;
-            this.button8.Text = "Browse";
-            this.button8.UseVisualStyleBackColor = true;
+            this.BrowseRom.Location = new System.Drawing.Point(676, 6);
+            this.BrowseRom.Name = "BrowseRom";
+            this.BrowseRom.Size = new System.Drawing.Size(90, 23);
+            this.BrowseRom.TabIndex = 11;
+            this.BrowseRom.Text = "Browse";
+            this.BrowseRom.UseVisualStyleBackColor = true;
+            this.BrowseRom.Click += new System.EventHandler(this.BrowseRom_Click);
             // 
-            // textBox6
+            // RomPath
             // 
-            this.textBox6.Location = new System.Drawing.Point(160, 7);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(510, 23);
-            this.textBox6.TabIndex = 10;
+            this.RomPath.Enabled = false;
+            this.RomPath.Location = new System.Drawing.Point(160, 7);
+            this.RomPath.Name = "RomPath";
+            this.RomPath.Size = new System.Drawing.Size(510, 23);
+            this.RomPath.TabIndex = 10;
             // 
             // label3
             // 
@@ -1434,14 +1445,15 @@
             this.label4.Text = "Randomizer Seed";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // button2
+            // Randomize
             // 
-            this.button2.Location = new System.Drawing.Point(570, 696);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(218, 23);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "Randomize";
-            this.button2.UseVisualStyleBackColor = true;
+            this.Randomize.Location = new System.Drawing.Point(570, 696);
+            this.Randomize.Name = "Randomize";
+            this.Randomize.Size = new System.Drawing.Size(218, 23);
+            this.Randomize.TabIndex = 3;
+            this.Randomize.Text = "Randomize";
+            this.Randomize.UseVisualStyleBackColor = true;
+            this.Randomize.Click += new System.EventHandler(this.Randomize_Click);
             // 
             // openFileDialog1
             // 
@@ -1452,7 +1464,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(804, 731);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.Randomize);
             this.Controls.Add(this.TabPane);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -1495,7 +1507,7 @@
         private TabControl TabPane;
         private TabPage TestingPage;
         private Label label1;
-        private Button button2;
+        private Button Randomize;
         private Label label40;
         private Button button3;
         private TextBox textBox2;
@@ -1554,10 +1566,10 @@
         private Button button5;
         private Button button1;
         private TabPage tabPage1;
-        private Button button7;
-        private TextBox textBox5;
-        private Button button8;
-        private TextBox textBox6;
+        private Button RandomSeed;
+        private TextBox Seed;
+        private Button BrowseRom;
+        private TextBox RomPath;
         private Label label3;
         private Label label4;
         private ToolStripMenuItem closeToolStripMenuItem;
@@ -1573,14 +1585,14 @@
         private ToolStripMenuItem aboutToolStripMenuItem1;
         private Label label5;
         private Panel panel6;
-        private TextBox textBox7;
-        private CheckBox checkBox17;
+        private TextBox LogicFilePath;
+        private CheckBox UseCustomLogic;
         private Label label6;
-        private Button button9;
-        private Button button10;
-        private TextBox textBox8;
+        private Button BrowseCustomLogicFile;
+        private Button BrowseCustomPatch;
+        private TextBox RomBuildfilePath;
         private Label label7;
-        private CheckBox checkBox19;
+        private CheckBox UseCustomPatch;
         private Label label8;
         private Panel panel7;
         private TextBox textBox10;
