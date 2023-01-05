@@ -103,32 +103,62 @@ POIN trapIconTable
 
 ALIGN 4
 trapIconTable: //BYTE itemID
-BYTE 0x01 //sword
+BYTE 0x03 //white sword (2)
+BYTE 0x04 //white sword (3)
+BYTE 0x06 //four sword
 BYTE 0x08 //remote bombs
 BYTE 0x09 //bow
+BYTE 0x0A //light arrow
 BYTE 0x0B //boomerang
+BYTE 0x0C //magic boomerang
 BYTE 0x0D //shield
+BYTE 0x0E //mirror shield
 BYTE 0x0F //lantern
 BYTE 0x11 //jar
 BYTE 0x12 //cane
 BYTE 0x13 //mitts
 BYTE 0x14 //cape
 BYTE 0x15 //boots
-BYTE 0x1E //bottle
 BYTE 0x17 //ocarina
-BYTE 0x3B //blue book
+BYTE 0x1E //bottle
+BYTE 0x36 //dog food
+BYTE 0x37 //silver key
+BYTE 0x38 //mushroom
 BYTE 0x39 //red book
 BYTE 0x3A //green book
-BYTE 0x38 //mushroom
+BYTE 0x3B //blue book
 BYTE 0x3C //gold key
-BYTE 0x37 //silver key
+BYTE 0x3D //tingle trophy
+BYTE 0x3E //carlov medal
+#ifdef elementTraps
+	BYTE 0x40 //earth element
+	BYTE 0x40 //earth element
+	BYTE 0x40 //earth element
+	BYTE 0x41 //fire element
+	BYTE 0x41 //fire element
+	BYTE 0x41 //fire element
+	BYTE 0x42 //water element
+	BYTE 0x42 //water element
+	BYTE 0x42 //water element
+	BYTE 0x43 //wind element
+	BYTE 0x43 //wind element
+	BYTE 0x43 //wind element
+#endif
 BYTE 0x44 //grip ring
 BYTE 0x45 //power bracelet
 BYTE 0x46 //flippers
+#ifdef keysanityTraps
+	BYTE 0x52 //big key
+	BYTE 0x53 //small key
+	BYTE 0x53 //small key
+	BYTE 0x53 //small key
+#endif
+BYTE 0x62 //heart container
+BYTE 0x63 //piece of heart
 BYTE 0x64 //wallet
 BYTE 0x65 //bomb bag
 BYTE 0x66 //quiver
-BYTE 0x3D //tingle trophy
-BYTE 0x3E //carlov medal
-BYTE 0x62 //heart container
-BYTE 0x00 //terminator
+#ifdef requirementFigurinesAmmount
+	BYTE 0x67 //figurine
+#endif
+BYTE 0 //terminator

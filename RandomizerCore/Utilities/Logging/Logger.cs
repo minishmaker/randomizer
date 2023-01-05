@@ -19,7 +19,10 @@ internal class Logger
         Transactions = new List<Log>();
         OutputFilePath = $"{Directory.GetCurrentDirectory()}/log.json";
     }
-
+    public void Flush()
+    {
+        Transactions = new List<Log>();
+    }
     public void LogInfo(string message)
     {
         Transaction.PushLog(message, LogType.Info);

@@ -1,6 +1,14 @@
-#ifndef neverSkipFusionCutscene //define to never skip
-	#ifndef alwaysSkipFusionCutscene
-		#define alwaysSkipFusionCutscene 0 //set to non-0 to skip, set to 0 to skip on button held
+#ifndef neverSkipFusionCutsceneFull //define to never skip (cutscene and map view)
+	#define skipFusionCutsceneSomeForm
+	#ifndef alwaysSkipFusionCutsceneFull
+		#define alwaysSkipFusionCutsceneFull 0 //set to non-0 to skip both, set to 0 to skip both on button held
+	#endif
+#endif
+
+#ifndef neverSkipFusionCutsceneShowMap //define to never skip (only cutscene)
+	#define skipFusionCutsceneSomeForm
+	#ifndef alwaysSkipFusionCutsceneShowMap
+		#define alwaysSkipFusionCutsceneShowMap 0 //set to non-0 to skip cutscene, set to 0 to skip cutscene on button held
 	#endif
 #endif
 
@@ -18,18 +26,30 @@ PUSH; ORG $566B2; SHORT 0x8801; POP
 PUSH; ORG $56726; SHORT 0x8801; POP
 
 //skip fusion cutscene if A, B or START are held
-#ifndef neverSkipFusionCutscene
+#ifdef skipFusionCutsceneSomeForm
 	PUSH; ORG $A35E4; jumpToHack(skipFusionCutscene); POP
 	ALIGN 4
 	skipFusionCutscene:
 	#incbin "asm/skipFusionCutscene.dmp"
-	WORD alwaysSkipFusionCutscene //set to non-0 to always skip fusion cutscene
+	#ifndef neverSkipFusionCutsceneFull
+		WORD alwaysSkipFusionCutsceneFull //set to non-0 to always skip fusion cutscene and map view
+		WORD 0
+	#else
+		WORD alwaysSkipFusionCutsceneShowMap //set to non-0 to always skip fusion cutscene
+		WORD 1
+	#endif
 #endif
 
 //skip minish transformation cutscenes automatically
 PUSH; ORG $70DFA; SHORT 0; POP
 
+#ifdef glitchless
+	//can't talk to ezlo with Select
+	PUSH; ORG $5270A; SHORT 0x4280; POP
+#endif
+
 //pressing L uses pegasus boots, if owned
+//pressing Select uses the ocarina, if owned
 PUSH; ORG $772AC; jumpToHack(pegasusShortcut1); POP
 ALIGN 4
 pegasusShortcut1:
@@ -37,12 +57,22 @@ pegasusShortcut1:
 POIN ($772AC+0x08)|1 //return offset if false
 POIN ($772AC+0x2C)|1 //return offset if true
 POIN $778C4 //something about buttons
+#ifdef glitchless
+	WORD 1
+#else
+	WORD 0
+#endif
 PUSH; ORG $77950; jumpToHack(pegasusShortcut2); POP
 ALIGN 4
 pegasusShortcut2:
 #incbin "asm/pegasusShortcut2.dmp"
 POIN ($77950+0x08)|1 //return offset if false
 POIN ($77950+0x26)|1 //return offset if true
+#ifdef glitchless
+	WORD 1
+#else
+	WORD 0
+#endif
 
 //no wait when visiting a new area
 PUSH; ORG $52D64; SHORT 0xE006; POP
@@ -197,6 +227,7 @@ birdFix1:
 ALIGN 4
 birdFix2:
 #incbin "asm/birdFix2.dmp"
+POIN trapGetIcon
 ALIGN 4
 birdFix3:
 #incbin "asm/birdFix3.dmp"
@@ -261,6 +292,13 @@ BYTE 0x32
 BYTE 0x33
 BYTE 0 //terminator
 
+//make the tingle tree torches work when lantern is used on them
+PUSH
+ORG $F7B07; BYTE 4
+ORG $F7B17; BYTE 4
+ORG $F7B27; BYTE 4
+ORG $F7B37; BYTE 4
+POP
 //make the dws torches work when the lantern is used on them
 PUSH
 ORG $DE973; BYTE 4
@@ -307,10 +345,12 @@ escapeWalls:
 #incbin "asm/escapeWalls.dmp"
 
 //normal kinstones have no popups
-PUSH; ORG $80DF4; jumpToHack(fastKinstone); POP
-ALIGN 4
-fastKinstone:
-#incbin "asm/fastKinstone.dmp"
+#ifdef fastKinstones
+	PUSH; ORG $80DF4; jumpToHack(fastKinstone); POP
+	ALIGN 4
+	fastKinstone:
+	#incbin "asm/fastKinstone.dmp"
+#endif
 
 //normal kinstones don't get added to the bag in nofusions
 #ifdef noFusions
@@ -351,15 +391,15 @@ ORG $A81FB8; WORD quickWarpSpanish-$A81FB0
 ORG $AC38E8; WORD quickWarpItalian-$AC38E0
 POP
 quickWarpEnglish:
-BYTE 6 1 0x20; String(Save); BYTE 10 10 6 2 0x20; String(Quickwarp); BYTE 0
+BYTE 6 1 0x20; String("Save"); BYTE 10 10 6 2 0x20; String("Quickwarp"); BYTE 0
 quickWarpFrench:
-BYTE 6 1 0x20; String(Sauvegarder); BYTE 10 10 6 2 0x20; String(Quickwarp); BYTE 0
+BYTE 6 1 0x20; String("Sauvegarder"); BYTE 10 10 6 2 0x20; String("Quickwarp"); BYTE 0
 quickWarpGerman:
-BYTE 6 1 0x20; String(Speichern); BYTE 0x2E 10 10 6 2 0x20; String(Quickwarp); BYTE 0x2E 0
+BYTE 6 1 0x20; String("Speichern"); BYTE 0x2E 10 10 6 2 0x20; String("Quickwarp"); BYTE 0x2E 0
 quickWarpSpanish:
-BYTE 6 1 0x20; String(Guardar); BYTE 0x2E 10 10 6 2 0x20; String(Quickwarp); BYTE 0x2E 0
+BYTE 6 1 0x20; String("Guardar"); BYTE 0x2E 10 10 6 2 0x20; String("Quickwarp"); BYTE 0x2E 0
 quickWarpItalian:
-BYTE 6 1 0x20; String(Salva); BYTE 10 10 6 2 0x20; String(Quickwarp); BYTE 0
+BYTE 6 1 0x20; String("Salva"); BYTE 10 10 6 2 0x20; String("Quickwarp"); BYTE 0
 //load the right text
 PUSH; ORG $520A8; jumpToHack(quickwarpText); POP
 ALIGN 4
@@ -442,6 +482,8 @@ POIN blueclockCredits
 POIN redclockCredits
 POIN figurineCredits
 POIN trapGetIcon
+POIN extraText
+POIN progressiveTraps
 
 //skip big chu cutscenes
 PUSH; ORG $4CA20; SHORT 0xE014; POP
@@ -458,6 +500,119 @@ PUSH; ORG $83620; SHORT 0x2844; POP
 
 //faster textbox opening and closing
 PUSH; ORG $5615A; SHORT 0x2008; ORG $5619C; SHORT 0x2008; POP
+
+//warp home after sleep mode
+#ifdef allowHomewarp
+	PUSH; ORG $55DE8; SHORT 0xE018; POP //remove sleep mode functionality
+	//remove white fade
+	PUSH
+	ORG $A53C2; SHORT 0 0
+	ORG $A53C8; SHORT 0 0 0 0 0
+	ORG $A538A; SHORT 0 0
+	POP
+	PUSH; ORG $55E1C; jumpToHack(homewarpOption); POP
+	ALIGN 4
+	homewarpOption:
+	#incbin "asm/homewarpOption.dmp"
+	//activate the nap event after warping
+	PUSH; ORG $7D5AC; jumpToHack(homewarpEvent); POP
+	ALIGN 4
+	homewarpEvent:
+	#incbin "asm/homewarpEvent.dmp"
+	POIN spawnPoint
+	//change the sleep text
+	PUSH
+	ORG $9AECA0 + (0x0D * 4); WORD homeWarpEnglish - $9AECA0
+	ORG $9F7560 + (0x0D * 4); WORD  homeWarpFrench - $9F7560
+	ORG $A3EFF0 + (0x0D * 4); WORD  homeWarpGerman - $A3EFF0
+	ORG $A81FB0 + (0x0D * 4); WORD homeWarpSpanish - $A81FB0
+	ORG $AC38E0 + (0x0D * 4); WORD homeWarpItalian - $AC38E0
+	POP
+	homeWarpEnglish:
+	String("Take a nap?"); BYTE 0x0A 0x0A 0x06 0x01
+	String(" Yes      "); BYTE 0x06 0x02
+	String(" No"); BYTE 0x0A 0x0A
+	String("This will warp you back home and"); BYTE 0x0A
+	String("set your Quickwarp point there."); BYTE 0x00
+	homeWarpFrench:
+	String("Faire une sieste?"); BYTE 0x0A 0x0A 0x06 0x01
+	String(" Oui      "); BYTE 0x06 0x02
+	String(" Non"); BYTE 0x0A 0x0A
+	String("Cela vous ram"); BYTE 0xC9; String("nera "); BYTE 0xE1; String(" la maison"); BYTE 0x0A
+	String("et y d"); BYTE 0xC9; String("finira votre point Quickwarp."); BYTE 0x00
+	homeWarpGerman:
+	String("Schlafen gehen?"); BYTE 0x0A 0x0A 0x06 0x01
+	String(" Ja       "); BYTE 0x06 0x02
+	String(" Nein"); BYTE 0x0A 0x0A
+	String("Dies bringt dich nach Hause und"); BYTE 0x0A
+	String("setzt deine Quickwarp Position dort."); BYTE 0x00
+	homeWarpSpanish:
+	BYTE 0xBF; String("Echarse la siesta?"); BYTE 0x0A 0x0A 0x06 0x01
+	String(" S"); BYTE 0xED; String("       "); BYTE 0x06 0x02
+	String(" No"); BYTE 0x0A 0x0A
+	String("Ser"); BYTE 0xE1; String("s teletransportado a casa y se"); BYTE 0x0A
+	String("pondr"); BYTE 0xE1; String(" tu punto de Quickwarp all"); BYTE 0xED ;String("."); BYTE 0x00
+	homeWarpItalian:
+	String("Take a nap?"); BYTE 0x0A 0x0A 0x06 0x01
+	String(" Yes      "); BYTE 0x06 0x02
+	String(" No"); BYTE 0x0A 0x0A
+	String("This will warp you back home and"); BYTE 0x0A
+	String("set your Quickwarp point there."); BYTE 0x00
+#endif
+
+//fix charm palette allocation
+PUSH; ORG $1D084; jumpToHack(charmFix1); POP
+ALIGN 4
+charmFix1:
+#incbin "asm/charmFix1.dmp"
+PUSH; ORG $1D120; jumpToHack(charmFix2); POP
+ALIGN 4
+charmFix2:
+#incbin "asm/charmFix2.dmp"
+
+//swap the entity crates at the cafe for background versions of them
+//first we remove them
+PUSH
+ORG $F4FCC
+BYTE 0x16 0x0F 0x4E 0x00; SHORT 0x800 0 0x48 0x28 0 0
+BYTE 0x16 0x0F 0x4E 0x00; SHORT 0x902 0 0x38 0xB0 0 0
+BYTE 0x16 0x0F 0x4E 0x00; SHORT 0xA01 0 0xD0 0x48 0 0
+BYTE 0x06 0x00 0x38 0x58; SHORT 0x000 0 0xC0 0x8E 0 0
+BYTE 0xFF
+POP
+//and now we include the new map
+PUSH
+ORG 1064732
+WORD cafe-3293164+$0
+ORG currentoffset+4
+WORD $800003FC
+POP
+ALIGN 4
+cafe:
+#incbin "cafe.bin"
+
+//make all fusers non-fickle
+#ifdef removeFickleness
+	PUSH
+	ORG $1EA54
+	SHORT 0xE006 //always offer fusion instead of random
+	POP
+#endif
+
+//shared fusions are done in a fixed order
+#ifdef seededSharedFusions
+	PUSH
+	ORG $1EA80
+	SHORT 0x2500 //start at index 0 instead of random
+	//vanilla data:
+	//ORG $1EA98
+	//POIN sharedFusions
+	//ORG $C9844
+	//sharedFusions:
+	//BYTE 0x18 0x2D 0x35 0x36 0x37 0x39 0x3C 0x44 0x46
+	//BYTE 0x47 0x4E 0x50 0x53 0x55 0x56 0x58 0x5F 0x60
+	POP
+#endif
 
 #include "glitchless.event"
 #include "dungeon.event"

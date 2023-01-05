@@ -1,21 +1,108 @@
+#ifdef arbitraryItems
+	#ifndef arbitrarySwords
+		#define arbitrarySwords
+	#endif
+	#ifndef arbitraryBows
+		#define arbitraryBows
+	#endif
+	#ifndef arbitraryBoomerangs
+		#define arbitraryBoomerangs
+	#endif
+	#ifndef arbitraryShields
+		#define arbitraryShields
+	#endif
+	#ifndef arbitraryScrolls
+		#define arbitraryScrolls
+	#endif
+#endif
+
+#ifndef progressiveScroll1
+	#define progressiveScroll1 0x48
+#endif
+#ifndef progressiveScroll2
+	#define progressiveScroll2 0x73
+#endif
+#ifndef progressiveScroll3
+	#define progressiveScroll3 0x74
+#endif
+#ifndef progressiveScroll4
+	#define progressiveScroll4 0x4D
+#endif
+#ifndef progressiveScroll5
+	#define progressiveScroll5 0x75
+#endif
+
 PUSH; ORG $A7430; jumpToHack(progressiveItems); POP
 ALIGN 4
 progressiveItems:
 #incbin "asm/progressiveItems.dmp"
 POIN progressiveItemsTable
 POIN ($A7430+0x08)|1 //return offset
-POIN dojoProgessive
+POIN extraProgressive
+BYTE progressiveScroll1 //0x03 -> Spin Scroll (or whatever is the first scroll in the chain)
+
+//table to determine which item each sub id of item 0x05 gives
+extraProgressive:
+BYTE 0x01 //0x00 -> Sword
+BYTE 0x09 //0x01 -> Bow
+BYTE 0x0B //0x02 -> Boomerang
+BYTE 0x0D //0x03 -> Shield
+
+//table to determine which sub id each item icon translates to
+progressiveTraps:
+ORG currentoffset + 1
+#ifndef arbitrarySwords
+	BYTE 0 //smith's sword
+	BYTE 0 //white sword (0)
+	BYTE 0 //white sword (2)
+	BYTE 0 //white sword (3)
+	BYTE -1//lantern sword
+	BYTE 0 //four sword
+#else
+	ORG currentoffset + 6
+#endif
+ORG currentoffset + 2
+#ifndef arbitraryBows
+	BYTE 1 //bow
+	BYTE 1 //light arrow
+#else
+	ORG currentoffset + 2
+#endif
+#ifndef arbitraryBoomerangs
+	BYTE 2 //boomerang
+	BYTE 2 //magic boomerang
+#else
+	ORG currentoffset + 2
+#endif
+#ifndef arbitraryShields
+	BYTE 3 //shield
+	BYTE 3 //magic shield
+#else
+	ORG currentoffset + 2
+#endif
+ORG currentoffset + 0xFF
+PUSH; ORG progressiveTraps + 0x48; BYTE 4; POP
 
 ALIGN 4
 progressiveItemsTable:
-POIN progressiveSwordIDs progressiveSwordFlags
+#ifndef arbitrarySwords
+	POIN progressiveSwordIDs progressiveSwordFlags
+#endif
 //POIN progressiveBombIDs progressiveBombFlags
-POIN progressiveBowIDs progressiveBowFlags
-POIN progressiveBoomerangIDs progressiveBoomerangFlags
-POIN progressiveShieldIDs progressiveShieldFlags
-POIN progressiveSpinScrollIDs progressiveSpinScrollFlags
-POIN progressiveGreatScrollIDs progressiveGreatScrollFlags
+#ifndef arbitraryBows
+	POIN progressiveBowIDs progressiveBowFlags
+#endif
+#ifndef arbitraryBoomerangs
+	POIN progressiveBoomerangIDs progressiveBoomerangFlags
+#endif
+#ifndef arbitraryShields
+	POIN progressiveShieldIDs progressiveShieldFlags
+#endif
 POIN progressiveKinstoneBagIDs progressiveKinstoneBagFlags
+POIN progressiveBadSwordIDs progressiveBadSwordFlags
+#ifndef arbitraryScrolls
+	POIN progressiveScrollIDs progressiveScrollFlags
+#endif
 WORD -1 //terminator
 
 progressiveSwordIDs:
@@ -25,7 +112,7 @@ BYTE 0x03 //White Sword (2 elements)
 BYTE 0x04 //White Sword (3 elements)
 BYTE 0x06 //Four Sword
 BYTE 0xFF //terminator
-BYTE 0x00 //item to give if the progressive item is maxed
+BYTE 0x06 //item to give if the progressive item is maxed
 
 //progressiveBombIDs:
 //BYTE 0x07 //Bombs
@@ -37,34 +124,38 @@ progressiveBowIDs:
 BYTE 0x09 //Bow
 BYTE 0x0A //Light Arrow
 BYTE 0xFF //terminator
-BYTE 0x00 //item to give if the progressive item is maxed
+BYTE 0x0A //item to give if the progressive item is maxed
 
 progressiveBoomerangIDs:
 BYTE 0x0B //Boomerang
 BYTE 0x0C //Magical Boomerang
 BYTE 0xFF //terminator
-BYTE 0x00 //item to give if the progressive item is maxed
+BYTE 0x0C //item to give if the progressive item is maxed
 
 progressiveShieldIDs:
 BYTE 0x0D //Small Shield
 BYTE 0x0E //Mirror Shield
 BYTE 0xFF //terminator
-BYTE 0x00 //item to give if the progressive item is maxed
-
-progressiveSpinScrollIDs:
-BYTE 0x48 //Spin attack
-BYTE 0xFF //terminator
-BYTE 0x00 //item to give if the progressive item is maxed
-
-progressiveGreatScrollIDs:
-BYTE 0x4D //Great spin attack
-BYTE 0xFF //terminator
-BYTE 0x00 //item to give if the progressive item is maxed
+BYTE 0x0E //item to give if the progressive item is maxed
 
 progressiveKinstoneBagIDs:
 BYTE 0x67 //Kinstone Bag
 BYTE 0xFF //terminator
 BYTE 0x67 //item to give if the progressive item is maxed
+
+progressiveBadSwordIDs:
+BYTE 0x05 //Lantern Sword
+BYTE 0xFF //terminator
+BYTE 0x05 //item to give if the progressive item is maxed
+
+progressiveScrollIDs:
+BYTE progressiveScroll1
+BYTE progressiveScroll2
+BYTE progressiveScroll3
+BYTE progressiveScroll4
+BYTE progressiveScroll5
+BYTE 0xFF //terminator
+BYTE progressiveScroll1 //item to give if the progressive item is maxed
 
 progressiveSwordFlags:
 BYTE 0x00 0x0C //Smith's Sword
@@ -94,16 +185,20 @@ BYTE 0x03 0x0C //Small Shield
 BYTE 0x03 0x30 //Mirror Shield
 BYTE 0xFF //terminator
 
-progressiveSpinScrollFlags:
-BYTE 0x12 0x03 //Spin attack
-BYTE 0xFF //terminator
-
-progressiveGreatScrollFlags:
-BYTE 0x13 0x0C //Great spin attack
-BYTE 0xFF //terminator
-
 progressiveKinstoneBagFlags:
 BYTE 0x19 0xC0 //Kinstone Bag
+BYTE 0xFF //terminator
+
+progressiveBadSwordFlags:
+BYTE 0x01 0x0C //Lantern Sword
+BYTE 0xFF //terminator
+
+progressiveScrollFlags:
+BYTE (progressiveScroll1 >> 2) (3 << ((progressiveScroll1 & 3) << 1))
+BYTE (progressiveScroll2 >> 2) (3 << ((progressiveScroll2 & 3) << 1))
+BYTE (progressiveScroll3 >> 2) (3 << ((progressiveScroll3 & 3) << 1))
+BYTE (progressiveScroll4 >> 2) (3 << ((progressiveScroll4 & 3) << 1))
+BYTE (progressiveScroll5 >> 2) (3 << ((progressiveScroll5 & 3) << 1))
 BYTE 0xFF //terminator
 
 PUSH; ORG $A4AC8; jumpToHack(progressiveSwap); POP
@@ -142,6 +237,11 @@ ALIGN 4
 progressiveIcon:
 #incbin "asm/progressiveIcon.dmp"
 POIN progressiveIconGraphics
+#ifdef glitchless
+	WORD 1
+#else
+	WORD 0
+#endif
 ALIGN 4
 progressiveIconGraphics:
 #incbin "swapicon.img.bin"
@@ -152,3 +252,217 @@ PUSH; ORG $53FA4; jumpToHack(bombequipFix); POP
 ALIGN 4
 bombequipFix:
 #incbin "asm/bombequipFix.dmp"
+POIN equipFixLists
+
+ALIGN 4
+equipFixLists:
+POIN progressiveSwordIDs
+POIN progressiveBoomerangIDs
+POIN progressiveShieldIDs
+WORD 0
+
+PUSH
+ORG $2EAB60
+#incbin "extras.img.bin"
+POP
+
+//make the lantern sword use the right icon group
+PUSH; ORG $125B48; BYTE 1 0 1 4 0 0 0x41 1; POP
+
+PUSH; ORG $42FC; jumpToHack(extraItemIcons); POP
+ALIGN 4
+extraItemIcons:
+#incbin "asm/extraItemIcons.dmp"
+POIN extraIconTable
+POIN progressiveTraps
+
+ALIGN 4
+extraIconTable:
+POIN extraIcon0
+POIN extraIcon1
+POIN extraIcon2
+POIN extraIcon3
+POIN extraIcon4
+
+//0x8A to 0x91
+ALIGN 4
+extraIcon0: 
+BYTE 0x8A 0xFF 0x00 0x80 0x01
+extraIcon1: 
+BYTE 0x8B 0xFF 0x00 0x80 0x01
+extraIcon2: 
+BYTE 0x8C 0xFF 0x00 0x80 0x01
+extraIcon3: 
+BYTE 0x8D 0xFF 0x00 0x80 0x01
+extraIcon4: 
+BYTE 0x8E 0xFF 0x00 0x80 0x01
+extraIcon5: 
+BYTE 0x8F 0xFF 0x00 0x80 0x01
+extraIcon6: 
+BYTE 0x90 0xFF 0x00 0x80 0x01
+extraIcon7: 
+BYTE 0x91 0xFF 0x00 0x80 0x01
+
+//some more sprite data
+PUSH
+ORG $11AEE8 //SHORT ammount of tiles, base tile
+SHORT 4 0x25C
+SHORT 4 0x25C+4
+SHORT 4 0x25C+4+4
+SHORT 4 0x25C+4+4+4
+SHORT 8 0x25C+4+4+4+4
+SHORT 4 0x25C+4+4+4+4+8
+SHORT 4 0x25C+4+4+4+4+8+4
+SHORT 4 0x25C+4+4+4+4+8+4+4
+POP
+
+PUSH
+ORG $2FE02C
+WORD extraOAM0-$2F3460
+WORD extraOAM1-$2F3460
+WORD extraOAM2-$2F3460
+WORD extraOAM3-$2F3460
+WORD extraOAM4-$2F3460
+WORD extraOAM5-$2F3460
+WORD extraOAM6-$2F3460
+WORD extraOAM7-$2F3460
+POP
+
+extraOAM0:
+BYTE 1
+BYTE 0xF6 0xF6 0x11 0 0x10
+extraOAM1:
+BYTE 1
+BYTE 0xF6 0xF6 0x11 0 0x10
+extraOAM2:
+BYTE 1
+BYTE 0xF6 0xF6 0x11 0 0x10
+extraOAM3:
+BYTE 1
+BYTE 0xF6 0xF6 0x11 0 0x10
+extraOAM4:
+BYTE 2
+BYTE 0xF6 0xE6 0x11 0 0x10
+BYTE 0xF6 0xF6 0x11 4 0x10
+extraOAM5:
+BYTE 1
+BYTE 0xF6 0xF6 0x11 0 0x10
+extraOAM6:
+BYTE 1
+BYTE 0xF6 0xF6 0x11 0 0x10
+extraOAM7:
+BYTE 1
+BYTE 0xF6 0xF6 0x11 0 0x10
+
+ALIGN 4
+extraText:
+POIN extraSwordText
+POIN extraBowText
+POIN extraBoomerangText
+POIN extraShieldText
+POIN extraScrollText
+
+ALIGN 4
+extraSwordText:
+POIN extraSwordTextEnglish
+POIN extraSwordTextEnglish
+POIN extraSwordTextEnglish
+POIN extraSwordTextFrench
+POIN extraSwordTextGerman
+POIN extraSwordTextSpanish
+POIN extraSwordTextItalian
+
+extraSwordTextEnglish:
+String("Progressive sword"); BYTE 0
+extraSwordTextFrench:
+String("Progressive sword"); BYTE 0
+extraSwordTextGerman:
+String("Progressive sword"); BYTE 0
+extraSwordTextSpanish:
+String("Espada progresiva"); BYTE 0
+extraSwordTextItalian:
+String("Progressive sword"); BYTE 0
+
+ALIGN 4
+extraBowText:
+POIN extraBowTextEnglish
+POIN extraBowTextEnglish
+POIN extraBowTextEnglish
+POIN extraBowTextFrench
+POIN extraBowTextGerman
+POIN extraBowTextSpanish
+POIN extraBowTextItalian
+
+extraBowTextEnglish:
+String("Progressive bow"); BYTE 0
+extraBowTextFrench:
+String("Progressive bow"); BYTE 0
+extraBowTextGerman:
+String("Progressive bow"); BYTE 0
+extraBowTextSpanish:
+String("Arco progresivo"); BYTE 0
+extraBowTextItalian:
+String("Progressive bow"); BYTE 0
+
+ALIGN 4
+extraBoomerangText:
+POIN extraBoomerangTextEnglish
+POIN extraBoomerangTextEnglish
+POIN extraBoomerangTextEnglish
+POIN extraBoomerangTextFrench
+POIN extraBoomerangTextGerman
+POIN extraBoomerangTextSpanish
+POIN extraBoomerangTextItalian
+
+extraBoomerangTextEnglish:
+String("Progressive boomerang"); BYTE 0
+extraBoomerangTextFrench:
+String("Progressive boomerang"); BYTE 0
+extraBoomerangTextGerman:
+String("Progressive boomerang"); BYTE 0
+extraBoomerangTextSpanish:
+String("Bumer"); BYTE 0xE1; String("n progresivo"); BYTE 0
+extraBoomerangTextItalian:
+String("Progressive boomerang"); BYTE 0
+
+ALIGN 4
+extraShieldText:
+POIN extraShieldTextEnglish
+POIN extraShieldTextEnglish
+POIN extraShieldTextEnglish
+POIN extraShieldTextFrench
+POIN extraShieldTextGerman
+POIN extraShieldTextSpanish
+POIN extraShieldTextItalian
+
+extraShieldTextEnglish:
+String("Progressive shield"); BYTE 0
+extraShieldTextFrench:
+String("Progressive shield"); BYTE 0
+extraShieldTextGerman:
+String("Progressive shield"); BYTE 0
+extraShieldTextSpanish:
+String("Escudo progresivo"); BYTE 0
+extraShieldTextItalian:
+String("Progressive shield"); BYTE 0
+
+ALIGN 4
+extraScrollText:
+POIN extraScrollTextEnglish
+POIN extraScrollTextEnglish
+POIN extraScrollTextEnglish
+POIN extraScrollTextFrench
+POIN extraScrollTextGerman
+POIN extraScrollTextSpanish
+POIN extraScrollTextItalian
+
+extraScrollTextEnglish:
+String("Progressive scroll"); BYTE 0
+extraScrollTextFrench:
+String("Progressive scroll"); BYTE 0
+extraScrollTextGerman:
+String("Progressive scroll"); BYTE 0
+extraScrollTextSpanish:
+String("Pergamino progresivo"); BYTE 0
+extraScrollTextItalian:
+String("Progressive scroll"); BYTE 0

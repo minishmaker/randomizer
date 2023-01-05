@@ -216,6 +216,7 @@ SHORT 0x0000 0x0857; WORD 0x203FB00+(2*03) ((0x203FB00+(0x24*2)+3)&(0xFFFFFFFC))
 SHORT 0x0000 0x0851; WORD 0x203FB00+(2*04) ((0x203FB00+(0x24*2)+3)&(0xFFFFFFFC))+(4*04) //Darknut
 SHORT 0x0000 0x0875; WORD 0x203FB00+(2*05) ((0x203FB00+(0x24*2)+3)&(0xFFFFFFFC))+(4*05) //Beetle
 SHORT 0x0000 0x084B; WORD 0x203FB00+(2*06) ((0x203FB00+(0x24*2)+3)&(0xFFFFFFFC))+(4*06) //Keese
+SHORT 0x0000 0x0856; WORD 0x203FB00+(2*36) ((0x203FB00+(0x24*2)+3)&(0xFFFFFFFC))+(4*36) //Door Mimic
 SHORT 0x0000 0x0855; WORD 0x203FB00+(2*07) ((0x203FB00+(0x24*2)+3)&(0xFFFFFFFC))+(4*07) //Moldorm
 SHORT 0x0000 0x0846; WORD 0x203FB00+(2*08) ((0x203FB00+(0x24*2)+3)&(0xFFFFFFFC))+(4*08) //Moldworm
 SHORT 0x0000 0x0844; WORD 0x203FB00+(2*09) ((0x203FB00+(0x24*2)+3)&(0xFFFFFFFC))+(4*09) //Sluggula
@@ -306,18 +307,20 @@ WORD 0 0 0 //terminator
 ALIGN 4
 miscPageData:
 //POIN string; WORD offsetToCounter offsetToTime (only one of the two)
-POIN totalTimeCredits   ; WORD 0 0x203FFF0+(00*4)
-POIN menuTimeCredits    ; WORD 0 0x203FFF0+(01*4)
-POIN cutsceneTimeCredits; WORD 0 0x203FFF0+(02*4)
-POIN rollingTimeCredits ; WORD 0 0x203FFF0+(03*4)
-POIN timesRolledCredits ; WORD 0x203FE00+(00*2) 0
-POIN timesBonkedCredits ; WORD 0x203FE00+(01*2) 0
-POIN timesDiedCredits   ; WORD 0x203FE00+(02*2) 0
-POIN timesRevivedCredits; WORD 0x203FE00+(03*2) 0
-POIN timesSavedCredits  ; WORD 0x203FE00+(04*2) 0
-POIN timesLoadedCredits ; WORD 0x203FE00+(05*2) 0
-POIN timesWarpedCredits ; WORD 0x203FE00+(07*2) 0
-POIN totalRupeesCredits ; WORD 0x203FE00+(06*2) 0
+POIN totalTimeCredits     ; WORD 0 0x203FFF0+(00*4)
+POIN menuTimeCredits      ; WORD 0 0x203FFF0+(01*4)
+POIN cutsceneTimeCredits  ; WORD 0 0x203FFF0+(02*4)
+POIN rollingTimeCredits   ; WORD 0 0x203FFF0+(03*4)
+POIN timesRolledCredits   ; WORD 0x203FE00+(00*2) 0
+POIN timesBonkedCredits   ; WORD 0x203FE00+(01*2) 0
+POIN timesDiedCredits     ; WORD 0x203FE00+(02*2) 0
+POIN timesRevivedCredits  ; WORD 0x203FE00+(03*2) 0
+POIN timesSavedCredits    ; WORD 0x203FE00+(04*2) 0
+POIN timesLoadedCredits   ; WORD 0x203FE00+(05*2) 0
+POIN timesWarpedCredits   ; WORD 0x203FE00+(07*2) 0
+POIN timesHomesickCredits ; WORD 0x203FE00+(09*2) 0
+POIN totalRupeesCredits   ; WORD 0x203FE00+(06*2) 0
+POIN trapsSprungCredits   ; WORD 0x203FE00+(08*2) 0
 WORD 0 0 0 //terminator
 
 PUSH
@@ -387,54 +390,55 @@ POP
 
 credits1:
 BYTE 0x0A
-BYTE 0x0A
-BYTE 0x0A
 BYTE 2 0x01; String("Programming"); BYTE 2 0 0x0A
-String("Berylliosis"); BYTE 0x0A
+String("Berylliosis     Ibot"); BYTE 0x0A
+String("Henny        Dreamie"); BYTE 0x0A
 BYTE 0x0A
 BYTE 2 0x02; String("Logic"); BYTE 2 0 0x0A
-String("wjg"); BYTE 0x0A
-String("Berylliosis"); BYTE 0
+String("wjg      Berylliosis"); BYTE 0x0A
+String("Myth         CatoBat"); BYTE 0x0A
+String("Deoxis"); BYTE 0
+
 
 credits2:
 BYTE 0x0A
 BYTE 0x0A
-BYTE 0x0A
-BYTE 0x0A
 BYTE 2 0x03; String("Patches and Assembly"); BYTE 2 0 0x0A
-String("Leonarth"); BYTE 0x0A
+String("Leonarth     CatoBat"); BYTE 0x0A
 BYTE 0x0A
 BYTE 2 0x01; String("Tracker Package"); BYTE 2 0 0x0A
-String("Cubesolver"); BYTE 0
+String("Ibot      Cubesolver"); BYTE 0x0A
+String("Deoxis          Aero"); BYTE 0x0A
+String("Myth    CandyCrystal"); BYTE 0
 
 credits3:
+BYTE 0x0A
 BYTE 2 0x11; String("Team MinishMaker"); BYTE 2 0 0x0A
-String("Mikesky"); BYTE 0x0A
-String("ppltoast"); BYTE 0x0A
-String("ToadsWoot"); BYTE 0x0A
-String("wjg"); BYTE 0x0A
-String("Berylliosis"); BYTE 0x0A
-String("Leonarth"); BYTE 0x0A
-String("UselessHobo"); BYTE 0x0A
-String("Cubesolver"); BYTE 0
+String("Mikesky         ppltoast"); BYTE 0x0A
+String("ToadsWoot            wjg"); BYTE 0x0A
+String("Berylliosis     Leonarth"); BYTE 0x0A
+String("UselessHobo   Cubesolver"); BYTE 0x0A
+String("Ibot           Straylite"); BYTE 0x0A
+String("Myth               Henny"); BYTE 0x0A
+String("Dreamie"); BYTE 0
 
 credits4:
-BYTE 0x0A
-BYTE 0x0A
 BYTE 2 0x1A; String("Additional Contributors"); BYTE 2 0 0x0A
-String("Myth"); BYTE 0x0A
+String("Rylux             TreZc0"); BYTE 0x0A
+String("vortexofdoom     wolfman"); BYTE 0x0A
 String("Maro"); BYTE 0x0A
 BYTE 0x0A
 BYTE 2 0x12; String("Special Thanks"); BYTE 2 0 0x0A
 String("ALTTP Randomizer Team"); BYTE 0x0A
-String("EmoTracker Developers"); BYTE 0
+String("EmoTracker Developers"); BYTE 0x0A
+String("ZeldaSpeedruns.com Staff"); BYTE 0
 
 credits5:
-BYTE 0x0A
-BYTE 0x0A
-BYTE 0x0A
-BYTE 0x0A
-BYTE 0x0A
+BYTE 2 0x03; String("Tournament Champions"); BYTE 2 0 0x0A
+String("Season 1:     Pikapals"); BYTE 0x0A
+String("Season 2:     LunaStik"); BYTE 0x0A
+String("Season 3:       NesmaN"); BYTE 0x0A
+String("Season 4:         Myth"); BYTE 0x0A
 BYTE 0x0A
 BYTE 2 0x1B; String("minishmaker.com"); BYTE 0x0F 0x15; String("discord"); BYTE 2 0 0x0A
 BYTE 0x0A
@@ -446,7 +450,7 @@ BYTE 0x0A
 BYTE 0x0A
 BYTE 2 0x01; String("Translators"); BYTE 2 0 0x0A
 String("Deoxis and Legrandgrand (French)"); BYTE 0x0A
-String("Martin and ToadsWoot (German)"); BYTE 0x0A
+String("atxMartin and ToadsWoot (German)"); BYTE 0x0A
 String("Leonarth (Spanish)"); BYTE 0x0A
 String("Mikonai (Italian)"); BYTE 0
 

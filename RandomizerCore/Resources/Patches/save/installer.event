@@ -46,7 +46,7 @@ BYTE 0x04 //0x05 Darknut
 BYTE 0xFF //0x06
 BYTE 0x05 //0x07 Beetle
 BYTE 0x06 //0x08 Keese
-BYTE 0xFF //0x09
+BYTE 0x24 //0x09 Door Mimic
 BYTE 0x01 //0x0A Rock Chuchu
 BYTE 0x01 //0x0B Spiny Chuchu
 BYTE 0xFF //0x0C
@@ -308,5 +308,8 @@ rupees:
 WORD 0x203FE00+(06*2) //offset
 
 //WORD 0x203FE00+(07*2) //offset of times quickwarped
+//WORD 0x203FE00+(08*2) //offset of traps found
+//WORD 0x203FE00+(09*2) //offset of times homewarped
+//WORD 0x203FE00+(10*2) //offset of selected clone count (2 lowest bits)
 
 #include "credits/credits.event"

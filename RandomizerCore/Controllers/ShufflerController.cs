@@ -74,6 +74,7 @@ public class ShufflerController
 
     public bool Randomize(int retries = 1)
     {
+        Logger.Instance.Flush();
         var attempts = 1;
         var successfulGeneration = false;
         while (attempts <= retries && !successfulGeneration)
@@ -95,13 +96,17 @@ public class ShufflerController
 
     public void SaveAndPatchRom(string filename, string? patchFile = null)
     {
+
         var romBytes = _shuffler.GetRandomizedRom();
-        
+
         File.WriteAllBytes(filename, romBytes);
-        
+
         _shuffler.ApplyPatch(filename, patchFile);
 
         _patchedRomFilename = filename;
+
+        Logger.Instance.OutputFilePath = $"{Directory.GetCurrentDirectory()}/Log.json";
+        Logger.Instance.PublishLogs();
     }
 
     public void CreatePatch(string patchFilename, string? patchFile = null)

@@ -24,6 +24,16 @@ mov	r2,#0x3F
 and	r1,r2
 strb	r1,[r0]
 
+@update the counter
+ldr	r0,=#0x203FE00
+ldrh	r1, [r0, #8*2]
+add	r1, #1
+ldr	r2, =#0xFFFF
+cmp	r1, r2
+bhi	overflow
+strh	r1, [r0, #8*2]
+overflow:
+
 @trigger it
 ldr	r1,=#0x203F1FF
 ldrb	r1,[r1]

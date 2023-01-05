@@ -1,9 +1,10 @@
 #ifdef glitchless
 //prevent ocarina glitch from triggering, also prevents portal items, also also lantern glitch
-PUSH; ORG $772D8; jumpToHack(ocarinaGlitchFix); POP
-ALIGN 4
-ocarinaGlitchFix:
-#incbin "asm/ocarinaGlitchFix.dmp"
+//disabled because using the lantern while rolling, being grabbed by an enemy, using other items or doing many other things breaks the game
+//PUSH; ORG $772D8; jumpToHack(ocarinaGlitchFix); POP
+//ALIGN 4
+//ocarinaGlitchFix:
+//#incbin "asm/ocarinaGlitchFix.dmp"
 
 //fix mole cave walls affecting other mole caves and also make link not run forever
 PUSH; ORG $7FD48; jumpToHack(moleFix); POP
@@ -12,10 +13,15 @@ moleFix:
 #incbin "asm/moleFix.dmp"
 
 //prevent link from jumping diagonally out of holes
-PUSH; ORG $5E88C; jumpToHack(holeFix); POP
+PUSH; ORG $72558; jumpToHack(angleFix1); POP
 ALIGN 4
-holeFix:
-#incbin "asm/holeFix.dmp"
+angleFix1:
+#incbin "asm/angleFix1.dmp"
+//pretty sure this second fix is not needed but better safe
+PUSH; ORG $7893C; jumpToHack(angleFix2); POP
+ALIGN 4
+angleFix2:
+#incbin "asm/angleFix2.dmp"
 
 //fix spin soldier skip
 PUSH; ORG $C1A; SHORT 0x20; POP
@@ -29,4 +35,37 @@ PUSH; ORG $85818; jumpToHack(lilypadAdventureFix2); POP
 ALIGN 4
 lilypadAdventureFix2:
 #incbin "asm/lilypadAdventureFix2.dmp"
+
+//fix bottle glitch
+//disabled because it breaks invulnerability in multiple scenarios during normal gameplay
+//PUSH; ORG $78A80; jumpToHack(bottleFix); POP
+//ALIGN 4
+//bottleFix:
+//#incbin "asm/bottleFix.dmp"
+
+//fix boss door clip with lantern
+PUSH; ORG $77E5C; jumpToHack(bossdoorFix); POP
+ALIGN 4
+bossdoorFix:
+#incbin "asm/bossdoorFix.dmp"
+
+//fix magic boomerang doing weird stuff to just about every other thing
+PUSH; ORG $1B88E; SHORT 0xB408; jumpToHack(magicrangFix); POP
+ALIGN 4
+magicrangFix:
+#incbin "asm/magicrangFix.dmp"
+
+//link can no longer climb while on fire
+//disabled because it causes glitchy behavior when approaching a ladder from the side
+//PUSH; ORG $7A6BE; SHORT 0xB408; jumpToHack(fireStairsFix); POP
+//ALIGN 4
+//fireStairsFix:
+//#incbin "asm/fireStairsFix.dmp"
+
+//can no longer buy nothing at shops
+PUSH; ORG $81390; jumpToHack(buyNothingFix); POP
+ALIGN 4
+buyNothingFix:
+#incbin "asm/buyNothingFix.dmp"
+
 #endif

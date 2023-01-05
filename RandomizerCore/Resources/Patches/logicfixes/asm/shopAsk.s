@@ -15,6 +15,8 @@
 .equ redclockCredits, blueclockCredits+4
 .equ figurineCredits, redclockCredits+4
 .equ trapGetIcon, figurineCredits+4
+.equ extraText, trapGetIcon+4
+.equ progressiveTraps, extraText+4
 .thumb
 ldrb	r0,[r6,#6]
 cmp	r0,#0x64
@@ -204,6 +206,13 @@ cmp	r0,#0x1B
 bne	nottrap
 b	trap
 nottrap:
+cmp	r0,#0x1C
+blo	notBottle
+cmp	r0,#0x20
+blo	bottle
+notBottle:
+cmp	r0,#0x05
+beq	extra
 cmp	r0,#0x67
 beq	figurine
 cmp	r0,#0x18
@@ -233,6 +242,20 @@ blo	normal
 cmp	r0,#0x53
 bhi	normal
 b	dungeon
+
+bottle:
+cmp	r0, #0x20
+beq	normal
+ldr	r3,=#0x0400
+orr	r0,r3
+orr	r3, r1
+bx	lr
+
+extra:
+ldr	r0,extraText
+lsl	r1,#2
+ldr	r0,[r1, r0]
+bx	lr
 
 normal:
 ldr	r1,=#0x0400
@@ -395,10 +418,32 @@ push	{lr}
 ldr	r3,trapGetIcon
 mov	lr,r3
 .short	0xF800
+@check if key/big key
+cmp	r0, #0x52
+beq	fakeKey
+cmp	r0, #0x53
+beq	fakeKey
+@check if its in the list
+ldr	r2,progressiveTraps
+ldrb	r2, [r2, r0]
+cmp	r2, #0xFF
+beq	noExtra
+mov	r1, r2
+pop	{r0}
+mov	lr, r0
+mov	r3, #0
+b	extra
+noExtra:
 ldr	r1,=#0x0400
 orr	r0,r1
 mov	r3,#0
 pop	{pc}
+
+fakeKey:
+pop	{r1}
+mov	lr, r1
+ldr	r3, =#0x726
+b	normal
 
 .align
 .ltorg
@@ -421,3 +466,5 @@ walletShopItem:
 @POIN redclockCredits
 @POIN figurineCredits
 @POIN trapGetIcon
+@POIN extraText
+@POIN progressiveTraps

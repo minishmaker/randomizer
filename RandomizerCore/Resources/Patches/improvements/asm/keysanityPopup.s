@@ -25,21 +25,27 @@ b	register
 
 @check if this is a bottle
 checkBottle:
-@cmp	r6, #0x1C
-@blo	notBottle
-@cmp	r6, #0x1F
-@bhi	notBottle
-@
-@@it's a bottle: we get funky
-@ldr	r0, =#0x30011E8
-@@change the icon we will get
-@strb	r7, [r0, #0x0A]
-@mov	r1, #0
-@strb	r1, [r0, #0x0B]
-@@get text for the corresponding item
-@ldr	r0, =#0x500
-@add	r0, r7
-@b	return
+cmp	r6, #0x1C
+blo	notBottle
+cmp	r6, #0x1F
+bhi	notBottle
+
+@its a bottle: we get funky
+cmp	r7,#0
+bne	bottleWithSub
+@if no sub id set, treat as empty
+mov	r7,#0x20
+
+bottleWithSub:
+ldr	r0, =#0x30011E8
+@change the icon we will get
+strb	r7, [r0, #0x0A]
+mov	r1, #0
+strb	r1, [r0, #0x0B]
+@get text for the corresponding item
+ldr	r0, =#0x500
+add	r0, r7
+b	return
 
 @check if this is a figurine
 notBottle:
@@ -160,7 +166,12 @@ cmp	r7,#0x6C
 beq	totem
 cmp	r7,#0x6D
 beq	crown
-b	end
+
+commonKinstone:
+mov	r0, r8
+mov	r1, r7
+sub	r1, #0x6E-32
+b	register
 
 tornado:
 ldr	r0,=#0x71A

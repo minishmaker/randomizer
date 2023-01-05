@@ -1198,6 +1198,31 @@ timesWarpedCreditsItalian:
 String("Quickwarp usati"); BYTE 0
 
 ALIGN 4
+timesHomesickCredits:
+/*English*/ POIN timesHomesickCreditsEnglish
+/*English*/ POIN timesHomesickCreditsEnglish
+/*English*/ POIN timesHomesickCreditsEnglish
+/*French */ POIN timesHomesickCreditsFrench
+/*German */ POIN timesHomesickCreditsGerman
+/*Spanish*/ POIN timesHomesickCreditsSpanish
+/*Italian*/ POIN timesHomesickCreditsItalian
+
+timesHomesickCreditsEnglish:
+String("Homewarps used"); BYTE 0
+
+timesHomesickCreditsFrench:
+String("Homewarps utilis"); BYTE 0xE9; String("s"); BYTE 0
+
+timesHomesickCreditsGerman:
+String("Homewarps genutzt"); BYTE 0
+
+timesHomesickCreditsSpanish:
+String("Homewarps usados"); BYTE 0
+
+timesHomesickCreditsItalian:
+String("Homewarp usati"); BYTE 0
+
+ALIGN 4
 totalRupeesCredits:
 /*English*/ POIN totalRupeesCreditsEnglish
 /*English*/ POIN totalRupeesCreditsEnglish
@@ -1221,3 +1246,28 @@ String("Total de rupias"); BYTE 0
 
 totalRupeesCreditsItalian:
 String("Totale di rupie"); BYTE 0
+
+ALIGN 4
+trapsSprungCredits:
+/*English*/ POIN trapsSprungEnglish
+/*English*/ POIN trapsSprungEnglish
+/*English*/ POIN trapsSprungEnglish
+/*French */ POIN trapsSprungFrench
+/*German */ POIN trapsSprungGerman
+/*Spanish*/ POIN trapsSprungSpanish
+/*Italian*/ POIN trapsSprungItalian
+
+trapsSprungEnglish:
+String("Traps sprung"); BYTE 0
+
+trapsSprungFrench:
+String("Pi"); BYTE 0xE8; String("ges d"); BYTE 0xE9; String("couverts"); BYTE 0
+
+trapsSprungGerman:
+String("Gefundene Fallen"); BYTE 0
+
+trapsSprungSpanish:
+String("Trampas activadas"); BYTE 0
+
+trapsSprungItalian:
+String("Traps sprung"); BYTE 0

@@ -163,6 +163,16 @@ POIN getTextOffset
 	POIN scrollHistoryFastSplit
 	POIN scrollHistoryLongSpin
 
+	//common kinstones
+	POIN kinstoneHistoryRedW
+	POIN kinstoneHistoryRedV
+	POIN kinstoneHistoryRedE
+	POIN kinstoneHistoryBlueL
+	POIN kinstoneHistoryBlueS
+	POIN kinstoneHistoryGreenC
+	POIN kinstoneHistoryGreenG
+	POIN kinstoneHistoryGreenP
+
 	cloudHistory:
 	String("Cloud stone"); BYTE 0
 	swampHistory:
@@ -229,4 +239,21 @@ POIN getTextOffset
 	String("Fast split"); BYTE 0
 	scrollHistoryLongSpin:
 	String("Long spin"); BYTE 0
+
+	kinstoneHistoryRedW:
+	String("Red W stone"); BYTE 0
+	kinstoneHistoryRedV:
+	String("Red V stone"); BYTE 0
+	kinstoneHistoryRedE:
+	String("Red E stone"); BYTE 0
+	kinstoneHistoryBlueL:
+	String("Blue L stone"); BYTE 0
+	kinstoneHistoryBlueS:
+	String("Blue S stone"); BYTE 0
+	kinstoneHistoryGreenC:
+	String("Green C stone"); BYTE 0
+	kinstoneHistoryGreenG:
+	String("Green G stone"); BYTE 0
+	kinstoneHistoryGreenP:
+	String("Green P stone"); BYTE 0
 #endif

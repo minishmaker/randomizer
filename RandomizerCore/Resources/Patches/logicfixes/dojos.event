@@ -108,21 +108,15 @@ BYTE 22 greatbladeDojoItem greatbladeDojoSub //0x75 Increased Great Spin Attack 
 //long great spin bro does not ask for great spin
 PUSH; ORG $68818; SHORT 0x2000; POP
 
-//swiftblade I sets the spin attack as usable for the tutorial
-PUSH; ORG $68908; jumpToHack(dojosTutorialSpin); POP
-ALIGN 4
-dojosTutorialSpin:
-#incbin "asm/dojosTutorialSpin.dmp"
-
 //swiftblade I now checks for 7 scrolls total, instead of 7 specific scrolls
 PUSH; ORG $687D8; jumpToHack(dojosScrollCount); POP
 ALIGN 4
 dojosScrollCount:
 #incbin "asm/dojosScrollCount.dmp"
 
-ALIGN 4
-dojoProgessive:
-#incbin "asm/dojoProgessive.dmp"
-
-//dojo tutorial is automatically completed
-PUSH; ORG $6894A; SHORT 0; POP
+//remove dojo tutorials
+PUSH
+ORG $1627C
+SHORT 0x0803 //jump event command
+SHORT $16366-$1627C-2 //value for the jump, command adds this value + 1, multiplied by two, to the event cursor
+POP

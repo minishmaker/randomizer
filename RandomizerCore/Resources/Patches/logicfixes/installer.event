@@ -1,17 +1,9 @@
-//limit split ammount in certain areas
-PUSH; ORG $73EC8; jumpToHack(splitHack); POP
-ALIGN 4
-splitHack:
+//limit split ammount
+PUSH
+ORG $73E8E
+SHORT 0
 #incbin "asm/splitHack.dmp"
-POIN splitLimits
-splitLimits:
-//areaID roomID cloneAmmount (0xFF as room for all rooms of that area)
-BYTE 0x58 0xFF 1 //all of fortress
-BYTE 0x60 0xFF 1 //all of droplets
-BYTE 0x09 0x00 2 //graveyard
-BYTE 0x68 0x04 2 //crypt
-BYTE 0x2E 0x02 1 //big book
-BYTE 0 0 0
+POP
 
 PUSH //new items
 ORG $F2528; BYTE 0x06 0x0F 0x00; ORG currentoffset+2; BYTE 0x04; ORG currentoffset+8; SHORT 0xC8 //new item in smith's room, write item to $F252B
@@ -243,6 +235,8 @@ PUSH; ORG $91924; jumpToHack(openCurtain); POP
 ALIGN 4
 openCurtain:
 #incbin "asm/openCurtain.dmp"
+//and it does not open even if you have the earth element
+PUSH; ORG $C826; BYTE 0; POP
 
 //make the bell heart piece randomizable
 PUSH; ORG $5D600; SHORT 0x2000; POP
@@ -370,5 +364,23 @@ tingleCheck:
 //remove percy shell check
 PUSH; ORG $6B03C; SHORT 0x2000; POP
 
+//peril beam always active under ohko, or when out of time in timed ohko
+#ifdef ohkoOption
+	PUSH; ORG $7AA80; jumpToHack(ohkoPeril); POP
+	ALIGN 4
+	ohkoPeril:
+	#incbin "asm/ohkoPeril.dmp"
+	WORD 0
+#else
+	#ifdef timedohkoOption
+		PUSH; ORG $7AA80; jumpToHack(ohkoPeril); POP
+		ALIGN 4
+		ohkoPeril:
+		#incbin "asm/ohkoPeril.dmp"
+		POIN timedohkoCheckTime
+	#endif
+#endif
+
 #include "dojos.event"
 #include "shop.event"
+#include "golden.event"
