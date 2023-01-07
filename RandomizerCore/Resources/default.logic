@@ -2062,7 +2062,7 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 		MinishScrub1Fusion;			Helper;;	Helpers.CanFuseGreenScrub, Helpers.AccessMinishWoods, Helpers.SwampScrubFusion, Helpers.Scrubs								#WesternOcto		3D
 		TFZ3Fusion;					Helper;;	Helpers.CanFuseGreenC, Helpers.TFZ2Fusion																					#SwampSouthLily	3E
 		TrilbyMinishFusion;			Helper;;	Helpers.CanFuseGreenC, Locations.Trilby_DigCave_RightChest																	#TrilbyPuddle		3F
-		AnkleFusion;				Helper;;	Helpers.CanFuseGreenC, Locations.LonLon_Cave_Chest																			#NHFTopRightTree	40
+		AnkleFusion;				Helper;;	Helpers.CanFuseGreenC, Items.PacciCane, (|Helpers.CanDestroyTrees, Helpers.WindCrest), Locations.LonLon_Cave_Chest			#NHFTopRightTree	40
 		!ifdef - NO_BLUE_FUSIONS
 		Dampe2Fusion;				Helper;;	Helpers.CanFuseGreenC, Locations.Valley_DampeNPC																			#RuinsCrack		41
 		Gina1Fusion;				Helper;;	Helpers.Inaccessible																										#TownWaterfall		42
@@ -2080,7 +2080,7 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 		HaileyFusion;				Helper;;	Helpers.CanFuseGreenG, Helpers.AccessClouds																					#FallsTektite		4A
 		TFZ1Fusion;					Helper;;	Helpers.CanFuseGreenTFZ1, (|Helpers.Fountain, Locations.MinishVillage_HP, Helpers.Library) 									#SwampNorthLily	4B
 		CastleMinishFusion;			Helper;;	Helpers.CanFuseGreenG, Helpers.BonkedTrees																					#WesternTreeFallSouth	4C
-		KnuckleFusion;				Helper;;	Helpers.CanFuseGreenG, Locations.Trilby_DigCave_RightChest																	#NHFBottomLeftTree	4D
+		KnuckleFusion;				Helper;;	Helpers.CanFuseGreenG, Items.PacciCane, (|Helpers.CanDestroyTrees, Helpers.WindCrest), Locations.Trilby_DigCave_RightChest	#NHFBottomLeftTree	4D
 		Shared4EFusion;				Helper;;	Helpers.CanFuseShared4E																										#MWCrack			4E		
 		MinesMinishNWFusion;		Helper;;	Helpers.CanFuseGreenP, Helpers.AccessMelari																					#SpringPathChest	4F
 		Shared50Fusion;				Helper;;	Helpers.CanFuseShared50																										#LLRPathChest		50
@@ -2097,7 +2097,7 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 		TFZ2Fusion;					Helper;;	Helpers.CanFuseGreenTFZ2, Helpers.TFZ1Fusion																				#SwampWestLily		57
 		Shared58Fusion;				Helper;;	Helpers.CanFuseShared58																										#SHFPuddle		58
 		Tingle1Fusion;				Helper;;	Helpers.CanFuseGreenP, Items.PacciCane, (|Helpers.CanDestroyTrees, Helpers.WindCrest)										#NHFTopLeftTree		59
-		DavidJr1Fusion;				Helper;;	Helpers.CanFuseGreenDavid, Helpers.AccessLonLon																				#NHFBottomRightTree	5A
+		DavidJr1Fusion;				Helper;;	Helpers.CanFuseGreenDavid, Items.PacciCane, (|Helpers.CanDestroyTrees, Helpers.WindCrest), Helpers.AccessLonLon				#NHFBottomRightTree	5A
 		MinishScrub2Fusion;			Helper;;	Helpers.CanFuseGreenP, Helpers.MinishScrub1Fusion																			#SwampTopLeftCrack	5B
 		Siroc1Fusion;				Helper;;	Helpers.CanFuseGreenSiroc, Helpers.AccessWindTribe																			#GraveyardLeftChest	5C
 		Siroc2Fusion;				Helper;;	Helpers.CanFuseGreenG, Helpers.Siroc1Fusion																					#GraveyardRightChest	5D
@@ -2333,11 +2333,6 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 	PoWBossDoor;				Helper;;	Items.BigKey`POW_BIG_SET`
 	DHCBossDoor;				Helper;;	Items.BigKey`DHC_BIG_SET`
 !endif
-
-# Fix issues in Melari's Mine (should really be a patch)
-MMMelari:MM;   DungeonItem; mineScrap0:Define:FirstByte, 0x04C2AE:SecondByte;; Items.LanternOff.0x03:MM
-MMKitchen:MM;  DungeonItem; mineScrap1:Define:FirstByte, 0x04C2CE:SecondByte;; Items.LanternOff.0x03:MM
-MMBedroom:MM;  DungeonItem; mineScrap2:Define:FirstByte, 0x04C2EE:SecondByte;; Items.LanternOff.0x03:MM
 
 #Every Obstacle in the game is listed here
 !ifdef - OPENWORLD

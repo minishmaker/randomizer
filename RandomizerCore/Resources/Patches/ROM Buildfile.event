@@ -29,6 +29,25 @@
 #endif
 ORG FreeSpace
 
+#define BLRange(pointer) "((pointer - (CURRENTOFFSET + 4))>>1)"
+#define BL(pointer) "SHORT (((BLRange(pointer)>>11)&0x7ff)|0xf000) ((BLRange(pointer)&0x7ff)|0xf800);"
+
+// function call veneer
+// veneer:
+//   push {r3}
+//   ldr r3, _function
+//   mov ip, r3
+//   pop {r3}
+//   bx ip
+//   nop
+// _function:
+//   .word 0
+#define veneer(offset) "SHORT 0xB408 0x4B02 0x469C 0xBC08 0x4760; ALIGN 4; POIN (offset|0x1)
+
+#ifdef no_music
+#include "c/nobgm.event"
+#endif
+
 //savetype check
 PUSH; ORG $559FA; SHORT 0; jumpToHack(saveTypeCheck); POP
 ALIGN 4
@@ -566,7 +585,4 @@ POP
 #endif
 #ifdef pokemon_music
 #include "sound/sound.event"
-#endif
-#ifdef no_music
-#include "c/nobgm.event"
 #endif
