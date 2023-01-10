@@ -404,7 +404,7 @@ internal class Shuffler
             var locationIndex = _rng.Next(availableLocations.Count);
 
             availableLocations[locationIndex].Fill(item);
-            Console.WriteLine(
+            Logger.Instance.LogWarning(
                 $"Placed {item.Type.ToString()} subtype {StringUtil.AsStringHex2(item.SubValue)} at {availableLocations[locationIndex].Name} with {items.Count} items remaining\n");
 
             locations.Remove(availableLocations[locationIndex]);

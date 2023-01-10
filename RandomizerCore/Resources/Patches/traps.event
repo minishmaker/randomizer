@@ -122,14 +122,20 @@ BYTE 0x15 //boots
 BYTE 0x17 //ocarina
 BYTE 0x1E //bottle
 BYTE 0x36 //dog food
-BYTE 0x37 //silver key
+#ifndef openWorld
+	BYTE 0x37 //silver key
+#endif
 BYTE 0x38 //mushroom
 BYTE 0x39 //red book
 BYTE 0x3A //green book
 BYTE 0x3B //blue book
-BYTE 0x3C //gold key
+#ifndef openWorld
+	BYTE 0x3C //gold key
+#endif
 BYTE 0x3D //tingle trophy
-BYTE 0x3E //carlov medal
+#ifndef openWorld
+	BYTE 0x3E //carlov medal
+#endif
 #ifdef elementTraps
 	BYTE 0x40 //earth element
 	BYTE 0x40 //earth element
@@ -147,14 +153,18 @@ BYTE 0x3E //carlov medal
 BYTE 0x44 //grip ring
 BYTE 0x45 //power bracelet
 BYTE 0x46 //flippers
-#ifdef keysanityTraps
+#ifdef bigKeysanityTraps
 	BYTE 0x52 //big key
+#endif
+#ifdef smallKeysanityTraps
 	BYTE 0x53 //small key
 	BYTE 0x53 //small key
 	BYTE 0x53 //small key
 #endif
-BYTE 0x62 //heart container
-BYTE 0x63 //piece of heart
+#ifdef heartTraps
+	BYTE 0x62 //heart container
+	BYTE 0x63 //piece of heart
+#endif
 BYTE 0x64 //wallet
 BYTE 0x65 //bomb bag
 BYTE 0x66 //quiver

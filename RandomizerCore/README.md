@@ -11,8 +11,81 @@
   
 This version: `0.7.0a`
 
+Please see the [releases](https://github.com/minishmaker/randomizer/releases) page for the latest version.
 
 Version 0.7 has been long overdue, this latest release is all thanks to newly added members of Team Minish Maker.
+Over the last 1.5 years we have been testing and privately implementing ideas that haven't been available to anyone outside of our Discord community. This release is the combination of all these little bits of work into one of the biggest feature updates seen in a randomizer.
+
+#### What is new in 0.7?
+
+UI overhaul:
+- More Tabs and Grouped settings, much cleaner and user friendly design.
+- File addresses are saved so you don't have to reselect your ROM each time you start the program.
+- Tooltips: Mouse over any option to read a description.
+- Settings Strings added.
+	- Generate a string from the settings you choose, send to other people or save for later.
+	- Load a string entered to activate those settings.
+- `.bps` patcher added.
+	- Create a sharable `.bps` file of your generated seed to share with other people.
+	- Load a `.bps` file given to you to play a seed someone else made.
+
+All the following settings have Tooltips that fully explain their function:
+- New Key settings: Vanilla, In Dungeon, Keasy and Keysanity.
+	- Small Keys, Big Keys, and Maps&Compasses are independent.
+	- New Option: Regional Dungeon items.
+	- New Option: Inter Dungeon shuffle.
+- Fusions overhaul: Gold, Red, Blue and Green Kinstone Fusions are independent.
+	- Each type can be: Removed, Vanilla, Combined, or Completed.
+	- New Option: Defickle Fusers.
+	- New Option: Seeded Shared Fusion Pool.
+- Fusion Cutscene Setting Fixes.
+	- New Option: Always show the map after fusing.
+- "Reqiured Number of Dungeons" added to requirements for Dark Hyrule Castle.
+- New Option: Open World: 
+	- Removes all temporary obstacles, Blocks, Bomb Walls, Doors... you name it and its opened.
+- New Section: Trick requirements:
+	- ~20 Tricks used while playing the game, These can be toggled to choose if they should be considered by the logic or left as optional out of logic plays.
+	- Ranges from simple strats like using dust to blow away dust instead of the gust jar, all the way up to difficult strats like using a sword and a bomb to skip cloning at the Canon rooms in DHC.
+
+- New Option: Item Pool Settings.
+	- Plentiful: Extra copies of important items are added to the pool.
+	- Balanced: Normal item pool.
+	- Reduced: Unnecessary items removed.
+- New Option: Fun Junk items
+- New Option: No Logic
+- New Option: Items can lock themselves.
+- New Option: NonElement Dungeons options: 
+	- Standard.
+	- Unrequired: No items found in these dungeons are needed to beat the game.
+	- Barren: No Major items can be found in these dungeons at all.
+- New Option: Heart Pieces and Containers are randomized. (Previously always on, now a togglable setting)
+- Obscure Spots is split into three different settings: Special Pots, Dig Spots, Underwater Spots
+- New Option: Random Bottle contents.
+- New Option: Golden Enemies can have randomized items.
+- New Option: Visible items are collectable from a distance.
+- New Option: Maximum Health.
+- New Option: Hero Mode.
+- New Option: Damage Multiplier.
+- New Option: Homewarp on Sleep option.
+- New Option: Use boots while Minish sized.
+- New Option: Item Text Display added.
+- New Option: Firerod dev tool.
+- Music Options: Vanilla, Pokémon Emerald, Disabled.
+- Select button to use Ocarina without equiping.
+- Text speed on newly created files preset to `FAST`
+- Spoiler Log restructure with better names and more logical order
+- Version number is displayed on the File Select screen.
+
+- Traps activated are counted and displayed in the credit stats.
+	- Traps have smart disguises that depend on settings.
+- Refill Hearts and Fairies have been added to the item pool as junk items.
+- Door mimics added to credit stats.
+- Dojo tutorial cutscenes skipped.
+- Café sprite bug fixed.
+- Fixed the `Đig Butterfly` display.
+- Fixed the Village curtain opening if you have Earth Elements.
+- Fixed a bug where rupee count isn't displayed.
+- Resolve some attempted fixes in `Disable Glitches`
 
 #### Why version 0.7 but not 1.0?
 
