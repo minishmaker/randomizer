@@ -1,0 +1,6 @@
+ALIGN 4
+
+__aeabi_idivmod_base:
+#define __aeabi_idivmod __aeabi_idivmod_base|1
+SHORT 0xdf06
+SHORT 0x4770
