@@ -1,19 +1,47 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <OutputType>Exe</OutputType>
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <StartupObject>MinishCapRandomizerCLI.Program</StartupObject>
+        <ApplicationIcon>icon.ico</ApplicationIcon>
+		<PublishSingleFile>true</PublishSingleFile>
+		<PlatformTarget>AnyCPU</PlatformTarget>
+		<Title>Minish Cap Rnadomizer CLI</Title>
     </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+      <DebugType>none</DebugType>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+      <DebugType>none</DebugType>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Content Include="icon.ico" />
+    </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\RandomizerCore\RandomizerCore.csproj" />
     </ItemGroup>
 
-	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
-		<Exec Command="xcopy &quot;$(ProjectDir)\..\RandomizerCore\Resources\Patches\&quot; &quot;$(TargetDir)Patches\&quot; /y /d /s" />
-		<Exec Command="xcopy &quot;$(ProjectDir)\..\Vendor\Language Raws\&quot; &quot;$(TargetDir)Language Raws\&quot; /y /d /s" />
+	<ItemGroup>
+		<Content Include="..\RandomizerCore\Resouces\Patches\*.*">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+	<Target Name="PostBuildWindows" Condition="$([MSBuild]::IsOSPlatform('Windows'))" AfterTargets="PostBuildEvent">
+		<Exec Command="xcopy &quot;$(ProjectDir)..\RandomizerCore\Resources\Patches\&quot; &quot;$(TargetDir)Patches\&quot; /y /d /s" />
+		<Exec Command="xcopy &quot;$(ProjectDir)..\Vendor\Language Raws\&quot; &quot;$(TargetDir)Language Raws\&quot; /y /d /s" />
 	</Target>
+    
+	<Target Name="PostBuildWindowsUnix" Condition="$([MSBuild]::IsOSPlatform('Linux'))" AfterTargets="PostBuildEvent">
+		<Exec Command="cp -r &quot;$(ProjectDir)/../RandomizerCore/Resources/Patches/&quot; &quot;$(TargetDir)&quot;" />
+		<Exec Command="cp -r &quot;$(ProjectDir)/../Vendor/Language Raws/&quot; &quot;$(TargetDir)&quot;" />
+    </Target>
 
 </Project>
