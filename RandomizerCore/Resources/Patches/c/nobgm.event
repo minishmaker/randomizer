@@ -1,6 +1,7 @@
 ALIGN 4
 
-SoundReq:
+SoundReq_base:
+#define SoundReq SoundReq_base|1
 SHORT 0xb510
 SHORT 0x4b58
 SHORT 0x79da

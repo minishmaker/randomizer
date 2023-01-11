@@ -1,6 +1,7 @@
 ALIGN 4
 
-ResetSaveFile:
+ResetSaveFile_base:
+#define ResetSaveFile ResetSaveFile_base|1
 SHORT 0x490c
 SHORT 0xb570
 SHORT 0x000c

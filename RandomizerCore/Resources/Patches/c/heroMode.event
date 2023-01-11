@@ -1,6 +1,7 @@
 ALIGN 4
 
-ModHealth:
+ModHealth_base:
+#define ModHealth ModHealth_base|1
 SHORT 0xb082
 SHORT 0x2800
 SHORT 0xda04
