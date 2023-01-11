@@ -254,6 +254,26 @@ void DrawText(const char* text, int x, int y) {
     }
 }
 
+int pow(int base, int exponent) {
+    int result = 1;
+    for (int i = 0; i < exponent; i++) {
+        result *= base;
+    }
+    return result;
+}
+
+void DrawNumber(u32 num, int digits, int x, int y) {
+    int i = 0;
+    while (digits > 0) {
+        int p = pow(10, --digits);
+        int digit = num / p;
+        num = num % p;
+        digit = digit % 10;
+        gBG0Buffer[y * 32 + x + i] = '0' + digit;
+        i++;
+    }
+}
+
 typedef struct {
     u16 name;
     u16 displayTimer;
@@ -290,7 +310,37 @@ void DrawHistory(void) {
 void DrawFigurineCounter(void) {
 }
 
+#define TIMER_HOUR (60 * 60 * 60)
+#define TIMER_MINUTE (60 * 60)
+#define TIMER_SECOND (60)
+// max time is 99:59:59
+#define TIMER_MAX (99 * TIMER_HOUR + 59 * TIMER_MINUTE + 59 * TIMER_SECOND)
+extern u32 (*const TimerGetTime)(void);
+
 void DrawTimer(void) {
+    if (!TimerGetTime) {
+        return;
+    }
+    int time = TimerGetTime();
+    if (time < 0)
+        time = 42;
+    if (time > TIMER_MAX)
+        time = TIMER_MAX;
+    int x = 0;
+    int y = 18;
+    int hours = time / TIMER_HOUR;
+    time = time % TIMER_HOUR;
+    DrawNumber(hours, 2, x, y);
+    DrawText(":", x + 2, y);
+    x += 3;
+    int minutes = time / TIMER_MINUTE;
+    time = time % TIMER_MINUTE;
+    DrawNumber(minutes, 2, x, y);
+    DrawText(":", x + 2, y);
+    x += 3;
+    int seconds = time / TIMER_SECOND;
+    time = time % TIMER_SECOND;
+    DrawNumber(seconds, 2, x, y);
 }
 
 extern void UpdateUIElements(void);
