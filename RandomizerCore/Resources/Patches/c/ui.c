@@ -4,6 +4,12 @@
 #include "save.h"
 #include "screen.h"
 
+// BEGIN configure these in EA
+extern u32 (*const TimerGetTime)(void);
+extern u32 (*const CounterGetValue)(void);
+extern const u32 counterMaxValue;
+// END
+
 extern u8 RupeeKeyDigits[];
 
 void RenderDigits(u32 iconVramIndex, u32 count, u32 isTextYellow, u32 digits) {
@@ -242,15 +248,21 @@ static INLINE char sanitize_char(char c) {
     return ' ';
 }
 
+static INLINE void DrawChar(char c, int x, int y) {
+    gBG0Buffer[y * 32 + x] = c;
+}
+
 void DrawText(const char* text, int x, int y) {
     if (text) {
         for (int i = 0; text[i] != 0; i++) {
-            gBG0Buffer[y * 32 + x + i] = sanitize_char(text[i]);
+            DrawChar(sanitize_char(text[i]), x + i, y);
         }
-    } else {
-        for (int i = 0; i < 15; i++) {
-            gBG0Buffer[y * 32 + x + i] = 0;
-        }
+    }
+}
+
+void DrawClear(int n, int x, int y) {
+    for (int i = 0; i < n; i++) {
+        DrawChar(0, x + i, y);
     }
 }
 
@@ -262,6 +274,15 @@ int pow(int base, int exponent) {
     return result;
 }
 
+int log(int num, int base) {
+    int result = 0;
+    while (num >= base) {
+        num /= base;
+        result++;
+    }
+    return result;
+}
+
 void DrawNumber(u32 num, int digits, int x, int y) {
     int i = 0;
     while (digits > 0) {
@@ -269,7 +290,7 @@ void DrawNumber(u32 num, int digits, int x, int y) {
         int digit = num / p;
         num = num % p;
         digit = digit % 10;
-        gBG0Buffer[y * 32 + x + i] = '0' + digit;
+        DrawChar('0' + digit, x + i, y);
         i++;
     }
 }
@@ -294,53 +315,98 @@ void UpdateHistoryTimer() {
 }
 
 void DrawHistory(void) {
+    int y = 18;
+    int lines = historyTableEntries;
+    if (TimerGetTime) {
+        y--;
+        lines--;
+    }
+    if (CounterGetValue) {
+        y--;
+        lines--;
+    }
+
     if ((gUnk_0200AF00.unk_1 & 0x40) != 0) {
-        for (int i = 0; i < historyTableEntries; i++) {
-            DrawText(NULL, 0, 19 - i);
+        for (int i = 0; i < lines; i++) {
+            DrawClear(15, 1, y - i);
         }
     } else {
         UpdateHistoryTimer();
-        for (int i = 0; i < historyTableEntries; i++) {
-            DrawText(historyNames[historyTable[i].name], 0, 19 - i);
+        for (int i = 0; i < lines; i++) {
+            const char* name = historyNames[historyTable[i].name];
+            if (name)
+                DrawText(name, 1, y - i);
+            else
+                DrawClear(15, 1, y - i);
         }
     }
     gScreen.bg0.updated = 1;
 }
 
 void DrawFigurineCounter(void) {
+    if (!CounterGetValue) {
+        return;
+    }
+    int y = 18;
+    if (TimerGetTime) {
+        y--;
+    }
+    if ((gUnk_0200AF00.unk_1 & 0x40) != 0) {
+        DrawClear(7, 1, y);
+        gScreen.bg0.updated = 1;
+        return;
+    }
+    u32 value = CounterGetValue();
+    u32 digits1 = log(value, 10) + 1;
+    DrawNumber(value, digits1, 1, y);
+    DrawChar('/', 1 + digits1, y);
+    u32 digits2 = log(counterMaxValue, y) + 1;
+    DrawNumber(counterMaxValue, digits2, 1 + digits1 + 1, y);
+    gScreen.bg0.updated = 1;
 }
 
-#define TIMER_HOUR (60 * 60 * 60)
-#define TIMER_MINUTE (60 * 60)
-#define TIMER_SECOND (60)
-// max time is 99:59:59
-#define TIMER_MAX (99 * TIMER_HOUR + 59 * TIMER_MINUTE + 59 * TIMER_SECOND)
-extern u32 (*const TimerGetTime)(void);
+// max display time is 99:59:59
+// max timer value is 100:00:00 - 1 frame
+// ((100*60*60*597275) / 10000 - 1)
+#define TIMER_MAX 21501899
 
+// draw timer
+// uses custom charset
 void DrawTimer(void) {
     if (!TimerGetTime) {
         return;
     }
-    int time = TimerGetTime();
-    if (time < 0)
-        time = 42;
+    int x = 1;
+    int y = 18;
+    if ((gUnk_0200AF00.unk_1 & 0x40) != 0) {
+        DrawClear(7, 1, y);
+        gScreen.bg0.updated = 1;
+        return;
+    }
+    u32 time = TimerGetTime();
     if (time > TIMER_MAX)
         time = TIMER_MAX;
-    int x = 0;
-    int y = 18;
-    int hours = time / TIMER_HOUR;
-    time = time % TIMER_HOUR;
-    DrawNumber(hours, 2, x, y);
-    DrawText(":", x + 2, y);
-    x += 3;
-    int minutes = time / TIMER_MINUTE;
-    time = time % TIMER_MINUTE;
-    DrawNumber(minutes, 2, x, y);
-    DrawText(":", x + 2, y);
-    x += 3;
-    int seconds = time / TIMER_SECOND;
-    time = time % TIMER_SECOND;
-    DrawNumber(seconds, 2, x, y);
+    // 1 hour in frames at 0 decimals accuracy (perfect)
+    // (60 * 60 * 597275)
+    int hours = time / 215019;
+    time = time % 215019;
+    DrawChar(1 + hours / 10, x++, y);
+    DrawChar(1 + hours % 10, x++, y);
+    DrawChar(11, x++, y);
+    time *= 100;
+    // 1 minute in frames at 2 decimals accuracy (perfect)
+    // (60 * 597275 / 100)
+    int minutes = time / 358365;
+    time = time % 358365;
+    DrawChar(1 + minutes / 10, x++, y);
+    DrawChar(1 + minutes % 10, x++, y);
+    DrawChar(11, x++, y);
+    time *= 100;
+    // 1 seconds in frames at 4 decimals accuracy (perfect)
+    int seconds = time / 597275;
+    DrawChar(1 + seconds / 10, x++, y);
+    DrawChar(1 + seconds % 10, x++, y);
+    gScreen.bg0.updated = 1;
 }
 
 extern void UpdateUIElements(void);

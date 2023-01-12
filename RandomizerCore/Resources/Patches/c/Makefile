@@ -9,7 +9,7 @@ CC := arm-none-eabi-gcc
 CFLAGS := $(CFLAGS) $(WARNINGS) -Wno-multichar -Wno-builtin-declaration-mismatch -mcpu=arm7tdmi -mthumb -mlong-calls -I $(REPO)/tools/agbcc/include -I $(REPO)/include -nostdinc -undef -DEU -DREVISION=0 -DLANGUAGE=ENGLISH
 
 C_SRCS := $(wildcard *.c)
-C_EVENTS := $(patsubst %.c,%.event,$(C_SRCS))
+C_EVENTS := $(patsubst %.c,%.cevent,$(C_SRCS))
 
 .PHONY: all clean tidy format
 all: $(C_EVENTS)
@@ -20,12 +20,12 @@ clean:
 	rm -f *.o
 
 tidy: clean
-	rm -f *.event
+	rm -f *.cevent
 
 format:
 	clang-format -i *.c
 
-%.event: %.o eu_symbols.json
+%.cevent: %.o eu_symbols.json
 	eac compile -o $@ --symbols eu_symbols.json $<
 
 %.o: %.c
