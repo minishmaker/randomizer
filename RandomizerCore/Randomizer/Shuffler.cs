@@ -362,8 +362,13 @@ internal class Shuffler
         unfilledLocations.Shuffle(_rng);
         unplacedItems.Shuffle(_rng);
 
+        var prizes = dungeonSpecificItems.Where(_ => _.Dungeon == "Prizes").ToList();
+        var notPrizes = dungeonSpecificItems.Where(_ => _.Dungeon != "Prizes").ToList();
+
+        FillLocations(prizes, unfilledLocations, unplacedItems);
+
         // Fill dungeon items first so there is room for them all
-        var dungeonLocations = FillLocations(dungeonSpecificItems, unfilledLocations, unplacedItems);
+        var dungeonLocations = FillLocations(notPrizes, unfilledLocations, unplacedItems);
 
         // Fill non-dungeon major items, checking for logic
         unfilledLocations.Shuffle(_rng);
