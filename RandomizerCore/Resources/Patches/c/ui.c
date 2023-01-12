@@ -316,20 +316,23 @@ void UpdateHistoryTimer() {
 
 void DrawHistory(void) {
     int y = 18;
+    int lines = historyTableEntries;
     if (TimerGetTime) {
         y--;
+        lines--;
     }
     if (CounterGetValue) {
         y--;
+        lines--;
     }
 
     if ((gUnk_0200AF00.unk_1 & 0x40) != 0) {
-        for (int i = 0; i < historyTableEntries; i++) {
+        for (int i = 0; i < lines; i++) {
             DrawClear(15, 1, y - i);
         }
     } else {
         UpdateHistoryTimer();
-        for (int i = 0; i < historyTableEntries; i++) {
+        for (int i = 0; i < lines; i++) {
             const char* name = historyNames[historyTable[i].name];
             if (name)
                 DrawText(name, 1, y - i);
