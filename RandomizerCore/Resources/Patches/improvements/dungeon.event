@@ -92,3 +92,168 @@ ALIGN 4
 keysanityPopup:
 #incbin "asm/keysanityPopup.dmp"
 POIN getTextOffset
+
+#ifdef historyOption
+	#ifndef counterOption
+		PUSH; ORG $1C4F4; SHORT 0 0; POP
+	#endif
+	PUSH; ORG $1C4F8; jumpToHack(keysanityHistory); POP
+	ALIGN 4
+	keysanityHistory:
+	#incbin "asm/keysanityHistory.dmp"
+	POIN drawTextHistory
+	POIN historyTable
+	//figure out how many lines are being occupied by other displays
+	#ifdef timerOption
+		#ifdef counterOption
+			WORD 2
+		#else
+			WORD 1
+		#endif
+	#else
+		#ifdef counterOption
+			WORD 1
+		#else
+			WORD 0
+		#endif
+	#endif
+	WORD historyOption
+	
+	ALIGN 4
+	drawTextHistory:
+	#incbin "asm/drawTextHistory.dmp"
+
+	//a table of short strings for the pickup history display
+	ALIGN 4
+	historyTable:
+	WORD 0 //first entry goes unused
+	//golden kinstones
+	POIN cloudHistory
+	POIN swampHistory
+	POIN fallsHistory
+	//small and big keys
+	POIN bossHistoryDWS
+	POIN smolHistoryDWS
+	POIN bossHistoryCOF
+	POIN smolHistoryCOF
+	POIN bossHistoryFOW
+	POIN smolHistoryFOW
+	POIN bossHistoryTOD
+	POIN smolHistoryTOD
+	POIN bossHistoryPOW
+	POIN smolHistoryPOW
+	POIN bossHistoryDHC
+	POIN smolHistoryDHC
+	POIN bossHistoryRC
+	POIN smolHistoryRC
+	
+	//scrolls and butterflies
+	POIN scrollHistorySpinAttack
+	POIN scrollHistoryRollAttack
+	POIN scrollHistoryDashAttack
+	POIN scrollHistoryRockBreaker
+	POIN scrollHistorySwordBeam
+	POIN scrollHistoryGreatSpin
+	POIN scrollHistoryDownThrust
+	POIN scrollHistoryPerilBeam
+	POIN butterflyHistoryBow
+	POIN butterflyHistoryDig
+	POIN butterflyHistorySwim
+	POIN scrollHistoryFastSpin
+	POIN scrollHistoryFastSplit
+	POIN scrollHistoryLongSpin
+
+	//common kinstones
+	POIN kinstoneHistoryRedW
+	POIN kinstoneHistoryRedV
+	POIN kinstoneHistoryRedE
+	POIN kinstoneHistoryBlueL
+	POIN kinstoneHistoryBlueS
+	POIN kinstoneHistoryGreenC
+	POIN kinstoneHistoryGreenG
+	POIN kinstoneHistoryGreenP
+
+	cloudHistory:
+	String("Cloud stone"); BYTE 0
+	swampHistory:
+	String("Swamp stone"); BYTE 0
+	fallsHistory:
+	String("Falls stone"); BYTE 0
+
+	bossHistoryDWS:
+	String("DWS Big"); BYTE 0
+	smolHistoryDWS:
+	String("DWS Small"); BYTE 0
+	bossHistoryCOF:
+	String("COF Big"); BYTE 0
+	smolHistoryCOF:
+	String("COF Small"); BYTE 0
+	bossHistoryFOW:
+	String("FOW Big"); BYTE 0
+	smolHistoryFOW:
+	String("FOW Small"); BYTE 0
+	bossHistoryTOD:
+	String("TOD Big"); BYTE 0
+	smolHistoryTOD:
+	String("TOD Small"); BYTE 0
+	bossHistoryPOW:
+	String("POW Big"); BYTE 0
+	smolHistoryPOW:
+	String("POW Small"); BYTE 0
+	bossHistoryDHC:
+	String("DHC Big"); BYTE 0
+	smolHistoryDHC:
+	String("DHC Small"); BYTE 0
+	bossHistoryRC:
+	String("RC  Big"); BYTE 0
+	smolHistoryRC:
+	String("RC  Small"); BYTE 0
+	
+	scrollHistorySpinAttack:
+	String("Spin attack"); BYTE 0
+	scrollHistoryRollAttack:
+	String("Roll attack"); BYTE 0
+	scrollHistoryDashAttack:
+	String("Dash attack"); BYTE 0
+	scrollHistoryRockBreaker:
+	String("Rock breaker"); BYTE 0
+	scrollHistorySwordBeam:
+	String("Sword beam"); BYTE 0
+	scrollHistoryGreatSpin:
+	String("Great spin"); BYTE 0
+	scrollHistoryDownThrust:
+	String("Down thrust"); BYTE 0
+	scrollHistoryPerilBeam:
+	String("Peril beam"); BYTE 0
+	
+	butterflyHistoryBow:
+	String("Bow butterfly"); BYTE 0
+	butterflyHistoryDig:
+	String("Dig butterfly"); BYTE 0
+	butterflyHistorySwim:
+	String("Swim butterfly"); BYTE 0
+	
+	scrollHistoryFastSpin:
+	String("Fast spin"); BYTE 0
+	scrollHistoryFastSplit:
+	String("Fast split"); BYTE 0
+	scrollHistoryLongSpin:
+	String("Long spin"); BYTE 0
+
+	kinstoneHistoryRedW:
+	String("Red W stone"); BYTE 0
+	kinstoneHistoryRedV:
+	String("Red V stone"); BYTE 0
+	kinstoneHistoryRedE:
+	String("Red E stone"); BYTE 0
+	kinstoneHistoryBlueL:
+	String("Blue L stone"); BYTE 0
+	kinstoneHistoryBlueS:
+	String("Blue S stone"); BYTE 0
+	kinstoneHistoryGreenC:
+	String("Green C stone"); BYTE 0
+	kinstoneHistoryGreenG:
+	String("Green G stone"); BYTE 0
+	kinstoneHistoryGreenP:
+	String("Green P stone"); BYTE 0
+#endif

@@ -6,10 +6,10 @@
 		#define ohkoOption
 	#endif
 	#ifndef timedohkoClock
-		#define timedohkoClock "35836" //10 minutes
+		#define timedohkoClock "35838" //10 minutes
 	#endif
 	#ifndef greenClockTime
-		#define greenClockTime "14334" //4 minutes
+		#define greenClockTime "14335" //4 minutes
 	#endif
 	#ifndef blueClockTime
 		#define blueClockTime "7167" //2 minutes
@@ -24,7 +24,7 @@ WORD timedohkoClock
 ALIGN 4
 timedohkoGetTime: //also drecreases the counter
 #incbin "asm/timedohkoGetTime.dmp"
-WORD 17918 //when the counter hits this, the debug font becomes yellow (5 minutes)
+WORD 17919 //when the counter hits this, the debug font becomes yellow (5 minutes)
 WORD 0 //when the counter hits 0, the debug font becomes red
 POIN $5C3170 //debugFontWhite
 POIN debugFontYellow

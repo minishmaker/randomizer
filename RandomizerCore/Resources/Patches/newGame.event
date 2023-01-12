@@ -33,8 +33,8 @@ POIN map; WORD 0x2002A80 3
 	POIN compass; WORD 0x2002EAD 6
 #endif
 #ifdef enable_firerod_start
-	POIN firerod; WORD 0x2002B37 1
-	POIN firerodOnA; WORD 0x2002AF4 1
+POIN firerod; WORD 0x2002B37 1
+POIN firerodOnA; WORD 0x2002AF4 1
 #endif
 #ifdef DEBUG
 	POIN DEBUGITEMS; WORD 0x2002B32 7

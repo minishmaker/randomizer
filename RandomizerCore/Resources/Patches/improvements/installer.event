@@ -538,8 +538,8 @@ PUSH; ORG $5615A; SHORT 0x2008; ORG $5619C; SHORT 0x2008; POP
 	String("Faire une sieste?"); BYTE 0x0A 0x0A 0x06 0x01
 	String(" Oui      "); BYTE 0x06 0x02
 	String(" Non"); BYTE 0x0A 0x0A
-	String("Cela vous ram"); BYTE 0xE8; String("nera chez vous et"); BYTE 0x0A
-	String("fixera votre Quickwarp "); BYTE 0xE0; String(" cet endroit."); BYTE 0x00
+	String("Cela vous ram"); BYTE 0xC9; String("nera "); BYTE 0xE1; String(" la maison"); BYTE 0x0A
+	String("et y d"); BYTE 0xC9; String("finira votre point Quickwarp."); BYTE 0x00
 	homeWarpGerman:
 	String("Schlafen gehen?"); BYTE 0x0A 0x0A 0x06 0x01
 	String(" Ja       "); BYTE 0x06 0x02
@@ -553,8 +553,8 @@ PUSH; ORG $5615A; SHORT 0x2008; ORG $5619C; SHORT 0x2008; POP
 	String("Ser"); BYTE 0xE1; String("s teletransportado a casa y se"); BYTE 0x0A
 	String("pondr"); BYTE 0xE1; String(" tu punto de Quickwarp all"); BYTE 0xED ;String("."); BYTE 0x00
 	homeWarpItalian:
-	String("Fare un pisolino?"); BYTE 0x0A 0x0A 0x06 0x01
-	String(" S"); BYTE 0xED; String("       "); BYTE 0x06 0x02
+	String("Take a nap?"); BYTE 0x0A 0x0A 0x06 0x01
+	String(" Yes      "); BYTE 0x06 0x02
 	String(" No"); BYTE 0x0A 0x0A
 	String("This will warp you back home and"); BYTE 0x0A
 	String("set your Quickwarp point there."); BYTE 0x00

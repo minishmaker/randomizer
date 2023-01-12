@@ -1,19 +1,4 @@
 #define jumpToHack(offset) "BYTE 0x00 0x4B 0x18 0x47; POIN (offset|0x1)"
-#define BLRange(pointer) "((pointer - (CURRENTOFFSET + 4))>>1)"
-#define BL(pointer) "SHORT (((BLRange(pointer)>>11)&0x7ff)|0xf000) ((BLRange(pointer)&0x7ff)|0xf800);"
-
-// function call veneer
-// veneer:
-//   push {r3}
-//   ldr r3, _function
-//   mov ip, r3
-//   pop {r3}
-//   bx ip
-//   nop
-// _function:
-//   .word 0
-#define veneer(offset) "SHORT 0xB408 0x4B02 0x469C 0xBC08 0x4760; ALIGN 4; POIN (offset|0x1);"
-
 #include "extDefinitions.event" //a file reserved for the randomizer to output definitions for the patches
 
 #ifndef seedHashed
@@ -44,44 +29,23 @@
 #endif
 ORG FreeSpace
 
-// C patches
-#include "c/intrinsics.event"
+#define BLRange(pointer) "((pointer - (CURRENTOFFSET + 4))>>1)"
+#define BL(pointer) "SHORT (((BLRange(pointer)>>11)&0x7ff)|0xf000) ((BLRange(pointer)&0x7ff)|0xf800);"
+
+// function call veneer
+// veneer:
+//   push {r3}
+//   ldr r3, _function
+//   mov ip, r3
+//   pop {r3}
+//   bx ip
+//   nop
+// _function:
+//   .word 0
+#define veneer(offset) "SHORT 0xB408 0x4B02 0x469C 0xBC08 0x4760; ALIGN 4; POIN (offset|0x1)"
+
 #ifdef no_music
-#include "c/nobgm.cevent"
-#endif
-#ifdef heroMode
-#include "c/heroMode.cevent"
-damageMultiplier:
-WORD dmgMulti;
-#endif
-#include "c/textSpeed.cevent"
-#include "c/ui.cevent"
-#include "c/historyNames.cevent"
-
-ALIGN 4
-TimerGetTime:
-#ifdef timedohkoOption
-    POIN timedohkoGetTime|1
-#else
-    WORD 0
-#endif
-#ifdef requirementFigurinesAmmount
-    counterMaxValue:
-    WORD requirementFigurinesAmmount
-    CounterGetValue:
-    POIN requirementFigurinesCounter|1
-#else
-    counterMaxValue:
-    WORD 0
-    CounterGetValue:
-    WORD 0
-#endif
-
-historyTimerDuration:
-#ifdef historyOption
-    WORD historyOption
-#else
-    WORD 0
+#include "c/nobgm.event"
 #endif
 
 //savetype check
@@ -286,7 +250,7 @@ WORD customRNG
 #include "tunic.event"
 #include "hash.event"
 #include "traps.event"
-#include "removeFusions.event"
+#include "c/textSpeed.event"
 
 #ifdef heartLimited // extra hearts do not grant extra hp
 
@@ -332,6 +296,27 @@ PUSH; ORG $4F05A; SHORT 0xE002; POP //remove soldiers near lon lon
 	WORD followerID
 #endif
 
+#ifdef timerOption
+	PUSH; ORG $1C4E8; jumpToHack(timerDisplay); POP
+	ALIGN 4
+	timerDisplay:
+	#incbin "asm/timerDisplay.dmp"
+	#ifdef timedohkoOption
+		POIN ohkoDrawTime
+		POIN timedohkoGetTime
+		ALIGN 4
+		ohkoDrawTime:
+		#incbin "asm/drawTime.dmp"
+		POIN ohkoDrawText
+		ALIGN 4
+		ohkoDrawText:
+		#incbin "asm/ohkoDrawText.dmp"
+	#else
+		POIN drawTime
+		WORD 0 //if 0, draw total time, it non-0, draw timer returned by routine called
+	#endif
+#endif
+
 #ifdef ohkoOption
 	PUSH; ORG $522BC; jumpToHack(ohkoCheck); POP
 	ALIGN 4
@@ -341,6 +326,24 @@ PUSH; ORG $4F05A; SHORT 0xE002; POP //remove soldiers near lon lon
 		POIN timedohkoCheckTime
 	#endif
 	WORD 0 //if 0, any damage will kill link, if non-0 this will be used as a pointer to a routine to determine if link will die
+#endif
+
+#ifdef counterOption
+	PUSH; ORG $1C4F0; jumpToHack(counterDisplay); POP
+	ALIGN 4
+	counterDisplay:
+	#incbin "asm/counterDisplay.dmp"
+	POIN drawNumber
+	#ifdef timerOption
+		WORD 1
+	#else
+		WORD 0
+	#endif
+	#ifdef requirementFigurinesAmmount
+		WORD requirementFigurinesAmmount
+		POIN requirementFigurinesCounter
+	#endif
+	WORD 0 0
 #endif
 
 #ifdef noFairy //shy fairies patch (fairies don't come out of bottles automatically)
@@ -584,4 +587,8 @@ POP
 #ifdef pokemon_music
 #include "sound/sound.event"
 #endif
-
+#ifdef heroMode
+#include "c/heroMode.event"
+damageMultiplier:
+WORD dmgMulti;
+#endif

@@ -87,6 +87,19 @@ SHORT 0xFFFF 0xFFFF //terminator
 //get the new colors in
 PUSH; ORG $5A2558; SHORT heartFillColor heartEdgeColor; POP
 
+//make the wallets share colors
+PUSH; ORG $1C54A; SHORT 0xB408; jumpToHack(walletPalette); POP
+ALIGN 4
+walletPalette:
+#incbin "asm/walletPalette.dmp"
+POIN walletColors
+ALIGN 4
+walletColors:
+SHORT 0x0E06 0x0F28 //green
+SHORT 0x5163 0x7E65 //blue
+SHORT 0x0CAF 0x10D7 //red
+SHORT 0x0CAF 0x10D7 //bigger red
+
 //new wallet graphics for the color sharing
 PUSH
 ORG $5C3770

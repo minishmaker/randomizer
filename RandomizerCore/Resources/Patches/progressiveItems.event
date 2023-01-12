@@ -373,15 +373,15 @@ POIN extraSwordTextSpanish
 POIN extraSwordTextItalian
 
 extraSwordTextEnglish:
-String("Progressive Sword"); BYTE 0
+String("Progressive sword"); BYTE 0
 extraSwordTextFrench:
-BYTE 0xE9; String("p"); BYTE 0xE9;String("e Progressive"); BYTE 0
+String("Progressive sword"); BYTE 0
 extraSwordTextGerman:
-String("Fortschreitendes Schwert"); BYTE 0
+String("Progressive sword"); BYTE 0
 extraSwordTextSpanish:
 String("Espada progresiva"); BYTE 0
 extraSwordTextItalian:
-String("Spada progressiva"); BYTE 0
+String("Progressive sword"); BYTE 0
 
 ALIGN 4
 extraBowText:
@@ -394,15 +394,15 @@ POIN extraBowTextSpanish
 POIN extraBowTextItalian
 
 extraBowTextEnglish:
-String("Progressive Bow"); BYTE 0
+String("Progressive bow"); BYTE 0
 extraBowTextFrench:
-String("Arc progressif"); BYTE 0
+String("Progressive bow"); BYTE 0
 extraBowTextGerman:
-String("Fortschreitender Bogen"); BYTE 0
+String("Progressive bow"); BYTE 0
 extraBowTextSpanish:
 String("Arco progresivo"); BYTE 0
 extraBowTextItalian:
-String("Arco progressivo"); BYTE 0
+String("Progressive bow"); BYTE 0
 
 ALIGN 4
 extraBoomerangText:
@@ -415,15 +415,15 @@ POIN extraBoomerangTextSpanish
 POIN extraBoomerangTextItalian
 
 extraBoomerangTextEnglish:
-String("Progressive Boomerang"); BYTE 0
+String("Progressive boomerang"); BYTE 0
 extraBoomerangTextFrench:
-String("Boomerang Progressif"); BYTE 0
+String("Progressive boomerang"); BYTE 0
 extraBoomerangTextGerman:
-String("Fortschreitender Bumerang"); BYTE 0
+String("Progressive boomerang"); BYTE 0
 extraBoomerangTextSpanish:
 String("Bumer"); BYTE 0xE1; String("n progresivo"); BYTE 0
 extraBoomerangTextItalian:
-String("Bumerang progressivo"); BYTE 0
+String("Progressive boomerang"); BYTE 0
 
 ALIGN 4
 extraShieldText:
@@ -436,15 +436,15 @@ POIN extraShieldTextSpanish
 POIN extraShieldTextItalian
 
 extraShieldTextEnglish:
-String("Progressive Shield"); BYTE 0
+String("Progressive shield"); BYTE 0
 extraShieldTextFrench:
-String("Bouclier progressif"); BYTE 0
+String("Progressive shield"); BYTE 0
 extraShieldTextGerman:
-String("Fortschreitender Schild"); BYTE 0
+String("Progressive shield"); BYTE 0
 extraShieldTextSpanish:
 String("Escudo progresivo"); BYTE 0
 extraShieldTextItalian:
-String("Scudo progressivo"); BYTE 0
+String("Progressive shield"); BYTE 0
 
 ALIGN 4
 extraScrollText:
@@ -457,12 +457,12 @@ POIN extraScrollTextSpanish
 POIN extraScrollTextItalian
 
 extraScrollTextEnglish:
-String("Progressive Scroll"); BYTE 0
+String("Progressive scroll"); BYTE 0
 extraScrollTextFrench:
-String("Parchemin progressif"); BYTE 0
+String("Progressive scroll"); BYTE 0
 extraScrollTextGerman:
-String("Fortschreitende Schriftrolle"); BYTE 0
+String("Progressive scroll"); BYTE 0
 extraScrollTextSpanish:
 String("Pergamino progresivo"); BYTE 0
 extraScrollTextItalian:
-String("Pergamena progressiva"); BYTE 0
+String("Progressive scroll"); BYTE 0
