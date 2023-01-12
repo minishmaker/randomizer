@@ -1,21 +1,5 @@
-ALIGN 4
-
-__aeabi_idiv_base:
-#define __aeabi_idiv __aeabi_idiv_base|1
-SHORT 0xdf06
-SHORT 0x4770
-
-__aeabi_uidiv_base:
-#define __aeabi_uidiv __aeabi_uidiv_base|1
-SHORT 0xdf06
-SHORT 0x4770
-
-__aeabi_idivmod_base:
-#define __aeabi_idivmod __aeabi_idivmod_base|1
-SHORT 0xdf06
-SHORT 0x4770
-
-__aeabi_uidivmod_base:
-#define __aeabi_uidivmod __aeabi_uidivmod_base|1
-SHORT 0xdf06
-SHORT 0x4770
+// Div functions
+#define __aeabi_idiv 0x0b0a2c|1
+#define __aeabi_uidiv 0x0b0a2c|1
+#define __aeabi_idivmod 0x0b0a2c|1
+#define __aeabi_uidivmod 0x0b0a2c|1
