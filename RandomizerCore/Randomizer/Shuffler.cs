@@ -406,10 +406,14 @@ internal class Shuffler
 
         if (assumedItems == null) assumedItems = new List<Item>();
 
-        for (var i = items.Count - 1; i >= 0; i--)
+        var errorIndexes = new List<int>();
+        for ( ; items.Count > 0; )
         {
             // Get a random item from the list and save its index
             var itemIndex = _rng.Next(items.Count);
+            while (errorIndexes.Contains(itemIndex))
+                itemIndex = _rng.Next(items.Count);
+            
             var item = items[itemIndex];
 
             // Take item out of pool
@@ -423,9 +427,14 @@ internal class Shuffler
 
             if (availableLocations.Count <= 0)
             {
-                // The filler broke, show all available items and get out
-                availableItems.ForEach(itm => Console.WriteLine($"{itm.Type} sub {itm.SubValue}"));
-                throw new ShuffleException($"Could not place {item.Type}! Subvalue: {StringUtil.AsStringHex2(item.SubValue)}, Dungeon: {item.Dungeon}");
+                errorIndexes.Add(itemIndex);
+                Logger.Instance.LogInfo($"Error Count: {errorIndexes.Count}");
+                Logger.Instance.LogInfo($"Could not place {item.Type}! Subvalue: {StringUtil.AsStringHex2(item.SubValue)}, Dungeon: {item.Dungeon}");
+                if (errorIndexes.Count == items.Count)
+                {
+                    // The filler broke
+                    throw new ShuffleException($"Could not place {item.Type}! Subvalue: {StringUtil.AsStringHex2(item.SubValue)}, Dungeon: {item.Dungeon}");
+                }
             }
 
             var locationIndex = _rng.Next(availableLocations.Count);
@@ -440,6 +449,8 @@ internal class Shuffler
 
             // Location caches are no longer valid because available items have changed
             _locations.ForEach(location => location.InvalidateCache());
+            
+            errorIndexes.Clear();
         }
 
         return filledLocations;
