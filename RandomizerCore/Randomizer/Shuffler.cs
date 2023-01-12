@@ -430,11 +430,14 @@ internal class Shuffler
                 errorIndexes.Add(itemIndex);
                 Logger.Instance.LogInfo($"Error Count: {errorIndexes.Count}");
                 Logger.Instance.LogInfo($"Could not place {item.Type}! Subvalue: {StringUtil.AsStringHex2(item.SubValue)}, Dungeon: {item.Dungeon}");
+                items.Insert(itemIndex, item);
                 if (errorIndexes.Count == items.Count)
                 {
                     // The filler broke
                     throw new ShuffleException($"Could not place {item.Type}! Subvalue: {StringUtil.AsStringHex2(item.SubValue)}, Dungeon: {item.Dungeon}");
                 }
+
+                continue;
             }
 
             var locationIndex = _rng.Next(availableLocations.Count);
