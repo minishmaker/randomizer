@@ -30,87 +30,32 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MinishCapRandomizerUI));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportDefaultLogicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loggingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setLoggerOutputPathToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.useLoggerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logAllTransactionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.writeAndFlushLoggerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.localizationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.englishToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changelogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.TabPane = new System.Windows.Forms.TabControl();
-            this.TestingPage = new System.Windows.Forms.TabPage();
-            this.label53 = new System.Windows.Forms.Label();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.label54 = new System.Windows.Forms.Label();
-            this.checkBox16 = new System.Windows.Forms.CheckBox();
-            this.checkBox14 = new System.Windows.Forms.CheckBox();
-            this.checkBox10 = new System.Windows.Forms.CheckBox();
-            this.label49 = new System.Windows.Forms.Label();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.label52 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label51 = new System.Windows.Forms.Label();
-            this.checkBox15 = new System.Windows.Forms.CheckBox();
-            this.label47 = new System.Windows.Forms.Label();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.checkBox11 = new System.Windows.Forms.CheckBox();
-            this.checkBox12 = new System.Windows.Forms.CheckBox();
-            this.checkBox13 = new System.Windows.Forms.CheckBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label48 = new System.Windows.Forms.Label();
-            this.label46 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.checkBox9 = new System.Windows.Forms.CheckBox();
-            this.checkBox8 = new System.Windows.Forms.CheckBox();
-            this.checkBox7 = new System.Windows.Forms.CheckBox();
-            this.checkBox6 = new System.Windows.Forms.CheckBox();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
-            this.label50 = new System.Windows.Forms.Label();
-            this.label41 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.ElementsRequired = new System.Windows.Forms.ComboBox();
-            this.label45 = new System.Windows.Forms.Label();
-            this.MinimumSwordRequired = new System.Windows.Forms.ComboBox();
-            this.label44 = new System.Windows.Forms.Label();
-            this.checkBox5 = new System.Windows.Forms.CheckBox();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.BarrenNonElement = new System.Windows.Forms.CheckBox();
-            this.DungeonRewardsShuffle = new System.Windows.Forms.ComboBox();
-            this.label43 = new System.Windows.Forms.Label();
-            this.KeysanitySettings = new System.Windows.Forms.ComboBox();
-            this.label42 = new System.Windows.Forms.Label();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.button4 = new System.Windows.Forms.Button();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label40 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.nOTEMenuItemsNotYetImplementedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Randomize = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.General = new System.Windows.Forms.TabPage();
             this.label14 = new System.Windows.Forms.Label();
             this.panel9 = new System.Windows.Forms.Panel();
-            this.button24 = new System.Windows.Forms.Button();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.PatchRomAndGenPatch = new System.Windows.Forms.Button();
+            this.GeneratePatchButton = new System.Windows.Forms.RadioButton();
             this.label15 = new System.Windows.Forms.Label();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.button23 = new System.Windows.Forms.Button();
-            this.textBox11 = new System.Windows.Forms.TextBox();
-            this.label16 = new System.Windows.Forms.Label();
+            this.ApplyPatchButton = new System.Windows.Forms.RadioButton();
+            this.BrowsePatchOrRom = new System.Windows.Forms.Button();
+            this.BpsPatchAndPatchedRomPath = new System.Windows.Forms.TextBox();
+            this.BpsPatchAndPatchedRomLabel = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
             this.button17 = new System.Windows.Forms.Button();
@@ -147,56 +92,65 @@
             this.label6 = new System.Windows.Forms.Label();
             this.RandomSeed = new System.Windows.Forms.Button();
             this.Seed = new System.Windows.Forms.TextBox();
-            this.BrowseRom = new System.Windows.Forms.Button();
             this.RomPath = new System.Windows.Forms.TextBox();
+            this.BrowseRom = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.Randomize = new System.Windows.Forms.Button();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.TabPane = new System.Windows.Forms.TabControl();
+            this.SeedOutput = new System.Windows.Forms.TabPage();
+            this.SaveRom = new System.Windows.Forms.Button();
+            this.SavePatch = new System.Windows.Forms.Button();
+            this.SaveSpoiler = new System.Windows.Forms.Button();
+            this.label17 = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.CopyCosmeticsHashToClipboard = new System.Windows.Forms.Button();
+            this.CosmeticStringLabel = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.CosmeticNameLabel = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.CopySettingsHashToClipboard = new System.Windows.Forms.Button();
+            this.SettingHashLabel = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.SettingNameLabel = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.OutputSeedLabel = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.InputSeedLabel = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.RandomizationAttempts = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
-            this.TabPane.SuspendLayout();
-            this.TestingPage.SuspendLayout();
-            this.panel5.SuspendLayout();
-            this.panel4.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.panel1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
+            this.General.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panel8.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel6.SuspendLayout();
+            this.TabPane.SuspendLayout();
+            this.SeedOutput.SuspendLayout();
+            this.panel3.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem,
             this.logicToolStripMenuItem,
             this.loggingToolStripMenuItem,
             this.localizationToolStripMenuItem,
-            this.aboutToolStripMenuItem});
+            this.aboutToolStripMenuItem,
+            this.nOTEMenuItemsNotYetImplementedToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(804, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
-            // 
-            // fileToolStripMenuItem
-            // 
-            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.closeToolStripMenuItem});
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.fileToolStripMenuItem.Text = "File";
-            // 
-            // closeToolStripMenuItem
-            // 
-            this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
-            this.closeToolStripMenuItem.Text = "Close";
             // 
             // logicToolStripMenuItem
             // 
@@ -217,7 +171,8 @@
             this.loggingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.setLoggerOutputPathToolStripMenuItem,
             this.useLoggerToolStripMenuItem,
-            this.logAllTransactionsToolStripMenuItem});
+            this.logAllTransactionsToolStripMenuItem,
+            this.writeAndFlushLoggerToolStripMenuItem});
             this.loggingToolStripMenuItem.Name = "loggingToolStripMenuItem";
             this.loggingToolStripMenuItem.Size = new System.Drawing.Size(63, 20);
             this.loggingToolStripMenuItem.Text = "Logging";
@@ -239,6 +194,13 @@
             this.logAllTransactionsToolStripMenuItem.Name = "logAllTransactionsToolStripMenuItem";
             this.logAllTransactionsToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
             this.logAllTransactionsToolStripMenuItem.Text = "Log All Transactions";
+            // 
+            // writeAndFlushLoggerToolStripMenuItem
+            // 
+            this.writeAndFlushLoggerToolStripMenuItem.Name = "writeAndFlushLoggerToolStripMenuItem";
+            this.writeAndFlushLoggerToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.writeAndFlushLoggerToolStripMenuItem.Text = "Write and Flush Logger";
+            this.writeAndFlushLoggerToolStripMenuItem.Click += new System.EventHandler(this.writeAndFlushLoggerToolStripMenuItem_Click);
             // 
             // localizationToolStripMenuItem
             // 
@@ -275,669 +237,48 @@
             this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(132, 22);
             this.aboutToolStripMenuItem1.Text = "About";
             // 
-            // TabPane
-            // 
-            this.TabPane.Controls.Add(this.TestingPage);
-            this.TabPane.Controls.Add(this.tabPage1);
-            this.TabPane.Location = new System.Drawing.Point(12, 27);
-            this.TabPane.Name = "TabPane";
-            this.TabPane.SelectedIndex = 0;
-            this.TabPane.Size = new System.Drawing.Size(780, 663);
-            this.TabPane.TabIndex = 1;
-            // 
-            // TestingPage
-            // 
-            this.TestingPage.AutoScroll = true;
-            this.TestingPage.BackColor = System.Drawing.Color.White;
-            this.TestingPage.Controls.Add(this.label53);
-            this.TestingPage.Controls.Add(this.panel5);
-            this.TestingPage.Controls.Add(this.label49);
-            this.TestingPage.Controls.Add(this.panel4);
-            this.TestingPage.Controls.Add(this.label47);
-            this.TestingPage.Controls.Add(this.panel3);
-            this.TestingPage.Controls.Add(this.label46);
-            this.TestingPage.Controls.Add(this.panel2);
-            this.TestingPage.Controls.Add(this.label41);
-            this.TestingPage.Controls.Add(this.panel1);
-            this.TestingPage.Controls.Add(this.button4);
-            this.TestingPage.Controls.Add(this.textBox3);
-            this.TestingPage.Controls.Add(this.button3);
-            this.TestingPage.Controls.Add(this.textBox2);
-            this.TestingPage.Controls.Add(this.label40);
-            this.TestingPage.Controls.Add(this.label1);
-            this.TestingPage.Location = new System.Drawing.Point(4, 24);
-            this.TestingPage.Name = "TestingPage";
-            this.TestingPage.Padding = new System.Windows.Forms.Padding(3);
-            this.TestingPage.Size = new System.Drawing.Size(772, 635);
-            this.TestingPage.TabIndex = 0;
-            this.TestingPage.Text = "Testing Page";
-            // 
-            // label53
-            // 
-            this.label53.AutoSize = true;
-            this.label53.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label53.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label53.Location = new System.Drawing.Point(17, 532);
-            this.label53.Name = "label53";
-            this.label53.Size = new System.Drawing.Size(127, 15);
-            this.label53.TabIndex = 17;
-            this.label53.Text = "Miscellaneous Settings";
-            this.label53.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // panel5
-            // 
-            this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel5.Controls.Add(this.comboBox2);
-            this.panel5.Controls.Add(this.label54);
-            this.panel5.Controls.Add(this.checkBox16);
-            this.panel5.Controls.Add(this.checkBox14);
-            this.panel5.Controls.Add(this.checkBox10);
-            this.panel5.Location = new System.Drawing.Point(6, 540);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(760, 75);
-            this.panel5.TabIndex = 16;
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "Swords",
-            "Swords, Bombs, Bows"});
-            this.comboBox2.Location = new System.Drawing.Point(245, 13);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(130, 23);
-            this.comboBox2.TabIndex = 24;
-            // 
-            // label54
-            // 
-            this.label54.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label54.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label54.Location = new System.Drawing.Point(10, 15);
-            this.label54.Name = "label54";
-            this.label54.Size = new System.Drawing.Size(225, 15);
-            this.label54.TabIndex = 24;
-            this.label54.Text = "Items Considered as Weapons";
-            this.label54.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // checkBox16
-            // 
-            this.checkBox16.Location = new System.Drawing.Point(510, 45);
-            this.checkBox16.Name = "checkBox16";
-            this.checkBox16.Size = new System.Drawing.Size(240, 19);
-            this.checkBox16.TabIndex = 29;
-            this.checkBox16.Text = "Die in One Hit When Timer Runs Out";
-            this.checkBox16.UseVisualStyleBackColor = true;
-            // 
-            // checkBox14
-            // 
-            this.checkBox14.Location = new System.Drawing.Point(260, 45);
-            this.checkBox14.Name = "checkBox14";
-            this.checkBox14.Size = new System.Drawing.Size(240, 19);
-            this.checkBox14.TabIndex = 28;
-            this.checkBox14.Text = "Disable Glitches";
-            this.checkBox14.UseVisualStyleBackColor = true;
-            // 
-            // checkBox10
-            // 
-            this.checkBox10.Location = new System.Drawing.Point(10, 45);
-            this.checkBox10.Name = "checkBox10";
-            this.checkBox10.Size = new System.Drawing.Size(240, 19);
-            this.checkBox10.TabIndex = 21;
-            this.checkBox10.Text = "Start With Firerod";
-            this.checkBox10.UseVisualStyleBackColor = true;
-            // 
-            // label49
-            // 
-            this.label49.AutoSize = true;
-            this.label49.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label49.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label49.Location = new System.Drawing.Point(17, 437);
-            this.label49.Name = "label49";
-            this.label49.Size = new System.Drawing.Size(135, 15);
-            this.label49.TabIndex = 15;
-            this.label49.Text = "Figurine Shuffle Settings";
-            this.label49.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // panel4
-            // 
-            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel4.Controls.Add(this.textBox4);
-            this.panel4.Controls.Add(this.label52);
-            this.panel4.Controls.Add(this.textBox1);
-            this.panel4.Controls.Add(this.label51);
-            this.panel4.Controls.Add(this.checkBox15);
-            this.panel4.Location = new System.Drawing.Point(6, 445);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(760, 75);
-            this.panel4.TabIndex = 14;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Enabled = false;
-            this.textBox4.Location = new System.Drawing.Point(620, 42);
-            this.textBox4.MaxLength = 3;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(130, 23);
-            this.textBox4.TabIndex = 27;
-            this.textBox4.Text = "30";
-            // 
-            // label52
-            // 
-            this.label52.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label52.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label52.Location = new System.Drawing.Point(385, 45);
-            this.label52.Name = "label52";
-            this.label52.Size = new System.Drawing.Size(225, 15);
-            this.label52.TabIndex = 26;
-            this.label52.Text = "Number of Required Figurines";
-            this.label52.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // textBox1
-            // 
-            this.textBox1.AllowDrop = true;
-            this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(245, 42);
-            this.textBox1.MaxLength = 3;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(130, 23);
-            this.textBox1.TabIndex = 25;
-            this.textBox1.Text = "50";
-            // 
-            // label51
-            // 
-            this.label51.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label51.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label51.Location = new System.Drawing.Point(9, 45);
-            this.label51.Name = "label51";
-            this.label51.Size = new System.Drawing.Size(225, 15);
-            this.label51.TabIndex = 24;
-            this.label51.Text = "Total Figurines in Item Pool";
-            this.label51.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // checkBox15
-            // 
-            this.checkBox15.Location = new System.Drawing.Point(10, 15);
-            this.checkBox15.Name = "checkBox15";
-            this.checkBox15.Size = new System.Drawing.Size(240, 19);
-            this.checkBox15.TabIndex = 21;
-            this.checkBox15.Text = "Enable Figurine Shuffle";
-            this.checkBox15.UseVisualStyleBackColor = true;
-            // 
-            // label47
-            // 
-            this.label47.AutoSize = true;
-            this.label47.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label47.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label47.Location = new System.Drawing.Point(17, 342);
-            this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(103, 15);
-            this.label47.TabIndex = 13;
-            this.label47.Text = "Item Pool Settings";
-            this.label47.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // panel3
-            // 
-            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel3.Controls.Add(this.checkBox11);
-            this.panel3.Controls.Add(this.checkBox12);
-            this.panel3.Controls.Add(this.checkBox13);
-            this.panel3.Controls.Add(this.comboBox1);
-            this.panel3.Controls.Add(this.label48);
-            this.panel3.Location = new System.Drawing.Point(6, 350);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(760, 75);
-            this.panel3.TabIndex = 12;
-            // 
-            // checkBox11
-            // 
-            this.checkBox11.Location = new System.Drawing.Point(510, 45);
-            this.checkBox11.Name = "checkBox11";
-            this.checkBox11.Size = new System.Drawing.Size(240, 19);
-            this.checkBox11.TabIndex = 23;
-            this.checkBox11.Text = "Add Traps to Item Pool";
-            this.checkBox11.UseVisualStyleBackColor = true;
-            // 
-            // checkBox12
-            // 
-            this.checkBox12.Location = new System.Drawing.Point(260, 45);
-            this.checkBox12.Name = "checkBox12";
-            this.checkBox12.Size = new System.Drawing.Size(240, 19);
-            this.checkBox12.TabIndex = 22;
-            this.checkBox12.Text = "Randomize Obscure Locations";
-            this.checkBox12.UseVisualStyleBackColor = true;
-            // 
-            // checkBox13
-            // 
-            this.checkBox13.Location = new System.Drawing.Point(10, 45);
-            this.checkBox13.Name = "checkBox13";
-            this.checkBox13.Size = new System.Drawing.Size(240, 19);
-            this.checkBox13.TabIndex = 21;
-            this.checkBox13.Text = "Randomize Freestanding Rupees";
-            this.checkBox13.UseVisualStyleBackColor = true;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Reduced Pool",
-            "Normal Pool",
-            "Plentiful Pool"});
-            this.comboBox1.Location = new System.Drawing.Point(245, 12);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(130, 23);
-            this.comboBox1.TabIndex = 11;
-            // 
-            // label48
-            // 
-            this.label48.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label48.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label48.Location = new System.Drawing.Point(10, 15);
-            this.label48.Name = "label48";
-            this.label48.Size = new System.Drawing.Size(225, 15);
-            this.label48.TabIndex = 10;
-            this.label48.Text = "Item Pool Mode";
-            this.label48.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label46
-            // 
-            this.label46.AutoSize = true;
-            this.label46.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label46.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label46.Location = new System.Drawing.Point(17, 222);
-            this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(87, 15);
-            this.label46.TabIndex = 11;
-            this.label46.Text = "Fusion Settings";
-            this.label46.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // panel2
-            // 
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.pictureBox1);
-            this.panel2.Controls.Add(this.label2);
-            this.panel2.Controls.Add(this.button6);
-            this.panel2.Controls.Add(this.button5);
-            this.panel2.Controls.Add(this.button1);
-            this.panel2.Controls.Add(this.checkBox9);
-            this.panel2.Controls.Add(this.checkBox8);
-            this.panel2.Controls.Add(this.checkBox7);
-            this.panel2.Controls.Add(this.checkBox6);
-            this.panel2.Controls.Add(this.comboBox4);
-            this.panel2.Controls.Add(this.label50);
-            this.panel2.Location = new System.Drawing.Point(6, 230);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(760, 100);
-            this.panel2.TabIndex = 10;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.DarkGray;
-            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox1.Location = new System.Drawing.Point(690, 67);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(60, 23);
-            this.pictureBox1.TabIndex = 28;
-            this.pictureBox1.TabStop = false;
-            // 
-            // label2
-            // 
-            this.label2.Location = new System.Drawing.Point(595, 71);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(85, 15);
-            this.label2.TabIndex = 27;
-            this.label2.Text = "Color Preview:";
-            // 
-            // button6
-            // 
-            this.button6.BackColor = System.Drawing.Color.Gainsboro;
-            this.button6.Location = new System.Drawing.Point(445, 67);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(140, 23);
-            this.button6.TabIndex = 26;
-            this.button6.Text = "Use Default Color";
-            this.button6.UseVisualStyleBackColor = false;
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(295, 67);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(140, 23);
-            this.button5.TabIndex = 25;
-            this.button5.Text = "Pick Random Color";
-            this.button5.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(145, 67);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(140, 23);
-            this.button1.TabIndex = 24;
-            this.button1.Text = "Select Custom Color";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // checkBox9
-            // 
-            this.checkBox9.Location = new System.Drawing.Point(10, 70);
-            this.checkBox9.Name = "checkBox9";
-            this.checkBox9.Size = new System.Drawing.Size(125, 19);
-            this.checkBox9.TabIndex = 21;
-            this.checkBox9.Text = "Use Custom Color";
-            this.checkBox9.UseVisualStyleBackColor = true;
-            // 
-            // checkBox8
-            // 
-            this.checkBox8.Enabled = false;
-            this.checkBox8.Location = new System.Drawing.Point(510, 45);
-            this.checkBox8.Name = "checkBox8";
-            this.checkBox8.Size = new System.Drawing.Size(240, 19);
-            this.checkBox8.TabIndex = 23;
-            this.checkBox8.Text = "Open Palace of Winds";
-            this.checkBox8.UseVisualStyleBackColor = true;
-            // 
-            // checkBox7
-            // 
-            this.checkBox7.Enabled = false;
-            this.checkBox7.Location = new System.Drawing.Point(260, 45);
-            this.checkBox7.Name = "checkBox7";
-            this.checkBox7.Size = new System.Drawing.Size(240, 19);
-            this.checkBox7.TabIndex = 22;
-            this.checkBox7.Text = "Open Veil Falls";
-            this.checkBox7.UseVisualStyleBackColor = true;
-            // 
-            // checkBox6
-            // 
-            this.checkBox6.Enabled = false;
-            this.checkBox6.Location = new System.Drawing.Point(10, 45);
-            this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(240, 19);
-            this.checkBox6.TabIndex = 21;
-            this.checkBox6.Text = "Open Wind Ruins";
-            this.checkBox6.UseVisualStyleBackColor = true;
-            // 
-            // comboBox4
-            // 
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Items.AddRange(new object[] {
-            "Removed",
-            "Vanilla",
-            "Pre-Completed"});
-            this.comboBox4.Location = new System.Drawing.Point(245, 12);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(130, 23);
-            this.comboBox4.TabIndex = 11;
-            // 
-            // label50
-            // 
-            this.label50.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label50.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label50.Location = new System.Drawing.Point(10, 15);
-            this.label50.Name = "label50";
-            this.label50.Size = new System.Drawing.Size(225, 15);
-            this.label50.TabIndex = 10;
-            this.label50.Text = "Fusion Mode (Excludes Gold Kinstones)";
-            this.label50.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label41
-            // 
-            this.label41.AutoSize = true;
-            this.label41.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label41.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label41.Location = new System.Drawing.Point(17, 72);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(224, 15);
-            this.label41.TabIndex = 9;
-            this.label41.Text = "Dungeon and Dark Hyrule Castle Settings";
-            this.label41.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // panel1
-            // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.ElementsRequired);
-            this.panel1.Controls.Add(this.label45);
-            this.panel1.Controls.Add(this.MinimumSwordRequired);
-            this.panel1.Controls.Add(this.label44);
-            this.panel1.Controls.Add(this.checkBox5);
-            this.panel1.Controls.Add(this.checkBox4);
-            this.panel1.Controls.Add(this.BarrenNonElement);
-            this.panel1.Controls.Add(this.DungeonRewardsShuffle);
-            this.panel1.Controls.Add(this.label43);
-            this.panel1.Controls.Add(this.KeysanitySettings);
-            this.panel1.Controls.Add(this.label42);
-            this.panel1.Controls.Add(this.checkBox3);
-            this.panel1.Controls.Add(this.checkBox2);
-            this.panel1.Controls.Add(this.checkBox1);
-            this.panel1.Location = new System.Drawing.Point(6, 80);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(760, 130);
-            this.panel1.TabIndex = 8;
-            // 
-            // ElementsRequired
-            // 
-            this.ElementsRequired.FormattingEnabled = true;
-            this.ElementsRequired.Items.AddRange(new object[] {
-            "0 Elements",
-            "1 Element",
-            "2 Elements",
-            "3 Elements",
-            "4 Elements"});
-            this.ElementsRequired.Location = new System.Drawing.Point(620, 12);
-            this.ElementsRequired.Name = "ElementsRequired";
-            this.ElementsRequired.Size = new System.Drawing.Size(130, 23);
-            this.ElementsRequired.TabIndex = 20;
-            // 
-            // label45
-            // 
-            this.label45.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label45.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label45.Location = new System.Drawing.Point(385, 45);
-            this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(225, 15);
-            this.label45.TabIndex = 19;
-            this.label45.Text = "Minimum Sword Required for DHC";
-            this.label45.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // MinimumSwordRequired
-            // 
-            this.MinimumSwordRequired.FormattingEnabled = true;
-            this.MinimumSwordRequired.Items.AddRange(new object[] {
-            "No Sword",
-            "Smith Sword",
-            "Green Sword",
-            "Red Sword",
-            "Blue Sword",
-            "Four Sword"});
-            this.MinimumSwordRequired.Location = new System.Drawing.Point(620, 42);
-            this.MinimumSwordRequired.Name = "MinimumSwordRequired";
-            this.MinimumSwordRequired.Size = new System.Drawing.Size(130, 23);
-            this.MinimumSwordRequired.TabIndex = 18;
-            // 
-            // label44
-            // 
-            this.label44.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label44.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label44.Location = new System.Drawing.Point(385, 12);
-            this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(225, 20);
-            this.label44.TabIndex = 17;
-            this.label44.Text = "Number of Elements Required for DHC";
-            this.label44.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // checkBox5
-            // 
-            this.checkBox5.Location = new System.Drawing.Point(510, 100);
-            this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(240, 19);
-            this.checkBox5.TabIndex = 16;
-            this.checkBox5.Text = "Require All Dungeons for DHC";
-            this.checkBox5.UseVisualStyleBackColor = true;
-            // 
-            // checkBox4
-            // 
-            this.checkBox4.Enabled = false;
-            this.checkBox4.Location = new System.Drawing.Point(260, 100);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(236, 19);
-            this.checkBox4.TabIndex = 15;
-            this.checkBox4.Text = "Randomize Pedestal Items";
-            this.checkBox4.UseVisualStyleBackColor = true;
-            // 
-            // BarrenNonElement
-            // 
-            this.BarrenNonElement.Location = new System.Drawing.Point(10, 75);
-            this.BarrenNonElement.Name = "BarrenNonElement";
-            this.BarrenNonElement.Size = new System.Drawing.Size(240, 19);
-            this.BarrenNonElement.TabIndex = 14;
-            this.BarrenNonElement.Text = "Non-Element Dungeons Are Barren";
-            this.BarrenNonElement.UseVisualStyleBackColor = true;
-            // 
-            // DungeonRewardsShuffle
-            // 
-            this.DungeonRewardsShuffle.FormattingEnabled = true;
-            this.DungeonRewardsShuffle.Items.AddRange(new object[] {
-            "Dungeon Rewards",
-            "Anywhere"});
-            this.DungeonRewardsShuffle.Location = new System.Drawing.Point(245, 42);
-            this.DungeonRewardsShuffle.Name = "DungeonRewardsShuffle";
-            this.DungeonRewardsShuffle.Size = new System.Drawing.Size(130, 23);
-            this.DungeonRewardsShuffle.TabIndex = 13;
-            // 
-            // label43
-            // 
-            this.label43.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label43.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label43.Location = new System.Drawing.Point(10, 45);
-            this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(225, 15);
-            this.label43.TabIndex = 12;
-            this.label43.Text = "Shuffle Elements";
-            this.label43.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // KeysanitySettings
-            // 
-            this.KeysanitySettings.FormattingEnabled = true;
-            this.KeysanitySettings.Items.AddRange(new object[] {
-            "Keasy",
-            "Same Dungeon",
-            "Keysanity"});
-            this.KeysanitySettings.Location = new System.Drawing.Point(245, 13);
-            this.KeysanitySettings.Name = "KeysanitySettings";
-            this.KeysanitySettings.Size = new System.Drawing.Size(130, 23);
-            this.KeysanitySettings.TabIndex = 11;
-            // 
-            // label42
-            // 
-            this.label42.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label42.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label42.Location = new System.Drawing.Point(10, 15);
-            this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(225, 15);
-            this.label42.TabIndex = 10;
-            this.label42.Text = "Key Randomization";
-            this.label42.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // checkBox3
-            // 
-            this.checkBox3.Location = new System.Drawing.Point(10, 100);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(240, 19);
-            this.checkBox3.TabIndex = 2;
-            this.checkBox3.Text = "Barren Dark Hyrule Castle";
-            this.checkBox3.UseVisualStyleBackColor = true;
-            // 
-            // checkBox2
-            // 
-            this.checkBox2.Location = new System.Drawing.Point(510, 75);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(240, 19);
-            this.checkBox2.TabIndex = 1;
-            this.checkBox2.Text = "Open Dark Hyrule Castle";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.Location = new System.Drawing.Point(260, 75);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(240, 19);
-            this.checkBox1.TabIndex = 0;
-            this.checkBox1.Text = "Skip Dark Hyrule Castle";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(677, 35);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(89, 23);
-            this.button4.TabIndex = 7;
-            this.button4.Text = "New Seed";
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(160, 35);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(511, 23);
-            this.textBox3.TabIndex = 6;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(677, 5);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(89, 23);
-            this.button3.TabIndex = 5;
-            this.button3.Text = "Browse";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(160, 6);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(511, 23);
-            this.textBox2.TabIndex = 4;
-            // 
-            // label40
-            // 
-            this.label40.AutoSize = true;
-            this.label40.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label40.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label40.Location = new System.Drawing.Point(6, 9);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(148, 15);
-            this.label40.TabIndex = 3;
-            this.label40.Text = "European Minish Cap Rom";
-            this.label40.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label1
-            // 
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(6, 36);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(148, 20);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Randomizer Seed";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.Controls.Add(this.label14);
-            this.tabPage1.Controls.Add(this.panel9);
-            this.tabPage1.Controls.Add(this.label11);
-            this.tabPage1.Controls.Add(this.panel8);
-            this.tabPage1.Controls.Add(this.label8);
-            this.tabPage1.Controls.Add(this.panel7);
-            this.tabPage1.Controls.Add(this.label5);
-            this.tabPage1.Controls.Add(this.panel6);
-            this.tabPage1.Controls.Add(this.RandomSeed);
-            this.tabPage1.Controls.Add(this.Seed);
-            this.tabPage1.Controls.Add(this.BrowseRom);
-            this.tabPage1.Controls.Add(this.RomPath);
-            this.tabPage1.Controls.Add(this.label3);
-            this.tabPage1.Controls.Add(this.label4);
-            this.tabPage1.Location = new System.Drawing.Point(4, 24);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(772, 635);
-            this.tabPage1.TabIndex = 1;
-            this.tabPage1.Text = "Randomizer General";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            // nOTEMenuItemsNotYetImplementedToolStripMenuItem
+            // 
+            this.nOTEMenuItemsNotYetImplementedToolStripMenuItem.Name = "nOTEMenuItemsNotYetImplementedToolStripMenuItem";
+            this.nOTEMenuItemsNotYetImplementedToolStripMenuItem.Size = new System.Drawing.Size(424, 20);
+            this.nOTEMenuItemsNotYetImplementedToolStripMenuItem.Text = "NOTE: Menu items other than \"Write and Flush Logger\" not yet implemented";
+            // 
+            // Randomize
+            // 
+            this.Randomize.Location = new System.Drawing.Point(570, 696);
+            this.Randomize.Name = "Randomize";
+            this.Randomize.Size = new System.Drawing.Size(218, 23);
+            this.Randomize.TabIndex = 3;
+            this.Randomize.Text = "Randomize";
+            this.Randomize.UseVisualStyleBackColor = true;
+            this.Randomize.Click += new System.EventHandler(this.Randomize_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // General
+            // 
+            this.General.Controls.Add(this.label14);
+            this.General.Controls.Add(this.panel9);
+            this.General.Controls.Add(this.label11);
+            this.General.Controls.Add(this.panel8);
+            this.General.Controls.Add(this.label8);
+            this.General.Controls.Add(this.panel7);
+            this.General.Controls.Add(this.label5);
+            this.General.Controls.Add(this.panel6);
+            this.General.Controls.Add(this.RandomSeed);
+            this.General.Controls.Add(this.Seed);
+            this.General.Controls.Add(this.RomPath);
+            this.General.Controls.Add(this.BrowseRom);
+            this.General.Controls.Add(this.label3);
+            this.General.Controls.Add(this.label4);
+            this.General.Location = new System.Drawing.Point(4, 24);
+            this.General.Name = "General";
+            this.General.Size = new System.Drawing.Size(772, 635);
+            this.General.TabIndex = 1;
+            this.General.Text = "General";
+            this.General.UseVisualStyleBackColor = true;
             // 
             // label14
             // 
@@ -954,35 +295,35 @@
             // panel9
             // 
             this.panel9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel9.Controls.Add(this.button24);
-            this.panel9.Controls.Add(this.radioButton2);
+            this.panel9.Controls.Add(this.PatchRomAndGenPatch);
+            this.panel9.Controls.Add(this.GeneratePatchButton);
             this.panel9.Controls.Add(this.label15);
-            this.panel9.Controls.Add(this.radioButton1);
-            this.panel9.Controls.Add(this.button23);
-            this.panel9.Controls.Add(this.textBox11);
-            this.panel9.Controls.Add(this.label16);
+            this.panel9.Controls.Add(this.ApplyPatchButton);
+            this.panel9.Controls.Add(this.BrowsePatchOrRom);
+            this.panel9.Controls.Add(this.BpsPatchAndPatchedRomPath);
+            this.panel9.Controls.Add(this.BpsPatchAndPatchedRomLabel);
             this.panel9.Location = new System.Drawing.Point(6, 545);
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(760, 80);
             this.panel9.TabIndex = 20;
             // 
-            // button24
+            // PatchRomAndGenPatch
             // 
-            this.button24.Location = new System.Drawing.Point(510, 11);
-            this.button24.Name = "button24";
-            this.button24.Size = new System.Drawing.Size(240, 23);
-            this.button24.TabIndex = 25;
-            this.button24.Text = "Patch Rom";
-            this.button24.UseVisualStyleBackColor = true;
+            this.PatchRomAndGenPatch.Location = new System.Drawing.Point(510, 11);
+            this.PatchRomAndGenPatch.Name = "PatchRomAndGenPatch";
+            this.PatchRomAndGenPatch.Size = new System.Drawing.Size(240, 23);
+            this.PatchRomAndGenPatch.TabIndex = 25;
+            this.PatchRomAndGenPatch.Text = "Patch Rom";
+            this.PatchRomAndGenPatch.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // GeneratePatchButton
             // 
-            this.radioButton2.Location = new System.Drawing.Point(331, 13);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(168, 19);
-            this.radioButton2.TabIndex = 24;
-            this.radioButton2.Text = "Generate Patch Mode";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.GeneratePatchButton.Location = new System.Drawing.Point(331, 13);
+            this.GeneratePatchButton.Name = "GeneratePatchButton";
+            this.GeneratePatchButton.Size = new System.Drawing.Size(168, 19);
+            this.GeneratePatchButton.TabIndex = 24;
+            this.GeneratePatchButton.Text = "Generate Patch Mode";
+            this.GeneratePatchButton.UseVisualStyleBackColor = true;
             // 
             // label15
             // 
@@ -995,43 +336,43 @@
             this.label15.Text = "Patcher Mode:";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // radioButton1
+            // ApplyPatchButton
             // 
-            this.radioButton1.Checked = true;
-            this.radioButton1.Location = new System.Drawing.Point(153, 13);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(168, 19);
-            this.radioButton1.TabIndex = 22;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Apply Patch Mode";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.ApplyPatchButton.Checked = true;
+            this.ApplyPatchButton.Location = new System.Drawing.Point(153, 13);
+            this.ApplyPatchButton.Name = "ApplyPatchButton";
+            this.ApplyPatchButton.Size = new System.Drawing.Size(168, 19);
+            this.ApplyPatchButton.TabIndex = 22;
+            this.ApplyPatchButton.TabStop = true;
+            this.ApplyPatchButton.Text = "Apply Patch Mode";
+            this.ApplyPatchButton.UseVisualStyleBackColor = true;
             // 
-            // button23
+            // BrowsePatchOrRom
             // 
-            this.button23.Location = new System.Drawing.Point(660, 41);
-            this.button23.Name = "button23";
-            this.button23.Size = new System.Drawing.Size(90, 23);
-            this.button23.TabIndex = 21;
-            this.button23.Text = "Browse";
-            this.button23.UseVisualStyleBackColor = true;
+            this.BrowsePatchOrRom.Location = new System.Drawing.Point(660, 41);
+            this.BrowsePatchOrRom.Name = "BrowsePatchOrRom";
+            this.BrowsePatchOrRom.Size = new System.Drawing.Size(90, 23);
+            this.BrowsePatchOrRom.TabIndex = 21;
+            this.BrowsePatchOrRom.Text = "Browse";
+            this.BrowsePatchOrRom.UseVisualStyleBackColor = true;
             // 
-            // textBox11
+            // BpsPatchAndPatchedRomPath
             // 
-            this.textBox11.Location = new System.Drawing.Point(153, 42);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(501, 23);
-            this.textBox11.TabIndex = 16;
+            this.BpsPatchAndPatchedRomPath.Location = new System.Drawing.Point(153, 42);
+            this.BpsPatchAndPatchedRomPath.Name = "BpsPatchAndPatchedRomPath";
+            this.BpsPatchAndPatchedRomPath.Size = new System.Drawing.Size(501, 23);
+            this.BpsPatchAndPatchedRomPath.TabIndex = 16;
             // 
-            // label16
+            // BpsPatchAndPatchedRomLabel
             // 
-            this.label16.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label16.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label16.Location = new System.Drawing.Point(10, 45);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(133, 15);
-            this.label16.TabIndex = 16;
-            this.label16.Text = "BPS Patch File Path:";
-            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BpsPatchAndPatchedRomLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.BpsPatchAndPatchedRomLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BpsPatchAndPatchedRomLabel.Location = new System.Drawing.Point(10, 45);
+            this.BpsPatchAndPatchedRomLabel.Name = "BpsPatchAndPatchedRomLabel";
+            this.BpsPatchAndPatchedRomLabel.Size = new System.Drawing.Size(133, 15);
+            this.BpsPatchAndPatchedRomLabel.TabIndex = 16;
+            this.BpsPatchAndPatchedRomLabel.Text = "BPS Patch File Path:";
+            this.BpsPatchAndPatchedRomLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label11
             // 
@@ -1069,7 +410,7 @@
             this.button17.Name = "button17";
             this.button17.Size = new System.Drawing.Size(240, 23);
             this.button17.TabIndex = 30;
-            this.button17.Text = "Delete Selected Preset";
+            this.button17.Text = "Delete Preset";
             this.button17.UseVisualStyleBackColor = true;
             // 
             // button18
@@ -1078,7 +419,7 @@
             this.button18.Name = "button18";
             this.button18.Size = new System.Drawing.Size(240, 23);
             this.button18.TabIndex = 29;
-            this.button18.Text = "Reset Default Cosmetic Settings";
+            this.button18.Text = "Reset Defaults";
             this.button18.UseVisualStyleBackColor = true;
             // 
             // button19
@@ -1087,7 +428,7 @@
             this.button19.Name = "button19";
             this.button19.Size = new System.Drawing.Size(240, 23);
             this.button19.TabIndex = 28;
-            this.button19.Text = "Load Cosmetics From Preset";
+            this.button19.Text = "Load Cosmetics Preset";
             this.button19.UseVisualStyleBackColor = true;
             // 
             // comboBox5
@@ -1106,7 +447,7 @@
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(133, 15);
             this.label12.TabIndex = 26;
-            this.label12.Text = "Cosmetics Presets:";
+            this.label12.Text = "Cosmetic Presets (WIP):";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // button20
@@ -1115,7 +456,7 @@
             this.button20.Name = "button20";
             this.button20.Size = new System.Drawing.Size(240, 23);
             this.button20.TabIndex = 25;
-            this.button20.Text = "Save Current Cosmetics As Preset";
+            this.button20.Text = "Save Current As Preset";
             this.button20.UseVisualStyleBackColor = true;
             // 
             // button21
@@ -1124,7 +465,7 @@
             this.button21.Name = "button21";
             this.button21.Size = new System.Drawing.Size(240, 23);
             this.button21.TabIndex = 24;
-            this.button21.Text = "Generate Cosmetics String";
+            this.button21.Text = "Generate String";
             this.button21.UseVisualStyleBackColor = true;
             // 
             // button22
@@ -1133,7 +474,7 @@
             this.button22.Name = "button22";
             this.button22.Size = new System.Drawing.Size(240, 23);
             this.button22.TabIndex = 23;
-            this.button22.Text = "Load Cosmetics From String";
+            this.button22.Text = "Load Cosmetics";
             this.button22.UseVisualStyleBackColor = true;
             // 
             // textBox9
@@ -1190,7 +531,7 @@
             this.button16.Name = "button16";
             this.button16.Size = new System.Drawing.Size(240, 23);
             this.button16.TabIndex = 30;
-            this.button16.Text = "Delete Selected Preset";
+            this.button16.Text = "Delete Preset";
             this.button16.UseVisualStyleBackColor = true;
             // 
             // button15
@@ -1208,7 +549,7 @@
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(240, 23);
             this.button11.TabIndex = 28;
-            this.button11.Text = "Load Settings From Preset";
+            this.button11.Text = "Load Setting Preset";
             this.button11.UseVisualStyleBackColor = true;
             // 
             // comboBox3
@@ -1227,7 +568,7 @@
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(133, 15);
             this.label9.TabIndex = 26;
-            this.label9.Text = "Setting Presets:";
+            this.label9.Text = "Setting Presets (WIP):";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // button14
@@ -1236,7 +577,7 @@
             this.button14.Name = "button14";
             this.button14.Size = new System.Drawing.Size(240, 23);
             this.button14.TabIndex = 25;
-            this.button14.Text = "Save Current Settings As Preset";
+            this.button14.Text = "Save Current As Preset";
             this.button14.UseVisualStyleBackColor = true;
             // 
             // button13
@@ -1245,7 +586,7 @@
             this.button13.Name = "button13";
             this.button13.Size = new System.Drawing.Size(240, 23);
             this.button13.TabIndex = 24;
-            this.button13.Text = "Generate Sharable String";
+            this.button13.Text = "Generate String";
             this.button13.UseVisualStyleBackColor = true;
             // 
             // button12
@@ -1405,6 +746,13 @@
             this.Seed.Size = new System.Drawing.Size(510, 23);
             this.Seed.TabIndex = 12;
             // 
+            // RomPath
+            // 
+            this.RomPath.Location = new System.Drawing.Point(160, 7);
+            this.RomPath.Name = "RomPath";
+            this.RomPath.Size = new System.Drawing.Size(510, 23);
+            this.RomPath.TabIndex = 10;
+            // 
             // BrowseRom
             // 
             this.BrowseRom.Location = new System.Drawing.Point(676, 6);
@@ -1415,24 +763,16 @@
             this.BrowseRom.UseVisualStyleBackColor = true;
             this.BrowseRom.Click += new System.EventHandler(this.BrowseRom_Click);
             // 
-            // RomPath
-            // 
-            this.RomPath.Enabled = false;
-            this.RomPath.Location = new System.Drawing.Point(160, 7);
-            this.RomPath.Name = "RomPath";
-            this.RomPath.Size = new System.Drawing.Size(510, 23);
-            this.RomPath.TabIndex = 10;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label3.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label3.Location = new System.Drawing.Point(6, 10);
+            this.label3.Location = new System.Drawing.Point(4, 10);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(148, 15);
+            this.label3.Size = new System.Drawing.Size(150, 15);
             this.label3.TabIndex = 9;
-            this.label3.Text = "European Minish Cap Rom";
+            this.label3.Text = "European Minish Cap ROM";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label4
@@ -1445,25 +785,333 @@
             this.label4.Text = "Randomizer Seed";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // Randomize
+            // TabPane
             // 
-            this.Randomize.Location = new System.Drawing.Point(570, 696);
-            this.Randomize.Name = "Randomize";
-            this.Randomize.Size = new System.Drawing.Size(218, 23);
-            this.Randomize.TabIndex = 3;
-            this.Randomize.Text = "Randomize";
-            this.Randomize.UseVisualStyleBackColor = true;
-            this.Randomize.Click += new System.EventHandler(this.Randomize_Click);
+            this.TabPane.Controls.Add(this.General);
+            this.TabPane.Controls.Add(this.SeedOutput);
+            this.TabPane.Location = new System.Drawing.Point(12, 27);
+            this.TabPane.Name = "TabPane";
+            this.TabPane.SelectedIndex = 0;
+            this.TabPane.Size = new System.Drawing.Size(780, 663);
+            this.TabPane.TabIndex = 1;
             // 
-            // openFileDialog1
+            // SeedOutput
             // 
-            this.openFileDialog1.FileName = "openFileDialog1";
+            this.SeedOutput.Controls.Add(this.SaveRom);
+            this.SeedOutput.Controls.Add(this.SavePatch);
+            this.SeedOutput.Controls.Add(this.SaveSpoiler);
+            this.SeedOutput.Controls.Add(this.label17);
+            this.SeedOutput.Controls.Add(this.panel3);
+            this.SeedOutput.Controls.Add(this.label22);
+            this.SeedOutput.Controls.Add(this.panel2);
+            this.SeedOutput.Controls.Add(this.label1);
+            this.SeedOutput.Controls.Add(this.panel1);
+            this.SeedOutput.Location = new System.Drawing.Point(4, 24);
+            this.SeedOutput.Name = "SeedOutput";
+            this.SeedOutput.Size = new System.Drawing.Size(772, 635);
+            this.SeedOutput.TabIndex = 2;
+            this.SeedOutput.Text = "Seed Output";
+            this.SeedOutput.UseVisualStyleBackColor = true;
+            // 
+            // SaveRom
+            // 
+            this.SaveRom.Location = new System.Drawing.Point(519, 600);
+            this.SaveRom.Name = "SaveRom";
+            this.SaveRom.Size = new System.Drawing.Size(247, 23);
+            this.SaveRom.TabIndex = 24;
+            this.SaveRom.Text = "Save ROM";
+            this.SaveRom.UseVisualStyleBackColor = true;
+            // 
+            // SavePatch
+            // 
+            this.SavePatch.Location = new System.Drawing.Point(263, 600);
+            this.SavePatch.Name = "SavePatch";
+            this.SavePatch.Size = new System.Drawing.Size(246, 23);
+            this.SavePatch.TabIndex = 23;
+            this.SavePatch.Text = "Save BPS Patch";
+            this.SavePatch.UseVisualStyleBackColor = true;
+            // 
+            // SaveSpoiler
+            // 
+            this.SaveSpoiler.Location = new System.Drawing.Point(6, 600);
+            this.SaveSpoiler.Name = "SaveSpoiler";
+            this.SaveSpoiler.Size = new System.Drawing.Size(247, 23);
+            this.SaveSpoiler.TabIndex = 22;
+            this.SaveSpoiler.Text = "Save Spoiler Log";
+            this.SaveSpoiler.UseVisualStyleBackColor = true;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label17.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label17.Location = new System.Drawing.Point(17, 247);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(128, 15);
+            this.label17.TabIndex = 21;
+            this.label17.Text = "Cosmetics Information";
+            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel3
+            // 
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.CopyCosmeticsHashToClipboard);
+            this.panel3.Controls.Add(this.CosmeticStringLabel);
+            this.panel3.Controls.Add(this.label23);
+            this.panel3.Controls.Add(this.CosmeticNameLabel);
+            this.panel3.Controls.Add(this.label26);
+            this.panel3.Location = new System.Drawing.Point(6, 255);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(760, 110);
+            this.panel3.TabIndex = 20;
+            // 
+            // CopyCosmeticsHashToClipboard
+            // 
+            this.CopyCosmeticsHashToClipboard.Location = new System.Drawing.Point(525, 70);
+            this.CopyCosmeticsHashToClipboard.Name = "CopyCosmeticsHashToClipboard";
+            this.CopyCosmeticsHashToClipboard.Size = new System.Drawing.Size(225, 23);
+            this.CopyCosmeticsHashToClipboard.TabIndex = 24;
+            this.CopyCosmeticsHashToClipboard.Text = "Copy Cosmetics Hash To Clipboard";
+            this.CopyCosmeticsHashToClipboard.UseVisualStyleBackColor = true;
+            // 
+            // CosmeticStringLabel
+            // 
+            this.CosmeticStringLabel.AutoEllipsis = true;
+            this.CosmeticStringLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.CosmeticStringLabel.Location = new System.Drawing.Point(198, 45);
+            this.CosmeticStringLabel.Name = "CosmeticStringLabel";
+            this.CosmeticStringLabel.Size = new System.Drawing.Size(552, 15);
+            this.CosmeticStringLabel.TabIndex = 23;
+            this.CosmeticStringLabel.Text = "Cosmetics Hash Goes Here";
+            this.CosmeticStringLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label23
+            // 
+            this.label23.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label23.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label23.Location = new System.Drawing.Point(10, 45);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(178, 15);
+            this.label23.TabIndex = 22;
+            this.label23.Text = "Cosmetics Hash:";
+            this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // CosmeticNameLabel
+            // 
+            this.CosmeticNameLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.CosmeticNameLabel.Location = new System.Drawing.Point(198, 15);
+            this.CosmeticNameLabel.Name = "CosmeticNameLabel";
+            this.CosmeticNameLabel.Size = new System.Drawing.Size(552, 15);
+            this.CosmeticNameLabel.TabIndex = 19;
+            this.CosmeticNameLabel.Text = "None";
+            this.CosmeticNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label26
+            // 
+            this.label26.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label26.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label26.Location = new System.Drawing.Point(10, 15);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(178, 15);
+            this.label26.TabIndex = 18;
+            this.label26.Text = "Cosmetic Name:";
+            this.label26.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label22.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label22.Location = new System.Drawing.Point(17, 117);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(115, 15);
+            this.label22.TabIndex = 19;
+            this.label22.Text = "Settings Information";
+            this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel2
+            // 
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.CopySettingsHashToClipboard);
+            this.panel2.Controls.Add(this.SettingHashLabel);
+            this.panel2.Controls.Add(this.label24);
+            this.panel2.Controls.Add(this.SettingNameLabel);
+            this.panel2.Controls.Add(this.label28);
+            this.panel2.Location = new System.Drawing.Point(6, 125);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(760, 110);
+            this.panel2.TabIndex = 18;
+            // 
+            // CopySettingsHashToClipboard
+            // 
+            this.CopySettingsHashToClipboard.Location = new System.Drawing.Point(525, 70);
+            this.CopySettingsHashToClipboard.Name = "CopySettingsHashToClipboard";
+            this.CopySettingsHashToClipboard.Size = new System.Drawing.Size(225, 23);
+            this.CopySettingsHashToClipboard.TabIndex = 24;
+            this.CopySettingsHashToClipboard.Text = "Copy Setting Hash To Clipboard";
+            this.CopySettingsHashToClipboard.UseVisualStyleBackColor = true;
+            // 
+            // SettingHashLabel
+            // 
+            this.SettingHashLabel.AutoEllipsis = true;
+            this.SettingHashLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.SettingHashLabel.Location = new System.Drawing.Point(198, 45);
+            this.SettingHashLabel.Name = "SettingHashLabel";
+            this.SettingHashLabel.Size = new System.Drawing.Size(552, 15);
+            this.SettingHashLabel.TabIndex = 23;
+            this.SettingHashLabel.Text = "Setting Hash Goes Here";
+            this.SettingHashLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label24
+            // 
+            this.label24.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label24.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label24.Location = new System.Drawing.Point(10, 45);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(178, 15);
+            this.label24.TabIndex = 22;
+            this.label24.Text = "Setting Hash:";
+            this.label24.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // SettingNameLabel
+            // 
+            this.SettingNameLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.SettingNameLabel.Location = new System.Drawing.Point(198, 15);
+            this.SettingNameLabel.Name = "SettingNameLabel";
+            this.SettingNameLabel.Size = new System.Drawing.Size(552, 15);
+            this.SettingNameLabel.TabIndex = 19;
+            this.SettingNameLabel.Text = "None";
+            this.SettingNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label28
+            // 
+            this.label28.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label28.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label28.Location = new System.Drawing.Point(10, 15);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(178, 15);
+            this.label28.TabIndex = 18;
+            this.label28.Text = "Settings Name:";
+            this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label1.Location = new System.Drawing.Point(17, 7);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(98, 15);
+            this.label1.TabIndex = 17;
+            this.label1.Text = "Seed Information";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel1
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.label21);
+            this.panel1.Controls.Add(this.label20);
+            this.panel1.Controls.Add(this.OutputSeedLabel);
+            this.panel1.Controls.Add(this.label18);
+            this.panel1.Controls.Add(this.InputSeedLabel);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Location = new System.Drawing.Point(6, 15);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(760, 90);
+            this.panel1.TabIndex = 16;
+            // 
+            // label21
+            // 
+            this.label21.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label21.Location = new System.Drawing.Point(198, 50);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(552, 15);
+            this.label21.TabIndex = 23;
+            this.label21.Text = "This isn\'t implemented yet, but this will display the in game seed later so no ne" +
+    "ed to load the rom";
+            this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label20
+            // 
+            this.label20.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label20.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label20.Location = new System.Drawing.Point(10, 50);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(178, 15);
+            this.label20.TabIndex = 22;
+            this.label20.Text = "ROM Hash:";
+            this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // OutputSeedLabel
+            // 
+            this.OutputSeedLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.OutputSeedLabel.Location = new System.Drawing.Point(573, 15);
+            this.OutputSeedLabel.Name = "OutputSeedLabel";
+            this.OutputSeedLabel.Size = new System.Drawing.Size(177, 15);
+            this.OutputSeedLabel.TabIndex = 21;
+            this.OutputSeedLabel.Text = "None";
+            this.OutputSeedLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label18
+            // 
+            this.label18.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label18.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label18.Location = new System.Drawing.Point(385, 15);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(178, 15);
+            this.label18.TabIndex = 20;
+            this.label18.Text = "Output Seed Number:";
+            this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // InputSeedLabel
+            // 
+            this.InputSeedLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.InputSeedLabel.Location = new System.Drawing.Point(198, 15);
+            this.InputSeedLabel.Name = "InputSeedLabel";
+            this.InputSeedLabel.Size = new System.Drawing.Size(177, 15);
+            this.InputSeedLabel.TabIndex = 19;
+            this.InputSeedLabel.Text = "None";
+            this.InputSeedLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label2
+            // 
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label2.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label2.Location = new System.Drawing.Point(10, 15);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(178, 15);
+            this.label2.TabIndex = 18;
+            this.label2.Text = "Input Seed Number:";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label16.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label16.Location = new System.Drawing.Point(16, 700);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(200, 15);
+            this.label16.TabIndex = 26;
+            this.label16.Text = "Maximum Randomization Attempts:";
+            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // RandomizationAttempts
+            // 
+            this.RandomizationAttempts.Location = new System.Drawing.Point(222, 696);
+            this.RandomizationAttempts.Name = "RandomizationAttempts";
+            this.RandomizationAttempts.Size = new System.Drawing.Size(136, 23);
+            this.RandomizationAttempts.TabIndex = 27;
+            this.RandomizationAttempts.Text = "1";
+            this.RandomizationAttempts.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // MinishCapRandomizerUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(804, 731);
+            this.Controls.Add(this.RandomizationAttempts);
+            this.Controls.Add(this.label16);
             this.Controls.Add(this.Randomize);
             this.Controls.Add(this.TabPane);
             this.Controls.Add(this.menuStrip1);
@@ -1474,18 +1122,8 @@
             this.Text = "Need to make the title dynamic soon™";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.TabPane.ResumeLayout(false);
-            this.TestingPage.ResumeLayout(false);
-            this.TestingPage.PerformLayout();
-            this.panel5.ResumeLayout(false);
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
+            this.General.ResumeLayout(false);
+            this.General.PerformLayout();
             this.panel9.ResumeLayout(false);
             this.panel9.PerformLayout();
             this.panel8.ResumeLayout(false);
@@ -1494,6 +1132,12 @@
             this.panel7.PerformLayout();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
+            this.TabPane.ResumeLayout(false);
+            this.SeedOutput.ResumeLayout(false);
+            this.SeedOutput.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1502,77 +1146,10 @@
         #endregion
 
         private MenuStrip menuStrip1;
-        private ToolStripMenuItem fileToolStripMenuItem;
         private ToolStripMenuItem logicToolStripMenuItem;
-        private TabControl TabPane;
-        private TabPage TestingPage;
-        private Label label1;
         private Button Randomize;
-        private Label label40;
-        private Button button3;
-        private TextBox textBox2;
-        private Button button4;
-        private TextBox textBox3;
-        private Label label41;
-        private Panel panel1;
-        private CheckBox checkBox3;
-        private CheckBox checkBox1;
-        private ComboBox KeysanitySettings;
-        private Label label42;
-        private CheckBox checkBox2;
-        private ComboBox DungeonRewardsShuffle;
-        private Label label43;
-        private CheckBox BarrenNonElement;
-        private CheckBox checkBox4;
-        private CheckBox checkBox5;
-        private ComboBox ElementsRequired;
-        private Label label45;
-        private ComboBox MinimumSwordRequired;
-        private Label label44;
-        private Label label46;
-        private Panel panel2;
-        private ComboBox comboBox4;
-        private Label label50;
         private OpenFileDialog openFileDialog1;
-        private CheckBox checkBox6;
-        private CheckBox checkBox9;
-        private CheckBox checkBox8;
-        private CheckBox checkBox7;
-        private Label label47;
-        private Panel panel3;
-        private CheckBox checkBox11;
-        private CheckBox checkBox12;
-        private CheckBox checkBox13;
-        private ComboBox comboBox1;
-        private Label label48;
-        private Label label49;
-        private Panel panel4;
-        private CheckBox checkBox15;
-        private TextBox textBox4;
-        private Label label52;
-        private TextBox textBox1;
-        private Label label51;
-        private Label label53;
-        private Panel panel5;
-        private CheckBox checkBox14;
-        private CheckBox checkBox10;
-        private CheckBox checkBox16;
-        private ComboBox comboBox2;
-        private Label label54;
         private ColorDialog colorDialog1;
-        private PictureBox pictureBox1;
-        private Label label2;
-        private Button button6;
-        private Button button5;
-        private Button button1;
-        private TabPage tabPage1;
-        private Button RandomSeed;
-        private TextBox Seed;
-        private Button BrowseRom;
-        private TextBox RomPath;
-        private Label label3;
-        private Label label4;
-        private ToolStripMenuItem closeToolStripMenuItem;
         private ToolStripMenuItem exportDefaultLogicToolStripMenuItem;
         private ToolStripMenuItem loggingToolStripMenuItem;
         private ToolStripMenuItem setLoggerOutputPathToolStripMenuItem;
@@ -1583,28 +1160,16 @@
         private ToolStripMenuItem aboutToolStripMenuItem;
         private ToolStripMenuItem changelogToolStripMenuItem;
         private ToolStripMenuItem aboutToolStripMenuItem1;
-        private Label label5;
-        private Panel panel6;
-        private TextBox LogicFilePath;
-        private CheckBox UseCustomLogic;
-        private Label label6;
-        private Button BrowseCustomLogicFile;
-        private Button BrowseCustomPatch;
-        private TextBox RomBuildfilePath;
-        private Label label7;
-        private CheckBox UseCustomPatch;
-        private Label label8;
-        private Panel panel7;
-        private TextBox textBox10;
-        private Label label10;
-        private Button button14;
-        private Button button13;
-        private Button button12;
-        private Button button11;
-        private ComboBox comboBox3;
-        private Label label9;
-        private Button button16;
-        private Button button15;
+        private TabPage General;
+        private Label label14;
+        private Panel panel9;
+        private Button PatchRomAndGenPatch;
+        private RadioButton GeneratePatchButton;
+        private Label label15;
+        private RadioButton ApplyPatchButton;
+        private Button BrowsePatchOrRom;
+        private TextBox BpsPatchAndPatchedRomPath;
+        private Label BpsPatchAndPatchedRomLabel;
         private Label label11;
         private Panel panel8;
         private Button button17;
@@ -1617,14 +1182,64 @@
         private Button button22;
         private TextBox textBox9;
         private Label label13;
-        private Label label14;
-        private Panel panel9;
-        private TextBox textBox11;
+        private Label label8;
+        private Panel panel7;
+        private Button button16;
+        private Button button15;
+        private Button button11;
+        private ComboBox comboBox3;
+        private Label label9;
+        private Button button14;
+        private Button button13;
+        private Button button12;
+        private TextBox textBox10;
+        private Label label10;
+        private Label label5;
+        private Panel panel6;
+        private Button BrowseCustomPatch;
+        private TextBox RomBuildfilePath;
+        private Label label7;
+        private CheckBox UseCustomPatch;
+        private Button BrowseCustomLogicFile;
+        private TextBox LogicFilePath;
+        private CheckBox UseCustomLogic;
+        private Label label6;
+        private Button RandomSeed;
+        private TextBox Seed;
+        private TextBox RomPath;
+        private Button BrowseRom;
+        private Label label3;
+        private Label label4;
+        private TabControl TabPane;
+        private TabPage SeedOutput;
+        private Label label1;
+        private Panel panel1;
+        private Label label2;
+        private Label InputSeedLabel;
+        private Label label18;
+        private Label OutputSeedLabel;
+        private Label label21;
+        private Label label20;
+        private Label label22;
+        private Panel panel2;
+        private Label SettingHashLabel;
+        private Label label24;
+        private Label SettingNameLabel;
+        private Label label28;
+        private Button CopySettingsHashToClipboard;
+        private Label label17;
+        private Panel panel3;
+        private Button CopyCosmeticsHashToClipboard;
+        private Label CosmeticStringLabel;
+        private Label label23;
+        private Label CosmeticNameLabel;
+        private Label label26;
+        private Button SaveSpoiler;
+        private Button SaveRom;
+        private Button SavePatch;
+        private ToolStripMenuItem nOTEMenuItemsNotYetImplementedToolStripMenuItem;
+        private ToolStripMenuItem writeAndFlushLoggerToolStripMenuItem;
         private Label label16;
-        private Button button23;
-        private RadioButton radioButton1;
-        private RadioButton radioButton2;
-        private Label label15;
-        private Button button24;
+        private TextBox RandomizationAttempts;
     }
 }

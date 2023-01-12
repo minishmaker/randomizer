@@ -3,16 +3,18 @@ using MinishCapRandomizerUI.Elements;
 
 namespace MinishCapRandomizerUI.UI;
 
-public class UIGenerator
+public static class UIGenerator
 {
-    public static TabPage BuildUIPage(List<WrapperBase> wrappedLogicOptions, string pageName)
+    private static readonly Size TabPaneSize = new Size(772, 635);
+
+    public static TabPage BuildSettingsPage(List<WrapperBase> wrappedLogicOptions, string pageName)
     {
         var page = new TabPage
         {
             Name = pageName,
             Text = pageName,
             AutoScroll = true,
-            Size = new Size(772, 635), //Constant
+            Size = TabPaneSize,
             BackColor = Constants.DefaultBackgroundColor,
         };
         
@@ -64,61 +66,14 @@ public class UIGenerator
             var currentElementXLocation = Constants.FirstElementInRowX;
             var currentElementYLocation = Constants.TopRowAboveSpacing;
             
-            for (var i = 0; i < dropdowns.Count; )
-            {
-                var dropdown = dropdowns[i++];
-                pane.Controls.AddRange(dropdown.GetControls(currentElementXLocation, currentElementYLocation).ToArray());
-
-                if (i % Constants.TotalDropdownsPerRow == 0 || i == dropdowns.Count)
-                {
-                    currentElementXLocation = Constants.FirstElementInRowX;
-                    currentElementYLocation += dropdown.ElementHeight;
-                }
-                else
-                    currentElementXLocation += dropdown.ElementWidth + Constants.WidthMargin;
-            }
-            
-            for (var i = 0; i < flags.Count; )
-            {
-                var flag = flags[i++];
-                pane.Controls.AddRange(flag.GetControls(currentElementXLocation, currentElementYLocation).ToArray());
-
-                if (i % Constants.TotalFlagsPerRow == 0 || i == flags.Count)
-                {
-                    currentElementXLocation = Constants.FirstElementInRowX;
-                    currentElementYLocation += flag.ElementHeight;
-                }
-                else
-                    currentElementXLocation += flag.ElementWidth + Constants.WidthMargin;
-            }
-            
-            for (var i = 0; i < numberBoxes.Count; )
-            {
-                var numberBox = numberBoxes[i++];
-                pane.Controls.AddRange(numberBox.GetControls(currentElementXLocation, currentElementYLocation).ToArray());
-
-                if (i % Constants.TotalNumberBoxesPerRow == 0 || i == numberBoxes.Count)
-                {
-                    currentElementXLocation = Constants.FirstElementInRowX;
-                    currentElementYLocation += numberBox.ElementHeight;
-                }
-                else
-                    currentElementXLocation += numberBox.ElementWidth + Constants.WidthMargin;
-            }
-            
-            for (var i = 0; i < colorPickers.Count; )
-            {
-                var colorPicker = colorPickers[i++];
-                pane.Controls.AddRange(colorPicker.GetControls(currentElementXLocation, currentElementYLocation).ToArray());
-
-                if (i % Constants.TotalColorPickersPerRow == 0 || i == colorPickers.Count)
-                {
-                    currentElementXLocation = Constants.FirstElementInRowX;
-                    currentElementYLocation += colorPicker.ElementHeight;
-                }
-                else
-                    currentElementXLocation += colorPicker.ElementWidth + Constants.WidthMargin;
-            }
+            AddElementsToPane(dropdowns, Constants.TotalDropdownsPerRow, ref pane, 
+                ref currentElementXLocation, ref currentElementYLocation);
+            AddElementsToPane(flags, Constants.TotalFlagsPerRow, ref pane, 
+                ref currentElementXLocation, ref currentElementYLocation);
+            AddElementsToPane(numberBoxes, Constants.TotalNumberBoxesPerRow, ref pane, 
+                ref currentElementXLocation, ref currentElementYLocation);
+            AddElementsToPane(colorPickers, Constants.TotalColorPickersPerRow, ref pane, 
+                ref currentElementXLocation, ref currentElementYLocation);
             
             page.Controls.Add(categoryLabel);
             page.Controls.Add(pane);
@@ -127,5 +82,27 @@ public class UIGenerator
         }
 
         return page;
+    }
+
+    private static void AddElementsToPane(
+        IReadOnlyList<WrapperBase> elements,
+        int totalElementsPerRow,
+        ref Panel pane,
+        ref int currentElementXLocation,
+        ref int currentElementYLocation)
+    {
+        for (var i = 0; i < elements.Count; )
+        {
+            var element = elements[i++];
+            pane.Controls.AddRange(element.GetControls(currentElementXLocation, currentElementYLocation).ToArray());
+
+            if (i % totalElementsPerRow == 0 || i == elements.Count)
+            {
+                currentElementXLocation = Constants.FirstElementInRowX;
+                currentElementYLocation += element.ElementHeight;
+            }
+            else
+                currentElementXLocation += element.ElementWidth + Constants.WidthMargin;
+        }
     }
 }

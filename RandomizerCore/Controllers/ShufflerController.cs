@@ -16,9 +16,7 @@ namespace RandomizerCore.Controllers;
  */
 public class ShufflerController
 {
-    private Shuffler _shuffler;
-    private Rom? _rom;
-    private string _patchedRomFilename;
+    private readonly Shuffler _shuffler;
     
     public ShufflerController()
     {
@@ -53,120 +51,218 @@ public class ShufflerController
         return "";
     }
 
-    public void LoadRom(string filename)
+    public bool LoadRom(string filename)
     {
-        _rom = new Rom(filename);
+        try
+        {
+            Rom.Initialize(filename);
+            return true;
+        }
+        catch (Exception e)
+        {
+            Logger.Instance.LogException(e);
+            return false;
+        }
+        finally
+        {
+            Logger.Instance.SaveLogTransaction();
+        }
     }
 
     public void SetRandomizationSeed(int seed) => _shuffler.SetSeed(seed);
 
     public List<LogicOptionBase> GetLogicOptions() => _shuffler.GetOptions();
 
-    public void LoadLogicFile(string? filename = null)
+    public bool LoadLogicFile(string? filename = null)
     {
-        _shuffler.LoadOptions(filename);
+        try
+        {
+            _shuffler.LoadOptions(filename);
+            return true;
+        }
+        catch (Exception e)
+        {
+            Logger.Instance.LogException(e);
+            return false;
+        }
+        finally
+        {
+            Logger.Instance.SaveLogTransaction();
+        }
     }
 
-    public void LoadLocations(string? filename = null)
+    public bool LoadLocations(string? filename = null)
     {
-        _shuffler.LoadLocations(filename);
+        try
+        {
+            _shuffler.LoadLocations(filename);
+            return true;
+        }
+        catch (Exception e)
+        {
+            Logger.Instance.LogException(e);
+            return false;
+        }
+        finally
+        {
+            Logger.Instance.SaveLogTransaction();
+        }
     }
 
     public bool Randomize(int retries = 1)
     {
-        Logger.Instance.Flush();
-        var attempts = 1;
-        var successfulGeneration = false;
-        while (attempts <= retries && !successfulGeneration)
-        {
-            try
-            {
-                _shuffler.RandomizeLocations();
-                successfulGeneration = true;
-            }
-            catch
-            {
-                attempts++;
-                _shuffler.SetSeed(new Random().Next());
-            }
-        }
-
-        return successfulGeneration;
-    }
-
-    public void SaveAndPatchRom(string filename, string? patchFile = null)
-    {
-
-        var romBytes = _shuffler.GetRandomizedRom();
-
-        File.WriteAllBytes(filename, romBytes);
-
-        _shuffler.ApplyPatch(filename, patchFile);
-
-        _patchedRomFilename = filename;
-
-        Logger.Instance.OutputFilePath = $"{Directory.GetCurrentDirectory()}/Log.json";
-        Logger.Instance.PublishLogs();
-    }
-
-    public void CreatePatch(string patchFilename, string? patchFile = null)
-    {
-        var romBytes = _shuffler.GetRandomizedRom();
-
-        var stream = new MemoryStream(romBytes);
-        
-        _shuffler.ApplyPatch(stream, patchFile);
-
-        var patch = BPSPatcher.GeneratePatch(_rom.romData, romBytes, patchFilename);
-        
-        File.WriteAllBytes(patchFilename, patch.Content);
-    }
-
-    public bool SaveRomPatch(string patchFilename, string? patchedRomFilename)
-    {
-        if (_rom == null) return false;
-
         try
         {
-            var patchedRom =
-                File.ReadAllBytes(string.IsNullOrEmpty(patchedRomFilename) ? _patchedRomFilename : patchedRomFilename);
+            _shuffler.ValidateState();
 
-            var patch = BPSPatcher.GeneratePatch(_rom.romData, patchedRom, patchFilename);
+            var attempts = 1;
+            var successfulGeneration = false;
+            while (attempts <= retries && !successfulGeneration)
+            {
+                try
+                {
+                    _shuffler.RandomizeLocations();
+                    successfulGeneration = true;
+                }
+                catch (Exception e)
+                {
+                    Logger.Instance.LogException(e);
+                    attempts++;
+                    _shuffler.SetSeed(new Random(_shuffler.Seed).Next());
+                    Logger.Instance.SaveLogTransaction();
+                }
+            }
 
-            File.WriteAllBytes(patchFilename, patch.Content);
-
-            return true;
-        }
-        catch
+            return successfulGeneration;
+        } 
+        catch (Exception e)
         {
+            Logger.Instance.LogException(e);
             return false;
+        }
+        finally
+        {
+            Logger.Instance.SaveLogTransaction();
         }
     }
 
+    public bool SaveAndPatchRom(string filename, string? patchFile = null)
+    {
+        try
+        {
+            _shuffler.ValidateState(true);
+            var romBytes = _shuffler.GetRandomizedRom();
+            File.WriteAllBytes(filename, romBytes);
+            _shuffler.ApplyPatch(filename, patchFile);
+            return true;
+        }
+        catch (Exception e)
+        {
+            Logger.Instance.LogException(e);
+            return false;
+        }
+        finally
+        {
+            Logger.Instance.SaveLogTransaction();
+        }
+    }
+
+    public bool CreatePatch(string patchFilename, string? patchFile = null)
+    {
+        try
+        {
+            _shuffler.ValidateState(true);
+            var romBytes = _shuffler.GetRandomizedRom();
+            var stream = new MemoryStream(romBytes);
+            _shuffler.ApplyPatch(stream, patchFile);
+            var patch = BPSPatcher.GeneratePatch(Rom.Instance!.romData, romBytes, patchFilename);
+            File.WriteAllBytes(patchFilename, patch.Content);
+            return true;
+        }
+        catch (Exception e)
+        {
+            Logger.Instance.LogException(e);
+            return false;
+        }
+        finally
+        {
+            Logger.Instance.SaveLogTransaction();
+        }
+    }
+
+    /// <summary>
+    /// Creates a patch from a patched ROM
+    /// </summary>
+    /// <param name="patchFilename"></param>
+    /// <param name="patchedRomFilename"></param>
+    /// <returns></returns>
+    public bool SaveRomPatch(string patchFilename, string patchedRomFilename)
+    {
+        if (Rom.Instance == null) return false;
+        
+        try
+        {
+            var patchedRom = File.ReadAllBytes(patchedRomFilename);
+            var patch = BPSPatcher.GeneratePatch(Rom.Instance.romData, patchedRom, patchFilename);
+            File.WriteAllBytes(patchFilename, patch.Content);
+            return true;
+        }
+        catch (Exception e)
+        {
+            Logger.Instance.LogException(e);
+            return false;
+        }
+        finally
+        {
+            Logger.Instance.SaveLogTransaction();
+        }
+    }
+
+    /// <summary>
+    /// Applies a BPS patch to a vanilla EU Minish Cap ROM
+    /// </summary>
+    /// <param name="outputFilename"></param>
+    /// <param name="patchFilename"></param>
+    /// <returns></returns>
     public bool PatchRom(string outputFilename, string patchFilename)
     {
-        if (_rom == null) return false;
+        if (Rom.Instance == null) return false;
 
         try
         {
             var patchContent = File.ReadAllBytes(patchFilename);
-            
-            var patchedRom = BPSPatcher.ApplyPatch(_rom.romData, new PatchFile {Content = patchContent});
-
+            var patchedRom = BPSPatcher.ApplyPatch(Rom.Instance.romData, new PatchFile {Content = patchContent});
             File.WriteAllBytes(outputFilename, patchedRom);
-
             return true;
         }
-        catch
+        catch (Exception e)
         {
+            Logger.Instance.LogException(e);
             return false;
+        }
+        finally
+        {
+            Logger.Instance.SaveLogTransaction();
         }
     }
 
-    public void SaveSpoiler(string filename)
+    public bool SaveSpoiler(string filename)
     {
-        var spoiler = _shuffler.GetSpoiler();
-        
-        File.WriteAllText(filename, spoiler);
+        try
+        {
+            _shuffler.ValidateState(true);
+            var spoiler = _shuffler.GetSpoiler();
+            File.WriteAllText(filename, spoiler);
+            return true;
+        }
+        catch (Exception e)
+        {
+            Logger.Instance.LogException(e);
+            return false;
+        }
+        finally
+        {
+            Logger.Instance.SaveLogTransaction();
+        }
     }
 }
