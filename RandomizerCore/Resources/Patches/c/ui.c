@@ -242,14 +242,18 @@ static INLINE char sanitize_char(char c) {
     return ' ';
 }
 
+static INLINE void DrawChar(char c, int x, int y) {
+    gBG0Buffer[y * 32 + x] = c;
+}
+
 void DrawText(const char* text, int x, int y) {
     if (text) {
         for (int i = 0; text[i] != 0; i++) {
-            gBG0Buffer[y * 32 + x + i] = sanitize_char(text[i]);
+            DrawChar(sanitize_char(text[i]), x + i, y);
         }
     } else {
         for (int i = 0; i < 15; i++) {
-            gBG0Buffer[y * 32 + x + i] = 0;
+            DrawChar(0, x + i, y);
         }
     }
 }
@@ -269,7 +273,7 @@ void DrawNumber(u32 num, int digits, int x, int y) {
         int digit = num / p;
         num = num % p;
         digit = digit % 10;
-        gBG0Buffer[y * 32 + x + i] = '0' + digit;
+        DrawChar('0' + digit, x + i, y);
         i++;
     }
 }
@@ -310,37 +314,43 @@ void DrawHistory(void) {
 void DrawFigurineCounter(void) {
 }
 
-#define TIMER_HOUR (60 * 60 * 60)
-#define TIMER_MINUTE (60 * 60)
-#define TIMER_SECOND (60)
-// max time is 99:59:59
-#define TIMER_MAX (99 * TIMER_HOUR + 59 * TIMER_MINUTE + 59 * TIMER_SECOND)
+// max display time is 99:59:59
+// max timer value is 100:00:00 - 1 frame
+// ((100*60*60*597275) / 10000 - 1)
+#define TIMER_MAX 21501899
 extern u32 (*const TimerGetTime)(void);
 
+// draw timer
+// uses custom charset
 void DrawTimer(void) {
     if (!TimerGetTime) {
         return;
     }
-    int time = TimerGetTime();
-    if (time < 0)
-        time = 42;
+    u32 time = TimerGetTime();
     if (time > TIMER_MAX)
         time = TIMER_MAX;
     int x = 0;
     int y = 18;
-    int hours = time / TIMER_HOUR;
-    time = time % TIMER_HOUR;
-    DrawNumber(hours, 2, x, y);
-    DrawText(":", x + 2, y);
-    x += 3;
-    int minutes = time / TIMER_MINUTE;
-    time = time % TIMER_MINUTE;
-    DrawNumber(minutes, 2, x, y);
-    DrawText(":", x + 2, y);
-    x += 3;
-    int seconds = time / TIMER_SECOND;
-    time = time % TIMER_SECOND;
-    DrawNumber(seconds, 2, x, y);
+    // 1 hour in frames at 0 decimals accuracy (perfect)
+    // (60 * 60 * 597275)
+    int hours = time / 215019;
+    time = time % 215019;
+    DrawChar(1 + hours / 10, x++, y);
+    DrawChar(1 + hours % 10, x++, y);
+    DrawChar(11, x++, y);
+    time *= 100;
+    // 1 minute in frames at 2 decimals accuracy (perfect)
+    // (60 * 597275 / 100)
+    int minutes = time / 358365;
+    time = time % 358365;
+    DrawChar(1 + minutes / 10, x++, y);
+    DrawChar(1 + minutes % 10, x++, y);
+    DrawChar(11, x++, y);
+    time *= 100;
+    // 1 seconds in frames at 4 decimals accuracy (perfect)
+    int seconds = time / 597275;
+    DrawChar(1 + seconds / 10, x++, y);
+    DrawChar(1 + seconds % 10, x++, y);
 }
 
 extern void UpdateUIElements(void);
