@@ -29,7 +29,9 @@ internal class Shuffler
     private readonly List<Item> _minorItems;
     private readonly List<Item> _niceItems;
     private Random? _rng;
-    public int Seed { get; set; }
+    private bool _randomized = false;
+    
+    public int Seed { get; set; } = -1;
 
     public Shuffler()
     {
@@ -41,6 +43,27 @@ internal class Shuffler
         _niceItems = new List<Item>();
         _minorItems = new List<Item>();
         _logicParser = new Parser.Parser();
+    }
+
+    /// <summary>
+    /// Throws a <code>ShufflerConfigurationException</code> if state is not valid with a message describing the
+    /// validation failure
+    /// </summary>
+    public void ValidateState(bool checkIfRandomized = false)
+    {
+        Logger.Instance.LogInfo("Beginning Shuffler State Validation");
+        
+        if (Rom.Instance == null)
+            throw new ShufflerConfigurationException("No ROM loaded! You must load a ROM before randomization.");
+        
+        if (Seed < 0)
+            throw new ShufflerConfigurationException($"Supplied Seed is invalid! Seeds must be a number from 0 to {int.MaxValue}");
+        
+        if (checkIfRandomized && !_randomized)
+            throw new ShufflerConfigurationException("You must randomize the ROM before saving the ROM or a patch file!");
+        
+        Logger.Instance.LogInfo("Shuffler State Validation Succeeded");
+        Logger.Instance.SaveLogTransaction();
     }
 
     public string GetVersionName()
@@ -77,6 +100,7 @@ internal class Shuffler
     {
         Seed = seed;
         _rng = new Random(seed);
+        Logger.Instance.LogInfo($"Randomization seed set to {seed}");
     }
 
     public List<LogicOptionBase> GetOptions()
@@ -108,6 +132,7 @@ internal class Shuffler
     /// </summary>
     public void LoadOptions(string? logicFile = null)
     {
+        Logger.Instance.LogInfo("Loading Logic Options");
         _logicParser.SubParser.ClearOptions();
 
         string[] logicStrings;
@@ -290,7 +315,7 @@ internal class Shuffler
         {
             // Get directory of MinishRandomizer 
             var assemblyPath = Path.GetDirectoryName(Assembly.GetAssembly(typeof(Shuffler))?.Location);
-            patchFile = assemblyPath + "/Patches/ROM buildfile.event";
+            patchFile = assemblyPath + "/Patches/ROM Buildfile.event";
         }
 
         // Write new patch file to patch folder/extDefinitions.event
@@ -309,7 +334,7 @@ internal class Shuffler
         {
             // Get directory of MinishRandomizer 
             var assemblyPath = Path.GetDirectoryName(Assembly.GetAssembly(typeof(Shuffler))?.Location);
-            patchFile = assemblyPath + "/Patches/ROM buildfile.event";
+            patchFile = assemblyPath + "/Patches/ROM Buildfile.event";
         }
 
         // Write new patch file to patch folder/extDefinitions.event
@@ -363,6 +388,8 @@ internal class Shuffler
 
         // Final cache clear
         _locations.ForEach(location => location.InvalidateCache());
+
+        _randomized = true;
     }
 
     /// <summary>
@@ -372,7 +399,7 @@ internal class Shuffler
     /// <param name="locations">The locations to be filled</param>
     /// <param name="assumedItems">The items that are available by default</param>
     /// <returns>A list of the locations that were filled</returns>
-    private List<Location> FillLocations(List<Item> items, List<Location> locations, List<Item> assumedItems = null)
+    private List<Location> FillLocations(List<Item> items, List<Location> locations, List<Item>? assumedItems = null)
     {
         var filledLocations = new List<Location>();
 
@@ -397,15 +424,14 @@ internal class Shuffler
             {
                 // The filler broke, show all available items and get out
                 availableItems.ForEach(itm => Console.WriteLine($"{itm.Type} sub {itm.SubValue}"));
-                throw new ShuffleException(
-                    $"Could not place {item.Type}! Subvalue: {StringUtil.AsStringHex2(item.SubValue)}, Dungeon: {item.Dungeon}");
+                throw new ShuffleException($"Could not place {item.Type}! Subvalue: {StringUtil.AsStringHex2(item.SubValue)}, Dungeon: {item.Dungeon}");
             }
 
             var locationIndex = _rng.Next(availableLocations.Count);
 
             availableLocations[locationIndex].Fill(item);
-            Logger.Instance.LogWarning(
-                $"Placed {item.Type.ToString()} subtype {StringUtil.AsStringHex2(item.SubValue)} at {availableLocations[locationIndex].Name} with {items.Count} items remaining\n");
+            Logger.Instance.LogInfo(
+                $"Placed {item.Type.ToString()} subtype {StringUtil.AsStringHex2(item.SubValue)} at {availableLocations[locationIndex].Name} with {items.Count} items remaining");
 
             locations.Remove(availableLocations[locationIndex]);
 

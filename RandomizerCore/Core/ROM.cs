@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using System.Text;
 using RandomizerCore.Utilities.IO;
+using RandomizerCore.Utilities.Logging;
 
 namespace RandomizerCore.Core;
 
@@ -11,10 +12,15 @@ public class Rom
 
     public readonly byte[] romData;
 
-
+    public static void Initialize(string filePath)
+    {
+        Logger.Instance.LogInfo("Loading ROM");
+        Instance = new Rom(filePath);
+        Logger.Instance.LogInfo("ROM Loaded Successfully");
+    }
+    
     public Rom(string filePath)
     {
-        Instance = this;
         path = filePath;
         var smallData = File.ReadAllBytes(filePath);
         if (smallData.Length >= 0x01000000)
@@ -34,7 +40,7 @@ public class Rom
         SetupRom();
     }
 
-    public static Rom Instance { get; private set; }
+    public static Rom? Instance { get; private set; }
 
     public RegionVersion Version { get; private set; } = RegionVersion.None;
     public HeaderData Headers { get; private set; }

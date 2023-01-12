@@ -58,7 +58,7 @@ internal class Logger
 
     public bool PublishLogs()
     {
-        if (string.IsNullOrEmpty(OutputFilePath)) return false;
+        if (string.IsNullOrEmpty(OutputFilePath)) OutputFilePath = $"{Directory.GetCurrentDirectory()}/log.json";
 
         try
         {
