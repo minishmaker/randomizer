@@ -315,6 +315,10 @@ void UpdateHistoryTimer() {
 }
 
 void DrawHistory(void) {
+    if (!historyTimerDuration) {
+        return;
+    }
+
     int y = 18;
     int lines = historyTableEntries;
     if (TimerGetTime) {
