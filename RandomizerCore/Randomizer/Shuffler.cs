@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Reflection;
 using System.Text;
 using ColorzCore;
@@ -314,7 +315,7 @@ internal class Shuffler
         if (string.IsNullOrEmpty(patchFile))
         {
             // Get directory of MinishRandomizer 
-            var assemblyPath = Path.GetDirectoryName(Assembly.GetAssembly(typeof(Shuffler))?.Location);
+            var assemblyPath = Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
             patchFile = assemblyPath + "/Patches/ROM Buildfile.event";
         }
 
@@ -333,7 +334,7 @@ internal class Shuffler
         if (string.IsNullOrEmpty(patchFile))
         {
             // Get directory of MinishRandomizer 
-            var assemblyPath = Path.GetDirectoryName(Assembly.GetAssembly(typeof(Shuffler))?.Location);
+            var assemblyPath = Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
             patchFile = assemblyPath + "/Patches/ROM Buildfile.event";
         }
 

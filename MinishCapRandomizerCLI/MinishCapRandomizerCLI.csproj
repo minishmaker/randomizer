@@ -8,8 +8,10 @@
         <StartupObject>MinishCapRandomizerCLI.Program</StartupObject>
         <ApplicationIcon>icon.ico</ApplicationIcon>
 		<PublishSingleFile>true</PublishSingleFile>
+		<PublishReadyToRun>true</PublishReadyToRun>
+		<SelfContained>true</SelfContained>
+		<NoWin32Manifest>true</NoWin32Manifest>
 		<PlatformTarget>AnyCPU</PlatformTarget>
-		<Title>Minish Cap Rnadomizer CLI</Title>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -34,14 +36,24 @@
 		</Content>
 	</ItemGroup>
 
-	<Target Name="PostBuildWindows" Condition="$([MSBuild]::IsOSPlatform('Windows'))" AfterTargets="PostBuildEvent">
+	<Target Name="PostBuildDebugWindows" Condition="$([MSBuild]::IsOSPlatform('Windows')) and '$(Configuration)' == 'Debug'" AfterTargets="PostBuildEvent">
 		<Exec Command="xcopy &quot;$(ProjectDir)..\RandomizerCore\Resources\Patches\&quot; &quot;$(TargetDir)Patches\&quot; /y /d /s" />
 		<Exec Command="xcopy &quot;$(ProjectDir)..\Vendor\Language Raws\&quot; &quot;$(TargetDir)Language Raws\&quot; /y /d /s" />
 	</Target>
+
+	<Target Name="PostBuildReleaseWindows" Condition="$([MSBuild]::IsOSPlatform('Windows')) and '$(Configuration)' == 'Release'" AfterTargets="PostBuildEvent">
+		<Exec Command="xcopy &quot;$(ProjectDir)..\RandomizerCore\Resources\Patches\&quot; &quot;$(PublishDir)Patches\&quot; /y /d /s" />
+		<Exec Command="xcopy &quot;$(ProjectDir)..\Vendor\Language Raws\&quot; &quot;$(PublishDir)Language Raws\&quot; /y /d /s" />
+	</Target>
     
-	<Target Name="PostBuildWindowsUnix" Condition="$([MSBuild]::IsOSPlatform('Linux'))" AfterTargets="PostBuildEvent">
+	<Target Name="PostBuildDebugUnix" Condition="!$([MSBuild]::IsOSPlatform('Windows')) and '$(Configuration)' == 'Debug'" AfterTargets="PostBuildEvent">
 		<Exec Command="cp -r &quot;$(ProjectDir)/../RandomizerCore/Resources/Patches/&quot; &quot;$(TargetDir)&quot;" />
 		<Exec Command="cp -r &quot;$(ProjectDir)/../Vendor/Language Raws/&quot; &quot;$(TargetDir)&quot;" />
     </Target>
+
+	<Target Name="PostBuildReleaseUnix" Condition="!$([MSBuild]::IsOSPlatform('Windows')) and '$(Configuration)' == 'Release'" AfterTargets="PostBuildEvent">
+		<Exec Command="cp -r &quot;$(ProjectDir)/../RandomizerCore/Resources/Patches/&quot; &quot;$(PublishDir)&quot;" />
+		<Exec Command="cp -r &quot;$(ProjectDir)/../Vendor/Language Raws/&quot; &quot;$(PublishDir)&quot;" />
+	</Target>
 
 </Project>
