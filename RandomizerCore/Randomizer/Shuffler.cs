@@ -376,10 +376,10 @@ internal class Shuffler
         var notPrizes = dungeonSpecificItems.Where(_ => _.Dungeon is not "Prizes" and not "Beatable").ToList();
 
         FillLocations(beatable, unfilledLocations, unplacedItems.Concat(notPrizes).Concat(prizes).Concat(_unshuffledItems).ToList());
-        FillLocations(prizes, unfilledLocations, unplacedItems.Concat(notPrizes).ToList());
+        FillLocations(prizes, unfilledLocations, unplacedItems.Concat(notPrizes).Concat(_unshuffledItems).ToList());
 
         // Fill dungeon items first so there is room for them all
-        var dungeonLocations = FillLocations(notPrizes, unfilledLocations, unplacedItems);
+        var dungeonLocations = FillLocations(notPrizes, unfilledLocations, unplacedItems.ToList());
         
         // Fill dungeon minor items, do not check logic
         unfilledLocations.Shuffle(_rng);
