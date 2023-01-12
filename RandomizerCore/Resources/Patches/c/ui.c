@@ -152,91 +152,7 @@ void DrawRupees(void) {
     }
 }
 
-typedef enum {
-    HISTORY_NONE,
-    cloudHistory,
-    swampHistory,
-    fallsHistory,
-    bossHistoryDWS,
-    smolHistoryDWS,
-    bossHistoryCOF,
-    smolHistoryCOF,
-    bossHistoryFOW,
-    smolHistoryFOW,
-    bossHistoryTOD,
-    smolHistoryTOD,
-    bossHistoryPOW,
-    smolHistoryPOW,
-    bossHistoryDHC,
-    smolHistoryDHC,
-    bossHistoryRC,
-    smolHistoryRC,
-    scrollHistorySpinAttack,
-    scrollHistoryRollAttack,
-    scrollHistoryDashAttack,
-    scrollHistoryRockBreaker,
-    scrollHistorySwordBeam,
-    scrollHistoryGreatSpin,
-    scrollHistoryDownThrust,
-    scrollHistoryPerilBeam,
-    butterflyHistoryBow,
-    butterflyHistoryDig,
-    butterflyHistorySwim,
-    scrollHistoryFastSpin,
-    scrollHistoryFastSplit,
-    scrollHistoryLongSpin,
-    kinstoneHistoryRedW,
-    kinstoneHistoryRedV,
-    kinstoneHistoryRedE,
-    kinstoneHistoryBlueL,
-    kinstoneHistoryBlueS,
-    kinstoneHistoryGreenC,
-    kinstoneHistoryGreenG,
-    kinstoneHistoryGreenP,
-} HistoryName;
-
-const char* const historyNames[] = {
-    [HISTORY_NONE] = NULL,
-    [cloudHistory] = "Cloud stone",
-    [swampHistory] = "Swamp stone",
-    [fallsHistory] = "Falls stone",
-    [bossHistoryDWS] = "DWS Big",
-    [smolHistoryDWS] = "DWS Small",
-    [bossHistoryCOF] = "COF Big",
-    [smolHistoryCOF] = "COF Small",
-    [bossHistoryFOW] = "FOW Big",
-    [smolHistoryFOW] = "FOW Small",
-    [bossHistoryTOD] = "TOD Big",
-    [smolHistoryTOD] = "TOD Small",
-    [bossHistoryPOW] = "POW Big",
-    [smolHistoryPOW] = "POW Small",
-    [bossHistoryDHC] = "DHC Big",
-    [smolHistoryDHC] = "DHC Small",
-    [bossHistoryRC] = "RC  Big",
-    [smolHistoryRC] = "RC  Small",
-    [scrollHistorySpinAttack] = "Spin attack",
-    [scrollHistoryRollAttack] = "Roll attack",
-    [scrollHistoryDashAttack] = "Dash attack",
-    [scrollHistoryRockBreaker] = "Rock breaker",
-    [scrollHistorySwordBeam] = "Sword beam",
-    [scrollHistoryGreatSpin] = "Great spin",
-    [scrollHistoryDownThrust] = "Down thrust",
-    [scrollHistoryPerilBeam] = "Peril beam",
-    [butterflyHistoryBow] = "Bow butterfly",
-    [butterflyHistoryDig] = "Dig butterfly",
-    [butterflyHistorySwim] = "Swim butterfly",
-    [scrollHistoryFastSpin] = "Fast spin",
-    [scrollHistoryFastSplit] = "Fast split",
-    [scrollHistoryLongSpin] = "Long spin",
-    [kinstoneHistoryRedW] = "Red W stone",
-    [kinstoneHistoryRedV] = "Red V stone",
-    [kinstoneHistoryRedE] = "Red E stone",
-    [kinstoneHistoryBlueL] = "Blue L stone",
-    [kinstoneHistoryBlueS] = "Blue S stone",
-    [kinstoneHistoryGreenC] = "Green C stone",
-    [kinstoneHistoryGreenG] = "Green G stone",
-    [kinstoneHistoryGreenP] = "Green P stone",
-};
+extern const char* const historyNames[][40];
 
 #define INLINE inline __attribute__((always_inline))
 
@@ -337,11 +253,13 @@ void DrawHistory(void) {
     } else {
         UpdateHistoryTimer();
         for (int i = 0; i < lines; i++) {
-            const char* name = historyNames[historyTable[i].name];
-            if (name)
-                DrawText(name, 1, y - i);
-            else
+            const char* name = historyNames[gSaveHeader->language][historyTable[i].name];
+            if (name) {
                 DrawClear(15, 1, y - i);
+                DrawText(name, 1, y - i);
+            } else {
+                DrawClear(15, 1, y - i);
+            }
         }
     }
     gScreen.bg0.updated = 1;
