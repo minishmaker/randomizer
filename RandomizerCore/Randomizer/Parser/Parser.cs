@@ -213,8 +213,8 @@ public class Parser
             foreach (var address in addressStrings)
             {
                 var parsedAddress = GetAddressFromString(address);
-                if (parsedAddress is EventLocationAddress)
-                    defines.Add((EventLocationAddress)parsedAddress);
+                if (parsedAddress is EventLocationAddress locationAddress)
+                    defines.Add(locationAddress);
                 else
                     addresses.Add(parsedAddress);
             }

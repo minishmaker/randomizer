@@ -6,6 +6,8 @@ public enum LocationType
     Major,
     Minor,
     DungeonItem,
+    DungeonMajor,
+    DungeonMinor,
     Helper,
     Unshuffled,
     Nice
