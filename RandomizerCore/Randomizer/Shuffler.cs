@@ -23,6 +23,7 @@ internal class Shuffler
 
     //private List<Location> StartingLocations;
     private readonly List<Item> _dungeonMajorItems;
+    private readonly List<Item> _dungeonMinorItems;
     private readonly List<Location> _locations;
     private readonly Parser.Parser _logicParser;
     private string? _logicPath;
@@ -41,6 +42,7 @@ internal class Shuffler
 
         _locations = new List<Location>();
         _dungeonMajorItems = new List<Item>();
+        _dungeonMinorItems = new List<Item>();
         _majorItems = new List<Item>();
         _niceItems = new List<Item>();
         _minorItems = new List<Item>();
@@ -295,8 +297,10 @@ internal class Shuffler
                 break;
             // Minor locations are not logically accounted for
             case LocationType.Minor:
-            case LocationType.DungeonMinor:
                 _minorItems.Add(location.Contents);
+                break;
+            case LocationType.DungeonMinor:
+                _dungeonMinorItems.Add(location.Contents);
                 break;
             // Dungeon items can only be placed within the same dungeon, and are placed first
             case LocationType.DungeonItem:
@@ -376,6 +380,10 @@ internal class Shuffler
 
         // Fill dungeon items first so there is room for them all
         var dungeonLocations = FillLocations(notPrizes, unfilledLocations, unplacedItems);
+        
+        // Fill dungeon minor items, do not check logic
+        unfilledLocations.Shuffle(_rng);
+        FillLocations(_dungeonMinorItems.ToList(), unfilledLocations, unplacedItems);
 
         // Fill non-dungeon major items, checking for logic
         unfilledLocations.Shuffle(_rng);
