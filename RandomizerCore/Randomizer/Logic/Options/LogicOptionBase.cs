@@ -1,5 +1,6 @@
 ﻿using RandomizerCore.Randomizer.Enumerables;
 using RandomizerCore.Randomizer.Logic.Defines;
+using System.Text;
 
 namespace RandomizerCore.Randomizer.Logic.Options;
 
@@ -28,7 +29,13 @@ public abstract class LogicOptionBase
         Type = type;
         SettingGroup = settingGroup;
         SettingPage = settingPage;
-        DescriptionText = descriptionText;
+        var tempText = descriptionText.Trim();
+        var builder = new StringBuilder();
+        foreach (var s in tempText.Split("\\n"))
+        {
+            builder.AppendLine(s);
+        }
+        DescriptionText = builder.ToString();
     }
 
     public abstract List<LogicDefine> GetLogicDefines();

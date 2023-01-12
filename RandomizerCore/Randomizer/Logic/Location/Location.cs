@@ -99,7 +99,7 @@ public class Location
                 !string.IsNullOrEmpty(define.Define.Name))
                 return true;
 
-        Logger.Instance.LogWarning($"Can't place subvalued items in {Name}");
+        Logger.Instance.LogInfo($"Can't place subvalued items in {Name}");
         return false;
     }
 

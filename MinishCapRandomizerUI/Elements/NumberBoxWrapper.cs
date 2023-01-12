@@ -50,13 +50,13 @@ public class NumberBoxWrapper : WrapperBase
             Location = new Point(initialX + TextWidth + Constants.WidthMargin, initialY + NumberBoxAlign),
             Height = NumberBoxHeight,
             Width = NumberBoxWidth,
-            SelectedText = $"{_numberBox.DefaultValue}",
         };        
         
         if (!string.IsNullOrEmpty(_numberBox.DescriptionText))
         {
             var tip = new ToolTip();
             tip.UseFading = true;
+            tip.AutoPopDelay = 30000;
             tip.InitialDelay = 1000;
             tip.ReshowDelay = 500;
             tip.ShowAlways = true;
@@ -66,7 +66,7 @@ public class NumberBoxWrapper : WrapperBase
         _textBox.TextChanged += (object sender, EventArgs e) =>
         {
             if (_textBox.Text.Length == 0)
-                _textBox.Text = @"0";
+                _textBox.Text = $"{_numberBox.DefaultValue}";
 
             if (byte.TryParse(_textBox.Text, out var val))
                 _numberBox.Value = val.ToString();

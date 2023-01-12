@@ -17,6 +17,7 @@ namespace RandomizerCore.Controllers;
 public class ShufflerController
 {
     private readonly Shuffler _shuffler;
+    private string? _cachedLogicFile;
     
     public ShufflerController()
     {
@@ -121,6 +122,7 @@ public class ShufflerController
         try
         {
             _shuffler.LoadLocations(filename);
+            _cachedLogicFile = filename;
             return true;
         }
         catch (Exception e)
@@ -154,6 +156,7 @@ public class ShufflerController
                 {
                     Logger.Instance.LogException(e);
                     attempts++;
+                    LoadLocations(_cachedLogicFile);
                     _shuffler.SetSeed(new Random(_shuffler.Seed).Next());
                     Logger.Instance.SaveLogTransaction();
                 }

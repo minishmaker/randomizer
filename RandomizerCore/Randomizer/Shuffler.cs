@@ -565,10 +565,14 @@ internal class Shuffler
         spoilerBuilder.AppendLine("Location Contents:");
         // Get the locations that have been filled
         var filledLocations = _locations.Where(location =>
-            location.Filled && location.Type != LocationType.Helper &&
-            location.Type != LocationType.Untyped).ToList();
+            location.Filled && location.Type is not LocationType.Helper and not LocationType.Untyped).ToList();
 
-        foreach (var location in filledLocations)
+        var locationsWithRealItems = filledLocations.Where(location => location.Contents.Type is not ItemType.Untyped);
+
+        var hackToFilterOutLanternGarbage = locationsWithRealItems.Where(location =>
+            location.Contents.Type != ItemType.LanternOff || location.Contents.SubValue == 0);
+        
+        foreach (var location in hackToFilterOutLanternGarbage)
         {
             spoilerBuilder.AppendLine($"{location.Name}: {location.Contents.Type}");
 
@@ -588,7 +592,13 @@ internal class Shuffler
 
         var filledLocations = _locations.Where(location =>
             location.Filled && location.Type != LocationType.Helper &&
-            location.Type != LocationType.Untyped).ToList();
+            location.Type != LocationType.Untyped);
+
+        var locationsWithRealItems = filledLocations.Where(location => location.Contents.Type is not ItemType.Untyped);
+
+        var hackToFilterOutLanternGarbage = locationsWithRealItems.Where(location =>
+            location.Contents.Type != ItemType.LanternOff || location.Contents.SubValue == 0).ToList();
+
         var availableItems = new List<Item>();
 
         int previousSize;
@@ -597,10 +607,10 @@ internal class Shuffler
         do
         {
             var accessibleLocations =
-                filledLocations.Where(location => location.IsAccessible(availableItems, _locations)).ToList();
+                hackToFilterOutLanternGarbage.Where(location => location.IsAccessible(availableItems, _locations)).ToList();
             previousSize = accessibleLocations.Count;
 
-            filledLocations.RemoveAll(location => accessibleLocations.Contains(location));
+            hackToFilterOutLanternGarbage.RemoveAll(location => accessibleLocations.Contains(location));
 
             var newItems = Location.GetItems(accessibleLocations);
             availableItems.AddRange(newItems);

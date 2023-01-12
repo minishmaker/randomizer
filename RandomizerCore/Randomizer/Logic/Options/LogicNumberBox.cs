@@ -21,7 +21,7 @@ public class LogicNumberBox : LogicOptionBase
         LogicOptionType type) :
         base(name, niceName, true, settingGroup, settingPage, descriptionText, type)
     {
-        DefaultValue = defaultValue;
+        Value = $"{defaultValue}";
     }
 
     public override List<LogicDefine> GetLogicDefines()

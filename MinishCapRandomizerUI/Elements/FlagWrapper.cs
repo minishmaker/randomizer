@@ -41,6 +41,7 @@ public class FlagWrapper : WrapperBase
         {
             var tip = new ToolTip();
             tip.UseFading = true;
+            tip.AutoPopDelay = 30000;
             tip.InitialDelay = 1000;
             tip.ReshowDelay = 500;
             tip.ShowAlways = true;
