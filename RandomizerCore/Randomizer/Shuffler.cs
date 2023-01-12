@@ -379,11 +379,11 @@ internal class Shuffler
         FillLocations(prizes, unfilledLocations, unplacedItems.Concat(notPrizes).Concat(_unshuffledItems).ToList());
 
         // Fill dungeon items first so there is room for them all
-        var dungeonLocations = FillLocations(notPrizes, unfilledLocations, unplacedItems.ToList());
+        var dungeonLocations = FillLocations(notPrizes, unfilledLocations, unplacedItems);
         
         // Fill dungeon minor items, do not check logic
         unfilledLocations.Shuffle(_rng);
-        FillLocations(_dungeonMinorItems.ToList(), unfilledLocations, unplacedItems);
+        FillLocations(_dungeonMinorItems.ToList(), unfilledLocations, unplacedItems.Concat(_unshuffledItems).ToList());
 
         // Fill non-dungeon major items, checking for logic
         unfilledLocations.Shuffle(_rng);
