@@ -80,12 +80,15 @@ All the following settings have Tooltips that fully explain their function:
 	- Traps have smart disguises that depend on settings.
 - Refill Hearts and Fairies have been added to the item pool as junk items.
 - Door mimics added to credit stats.
+- Simon now requires rupees in the pool.
 - Dojo tutorial cutscenes skipped.
 - Café sprite bug fixed.
 - Fixed the `Đig Butterfly` display.
+- Language Localisations have been expanded, nearly every piece of text in the game has a translation.
 - Fixed the Village curtain opening if you have Earth Elements.
 - Fixed a bug where rupee count isn't displayed.
 - Resolve some attempted fixes in `Disable Glitches`
+- In Game Timer is more accurate than before, Real Timer is still the most accurate.
 
 #### Why version 0.7 but not 1.0?
 

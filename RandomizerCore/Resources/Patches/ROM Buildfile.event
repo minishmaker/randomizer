@@ -45,7 +45,7 @@ ORG FreeSpace
 #define veneer(offset) "SHORT 0xB408 0x4B02 0x469C 0xBC08 0x4760; ALIGN 4; POIN (offset|0x1)"
 
 #ifdef no_music
-#include "c/nobgm.event"
+#include "c/nobgm.cevent"
 #endif
 
 //savetype check
@@ -250,7 +250,8 @@ WORD customRNG
 #include "tunic.event"
 #include "hash.event"
 #include "traps.event"
-#include "c/textSpeed.event"
+#include "removeFusions.event"
+#include "c/textSpeed.cevent"
 
 #ifdef heartLimited // extra hearts do not grant extra hp
 
@@ -588,7 +589,7 @@ POP
 #include "sound/sound.event"
 #endif
 #ifdef heroMode
-#include "c/heroMode.event"
+#include "c/heroMode.cevent"
 damageMultiplier:
 WORD dmgMulti;
 #endif
