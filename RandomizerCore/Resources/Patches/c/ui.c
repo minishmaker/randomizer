@@ -266,6 +266,15 @@ int pow(int base, int exponent) {
     return result;
 }
 
+int log(int num, int base) {
+    int result = 0;
+    while (num >= base) {
+        num /= base;
+        result++;
+    }
+    return result;
+}
+
 void DrawNumber(u32 num, int digits, int x, int y) {
     int i = 0;
     while (digits > 0) {
@@ -311,7 +320,19 @@ void DrawHistory(void) {
     gScreen.bg0.updated = 1;
 }
 
+extern u32 (*const CounterGetValue)(void);
+extern const u32 counterMaxValue;
+
 void DrawFigurineCounter(void) {
+    if (!CounterGetValue) {
+        return;
+    }
+    u32 value = CounterGetValue();
+    u32 digits1 = log(value, 10) + 1;
+    DrawNumber(value, digits1, 1, 18);
+    DrawChar('/', 1 + digits1, 18);
+    u32 digits2 = log(counterMaxValue, 10) + 1;
+    DrawNumber(counterMaxValue, digits2, 1 + digits1 + 1, 18);
 }
 
 // max display time is 99:59:59
