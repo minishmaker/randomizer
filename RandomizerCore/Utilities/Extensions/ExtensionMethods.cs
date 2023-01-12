@@ -41,9 +41,7 @@ public static class ExtensionMethods
             list[n] = value;
         }
     }
-
-
-
+    
     public static BigInteger ParseBigIntegerFromByteArray(this byte[] bytes, int stoppingIndex = 0)
     {
         var len = bytes.Length - 1;
@@ -68,8 +66,13 @@ public static class ExtensionMethods
         };
     }
 
-    public static uint ByteArrayToUintLE(this byte[] bytes, ref int offset)
+    public static uint ByteArrayToUintLE(this byte[] bytes, int offset)
     {
         return (uint)(bytes[offset] | (bytes[offset + 1] << 8) | (bytes[offset + 2] << 16) | (bytes[offset + 3] << 24));
+    }
+
+    public static ushort ByteArrayToUshortLE(this byte[] bytes, int offset)
+    {
+        return (ushort)(bytes[offset] | (bytes[offset + 1] << 8));
     }
 }

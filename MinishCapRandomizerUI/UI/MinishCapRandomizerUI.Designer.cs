@@ -1,6 +1,6 @@
 ﻿namespace MinishCapRandomizerUI.UI
 {
-    partial class MinishCapRandomizerUI
+    sealed partial class MinishCapRandomizerUI
     {
         /// <summary>
         ///  Required designer variable.
@@ -59,26 +59,26 @@
             this.label11 = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
             this.button17 = new System.Windows.Forms.Button();
-            this.button18 = new System.Windows.Forms.Button();
+            this.ResetDefaultCosmetics = new System.Windows.Forms.Button();
             this.button19 = new System.Windows.Forms.Button();
             this.comboBox5 = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
             this.button20 = new System.Windows.Forms.Button();
-            this.button21 = new System.Windows.Forms.Button();
-            this.button22 = new System.Windows.Forms.Button();
-            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.GenerateCosmetics = new System.Windows.Forms.Button();
+            this.LoadCosmetics = new System.Windows.Forms.Button();
+            this.CosmeticsString = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.panel7 = new System.Windows.Forms.Panel();
             this.button16 = new System.Windows.Forms.Button();
-            this.button15 = new System.Windows.Forms.Button();
+            this.ResetDefaultSettings = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.button14 = new System.Windows.Forms.Button();
-            this.button13 = new System.Windows.Forms.Button();
-            this.button12 = new System.Windows.Forms.Button();
-            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.GenerateSettings = new System.Windows.Forms.Button();
+            this.LoadSettings = new System.Windows.Forms.Button();
+            this.SettingString = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
@@ -315,6 +315,7 @@
             this.PatchRomAndGenPatch.TabIndex = 25;
             this.PatchRomAndGenPatch.Text = "Patch Rom";
             this.PatchRomAndGenPatch.UseVisualStyleBackColor = true;
+            this.PatchRomAndGenPatch.Click += new System.EventHandler(this.PatchRomAndGenPatch_Click);
             // 
             // GeneratePatchButton
             // 
@@ -346,6 +347,7 @@
             this.ApplyPatchButton.TabStop = true;
             this.ApplyPatchButton.Text = "Apply Patch Mode";
             this.ApplyPatchButton.UseVisualStyleBackColor = true;
+            this.ApplyPatchButton.CheckedChanged += new System.EventHandler(this.ApplyPatchButton_CheckedChanged);
             // 
             // BrowsePatchOrRom
             // 
@@ -355,6 +357,7 @@
             this.BrowsePatchOrRom.TabIndex = 21;
             this.BrowsePatchOrRom.Text = "Browse";
             this.BrowsePatchOrRom.UseVisualStyleBackColor = true;
+            this.BrowsePatchOrRom.Click += new System.EventHandler(this.BrowsePatchOrRom_Click);
             // 
             // BpsPatchAndPatchedRomPath
             // 
@@ -390,14 +393,14 @@
             // 
             this.panel8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel8.Controls.Add(this.button17);
-            this.panel8.Controls.Add(this.button18);
+            this.panel8.Controls.Add(this.ResetDefaultCosmetics);
             this.panel8.Controls.Add(this.button19);
             this.panel8.Controls.Add(this.comboBox5);
             this.panel8.Controls.Add(this.label12);
             this.panel8.Controls.Add(this.button20);
-            this.panel8.Controls.Add(this.button21);
-            this.panel8.Controls.Add(this.button22);
-            this.panel8.Controls.Add(this.textBox9);
+            this.panel8.Controls.Add(this.GenerateCosmetics);
+            this.panel8.Controls.Add(this.LoadCosmetics);
+            this.panel8.Controls.Add(this.CosmeticsString);
             this.panel8.Controls.Add(this.label13);
             this.panel8.Location = new System.Drawing.Point(6, 390);
             this.panel8.Name = "panel8";
@@ -413,14 +416,15 @@
             this.button17.Text = "Delete Preset";
             this.button17.UseVisualStyleBackColor = true;
             // 
-            // button18
+            // ResetDefaultCosmetics
             // 
-            this.button18.Location = new System.Drawing.Point(510, 40);
-            this.button18.Name = "button18";
-            this.button18.Size = new System.Drawing.Size(240, 23);
-            this.button18.TabIndex = 29;
-            this.button18.Text = "Reset Defaults";
-            this.button18.UseVisualStyleBackColor = true;
+            this.ResetDefaultCosmetics.Location = new System.Drawing.Point(510, 40);
+            this.ResetDefaultCosmetics.Name = "ResetDefaultCosmetics";
+            this.ResetDefaultCosmetics.Size = new System.Drawing.Size(240, 23);
+            this.ResetDefaultCosmetics.TabIndex = 29;
+            this.ResetDefaultCosmetics.Text = "Reset Defaults";
+            this.ResetDefaultCosmetics.UseVisualStyleBackColor = true;
+            this.ResetDefaultCosmetics.Click += new System.EventHandler(this.ResetDefaultCosmetics_Click);
             // 
             // button19
             // 
@@ -459,30 +463,33 @@
             this.button20.Text = "Save Current As Preset";
             this.button20.UseVisualStyleBackColor = true;
             // 
-            // button21
+            // GenerateCosmetics
             // 
-            this.button21.Location = new System.Drawing.Point(260, 40);
-            this.button21.Name = "button21";
-            this.button21.Size = new System.Drawing.Size(240, 23);
-            this.button21.TabIndex = 24;
-            this.button21.Text = "Generate String";
-            this.button21.UseVisualStyleBackColor = true;
+            this.GenerateCosmetics.Location = new System.Drawing.Point(260, 40);
+            this.GenerateCosmetics.Name = "GenerateCosmetics";
+            this.GenerateCosmetics.Size = new System.Drawing.Size(240, 23);
+            this.GenerateCosmetics.TabIndex = 24;
+            this.GenerateCosmetics.Text = "Generate String";
+            this.GenerateCosmetics.UseVisualStyleBackColor = true;
+            this.GenerateCosmetics.Click += new System.EventHandler(this.GenerateCosmetics_Click);
             // 
-            // button22
+            // LoadCosmetics
             // 
-            this.button22.Location = new System.Drawing.Point(10, 40);
-            this.button22.Name = "button22";
-            this.button22.Size = new System.Drawing.Size(240, 23);
-            this.button22.TabIndex = 23;
-            this.button22.Text = "Load Cosmetics";
-            this.button22.UseVisualStyleBackColor = true;
+            this.LoadCosmetics.Location = new System.Drawing.Point(10, 40);
+            this.LoadCosmetics.Name = "LoadCosmetics";
+            this.LoadCosmetics.Size = new System.Drawing.Size(240, 23);
+            this.LoadCosmetics.TabIndex = 23;
+            this.LoadCosmetics.Text = "Load Cosmetics";
+            this.LoadCosmetics.UseVisualStyleBackColor = true;
+            this.LoadCosmetics.Click += new System.EventHandler(this.LoadCosmetics_Click);
             // 
-            // textBox9
+            // CosmeticsString
             // 
-            this.textBox9.Location = new System.Drawing.Point(153, 12);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(597, 23);
-            this.textBox9.TabIndex = 16;
+            this.CosmeticsString.Location = new System.Drawing.Point(153, 12);
+            this.CosmeticsString.Name = "CosmeticsString";
+            this.CosmeticsString.Size = new System.Drawing.Size(597, 23);
+            this.CosmeticsString.TabIndex = 16;
+            this.CosmeticsString.Text = "Not Implemented Yet";
             // 
             // label13
             // 
@@ -511,14 +518,14 @@
             // 
             this.panel7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel7.Controls.Add(this.button16);
-            this.panel7.Controls.Add(this.button15);
+            this.panel7.Controls.Add(this.ResetDefaultSettings);
             this.panel7.Controls.Add(this.button11);
             this.panel7.Controls.Add(this.comboBox3);
             this.panel7.Controls.Add(this.label9);
             this.panel7.Controls.Add(this.button14);
-            this.panel7.Controls.Add(this.button13);
-            this.panel7.Controls.Add(this.button12);
-            this.panel7.Controls.Add(this.textBox10);
+            this.panel7.Controls.Add(this.GenerateSettings);
+            this.panel7.Controls.Add(this.LoadSettings);
+            this.panel7.Controls.Add(this.SettingString);
             this.panel7.Controls.Add(this.label10);
             this.panel7.Location = new System.Drawing.Point(6, 235);
             this.panel7.Name = "panel7";
@@ -534,14 +541,15 @@
             this.button16.Text = "Delete Preset";
             this.button16.UseVisualStyleBackColor = true;
             // 
-            // button15
+            // ResetDefaultSettings
             // 
-            this.button15.Location = new System.Drawing.Point(510, 40);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(240, 23);
-            this.button15.TabIndex = 29;
-            this.button15.Text = "Reset Defaults";
-            this.button15.UseVisualStyleBackColor = true;
+            this.ResetDefaultSettings.Location = new System.Drawing.Point(510, 40);
+            this.ResetDefaultSettings.Name = "ResetDefaultSettings";
+            this.ResetDefaultSettings.Size = new System.Drawing.Size(240, 23);
+            this.ResetDefaultSettings.TabIndex = 29;
+            this.ResetDefaultSettings.Text = "Reset Defaults";
+            this.ResetDefaultSettings.UseVisualStyleBackColor = true;
+            this.ResetDefaultSettings.Click += new System.EventHandler(this.ResetDefaultSettings_Click);
             // 
             // button11
             // 
@@ -580,30 +588,33 @@
             this.button14.Text = "Save Current As Preset";
             this.button14.UseVisualStyleBackColor = true;
             // 
-            // button13
+            // GenerateSettings
             // 
-            this.button13.Location = new System.Drawing.Point(260, 40);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(240, 23);
-            this.button13.TabIndex = 24;
-            this.button13.Text = "Generate String";
-            this.button13.UseVisualStyleBackColor = true;
+            this.GenerateSettings.Location = new System.Drawing.Point(260, 40);
+            this.GenerateSettings.Name = "GenerateSettings";
+            this.GenerateSettings.Size = new System.Drawing.Size(240, 23);
+            this.GenerateSettings.TabIndex = 24;
+            this.GenerateSettings.Text = "Generate String";
+            this.GenerateSettings.UseVisualStyleBackColor = true;
+            this.GenerateSettings.Click += new System.EventHandler(this.GenerateSettings_Click);
             // 
-            // button12
+            // LoadSettings
             // 
-            this.button12.Location = new System.Drawing.Point(10, 40);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(240, 23);
-            this.button12.TabIndex = 23;
-            this.button12.Text = "Load Settings";
-            this.button12.UseVisualStyleBackColor = true;
+            this.LoadSettings.Location = new System.Drawing.Point(10, 40);
+            this.LoadSettings.Name = "LoadSettings";
+            this.LoadSettings.Size = new System.Drawing.Size(240, 23);
+            this.LoadSettings.TabIndex = 23;
+            this.LoadSettings.Text = "Load Settings";
+            this.LoadSettings.UseVisualStyleBackColor = true;
+            this.LoadSettings.Click += new System.EventHandler(this.LoadSettings_Click);
             // 
-            // textBox10
+            // SettingString
             // 
-            this.textBox10.Location = new System.Drawing.Point(153, 12);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(597, 23);
-            this.textBox10.TabIndex = 16;
+            this.SettingString.Location = new System.Drawing.Point(153, 12);
+            this.SettingString.Name = "SettingString";
+            this.SettingString.Size = new System.Drawing.Size(597, 23);
+            this.SettingString.TabIndex = 16;
+            this.SettingString.Text = "Not Implemented Yet";
             // 
             // label10
             // 
@@ -821,6 +832,7 @@
             this.SaveRom.TabIndex = 24;
             this.SaveRom.Text = "Save ROM";
             this.SaveRom.UseVisualStyleBackColor = true;
+            this.SaveRom.Click += new System.EventHandler(this.SaveRom_Click);
             // 
             // SavePatch
             // 
@@ -830,6 +842,7 @@
             this.SavePatch.TabIndex = 23;
             this.SavePatch.Text = "Save BPS Patch";
             this.SavePatch.UseVisualStyleBackColor = true;
+            this.SavePatch.Click += new System.EventHandler(this.SavePatch_Click);
             // 
             // SaveSpoiler
             // 
@@ -839,6 +852,7 @@
             this.SaveSpoiler.TabIndex = 22;
             this.SaveSpoiler.Text = "Save Spoiler Log";
             this.SaveSpoiler.UseVisualStyleBackColor = true;
+            this.SaveSpoiler.Click += new System.EventHandler(this.SaveSpoiler_Click);
             // 
             // label17
             // 
@@ -873,6 +887,7 @@
             this.CopyCosmeticsHashToClipboard.TabIndex = 24;
             this.CopyCosmeticsHashToClipboard.Text = "Copy Cosmetics Hash To Clipboard";
             this.CopyCosmeticsHashToClipboard.UseVisualStyleBackColor = true;
+            this.CopyCosmeticsHashToClipboard.Click += new System.EventHandler(this.CopyCosmeticsHashToClipboard_Click);
             // 
             // CosmeticStringLabel
             // 
@@ -950,6 +965,7 @@
             this.CopySettingsHashToClipboard.TabIndex = 24;
             this.CopySettingsHashToClipboard.Text = "Copy Setting Hash To Clipboard";
             this.CopySettingsHashToClipboard.UseVisualStyleBackColor = true;
+            this.CopySettingsHashToClipboard.Click += new System.EventHandler(this.CopySettingsHashToClipboard_Click);
             // 
             // SettingHashLabel
             // 
@@ -1173,26 +1189,26 @@
         private Label label11;
         private Panel panel8;
         private Button button17;
-        private Button button18;
+        private Button ResetDefaultCosmetics;
         private Button button19;
         private ComboBox comboBox5;
         private Label label12;
         private Button button20;
-        private Button button21;
-        private Button button22;
-        private TextBox textBox9;
+        private Button GenerateCosmetics;
+        private Button LoadCosmetics;
+        private TextBox CosmeticsString;
         private Label label13;
         private Label label8;
         private Panel panel7;
         private Button button16;
-        private Button button15;
+        private Button ResetDefaultSettings;
         private Button button11;
         private ComboBox comboBox3;
         private Label label9;
         private Button button14;
-        private Button button13;
-        private Button button12;
-        private TextBox textBox10;
+        private Button GenerateSettings;
+        private Button LoadSettings;
+        private TextBox SettingString;
         private Label label10;
         private Label label5;
         private Panel panel6;

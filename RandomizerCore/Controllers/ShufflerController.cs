@@ -46,10 +46,35 @@ public class ShufflerController
         
     }
 
+    public void LoadCosmeticsFromCosmeticsString(string settingString)
+    {
+        
+    }
+
     public string GetSettingString()
     {
         return "";
     }
+
+    public string GetCosmeticsString()
+    {
+        return "";
+    }
+    
+#if DEBUG
+    public string AppName => "Minish Cap Randomizer Debug Build";
+#else
+    public string AppName => "Minish Cap Randomizer";
+#endif
+    
+    public string VersionName => "v0.7.0";
+    public string RevName => "alpha-rev1";
+
+    public string SeedFilename() => $"Minish Randomizer-{_shuffler.Seed}-{_shuffler.Version}-{_shuffler.GetOptionsIdentifier()}";
+
+    public int GetFinalSeed() => _shuffler.Seed;
+    
+    public void FlushLogger() => Logger.Instance.Flush();
 
     public bool LoadRom(string filename)
     {
@@ -116,6 +141,7 @@ public class ShufflerController
             _shuffler.ValidateState();
 
             var attempts = 1;
+            if (retries <= 0) retries = 1;
             var successfulGeneration = false;
             while (attempts <= retries && !successfulGeneration)
             {

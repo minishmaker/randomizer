@@ -60,11 +60,11 @@ public class Patch
 
         patch.ExportActions = actions;
         
-        patch.SourceChecksum = content.ByteArrayToUintLE(ref offset);
+        patch.SourceChecksum = content.ByteArrayToUintLE(offset);
         offset += 4;
-        patch.PatchedChecksum = content.ByteArrayToUintLE(ref offset);
+        patch.PatchedChecksum = content.ByteArrayToUintLE(offset);
         offset += 4;
-        patch.PatchChecksum = content.ByteArrayToUintLE(ref offset);
+        patch.PatchChecksum = content.ByteArrayToUintLE(offset);
         
         return patch;
     }
