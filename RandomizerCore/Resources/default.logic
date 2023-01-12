@@ -72,7 +72,7 @@
 !dropdown - Main Settings - Setting - Dungeon Settings - BIG_KEYS_SETTING - Big Keys: - Big Keys - Vanilla - BIG_KEYS_VANILLA - 'Vanilla': Big keys are in the same places they appear in the vanilla game. - In Dungeons - BIG_KEYS_STANDARD - 'In Dungeons': Big keys are randomized to locations in the dungeon they are used in.\n If 'Regional Items' is enabled then this allows the Big keys to be randomized in the vicinity of their own dungeon.\n If 'Inter Dungeon Items' is enabled then this allows the Big keys to be randomized between every dungeon. - Removed (Keasy) - BIG_KEASY - 'Removed': Big keys are removed, All locked Boss doors are open from the start. - Anywhere (Keysanity) - BIG_KEYSANITY  - 'Anywhere': Big keys are randomized to any location in the world, expect to return to dungeons multiple times. 
 !flag - Main Settings - Setting - Dungeon Settings - KEYS_OUTSIDE - Regional Items - Regional Items allows dungeon items to be shuffled to locations near their original dungeon.\n\n If 'Inter Dungeon Items' is enabled then this allows Dungeon Items to be shuffled to locations near any Dungeon.\n\n DWS Region: 'Minish Village', 'Belari's House', 'Chest near Belari', 'Minish Cave near Belari'.\n CoF Region: 'Melari's Mines', 'Melari's Mines Outside Path', 'Pre Melari Block Puzzle Chest'.\n FOW Region: 'Wind Ruins'.\n TOD Region: 'Nothing'.\n RC Region: 'Graveyard (Not Dampe)'.\n POW Region: If Red Fusions are Removed: 'Wind Tribe', Otherwise: 'Upper Wind Tribe'.\n DHC Region: 'Castle Gardens (Not Moat)', If Pedestal Items is enabled: 'Sanctuary Pedestal'.
 !flag - Main Settings - Setting - Dungeon Settings - KEYS_DUNGEONS - Inter Dungeon Items - Inter Dungeon Items allows Dungeon Items set to 'In Dungeon' to be shuffled to any dungeon, not just their own.\n\n If Regional Items is enabled then this allows Dungeon Items to be shuffled to locations near any Dungeon.
-!dropdown - Main Settings - Setting - Dungeon Settings - DUNGEON - NonElement Dungeons: - NonElement Dungeons, This setting is disabled when 'Shuffle Elements' is enabled or when 'Dungeons Required' is set to '5' or '6'. - Standard - NONE - 'Standard': NonElement Dungeons have no special rules. - Unrequired - UNREQ - 'Unrequired': NonElement Dungeons do not have items required to beat the game. - Barren - BARREN - 'Barren': NonElement Dungeons only contain junk items. - Regions Unrequired - UNREQSUR - 'Regions Unrequired': NonElement Dungeons and their Regions do not contain items needed to beat the game. - Regions Barren - BARRENSUR - 'Regions Barren': NonElement Dungeons and their Regions only contain junk items.
+!dropdown - Main Settings - Setting - Dungeon Settings - DUNGEON - NonElement Dungeons: - NonElement Dungeons, This setting is disabled when 'Shuffle Elements' is enabled or when 'Dungeons Required' is set to '5' or '6'.\n WARNING: Causes seeds to fail to generate a lot, expect to roll a lot of seeds to find one that works. - Standard - NONE - 'Standard': NonElement Dungeons have no special rules. - Unrequired - UNREQ - 'Unrequired': NonElement Dungeons do not have items required to beat the game. - Barren - BARREN - 'Barren': NonElement Dungeons only contain junk items. - Regions Unrequired - UNREQSUR - 'Regions Unrequired': NonElement Dungeons and their Regions do not contain items needed to beat the game. - Regions Barren - BARRENSUR - 'Regions Barren': NonElement Dungeons and their Regions only contain junk items.
 !flag - Main Settings - Setting - Dungeon Settings - SHUFFLE_ELEMENTS - Shuffle Elements - Shuffle Elements allows the Elements to be shuffled to anywhere in the world, not just as Dungeon Rewards. The Element icons on the map are removed.
 
 !dropdown - Main Settings - Setting - Dark Hyrule Castle Requirements - DHC_SETTING - DHC Opens: - Dark Hyrule Castle is the last dungeon in the game, it has the final boss Vaati. - Open After Requirements - NORMALDHC - 'Open After Requirements': A barrier is placed at the front of the dungeon, This barrier is removed when you visit the sanctuary after completing ALL the requirements. - Never Open - NODHC - 'Never Open': A barrier is placed at the front of the dungeon, The game ends when you visit the sanctuary after completing all the requirements. - Always Open - OPENDHC - 'Always Open': There is no barrier at the front of the dungeon
@@ -136,7 +136,7 @@
 !flag - Other - Setting - Restrictions - GLITCHLESS - Prevent Speedrun Glitches - Attempts were made to patch the glitches used by speedrunners to reach areas before intended, these attempts failed but we still keep this setting around.\n It is not recommended to enable this setting as it instead causes many bugs in regular gameplay
 !flag - Other - Setting - Restrictions - TIMEDOHKO - Timed OHKO - A 10 minute timer starts when you start your save file, collect timers to increase time on this timer. When the timer hits 00:00 you enter OHKO mode, one hit will kill you.\n Blue Timers increase the time by 2 Mintues\n Green Timers increase the time by 4 minutes\n Red timers reduce the timer to 00:00\n WARNING: Do not enable this with Hero Mode.
 !dropdown - Other - Setting - Restrictions - THREE_HEART - Maximum Health: - The maximum amount of health you can have from healing, Heart Pieces above your max health will be blank. - 20 - HEARTS_20 - - 19 - 19 - - 18 - 18 - - 17 - 17 - - 16 - 16 - - 15 - 15 - - 14 - 14 - - 13 - 13 - - 12 - 12 - - 11 - 11 - - 10 - 10 - - 9 - 9 - - 8 - 8 - - 7 - 7 - - 6 - 6 - - 5 - 5 - - 4 - 4 - - 3 - 3 - - 2 - 2 - - 1 - 1 -
-!flag - Other - Setting - Restrictions - HERO_MODE - Hero Mode - Disables health drops from enemies/pots.\n WARNING: Do not enable this with Timed OHKO.
+!flag - Other - Setting - Restrictions - HERO_MODE - Hero Mode (WIP) - Currently only enabled  WARNING: Do not enable this with Timed OHKO. #Disables health drops from enemies/pots.\n WARNING: Do not enable this with Timed OHKO.
 !dropdown - Other - Setting - Restrictions - DAMAGE_MULTI - Damage Multiplier: - Multiply the damage received from enemies. Currently only enabled if Hero Mode is enabled. - 1x - MULTI_1 - - 2x - MULTI_2 - - 3x - MULTI_3 - - 4x - MULTI_4 - 
 !flag - Other - Setting - Extras - ITEM_HISTORY - Item Name Display - Collecting an item will display text at the bottom left corner of the screen telling you what you just picked up, useful in Keysanity modes where the textbox closes too quickly for you to read which dungeon it came from. - true
 !flag - Other - Setting - Extras - RANDOM_BOTTLE_CONTENT - Random Bottle Contents - Randomizes the contents of the bottles that are shuffled in the pool, these contents are never considered by logic. - true
@@ -156,56 +156,6 @@
 !color - Cosmetic - Cosmetic - Split Bar - SPLIT_COLOR - Split Bar Color - When holding a Spin Attack (Having either Red/Blue/Four Sword) there is a Bar that appears under Links Hearts -    0x4A - 0xFF - 0x18     -    0x31 - 0x9C - 0x18    -   0x31 - 0x52 - 0x18
 !dropdown - Cosmetic - Cosmetic - Follower - FOLLOWER_SETTING - Follower: - Followers are NPCs that follow behind link, they do not interact with anything and have no effect on gameplay other than providing moral support.\n WARNING: Some game sprites won't load if a follower is used but the objects still exist. This mainly affects the climbable clouds in Palace of Winds, leaving and reentering the room should fix the sprite. - None - NOFOLLOWER -  - Mailman - 0x04 - - Zelda - 0x05 - - Malon - 0x1E - - Smith - 0x22 - - King Daltus - 0x24 - - Cow - 0x31 - - Goron - 0x32 - - Anju - 0x45 -
 !dropdown - Cosmetic - Cosmetic - Don't do this - FUZZY_SETTING - Nausia rating: - Seriously just don't do this to yourself, you'll thank me later - No thanks - NOFUZZ - - 1 - 0x0 - - 2 - 0x1 - - 3 - 0x2 - - 4 - 0x3 - - 5 - 0x4 - - 6 - 0x5 - - 7 - 0x6 - - 8 - 0x7 - - 9 - 0x8 - - 10 - 0x9 - - 11 - 0xA - - 12 - 0xB - - 13 - 0xC - - 14 - 0xD - - 15 - 0xE -
-
-#!flag - Setting - OPENWORLD - Open World
-#!dropdown - Setting - SMALL_KEYS_SETTING - Small Keys in vanilla locations - SMALL_KEYS_VANILLA - Small Keys in Dungeons - SMALL_KEYS_STANDARD - Small Keys removed and Doors opened (Keasy) - SMALL_KEASY - Small Keys Anywhere (Keysanity) - SMALL_KEYSANITY 
-#!dropdown - Setting - BIG_KEYS_SETTING - Big Keys in vanilla locations - BIG_KEYS_VANILLA - Big Keys inside Dungeons - BIG_KEYS_STANDARD - Big Keys removed and Doors opened (Keasy) - BIG_KEASY - Big Keys Anywhere (Keysanity) - BIG_KEYSANITY 
-#!dropdown - Setting - COMPASS_SETTING - Maps/Compass in vanilla locations - COMPASS_VANILLA - Maps/Compass inside Dungeons - COMPASS_STANDARD - Maps/Compass in starting inventory (Keasy) - COMPASS_KEASY - Maps/Compass Anywhere (Keysanity) - COMPASS_KEYSANITY 
-#!flag - Setting - KEYS_OUTSIDE - Keys/Maps/Compass can be shuffled in the vicinity of their dungeon
-#!flag - Setting - KEYS_DUNGEONS - Keys/Maps/Compass are shuffled between any dungeon
-#!flag - Setting - HUNDO - Items can lock themselves
-#!dropdown - Setting - DUNGEON - Standard Dungeons - NONE - NonElement Dungeons are Unrequired - UNREQ - NonElement Dungeons are Barren - BARREN - NonElement Dungeons plus Surroundings are Unrequired - UNREQSUR - NonElement Dungeons plus Surroundings are Barren - BARRENSUR - Shuffle elements into item pool - SHUFFLE_ELEMENTS
-#!flag - Setting - GLITCHLESS - Disable glitches
-#!flag - Setting - WHYWOULDYOUDOTHISTOYOURSELF - Obscure spots
-#!flag - Setting - RUPEEMANIA - Add available rupees to pool
-#!flag - Setting - GOLDEN_ENEMY - Golden Enemies have randomized items
-#!flag - Setting - WEAPONS - Damaging items other than sword seen as weapons
-#!flag - Setting - TRAPS - Shuffle traps in itempool
-#!flag - Setting - TIMEDOHKO - Die in one hit if the timer runs out
-#!flag - Setting - MUSIC_RANDO - Randomize Music
-#!flag - Setting - FIREROD - Start with the Firerod
-#!dropdown - Setting - ITEM_POOL - Normal item pool - ITEM_POOL_NORMAL - Reduced item pool - ITEM_POOL_RIP - Plentiful item pool - ITEM_POOL_PLENTIFUL
-#!dropdown - Setting - GOLD_FUSION_SETTING - Removed Gold fusions - NO_GOLD_FUSIONS - Vanilla Gold Fusions - VANILLA_GOLD_FUSIONS - Combined Gold Kinstones - COMBINED_GOLD_FUSIONS - Completed Gold fusions - OPEN_GOLD_FUSIONS
-#!dropdown - Setting - RED_FUSION_SETTING - Removed Red fusions - NO_RED_FUSIONS - Vanilla Red Fusions - VANILLA_RED_FUSIONS - Combined Red Kinstones - COMBINED_RED_FUSIONS - Completed Red fusions - OPEN_RED_FUSIONS
-#!dropdown - Setting - BLUE_FUSION_SETTING - Removed Blue fusions - NO_BLUE_FUSIONS - Vanilla Blue Fusions - VANILLA_BLUE_FUSIONS - Combined Blue Kinstones - COMBINED_BLUE_FUSIONS - Completed Blue fusions - OPEN_BLUE_FUSIONS
-#!dropdown - Setting - GREEN_FUSION_SETTING - Removed Green fusions - NO_GREEN_FUSIONS - Vanilla Green Fusions - VANILLA_GREEN_FUSIONS - Combined Green Kinstones - COMBINED_GREEN_FUSIONS - Completed Green fusions - OPEN_GREEN_FUSIONS
-#!flag - Setting - SEEDED_SHARED - Seed determines Shared Fusions
-#!dropdown - Setting - DHC_SETTING - Ped Open/Regular DHC - NORMALDHC - Ped Finish/No DHC - NODHC - Open DHC - OPENDHC - Open DHC + Ped Items - PED_ITEMS
-#!flag - Setting - FIGURINE_HUNT - Shuffle figurines into item pool (Must set values in following boxes)
-#!numberbox - Setting - FIGURINE_COUNT - Figurine count
-#!numberbox - Setting - FIGURINE_TOTAL - Extra figurines
-
-# these 2 are only valid outside of openDHC modes, if both are set to 0 it defaults to 4 elements
-#!dropdown - Setting - SWORD_SETTING - No Sword Ped - 0SWORD - Smith Sword Ped - 1 - White Sword Ped - 2 - Red Sword Ped - 3 - Blue Sword Ped - 4 - Four Sword Ped - 5
-#!dropdown - Setting - ELEMENT_SETTING - 4 Element Ped - 4 - 3 Element Ped - 3 - 2 Element Ped - 2 - 1 Element Ped - 1 - No Element Ped - 0ELEMENT
-
-# Gimmick settings
-#!dropdown - Setting - FUSION_SKIPS - Allow cutscene skips - ALLOW_FUSION_SKIPS - Instant cutscene skips - INSTANT_SKIP - No fusion skips - NO_FUSION_SKIP
-#!flag - Gimmick - SHOW_MAP - Always show the map during Fusion Cutscenes
-#!flag - Gimmick - HOMEWARP - Enable Homewarp (Sleep in the Pause Menu) - true
-#!flag - Gimmick - DEFICKLE - Make all fusers not fickle - true
-#!flag - Gimmick - BOOTS_MINISH - Can use boots while small
-#!flag - Gimmick - THREE_HEART - Limit max health to 3 hearts
-#!flag - Gimmick - MEME - Add some fun junk items to the pool
-#!flag - Gimmick - RANDOM_LANGUAGE - Randomize language
-#!flag - Gimmick - RANDOM_BOTTLE_CONTENT - Bottles start with random contents - true
-#!dropdown - Gimmick - MUSIC_SETTING - Vanilla Music - VANILLA_MUSIC - Pokemon Emerald Music - POKEEMERALD_MUSIC - No Music - NO_MUSIC
-#!flag - Gimmick - RAINBOW_HEARTS - Enable Rainbow Hearts
-#!color - Gimmick - TUNIC_COLOR - Change Tunic Color -    0x10 - 0xFF - 0x08    -    0x10 - 0x7B - 0x29    -    0x41 - 0xA0 - 0x28    -    0xBD - 0xFF - 0xA0
-#!color - Gimmick - HEART_COLOR - Change Heart Color -    0xFF - 0x50 - 0x10
-#!color - Gimmick - SPLIT_COLOR - Change Split Bar Color -    0x4A - 0xFF - 0x18     -    0x31 - 0x9C - 0x18    -   0x31 - 0x52 - 0x18
-#!dropdown - Gimmick - FOLLOWER_SETTING - No Follower - NOFOLLOWER - Mailman Follower - 0x04 - Zelda Follower - 0x05 - Malon Follower - 0x1E - Smith Follower - 0x22 - King Gustaf Follower - 0x24 - Cow Follower - 0x31 - Goron Follower - 0x32 - Anju Follower - 0x45
-#!flag - Gimmick - ITEM_HISTORY - Show recently collected Keys/Scrolls/Kinstones - true
 
 !eventdefine - customRNG - 0x`RAND_INT`
 
@@ -247,8 +197,6 @@
     !eventdefine - followerID - `FOLLOWER_SETTING`
 !endif
 !undefine - `FOLLOWER_SETTING` 
-
-#!dropdown - Gimmick - FUZZY_SETTING - No Fuzziness - NOFUZZ - Fuzz 1 - 0x0 - Fuzz 2 - 0x1 - Fuzz 3 - 0x2 - Fuzz 4 - 0x3 - Fuzz 5 - 0x4 - Fuzz 6 - 0x5 - Fuzz 7 - 0x6 - Fuzz 8 - 0x7 - Fuzz 9 - 0x8 - Fuzz 10 - 0x9 - Fuzz 11 - 0xA - Fuzz 12 - 0xB - Fuzz 13 - 0xC - Fuzz 14 - 0xD - Fuzz 15 - 0xE
 
 !define - `FUZZY_SETTING`
 !ifndef - NOFUZZ
@@ -324,6 +272,7 @@
 !ifdef - SHUFFLE_ELEMENTS
     !eventdefine - globalElements - 1   # if defined, does not draw elements on map (during full shuffle)
 	!eventdefine - elementTraps
+	!undefine - `DUNGEON`
 !endif
 
 
@@ -344,20 +293,11 @@
 !endif
 !ifdef - AD_PED_5
 	!define - AD_PED_NUM - 5
+	!undefine - `DUNGEON`
 !endif
 !ifdef - AD_PED_6
 	!define - AD_PED_NUM - 6
-!endif
-
-# Activate Firerod from the start of the game
-!define - `FIREROD`
-!ifdef - FIREROD_CHEST
-    !eventdefine - enable_firerod - 1
-	!replaceamount -  Items.FireRod - 1 - `SHELLVALS` `KINVALS` `RUPEEVALS`
-!endif
-!ifdef - FIREROD_START
-    !eventdefine - enable_firerod - 1
-    !eventdefine - enable_firerod_start - 1
+	!undefine - `DUNGEON`
 !endif
 
 # Shuffle Elements removes the "Prize" dungeon and changes all the elements to regular "Major" items to be globally shuffled
@@ -399,10 +339,11 @@
 !else
     !ifdef - NO_GOLD_FUSIONS
         !eventdefine - noGoldFusions                         # if defined, golden kinstone fusions are not available
+		!eventdefine - fusions81 - 0x3E
     !else
 		!define - Fusions - 
+		!eventdefine - fusions81 - 0x00
 	!endif
-	!eventdefine - fusions81 - 0x00
 !endif
 
 !ifdef - OPEN_RED_FUSIONS
@@ -584,46 +525,47 @@
     !define - DHC_SMALL_SET - .0x1D:
     !define - RC_SMALL_SET  - .0x1E:
 !else
-	!ifdef - KEYS_OUTSIDE
-		!define - SMALL_KEY - DungeonItem
-		!ifdef - KEYS_DUNGEONS
-			!define - DWS_SMALL_SET - .0x18:Dungeon
-			!define - COF_SMALL_SET - .0x19:Dungeon
-			!define - FOW_SMALL_SET - .0x1A:Dungeon
-			!define - TOD_SMALL_SET - .0x1B:Dungeon
-			!define - POW_SMALL_SET - .0x1C:Dungeon
-			!define - DHC_SMALL_SET - .0x1D:Dungeon
-			!define - RC_SMALL_SET  - .0x1E:Dungeon
-		!else
-			!define - DWS_SMALL_SET - .0x18:Deepwood
-			!define - COF_SMALL_SET - .0x19:FlameCave
-			!define - FOW_SMALL_SET - .0x1A:Fortress
-			!define - TOD_SMALL_SET - .0x1B:Droplets
-			!define - POW_SMALL_SET - .0x1C:Palace
-			!define - DHC_SMALL_SET - .0x1D:DHC
-			!define - RC_SMALL_SET  - .0x1E:Crypt
-		!endif
+	!ifdef - Replace_Small_Keys
+		!define - SMALL_KEY - Minor
 	!else
-		!ifdef - KEYS_DUNGEONS
+		!define - SMALL_KEY - Minor
+		!ifdef - KEYS_OUTSIDE
 			!define - SMALL_KEY - DungeonItem
-			!define - DWS_SMALL_SET - .0x18:Dungeon
-			!define - COF_SMALL_SET - .0x19:Dungeon
-			!define - FOW_SMALL_SET - .0x1A:Dungeon
-			!define - TOD_SMALL_SET - .0x1B:Dungeon
-			!define - POW_SMALL_SET - .0x1C:Dungeon
-			!define - DHC_SMALL_SET - .0x1D:Dungeon
-			!define - RC_SMALL_SET  - .0x1E:Dungeon
-		!else
-			!define - DWS_SMALL_SET - :Deepwood
-			!define - COF_SMALL_SET - :FlameCave
-			!define - FOW_SMALL_SET - :Fortress
-			!define - TOD_SMALL_SET - :Droplets
-			!define - POW_SMALL_SET - :Palace
-			!define - DHC_SMALL_SET - :DHC
-			!define - RC_SMALL_SET  - :Crypt
-			!ifdef - Replace_Small_Keys
-				!define - SMALL_KEY - Minor
+			!ifdef - KEYS_DUNGEONS
+				!define - DWS_SMALL_SET - .0x18:Dungeon
+				!define - COF_SMALL_SET - .0x19:Dungeon
+				!define - FOW_SMALL_SET - .0x1A:Dungeon
+				!define - TOD_SMALL_SET - .0x1B:Dungeon
+				!define - POW_SMALL_SET - .0x1C:Dungeon
+				!define - DHC_SMALL_SET - .0x1D:Dungeon
+				!define - RC_SMALL_SET  - .0x1E:Dungeon
 			!else
+				!define - DWS_SMALL_SET - .0x18:Deepwood
+				!define - COF_SMALL_SET - .0x19:FlameCave
+				!define - FOW_SMALL_SET - .0x1A:Fortress
+				!define - TOD_SMALL_SET - .0x1B:Droplets
+				!define - POW_SMALL_SET - .0x1C:Palace
+				!define - DHC_SMALL_SET - .0x1D:DHC
+				!define - RC_SMALL_SET  - .0x1E:Crypt
+			!endif
+		!else
+			!ifdef - KEYS_DUNGEONS
+				!define - SMALL_KEY - DungeonItem
+				!define - DWS_SMALL_SET - .0x18:Dungeon
+				!define - COF_SMALL_SET - .0x19:Dungeon
+				!define - FOW_SMALL_SET - .0x1A:Dungeon
+				!define - TOD_SMALL_SET - .0x1B:Dungeon
+				!define - POW_SMALL_SET - .0x1C:Dungeon
+				!define - DHC_SMALL_SET - .0x1D:Dungeon
+				!define - RC_SMALL_SET  - .0x1E:Dungeon
+			!else
+				!define - DWS_SMALL_SET - :Deepwood
+				!define - COF_SMALL_SET - :FlameCave
+				!define - FOW_SMALL_SET - :Fortress
+				!define - TOD_SMALL_SET - :Droplets
+				!define - POW_SMALL_SET - :Palace
+				!define - DHC_SMALL_SET - :DHC
+				!define - RC_SMALL_SET  - :Crypt
 				!ifdef - SMALL_KEYS_VANILLA
 					!define - SMALL_KEY - Unshuffled
 				!else
@@ -645,46 +587,46 @@
     !define - DHC_BIG_SET - .0x1D:
     !define - RC_BIG_SET  - .0x1E:
 !else
-	!ifdef - BIG_KEYS_OUTSIDE
-		!define - BIG_KEY - DungeonItem
-		!ifdef - KEYS_DUNGEONS
-			!define - DWS_BIG_SET - .0x18:Dungeon
-			!define - COF_BIG_SET - .0x19:Dungeon
-			!define - FOW_BIG_SET - .0x1A:Dungeon
-			!define - TOD_BIG_SET - .0x1B:Dungeon
-			!define - POW_BIG_SET - .0x1C:Dungeon
-			!define - DHC_BIG_SET - .0x1D:Dungeon
-			!define - RC_BIG_SET  - .0x1E:Dungeon
-		!else
-			!define - DWS_BIG_SET - .0x18:Deepwood
-			!define - COF_BIG_SET - .0x19:FlameCave
-			!define - FOW_BIG_SET - .0x1A:Fortress
-			!define - TOD_BIG_SET - .0x1B:Droplets
-			!define - POW_BIG_SET - .0x1C:Palace
-			!define - DHC_BIG_SET - .0x1D:DHC
-			!define - RC_BIG_SET  - .0x1E:Crypt
-		!endif
+	!ifdef - Replace_Big_Keys
+		!define - BIG_KEY - Minor
 	!else
-		!ifdef - KEYS_DUNGEONS
+		!ifdef - BIG_KEYS_OUTSIDE
 			!define - BIG_KEY - DungeonItem
-			!define - DWS_BIG_SET - .0x18:Dungeon
-			!define - COF_BIG_SET - .0x19:Dungeon
-			!define - FOW_BIG_SET - .0x1A:Dungeon
-			!define - TOD_BIG_SET - .0x1B:Dungeon
-			!define - POW_BIG_SET - .0x1C:Dungeon
-			!define - DHC_BIG_SET - .0x1D:Dungeon
-			!define - RC_BIG_SET  - .0x1E:Dungeon
-		!else
-			!define - DWS_BIG_SET - :Deepwood
-			!define - COF_BIG_SET - :FlameCave
-			!define - FOW_BIG_SET - :Fortress
-			!define - TOD_BIG_SET - :Droplets
-			!define - POW_BIG_SET - :Palace
-			!define - DHC_BIG_SET - :DHC
-			!define - RC_BIG_SET  - :Crypt
-			!ifdef - Replace_Big_Keys
-				!define - BIG_KEY - Minor
+			!ifdef - KEYS_DUNGEONS
+				!define - DWS_BIG_SET - .0x18:Dungeon
+				!define - COF_BIG_SET - .0x19:Dungeon
+				!define - FOW_BIG_SET - .0x1A:Dungeon
+				!define - TOD_BIG_SET - .0x1B:Dungeon
+				!define - POW_BIG_SET - .0x1C:Dungeon
+				!define - DHC_BIG_SET - .0x1D:Dungeon
+				!define - RC_BIG_SET  - .0x1E:Dungeon
 			!else
+				!define - DWS_BIG_SET - .0x18:Deepwood
+				!define - COF_BIG_SET - .0x19:FlameCave
+				!define - FOW_BIG_SET - .0x1A:Fortress
+				!define - TOD_BIG_SET - .0x1B:Droplets
+				!define - POW_BIG_SET - .0x1C:Palace
+				!define - DHC_BIG_SET - .0x1D:DHC
+				!define - RC_BIG_SET  - .0x1E:Crypt
+			!endif
+		!else
+			!ifdef - KEYS_DUNGEONS
+				!define - BIG_KEY - DungeonItem
+				!define - DWS_BIG_SET - .0x18:Dungeon
+				!define - COF_BIG_SET - .0x19:Dungeon
+				!define - FOW_BIG_SET - .0x1A:Dungeon
+				!define - TOD_BIG_SET - .0x1B:Dungeon
+				!define - POW_BIG_SET - .0x1C:Dungeon
+				!define - DHC_BIG_SET - .0x1D:Dungeon
+				!define - RC_BIG_SET  - .0x1E:Dungeon
+			!else
+				!define - DWS_BIG_SET - :Deepwood
+				!define - COF_BIG_SET - :FlameCave
+				!define - FOW_BIG_SET - :Fortress
+				!define - TOD_BIG_SET - :Droplets
+				!define - POW_BIG_SET - :Palace
+				!define - DHC_BIG_SET - :DHC
+				!define - RC_BIG_SET  - :Crypt
 				!ifdef - BIG_KEYS_VANILLA
 					!define - BIG_KEY - Unshuffled
 				!else
@@ -705,28 +647,12 @@
     !define - DHC_COM_SET - .0x1D:
     !define - RC_COM_SET  - .0x1E:
 !else
-	!ifdef - KEYS_OUTSIDE
-		!define - COMPASS - DungeonItem
-		!ifdef - KEYS_DUNGEONS
-		!define - DWS_COM_SET - .0x18:Dungeon
-		!define - COF_COM_SET - .0x19:Dungeon
-		!define - FOW_COM_SET - .0x1A:Dungeon
-		!define - TOD_COM_SET - .0x1B:Dungeon
-		!define - POW_COM_SET - .0x1C:Dungeon
-		!define - DHC_COM_SET - .0x1D:Dungeon
-		!define - RC_COM_SET  - .0x1E:Dungeon
-		!else
-		!define - DWS_COM_SET - .0x18:Deepwood
-		!define - COF_COM_SET - .0x19:FlameCave
-		!define - FOW_COM_SET - .0x1A:Fortress
-		!define - TOD_COM_SET - .0x1B:Droplets
-		!define - POW_COM_SET - .0x1C:Palace
-		!define - DHC_COM_SET - .0x1D:DHC
-		!define - RC_COM_SET  - .0x1E:Crypt
-		!endif
+	!ifdef - Replace_Compass
+		!define - COMPASS - Minor
 	!else
-		!ifdef - KEYS_DUNGEONS
+		!ifdef - KEYS_OUTSIDE
 			!define - COMPASS - DungeonItem
+			!ifdef - KEYS_DUNGEONS
 			!define - DWS_COM_SET - .0x18:Dungeon
 			!define - COF_COM_SET - .0x19:Dungeon
 			!define - FOW_COM_SET - .0x1A:Dungeon
@@ -734,21 +660,37 @@
 			!define - POW_COM_SET - .0x1C:Dungeon
 			!define - DHC_COM_SET - .0x1D:Dungeon
 			!define - RC_COM_SET  - .0x1E:Dungeon
-		!else
-			!define - DWS_COM_SET - :Deepwood
-			!define - COF_COM_SET - :FlameCave
-			!define - FOW_COM_SET - :Fortress
-			!define - TOD_COM_SET - :Droplets
-			!define - POW_COM_SET - :Palace
-			!define - DHC_COM_SET - :DHC
-			!define - RC_COM_SET  - :Crypt
-			!ifdef - Replace_Compass
-				!define - COMPASS - Minor
 			!else
+			!define - DWS_COM_SET - .0x18:Deepwood
+			!define - COF_COM_SET - .0x19:FlameCave
+			!define - FOW_COM_SET - .0x1A:Fortress
+			!define - TOD_COM_SET - .0x1B:Droplets
+			!define - POW_COM_SET - .0x1C:Palace
+			!define - DHC_COM_SET - .0x1D:DHC
+			!define - RC_COM_SET  - .0x1E:Crypt
+			!endif
+		!else
+			!ifdef - KEYS_DUNGEONS
+				!define - COMPASS - DungeonItem
+				!define - DWS_COM_SET - .0x18:Dungeon
+				!define - COF_COM_SET - .0x19:Dungeon
+				!define - FOW_COM_SET - .0x1A:Dungeon
+				!define - TOD_COM_SET - .0x1B:Dungeon
+				!define - POW_COM_SET - .0x1C:Dungeon
+				!define - DHC_COM_SET - .0x1D:Dungeon
+				!define - RC_COM_SET  - .0x1E:Dungeon
+			!else
+				!define - DWS_COM_SET - :Deepwood
+				!define - COF_COM_SET - :FlameCave
+				!define - FOW_COM_SET - :Fortress
+				!define - TOD_COM_SET - :Droplets
+				!define - POW_COM_SET - :Palace
+				!define - DHC_COM_SET - :DHC
+				!define - RC_COM_SET  - :Crypt
 				!ifdef - COMPASS_VANILLA
 					!define - COMPASS - Unshuffled
 				!else
-				!define - COMPASS - DungeonItem
+					!define - COMPASS - DungeonItem
 				!endif
 			!endif
 		!endif
@@ -1174,6 +1116,17 @@
 !endif
 !undefine - `ITEM_POOL`
 
+# Activate Firerod from the start of the game
+!define - `FIREROD`
+!ifdef - FIREROD_CHEST
+    !eventdefine - enable_firerod - 1
+	!replaceamount -  Items.FireRod - 1 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+!endif
+!ifdef - FIREROD_START
+    !eventdefine - enable_firerod - 1
+    !eventdefine - enable_firerod_start - 1
+!endif
+
 !ifdef - RANDOM_BOTTLE_CONTENT
     !replace - Items.Bottle4 - Items.Bottle4.0x20::1, Items.Bottle4.0x21::1, Items.Bottle4.0x22::1, Items.Bottle4.0x23::1, Items.Bottle4.0x24::1, Items.Bottle4.0x25::1, Items.Bottle4.0x26::1, Items.Bottle4.0x27::1, Items.Bottle4.0x28::1, Items.Bottle4.0x29::1, Items.Bottle4.0x2A::1, Items.Bottle4.0x2B::1, Items.Bottle4.0x2C::1, Items.Bottle4.0x2D::1, Items.Bottle4.0x2E::1, Items.Bottle4.0x2F::1, Items.Bottle4.0x30::1, Items.Bottle4.0x31::1
 !endif
@@ -1193,9 +1146,10 @@
 !endif
 
 !ifndef - HEART_RANDO
-!eventdefine - heartTraps
 !settype - Items.PieceOfHeart - Unshuffled
 !settype - Items.HeartContainer - Unshuffled
+!else
+!eventdefine - heartTraps
 !endif
 
 #!settype - Items.Rupee1 - Major
@@ -1420,12 +1374,20 @@
 	!ifdef - NO_RED_FUSIONS
 	!define - REDSHARED - Items.LanternOff.0xF2:SF
 	!else
+		!ifdef - OPEN_RED_FUSIONS
+	!define - REDSHARED - Items.LanternOff.0xF2:SF
+		!else
 	!define - REDSHARED - Items.LanternOff.0x18:SF
+		!endif
 	!endif
 	!ifdef - NO_BLUE_FUSIONS
 	!define - BLUESHARED - Items.LanternOff.0xF2:SF
 	!else
+		!ifdef - OPEN_BLUE_FUSIONS
+	!define - BLUESHARED - Items.LanternOff.0xF2:SF
+		!else
 	!define - BLUESHARED - Items.LanternOff.0x2D:SF
+		!endif
 	!endif
 	!ifdef - NO_GREEN_FUSIONS
 	!define - GREENSHARED35 - Items.LanternOff.0xF2:SF
@@ -1445,6 +1407,24 @@
 	!define - GREENSHARED5F - Items.LanternOff.0xF2:SF
 	!define - GREENSHARED60 - Items.LanternOff.0xF2:SF
 	!else
+		!ifdef - OPEN_GREEN_FUSIONS
+	!define - GREENSHARED35 - Items.LanternOff.0xF2:SF
+	!define - GREENSHARED36 - Items.LanternOff.0xF2:SF
+	!define - GREENSHARED37 - Items.LanternOff.0xF2:SF
+	!define - GREENSHARED39 - Items.LanternOff.0xF2:SF
+	!define - GREENSHARED3C - Items.LanternOff.0xF2:SF
+	!define - GREENSHARED44 - Items.LanternOff.0xF2:SF
+	!define - GREENSHARED46 - Items.LanternOff.0xF2:SF
+	!define - GREENSHARED47 - Items.LanternOff.0xF2:SF
+	!define - GREENSHARED4E - Items.LanternOff.0xF2:SF
+	!define - GREENSHARED50 - Items.LanternOff.0xF2:SF
+	!define - GREENSHARED53 - Items.LanternOff.0xF2:SF
+	!define - GREENSHARED55 - Items.LanternOff.0xF2:SF
+	!define - GREENSHARED56 - Items.LanternOff.0xF2:SF
+	!define - GREENSHARED58 - Items.LanternOff.0xF2:SF
+	!define - GREENSHARED5F - Items.LanternOff.0xF2:SF
+	!define - GREENSHARED60 - Items.LanternOff.0xF2:SF
+		!else
 	!define - GREENSHARED35 - Items.LanternOff.0x35:SF
 	!define - GREENSHARED36 - Items.LanternOff.0x36:SF
 	!define - GREENSHARED37 - Items.LanternOff.0x37:SF
@@ -1461,6 +1441,7 @@
 	!define - GREENSHARED58 - Items.LanternOff.0x58:SF
 	!define - GREENSHARED5F - Items.LanternOff.0x5F:SF
 	!define - GREENSHARED60 - Items.LanternOff.0x60:SF
+		!endif
 	!endif
     Shared00:SF;   DungeonItem; fusionScrap00:Define:FirstByte, 0x0C9844:SecondByte;;																																																																																																																																																																																																																																																																										`REDSHARED`
     Shared01:SF;   DungeonItem; fusionScrap01:Define:FirstByte, 0x0C9845:SecondByte;	(|(&Items.LanternOff.0x18:SF, Helpers.CanFuseRedMinish0), (&Items.LanternOff.0x2D:SF, Helpers.CanFuseBlueS), (&Items.LanternOff.0x35:SF, Helpers.CanFuseGreenCShared1), (&Items.LanternOff.0x36:SF, Helpers.CanFuseGreenCShared1), (&Items.LanternOff.0x37:SF, Helpers.CanFuseGreenCShared1), (&Items.LanternOff.0x39:SF, Helpers.CanFuseGreenCShared1), (&Items.LanternOff.0x3C:SF, Helpers.CanFuseGreenCShared1), (&Items.LanternOff.0x44:SF, Helpers.CanFuseGreenGShared1), (&Items.LanternOff.0x46:SF, Helpers.CanFuseGreenGShared1), (&Items.LanternOff.0x47:SF, Helpers.CanFuseGreenGShared1), (&Items.LanternOff.0x4E:SF, Helpers.CanFuseGreenGShared1), (&Items.LanternOff.0x50:SF, Helpers.CanFuseGreenPShared1), (&Items.LanternOff.0x53:SF, Helpers.CanFuseGreenPShared1), (&Items.LanternOff.0x55:SF, Helpers.CanFuseGreenPShared1), (&Items.LanternOff.0x56:SF, Helpers.CanFuseGreenPShared1), (&Items.LanternOff.0x58:SF, Helpers.CanFuseGreenPShared1), (&Items.LanternOff.0x5F:SF, Helpers.CanFuseGreenCShared1), (&Items.LanternOff.0x60:SF, Helpers.CanFuseGreenGShared1)); 		`BLUESHARED`
@@ -1480,8 +1461,34 @@
     Shared0F:SF;   DungeonItem; fusionScrap0F:Define:FirstByte, 0x0C9853:SecondByte;	(+15, (&Items.LanternOff.0x18:SF, Helpers.CanFuseRedMinish0), (&Items.LanternOff.0x2D:SF, Helpers.CanFuseBlueS), (&Items.LanternOff.0x35:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x36:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x37:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x39:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x3C:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x44:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x46:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x47:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x4E:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x50:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x53:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x55:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x56:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x58:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x5F:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x60:SF, Helpers.CanFuseGreenG)); 																													`GREENSHARED58`
     Shared10:SF;   DungeonItem; fusionScrap10:Define:FirstByte, 0x0C9854:SecondByte;	(+16, (&Items.LanternOff.0x18:SF, Helpers.CanFuseRedMinish0), (&Items.LanternOff.0x2D:SF, Helpers.CanFuseBlueS), (&Items.LanternOff.0x35:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x36:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x37:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x39:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x3C:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x44:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x46:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x47:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x4E:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x50:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x53:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x55:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x56:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x58:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x5F:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x60:SF, Helpers.CanFuseGreenG)); 																													`GREENSHARED5F`
     Shared11:SF;   DungeonItem; fusionScrap11:Define:FirstByte, 0x0C9855:SecondByte;	(+17, (&Items.LanternOff.0x18:SF, Helpers.CanFuseRedMinish0), (&Items.LanternOff.0x2D:SF, Helpers.CanFuseBlueS), (&Items.LanternOff.0x35:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x36:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x37:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x39:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x3C:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x44:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x46:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x47:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x4E:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x50:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x53:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x55:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x56:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x58:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x5F:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x60:SF, Helpers.CanFuseGreenG)); 																													`GREENSHARED60`
+	!ifdef - OPEN_RED_FUSIONS
+	CanFuseSharedRed;	Helper;;
+	!else
 	CanFuseSharedRed;	Helper;;	Items.LanternOff.0x18:SF, Helpers.CanFuseRedMinish0
+	!endif
+	!ifdef - OPEN_BLUE_FUSIONS
+	CanFuseSharedBlue;	Helper;;
+	!else
 	CanFuseSharedBlue;	Helper;;	Items.LanternOff.0x2D:SF, Helpers.CanFuseBlueS
+	!endif
+	!ifdef - OPEN_GREEN_FUSIONS
+	CanFuseShared35;	Helper;;
+	CanFuseShared36;	Helper;;
+	CanFuseShared37;	Helper;;
+	CanFuseShared39;	Helper;;
+	CanFuseShared3C;	Helper;;
+	CanFuseShared44;	Helper;;
+	CanFuseShared46;	Helper;;
+	CanFuseShared47;	Helper;;
+	CanFuseShared4E;	Helper;;
+	CanFuseShared50;	Helper;;
+	CanFuseShared53;	Helper;;
+	CanFuseShared55;	Helper;;
+	CanFuseShared56;	Helper;;
+	CanFuseShared58;	Helper;;
+	CanFuseShared5F;	Helper;;
+	CanFuseShared60;	Helper;;
+	!else
 	CanFuseShared35;	Helper;;	Items.LanternOff.0x35:SF, Helpers.CanFuseGreenC
 	CanFuseShared36;	Helper;;	Items.LanternOff.0x36:SF, Helpers.CanFuseGreenC
 	CanFuseShared37;	Helper;;	Items.LanternOff.0x37:SF, Helpers.CanFuseGreenC
@@ -1498,9 +1505,85 @@
 	CanFuseShared58;	Helper;;	Items.LanternOff.0x58:SF, Helpers.CanFuseGreenP
 	CanFuseShared5F;	Helper;;	Items.LanternOff.0x5F:SF, Helpers.CanFuseGreenC
 	CanFuseShared60;	Helper;;	Items.LanternOff.0x60:SF, Helpers.CanFuseGreenG
+	!endif
 !else
+	!ifdef - NO_RED_FUSIONS
+    Shared00;   Unshuffled; fusionScrap00:Define:FirstByte, 0x0C9844:SecondByte;;Items.LanternOff.0xF2
+	!else
+		!ifdef - OPEN_RED_FUSIONS
+    Shared00;   Unshuffled; fusionScrap00:Define:FirstByte, 0x0C9844:SecondByte;;Items.LanternOff.0xF2
+		!else
+    Shared00;   Unshuffled; fusionScrap00:Define:FirstByte, 0x0C9844:SecondByte;;Items.LanternOff.0x18
+		!endif
+	!endif
+	!ifdef - NO_BLUE_FUSIONS
+    Shared01;   Unshuffled; fusionScrap01:Define:FirstByte, 0x0C9845:SecondByte;;Items.LanternOff.0xF2
+	!else
+    Shared01;   Unshuffled; fusionScrap01:Define:FirstByte, 0x0C9845:SecondByte;;Items.LanternOff.0x2D
+	!endif
+	!ifdef - NO_GREEN_FUSIONS
+    Shared02;   Unshuffled; fusionScrap02:Define:FirstByte, 0x0C9846:SecondByte;;Items.LanternOff.0xF2
+    Shared03;   Unshuffled; fusionScrap03:Define:FirstByte, 0x0C9847:SecondByte;;Items.LanternOff.0xF2
+    Shared04;   Unshuffled; fusionScrap04:Define:FirstByte, 0x0C9848:SecondByte;;Items.LanternOff.0xF2
+    Shared05;   Unshuffled; fusionScrap05:Define:FirstByte, 0x0C9849:SecondByte;;Items.LanternOff.0xF2
+    Shared06;   Unshuffled; fusionScrap06:Define:FirstByte, 0x0C984A:SecondByte;;Items.LanternOff.0xF2
+    Shared07;   Unshuffled; fusionScrap07:Define:FirstByte, 0x0C984B:SecondByte;;Items.LanternOff.0xF2
+    Shared08;   Unshuffled; fusionScrap08:Define:FirstByte, 0x0C984C:SecondByte;;Items.LanternOff.0xF2
+    Shared09;   Unshuffled; fusionScrap09:Define:FirstByte, 0x0C984D:SecondByte;;Items.LanternOff.0xF2
+    Shared0A;   Unshuffled; fusionScrap0A:Define:FirstByte, 0x0C984E:SecondByte;;Items.LanternOff.0xF2
+    Shared0B;   Unshuffled; fusionScrap0B:Define:FirstByte, 0x0C984F:SecondByte;;Items.LanternOff.0xF2
+    Shared0C;   Unshuffled; fusionScrap0C:Define:FirstByte, 0x0C9850:SecondByte;;Items.LanternOff.0xF2
+    Shared0D;   Unshuffled; fusionScrap0D:Define:FirstByte, 0x0C9851:SecondByte;;Items.LanternOff.0xF2
+    Shared0E;   Unshuffled; fusionScrap0E:Define:FirstByte, 0x0C9852:SecondByte;;Items.LanternOff.0xF2
+    Shared0F;   Unshuffled; fusionScrap0F:Define:FirstByte, 0x0C9853:SecondByte;;Items.LanternOff.0xF2
+    Shared10;   Unshuffled; fusionScrap10:Define:FirstByte, 0x0C9854:SecondByte;;Items.LanternOff.0xF2
+    Shared11;   Unshuffled; fusionScrap11:Define:FirstByte, 0x0C9855:SecondByte;;Items.LanternOff.0xF2
+	!else
+    Shared02;   Unshuffled; fusionScrap02:Define:FirstByte, 0x0C9846:SecondByte;;Items.LanternOff.0x35
+    Shared03;   Unshuffled; fusionScrap03:Define:FirstByte, 0x0C9847:SecondByte;;Items.LanternOff.0x36
+    Shared04;   Unshuffled; fusionScrap04:Define:FirstByte, 0x0C9848:SecondByte;;Items.LanternOff.0x37
+    Shared05;   Unshuffled; fusionScrap05:Define:FirstByte, 0x0C9849:SecondByte;;Items.LanternOff.0x39
+    Shared06;   Unshuffled; fusionScrap06:Define:FirstByte, 0x0C984A:SecondByte;;Items.LanternOff.0x3C
+    Shared07;   Unshuffled; fusionScrap07:Define:FirstByte, 0x0C984B:SecondByte;;Items.LanternOff.0x44
+    Shared08;   Unshuffled; fusionScrap08:Define:FirstByte, 0x0C984C:SecondByte;;Items.LanternOff.0x46
+    Shared09;   Unshuffled; fusionScrap09:Define:FirstByte, 0x0C984D:SecondByte;;Items.LanternOff.0x47
+    Shared0A;   Unshuffled; fusionScrap0A:Define:FirstByte, 0x0C984E:SecondByte;;Items.LanternOff.0x4E
+    Shared0B;   Unshuffled; fusionScrap0B:Define:FirstByte, 0x0C984F:SecondByte;;Items.LanternOff.0x50
+    Shared0C;   Unshuffled; fusionScrap0C:Define:FirstByte, 0x0C9850:SecondByte;;Items.LanternOff.0x53
+    Shared0D;   Unshuffled; fusionScrap0D:Define:FirstByte, 0x0C9851:SecondByte;;Items.LanternOff.0x55
+    Shared0E;   Unshuffled; fusionScrap0E:Define:FirstByte, 0x0C9852:SecondByte;;Items.LanternOff.0x56
+    Shared0F;   Unshuffled; fusionScrap0F:Define:FirstByte, 0x0C9853:SecondByte;;Items.LanternOff.0x58
+    Shared10;   Unshuffled; fusionScrap10:Define:FirstByte, 0x0C9854:SecondByte;;Items.LanternOff.0x5F
+    Shared11;   Unshuffled; fusionScrap11:Define:FirstByte, 0x0C9855:SecondByte;;Items.LanternOff.0x60
+	!endif
+	!ifdef - OPEN_RED_FUSIONS
+	CanFuseSharedRed;	Helper;;
+	!else
 	CanFuseSharedRed;	Helper;;	Helpers.CanFuseRedMinish0
+	!endif
+	!ifdef - OPEN_BLUE_FUSIONS
+	CanFuseSharedBlue;	Helper;;
+	!else
 	CanFuseSharedBlue;	Helper;;	Helpers.CanFuseBlueS
+	!endif
+	!ifdef - OPEN_GREEN_FUSIONS
+	CanFuseShared35;	Helper;;
+	CanFuseShared36;	Helper;;
+	CanFuseShared37;	Helper;;
+	CanFuseShared39;	Helper;;
+	CanFuseShared3C;	Helper;;
+	CanFuseShared44;	Helper;;
+	CanFuseShared46;	Helper;;
+	CanFuseShared47;	Helper;;
+	CanFuseShared4E;	Helper;;
+	CanFuseShared50;	Helper;;
+	CanFuseShared53;	Helper;;
+	CanFuseShared55;	Helper;;
+	CanFuseShared56;	Helper;;
+	CanFuseShared58;	Helper;;
+	CanFuseShared5F;	Helper;;
+	CanFuseShared60;	Helper;;
+	!else
 	CanFuseShared35;	Helper;;	Helpers.CanFuseGreenC
 	CanFuseShared36;	Helper;;	Helpers.CanFuseGreenC
 	CanFuseShared37;	Helper;;	Helpers.CanFuseGreenC
@@ -1517,21 +1600,34 @@
 	CanFuseShared58;	Helper;;	Helpers.CanFuseGreenP
 	CanFuseShared5F;	Helper;;	Helpers.CanFuseGreenC
 	CanFuseShared60;	Helper;;	Helpers.CanFuseGreenG
+	!endif
 !endif
 	!ifdef - NO_RED_FUSIONS
 	!define - ALLREDSHARED - 
 	!else
+		!ifdef - OPEN_RED_FUSIONS
+	!define - ALLREDSHARED - 
+		!else
 	!define - ALLREDSHARED - , Helpers.CanFuseRedMinish0
+		!endif
 	!endif
 	!ifdef - NO_BLUE_FUSIONS
 	!define - ALLBLUESHARED - 
 	!else
+		!ifdef - OPEN_BLUE_FUSIONS
+	!define - ALLBLUESHARED - 
+		!else
 	!define - ALLBLUESHARED - , Helpers.CanFuseBlueS
+		!endif
 	!endif
 	!ifdef - NO_GREEN_FUSIONS
 	!define - ALLGREENSHARED - 
 	!else
+		!ifdef - OPEN_GREEN_FUSIONS
+	!define - ALLGREENSHARED -
+		!else
 	!define - ALLGREENSHARED - , Helpers.CanFuseGreenC, Helpers.CanFuseGreenG, Helpers.CanFuseGreenP
+		!endif
 	!endif
 	Start;			Helper;;	
 	CanFuseShared;	Helper;; Helpers.Start `ALLREDSHARED` `ALLBLUESHARED` `ALLGREENSHARED`
@@ -1702,7 +1798,7 @@ CanDownThrust;		Helper;; Helpers.HasSword, Items.DownThrust, Items.RocsCape
 !ifndef - GUARDSKIP
 GuardSkip;				Helper;;	Helpers.Inaccessible
 !else
-GuardSkip;				Helper;;	Items.Boots
+GuardSkip;				Helper;;	Items.PegasusBoots
 !endif
 !ifndef - LIKELIKE
 LikeLike;				Helper;;	Helpers.HasSword
@@ -1899,9 +1995,9 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 				!replaceamount - Items.KinstoneX.0x6E - 9 - `SHELLVALS` `KINVALS` `RUPEEVALS`
 			!endif
 			!ifdef - NO_GOLD_FUSIONS
-			!replaceamount - Items.KinstoneX.0x6F - 7 - `SHELLVALS` `KINVALS` `RUPEEVALS`
-			!else
 			!replaceamount - Items.KinstoneX.0x6F - 6 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+			!else
+			!replaceamount - Items.KinstoneX.0x6F - 7 - `SHELLVALS` `KINVALS` `RUPEEVALS`
 			!endif
 			!replaceamount - Items.KinstoneX.0x70 - 8 - `SHELLVALS` `KINVALS` `RUPEEVALS`
 			CanFuseRedW;		Helper;; Items.KinstoneX.0x6E::9
@@ -1911,8 +2007,20 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 			CanFuseRedDin;		Helper;; Items.KinstoneX.0x70::7
 			CanFuseRedMinish;	Helper;; Items.KinstoneX.0x70::7
 		!else
-			!eventdefine - combineKinstonesRed
+			!ifdef - NO_BLUE_FUSIONS
+				!ifdef - NO_GOLD_FUSIONS
+			!replaceamount - Items.KinstoneX.0x6E - 22 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+				!else
+			!replaceamount - Items.KinstoneX.0x6E - 23 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+				!endif
+			!else
+				!ifdef - NO_GOLD_FUSIONS
+			!replaceamount - Items.KinstoneX.0x6E - 23 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+				!else
 			!replaceamount - Items.KinstoneX.0x6E - 24 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+				!endif
+			!endif
+			!eventdefine - combineKinstonesRed
 			!replace - Items.KinstoneX.0x6F - `SWAPRED`
 			!replace - Items.KinstoneX.0x70 - `SWAPRED`
 			CanFuseRedW;		Helper;; (+24, Items.KinstoneX.0x6E, Items.KinstoneX.0x6F, Items.KinstoneX.0x70)
@@ -1961,6 +2069,7 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 !ifdef - NO_BLUE_FUSIONS
     !replace - Items.KinstoneX.0x71 - `SWAPBLUE`
     !replace - Items.KinstoneX.0x72 - `SWAPBLUE`
+	CanFuseBlueS;    			Helper;; 	Helpers.Inaccessible
 	CandyFusion;				Helper;;	Helpers.Inaccessible																											#TrilbyPlatform		22
 	LakeEastMinishFusion;		Helper;;	Helpers.Inaccessible																											#LakeBeanstalk		23
 	WesternMinishFusion;		Helper;;	Helpers.Inaccessible																											#WesternBeanstalk	24
@@ -1979,6 +2088,7 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 	!ifdef - OPEN_BLUE_FUSIONS
 		!replace - Items.KinstoneX.0x71 - `SWAPBLUE`
 		!replace - Items.KinstoneX.0x72 - `SWAPBLUE`
+			CanFuseBlueS;    	Helper;; 
 		CandyFusion;				Helper;;																																#TrilbyPlatform		22
 		LakeEastMinishFusion;		Helper;;																																#LakeBeanstalk		23
 		WesternMinishFusion;		Helper;;																																#WesternBeanstalk	24
@@ -2216,30 +2326,30 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 			!endif
 			!ifdef - NO_GOLD_FUSIONS
 				!ifdef - NO_RED_FUSIONS
-			!replaceamount - Items.KinstoneX.0x74 - 12 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+			!replaceamount - Items.KinstoneX.0x73 - 12 - `SHELLVALS` `KINVALS` `RUPEEVALS`
 					!ifdef - NO_BLUE_FUSIONS
-			!replaceamount - Items.KinstoneX.0x75 - 14 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+			!replaceamount - Items.KinstoneX.0x73 - 14 - `SHELLVALS` `KINVALS` `RUPEEVALS`
 					!else
-			!replaceamount - Items.KinstoneX.0x75 - 15 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+			!replaceamount - Items.KinstoneX.0x73 - 15 - `SHELLVALS` `KINVALS` `RUPEEVALS`
 					!endif
 				!else
-			!replaceamount - Items.KinstoneX.0x74 - 14 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+			!replaceamount - Items.KinstoneX.0x73 - 14 - `SHELLVALS` `KINVALS` `RUPEEVALS`
 					!ifdef - NO_BLUE_FUSIONS
-			!replaceamount - Items.KinstoneX.0x75 - 15 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+			!replaceamount - Items.KinstoneX.0x73 - 15 - `SHELLVALS` `KINVALS` `RUPEEVALS`
 					!else
-			!replaceamount - Items.KinstoneX.0x75 - 16 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+			!replaceamount - Items.KinstoneX.0x73 - 16 - `SHELLVALS` `KINVALS` `RUPEEVALS`
 					!endif
 				!endif
 			!else
-			!replaceamount - Items.KinstoneX.0x74 - 16 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+			!replaceamount - Items.KinstoneX.0x73 - 16 - `SHELLVALS` `KINVALS` `RUPEEVALS`
 				!ifdef - NO_BLUE_FUSIONS
-			!replaceamount - Items.KinstoneX.0x75 - 15 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+			!replaceamount - Items.KinstoneX.0x73 - 15 - `SHELLVALS` `KINVALS` `RUPEEVALS`
 				!else
-			!replaceamount - Items.KinstoneX.0x75 - 16 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+			!replaceamount - Items.KinstoneX.0x73 - 16 - `SHELLVALS` `KINVALS` `RUPEEVALS`
 				!endif
 			!endif
-			!replace - Items.KinstoneX.0x74 - Items.KinstoneX.0x73::1
-			!replace - Items.KinstoneX.0x75 - Items.KinstoneX.0x73::1
+			!replace - Items.KinstoneX.0x74 - `SWAPGREEN`
+			!replace - Items.KinstoneX.0x75 - `SWAPGREEN`
 			!eventdefine - combineKinstonesGreen
 			CanFuseGreenC;   		Helper;; (+49, Items.KinstoneX.0x73, Items.KinstoneX.0x74, Items.KinstoneX.0x75)
 			CanFuseGreenScrub;		Helper;; (+48, Items.KinstoneX.0x73, Items.KinstoneX.0x74, Items.KinstoneX.0x75)
@@ -2895,7 +3005,7 @@ Town_Shop_AtticChest;			Major;			0x2E-0x01-0x01;																(|Helpers.TownDo
 Town_Bakery_AtticChest;			Minor;			0x2E-0x03-0x00;																(|Helpers.TownDog, Helpers.Hundo);																																														Items.Rupee100
 Town_Inn_BackdoorHP;			Major;			0x0D66D7;																	(|Helpers.TownDog, Helpers.Hundo);																																														Items.PieceOfHeart
 Town_Inn_LedgeChest;			Minor;			0x02-0x00-0x06;																(|Helpers.InnLedge, Helpers.Hundo);																																														Items.ShellsX.200	#Items.KinstoneX.RedSpike
-Town_Simulation_Chest;			Major;			0x0F04C2;																	(|Helpers.HasSword, Helpers.Hundo);																																														Items.PieceOfHeart
+Town_Simulation_Chest;			Major;			0x0F04C2;																	(|(&Helpers.HasSword, (+10, Items.Rupee1:1, Items.Rupee5:5, Items.Rupee20:10, Items.Rupee50:10, Items.Rupee100:10, Items.Rupee200:10)), Helpers.Hundo);																	Items.PieceOfHeart
 Town_ShoeShop_NPC;				Major;			0x0130EE;																	(|Items.WakeUpMushroom, Helpers.Hundo);																																													Items.PegasusBoots
 Town_MusicHouse_LeftChest;		Minor;			0x23-0x05-0x00;																(|Helpers.MusicHouse, Helpers.Hundo);																																													Items.Rupee200
 Town_MusicHouse_MiddleChest;	Minor;			0x23-0x05-0x01;																(|Helpers.MusicHouse, Helpers.Hundo);																																													Items.Rupee200
