@@ -15,9 +15,9 @@
 #  The Hash symbol  starts comments and wont be read by the parser
 # RAND_INT is a hexadecimal number set by default.
 #
-# the location types available are Helper, Major, Minor, Unshuffled and DungeonItem.
+# the location types available are Helper, Major, Minor, Unshuffled and DungeonMajor.
 # Unshuffled will not move an item.
-# DungeonItem will not move an item out of spots that are marked with the same dungeon id.
+# DungeonMajor will not move an item out of spots that are marked with the same dungeon id.
 # Major will take the item into account to see if the game can be beaten.
 # Helper will not add an item but lets the logic be reused for other locations, this location type is the only one that does not require and address.
 #
@@ -264,19 +264,6 @@
 !define - `DUNGEON`
 !define - `AD_PED`
 
-
-!ifdef - NO_FUSION_SKIP
-    !eventdefine - NOFUSE
-!endif
-
-!ifdef - SHUFFLE_ELEMENTS
-    !eventdefine - globalElements - 1   # if defined, does not draw elements on map (during full shuffle)
-	!eventdefine - elementTraps
-	!undefine - `DUNGEON`
-!endif
-
-
-
 # Set the number of required dungeons
 
 !ifdef - AD_PED_1
@@ -302,10 +289,13 @@
 
 # Shuffle Elements removes the "Prize" dungeon and changes all the elements to regular "Major" items to be globally shuffled
 !ifdef - SHUFFLE_ELEMENTS
+    !eventdefine - globalElements - 1   # if defined, does not draw elements on map (during full shuffle)
+	!eventdefine - elementTraps
+	!undefine - `DUNGEON`
     !define - ELEMENT - Major
     !define - ELEMENT_DUNGEON - 
 !else
-    !define - ELEMENT - DungeonItem
+    !define - ELEMENT - DungeonPrize
     !define - ELEMENT_DUNGEON - Prizes
 !endif
 
@@ -330,6 +320,8 @@
 
 !define - GOLDEN_ENEMY_GREEN
 !define - GOLDEN_ENEMY_RED
+
+# This section defines values used by the patcher, this sets if and which fusions should be available
 
 !ifdef - OPEN_GOLD_FUSIONS
 	!define - Fusions - 
@@ -404,6 +396,8 @@
 	!eventdefine - fusions8D - 0x00
 !endif
 
+# Here are fusions that are locked by certain other fusions, so compatability is checked
+
 !ifdef - OPEN_GOLD_FUSIONS
 	!ifdef - OPEN_RED_FUSIONS
 		!eventdefine - fusions82 - 0xFF
@@ -473,6 +467,7 @@
 	!eventdefine - compasskeasy
 !endif
 
+#sets if dungeon pools should be seperate or together
 !ifdef - KEYS_DUNGEONS
 	!define - DWS_INSIDE	- :Dungeon
 	!define - COF_INSIDE	- :Dungeon
@@ -491,6 +486,7 @@
 	!define - RC_INSIDE			- :Crypt
 !endif
 
+#sets if regions around the dungeon should count in the dungeon
 !ifdef - KEYS_OUTSIDE
 	!define - DWS_OUTSIDE - `DWS_INSIDE`
 	!define - COF_OUTSIDE - `COF_INSIDE`
@@ -528,48 +524,52 @@
 	!ifdef - Replace_Small_Keys
 		!define - SMALL_KEY - Minor
 	!else
-		!define - SMALL_KEY - Minor
-		!ifdef - KEYS_OUTSIDE
-			!define - SMALL_KEY - DungeonItem
-			!ifdef - KEYS_DUNGEONS
-				!define - DWS_SMALL_SET - .0x18:Dungeon
-				!define - COF_SMALL_SET - .0x19:Dungeon
-				!define - FOW_SMALL_SET - .0x1A:Dungeon
-				!define - TOD_SMALL_SET - .0x1B:Dungeon
-				!define - POW_SMALL_SET - .0x1C:Dungeon
-				!define - DHC_SMALL_SET - .0x1D:Dungeon
-				!define - RC_SMALL_SET  - .0x1E:Dungeon
-			!else
-				!define - DWS_SMALL_SET - .0x18:Deepwood
-				!define - COF_SMALL_SET - .0x19:FlameCave
-				!define - FOW_SMALL_SET - .0x1A:Fortress
-				!define - TOD_SMALL_SET - .0x1B:Droplets
-				!define - POW_SMALL_SET - .0x1C:Palace
-				!define - DHC_SMALL_SET - .0x1D:DHC
-				!define - RC_SMALL_SET  - .0x1E:Crypt
-			!endif
+		!ifdef - SMALL_KEYS_VANILLA
+			!define - SMALL_KEY - Unshuffled
+			!define - DWS_SMALL_SET - :Deepwood
+			!define - COF_SMALL_SET - :FlameCave
+			!define - FOW_SMALL_SET - :Fortress
+			!define - TOD_SMALL_SET - :Droplets
+			!define - POW_SMALL_SET - :Palace
+			!define - DHC_SMALL_SET - :DHC
+			!define - RC_SMALL_SET  - :Crypt
 		!else
-			!ifdef - KEYS_DUNGEONS
-				!define - SMALL_KEY - DungeonItem
-				!define - DWS_SMALL_SET - .0x18:Dungeon
-				!define - COF_SMALL_SET - .0x19:Dungeon
-				!define - FOW_SMALL_SET - .0x1A:Dungeon
-				!define - TOD_SMALL_SET - .0x1B:Dungeon
-				!define - POW_SMALL_SET - .0x1C:Dungeon
-				!define - DHC_SMALL_SET - .0x1D:Dungeon
-				!define - RC_SMALL_SET  - .0x1E:Dungeon
-			!else
-				!define - DWS_SMALL_SET - :Deepwood
-				!define - COF_SMALL_SET - :FlameCave
-				!define - FOW_SMALL_SET - :Fortress
-				!define - TOD_SMALL_SET - :Droplets
-				!define - POW_SMALL_SET - :Palace
-				!define - DHC_SMALL_SET - :DHC
-				!define - RC_SMALL_SET  - :Crypt
-				!ifdef - SMALL_KEYS_VANILLA
-					!define - SMALL_KEY - Unshuffled
+			!define - SMALL_KEY - DungeonMajor
+			!ifdef - KEYS_OUTSIDE
+				!ifdef - KEYS_DUNGEONS
+					!define - DWS_SMALL_SET - .0x18:Dungeon
+					!define - COF_SMALL_SET - .0x19:Dungeon
+					!define - FOW_SMALL_SET - .0x1A:Dungeon
+					!define - TOD_SMALL_SET - .0x1B:Dungeon
+					!define - POW_SMALL_SET - .0x1C:Dungeon
+					!define - DHC_SMALL_SET - .0x1D:Dungeon
+					!define - RC_SMALL_SET  - .0x1E:Dungeon
 				!else
-					!define - SMALL_KEY - DungeonItem
+					!define - DWS_SMALL_SET - .0x18:Deepwood
+					!define - COF_SMALL_SET - .0x19:FlameCave
+					!define - FOW_SMALL_SET - .0x1A:Fortress
+					!define - TOD_SMALL_SET - .0x1B:Droplets
+					!define - POW_SMALL_SET - .0x1C:Palace
+					!define - DHC_SMALL_SET - .0x1D:DHC
+					!define - RC_SMALL_SET  - .0x1E:Crypt
+				!endif
+			!else
+				!ifdef - KEYS_DUNGEONS
+					!define - DWS_SMALL_SET - .0x18:Dungeon
+					!define - COF_SMALL_SET - .0x19:Dungeon
+					!define - FOW_SMALL_SET - .0x1A:Dungeon
+					!define - TOD_SMALL_SET - .0x1B:Dungeon
+					!define - POW_SMALL_SET - .0x1C:Dungeon
+					!define - DHC_SMALL_SET - .0x1D:Dungeon
+					!define - RC_SMALL_SET  - .0x1E:Dungeon
+				!else
+					!define - DWS_SMALL_SET - :Deepwood
+					!define - COF_SMALL_SET - :FlameCave
+					!define - FOW_SMALL_SET - :Fortress
+					!define - TOD_SMALL_SET - :Droplets
+					!define - POW_SMALL_SET - :Palace
+					!define - DHC_SMALL_SET - :DHC
+					!define - RC_SMALL_SET  - :Crypt
 				!endif
 			!endif
 		!endif
@@ -590,47 +590,52 @@
 	!ifdef - Replace_Big_Keys
 		!define - BIG_KEY - Minor
 	!else
-		!ifdef - BIG_KEYS_OUTSIDE
-			!define - BIG_KEY - DungeonItem
-			!ifdef - KEYS_DUNGEONS
-				!define - DWS_BIG_SET - .0x18:Dungeon
-				!define - COF_BIG_SET - .0x19:Dungeon
-				!define - FOW_BIG_SET - .0x1A:Dungeon
-				!define - TOD_BIG_SET - .0x1B:Dungeon
-				!define - POW_BIG_SET - .0x1C:Dungeon
-				!define - DHC_BIG_SET - .0x1D:Dungeon
-				!define - RC_BIG_SET  - .0x1E:Dungeon
-			!else
-				!define - DWS_BIG_SET - .0x18:Deepwood
-				!define - COF_BIG_SET - .0x19:FlameCave
-				!define - FOW_BIG_SET - .0x1A:Fortress
-				!define - TOD_BIG_SET - .0x1B:Droplets
-				!define - POW_BIG_SET - .0x1C:Palace
-				!define - DHC_BIG_SET - .0x1D:DHC
-				!define - RC_BIG_SET  - .0x1E:Crypt
-			!endif
+		!ifdef - BIG_KEYS_VANILLA
+			!define - BIG_KEY - Unshuffled
+			!define - DWS_BIG_SET - :Deepwood
+			!define - COF_BIG_SET - :FlameCave
+			!define - FOW_BIG_SET - :Fortress
+			!define - TOD_BIG_SET - :Droplets
+			!define - POW_BIG_SET - :Palace
+			!define - DHC_BIG_SET - :DHC
+			!define - RC_BIG_SET  - :Crypt
 		!else
-			!ifdef - KEYS_DUNGEONS
-				!define - BIG_KEY - DungeonItem
-				!define - DWS_BIG_SET - .0x18:Dungeon
-				!define - COF_BIG_SET - .0x19:Dungeon
-				!define - FOW_BIG_SET - .0x1A:Dungeon
-				!define - TOD_BIG_SET - .0x1B:Dungeon
-				!define - POW_BIG_SET - .0x1C:Dungeon
-				!define - DHC_BIG_SET - .0x1D:Dungeon
-				!define - RC_BIG_SET  - .0x1E:Dungeon
-			!else
-				!define - DWS_BIG_SET - :Deepwood
-				!define - COF_BIG_SET - :FlameCave
-				!define - FOW_BIG_SET - :Fortress
-				!define - TOD_BIG_SET - :Droplets
-				!define - POW_BIG_SET - :Palace
-				!define - DHC_BIG_SET - :DHC
-				!define - RC_BIG_SET  - :Crypt
-				!ifdef - BIG_KEYS_VANILLA
-					!define - BIG_KEY - Unshuffled
+			!define - BIG_KEY - DungeonMajor
+			!ifdef - BIG_KEYS_OUTSIDE
+				!ifdef - KEYS_DUNGEONS
+					!define - DWS_BIG_SET - .0x18:Dungeon
+					!define - COF_BIG_SET - .0x19:Dungeon
+					!define - FOW_BIG_SET - .0x1A:Dungeon
+					!define - TOD_BIG_SET - .0x1B:Dungeon
+					!define - POW_BIG_SET - .0x1C:Dungeon
+					!define - DHC_BIG_SET - .0x1D:Dungeon
+					!define - RC_BIG_SET  - .0x1E:Dungeon
 				!else
-					!define - BIG_KEY - DungeonItem
+					!define - DWS_BIG_SET - .0x18:Deepwood
+					!define - COF_BIG_SET - .0x19:FlameCave
+					!define - FOW_BIG_SET - .0x1A:Fortress
+					!define - TOD_BIG_SET - .0x1B:Droplets
+					!define - POW_BIG_SET - .0x1C:Palace
+					!define - DHC_BIG_SET - .0x1D:DHC
+					!define - RC_BIG_SET  - .0x1E:Crypt
+				!endif
+			!else
+				!ifdef - KEYS_DUNGEONS
+					!define - DWS_BIG_SET - .0x18:Dungeon
+					!define - COF_BIG_SET - .0x19:Dungeon
+					!define - FOW_BIG_SET - .0x1A:Dungeon
+					!define - TOD_BIG_SET - .0x1B:Dungeon
+					!define - POW_BIG_SET - .0x1C:Dungeon
+					!define - DHC_BIG_SET - .0x1D:Dungeon
+					!define - RC_BIG_SET  - .0x1E:Dungeon
+				!else
+					!define - DWS_BIG_SET - :Deepwood
+					!define - COF_BIG_SET - :FlameCave
+					!define - FOW_BIG_SET - :Fortress
+					!define - TOD_BIG_SET - :Droplets
+					!define - POW_BIG_SET - :Palace
+					!define - DHC_BIG_SET - :DHC
+					!define - RC_BIG_SET  - :Crypt
 				!endif
 			!endif
 		!endif
@@ -650,28 +655,19 @@
 	!ifdef - Replace_Compass
 		!define - COMPASS - Minor
 	!else
-		!ifdef - KEYS_OUTSIDE
-			!define - COMPASS - DungeonItem
-			!ifdef - KEYS_DUNGEONS
-			!define - DWS_COM_SET - .0x18:Dungeon
-			!define - COF_COM_SET - .0x19:Dungeon
-			!define - FOW_COM_SET - .0x1A:Dungeon
-			!define - TOD_COM_SET - .0x1B:Dungeon
-			!define - POW_COM_SET - .0x1C:Dungeon
-			!define - DHC_COM_SET - .0x1D:Dungeon
-			!define - RC_COM_SET  - .0x1E:Dungeon
-			!else
-			!define - DWS_COM_SET - .0x18:Deepwood
-			!define - COF_COM_SET - .0x19:FlameCave
-			!define - FOW_COM_SET - .0x1A:Fortress
-			!define - TOD_COM_SET - .0x1B:Droplets
-			!define - POW_COM_SET - .0x1C:Palace
-			!define - DHC_COM_SET - .0x1D:DHC
-			!define - RC_COM_SET  - .0x1E:Crypt
-			!endif
+		!ifdef - COMPASS_VANILLA
+			!define - COMPASS - Unshuffled
+			!define - DWS_COM_SET - :Deepwood
+			!define - COF_COM_SET - :FlameCave
+			!define - FOW_COM_SET - :Fortress
+			!define - TOD_COM_SET - :Droplets
+			!define - POW_COM_SET - :Palace
+			!define - DHC_COM_SET - :DHC
+			!define - RC_COM_SET  - :Crypt
 		!else
-			!ifdef - KEYS_DUNGEONS
-				!define - COMPASS - DungeonItem
+			!define - COMPASS - DungeonMinor
+			!ifdef - KEYS_OUTSIDE
+				!ifdef - KEYS_DUNGEONS
 				!define - DWS_COM_SET - .0x18:Dungeon
 				!define - COF_COM_SET - .0x19:Dungeon
 				!define - FOW_COM_SET - .0x1A:Dungeon
@@ -679,18 +675,32 @@
 				!define - POW_COM_SET - .0x1C:Dungeon
 				!define - DHC_COM_SET - .0x1D:Dungeon
 				!define - RC_COM_SET  - .0x1E:Dungeon
-			!else
-				!define - DWS_COM_SET - :Deepwood
-				!define - COF_COM_SET - :FlameCave
-				!define - FOW_COM_SET - :Fortress
-				!define - TOD_COM_SET - :Droplets
-				!define - POW_COM_SET - :Palace
-				!define - DHC_COM_SET - :DHC
-				!define - RC_COM_SET  - :Crypt
-				!ifdef - COMPASS_VANILLA
-					!define - COMPASS - Unshuffled
 				!else
-					!define - COMPASS - DungeonItem
+				!define - DWS_COM_SET - .0x18:Deepwood
+				!define - COF_COM_SET - .0x19:FlameCave
+				!define - FOW_COM_SET - .0x1A:Fortress
+				!define - TOD_COM_SET - .0x1B:Droplets
+				!define - POW_COM_SET - .0x1C:Palace
+				!define - DHC_COM_SET - .0x1D:DHC
+				!define - RC_COM_SET  - .0x1E:Crypt
+				!endif
+			!else
+				!ifdef - KEYS_DUNGEONS
+					!define - DWS_COM_SET - .0x18:Dungeon
+					!define - COF_COM_SET - .0x19:Dungeon
+					!define - FOW_COM_SET - .0x1A:Dungeon
+					!define - TOD_COM_SET - .0x1B:Dungeon
+					!define - POW_COM_SET - .0x1C:Dungeon
+					!define - DHC_COM_SET - .0x1D:Dungeon
+					!define - RC_COM_SET  - .0x1E:Dungeon
+				!else
+					!define - DWS_COM_SET - :Deepwood
+					!define - COF_COM_SET - :FlameCave
+					!define - FOW_COM_SET - :Fortress
+					!define - TOD_COM_SET - :Droplets
+					!define - POW_COM_SET - :Palace
+					!define - DHC_COM_SET - :DHC
+					!define - RC_COM_SET  - :Crypt
 				!endif
 			!endif
 		!endif
@@ -755,73 +765,48 @@
 # sets red/green/blue kinstones to be junk
 
 !ifdef - VANILLA_GOLD_FUSIONS
-	!ifdef - VANILLA_RED_FUSIONS
-		!eventdefine - fastKinstones
-		!ifdef - VANILLA_BLUE_FUSIONS
-			!ifdef - VANILLA_GREEN_FUSIONS
-				!define - KINVALS - 
-			!else
-				!define - KINVALS - Items.KinstoneX.0x73, Items.KinstoneX.0x74, Items.KinstoneX.0x75,
-			!endif
-		!else
-			!ifdef - VANILLA_GREEN_FUSIONS
-				!define - KINVALS - Items.KinstoneX.0x71, Items.KinstoneX.0x72,
-			!else
-				!define - KINVALS - Items.KinstoneX.0x71, Items.KinstoneX.0x72, Items.KinstoneX.0x73, Items.KinstoneX.0x74, Items.KinstoneX.0x75,
-			!endif
-		!endif
-	!else
-		!ifdef - VANILLA_BLUE_FUSIONS
-			!eventdefine - fastKinstones
-			!ifdef - VANILLA_GREEN_FUSIONS
-				!define - KINVALS - Items.KinstoneX.0x6E, Items.KinstoneX.0x6F, Items.KinstoneX.0x70,
-			!else
-				!define - KINVALS - Items.KinstoneX.0x6E, Items.KinstoneX.0x6F, Items.KinstoneX.0x70, Items.KinstoneX.0x73, Items.KinstoneX.0x74, Items.KinstoneX.0x75,
-			!endif
-		!else
-			!ifdef - VANILLA_GREEN_FUSIONS
-				!eventdefine - fastKinstones
-				!define - KINVALS - Items.KinstoneX.0x6E, Items.KinstoneX.0x6F, Items.KinstoneX.0x70, Items.KinstoneX.0x71, Items.KinstoneX.0x72,
-			!else
-				!define - KINVALS - Items.KinstoneX.0x6E, Items.KinstoneX.0x6F, Items.KinstoneX.0x70, Items.KinstoneX.0x71, Items.KinstoneX.0x72, Items.KinstoneX.0x73, Items.KinstoneX.0x74, Items.KinstoneX.0x75,
-			!endif
-		!endif
-	!endif
+	!define - GOLDKINVALS -
 !else
-	!ifdef - VANILLA_RED_FUSIONS
-		!eventdefine - fastKinstones
-		!ifdef - VANILLA_BLUE_FUSIONS
-			!ifdef - VANILLA_GREEN_FUSIONS
-				!define - KINVALS - Items.KinstoneX.0x65, Items.KinstoneX.0x6A, Items.KinstoneX.0x6D,
-			!else
-				!define - KINVALS - Items.KinstoneX.0x65, Items.KinstoneX.0x6A, Items.KinstoneX.0x6D, Items.KinstoneX.0x73, Items.KinstoneX.0x74, Items.KinstoneX.0x75,
-			!endif
-		!else
-			!ifdef - VANILLA_GREEN_FUSIONS
-				!define - KINVALS - Items.KinstoneX.0x65, Items.KinstoneX.0x6A, Items.KinstoneX.0x6D, Items.KinstoneX.0x71, Items.KinstoneX.0x72,
-			!else
-				!define - KINVALS - Items.KinstoneX.0x65, Items.KinstoneX.0x6A, Items.KinstoneX.0x6D, Items.KinstoneX.0x71, Items.KinstoneX.0x72, Items.KinstoneX.0x73, Items.KinstoneX.0x74, Items.KinstoneX.0x75,
-			!endif
-		!endif
+	!ifdef - COMBINED_GOLD_FUSIONS
+		!define - GOLDKINVALS - 
 	!else
-		!ifdef - VANILLA_BLUE_FUSIONS
-			!eventdefine - fastKinstones
-			!ifdef - VANILLA_GREEN_FUSIONS
-				!define - KINVALS - Items.KinstoneX.0x65, Items.KinstoneX.0x6A, Items.KinstoneX.0x6D, Items.KinstoneX.0x6E, Items.KinstoneX.0x6F, Items.KinstoneX.0x70,
-			!else
-				!define - KINVALS - Items.KinstoneX.0x65, Items.KinstoneX.0x6A, Items.KinstoneX.0x6D, Items.KinstoneX.0x6E, Items.KinstoneX.0x6F, Items.KinstoneX.0x70, Items.KinstoneX.0x73, Items.KinstoneX.0x74, Items.KinstoneX.0x75,
-			!endif
-		!else
-			!ifdef - VANILLA_GREEN_FUSIONS
-				!eventdefine - fastKinstones
-				!define - KINVALS - Items.KinstoneX.0x65, Items.KinstoneX.0x6A, Items.KinstoneX.0x6D, Items.KinstoneX.0x6E, Items.KinstoneX.0x6F, Items.KinstoneX.0x70, Items.KinstoneX.0x71, Items.KinstoneX.0x72,
-			!else
-				!define - KINVALS - Items.KinstoneX.0x65, Items.KinstoneX.0x6A, Items.KinstoneX.0x6D, Items.KinstoneX.0x6E, Items.KinstoneX.0x6F, Items.KinstoneX.0x70, Items.KinstoneX.0x71, Items.KinstoneX.0x72, Items.KinstoneX.0x73, Items.KinstoneX.0x74, Items.KinstoneX.0x75,
-			!endif
-		!endif
+		!define - GOLDKINVALS - Items.KinstoneX.0x65, Items.KinstoneX.0x6A, Items.KinstoneX.0x6D,
 	!endif
 !endif
 
+!ifdef - VANILLA_RED_FUSIONS
+	!define - REDKINVALS -
+!else
+	!ifdef - COMBINED_RED_FUSIONS
+		!define - REDKINVALS - 
+	!else
+		!define - REDKINVALS - Items.KinstoneX.0x6E, Items.KinstoneX.0x6F, Items.KinstoneX.0x70,
+	!endif
+!endif
+
+!ifdef - VANILLA_BLUE_FUSIONS
+	!define - BLUEKINVALS -
+!else
+	!ifdef - COMBINED_BLUE_FUSIONS
+		!define - BLUEKINVALS - 
+	!else
+		!define - BLUEKINVALS - Items.KinstoneX.0x71, Items.KinstoneX.0x72,
+	!endif
+!endif
+
+!ifdef - VANILLA_GREEN_FUSIONS
+	!define - GREENKINVALS -
+!else
+	!ifdef - COMBINED_GREEN_FUSIONS
+		!define - GREENKINVALS - 
+	!else
+		!define - GREENKINVALS - Items.KinstoneX.0x73, Items.KinstoneX.0x74, Items.KinstoneX.0x75,
+	!endif
+!endif
+
+!define - KINVALS - `GOLDKINVALS` `REDKINVALS` `BLUEKINVALS` `GREENKINVALS`
+
+#replaces keys if they are needed to be removed from the pool
 !ifdef - Replace_Small_Keys
 	!define - DWS_Small	- Items.Bombs5
 	!define - CoF_Small	- Items.Bombs5
@@ -846,7 +831,11 @@
 	!define - FoW_Small	- Items.SmallKey`FOW_SMALL_SET`
 	!define - PoW_Small	- Items.SmallKey`POW_SMALL_SET`
 	!endif
+	!ifdef - NODHC
+	!define - DHC_Small	- Items.Bombs5
+	!else
 	!define - DHC_Small	- Items.SmallKey`DHC_SMALL_SET`
+	!endif
 !endif
 
 !ifdef - Replace_Big_Keys
@@ -871,7 +860,11 @@
 	!define - FoW_Big	- Items.BigKey`FOW_BIG_SET`
 	!define - PoW_Big	- Items.BigKey`POW_BIG_SET`
 	!endif
+	!ifdef - NODHC
+	!define - DHC_Big	- Items.Bombs5
+	!else
 	!define - DHC_Big	- Items.BigKey`DHC_BIG_SET`
+	!endif
 !endif
 
 !ifdef - Replace_Compass
@@ -910,11 +903,15 @@
 	!define - PoW_Compass	- Items.Compass		`POW_COM_SET`
 	!define - PoW_Map		- Items.DungeonMap	`POW_COM_SET`
 	!endif
+	!ifdef - NODHC
+	!define - DHC_Compass	- Items.Bombs5
+	!define - DHC_Map		- Items.Bombs5
+	!else
 	!define - DHC_Compass	- Items.Compass		`DHC_COM_SET`
 	!define - DHC_Map		- Items.DungeonMap	`DHC_COM_SET`
+	!endif
 !endif
-	
-	
+
 !define - SHELLVALS - Items.ShellsX, Items.ShellsX.1, Items.ShellsX.10, Items.ShellsX.20, Items.ShellsX.50, Items.ShellsX.80, Items.ShellsX.100, Items.ShellsX.200, # sets shells to be junk
 !define - RUPEEVALS - Items.Rupee1, Items.Rupee5, Items.Rupee20, # set rupees under 50 to be junk
 !define - DHC_FIG -
@@ -937,11 +934,12 @@
 
 !ifdef - TIMEDOHKO
     !eventdefine - timedohkoOption
-    !replaceamount - Items.BlueOrb - 0x10 - `SHELLVALS` `KINVALS`
-    !replaceamount - Items.GreenOrb - 0x10 - `SHELLVALS` `KINVALS`
-    !replaceamount - Items.RedOrb - 0x10 - `SHELLVALS` `KINVALS`
+    !replaceamount - Items.BlueOrb - 0x10 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+    !replaceamount - Items.GreenOrb - 0x10 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+    !replaceamount - Items.RedOrb - 0x10 - `SHELLVALS` `KINVALS` `RUPEEVALS`
 !endif
 
+# This section creates defines to count all major items, it is then used in the helper AllMajors when Barren dungeons setting is on
 !define - ALLSWORDS - (+5, Items.SmithSword, Items.GreenSword, Items.RedSword, Items.BlueSword, Items.FourSword)
 !define - ALLREMOTES - Items.RemoteBombs,
 !define - ALLBOWS - (+2, Items.Bow, Items.LightArrow)
@@ -956,39 +954,40 @@
 !define - ALLOCARINAS - Items.Ocarina
 !define - ALLBOTTLES - (+4, Items.Bottle1, Items.Bottle2, Items.Bottle3, Items.Bottle4, Items.Bottle4.0x20, Items.Bottle4.0x21, Items.Bottle4.0x22, Items.Bottle4.0x23, Items.Bottle4.0x24, Items.Bottle4.0x25, Items.Bottle4.0x26, Items.Bottle4.0x27, Items.Bottle4.0x28, Items.Bottle4.0x29, Items.Bottle4.0x2A, Items.Bottle4.0x2B, Items.Bottle4.0x2C, Items.Bottle4.0x2D, Items.Bottle4.0x2E, Items.Bottle4.0x2F, Items.Bottle4.0x30, Items.Bottle4.0x31)
 	!ifdef - OPENWORLD
-!define - ALLGYKEYS - 
+		!define - ALLGYKEYS - 
 	!else
-!define - ALLGYKEYS - Items.GraveyardKey,
+		!define - ALLGYKEYS - Items.GraveyardKey,
 	!endif
 !define - ALLGRIPS - Items.GripRing
 !define - ALLFLIPPERS - Items.Flippers
 !define - ALLSPINS - Items.SpinAttack
 !define - ALLGREATS - Items.GreatSpin,
-	!ifdef - COMPASS_KEYSANITY
-!define - ALLCOMPASS - Items.DungeonMap:0x18, Items.DungeonMap:0x19, Items.DungeonMap:0x1A, Items.DungeonMap:0x1B, Items.DungeonMap:0x1C, Items.DungeonMap:0x1D, Items.Compass:0x18, Items.Compass:0x19, Items.Compass:0x1A, Items.Compass:0x1B, Items.Compass:0x1C, Items.Compass:0x1D,
-	!else
-!define - ALLCOMPASS -
-	!endif
-	!ifdef - BIG_KEYSANITY
-!define - ALLBIGKEYS - Items.BigKey:0x18, Items.BigKey:0x19, Items.BigKey:0x1A, Items.BigKey:0x1B, Items.BigKey:0x1C, Items.BigKey:0x1D,
-	!else
-!define - ALLBIGKEYS -
-	!endif
-	!ifdef - SMALL_KEYSANITY
-!define - ALLSMALLKEYS -  Items.SmallKey:0x18:4,  Items.SmallKey:0x19:2,  Items.SmallKey:0x1A:4,  Items.SmallKey:0x1B:4,  Items.SmallKey:0x1C:6,  Items.SmallKey:0x1D:5,  Items.SmallKey:0x1E:3,
-	!else
-!define - ALLSMALLKEYS -
-	!endif
 	!ifdef - OPENWORLD
-!define - ALLCLOUDS -
-!define - ALLSWAMPS -
-!define - ALLFALLS -
+		!define - ALLCOMPASS -
+		!define - ALLBIGKEYS -
+		!define - ALLSMALLKEYS -
 	!else
-!define - ALLCLOUDS - Items.KinstoneX.YellowTornadoProng::5,
-!define - ALLSWAMPS - Items.KinstoneX.YellowTotemProng::3,
-!define - ALLFALLS - Items.KinstoneX.YellowCrown,
+		!ifdef - COMPASS_KEYSANITY
+			!define - ALLCOMPASS - Items.DungeonMap:0x18, Items.DungeonMap:0x19, Items.DungeonMap:0x1A, Items.DungeonMap:0x1B, Items.DungeonMap:0x1C, Items.DungeonMap:0x1D, Items.Compass:0x18, Items.Compass:0x19, Items.Compass:0x1A, Items.Compass:0x1B, Items.Compass:0x1C, Items.Compass:0x1D,
+		!else
+			!define - ALLCOMPASS -
+		!endif
+		!ifdef - BIG_KEYSANITY
+			!define - ALLBIGKEYS - Items.BigKey:0x18, Items.BigKey:0x19, Items.BigKey:0x1A, Items.BigKey:0x1B, Items.BigKey:0x1C, Items.BigKey:0x1D,
+		!else
+			!define - ALLBIGKEYS -
+		!endif
+		!ifdef - SMALL_KEYSANITY
+			!define - ALLSMALLKEYS -  Items.SmallKey:0x18:4,  Items.SmallKey:0x19:2,  Items.SmallKey:0x1A:4,  Items.SmallKey:0x1B:4,  Items.SmallKey:0x1C:6,  Items.SmallKey:0x1D:5,  Items.SmallKey:0x1E:3,
+		!else
+			!define - ALLSMALLKEYS -
+		!endif
 	!endif
-!define - ALLHEARTS - (+68, Items.PieceOfHeart, Items.HeartContainer::4)
+!define - ALLGOLDS -
+!define - ALLREDS -
+!define - ALLBLUES -
+!define - ALLGREENS -
+!define - ALLHEARTS - (+68, Items.PieceOfHeart, Items.HeartContainer::4),
 !define - ALLBOMBS - Items.BombBag::4
 !define - ALLQUIVERS - ,Items.LargeQuiver::3
 !define - ALLBUTTERFLIES - ,Items.ArrowButterfly, Items.DigButterfly, Items.SwimButterfly
@@ -1009,7 +1008,7 @@
 	!define - ALLSHIELDS -	(|Items.Shield, Items.MirrorShield)
 	!define - ALLBOTTLES - (|Items.Bottle1, Items.Bottle2, Items.Bottle3, Items.Bottle4, Items.Bottle4.0x20, Items.Bottle4.0x21, Items.Bottle4.0x22, Items.Bottle4.0x23, Items.Bottle4.0x24, Items.Bottle4.0x25, Items.Bottle4.0x26, Items.Bottle4.0x27, Items.Bottle4.0x28, Items.Bottle4.0x29, Items.Bottle4.0x2A, Items.Bottle4.0x2B, Items.Bottle4.0x2C, Items.Bottle4.0x2D, Items.Bottle4.0x2E, Items.Bottle4.0x2F, Items.Bottle4.0x30, Items.Bottle4.0x31)
 	!define - ALLGREATS - 
-	!define - ALLHEARTS - (+28, Items.PieceOfHeart, Items.HeartContainer::4)
+	!define - ALLHEARTS - (+28, Items.PieceOfHeart, Items.HeartContainer::4),
 	!define - ALLBOMBS - Items.BombBag
 	!define - ALLQUIVERS - 
 	!define - ALLBUTTERFLIES - 
@@ -1017,11 +1016,17 @@
     !replace - Items.RemoteBombs - `SWAPSHELL`
 	!ifdef - VANILLA_RED_FUSIONS
 	!else
-		!ifdef - VANILLA_GREEN_FUSIONS
+		!ifdef - COMBINED_RED_FUSIONS
 		!else
-	!undefine - ALLBOOMERANGS
-	!define - ALLBOOMERANGS - (|Items.Boomerang, Items.MagicBoomerang)
-    !replaceamount - `FILLER` - 1 - Items.Boomerang
+			!ifdef - VANILLA_GREEN_FUSIONS
+			!else
+				!ifdef - COMBINED_GREEN_FUSIONS
+				!else
+					!undefine - ALLBOOMERANGS
+					!define - ALLBOOMERANGS - (|Items.Boomerang, Items.MagicBoomerang)
+					!replaceamount - `FILLER` - 1 - Items.Boomerang
+				!endif
+			!endif
 		!endif
 	!endif
     !replaceamount - `FILLER` - 1 - Items.Shield
@@ -1037,7 +1042,6 @@
     !replace - Items.FastSpin - `SWAPSHELL`
     !replace - Items.FastSplit - `SWAPSHELL`
     !replace - Items.LongSpin - `SWAPSHELL`
-	
 !endif
 !ifdef - ITEM_POOL_PLENTIFUL
 	!undefine - ALLSWORDS
@@ -1080,39 +1084,28 @@
 		!undefine - ALLGYKEYS
 		!define - ALLGYKEYS - Items.GraveyardKey::2,
 		!replaceamount - Items.GraveyardKey - 1 - `SHELLVALS` `KINVALS` `RUPEEVALS`
-		!ifndef - NO_GOLD_FUSIONS
-			!undefine - ALLCLOUDS
-			!undefine - ALLSWAMPS
-			!undefine - ALLFALLS
-			!define - ALLCLOUDS - Items.KinstoneX.YellowTornadoProng::7,
-			!define - ALLSWAMPS - Items.KinstoneX.YellowTotemProng::5,
-			!define - ALLFALLS - Items.KinstoneX.YellowCrown::2,
-			!replaceamount - Items.KinstoneX.YellowTotemProng - 2 - `SHELLVALS` `KINVALS` `RUPEEVALS`
-			!replaceamount - Items.KinstoneX.YellowCrown - 1 - `SHELLVALS` `KINVALS` `RUPEEVALS`
-			!replaceamount - Items.KinstoneX.YellowTornadoProng - 2 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+		!ifdef - BIG_KEYSANITY
+			!undefine - ALLBIGKEYS
+			!define - ALLBIGKEYS - Items.BigKey:0x18:2, Items.BigKey:0x19:2, Items.BigKey:0x1A:2, Items.BigKey:0x1B:2, Items.BigKey:0x1C:2, Items.BigKey:0x1D:2,
+			!replaceamount - Items.BigKey`DWS_BIG_SET` - 1 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+			!replaceamount - Items.BigKey`COF_BIG_SET` - 1 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+			!replaceamount - Items.BigKey`FOW_BIG_SET` - 1 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+			!replaceamount - Items.BigKey`TOD_BIG_SET` - 1 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+			!replaceamount - Items.BigKey`POW_BIG_SET` - 1 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+			!replaceamount - Items.BigKey`DHC_BIG_SET` - 1 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+		!endif
+		!ifdef - SMALL_KEYSANITY
+			!undefine - ALLSMALLKEYS
+			!define - ALLSMALLKEYS - Items.SmallKey:0x18:6,  Items.SmallKey:0x19:4,  Items.SmallKey:0x1A:6,  Items.SmallKey:0x1B:6,  Items.SmallKey:0x1C:8,  Items.SmallKey:0x1D:7,  Items.SmallKey:0x1E:5,
+			!replaceamount - Items.SmallKey`DWS_SMALL_SET` - 2 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+			!replaceamount - Items.SmallKey`COF_SMALL_SET` - 2 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+			!replaceamount - Items.SmallKey`FOW_SMALL_SET` - 2 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+			!replaceamount - Items.SmallKey`TOD_SMALL_SET` - 2 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+			!replaceamount - Items.SmallKey`RC_SMALL_SET`  - 2 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+			!replaceamount - Items.SmallKey`POW_SMALL_SET` - 2 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+			!replaceamount - Items.SmallKey`DHC_SMALL_SET` - 2 - `SHELLVALS` `KINVALS` `RUPEEVALS`
 		!endif
 	!endif
-    !ifdef - BIG_KEYSANITY
-		!undefine - ALLBIGKEYS
-		!define - ALLBIGKEYS - Items.BigKey:0x18:2, Items.BigKey:0x19:2, Items.BigKey:0x1A:2, Items.BigKey:0x1B:2, Items.BigKey:0x1C:2, Items.BigKey:0x1D:2,
-        !replaceamount - Items.BigKey`DWS_BIG_SET` - 1 - `SHELLVALS` `KINVALS` `RUPEEVALS`
-        !replaceamount - Items.BigKey`COF_BIG_SET` - 1 - `SHELLVALS` `KINVALS` `RUPEEVALS`
-        !replaceamount - Items.BigKey`FOW_BIG_SET` - 1 - `SHELLVALS` `KINVALS` `RUPEEVALS`
-        !replaceamount - Items.BigKey`TOD_BIG_SET` - 1 - `SHELLVALS` `KINVALS` `RUPEEVALS`
-        !replaceamount - Items.BigKey`POW_BIG_SET` - 1 - `SHELLVALS` `KINVALS` `RUPEEVALS`
-        !replaceamount - Items.BigKey`DHC_BIG_SET` - 1 - `SHELLVALS` `KINVALS` `RUPEEVALS`
-	!endif
-	!ifdef - SMALL_KEYSANITY
-		!undefine - ALLSMALLKEYS
-		!define - ALLSMALLKEYS - Items.SmallKey:0x18:6,  Items.SmallKey:0x19:4,  Items.SmallKey:0x1A:6,  Items.SmallKey:0x1B:6,  Items.SmallKey:0x1C:8,  Items.SmallKey:0x1D:7,  Items.SmallKey:0x1E:5,
-        !replaceamount - Items.SmallKey`DWS_SMALL_SET` - 2 - `SHELLVALS` `KINVALS` `RUPEEVALS`
-        !replaceamount - Items.SmallKey`COF_SMALL_SET` - 2 - `SHELLVALS` `KINVALS` `RUPEEVALS`
-        !replaceamount - Items.SmallKey`FOW_SMALL_SET` - 2 - `SHELLVALS` `KINVALS` `RUPEEVALS`
-        !replaceamount - Items.SmallKey`TOD_SMALL_SET` - 2 - `SHELLVALS` `KINVALS` `RUPEEVALS`
-        !replaceamount - Items.SmallKey`RC_SMALL_SET`  - 2 - `SHELLVALS` `KINVALS` `RUPEEVALS`
-        !replaceamount - Items.SmallKey`POW_SMALL_SET` - 2 - `SHELLVALS` `KINVALS` `RUPEEVALS`
-        !replaceamount - Items.SmallKey`DHC_SMALL_SET` - 2 - `SHELLVALS` `KINVALS` `RUPEEVALS`
-    !endif
 !endif
 !undefine - `ITEM_POOL`
 
@@ -1146,10 +1139,12 @@
 !endif
 
 !ifndef - HEART_RANDO
-!settype - Items.PieceOfHeart - Unshuffled
-!settype - Items.HeartContainer - Unshuffled
+	!undefine - ALLHEARTS
+	!define - ALLHEARTS -
+	!settype - Items.PieceOfHeart - Unshuffled
+	!settype - Items.HeartContainer - Unshuffled
 !else
-!eventdefine - heartTraps
+	!eventdefine - heartTraps
 !endif
 
 #!settype - Items.Rupee1 - Major
@@ -1187,22 +1182,15 @@
     !else
         !ifdef - NODHC
             !eventdefine - noDHC
-			!replace - Items.BigKey`DHC_BIG_SET` - `SHELLVALS`
-			!replaceamount - `SHELLVALS` - 5 - Items.SmallKey`DHC_SMALL_SET`
-			!replace - Items.Compass`DHC_COM_SET` - `SHELLVALS`
-			!replace - Items.DungeonMap`DHC_COM_SET` - `SHELLVALS`
         !endif
-
         !ifndef - SWORDEX
             !eventdefine - requirementSwordTier       - `SWORDLEVEL`
             GotSwords; Helper; ; (+`SWORDLEVEL`, Items.SmithSword)
         !endif
-
         !ifndef - ELEMENTEX
             !eventdefine - requirementElementsAmmount - `ELEMENTAMOUNT`
             GotElements; Helper; ; (+`ELEMENTAMOUNT`, Items.WaterElement:`ELEMENT_DUNGEON`, Items.FireElement:`ELEMENT_DUNGEON`, Items.WindElement:`ELEMENT_DUNGEON`, Items.EarthElement:`ELEMENT_DUNGEON`)
         !endif
-
         !ifndef - SWORDEX
             !ifndef - ELEMENTEX
                 #both
@@ -1225,147 +1213,147 @@
 
 # Music randomization values (kinda hard to read, unfortunately)
 !ifdef - MUSIC_RANDO
-    Area0Music:Music;  DungeonItem; musicScrap:Define:FirstByte, 0x12746b:SecondByte;; Items.LanternOff.0x01:Music
-    Area1Music:Music;  DungeonItem; musicScrap:Define:FirstByte, 0x12746f:SecondByte;; Items.LanternOff.0x06:Music
-    Area2Music:Music;  DungeonItem; musicScrap:Define:FirstByte, 0x127473:SecondByte;; Items.LanternOff.0x07:Music
-    Area3Music:Music;  DungeonItem; musicScrap:Define:FirstByte, 0x127477:SecondByte;; Items.LanternOff.0x08:Music
-    Area4Music:Music;  DungeonItem; musicScrap:Define:FirstByte, 0x12747b:SecondByte;; Items.LanternOff.0x2d:Music
-    Area5Music:Music;  DungeonItem; musicScrap:Define:FirstByte, 0x12747f:SecondByte;; Items.LanternOff.0x0a:Music
-    Area6Music:Music;  DungeonItem; musicScrap:Define:FirstByte, 0x127483:SecondByte;; Items.LanternOff.0x0b:Music
-    Area7Music:Music;  DungeonItem; musicScrap:Define:FirstByte, 0x127487:SecondByte;; Items.LanternOff.0x0d:Music
-    Area8Music:Music;  DungeonItem; musicScrap:Define:FirstByte, 0x12748b:SecondByte;; Items.LanternOff.0x0e:Music
-    Area9Music:Music;  DungeonItem; musicScrap:Define:FirstByte, 0x12748f:SecondByte;; Items.LanternOff.0x10:Music
-    AreaaMusic:Music;  DungeonItem; musicScrap:Define:FirstByte, 0x127493:SecondByte;; Items.LanternOff.0x11:Music
-    AreabMusic:Music;  DungeonItem; musicScrap:Define:FirstByte, 0x127497:SecondByte;; Items.LanternOff.0x13:Music
-    AreacMusic:Music;  DungeonItem; musicScrap:Define:FirstByte, 0x12749b:SecondByte;; Items.LanternOff.0x14:Music
-    AreadMusic:Music;  DungeonItem; musicScrap:Define:FirstByte, 0x12749f:SecondByte;; Items.LanternOff.0x15:Music
-    AreaeMusic:Music;  DungeonItem; musicScrap:Define:FirstByte, 0x1274a3:SecondByte;; Items.LanternOff.0x16:Music
-    AreafMusic:Music;  DungeonItem; musicScrap:Define:FirstByte, 0x1274a7:SecondByte;; Items.LanternOff.0x17:Music
-    Area10Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x1274ab:SecondByte;; Items.LanternOff.0x18:Music
-    Area11Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x1274af:SecondByte;; Items.LanternOff.0x19:Music
-    Area12Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x1274b3:SecondByte;; Items.LanternOff.0x1a:Music
-    Area13Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x1274b7:SecondByte;; Items.LanternOff.0x1b:Music
-    Area14Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x1274bb:SecondByte;; Items.LanternOff.0x1c:Music
-    Area15Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x1274bf:SecondByte;; Items.LanternOff.0x1d:Music
-    Area16Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x1274c3:SecondByte;; Items.LanternOff.0x1e:Music
-    Area17Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x1274c7:SecondByte;; Items.LanternOff.0x1f:Music
-    Area18Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x1274cb:SecondByte;; Items.LanternOff.0x20:Music
-    Area19Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x1274cf:SecondByte;; Items.LanternOff.0x21:Music
-    Area1aMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 0x1274d3:SecondByte;; Items.LanternOff.0x22:Music
-    Area1bMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 0x1274d7:SecondByte;; Items.LanternOff.0x23:Music
-    Area1cMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 0x1274db:SecondByte;; Items.LanternOff.0x24:Music
-    Area1dMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 0x1274df:SecondByte;; Items.LanternOff.0x25:Music
-    Area1eMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 0x1274e3:SecondByte;; Items.LanternOff.0x26:Music
-    Area1fMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 0x1274e7:SecondByte;; Items.LanternOff.0x27:Music
-    Area20Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x1274eb:SecondByte;; Items.LanternOff.0x28:Music
-    Area21Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x1274ef:SecondByte;; Items.LanternOff.0x29:Music
-    Area22Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x1274f3:SecondByte;; Items.LanternOff.0x2a:Music
-    Area23Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x1274f7:SecondByte;; Items.LanternOff.0x2b:Music
-    Area24Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x1274fb:SecondByte;; Items.LanternOff.0x2c:Music
-    Area25Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x1274ff:SecondByte;; Items.LanternOff.0x2d:Music
-    Area26Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x127503:SecondByte;; Items.LanternOff.0x2e:Music
-    Area27Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x127507:SecondByte;; Items.LanternOff.0x2f:Music
-    Area28Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x12750b:SecondByte;; Items.LanternOff.0x30:Music
-    Area29Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x12750f:SecondByte;; Items.LanternOff.0x31:Music
-    Area2aMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 0x127513:SecondByte;; Items.LanternOff.0x32:Music
-    Area2bMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 0x127517:SecondByte;; Items.LanternOff.0x33:Music
-    Area2cMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 0x12751b:SecondByte;; Items.LanternOff.0x34:Music
-    Area2dMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 0x12751f:SecondByte;; Items.LanternOff.0x35:Music
-    Area2eMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 0x127523:SecondByte;; Items.LanternOff.0x36:Music
-    Area2fMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 0x127527:SecondByte;; Items.LanternOff.0x37:Music
-    Area30Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x12752b:SecondByte;; Items.LanternOff.0x38:Music
-    Area31Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x12752f:SecondByte;; Items.LanternOff.0x39:Music
-    Area32Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x127533:SecondByte;; Items.LanternOff.0x3a:Music
-    Area33Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x127537:SecondByte;; Items.LanternOff.0x3b:Music
-    Area34Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x12753b:SecondByte;; Items.LanternOff.0x01:Music
-    Area35Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x12753f:SecondByte;; Items.LanternOff.0x06:Music
-    Area36Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x127543:SecondByte;; Items.LanternOff.0x07:Music
-    Area37Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x127547:SecondByte;; Items.LanternOff.0x08:Music
-    Area38Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x12754b:SecondByte;; Items.LanternOff.0x2e:Music
-    Area39Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x12754f:SecondByte;; Items.LanternOff.0x0a:Music
-    Area3aMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 0x127553:SecondByte;; Items.LanternOff.0x0b:Music
-    Area3bMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 0x127557:SecondByte;; Items.LanternOff.0x0d:Music
-    Area3cMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 0x12755b:SecondByte;; Items.LanternOff.0x0e:Music
-    Area3dMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 0x12755f:SecondByte;; Items.LanternOff.0x10:Music
-    Area3eMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 0x127563:SecondByte;; Items.LanternOff.0x11:Music
-    Area3fMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 0x127567:SecondByte;; Items.LanternOff.0x13:Music
-    Area40Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x12756b:SecondByte;; Items.LanternOff.0x14:Music
-    Area41Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x12756f:SecondByte;; Items.LanternOff.0x15:Music
-    Area42Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x127573:SecondByte;; Items.LanternOff.0x16:Music
-    Area43Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x127577:SecondByte;; Items.LanternOff.0x17:Music
-    Area44Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x12757b:SecondByte;; Items.LanternOff.0x18:Music
-    Area45Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x12757f:SecondByte;; Items.LanternOff.0x19:Music
-    Area46Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x127583:SecondByte;; Items.LanternOff.0x1a:Music
-    Area47Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x127587:SecondByte;; Items.LanternOff.0x1b:Music
-    Area48Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x12758b:SecondByte;; Items.LanternOff.0x1c:Music
-    Area49Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x12758f:SecondByte;; Items.LanternOff.0x1d:Music
-    Area4aMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 0x127593:SecondByte;; Items.LanternOff.0x1e:Music
-    Area4bMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 0x127597:SecondByte;; Items.LanternOff.0x1f:Music
-    Area4cMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 0x12759b:SecondByte;; Items.LanternOff.0x20:Music
-    Area4dMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 0x12759f:SecondByte;; Items.LanternOff.0x21:Music
-    Area4eMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 0x1275a3:SecondByte;; Items.LanternOff.0x22:Music
-    Area4fMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 0x1275a7:SecondByte;; Items.LanternOff.0x23:Music
-    Area50Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x1275ab:SecondByte;; Items.LanternOff.0x24:Music
-    Area51Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x1275af:SecondByte;; Items.LanternOff.0x25:Music
-    Area52Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x1275b3:SecondByte;; Items.LanternOff.0x26:Music
-    Area53Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x1275b7:SecondByte;; Items.LanternOff.0x27:Music
-    Area54Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x1275bb:SecondByte;; Items.LanternOff.0x28:Music
-    Area55Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x1275bf:SecondByte;; Items.LanternOff.0x29:Music
-    Area56Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x1275c3:SecondByte;; Items.LanternOff.0x2a:Music
-    Area57Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x1275c7:SecondByte;; Items.LanternOff.0x2b:Music
-    Area58Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x1275cb:SecondByte;; Items.LanternOff.0x2c:Music
-    Area59Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x1275cf:SecondByte;; Items.LanternOff.0x2d:Music
-    Area5aMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 0x1275d3:SecondByte;; Items.LanternOff.0x2e:Music
-    Area5bMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 0x1275d7:SecondByte;; Items.LanternOff.0x2f:Music
-    Area5cMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 0x1275db:SecondByte;; Items.LanternOff.0x30:Music
-    Area5dMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 0x1275df:SecondByte;; Items.LanternOff.0x31:Music
-    Area5eMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 0x1275e3:SecondByte;; Items.LanternOff.0x32:Music
-    Area5fMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 0x1275e7:SecondByte;; Items.LanternOff.0x33:Music
-    Area60Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x1275eb:SecondByte;; Items.LanternOff.0x34:Music
-    Area61Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x1275ef:SecondByte;; Items.LanternOff.0x35:Music
-    Area62Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x1275f3:SecondByte;; Items.LanternOff.0x36:Music
-    Area63Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x1275f7:SecondByte;; Items.LanternOff.0x37:Music
-    Area64Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x1275fb:SecondByte;; Items.LanternOff.0x38:Music
-    Area65Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x1275ff:SecondByte;; Items.LanternOff.0x39:Music
-    Area66Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x127603:SecondByte;; Items.LanternOff.0x3a:Music
-    Area67Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x127607:SecondByte;; Items.LanternOff.0x3b:Music
-    Area68Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x12760b:SecondByte;; Items.LanternOff.0x01:Music
-    Area69Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x12760f:SecondByte;; Items.LanternOff.0x06:Music
-    Area6aMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 0x127613:SecondByte;; Items.LanternOff.0x07:Music
-    Area6bMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 0x127617:SecondByte;; Items.LanternOff.0x08:Music
-    Area6cMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 0x12761b:SecondByte;; Items.LanternOff.0x2f:Music
-    Area6dMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 0x12761f:SecondByte;; Items.LanternOff.0x0a:Music
-    Area6eMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 0x127623:SecondByte;; Items.LanternOff.0x0b:Music
-    Area6fMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 0x127627:SecondByte;; Items.LanternOff.0x0d:Music
-    Area70Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x12762b:SecondByte;; Items.LanternOff.0x0e:Music
-    Area71Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x12762f:SecondByte;; Items.LanternOff.0x10:Music
-    Area72Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x127633:SecondByte;; Items.LanternOff.0x11:Music
-    Area73Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x127637:SecondByte;; Items.LanternOff.0x13:Music
-    Area74Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x12763b:SecondByte;; Items.LanternOff.0x14:Music
-    Area75Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x12763f:SecondByte;; Items.LanternOff.0x15:Music
-    Area76Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x127643:SecondByte;; Items.LanternOff.0x16:Music
-    Area77Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x127647:SecondByte;; Items.LanternOff.0x17:Music
-    Area78Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x12764b:SecondByte;; Items.LanternOff.0x18:Music
-    Area79Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x12764f:SecondByte;; Items.LanternOff.0x19:Music
-    Area7aMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 0x127653:SecondByte;; Items.LanternOff.0x1a:Music
-    Area7bMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 0x127657:SecondByte;; Items.LanternOff.0x1b:Music
-    Area7cMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 0x12765b:SecondByte;; Items.LanternOff.0x1c:Music
-    Area7dMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 0x12765f:SecondByte;; Items.LanternOff.0x1d:Music
-    Area7eMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 0x127663:SecondByte;; Items.LanternOff.0x1e:Music
-    Area7fMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 0x127667:SecondByte;; Items.LanternOff.0x1f:Music
-    Area80Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x12766b:SecondByte;; Items.LanternOff.0x20:Music
-    Area81Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x12766f:SecondByte;; Items.LanternOff.0x21:Music
-    Area82Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x127673:SecondByte;; Items.LanternOff.0x22:Music
-    Area83Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x127677:SecondByte;; Items.LanternOff.0x23:Music
-    Area84Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x12767b:SecondByte;; Items.LanternOff.0x24:Music
-    Area85Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x12767f:SecondByte;; Items.LanternOff.0x25:Music
-    Area86Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x127683:SecondByte;; Items.LanternOff.0x26:Music
-    Area87Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x127687:SecondByte;; Items.LanternOff.0x27:Music
-    Area88Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x12768b:SecondByte;; Items.LanternOff.0x28:Music
-    Area89Music:Music; DungeonItem; musicScrap:Define:FirstByte, 0x12768f:SecondByte;; Items.LanternOff.0x29:Music
-    Area8aMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 0x127693:SecondByte;; Items.LanternOff.0x2a:Music
-    Area8bMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 0x127697:SecondByte;; Items.LanternOff.0x2b:Music
-    Area8cMusic:Music; DungeonItem; musicScrap:Define:FirstByte, 0x12769b:SecondByte;; Items.LanternOff.0x2c:Music
+    Area0Music:Music;  Music; musicScrap:Define:FirstByte, 0x12746b:SecondByte;; Items.LanternOff.0x01:Music
+    Area1Music:Music;  Music; musicScrap:Define:FirstByte, 0x12746f:SecondByte;; Items.LanternOff.0x06:Music
+    Area2Music:Music;  Music; musicScrap:Define:FirstByte, 0x127473:SecondByte;; Items.LanternOff.0x07:Music
+    Area3Music:Music;  Music; musicScrap:Define:FirstByte, 0x127477:SecondByte;; Items.LanternOff.0x08:Music
+    Area4Music:Music;  Music; musicScrap:Define:FirstByte, 0x12747b:SecondByte;; Items.LanternOff.0x2d:Music
+    Area5Music:Music;  Music; musicScrap:Define:FirstByte, 0x12747f:SecondByte;; Items.LanternOff.0x0a:Music
+    Area6Music:Music;  Music; musicScrap:Define:FirstByte, 0x127483:SecondByte;; Items.LanternOff.0x0b:Music
+    Area7Music:Music;  Music; musicScrap:Define:FirstByte, 0x127487:SecondByte;; Items.LanternOff.0x0d:Music
+    Area8Music:Music;  Music; musicScrap:Define:FirstByte, 0x12748b:SecondByte;; Items.LanternOff.0x0e:Music
+    Area9Music:Music;  Music; musicScrap:Define:FirstByte, 0x12748f:SecondByte;; Items.LanternOff.0x10:Music
+    AreaaMusic:Music;  Music; musicScrap:Define:FirstByte, 0x127493:SecondByte;; Items.LanternOff.0x11:Music
+    AreabMusic:Music;  Music; musicScrap:Define:FirstByte, 0x127497:SecondByte;; Items.LanternOff.0x13:Music
+    AreacMusic:Music;  Music; musicScrap:Define:FirstByte, 0x12749b:SecondByte;; Items.LanternOff.0x14:Music
+    AreadMusic:Music;  Music; musicScrap:Define:FirstByte, 0x12749f:SecondByte;; Items.LanternOff.0x15:Music
+    AreaeMusic:Music;  Music; musicScrap:Define:FirstByte, 0x1274a3:SecondByte;; Items.LanternOff.0x16:Music
+    AreafMusic:Music;  Music; musicScrap:Define:FirstByte, 0x1274a7:SecondByte;; Items.LanternOff.0x17:Music
+    Area10Music:Music; Music; musicScrap:Define:FirstByte, 0x1274ab:SecondByte;; Items.LanternOff.0x18:Music
+    Area11Music:Music; Music; musicScrap:Define:FirstByte, 0x1274af:SecondByte;; Items.LanternOff.0x19:Music
+    Area12Music:Music; Music; musicScrap:Define:FirstByte, 0x1274b3:SecondByte;; Items.LanternOff.0x1a:Music
+    Area13Music:Music; Music; musicScrap:Define:FirstByte, 0x1274b7:SecondByte;; Items.LanternOff.0x1b:Music
+    Area14Music:Music; Music; musicScrap:Define:FirstByte, 0x1274bb:SecondByte;; Items.LanternOff.0x1c:Music
+    Area15Music:Music; Music; musicScrap:Define:FirstByte, 0x1274bf:SecondByte;; Items.LanternOff.0x1d:Music
+    Area16Music:Music; Music; musicScrap:Define:FirstByte, 0x1274c3:SecondByte;; Items.LanternOff.0x1e:Music
+    Area17Music:Music; Music; musicScrap:Define:FirstByte, 0x1274c7:SecondByte;; Items.LanternOff.0x1f:Music
+    Area18Music:Music; Music; musicScrap:Define:FirstByte, 0x1274cb:SecondByte;; Items.LanternOff.0x20:Music
+    Area19Music:Music; Music; musicScrap:Define:FirstByte, 0x1274cf:SecondByte;; Items.LanternOff.0x21:Music
+    Area1aMusic:Music; Music; musicScrap:Define:FirstByte, 0x1274d3:SecondByte;; Items.LanternOff.0x22:Music
+    Area1bMusic:Music; Music; musicScrap:Define:FirstByte, 0x1274d7:SecondByte;; Items.LanternOff.0x23:Music
+    Area1cMusic:Music; Music; musicScrap:Define:FirstByte, 0x1274db:SecondByte;; Items.LanternOff.0x24:Music
+    Area1dMusic:Music; Music; musicScrap:Define:FirstByte, 0x1274df:SecondByte;; Items.LanternOff.0x25:Music
+    Area1eMusic:Music; Music; musicScrap:Define:FirstByte, 0x1274e3:SecondByte;; Items.LanternOff.0x26:Music
+    Area1fMusic:Music; Music; musicScrap:Define:FirstByte, 0x1274e7:SecondByte;; Items.LanternOff.0x27:Music
+    Area20Music:Music; Music; musicScrap:Define:FirstByte, 0x1274eb:SecondByte;; Items.LanternOff.0x28:Music
+    Area21Music:Music; Music; musicScrap:Define:FirstByte, 0x1274ef:SecondByte;; Items.LanternOff.0x29:Music
+    Area22Music:Music; Music; musicScrap:Define:FirstByte, 0x1274f3:SecondByte;; Items.LanternOff.0x2a:Music
+    Area23Music:Music; Music; musicScrap:Define:FirstByte, 0x1274f7:SecondByte;; Items.LanternOff.0x2b:Music
+    Area24Music:Music; Music; musicScrap:Define:FirstByte, 0x1274fb:SecondByte;; Items.LanternOff.0x2c:Music
+    Area25Music:Music; Music; musicScrap:Define:FirstByte, 0x1274ff:SecondByte;; Items.LanternOff.0x2d:Music
+    Area26Music:Music; Music; musicScrap:Define:FirstByte, 0x127503:SecondByte;; Items.LanternOff.0x2e:Music
+    Area27Music:Music; Music; musicScrap:Define:FirstByte, 0x127507:SecondByte;; Items.LanternOff.0x2f:Music
+    Area28Music:Music; Music; musicScrap:Define:FirstByte, 0x12750b:SecondByte;; Items.LanternOff.0x30:Music
+    Area29Music:Music; Music; musicScrap:Define:FirstByte, 0x12750f:SecondByte;; Items.LanternOff.0x31:Music
+    Area2aMusic:Music; Music; musicScrap:Define:FirstByte, 0x127513:SecondByte;; Items.LanternOff.0x32:Music
+    Area2bMusic:Music; Music; musicScrap:Define:FirstByte, 0x127517:SecondByte;; Items.LanternOff.0x33:Music
+    Area2cMusic:Music; Music; musicScrap:Define:FirstByte, 0x12751b:SecondByte;; Items.LanternOff.0x34:Music
+    Area2dMusic:Music; Music; musicScrap:Define:FirstByte, 0x12751f:SecondByte;; Items.LanternOff.0x35:Music
+    Area2eMusic:Music; Music; musicScrap:Define:FirstByte, 0x127523:SecondByte;; Items.LanternOff.0x36:Music
+    Area2fMusic:Music; Music; musicScrap:Define:FirstByte, 0x127527:SecondByte;; Items.LanternOff.0x37:Music
+    Area30Music:Music; Music; musicScrap:Define:FirstByte, 0x12752b:SecondByte;; Items.LanternOff.0x38:Music
+    Area31Music:Music; Music; musicScrap:Define:FirstByte, 0x12752f:SecondByte;; Items.LanternOff.0x39:Music
+    Area32Music:Music; Music; musicScrap:Define:FirstByte, 0x127533:SecondByte;; Items.LanternOff.0x3a:Music
+    Area33Music:Music; Music; musicScrap:Define:FirstByte, 0x127537:SecondByte;; Items.LanternOff.0x3b:Music
+    Area34Music:Music; Music; musicScrap:Define:FirstByte, 0x12753b:SecondByte;; Items.LanternOff.0x01:Music
+    Area35Music:Music; Music; musicScrap:Define:FirstByte, 0x12753f:SecondByte;; Items.LanternOff.0x06:Music
+    Area36Music:Music; Music; musicScrap:Define:FirstByte, 0x127543:SecondByte;; Items.LanternOff.0x07:Music
+    Area37Music:Music; Music; musicScrap:Define:FirstByte, 0x127547:SecondByte;; Items.LanternOff.0x08:Music
+    Area38Music:Music; Music; musicScrap:Define:FirstByte, 0x12754b:SecondByte;; Items.LanternOff.0x2e:Music
+    Area39Music:Music; Music; musicScrap:Define:FirstByte, 0x12754f:SecondByte;; Items.LanternOff.0x0a:Music
+    Area3aMusic:Music; Music; musicScrap:Define:FirstByte, 0x127553:SecondByte;; Items.LanternOff.0x0b:Music
+    Area3bMusic:Music; Music; musicScrap:Define:FirstByte, 0x127557:SecondByte;; Items.LanternOff.0x0d:Music
+    Area3cMusic:Music; Music; musicScrap:Define:FirstByte, 0x12755b:SecondByte;; Items.LanternOff.0x0e:Music
+    Area3dMusic:Music; Music; musicScrap:Define:FirstByte, 0x12755f:SecondByte;; Items.LanternOff.0x10:Music
+    Area3eMusic:Music; Music; musicScrap:Define:FirstByte, 0x127563:SecondByte;; Items.LanternOff.0x11:Music
+    Area3fMusic:Music; Music; musicScrap:Define:FirstByte, 0x127567:SecondByte;; Items.LanternOff.0x13:Music
+    Area40Music:Music; Music; musicScrap:Define:FirstByte, 0x12756b:SecondByte;; Items.LanternOff.0x14:Music
+    Area41Music:Music; Music; musicScrap:Define:FirstByte, 0x12756f:SecondByte;; Items.LanternOff.0x15:Music
+    Area42Music:Music; Music; musicScrap:Define:FirstByte, 0x127573:SecondByte;; Items.LanternOff.0x16:Music
+    Area43Music:Music; Music; musicScrap:Define:FirstByte, 0x127577:SecondByte;; Items.LanternOff.0x17:Music
+    Area44Music:Music; Music; musicScrap:Define:FirstByte, 0x12757b:SecondByte;; Items.LanternOff.0x18:Music
+    Area45Music:Music; Music; musicScrap:Define:FirstByte, 0x12757f:SecondByte;; Items.LanternOff.0x19:Music
+    Area46Music:Music; Music; musicScrap:Define:FirstByte, 0x127583:SecondByte;; Items.LanternOff.0x1a:Music
+    Area47Music:Music; Music; musicScrap:Define:FirstByte, 0x127587:SecondByte;; Items.LanternOff.0x1b:Music
+    Area48Music:Music; Music; musicScrap:Define:FirstByte, 0x12758b:SecondByte;; Items.LanternOff.0x1c:Music
+    Area49Music:Music; Music; musicScrap:Define:FirstByte, 0x12758f:SecondByte;; Items.LanternOff.0x1d:Music
+    Area4aMusic:Music; Music; musicScrap:Define:FirstByte, 0x127593:SecondByte;; Items.LanternOff.0x1e:Music
+    Area4bMusic:Music; Music; musicScrap:Define:FirstByte, 0x127597:SecondByte;; Items.LanternOff.0x1f:Music
+    Area4cMusic:Music; Music; musicScrap:Define:FirstByte, 0x12759b:SecondByte;; Items.LanternOff.0x20:Music
+    Area4dMusic:Music; Music; musicScrap:Define:FirstByte, 0x12759f:SecondByte;; Items.LanternOff.0x21:Music
+    Area4eMusic:Music; Music; musicScrap:Define:FirstByte, 0x1275a3:SecondByte;; Items.LanternOff.0x22:Music
+    Area4fMusic:Music; Music; musicScrap:Define:FirstByte, 0x1275a7:SecondByte;; Items.LanternOff.0x23:Music
+    Area50Music:Music; Music; musicScrap:Define:FirstByte, 0x1275ab:SecondByte;; Items.LanternOff.0x24:Music
+    Area51Music:Music; Music; musicScrap:Define:FirstByte, 0x1275af:SecondByte;; Items.LanternOff.0x25:Music
+    Area52Music:Music; Music; musicScrap:Define:FirstByte, 0x1275b3:SecondByte;; Items.LanternOff.0x26:Music
+    Area53Music:Music; Music; musicScrap:Define:FirstByte, 0x1275b7:SecondByte;; Items.LanternOff.0x27:Music
+    Area54Music:Music; Music; musicScrap:Define:FirstByte, 0x1275bb:SecondByte;; Items.LanternOff.0x28:Music
+    Area55Music:Music; Music; musicScrap:Define:FirstByte, 0x1275bf:SecondByte;; Items.LanternOff.0x29:Music
+    Area56Music:Music; Music; musicScrap:Define:FirstByte, 0x1275c3:SecondByte;; Items.LanternOff.0x2a:Music
+    Area57Music:Music; Music; musicScrap:Define:FirstByte, 0x1275c7:SecondByte;; Items.LanternOff.0x2b:Music
+    Area58Music:Music; Music; musicScrap:Define:FirstByte, 0x1275cb:SecondByte;; Items.LanternOff.0x2c:Music
+    Area59Music:Music; Music; musicScrap:Define:FirstByte, 0x1275cf:SecondByte;; Items.LanternOff.0x2d:Music
+    Area5aMusic:Music; Music; musicScrap:Define:FirstByte, 0x1275d3:SecondByte;; Items.LanternOff.0x2e:Music
+    Area5bMusic:Music; Music; musicScrap:Define:FirstByte, 0x1275d7:SecondByte;; Items.LanternOff.0x2f:Music
+    Area5cMusic:Music; Music; musicScrap:Define:FirstByte, 0x1275db:SecondByte;; Items.LanternOff.0x30:Music
+    Area5dMusic:Music; Music; musicScrap:Define:FirstByte, 0x1275df:SecondByte;; Items.LanternOff.0x31:Music
+    Area5eMusic:Music; Music; musicScrap:Define:FirstByte, 0x1275e3:SecondByte;; Items.LanternOff.0x32:Music
+    Area5fMusic:Music; Music; musicScrap:Define:FirstByte, 0x1275e7:SecondByte;; Items.LanternOff.0x33:Music
+    Area60Music:Music; Music; musicScrap:Define:FirstByte, 0x1275eb:SecondByte;; Items.LanternOff.0x34:Music
+    Area61Music:Music; Music; musicScrap:Define:FirstByte, 0x1275ef:SecondByte;; Items.LanternOff.0x35:Music
+    Area62Music:Music; Music; musicScrap:Define:FirstByte, 0x1275f3:SecondByte;; Items.LanternOff.0x36:Music
+    Area63Music:Music; Music; musicScrap:Define:FirstByte, 0x1275f7:SecondByte;; Items.LanternOff.0x37:Music
+    Area64Music:Music; Music; musicScrap:Define:FirstByte, 0x1275fb:SecondByte;; Items.LanternOff.0x38:Music
+    Area65Music:Music; Music; musicScrap:Define:FirstByte, 0x1275ff:SecondByte;; Items.LanternOff.0x39:Music
+    Area66Music:Music; Music; musicScrap:Define:FirstByte, 0x127603:SecondByte;; Items.LanternOff.0x3a:Music
+    Area67Music:Music; Music; musicScrap:Define:FirstByte, 0x127607:SecondByte;; Items.LanternOff.0x3b:Music
+    Area68Music:Music; Music; musicScrap:Define:FirstByte, 0x12760b:SecondByte;; Items.LanternOff.0x01:Music
+    Area69Music:Music; Music; musicScrap:Define:FirstByte, 0x12760f:SecondByte;; Items.LanternOff.0x06:Music
+    Area6aMusic:Music; Music; musicScrap:Define:FirstByte, 0x127613:SecondByte;; Items.LanternOff.0x07:Music
+    Area6bMusic:Music; Music; musicScrap:Define:FirstByte, 0x127617:SecondByte;; Items.LanternOff.0x08:Music
+    Area6cMusic:Music; Music; musicScrap:Define:FirstByte, 0x12761b:SecondByte;; Items.LanternOff.0x2f:Music
+    Area6dMusic:Music; Music; musicScrap:Define:FirstByte, 0x12761f:SecondByte;; Items.LanternOff.0x0a:Music
+    Area6eMusic:Music; Music; musicScrap:Define:FirstByte, 0x127623:SecondByte;; Items.LanternOff.0x0b:Music
+    Area6fMusic:Music; Music; musicScrap:Define:FirstByte, 0x127627:SecondByte;; Items.LanternOff.0x0d:Music
+    Area70Music:Music; Music; musicScrap:Define:FirstByte, 0x12762b:SecondByte;; Items.LanternOff.0x0e:Music
+    Area71Music:Music; Music; musicScrap:Define:FirstByte, 0x12762f:SecondByte;; Items.LanternOff.0x10:Music
+    Area72Music:Music; Music; musicScrap:Define:FirstByte, 0x127633:SecondByte;; Items.LanternOff.0x11:Music
+    Area73Music:Music; Music; musicScrap:Define:FirstByte, 0x127637:SecondByte;; Items.LanternOff.0x13:Music
+    Area74Music:Music; Music; musicScrap:Define:FirstByte, 0x12763b:SecondByte;; Items.LanternOff.0x14:Music
+    Area75Music:Music; Music; musicScrap:Define:FirstByte, 0x12763f:SecondByte;; Items.LanternOff.0x15:Music
+    Area76Music:Music; Music; musicScrap:Define:FirstByte, 0x127643:SecondByte;; Items.LanternOff.0x16:Music
+    Area77Music:Music; Music; musicScrap:Define:FirstByte, 0x127647:SecondByte;; Items.LanternOff.0x17:Music
+    Area78Music:Music; Music; musicScrap:Define:FirstByte, 0x12764b:SecondByte;; Items.LanternOff.0x18:Music
+    Area79Music:Music; Music; musicScrap:Define:FirstByte, 0x12764f:SecondByte;; Items.LanternOff.0x19:Music
+    Area7aMusic:Music; Music; musicScrap:Define:FirstByte, 0x127653:SecondByte;; Items.LanternOff.0x1a:Music
+    Area7bMusic:Music; Music; musicScrap:Define:FirstByte, 0x127657:SecondByte;; Items.LanternOff.0x1b:Music
+    Area7cMusic:Music; Music; musicScrap:Define:FirstByte, 0x12765b:SecondByte;; Items.LanternOff.0x1c:Music
+    Area7dMusic:Music; Music; musicScrap:Define:FirstByte, 0x12765f:SecondByte;; Items.LanternOff.0x1d:Music
+    Area7eMusic:Music; Music; musicScrap:Define:FirstByte, 0x127663:SecondByte;; Items.LanternOff.0x1e:Music
+    Area7fMusic:Music; Music; musicScrap:Define:FirstByte, 0x127667:SecondByte;; Items.LanternOff.0x1f:Music
+    Area80Music:Music; Music; musicScrap:Define:FirstByte, 0x12766b:SecondByte;; Items.LanternOff.0x20:Music
+    Area81Music:Music; Music; musicScrap:Define:FirstByte, 0x12766f:SecondByte;; Items.LanternOff.0x21:Music
+    Area82Music:Music; Music; musicScrap:Define:FirstByte, 0x127673:SecondByte;; Items.LanternOff.0x22:Music
+    Area83Music:Music; Music; musicScrap:Define:FirstByte, 0x127677:SecondByte;; Items.LanternOff.0x23:Music
+    Area84Music:Music; Music; musicScrap:Define:FirstByte, 0x12767b:SecondByte;; Items.LanternOff.0x24:Music
+    Area85Music:Music; Music; musicScrap:Define:FirstByte, 0x12767f:SecondByte;; Items.LanternOff.0x25:Music
+    Area86Music:Music; Music; musicScrap:Define:FirstByte, 0x127683:SecondByte;; Items.LanternOff.0x26:Music
+    Area87Music:Music; Music; musicScrap:Define:FirstByte, 0x127687:SecondByte;; Items.LanternOff.0x27:Music
+    Area88Music:Music; Music; musicScrap:Define:FirstByte, 0x12768b:SecondByte;; Items.LanternOff.0x28:Music
+    Area89Music:Music; Music; musicScrap:Define:FirstByte, 0x12768f:SecondByte;; Items.LanternOff.0x29:Music
+    Area8aMusic:Music; Music; musicScrap:Define:FirstByte, 0x127693:SecondByte;; Items.LanternOff.0x2a:Music
+    Area8bMusic:Music; Music; musicScrap:Define:FirstByte, 0x127697:SecondByte;; Items.LanternOff.0x2b:Music
+    Area8cMusic:Music; Music; musicScrap:Define:FirstByte, 0x12769b:SecondByte;; Items.LanternOff.0x2c:Music
 !endif
 
 # Randomize Shared Fusion order if seeded
@@ -1443,52 +1431,26 @@
 	!define - GREENSHARED60 - Items.LanternOff.0x60:SF
 		!endif
 	!endif
-    Shared00:SF;   DungeonItem; fusionScrap00:Define:FirstByte, 0x0C9844:SecondByte;;																																																																																																																																																																																																																																																																										`REDSHARED`
-    Shared01:SF;   DungeonItem; fusionScrap01:Define:FirstByte, 0x0C9845:SecondByte;	(|(&Items.LanternOff.0x18:SF, Helpers.CanFuseRedMinish0), (&Items.LanternOff.0x2D:SF, Helpers.CanFuseBlueS), (&Items.LanternOff.0x35:SF, Helpers.CanFuseGreenCShared1), (&Items.LanternOff.0x36:SF, Helpers.CanFuseGreenCShared1), (&Items.LanternOff.0x37:SF, Helpers.CanFuseGreenCShared1), (&Items.LanternOff.0x39:SF, Helpers.CanFuseGreenCShared1), (&Items.LanternOff.0x3C:SF, Helpers.CanFuseGreenCShared1), (&Items.LanternOff.0x44:SF, Helpers.CanFuseGreenGShared1), (&Items.LanternOff.0x46:SF, Helpers.CanFuseGreenGShared1), (&Items.LanternOff.0x47:SF, Helpers.CanFuseGreenGShared1), (&Items.LanternOff.0x4E:SF, Helpers.CanFuseGreenGShared1), (&Items.LanternOff.0x50:SF, Helpers.CanFuseGreenPShared1), (&Items.LanternOff.0x53:SF, Helpers.CanFuseGreenPShared1), (&Items.LanternOff.0x55:SF, Helpers.CanFuseGreenPShared1), (&Items.LanternOff.0x56:SF, Helpers.CanFuseGreenPShared1), (&Items.LanternOff.0x58:SF, Helpers.CanFuseGreenPShared1), (&Items.LanternOff.0x5F:SF, Helpers.CanFuseGreenCShared1), (&Items.LanternOff.0x60:SF, Helpers.CanFuseGreenGShared1)); 		`BLUESHARED`
-    Shared02:SF;   DungeonItem; fusionScrap02:Define:FirstByte, 0x0C9846:SecondByte;	(+2, (&Items.LanternOff.0x18:SF, Helpers.CanFuseRedMinish0), (&Items.LanternOff.0x2D:SF, Helpers.CanFuseBlueS), (&Items.LanternOff.0x35:SF, Helpers.CanFuseGreenCShared2), (&Items.LanternOff.0x36:SF, Helpers.CanFuseGreenCShared2), (&Items.LanternOff.0x37:SF, Helpers.CanFuseGreenCShared2), (&Items.LanternOff.0x39:SF, Helpers.CanFuseGreenCShared2), (&Items.LanternOff.0x3C:SF, Helpers.CanFuseGreenCShared2), (&Items.LanternOff.0x44:SF, Helpers.CanFuseGreenGShared2), (&Items.LanternOff.0x46:SF, Helpers.CanFuseGreenGShared2), (&Items.LanternOff.0x47:SF, Helpers.CanFuseGreenGShared2), (&Items.LanternOff.0x4E:SF, Helpers.CanFuseGreenGShared2), (&Items.LanternOff.0x50:SF, Helpers.CanFuseGreenPShared2), (&Items.LanternOff.0x53:SF, Helpers.CanFuseGreenPShared2), (&Items.LanternOff.0x55:SF, Helpers.CanFuseGreenPShared2), (&Items.LanternOff.0x56:SF, Helpers.CanFuseGreenPShared2), (&Items.LanternOff.0x58:SF, Helpers.CanFuseGreenPShared2), (&Items.LanternOff.0x5F:SF, Helpers.CanFuseGreenCShared2), (&Items.LanternOff.0x60:SF, Helpers.CanFuseGreenGShared2)); 	`GREENSHARED35`
-    Shared03:SF;   DungeonItem; fusionScrap03:Define:FirstByte, 0x0C9847:SecondByte;	(+3, (&Items.LanternOff.0x18:SF, Helpers.CanFuseRedMinish0), (&Items.LanternOff.0x2D:SF, Helpers.CanFuseBlueS), (&Items.LanternOff.0x35:SF, Helpers.CanFuseGreenCShared3), (&Items.LanternOff.0x36:SF, Helpers.CanFuseGreenCShared3), (&Items.LanternOff.0x37:SF, Helpers.CanFuseGreenCShared3), (&Items.LanternOff.0x39:SF, Helpers.CanFuseGreenCShared3), (&Items.LanternOff.0x3C:SF, Helpers.CanFuseGreenCShared3), (&Items.LanternOff.0x44:SF, Helpers.CanFuseGreenGShared3), (&Items.LanternOff.0x46:SF, Helpers.CanFuseGreenGShared3), (&Items.LanternOff.0x47:SF, Helpers.CanFuseGreenGShared3), (&Items.LanternOff.0x4E:SF, Helpers.CanFuseGreenGShared3), (&Items.LanternOff.0x50:SF, Helpers.CanFuseGreenPShared3), (&Items.LanternOff.0x53:SF, Helpers.CanFuseGreenPShared3), (&Items.LanternOff.0x55:SF, Helpers.CanFuseGreenPShared3), (&Items.LanternOff.0x56:SF, Helpers.CanFuseGreenPShared3), (&Items.LanternOff.0x58:SF, Helpers.CanFuseGreenPShared3), (&Items.LanternOff.0x5F:SF, Helpers.CanFuseGreenCShared3), (&Items.LanternOff.0x60:SF, Helpers.CanFuseGreenGShared3)); 	`GREENSHARED36`
-    Shared04:SF;   DungeonItem; fusionScrap04:Define:FirstByte, 0x0C9848:SecondByte;	(+4, (&Items.LanternOff.0x18:SF, Helpers.CanFuseRedMinish0), (&Items.LanternOff.0x2D:SF, Helpers.CanFuseBlueS), (&Items.LanternOff.0x35:SF, Helpers.CanFuseGreenCShared4), (&Items.LanternOff.0x36:SF, Helpers.CanFuseGreenCShared4), (&Items.LanternOff.0x37:SF, Helpers.CanFuseGreenCShared4), (&Items.LanternOff.0x39:SF, Helpers.CanFuseGreenCShared4), (&Items.LanternOff.0x3C:SF, Helpers.CanFuseGreenCShared4), (&Items.LanternOff.0x44:SF, Helpers.CanFuseGreenGShared4), (&Items.LanternOff.0x46:SF, Helpers.CanFuseGreenGShared4), (&Items.LanternOff.0x47:SF, Helpers.CanFuseGreenGShared4), (&Items.LanternOff.0x4E:SF, Helpers.CanFuseGreenGShared4), (&Items.LanternOff.0x50:SF, Helpers.CanFuseGreenPShared4), (&Items.LanternOff.0x53:SF, Helpers.CanFuseGreenPShared4), (&Items.LanternOff.0x55:SF, Helpers.CanFuseGreenPShared4), (&Items.LanternOff.0x56:SF, Helpers.CanFuseGreenPShared4), (&Items.LanternOff.0x58:SF, Helpers.CanFuseGreenPShared4), (&Items.LanternOff.0x5F:SF, Helpers.CanFuseGreenCShared4), (&Items.LanternOff.0x60:SF, Helpers.CanFuseGreenGShared4)); 	`GREENSHARED37`
-    Shared05:SF;   DungeonItem; fusionScrap05:Define:FirstByte, 0x0C9849:SecondByte;	(+5, (&Items.LanternOff.0x18:SF, Helpers.CanFuseRedMinish0), (&Items.LanternOff.0x2D:SF, Helpers.CanFuseBlueS), (&Items.LanternOff.0x35:SF, Helpers.CanFuseGreenCShared5), (&Items.LanternOff.0x36:SF, Helpers.CanFuseGreenCShared5), (&Items.LanternOff.0x37:SF, Helpers.CanFuseGreenCShared5), (&Items.LanternOff.0x39:SF, Helpers.CanFuseGreenCShared5), (&Items.LanternOff.0x3C:SF, Helpers.CanFuseGreenCShared5), (&Items.LanternOff.0x44:SF, Helpers.CanFuseGreenGShared5), (&Items.LanternOff.0x46:SF, Helpers.CanFuseGreenGShared5), (&Items.LanternOff.0x47:SF, Helpers.CanFuseGreenGShared5), (&Items.LanternOff.0x4E:SF, Helpers.CanFuseGreenGShared5), (&Items.LanternOff.0x50:SF, Helpers.CanFuseGreenPShared5), (&Items.LanternOff.0x53:SF, Helpers.CanFuseGreenPShared5), (&Items.LanternOff.0x55:SF, Helpers.CanFuseGreenPShared5), (&Items.LanternOff.0x56:SF, Helpers.CanFuseGreenPShared5), (&Items.LanternOff.0x58:SF, Helpers.CanFuseGreenPShared5), (&Items.LanternOff.0x5F:SF, Helpers.CanFuseGreenCShared5), (&Items.LanternOff.0x60:SF, Helpers.CanFuseGreenGShared5)); 	`GREENSHARED39`
-    Shared06:SF;   DungeonItem; fusionScrap06:Define:FirstByte, 0x0C984A:SecondByte;	(+6, (&Items.LanternOff.0x18:SF, Helpers.CanFuseRedMinish0), (&Items.LanternOff.0x2D:SF, Helpers.CanFuseBlueS), (&Items.LanternOff.0x35:SF, Helpers.CanFuseGreenCShared6), (&Items.LanternOff.0x36:SF, Helpers.CanFuseGreenCShared6), (&Items.LanternOff.0x37:SF, Helpers.CanFuseGreenCShared6), (&Items.LanternOff.0x39:SF, Helpers.CanFuseGreenCShared6), (&Items.LanternOff.0x3C:SF, Helpers.CanFuseGreenCShared6), (&Items.LanternOff.0x44:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x46:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x47:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x4E:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x50:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x53:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x55:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x56:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x58:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x5F:SF, Helpers.CanFuseGreenCShared6), (&Items.LanternOff.0x60:SF, Helpers.CanFuseGreenG)); 																			`GREENSHARED3C`
-    Shared07:SF;   DungeonItem; fusionScrap07:Define:FirstByte, 0x0C984B:SecondByte;	(+7, (&Items.LanternOff.0x18:SF, Helpers.CanFuseRedMinish0), (&Items.LanternOff.0x2D:SF, Helpers.CanFuseBlueS), (&Items.LanternOff.0x35:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x36:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x37:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x39:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x3C:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x44:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x46:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x47:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x4E:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x50:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x53:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x55:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x56:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x58:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x5F:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x60:SF, Helpers.CanFuseGreenG)); 																													`GREENSHARED44`
-    Shared08:SF;   DungeonItem; fusionScrap08:Define:FirstByte, 0x0C984C:SecondByte;	(+8, (&Items.LanternOff.0x18:SF, Helpers.CanFuseRedMinish0), (&Items.LanternOff.0x2D:SF, Helpers.CanFuseBlueS), (&Items.LanternOff.0x35:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x36:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x37:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x39:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x3C:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x44:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x46:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x47:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x4E:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x50:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x53:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x55:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x56:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x58:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x5F:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x60:SF, Helpers.CanFuseGreenG)); 																													`GREENSHARED46`
-    Shared09:SF;   DungeonItem; fusionScrap09:Define:FirstByte, 0x0C984D:SecondByte;	(+9, (&Items.LanternOff.0x18:SF, Helpers.CanFuseRedMinish0), (&Items.LanternOff.0x2D:SF, Helpers.CanFuseBlueS), (&Items.LanternOff.0x35:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x36:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x37:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x39:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x3C:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x44:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x46:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x47:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x4E:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x50:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x53:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x55:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x56:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x58:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x5F:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x60:SF, Helpers.CanFuseGreenG)); 																													`GREENSHARED47`
-    Shared0A:SF;   DungeonItem; fusionScrap0A:Define:FirstByte, 0x0C984E:SecondByte;	(+10, (&Items.LanternOff.0x18:SF, Helpers.CanFuseRedMinish0), (&Items.LanternOff.0x2D:SF, Helpers.CanFuseBlueS), (&Items.LanternOff.0x35:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x36:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x37:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x39:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x3C:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x44:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x46:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x47:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x4E:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x50:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x53:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x55:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x56:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x58:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x5F:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x60:SF, Helpers.CanFuseGreenG)); 																													`GREENSHARED4E`
-    Shared0B:SF;   DungeonItem; fusionScrap0B:Define:FirstByte, 0x0C984F:SecondByte;	(+11, (&Items.LanternOff.0x18:SF, Helpers.CanFuseRedMinish0), (&Items.LanternOff.0x2D:SF, Helpers.CanFuseBlueS), (&Items.LanternOff.0x35:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x36:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x37:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x39:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x3C:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x44:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x46:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x47:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x4E:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x50:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x53:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x55:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x56:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x58:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x5F:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x60:SF, Helpers.CanFuseGreenG)); 																													`GREENSHARED50`
-    Shared0C:SF;   DungeonItem; fusionScrap0C:Define:FirstByte, 0x0C9850:SecondByte;	(+12, (&Items.LanternOff.0x18:SF, Helpers.CanFuseRedMinish0), (&Items.LanternOff.0x2D:SF, Helpers.CanFuseBlueS), (&Items.LanternOff.0x35:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x36:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x37:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x39:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x3C:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x44:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x46:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x47:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x4E:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x50:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x53:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x55:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x56:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x58:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x5F:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x60:SF, Helpers.CanFuseGreenG)); 																													`GREENSHARED53`
-    Shared0D:SF;   DungeonItem; fusionScrap0D:Define:FirstByte, 0x0C9851:SecondByte;	(+13, (&Items.LanternOff.0x18:SF, Helpers.CanFuseRedMinish0), (&Items.LanternOff.0x2D:SF, Helpers.CanFuseBlueS), (&Items.LanternOff.0x35:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x36:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x37:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x39:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x3C:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x44:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x46:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x47:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x4E:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x50:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x53:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x55:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x56:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x58:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x5F:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x60:SF, Helpers.CanFuseGreenG)); 																													`GREENSHARED55`
-    Shared0E:SF;   DungeonItem; fusionScrap0E:Define:FirstByte, 0x0C9852:SecondByte;	(+14, (&Items.LanternOff.0x18:SF, Helpers.CanFuseRedMinish0), (&Items.LanternOff.0x2D:SF, Helpers.CanFuseBlueS), (&Items.LanternOff.0x35:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x36:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x37:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x39:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x3C:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x44:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x46:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x47:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x4E:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x50:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x53:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x55:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x56:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x58:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x5F:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x60:SF, Helpers.CanFuseGreenG)); 																													`GREENSHARED56`
-    Shared0F:SF;   DungeonItem; fusionScrap0F:Define:FirstByte, 0x0C9853:SecondByte;	(+15, (&Items.LanternOff.0x18:SF, Helpers.CanFuseRedMinish0), (&Items.LanternOff.0x2D:SF, Helpers.CanFuseBlueS), (&Items.LanternOff.0x35:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x36:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x37:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x39:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x3C:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x44:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x46:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x47:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x4E:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x50:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x53:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x55:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x56:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x58:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x5F:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x60:SF, Helpers.CanFuseGreenG)); 																													`GREENSHARED58`
-    Shared10:SF;   DungeonItem; fusionScrap10:Define:FirstByte, 0x0C9854:SecondByte;	(+16, (&Items.LanternOff.0x18:SF, Helpers.CanFuseRedMinish0), (&Items.LanternOff.0x2D:SF, Helpers.CanFuseBlueS), (&Items.LanternOff.0x35:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x36:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x37:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x39:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x3C:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x44:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x46:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x47:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x4E:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x50:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x53:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x55:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x56:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x58:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x5F:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x60:SF, Helpers.CanFuseGreenG)); 																													`GREENSHARED5F`
-    Shared11:SF;   DungeonItem; fusionScrap11:Define:FirstByte, 0x0C9855:SecondByte;	(+17, (&Items.LanternOff.0x18:SF, Helpers.CanFuseRedMinish0), (&Items.LanternOff.0x2D:SF, Helpers.CanFuseBlueS), (&Items.LanternOff.0x35:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x36:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x37:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x39:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x3C:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x44:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x46:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x47:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x4E:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x50:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x53:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x55:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x56:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x58:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x5F:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x60:SF, Helpers.CanFuseGreenG)); 																													`GREENSHARED60`
-	!ifdef - OPEN_RED_FUSIONS
-	CanFuseSharedRed;	Helper;;
-	!else
-	CanFuseSharedRed;	Helper;;	Items.LanternOff.0x18:SF, Helpers.CanFuseRedMinish0
-	!endif
-	!ifdef - OPEN_BLUE_FUSIONS
-	CanFuseSharedBlue;	Helper;;
-	!else
+    Shared00:SF;   DungeonMajor; fusionScrap00:Define:FirstByte, 0x0C9844:SecondByte;;																																																																																																																																																																																																																																																																										`REDSHARED`
+    Shared01:SF;   DungeonMajor; fusionScrap01:Define:FirstByte, 0x0C9845:SecondByte;	(|(&Items.LanternOff.0x18:SF, Helpers.CanFuseRedV), (&Items.LanternOff.0x2D:SF, Helpers.CanFuseBlueS), (&Items.LanternOff.0x35:SF, Helpers.CanFuseGreenCShared1), (&Items.LanternOff.0x36:SF, Helpers.CanFuseGreenCShared1), (&Items.LanternOff.0x37:SF, Helpers.CanFuseGreenCShared1), (&Items.LanternOff.0x39:SF, Helpers.CanFuseGreenCShared1), (&Items.LanternOff.0x3C:SF, Helpers.CanFuseGreenCShared1), (&Items.LanternOff.0x44:SF, Helpers.CanFuseGreenGShared1), (&Items.LanternOff.0x46:SF, Helpers.CanFuseGreenGShared1), (&Items.LanternOff.0x47:SF, Helpers.CanFuseGreenGShared1), (&Items.LanternOff.0x4E:SF, Helpers.CanFuseGreenGShared1), (&Items.LanternOff.0x50:SF, Helpers.CanFuseGreenPShared1), (&Items.LanternOff.0x53:SF, Helpers.CanFuseGreenPShared1), (&Items.LanternOff.0x55:SF, Helpers.CanFuseGreenPShared1), (&Items.LanternOff.0x56:SF, Helpers.CanFuseGreenPShared1), (&Items.LanternOff.0x58:SF, Helpers.CanFuseGreenPShared1), (&Items.LanternOff.0x5F:SF, Helpers.CanFuseGreenCShared1), (&Items.LanternOff.0x60:SF, Helpers.CanFuseGreenGShared1)); 		`BLUESHARED`
+    Shared02:SF;   DungeonMajor; fusionScrap02:Define:FirstByte, 0x0C9846:SecondByte;	(+2, (&Items.LanternOff.0x18:SF, Helpers.CanFuseRedV), (&Items.LanternOff.0x2D:SF, Helpers.CanFuseBlueS), (&Items.LanternOff.0x35:SF, Helpers.CanFuseGreenCShared2), (&Items.LanternOff.0x36:SF, Helpers.CanFuseGreenCShared2), (&Items.LanternOff.0x37:SF, Helpers.CanFuseGreenCShared2), (&Items.LanternOff.0x39:SF, Helpers.CanFuseGreenCShared2), (&Items.LanternOff.0x3C:SF, Helpers.CanFuseGreenCShared2), (&Items.LanternOff.0x44:SF, Helpers.CanFuseGreenGShared2), (&Items.LanternOff.0x46:SF, Helpers.CanFuseGreenGShared2), (&Items.LanternOff.0x47:SF, Helpers.CanFuseGreenGShared2), (&Items.LanternOff.0x4E:SF, Helpers.CanFuseGreenGShared2), (&Items.LanternOff.0x50:SF, Helpers.CanFuseGreenPShared2), (&Items.LanternOff.0x53:SF, Helpers.CanFuseGreenPShared2), (&Items.LanternOff.0x55:SF, Helpers.CanFuseGreenPShared2), (&Items.LanternOff.0x56:SF, Helpers.CanFuseGreenPShared2), (&Items.LanternOff.0x58:SF, Helpers.CanFuseGreenPShared2), (&Items.LanternOff.0x5F:SF, Helpers.CanFuseGreenCShared2), (&Items.LanternOff.0x60:SF, Helpers.CanFuseGreenGShared2)); 	`GREENSHARED35`
+    Shared03:SF;   DungeonMajor; fusionScrap03:Define:FirstByte, 0x0C9847:SecondByte;	(+3, (&Items.LanternOff.0x18:SF, Helpers.CanFuseRedV), (&Items.LanternOff.0x2D:SF, Helpers.CanFuseBlueS), (&Items.LanternOff.0x35:SF, Helpers.CanFuseGreenCShared3), (&Items.LanternOff.0x36:SF, Helpers.CanFuseGreenCShared3), (&Items.LanternOff.0x37:SF, Helpers.CanFuseGreenCShared3), (&Items.LanternOff.0x39:SF, Helpers.CanFuseGreenCShared3), (&Items.LanternOff.0x3C:SF, Helpers.CanFuseGreenCShared3), (&Items.LanternOff.0x44:SF, Helpers.CanFuseGreenGShared3), (&Items.LanternOff.0x46:SF, Helpers.CanFuseGreenGShared3), (&Items.LanternOff.0x47:SF, Helpers.CanFuseGreenGShared3), (&Items.LanternOff.0x4E:SF, Helpers.CanFuseGreenGShared3), (&Items.LanternOff.0x50:SF, Helpers.CanFuseGreenPShared3), (&Items.LanternOff.0x53:SF, Helpers.CanFuseGreenPShared3), (&Items.LanternOff.0x55:SF, Helpers.CanFuseGreenPShared3), (&Items.LanternOff.0x56:SF, Helpers.CanFuseGreenPShared3), (&Items.LanternOff.0x58:SF, Helpers.CanFuseGreenPShared3), (&Items.LanternOff.0x5F:SF, Helpers.CanFuseGreenCShared3), (&Items.LanternOff.0x60:SF, Helpers.CanFuseGreenGShared3)); 	`GREENSHARED36`
+    Shared04:SF;   DungeonMajor; fusionScrap04:Define:FirstByte, 0x0C9848:SecondByte;	(+4, (&Items.LanternOff.0x18:SF, Helpers.CanFuseRedV), (&Items.LanternOff.0x2D:SF, Helpers.CanFuseBlueS), (&Items.LanternOff.0x35:SF, Helpers.CanFuseGreenCShared4), (&Items.LanternOff.0x36:SF, Helpers.CanFuseGreenCShared4), (&Items.LanternOff.0x37:SF, Helpers.CanFuseGreenCShared4), (&Items.LanternOff.0x39:SF, Helpers.CanFuseGreenCShared4), (&Items.LanternOff.0x3C:SF, Helpers.CanFuseGreenCShared4), (&Items.LanternOff.0x44:SF, Helpers.CanFuseGreenGShared4), (&Items.LanternOff.0x46:SF, Helpers.CanFuseGreenGShared4), (&Items.LanternOff.0x47:SF, Helpers.CanFuseGreenGShared4), (&Items.LanternOff.0x4E:SF, Helpers.CanFuseGreenGShared4), (&Items.LanternOff.0x50:SF, Helpers.CanFuseGreenPShared4), (&Items.LanternOff.0x53:SF, Helpers.CanFuseGreenPShared4), (&Items.LanternOff.0x55:SF, Helpers.CanFuseGreenPShared4), (&Items.LanternOff.0x56:SF, Helpers.CanFuseGreenPShared4), (&Items.LanternOff.0x58:SF, Helpers.CanFuseGreenPShared4), (&Items.LanternOff.0x5F:SF, Helpers.CanFuseGreenCShared4), (&Items.LanternOff.0x60:SF, Helpers.CanFuseGreenGShared4)); 	`GREENSHARED37`
+    Shared05:SF;   DungeonMajor; fusionScrap05:Define:FirstByte, 0x0C9849:SecondByte;	(+5, (&Items.LanternOff.0x18:SF, Helpers.CanFuseRedV), (&Items.LanternOff.0x2D:SF, Helpers.CanFuseBlueS), (&Items.LanternOff.0x35:SF, Helpers.CanFuseGreenCShared5), (&Items.LanternOff.0x36:SF, Helpers.CanFuseGreenCShared5), (&Items.LanternOff.0x37:SF, Helpers.CanFuseGreenCShared5), (&Items.LanternOff.0x39:SF, Helpers.CanFuseGreenCShared5), (&Items.LanternOff.0x3C:SF, Helpers.CanFuseGreenCShared5), (&Items.LanternOff.0x44:SF, Helpers.CanFuseGreenGShared5), (&Items.LanternOff.0x46:SF, Helpers.CanFuseGreenGShared5), (&Items.LanternOff.0x47:SF, Helpers.CanFuseGreenGShared5), (&Items.LanternOff.0x4E:SF, Helpers.CanFuseGreenGShared5), (&Items.LanternOff.0x50:SF, Helpers.CanFuseGreenPShared5), (&Items.LanternOff.0x53:SF, Helpers.CanFuseGreenPShared5), (&Items.LanternOff.0x55:SF, Helpers.CanFuseGreenPShared5), (&Items.LanternOff.0x56:SF, Helpers.CanFuseGreenPShared5), (&Items.LanternOff.0x58:SF, Helpers.CanFuseGreenPShared5), (&Items.LanternOff.0x5F:SF, Helpers.CanFuseGreenCShared5), (&Items.LanternOff.0x60:SF, Helpers.CanFuseGreenGShared5)); 	`GREENSHARED39`
+    Shared06:SF;   DungeonMajor; fusionScrap06:Define:FirstByte, 0x0C984A:SecondByte;	(+6, (&Items.LanternOff.0x18:SF, Helpers.CanFuseRedV), (&Items.LanternOff.0x2D:SF, Helpers.CanFuseBlueS), (&Items.LanternOff.0x35:SF, Helpers.CanFuseGreenCShared6), (&Items.LanternOff.0x36:SF, Helpers.CanFuseGreenCShared6), (&Items.LanternOff.0x37:SF, Helpers.CanFuseGreenCShared6), (&Items.LanternOff.0x39:SF, Helpers.CanFuseGreenCShared6), (&Items.LanternOff.0x3C:SF, Helpers.CanFuseGreenCShared6), (&Items.LanternOff.0x44:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x46:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x47:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x4E:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x50:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x53:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x55:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x56:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x58:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x5F:SF, Helpers.CanFuseGreenCShared6), (&Items.LanternOff.0x60:SF, Helpers.CanFuseGreenG)); 																			`GREENSHARED3C`
+    Shared07:SF;   DungeonMajor; fusionScrap07:Define:FirstByte, 0x0C984B:SecondByte;	(+7, (&Items.LanternOff.0x18:SF, Helpers.CanFuseRedV), (&Items.LanternOff.0x2D:SF, Helpers.CanFuseBlueS), (&Items.LanternOff.0x35:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x36:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x37:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x39:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x3C:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x44:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x46:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x47:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x4E:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x50:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x53:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x55:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x56:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x58:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x5F:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x60:SF, Helpers.CanFuseGreenG)); 																													`GREENSHARED44`
+    Shared08:SF;   DungeonMajor; fusionScrap08:Define:FirstByte, 0x0C984C:SecondByte;	(+8, (&Items.LanternOff.0x18:SF, Helpers.CanFuseRedV), (&Items.LanternOff.0x2D:SF, Helpers.CanFuseBlueS), (&Items.LanternOff.0x35:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x36:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x37:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x39:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x3C:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x44:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x46:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x47:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x4E:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x50:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x53:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x55:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x56:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x58:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x5F:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x60:SF, Helpers.CanFuseGreenG)); 																													`GREENSHARED46`
+    Shared09:SF;   DungeonMajor; fusionScrap09:Define:FirstByte, 0x0C984D:SecondByte;	(+9, (&Items.LanternOff.0x18:SF, Helpers.CanFuseRedV), (&Items.LanternOff.0x2D:SF, Helpers.CanFuseBlueS), (&Items.LanternOff.0x35:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x36:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x37:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x39:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x3C:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x44:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x46:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x47:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x4E:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x50:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x53:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x55:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x56:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x58:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x5F:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x60:SF, Helpers.CanFuseGreenG)); 																													`GREENSHARED47`
+    Shared0A:SF;   DungeonMajor; fusionScrap0A:Define:FirstByte, 0x0C984E:SecondByte;	(+10, (&Items.LanternOff.0x18:SF, Helpers.CanFuseRedV), (&Items.LanternOff.0x2D:SF, Helpers.CanFuseBlueS), (&Items.LanternOff.0x35:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x36:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x37:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x39:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x3C:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x44:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x46:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x47:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x4E:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x50:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x53:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x55:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x56:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x58:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x5F:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x60:SF, Helpers.CanFuseGreenG)); 																													`GREENSHARED4E`
+    Shared0B:SF;   DungeonMajor; fusionScrap0B:Define:FirstByte, 0x0C984F:SecondByte;	(+11, (&Items.LanternOff.0x18:SF, Helpers.CanFuseRedV), (&Items.LanternOff.0x2D:SF, Helpers.CanFuseBlueS), (&Items.LanternOff.0x35:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x36:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x37:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x39:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x3C:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x44:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x46:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x47:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x4E:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x50:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x53:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x55:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x56:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x58:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x5F:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x60:SF, Helpers.CanFuseGreenG)); 																													`GREENSHARED50`
+    Shared0C:SF;   DungeonMajor; fusionScrap0C:Define:FirstByte, 0x0C9850:SecondByte;	(+12, (&Items.LanternOff.0x18:SF, Helpers.CanFuseRedV), (&Items.LanternOff.0x2D:SF, Helpers.CanFuseBlueS), (&Items.LanternOff.0x35:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x36:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x37:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x39:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x3C:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x44:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x46:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x47:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x4E:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x50:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x53:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x55:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x56:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x58:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x5F:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x60:SF, Helpers.CanFuseGreenG)); 																													`GREENSHARED53`
+    Shared0D:SF;   DungeonMajor; fusionScrap0D:Define:FirstByte, 0x0C9851:SecondByte;	(+13, (&Items.LanternOff.0x18:SF, Helpers.CanFuseRedV), (&Items.LanternOff.0x2D:SF, Helpers.CanFuseBlueS), (&Items.LanternOff.0x35:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x36:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x37:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x39:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x3C:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x44:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x46:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x47:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x4E:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x50:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x53:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x55:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x56:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x58:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x5F:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x60:SF, Helpers.CanFuseGreenG)); 																													`GREENSHARED55`
+    Shared0E:SF;   DungeonMajor; fusionScrap0E:Define:FirstByte, 0x0C9852:SecondByte;	(+14, (&Items.LanternOff.0x18:SF, Helpers.CanFuseRedV), (&Items.LanternOff.0x2D:SF, Helpers.CanFuseBlueS), (&Items.LanternOff.0x35:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x36:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x37:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x39:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x3C:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x44:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x46:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x47:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x4E:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x50:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x53:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x55:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x56:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x58:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x5F:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x60:SF, Helpers.CanFuseGreenG)); 																													`GREENSHARED56`
+    Shared0F:SF;   DungeonMajor; fusionScrap0F:Define:FirstByte, 0x0C9853:SecondByte;	(+15, (&Items.LanternOff.0x18:SF, Helpers.CanFuseRedV), (&Items.LanternOff.0x2D:SF, Helpers.CanFuseBlueS), (&Items.LanternOff.0x35:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x36:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x37:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x39:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x3C:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x44:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x46:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x47:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x4E:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x50:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x53:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x55:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x56:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x58:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x5F:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x60:SF, Helpers.CanFuseGreenG)); 																													`GREENSHARED58`
+    Shared10:SF;   DungeonMajor; fusionScrap10:Define:FirstByte, 0x0C9854:SecondByte;	(+16, (&Items.LanternOff.0x18:SF, Helpers.CanFuseRedV), (&Items.LanternOff.0x2D:SF, Helpers.CanFuseBlueS), (&Items.LanternOff.0x35:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x36:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x37:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x39:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x3C:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x44:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x46:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x47:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x4E:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x50:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x53:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x55:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x56:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x58:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x5F:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x60:SF, Helpers.CanFuseGreenG)); 																													`GREENSHARED5F`
+    Shared11:SF;   DungeonMajor; fusionScrap11:Define:FirstByte, 0x0C9855:SecondByte;	(+17, (&Items.LanternOff.0x18:SF, Helpers.CanFuseRedV), (&Items.LanternOff.0x2D:SF, Helpers.CanFuseBlueS), (&Items.LanternOff.0x35:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x36:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x37:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x39:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x3C:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x44:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x46:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x47:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x4E:SF, Helpers.CanFuseGreenG), (&Items.LanternOff.0x50:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x53:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x55:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x56:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x58:SF, Helpers.CanFuseGreenP), (&Items.LanternOff.0x5F:SF, Helpers.CanFuseGreenC), (&Items.LanternOff.0x60:SF, Helpers.CanFuseGreenG)); 																													`GREENSHARED60`
+	CanFuseSharedRed;	Helper;;	Items.LanternOff.0x18:SF, Helpers.CanFuseRedV
 	CanFuseSharedBlue;	Helper;;	Items.LanternOff.0x2D:SF, Helpers.CanFuseBlueS
-	!endif
-	!ifdef - OPEN_GREEN_FUSIONS
-	CanFuseShared35;	Helper;;
-	CanFuseShared36;	Helper;;
-	CanFuseShared37;	Helper;;
-	CanFuseShared39;	Helper;;
-	CanFuseShared3C;	Helper;;
-	CanFuseShared44;	Helper;;
-	CanFuseShared46;	Helper;;
-	CanFuseShared47;	Helper;;
-	CanFuseShared4E;	Helper;;
-	CanFuseShared50;	Helper;;
-	CanFuseShared53;	Helper;;
-	CanFuseShared55;	Helper;;
-	CanFuseShared56;	Helper;;
-	CanFuseShared58;	Helper;;
-	CanFuseShared5F;	Helper;;
-	CanFuseShared60;	Helper;;
-	!else
 	CanFuseShared35;	Helper;;	Items.LanternOff.0x35:SF, Helpers.CanFuseGreenC
 	CanFuseShared36;	Helper;;	Items.LanternOff.0x36:SF, Helpers.CanFuseGreenC
 	CanFuseShared37;	Helper;;	Items.LanternOff.0x37:SF, Helpers.CanFuseGreenC
@@ -1505,7 +1467,6 @@
 	CanFuseShared58;	Helper;;	Items.LanternOff.0x58:SF, Helpers.CanFuseGreenP
 	CanFuseShared5F;	Helper;;	Items.LanternOff.0x5F:SF, Helpers.CanFuseGreenC
 	CanFuseShared60;	Helper;;	Items.LanternOff.0x60:SF, Helpers.CanFuseGreenG
-	!endif
 !else
 	!ifdef - NO_RED_FUSIONS
     Shared00;   Unshuffled; fusionScrap00:Define:FirstByte, 0x0C9844:SecondByte;;Items.LanternOff.0xF2
@@ -1519,7 +1480,11 @@
 	!ifdef - NO_BLUE_FUSIONS
     Shared01;   Unshuffled; fusionScrap01:Define:FirstByte, 0x0C9845:SecondByte;;Items.LanternOff.0xF2
 	!else
+		!ifdef - OPEN_BLUE_FUSIONS
+    Shared01;   Unshuffled; fusionScrap01:Define:FirstByte, 0x0C9845:SecondByte;;Items.LanternOff.0xF2
+		!else
     Shared01;   Unshuffled; fusionScrap01:Define:FirstByte, 0x0C9845:SecondByte;;Items.LanternOff.0x2D
+		!endif
 	!endif
 	!ifdef - NO_GREEN_FUSIONS
     Shared02;   Unshuffled; fusionScrap02:Define:FirstByte, 0x0C9846:SecondByte;;Items.LanternOff.0xF2
@@ -1539,6 +1504,24 @@
     Shared10;   Unshuffled; fusionScrap10:Define:FirstByte, 0x0C9854:SecondByte;;Items.LanternOff.0xF2
     Shared11;   Unshuffled; fusionScrap11:Define:FirstByte, 0x0C9855:SecondByte;;Items.LanternOff.0xF2
 	!else
+		!ifdef - OPEN_GREEN_FUSIONS
+    Shared02;   Unshuffled; fusionScrap02:Define:FirstByte, 0x0C9846:SecondByte;;Items.LanternOff.0xF2
+    Shared03;   Unshuffled; fusionScrap03:Define:FirstByte, 0x0C9847:SecondByte;;Items.LanternOff.0xF2
+    Shared04;   Unshuffled; fusionScrap04:Define:FirstByte, 0x0C9848:SecondByte;;Items.LanternOff.0xF2
+    Shared05;   Unshuffled; fusionScrap05:Define:FirstByte, 0x0C9849:SecondByte;;Items.LanternOff.0xF2
+    Shared06;   Unshuffled; fusionScrap06:Define:FirstByte, 0x0C984A:SecondByte;;Items.LanternOff.0xF2
+    Shared07;   Unshuffled; fusionScrap07:Define:FirstByte, 0x0C984B:SecondByte;;Items.LanternOff.0xF2
+    Shared08;   Unshuffled; fusionScrap08:Define:FirstByte, 0x0C984C:SecondByte;;Items.LanternOff.0xF2
+    Shared09;   Unshuffled; fusionScrap09:Define:FirstByte, 0x0C984D:SecondByte;;Items.LanternOff.0xF2
+    Shared0A;   Unshuffled; fusionScrap0A:Define:FirstByte, 0x0C984E:SecondByte;;Items.LanternOff.0xF2
+    Shared0B;   Unshuffled; fusionScrap0B:Define:FirstByte, 0x0C984F:SecondByte;;Items.LanternOff.0xF2
+    Shared0C;   Unshuffled; fusionScrap0C:Define:FirstByte, 0x0C9850:SecondByte;;Items.LanternOff.0xF2
+    Shared0D;   Unshuffled; fusionScrap0D:Define:FirstByte, 0x0C9851:SecondByte;;Items.LanternOff.0xF2
+    Shared0E;   Unshuffled; fusionScrap0E:Define:FirstByte, 0x0C9852:SecondByte;;Items.LanternOff.0xF2
+    Shared0F;   Unshuffled; fusionScrap0F:Define:FirstByte, 0x0C9853:SecondByte;;Items.LanternOff.0xF2
+    Shared10;   Unshuffled; fusionScrap10:Define:FirstByte, 0x0C9854:SecondByte;;Items.LanternOff.0xF2
+    Shared11;   Unshuffled; fusionScrap11:Define:FirstByte, 0x0C9855:SecondByte;;Items.LanternOff.0xF2
+		!else
     Shared02;   Unshuffled; fusionScrap02:Define:FirstByte, 0x0C9846:SecondByte;;Items.LanternOff.0x35
     Shared03;   Unshuffled; fusionScrap03:Define:FirstByte, 0x0C9847:SecondByte;;Items.LanternOff.0x36
     Shared04;   Unshuffled; fusionScrap04:Define:FirstByte, 0x0C9848:SecondByte;;Items.LanternOff.0x37
@@ -1555,35 +1538,10 @@
     Shared0F;   Unshuffled; fusionScrap0F:Define:FirstByte, 0x0C9853:SecondByte;;Items.LanternOff.0x58
     Shared10;   Unshuffled; fusionScrap10:Define:FirstByte, 0x0C9854:SecondByte;;Items.LanternOff.0x5F
     Shared11;   Unshuffled; fusionScrap11:Define:FirstByte, 0x0C9855:SecondByte;;Items.LanternOff.0x60
+		!endif
 	!endif
-	!ifdef - OPEN_RED_FUSIONS
-	CanFuseSharedRed;	Helper;;
-	!else
-	CanFuseSharedRed;	Helper;;	Helpers.CanFuseRedMinish0
-	!endif
-	!ifdef - OPEN_BLUE_FUSIONS
-	CanFuseSharedBlue;	Helper;;
-	!else
+	CanFuseSharedRed;	Helper;;	Helpers.CanFuseRedV
 	CanFuseSharedBlue;	Helper;;	Helpers.CanFuseBlueS
-	!endif
-	!ifdef - OPEN_GREEN_FUSIONS
-	CanFuseShared35;	Helper;;
-	CanFuseShared36;	Helper;;
-	CanFuseShared37;	Helper;;
-	CanFuseShared39;	Helper;;
-	CanFuseShared3C;	Helper;;
-	CanFuseShared44;	Helper;;
-	CanFuseShared46;	Helper;;
-	CanFuseShared47;	Helper;;
-	CanFuseShared4E;	Helper;;
-	CanFuseShared50;	Helper;;
-	CanFuseShared53;	Helper;;
-	CanFuseShared55;	Helper;;
-	CanFuseShared56;	Helper;;
-	CanFuseShared58;	Helper;;
-	CanFuseShared5F;	Helper;;
-	CanFuseShared60;	Helper;;
-	!else
 	CanFuseShared35;	Helper;;	Helpers.CanFuseGreenC
 	CanFuseShared36;	Helper;;	Helpers.CanFuseGreenC
 	CanFuseShared37;	Helper;;	Helpers.CanFuseGreenC
@@ -1600,7 +1558,6 @@
 	CanFuseShared58;	Helper;;	Helpers.CanFuseGreenP
 	CanFuseShared5F;	Helper;;	Helpers.CanFuseGreenC
 	CanFuseShared60;	Helper;;	Helpers.CanFuseGreenG
-	!endif
 !endif
 	!ifdef - NO_RED_FUSIONS
 	!define - ALLREDSHARED - 
@@ -1674,12 +1631,28 @@ CanDownThrust;		Helper;; Helpers.HasSword, Items.DownThrust, Items.RocsCape
 
 # This section shuffles some dummy items to determine which dungeons have elements and which don't, it then makes the unrequired dungeons require a dummy item you only get after beating vaati, or makes them barren by requiring all major items	
 !ifdef - UNREQ
-	Element_Dungeon_1		:Beatable;	DungeonItem;	ED1:Define:FirstByte, ED1:Define:SecondByte;	;																																											Items.Untyped.0x01:Beatable
-	Element_Dungeon_2		:Beatable;	DungeonItem;	ED2:Define:FirstByte, ED2:Define:SecondByte;	;																																											Items.Untyped.0x02:Beatable
-	Element_Dungeon_3		:Beatable;	DungeonItem;	ED3:Define:FirstByte, ED3:Define:SecondByte;	;																																											Items.Untyped.0x03:Beatable
-	Element_Dungeon_4		:Beatable;	DungeonItem;	ED4:Define:FirstByte, ED4:Define:SecondByte;	;																																											Items.Untyped.0x04:Beatable
-	Non_Element_Dungeon_1	:Beatable;	DungeonItem;	NED1:Define:FirstByte, NED1:Define:SecondByte;	Helpers.BeatVaati, Items.WaterElement:`ELEMENT_DUNGEON`, Items.FireElement:`ELEMENT_DUNGEON`, Items.WindElement:`ELEMENT_DUNGEON`, Items.EarthElement:`ELEMENT_DUNGEON`;	Items.Untyped.0x05:Beatable
-	Non_Element_Dungeon_2	:Beatable;	DungeonItem;	NED2:Define:FirstByte, NED2:Define:SecondByte;	Helpers.BeatVaati, Items.WaterElement:`ELEMENT_DUNGEON`, Items.FireElement:`ELEMENT_DUNGEON`, Items.WindElement:`ELEMENT_DUNGEON`, Items.EarthElement:`ELEMENT_DUNGEON`;	Items.Untyped.0x06:Beatable
+	!ifdef - NO_GOLD_FUSIONS
+		!define - FoW_BEATABLE	- Items.Untyped.0x07:Beatable
+		!define - FoW_DUMMY		- DungeonMinor
+		!ifdef - OPENWORLD
+			!define - PoW_BEATABLE	- Items.Untyped.0x06:Beatable
+			!define - PoW_DUMMY		- DungeonConstraint
+		!else
+			!define - PoW_BEATABLE	- Items.Untyped.0x08:Beatable
+			!define - PoW_DUMMY		- DungeonMinor
+		!endif
+	!else
+		!define - FoW_BEATABLE	- Items.Untyped.0x03:Beatable
+		!define - FoW_DUMMY		- DungeonConstraint
+		!define - PoW_BEATABLE	- Items.Untyped.0x06:Beatable
+		!define - PoW_DUMMY		- DungeonConstraint
+	!endif
+	Element_Dungeon_1		:Beatable;	DungeonConstraint;	ED1:Define:FirstByte, ED1:Define:SecondByte;	;																																											Items.Untyped.0x01:Beatable
+	Element_Dungeon_2		:Beatable;	DungeonConstraint;	ED2:Define:FirstByte, ED2:Define:SecondByte;	;																																											Items.Untyped.0x02:Beatable
+	Element_Dungeon_3		:Beatable;	`FoW_DUMMY`;		ED3:Define:FirstByte, ED3:Define:SecondByte;	;																																											`FoW_BEATABLE`
+	Element_Dungeon_4		:Beatable;	DungeonConstraint;	ED4:Define:FirstByte, ED4:Define:SecondByte;	;																																											Items.Untyped.0x04:Beatable
+	Non_Element_Dungeon_1	:Beatable;	DungeonConstraint;	NED1:Define:FirstByte, NED1:Define:SecondByte;	Helpers.BeatVaati, Items.WaterElement:`ELEMENT_DUNGEON`, Items.FireElement:`ELEMENT_DUNGEON`, Items.WindElement:`ELEMENT_DUNGEON`, Items.EarthElement:`ELEMENT_DUNGEON`;	Items.Untyped.0x05:Beatable
+	Non_Element_Dungeon_2	:Beatable;	`PoW_DUMMY`;		NED2:Define:FirstByte, NED2:Define:SecondByte;	Helpers.BeatVaati, Items.WaterElement:`ELEMENT_DUNGEON`, Items.FireElement:`ELEMENT_DUNGEON`, Items.WindElement:`ELEMENT_DUNGEON`, Items.EarthElement:`ELEMENT_DUNGEON`;	`PoW_BEATABLE`
 	!define - DWS_Item			- Items.Untyped.0x01:Beatable,
 	!define - CoF_Item			- Items.Untyped.0x02:Beatable,
 	!define - CoF_Item_Outside	-
@@ -1693,39 +1666,71 @@ CanDownThrust;		Helper;; Helpers.HasSword, Items.DownThrust, Items.RocsCape
 	!define - PoW_Item_F_Outside - 
 !endif
 !ifdef - BARREN
-	Element_Dungeon_1		:Beatable;	DungeonItem;	ED1:Define:FirstByte, ED1:Define:SecondByte;	;																																															Items.Untyped.0x01:Beatable
-	Element_Dungeon_2		:Beatable;	DungeonItem;	ED2:Define:FirstByte, ED2:Define:SecondByte;	;																																															Items.Untyped.0x02:Beatable
-	Element_Dungeon_3		:Beatable;	DungeonItem;	ED3:Define:FirstByte, ED3:Define:SecondByte;	;																																															Items.Untyped.0x03:Beatable
-	Element_Dungeon_4		:Beatable;	DungeonItem;	ED4:Define:FirstByte, ED4:Define:SecondByte;	;																																															Items.Untyped.0x04:Beatable
-	Non_Element_Dungeon_1	:Beatable;	DungeonItem;	NED1:Define:FirstByte, NED1:Define:SecondByte;	Helpers.BeatVaati, Items.WaterElement:`ELEMENT_DUNGEON`, Items.FireElement:`ELEMENT_DUNGEON`, Items.WindElement:`ELEMENT_DUNGEON`, Items.EarthElement:`ELEMENT_DUNGEON`, Helpers.AllMajors;	Items.Untyped.0x05:Beatable
-	Non_Element_Dungeon_2	:Beatable;	DungeonItem;	NED2:Define:FirstByte, NED2:Define:SecondByte;	Helpers.BeatVaati, Items.WaterElement:`ELEMENT_DUNGEON`, Items.FireElement:`ELEMENT_DUNGEON`, Items.WindElement:`ELEMENT_DUNGEON`, Items.EarthElement:`ELEMENT_DUNGEON`, Helpers.AllMajors;	Items.Untyped.0x06:Beatable
+	!ifdef - NO_GOLD_FUSIONS
+		!define - FoW_BEATABLE	- Items.Untyped.0x07:Beatable
+		!define - FoW_DUMMY		- DungeonMinor
+		!ifdef - OPENWORLD
+			!define - PoW_BEATABLE	- Items.Untyped.0x06:Beatable
+			!define - PoW_DUMMY		- DungeonConstraint
+		!else
+			!define - PoW_BEATABLE	- Items.Untyped.0x08:Beatable
+			!define - PoW_DUMMY		- DungeonMinor
+		!endif
+	!else
+		!define - FoW_BEATABLE	- Items.Untyped.0x03:Beatable
+		!define - FoW_DUMMY		- DungeonConstraint
+		!define - PoW_BEATABLE	- Items.Untyped.0x06:Beatable
+		!define - PoW_DUMMY		- DungeonConstraint
+	!endif
+	Element_Dungeon_1		:Beatable;	DungeonConstraint;	ED1:Define:FirstByte, ED1:Define:SecondByte;	;																																																Items.Untyped.0x01:Beatable
+	Element_Dungeon_2		:Beatable;	DungeonConstraint;	ED2:Define:FirstByte, ED2:Define:SecondByte;	;																																																Items.Untyped.0x02:Beatable
+	Element_Dungeon_3		:Beatable;	`FoW_DUMMY`;		ED3:Define:FirstByte, ED3:Define:SecondByte;	;																																																`FoW_BEATABLE`
+	Element_Dungeon_4		:Beatable;	DungeonConstraint;	ED4:Define:FirstByte, ED4:Define:SecondByte;	;																																																Items.Untyped.0x04:Beatable
+	Non_Element_Dungeon_1	:Beatable;	DungeonConstraint;	NED1:Define:FirstByte, NED1:Define:SecondByte;	(&Helpers.BeatVaati, Items.WaterElement:`ELEMENT_DUNGEON`, Items.FireElement:`ELEMENT_DUNGEON`, Items.WindElement:`ELEMENT_DUNGEON`, Items.EarthElement:`ELEMENT_DUNGEON`, Helpers.AllMajors);	Items.Untyped.0x05:Beatable
+	Non_Element_Dungeon_2	:Beatable;	`PoW_DUMMY`;		NED2:Define:FirstByte, NED2:Define:SecondByte;	(&Helpers.BeatVaati, Items.WaterElement:`ELEMENT_DUNGEON`, Items.FireElement:`ELEMENT_DUNGEON`, Items.WindElement:`ELEMENT_DUNGEON`, Items.EarthElement:`ELEMENT_DUNGEON`, Helpers.AllMajors);	`PoW_BEATABLE`
 	!define - DWS_Item			- Items.Untyped.0x01:Beatable,
 	!define - CoF_Item			- Items.Untyped.0x02:Beatable,
 	!define - CoF_Item_Outside	-
 	!define - FoW_Item			- Items.Untyped.0x03:Beatable,
 	!define - FoW_Item_Outside	-
 	!define - ToD_Item			- Items.Untyped.0x04:Beatable,
-	!define - RC_Item			- Items.Untyped.0x05:Beatable,
-	!define - RC_Item_Outside	-
+	!define - RC_Item				- Items.Untyped.0x05:Beatable,
+	!define - RC_Item_Outside		-
 	!define - PoW_Item			- Items.Untyped.0x06:Beatable,
 	!define - PoW_Item_Outside	-
 	!define - PoW_Item_F_Outside - 
 !endif
 !ifdef - UNREQSUR
-	Element_Dungeon_1		:Beatable;	DungeonItem;	ED1:Define:FirstByte, ED1:Define:SecondByte;	;																																											Items.Untyped.0x01:Beatable
-	Element_Dungeon_2		:Beatable;	DungeonItem;	ED2:Define:FirstByte, ED2:Define:SecondByte;	;																																											Items.Untyped.0x02:Beatable
-	Element_Dungeon_3		:Beatable;	DungeonItem;	ED3:Define:FirstByte, ED3:Define:SecondByte;	;																																											Items.Untyped.0x03:Beatable
-	Element_Dungeon_4		:Beatable;	DungeonItem;	ED4:Define:FirstByte, ED4:Define:SecondByte;	;																																											Items.Untyped.0x04:Beatable
-	Non_Element_Dungeon_1	:Beatable;	DungeonItem;	NED1:Define:FirstByte, NED1:Define:SecondByte;	Helpers.BeatVaati, Items.WaterElement:`ELEMENT_DUNGEON`, Items.FireElement:`ELEMENT_DUNGEON`, Items.WindElement:`ELEMENT_DUNGEON`, Items.EarthElement:`ELEMENT_DUNGEON`;	Items.Untyped.0x05:Beatable
-	Non_Element_Dungeon_2	:Beatable;	DungeonItem;	NED2:Define:FirstByte, NED2:Define:SecondByte;	Helpers.BeatVaati, Items.WaterElement:`ELEMENT_DUNGEON`, Items.FireElement:`ELEMENT_DUNGEON`, Items.WindElement:`ELEMENT_DUNGEON`, Items.EarthElement:`ELEMENT_DUNGEON`;	Items.Untyped.0x06:Beatable
+	!ifdef - NO_GOLD_FUSIONS
+		!define - FoW_BEATABLE	- Items.Untyped.0x07:Beatable
+		!define - FoW_DUMMY		- DungeonMinor
+		!ifdef - OPENWORLD
+			!define - PoW_BEATABLE	- Items.Untyped.0x06:Beatable
+			!define - PoW_DUMMY		- DungeonConstraint
+		!else
+			!define - PoW_BEATABLE	- Items.Untyped.0x08:Beatable
+			!define - PoW_DUMMY		- DungeonMinor
+		!endif
+	!else
+		!define - FoW_BEATABLE	- Items.Untyped.0x03:Beatable
+		!define - FoW_DUMMY		- DungeonConstraint
+		!define - PoW_BEATABLE	- Items.Untyped.0x06:Beatable
+		!define - PoW_DUMMY		- DungeonConstraint
+	!endif
+	Element_Dungeon_1		:Beatable;	DungeonConstraint;	ED1:Define:FirstByte, ED1:Define:SecondByte;	;																																											Items.Untyped.0x01:Beatable
+	Element_Dungeon_2		:Beatable;	DungeonConstraint;	ED2:Define:FirstByte, ED2:Define:SecondByte;	;																																											Items.Untyped.0x02:Beatable
+	Element_Dungeon_3		:Beatable;	`FoW_DUMMY`;		ED3:Define:FirstByte, ED3:Define:SecondByte;	;																																											`FoW_BEATABLE`
+	Element_Dungeon_4		:Beatable;	DungeonConstraint;	ED4:Define:FirstByte, ED4:Define:SecondByte;	;																																											Items.Untyped.0x04:Beatable
+	Non_Element_Dungeon_1	:Beatable;	DungeonConstraint;	NED1:Define:FirstByte, NED1:Define:SecondByte;	Helpers.BeatVaati, Items.WaterElement:`ELEMENT_DUNGEON`, Items.FireElement:`ELEMENT_DUNGEON`, Items.WindElement:`ELEMENT_DUNGEON`, Items.EarthElement:`ELEMENT_DUNGEON`;	Items.Untyped.0x05:Beatable
+	Non_Element_Dungeon_2	:Beatable;	`PoW_DUMMY`;		NED2:Define:FirstByte, NED2:Define:SecondByte;	Helpers.BeatVaati, Items.WaterElement:`ELEMENT_DUNGEON`, Items.FireElement:`ELEMENT_DUNGEON`, Items.WindElement:`ELEMENT_DUNGEON`, Items.EarthElement:`ELEMENT_DUNGEON`;	`PoW_BEATABLE`
 	!define - DWS_Item			- Items.Untyped.0x01:Beatable,
 	!define - CoF_Item			- Items.Untyped.0x02:Beatable,
 	!define - CoF_Item_Outside	- Items.Untyped.0x02:Beatable,
 	!define - FoW_Item			- Items.Untyped.0x03:Beatable,
 	!define - FoW_Item_Outside	- Items.Untyped.0x03:Beatable,
 	!define - ToD_Item			- Items.Untyped.0x04:Beatable,
-	!define - RC_Item			- Items.Untyped.0x05:Beatable,
-	!define - RC_Item_Outside	- Items.Untyped.0x05:Beatable,
+	!define - RC_Item				- Items.Untyped.0x05:Beatable,
+	!define - RC_Item_Outside		- Items.Untyped.0x05:Beatable,
 	!define - PoW_Item			- Items.Untyped.0x06:Beatable,
 	!define - PoW_Item_Outside	- Items.Untyped.0x06:Beatable,
 		!ifdef - NO_RED_FUSIONS
@@ -1735,12 +1740,28 @@ CanDownThrust;		Helper;; Helpers.HasSword, Items.DownThrust, Items.RocsCape
 		!endif
 !endif
 !ifdef - BARRENSUR
-	Element_Dungeon_1		:Beatable;	DungeonItem;	ED1:Define:FirstByte, ED1:Define:SecondByte;	;																																															Items.Untyped.0x01:Beatable
-	Element_Dungeon_2		:Beatable;	DungeonItem;	ED2:Define:FirstByte, ED2:Define:SecondByte;	;																																															Items.Untyped.0x02:Beatable
-	Element_Dungeon_3		:Beatable;	DungeonItem;	ED3:Define:FirstByte, ED3:Define:SecondByte;	;																																															Items.Untyped.0x03:Beatable
-	Element_Dungeon_4		:Beatable;	DungeonItem;	ED4:Define:FirstByte, ED4:Define:SecondByte;	;																																															Items.Untyped.0x04:Beatable
-	Non_Element_Dungeon_1	:Beatable;	DungeonItem;	NED1:Define:FirstByte, NED1:Define:SecondByte;	Helpers.BeatVaati, Items.WaterElement:`ELEMENT_DUNGEON`, Items.FireElement:`ELEMENT_DUNGEON`, Items.WindElement:`ELEMENT_DUNGEON`, Items.EarthElement:`ELEMENT_DUNGEON`, Helpers.AllMajors;	Items.Untyped.0x05:Beatable
-	Non_Element_Dungeon_2	:Beatable;	DungeonItem;	NED2:Define:FirstByte, NED2:Define:SecondByte;	Helpers.BeatVaati, Items.WaterElement:`ELEMENT_DUNGEON`, Items.FireElement:`ELEMENT_DUNGEON`, Items.WindElement:`ELEMENT_DUNGEON`, Items.EarthElement:`ELEMENT_DUNGEON`, Helpers.AllMajors;	Items.Untyped.0x06:Beatable
+	!ifdef - NO_GOLD_FUSIONS
+		!define - FoW_BEATABLE	- Items.Untyped.0x07:Beatable
+		!define - FoW_DUMMY		- DungeonMinor
+		!ifdef - OPENWORLD
+			!define - PoW_BEATABLE	- Items.Untyped.0x06:Beatable
+			!define - PoW_DUMMY		- DungeonConstraint
+		!else
+			!define - PoW_BEATABLE	- Items.Untyped.0x08:Beatable
+			!define - PoW_DUMMY		- DungeonMinor
+		!endif
+	!else
+		!define - FoW_BEATABLE	- Items.Untyped.0x03:Beatable
+		!define - FoW_DUMMY		- DungeonConstraint
+		!define - PoW_BEATABLE	- Items.Untyped.0x06:Beatable
+		!define - PoW_DUMMY		- DungeonConstraint
+	!endif
+	Element_Dungeon_1		:Beatable;	DungeonConstraint;	ED1:Define:FirstByte, ED1:Define:SecondByte;	;																																															Items.Untyped.0x01:Beatable
+	Element_Dungeon_2		:Beatable;	DungeonConstraint;	ED2:Define:FirstByte, ED2:Define:SecondByte;	;																																															Items.Untyped.0x02:Beatable
+	Element_Dungeon_3		:Beatable;	`FoW_DUMMY`;		ED3:Define:FirstByte, ED3:Define:SecondByte;	;																																															`FoW_BEATABLE`
+	Element_Dungeon_4		:Beatable;	DungeonConstraint;	ED4:Define:FirstByte, ED4:Define:SecondByte;	;																																															Items.Untyped.0x04:Beatable
+	Non_Element_Dungeon_1	:Beatable;	DungeonConstraint;	NED1:Define:FirstByte, NED1:Define:SecondByte;	Helpers.BeatVaati, Items.WaterElement:`ELEMENT_DUNGEON`, Items.FireElement:`ELEMENT_DUNGEON`, Items.WindElement:`ELEMENT_DUNGEON`, Items.EarthElement:`ELEMENT_DUNGEON`, Helpers.AllMajors;	Items.Untyped.0x05:Beatable
+	Non_Element_Dungeon_2	:Beatable;	`PoW_DUMMY`;		NED2:Define:FirstByte, NED2:Define:SecondByte;	Helpers.BeatVaati, Items.WaterElement:`ELEMENT_DUNGEON`, Items.FireElement:`ELEMENT_DUNGEON`, Items.WindElement:`ELEMENT_DUNGEON`, Items.EarthElement:`ELEMENT_DUNGEON`, Helpers.AllMajors;	`PoW_BEATABLE`
 	!define - DWS_Item			- Items.Untyped.0x01:Beatable,
 	!define - CoF_Item			- Items.Untyped.0x02:Beatable,
 	!define - CoF_Item_Outside	- Items.Untyped.0x02:Beatable,
@@ -1910,21 +1931,40 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 		FallsFusion;				Helper;;																																#FallsDoor
 		RuinsFusion;				Helper;;																																#SwampBlock
 	!else
+		!undefine - ALLGOLDS
 		!ifndef - COMBINED_GOLD_FUSIONS
+			!ifdef - ITEM_POOL_PLENTIFUL
+				!define - ALLGOLDS - Items.KinstoneX.YellowTornadoProng::7, Items.KinstoneX.YellowTotemProng::5, Items.KinstoneX.YellowCrown::2,
+				!replaceamount - Items.KinstoneX.YellowCrown - 1 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+				!replaceamount - Items.KinstoneX.YellowTornadoProng - 2 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+				!replaceamount - Items.KinstoneX.YellowTotemProng - 2 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+			!else
+				!define - ALLGOLDS - Items.KinstoneX.YellowTornadoProng::5, Items.KinstoneX.YellowTotemProng::3, Items.KinstoneX.YellowCrown,
+			!endif
+			!replaceamount - Items.KinstoneX.YellowCrown - 1 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+			!replaceamount - Items.KinstoneX.YellowTornadoProng - 5 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+			!replaceamount - Items.KinstoneX.YellowTotemProng - 3 - `SHELLVALS` `KINVALS` `RUPEEVALS`
 			CanFuseGoldTornado;  Helper;; Items.KinstoneX.YellowTornadoProng::5
 			CanFuseGoldTotem;    Helper;; Items.KinstoneX.YellowTotemProng::3
 			CanFuseGoldCrown;    Helper;; Items.KinstoneX.YellowCrown
 		!else
+			!ifdef - ITEM_POOL_PLENTIFUL
+				!define - ALLGOLDS - Items.KinstoneX.YellowTornadoProng::14,
+				!replaceamount - Items.KinstoneX.YellowTornadoProng - 5 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+			!else
+				!define - ALLGOLDS - Items.KinstoneX.YellowTornadoProng::9,
+			!endif
 			!eventdefine - combineKinstonesGold
-			!replace - Items.KinstoneX.YellowTotemProng - Items.KinstoneX.YellowTornadoProng::1
-			!replace - Items.KinstoneX.YellowCrown - Items.KinstoneX.YellowTornadoProng::1
-			CanFuseGoldTornado;  Helper;; (+9, Items.KinstoneX.YellowTornadoProng, Items.KinstoneX.YellowTotemProng, Items.KinstoneX.YellowCrown)
-			CanFuseGoldTotem;    Helper;; (+9, Items.KinstoneX.YellowTornadoProng, Items.KinstoneX.YellowTotemProng, Items.KinstoneX.YellowCrown)
-			CanFuseGoldCrown;    Helper;; (+4, Items.KinstoneX.YellowTornadoProng, Items.KinstoneX.YellowTotemProng, Items.KinstoneX.YellowCrown)
+			!replaceamount - Items.KinstoneX.YellowTornadoProng - 9 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+			!replace - Items.KinstoneX.YellowTotemProng - `SWAPRED`
+			!replace - Items.KinstoneX.YellowCrown - `SWAPRED`
+			CanFuseGoldTornado;  Helper;; Items.KinstoneX.YellowTornadoProng::9
+			CanFuseGoldTotem;    Helper;; Items.KinstoneX.YellowTornadoProng::9
+			CanFuseGoldCrown;    Helper;; Items.KinstoneX.YellowTornadoProng::4
 		!endif
-		!settype - Items.KinstoneX.YellowCrown 			- Major
+		!settype - Items.KinstoneX.YellowCrown 		- Major
 		!settype - Items.KinstoneX.YellowTornadoProng	- Major
-		!settype - Items.KinstoneX.YellowTotemProng		- Major
+		!settype - Items.KinstoneX.YellowTotemProng	- Major
 		CloudFusions;				Helper;;	Helpers.CanFuseGoldTornado, (|Items.RocsCape, Items.MoleMitts)																#CloudTopsTornado
 		FallsFusion;				Helper;;	Helpers.CanFuseGoldCrown																									#FallsDoor
 		RuinsFusion;				Helper;;	Helpers.CanFuseGoldTotem																									#SwampBlock
@@ -1988,47 +2028,124 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 		Din2Fusion;					Helper;;																																#RuinsButterfly			20
 		PercyFusion;				Helper;;																																#PercyHouse			21
 	!else
+		!undefine - ALLREDS				
 		!ifndef - COMBINED_RED_FUSIONS
 			!ifdef - NO_BLUE_FUSIONS
 				!replaceamount - Items.KinstoneX.0x6E - 8 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+				CanFuseRedW;		Helper;; Items.KinstoneX.0x6E::8
+				!ifndef - ITEM_POOL_PLENTIFUL
+					!define - ALLREDW - Items.KinstoneX.0x6E::8,
+				!else
+					!define - ALLREDW - Items.KinstoneX.0x6E::10,
+					!replaceamount - Items.KinstoneX.0x6E - 2 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+				!endif
 			!else
 				!replaceamount - Items.KinstoneX.0x6E - 9 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+				CanFuseRedW;		Helper;; Items.KinstoneX.0x6E::9
+				!ifndef - ITEM_POOL_PLENTIFUL
+					!define - ALLREDW - Items.KinstoneX.0x6E::9,
+				!else
+					!define - ALLREDW - Items.KinstoneX.0x6E::11,
+					!replaceamount - Items.KinstoneX.0x6E - 2 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+				!endif
 			!endif
 			!ifdef - NO_GOLD_FUSIONS
-			!replaceamount - Items.KinstoneX.0x6F - 6 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+				!replaceamount - Items.KinstoneX.0x6F - 6 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+				CanFuseRedV;		Helper;; Items.KinstoneX.0x6F::6
+				CanFuseRedMinish0;	Helper;; Items.KinstoneX.0x6F::6
+				!ifndef - ITEM_POOL_PLENTIFUL
+					!define - ALLREDV - Items.KinstoneX.0x6F::6,
+				!else
+					!define - ALLREDV - Items.KinstoneX.0x6F::8,
+					!replaceamount - Items.KinstoneX.0x6F - 2 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+				!endif
 			!else
-			!replaceamount - Items.KinstoneX.0x6F - 7 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+				!replaceamount - Items.KinstoneX.0x6F - 7 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+				CanFuseRedV;		Helper;; Items.KinstoneX.0x6F::7
+				CanFuseRedMinish0;	Helper;; Items.KinstoneX.0x6F::7
+				!ifdef - ITEM_POOL_PLENTIFUL
+					!define - ALLREDV - Items.KinstoneX.0x6F::7,
+				!else
+					!define - ALLREDV - Items.KinstoneX.0x6F::9,
+					!replaceamount - Items.KinstoneX.0x6F - 2 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+				!endif
 			!endif
+			!ifndef - ITEM_POOL_PLENTIFUL
+				!define - ALLREDE - Items.KinstoneX.0x70::8,
+			!else
+				!define - ALLREDE - Items.KinstoneX.0x70::10,
+				!replaceamount - Items.KinstoneX.0x70 - 2 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+			!endif
+			!define - ALLREDS - `ALLREDW` `ALLREDV` `ALLREDE`
 			!replaceamount - Items.KinstoneX.0x70 - 8 - `SHELLVALS` `KINVALS` `RUPEEVALS`
-			CanFuseRedW;		Helper;; Items.KinstoneX.0x6E::9
-			CanFuseRedV;		Helper;; Items.KinstoneX.0x6F::7
-			CanFuseRedMinish0;	Helper;; Items.KinstoneX.0x6F::7
 			CanFuseRedE;		Helper;; Items.KinstoneX.0x70::8
 			CanFuseRedDin;		Helper;; Items.KinstoneX.0x70::7
 			CanFuseRedMinish;	Helper;; Items.KinstoneX.0x70::7
 		!else
 			!ifdef - NO_BLUE_FUSIONS
 				!ifdef - NO_GOLD_FUSIONS
-			!replaceamount - Items.KinstoneX.0x6E - 22 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+					!replaceamount - Items.KinstoneX.0x6E - 22 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+					CanFuseRedW;		Helper;; Items.KinstoneX.0x6E::22
+					CanFuseRedV;		Helper;; Items.KinstoneX.0x6E::22
+					CanFuseRedMinish0;	Helper;; Items.KinstoneX.0x6E::20
+					CanFuseRedE;		Helper;; Items.KinstoneX.0x6E::22
+					CanFuseRedDin;		Helper;; Items.KinstoneX.0x6E::18
+					CanFuseRedMinish;	Helper;; Items.KinstoneX.0x6E::21
+					!ifndef - ITEM_POOL_PLENTIFUL
+						!define - ALLREDS - Items.KinstoneX.0x6E::22,
+					!else
+						!define - ALLREDS - Items.KinstoneX.0x6E::28,
+						!replaceamount - Items.KinstoneX.0x6E - 6 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+					!endif
 				!else
-			!replaceamount - Items.KinstoneX.0x6E - 23 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+					!replaceamount - Items.KinstoneX.0x6E - 23 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+					CanFuseRedW;		Helper;; Items.KinstoneX.0x6E::23
+					CanFuseRedV;		Helper;; Items.KinstoneX.0x6E::23
+					CanFuseRedMinish0;	Helper;; Items.KinstoneX.0x6E::21
+					CanFuseRedE;		Helper;; Items.KinstoneX.0x6E::23
+					CanFuseRedDin;		Helper;; Items.KinstoneX.0x6E::19
+					CanFuseRedMinish;	Helper;; Items.KinstoneX.0x6E::22
+					!ifndef - ITEM_POOL_PLENTIFUL
+						!define - ALLREDS - Items.KinstoneX.0x6E::23,
+					!else
+						!define - ALLREDS - Items.KinstoneX.0x6E::29,
+						!replaceamount - Items.KinstoneX.0x6E - 6 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+					!endif
 				!endif
 			!else
 				!ifdef - NO_GOLD_FUSIONS
-			!replaceamount - Items.KinstoneX.0x6E - 23 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+					!replaceamount - Items.KinstoneX.0x6E - 23 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+					CanFuseRedW;		Helper;; Items.KinstoneX.0x6E::23
+					CanFuseRedV;		Helper;; Items.KinstoneX.0x6E::23
+					CanFuseRedMinish0;	Helper;; Items.KinstoneX.0x6E::21
+					CanFuseRedE;		Helper;; Items.KinstoneX.0x6E::23
+					CanFuseRedDin;		Helper;; Items.KinstoneX.0x6E::19
+					CanFuseRedMinish;	Helper;; Items.KinstoneX.0x6E::22
+					!ifndef - ITEM_POOL_PLENTIFUL
+						!define - ALLREDS - Items.KinstoneX.0x6E::23,
+					!else
+						!define - ALLREDS - Items.KinstoneX.0x6E::29,
+						!replaceamount - Items.KinstoneX.0x6E - 6 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+					!endif
 				!else
-			!replaceamount - Items.KinstoneX.0x6E - 24 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+					!replaceamount - Items.KinstoneX.0x6E - 24 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+					CanFuseRedW;		Helper;; Items.KinstoneX.0x6E::24
+					CanFuseRedV;		Helper;; Items.KinstoneX.0x6E::24
+					CanFuseRedMinish0;	Helper;; Items.KinstoneX.0x6E::22
+					CanFuseRedE;		Helper;; Items.KinstoneX.0x6E::24
+					CanFuseRedDin;		Helper;; Items.KinstoneX.0x6E::20
+					CanFuseRedMinish;	Helper;; Items.KinstoneX.0x6E::23
+					!ifndef - ITEM_POOL_PLENTIFUL
+						!define - ALLREDS - Items.KinstoneX.0x6E::24,
+					!else
+						!define - ALLREDS - Items.KinstoneX.0x6E::30,
+						!replaceamount - Items.KinstoneX.0x6E - 6 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+					!endif
 				!endif
 			!endif
 			!eventdefine - combineKinstonesRed
 			!replace - Items.KinstoneX.0x6F - `SWAPRED`
 			!replace - Items.KinstoneX.0x70 - `SWAPRED`
-			CanFuseRedW;		Helper;; (+24, Items.KinstoneX.0x6E, Items.KinstoneX.0x6F, Items.KinstoneX.0x70)
-			CanFuseRedV;		Helper;; (+24, Items.KinstoneX.0x6E, Items.KinstoneX.0x6F, Items.KinstoneX.0x70)
-			CanFuseRedMinish0;	Helper;; (+22, Items.KinstoneX.0x6E, Items.KinstoneX.0x6F, Items.KinstoneX.0x70)
-			CanFuseRedE;		Helper;; (+24, Items.KinstoneX.0x6E, Items.KinstoneX.0x6F, Items.KinstoneX.0x70)
-			CanFuseRedDin;		Helper;; (+20, Items.KinstoneX.0x6E, Items.KinstoneX.0x6F, Items.KinstoneX.0x70)
-			CanFuseRedMinish;	Helper;; (+23, Items.KinstoneX.0x6E, Items.KinstoneX.0x6F, Items.KinstoneX.0x70)
 		!endif
 		!settype - Items.KinstoneX.RedSpike - Major
 		!settype - Items.KinstoneX.RedCrack - Major
@@ -2104,6 +2221,7 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 		HurdyFusion;				Helper;;																																#SHFTree			32
 		GoronLeftFusion;			Helper;;																																#GoronMerchant		33
 	!else
+		!undefine - ALLBLUES
 		!ifndef - COMBINED_BLUE_FUSIONS
 			!replaceamount - Items.KinstoneX.0x71 - 9 - `SHELLVALS` `KINVALS` `RUPEEVALS`
 			!replaceamount - Items.KinstoneX.0x72 - 9 - `SHELLVALS` `KINVALS` `RUPEEVALS`
@@ -2111,14 +2229,27 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 			CanFuseBlueS;    	Helper;; Items.KinstoneX.0x72::9
 			CanFuseBlue4Wall;	Helper;; Items.KinstoneX.0x71::8, Items.KinstoneX.0x72::8
 			CanFuseBlueGhost;	Helper;; Items.KinstoneX.0x72::9
+			!ifndef - ITEM_POOL_PLENTIFUL
+				!define - ALLBLUES - Items.KinstoneX.0x71::9, Items.KinstoneX.0x72::9,
+			!else
+				!define - ALLBLUES - Items.KinstoneX.0x71::11, Items.KinstoneX.0x72::11,
+				!replaceamount - Items.KinstoneX.0x71 - 2 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+				!replaceamount - Items.KinstoneX.0x72 - 2 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+			!endif
 		!else
 			!eventdefine - combineKinstonesBlue
 			!replaceamount - Items.KinstoneX.0x71 - 18 - `SHELLVALS` `KINVALS` `RUPEEVALS`
 			!replace - Items.KinstoneX.0x72 - `SWAPBLUE`
-			CanFuseBlueL;    Helper;; (+18, Items.KinstoneX.0x71, Items.KinstoneX.0x72)
-			CanFuseBlueS;    Helper;; (+18, Items.KinstoneX.0x71, Items.KinstoneX.0x72)
-			CanFuseBlue4Wall;Helper;; (+16, Items.KinstoneX.0x71, Items.KinstoneX.0x72)
-			CanFuseBlueGhost;Helper;; (+17, Items.KinstoneX.0x71, Items.KinstoneX.0x72)
+			CanFuseBlueL;    Helper;; Items.KinstoneX.0x71::18
+			CanFuseBlueS;    Helper;; Items.KinstoneX.0x71::18
+			CanFuseBlue4Wall;Helper;; Items.KinstoneX.0x71::16
+			CanFuseBlueGhost;Helper;; Items.KinstoneX.0x71::17
+			!ifndef - ITEM_POOL_PLENTIFUL
+				!define - ALLBLUES - Items.KinstoneX.0x71::18,
+			!else
+				!define - ALLBLUES - Items.KinstoneX.0x71::22,
+				!replaceamount - Items.KinstoneX.0x71 - 4 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+			!endif
 		!endif
 		!settype - Items.KinstoneX.BlueL - Major
 		!settype - Items.KinstoneX.BlueS - Major
@@ -2246,137 +2377,453 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 		CrenelLowerMinishFusion;	Helper;;																																#CrenelLowerChest	63
 		NHFMinishFusion;			Helper;;																																#RuinsPillarChest		64
 	!else
+		!undefine - ALLGREENS
 		!ifndef - COMBINED_GREEN_FUSIONS
 			!ifdef - NO_BLUE_FUSIONS
 				!ifdef - NO_GOLD_FUSIONS
-			!replaceamount - Items.KinstoneX.0x73 - 13 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+					!replaceamount - Items.KinstoneX.0x73 - 13 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+					CanFuseGreenC;   		Helper;; Items.KinstoneX.0x73::13
+					CanFuseGreenScrub;		Helper;; Items.KinstoneX.0x73::13
+					CanFuseGreenGina;		Helper;; Items.KinstoneX.0x73::12
+					CanFuseGreenSiroc;		Helper;; Items.KinstoneX.0x73::13
+					CanFuseGreenCShared1;	Helper;; Items.KinstoneX.0x73::7
+					CanFuseGreenCShared2;	Helper;; Items.KinstoneX.0x73::8
+					CanFuseGreenCShared3;	Helper;; Items.KinstoneX.0x73::9
+					CanFuseGreenCShared4;	Helper;; Items.KinstoneX.0x73::10
+					CanFuseGreenCShared5;	Helper;; Items.KinstoneX.0x73::11
+					CanFuseGreenCShared6;	Helper;; Items.KinstoneX.0x73::12
+					!ifndef - ITEM_POOL_PLENTIFUL
+						!define - ALLGREENC - Items.KinstoneX.0x73::13
+					!else
+						!define - ALLGREENC - Items.KinstoneX.0x73::16
+						!replaceamount - Items.KinstoneX.0x73 - 3 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+					!endif
 				!else
-			!replaceamount - Items.KinstoneX.0x73 - 14 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+					!replaceamount - Items.KinstoneX.0x73 - 14 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+					CanFuseGreenC;   		Helper;; Items.KinstoneX.0x73::14
+					CanFuseGreenScrub;		Helper;; Items.KinstoneX.0x73::14
+					CanFuseGreenGina;		Helper;; Items.KinstoneX.0x73::13
+					CanFuseGreenSiroc;		Helper;; Items.KinstoneX.0x73::14
+					CanFuseGreenCShared1;	Helper;; Items.KinstoneX.0x73::8
+					CanFuseGreenCShared2;	Helper;; Items.KinstoneX.0x73::9
+					CanFuseGreenCShared3;	Helper;; Items.KinstoneX.0x73::10
+					CanFuseGreenCShared4;	Helper;; Items.KinstoneX.0x73::11
+					CanFuseGreenCShared5;	Helper;; Items.KinstoneX.0x73::12
+					CanFuseGreenCShared6;	Helper;; Items.KinstoneX.0x73::13
+					!ifndef - ITEM_POOL_PLENTIFUL
+						!define - ALLGREENC - Items.KinstoneX.0x73::14
+					!else
+						!define - ALLGREENC - Items.KinstoneX.0x73::17
+						!replaceamount - Items.KinstoneX.0x73 - 3 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+					!endif
 				!endif
 			!else
 				!ifdef - NO_GOLD_FUSIONS
-			!replaceamount - Items.KinstoneX.0x73 - 16 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+					!replaceamount - Items.KinstoneX.0x73 - 16 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+					CanFuseGreenC;   		Helper;; Items.KinstoneX.0x73::16
+					CanFuseGreenScrub;		Helper;; Items.KinstoneX.0x73::16
+					CanFuseGreenGina;		Helper;; Items.KinstoneX.0x73::15
+					CanFuseGreenSiroc;		Helper;; Items.KinstoneX.0x73::16
+					CanFuseGreenCShared1;	Helper;; Items.KinstoneX.0x73::10
+					CanFuseGreenCShared2;	Helper;; Items.KinstoneX.0x73::11
+					CanFuseGreenCShared3;	Helper;; Items.KinstoneX.0x73::12
+					CanFuseGreenCShared4;	Helper;; Items.KinstoneX.0x73::13
+					CanFuseGreenCShared5;	Helper;; Items.KinstoneX.0x73::14
+					CanFuseGreenCShared6;	Helper;; Items.KinstoneX.0x73::15
+					!ifndef - ITEM_POOL_PLENTIFUL
+						!define - ALLGREENC - Items.KinstoneX.0x73::16
+					!else
+						!define - ALLGREENC - Items.KinstoneX.0x73::19
+						!replaceamount - Items.KinstoneX.0x73 - 3 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+					!endif
 				!else
-			!replaceamount - Items.KinstoneX.0x73 - 17 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+					!replaceamount - Items.KinstoneX.0x73 - 17 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+					CanFuseGreenC;   		Helper;; Items.KinstoneX.0x73::17
+					CanFuseGreenScrub;		Helper;; Items.KinstoneX.0x73::17
+					CanFuseGreenGina;		Helper;; Items.KinstoneX.0x73::16
+					CanFuseGreenSiroc;		Helper;; Items.KinstoneX.0x73::17
+					CanFuseGreenCShared1;	Helper;; Items.KinstoneX.0x73::11
+					CanFuseGreenCShared2;	Helper;; Items.KinstoneX.0x73::12
+					CanFuseGreenCShared3;	Helper;; Items.KinstoneX.0x73::13
+					CanFuseGreenCShared4;	Helper;; Items.KinstoneX.0x73::14
+					CanFuseGreenCShared5;	Helper;; Items.KinstoneX.0x73::15
+					CanFuseGreenCShared6;	Helper;; Items.KinstoneX.0x73::16
+					!ifndef - ITEM_POOL_PLENTIFUL
+						!define - ALLGREENC - Items.KinstoneX.0x73::17
+					!else
+						!define - ALLGREENC - Items.KinstoneX.0x73::20
+						!replaceamount - Items.KinstoneX.0x73 - 3 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+					!endif
 				!endif
 			!endif
 			!ifdef - NO_GOLD_FUSIONS
 				!ifdef - NO_RED_FUSIONS
-			!replaceamount - Items.KinstoneX.0x74 - 12 - `SHELLVALS` `KINVALS` `RUPEEVALS`
-					!ifdef - NO_BLUE_FUSIONS
-			!replaceamount - Items.KinstoneX.0x75 - 14 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+					!replaceamount - Items.KinstoneX.0x74 - 12 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+					CanFuseGreenG;   		Helper;; Items.KinstoneX.0x74::12
+					CanFuseGreenFlurris;	Helper;; Items.KinstoneX.0x74::11
+					CanFuseGreenTFZ1;		Helper;; Items.KinstoneX.0x74::12
+					CanFuseGreenGShared1;	Helper;; Items.KinstoneX.0x74::7
+					CanFuseGreenGShared2;	Helper;; Items.KinstoneX.0x74::8
+					CanFuseGreenGShared3;	Helper;; Items.KinstoneX.0x74::9
+					CanFuseGreenGShared4;	Helper;; Items.KinstoneX.0x74::10
+					CanFuseGreenGShared5;	Helper;; Items.KinstoneX.0x74::11
+					!ifndef - ITEM_POOL_PLENTIFUL
+						!define - ALLGREENG - Items.KinstoneX.0x74::12
 					!else
-			!replaceamount - Items.KinstoneX.0x75 - 15 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+						!define - ALLGREENG - Items.KinstoneX.0x74::15
+						!replaceamount - Items.KinstoneX.0x74 - 3 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+					!endif
+					!ifdef - NO_BLUE_FUSIONS
+						!replaceamount - Items.KinstoneX.0x75 - 14 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+						CanFuseGreenP;   		Helper;; Items.KinstoneX.0x75::14
+						CanFuseGreenTFZ2;		Helper;; Items.KinstoneX.0x75::14
+						CanFuseGreenDavid;		Helper;; Items.KinstoneX.0x75::14
+						CanFuseGreenPShared1;	Helper;; Items.KinstoneX.0x75::9
+						CanFuseGreenPShared2;	Helper;; Items.KinstoneX.0x75::10
+						CanFuseGreenPShared3;	Helper;; Items.KinstoneX.0x75::11
+						CanFuseGreenPShared4;	Helper;; Items.KinstoneX.0x75::12
+						CanFuseGreenPShared5;	Helper;; Items.KinstoneX.0x75::13
+						!ifndef - ITEM_POOL_NORMAL
+							!define - ALLGREENP - Items.KinstoneX.0x75::14
+						!else
+							!define - ALLGREENP - Items.KinstoneX.0x75::17
+							!replaceamount - Items.KinstoneX.0x75 - 3 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+						!endif
+					!else
+						!replaceamount - Items.KinstoneX.0x75 - 15 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+						CanFuseGreenP;   		Helper;; Items.KinstoneX.0x75::15
+						CanFuseGreenTFZ2;		Helper;; Items.KinstoneX.0x75::15
+						CanFuseGreenDavid;		Helper;; Items.KinstoneX.0x75::15
+						CanFuseGreenPShared1;	Helper;; Items.KinstoneX.0x75::10
+						CanFuseGreenPShared2;	Helper;; Items.KinstoneX.0x75::11
+						CanFuseGreenPShared3;	Helper;; Items.KinstoneX.0x75::12
+						CanFuseGreenPShared4;	Helper;; Items.KinstoneX.0x75::13
+						CanFuseGreenPShared5;	Helper;; Items.KinstoneX.0x75::14
+						!ifndef - ITEM_POOL_NORMAL
+							!define - ALLGREENP - Items.KinstoneX.0x75::15
+						!else
+							!define - ALLGREENP - Items.KinstoneX.0x75::18
+							!replaceamount - Items.KinstoneX.0x75 - 3 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+						!endif
 					!endif
 				!else
-			!replaceamount - Items.KinstoneX.0x74 - 14 - `SHELLVALS` `KINVALS` `RUPEEVALS`
-					!ifdef - NO_BLUE_FUSIONS
-			!replaceamount - Items.KinstoneX.0x75 - 15 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+					!replaceamount - Items.KinstoneX.0x74 - 14 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+					CanFuseGreenG;   		Helper;; Items.KinstoneX.0x74::14
+					CanFuseGreenFlurris;	Helper;; Items.KinstoneX.0x74::13
+					CanFuseGreenTFZ1;		Helper;; Items.KinstoneX.0x74::14
+					CanFuseGreenGShared1;	Helper;; Items.KinstoneX.0x74::9
+					CanFuseGreenGShared2;	Helper;; Items.KinstoneX.0x74::10
+					CanFuseGreenGShared3;	Helper;; Items.KinstoneX.0x74::11
+					CanFuseGreenGShared4;	Helper;; Items.KinstoneX.0x74::12
+					CanFuseGreenGShared5;	Helper;; Items.KinstoneX.0x74::13
+					!ifndef - ITEM_POOL_PLENTIFUL
+						!define - ALLGREENG - Items.KinstoneX.0x74::14
 					!else
-			!replaceamount - Items.KinstoneX.0x75 - 16 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+						!define - ALLGREENG - Items.KinstoneX.0x74::17
+						!replaceamount - Items.KinstoneX.0x74 - 3 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+					!endif
+					!ifdef - NO_BLUE_FUSIONS
+						!replaceamount - Items.KinstoneX.0x75 - 15 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+						CanFuseGreenP;   		Helper;; Items.KinstoneX.0x75::15
+						CanFuseGreenTFZ2;		Helper;; Items.KinstoneX.0x75::15
+						CanFuseGreenDavid;		Helper;; Items.KinstoneX.0x75::15
+						CanFuseGreenPShared1;	Helper;; Items.KinstoneX.0x75::10
+						CanFuseGreenPShared2;	Helper;; Items.KinstoneX.0x75::11
+						CanFuseGreenPShared3;	Helper;; Items.KinstoneX.0x75::12
+						CanFuseGreenPShared4;	Helper;; Items.KinstoneX.0x75::13
+						CanFuseGreenPShared5;	Helper;; Items.KinstoneX.0x75::14
+						!ifndef - ITEM_POOL_NORMAL
+							!define - ALLGREENP - Items.KinstoneX.0x75::15
+						!else
+							!define - ALLGREENP - Items.KinstoneX.0x75::18
+							!replaceamount - Items.KinstoneX.0x75 - 3 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+						!endif
+					!else
+						!replaceamount - Items.KinstoneX.0x75 - 16 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+						CanFuseGreenP;   		Helper;; Items.KinstoneX.0x75::16
+						CanFuseGreenTFZ2;		Helper;; Items.KinstoneX.0x75::16
+						CanFuseGreenDavid;		Helper;; Items.KinstoneX.0x75::16
+						CanFuseGreenPShared1;	Helper;; Items.KinstoneX.0x75::11
+						CanFuseGreenPShared2;	Helper;; Items.KinstoneX.0x75::12
+						CanFuseGreenPShared3;	Helper;; Items.KinstoneX.0x75::13
+						CanFuseGreenPShared4;	Helper;; Items.KinstoneX.0x75::14
+						CanFuseGreenPShared5;	Helper;; Items.KinstoneX.0x75::15
+						!ifndef - ITEM_POOL_NORMAL
+							!define - ALLGREENP - Items.KinstoneX.0x75::16
+						!else
+							!define - ALLGREENP - Items.KinstoneX.0x75::19
+							!replaceamount - Items.KinstoneX.0x75 - 3 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+						!endif
 					!endif
 				!endif
 			!else
-			!replaceamount - Items.KinstoneX.0x74 - 16 - `SHELLVALS` `KINVALS` `RUPEEVALS`
-				!ifdef - NO_BLUE_FUSIONS
-			!replaceamount - Items.KinstoneX.0x75 - 15 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+				!replaceamount - Items.KinstoneX.0x74 - 16 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+				CanFuseGreenG;   		Helper;; Items.KinstoneX.0x74::16
+				CanFuseGreenFlurris;	Helper;; Items.KinstoneX.0x74::15
+				CanFuseGreenTFZ1;		Helper;; Items.KinstoneX.0x74::16
+				CanFuseGreenGShared1;	Helper;; Items.KinstoneX.0x74::11
+				CanFuseGreenGShared2;	Helper;; Items.KinstoneX.0x74::12
+				CanFuseGreenGShared3;	Helper;; Items.KinstoneX.0x74::13
+				CanFuseGreenGShared4;	Helper;; Items.KinstoneX.0x74::14
+				CanFuseGreenGShared5;	Helper;; Items.KinstoneX.0x74::15
+				!ifndef - ITEM_POOL_PLENTIFUL
+					!define - ALLGREENG - Items.KinstoneX.0x74::16
 				!else
-			!replaceamount - Items.KinstoneX.0x75 - 16 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+					!define - ALLGREENG - Items.KinstoneX.0x74::19
+					!replaceamount - Items.KinstoneX.0x74 - 3 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+				!endif
+				!ifdef - NO_BLUE_FUSIONS
+					!replaceamount - Items.KinstoneX.0x75 - 15 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+					CanFuseGreenP;   		Helper;; Items.KinstoneX.0x75::15
+					CanFuseGreenTFZ2;		Helper;; Items.KinstoneX.0x75::15
+					CanFuseGreenDavid;		Helper;; Items.KinstoneX.0x75::15
+					CanFuseGreenPShared1;	Helper;; Items.KinstoneX.0x75::10
+					CanFuseGreenPShared2;	Helper;; Items.KinstoneX.0x75::11
+					CanFuseGreenPShared3;	Helper;; Items.KinstoneX.0x75::12
+					CanFuseGreenPShared4;	Helper;; Items.KinstoneX.0x75::13
+					CanFuseGreenPShared5;	Helper;; Items.KinstoneX.0x75::14
+					!ifndef - ITEM_POOL_NORMAL
+						!define - ALLGREENP - Items.KinstoneX.0x75::15
+					!else
+						!define - ALLGREENP - Items.KinstoneX.0x75::18
+						!replaceamount - Items.KinstoneX.0x75 - 3 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+					!endif
+				!else
+					!replaceamount - Items.KinstoneX.0x75 - 16 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+					CanFuseGreenP;   		Helper;; Items.KinstoneX.0x75::16
+					CanFuseGreenTFZ2;		Helper;; Items.KinstoneX.0x75::16
+					CanFuseGreenDavid;		Helper;; Items.KinstoneX.0x75::16
+					CanFuseGreenPShared1;	Helper;; Items.KinstoneX.0x75::11
+					CanFuseGreenPShared2;	Helper;; Items.KinstoneX.0x75::12
+					CanFuseGreenPShared3;	Helper;; Items.KinstoneX.0x75::13
+					CanFuseGreenPShared4;	Helper;; Items.KinstoneX.0x75::14
+					CanFuseGreenPShared5;	Helper;; Items.KinstoneX.0x75::15
+					!ifndef - ITEM_POOL_NORMAL
+						!define - ALLGREENP - Items.KinstoneX.0x75::16
+					!else
+						!define - ALLGREENP - Items.KinstoneX.0x75::19
+						!replaceamount - Items.KinstoneX.0x75 - 3 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+					!endif
 				!endif
 			!endif
-			CanFuseGreenC;   		Helper;; Items.KinstoneX.0x73::17
-			CanFuseGreenScrub;		Helper;; Items.KinstoneX.0x73::17
-			CanFuseGreenGina;		Helper;; Items.KinstoneX.0x73::16
-			CanFuseGreenSiroc;		Helper;; Items.KinstoneX.0x73::17
-			CanFuseGreenCShared1;	Helper;; Items.KinstoneX.0x73::11
-			CanFuseGreenCShared2;	Helper;; Items.KinstoneX.0x73::12
-			CanFuseGreenCShared3;	Helper;; Items.KinstoneX.0x73::13
-			CanFuseGreenCShared4;	Helper;; Items.KinstoneX.0x73::14
-			CanFuseGreenCShared5;	Helper;; Items.KinstoneX.0x73::15
-			CanFuseGreenCShared6;	Helper;; Items.KinstoneX.0x73::16
-			CanFuseGreenG;   		Helper;; Items.KinstoneX.0x74::16
-			CanFuseGreenFlurris;	Helper;; Items.KinstoneX.0x74::15
-			CanFuseGreenTFZ1;		Helper;; Items.KinstoneX.0x74::16
-			CanFuseGreenGShared1;	Helper;; Items.KinstoneX.0x74::11
-			CanFuseGreenGShared2;	Helper;; Items.KinstoneX.0x74::12
-			CanFuseGreenGShared3;	Helper;; Items.KinstoneX.0x74::13
-			CanFuseGreenGShared4;	Helper;; Items.KinstoneX.0x74::14
-			CanFuseGreenGShared5;	Helper;; Items.KinstoneX.0x74::15
-			CanFuseGreenP;   		Helper;; Items.KinstoneX.0x75::16
-			CanFuseGreenTFZ2;		Helper;; Items.KinstoneX.0x75::16
-			CanFuseGreenDavid;		Helper;; Items.KinstoneX.0x75::16
-			CanFuseGreenPShared1;	Helper;; Items.KinstoneX.0x75::11
-			CanFuseGreenPShared2;	Helper;; Items.KinstoneX.0x75::12
-			CanFuseGreenPShared3;	Helper;; Items.KinstoneX.0x75::13
-			CanFuseGreenPShared4;	Helper;; Items.KinstoneX.0x75::14
-			CanFuseGreenPShared5;	Helper;; Items.KinstoneX.0x75::15
+		!define - ALLGREENS - `ALLGREENC` `ALLGREENG` `ALLGREENP`
 		!else
 			!ifdef - NO_BLUE_FUSIONS
 				!ifdef - NO_GOLD_FUSIONS
-			!replaceamount - Items.KinstoneX.0x73 - 13 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+					!ifdef - NO_RED_FUSIONS
+						!replaceamount - Items.KinstoneX.0x73 - 41 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+						CanFuseGreenC;   		Helper;; Items.KinstoneX.0x73::42
+						CanFuseGreenScrub;		Helper;; Items.KinstoneX.0x73::40
+						CanFuseGreenGina;		Helper;; Items.KinstoneX.0x73::40
+						CanFuseGreenSiroc;		Helper;; Items.KinstoneX.0x73::40
+						CanFuseGreenCShared1;	Helper;; Items.KinstoneX.0x73::25
+						CanFuseGreenCShared2;	Helper;; Items.KinstoneX.0x73::28
+						CanFuseGreenCShared3;	Helper;; Items.KinstoneX.0x73::31
+						CanFuseGreenCShared4;	Helper;; Items.KinstoneX.0x73::34
+						CanFuseGreenCShared5;	Helper;; Items.KinstoneX.0x73::37
+						CanFuseGreenCShared6;	Helper;; Items.KinstoneX.0x73::40
+						CanFuseGreenG;   		Helper;; Items.KinstoneX.0x73::41
+						CanFuseGreenFlurris;	Helper;; Items.KinstoneX.0x73::40
+						CanFuseGreenTFZ1;		Helper;; Items.KinstoneX.0x73::39
+						CanFuseGreenGShared1;	Helper;; Items.KinstoneX.0x73::25
+						CanFuseGreenGShared2;	Helper;; Items.KinstoneX.0x73::28
+						CanFuseGreenGShared3;	Helper;; Items.KinstoneX.0x73::31
+						CanFuseGreenGShared4;	Helper;; Items.KinstoneX.0x73::34
+						CanFuseGreenGShared5;	Helper;; Items.KinstoneX.0x73::37
+						CanFuseGreenP;   		Helper;; Items.KinstoneX.0x73::41
+						CanFuseGreenTFZ2;		Helper;; Items.KinstoneX.0x73::40
+						CanFuseGreenDavid;		Helper;; Items.KinstoneX.0x73::40
+						CanFuseGreenPShared1;	Helper;; Items.KinstoneX.0x73::25
+						CanFuseGreenPShared2;	Helper;; Items.KinstoneX.0x73::28
+						CanFuseGreenPShared3;	Helper;; Items.KinstoneX.0x73::31
+						CanFuseGreenPShared4;	Helper;; Items.KinstoneX.0x73::34
+						CanFuseGreenPShared5;	Helper;; Items.KinstoneX.0x73::37
+						!ifndef - ITEM_POOL_PLENTIFUL
+							!define - ALLGREENS - Items.KinstoneX.0x73::41,
+						!else
+							!define - ALLGREENS - Items.KinstoneX.0x73::50,
+							!replaceamount - Items.KinstoneX.0x73 - 9 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+						!endif
+					!else
+						!replaceamount - Items.KinstoneX.0x73 - 44 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+						CanFuseGreenC;   		Helper;; Items.KinstoneX.0x73::44
+						CanFuseGreenScrub;		Helper;; Items.KinstoneX.0x73::43
+						CanFuseGreenGina;		Helper;; Items.KinstoneX.0x73::43
+						CanFuseGreenSiroc;		Helper;; Items.KinstoneX.0x73::43
+						CanFuseGreenCShared1;	Helper;; Items.KinstoneX.0x73::28
+						CanFuseGreenCShared2;	Helper;; Items.KinstoneX.0x73::31
+						CanFuseGreenCShared3;	Helper;; Items.KinstoneX.0x73::34
+						CanFuseGreenCShared4;	Helper;; Items.KinstoneX.0x73::37
+						CanFuseGreenCShared5;	Helper;; Items.KinstoneX.0x73::40
+						CanFuseGreenCShared6;	Helper;; Items.KinstoneX.0x73::43
+						CanFuseGreenG;   		Helper;; Items.KinstoneX.0x73::44
+						CanFuseGreenFlurris;	Helper;; Items.KinstoneX.0x73::43
+						CanFuseGreenTFZ1;		Helper;; Items.KinstoneX.0x73::42
+						CanFuseGreenGShared1;	Helper;; Items.KinstoneX.0x73::28
+						CanFuseGreenGShared2;	Helper;; Items.KinstoneX.0x73::31
+						CanFuseGreenGShared3;	Helper;; Items.KinstoneX.0x73::34
+						CanFuseGreenGShared4;	Helper;; Items.KinstoneX.0x73::37
+						CanFuseGreenGShared5;	Helper;; Items.KinstoneX.0x73::40
+						CanFuseGreenP;   		Helper;; Items.KinstoneX.0x73::44
+						CanFuseGreenTFZ2;		Helper;; Items.KinstoneX.0x73::43
+						CanFuseGreenDavid;		Helper;; Items.KinstoneX.0x73::43
+						CanFuseGreenPShared1;	Helper;; Items.KinstoneX.0x73::28
+						CanFuseGreenPShared2;	Helper;; Items.KinstoneX.0x73::31
+						CanFuseGreenPShared3;	Helper;; Items.KinstoneX.0x73::34
+						CanFuseGreenPShared4;	Helper;; Items.KinstoneX.0x73::37
+						CanFuseGreenPShared5;	Helper;; Items.KinstoneX.0x73::40
+						!ifndef - ITEM_POOL_PLENTIFUL
+							!define - ALLGREENS - Items.KinstoneX.0x73::44,
+						!else
+							!define - ALLGREENS - Items.KinstoneX.0x73::53,
+							!replaceamount - Items.KinstoneX.0x73 - 9 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+						!endif
+					!endif
 				!else
-			!replaceamount - Items.KinstoneX.0x73 - 14 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+					!replaceamount - Items.KinstoneX.0x73 - 47 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+					CanFuseGreenC;   		Helper;; Items.KinstoneX.0x73::47
+					CanFuseGreenScrub;		Helper;; Items.KinstoneX.0x73::46
+					CanFuseGreenGina;		Helper;; Items.KinstoneX.0x73::46
+					CanFuseGreenSiroc;		Helper;; Items.KinstoneX.0x73::46
+					CanFuseGreenCShared1;	Helper;; Items.KinstoneX.0x73::31
+					CanFuseGreenCShared2;	Helper;; Items.KinstoneX.0x73::34
+					CanFuseGreenCShared3;	Helper;; Items.KinstoneX.0x73::37
+					CanFuseGreenCShared4;	Helper;; Items.KinstoneX.0x73::40
+					CanFuseGreenCShared5;	Helper;; Items.KinstoneX.0x73::43
+					CanFuseGreenCShared6;	Helper;; Items.KinstoneX.0x73::46
+					CanFuseGreenG;   		Helper;; Items.KinstoneX.0x73::47
+					CanFuseGreenFlurris;	Helper;; Items.KinstoneX.0x73::46
+					CanFuseGreenTFZ1;		Helper;; Items.KinstoneX.0x73::45
+					CanFuseGreenGShared1;	Helper;; Items.KinstoneX.0x73::31
+					CanFuseGreenGShared2;	Helper;; Items.KinstoneX.0x73::34
+					CanFuseGreenGShared3;	Helper;; Items.KinstoneX.0x73::37
+					CanFuseGreenGShared4;	Helper;; Items.KinstoneX.0x73::40
+					CanFuseGreenGShared5;	Helper;; Items.KinstoneX.0x73::43
+					CanFuseGreenP;   		Helper;; Items.KinstoneX.0x73::47
+					CanFuseGreenTFZ2;		Helper;; Items.KinstoneX.0x73::46
+					CanFuseGreenDavid;		Helper;; Items.KinstoneX.0x73::46
+					CanFuseGreenPShared1;	Helper;; Items.KinstoneX.0x73::31
+					CanFuseGreenPShared2;	Helper;; Items.KinstoneX.0x73::34
+					CanFuseGreenPShared3;	Helper;; Items.KinstoneX.0x73::37
+					CanFuseGreenPShared4;	Helper;; Items.KinstoneX.0x73::40
+					CanFuseGreenPShared5;	Helper;; Items.KinstoneX.0x73::43
+					!ifndef - ITEM_POOL_PLENTIFUL
+						!define - ALLGREENS - Items.KinstoneX.0x73::47,
+					!else
+						!define - ALLGREENS - Items.KinstoneX.0x73::56,
+						!replaceamount - Items.KinstoneX.0x73 - 9 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+					!endif
 				!endif
 			!else
 				!ifdef - NO_GOLD_FUSIONS
-			!replaceamount - Items.KinstoneX.0x73 - 16 - `SHELLVALS` `KINVALS` `RUPEEVALS`
-				!else
-			!replaceamount - Items.KinstoneX.0x73 - 17 - `SHELLVALS` `KINVALS` `RUPEEVALS`
-				!endif
-			!endif
-			!ifdef - NO_GOLD_FUSIONS
-				!ifdef - NO_RED_FUSIONS
-			!replaceamount - Items.KinstoneX.0x73 - 12 - `SHELLVALS` `KINVALS` `RUPEEVALS`
-					!ifdef - NO_BLUE_FUSIONS
-			!replaceamount - Items.KinstoneX.0x73 - 14 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+					!ifdef - NO_RED_FUSIONS
+						!replaceamount - Items.KinstoneX.0x73 - 43 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+						CanFuseGreenC;   		Helper;; Items.KinstoneX.0x73::43
+						CanFuseGreenScrub;		Helper;; Items.KinstoneX.0x73::42
+						CanFuseGreenGina;		Helper;; Items.KinstoneX.0x73::42
+						CanFuseGreenSiroc;		Helper;; Items.KinstoneX.0x73::42
+						CanFuseGreenCShared1;	Helper;; Items.KinstoneX.0x73::27
+						CanFuseGreenCShared2;	Helper;; Items.KinstoneX.0x73::30
+						CanFuseGreenCShared3;	Helper;; Items.KinstoneX.0x73::33
+						CanFuseGreenCShared4;	Helper;; Items.KinstoneX.0x73::36
+						CanFuseGreenCShared5;	Helper;; Items.KinstoneX.0x73::39
+						CanFuseGreenCShared6;	Helper;; Items.KinstoneX.0x73::42
+						CanFuseGreenG;   		Helper;; Items.KinstoneX.0x73::43
+						CanFuseGreenFlurris;	Helper;; Items.KinstoneX.0x73::42
+						CanFuseGreenTFZ1;		Helper;; Items.KinstoneX.0x73::41
+						CanFuseGreenGShared1;	Helper;; Items.KinstoneX.0x73::27
+						CanFuseGreenGShared2;	Helper;; Items.KinstoneX.0x73::30
+						CanFuseGreenGShared3;	Helper;; Items.KinstoneX.0x73::33
+						CanFuseGreenGShared4;	Helper;; Items.KinstoneX.0x73::36
+						CanFuseGreenGShared5;	Helper;; Items.KinstoneX.0x73::39
+						CanFuseGreenP;   		Helper;; Items.KinstoneX.0x73::43
+						CanFuseGreenTFZ2;		Helper;; Items.KinstoneX.0x73::42
+						CanFuseGreenDavid;		Helper;; Items.KinstoneX.0x73::42
+						CanFuseGreenPShared1;	Helper;; Items.KinstoneX.0x73::27
+						CanFuseGreenPShared2;	Helper;; Items.KinstoneX.0x73::30
+						CanFuseGreenPShared3;	Helper;; Items.KinstoneX.0x73::33
+						CanFuseGreenPShared4;	Helper;; Items.KinstoneX.0x73::36
+						CanFuseGreenPShared5;	Helper;; Items.KinstoneX.0x73::39
+						!ifndef - ITEM_POOL_PLENTIFUL
+							!define - ALLGREENS - Items.KinstoneX.0x73::43,
+						!else
+							!define - ALLGREENS - Items.KinstoneX.0x73::52,
+							!replaceamount - Items.KinstoneX.0x73 - 9 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+						!endif
 					!else
-			!replaceamount - Items.KinstoneX.0x73 - 15 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+						!replaceamount - Items.KinstoneX.0x73 - 46 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+						CanFuseGreenC;   		Helper;; Items.KinstoneX.0x73::46
+						CanFuseGreenScrub;		Helper;; Items.KinstoneX.0x73::45
+						CanFuseGreenGina;		Helper;; Items.KinstoneX.0x73::45
+						CanFuseGreenSiroc;		Helper;; Items.KinstoneX.0x73::45
+						CanFuseGreenCShared1;	Helper;; Items.KinstoneX.0x73::30
+						CanFuseGreenCShared2;	Helper;; Items.KinstoneX.0x73::33
+						CanFuseGreenCShared3;	Helper;; Items.KinstoneX.0x73::36
+						CanFuseGreenCShared4;	Helper;; Items.KinstoneX.0x73::39
+						CanFuseGreenCShared5;	Helper;; Items.KinstoneX.0x73::42
+						CanFuseGreenCShared6;	Helper;; Items.KinstoneX.0x73::45
+						CanFuseGreenG;   		Helper;; Items.KinstoneX.0x73::46
+						CanFuseGreenFlurris;	Helper;; Items.KinstoneX.0x73::45
+						CanFuseGreenTFZ1;		Helper;; Items.KinstoneX.0x73::44
+						CanFuseGreenGShared1;	Helper;; Items.KinstoneX.0x73::30
+						CanFuseGreenGShared2;	Helper;; Items.KinstoneX.0x73::33
+						CanFuseGreenGShared3;	Helper;; Items.KinstoneX.0x73::36
+						CanFuseGreenGShared4;	Helper;; Items.KinstoneX.0x73::39
+						CanFuseGreenGShared5;	Helper;; Items.KinstoneX.0x73::42
+						CanFuseGreenP;   		Helper;; Items.KinstoneX.0x73::46
+						CanFuseGreenTFZ2;		Helper;; Items.KinstoneX.0x73::45
+						CanFuseGreenDavid;		Helper;; Items.KinstoneX.0x73::45
+						CanFuseGreenPShared1;	Helper;; Items.KinstoneX.0x73::30
+						CanFuseGreenPShared2;	Helper;; Items.KinstoneX.0x73::33
+						CanFuseGreenPShared3;	Helper;; Items.KinstoneX.0x73::36
+						CanFuseGreenPShared4;	Helper;; Items.KinstoneX.0x73::39
+						CanFuseGreenPShared5;	Helper;; Items.KinstoneX.0x73::42
+						!ifndef - ITEM_POOL_PLENTIFUL
+							!define - ALLGREENS - Items.KinstoneX.0x73::46,
+						!else
+							!define - ALLGREENS - Items.KinstoneX.0x73::55,
+							!replaceamount - Items.KinstoneX.0x73 - 9 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+						!endif
 					!endif
 				!else
-			!replaceamount - Items.KinstoneX.0x73 - 14 - `SHELLVALS` `KINVALS` `RUPEEVALS`
-					!ifdef - NO_BLUE_FUSIONS
-			!replaceamount - Items.KinstoneX.0x73 - 15 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+					!replaceamount - Items.KinstoneX.0x73 - 49 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+					CanFuseGreenC;   		Helper;; Items.KinstoneX.0x73::49
+					CanFuseGreenScrub;		Helper;; Items.KinstoneX.0x73::48
+					CanFuseGreenGina;		Helper;; Items.KinstoneX.0x73::48
+					CanFuseGreenSiroc;		Helper;; Items.KinstoneX.0x73::48
+					CanFuseGreenCShared1;	Helper;; Items.KinstoneX.0x73::33
+					CanFuseGreenCShared2;	Helper;; Items.KinstoneX.0x73::36
+					CanFuseGreenCShared3;	Helper;; Items.KinstoneX.0x73::39
+					CanFuseGreenCShared4;	Helper;; Items.KinstoneX.0x73::42
+					CanFuseGreenCShared5;	Helper;; Items.KinstoneX.0x73::45
+					CanFuseGreenCShared6;	Helper;; Items.KinstoneX.0x73::48
+					CanFuseGreenG;   		Helper;; Items.KinstoneX.0x73::49
+					CanFuseGreenFlurris;	Helper;; Items.KinstoneX.0x73::48
+					CanFuseGreenTFZ1;		Helper;; Items.KinstoneX.0x73::47
+					CanFuseGreenGShared1;	Helper;; Items.KinstoneX.0x73::33
+					CanFuseGreenGShared2;	Helper;; Items.KinstoneX.0x73::36
+					CanFuseGreenGShared3;	Helper;; Items.KinstoneX.0x73::39
+					CanFuseGreenGShared4;	Helper;; Items.KinstoneX.0x73::42
+					CanFuseGreenGShared5;	Helper;; Items.KinstoneX.0x73::45
+					CanFuseGreenP;   		Helper;; Items.KinstoneX.0x73::49
+					CanFuseGreenTFZ2;		Helper;; Items.KinstoneX.0x73::48
+					CanFuseGreenDavid;		Helper;; Items.KinstoneX.0x73::48
+					CanFuseGreenPShared1;	Helper;; Items.KinstoneX.0x73::33
+					CanFuseGreenPShared2;	Helper;; Items.KinstoneX.0x73::36
+					CanFuseGreenPShared3;	Helper;; Items.KinstoneX.0x73::39
+					CanFuseGreenPShared4;	Helper;; Items.KinstoneX.0x73::42
+					CanFuseGreenPShared5;	Helper;; Items.KinstoneX.0x73::45
+					!ifndef - ITEM_POOL_PLENTIFUL
+						!define - ALLGREENS - Items.KinstoneX.0x73::49,
 					!else
-			!replaceamount - Items.KinstoneX.0x73 - 16 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+						!define - ALLGREENS - Items.KinstoneX.0x73::58,
+						!replaceamount - Items.KinstoneX.0x73 - 9 - `SHELLVALS` `KINVALS` `RUPEEVALS`
 					!endif
-				!endif
-			!else
-			!replaceamount - Items.KinstoneX.0x73 - 16 - `SHELLVALS` `KINVALS` `RUPEEVALS`
-				!ifdef - NO_BLUE_FUSIONS
-			!replaceamount - Items.KinstoneX.0x73 - 15 - `SHELLVALS` `KINVALS` `RUPEEVALS`
-				!else
-			!replaceamount - Items.KinstoneX.0x73 - 16 - `SHELLVALS` `KINVALS` `RUPEEVALS`
 				!endif
 			!endif
 			!replace - Items.KinstoneX.0x74 - `SWAPGREEN`
 			!replace - Items.KinstoneX.0x75 - `SWAPGREEN`
 			!eventdefine - combineKinstonesGreen
-			CanFuseGreenC;   		Helper;; (+49, Items.KinstoneX.0x73, Items.KinstoneX.0x74, Items.KinstoneX.0x75)
-			CanFuseGreenScrub;		Helper;; (+48, Items.KinstoneX.0x73, Items.KinstoneX.0x74, Items.KinstoneX.0x75)
-			CanFuseGreenGina;		Helper;; (+48, Items.KinstoneX.0x73, Items.KinstoneX.0x74, Items.KinstoneX.0x75)
-			CanFuseGreenSiroc;		Helper;; (+48, Items.KinstoneX.0x73, Items.KinstoneX.0x74, Items.KinstoneX.0x75)
-			CanFuseGreenCShared1;	Helper;; (+33, Items.KinstoneX.0x73, Items.KinstoneX.0x74, Items.KinstoneX.0x75)
-			CanFuseGreenCShared2;	Helper;; (+36, Items.KinstoneX.0x73, Items.KinstoneX.0x74, Items.KinstoneX.0x75)
-			CanFuseGreenCShared3;	Helper;; (+39, Items.KinstoneX.0x73, Items.KinstoneX.0x74, Items.KinstoneX.0x75)
-			CanFuseGreenCShared4;	Helper;; (+42, Items.KinstoneX.0x73, Items.KinstoneX.0x74, Items.KinstoneX.0x75)
-			CanFuseGreenCShared5;	Helper;; (+45, Items.KinstoneX.0x73, Items.KinstoneX.0x74, Items.KinstoneX.0x75)
-			CanFuseGreenCShared6;	Helper;; (+48, Items.KinstoneX.0x73, Items.KinstoneX.0x74, Items.KinstoneX.0x75)
-			CanFuseGreenG;   		Helper;; (+49, Items.KinstoneX.0x73, Items.KinstoneX.0x74, Items.KinstoneX.0x75)
-			CanFuseGreenFlurris;	Helper;; (+48, Items.KinstoneX.0x73, Items.KinstoneX.0x74, Items.KinstoneX.0x75)
-			CanFuseGreenTFZ1;		Helper;; (+47, Items.KinstoneX.0x73, Items.KinstoneX.0x74, Items.KinstoneX.0x75)
-			CanFuseGreenGShared1;	Helper;; (+33, Items.KinstoneX.0x73, Items.KinstoneX.0x74, Items.KinstoneX.0x75)
-			CanFuseGreenGShared2;	Helper;; (+36, Items.KinstoneX.0x73, Items.KinstoneX.0x74, Items.KinstoneX.0x75)
-			CanFuseGreenGShared3;	Helper;; (+39, Items.KinstoneX.0x73, Items.KinstoneX.0x74, Items.KinstoneX.0x75)
-			CanFuseGreenGShared4;	Helper;; (+42, Items.KinstoneX.0x73, Items.KinstoneX.0x74, Items.KinstoneX.0x75)
-			CanFuseGreenGShared5;	Helper;; (+45, Items.KinstoneX.0x73, Items.KinstoneX.0x74, Items.KinstoneX.0x75)
-			CanFuseGreenP;   		Helper;; (+49, Items.KinstoneX.0x73, Items.KinstoneX.0x74, Items.KinstoneX.0x75)
-			CanFuseGreenTFZ2;		Helper;; (+48, Items.KinstoneX.0x73, Items.KinstoneX.0x74, Items.KinstoneX.0x75)
-			CanFuseGreenDavid;		Helper;; (+48, Items.KinstoneX.0x73, Items.KinstoneX.0x74, Items.KinstoneX.0x75)
-			CanFuseGreenPShared1;	Helper;; (+33, Items.KinstoneX.0x73, Items.KinstoneX.0x74, Items.KinstoneX.0x75)
-			CanFuseGreenPShared2;	Helper;; (+36, Items.KinstoneX.0x73, Items.KinstoneX.0x74, Items.KinstoneX.0x75)
-			CanFuseGreenPShared3;	Helper;; (+39, Items.KinstoneX.0x73, Items.KinstoneX.0x74, Items.KinstoneX.0x75)
-			CanFuseGreenPShared4;	Helper;; (+42, Items.KinstoneX.0x73, Items.KinstoneX.0x74, Items.KinstoneX.0x75)
-			CanFuseGreenPShared5;	Helper;; (+45, Items.KinstoneX.0x73, Items.KinstoneX.0x74, Items.KinstoneX.0x75)
 		!endif
 		!settype - Items.KinstoneX.GreenSpike		- Major
 		!settype - Items.KinstoneX.GreenSquare	- Major
@@ -2496,9 +2943,9 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 !else
 	Deepwood1stDoor;			Helper;;	Items.SmallKey`DWS_SMALL_SET`
 		!ifdef - SMALL_KEYS_VANILLA
-	Deepwood2ndDoor;			Helper;;	Items.SmallKey`DWS_SMALL_SET`:3
+			Deepwood2ndDoor;			Helper;;	Items.SmallKey`DWS_SMALL_SET`:3
 		!else
-	Deepwood2ndDoor;			Helper;;	Items.SmallKey`DWS_SMALL_SET`:4
+			Deepwood2ndDoor;			Helper;;	Items.SmallKey`DWS_SMALL_SET`:4
 		!endif
 	DeepwoodMadderpillarDoor;	Helper;;	(|Helpers.DeepwoodMadderpillarWeb, Items.SmallKey`DWS_SMALL_SET`:4)
 	DeepwoodBasementDoor;		Helper;;	Items.SmallKey`DWS_SMALL_SET`:4
@@ -2510,21 +2957,21 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 	FoWLastDoor;				Helper;;	Items.SmallKey`FOW_SMALL_SET`:4	
 	
 		!ifdef - SMALL_KEYS_VANILLA
-	ToDRightBlock;				Helper;;	
+			ToDRightBlock;				Helper;;	
 			!ifdef - Replace_Big_Keys
-	ToDLeftBlock;				Helper;;	Items.SmallKey`TOD_SMALL_SET`:4	
-	ToDBigDoor;					Helper;;	
-	ToDAllKeys;					Helper;;	Items.SmallKey`TOD_SMALL_SET`:4
+				ToDLeftBlock;				Helper;;	Items.SmallKey`TOD_SMALL_SET`:4	
+				ToDBigDoor;					Helper;;	
+				ToDAllKeys;					Helper;;	Items.SmallKey`TOD_SMALL_SET`:4
 			!else
-	ToDBigDoor;					Helper;;	Items.BigKey`TOD_BIG_SET`
-	ToDAllKeys;					Helper;;	Items.BigKey`TOD_BIG_SET`, Items.SmallKey`TOD_SMALL_SET`:4
+				ToDBigDoor;					Helper;;	Items.BigKey`TOD_BIG_SET`
+				ToDAllKeys;					Helper;;	Items.BigKey`TOD_BIG_SET`, Items.SmallKey`TOD_SMALL_SET`:4
 				!ifdef - BIG_KEYSANITY
-	ToDLeftBlock;				Helper;;	Items.SmallKey`TOD_SMALL_SET`:4
+					ToDLeftBlock;				Helper;;	Items.SmallKey`TOD_SMALL_SET`:4
 				!else
 					!ifdef - KEYS_DUNGEONS
-	ToDLeftBlock;				Helper;;	Items.SmallKey`TOD_SMALL_SET`:4
+						ToDLeftBlock;				Helper;;	Items.SmallKey`TOD_SMALL_SET`:4
 					!else
-	ToDLeftBlock;				Helper;;	Items.SmallKey`TOD_SMALL_SET`
+						ToDLeftBlock;				Helper;;	Items.SmallKey`TOD_SMALL_SET`
 					!endif
 				!endif
 			!endif
@@ -2532,55 +2979,55 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 			!ifdef - SMALL_KEYS_STANDARD
 				!ifdef - BIG_KEYS_STANDARD
 					!ifdef - KEYS_DUNGEONS
-	ToDRightBlock;				Helper;;	
-	ToDLeftBlock;				Helper;;	Items.SmallKey`TOD_SMALL_SET`:4
-	ToDBigDoor;					Helper;;	Items.BigKey`TOD_BIG_SET`
-	ToDAllKeys;					Helper;;	Items.BigKey`TOD_BIG_SET`, Items.SmallKey`TOD_SMALL_SET`:4					
+						ToDRightBlock;				Helper;;	
+						ToDLeftBlock;				Helper;;	Items.SmallKey`TOD_SMALL_SET`:4
+						ToDBigDoor;					Helper;;	Items.BigKey`TOD_BIG_SET`
+						ToDAllKeys;					Helper;;	Items.BigKey`TOD_BIG_SET`, Items.SmallKey`TOD_SMALL_SET`:4					
 					!else
-	ToDRightBlock;				Helper;;	(|Items.Untyped.0xa:DummyToD, (&Items.Untyped.0xb:DummyToD, Items.BigKey`TOD_BIG_SET`))
-	ToDLeftBlock;				Helper;;	(|Items.Untyped.0xb:DummyToD, (&Items.Untyped.0xa:DummyToD, Items.SmallKey`TOD_SMALL_SET`:4))
-	ToDBigDoor;					Helper;;	(|(&Items.BigKey`TOD_BIG_SET`, Items.Untyped.0xa:DummyToD), (&Items.SmallKey`TOD_SMALL_SET`, Items.BigKey`TOD_BIG_SET`, Items.Untyped.0xb:DummyToD))
-	ToDAllKeys;					Helper;;	Items.BigKey`TOD_BIG_SET`, Items.SmallKey`TOD_SMALL_SET`:4
+						ToDRightBlock;				Helper;;	(|Items.Untyped.0xa:DummyToD, (&Items.Untyped.0xb:DummyToD, Items.BigKey`TOD_BIG_SET`))
+						ToDLeftBlock;				Helper;;	(|Items.Untyped.0xb:DummyToD, (&Items.Untyped.0xa:DummyToD, Items.SmallKey`TOD_SMALL_SET`:4))
+						ToDBigDoor;					Helper;;	(|(&Items.BigKey`TOD_BIG_SET`, Items.Untyped.0xa:DummyToD), (&Items.SmallKey`TOD_SMALL_SET`, Items.BigKey`TOD_BIG_SET`, Items.Untyped.0xb:DummyToD))
+						ToDAllKeys;					Helper;;	Items.BigKey`TOD_BIG_SET`, Items.SmallKey`TOD_SMALL_SET`:4
 					!endif
 				!else
-	ToDRightBlock;				Helper;;	
+					ToDRightBlock;				Helper;;	
 					!ifdef - BIG_KEYS_VANILLA
 						!ifdef - KEYS_DUNGEONS
-	ToDLeftBlock;				Helper;;	Items.SmallKey`TOD_SMALL_SET`:4
+							ToDLeftBlock;				Helper;;	Items.SmallKey`TOD_SMALL_SET`:4
 						!else
-	ToDLeftBlock;				Helper;;	Items.SmallKey`TOD_SMALL_SET`
+							ToDLeftBlock;				Helper;;	Items.SmallKey`TOD_SMALL_SET`
 						!endif
-	ToDBigDoor;					Helper;;	Items.BigKey`TOD_BIG_SET`
-	ToDAllKeys;					Helper;;	Items.BigKey`TOD_BIG_SET`, Items.SmallKey`TOD_SMALL_SET`:4
+						ToDBigDoor;					Helper;;	Items.BigKey`TOD_BIG_SET`
+						ToDAllKeys;					Helper;;	Items.BigKey`TOD_BIG_SET`, Items.SmallKey`TOD_SMALL_SET`:4
 					!else
-	ToDLeftBlock;				Helper;;	Items.SmallKey`TOD_SMALL_SET`:4
+						ToDLeftBlock;				Helper;;	Items.SmallKey`TOD_SMALL_SET`:4
 						!ifdef - Replace_Big_Keys
-	ToDBigDoor;					Helper;;	
-	ToDAllKeys;					Helper;;	Items.SmallKey`TOD_SMALL_SET`:4
+							ToDBigDoor;					Helper;;	
+							ToDAllKeys;					Helper;;	Items.SmallKey`TOD_SMALL_SET`:4
 						!else
-	ToDBigDoor;					Helper;;	Items.BigKey`TOD_BIG_SET`
-	ToDAllKeys;					Helper;;	Items.BigKey`TOD_BIG_SET`, Items.SmallKey`TOD_SMALL_SET`:4
+							ToDBigDoor;					Helper;;	Items.BigKey`TOD_BIG_SET`
+							ToDAllKeys;					Helper;;	Items.BigKey`TOD_BIG_SET`, Items.SmallKey`TOD_SMALL_SET`:4
 						!endif
 					!endif
 				!endif	
 			!else
-	ToDRightBlock;				Helper;;	
+				ToDRightBlock;				Helper;;	
 				!ifdef - BIG_KEYS_VANILLA
 					!ifdef - KEYS_DUNGEONS
-	ToDLeftBlock;				Helper;;	Items.SmallKey`TOD_SMALL_SET`:4
+						ToDLeftBlock;				Helper;;	Items.SmallKey`TOD_SMALL_SET`:4
 					!else
-	ToDLeftBlock;				Helper;;	Items.SmallKey`TOD_SMALL_SET`
+						ToDLeftBlock;				Helper;;	Items.SmallKey`TOD_SMALL_SET`
 					!endif
-	ToDBigDoor;					Helper;;	Items.BigKey`TOD_BIG_SET`
-	ToDAllKeys;					Helper;;	Items.BigKey`TOD_BIG_SET`, Items.SmallKey`TOD_SMALL_SET`:4
+					ToDBigDoor;					Helper;;	Items.BigKey`TOD_BIG_SET`
+					ToDAllKeys;					Helper;;	Items.BigKey`TOD_BIG_SET`, Items.SmallKey`TOD_SMALL_SET`:4
 				!else
-	ToDLeftBlock;				Helper;;	Items.SmallKey`TOD_SMALL_SET`:4
+					ToDLeftBlock;				Helper;;	Items.SmallKey`TOD_SMALL_SET`:4
 					!ifdef - Replace_Big_Keys
-	ToDBigDoor;					Helper;;	
-	ToDAllKeys;					Helper;;	Items.SmallKey`TOD_SMALL_SET`:4
+						ToDBigDoor;					Helper;;	
+						ToDAllKeys;					Helper;;	Items.SmallKey`TOD_SMALL_SET`:4
 					!else
-	ToDBigDoor;					Helper;;	Items.BigKey`TOD_BIG_SET`
-	ToDAllKeys;					Helper;;	Items.BigKey`TOD_BIG_SET`, Items.SmallKey`TOD_SMALL_SET`:4
+						ToDBigDoor;					Helper;;	Items.BigKey`TOD_BIG_SET`
+						ToDAllKeys;					Helper;;	Items.BigKey`TOD_BIG_SET`, Items.SmallKey`TOD_SMALL_SET`:4
 					!endif
 				!endif
 			!endif
@@ -2596,49 +3043,49 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 		!ifdef - BIG_KEYS_STANDARD
 			!ifdef - BIG_KEYS_OUTSIDE
 				!ifdef - KEYS_DUNGEONS
-	UpperWindTribeKeys;			Helper;;	
-	LowerWindTribeKeys;			Helper;;	
+					UpperWindTribeKeys;			Helper;;	
+					LowerWindTribeKeys;			Helper;;	
 				!else
-	UpperWindTribeKeys;			Helper;;	(|(&(|Items.Untyped.0x01:DummyPoW, Items.Untyped.0x02:DummyPoW), Items.BigKey`POW_BIG_SET`), Helpers.PoWElse)
-	LowerWindTribeKeys;			Helper;;	(|(&(|Items.Untyped.0x01:DummyPoW, Items.Untyped.0x02:DummyPoW), Items.BigKey`POW_BIG_SET`), Helpers.PoWElse)
+					UpperWindTribeKeys;			Helper;;	(|(&(|Items.Untyped.0x01:DummyPoW, Items.Untyped.0x02:DummyPoW), Items.BigKey`POW_BIG_SET`), Helpers.PoWElse)
+					LowerWindTribeKeys;			Helper;;	(|(&(|Items.Untyped.0x01:DummyPoW, Items.Untyped.0x02:DummyPoW), Items.BigKey`POW_BIG_SET`), Helpers.PoWElse)
 				!endif
 			!else
-	UpperWindTribeKeys;			Helper;;	
-	LowerWindTribeKeys;			Helper;;	
+				UpperWindTribeKeys;			Helper;;	
+				LowerWindTribeKeys;			Helper;;	
 			!endif
 			!ifdef - KEYS_DUNGEONS
-	PoWPreKeyDoor;				Helper;;	
-	PoWPostKeyDoor;				Helper;;	Helpers.PoW1stDoor
-	PoWFans;					Helper;;	Items.SmallKey`POW_SMALL_SET`:5
-	PoWBigChest;				Helper;;	Items.SmallKey`POW_SMALL_SET`:6
-	PoWBigDoor;					Helper;;	Items.BigKey`POW_BIG_SET`
+				PoWPreKeyDoor;				Helper;;	
+				PoWPostKeyDoor;				Helper;;	Helpers.PoW1stDoor
+				PoWFans;					Helper;;	Items.SmallKey`POW_SMALL_SET`:5
+				PoWBigChest;				Helper;;	Items.SmallKey`POW_SMALL_SET`:6
+				PoWBigDoor;					Helper;;	Items.BigKey`POW_BIG_SET`
 			!else
-	PoWPreKeyDoor;				Helper;;	(|(&(|Items.Untyped.0x01:DummyPoW, Items.Untyped.0x02:DummyPoW), Items.BigKey`POW_BIG_SET`), Helpers.PoWElse)
-	PoWPostKeyDoor;				Helper;;	(|(&(|Items.Untyped.0x01:DummyPoW, Items.Untyped.0x02:DummyPoW), Items.SmallKey`POW_SMALL_SET`, Items.BigKey`POW_BIG_SET`), (&Helpers.PoWElse, Items.SmallKey`POW_SMALL_SET`))
-	PoWFans;					Helper;;	(|(&Items.Untyped.0x01:DummyPoW, Items.SmallKey`POW_SMALL_SET`:2, Items.BigKey`POW_BIG_SET`), Items.Untyped.0x02:DummyPoW, (&Helpers.PoWElse, Items.SmallKey`POW_SMALL_SET`:5, Items.BigKey`POW_BIG_SET`))
-	PoWBigChest;				Helper;;	(|Items.Untyped.0x01:DummyPoW, (&Items.SmallKey`POW_SMALL_SET`:6, Items.BigKey`POW_BIG_SET`, (|Items.Untyped.0x02:DummyPoW, Helpers.PoWElse)))
-	PoWBigDoor;					Helper;;	(|(&(|Items.Untyped.0x01:DummyPoW, Items.Untyped.0x02:DummyPoW), Items.BigKey`POW_BIG_SET`, Items.SmallKey`POW_SMALL_SET`:3), (&Helpers.PoWElse, Items.BigKey`POW_BIG_SET`))
+				PoWPreKeyDoor;				Helper;;	(|(&(|Items.Untyped.0x01:DummyPoW, Items.Untyped.0x02:DummyPoW), Items.BigKey`POW_BIG_SET`), Helpers.PoWElse)
+				PoWPostKeyDoor;				Helper;;	(|(&(|Items.Untyped.0x01:DummyPoW, Items.Untyped.0x02:DummyPoW), Items.SmallKey`POW_SMALL_SET`, Items.BigKey`POW_BIG_SET`), (&Helpers.PoWElse, Items.SmallKey`POW_SMALL_SET`))
+				PoWFans;					Helper;;	(|(&Items.Untyped.0x01:DummyPoW, Items.SmallKey`POW_SMALL_SET`:2, Items.BigKey`POW_BIG_SET`), Items.Untyped.0x02:DummyPoW, (&Helpers.PoWElse, Items.SmallKey`POW_SMALL_SET`:5, Items.BigKey`POW_BIG_SET`))
+				PoWBigChest;				Helper;;	(|Items.Untyped.0x01:DummyPoW, (&Items.SmallKey`POW_SMALL_SET`:6, Items.BigKey`POW_BIG_SET`, (|Items.Untyped.0x02:DummyPoW, Helpers.PoWElse)))
+				PoWBigDoor;					Helper;;	(|(&(|Items.Untyped.0x01:DummyPoW, Items.Untyped.0x02:DummyPoW), Items.BigKey`POW_BIG_SET`, Items.SmallKey`POW_SMALL_SET`:3), (&Helpers.PoWElse, Items.BigKey`POW_BIG_SET`))
 			!endif
-	PoWAllKeys;					Helper;;	Items.BigKey`POW_BIG_SET`, Items.SmallKey`POW_SMALL_SET`:6
+			PoWAllKeys;					Helper;;	Items.BigKey`POW_BIG_SET`, Items.SmallKey`POW_SMALL_SET`:6
 		!else
-	UpperWindTribeKeys;			Helper;;	
-	LowerWindTribeKeys;			Helper;;	
-	PoWPreKeyDoor;				Helper;;	
-	PoWPostKeyDoor;				Helper;;	Helpers.PoW1stDoor
+			UpperWindTribeKeys;			Helper;;	
+			LowerWindTribeKeys;			Helper;;	
+			PoWPreKeyDoor;				Helper;;	
+			PoWPostKeyDoor;				Helper;;	Helpers.PoW1stDoor
 			!ifdef - BIG_KEYS_VANILLA
-	PoWFans;					Helper;;	Items.SmallKey`POW_SMALL_SET`:2
-	PoWBigChest;				Helper;;	Items.SmallKey`POW_SMALL_SET`:3
-	PoWBigDoor;					Helper;;	Items.BigKey`POW_BIG_SET`
-	PoWAllKeys;					Helper;;	Items.BigKey`POW_BIG_SET`, Items.SmallKey`POW_SMALL_SET`:6
+				PoWFans;					Helper;;	Items.SmallKey`POW_SMALL_SET`:2
+				PoWBigChest;				Helper;;	Items.SmallKey`POW_SMALL_SET`:3
+				PoWBigDoor;					Helper;;	Items.BigKey`POW_BIG_SET`
+				PoWAllKeys;					Helper;;	Items.BigKey`POW_BIG_SET`, Items.SmallKey`POW_SMALL_SET`:6
 			!else
-	PoWFans;					Helper;;	Items.SmallKey`POW_SMALL_SET`:5
-	PoWBigChest;				Helper;;	Items.SmallKey`POW_SMALL_SET`:6
+				PoWFans;					Helper;;	Items.SmallKey`POW_SMALL_SET`:5
+				PoWBigChest;				Helper;;	Items.SmallKey`POW_SMALL_SET`:6
 				!ifdef - Replace_Big_Keys
-	PoWBigDoor;					Helper;;	
-	PoWAllKeys;					Helper;;	Items.SmallKey`POW_SMALL_SET`:6
+					PoWBigDoor;					Helper;;	
+					PoWAllKeys;					Helper;;	Items.SmallKey`POW_SMALL_SET`:6
 				!else
-	PoWBigDoor;					Helper;;	Items.BigKey`POW_BIG_SET`
-	PoWAllKeys;					Helper;;	Items.BigKey`POW_BIG_SET`, Items.SmallKey`POW_SMALL_SET`:6
+					PoWBigDoor;					Helper;;	Items.BigKey`POW_BIG_SET`
+					PoWAllKeys;					Helper;;	Items.BigKey`POW_BIG_SET`, Items.SmallKey`POW_SMALL_SET`:6
 				!endif
 			!endif
 		!endif
@@ -2669,17 +3116,14 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 !ifdef - OPENWORLD
 	!define - OPENWORLDMAJOR	- Minor
 	!ifdef - MEME
-	!define - SWAMPSTONE		- Items.KinstoneX.YellowTotemProng
-	!define - FALLSTONE		- Items.KinstoneX.YellowCrown
-	!define - CLOUDSTONE		- Items.KinstoneX.YellowTornadoProng
+	!replaceamount - Items.KinstoneX.YellowTotemProng - 3 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+	!replaceamount - Items.KinstoneX.YellowCrown - 1 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+	!replaceamount - Items.KinstoneX.YellowTornadoProng - 5 - `SHELLVALS` `KINVALS` `RUPEEVALS`
 	!define - JABBERNUT		- Items.JabberNut	
 	!define - LONLONKEY		- Items.LonLonKey
 	!define - CARLOVMEDAL		- Items.CarlovMedal
 	!define - GRAVEYARDKEY	- Items.GraveyardKey
 	!else
-	!define - SWAMPSTONE		- Items.Bombs5	
-	!define - FALLSTONE		- Items.Bombs5	
-	!define - CLOUDSTONE		- Items.Bombs5	
 	!define - JABBERNUT		- Items.Bombs5	
 	!define - LONLONKEY		- Items.Bombs5	
 	!define - CARLOVMEDAL		- Items.Bombs5	
@@ -2802,9 +3246,6 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 	DHCRedWarp;					Helper;;	
 !else
 	!define - OPENWORLDMAJOR	- Major
-	!define - SWAMPSTONE		- Items.KinstoneX.YellowTotemProng
-	!define - FALLSTONE		- Items.KinstoneX.YellowCrown
-	!define - CLOUDSTONE		- Items.KinstoneX.YellowTornadoProng
 	!define - JABBERNUT		- Items.JabberNut	
 	!define - LONLONKEY		- Items.LonLonKey
 	!define - CARLOVMEDAL		- Items.CarlovMedal
@@ -2926,10 +3367,12 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 	DHCRedWarp;					Helper;;	Helpers.Inaccessible
 !endif
 
-	AllMajors; 	Helper;;	`ALLSWORDS`, `ALLREMOTES` `ALLBOWS`, `ALLBOOMERANGS`, `ALLSHIELDS`, `ALLLANTERNS`, `ALLGUSTJARS`, `ALLCANES`, `ALLMITTS`, `ALLCAPES`, `ALLBOOTS`, `ALLOCARINAS`, `ALLBOTTLES`, Items.DogFoodBottle, `LONLONKEY`, Items.WakeUpMushroom, Items.HyruleanBestiary, Items.PicoriLegend, Items.MaskHistory, `ALLGYKEYS` Items.TingleTrophy, `CARLOVMEDAL`, Items.EarthElement:`ELEMENT_DUNGEON`, Items.FireElement:`ELEMENT_DUNGEON`, Items.WaterElement:`ELEMENT_DUNGEON`, Items.WindElement:`ELEMENT_DUNGEON`, `ALLGRIPS`, Items.PowerBracelets, `ALLFLIPPERS`, `ALLSPINS`, Items.RollAttack, Items.DashAttack, Items.RockBreaker, Items.SwordBeam, `ALLGREATS` Items.DownThrust, Items.PerilBeam, `ALLCOMPASS` `ALLBIGKEYS` `ALLSMALLKEYS` `JABBERNUT`, `ALLCLOUDS` `ALLSWAMPS` `ALLFALLS` `ALLHEARTS`, Items.Wallet::3, `ALLBOMBS` `DHC_FIG` `ALLQUIVERS` `ALLBUTTERFLIES` `FASTSCROLLS`
+	AllMajors; 	Helper;;	`ALLSWORDS`, `ALLREMOTES` `ALLBOWS`, `ALLBOOMERANGS`, `ALLSHIELDS`, `ALLLANTERNS`, `ALLGUSTJARS`, `ALLCANES`, `ALLMITTS`, `ALLCAPES`, `ALLBOOTS`, `ALLOCARINAS`, `ALLBOTTLES`, Items.DogFoodBottle, `LONLONKEY`, Items.WakeUpMushroom, Items.HyruleanBestiary, Items.PicoriLegend, Items.MaskHistory, `ALLGYKEYS` Items.TingleTrophy, `CARLOVMEDAL`, Items.EarthElement:`ELEMENT_DUNGEON`, Items.FireElement:`ELEMENT_DUNGEON`, Items.WaterElement:`ELEMENT_DUNGEON`, Items.WindElement:`ELEMENT_DUNGEON`, `ALLGRIPS`, Items.PowerBracelets, `ALLFLIPPERS`, `ALLSPINS`, Items.RollAttack, Items.DashAttack, Items.RockBreaker, Items.SwordBeam, `ALLGREATS` Items.DownThrust, Items.PerilBeam, `ALLCOMPASS` `ALLBIGKEYS` `ALLSMALLKEYS` `JABBERNUT`, `ALLGOLDS` `ALLREDS` `ALLBLUES` `ALLGREENS` `ALLHEARTS` Items.Wallet::3, `ALLBOMBS` `DHC_FIG` `ALLQUIVERS` `ALLBUTTERFLIES` `FASTSCROLLS`
 
 Inaccessible;    Helper;; Items.Untyped.0xFF::0xFF  # ask for 255 of them for good measure
 
+	!settype - Items.Bombs5 - Minor
+	
 # South Field
 	!ifdef - PED_ITEMS
 Smith_House_Chest;					Minor;			0x22-0x11-0x00;	;																Items.Rupee20
@@ -3071,7 +3514,7 @@ Hills_BeanstalkFusion_HP;			Major;	0x0F6073;													(|(&Helpers.HillsMinish
 	!ifndef - NO_BLUE_FUSIONS
 Hills_BeanstalkFusion_RightChest;	Minor;	0x0D-0x03-0x00;												(|(&Helpers.HillsMinishFusion, (|Helpers.CanDestroyTrees, Helpers.WindCrest)), Helpers.Hundo);	Items.Rupee200
 	!endif
-Hills_BombCave_Chest;				Minor;	0x32-0x13-0x00;												(|(&(|Helpers.CanDestroyTrees, Helpers.WindCrest), Helpers.BombWalls), Helpers.Hundo);			Items.Shield #Normally 20 shells but we need a 2nd shield in the pool
+Hills_BombCave_Chest;				Major;	0x32-0x13-0x00;												(|(&(|Helpers.CanDestroyTrees, Helpers.WindCrest), Helpers.BombWalls), Helpers.Hundo);			Items.Shield #Normally 20 shells but we need a 2nd shield in the pool
 Minish_GreatFairy_NPC;				Major;	0x00B7B4;													(|(&Helpers.AccessMinishWoods, Items.PacciCane), Helpers.Hundo);								Items.Wallet
 	!ifdef - RUPEEMANIA
 Hills_FarmDigCave_Item;				Minor;	0x0F3C9F;													(|(&Helpers.AccessMinishWoods, Items.MoleMitts), Helpers.Hundo);								Items.Rupee20
@@ -3339,14 +3782,14 @@ Crenel_Melari_UpperTop_LeftDig		`COF_OUTSIDE`;	Minor;	0x0DC8E3;	 	(|Helpers.Acce
 AccessSwamp;						Helper;				;																			(|Helpers.WindCrest, (&Helpers.AccessWestern, (|Items.PegasusBoots, Items.RocsCape)))
 GotScrolls;							Helper;				;																			(+7, Items.SpinAttack, Items.RockBreaker, Items.DashAttack, Items.DownThrust, Items.RollAttack, Items.SwordBeam, Items.PerilBeam, Items.GreatSpin, Items.FastSpin, Items.FastSplit, Items.LongSpin);
 Swamp_ButterflyFusion_Item;			Major;				0x0FE13F;																	(|(&Helpers.Farore2Fusion, Helpers.AccessSwamp), Helpers.Hundo);																																		Items.DigButterfly
-Swamp_CenterCave_DarknutChest;		`OPENWORLDMAJOR`;	0x2B-0x00-0x00;																(|(&Helpers.AccessSwamp, Helpers.HasDamageSource), Helpers.Hundo);																																		`SWAMPSTONE`
+Swamp_CenterCave_DarknutChest;		`OPENWORLDMAJOR`;	0x2B-0x00-0x00;																(|(&Helpers.AccessSwamp, Helpers.HasDamageSource), Helpers.Hundo);																																		Items.ShellsX.1		#Items.KinstoneX.YellowTotemProng
 Swamp_CenterChest;					Minor;				0x04-0x00-0x00;																(|(&Helpers.AccessSwamp, Helpers.HasBow), Helpers.Hundo);																																				Items.ShellsX.100	#Items.KinstoneX.BlueL
 	!ifdef - GOLDEN_ENEMY_GREEN
 Swamp_GoldenRope;					Minor;				golden3Item:Define:FirstByte, golden3Sub:Define:SecondByte;					(|(&Helpers.Flurris1Fusion, Helpers.AccessSwamp, Helpers.HasSword), Helpers.Hundo);																														Items.Rupee100
 	!endif
 Swamp_NearWaterfall_CaveHP;			Major;				0x0D9907;																	(|(&Helpers.AccessSwamp, Helpers.SwampNorthShortcut, (|Items.RocsCape, Items.Flippers)), Helpers.Hundo);																								Items.PieceOfHeart
 Swamp_WaterfallFusion_DojoNPC;		Major;				scarbladeDojoItem:Define:FirstByte, scarbladeDojoSub:Define:SecondByte;		(|(&Helpers.GreybladeFusion, Helpers.AccessSwamp, Helpers.SwampNorthShortcut, Items.Flippers), Helpers.Hundo);																							Items.FastSpin
-Swamp_NorthCave_Chest;				`OPENWORLDMAJOR`;	0x2A-0x01-0x00;																(|(&Helpers.AccessSwamp, Helpers.SwampNorthShortcut), Helpers.Hundo);																																	`SWAMPSTONE`
+Swamp_NorthCave_Chest;				`OPENWORLDMAJOR`;	0x2A-0x01-0x00;																(|(&Helpers.AccessSwamp, Helpers.SwampNorthShortcut), Helpers.Hundo);																																	Items.ShellsX.1		#Items.KinstoneX.YellowTotemProng
 Swamp_DiggingCave_LeftChest;		Minor;				0x17-0x00-0x00;																(|(&Helpers.AccessSwamp, Items.MoleMitts), Helpers.Hundo);																																				Items.ShellsX.50
 Swamp_DiggingCave_RightChest;		Minor;				0x17-0x00-0x01;																(|(&Helpers.AccessSwamp, Items.MoleMitts), Helpers.Hundo);																																				Items.ShellsX.200	#Items.KinstoneX.RedCrack
 	!ifdef - UNDERWATER
@@ -3354,7 +3797,7 @@ Swamp_Underwater_Top;				Minor;				0x0D9347;																	(|(&Helpers.AccessS
 Swamp_Underwater_Middle;			Minor;				0x0D9357;																	(|(&Helpers.AccessSwamp, Items.Flippers), Helpers.Hundo);																																				Items.ShellsX.200	#Items.KinstoneX.RedSpike
 Swamp_Underwater_Bottom;			Minor;				0x0D9367;																	(|(&Helpers.AccessSwamp, Items.Flippers), Helpers.Hundo);																																				Items.ShellsX.200	#Items.KinstoneX.RedProng
 	!endif
-Swamp_SouthCave_Chest;				`OPENWORLDMAJOR`;	0x2A-0x00-0x00;																(|(&Helpers.AccessSwamp, Helpers.SwampShortcut, Helpers.SwampSouthShortcut), Helpers.Hundo);																											`SWAMPSTONE`
+Swamp_SouthCave_Chest;				`OPENWORLDMAJOR`;	0x2A-0x00-0x00;																(|(&Helpers.AccessSwamp, Helpers.SwampShortcut, Helpers.SwampSouthShortcut), Helpers.Hundo);																											Items.ShellsX.1		#Items.KinstoneX.YellowTotemProng
 Swamp_Dojo_HP;						Major;				0x0D78CB;																	(|(&Helpers.AccessSwamp, (|Items.RocsCape, Helpers.HasBow)), (&Helpers.WindCrest, Items.PegasusBoots), Helpers.Hundo);																					Items.PieceOfHeart
 Swamp_Dojo_NPC;						Major;				swiftbladeIDojoItem:Define:FirstByte, swiftbladeIDojoSub:Define:SecondByte;	(|(&Helpers.AccessSwamp, (|Items.RocsCape, Helpers.HasBow), Helpers.GotScrolls, Helpers.HasSword), (&Helpers.WindCrest, Items.PegasusBoots, Helpers.GotScrolls, Helpers.HasSword), Helpers.Hundo);		Items.GreatSpin
 	!ifndef - NO_GREEN_FUSIONS
@@ -3420,7 +3863,7 @@ Crypt_Gibdo_LeftItem	`RC_INSIDE`;		Minor;				0x0E688B;	`RC_Item` (|(&Helpers.Acc
 Crypt_Gibdo_RightItem	`RC_INSIDE`;		`SMALL_KEY`;		0x0E68AB;	`RC_Item` (|(&Helpers.AccessValley, Helpers.DarkRooms, Helpers.Graveyard, Helpers.CryptEntrance), Helpers.Hundo);																`RC_Small`
 Crypt_LeftItem			`RC_INSIDE`;		`SMALL_KEY`;		0x0E6357;	`RC_Item` (|(&Helpers.AccessValley, Helpers.DarkRooms, Helpers.Graveyard, Helpers.CryptEntrance, Helpers.CryptDoor), Helpers.Hundo);											`RC_Small`
 Crypt_RightItem			`RC_INSIDE`;		`SMALL_KEY`;		0x0E63A7;	`RC_Item` (|(&Helpers.AccessValley, Helpers.DarkRooms, Helpers.Graveyard, Helpers.CryptEntrance, Helpers.CryptDoor), Helpers.Hundo);											`RC_Small`
-Crypt_Prize				:`ELEMENT_DUNGEON`;	`OPENWORLDMAJOR`;	0x00DA5A;	`RC_Item` (|(&Helpers.AccessValley, Helpers.DarkRooms, Helpers.Graveyard, Helpers.CryptEntrance, Helpers.CryptDoor, Helpers.CryptBlocks, Helpers.CryptPuzzle), Helpers.Hundo);	`FALLSTONE`
+Crypt_Prize				:`ELEMENT_DUNGEON`;	`OPENWORLDMAJOR`;	0x00DA5A;	`RC_Item` (|(&Helpers.AccessValley, Helpers.DarkRooms, Helpers.Graveyard, Helpers.CryptEntrance, Helpers.CryptDoor, Helpers.CryptBlocks, Helpers.CryptPuzzle), Helpers.Hundo);	Items.ShellsX.1		#Items.KinstoneX.YellowCrown
 #Secret Chest reachable with Firerod
 
 # Veil Falls
@@ -3468,26 +3911,26 @@ Falls_TopCave_Chest;			Minor;			0x33-0x00-0x00;	(|Helpers.AccessFalls, Helpers.H
 
 # Cloud Tops
 AccessClouds;					Helper;		;					(|Helpers.WindCrest, (&Helpers.AccessFalls, Items.GripRing), Helpers.AccessWindTribe)
-Clouds_FreeChest;				`OPENWORLDMAJOR`;	0x08-0x01-0x00;	(|Helpers.AccessClouds, Helpers.Hundo);																`CLOUDSTONE`
+Clouds_FreeChest;				`OPENWORLDMAJOR`;	0x08-0x01-0x00;	(|Helpers.AccessClouds, Helpers.Hundo);																Items.ShellsX.1		#Items.KinstoneX.YellowTornadoProng
 	!ifdef - DIGGING
 Clouds_NorthEast_DigSpot;		Minor;				0x0DCB5B;		(|(&Helpers.AccessClouds, Items.MoleMitts), Helpers.Hundo);											Items.ShellsX.200	#Items.KinstoneX.RedSpike
 	!endif
-Clouds_North_Kill;				`OPENWORLDMAJOR`;	0x0DCEDF;		(|(&Helpers.AccessClouds, (|Items.RocsCape, Items.MoleMitts), Helpers.CloudsKill), Helpers.Hundo);	`CLOUDSTONE`
+Clouds_North_Kill;				`OPENWORLDMAJOR`;	0x0DCEDF;		(|(&Helpers.AccessClouds, (|Items.RocsCape, Items.MoleMitts), Helpers.CloudsKill), Helpers.Hundo);	Items.ShellsX.1		#Items.KinstoneX.YellowTornadoProng
 Clouds_NorthWest_LeftChest;		Minor;				0x08-0x01-0x03;	(|(&Helpers.AccessClouds, Items.MoleMitts), Helpers.Hundo);											Items.ShellsX.50
 Clouds_NorthWest_RightChest;	Minor;				0x08-0x01-0x04;	(|(&Helpers.AccessClouds, Items.MoleMitts), Helpers.Hundo);											Items.ShellsX.50
 	!ifdef - DIGGING
 Clouds_NorthWest_DigSpot;		Minor;				0x0DCB4B;		(|(&Helpers.AccessClouds, Items.MoleMitts), Helpers.Hundo);											Items.ShellsX.50	#Items.KinstoneX.GreenSpike
 	!endif
-Clouds_NorthWest_BottomChest;	`OPENWORLDMAJOR`;	0x08-0x01-0x02;	(|(&Helpers.AccessClouds, (|Items.RocsCape, Items.MoleMitts)), Helpers.Hundo);						`CLOUDSTONE`
+Clouds_NorthWest_BottomChest;	`OPENWORLDMAJOR`;	0x08-0x01-0x02;	(|(&Helpers.AccessClouds, (|Items.RocsCape, Items.MoleMitts)), Helpers.Hundo);						Items.ShellsX.1		#Items.KinstoneX.YellowTornadoProng
 Clouds_South_LeftChest;			Minor;				0x08-0x01-0x05;	(|(&Helpers.AccessClouds, Items.MoleMitts), Helpers.Hundo);											Items.ShellsX.50
 	!ifdef - DIGGING
 Clouds_South_DigSpot;			Minor;				0x0DCB8B;		(|(&Helpers.AccessClouds, Items.MoleMitts), Helpers.Hundo);											Items.ShellsX.50	#Items.KinstoneX.GreenSplit
 	!endif
-Clouds_South_MiddleChest;		`OPENWORLDMAJOR`;	0x08-0x01-0x01;	(|(&Helpers.AccessClouds, (|Items.RocsCape, Items.MoleMitts)), Helpers.Hundo);						`CLOUDSTONE`
+Clouds_South_MiddleChest;		`OPENWORLDMAJOR`;	0x08-0x01-0x01;	(|(&Helpers.AccessClouds, (|Items.RocsCape, Items.MoleMitts)), Helpers.Hundo);						Items.ShellsX.1		#Items.KinstoneX.YellowTornadoProng
 	!ifdef - DIGGING
 Clouds_South_MiddleDigSpot;		Minor;				0x0DCB6B;		(|(&Helpers.AccessClouds, Items.MoleMitts), Helpers.Hundo);											Items.ShellsX.100	#Items.KinstoneX.BlueL
 	!endif
-Clouds_South_Kill;				`OPENWORLDMAJOR`;	0x0DCEEF;		(|(&Helpers.AccessClouds, (|Items.RocsCape, Items.MoleMitts), Helpers.CloudsKill), Helpers.Hundo);	`CLOUDSTONE`
+Clouds_South_Kill;				`OPENWORLDMAJOR`;	0x0DCEEF;		(|(&Helpers.AccessClouds, (|Items.RocsCape, Items.MoleMitts), Helpers.CloudsKill), Helpers.Hundo);	Items.ShellsX.1		#Items.KinstoneX.YellowTornadoProng
 Clouds_South_RightChest;		Minor;				0x08-0x01-0x06;	(|(&Helpers.AccessClouds, (|Items.RocsCape, Items.MoleMitts)), Helpers.Hundo);						Items.ShellsX.50
 	!ifdef - DIGGING
 Clouds_South_RightDigSpot;		Minor;				0x0DCB9B;		(|(&Helpers.AccessClouds, Items.MoleMitts), Helpers.Hundo);											Items.ShellsX.200	#Items.KinstoneX.RedCrack
@@ -3630,8 +4073,8 @@ AccessDroplets								;	Helper;				;											`ToD_Item` (&Helpers.AccessLonLon
 				!ifndef - Replace_Big_Keys
 					!ifndef - BIG_KEYS_VANILLA
 						!ifndef - KEYS_DUNGEONS
-DummyToD1	:DummyToD;	DungeonItem;	DumToD1:Define:FirstByte, DumToD1:Define:SecondByte;		;										Items.Untyped.0xa:DummyToD
-DummyToD2	:DummyToD;	DungeonItem;	DumToD2:Define:FirstByte, DumToD2:Define:SecondByte;		(|Helpers.ToDAllKeys, Helpers.Hundo);	Items.Untyped.0xb:DummyToD
+DummyToD1	:DummyToD;	DungeonConstraint;	DumToD1:Define:FirstByte, DumToD1:Define:SecondByte;		;										Items.Untyped.0xa:DummyToD
+DummyToD2	:DummyToD;	DungeonConstraint;	DumToD2:Define:FirstByte, DumToD2:Define:SecondByte;		(|Helpers.ToDAllKeys, Helpers.Hundo);	Items.Untyped.0xb:DummyToD
 						!endif
 					!endif
 				!endif
@@ -3711,32 +4154,32 @@ AccessPalace						:Palace;	Helper;			;				`PoW_Item` Helpers.AccessWindTribe;
 	!ifndef - OPENWORLD
 		!ifndef - NO_GOLD_FUSIONS
 			!ifndef - KEYS_DUNGEONS
-DummyPoW1	:DummyPoW;	DungeonItem;	DumPoW1:Define:FirstByte, DumPoW1:Define:SecondByte;		;										Items.Untyped.0x01:DummyPoW
-DummyPoW2	:DummyPoW;	DungeonItem;	DumPoW2:Define:FirstByte, DumPoW2:Define:SecondByte;		(|Helpers.PoWAllKeys, Helpers.Hundo);	Items.Untyped.0x02:DummyPoW
-DummyPoW3	:DummyPoW;	DungeonItem;	DumPoW2:Define:FirstByte, DumPoW2:Define:SecondByte;		(|Helpers.PoWAllKeys, Helpers.Hundo);	Items.Untyped.0x03:DummyPoW
-DummyPoW4	:DummyPoW;	DungeonItem;	DumPoW2:Define:FirstByte, DumPoW2:Define:SecondByte;		(|Helpers.PoWAllKeys, Helpers.Hundo);	Items.Untyped.0x04:DummyPoW
-DummyPoW5	:DummyPoW;	DungeonItem;	DumPoW2:Define:FirstByte, DumPoW2:Define:SecondByte;		(|Helpers.PoWAllKeys, Helpers.Hundo);	Items.Untyped.0x05:DummyPoW
-DummyPoW6	:DummyPoW;	DungeonItem;	DumPoW2:Define:FirstByte, DumPoW2:Define:SecondByte;		(|Helpers.PoWAllKeys, Helpers.Hundo);	Items.Untyped.0x06:DummyPoW
-DummyPoW7	:DummyPoW;	DungeonItem;	DumPoW2:Define:FirstByte, DumPoW2:Define:SecondByte;		(|Helpers.PoWAllKeys, Helpers.Hundo);	Items.Untyped.0x07:DummyPoW
+DummyPoW1	:DummyPoW;	DungeonConstraint;	DumPoW1:Define:FirstByte, DumPoW1:Define:SecondByte;		;										Items.Untyped.0x01:DummyPoW
+DummyPoW2	:DummyPoW;	DungeonConstraint;	DumPoW2:Define:FirstByte, DumPoW2:Define:SecondByte;		(|Helpers.PoWAllKeys, Helpers.Hundo);	Items.Untyped.0x02:DummyPoW
+DummyPoW3	:DummyPoW;	DungeonConstraint;	DumPoW2:Define:FirstByte, DumPoW2:Define:SecondByte;		(|Helpers.PoWAllKeys, Helpers.Hundo);	Items.Untyped.0x03:DummyPoW
+DummyPoW4	:DummyPoW;	DungeonConstraint;	DumPoW2:Define:FirstByte, DumPoW2:Define:SecondByte;		(|Helpers.PoWAllKeys, Helpers.Hundo);	Items.Untyped.0x04:DummyPoW
+DummyPoW5	:DummyPoW;	DungeonConstraint;	DumPoW2:Define:FirstByte, DumPoW2:Define:SecondByte;		(|Helpers.PoWAllKeys, Helpers.Hundo);	Items.Untyped.0x05:DummyPoW
+DummyPoW6	:DummyPoW;	DungeonConstraint;	DumPoW2:Define:FirstByte, DumPoW2:Define:SecondByte;		(|Helpers.PoWAllKeys, Helpers.Hundo);	Items.Untyped.0x06:DummyPoW
+DummyPoW7	:DummyPoW;	DungeonConstraint;	DumPoW2:Define:FirstByte, DumPoW2:Define:SecondByte;		(|Helpers.PoWAllKeys, Helpers.Hundo);	Items.Untyped.0x07:DummyPoW
 				!ifdef - RUPEEMANIA
-DummyPoW8	:DummyPoW;	DungeonItem;	DumPoW2:Define:FirstByte, DumPoW2:Define:SecondByte;		(|Helpers.PoWAllKeys, Helpers.Hundo);	Items.Untyped.0x08:DummyPoW
-DummyPoW9	:DummyPoW;	DungeonItem;	DumPoW2:Define:FirstByte, DumPoW2:Define:SecondByte;		(|Helpers.PoWAllKeys, Helpers.Hundo);	Items.Untyped.0x09:DummyPoW
-DummyPoWa	:DummyPoW;	DungeonItem;	DumPoW2:Define:FirstByte, DumPoW2:Define:SecondByte;		(|Helpers.PoWAllKeys, Helpers.Hundo);	Items.Untyped.0x0a:DummyPoW
-DummyPoWb	:DummyPoW;	DungeonItem;	DumPoW2:Define:FirstByte, DumPoW2:Define:SecondByte;		(|Helpers.PoWAllKeys, Helpers.Hundo);	Items.Untyped.0x0b:DummyPoW
-DummyPoWc	:DummyPoW;	DungeonItem;	DumPoW2:Define:FirstByte, DumPoW2:Define:SecondByte;		(|Helpers.PoWAllKeys, Helpers.Hundo);	Items.Untyped.0x0c:DummyPoW
+DummyPoW8	:DummyPoW;	DungeonConstraint;	DumPoW2:Define:FirstByte, DumPoW2:Define:SecondByte;		(|Helpers.PoWAllKeys, Helpers.Hundo);	Items.Untyped.0x08:DummyPoW
+DummyPoW9	:DummyPoW;	DungeonConstraint;	DumPoW2:Define:FirstByte, DumPoW2:Define:SecondByte;		(|Helpers.PoWAllKeys, Helpers.Hundo);	Items.Untyped.0x09:DummyPoW
+DummyPoWa	:DummyPoW;	DungeonConstraint;	DumPoW2:Define:FirstByte, DumPoW2:Define:SecondByte;		(|Helpers.PoWAllKeys, Helpers.Hundo);	Items.Untyped.0x0a:DummyPoW
+DummyPoWb	:DummyPoW;	DungeonConstraint;	DumPoW2:Define:FirstByte, DumPoW2:Define:SecondByte;		(|Helpers.PoWAllKeys, Helpers.Hundo);	Items.Untyped.0x0b:DummyPoW
+DummyPoWc	:DummyPoW;	DungeonConstraint;	DumPoW2:Define:FirstByte, DumPoW2:Define:SecondByte;		(|Helpers.PoWAllKeys, Helpers.Hundo);	Items.Untyped.0x0c:DummyPoW
 				!endif
 				!ifdef - KEYS_OUTSIDE
-DummyPoWd	:DummyPoW;	DungeonItem;	DumPoW2:Define:FirstByte, DumPoW2:Define:SecondByte;		(|Helpers.PoWAllKeys, Helpers.Hundo);	Items.Untyped.0x0d:DummyPoW
-DummyPoWe	:DummyPoW;	DungeonItem;	DumPoW2:Define:FirstByte, DumPoW2:Define:SecondByte;		(|Helpers.PoWAllKeys, Helpers.Hundo);	Items.Untyped.0x0e:DummyPoW
-DummyPoWf	:DummyPoW;	DungeonItem;	DumPoW2:Define:FirstByte, DumPoW2:Define:SecondByte;		(|Helpers.PoWAllKeys, Helpers.Hundo);	Items.Untyped.0x0f:DummyPoW
-DummyPoW10	:DummyPoW;	DungeonItem;	DumPoW2:Define:FirstByte, DumPoW2:Define:SecondByte;		(|Helpers.PoWAllKeys, Helpers.Hundo);	Items.Untyped.0x10:DummyPoW
-DummyPoW11	:DummyPoW;	DungeonItem;	DumPoW2:Define:FirstByte, DumPoW2:Define:SecondByte;		(|Helpers.PoWAllKeys, Helpers.Hundo);	Items.Untyped.0x11:DummyPoW
-DummyPoW12	:DummyPoW;	DungeonItem;	DumPoW2:Define:FirstByte, DumPoW2:Define:SecondByte;		(|Helpers.PoWAllKeys, Helpers.Hundo);	Items.Untyped.0x12:DummyPoW		
+DummyPoWd	:DummyPoW;	DungeonConstraint;	DumPoW2:Define:FirstByte, DumPoW2:Define:SecondByte;		(|Helpers.PoWAllKeys, Helpers.Hundo);	Items.Untyped.0x0d:DummyPoW
+DummyPoWe	:DummyPoW;	DungeonConstraint;	DumPoW2:Define:FirstByte, DumPoW2:Define:SecondByte;		(|Helpers.PoWAllKeys, Helpers.Hundo);	Items.Untyped.0x0e:DummyPoW
+DummyPoWf	:DummyPoW;	DungeonConstraint;	DumPoW2:Define:FirstByte, DumPoW2:Define:SecondByte;		(|Helpers.PoWAllKeys, Helpers.Hundo);	Items.Untyped.0x0f:DummyPoW
+DummyPoW10	:DummyPoW;	DungeonConstraint;	DumPoW2:Define:FirstByte, DumPoW2:Define:SecondByte;		(|Helpers.PoWAllKeys, Helpers.Hundo);	Items.Untyped.0x10:DummyPoW
+DummyPoW11	:DummyPoW;	DungeonConstraint;	DumPoW2:Define:FirstByte, DumPoW2:Define:SecondByte;		(|Helpers.PoWAllKeys, Helpers.Hundo);	Items.Untyped.0x11:DummyPoW
+DummyPoW12	:DummyPoW;	DungeonConstraint;	DumPoW2:Define:FirstByte, DumPoW2:Define:SecondByte;		(|Helpers.PoWAllKeys, Helpers.Hundo);	Items.Untyped.0x12:DummyPoW		
 					!ifdef - NO_RED_FUSIONS
-DummyPoW13	:DummyPoW;	DungeonItem;	DumPoW2:Define:FirstByte, DumPoW2:Define:SecondByte;		(|Helpers.PoWAllKeys, Helpers.Hundo);	Items.Untyped.0x13:DummyPoW
-DummyPoW14	:DummyPoW;	DungeonItem;	DumPoW2:Define:FirstByte, DumPoW2:Define:SecondByte;		(|Helpers.PoWAllKeys, Helpers.Hundo);	Items.Untyped.0x14:DummyPoW
-DummyPoW15	:DummyPoW;	DungeonItem;	DumPoW2:Define:FirstByte, DumPoW2:Define:SecondByte;		(|Helpers.PoWAllKeys, Helpers.Hundo);	Items.Untyped.0x15:DummyPoW
-DummyPoW16	:DummyPoW;	DungeonItem;	DumPoW2:Define:FirstByte, DumPoW2:Define:SecondByte;		(|Helpers.PoWAllKeys, Helpers.Hundo);	Items.Untyped.0x16:DummyPoW			
+DummyPoW13	:DummyPoW;	DungeonConstraint;	DumPoW2:Define:FirstByte, DumPoW2:Define:SecondByte;		(|Helpers.PoWAllKeys, Helpers.Hundo);	Items.Untyped.0x13:DummyPoW
+DummyPoW14	:DummyPoW;	DungeonConstraint;	DumPoW2:Define:FirstByte, DumPoW2:Define:SecondByte;		(|Helpers.PoWAllKeys, Helpers.Hundo);	Items.Untyped.0x14:DummyPoW
+DummyPoW15	:DummyPoW;	DungeonConstraint;	DumPoW2:Define:FirstByte, DumPoW2:Define:SecondByte;		(|Helpers.PoWAllKeys, Helpers.Hundo);	Items.Untyped.0x15:DummyPoW
+DummyPoW16	:DummyPoW;	DungeonConstraint;	DumPoW2:Define:FirstByte, DumPoW2:Define:SecondByte;		(|Helpers.PoWAllKeys, Helpers.Hundo);	Items.Untyped.0x16:DummyPoW			
 					!endif
 				!endif
 			!endif
