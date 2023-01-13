@@ -22,11 +22,12 @@ internal class Shuffler
     public readonly string Version;
 
     //private List<Location> StartingLocations;
-    private readonly List<Item> _dungeonMajorItems;
-    private readonly List<Item> _dungeonMinorItems;
     private readonly List<Location> _locations;
     private readonly Parser.Parser _logicParser;
     private string? _logicPath;
+    private readonly List<Item> _dungeonMajorItems;
+    private readonly List<Item> _dungeonMinorItems;
+    private readonly List<Item> _dungeonConstraints;
     private readonly List<Item> _majorItems;
     private readonly List<Item> _minorItems;
     private readonly List<Item> _niceItems;
@@ -43,6 +44,7 @@ internal class Shuffler
         _locations = new List<Location>();
         _dungeonMajorItems = new List<Item>();
         _dungeonMinorItems = new List<Item>();
+        _dungeonConstraints = new List<Item>();
         _majorItems = new List<Item>();
         _niceItems = new List<Item>();
         _minorItems = new List<Item>();
@@ -307,6 +309,9 @@ internal class Shuffler
             case LocationType.DungeonMajor:
                 _dungeonMajorItems.Add(location.Contents);
                 break;
+            case LocationType.DungeonConstraint:
+                _dungeonConstraints.Add(location.Contents);
+                break;
             // Nice items check logic but cannot affect it
             case LocationType.Nice:
                 _niceItems.Add(location.Contents);
@@ -364,22 +369,26 @@ internal class Shuffler
     {
         var unplacedItems = _majorItems.ToList();
         var dungeonSpecificItems = _dungeonMajorItems.ToList();
+        var allAssumedItems = unplacedItems.Concat(dungeonSpecificItems).Concat(_unshuffledItems).ToList();
 
         var unfilledLocations = _locations.Where(location =>
             !location.Filled && location.Type != LocationType.Helper &&
             location.Type != LocationType.Untyped).ToList();
         unfilledLocations.Shuffle(_rng);
         unplacedItems.Shuffle(_rng);
+        
+        //Fill out constraints before doing anything else
+        FillLocations(_dungeonConstraints.ToList(), unfilledLocations, allAssumedItems);
 
-        var beatable = dungeonSpecificItems.Where(_ => _.Dungeon == "Beatable").ToList();
-        var prizes = dungeonSpecificItems.Where(_ => _.Dungeon == "Prizes").ToList();
-        var notPrizes = dungeonSpecificItems.Where(_ => _.Dungeon is not "Prizes" and not "Beatable").ToList();
-
-        FillLocations(beatable, unfilledLocations, unplacedItems.Concat(notPrizes).Concat(prizes).Concat(_unshuffledItems).ToList());
-        FillLocations(prizes, unfilledLocations, unplacedItems.Concat(notPrizes).Concat(_unshuffledItems).ToList());
+        // var beatable = dungeonSpecificItems.Where(_ => _.Dungeon == "Beatable").ToList();
+        // var prizes = dungeonSpecificItems.Where(_ => _.Dungeon == "Prizes").ToList();
+        // var notPrizes = dungeonSpecificItems.Where(_ => _.Dungeon is not "Prizes" and not "Beatable").ToList();
+        //
+        // FillLocations(beatable, unfilledLocations, unplacedItems.Concat(notPrizes).Concat(prizes).Concat(_unshuffledItems).ToList());
+        // FillLocations(prizes, unfilledLocations, unplacedItems.Concat(notPrizes).Concat(_unshuffledItems).ToList());
 
         // Fill dungeon items first so there is room for them all
-        var dungeonLocations = FillLocations(notPrizes, unfilledLocations, unplacedItems);
+        var dungeonLocations = FillLocations(dungeonSpecificItems, unfilledLocations, unplacedItems);
         
         // Fill dungeon minor items, do not check logic
         unfilledLocations.Shuffle(_rng);
@@ -817,6 +826,9 @@ internal class Shuffler
     {
         _locations.Clear();
         _dungeonMajorItems.Clear();
+        _dungeonMinorItems.Clear();
+        _dungeonConstraints.Clear();
+        _unshuffledItems.Clear();
         _majorItems.Clear();
         _niceItems.Clear();
         _minorItems.Clear();

@@ -8,6 +8,7 @@ public enum LocationType
     DungeonItem,
     DungeonMajor,
     DungeonMinor,
+    DungeonConstraint,
     Helper,
     Unshuffled,
     Nice
