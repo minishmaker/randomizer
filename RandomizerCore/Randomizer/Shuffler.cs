@@ -208,67 +208,170 @@ internal class Shuffler
             locationStrings = File.ReadAllLines(logicFile);
         }
 
-        var parsedLocations = _logicParser.ParseLocationsAndItems(locationStrings, _rng);
+        var locationAndItems = _logicParser.ParseLocationsAndItems(locationStrings, _rng);
 
         _logicParser.SubParser.DuplicateAmountReplacements();
         _logicParser.SubParser.DuplicateIncrementalReplacements();
-        parsedLocations.locations.ForEach(AddLocation);
+        locationAndItems.locations.ForEach(AddLocation);
+        locationAndItems.items.ForEach(AddItem);
+    }
+
+    public void AddItem(Item item)
+    {
+        var newItem = CheckReplacements(item);
+
+        if (newItem.HasValue) item = newItem.Value;
+        
+        switch (item.ShufflePool)
+        {
+            // These locations are not filled, because they don't reference an item location
+            case LocationType.Untyped:
+            case LocationType.Helper:
+                break;
+            // Minor locations are not logically accounted for
+            case LocationType.Minor:
+                _minorItems.Add(item);
+                break;
+            case LocationType.DungeonMinor:
+                _dungeonMinorItems.Add(item);
+                break;
+            case LocationType.Music:
+                _music.Add(item);
+                break;
+            // Dungeon items can only be placed within the same dungeon, and are placed first
+            case LocationType.DungeonMajor:
+                _dungeonMajorItems.Add(item);
+                break;
+            case LocationType.DungeonPrize:
+                _dungeonPrizes.Add(item);
+                break;
+            case LocationType.DungeonConstraint:
+                _dungeonConstraints.Add(item);
+                break;
+            // Nice items check logic but cannot affect it
+            case LocationType.Nice:
+                _niceItems.Add(item);
+                break;
+            case LocationType.Unshuffled:
+                break;
+            // Major/etc items are fully randomized and check logic
+            case LocationType.Major:
+            default:
+                _majorItems.Add(item);
+                break;
+        }
     }
 
     public void AddLocation(Location location)
     {
-        var replaced = false;
-        if (_logicParser.SubParser.IncrementalReplacements.ContainsKey(location.Contents))
+        // All locations are in the master location list
+        _locations.Add(location);
+
+        if (!location.Contents.HasValue) return;
+        
+        var newItem = CheckReplacements(location.Contents.Value);
+        
+        if (newItem.HasValue) location.SetItem(newItem.Value);
+
+
+        if (_logicParser.SubParser.LocationTypeOverrides.ContainsKey(location.Contents.Value))
+            location.Type = _logicParser.SubParser.LocationTypeOverrides[location.Contents.Value];
+
+        if (location.Type != LocationType.Unshuffled) return;
+        
+        // Unshuffled locations are filled by default
+        // Unshuffled locations require contents, so add them here
+        location.Fill(location.Contents!.Value);
+        _unshuffledItems.Add(location.Contents!.Value);
+
+        // The type of the containing location determines how the item is handled
+        // switch (location.Type)
+        // {
+        //     // These locations are not filled, because they don't reference an item location
+        //     case LocationType.Untyped:
+        //     case LocationType.Helper:
+        //         break;
+        //     // Minor locations are not logically accounted for
+        //     case LocationType.Minor:
+        //         _minorItems.Add(location.Contents);
+        //         break;
+        //     case LocationType.DungeonMinor:
+        //         _dungeonMinorItems.Add(location.Contents);
+        //         break;
+        //     case LocationType.Music:
+        //         _music.Add(location.Contents);
+        //         break;
+        //     // Dungeon items can only be placed within the same dungeon, and are placed first
+        //     case LocationType.DungeonMajor:
+        //         _dungeonMajorItems.Add(location.Contents);
+        //         break;
+        //     case LocationType.DungeonPrize:
+        //         _dungeonPrizes.Add(location.Contents);
+        //         break;
+        //     case LocationType.DungeonConstraint:
+        //         _dungeonConstraints.Add(location.Contents);
+        //         break;
+        //     // Nice items check logic but cannot affect it
+        //     case LocationType.Nice:
+        //         _niceItems.Add(location.Contents);
+        //         break;
+        //     // Major/etc items are fully randomized and check logic
+        //     case LocationType.Major:
+        //     default:
+        //         _majorItems.Add(location.Contents);
+        //         break;
+        // }
+    }
+
+    private Item? CheckReplacements(Item item)
+    {
+        if (_logicParser.SubParser.IncrementalReplacements.ContainsKey(item))
         {
-            var key = location.Contents;
-            var set = _logicParser.SubParser.IncrementalReplacements[key];
+            var set = _logicParser.SubParser.IncrementalReplacements[item];
             var replacement = set[0];
             if (replacement.amount != 0)
             {
                 replacement.amount -= 1;
                 var newItem = new Item(replacement.item.Type,
                     (byte)((replacement.item.SubValue + replacement.amount) % 256), replacement.item.Dungeon);
-                location.SetItem(newItem);
-                replaced = true;
+                return newItem;
             }
 
             if (replacement.amount == 0)
             {
                 set.RemoveAt(0);
-                if (_logicParser.SubParser.IncrementalReplacements[key].Count == 0)
+                if (_logicParser.SubParser.IncrementalReplacements[item].Count == 0)
                 {
-                    _logicParser.SubParser.IncrementalReplacements.Remove(key);
-                    Logger.Instance.LogInfo($"Removed incremental item, key {key.Type}");
+                    _logicParser.SubParser.IncrementalReplacements.Remove(item);
+                    Logger.Instance.LogInfo($"Removed incremental item, key {item.Type}");
                 }
             }
         }
 
-        if (replaced == false && _logicParser.SubParser.AmountReplacements.ContainsKey(location.Contents))
+        if (_logicParser.SubParser.AmountReplacements.ContainsKey(item))
         {
-            var key = location.Contents;
-            var set = _logicParser.SubParser.AmountReplacements[key];
+            var set = _logicParser.SubParser.AmountReplacements[item];
             var replacement = set[0];
             if (replacement.amount != 0)
             {
                 replacement.amount -= 1;
-                location.SetItem(replacement.item);
-                replaced = true;
+                return replacement.item;
             }
 
             if (replacement.amount == 0)
             {
                 set.RemoveAt(0);
-                if (_logicParser.SubParser.AmountReplacements[key].Count == 0)
+                if (_logicParser.SubParser.AmountReplacements[item].Count == 0)
                 {
-                    _logicParser.SubParser.AmountReplacements.Remove(key);
-                    Console.WriteLine("removed key:" + key.Type);
+                    _logicParser.SubParser.AmountReplacements.Remove(item);
+                    Console.WriteLine("removed key:" + item.Type);
                 }
             }
         }
 
-        if (replaced == false && _logicParser.SubParser.Replacements.ContainsKey(location.Contents))
+        if (_logicParser.SubParser.Replacements.ContainsKey(item))
         {
-            var chanceSet = _logicParser.SubParser.Replacements[location.Contents];
+            var chanceSet = _logicParser.SubParser.Replacements[item];
             var number = _rng.Next(chanceSet.totalChance);
             var val = 0;
 
@@ -277,60 +380,12 @@ internal class Shuffler
                 val += chanceSet.randomItems[i].chance;
                 if (number < val)
                 {
-                    location.SetItem(chanceSet.randomItems[i].item);
-                    break;
+                    return chanceSet.randomItems[i].item;
                 }
             }
         }
 
-        if (_logicParser.SubParser.LocationTypeOverrides.ContainsKey(location.Contents))
-            location.Type = _logicParser.SubParser.LocationTypeOverrides[location.Contents];
-
-        // All locations are in the master location list
-        _locations.Add(location);
-
-        // The type of the containing location determines how the item is handled
-        switch (location.Type)
-        {
-            // These locations are not filled, because they don't reference an item location
-            case LocationType.Untyped:
-            case LocationType.Helper:
-                break;
-            // Unshuffled locations are filled by default
-            case LocationType.Unshuffled:
-                location.Fill(location.Contents);
-                _unshuffledItems.Add(location.Contents);
-                break;
-            // Minor locations are not logically accounted for
-            case LocationType.Minor:
-                _minorItems.Add(location.Contents);
-                break;
-            case LocationType.DungeonMinor:
-                _dungeonMinorItems.Add(location.Contents);
-                break;
-            case LocationType.Music:
-                _music.Add(location.Contents);
-                break;
-            // Dungeon items can only be placed within the same dungeon, and are placed first
-            case LocationType.DungeonMajor:
-                _dungeonMajorItems.Add(location.Contents);
-                break;
-            case LocationType.DungeonPrize:
-                _dungeonPrizes.Add(location.Contents);
-                break;
-            case LocationType.DungeonConstraint:
-                _dungeonConstraints.Add(location.Contents);
-                break;
-            // Nice items check logic but cannot affect it
-            case LocationType.Nice:
-                _niceItems.Add(location.Contents);
-                break;
-            // Major/etc items are fully randomized and check logic
-            case LocationType.Major:
-            default:
-                _majorItems.Add(location.Contents);
-                break;
-        }
+        return null;
     }
 
     public void ApplyPatch(string romLocation, string? patchFile = null)
@@ -395,7 +450,7 @@ internal class Shuffler
 
         //Fill out constraints and prizes before doing anything else
         FillLocations(_dungeonConstraints.ToList(), 
-            _locations.Where(location => location.Type == LocationType.DungeonConstraint && location.ShuffleLocationInGroup == LocationType.Unshuffled).ToList(), allAssumedItems);
+            _locations.Where(location => location.Type == LocationType.DungeonConstraint).ToList(), allAssumedItems);
         FillLocations(_dungeonPrizes.ToList(),
             _locations.Where(location => location.Type == LocationType.DungeonPrize).ToList(), allAssumedItems);
 
@@ -619,17 +674,19 @@ internal class Shuffler
     {
         spoilerBuilder.AppendLine("Location Contents:");
         // Get the locations that have been filled
-        var filledLocations = _locations.Where(location =>
+        var nonNullLocations = _locations.Where(location => location.Contents is not null);
+        
+        var filledLocations = nonNullLocations.Where(location => 
             location.Filled && location.Type is not LocationType.Helper and not LocationType.Untyped).ToList();
 
-        var locationsWithRealItems = filledLocations.Where(location => location.Contents.Type is not ItemType.Untyped);
+        var locationsWithRealItems = filledLocations.Where(location => location.Contents!.Value.Type is not ItemType.Untyped);
 
         var hackToFilterOutLanternGarbage = locationsWithRealItems.Where(location =>
-            location.Contents.Type != ItemType.LanternOff || location.Contents.SubValue == 0);
+            location.Contents!.Value.Type != ItemType.LanternOff || location.Contents!.Value.SubValue == 0);
         
         foreach (var location in hackToFilterOutLanternGarbage)
         {
-            spoilerBuilder.AppendLine($"{location.Name}: {location.Contents.Type}");
+            spoilerBuilder.AppendLine($"{location.Name}: {location.Contents!.Value.Type}");
 
             AppendSubvalue(spoilerBuilder, location);
 
@@ -645,14 +702,16 @@ internal class Shuffler
     {
         spoilerBuilder.AppendLine("Playthrough:");
 
-        var filledLocations = _locations.Where(location =>
+        var nonNullLocations = _locations.Where(location => location.Contents is not null);
+        
+        var filledLocations = nonNullLocations.Where(location =>
             location.Filled && location.Type != LocationType.Helper &&
             location.Type != LocationType.Untyped);
 
-        var locationsWithRealItems = filledLocations.Where(location => location.Contents.Type is not ItemType.Untyped);
+        var locationsWithRealItems = filledLocations.Where(location => location.Contents!.Value.Type is not ItemType.Untyped);
 
         var hackToFilterOutLanternGarbage = locationsWithRealItems.Where(location =>
-            location.Contents.Type != ItemType.LanternOff || location.Contents.SubValue == 0).ToList();
+            location.Contents!.Value.Type != ItemType.LanternOff || location.Contents!.Value.SubValue == 0).ToList();
 
         var availableItems = new List<Item>();
 
@@ -672,7 +731,7 @@ internal class Shuffler
 
             foreach (var location in accessibleLocations)
             {
-                spoilerBuilder.AppendLine($"Sphere {sphereCounter}: {location.Contents.Type} in {location.Name}");
+                spoilerBuilder.AppendLine($"Sphere {sphereCounter}: {location.Contents!.Value.Type} in {location.Name}");
 
                 AppendSubvalue(spoilerBuilder, location);
                 spoilerBuilder.AppendLine();
@@ -688,14 +747,16 @@ internal class Shuffler
 
     private void AppendSubvalue(StringBuilder spoilerBuilder, Location location)
     {
+        if (!location.Contents.HasValue) return;
+        
         // Display subvalue if relevant
-        if (location.Contents.Type == ItemType.KinstoneX)
-            spoilerBuilder.AppendLine($"Kinstone Type: {location.Contents.Kinstone}");
-        else if (location.Contents.SubValue != 0) spoilerBuilder.AppendLine($"Subvalue: {location.Contents.SubValue}");
+        if (location.Contents.Value.Type == ItemType.KinstoneX)
+            spoilerBuilder.AppendLine($"Kinstone Type: {location.Contents.Value.Kinstone}");
+        else if (location.Contents.Value.SubValue != 0) spoilerBuilder.AppendLine($"Subvalue: {location.Contents.Value.SubValue}");
 
         // Display dungeon contents if relevant
-        if (!string.IsNullOrEmpty(location.Contents.Dungeon))
-            spoilerBuilder.AppendLine($"Dungeon: {location.Contents.Dungeon}");
+        if (!string.IsNullOrEmpty(location.Contents.Value.Dungeon))
+            spoilerBuilder.AppendLine($"Dungeon: {location.Contents.Value.Dungeon}");
     }
 
     public string GetEventWrites()
@@ -725,16 +786,16 @@ internal class Shuffler
     private void WriteElementPositions(Writer w)
     {
         // Write coordinates for each element
-        var earthLocation = _locations.Where(loc => loc.Contents.Type == ItemType.EarthElement).First();
+        var earthLocation = _locations.First(loc => loc.Contents is not null && loc.Contents.Value.Type == ItemType.EarthElement);
         MoveElement(w, earthLocation);
 
-        var fireLocation = _locations.Where(loc => loc.Contents.Type == ItemType.FireElement).First();
+        var fireLocation = _locations.First(loc => loc.Contents is not null && loc.Contents.Value.Type == ItemType.FireElement);
         MoveElement(w, fireLocation);
 
-        var waterLocation = _locations.Where(loc => loc.Contents.Type == ItemType.WaterElement).First();
+        var waterLocation = _locations.First(loc => loc.Contents is not null && loc.Contents.Value.Type == ItemType.WaterElement);
         MoveElement(w, waterLocation);
 
-        var windLocation = _locations.Where(loc => loc.Contents.Type == ItemType.WindElement).First();
+        var windLocation = _locations.First(loc => loc.Contents is not null && loc.Contents.Value.Type == ItemType.WindElement);
         MoveElement(w, windLocation);
     }
 
@@ -801,7 +862,7 @@ internal class Shuffler
         int largeAddress;
         int smallAddress;
 
-        switch (location.Contents.Type)
+        switch (location.Contents!.Value.Type)
         {
             case ItemType.EarthElement:
                 largeAddress = 0x128699;

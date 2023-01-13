@@ -205,17 +205,16 @@ public class Parser
         var items = new List<Item>();
 
         var dungeon = "";
-        if (itemShufflePool is LocationType.DungeonMajor or LocationType.DungeonMinor)
-        {
-            if (allItemParts.Length < 3)
-                throw new ParserException("Dungeon item is missing dungeon name!");
-
+        
+        if (itemShufflePool is LocationType.DungeonMajor or LocationType.DungeonMinor && allItemParts.Length < 3)
+            throw new ParserException("Dungeon item is missing dungeon name!");
+        
+        if (allItemParts.Length >= 3)
             dungeon = allItemParts[2];
-        }
 
         while (amount-- > 0)
         {
-            items.Add(new Item(replacementType, subType, shufflePool: itemShufflePool));
+            items.Add(new Item(replacementType, subType, dungeon, shufflePool: itemShufflePool));
         }
 
         return items;
