@@ -131,7 +131,7 @@ public class Location
             Logger.Instance.LogInfo($"Untyped contents in {Name}! Addresses may be bad");
 
         // Dungeon items get the Dungeon part defined
-        return Type is LocationType.DungeonConstraint or LocationType.DungeonMajor or LocationType.DungeonMinor or LocationType.DungeonPrize ? new Item(type, subType, Dungeon) : new Item(type, subType);
+        return Type is LocationType.DungeonConstraint or LocationType.DungeonMajor or LocationType.DungeonMinor ? new Item(type, subType, Dungeon) : new Item(type, subType);
     }
 
     /// <summary>

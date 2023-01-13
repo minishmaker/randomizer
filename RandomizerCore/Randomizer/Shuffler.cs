@@ -394,7 +394,8 @@ internal class Shuffler
 
         //Fill out constraints and prizes before doing anything else
         FillLocations(_dungeonConstraints.ToList(), unfilledLocations, allAssumedItems);
-        FillLocations(_dungeonPrizes.ToList(), unfilledLocations, allAssumedItems);
+        FillLocations(_dungeonPrizes.ToList(),
+            _locations.Where(location => location.Type == LocationType.DungeonPrize).ToList(), allAssumedItems);
 
         // Fill dungeon items first so there is room for them all
         FillLocations(dungeonSpecificItems, unfilledLocations, unplacedItems);
