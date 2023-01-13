@@ -584,7 +584,19 @@ internal class Shuffler
         // Don't need to check logic, cause the items being placed do not affect logic
         foreach (var item in items)
         {
+            if (locations.Count == 0) return;
+            
             locations[0].Fill(item);
+            locations.RemoveAt(0);
+        }
+
+        if (locations.Count == 0) return;
+        
+        var fillItems = items.Where(item => item.Dungeon == "Fill").ToList();
+        var rand = new Random(Seed);
+        while (locations.Count > 0)
+        {
+            locations[0].Fill(fillItems[rand.Next(items.Count)]);
             locations.RemoveAt(0);
         }
     }
