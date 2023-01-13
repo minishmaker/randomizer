@@ -298,9 +298,7 @@ public class Parser
                             if (Enum.TryParse(subParts[2], out KinstoneType subKinstoneType))
                                 subType = (byte)subKinstoneType;
 
-                    var dungeon = subParts[2];
-
-                    itemOverride = new Item(replacementType, subType, dungeon);
+                    itemOverride = new Item(replacementType, subType);
                 }
             }
             else
