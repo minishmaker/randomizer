@@ -1,4 +1,5 @@
 ﻿using RandomizerCore.Core;
+using RandomizerCore.Randomizer.Enumerables;
 using RandomizerCore.Randomizer.Exceptions;
 using RandomizerCore.Randomizer.Logic;
 using RandomizerCore.Utilities.Util;
@@ -9,11 +10,12 @@ public readonly struct Item
 {
     public readonly ItemType Type;
     public readonly KinstoneType Kinstone;
+    public readonly LocationType ShufflePool;
     public readonly byte SubValue;
     public readonly string Dungeon;
     public readonly bool UseAny;
 
-    public Item(string data, string commandScope = "")
+    public Item(string data, string commandScope = "", LocationType shufflePool = LocationType.Unshuffled)
     {
         var dataChunks = data.Split(':');
         var itemData = dataChunks[0].Split('.');
@@ -47,9 +49,11 @@ public readonly struct Item
             Kinstone = (KinstoneType)SubValue;
         else
             Kinstone = KinstoneType.UnTyped;
+
+        ShufflePool = shufflePool;
     }
 
-    public Item(ItemType type, byte subValue, string dungeon = "", bool useAny = false)
+    public Item(ItemType type, byte subValue, string dungeon = "", bool useAny = false, LocationType shufflePool = LocationType.Unshuffled)
     {
         Type = type;
         SubValue = subValue;
@@ -60,6 +64,8 @@ public readonly struct Item
             Kinstone = KinstoneType.UnTyped;
 
         Dungeon = dungeon;
+
+        ShufflePool = shufflePool;
     }
 
     public override bool Equals(object obj)

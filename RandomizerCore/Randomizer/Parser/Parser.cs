@@ -179,9 +179,51 @@ public class Parser
         return subLogic;
     }
 
+    public List<Item> GetItems(string itemText)
+    {
+        var allItemParts = itemText.Split(';');
+        var itemParts = allItemParts[0].Split(':');
+        var subParts = itemParts[0].Split('.');
+
+        if (allItemParts.Length is < 2 or > 3)
+            throw new ParserException("Invalid item! Item does not have the correct number of parameters!");
+
+        if (!Enum.TryParse(subParts[1], out ItemType replacementType))
+            throw new ParserException("Item has invalid item type!");
+        
+        byte subType = 0;
+        if (subParts.Length >= 3)
+            if (!StringUtil.ParseString(subParts[2], out subType))
+                if (Enum.TryParse(subParts[2], out KinstoneType subKinstoneType))
+                    subType = (byte)subKinstoneType;
+
+        var amount = itemParts.Length > 1 ? int.Parse(itemParts[1]) : 1;
+
+        if (!Enum.TryParse(allItemParts[1], out LocationType itemShufflePool))
+            throw new ParserException("Item has invalid shuffle pool!");
+
+        var items = new List<Item>();
+
+        var dungeon = "";
+        if (itemShufflePool is LocationType.DungeonMajor or LocationType.DungeonMinor)
+        {
+            if (allItemParts.Length < 3)
+                throw new ParserException("Dungeon item is missing dungeon name!");
+
+            dungeon = allItemParts[2];
+        }
+
+        while (amount-- > 0)
+        {
+            items.Add(new Item(replacementType, subType, shufflePool: itemShufflePool));
+        }
+
+        return items;
+    }
+
     public Location GetLocation(string locationText)
     {
-        // Location format: Type;Name;Address;Large;Logic
+        // Location format: Type;Name;Address;Large;Logic;[Optional]Item
         var locationParts = locationText.Split(';');
 
         if (locationParts.Length < 3)
@@ -193,9 +235,9 @@ public class Parser
         var names = locationParts[0].Split(':');
         var name = names[0];
 
-        var dungeon = "";
-        // Colon, must have a dungeon specified
-        if (names.Length >= 2) dungeon = names[1];
+        var dungeons = new List<string>();
+        // Colon, must have at least one dungeon specified
+        if (names.Length >= 2) dungeons.AddRange(names.Skip(1));
 
         var locationType = locationParts[1];
         if (!Enum.TryParse(locationType, out LocationType type) || type == LocationType.Untyped)
@@ -238,9 +280,12 @@ public class Parser
         }
 
         Item? itemOverride = null;
-        // Has enough parts for an extra item
-        if (locationParts.Length >= 5 && locationParts[4].Length != 0)
+
+        if (type == LocationType.Unshuffled)
         {
+            if (!(locationParts.Length >= 5) || locationParts[4].Length == 0)
+                throw new ParserException($"Unshuffled location missing an item to place there!");
+            
             var itemParts = locationParts[4].Split(':');
             var subParts = itemParts[0].Split('.');
 
@@ -254,14 +299,9 @@ public class Parser
                             if (Enum.TryParse(subParts[2], out KinstoneType subKinstoneType))
                                 subType = (byte)subKinstoneType;
 
-                    var itemDungeon = "";
+                    var dungeon = subParts[2];
 
-                    if (type == LocationType.Unshuffled) itemDungeon = dungeon;
-
-                    if (itemParts.Length >= 2) itemDungeon = itemParts[1];
-
-
-                    itemOverride = new Item(replacementType, subType, itemDungeon);
+                    itemOverride = new Item(replacementType, subType, dungeon);
                 }
             }
             else
@@ -270,7 +310,7 @@ public class Parser
             }
         }
 
-        var location = new Location(type, name, dungeon, addresses, defines, dependencies, replacementContents: itemOverride);
+        var location = new Location(type, name, dungeons, addresses, defines, dependencies, itemOverride);
 
         return location;
     }
@@ -344,64 +384,75 @@ public class Parser
         return new LocationAddress(addressType, addressValue);
     }
 
-    public List<Location> ParseLocations(string[] lines, Random rng)
+    public (List<Location> locations, List<Item> items) ParseLocationsAndItems(string[] lines, Random rng)
     {
         Logger.Instance.BeginLogTransaction();
-        var outList = new List<Location>();
+        var locations = new List<Location>();
+        var items = new List<Item>();
         for (var index = 0; index < lines.Length; ++index)
         {
-            var locationLine = lines[index];
+            var line = lines[index];
             
             // Spaces are ignored, and everything after a # is a comment
-            var locationString = locationLine.Split('#')[0].Trim();
+            var trimmedLine = line.Split('#')[0].Trim();
 
             // Empty lines or locations are ignored
-            if (string.IsNullOrWhiteSpace(locationString)) continue;
+            if (string.IsNullOrWhiteSpace(trimmedLine)) continue;
 
             if (!SubParser.ShouldIgnoreLines())
             {
                 // Replace defines between `
                 // Probably a more efficient way to do it, but eh
-                if (locationString.IndexOf("`") != -1)
+                if (trimmedLine.IndexOf("`", StringComparison.Ordinal) != -1)
                 {
-                    if (locationString.Contains("`RAND_INT`"))
-                        locationString = locationString.Replace("`RAND_INT`", StringUtil.AsStringHex8(rng.Next()));
-                    locationString = SubParser.ReplaceDefines(locationString);
+                    if (trimmedLine.Contains("`RAND_INT`"))
+                        trimmedLine = trimmedLine.Replace("`RAND_INT`", StringUtil.AsStringHex8(rng.Next()));
+                    trimmedLine = SubParser.ReplaceDefines(trimmedLine);
                 }
 
-                if (locationString[0] == '!')
+                if (trimmedLine[0] == '!')
                 {
                     // Parse the string as a directive, ignoring preparsed directives
-                    if (!SubParser.ParseOnLoad(locationString))
+                    if (!SubParser.ParseOnLoad(trimmedLine))
                         try
                         {
-                            SubParser.ParseDirective(locationString);
+                            SubParser.ParseDirective(trimmedLine);
                         }
                         catch (ParserException error)
                         {
                             Logger.Instance.LogError($"Failed to parse line {index + 1}!");
-                            throw new ParserException($"Error at line \"{index + 1}\", directive \"{locationString}\": {error.Message}");
+                            throw new ParserException($"Error at line \"{index + 1}\", directive \"{trimmedLine}\": {error.Message}");
                         }
                 }
                 else
                 {
                     // Remove spaces as they're ignored in locations
-                    locationString = locationString.Replace(" ", "");
-                    locationString = locationString.Replace("\t", "");
+                    trimmedLine = trimmedLine.Replace(" ", "");
+                    trimmedLine = trimmedLine.Replace("\t", "");
 
-                    var newLocation = GetLocation(locationString);
-                    outList.Add(newLocation);
+                    if (trimmedLine.Split('.')[0] == "Items")
+                    {
+                        //It is an item, parse it as one
+                        var newItem = GetItems(trimmedLine);
+                        items.AddRange(newItem);
+                    }
+                    else
+                    {
+                        //It is a location, parse it as one
+                        var newLocation = GetLocation(trimmedLine);
+                        locations.Add(newLocation);
+                    }
                 }
             }
             else
             {
                 // Only parse directives to check for conditionals
-                if (locationString[0] == '!') SubParser.ParseDirective(locationString);
+                if (trimmedLine[0] == '!') SubParser.ParseDirective(trimmedLine);
             }
             Logger.Instance.SaveLogTransaction();
         }
 
-        return outList;
+        return (locations, items);
     }
 
     public void PreParse(string[] lines)

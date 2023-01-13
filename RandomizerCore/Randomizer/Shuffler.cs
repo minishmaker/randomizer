@@ -208,11 +208,11 @@ internal class Shuffler
             locationStrings = File.ReadAllLines(logicFile);
         }
 
-        var parsedLocations = _logicParser.ParseLocations(locationStrings, _rng);
+        var parsedLocations = _logicParser.ParseLocationsAndItems(locationStrings, _rng);
 
         _logicParser.SubParser.DuplicateAmountReplacements();
         _logicParser.SubParser.DuplicateIncrementalReplacements();
-        parsedLocations.ForEach(location => { AddLocation(location); });
+        parsedLocations.locations.ForEach(AddLocation);
     }
 
     public void AddLocation(Location location)

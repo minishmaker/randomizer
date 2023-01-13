@@ -17,21 +17,18 @@ public class Location
     private readonly List<EventLocationAddress> _defines;
 
     public List<DependencyBase> Dependencies;
-    public string Dungeon;
+    public List<string> Dungeons;
     public bool Filled;
     public string Name;
     public bool SecondaryAddressed;
     public LocationType Type;
-    public LocationType ShuffleLocationInGroup;
 
-    public Location(LocationType type, string name, string dungeon, List<LocationAddress> addresses,
-        List<EventLocationAddress> defines, List<DependencyBase> dependencies, 
-        LocationType shuffleLocationInGroup = LocationType.Unshuffled, Item? replacementContents = null)
+    public Location(LocationType type, string name, List<string> dungeons, List<LocationAddress> addresses,
+        List<EventLocationAddress> defines, List<DependencyBase> dependencies, Item? replacementContents = null)
     {
         Type = type;
-        ShuffleLocationInGroup = shuffleLocationInGroup;
         Name = name;
-        Dungeon = dungeon;
+        Dungeons = dungeons;
 
         // One location can have several addresses
         _addresses = addresses;
@@ -48,8 +45,8 @@ public class Location
         if (replacementContents == null)
         {
             // Need to get the item from the ROM
-            _defaultContents = GetItemContents();
-            Contents = _defaultContents;
+            // _defaultContents = GetItemContents();
+            // Contents = _defaultContents;
         }
         else
         {
@@ -62,16 +59,12 @@ public class Location
         _availableCache = null;
     }
 
-    public Item Contents { get; private set; }
+    public Item? Contents { get; private set; }
     public int RecursionCount { get; private set; }
 
     public static List<Item> GetItems(List<Location> locations)
     {
-        var items = new List<Item>();
-
-        foreach (var location in locations) items.Add(location.Contents);
-
-        return items;
+        return (from location in locations where location.Contents.HasValue select location.Contents.Value).ToList();
     }
 
     public bool IsAddressed()
@@ -108,34 +101,38 @@ public class Location
 
     public void WriteLocation(Writer w)
     {
+        if (!Contents.HasValue) return;
+        
         // Write each address to ROM
-        foreach (var address in _addresses) address.WriteAddress(w, Contents);
+        foreach (var address in _addresses) address.WriteAddress(w, Contents.Value);
     }
 
     public void WriteLocationEvent(StringBuilder w)
     {
-        foreach (var define in _defines) define.WriteDefine(w, Contents);
+        if (!Contents.HasValue) return;
+        
+        foreach (var define in _defines) define.WriteDefine(w, Contents.Value);
     }
 
     /// <summary>
     ///     Read the item from the ROM
     /// </summary>
     /// <returns>The item contained at the address</returns>
-    public Item GetItemContents()
-    {
-        var type = ItemType.Untyped;
-        byte subType = 0;
-
-        // Read all the addresses, taking the last of each byte type
-        foreach (var address in _addresses) address.ReadAddress(Rom.Instance.reader, ref type, ref subType);
-
-        // If the contents of the address aren't defined/are untyped, it's probably broken
-        if (type == ItemType.Untyped && Type != LocationType.Helper && Type != LocationType.Unshuffled)
-            Logger.Instance.LogInfo($"Untyped contents in {Name}! Addresses may be bad");
-
-        // Dungeon items get the Dungeon part defined
-        return Type is LocationType.DungeonConstraint or LocationType.DungeonMajor or LocationType.DungeonMinor ? new Item(type, subType, Dungeon) : new Item(type, subType);
-    }
+    // public Item GetItemContents()
+    // {
+    //     var type = ItemType.Untyped;
+    //     byte subType = 0;
+    //
+    //     // Read all the addresses, taking the last of each byte type
+    //     foreach (var address in _addresses) address.ReadAddress(Rom.Instance.reader, ref type, ref subType);
+    //
+    //     // If the contents of the address aren't defined/are untyped, it's probably broken
+    //     if (type == ItemType.Untyped && Type != LocationType.Helper && Type != LocationType.Unshuffled)
+    //         Logger.Instance.LogInfo($"Untyped contents in {Name}! Addresses may be bad");
+    //
+    //     // Dungeon items get the Dungeon part defined
+    //     return Type is LocationType.DungeonConstraint or LocationType.DungeonMajor or LocationType.DungeonMinor ? new Item(type, subType, Dungeon) : new Item(type, subType);
+    // }
 
     /// <summary>
     ///     Check if an item can be placed into the location
@@ -160,11 +157,9 @@ public class Location
         if (!SecondaryAddressed && itemToPlace.SubValue != 0) return false;
 
         // Can only place in correct dungeon
-        if (itemToPlace.Dungeon != "")
-            if (itemToPlace.Dungeon != Dungeon)
-                return false;
-
-        return IsAccessible(availableItems, locations);
+        if (itemToPlace.Dungeon == "") return IsAccessible(availableItems, locations);
+        
+        return Dungeons.Contains(itemToPlace.Dungeon) && IsAccessible(availableItems, locations);
     }
 
     public bool IsAccessible(List<Item> availableItems, List<Location> locations)
@@ -179,13 +174,12 @@ public class Location
             return (bool)_availableCache;
         }
 
-        foreach (var dependency in Dependencies)
-            if (!dependency.DependencyFulfilled(availableItems, locations))
-            {
-                _availableCache = false;
-                RecursionCount--;
-                return false;
-            }
+        if (Dependencies.Any(dependency => !dependency.DependencyFulfilled(availableItems, locations)))
+        {
+            _availableCache = false;
+            RecursionCount--;
+            return false;
+        }
 
         _availableCache = true;
         RecursionCount--;
@@ -216,6 +210,10 @@ public class Location
 
     public override string ToString()
     {
-        return Name + ":" + Dungeon;
+        var builder = new StringBuilder();
+        foreach (var dungeon in Dungeons)
+            builder.Append(dungeon).Append(' ');
+        
+        return $"{Name}: {builder}";
     }
 }
