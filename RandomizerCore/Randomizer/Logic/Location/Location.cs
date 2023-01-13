@@ -22,11 +22,14 @@ public class Location
     public string Name;
     public bool SecondaryAddressed;
     public LocationType Type;
+    public LocationType ShuffleLocationInGroup;
 
     public Location(LocationType type, string name, string dungeon, List<LocationAddress> addresses,
-        List<EventLocationAddress> defines, List<DependencyBase> dependencies, Item? replacementContents = null)
+        List<EventLocationAddress> defines, List<DependencyBase> dependencies, 
+        LocationType shuffleLocationInGroup = LocationType.Unshuffled, Item? replacementContents = null)
     {
         Type = type;
+        ShuffleLocationInGroup = shuffleLocationInGroup;
         Name = name;
         Dungeon = dungeon;
 

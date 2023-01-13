@@ -270,7 +270,7 @@ public class Parser
             }
         }
 
-        var location = new Location(type, name, dungeon, addresses, defines, dependencies, itemOverride);
+        var location = new Location(type, name, dungeon, addresses, defines, dependencies, replacementContents: itemOverride);
 
         return location;
     }

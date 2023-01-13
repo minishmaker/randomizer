@@ -380,7 +380,7 @@ internal class Shuffler
         var dungeonSpecificItems = _dungeonMajorItems.ToList();
         var allAssumedItems = unplacedItems.Concat(dungeonSpecificItems).Concat(_unshuffledItems).ToList();
         
-        //Place music since it doesn't actually affect anything
+        //Place music so it doesn't affect anything
         var temp = _rng;
         _rng = new Random(Seed);
         FillLocations(_music.ToList(), _locations.Where(location => location.Type == LocationType.Music).ToList());
@@ -389,11 +389,13 @@ internal class Shuffler
         var unfilledLocations = _locations.Where(location =>
             !location.Filled && 
             location.Type is not LocationType.Helper and not LocationType.Untyped and not LocationType.Music).ToList();
+        
         unfilledLocations.Shuffle(_rng);
         unplacedItems.Shuffle(_rng);
 
         //Fill out constraints and prizes before doing anything else
-        FillLocations(_dungeonConstraints.ToList(), unfilledLocations, allAssumedItems);
+        FillLocations(_dungeonConstraints.ToList(), 
+            _locations.Where(location => location.Type == LocationType.DungeonConstraint && location.ShuffleLocationInGroup == LocationType.Unshuffled).ToList(), allAssumedItems);
         FillLocations(_dungeonPrizes.ToList(),
             _locations.Where(location => location.Type == LocationType.DungeonPrize).ToList(), allAssumedItems);
 
