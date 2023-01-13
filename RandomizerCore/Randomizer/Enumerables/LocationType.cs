@@ -9,6 +9,7 @@ public enum LocationType
     DungeonMajor,
     DungeonMinor,
     DungeonConstraint,
+    Music,
     Helper,
     Unshuffled,
     Nice

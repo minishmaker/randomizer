@@ -32,6 +32,7 @@ internal class Shuffler
     private readonly List<Item> _minorItems;
     private readonly List<Item> _niceItems;
     private readonly List<Item> _unshuffledItems;
+    private readonly List<Item> _music;
     private Random? _rng;
     private bool _randomized = false;
     
@@ -49,6 +50,7 @@ internal class Shuffler
         _niceItems = new List<Item>();
         _minorItems = new List<Item>();
         _unshuffledItems = new List<Item>();
+        _music = new List<Item>();
         _logicParser = new Parser.Parser();
     }
 
@@ -304,6 +306,9 @@ internal class Shuffler
             case LocationType.DungeonMinor:
                 _dungeonMinorItems.Add(location.Contents);
                 break;
+            case LocationType.Music:
+                _music.Add(location.Contents);
+                break;
             // Dungeon items can only be placed within the same dungeon, and are placed first
             case LocationType.DungeonItem:
             case LocationType.DungeonMajor:
@@ -370,13 +375,19 @@ internal class Shuffler
         var unplacedItems = _majorItems.ToList();
         var dungeonSpecificItems = _dungeonMajorItems.ToList();
         var allAssumedItems = unplacedItems.Concat(dungeonSpecificItems).Concat(_unshuffledItems).ToList();
+        
+        //Place music since it doesn't actually affect anything
+        var temp = _rng;
+        _rng = new Random(Seed);
+        FillLocations(_music.ToList(), _locations.Where(location => location.Type == LocationType.Music).ToList());
+        _rng = temp;
 
         var unfilledLocations = _locations.Where(location =>
-            !location.Filled && location.Type != LocationType.Helper &&
-            location.Type != LocationType.Untyped).ToList();
+            !location.Filled && 
+            location.Type is not LocationType.Helper and not LocationType.Untyped and not LocationType.Music).ToList();
         unfilledLocations.Shuffle(_rng);
         unplacedItems.Shuffle(_rng);
-        
+
         //Fill out constraints before doing anything else
         FillLocations(_dungeonConstraints.ToList(), unfilledLocations, allAssumedItems);
 
@@ -832,6 +843,7 @@ internal class Shuffler
         _majorItems.Clear();
         _niceItems.Clear();
         _minorItems.Clear();
+        _music.Clear();
 
         _logicParser.SubParser.ClearTypeOverrides();
         _logicParser.SubParser.ClearIncrementalReplacements();
