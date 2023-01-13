@@ -128,12 +128,10 @@ public class Location
 
         // If the contents of the address aren't defined/are untyped, it's probably broken
         if (type == ItemType.Untyped && Type != LocationType.Helper && Type != LocationType.Unshuffled)
-            Logger.Instance.LogWarning($"Untyped contents in {Name}! Addresses may be bad");
+            Logger.Instance.LogInfo($"Untyped contents in {Name}! Addresses may be bad");
 
         // Dungeon items get the Dungeon part defined
-        if (Type == LocationType.DungeonItem)
-            return new Item(type, subType, Dungeon);
-        return new Item(type, subType);
+        return Type is LocationType.DungeonConstraint or LocationType.DungeonMajor or LocationType.DungeonMinor or LocationType.DungeonPrize ? new Item(type, subType, Dungeon) : new Item(type, subType);
     }
 
     /// <summary>
