@@ -199,14 +199,14 @@ public class Parser
 
         var amount = itemParts.Length > 1 ? int.Parse(itemParts[1]) : 1;
 
-        if (!Enum.TryParse(allItemParts[1], out LocationType itemShufflePool))
+        if (!Enum.TryParse(allItemParts[1], out ItemPool itemShufflePool))
             throw new ParserException("Item has invalid shuffle pool!");
 
         var items = new List<Item>();
 
         var dungeon = "";
         
-        if (itemShufflePool is LocationType.DungeonMajor or LocationType.DungeonMinor && allItemParts.Length < 3)
+        if (itemShufflePool is ItemPool.DungeonMajor or ItemPool.DungeonMinor && allItemParts.Length < 3)
             throw new ParserException("Dungeon item is missing dungeon name!");
         
         if (allItemParts.Length >= 3)

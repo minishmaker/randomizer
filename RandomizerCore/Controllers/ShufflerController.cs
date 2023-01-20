@@ -95,6 +95,11 @@ public class ShufflerController
         }
     }
 
+    public uint GetLogicChecksum()
+    {
+        return 0;
+    }
+
     public void SetRandomizationSeed(int seed) => _shuffler.SetSeed(seed);
 
     public List<LogicOptionBase> GetLogicOptions() => _shuffler.GetOptions();

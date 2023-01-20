@@ -10,6 +10,8 @@ namespace RandomizerCore.Randomizer.Logic.Location;
 
 public class Location
 {
+    public static List<Func<Location, Item, List<Item>, List<Location>, bool>> ShufflerConstraints { get; } = new();
+    
     public bool Addressed;
     private readonly List<LocationAddress> _addresses;
     private bool? _availableCache;
@@ -157,9 +159,12 @@ public class Location
         if (!SecondaryAddressed && itemToPlace.SubValue != 0) return false;
 
         // Can only place in correct dungeon
-        if (itemToPlace.Dungeon == "") return IsAccessible(availableItems, locations);
-        
-        return Dungeons.Contains(itemToPlace.Dungeon) && IsAccessible(availableItems, locations);
+        if (itemToPlace.Dungeon != "" && !Dungeons.Contains(itemToPlace.Dungeon)) return false; 
+
+        if (ShufflerConstraints.Any(constraint => !constraint.Invoke(this, itemToPlace, availableItems, locations)))
+            return false;
+
+        return IsAccessible(availableItems, locations);
     }
 
     public bool IsAccessible(List<Item> availableItems, List<Location> locations)

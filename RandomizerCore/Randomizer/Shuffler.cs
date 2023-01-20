@@ -25,15 +25,18 @@ internal class Shuffler
     private readonly List<Location> _locations;
     private readonly Parser.Parser _logicParser;
     private string? _logicPath;
-    private readonly List<Item> _dungeonMajorItems;
-    private readonly List<Item> _dungeonMinorItems;
-    private readonly List<Item> _dungeonConstraints;
-    private readonly List<Item> _dungeonPrizes;
-    private readonly List<Item> _majorItems;
-    private readonly List<Item> _minorItems;
-    private readonly List<Item> _niceItems;
-    private readonly List<Item> _unshuffledItems;
+    //Item lists are sorted in the order they are processed
     private readonly List<Item> _music;
+    private readonly List<Item> _unshuffledItems;
+    private readonly List<Item> _dungeonConstraints;
+    private readonly List<Item> _overworldConstraints;
+    private readonly List<Item> _dungeonPrizes;
+    private readonly List<Item> _dungeonMajorItems;
+    private readonly List<Item> _majorItems;
+    private readonly List<Item> _dungeonMinorItems;
+    private readonly List<Item> _minorItems;
+    private readonly List<Item> _fillerItems;
+    // private readonly List<Item> _niceItems;
     private Random? _rng;
     private bool _randomized = false;
     
@@ -44,15 +47,23 @@ internal class Shuffler
         Version = GetVersionName();
 
         _locations = new List<Location>();
-        _dungeonMajorItems = new List<Item>();
-        _dungeonMinorItems = new List<Item>();
-        _dungeonConstraints = new List<Item>();
-        _dungeonPrizes = new List<Item>();
-        _majorItems = new List<Item>();
-        _niceItems = new List<Item>();
-        _minorItems = new List<Item>();
-        _unshuffledItems = new List<Item>();
+        
         _music = new List<Item>();
+        _unshuffledItems = new List<Item>();
+        
+        _dungeonConstraints = new List<Item>();
+        _overworldConstraints = new List<Item>();
+        
+        _dungeonPrizes = new List<Item>();
+        _dungeonMajorItems = new List<Item>();
+        _majorItems = new List<Item>();
+        
+        _dungeonMinorItems = new List<Item>();
+        _minorItems = new List<Item>();
+
+        _fillerItems = new List<Item>();
+        // _niceItems = new List<Item>();
+        
         _logicParser = new Parser.Parser();
     }
 
@@ -224,40 +235,37 @@ internal class Shuffler
         
         switch (item.ShufflePool)
         {
-            // These locations are not filled, because they don't reference an item location
-            case LocationType.Untyped:
-            case LocationType.Helper:
-                break;
-            // Minor locations are not logically accounted for
-            case LocationType.Minor:
-                _minorItems.Add(item);
-                break;
-            case LocationType.DungeonMinor:
-                _dungeonMinorItems.Add(item);
-                break;
-            case LocationType.Music:
+            case ItemPool.Music:
                 _music.Add(item);
                 break;
-            // Dungeon items can only be placed within the same dungeon, and are placed first
-            case LocationType.DungeonMajor:
-                _dungeonMajorItems.Add(item);
+            case ItemPool.Unshuffled:
                 break;
-            case LocationType.DungeonPrize:
-                _dungeonPrizes.Add(item);
-                break;
-            case LocationType.DungeonConstraint:
+            case ItemPool.DungeonConstraint:
                 _dungeonConstraints.Add(item);
                 break;
-            // Nice items check logic but cannot affect it
-            case LocationType.Nice:
-                _niceItems.Add(item);
+            case ItemPool.OverworldConstraint:
+                _overworldConstraints.Add(item);
                 break;
-            case LocationType.Unshuffled:
+            case ItemPool.DungeonPrize:
+                _dungeonPrizes.Add(item);
                 break;
-            // Major/etc items are fully randomized and check logic
-            case LocationType.Major:
-            default:
+            case ItemPool.DungeonMajor:
+                _dungeonMajorItems.Add(item);
+                break;
+            case ItemPool.Major:
                 _majorItems.Add(item);
+                break;
+            case ItemPool.DungeonMinor:
+                _dungeonMinorItems.Add(item);
+                break;
+            case ItemPool.Minor:
+                _minorItems.Add(item);
+                break;
+            case ItemPool.Filler:
+                _fillerItems.Add(item);
+                break;
+            default:
+                _minorItems.Add(item);
                 break;
         }
     }
@@ -431,6 +439,7 @@ internal class Shuffler
     /// </summary>
     public void RandomizeLocations()
     {
+        //TODO: Rewrite this garbage
         var unplacedItems = _majorItems.ToList();
         var dungeonSpecificItems = _dungeonMajorItems.ToList();
         var allAssumedItems = unplacedItems.Concat(dungeonSpecificItems).Concat(_unshuffledItems).ToList();
@@ -473,7 +482,7 @@ internal class Shuffler
 
         // Put nice items in locations, logic is checked but not updated
         unfilledLocations.Shuffle(_rng);
-        CheckedFastFillLocations(_niceItems, unfilledLocations);
+        // CheckedFastFillLocations(_niceItems, unfilledLocations);
 
         // Put minor items in locations, not checking logic
         unfilledLocations.Shuffle(_rng);
@@ -592,7 +601,7 @@ internal class Shuffler
 
         if (locations.Count == 0) return;
         
-        var fillItems = items.Where(item => item.Dungeon == "Fill").ToList();
+        var fillItems = items.Where(item => item.ShufflePool == ItemPool.Filler).ToList();
         var rand = new Random(Seed);
         while (locations.Count > 0)
         {
@@ -694,7 +703,7 @@ internal class Shuffler
         var locationsWithRealItems = filledLocations.Where(location => location.Contents!.Value.Type is not ItemType.Untyped);
 
         var hackToFilterOutLanternGarbage = locationsWithRealItems.Where(location =>
-            location.Contents!.Value.Type != ItemType.LanternOff || location.Contents!.Value.SubValue == 0);
+            location.Contents!.Value.Type != ItemType.Lantern || location.Contents!.Value.SubValue == 0);
         
         foreach (var location in hackToFilterOutLanternGarbage)
         {
@@ -723,7 +732,7 @@ internal class Shuffler
         var locationsWithRealItems = filledLocations.Where(location => location.Contents!.Value.Type is not ItemType.Untyped);
 
         var hackToFilterOutLanternGarbage = locationsWithRealItems.Where(location =>
-            location.Contents!.Value.Type != ItemType.LanternOff || location.Contents!.Value.SubValue == 0).ToList();
+            location.Contents!.Value.Type != ItemType.Lantern || location.Contents!.Value.SubValue == 0).ToList();
 
         var availableItems = new List<Item>();
 
@@ -762,7 +771,7 @@ internal class Shuffler
         if (!location.Contents.HasValue) return;
         
         // Display subvalue if relevant
-        if (location.Contents.Value.Type == ItemType.KinstoneX)
+        if (location.Contents.Value.Type == ItemType.Kinstone)
             spoilerBuilder.AppendLine($"Kinstone Type: {location.Contents.Value.Kinstone}");
         else if (location.Contents.Value.SubValue != 0) spoilerBuilder.AppendLine($"Subvalue: {location.Contents.Value.SubValue}");
 
@@ -825,42 +834,42 @@ internal class Shuffler
         var smallCoords = new ushort[2];
         switch (location.Name)
         {
-            case "DeepwoodPrize":
+            case "Deepwood_Prize":
                 largeCoords[0] = 0xB2;
                 largeCoords[1] = 0x7A;
 
                 smallCoords[0] = 0x0D7D;
                 smallCoords[1] = 0x0AC8;
                 break;
-            case "CoFPrize":
+            case "CoF_Prize":
                 largeCoords[0] = 0x3B;
                 largeCoords[1] = 0x1B;
 
                 smallCoords[0] = 0x01E8;
                 smallCoords[1] = 0x0178;
                 break;
-            case "FortressPrize":
+            case "Fortress_Prize":
                 largeCoords[0] = 0x4B;
                 largeCoords[1] = 0x77;
 
                 smallCoords[0] = 0x0378;
                 smallCoords[1] = 0x0A78;
                 break;
-            case "DropletsPrize":
+            case "Droplets_Prize":
                 largeCoords[0] = 0xB5;
                 largeCoords[1] = 0x4B;
 
                 smallCoords[0] = 0x0DB8;
                 smallCoords[1] = 0x0638;
                 break;
-            case "KingGift":
+            case "Crypt_Prize":
                 largeCoords[0] = 0x5A;
                 largeCoords[1] = 0x15;
 
                 smallCoords[0] = 0x04DC;
                 smallCoords[1] = 0x0148;
                 break;
-            case "PalacePrize":
+            case "Palace_Prize":
                 largeCoords[0] = 0xB5;
                 largeCoords[1] = 0x1B;
 
@@ -910,15 +919,21 @@ internal class Shuffler
     public void ClearLogic()
     {
         _locations.Clear();
-        _dungeonMajorItems.Clear();
-        _dungeonMinorItems.Clear();
-        _dungeonConstraints.Clear();
-        _unshuffledItems.Clear();
-        _dungeonPrizes.Clear();
-        _majorItems.Clear();
-        _niceItems.Clear();
-        _minorItems.Clear();
+        
         _music.Clear();
+        _unshuffledItems.Clear();
+        
+        _dungeonConstraints.Clear();
+        _overworldConstraints.Clear();
+        
+        _dungeonPrizes.Clear();
+        _dungeonMajorItems.Clear();
+        _majorItems.Clear();
+        
+        _dungeonMinorItems.Clear();
+        _minorItems.Clear();
+        _fillerItems.Clear();
+        // _niceItems.Clear();
 
         _logicParser.SubParser.ClearTypeOverrides();
         _logicParser.SubParser.ClearIncrementalReplacements();

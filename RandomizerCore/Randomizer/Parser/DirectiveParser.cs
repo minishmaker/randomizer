@@ -3,6 +3,8 @@ using System.Text;
 using RandomizerCore.Randomizer.Enumerables;
 using RandomizerCore.Randomizer.Exceptions;
 using RandomizerCore.Randomizer.Logic.Defines;
+using RandomizerCore.Randomizer.Logic.Imports;
+using RandomizerCore.Randomizer.Logic.Location;
 using RandomizerCore.Randomizer.Logic.Options;
 using RandomizerCore.Randomizer.Models;
 using RandomizerCore.Utilities.Logging;
@@ -88,6 +90,7 @@ public class DirectiveParser
 			case "!replaceamount":
 			case "!replaceincrement":
 			case "!settype":
+			case "!import":
 				return false;
 			default:
 				throw new ParserException($"\"{directive}\" is not a valid directive! The logic file may be bad.");
@@ -151,6 +154,9 @@ public class DirectiveParser
 					break;
 				case "!eventdefine":
 					EventDefines.Add(ParseEventDefine(mainDirectiveParts));
+					break;
+				case "!import":
+					ParseImportDirective(mainDirectiveParts);
 					break;
 				case "!name":
 					LogicName = mainDirectiveParts[1];
@@ -369,6 +375,19 @@ public class DirectiveParser
 	{
 		Logger.Instance.LogInfo($"If Counter: {_ifCounter}");
 		return _ifCounter != 0;
+	}
+
+	public void ParseImportDirective(string[] directiveParts)
+	{
+		if (directiveParts.Length != 2)
+			throw new ParserException("Import directive does not have the required number of parameters!");
+
+		var functionName = directiveParts[1];
+		
+		if (!LogicImports.FunctionValues.TryGetValue(functionName, out var function))
+			throw new ParserException("Import directive requires a function that does not exist!");
+		
+		Location.ShufflerConstraints.Add(function);
 	}
 
 	private LogicDefine ParseDefineDirective(string[] directiveParts)

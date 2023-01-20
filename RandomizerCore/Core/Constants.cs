@@ -67,27 +67,27 @@ public enum KinstoneType
 {
     UnTyped,
 
-    YellowTornadoProng = 0x65,
+    GoldenCloudTops = 0x65, //YellowTornadoProng
     YellowTornadoSpike = 0x66,
     YellowTornadoChaotic = 0x67,
     //68 and 69 are repeats of above
 
-    YellowTotemProng = 0x6A,
+    GoldenSwamp = 0x6A, //YellowTotemProng
     YellowTotemWave = 0x6B,
     YellowTotemZigZag = 0x6C,
 
-    YellowCrown = 0x6D,
+    GoldenFalls = 0x6D, //YellowCrown
 
-    RedSpike = 0x6E,
-    RedCrack = 0x6F,
-    RedProng = 0x70,
+    RedW = 0x6E, //RedSpike
+    RedV = 0x6F, //RedCrack
+    RedE = 0x70, //RedProng
 
     BlueL = 0x71,
     BlueS = 0x72,
 
-    GreenSpike = 0x73,
-    GreenSquare = 0x74,
-    GreenSplit = 0x75
+    GreenC = 0x73, //GreenSpike
+    GreenG = 0x74, //GreenSquare
+    GreenP = 0x75 //GreenSplit
 }
 
 public enum ItemType
@@ -97,8 +97,9 @@ public enum ItemType
     GreenSword = 0x02,
     RedSword = 0x03,
     BlueSword = 0x04,
-
-    // UnusedSword = 0x05,
+    
+    ProgressiveItem = 0x05,
+    
     FourSword = 0x06,
     Bombs = 0x07,
     RemoteBombs = 0x08,
@@ -108,7 +109,7 @@ public enum ItemType
     MagicBoomerang = 0x0C,
     Shield = 0x0D,
     MirrorShield = 0x0E,
-    LanternOff = 0x0F,
+    Lantern = 0x0F, //LanternOff
 
     GustJar = 0x11,
     PacciCane = 0x12,
@@ -117,14 +118,14 @@ public enum ItemType
     PegasusBoots = 0x15,
     FireRod = 0x16,
     Ocarina = 0x17,
-    GreenOrb = 0x18,
-    BlueOrb = 0x19,
-    RedOrb = 0x1A,
+    GreenClock = 0x18, //GreenOrb
+    BlueClock = 0x19, //BlueOrb
+    RedClock = 0x1A, //RedOrb
     Trap = 0x1B,
     Bottle1 = 0x1C,
     Bottle2 = 0x1D,
     Bottle3 = 0x1E,
-    Bottle4 = 0x1F,
+    Bottle = 0x1F, //Bottle4
     BottleEmpty = 0x20,
     BottleButter = 0x21,
     BottleMilk = 0x22,
@@ -150,13 +151,13 @@ public enum ItemType
     DogFoodBottle = 0x36,
     LonLonKey = 0x37,
     WakeUpMushroom = 0x38,
-    HyruleanBestiary = 0x39,
-    PicoriLegend = 0x3A,
-    MaskHistory = 0x3B,
+    RedBook = 0x39, //HyruleanBestiary
+    GreenBook = 0x3A, //PicoriLegend
+    BlueBook = 0x3B, //MaskHistory
     GraveyardKey = 0x3C,
     TingleTrophy = 0x3D,
     CarlovMedal = 0x3E,
-    ShellsX = 0x3F,
+    Shells = 0x3F, //ShellsX
     EarthElement = 0x40,
     FireElement = 0x41,
     WaterElement = 0x42,
@@ -185,7 +186,7 @@ public enum ItemType
     Rupee200 = 0x59,
 
     JabberNut = 0x5B,
-    KinstoneX = 0x5C,
+    Kinstone = 0x5C, //Kinstone
     Bombs5 = 0x5D,
     Arrows5 = 0x5E,
     SmallHeart = 0x5F,
@@ -196,7 +197,7 @@ public enum ItemType
     Wallet = 0x64,
     BombBag = 0x65,
     LargeQuiver = 0x66,
-    KinstoneBag = 0x67,
+    Figurine = 0x67, //KinstoneBag
     Brioche = 0x68,
     Croissant = 0x69,
     PieSlice = 0x6A,

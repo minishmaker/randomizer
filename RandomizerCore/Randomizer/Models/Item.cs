@@ -10,12 +10,12 @@ public readonly struct Item
 {
     public readonly ItemType Type;
     public readonly KinstoneType Kinstone;
-    public readonly LocationType ShufflePool;
+    public readonly ItemPool ShufflePool;
     public readonly byte SubValue;
     public readonly string Dungeon;
     public readonly bool UseAny;
 
-    public Item(string data, string commandScope = "", LocationType shufflePool = LocationType.Unshuffled)
+    public Item(string data, string commandScope = "", ItemPool shufflePool = ItemPool.Unshuffled)
     {
         var dataChunks = data.Split(':');
         var itemData = dataChunks[0].Split('.');
@@ -45,7 +45,7 @@ public readonly struct Item
         Dungeon = "";
         if (dataChunks.Length > 1) Dungeon = dataChunks[1];
 
-        if (Type == ItemType.KinstoneX)
+        if (Type == ItemType.Kinstone)
             Kinstone = (KinstoneType)SubValue;
         else
             Kinstone = KinstoneType.UnTyped;
@@ -53,12 +53,12 @@ public readonly struct Item
         ShufflePool = shufflePool;
     }
 
-    public Item(ItemType type, byte subValue, string dungeon = "", bool useAny = false, LocationType shufflePool = LocationType.Unshuffled)
+    public Item(ItemType type, byte subValue, string dungeon = "", bool useAny = false, ItemPool shufflePool = ItemPool.Unshuffled)
     {
         Type = type;
         SubValue = subValue;
         UseAny = useAny;
-        if (type == ItemType.KinstoneX)
+        if (type == ItemType.Kinstone)
             Kinstone = (KinstoneType)subValue;
         else
             Kinstone = KinstoneType.UnTyped;
