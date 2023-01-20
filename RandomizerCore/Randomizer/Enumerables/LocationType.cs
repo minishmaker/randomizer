@@ -6,14 +6,15 @@ public enum LocationType
     Untyped,
     Helper,
     Unshuffled,
+    DungeonEntrance,
     DungeonConstraint,
     OverworldConstraint,
     DungeonPrize,
-    DungeonMajor,
+    //DungeonMajor, Deprecated
     Major,
     Dungeon,
     Any,
-    DungeonMinor,
+    //DungeonMinor, Deprecated
     Minor,
     Nice
 }

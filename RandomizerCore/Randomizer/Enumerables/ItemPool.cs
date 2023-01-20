@@ -4,12 +4,13 @@ public enum ItemPool
 {
     Music,
     Unshuffled,
+    DungeonEntrance,
     DungeonConstraint,
     OverworldConstraint,
     DungeonPrize,
     DungeonMajor,
     Major,
-    DungeonMinor,
+    //DungeonMinor, Deprecated
     Minor,
     Filler
 }

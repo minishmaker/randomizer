@@ -28,12 +28,13 @@ internal class Shuffler
     //Item lists are sorted in the order they are processed
     private readonly List<Item> _music;
     private readonly List<Item> _unshuffledItems;
+    private readonly List<Item> _dungeonEntrances;
     private readonly List<Item> _dungeonConstraints;
     private readonly List<Item> _overworldConstraints;
     private readonly List<Item> _dungeonPrizes;
     private readonly List<Item> _dungeonMajorItems;
     private readonly List<Item> _majorItems;
-    private readonly List<Item> _dungeonMinorItems;
+    // private readonly List<Item> _dungeonMinorItems;
     private readonly List<Item> _minorItems;
     private readonly List<Item> _fillerItems;
     // private readonly List<Item> _niceItems;
@@ -50,7 +51,8 @@ internal class Shuffler
         
         _music = new List<Item>();
         _unshuffledItems = new List<Item>();
-        
+
+        _dungeonEntrances = new List<Item>();
         _dungeonConstraints = new List<Item>();
         _overworldConstraints = new List<Item>();
         
@@ -58,9 +60,8 @@ internal class Shuffler
         _dungeonMajorItems = new List<Item>();
         _majorItems = new List<Item>();
         
-        _dungeonMinorItems = new List<Item>();
+        // _dungeonMinorItems = new List<Item>();
         _minorItems = new List<Item>();
-
         _fillerItems = new List<Item>();
         // _niceItems = new List<Item>();
         
@@ -240,6 +241,9 @@ internal class Shuffler
                 break;
             case ItemPool.Unshuffled:
                 break;
+            case ItemPool.DungeonEntrance:
+                _dungeonEntrances.Add(item);
+                break;
             case ItemPool.DungeonConstraint:
                 _dungeonConstraints.Add(item);
                 break;
@@ -255,9 +259,9 @@ internal class Shuffler
             case ItemPool.Major:
                 _majorItems.Add(item);
                 break;
-            case ItemPool.DungeonMinor:
-                _dungeonMinorItems.Add(item);
-                break;
+            // case ItemPool.DungeonMinor:
+            //     _dungeonMinorItems.Add(item);
+            //     break;
             case ItemPool.Minor:
                 _minorItems.Add(item);
                 break;
@@ -439,36 +443,71 @@ internal class Shuffler
     /// </summary>
     public void RandomizeLocations()
     {
-        //TODO: Rewrite this garbage
-        var unplacedItems = _majorItems.ToList();
-        var dungeonSpecificItems = _dungeonMajorItems.ToList();
-        var allAssumedItems = unplacedItems.Concat(dungeonSpecificItems).Concat(_unshuffledItems).ToList();
+        var locationGroups = _locations.GroupBy(location => location.Type).ToList();
+        //We now do randomization in phases, following the ordering of items in <code>LocationType</code>
         
-        //Place music so it doesn't affect anything
+        //Make it so randomized music doesn't affect randomization
         var temp = _rng;
         _rng = new Random(Seed);
-        FillLocations(_music.ToList(), _locations.Where(location => location.Type == LocationType.Music).ToList());
-        _rng = temp;
-
-        var unfilledLocations = _locations.Where(location =>
-            !location.Filled && 
-            location.Type is not LocationType.Helper and not LocationType.Untyped and not LocationType.Music).ToList();
+        FillLocations(_music, 
+            locationGroups.First(group => group.Key == LocationType.Music).ToList());
         
-        unfilledLocations.Shuffle(_rng);
-        unplacedItems.Shuffle(_rng);
-
-        //Fill out constraints and prizes before doing anything else
-        FillLocations(_dungeonConstraints.ToList(), 
-            _locations.Where(location => location.Type == LocationType.DungeonConstraint).ToList(), allAssumedItems);
-        FillLocations(_dungeonPrizes.ToList(),
-            _locations.Where(location => location.Type == LocationType.DungeonPrize).ToList(), allAssumedItems);
-
-        // Fill dungeon items first so there is room for them all
-        FillLocations(dungeonSpecificItems, unfilledLocations, unplacedItems);
-
-        // Fill non-dungeon major items, checking for logic
-        unfilledLocations.Shuffle(_rng);
-        FillLocations(unplacedItems, unfilledLocations);
+        _rng = temp;
+        
+        //Shuffle dungeon entrances
+        FastFillLocations(_dungeonEntrances,
+            locationGroups.First(group => group.Key == LocationType.DungeonEntrance).ToList());
+        
+        //Grab all items that we need to beat the seed
+        var allItems = _majorItems.Concat(_dungeonMajorItems).Concat(_unshuffledItems).ToList();
+        
+        //Shuffle constraints
+        FillLocations(_dungeonConstraints,
+            locationGroups.First(group => group.Key == LocationType.DungeonConstraint).ToList(), allItems);
+        FillLocations(_overworldConstraints,
+            locationGroups.First(group => group.Key == LocationType.OverworldConstraint).ToList(), allItems);
+        
+        //Shuffle prizes
+        var unfilledLocations = FillLocations(_dungeonPrizes,
+            locationGroups.First(group => group.Key == LocationType.DungeonPrize).ToList(), allItems);
+        
+        //For dungeon majors, assume we have all majors and unshuffled items
+        var allMajorsAndUnshuffled = _majorItems.Concat(_unshuffledItems).ToList();
+        
+        //Shuffle dungeon majors
+        unfilledLocations.AddRange(FillLocations(_dungeonMajorItems,
+            locationGroups.First(group => group.Key == LocationType.Dungeon).ToList(),
+            allMajorsAndUnshuffled,
+            unfilledLocations));
+        
+        //Now that all dungeon items are placed, we add all the rest of the locations to the pool of unfilled locations
+        unfilledLocations.AddRange(locationGroups.First(group => group.Key == LocationType.Any));
+        
+        //Shuffle all other majors, do not assume any items are already obtained anymore
+        unfilledLocations.AddRange(FillLocations(_majorItems,
+            locationGroups.First(group => group.Key == LocationType.Major).ToList(),
+            allMajorsAndUnshuffled,
+            unfilledLocations));
+        
+        // var unfilledLocations = _locations.Where(location =>
+        //     !location.Filled && 
+        //     location.Type is not LocationType.Helper and not LocationType.Untyped and not LocationType.Music).ToList();
+        //
+        // unfilledLocations.Shuffle(_rng);
+        // unplacedItems.Shuffle(_rng);
+        //
+        // //Fill out constraints and prizes before doing anything else
+        // FillLocations(_dungeonConstraints.ToList(), 
+        //     _locations.Where(location => location.Type == LocationType.DungeonConstraint).ToList(), allAssumedItems);
+        // FillLocations(_dungeonPrizes.ToList(),
+        //     _locations.Where(location => location.Type == LocationType.DungeonPrize).ToList(), allAssumedItems);
+        //
+        // // Fill dungeon items first so there is room for them all
+        // FillLocations(dungeonSpecificItems, unfilledLocations, unplacedItems);
+        //
+        // // Fill non-dungeon major items, checking for logic
+        // unfilledLocations.Shuffle(_rng);
+        // FillLocations(unplacedItems, unfilledLocations);
 
         // Get every item that can be logically obtained, to check if the game can be completed
         var finalMajorItems = GetAvailableItems(new List<Item>());
@@ -476,21 +515,19 @@ internal class Shuffler
         if (!new LocationDependency("BeatVaati").DependencyFulfilled(finalMajorItems, _locations))
             throw new ShuffleException("Randomization succeeded, but could not beat Vaati!");
         
+        // FastFillLocations(_dungeonMinorItems.ToList());
+        
         // Fill dungeon minor items, do not check logic
-        unfilledLocations.Shuffle(_rng);
-        FillLocations(_dungeonMinorItems.ToList(), unfilledLocations);
-
-        // Put nice items in locations, logic is checked but not updated
-        unfilledLocations.Shuffle(_rng);
-        // CheckedFastFillLocations(_niceItems, unfilledLocations);
-
-        // Put minor items in locations, not checking logic
-        unfilledLocations.Shuffle(_rng);
+        // unfilledLocations.Shuffle(_rng);
+        // FillLocations(_dungeonMinorItems.ToList(), unfilledLocations);
+        //
+        // // Put nice items in locations, logic is checked but not updated
+        // unfilledLocations.Shuffle(_rng);
+        // // CheckedFastFillLocations(_niceItems, unfilledLocations);
+        //
+        // // Put minor items in locations, not checking logic
+        // unfilledLocations.Shuffle(_rng);
         FastFillLocations(_minorItems.ToList(), unfilledLocations);
-
-        if (unfilledLocations.Count != 0)
-            // All locations should be filled at this point
-            throw new ShuffleException($"There are {unfilledLocations.Count} unfilled locations!");
 
         // Final cache clear
         _locations.ForEach(location => location.InvalidateCache());
@@ -505,7 +542,7 @@ internal class Shuffler
     /// <param name="locations">The locations to be filled</param>
     /// <param name="assumedItems">The items that are available by default</param>
     /// <returns>A list of the locations that were filled</returns>
-    private List<Location> FillLocations(List<Item> items, List<Location> locations, List<Item>? assumedItems = null)
+    private List<Location> FillLocations(List<Item> items, List<Location> locations, List<Item>? assumedItems = null, List<Location>? fallbackLocations = null)
     {
         var filledLocations = new List<Location>();
 
@@ -773,7 +810,7 @@ internal class Shuffler
         // Display subvalue if relevant
         if (location.Contents.Value.Type == ItemType.Kinstone)
             spoilerBuilder.AppendLine($"Kinstone Type: {location.Contents.Value.Kinstone}");
-        else if (location.Contents.Value.SubValue != 0) spoilerBuilder.AppendLine($"Subvalue: {location.Contents.Value.SubValue}");
+        else if (location.Contents.Value.SubValue != 0) spoilerBuilder.AppendLine($"Subvalue: {location.Contents.Value.SubValue}"); //TODO: Display dungeon names
 
         // Display dungeon contents if relevant
         if (!string.IsNullOrEmpty(location.Contents.Value.Dungeon))
@@ -923,6 +960,7 @@ internal class Shuffler
         _music.Clear();
         _unshuffledItems.Clear();
         
+        _dungeonEntrances.Clear();
         _dungeonConstraints.Clear();
         _overworldConstraints.Clear();
         
@@ -930,7 +968,7 @@ internal class Shuffler
         _dungeonMajorItems.Clear();
         _majorItems.Clear();
         
-        _dungeonMinorItems.Clear();
+        // _dungeonMinorItems.Clear();
         _minorItems.Clear();
         _fillerItems.Clear();
         // _niceItems.Clear();
