@@ -81,18 +81,17 @@ public class Parser
                 default:
                     var splitSequence = sequence.Split(':');
                     var requirement = splitSequence[0];
-                    var dungeon = "";
+                    var dependencyParts = requirement.Split('.');
+                    
+                    // var dungeon = "";
                     var count = 1;
 
-                    if (splitSequence.Length >= 2)
+                    if (splitSequence.Length >= 2 && dependencyParts[0] == "Items")
                     {
-                        dungeon = splitSequence[1];
-                        if (splitSequence.Length >= 3)
-                            if (!StringUtil.ParseString(splitSequence[2], out count))
-                                throw new ParserException($"Invalid amount on\"{sequence}\"!");
+                        // dungeon = splitSequence[1];
+                        if (!StringUtil.ParseString(splitSequence[1], out count))
+                            throw new ParserException($"Invalid amount on\"{sequence}\"!");
                     }
-
-                    var dependencyParts = requirement.Split('.');
 
                     if (dependencyParts.Length < 2) throw new ParserException($"Invalid logic \"{logic}\"!");
 

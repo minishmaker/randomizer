@@ -43,7 +43,7 @@ public readonly struct Item
         }
 
         Dungeon = "";
-        if (dataChunks.Length > 1) Dungeon = dataChunks[1];
+        // if (dataChunks.Length > 1) Dungeon = dataChunks[1];
 
         if (Type == ItemType.Kinstone)
             Kinstone = (KinstoneType)SubValue;
