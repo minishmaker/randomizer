@@ -42,7 +42,10 @@ public static class LogicImports
     {
         if (itemToPlace.ShufflePool is not ItemPool.Major || self.Dungeons.Count == 0 || self.Dungeons.All(dungeon => dungeon != itemToPlace.Dungeon)) return true;
 
-        var prizeDungeonForItem = allLocations.First(prize => prize.Dungeons.Any(dungeon => dungeon == itemToPlace.Dungeon));
+        var prizeDungeonForItem = allLocations.Where(location => location.Type == LocationType.DungeonPrize)
+            .FirstOrDefault(prize => prize.Dungeons.Any(dungeon => dungeon == itemToPlace.Dungeon));
+
+        if (prizeDungeonForItem == null) return true;
         
         return prizeDungeonForItem.Contents is { Type: ItemType.EarthElement or ItemType.FireElement or ItemType.WaterElement or ItemType.WindElement };
     }
@@ -52,8 +55,11 @@ public static class LogicImports
         const string beatVaatiDefineName = "BeatVaati";
         if (itemToPlace.ShufflePool is not ItemPool.Major || self.Dungeons.Count == 0 || self.Dungeons.All(dungeon => dungeon != itemToPlace.Dungeon)) return true;
 
-        var prizeDungeonForItem = allLocations.First(prize => prize.Dungeons.Any(dungeon => dungeon == itemToPlace.Dungeon));
-
+        var prizeDungeonForItem = allLocations.Where(location => location.Type == LocationType.DungeonPrize)
+            .FirstOrDefault(prize => prize.Dungeons.Any(dungeon => dungeon == itemToPlace.Dungeon));
+        
+        if (prizeDungeonForItem == null) return true;
+        
         return prizeDungeonForItem.Contents is
         {
             Type: ItemType.EarthElement or ItemType.FireElement or ItemType.WaterElement or ItemType.WindElement
