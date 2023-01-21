@@ -601,6 +601,8 @@ internal class Shuffler
                 filledLocationThisSphere = true;
             }
             
+            //The available items has changed, invalidate cache and re-run
+            _locations.ForEach(location => location.InvalidateCache());
             var locationsAvailableNextSphere = allPlaceableLocations.Where(location => location.IsAccessible(obtainedItems.Concat(placedItemsThisSphere).ToList(), _locations)).ToList();
 
             if (locationsAvailableNextSphere.Count == 0)

@@ -1,6 +1,5 @@
 ﻿using RandomizerCore.Core;
 using RandomizerCore.Randomizer.Enumerables;
-using RandomizerCore.Randomizer.Logic.Defines;
 using RandomizerCore.Randomizer.Logic.Dependency;
 using RandomizerCore.Randomizer.Models;
 
@@ -28,7 +27,16 @@ public static class LogicImports
             "NON_ELEMENT_DUNGEONS_NOT_REQUIRED",
             NonElementDungeonsNotRequiredImport
         },
+        {
+            "VERIFY_LOCATION_IS_ACCESSIBLE",
+            VerifyLocationIsAccessibleImport
+        },
     };
+
+    private static bool VerifyLocationIsAccessibleImport(Location.Location self, Item itemToPlace, List<Item> availableItems, List<Location.Location> allLocations)
+    {
+        return self.IsAccessible(availableItems, allLocations);
+    }
 
     private static bool NonElementDungeonsBarrenImport(Location.Location self, Item itemToPlace, List<Item> availableItems, List<Location.Location> allLocations)
     {

@@ -139,9 +139,9 @@ public class Location
     /// <summary>
     ///     Check if an item can be placed into the location
     /// </summary>
-    /// <param name="itemToPlace">The item to check placability of</param>
+    /// <param name="itemToPlace">The item to check placeability of</param>
     /// <param name="availableItems">The items used for checking accessibility</param>
-    /// <param name="locations">The locations used for checkign accessiblility</param>
+    /// <param name="locations">The locations used for checking accessibility</param>
     /// <returns>If the item can be placed in this location</returns>
     public bool CanPlace(Item itemToPlace, List<Item> availableItems, List<Location> locations)
     {
@@ -160,11 +160,10 @@ public class Location
 
         // Can only place in correct dungeon
         if (itemToPlace.Dungeon != "" && !Dungeons.Contains(itemToPlace.Dungeon)) return false; 
+        
+        return ShufflerConstraints.All(constraint => constraint.Invoke(this, itemToPlace, availableItems, locations));
 
-        if (ShufflerConstraints.Any(constraint => !constraint.Invoke(this, itemToPlace, availableItems, locations)))
-            return false;
-
-        return IsAccessible(availableItems, locations);
+        // return IsAccessible(availableItems, locations);
     }
 
     public bool IsAccessible(List<Item> availableItems, List<Location> locations)
