@@ -399,64 +399,66 @@ public class Parser
         for (var index = 0; index < lines.Length; ++index)
         {
             var line = lines[index];
-            
-            // Spaces are ignored, and everything after a # is a comment
-            var trimmedLine = line.Split('#')[0].Trim();
-
-            // Empty lines or locations are ignored
-            if (string.IsNullOrWhiteSpace(trimmedLine)) continue;
-
-            if (!SubParser.ShouldIgnoreLines())
+            try
             {
-                // Replace defines between `
-                // Probably a more efficient way to do it, but eh
-                if (trimmedLine.IndexOf("`", StringComparison.Ordinal) != -1)
-                {
-                    if (trimmedLine.Contains("`RAND_INT`"))
-                        trimmedLine = trimmedLine.Replace("`RAND_INT`", StringUtil.AsStringHex8(rng.Next()));
-                    trimmedLine = SubParser.ReplaceDefines(trimmedLine);
-                }
+                // Spaces are ignored, and everything after a # is a comment
+                var trimmedLine = line.Split('#')[0].Trim();
 
-                if (trimmedLine[0] == '!')
-                {
-                    // Parse the string as a directive, ignoring preparsed directives
-                    if (!SubParser.ParseOnLoad(trimmedLine))
-                        try
-                        {
-                            SubParser.ParseDirective(trimmedLine);
-                        }
-                        catch (ParserException error)
-                        {
-                            Logger.Instance.LogError($"Failed to parse line {index + 1}!");
-                            throw new ParserException($"Error at line \"{index + 1}\", directive \"{trimmedLine}\": {error.Message}");
-                        }
-                }
-                else
-                {
-                    // Remove spaces as they're ignored in locations
-                    trimmedLine = trimmedLine.Replace(" ", "");
-                    trimmedLine = trimmedLine.Replace("\t", "");
+                // Empty lines or locations are ignored
+                if (string.IsNullOrWhiteSpace(trimmedLine)) continue;
 
-                    if (trimmedLine.Split('.')[0] == "Items")
+                if (!SubParser.ShouldIgnoreLines())
+                {
+                    // Replace defines between `
+                    // Probably a more efficient way to do it, but eh
+                    if (trimmedLine.IndexOf("`", StringComparison.Ordinal) != -1)
                     {
-                        //It is an item, parse it as one
-                        var newItem = GetItems(trimmedLine);
-                        items.AddRange(newItem);
+                        if (trimmedLine.Contains("`RAND_INT`"))
+                            trimmedLine = trimmedLine.Replace("`RAND_INT`", StringUtil.AsStringHex8(rng.Next()));
+                        trimmedLine = SubParser.ReplaceDefines(trimmedLine);
+                    }
+
+                    if (trimmedLine[0] == '!')
+                    {
+                        // Parse the string as a directive, ignoring preparsed directives
+                        if (!SubParser.ParseOnLoad(trimmedLine))
+                                SubParser.ParseDirective(trimmedLine);
                     }
                     else
                     {
-                        //It is a location, parse it as one
-                        var newLocation = GetLocation(trimmedLine);
-                        locations.Add(newLocation);
+                        // Remove spaces as they're ignored in locations
+                        trimmedLine = trimmedLine.Replace(" ", "");
+                        trimmedLine = trimmedLine.Replace("\t", "");
+
+                        if (trimmedLine.Split('.')[0] == "Items")
+                        {
+                            //It is an item, parse it as one
+                            var newItem = GetItems(trimmedLine);
+                            items.AddRange(newItem);
+                        }
+                        else
+                        {
+                            //It is a location, parse it as one
+                            var newLocation = GetLocation(trimmedLine);
+                            locations.Add(newLocation);
+                        }
                     }
+
                 }
+                else
+                {
+                    // Only parse directives to check for conditionals
+                    if (trimmedLine[0] == '!') SubParser.ParseDirective(trimmedLine);
+                }
+
+                Logger.Instance.SaveLogTransaction();
             }
-            else
+            catch (Exception e)
             {
-                // Only parse directives to check for conditionals
-                if (trimmedLine[0] == '!') SubParser.ParseDirective(trimmedLine);
+                Logger.Instance.LogError($"Failed to parse line {index + 1}!");
+                throw new ParserException(
+                    $"Error at line \"{index + 1}\", directive \"{line}\": {e.Message}");
             }
-            Logger.Instance.SaveLogTransaction();
         }
 
         return (locations, items);
