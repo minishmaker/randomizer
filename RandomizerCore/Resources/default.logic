@@ -28,7 +28,7 @@
 #   Dungeon - Used to specify that any item with type DungeonMajor can be placed here. Any locations that aren't filled after placing all DungeonMajor items will be added to the Any pool.
 #   Any - Used to specify that any item with type DungeonMajor, DungeonMinor, Major, Minor, or Filler can be placed here.
 #   Minor - Used to specify that only items of type Minor can be placed here. Any locations that aren't filled after placing all Minor items will be filled with Filler items.
-#   Inaccesible - No items are randomized to this location.
+#   Inaccessible - No items are randomized to this location.
 #
 # The available item types are:
 #   Music - Used to shuffle music. Should not be used for anything else.
@@ -156,7 +156,7 @@
 !dropdown - Logic Settings - Setting - Require Tricks - POWPOTOOL - Pot Puzzle without Power Bracelets: - Medium Difficulty:\n In Palace of Winds 3F is a section you have to push some pots while minish to reach an item, these pots require the Power Bracelets to be pushed.\n Once you regrow, you then must hit a switch which makes the item drop and a door open. This switch is reachable from a later part of the dungeon, which means the Power Bracelets can be avoided by reaching this later part of the dungeon, hitting the switch, and then backtracking back to the beginning. - No - NOPOWOOL - 'No': Power Bracelets will always be required to reach this location. - Yes - YESPOWOOL - 'Yes': It may be required to reach 3F of the internal section of the dungeon during the 2nd half, located near the blue and red warps. Once the switch has been hit then you can return to the entrance of the dungeon and continue to the item location without having to shrink.
 !dropdown - Logic Settings - Setting - Require Tricks - DHCCANON - DHC Canon rooms without Four Sword: - High Difficulty:\n In Dark Hyrule are two rooms that require knocking canon balls back at canons to complete a puzzle.\n These two rooms are located near the main entrance of the dungeon, one on 1F found by heading north from the main entrance, the other found on B1 by going down the right staircase from the main entrance.\n The intended method of completing these puzzles is by creating 4 Links with the Four Sword, and then doing a sword slash to knock all of the 4 canonballs back simultanously.\n However, it is possible (with setups and practice) to complete these without cloning but by instead using a well timed and placed bomb and sword slash.\n Despite this being a High Difficulty setting, it is unlikely to be required without Four Sword unless you play on the DHC: 'Always Open' setting. Having Four Sword as a requirement for entering DHC will make this always require Four Sword. - No - NODHCCANON - 'No': Four Sword (and a Spin) is always required to clear any canon room puzzle in DHC. - Yes - YESDHCCANON - 'Yes': DHC Canon rooms may require only a sword and a bomb bag.
 
-!dropdown - Logic Settings - Setting - Require Tricks - DHCJOSTLE - DHC Pressure Pads without Four Sword: - High Difficulty:\n After the 1F Canon room in the room with the moving blade trap, there are 4 pressure pads that must be depressed to spawn a chest containing an item.\n The intended method to do this puzzle is to use the Four Sword and create 4 Links to stand on these pads simultanously, however it is possible to this with less clones.\n These pads have a slight lag in their detection, which means you can use 2 Links (the amount you get with Red Sword) and make Link quickly walk between 2 pads adjacent to each other for the game to detect both as pressed,\n the clone will mirror the main link and do the same on the other 2 switches to trigger all the pads simultanously and spawn the chest.\n Similar to the DHC Canon setting, this is unlikely to be required unless you play on the DHC: 'Always Open' setting, and will always require Four Sword if one of the DHC requirements is Four Sword.\n This trick is relatively low difficulty to execute, however to reach this area without the Four Sword you must pass a Canon room which will never be required unless the DHC Canon setting is set to 'Yes'. - No - `NODHCJOSTLE` - 'No': Four Sword (and a Spin) will always be required for this location. - Yes - `YESDHCJOSTLE` - 'Yes': Red Sword (and a Spin) is all that is required for this location. If DHC Canon is set to 'No' then this location requires Four Sword (and a Spin).
+!dropdown - Logic Settings - Setting - Require Tricks - DHCJOSTLE - DHC Pressure Pads without Four Sword: - High Difficulty:\n After the 1F Canon room in the room with the moving blade trap, there are 4 pressure pads that must be depressed to spawn a chest containing an item.\n The intended method to do this puzzle is to use the Four Sword and create 4 Links to stand on these pads simultanously, however it is possible to this with less clones.\n These pads have a slight lag in their detection, which means you can use 2 Links (the amount you get with Red Sword) and make Link quickly walk between 2 pads adjacent to each other for the game to detect both as pressed,\n the clone will mirror the main link and do the same on the other 2 switches to trigger all the pads simultanously and spawn the chest.\n Similar to the DHC Canon setting, this is unlikely to be required unless you play on the DHC: 'Always Open' setting, and will always require Four Sword if one of the DHC requirements is Four Sword.\n This trick is relatively low difficulty to execute, however to reach this area without the Four Sword you must pass a Canon room which will never be required unless the DHC Canon setting is set to 'Yes'. - No - NODHCJOSTLE - 'No': Four Sword (and a Spin) will always be required for this location. - Yes - YESDHCJOSTLE - 'Yes': Red Sword (and a Spin) is all that is required for this location. If DHC Canon is set to 'No' then this location requires Four Sword (and a Spin).
 !dropdown - Logic Settings - Setting - Require Tricks - DHCSWITCHES - DHC Switches without Four Sword: - Medium/High Difficulty:\n In Dark Hyrule Castle 2F are 2 rooms that contain puzzles which require hitting 4 switches simultanously to solve the puzzle,\n these switches are close enough together at each location that a single spin attack from a precise spot can hit all the switches and solve the puzzle without having to create clones.\n However because they are located late in the dungeon behind puzzles that always require the Four Sword, this setting will only matter when playing Open World and going through the red warp to reach this floor. - No - NODHCSWITCHES - 'No': Four Sword (and a Spin) will always be required to hit these switches. - Yes - YESDHCSWITCHES - 'Yes': A sword and spin is all that is needed to do these puzzles. If Open World is off then Four Sword (and Spin) are required.
 
 !dropdown - Logic Settings - Setting - Require Tricks - FOWPOT - FoW Pot item early using the Gust Jar: - Low Difficulty:\n In Fortress of Winds there are 2 pots that contain items when playing with 'Special Pots', these are located in a dirt filled room in the back right section of the dungeon on 2F locked behind various locked doors.\n However the lower of the 2 pots can be grabbed with the Gust Jar from a much earlier part of the dungeon located in the front right section 2F.\n The pot can accidentally be released inside the wall which makes the item unobtainable, simply reload the room and the pot and item will respawn. - No - NOFOWPOT - 'No': From the entrance of Fortress, this location always requires at least 3 Fortress small keys as well as the Mole Mitts and Bow. - Yes - YESFOWPOT - 'Yes': From the entrance of Fortress, this location may only require the Gust Jar.
@@ -1699,6 +1699,7 @@ CanDownThrust;		Helper;; Helpers.HasSword, Items.DownThrust, Items.RocsCape
 !define - `LAMPWEAPON`
 !ifdef - NOBOMB
 	!define - BOMBHELPER -
+	!define - GLEEROKBOMBS -
 !else
 	!define - BOMBHELPER - , Items.BombBag
 	!define - GLEEROKBOMBS - , Items.BombBag:2
@@ -1766,7 +1767,7 @@ LightArrowBreak;		Helper;;	Helpers.Inaccessible
 LightArrowBreak;		Helper;;	Helpers.HasLightBow
 !endif
 !ifndef - BOBOMBS
-Bobombs;				Helper;;	Helpers.Inaccesible
+Bobombs;				Helper;;	Helpers.Inaccessible
 !else
 Bobombs;				Helper;;	(|Helpers.HasSword, Items.GustJar, Items.BombBag)
 !endif
@@ -2329,7 +2330,7 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 					!endif
 				!endif
 			!else
-				!replaceamount - Items.Kinstone.GreenG - 16 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+				Items.Kinstone.GreenG:16;	Major;
 				CanFuseGreenG;   		Helper;; Items.Kinstone.GreenG:16
 				CanFuseGreenFlurris;	Helper;; Items.Kinstone.GreenG:15
 				CanFuseGreenTFZ1;		Helper;; Items.Kinstone.GreenG:16
@@ -2338,14 +2339,8 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 				CanFuseGreenGShared3;	Helper;; Items.Kinstone.GreenG:13
 				CanFuseGreenGShared4;	Helper;; Items.Kinstone.GreenG:14
 				CanFuseGreenGShared5;	Helper;; Items.Kinstone.GreenG:15
-				!ifndef - ITEM_POOL_PLENTIFUL
-					!define - ALLGREENG - Items.Kinstone.GreenG:16
-				!else
-					!define - ALLGREENG - Items.Kinstone.GreenG:19
-					!replaceamount - Items.Kinstone.GreenG - 3 - `SHELLVALS` `KINVALS` `RUPEEVALS`
-				!endif
 				!ifdef - NO_BLUE_FUSIONS
-					!replaceamount - Items.Kinstone.GreenP - 15 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+					Items.Kinstone.GreenP:15;	Major;
 					CanFuseGreenP;   		Helper;; Items.Kinstone.GreenP:15
 					CanFuseGreenTFZ2;		Helper;; Items.Kinstone.GreenP:15
 					CanFuseGreenDavid;		Helper;; Items.Kinstone.GreenP:15
@@ -2354,14 +2349,8 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 					CanFuseGreenPShared3;	Helper;; Items.Kinstone.GreenP:12
 					CanFuseGreenPShared4;	Helper;; Items.Kinstone.GreenP:13
 					CanFuseGreenPShared5;	Helper;; Items.Kinstone.GreenP:14
-					!ifndef - ITEM_POOL_NORMAL
-						!define - ALLGREENP - Items.Kinstone.GreenP:15
-					!else
-						!define - ALLGREENP - Items.Kinstone.GreenP:18
-						!replaceamount - Items.Kinstone.GreenP - 3 - `SHELLVALS` `KINVALS` `RUPEEVALS`
-					!endif
 				!else
-					!replaceamount - Items.Kinstone.GreenP - 16 - `SHELLVALS` `KINVALS` `RUPEEVALS`
+					Items.Kinstone.GreenP:16;	Major;
 					CanFuseGreenP;   		Helper;; Items.Kinstone.GreenP:16
 					CanFuseGreenTFZ2;		Helper;; Items.Kinstone.GreenP:16
 					CanFuseGreenDavid;		Helper;; Items.Kinstone.GreenP:16
@@ -2370,12 +2359,6 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 					CanFuseGreenPShared3;	Helper;; Items.Kinstone.GreenP:13
 					CanFuseGreenPShared4;	Helper;; Items.Kinstone.GreenP:14
 					CanFuseGreenPShared5;	Helper;; Items.Kinstone.GreenP:15
-					!ifndef - ITEM_POOL_NORMAL
-						!define - ALLGREENP - Items.Kinstone.GreenP:16
-					!else
-						!define - ALLGREENP - Items.Kinstone.GreenP:19
-						!replaceamount - Items.Kinstone.GreenP - 3 - `SHELLVALS` `KINVALS` `RUPEEVALS`
-					!endif
 				!endif
 			!endif
 			!ifdef - ITEM_POOL_PLENTIFUL
@@ -3074,7 +3057,7 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 		!define - DUNGEONSMALLUNDERWATER - Minor
 	!endif
 	!ifdef - NO_GOLD_FUSIONS
-		!define - GOLDFUSIONSMALL - Inaccesible
+		!define - GOLDFUSIONSMALL - Inaccessible
 	!else
 		!define - GOLDFUSIONSMALL - Dungeon
 	!endif
@@ -3086,7 +3069,7 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 !else
 	!define - DUNGEONBIG - Dungeon
 	!ifdef - NO_GOLD_FUSIONS
-		!define - GOLDFUSIONBIG - Inaccesible
+		!define - GOLDFUSIONBIG - Inaccessible
 	!else
 		!define - GOLDFUSIONBIG - Dungeon
 	!endif
@@ -3098,31 +3081,31 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 !else
 	!define - DUNGEONCOMPASS - Dungeon
 	!ifdef - NO_GOLD_FUSIONS
-		!define - GOLDFUSIONCOMPASS - Inaccesible
+		!define - GOLDFUSIONCOMPASS - Inaccessible
 	!else
 		!define - GOLDFUSIONCOMPASS - Dungeon
 	!endif
 !endif
 
 !ifdef - NO_GOLD_FUSIONS
-	!define - GOLDFUSION - Inaccesible
-	!define - GOLDREDFUSION - Inaccesible
-	!define - GOLDGREENFUSION - Inaccesible
-	!define - GOLDGREENFUSIONENEMY - Inaccesible
+	!define - GOLDFUSION - Inaccessible
+	!define - GOLDREDFUSION - Inaccessible
+	!define - GOLDGREENFUSION - Inaccessible
+	!define - GOLDGREENFUSIONENEMY - Inaccessible
 	!define - GOLDFUSIONHP - Unshuffled
 	!define - GOLDREDFUSIONHP - Unshuffled
-	!define - GOLDFUSIONRUPEE - Inaccesible
-	!define - GOLDFUSIONDIG - Inaccesible
-	!define - GOLDFUSIONUNDERWATER - Inaccesible
+	!define - GOLDFUSIONRUPEE - Inaccessible
+	!define - GOLDFUSIONDIG - Inaccessible
+	!define - GOLDFUSIONUNDERWATER - Inaccessible
 !else
 	!define - GOLDFUSION - Dungeon
 	!ifdef - NO_RED_FUSIONS
-		!define - GOLDREDFUSION - Inaccesible
+		!define - GOLDREDFUSION - Inaccessible
 	!else
 		!define - GOLDREDFUSION - Dungeon
 	!endif
 	!ifdef - NO_GREEN_FUSIONS
-		!define - GOLDGREENFUSION - Inaccesible
+		!define - GOLDGREENFUSION - Inaccessible
 	!else
 		!define - GOLDGREENFUSION - Dungeon
 	!endif
@@ -3156,10 +3139,10 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 !endif
 
 !ifdef - NO_RED_FUSIONS
-	!define - REDFUSION - Inaccesible
-	!define - REDFUSIONDUNGEON - Inaccesible
-	!define - REDFUSIONRUPEE - Inaccesible
-	!define - REDFUSIONENEMY - Inaccesible
+	!define - REDFUSION - Inaccessible
+	!define - REDFUSIONDUNGEON - Inaccessible
+	!define - REDFUSIONRUPEE - Inaccessible
+	!define - REDFUSIONENEMY - Inaccessible
 !else
 	!define - REDFUSION - Any
 	!define - REDFUSIONDUNGEON - Dungeon
@@ -3171,17 +3154,19 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 !endif
 
 !ifdef - NO_BLUE_FUSIONS
-	!define - BLUEFUSION - Inaccesible
-	!define - BLUEFUSIONRUPEE - Inaccesible
+	!define - BLUEFUSION - Inaccessible
+	!define - BLUEFUSIONRUPEE - Inaccessible
+	!define - BLUEFUSIONDUNGEON - Inaccessible
 	!ifdef - OPEN_GREEN_FUSIONS
 		!define - BLUEGREENFUSION - Any
 	!else
-		!define - BLUEGREENFUSION - Inaccesible
+		!define - BLUEGREENFUSION - Inaccessible
 	!endif
 !else
 	!define - BLUEFUSION - Any
+	!define - BLUEFUSIONDUNGEON - Dungeon
 	!ifdef - NO_GREEN_FUSIONS
-		!define - BLUEGREENFUSION - Inaccesible
+		!define - BLUEGREENFUSION - Inaccessible
 	!else
 		!define - BLUEGREENFUSION - Any
 	!endif
@@ -3193,11 +3178,11 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 !endif
 	
 !ifdef - NO_GREEN_FUSIONS
-	!define - GREENFUSION - Inaccesible
-	!define - GREENFUSIONDUNGEON - Inaccesible
-	!define - GREENFUSIONRUPEE - Inaccesible
-	!define - GREENFUSIONENEMY - Inaccesible
-	!define - GREENFUSIONDIG - Inaccesible
+	!define - GREENFUSION - Inaccessible
+	!define - GREENFUSIONDUNGEON - Inaccessible
+	!define - GREENFUSIONRUPEE - Inaccessible
+	!define - GREENFUSIONENEMY - Inaccessible
+	!define - GREENFUSIONDIG - Inaccessible
 !else
 	!define - GREENFUSION - Any
 	!define - GREENFUSIONDUNGEON - Dungeon
@@ -3220,7 +3205,7 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 
 !ifdef - NO_GOLD_FUSIONS
 	!ifdef - NO_RED_FUSIONS
-		!define - WTFUSION - Inaccesible
+		!define - WTFUSION - Inaccessible
 	!else
 		!define - WTFUSION - Dungeon
 	!endif
@@ -3233,8 +3218,8 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 	!define - UWTFUSIONGREEN - Dungeon
 !else
 	!ifdef - NO_GREEN_FUSIONS
-		!define - WTFUSIONGREEN - Inaccesible
-		!define - UWTFUSIONGREEN - Inaccesible
+		!define - WTFUSIONGREEN - Inaccessible
+		!define - UWTFUSIONGREEN - Inaccessible
 	!else
 		!define - WTFUSIONGREEN - `WTFUSION`
 		!define - UWTFUSIONGREEN - `GOLDFUSION`
@@ -3258,17 +3243,17 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 		!define - UNDERWATERHP - Minor
 	!endif
 	!ifdef - NO_RED_FUSIONS
-		!define - REDFUSIONHP - Inaccesible
+		!define - REDFUSIONHP - Inaccessible
 	!else
 		!define - REDFUSIONHP - Any		
 	!endif
 	!ifdef - NO_BLUE_FUSIONS
-		!define - BLUEFUSIONHP - Inaccesible
+		!define - BLUEFUSIONHP - Inaccessible
 	!else
 		!define - BLUEFUSIONHP - Any
 	!endif
 	!ifdef - NO_GREEN_FUSIONS
-		!define - GREENFUSIONHP - Inaccesible
+		!define - GREENFUSIONHP - Inaccessible
 	!else
 		!define - GREENFUSIONHP - Any
 	!endif
@@ -3596,7 +3581,7 @@ Crenel_BeanstalkFusion_Item8;		`REDFUSIONRUPEE`;	0x0F5E1B;																(|(&He
 Crenel_RainPathFusion_Chest;		`GREENFUSION`;		0x0FE066;																(|(&Helpers.MinesMinishBedroomFusion, Helpers.AccessCrenel, Items.GripRing), Helpers.Hundo);	Items.Kinstone.BlueL
 
 	!define - COF_OUTSIDE - :CoFSmallOutside	:CoFBigOutside	:CoFCompassOutside	:SmallOutside	:BigOutside	:CompassOutside
-AccessMelari;	Helper;	;	`CoF_Item_Outside`(|Helpers.WindCrest, (&Helpers.AccessCrenel, (|(&Items.PacciCane, (|Items.GripRing, Helpers.CrenelMushroom)), (&Items.GripRing, (|Items.RocsCape, Helpers.LightArrowBreak, Items.GustJar), Helpers.CrenelSwitch))))
+AccessMelari;	Helper;	;	(|Helpers.WindCrest, (&Helpers.AccessCrenel, (|(&Items.PacciCane, (|Items.GripRing, Helpers.CrenelMushroom)), (&Items.GripRing, (|Items.RocsCape, Helpers.LightArrowBreak, Items.GustJar), Helpers.CrenelSwitch))))
 Crenel_UpperBlock_Chest				`COF_OUTSIDE`;	Dungeon;		0x26-0x03-0x00;	(|Helpers.AccessMelari, Helpers.Hundo);								Items.Kinstone.BlueS
 Crenel_MinesPathFusion_Chest		`COF_OUTSIDE`;	`GREENFUSION`;	0x0FE096;		(|(&Helpers.DavidJr2Fusion, Helpers.AccessMelari), Helpers.Hundo);	Items.Shells.200
 Crenel_Melari_LowerMiddle_Dig		`COF_OUTSIDE`;	`DIG`;			0x0DC8C3;	 	(|(&Helpers.AccessMelari, Items.MoleMitts), Helpers.Hundo);			Items.Kinstone.BlueL
@@ -3620,9 +3605,9 @@ Swamp_WaterfallFusion_DojoNPC;		`REDFUSION`;			scarbladeDojoItem:Define:FirstByt
 Swamp_NorthCave_Chest;				Any;					0x2A-0x01-0x00;																(|(&Helpers.AccessSwamp, Helpers.SwampNorthShortcut), Helpers.Hundo);																																	Items.Kinstone.GoldenSwamp
 Swamp_DiggingCave_LeftChest;		Any;					0x17-0x00-0x00;																(|(&Helpers.AccessSwamp, Items.MoleMitts), Helpers.Hundo);																																				Items.Shells.50
 Swamp_DiggingCave_RightChest;		Any;					0x17-0x00-0x01;																(|(&Helpers.AccessSwamp, Items.MoleMitts), Helpers.Hundo);																																				Items.Kinstone.RedV
-Swamp_Underwater_Top;				`UNDERWATER`;			0x0D9347;																	(|(&Helpers.AccessSwamp, Items.Flippers), Helpers.Hundo);																																				Items.Kinstone.RedV
-Swamp_Underwater_Middle;			`UNDERWATER`;			0x0D9357;																	(|(&Helpers.AccessSwamp, Items.Flippers), Helpers.Hundo);																																				Items.Kinstone.RedW
-Swamp_Underwater_Bottom;			`UNDERWATER`;			0x0D9367;																	(|(&Helpers.AccessSwamp, Items.Flippers), Helpers.Hundo);																																				Items.Kinstone.RedE
+Swamp_Underwater_Top;				`WATER`;			0x0D9347;																	(|(&Helpers.AccessSwamp, Items.Flippers), Helpers.Hundo);																																				Items.Kinstone.RedV
+Swamp_Underwater_Middle;			`WATER`;			0x0D9357;																	(|(&Helpers.AccessSwamp, Items.Flippers), Helpers.Hundo);																																				Items.Kinstone.RedW
+Swamp_Underwater_Bottom;			`WATER`;			0x0D9367;																	(|(&Helpers.AccessSwamp, Items.Flippers), Helpers.Hundo);																																				Items.Kinstone.RedE
 Swamp_SouthCave_Chest;				Any;					0x2A-0x00-0x00;																(|(&Helpers.AccessSwamp, Helpers.SwampShortcut, Helpers.SwampSouthShortcut), Helpers.Hundo);																											Items.Kinstone.GoldenSwamp
 Swamp_Dojo_HP;						`HP`;					0x0D78CB;																	(|(&Helpers.AccessSwamp, (|Items.RocsCape, Helpers.HasBow)), (&Helpers.WindCrest, Items.PegasusBoots), Helpers.Hundo);																					Items.PieceOfHeart
 Swamp_Dojo_NPC;						Any;					swiftbladeIDojoItem:Define:FirstByte, swiftbladeIDojoSub:Define:SecondByte;	(|(&Helpers.AccessSwamp, (|Items.RocsCape, Helpers.HasBow), Helpers.GotScrolls, Helpers.HasSword), (&Helpers.WindCrest, Items.PegasusBoots, Helpers.GotScrolls, Helpers.HasSword), Helpers.Hundo);		Items.GreatSpin
@@ -3652,7 +3637,7 @@ Ruins_GoldenOcto				`FOW_OUTSIDE`;	`GOLDGREENFUSIONENEMY`;	golden1Item:Define:Fi
 Ruins_NearFoWFusion_Chest		`FOW_OUTSIDE`;	`GOLDREDFUSION`;		0x0FE0AE;													(|(&Helpers.BelariFusion, Helpers.AccessRuins, Helpers.HasSword), Helpers.Hundo);									Items.BombBag
 
 # Royal Valley
-AccessValley;							Helper;		;				(|Helpers.CanSplit3, Helpers.CanSplit4), (|Helpers.OverworldBlocks, Items.CapeExtension);
+AccessValley;							Helper;		;				(|Helpers.CanSplit3, Helpers.CanSplit4), (|Helpers.OverworldBlocks, Helpers.CapeExtension);
 Valley_PreValleyFusion_Chest;							`GREENFUSION`;		0x0FE0F6;		(|(&Helpers.Shared5FFusion, Helpers.AccessValley), Helpers.Hundo);																Items.Shells.200
 Valley_GreatFairy_NPC;									Any;				0x00B722;		(|(&Helpers.AccessValley, Helpers.BombWalls), Helpers.Hundo);																	Items.LargeQuiver
 Valley_LostWoods_Chest;									Any;				0x0D8A86;		(|(&Helpers.AccessValley, Helpers.DarkRooms), Helpers.Hundo);																	Items.Shells.200
@@ -3868,13 +3853,13 @@ AccessDroplets								;	Helper;				;											(&Helpers.AccessLonLon, Helpers.C
 	Items.Untyped.0xa;	DungeonConstraint;	DummyToD
 	Items.Untyped.0xb;	DungeonConstraint;	DummyToD
 	DummyToD1	:DummyToD;	DungeonConstraint;	DumToD1:Define:FirstByte, DumToD1:Define:SecondByte;		;
-	DummyToD2	:DummyToD;	DungeonConstraint;	DumToD2:Define:FirstByte, DumToD2:Define:SecondByte;		Helpers.Inaccesible;
+	DummyToD2	:DummyToD;	DungeonConstraint;	DumToD2:Define:FirstByte, DumToD2:Define:SecondByte;		Helpers.Inaccessible;
 !else
 	!ifdef - BIG_KEYS_REGION
 		Items.Untyped.0xa;	DungeonConstraint;	DummyToD
 		Items.Untyped.0xb;	DungeonConstraint;	DummyToD
 		DummyToD1	:DummyToD;	DungeonConstraint;	DumToD1:Define:FirstByte, DumToD1:Define:SecondByte;		;
-		DummyToD2	:DummyToD;	DungeonConstraint;	DumToD2:Define:FirstByte, DumToD2:Define:SecondByte;		Helpers.Inaccesible;
+		DummyToD2	:DummyToD;	DungeonConstraint;	DumToD2:Define:FirstByte, DumToD2:Define:SecondByte;		Helpers.Inaccessible;
 	!endif
 !endif
 

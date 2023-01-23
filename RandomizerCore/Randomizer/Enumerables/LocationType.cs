@@ -16,5 +16,6 @@ public enum LocationType
     Any,
     //DungeonMinor, Deprecated
     Minor,
-    Nice
+    Nice,
+    Inaccessible
 }
