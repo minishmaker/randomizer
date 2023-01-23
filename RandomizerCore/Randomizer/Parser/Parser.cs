@@ -50,15 +50,15 @@ public class Parser
                     dependencies.Add(orDependency);
                     break;
                 case '~':
-                    var parts = sequence.Substring(1).Split('.');
-                    if (parts.Length < 3)
-                        throw new ParserException("Item in not dependency has the wrong number of parts!");
-                    if (!Enum.TryParse(parts[1], out ItemType type))
-                        throw new ParserException("Could not parse item in not dependency!");
-                    if (!byte.TryParse(parts[2], out var subValue))
-                        throw new ParserException("Could not parse item in not dependency!");
+                    var trimmedLine = sequence.Substring(1);
+                    // if (parts.Length < 3)
+                    //     throw new ParserException("Item in not dependency has the wrong number of parts!");
+                    // if (!Enum.TryParse(parts[1], out ItemType type))
+                    //     throw new ParserException("Could not parse item in not dependency!");
+                    // if (!byte.TryParse(parts[2], out var subValue))
+                    //     throw new ParserException("Could not parse item in not dependency!");
                     
-                    dependencies.Add(new NotItemDependency(new Item(type, subValue)));
+                    dependencies.Add(new NotItemDependency(new Item(trimmedLine, " Parse")));
                     break;
                 case '+':
                     var valueDict = new Dictionary<DependencyBase, int>();
