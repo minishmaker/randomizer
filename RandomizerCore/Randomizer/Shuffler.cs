@@ -838,7 +838,7 @@ internal class Shuffler
         var rand = new Random(Seed);
         while (locations.Count > 0)
         {
-            locations[0].Fill(fillItems[rand.Next(items.Count)]);
+            locations[0].Fill(fillItems[rand.Next(fillItems.Count)]);
             locations.RemoveAt(0);
         }
     }
