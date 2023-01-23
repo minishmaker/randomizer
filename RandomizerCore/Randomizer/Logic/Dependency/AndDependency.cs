@@ -11,7 +11,7 @@ public class AndDependency : DependencyBase
         AndList = dependencyList;
     }
 
-    public override bool DependencyFulfilled(List<Item> availableItems, List<Location.Location> locations)
+    public override bool DependencyFulfilled(List<Item> availableItems, List<Location.Location> locations, Item? itemToPlace = null)
     {
         foreach (var dependency in AndList)
             if (dependency.DependencyFulfilled(availableItems, locations) == false)

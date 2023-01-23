@@ -13,7 +13,7 @@ public class LocationDependency : DependencyBase
         _requiredLocationName = locationName;
     }
 
-    public override bool DependencyFulfilled(List<Item> availableItems, List<Location.Location> locations)
+    public override bool DependencyFulfilled(List<Item> availableItems, List<Location.Location> locations, Item? itemToPlace = null)
     {
         foreach (var location in locations)
             if (location.Name == _requiredLocationName)

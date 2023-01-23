@@ -166,7 +166,7 @@ public class Location
         // return IsAccessible(availableItems, locations);
     }
 
-    public bool IsAccessible(List<Item> availableItems, List<Location> locations)
+    public bool IsAccessible(List<Item> availableItems, List<Location> locations, Item? itemToPlace = null)
     {
         if (RecursionCount > 0) return false;
 
@@ -178,7 +178,7 @@ public class Location
             return (bool)_availableCache;
         }
 
-        if (Dependencies.Any(dependency => !dependency.DependencyFulfilled(availableItems, locations)))
+        if (Dependencies.Any(dependency => !dependency.DependencyFulfilled(availableItems, locations, itemToPlace)))
         {
             _availableCache = false;
             RecursionCount--;

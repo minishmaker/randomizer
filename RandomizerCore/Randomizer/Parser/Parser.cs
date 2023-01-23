@@ -49,6 +49,17 @@ public class Parser
                     var orDependency = new OrDependency(orList);
                     dependencies.Add(orDependency);
                     break;
+                case '~':
+                    var parts = sequence.Substring(1).Split('.');
+                    if (parts.Length < 3)
+                        throw new ParserException("Item in not dependency has the wrong number of parts!");
+                    if (!Enum.TryParse(parts[1], out ItemType type))
+                        throw new ParserException("Could not parse item in not dependency!");
+                    if (!byte.TryParse(parts[2], out var subValue))
+                        throw new ParserException("Could not parse item in not dependency!");
+                    
+                    dependencies.Add(new NotItemDependency(new Item(type, subValue)));
+                    break;
                 case '+':
                     var valueDict = new Dictionary<DependencyBase, int>();
                     var reqValueString = sequence.Split(',')[0];

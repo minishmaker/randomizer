@@ -13,7 +13,7 @@ public class CounterDependency : DependencyBase
         RequiredCount = reqValue;
     }
 
-    public override bool DependencyFulfilled(List<Item> availableItems, List<Location.Location> locations)
+    public override bool DependencyFulfilled(List<Item> availableItems, List<Location.Location> locations, Item? itemToPlace = null)
     {
         var counter = 0;
 

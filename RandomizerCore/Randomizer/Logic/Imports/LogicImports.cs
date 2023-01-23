@@ -35,7 +35,7 @@ public static class LogicImports
 
     private static bool VerifyLocationIsAccessibleImport(Location.Location self, Item itemToPlace, List<Item> availableItems, List<Location.Location> allLocations)
     {
-        return self.IsAccessible(availableItems, allLocations);
+        return self.IsAccessible(availableItems, allLocations, itemToPlace);
     }
 
     private static bool NonElementDungeonsBarrenImport(Location.Location self, Item itemToPlace, List<Item> availableItems, List<Location.Location> allLocations)
