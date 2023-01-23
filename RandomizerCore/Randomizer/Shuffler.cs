@@ -449,51 +449,51 @@ internal class Shuffler
         //Make it so randomized music doesn't affect randomization
         var temp = _rng;
         _rng = new Random(Seed);
-        if (locationGroups.Any(group => group.Key == LocationType.Music))
-            FillLocations(_music, 
-                locationGroups.First(group => group.Key == LocationType.Music).ToList(), null);
+
+        var nextLocationGroup = locationGroups.Any(group => group.Key == LocationType.Music) ? locationGroups.First(group => group.Key == LocationType.Music).ToList() : new List<Location>();
+
+        FillLocations(_music, nextLocationGroup, null);
         
         _rng = temp;
 
         //Shuffle dungeon entrances
-        if (locationGroups.Any(group => group.Key == LocationType.DungeonEntrance))
-            FastFillLocations(_dungeonEntrances,
-                locationGroups.First(group => group.Key == LocationType.DungeonEntrance).ToList());
+        nextLocationGroup = locationGroups.Any(group => group.Key == LocationType.DungeonEntrance) ? locationGroups.First(group => group.Key == LocationType.DungeonEntrance).ToList() : new List<Location>();
+        FastFillLocations(_dungeonEntrances, nextLocationGroup);
         
         //Grab all items that we need to beat the seed
         var allItems = _majorItems.Concat(_dungeonMajorItems).Concat(_unshuffledItems).ToList();
 
         //Shuffle constraints
-        if (locationGroups.Any(group => group.Key == LocationType.DungeonConstraint))
-            FillLocations(_dungeonConstraints,
-                locationGroups.First(group => group.Key == LocationType.DungeonConstraint).ToList(), allItems);
-        if (locationGroups.Any(group => group.Key == LocationType.OverworldConstraint))
-            FillLocations(_overworldConstraints,
-                locationGroups.First(group => group.Key == LocationType.OverworldConstraint).ToList(), allItems);
+        nextLocationGroup = locationGroups.Any(group => group.Key == LocationType.DungeonConstraint) ? locationGroups.First(group => group.Key == LocationType.DungeonConstraint).ToList() : new List<Location>();
+        FillLocations(_dungeonConstraints, nextLocationGroup, allItems);
+        
+        nextLocationGroup = locationGroups.Any(group => group.Key == LocationType.OverworldConstraint) ? locationGroups.First(group => group.Key == LocationType.OverworldConstraint).ToList() : new List<Location>();
+        FillLocations(_overworldConstraints, nextLocationGroup, allItems);
         
         var unfilledLocations = new List<Location>();
 
         //Shuffle prizes
-        if (locationGroups.Any(group => group.Key == LocationType.DungeonPrize))
-            unfilledLocations.AddRange(FillLocations(_dungeonPrizes,
-            locationGroups.First(group => group.Key == LocationType.DungeonPrize).ToList(), allItems));
+        nextLocationGroup = locationGroups.Any(group => group.Key == LocationType.DungeonPrize) ? locationGroups.First(group => group.Key == LocationType.DungeonPrize).ToList() : new List<Location>();
+        unfilledLocations.AddRange(FillLocations(_dungeonPrizes, nextLocationGroup, allItems));
         
         //For dungeon majors, assume we have all majors and unshuffled items
         var allMajorsAndUnshuffled = _majorItems.Concat(_unshuffledItems).ToList();
 
         //Shuffle dungeon majors
+        nextLocationGroup = locationGroups.Any(group => group.Key == LocationType.Dungeon) ? locationGroups.First(group => group.Key == LocationType.Dungeon).ToList() : new List<Location>();
         unfilledLocations.AddRange(FillLocations(_dungeonMajorItems,
-            locationGroups.First(group => group.Key == LocationType.Dungeon).ToList(),
+            nextLocationGroup,
             allMajorsAndUnshuffled,
             unfilledLocations));
 
         //Now that all dungeon items are placed, we add all the rest of the locations to the pool of unfilled locations
-        if (locationGroups.Any(group => group.Key == LocationType.Any))
-            unfilledLocations.AddRange(locationGroups.First(group => group.Key == LocationType.Any));
-        
+        nextLocationGroup = locationGroups.Any(group => group.Key == LocationType.Any) ? locationGroups.First(group => group.Key == LocationType.Any).ToList() : new List<Location>();
+        unfilledLocations.AddRange(nextLocationGroup);
+
         //Shuffle all other majors, do not assume any items are already obtained anymore
+        nextLocationGroup = locationGroups.Any(group => group.Key == LocationType.Major) ? locationGroups.First(group => group.Key == LocationType.Major).ToList() : new List<Location>();
         unfilledLocations.AddRange(FillLocations(_majorItems,
-            locationGroups.First(group => group.Key == LocationType.Major).ToList(),
+            nextLocationGroup,
             null,
             unfilledLocations));
         
@@ -522,9 +522,9 @@ internal class Shuffler
 
         if (!new LocationDependency("BeatVaati").DependencyFulfilled(finalMajorItems, _locations))
             throw new ShuffleException("Randomization succeeded, but could not beat Vaati!");
-        
+
         // FastFillLocations(_dungeonMinorItems.ToList());
-        
+
         // Fill dungeon minor items, do not check logic
         // unfilledLocations.Shuffle(_rng);
         // FillLocations(_dungeonMinorItems.ToList(), unfilledLocations);
@@ -535,6 +535,8 @@ internal class Shuffler
         //
         // // Put minor items in locations, not checking logic
         // unfilledLocations.Shuffle(_rng);
+        nextLocationGroup = locationGroups.Any(group => group.Key == LocationType.Minor) ? locationGroups.First(group => group.Key == LocationType.Minor).ToList() : new List<Location>();
+        unfilledLocations.AddRange(nextLocationGroup);
         FastFillLocations(_minorItems.ToList(), unfilledLocations);
 
         // Final cache clear
