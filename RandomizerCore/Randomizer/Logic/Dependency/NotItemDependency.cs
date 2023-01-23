@@ -13,7 +13,7 @@ public class NotItemDependency : DependencyBase
 
     public override bool DependencyFulfilled(List<Item> availableItems, List<Location.Location> locations, Item? itemToPlace = null)
     {
-        return _requiredItem.Equals(itemToPlace);
+        return !_requiredItem.Equals(itemToPlace);
 
         //Console.WriteLine($"Missing {RequiredItem.Type}");
     }
