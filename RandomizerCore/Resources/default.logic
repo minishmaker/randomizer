@@ -3394,7 +3394,7 @@ Town_Carlov_NPC;				Any;			carlovSpotItem:Define:FirstByte, carlovSpotSub:Define
 Town_Well_BottomChest;			Any;			0x41-0x00-0x02;																(|Helpers.WellPillar, Items.Flippers, Items.RocsCape, Helpers.Hundo);																																		Items.Rupee100
 Town_Cuccos_NPC;				`HP`;			0x12460C;																	(|Items.RocsCape, Items.Flippers, Helpers.Hundo);																																							Items.PieceOfHeart
 Town_Jullieta_Item;				Any;			redBookItem:Define:FirstByte, redBookSub:Define:SecondByte;					(|Helpers.Julietta, Helpers.Hundo);																																											Items.RedBook
-Town_Simulation_Chest;			`HP`;			0x0F04C2;																	(|(&Helpers.HasSword, Items.Rupee200)), Helpers.Hundo);														Items.PieceOfHeart
+Town_Simulation_Chest;			`HP`;			0x0F04C2;																	(|(&Helpers.HasSword, Items.Rupee200), Helpers.Hundo);																																						Items.PieceOfHeart
 Town_ShoeShop_NPC;				Any;			0x0130EE;																	(|Items.WakeUpMushroom, Helpers.Hundo);																																										Items.PegasusBoots
 Town_MusicHouse_LeftChest;		Any;			0x23-0x05-0x00;																(|Helpers.MusicHouse, Helpers.Hundo);																																										Items.Rupee200
 Town_MusicHouse_MiddleChest;	Any;			0x23-0x05-0x01;																(|Helpers.MusicHouse, Helpers.Hundo);																																										Items.Rupee200
@@ -3890,14 +3890,14 @@ AccessDroplets								;	Helper;				;											(&Helpers.AccessLonLon, Helpers.C
 !ifdef - BIG_KEYS_STANDARD
 	Items.Untyped.0xa;	DungeonConstraint;	DummyToD
 	Items.Untyped.0xb;	DungeonConstraint;	DummyToD
-	DummyToD1	:DummyToD;	DungeonConstraint;	DumToD1:Define:FirstByte, DumToD1:Define:SecondByte;		;
-	DummyToD2	:DummyToD;	DungeonConstraint;	DumToD2:Define:FirstByte, DumToD2:Define:SecondByte;		Helpers.Inaccessible;
+	DummyToD1	:DummyToD:NoSpoiler;	DungeonConstraint;	DumToD1:Define:FirstByte, DumToD1:Define:SecondByte;		;
+	DummyToD2	:DummyToD:NoSpoiler;	DungeonConstraint;	DumToD2:Define:FirstByte, DumToD2:Define:SecondByte;		Helpers.Inaccessible;
 !else
 	!ifdef - BIG_KEYS_REGION
 		Items.Untyped.0xa;	DungeonConstraint;	DummyToD
 		Items.Untyped.0xb;	DungeonConstraint;	DummyToD
-		DummyToD1	:DummyToD;	DungeonConstraint;	DumToD1:Define:FirstByte, DumToD1:Define:SecondByte;		;
-		DummyToD2	:DummyToD;	DungeonConstraint;	DumToD2:Define:FirstByte, DumToD2:Define:SecondByte;		Helpers.Inaccessible;
+		DummyToD1	:DummyToD:NoSpoiler;	DungeonConstraint;	DumToD1:Define:FirstByte, DumToD1:Define:SecondByte;		;
+		DummyToD2	:DummyToD:NoSpoiler;	DungeonConstraint;	DumToD2:Define:FirstByte, DumToD2:Define:SecondByte;		Helpers.Inaccessible;
 	!endif
 !endif
 
