@@ -934,7 +934,7 @@ internal class Shuffler
         var nonNullLocations = _locations.Where(location => location.Contents is not null);
         
         var filledLocations = nonNullLocations.Where(location => 
-            location.Filled && location.Type is not LocationType.Helper and not LocationType.Untyped).ToList();
+            location is { Filled: true, Type: not LocationType.Helper and not LocationType.Untyped and not LocationType.Inaccessible }).ToList();
 
         var locationsWithRealItems = filledLocations.Where(location => location.Contents!.Value.Type is not ItemType.Untyped);
 
@@ -962,8 +962,7 @@ internal class Shuffler
         var nonNullLocations = _locations.Where(location => location.Contents is not null);
         
         var filledLocations = nonNullLocations.Where(location =>
-            location.Filled && location.Type != LocationType.Helper &&
-            location.Type != LocationType.Untyped);
+            location is { Filled: true, Type: not LocationType.Helper and not LocationType.Untyped and not LocationType.Inaccessible });
 
         var locationsWithRealItems = filledLocations.Where(location => location.Contents!.Value.Type is not ItemType.Untyped);
 
