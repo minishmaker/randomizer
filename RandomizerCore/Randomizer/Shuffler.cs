@@ -463,12 +463,16 @@ internal class Shuffler
         //Grab all items that we need to beat the seed
         var allItems = _majorItems.Concat(_dungeonMajorItems).Concat(_unshuffledItems).ToList();
 
+        //Like entrances, constraints shouldn't check logic when placing
         //Shuffle constraints
         nextLocationGroup = locationGroups.Any(group => group.Key == LocationType.DungeonConstraint) ? locationGroups.First(group => group.Key == LocationType.DungeonConstraint).ToList() : new List<Location>();
-        FillLocations(_dungeonConstraints, nextLocationGroup, allItems);
+        //FillLocations(_dungeonConstraints, nextLocationGroup, allItems);
+        FastFillLocations(_dungeonConstraints, nextLocationGroup);
+
         
         nextLocationGroup = locationGroups.Any(group => group.Key == LocationType.OverworldConstraint) ? locationGroups.First(group => group.Key == LocationType.OverworldConstraint).ToList() : new List<Location>();
-        FillLocations(_overworldConstraints, nextLocationGroup, allItems);
+        //FillLocations(_overworldConstraints, nextLocationGroup, allItems);
+        FastFillLocations(_overworldConstraints, nextLocationGroup);
         
         var unfilledLocations = new List<Location>();
 
