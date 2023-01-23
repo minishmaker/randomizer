@@ -456,6 +456,7 @@ public class Parser
             catch (Exception e)
             {
                 Logger.Instance.LogError($"Failed to parse line {index + 1}!");
+                Logger.Instance.LogException(e);
                 throw new ParserException(
                     $"Error at line \"{index + 1}\", directive \"{line}\": {e.Message}");
             }
