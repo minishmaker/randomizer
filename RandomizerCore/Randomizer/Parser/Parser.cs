@@ -317,7 +317,10 @@ public class Parser
             }
         }
 
-        var location = new Location(type, name, dungeons, addresses, defines, dependencies, itemOverride);
+        var hideInSpoiler = dungeons.Any(_ => _.Contains("NoSpoiler", StringComparison.OrdinalIgnoreCase));
+
+        var location = new Location(type, name, dungeons.Where(_ => !_.Contains("NoSpoiler", StringComparison.OrdinalIgnoreCase)).ToList(),
+            addresses, defines, dependencies, itemOverride, hideInSpoiler);
 
         return location;
     }

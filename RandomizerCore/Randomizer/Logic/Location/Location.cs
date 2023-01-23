@@ -23,10 +23,12 @@ public class Location
     public bool Filled;
     public string Name;
     public bool SecondaryAddressed;
+    public bool HideFromSpoilerLog;
     public LocationType Type;
 
     public Location(LocationType type, string name, List<string> dungeons, List<LocationAddress> addresses,
-        List<EventLocationAddress> defines, List<DependencyBase> dependencies, Item? replacementContents = null)
+        List<EventLocationAddress> defines, List<DependencyBase> dependencies, Item? replacementContents = null, 
+        bool hideFromSpoilerLog = false)
     {
         Type = type;
         Name = name;
@@ -59,6 +61,7 @@ public class Location
 
         Filled = false;
         _availableCache = null;
+        HideFromSpoilerLog = hideFromSpoilerLog;
     }
 
     public Item? Contents { get; private set; }
