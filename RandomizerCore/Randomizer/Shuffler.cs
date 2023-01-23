@@ -537,7 +537,7 @@ internal class Shuffler
         // unfilledLocations.Shuffle(_rng);
         nextLocationGroup = locationGroups.Any(group => group.Key == LocationType.Minor) ? locationGroups.First(group => group.Key == LocationType.Minor).ToList() : new List<Location>();
         unfilledLocations.AddRange(nextLocationGroup);
-        FastFillLocations(_minorItems.ToList(), unfilledLocations);
+        FastFillLocations(_minorItems.Concat(_fillerItems).ToList(), unfilledLocations);
 
         // Final cache clear
         _locations.ForEach(location => location.InvalidateCache());
@@ -822,8 +822,9 @@ internal class Shuffler
     /// <param name="locations">The locations in which to fill the items</param>
     private void FastFillLocations(List<Item> items, List<Location> locations)
     {
+        var nonFillerItems = items.Where(item => item.ShufflePool is not ItemPool.Filler);
         // Don't need to check logic, cause the items being placed do not affect logic
-        foreach (var item in items)
+        foreach (var item in nonFillerItems)
         {
             if (locations.Count == 0) return;
             
