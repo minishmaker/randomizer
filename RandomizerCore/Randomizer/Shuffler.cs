@@ -970,9 +970,7 @@ internal class Shuffler
         var filledLocations = nonNullLocations.Where(location =>
             location is { Filled: true, Type: not LocationType.Helper and not LocationType.Untyped and not LocationType.Inaccessible });
 
-        var locationsWithRealItems = filledLocations.Where(location => location.Contents!.Value.Type is not ItemType.Untyped && !location.HideFromSpoilerLog);
-
-        var hackToFilterOutLanternGarbage = locationsWithRealItems.Where(location =>
+        var hackToFilterOutLanternGarbage = filledLocations.Where(location =>
             location.Contents!.Value.Type != ItemType.Lantern || location.Contents!.Value.SubValue == 0).ToList();
 
         var availableItems = new List<Item>();
@@ -993,6 +991,7 @@ internal class Shuffler
 
             foreach (var location in accessibleLocations)
             {
+                if (location.HideFromSpoilerLog) continue;
                 spoilerBuilder.AppendLine($"Sphere {sphereCounter}: {location.Contents!.Value.Type} in {location.Name}");
 
                 AppendSubvalue(spoilerBuilder, location);
