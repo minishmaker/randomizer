@@ -858,8 +858,7 @@ internal class Shuffler
         var availableItems = preAvailableItems.ToList();
 
         var filledLocations = _locations.Where(location =>
-            location.Filled && location.Type != LocationType.Helper &&
-            location.Type != LocationType.Untyped).ToList();
+            location is { Filled: true, Type: not LocationType.Helper and not LocationType.Untyped and not LocationType.Inaccessible }).ToList();
 
         int previousSize;
 
