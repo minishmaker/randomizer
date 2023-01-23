@@ -2738,6 +2738,7 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 	!define - ToDRightBlock - 
 	!define - ToDLeftBlock - (|Items.SmallKey.0x1B:4, (&Items.SmallKey.0x1B:3, Helpers.CompleteDroplets, Helpers.ToDEitherPath))
 	!define - ToDBigDoor - Items.BigKey.0x1B
+	!define - ToDChuDoor - 
 		!ifdef - SMALL_KEYS_ELSE
 			!ifndef - BIG_KEYS_ELSE
 				!ifdef - BIG_KEYS_VANILLA
@@ -2759,6 +2760,8 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 					!define - ToDLeftBlock - Items.SmallKey.0x1B
 				!endif
 			!else
+				!undefine - ToDChuDoor
+				!define - ToDChuDoor - , (&Items.SmallKey.0x1B:3, Helpers.CompleteDroplets, Helpers.ToDEitherPath)
 				!ifndef - BIG_KEYS_ELSE
 					!ifdef - BIG_KEYS_VANILLA
 						!undefine - ToDLeftBlock
@@ -2780,7 +2783,7 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 	ToDWestDoor;				Helper;;	Items.SmallKey.0x1B:4
 	ToDDarkDoor;				Helper;;	Items.SmallKey.0x1B:4
 	ToDEitherDoor;				Helper;;	Items.SmallKey.0x1B:3
-	ToDChuDoor;					Helper;;	(|Items.SmallKey.0x1B:4, (&Items.SmallKey.0x1B:3, Helpers.CompleteDroplets, Helpers.ToDEitherPath))
+	ToDChuDoor;					Helper;;	(|Items.SmallKey.0x1B:4 `ToDChuDoor`)
 	CryptDoor;					Helper;;	Items.SmallKey.0x1E
 	CryptBlocks;				Helper;; 	Items.SmallKey.0x1E:3
 	PoWPostKeyDoor;				Helper;;	Helpers.PoW1stDoor
