@@ -18,13 +18,13 @@ public class CounterDependency : DependencyBase
         var counter = 0;
 
         foreach (var dependency in DependencySet.Keys)
-            if (dependency.DependencyFulfilled(availableItems, locations))
+            if (dependency.DependencyFulfilled(availableItems, locations, itemToPlace))
             {
                 var amountFound = 1;
 
                 if (dependency.GetType() == typeof(ItemDependency))
                     amountFound = availableItems.FindAll(i =>
-                        dependency.DependencyFulfilled(new List<Item>(new Item[1] { i }), locations)).Count;
+                        dependency.DependencyFulfilled(new List<Item>(new Item[1] { i }), locations, itemToPlace)).Count;
 
                 counter += DependencySet[dependency] * amountFound;
             }

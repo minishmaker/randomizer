@@ -17,7 +17,7 @@ public class LocationDependency : DependencyBase
     {
         foreach (var location in locations)
             if (location.Name == _requiredLocationName)
-                return location.IsAccessible(availableItems, locations);
+                return location.IsAccessible(availableItems, locations, itemToPlace);
         
         throw new ShuffleException(
             $"Could not find location {_requiredLocationName}. You may have an invalid logic file!");

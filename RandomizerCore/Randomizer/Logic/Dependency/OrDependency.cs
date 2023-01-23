@@ -14,7 +14,7 @@ public class OrDependency : DependencyBase
     public override bool DependencyFulfilled(List<Item> availableItems, List<Location.Location> locations, Item? itemToPlace = null)
     {
         foreach (var dependency in OrList)
-            if (dependency.DependencyFulfilled(availableItems, locations))
+            if (dependency.DependencyFulfilled(availableItems, locations, itemToPlace))
                 return true;
         
         return false;
