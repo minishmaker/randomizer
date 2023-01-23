@@ -452,12 +452,14 @@ internal class Shuffler
 
         var nextLocationGroup = locationGroups.Any(group => group.Key == LocationType.Music) ? locationGroups.First(group => group.Key == LocationType.Music).ToList() : new List<Location>();
 
-        FillLocations(_music, nextLocationGroup, null);
+        nextLocationGroup.Shuffle(_rng);
+        FastFillLocations(_music, nextLocationGroup);
         
         _rng = temp;
 
         //Shuffle dungeon entrances
         nextLocationGroup = locationGroups.Any(group => group.Key == LocationType.DungeonEntrance) ? locationGroups.First(group => group.Key == LocationType.DungeonEntrance).ToList() : new List<Location>();
+        nextLocationGroup.Shuffle(_rng);
         FastFillLocations(_dungeonEntrances, nextLocationGroup);
         
         //Grab all items that we need to beat the seed
@@ -467,11 +469,13 @@ internal class Shuffler
         //Shuffle constraints
         nextLocationGroup = locationGroups.Any(group => group.Key == LocationType.DungeonConstraint) ? locationGroups.First(group => group.Key == LocationType.DungeonConstraint).ToList() : new List<Location>();
         //FillLocations(_dungeonConstraints, nextLocationGroup, allItems);
+        nextLocationGroup.Shuffle(_rng);
         FastFillLocations(_dungeonConstraints, nextLocationGroup);
 
         
         nextLocationGroup = locationGroups.Any(group => group.Key == LocationType.OverworldConstraint) ? locationGroups.First(group => group.Key == LocationType.OverworldConstraint).ToList() : new List<Location>();
         //FillLocations(_overworldConstraints, nextLocationGroup, allItems);
+        nextLocationGroup.Shuffle(_rng);
         FastFillLocations(_overworldConstraints, nextLocationGroup);
         
         var unfilledLocations = new List<Location>();
@@ -547,6 +551,7 @@ internal class Shuffler
         nextLocationGroup = locationGroups.Any(group => group.Key == LocationType.Minor) ? locationGroups.First(group => group.Key == LocationType.Minor).ToList() : new List<Location>();
         unfilledLocations.AddRange(nextLocationGroup);
         unfilledLocations = unfilledLocations.Distinct().ToList();
+        unfilledLocations.Shuffle(_rng);
         FastFillLocations(_minorItems.Concat(_fillerItems).ToList(), unfilledLocations);
 
         // Final cache clear
