@@ -479,6 +479,7 @@ internal class Shuffler
         //Shuffle prizes
         nextLocationGroup = locationGroups.Any(group => group.Key == LocationType.DungeonPrize) ? locationGroups.First(group => group.Key == LocationType.DungeonPrize).ToList() : new List<Location>();
         unfilledLocations.AddRange(FillLocations(_dungeonPrizes, nextLocationGroup, allItems));
+        unfilledLocations = unfilledLocations.Distinct().ToList();
         
         //For dungeon majors, assume we have all majors and unshuffled items
         var allMajorsAndUnshuffled = _majorItems.Concat(_unshuffledItems).ToList();
@@ -489,17 +490,21 @@ internal class Shuffler
             nextLocationGroup,
             allMajorsAndUnshuffled,
             unfilledLocations));
+        unfilledLocations = unfilledLocations.Distinct().ToList();
 
         //Now that all dungeon items are placed, we add all the rest of the locations to the pool of unfilled locations
         nextLocationGroup = locationGroups.Any(group => group.Key == LocationType.Any) ? locationGroups.First(group => group.Key == LocationType.Any).ToList() : new List<Location>();
         unfilledLocations.AddRange(nextLocationGroup);
-
+        unfilledLocations = unfilledLocations.Distinct().ToList();
+        
         //Shuffle all other majors, do not assume any items are already obtained anymore
         nextLocationGroup = locationGroups.Any(group => group.Key == LocationType.Major) ? locationGroups.First(group => group.Key == LocationType.Major).ToList() : new List<Location>();
         unfilledLocations.AddRange(FillLocations(_majorItems,
             nextLocationGroup,
             null,
             unfilledLocations));
+        unfilledLocations = unfilledLocations.Distinct().ToList();
+
         
         // var unfilledLocations = _locations.Where(location =>
         //     !location.Filled && 
@@ -541,6 +546,7 @@ internal class Shuffler
         // unfilledLocations.Shuffle(_rng);
         nextLocationGroup = locationGroups.Any(group => group.Key == LocationType.Minor) ? locationGroups.First(group => group.Key == LocationType.Minor).ToList() : new List<Location>();
         unfilledLocations.AddRange(nextLocationGroup);
+        unfilledLocations = unfilledLocations.Distinct().ToList();
         FastFillLocations(_minorItems.Concat(_fillerItems).ToList(), unfilledLocations);
 
         // Final cache clear
