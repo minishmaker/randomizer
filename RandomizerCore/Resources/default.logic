@@ -125,8 +125,14 @@
 !dropdown - World Setting - Setting - Fusions - FUSION_SKIPS - Skip Fusion Cutscenes: - When doing a Kinstone Fusion you get a cutscene aftewards to show you what the fusion activated, and then a Map indicator spawns. - Choose - ALLOW_FUSION_SKIPS - 'Choose': If you hold a button prior to the start of the cutscene, then the cutscene is skipped, otherwise the cutscene plays normally.\n If 'Show Map' is enabled then only the cutscene is skipped, but the map screen is still shown. - Always - INSTANT_SKIP - 'Always': The cutscene is always skipped without player input.\n If 'Show Map' is enabled then it will always show the map screen. - Never - NO_FUSION_SKIP - 'Never': The cutscene is never able to be skipped by the player.
 !flag - World Setting - Setting - Fusions - SHOW_MAP - Show Map - If enabled, it will always show the map screen at the end of a cutscene, even if the cutscene is skipped.
 
-!flag - Logic Settings - Setting - Logic Rules - NO_LOGIC - No Logic - Items can go anywhere without regard to logic.\n LIKELY RESULTS IN UNBEATABLE SEEDS!
+!flag - World Setting - Setting - Wind Crests - CREST_CRENEL - Mt Crenel - If enabled, will activate the wind crest in Mt Crenel from the start of the game.
+!flag - World Setting - Setting - Wind Crests - CREST_FALLS - Veil Falls - If enabled, will activate the wind crest in Veil Falls from the start of the game.
+!flag - World Setting - Setting - Wind Crests - CREST_CLOUD - Cloud Tops - If enabled, will activate the wind crest in Cloud Tops from the start of the game.
+!flag - World Setting - Setting - Wind Crests - CREST_SWAMP - Swamp - If enabled, will activate the wind crest in Swamp from the start of the game.
+!flag - World Setting - Setting - Wind Crests - CREST_SHF - Link's House - If enabled, will activate the wind crest near Link's House from the start of the game.
+!flag - World Setting - Setting - Wind Crests - CREST_MINISH - Minish Woods - If enabled, will activate the wind crest in Minish Woods from the start of the game.
 
+!flag - Logic Settings - Setting - Logic Rules - NO_LOGIC - No Logic - Items can go anywhere without regard to logic.\n LIKELY RESULTS IN UNBEATABLE SEEDS!
 !dropdown - Logic Settings - Setting - Weapons - BOMBWEAPON - Bombs: - Bombs can damage nearly every enemy, Fighting Gleerok requires at least 30 bomb bag. - No - NOBOMB - 'No': Bombs are not considered as Weapons. - Yes - YESBOMB - 'Yes': Bombs are considered as weapons for most enemy fights. Bombs are never considered for Scissor Beetles, Madderpillar, Simon Simulations, and Golden Enemies.
 !dropdown - Logic Settings - Setting - Weapons - BOWWEAPON - Bows: - Bow can damage most enemies, many enemies are very resiliant to damage. Chu Bosses and Darknuts are Immune. - No - NOBOW - 'No': Bows are not considered as Weapons. - Yes - YESBOW - 'Yes': Bows are considered as weapons for most enemy fights. Bows are never considered for Chu Bossfights, Darknuts, Scissor Beetles, Madderpillar, Wizrobes, Simon Simulations, and Golden Enemies.
 !dropdown - Logic Settings - Setting - Weapons - GUSTWEAPON - Gust Jar: - Gust Jar can suck up various enemies like Ghini(Ghosts) and Beetles (The things that grab onto link). It can also grab objects and fire them like projectiles to kill enemies, some enemies or parts of enemies can be used as projectiles such as Helmasaurs and Stalfos. - No - NOGUST - 'No': Gust Jar is never considered for killing enemies. - Yes - YESGUST - 'Yes': Gust Jar is considered as weapons for all enemies that get sucked up by it, you are never expected to use objects as projectiles to kill enemies.
@@ -190,8 +196,8 @@
 !eventdefine - customRNG - 0x`RAND_INT`
 
 #version 0.6.2t
-!eventdefine - versionNumber - 0x00070000
-!eventdefine - versionNumbers - 0x00070000
+!eventdefine - versionNumber - 0x00070017
+!eventdefine - versionNumbers - 0x00070017
 
 #Cosmetic defines
 
@@ -431,6 +437,12 @@
 	!define - OPEN_RED_FUSIONS
 	!define - OPEN_BLUE_FUSIONS
 	!define - OPEN_GREEN_FUSIONS
+	!define - CREST_CRENEL
+	!define - CREST_FALLS
+	!define - CREST_CLOUD
+	!define - CREST_SWAMP
+	!define - CREST_SHF
+	!define - CREST_MINISH
 	!define - Replace_Small_Keys - 
 	!define - Replace_Big_Keys - 
 	!define - Replace_Compass -
@@ -441,124 +453,173 @@
 !define - GOLDEN_ENEMY_GREEN
 !define - GOLDEN_ENEMY_RED
 
+!ifdef - CREST_CRENEL
+	!ifdef - CREST_FALLS
+		!ifdef - CREST_CLOUD
+			!define - CREST2 - F
+		!else
+			!define - CREST2 - B
+		!endif
+	!else
+		!ifdef - CREST_CLOUD
+			!define - CREST2 - D
+		!else
+			!define - CREST2 - 9
+		!endif
+	!endif
+!else
+	!ifdef - CREST_FALLS
+		!ifdef - CREST_CLOUD
+			!define - CREST2 - E
+		!else
+			!define - CREST2 - A
+		!endif
+	!else
+		!ifdef - CREST_CLOUD
+			!define - CREST2 - C
+		!else
+			!define - CREST2 - 8
+		!endif
+	!endif
+!endif
+!ifdef - CREST_SWAMP
+	!ifdef - CREST_SHF
+		!ifdef - CREST_MINISH
+			!define - CREST1 - F
+		!else
+			!define - CREST1 - 7
+		!endif
+	!else
+		!ifdef - CREST_MINISH
+			!define - CREST1 - B
+		!else
+			!define - CREST1 - 3
+		!endif
+	!endif
+!else
+	!ifdef - CREST_SHF
+		!ifdef - CREST_MINISH
+			!define - CREST1 - D
+		!else
+			!define - CREST1 - 5
+		!endif
+	!else
+		!ifdef - CREST_MINISH
+			!define - CREST1 - 9
+		!else
+			!define - CREST1 - 1
+		!endif
+	!endif
+!endif
+!eventdefine - mA83 - 0x`CREST1``CREST2`
+
 # This section defines values used by the patcher, this sets if and which fusions should be available
 !ifdef - OPEN_GOLD_FUSIONS
-	!define - Fusions - 
     !eventdefine - noGoldFusions							# if defined, golden kinstone fusions are not available (except the cloud fusions which is handled below)
-	!eventdefine - 2C81 - 0xFE								# sets all the cloud tops fusions, as well as the left and middle swamp fusions (the right swamp and falls fusions share an address with red fusions)
-	!eventdefine - 2CA0 - 0x10								# sets the tornado in cloud tops as spawned, shares an address with Graveyard Key stages
-	!eventdefine - 2CA7 - 0x11								# sets the wind tribe state to access higher floors, also sets tingle bros as spawned
+	!eventdefine - mC81 - 0xFE							# sets all the cloud tops fusions, as well as the left and middle swamp fusions (the right swamp and falls fusions share an address with red fusions)
+	!eventdefine - mCA0 - 0x10								# sets the tornado in cloud tops as spawned, shares an address with Graveyard Key stages
+	!eventdefine - mCA7 - 0xD1								# sets the wind tribe state to access higher floors, also sets tingle bros as spawned
 !else
-	!eventdefine - 2CA0 - 0x00								# makes the tornado in cloud tops unspawned
-	!eventdefine - 2CA7 - 0x10								# windtribe is default, tingle bros set as spawned
+	!eventdefine - mCA0 - 0x00								# makes the tornado in cloud tops unspawned
+	!eventdefine - mCA7 - 0xD0								# windtribe is default, tingle bros set as spawned
     !ifdef - NO_GOLD_FUSIONS
         !eventdefine - noGoldFusions						# if defined, golden kinstone fusions are not available (except the cloud fusions which is handled below)
-		!eventdefine - 2C81 - 0x3E							# marks the cloud tops clouds as having fused so they never offer a fusion, this address doesn't spawn the tornado
+		!eventdefine - mC81 - 0x3E							# marks the cloud tops clouds as having fused so they never offer a fusion, this address doesn't spawn the tornado
     !else
-		!define - Fusions - 
-		!eventdefine - 2C81 - 0x00							# sets the golden fusions as not completed
+		!eventdefine - mC81 - 0x00							# sets the golden fusions as not completed
 	!endif
 !endif
 
 !ifdef - OPEN_RED_FUSIONS
-	!define - Fusions - 
     !eventdefine - noRedFusions		# if defined, red kinstone fusions are not available
-	!eventdefine - 2C83 - 0xFF			# sets various red fusions
-	!eventdefine - 2C84 - 0xFF			# sets various red fusions
+	!eventdefine - mC83 - 0xFF			# sets various red fusions
+	!eventdefine - mC84 - 0xFF			# sets various red fusions
 !else
 	!ifdef - NO_RED_FUSIONS
 		!eventdefine - noRedFusions	# if defined, red kinstone fusions are not available
 		!undefine - GOLDEN_ENEMY_RED	# removes the golden enemy spawned by the red fusion from logic
-	!else
-		!define - Fusions - 
 	!endif
-	!eventdefine - 2C83 - 0x00
-	!eventdefine - 2C84 - 0x00
+	!eventdefine - mC83 - 0x00
+	!eventdefine - mC84 - 0x00
 !endif
 
 !ifdef - OPEN_BLUE_FUSIONS
-	!define - Fusions - 
     !eventdefine - noBlueFusions
-	!eventdefine - 2C86 - 0xFF
-	!eventdefine - 2CD2 - 0x03
+	!eventdefine - mC86 - 0xFF
+	!eventdefine - mCD2 - 0x03
 !else
     !ifdef - NO_BLUE_FUSIONS
         !eventdefine - noBlueFusions	# if defined, blue kinstone fusions are not available
-    !else
-		!define - Fusions - 
 	!endif
-	!eventdefine - 2C86 - 0x00
-	!eventdefine - 2CD2 - 0x00
+	!eventdefine - mC86 - 0x00
+	!eventdefine - mCD2 - 0x00
 !endif
 
 !ifdef - OPEN_GREEN_FUSIONS
-	!define - Fusions - 
     !eventdefine - noGreenFusions
-	!eventdefine - 2C88 - 0xFF
-	!eventdefine - 2C89 - 0xFF
-	!eventdefine - 2C8A - 0xFF
-	!eventdefine - 2C8B - 0xFF
-	!eventdefine - 2C8C - 0xFF
-	!eventdefine - 2C8D - 0x1F
+	!eventdefine - mC88 - 0xFF
+	!eventdefine - mC89 - 0xFF
+	!eventdefine - mC8A - 0xFF
+	!eventdefine - mC8B - 0xFF
+	!eventdefine - mC8C - 0xFF
+	!eventdefine - mC8D - 0x1F
 !else
     !ifdef - NO_GREEN_FUSIONS
         !eventdefine - noGreenFusions                         # if defined, green kinstone fusions are not available
 		!undefine - GOLDEN_ENEMY_GREEN
-    !else
-		!define - Fusions - 
 	!endif
-	!eventdefine - 2C88 - 0x00
-	!eventdefine - 2C89 - 0x00
-	!eventdefine - 2C8A - 0x00
-	!eventdefine - 2C8B - 0x00
-	!eventdefine - 2C8C - 0x00
-	!eventdefine - 2C8D - 0x00
+	!eventdefine - mC88 - 0x00
+	!eventdefine - mC89 - 0x00
+	!eventdefine - mC8A - 0x00
+	!eventdefine - mC8B - 0x00
+	!eventdefine - mC8C - 0x00
+	!eventdefine - mC8D - 0x00
 !endif
 
 # Here are addresses that have multiple color types and the combination needs to be checked before setting the value
 !ifdef - OPEN_GOLD_FUSIONS
 	!ifdef - OPEN_RED_FUSIONS
-		!eventdefine - 2C82 - 0xFF
+		!eventdefine - mC82 - 0xFF
 	!else
-		!eventdefine - 2C82 - 0x03
+		!eventdefine - mC82 - 0x03
 	!endif
 !else
 	!ifdef - OPEN_RED_FUSIONS
-		!eventdefine - 2C82 - 0xFC
+		!eventdefine - mC82 - 0xFC
 	!else
-		!eventdefine - 2C82 - 0x00
+		!eventdefine - mC82 - 0x00
 	!endif
 !endif
 
 !ifdef - OPEN_RED_FUSIONS
 	!ifdef - OPEN_BLUE_FUSIONS
-		!eventdefine - 2C85 - 0xFF
-		!eventdefine - 2CD1 - 0xE0
+		!eventdefine - mC85 - 0xFF
+		!eventdefine - mCD1 - 0xE0
 	!else
-		!eventdefine - 2C85 - 0x03
-		!eventdefine - 2CD1 - 0xA0
+		!eventdefine - mC85 - 0x03
+		!eventdefine - mCD1 - 0xA0
 	!endif
 !else
 	!ifdef - OPEN_BLUE_FUSIONS
-		!eventdefine - 2C85 - 0xFC
-		!eventdefine - 2CD1 - 0x40
+		!eventdefine - mC85 - 0xFC
+		!eventdefine - mCD1 - 0x40
 	!else
-		!eventdefine - 2C85 - 0x00
-		!eventdefine - 2CD1 - 0x00
+		!eventdefine - mC85 - 0x00
+		!eventdefine - mCD1 - 0x00
 	!endif
 !endif
 
 !ifdef - OPEN_BLUE_FUSIONS
 	!ifdef - OPEN_GREEN_FUSIONS
-		!eventdefine - 2C87 - 0xFF
+		!eventdefine - mC87 - 0xFF
 	!else
-		!eventdefine - 2C87 - 0x07
+		!eventdefine - mC87 - 0x07
 	!endif
 !else
 	!ifdef - OPEN_GREEN_FUSIONS
-		!eventdefine - 2C87 - 0xF8
+		!eventdefine - mC87 - 0xF8
 	!else
-		!eventdefine - 2C87 - 0x00
+		!eventdefine - mC87 - 0x00
 	!endif
 !endif
 
@@ -1862,6 +1923,25 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 	PoWRollerRoom;		Helper;;		
 !endif
 
+!ifdef - CREST_FALLS
+	!define - FALLS_ACCESS
+!else
+	!ifdef - CREST_CLOUD
+		!define - FALLS_ACCESS
+	!else
+		!ifndef - NO_GOLD_FUSIONS
+			!define - FALLS_ACCESS
+		!endif
+	!endif
+!endif
+!ifdef - CREST_CLOUD
+	!define - WTACCESS
+!else
+	!ifndef - NO_GOLD_FUSIONS
+		!define - WTACCESS
+	!endif
+!endif
+
 #All Fusion Helpers
 !ifdef - NO_GOLD_FUSIONS
 	CloudFusions;				Helper;;	Helpers.Inaccessible																											#CloudTopsTornado
@@ -1960,7 +2040,7 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 				Items.Kinstone.RedW:9;	Major;
 				CanFuseRedW;		Helper;; Items.Kinstone.RedW:9
 			!endif
-			!ifdef - NO_GOLD_FUSIONS
+			!ifndef - FALLS_ACCESS
 				Items.Kinstone.RedV:6;	Major;
 				CanFuseRedV;		Helper;; Items.Kinstone.RedV:6
 				CanFuseRedMinish0;	Helper;; Items.Kinstone.RedV:6
