@@ -2192,7 +2192,7 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 		BremorFusion;				Helper;;	Helpers.CanFuseRedW, Helpers.DinNayruFaroreFusion																			#USELESSHouse			0B
 		GreybladeFusion;			Helper;;	Helpers.CanFuseRedW, Locations.Crenel_Dojo_HP																				#SwampWaterfallDojo		0C
 		!ifdef - NO_GREEN_FUSIONS
-			!define - Tingle2Fusion - (|Helpers.CanDestroyTrees, Helpers.WindCrest), Items.PacciCane, Helpers.HasMagicBoomerang
+			!define - Tingle2Fusion - Helpers.AccessEasternHills, Items.PacciCane, Helpers.HasMagicBoomerang
 		!else
 			!define - Tingle2Fusion - Helpers.Tingle1Fusion, Helpers.HasMagicBoomerang
 		!endif
@@ -2287,7 +2287,7 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 		Spekter2Fusion;				Helper;;	Helpers.CanFuseBlueL, Helpers.Spekter1Fusion																				#USELESSCuccoHouse	28
 		PostmanFusion;				Helper;;	Helpers.CanFuseBlueL																										#USELESSMarcy		2C
 		Shared2DFusion;				Helper;;	Helpers.CanFuseSharedBlue																									#USELESSNHFTree	2D
-		HillsMinishFusion;			Helper;;	Helpers.CanFuseBlueS, (|Helpers.CanDestroyTrees, Helpers.WindCrest)															#HillsBeanstalk		2E
+		HillsMinishFusion;			Helper;;	Helpers.CanFuseBlueS, Helpers.AccessEasternHills																			#HillsBeanstalk		2E
 		Dampe1Fusion;				Helper;;	Helpers.CanFuseBlueS, Locations.Valley_DampeNPC																				#RightGrave		30
 		Spekter1Fusion;				Helper;;	Helpers.CanFuseBlueGhost, Locations.Valley_GraveyardLeftGrave_HP															#USELESSChestGame	31
 		HurdyFusion;				Helper;;	Helpers.CanFuseBlueS																										#SHFTree			32
@@ -3208,7 +3208,7 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 		MinishScrub1Fusion;			Helper;;	Helpers.CanFuseGreenScrub, Helpers.AccessMinishWoods, Helpers.SwampScrubFusion, Helpers.Scrubs								#WesternOcto		3D
 		TFZ3Fusion;					Helper;;	Helpers.CanFuseGreenC, Helpers.TFZ2Fusion																					#SwampSouthLily	3E
 		TrilbyMinishFusion;			Helper;;	Helpers.CanFuseGreenC, Locations.Trilby_DigCave_RightChest																	#TrilbyPuddle		3F
-		AnkleFusion;				Helper;;	Helpers.CanFuseGreenC, Items.PacciCane, (|Helpers.CanDestroyTrees, Helpers.WindCrest), Locations.LonLon_Cave_Chest			#NHFTopRightTree	40
+		AnkleFusion;				Helper;;	Helpers.CanFuseGreenC, Items.PacciCane, Helpers.AccessEasternHills, Locations.LonLon_Cave_Chest								#NHFTopRightTree	40
 		!ifdef - NO_BLUE_FUSIONS
 		Dampe2Fusion;				Helper;;	Helpers.CanFuseGreenC, Locations.Valley_DampeNPC																			#RuinsCrack		41
 		Gina1Fusion;				Helper;;	Helpers.Inaccessible																										#TownWaterfall		42
@@ -3226,7 +3226,7 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 		HaileyFusion;				Helper;;	Helpers.CanFuseGreenG, Helpers.AccessClouds																					#FallsTektite		4A
 		TFZ1Fusion;					Helper;;	Helpers.CanFuseGreenTFZ1, (|Helpers.Fountain, Locations.MinishVillage_HP, Helpers.Library) 									#SwampNorthLily	4B
 		CastleMinishFusion;			Helper;;	Helpers.CanFuseGreenG, Helpers.BonkedTrees																					#WesternTreeFallSouth	4C
-		KnuckleFusion;				Helper;;	Helpers.CanFuseGreenG, Items.PacciCane, (|Helpers.CanDestroyTrees, Helpers.WindCrest), Locations.Trilby_DigCave_RightChest	#NHFBottomLeftTree	4D
+		KnuckleFusion;				Helper;;	Helpers.CanFuseGreenG, Items.PacciCane, Helpers.AccessEasternHills, Locations.Trilby_DigCave_RightChest						#NHFBottomLeftTree	4D
 		Shared4EFusion;				Helper;;	Helpers.CanFuseShared4E																										#MWCrack			4E		
 		MinesMinishNWFusion;		Helper;;	Helpers.CanFuseGreenP, Helpers.AccessMelari																					#SpringPathChest	4F
 		Shared50Fusion;				Helper;;	Helpers.CanFuseShared50																										#LLRPathChest		50
@@ -3242,8 +3242,8 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 		Shared56Fusion;				Helper;;	Helpers.CanFuseShared56																										#MinishWoodsOcto	56
 		TFZ2Fusion;					Helper;;	Helpers.CanFuseGreenTFZ2, Helpers.TFZ1Fusion																				#SwampWestLily		57
 		Shared58Fusion;				Helper;;	Helpers.CanFuseShared58																										#SHFPuddle		58
-		Tingle1Fusion;				Helper;;	Helpers.CanFuseGreenP, Items.PacciCane, (|Helpers.CanDestroyTrees, Helpers.WindCrest)										#NHFTopLeftTree		59
-		DavidJr1Fusion;				Helper;;	Helpers.CanFuseGreenDavid, Items.PacciCane, (|Helpers.CanDestroyTrees, Helpers.WindCrest), Helpers.AccessLonLon				#NHFBottomRightTree	5A
+		Tingle1Fusion;				Helper;;	Helpers.CanFuseGreenP, Items.PacciCane, Helpers.AccessEasternHills															#NHFTopLeftTree		59
+		DavidJr1Fusion;				Helper;;	Helpers.CanFuseGreenDavid, Items.PacciCane, Helpers.AccessEasternHills, Helpers.AccessLonLon								#NHFBottomRightTree	5A
 		MinishScrub2Fusion;			Helper;;	Helpers.CanFuseGreenP, Helpers.MinishScrub1Fusion																			#SwampTopLeftCrack	5B
 		Siroc1Fusion;				Helper;;	Helpers.CanFuseGreenSiroc, Helpers.AccessWindTribe																			#GraveyardLeftChest	5C
 		Siroc2Fusion;				Helper;;	Helpers.CanFuseGreenG, Helpers.Siroc1Fusion																					#GraveyardRightChest	5D
@@ -3726,7 +3726,7 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 
 Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for good measure
 
-!ifdef - NO_GOLD_FUSIONS
+!ifndef - NO_GOLD_FUSIONS
 	!ifdef - SMALL_KEYS_VANILLA
 		!define - GOLDFUSIONSMALL - Unshuffled
 	!else
@@ -3968,7 +3968,7 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 	!endif
 !endif
 
-!ifdef - TRIBE_PORTAL
+!ifdef - TRIBE_ACCESS
 	!define - WTFUSION - Dungeon
 !else
 	!define - WTFUSION - Inaccessible
@@ -4361,7 +4361,7 @@ Crenel_BeanstalkFusion_Item8		`REDFUSIONRUPEE`;	0x0F5E1B;																(|(&Hel
 Crenel_RainPathFusion_Chest;		`GREENFUSION`;		0x0FE066;																(|(&Helpers.MinesMinishBedroomFusion, Helpers.AccessCrenel, Items.GripRing), Helpers.Hundo);	Items.Kinstone.BlueL
 
 	!define - COF_OUTSIDE - :CoFSmallOutside	:CoFBigOutside	:CoFCompassOutside	:SmallOutside	:BigOutside	:CompassOutside
-AccessMelari;	Helper;	;	(|Helpers.WindCrest, (&Helpers.AccessCrenel, (|(&Items.PacciCane, (|Items.GripRing, Helpers.CrenelMushroom)), (&Items.GripRing, (|Items.RocsCape, Helpers.LightArrowBreak, Items.GustJar), Helpers.CrenelSwitch))))
+AccessMelari;	Helper;	;	(|Helpers.CrenelWindCrest, (&Helpers.AccessCrenel, (|(&Items.PacciCane, (|Items.GripRing, Helpers.CrenelMushroom)), (&Items.GripRing, (|Items.RocsCape, Helpers.LightArrowBreak, Items.GustJar), Helpers.CrenelSwitch))))
 Crenel_UpperBlock_Chest				`COF_OUTSIDE`;	Dungeon;		0x26-0x03-0x00;	(|Helpers.AccessMelari, Helpers.Hundo);								Items.Kinstone.BlueS
 Crenel_MinesPathFusion_Chest		`COF_OUTSIDE`;	`GREENFUSION`;	0x0FE096;		(|(&Helpers.DavidJr2Fusion, Helpers.AccessMelari), Helpers.Hundo);	Items.Shells.200
 Crenel_Melari_LowerMiddle_Dig		`COF_OUTSIDE`;	`DIG`;			0x0DC8C3;	 	(|(&Helpers.AccessMelari, Items.MoleMitts), Helpers.Hundo);			Items.Kinstone.BlueL
