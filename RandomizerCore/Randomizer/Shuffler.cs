@@ -601,8 +601,8 @@ internal class Shuffler
         
         var shuffledLocationsThisSphere = locationsAvailableThisSphere
             .Where(location => location.Type is not LocationType.Unshuffled).ToList();
-        var unshuffledLocationsThisSphere =
-            locationsAvailableThisSphere.Where(location => location.Type is LocationType.Unshuffled).ToList();
+        //var unshuffledLocationsThisSphere =
+        //    locationsAvailableThisSphere.Where(location => location.Type is LocationType.Unshuffled).ToList();
         
         var maxRetries = allShuffledItems.Count;
 
@@ -614,9 +614,9 @@ internal class Shuffler
             MaxRetryCount = maxRetries,
         };
 
-        var unshuffledItemsThisSphere =
-            unshuffledLocationsThisSphere.Select(location => location.Contents!.Value).ToList();
-        obtainedItems.AddRange(unshuffledItemsThisSphere);
+        //var unshuffledItemsThisSphere =
+        //    unshuffledLocationsThisSphere.Select(location => location.Contents!.Value).ToList();
+        //obtainedItems.AddRange(unshuffledItemsThisSphere);
 
         foreach (var location in locationsAvailableThisSphere)
         {
@@ -712,10 +712,12 @@ internal class Shuffler
             //var locationsAvailableNextSphere = allPlaceableLocations.Where(location => location.IsAccessible(obtainedItems.Concat(elementItemsPlacedThisSphere).Concat(dungeonItemsPlacedThisSphere).Concat(placedItemsThisSphere).ToList(), _locations)).ToList();
             var locationsAvailableNextSphere = allPlaceableLocations.Where(location => location.IsAccessible(obtainedItems.Concat(placedItemsThisSphere).ToList(), _locations)).ToList();
 
-            var elementsPlacedThisSphere = new List<Location>();
-            var elementItemsPlacedThisSphere = new List<Item>();
-            var dungeonLocationsPlacedThisSphere = new List<Location>();
-            var dungeonItemsPlacedThisSphere = new List<Item>();
+            var preFilledLocationsPlacedAfterThisSphere = new List<Location>();
+            var preFilledItemsPlacedAfterThisSphere = new List<Item>();
+            //var elementsPlacedThisSphere = new List<Location>();
+            //var elementItemsPlacedThisSphere = new List<Item>();
+            //var dungeonLocationsPlacedThisSphere = new List<Location>();
+            //var dungeonItemsPlacedThisSphere = new List<Item>();
 
             for (var i = 0; i < elementLocations.Count;)
             {
@@ -730,18 +732,18 @@ internal class Shuffler
                 ++i;
             }
 
-            for (var i = 0; i < dungeonItemLocations.Count;)
-            {
-                var e = dungeonItemLocations[i];
-                if (e.IsAccessible(obtainedItems.ToList(), _locations))
-                {
-                    dungeonItemsPlacedThisSphere.Add(e.Contents!.Value);
-                    dungeonLocationsPlacedThisSphere.Add(e);
-                    dungeonItemLocations.Remove(e);
-                    continue;
-                }
-                ++i;
-            }
+            //for (var i = 0; i < dungeonItemLocations.Count;)
+            //{
+            //    var e = dungeonItemLocations[i];
+            //    if (e.IsAccessible(obtainedItems.ToList(), _locations))
+            //    {
+            //        dungeonItemsPlacedThisSphere.Add(e.Contents!.Value);
+            //        dungeonLocationsPlacedThisSphere.Add(e);
+            //        dungeonItemLocations.Remove(e);
+            //        continue;
+            //    }
+            //    ++i;
+            //}
 
             if (locationsAvailableNextSphere.Count == 0 && elementsPlacedThisSphere.Count == 0 && dungeonLocationsPlacedThisSphere.Count == 0)
             {
