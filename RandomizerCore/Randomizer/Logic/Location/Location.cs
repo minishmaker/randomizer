@@ -162,7 +162,9 @@ public class Location
         if (!SecondaryAddressed && itemToPlace.SubValue != 0) return false;
 
         // Can only place in correct dungeon
-        if (itemToPlace.Dungeon != "" && !Dungeons.Contains(itemToPlace.Dungeon)) return false; 
+        if (itemToPlace.Dungeon != "" && !Dungeons.Contains(itemToPlace.Dungeon)) return false;
+
+        if ((Type == LocationType.DungeonPrize && itemToPlace.ShufflePool is not ItemPool.DungeonPrize) || (itemToPlace.ShufflePool is ItemPool.DungeonPrize && Type != LocationType.DungeonPrize)) return false;
         
         return ShufflerConstraints.All(constraint => constraint.Invoke(this, itemToPlace, availableItems, locations));
 
@@ -175,20 +177,20 @@ public class Location
 
         RecursionCount++;
 
-        if (_availableCache != null)
-        {
-            RecursionCount--;
-            return (bool)_availableCache;
-        }
+        //if (_availableCache != null)
+        //{
+        //    RecursionCount--;
+        //    return (bool)_availableCache;
+        //}
 
         if (Dependencies.Any(dependency => !dependency.DependencyFulfilled(availableItems, locations, itemToPlace)))
         {
-            _availableCache = false;
+            //_availableCache = false;
             RecursionCount--;
             return false;
         }
 
-        _availableCache = true;
+        //_availableCache = true;
         RecursionCount--;
         return true;
     }

@@ -445,7 +445,10 @@ internal class Shuffler
     {
         var locationGroups = _locations.GroupBy(location => location.Type).ToList();
         //We now do randomization in phases, following the ordering of items in <code>LocationType</code>
-        
+
+        //var x = _dungeonEntrances.Concat(_dungeonConstraints).Concat(_overworldConstraints).ToList();
+        //var y = x.Concat(_dungeonPrizes).ToList();
+
         //Make it so randomized music doesn't affect randomization
         var temp = _rng;
         _rng = new Random(Seed);
@@ -477,39 +480,61 @@ internal class Shuffler
         //FillLocations(_overworldConstraints, nextLocationGroup, allItems);
         nextLocationGroup.Shuffle(_rng);
         FastFillLocations(_overworldConstraints, nextLocationGroup);
-        
-        var unfilledLocations = new List<Location>();
-
-        //Shuffle prizes
+        // var unfilledLocations = new List<Location>();
+        //
+        // //Shuffle prizes
         nextLocationGroup = locationGroups.Any(group => group.Key == LocationType.DungeonPrize) ? locationGroups.First(group => group.Key == LocationType.DungeonPrize).ToList() : new List<Location>();
-        unfilledLocations.AddRange(FillLocations(_dungeonPrizes, nextLocationGroup, allItems));
-        unfilledLocations = unfilledLocations.Distinct().ToList();
-        
+        var u = FillLocations(_dungeonPrizes, nextLocationGroup, allItems);
+
         //For dungeon majors, assume we have all majors and unshuffled items
         var allMajorsAndUnshuffled = _majorItems.Concat(_unshuffledItems).ToList();
 
         //Shuffle dungeon majors
         nextLocationGroup = locationGroups.Any(group => group.Key == LocationType.Dungeon) ? locationGroups.First(group => group.Key == LocationType.Dungeon).ToList() : new List<Location>();
-        unfilledLocations.AddRange(FillLocations(_dungeonMajorItems,
+        u.AddRange(FillLocations(_dungeonMajorItems,
             nextLocationGroup,
             allMajorsAndUnshuffled,
-            unfilledLocations));
-        unfilledLocations = unfilledLocations.Distinct().ToList();
+            u));
 
-        //Now that all dungeon items are placed, we add all the rest of the locations to the pool of unfilled locations
-        nextLocationGroup = locationGroups.Any(group => group.Key == LocationType.Any) ? locationGroups.First(group => group.Key == LocationType.Any).ToList() : new List<Location>();
-        unfilledLocations.AddRange(nextLocationGroup);
-        unfilledLocations = unfilledLocations.Distinct().ToList();
-        
-        //Shuffle all other majors, do not assume any items are already obtained anymore
-        nextLocationGroup = locationGroups.Any(group => group.Key == LocationType.Major) ? locationGroups.First(group => group.Key == LocationType.Major).ToList() : new List<Location>();
-        unfilledLocations.AddRange(FillLocations(_majorItems,
-            nextLocationGroup,
-            null,
-            unfilledLocations));
-        unfilledLocations = unfilledLocations.Distinct().ToList();
+        var iii = _majorItems.Concat(_minorItems).ToList();
+        var locationsToFill = _locations.Where(_ =>
+                _.Type is LocationType.Any or LocationType.Major or LocationType.Minor).Concat(u).ToList();
 
-        
+        while (iii.Count < locationsToFill.Count)
+            iii.Add(_fillerItems[_rng.Next(_fillerItems.Count)]);
+
+        var elementLocations = _locations.Where(_ => _.Contents.HasValue && _.Contents.Value.ShufflePool is ItemPool.DungeonPrize).ToList();
+        var dungeonLocations = _locations.Where(_ => _.Contents.HasValue && _.Contents.Value.ShufflePool is ItemPool.DungeonMajor).ToList();
+
+        var unfilledLocations = FillLocationsNew(iii, x, dungeonLocations, elementLocations, locationsToFill);
+        // unfilledLocations.AddRange(FillLocations(_dungeonPrizes, nextLocationGroup, allItems));
+        // unfilledLocations = unfilledLocations.Distinct().ToList();
+        //
+        // //For dungeon majors, assume we have all majors and unshuffled items
+        // var allMajorsAndUnshuffled = _majorItems.Concat(_unshuffledItems).ToList();
+        //
+        // //Shuffle dungeon majors
+        // nextLocationGroup = locationGroups.Any(group => group.Key == LocationType.Dungeon) ? locationGroups.First(group => group.Key == LocationType.Dungeon).ToList() : new List<Location>();
+        // unfilledLocations.AddRange(FillLocations(_dungeonMajorItems,
+        //     nextLocationGroup,
+        //     allMajorsAndUnshuffled,
+        //     unfilledLocations));
+        // unfilledLocations = unfilledLocations.Distinct().ToList();
+        //
+        // //Now that all dungeon items are placed, we add all the rest of the locations to the pool of unfilled locations
+        // nextLocationGroup = locationGroups.Any(group => group.Key == LocationType.Any) ? locationGroups.First(group => group.Key == LocationType.Any).ToList() : new List<Location>();
+        // unfilledLocations.AddRange(nextLocationGroup);
+        // unfilledLocations = unfilledLocations.Distinct().ToList();
+        //
+        // //Shuffle all other majors, do not assume any items are already obtained anymore
+        // nextLocationGroup = locationGroups.Any(group => group.Key == LocationType.Major) ? locationGroups.First(group => group.Key == LocationType.Major).ToList() : new List<Location>();
+        // unfilledLocations.AddRange(FillLocations(_majorItems,
+        //     nextLocationGroup,
+        //     null,
+        //     unfilledLocations));
+        // unfilledLocations = unfilledLocations.Distinct().ToList();
+
+
         // var unfilledLocations = _locations.Where(location =>
         //     !location.Filled && 
         //     location.Type is not LocationType.Helper and not LocationType.Untyped and not LocationType.Music).ToList();
@@ -548,24 +573,26 @@ internal class Shuffler
         //
         // // Put minor items in locations, not checking logic
         // unfilledLocations.Shuffle(_rng);
-        nextLocationGroup = locationGroups.Any(group => group.Key == LocationType.Minor) ? locationGroups.First(group => group.Key == LocationType.Minor).ToList() : new List<Location>();
-        unfilledLocations.AddRange(nextLocationGroup);
+        //nextLocationGroup = locationGroups.Any(group => group.Key == LocationType.Minor) ? locationGroups.First(group => group.Key == LocationType.Minor).ToList() : new List<Location>();
+        //unfilledLocations.AddRange(nextLocationGroup);
         unfilledLocations = unfilledLocations.Distinct().ToList();
         unfilledLocations.Shuffle(_rng);
-        FastFillLocations(_minorItems.Concat(_fillerItems).ToList(), unfilledLocations);
+        FastFillLocations(_fillerItems, unfilledLocations);
+        //FastFillLocations(_minorItems.Concat(_fillerItems).ToList(), unfilledLocations);
 
         // Final cache clear
-        _locations.ForEach(location => location.InvalidateCache());
+        //_locations.ForEach(location => location.InvalidateCache());
 
         _randomized = true;
     }
 
-    private List<Location> FillLocations(List<Item> allShuffledItems, List<Location> allPlaceableLocations)
+    private List<Location> FillLocationsNew(List<Item> allShuffledItems, List<Location> preFilledLocations, List<Location> allPlaceableLocations)
     {
         var spheres = new List<Sphere>();
 
         var sphereNumber = 0;
         var obtainedItems = new List<Item>();
+        //obtainedItems.AddRange(assumedItems);
 
         var canBeatVaati = false;
 
@@ -576,12 +603,15 @@ internal class Shuffler
             .Where(location => location.Type is not LocationType.Unshuffled).ToList();
         var unshuffledLocationsThisSphere =
             locationsAvailableThisSphere.Where(location => location.Type is LocationType.Unshuffled).ToList();
+        
+        var maxRetries = allShuffledItems.Count;
 
         var sphere = new Sphere
         {
             Locations = locationsAvailableThisSphere,
             TotalShuffledLocations = shuffledLocationsThisSphere.Count,
             SphereNumber = sphereNumber,
+            MaxRetryCount = maxRetries,
         };
 
         var unshuffledItemsThisSphere =
@@ -593,7 +623,6 @@ internal class Shuffler
             allPlaceableLocations.Remove(location);
         }
 
-        var maxRetries = shuffledLocationsThisSphere.Count == 0 ? 0 : allShuffledItems.Count / shuffledLocationsThisSphere.Count;
         var retryCount = 0;
 
         while (//!allShuffledItems.Any(item => item.ShufflePool is not ItemPool.Major and not ItemPool.DungeonMajor) ||
@@ -605,21 +634,39 @@ internal class Shuffler
             var placedItemsThisSphere = new List<Item>();
             
             var filledLocationThisSphere = false;
-            for (var i = 0; i < shuffledLocationsThisSphere.Count; )
+            var forLoopRetryCount = 0;
+            const int forLoopMaxRetries = 15;
+            shuffledLocationsThisSphere.Shuffle(_rng);
+            for (var i = 0; i < shuffledLocationsThisSphere.Count && forLoopRetryCount < forLoopMaxRetries; )
             {
+                //_locations.ForEach(location => location.InvalidateCache());
                 var location = shuffledLocationsThisSphere[0];
+
+                var itemsWithSameDungeon = allShuffledItems.Where(item => location.Dungeons.Contains(item.Dungeon)).ToList();
+
+                var placeableItems = allShuffledItems.Where(item => string.IsNullOrEmpty(item.Dungeon) || location.Dungeons.Contains(item.Dungeon)).ToList();
+
+                //var item = filledLocationThisSphere
+                //    ? allShuffledItems[_rng.Next(allShuffledItems.Count)]
+                //    : availableMajorItems[_rng.Next(availableMajorItems.Count)];
+
+                var item = placeableItems[_rng.Next(placeableItems.Count)];
+
+                if (itemsWithSameDungeon.Any())
+                    item = itemsWithSameDungeon[_rng.Next(itemsWithSameDungeon.Count)];
+
+                if (location.Name.Contains("EastIce"))
+                    Console.WriteLine("BREAK");
                 
-                var item = filledLocationThisSphere
-                    ? allShuffledItems[_rng.Next(allShuffledItems.Count)]
-                    : availableMajorItems[_rng.Next(availableMajorItems.Count)];
 
                 if (!location.CanPlace(item, obtainedItems, _locations))
                 {
+                    forLoopRetryCount++;
                     shuffledLocationsThisSphere.Shuffle(_rng);
                     continue;
                 }
                 
-                location.SetItem(item);
+                location.Fill(item);
                 shuffledLocationsThisSphere.Remove(location);
                 allShuffledItems.Remove(item);
                 placedItemsThisSphere.Add(item);
@@ -627,11 +674,79 @@ internal class Shuffler
             }
             
             //The available items has changed, invalidate cache and re-run
-            _locations.ForEach(location => location.InvalidateCache());
+            //_locations.ForEach(location => location.InvalidateCache());
+
+            //var elementsPlacedThisSphere = new List<Location>();
+            //var elementItemsPlacedThisSphere = new List<Item>();
+            //var dungeonLocationsPlacedThisSphere = new List<Location>();
+            //var dungeonItemsPlacedThisSphere = new List<Item>();
+
+            //for (var i = 0; i < elementLocations.Count;)
+            //{
+            //    var e = elementLocations[i];
+            //    if (e.IsAccessible(obtainedItems.ToList(), _locations))
+            //    {
+            //        elementItemsPlacedThisSphere.Add(e.Contents!.Value);
+            //        elementsPlacedThisSphere.Add(e);
+            //        elementLocations.Remove(e);
+            //        continue;
+            //    }
+            //    ++i;
+            //}
+
+            //for (var i = 0; i < dungeonItemLocations.Count;)
+            //{
+            //    var e = dungeonItemLocations[i];
+            //    if (e.IsAccessible(obtainedItems.ToList(), _locations))
+            //    {
+            //        dungeonItemsPlacedThisSphere.Add(e.Contents!.Value);
+            //        dungeonLocationsPlacedThisSphere.Add(e);
+            //        dungeonItemLocations.Remove(e);
+            //        continue;
+            //    }
+            //    ++i;
+            //}
+
+            //_locations.ForEach(location => location.InvalidateCache());
+
+            //var locationsAvailableNextSphere = allPlaceableLocations.Where(location => location.IsAccessible(obtainedItems.Concat(elementItemsPlacedThisSphere).Concat(dungeonItemsPlacedThisSphere).Concat(placedItemsThisSphere).ToList(), _locations)).ToList();
             var locationsAvailableNextSphere = allPlaceableLocations.Where(location => location.IsAccessible(obtainedItems.Concat(placedItemsThisSphere).ToList(), _locations)).ToList();
 
-            if (locationsAvailableNextSphere.Count == 0)
+            var elementsPlacedThisSphere = new List<Location>();
+            var elementItemsPlacedThisSphere = new List<Item>();
+            var dungeonLocationsPlacedThisSphere = new List<Location>();
+            var dungeonItemsPlacedThisSphere = new List<Item>();
+
+            for (var i = 0; i < elementLocations.Count;)
             {
+                var e = elementLocations[i];
+                if (e.IsAccessible(obtainedItems.ToList(), _locations))
+                {
+                    elementItemsPlacedThisSphere.Add(e.Contents!.Value);
+                    elementsPlacedThisSphere.Add(e);
+                    elementLocations.Remove(e);
+                    continue;
+                }
+                ++i;
+            }
+
+            for (var i = 0; i < dungeonItemLocations.Count;)
+            {
+                var e = dungeonItemLocations[i];
+                if (e.IsAccessible(obtainedItems.ToList(), _locations))
+                {
+                    dungeonItemsPlacedThisSphere.Add(e.Contents!.Value);
+                    dungeonLocationsPlacedThisSphere.Add(e);
+                    dungeonItemLocations.Remove(e);
+                    continue;
+                }
+                ++i;
+            }
+
+            if (locationsAvailableNextSphere.Count == 0 && elementsPlacedThisSphere.Count == 0 && dungeonLocationsPlacedThisSphere.Count == 0)
+            {
+                elementLocations.AddRange(elementsPlacedThisSphere);
+                dungeonItemLocations.AddRange(dungeonLocationsPlacedThisSphere);
                 retryCount++;
                 if (retryCount > maxRetries)
                 {
@@ -640,17 +755,30 @@ internal class Shuffler
 
                     sphereNumber--;
 
+                    allPlaceableLocations.AddRange(locationsAvailableThisSphere);
+                    allShuffledItems.AddRange(placedItemsThisSphere);
+
                     var lastSphere = spheres[sphereNumber];
                     allShuffledItems.AddRange(lastSphere.Items);
                     
                     foreach (var item in lastSphere.Items)
                         obtainedItems.Remove(item);
 
+                    foreach (var item in lastSphere.ElementsPlacedThisSphere)
+                        obtainedItems.Remove(item);
+
+                    foreach (var item in lastSphere.DungeonItemsPlacedThisSphere)
+                            obtainedItems.Remove(item);
+
+                    elementLocations.AddRange(lastSphere.ElementLocationsThisSphere);
+                    dungeonItemLocations.AddRange(lastSphere.DungeonLocationsPlacedThisSphere);
+
                     while (lastSphere.TotalShuffledLocations == 0)
                     {
                         spheres.Remove(lastSphere);
                         sphereNumber--;
                         allPlaceableLocations.AddRange(lastSphere.Locations);
+
                         if (sphereNumber < 0)
                             throw new ShuffleException("Could not place any items in sphere 0 that advanced logic!");
                         lastSphere = spheres[sphereNumber];
@@ -658,6 +786,15 @@ internal class Shuffler
                         
                         foreach (var item in lastSphere.Items)
                             obtainedItems.Remove(item);
+
+                        foreach (var item in lastSphere.ElementsPlacedThisSphere)
+                            obtainedItems.Remove(item);
+
+                        foreach (var item in lastSphere.DungeonItemsPlacedThisSphere)
+                            obtainedItems.Remove(item);
+
+                        elementLocations.AddRange(lastSphere.ElementLocationsThisSphere);
+                        dungeonItemLocations.AddRange(lastSphere.DungeonLocationsPlacedThisSphere);
                     }
 
                     locationsAvailableThisSphere = lastSphere.Locations;
@@ -677,9 +814,11 @@ internal class Shuffler
                     unshuffledItemsThisSphere =
                         unshuffledLocationsThisSphere.Select(location => location.Contents!.Value).ToList();
                     obtainedItems.AddRange(unshuffledItemsThisSphere);
-                    
-                    maxRetries = shuffledLocationsThisSphere.Count == 0 ? 0 : allShuffledItems.Count / shuffledLocationsThisSphere.Count;
-                    retryCount = 0;
+                    placedItemsThisSphere = new List<Item>();
+
+                    maxRetries = lastSphere.MaxRetryCount;
+                    retryCount = lastSphere.CurrentAttemptCount + 1;
+                    spheres.Remove(lastSphere);
                     continue;
                 }
                 
@@ -695,8 +834,21 @@ internal class Shuffler
             sphereNumber++;
 
             obtainedItems.AddRange(placedItemsThisSphere);
+            //obtainedItems.AddRange(elementItemsPlacedThisSphere);
+            //obtainedItems.AddRange(dungeonItemsPlacedThisSphere);
+
+            if (shuffledLocationsThisSphere.Any())
+            {
+                allPlaceableLocations.AddRange(shuffledLocationsThisSphere);
+                sphere.Locations.RemoveAll(location => shuffledLocationsThisSphere.Contains(location));
+                sphere.TotalShuffledLocations -= shuffledLocationsThisSphere.Count;
+                //_locations.ForEach(location => location.InvalidateCache());
+                locationsAvailableNextSphere.AddRange(shuffledLocationsThisSphere.Where(location => location.IsAccessible(obtainedItems, _locations)));
+            }
+
             sphere.Items = placedItemsThisSphere.Concat(unshuffledItemsThisSphere).ToList();
-            
+            sphere.CurrentAttemptCount = retryCount;
+
             spheres.Add(sphere);
 
             canBeatVaati = new LocationDependency("BeatVaati").DependencyFulfilled(obtainedItems, _locations);
@@ -708,11 +860,24 @@ internal class Shuffler
             unshuffledLocationsThisSphere =
                 locationsAvailableThisSphere.Where(location => location.Type is LocationType.Unshuffled).ToList();
 
+            maxRetries = shuffledLocationsThisSphere.Count == 0 ? 0 : allShuffledItems.Count / shuffledLocationsThisSphere.Count;
+
+            if (maxRetries > 15) maxRetries = 15;
+
+            obtainedItems.AddRange(elementItemsPlacedThisSphere);
+            obtainedItems.AddRange(dungeonItemsPlacedThisSphere);
+
+            sphere.ElementsPlacedThisSphere = elementItemsPlacedThisSphere;
+            sphere.ElementLocationsThisSphere = elementsPlacedThisSphere;
+            sphere.DungeonItemsPlacedThisSphere = dungeonItemsPlacedThisSphere;
+            sphere.DungeonLocationsPlacedThisSphere = dungeonLocationsPlacedThisSphere;
+
             sphere = new Sphere
             {
                 Locations = locationsAvailableThisSphere,
                 TotalShuffledLocations = shuffledLocationsThisSphere.Count,
                 SphereNumber = sphereNumber,
+                MaxRetryCount = maxRetries,
             };
             
             unshuffledItemsThisSphere =
@@ -723,15 +888,12 @@ internal class Shuffler
             {
                 allPlaceableLocations.Remove(location);
             }
-
-            maxRetries = shuffledLocationsThisSphere.Count == 0 ? 0 : allShuffledItems.Count / shuffledLocationsThisSphere.Count;
             retryCount = 0;
 
         }
 
-        var remainingLocations = FillLocations(allShuffledItems, allPlaceableLocations, null);
-
-        return remainingLocations;
+        allPlaceableLocations.AddRange(locationsAvailableThisSphere);
+        return allPlaceableLocations;
     }
 
     /// <summary>
@@ -763,7 +925,8 @@ internal class Shuffler
             // Take item out of pool
             items.RemoveAt(itemIndex);
 
-            var availableItems = GetAvailableItems(items.Concat(assumedItems).ToList());
+            //var availableItems = GetAvailableItems(items.Concat(assumedItems).ToList());
+            var availableItems = GetAvailableItems(assumedItems).ToList();
 
             // Find locations that are available for placing the item
             var availableLocations = locations.Where(location => location.CanPlace(item, availableItems, _locations))
@@ -803,7 +966,7 @@ internal class Shuffler
             filledLocations.Add(availableLocations[locationIndex]);
 
             // Location caches are no longer valid because available items have changed
-            _locations.ForEach(location => location.InvalidateCache());
+            //_locations.ForEach(location => location.InvalidateCache());
             
             errorIndexes.Clear();
         }
@@ -887,7 +1050,7 @@ internal class Shuffler
             availableItems.AddRange(newItems);
 
             // Cache is invalidated between each sphere to make sure things work out
-            _locations.ForEach(location => location.InvalidateCache());
+            //_locations.ForEach(location => location.InvalidateCache());
         } while (previousSize > 0);
 
         return availableItems;
@@ -930,6 +1093,9 @@ internal class Shuffler
         spoilerBuilder.AppendLine();
         AppendPlaythroughSpoiler(spoilerBuilder);
 
+        spoilerBuilder.AppendLine();
+        AddActualPlaythroughSpoiler(spoilerBuilder);
+
 
         return spoilerBuilder.ToString();
     }
@@ -968,7 +1134,7 @@ internal class Shuffler
     /// <param name="spoilerBuilder">The running spoiler log builder to append the playthrough to</param>
     private void AppendPlaythroughSpoiler(StringBuilder spoilerBuilder)
     {
-        spoilerBuilder.AppendLine("Playthrough:");
+        spoilerBuilder.AppendLine("Spheres:");
 
         var nonNullLocations = _locations.Where(location => location.Contents is not null);
         
@@ -1007,22 +1173,98 @@ internal class Shuffler
             spoilerBuilder.AppendLine();
 
             // Evaluating for different items, so cache is invalidated now
-            _locations.ForEach(location => location.InvalidateCache());
+            //_locations.ForEach(location => location.InvalidateCache());
+        } while (previousSize > 0);
+    }
+
+    private void AddActualPlaythroughSpoiler(StringBuilder builder)
+    {
+        builder.AppendLine("Playthrough:");
+
+        var nonNullLocations = _locations.Where(location => location.Contents is not null);
+
+        var filledLocations = nonNullLocations.Where(location =>
+            location is { Filled: true, Type: not LocationType.Helper and not LocationType.Untyped and not LocationType.Inaccessible });
+
+        var hackToFilterOutLanternGarbage = filledLocations.Where(location =>
+            location.Contents!.Value.Type != ItemType.Lantern || location.Contents!.Value.SubValue == 0).ToList();
+
+        var availableItems = new List<Item>();
+
+        int previousSize;
+        var sphereCounter = 1;
+
+        var majorDungeonItems = _locations.Where(_ => _.Contents.HasValue && _.Contents!.Value.ShufflePool is ItemPool.Major or ItemPool.DungeonMajor or ItemPool.DungeonPrize).Select(_ => _.Contents!.Value).Distinct().ToList();
+
+        do
+        {
+            if (new LocationDependency("BeatVaati").DependencyFulfilled(availableItems, _locations))
+            {
+                builder.AppendLine($"Sphere {sphereCounter}: {{").AppendLine("\tBeat Vaati").AppendLine("}").AppendLine();
+                return;
+            }
+
+            var accessibleLocations =
+                hackToFilterOutLanternGarbage.Where(location => location.IsAccessible(availableItems, _locations)).ToList();
+            previousSize = accessibleLocations.Count;
+
+            hackToFilterOutLanternGarbage.RemoveAll(location => accessibleLocations.Contains(location));
+
+            var newItems = Location.GetItems(accessibleLocations);
+            availableItems.AddRange(newItems);
+
+            var majorLocations = accessibleLocations.Where(location => majorDungeonItems.Any(item => location.Contents!.Value.Equals(item)) || location.Contents!.Value.Type is ItemType.BombBag).ToList();
+
+            builder.AppendLine($"Sphere {sphereCounter}: {{");
+
+            foreach (var location in majorLocations)
+            {
+                if (location.HideFromSpoilerLog) continue;
+            
+                builder.AppendLine($"\t{location.Contents!.Value.Type} in {location.Name}");
+                AppendSubvalue(builder, location);
+                if (majorLocations.Last() != location)
+                    builder.AppendLine();
+            }
+
+            builder.AppendLine("}");
+
+            sphereCounter++;
+            builder.AppendLine();
+
+            // Evaluating for different items, so cache is invalidated now
+            //_locations.ForEach(location => location.InvalidateCache());
         } while (previousSize > 0);
     }
 
     private void AppendSubvalue(StringBuilder spoilerBuilder, Location location)
     {
         if (!location.Contents.HasValue) return;
-        
+
         // Display subvalue if relevant
         if (location.Contents.Value.Type == ItemType.Kinstone)
-            spoilerBuilder.AppendLine($"Kinstone Type: {location.Contents.Value.Kinstone}");
-        else if (location.Contents.Value.SubValue != 0) spoilerBuilder.AppendLine($"Subvalue: {location.Contents.Value.SubValue}"); //TODO: Display dungeon names
+            spoilerBuilder.AppendLine($"\t\tKinstone Type: {location.Contents.Value.Kinstone}");
+        else if (location.Contents.Value.SubValue != 0)
+            spoilerBuilder.AppendLine($"\t\tSubvalue: {GetDungeonNameFromDungeonSubvalue(location.Contents.Value.SubValue)}");
 
         // Display dungeon contents if relevant
         if (!string.IsNullOrEmpty(location.Contents.Value.Dungeon))
-            spoilerBuilder.AppendLine($"Dungeon: {location.Contents.Value.Dungeon}");
+            spoilerBuilder.AppendLine($"\t\tDungeon: {location.Contents.Value.Dungeon}");
+    }
+
+    private string GetDungeonNameFromDungeonSubvalue(int subvalue)
+    {
+        return subvalue switch
+        {
+            24 => "Deepwood Shrine",
+            25 => "Cave of Flames",
+            26 => "Fortress of Winds",
+            27 => "Temple of Droplets",
+            28 => "Palace of Winds",
+            29 => "Dark Hyrule Castle",
+            30 => "Royal Crypt",
+            _ => $"{subvalue}"
+        };
     }
 
     public string GetEventWrites()

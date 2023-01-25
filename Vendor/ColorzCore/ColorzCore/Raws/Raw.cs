@@ -90,11 +90,14 @@ namespace ColorzCore.Raws
                 try
                 {
                     var temp = ParseRaw(r);
-                    myRaws.Add(temp);
-                    if (temp.Name[0] != '_')
-                        //TODO: Make implicit inclusion of _0xDEAD codes etc
-                        //Raw temp2 = Raw.CopyWithNewName(temp, '_0x')
-                        ;
+                    if (temp != null)
+                    {
+                        myRaws.Add(temp);
+                        if (temp.Name[0] != '_')
+                            //TODO: Make implicit inclusion of _0xDEAD codes etc
+                            //Raw temp2 = Raw.CopyWithNewName(temp, '_0x')
+                            ;
+                    }
                 }
                 catch (EndOfStreamException)
                 {
@@ -116,7 +119,7 @@ namespace ColorzCore.Raws
             } while (rawLine != null);
 
             if (rawLine == null)
-                throw new EndOfStreamException();
+                return null; //End of stream reached
             if (char.IsWhiteSpace(rawLine[0]))
                 throw new RawParseException("Raw not at start of line.", rawLine);
             var parts = rawLine.Split(new char[1] { ',' }, StringSplitOptions.RemoveEmptyEntries);

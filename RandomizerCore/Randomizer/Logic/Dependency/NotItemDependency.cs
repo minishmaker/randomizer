@@ -4,16 +4,16 @@ namespace RandomizerCore.Randomizer.Logic.Dependency;
 
 public class NotItemDependency : DependencyBase
 {
-    private readonly Item _requiredItem;
+    private readonly Item _excludedItem;
 
     public NotItemDependency(Item item)
     {
-        _requiredItem = item;
+        _excludedItem = item;
     }
 
     public override bool DependencyFulfilled(List<Item> availableItems, List<Location.Location> locations, Item? itemToPlace = null)
     {
-        return !_requiredItem.Equals(itemToPlace);
+        return !_excludedItem.EqualsIgnoreShufflePool(itemToPlace);
 
         //Console.WriteLine($"Missing {RequiredItem.Type}");
     }

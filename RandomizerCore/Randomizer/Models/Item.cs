@@ -72,7 +72,13 @@ public readonly struct Item
     {
         if (obj == null || GetType() != obj.GetType()) return false;
         var asItem = (Item)obj;
-        return asItem.Type == Type && (asItem.SubValue == SubValue || asItem.UseAny || UseAny);
+        return asItem.Type == Type && (asItem.SubValue == SubValue || asItem.UseAny || UseAny) && asItem.ShufflePool == ShufflePool;
+    }
+
+    public bool EqualsIgnoreShufflePool(Item? item)
+    {
+        if (item == null) return false;
+        return item.Value.Type == Type && (item.Value.SubValue == SubValue || item.Value.UseAny || UseAny);
     }
 
     public override int GetHashCode()
