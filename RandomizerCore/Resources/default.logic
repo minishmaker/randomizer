@@ -142,7 +142,7 @@
 !dropdown - Logic Settings - Setting - Require Tricks - MUSHROOM - Crenel mushroom grab with Gust jar: - Low Difficulty:\n Half way up Mt Crenel across the wooden bridge, the mushroom on the ledge above can be grabbed with the Gust Jar to continue climbing up the mountain.\n This only matters when playing with 'OpenWorld' enabled, since reaching this area requires either Bombs or Grip ring. - No - NOMUSH - 'No': You will always be expected to have Bombs or Grip Ring to continue up the mountain. - Yes - YESMUSH - 'Yes': You may be required to use the Gust Jar to grab the mushroom to continue up the mountain.
 
 !dropdown - Logic Settings - Setting - Require Tricks - ARROWBREAK - Light Arrows break objects: - Low Difficulty:\n Fully charged Light Arrow shots can break pots, bushes, and small trees. - No - NOLIGHTS - 'No': Light Arrows will never be required to break objects. - Yes - YESLIGHTS - 'Yes': Some obstacles may require Light Arrows to destroy.
-!dropdown - Logic Settings - Setting - Require Tricks - BOBOMBS - Use Bobombs to destroy walls: - Low Difficulty:\n Bobombs can be used in 2 rooms in Cave of Flames, when a Bobomb is killed it explodes which can open Bomb Walls.\n Items such as Sword and Gust Jar can easily be used to move the Bobombs near the bomb wall to blow it up.\n Other items like the Boomerang, Shield, Bow, and even thrown pots can be used to make bobombs explode but with much higher difficulty, these will never be required due to it being mostly luck.\n If you killed all the bobombs in a room without blowing up the wall, they will respawn after you do a QUICKWARP. - No - NOBOBOMBS - 'No': A Bomb Bag will always be required to destroy bombable walls. - YES - YESBOBOMBS - 'Yes': Either a Sword, the Gust Jar, or a Bomb bag will be required to blow up bombable walls near Bobombs.
+!dropdown - Logic Settings - Setting - Require Tricks - BOBOMBS - Use Bobombs to destroy walls: - Low Difficulty:\n Bobombs can be used in 2 rooms in Cave of Flames, when a Bobomb is killed it explodes which can open Bomb Walls.\n Items such as Sword and Gust Jar can easily be used to move the Bobombs near the bomb wall to blow it up.\n Other items like the Boomerang, Shield, Bow, and even thrown pots can be used to make bobombs explode but with much higher difficulty, these will never be required due to it being mostly luck.\n If you killed all the bobombs in a room without blowing up the wall, they will respawn after you do a QUICKWARP. - No - NOBOBOMBS - 'No': A Bomb Bag will always be required to destroy bombable walls. - Yes - YESBOBOMBS - 'Yes': Either a Sword, the Gust Jar, or a Bomb bag will be required to blow up bombable walls near Bobombs.
 
 !dropdown - Logic Settings - Setting - Require Tricks - LIKELIKE - LikeLike cave without a Sword: - Medium Difficulty:\n The LikeLike digging cave in Minish Woods has 2 chests and has several LikeLikes that grab you when you try to open them. - No - NOLIKELIKE - 'No': A sword will always be required to reach these chests. - Yes - YESLIKELIKE - 'Yes': You may be required to collect these chests without a sword.
 !dropdown - Logic Settings - Setting - Require Tricks - GUARDSKIP - Skip Town guard using Boots: - High Difficulty:\n The Guard found on the West side of Town blocks your path to Trilby Highlands and beyond, unless you have: a Sword+Spin, a Cape, or Flippers.\n It is possible to dash with the boots faster than the guard and then quickly roll past them. - No - NOGUARDSKIP - 'No': You will only be expected to get past the guard if the guard has moved out of the way because you have the required items. - Yes - YESGUARDSKIP - 'Yes': You may be required to reach Trilby Highlands and beyond by using just the boots.
@@ -1594,24 +1594,45 @@
 	Items.Lantern.`GREENSHARED58`;	OverworldConstraint;	SF;
 	Items.Lantern.`GREENSHARED5F`;	OverworldConstraint;	SF;
 	Items.Lantern.`GREENSHARED60`;	OverworldConstraint;	SF;
-    Shared00:SF;   OverworldConstraint; fusionScrap00:Define:FirstByte, 0x0C9844:SecondByte;;																																																																																																																																																																																																																																													`REDSHARED`
-    Shared01:SF;   OverworldConstraint; fusionScrap01:Define:FirstByte, 0x0C9845:SecondByte;	(|(&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenCShared1), (&Items.Lantern.0x36, Helpers.CanFuseGreenCShared1), (&Items.Lantern.0x37, Helpers.CanFuseGreenCShared1), (&Items.Lantern.0x39, Helpers.CanFuseGreenCShared1), (&Items.Lantern.0x3C, Helpers.CanFuseGreenCShared1), (&Items.Lantern.0x44, Helpers.CanFuseGreenGShared1), (&Items.Lantern.0x46, Helpers.CanFuseGreenGShared1), (&Items.Lantern.0x47, Helpers.CanFuseGreenGShared1), (&Items.Lantern.0x4E, Helpers.CanFuseGreenGShared1), (&Items.Lantern.0x50, Helpers.CanFuseGreenPShared1), (&Items.Lantern.0x53, Helpers.CanFuseGreenPShared1), (&Items.Lantern.0x55, Helpers.CanFuseGreenPShared1), (&Items.Lantern.0x56, Helpers.CanFuseGreenPShared1), (&Items.Lantern.0x58, Helpers.CanFuseGreenPShared1), (&Items.Lantern.0x5F, Helpers.CanFuseGreenCShared1), (&Items.Lantern.0x60, Helpers.CanFuseGreenGShared1)); 	`BLUESHARED`
-    Shared02:SF;   OverworldConstraint; fusionScrap02:Define:FirstByte, 0x0C9846:SecondByte;	(+2, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenCShared2), (&Items.Lantern.0x36, Helpers.CanFuseGreenCShared2), (&Items.Lantern.0x37, Helpers.CanFuseGreenCShared2), (&Items.Lantern.0x39, Helpers.CanFuseGreenCShared2), (&Items.Lantern.0x3C, Helpers.CanFuseGreenCShared2), (&Items.Lantern.0x44, Helpers.CanFuseGreenGShared2), (&Items.Lantern.0x46, Helpers.CanFuseGreenGShared2), (&Items.Lantern.0x47, Helpers.CanFuseGreenGShared2), (&Items.Lantern.0x4E, Helpers.CanFuseGreenGShared2), (&Items.Lantern.0x50, Helpers.CanFuseGreenPShared2), (&Items.Lantern.0x53, Helpers.CanFuseGreenPShared2), (&Items.Lantern.0x55, Helpers.CanFuseGreenPShared2), (&Items.Lantern.0x56, Helpers.CanFuseGreenPShared2), (&Items.Lantern.0x58, Helpers.CanFuseGreenPShared2), (&Items.Lantern.0x5F, Helpers.CanFuseGreenCShared2), (&Items.Lantern.0x60, Helpers.CanFuseGreenGShared2)); 	`GREENSHARED35`
-    Shared03:SF;   OverworldConstraint; fusionScrap03:Define:FirstByte, 0x0C9847:SecondByte;	(+3, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenCShared3), (&Items.Lantern.0x36, Helpers.CanFuseGreenCShared3), (&Items.Lantern.0x37, Helpers.CanFuseGreenCShared3), (&Items.Lantern.0x39, Helpers.CanFuseGreenCShared3), (&Items.Lantern.0x3C, Helpers.CanFuseGreenCShared3), (&Items.Lantern.0x44, Helpers.CanFuseGreenGShared3), (&Items.Lantern.0x46, Helpers.CanFuseGreenGShared3), (&Items.Lantern.0x47, Helpers.CanFuseGreenGShared3), (&Items.Lantern.0x4E, Helpers.CanFuseGreenGShared3), (&Items.Lantern.0x50, Helpers.CanFuseGreenPShared3), (&Items.Lantern.0x53, Helpers.CanFuseGreenPShared3), (&Items.Lantern.0x55, Helpers.CanFuseGreenPShared3), (&Items.Lantern.0x56, Helpers.CanFuseGreenPShared3), (&Items.Lantern.0x58, Helpers.CanFuseGreenPShared3), (&Items.Lantern.0x5F, Helpers.CanFuseGreenCShared3), (&Items.Lantern.0x60, Helpers.CanFuseGreenGShared3)); 	`GREENSHARED36`
-    Shared04:SF;   OverworldConstraint; fusionScrap04:Define:FirstByte, 0x0C9848:SecondByte;	(+4, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenCShared4), (&Items.Lantern.0x36, Helpers.CanFuseGreenCShared4), (&Items.Lantern.0x37, Helpers.CanFuseGreenCShared4), (&Items.Lantern.0x39, Helpers.CanFuseGreenCShared4), (&Items.Lantern.0x3C, Helpers.CanFuseGreenCShared4), (&Items.Lantern.0x44, Helpers.CanFuseGreenGShared4), (&Items.Lantern.0x46, Helpers.CanFuseGreenGShared4), (&Items.Lantern.0x47, Helpers.CanFuseGreenGShared4), (&Items.Lantern.0x4E, Helpers.CanFuseGreenGShared4), (&Items.Lantern.0x50, Helpers.CanFuseGreenPShared4), (&Items.Lantern.0x53, Helpers.CanFuseGreenPShared4), (&Items.Lantern.0x55, Helpers.CanFuseGreenPShared4), (&Items.Lantern.0x56, Helpers.CanFuseGreenPShared4), (&Items.Lantern.0x58, Helpers.CanFuseGreenPShared4), (&Items.Lantern.0x5F, Helpers.CanFuseGreenCShared4), (&Items.Lantern.0x60, Helpers.CanFuseGreenGShared4)); 	`GREENSHARED37`
-    Shared05:SF;   OverworldConstraint; fusionScrap05:Define:FirstByte, 0x0C9849:SecondByte;	(+5, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenCShared5), (&Items.Lantern.0x36, Helpers.CanFuseGreenCShared5), (&Items.Lantern.0x37, Helpers.CanFuseGreenCShared5), (&Items.Lantern.0x39, Helpers.CanFuseGreenCShared5), (&Items.Lantern.0x3C, Helpers.CanFuseGreenCShared5), (&Items.Lantern.0x44, Helpers.CanFuseGreenGShared5), (&Items.Lantern.0x46, Helpers.CanFuseGreenGShared5), (&Items.Lantern.0x47, Helpers.CanFuseGreenGShared5), (&Items.Lantern.0x4E, Helpers.CanFuseGreenGShared5), (&Items.Lantern.0x50, Helpers.CanFuseGreenPShared5), (&Items.Lantern.0x53, Helpers.CanFuseGreenPShared5), (&Items.Lantern.0x55, Helpers.CanFuseGreenPShared5), (&Items.Lantern.0x56, Helpers.CanFuseGreenPShared5), (&Items.Lantern.0x58, Helpers.CanFuseGreenPShared5), (&Items.Lantern.0x5F, Helpers.CanFuseGreenCShared5), (&Items.Lantern.0x60, Helpers.CanFuseGreenGShared5)); 	`GREENSHARED39`
-    Shared06:SF;   OverworldConstraint; fusionScrap06:Define:FirstByte, 0x0C984A:SecondByte;	(+6, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenCShared6), (&Items.Lantern.0x36, Helpers.CanFuseGreenCShared6), (&Items.Lantern.0x37, Helpers.CanFuseGreenCShared6), (&Items.Lantern.0x39, Helpers.CanFuseGreenCShared6), (&Items.Lantern.0x3C, Helpers.CanFuseGreenCShared6), (&Items.Lantern.0x44, Helpers.CanFuseGreenG), (&Items.Lantern.0x46, Helpers.CanFuseGreenG), (&Items.Lantern.0x47, Helpers.CanFuseGreenG), (&Items.Lantern.0x4E, Helpers.CanFuseGreenG), (&Items.Lantern.0x50, Helpers.CanFuseGreenP), (&Items.Lantern.0x53, Helpers.CanFuseGreenP), (&Items.Lantern.0x55, Helpers.CanFuseGreenP), (&Items.Lantern.0x56, Helpers.CanFuseGreenP), (&Items.Lantern.0x58, Helpers.CanFuseGreenP), (&Items.Lantern.0x5F, Helpers.CanFuseGreenCShared6), (&Items.Lantern.0x60, Helpers.CanFuseGreenG)); 																		`GREENSHARED3C`
-    Shared07:SF;   OverworldConstraint; fusionScrap07:Define:FirstByte, 0x0C984B:SecondByte;	(+7, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenC), (&Items.Lantern.0x36, Helpers.CanFuseGreenC), (&Items.Lantern.0x37, Helpers.CanFuseGreenC), (&Items.Lantern.0x39, Helpers.CanFuseGreenC), (&Items.Lantern.0x3C, Helpers.CanFuseGreenC), (&Items.Lantern.0x44, Helpers.CanFuseGreenG), (&Items.Lantern.0x46, Helpers.CanFuseGreenG), (&Items.Lantern.0x47, Helpers.CanFuseGreenG), (&Items.Lantern.0x4E, Helpers.CanFuseGreenG), (&Items.Lantern.0x50, Helpers.CanFuseGreenP), (&Items.Lantern.0x53, Helpers.CanFuseGreenP), (&Items.Lantern.0x55, Helpers.CanFuseGreenP), (&Items.Lantern.0x56, Helpers.CanFuseGreenP), (&Items.Lantern.0x58, Helpers.CanFuseGreenP), (&Items.Lantern.0x5F, Helpers.CanFuseGreenC), (&Items.Lantern.0x60, Helpers.CanFuseGreenG)); 																													`GREENSHARED44`
-    Shared08:SF;   OverworldConstraint; fusionScrap08:Define:FirstByte, 0x0C984C:SecondByte;	(+8, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenC), (&Items.Lantern.0x36, Helpers.CanFuseGreenC), (&Items.Lantern.0x37, Helpers.CanFuseGreenC), (&Items.Lantern.0x39, Helpers.CanFuseGreenC), (&Items.Lantern.0x3C, Helpers.CanFuseGreenC), (&Items.Lantern.0x44, Helpers.CanFuseGreenG), (&Items.Lantern.0x46, Helpers.CanFuseGreenG), (&Items.Lantern.0x47, Helpers.CanFuseGreenG), (&Items.Lantern.0x4E, Helpers.CanFuseGreenG), (&Items.Lantern.0x50, Helpers.CanFuseGreenP), (&Items.Lantern.0x53, Helpers.CanFuseGreenP), (&Items.Lantern.0x55, Helpers.CanFuseGreenP), (&Items.Lantern.0x56, Helpers.CanFuseGreenP), (&Items.Lantern.0x58, Helpers.CanFuseGreenP), (&Items.Lantern.0x5F, Helpers.CanFuseGreenC), (&Items.Lantern.0x60, Helpers.CanFuseGreenG)); 																													`GREENSHARED46`
-    Shared09:SF;   OverworldConstraint; fusionScrap09:Define:FirstByte, 0x0C984D:SecondByte;	(+9, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenC), (&Items.Lantern.0x36, Helpers.CanFuseGreenC), (&Items.Lantern.0x37, Helpers.CanFuseGreenC), (&Items.Lantern.0x39, Helpers.CanFuseGreenC), (&Items.Lantern.0x3C, Helpers.CanFuseGreenC), (&Items.Lantern.0x44, Helpers.CanFuseGreenG), (&Items.Lantern.0x46, Helpers.CanFuseGreenG), (&Items.Lantern.0x47, Helpers.CanFuseGreenG), (&Items.Lantern.0x4E, Helpers.CanFuseGreenG), (&Items.Lantern.0x50, Helpers.CanFuseGreenP), (&Items.Lantern.0x53, Helpers.CanFuseGreenP), (&Items.Lantern.0x55, Helpers.CanFuseGreenP), (&Items.Lantern.0x56, Helpers.CanFuseGreenP), (&Items.Lantern.0x58, Helpers.CanFuseGreenP), (&Items.Lantern.0x5F, Helpers.CanFuseGreenC), (&Items.Lantern.0x60, Helpers.CanFuseGreenG)); 																													`GREENSHARED47`
-    Shared0A:SF;   OverworldConstraint; fusionScrap0A:Define:FirstByte, 0x0C984E:SecondByte;	(+10, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenC), (&Items.Lantern.0x36, Helpers.CanFuseGreenC), (&Items.Lantern.0x37, Helpers.CanFuseGreenC), (&Items.Lantern.0x39, Helpers.CanFuseGreenC), (&Items.Lantern.0x3C, Helpers.CanFuseGreenC), (&Items.Lantern.0x44, Helpers.CanFuseGreenG), (&Items.Lantern.0x46, Helpers.CanFuseGreenG), (&Items.Lantern.0x47, Helpers.CanFuseGreenG), (&Items.Lantern.0x4E, Helpers.CanFuseGreenG), (&Items.Lantern.0x50, Helpers.CanFuseGreenP), (&Items.Lantern.0x53, Helpers.CanFuseGreenP), (&Items.Lantern.0x55, Helpers.CanFuseGreenP), (&Items.Lantern.0x56, Helpers.CanFuseGreenP), (&Items.Lantern.0x58, Helpers.CanFuseGreenP), (&Items.Lantern.0x5F, Helpers.CanFuseGreenC), (&Items.Lantern.0x60, Helpers.CanFuseGreenG)); 																												`GREENSHARED4E`
-    Shared0B:SF;   OverworldConstraint; fusionScrap0B:Define:FirstByte, 0x0C984F:SecondByte;	(+11, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenC), (&Items.Lantern.0x36, Helpers.CanFuseGreenC), (&Items.Lantern.0x37, Helpers.CanFuseGreenC), (&Items.Lantern.0x39, Helpers.CanFuseGreenC), (&Items.Lantern.0x3C, Helpers.CanFuseGreenC), (&Items.Lantern.0x44, Helpers.CanFuseGreenG), (&Items.Lantern.0x46, Helpers.CanFuseGreenG), (&Items.Lantern.0x47, Helpers.CanFuseGreenG), (&Items.Lantern.0x4E, Helpers.CanFuseGreenG), (&Items.Lantern.0x50, Helpers.CanFuseGreenP), (&Items.Lantern.0x53, Helpers.CanFuseGreenP), (&Items.Lantern.0x55, Helpers.CanFuseGreenP), (&Items.Lantern.0x56, Helpers.CanFuseGreenP), (&Items.Lantern.0x58, Helpers.CanFuseGreenP), (&Items.Lantern.0x5F, Helpers.CanFuseGreenC), (&Items.Lantern.0x60, Helpers.CanFuseGreenG)); 																												`GREENSHARED50`
-    Shared0C:SF;   OverworldConstraint; fusionScrap0C:Define:FirstByte, 0x0C9850:SecondByte;	(+12, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenC), (&Items.Lantern.0x36, Helpers.CanFuseGreenC), (&Items.Lantern.0x37, Helpers.CanFuseGreenC), (&Items.Lantern.0x39, Helpers.CanFuseGreenC), (&Items.Lantern.0x3C, Helpers.CanFuseGreenC), (&Items.Lantern.0x44, Helpers.CanFuseGreenG), (&Items.Lantern.0x46, Helpers.CanFuseGreenG), (&Items.Lantern.0x47, Helpers.CanFuseGreenG), (&Items.Lantern.0x4E, Helpers.CanFuseGreenG), (&Items.Lantern.0x50, Helpers.CanFuseGreenP), (&Items.Lantern.0x53, Helpers.CanFuseGreenP), (&Items.Lantern.0x55, Helpers.CanFuseGreenP), (&Items.Lantern.0x56, Helpers.CanFuseGreenP), (&Items.Lantern.0x58, Helpers.CanFuseGreenP), (&Items.Lantern.0x5F, Helpers.CanFuseGreenC), (&Items.Lantern.0x60, Helpers.CanFuseGreenG)); 																												`GREENSHARED53`
-    Shared0D:SF;   OverworldConstraint; fusionScrap0D:Define:FirstByte, 0x0C9851:SecondByte;	(+13, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenC), (&Items.Lantern.0x36, Helpers.CanFuseGreenC), (&Items.Lantern.0x37, Helpers.CanFuseGreenC), (&Items.Lantern.0x39, Helpers.CanFuseGreenC), (&Items.Lantern.0x3C, Helpers.CanFuseGreenC), (&Items.Lantern.0x44, Helpers.CanFuseGreenG), (&Items.Lantern.0x46, Helpers.CanFuseGreenG), (&Items.Lantern.0x47, Helpers.CanFuseGreenG), (&Items.Lantern.0x4E, Helpers.CanFuseGreenG), (&Items.Lantern.0x50, Helpers.CanFuseGreenP), (&Items.Lantern.0x53, Helpers.CanFuseGreenP), (&Items.Lantern.0x55, Helpers.CanFuseGreenP), (&Items.Lantern.0x56, Helpers.CanFuseGreenP), (&Items.Lantern.0x58, Helpers.CanFuseGreenP), (&Items.Lantern.0x5F, Helpers.CanFuseGreenC), (&Items.Lantern.0x60, Helpers.CanFuseGreenG)); 																												`GREENSHARED55`
-    Shared0E:SF;   OverworldConstraint; fusionScrap0E:Define:FirstByte, 0x0C9852:SecondByte;	(+14, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenC), (&Items.Lantern.0x36, Helpers.CanFuseGreenC), (&Items.Lantern.0x37, Helpers.CanFuseGreenC), (&Items.Lantern.0x39, Helpers.CanFuseGreenC), (&Items.Lantern.0x3C, Helpers.CanFuseGreenC), (&Items.Lantern.0x44, Helpers.CanFuseGreenG), (&Items.Lantern.0x46, Helpers.CanFuseGreenG), (&Items.Lantern.0x47, Helpers.CanFuseGreenG), (&Items.Lantern.0x4E, Helpers.CanFuseGreenG), (&Items.Lantern.0x50, Helpers.CanFuseGreenP), (&Items.Lantern.0x53, Helpers.CanFuseGreenP), (&Items.Lantern.0x55, Helpers.CanFuseGreenP), (&Items.Lantern.0x56, Helpers.CanFuseGreenP), (&Items.Lantern.0x58, Helpers.CanFuseGreenP), (&Items.Lantern.0x5F, Helpers.CanFuseGreenC), (&Items.Lantern.0x60, Helpers.CanFuseGreenG)); 																												`GREENSHARED56`
-    Shared0F:SF;   OverworldConstraint; fusionScrap0F:Define:FirstByte, 0x0C9853:SecondByte;	(+15, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenC), (&Items.Lantern.0x36, Helpers.CanFuseGreenC), (&Items.Lantern.0x37, Helpers.CanFuseGreenC), (&Items.Lantern.0x39, Helpers.CanFuseGreenC), (&Items.Lantern.0x3C, Helpers.CanFuseGreenC), (&Items.Lantern.0x44, Helpers.CanFuseGreenG), (&Items.Lantern.0x46, Helpers.CanFuseGreenG), (&Items.Lantern.0x47, Helpers.CanFuseGreenG), (&Items.Lantern.0x4E, Helpers.CanFuseGreenG), (&Items.Lantern.0x50, Helpers.CanFuseGreenP), (&Items.Lantern.0x53, Helpers.CanFuseGreenP), (&Items.Lantern.0x55, Helpers.CanFuseGreenP), (&Items.Lantern.0x56, Helpers.CanFuseGreenP), (&Items.Lantern.0x58, Helpers.CanFuseGreenP), (&Items.Lantern.0x5F, Helpers.CanFuseGreenC), (&Items.Lantern.0x60, Helpers.CanFuseGreenG)); 																												`GREENSHARED58`
-    Shared10:SF;   OverworldConstraint; fusionScrap10:Define:FirstByte, 0x0C9854:SecondByte;	(+16, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenC), (&Items.Lantern.0x36, Helpers.CanFuseGreenC), (&Items.Lantern.0x37, Helpers.CanFuseGreenC), (&Items.Lantern.0x39, Helpers.CanFuseGreenC), (&Items.Lantern.0x3C, Helpers.CanFuseGreenC), (&Items.Lantern.0x44, Helpers.CanFuseGreenG), (&Items.Lantern.0x46, Helpers.CanFuseGreenG), (&Items.Lantern.0x47, Helpers.CanFuseGreenG), (&Items.Lantern.0x4E, Helpers.CanFuseGreenG), (&Items.Lantern.0x50, Helpers.CanFuseGreenP), (&Items.Lantern.0x53, Helpers.CanFuseGreenP), (&Items.Lantern.0x55, Helpers.CanFuseGreenP), (&Items.Lantern.0x56, Helpers.CanFuseGreenP), (&Items.Lantern.0x58, Helpers.CanFuseGreenP), (&Items.Lantern.0x5F, Helpers.CanFuseGreenC), (&Items.Lantern.0x60, Helpers.CanFuseGreenG)); 																												`GREENSHARED5F`
-    Shared11:SF;   OverworldConstraint; fusionScrap11:Define:FirstByte, 0x0C9855:SecondByte;	(+17, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenC), (&Items.Lantern.0x36, Helpers.CanFuseGreenC), (&Items.Lantern.0x37, Helpers.CanFuseGreenC), (&Items.Lantern.0x39, Helpers.CanFuseGreenC), (&Items.Lantern.0x3C, Helpers.CanFuseGreenC), (&Items.Lantern.0x44, Helpers.CanFuseGreenG), (&Items.Lantern.0x46, Helpers.CanFuseGreenG), (&Items.Lantern.0x47, Helpers.CanFuseGreenG), (&Items.Lantern.0x4E, Helpers.CanFuseGreenG), (&Items.Lantern.0x50, Helpers.CanFuseGreenP), (&Items.Lantern.0x53, Helpers.CanFuseGreenP), (&Items.Lantern.0x55, Helpers.CanFuseGreenP), (&Items.Lantern.0x56, Helpers.CanFuseGreenP), (&Items.Lantern.0x58, Helpers.CanFuseGreenP), (&Items.Lantern.0x5F, Helpers.CanFuseGreenC), (&Items.Lantern.0x60, Helpers.CanFuseGreenG)); 																												`GREENSHARED60`
+	!ifndef - COMBINED_GREEN_FUSIONS
+		Shared00:SF;   OverworldConstraint; fusionScrap00:Define:FirstByte, 0x0C9844:SecondByte;;																																																																																																																																																																																																																																													`REDSHARED`
+		Shared01:SF;   OverworldConstraint; fusionScrap01:Define:FirstByte, 0x0C9845:SecondByte;	(|(&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenCShared1), (&Items.Lantern.0x36, Helpers.CanFuseGreenCShared1), (&Items.Lantern.0x37, Helpers.CanFuseGreenCShared1), (&Items.Lantern.0x39, Helpers.CanFuseGreenCShared1), (&Items.Lantern.0x3C, Helpers.CanFuseGreenCShared1), (&Items.Lantern.0x44, Helpers.CanFuseGreenGShared1), (&Items.Lantern.0x46, Helpers.CanFuseGreenGShared1), (&Items.Lantern.0x47, Helpers.CanFuseGreenGShared1), (&Items.Lantern.0x4E, Helpers.CanFuseGreenGShared1), (&Items.Lantern.0x50, Helpers.CanFuseGreenPShared1), (&Items.Lantern.0x53, Helpers.CanFuseGreenPShared1), (&Items.Lantern.0x55, Helpers.CanFuseGreenPShared1), (&Items.Lantern.0x56, Helpers.CanFuseGreenPShared1), (&Items.Lantern.0x58, Helpers.CanFuseGreenPShared1), (&Items.Lantern.0x5F, Helpers.CanFuseGreenCShared1), (&Items.Lantern.0x60, Helpers.CanFuseGreenGShared1)); 	`BLUESHARED`
+		Shared02:SF;   OverworldConstraint; fusionScrap02:Define:FirstByte, 0x0C9846:SecondByte;	(+2, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenCShared2), (&Items.Lantern.0x36, Helpers.CanFuseGreenCShared2), (&Items.Lantern.0x37, Helpers.CanFuseGreenCShared2), (&Items.Lantern.0x39, Helpers.CanFuseGreenCShared2), (&Items.Lantern.0x3C, Helpers.CanFuseGreenCShared2), (&Items.Lantern.0x44, Helpers.CanFuseGreenGShared2), (&Items.Lantern.0x46, Helpers.CanFuseGreenGShared2), (&Items.Lantern.0x47, Helpers.CanFuseGreenGShared2), (&Items.Lantern.0x4E, Helpers.CanFuseGreenGShared2), (&Items.Lantern.0x50, Helpers.CanFuseGreenPShared2), (&Items.Lantern.0x53, Helpers.CanFuseGreenPShared2), (&Items.Lantern.0x55, Helpers.CanFuseGreenPShared2), (&Items.Lantern.0x56, Helpers.CanFuseGreenPShared2), (&Items.Lantern.0x58, Helpers.CanFuseGreenPShared2), (&Items.Lantern.0x5F, Helpers.CanFuseGreenCShared2), (&Items.Lantern.0x60, Helpers.CanFuseGreenGShared2)); 	`GREENSHARED35`
+		Shared03:SF;   OverworldConstraint; fusionScrap03:Define:FirstByte, 0x0C9847:SecondByte;	(+3, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenCShared3), (&Items.Lantern.0x36, Helpers.CanFuseGreenCShared3), (&Items.Lantern.0x37, Helpers.CanFuseGreenCShared3), (&Items.Lantern.0x39, Helpers.CanFuseGreenCShared3), (&Items.Lantern.0x3C, Helpers.CanFuseGreenCShared3), (&Items.Lantern.0x44, Helpers.CanFuseGreenGShared3), (&Items.Lantern.0x46, Helpers.CanFuseGreenGShared3), (&Items.Lantern.0x47, Helpers.CanFuseGreenGShared3), (&Items.Lantern.0x4E, Helpers.CanFuseGreenGShared3), (&Items.Lantern.0x50, Helpers.CanFuseGreenPShared3), (&Items.Lantern.0x53, Helpers.CanFuseGreenPShared3), (&Items.Lantern.0x55, Helpers.CanFuseGreenPShared3), (&Items.Lantern.0x56, Helpers.CanFuseGreenPShared3), (&Items.Lantern.0x58, Helpers.CanFuseGreenPShared3), (&Items.Lantern.0x5F, Helpers.CanFuseGreenCShared3), (&Items.Lantern.0x60, Helpers.CanFuseGreenGShared3)); 	`GREENSHARED36`
+		Shared04:SF;   OverworldConstraint; fusionScrap04:Define:FirstByte, 0x0C9848:SecondByte;	(+4, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenCShared4), (&Items.Lantern.0x36, Helpers.CanFuseGreenCShared4), (&Items.Lantern.0x37, Helpers.CanFuseGreenCShared4), (&Items.Lantern.0x39, Helpers.CanFuseGreenCShared4), (&Items.Lantern.0x3C, Helpers.CanFuseGreenCShared4), (&Items.Lantern.0x44, Helpers.CanFuseGreenGShared4), (&Items.Lantern.0x46, Helpers.CanFuseGreenGShared4), (&Items.Lantern.0x47, Helpers.CanFuseGreenGShared4), (&Items.Lantern.0x4E, Helpers.CanFuseGreenGShared4), (&Items.Lantern.0x50, Helpers.CanFuseGreenPShared4), (&Items.Lantern.0x53, Helpers.CanFuseGreenPShared4), (&Items.Lantern.0x55, Helpers.CanFuseGreenPShared4), (&Items.Lantern.0x56, Helpers.CanFuseGreenPShared4), (&Items.Lantern.0x58, Helpers.CanFuseGreenPShared4), (&Items.Lantern.0x5F, Helpers.CanFuseGreenCShared4), (&Items.Lantern.0x60, Helpers.CanFuseGreenGShared4)); 	`GREENSHARED37`
+		Shared05:SF;   OverworldConstraint; fusionScrap05:Define:FirstByte, 0x0C9849:SecondByte;	(+5, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenCShared5), (&Items.Lantern.0x36, Helpers.CanFuseGreenCShared5), (&Items.Lantern.0x37, Helpers.CanFuseGreenCShared5), (&Items.Lantern.0x39, Helpers.CanFuseGreenCShared5), (&Items.Lantern.0x3C, Helpers.CanFuseGreenCShared5), (&Items.Lantern.0x44, Helpers.CanFuseGreenGShared5), (&Items.Lantern.0x46, Helpers.CanFuseGreenGShared5), (&Items.Lantern.0x47, Helpers.CanFuseGreenGShared5), (&Items.Lantern.0x4E, Helpers.CanFuseGreenGShared5), (&Items.Lantern.0x50, Helpers.CanFuseGreenPShared5), (&Items.Lantern.0x53, Helpers.CanFuseGreenPShared5), (&Items.Lantern.0x55, Helpers.CanFuseGreenPShared5), (&Items.Lantern.0x56, Helpers.CanFuseGreenPShared5), (&Items.Lantern.0x58, Helpers.CanFuseGreenPShared5), (&Items.Lantern.0x5F, Helpers.CanFuseGreenCShared5), (&Items.Lantern.0x60, Helpers.CanFuseGreenGShared5)); 	`GREENSHARED39`
+		Shared06:SF;   OverworldConstraint; fusionScrap06:Define:FirstByte, 0x0C984A:SecondByte;	(+6, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenCShared6), (&Items.Lantern.0x36, Helpers.CanFuseGreenCShared6), (&Items.Lantern.0x37, Helpers.CanFuseGreenCShared6), (&Items.Lantern.0x39, Helpers.CanFuseGreenCShared6), (&Items.Lantern.0x3C, Helpers.CanFuseGreenCShared6), (&Items.Lantern.0x44, Helpers.CanFuseGreenG), (&Items.Lantern.0x46, Helpers.CanFuseGreenG), (&Items.Lantern.0x47, Helpers.CanFuseGreenG), (&Items.Lantern.0x4E, Helpers.CanFuseGreenG), (&Items.Lantern.0x50, Helpers.CanFuseGreenP), (&Items.Lantern.0x53, Helpers.CanFuseGreenP), (&Items.Lantern.0x55, Helpers.CanFuseGreenP), (&Items.Lantern.0x56, Helpers.CanFuseGreenP), (&Items.Lantern.0x58, Helpers.CanFuseGreenP), (&Items.Lantern.0x5F, Helpers.CanFuseGreenCShared6), (&Items.Lantern.0x60, Helpers.CanFuseGreenG)); 																		`GREENSHARED3C`
+		Shared07:SF;   OverworldConstraint; fusionScrap07:Define:FirstByte, 0x0C984B:SecondByte;	(+7, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenC), (&Items.Lantern.0x36, Helpers.CanFuseGreenC), (&Items.Lantern.0x37, Helpers.CanFuseGreenC), (&Items.Lantern.0x39, Helpers.CanFuseGreenC), (&Items.Lantern.0x3C, Helpers.CanFuseGreenC), (&Items.Lantern.0x44, Helpers.CanFuseGreenG), (&Items.Lantern.0x46, Helpers.CanFuseGreenG), (&Items.Lantern.0x47, Helpers.CanFuseGreenG), (&Items.Lantern.0x4E, Helpers.CanFuseGreenG), (&Items.Lantern.0x50, Helpers.CanFuseGreenP), (&Items.Lantern.0x53, Helpers.CanFuseGreenP), (&Items.Lantern.0x55, Helpers.CanFuseGreenP), (&Items.Lantern.0x56, Helpers.CanFuseGreenP), (&Items.Lantern.0x58, Helpers.CanFuseGreenP), (&Items.Lantern.0x5F, Helpers.CanFuseGreenC), (&Items.Lantern.0x60, Helpers.CanFuseGreenG)); 																													`GREENSHARED44`
+		Shared08:SF;   OverworldConstraint; fusionScrap08:Define:FirstByte, 0x0C984C:SecondByte;	(+8, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenC), (&Items.Lantern.0x36, Helpers.CanFuseGreenC), (&Items.Lantern.0x37, Helpers.CanFuseGreenC), (&Items.Lantern.0x39, Helpers.CanFuseGreenC), (&Items.Lantern.0x3C, Helpers.CanFuseGreenC), (&Items.Lantern.0x44, Helpers.CanFuseGreenG), (&Items.Lantern.0x46, Helpers.CanFuseGreenG), (&Items.Lantern.0x47, Helpers.CanFuseGreenG), (&Items.Lantern.0x4E, Helpers.CanFuseGreenG), (&Items.Lantern.0x50, Helpers.CanFuseGreenP), (&Items.Lantern.0x53, Helpers.CanFuseGreenP), (&Items.Lantern.0x55, Helpers.CanFuseGreenP), (&Items.Lantern.0x56, Helpers.CanFuseGreenP), (&Items.Lantern.0x58, Helpers.CanFuseGreenP), (&Items.Lantern.0x5F, Helpers.CanFuseGreenC), (&Items.Lantern.0x60, Helpers.CanFuseGreenG)); 																													`GREENSHARED46`
+		Shared09:SF;   OverworldConstraint; fusionScrap09:Define:FirstByte, 0x0C984D:SecondByte;	(+9, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenC), (&Items.Lantern.0x36, Helpers.CanFuseGreenC), (&Items.Lantern.0x37, Helpers.CanFuseGreenC), (&Items.Lantern.0x39, Helpers.CanFuseGreenC), (&Items.Lantern.0x3C, Helpers.CanFuseGreenC), (&Items.Lantern.0x44, Helpers.CanFuseGreenG), (&Items.Lantern.0x46, Helpers.CanFuseGreenG), (&Items.Lantern.0x47, Helpers.CanFuseGreenG), (&Items.Lantern.0x4E, Helpers.CanFuseGreenG), (&Items.Lantern.0x50, Helpers.CanFuseGreenP), (&Items.Lantern.0x53, Helpers.CanFuseGreenP), (&Items.Lantern.0x55, Helpers.CanFuseGreenP), (&Items.Lantern.0x56, Helpers.CanFuseGreenP), (&Items.Lantern.0x58, Helpers.CanFuseGreenP), (&Items.Lantern.0x5F, Helpers.CanFuseGreenC), (&Items.Lantern.0x60, Helpers.CanFuseGreenG)); 																													`GREENSHARED47`
+		Shared0A:SF;   OverworldConstraint; fusionScrap0A:Define:FirstByte, 0x0C984E:SecondByte;	(+10, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenC), (&Items.Lantern.0x36, Helpers.CanFuseGreenC), (&Items.Lantern.0x37, Helpers.CanFuseGreenC), (&Items.Lantern.0x39, Helpers.CanFuseGreenC), (&Items.Lantern.0x3C, Helpers.CanFuseGreenC), (&Items.Lantern.0x44, Helpers.CanFuseGreenG), (&Items.Lantern.0x46, Helpers.CanFuseGreenG), (&Items.Lantern.0x47, Helpers.CanFuseGreenG), (&Items.Lantern.0x4E, Helpers.CanFuseGreenG), (&Items.Lantern.0x50, Helpers.CanFuseGreenP), (&Items.Lantern.0x53, Helpers.CanFuseGreenP), (&Items.Lantern.0x55, Helpers.CanFuseGreenP), (&Items.Lantern.0x56, Helpers.CanFuseGreenP), (&Items.Lantern.0x58, Helpers.CanFuseGreenP), (&Items.Lantern.0x5F, Helpers.CanFuseGreenC), (&Items.Lantern.0x60, Helpers.CanFuseGreenG)); 																												`GREENSHARED4E`
+		Shared0B:SF;   OverworldConstraint; fusionScrap0B:Define:FirstByte, 0x0C984F:SecondByte;	(+11, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenC), (&Items.Lantern.0x36, Helpers.CanFuseGreenC), (&Items.Lantern.0x37, Helpers.CanFuseGreenC), (&Items.Lantern.0x39, Helpers.CanFuseGreenC), (&Items.Lantern.0x3C, Helpers.CanFuseGreenC), (&Items.Lantern.0x44, Helpers.CanFuseGreenG), (&Items.Lantern.0x46, Helpers.CanFuseGreenG), (&Items.Lantern.0x47, Helpers.CanFuseGreenG), (&Items.Lantern.0x4E, Helpers.CanFuseGreenG), (&Items.Lantern.0x50, Helpers.CanFuseGreenP), (&Items.Lantern.0x53, Helpers.CanFuseGreenP), (&Items.Lantern.0x55, Helpers.CanFuseGreenP), (&Items.Lantern.0x56, Helpers.CanFuseGreenP), (&Items.Lantern.0x58, Helpers.CanFuseGreenP), (&Items.Lantern.0x5F, Helpers.CanFuseGreenC), (&Items.Lantern.0x60, Helpers.CanFuseGreenG)); 																												`GREENSHARED50`
+		Shared0C:SF;   OverworldConstraint; fusionScrap0C:Define:FirstByte, 0x0C9850:SecondByte;	(+12, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenC), (&Items.Lantern.0x36, Helpers.CanFuseGreenC), (&Items.Lantern.0x37, Helpers.CanFuseGreenC), (&Items.Lantern.0x39, Helpers.CanFuseGreenC), (&Items.Lantern.0x3C, Helpers.CanFuseGreenC), (&Items.Lantern.0x44, Helpers.CanFuseGreenG), (&Items.Lantern.0x46, Helpers.CanFuseGreenG), (&Items.Lantern.0x47, Helpers.CanFuseGreenG), (&Items.Lantern.0x4E, Helpers.CanFuseGreenG), (&Items.Lantern.0x50, Helpers.CanFuseGreenP), (&Items.Lantern.0x53, Helpers.CanFuseGreenP), (&Items.Lantern.0x55, Helpers.CanFuseGreenP), (&Items.Lantern.0x56, Helpers.CanFuseGreenP), (&Items.Lantern.0x58, Helpers.CanFuseGreenP), (&Items.Lantern.0x5F, Helpers.CanFuseGreenC), (&Items.Lantern.0x60, Helpers.CanFuseGreenG)); 																												`GREENSHARED53`
+		Shared0D:SF;   OverworldConstraint; fusionScrap0D:Define:FirstByte, 0x0C9851:SecondByte;	(+13, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenC), (&Items.Lantern.0x36, Helpers.CanFuseGreenC), (&Items.Lantern.0x37, Helpers.CanFuseGreenC), (&Items.Lantern.0x39, Helpers.CanFuseGreenC), (&Items.Lantern.0x3C, Helpers.CanFuseGreenC), (&Items.Lantern.0x44, Helpers.CanFuseGreenG), (&Items.Lantern.0x46, Helpers.CanFuseGreenG), (&Items.Lantern.0x47, Helpers.CanFuseGreenG), (&Items.Lantern.0x4E, Helpers.CanFuseGreenG), (&Items.Lantern.0x50, Helpers.CanFuseGreenP), (&Items.Lantern.0x53, Helpers.CanFuseGreenP), (&Items.Lantern.0x55, Helpers.CanFuseGreenP), (&Items.Lantern.0x56, Helpers.CanFuseGreenP), (&Items.Lantern.0x58, Helpers.CanFuseGreenP), (&Items.Lantern.0x5F, Helpers.CanFuseGreenC), (&Items.Lantern.0x60, Helpers.CanFuseGreenG)); 																												`GREENSHARED55`
+		Shared0E:SF;   OverworldConstraint; fusionScrap0E:Define:FirstByte, 0x0C9852:SecondByte;	(+14, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenC), (&Items.Lantern.0x36, Helpers.CanFuseGreenC), (&Items.Lantern.0x37, Helpers.CanFuseGreenC), (&Items.Lantern.0x39, Helpers.CanFuseGreenC), (&Items.Lantern.0x3C, Helpers.CanFuseGreenC), (&Items.Lantern.0x44, Helpers.CanFuseGreenG), (&Items.Lantern.0x46, Helpers.CanFuseGreenG), (&Items.Lantern.0x47, Helpers.CanFuseGreenG), (&Items.Lantern.0x4E, Helpers.CanFuseGreenG), (&Items.Lantern.0x50, Helpers.CanFuseGreenP), (&Items.Lantern.0x53, Helpers.CanFuseGreenP), (&Items.Lantern.0x55, Helpers.CanFuseGreenP), (&Items.Lantern.0x56, Helpers.CanFuseGreenP), (&Items.Lantern.0x58, Helpers.CanFuseGreenP), (&Items.Lantern.0x5F, Helpers.CanFuseGreenC), (&Items.Lantern.0x60, Helpers.CanFuseGreenG)); 																												`GREENSHARED56`
+		Shared0F:SF;   OverworldConstraint; fusionScrap0F:Define:FirstByte, 0x0C9853:SecondByte;	(+15, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenC), (&Items.Lantern.0x36, Helpers.CanFuseGreenC), (&Items.Lantern.0x37, Helpers.CanFuseGreenC), (&Items.Lantern.0x39, Helpers.CanFuseGreenC), (&Items.Lantern.0x3C, Helpers.CanFuseGreenC), (&Items.Lantern.0x44, Helpers.CanFuseGreenG), (&Items.Lantern.0x46, Helpers.CanFuseGreenG), (&Items.Lantern.0x47, Helpers.CanFuseGreenG), (&Items.Lantern.0x4E, Helpers.CanFuseGreenG), (&Items.Lantern.0x50, Helpers.CanFuseGreenP), (&Items.Lantern.0x53, Helpers.CanFuseGreenP), (&Items.Lantern.0x55, Helpers.CanFuseGreenP), (&Items.Lantern.0x56, Helpers.CanFuseGreenP), (&Items.Lantern.0x58, Helpers.CanFuseGreenP), (&Items.Lantern.0x5F, Helpers.CanFuseGreenC), (&Items.Lantern.0x60, Helpers.CanFuseGreenG)); 																												`GREENSHARED58`
+		Shared10:SF;   OverworldConstraint; fusionScrap10:Define:FirstByte, 0x0C9854:SecondByte;	(+16, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenC), (&Items.Lantern.0x36, Helpers.CanFuseGreenC), (&Items.Lantern.0x37, Helpers.CanFuseGreenC), (&Items.Lantern.0x39, Helpers.CanFuseGreenC), (&Items.Lantern.0x3C, Helpers.CanFuseGreenC), (&Items.Lantern.0x44, Helpers.CanFuseGreenG), (&Items.Lantern.0x46, Helpers.CanFuseGreenG), (&Items.Lantern.0x47, Helpers.CanFuseGreenG), (&Items.Lantern.0x4E, Helpers.CanFuseGreenG), (&Items.Lantern.0x50, Helpers.CanFuseGreenP), (&Items.Lantern.0x53, Helpers.CanFuseGreenP), (&Items.Lantern.0x55, Helpers.CanFuseGreenP), (&Items.Lantern.0x56, Helpers.CanFuseGreenP), (&Items.Lantern.0x58, Helpers.CanFuseGreenP), (&Items.Lantern.0x5F, Helpers.CanFuseGreenC), (&Items.Lantern.0x60, Helpers.CanFuseGreenG)); 																												`GREENSHARED5F`
+		Shared11:SF;   OverworldConstraint; fusionScrap11:Define:FirstByte, 0x0C9855:SecondByte;	(+17, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenC), (&Items.Lantern.0x36, Helpers.CanFuseGreenC), (&Items.Lantern.0x37, Helpers.CanFuseGreenC), (&Items.Lantern.0x39, Helpers.CanFuseGreenC), (&Items.Lantern.0x3C, Helpers.CanFuseGreenC), (&Items.Lantern.0x44, Helpers.CanFuseGreenG), (&Items.Lantern.0x46, Helpers.CanFuseGreenG), (&Items.Lantern.0x47, Helpers.CanFuseGreenG), (&Items.Lantern.0x4E, Helpers.CanFuseGreenG), (&Items.Lantern.0x50, Helpers.CanFuseGreenP), (&Items.Lantern.0x53, Helpers.CanFuseGreenP), (&Items.Lantern.0x55, Helpers.CanFuseGreenP), (&Items.Lantern.0x56, Helpers.CanFuseGreenP), (&Items.Lantern.0x58, Helpers.CanFuseGreenP), (&Items.Lantern.0x5F, Helpers.CanFuseGreenC), (&Items.Lantern.0x60, Helpers.CanFuseGreenG)); 																												`GREENSHARED60`
+	!else
+		Shared00:SF;   OverworldConstraint; fusionScrap00:Define:FirstByte, 0x0C9844:SecondByte;;																																																																																																																																																																																																																																													`REDSHARED`
+		Shared01:SF;   OverworldConstraint; fusionScrap01:Define:FirstByte, 0x0C9845:SecondByte;	(|(&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenShared1), (&Items.Lantern.0x36, Helpers.CanFuseGreenShared1), (&Items.Lantern.0x37, Helpers.CanFuseGreenShared1), (&Items.Lantern.0x39, Helpers.CanFuseGreenShared1), (&Items.Lantern.0x3C, Helpers.CanFuseGreenShared1), (&Items.Lantern.0x44, Helpers.CanFuseGreenShared1), (&Items.Lantern.0x46, Helpers.CanFuseGreenShared1), (&Items.Lantern.0x47, Helpers.CanFuseGreenShared1), (&Items.Lantern.0x4E, Helpers.CanFuseGreenShared1), (&Items.Lantern.0x50, Helpers.CanFuseGreenShared1), (&Items.Lantern.0x53, Helpers.CanFuseGreenShared1), (&Items.Lantern.0x55, Helpers.CanFuseGreenShared1), (&Items.Lantern.0x56, Helpers.CanFuseGreenShared1), (&Items.Lantern.0x58, Helpers.CanFuseGreenShared1), (&Items.Lantern.0x5F, Helpers.CanFuseGreenShared1), (&Items.Lantern.0x60, Helpers.CanFuseGreenShared1));						`BLUESHARED`
+		Shared02:SF;   OverworldConstraint; fusionScrap02:Define:FirstByte, 0x0C9846:SecondByte;	(+2, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenShared2), (&Items.Lantern.0x36, Helpers.CanFuseGreenShared2), (&Items.Lantern.0x37, Helpers.CanFuseGreenShared2), (&Items.Lantern.0x39, Helpers.CanFuseGreenShared2), (&Items.Lantern.0x3C, Helpers.CanFuseGreenShared2), (&Items.Lantern.0x44, Helpers.CanFuseGreenShared2), (&Items.Lantern.0x46, Helpers.CanFuseGreenShared2), (&Items.Lantern.0x47, Helpers.CanFuseGreenShared2), (&Items.Lantern.0x4E, Helpers.CanFuseGreenShared2), (&Items.Lantern.0x50, Helpers.CanFuseGreenShared2), (&Items.Lantern.0x53, Helpers.CanFuseGreenShared2), (&Items.Lantern.0x55, Helpers.CanFuseGreenShared2), (&Items.Lantern.0x56, Helpers.CanFuseGreenShared2), (&Items.Lantern.0x58, Helpers.CanFuseGreenShared2), (&Items.Lantern.0x5F, Helpers.CanFuseGreenShared2), (&Items.Lantern.0x60, Helpers.CanFuseGreenShared2));					`GREENSHARED35`
+		Shared03:SF;   OverworldConstraint; fusionScrap03:Define:FirstByte, 0x0C9847:SecondByte;	(+3, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenShared3), (&Items.Lantern.0x36, Helpers.CanFuseGreenShared3), (&Items.Lantern.0x37, Helpers.CanFuseGreenShared3), (&Items.Lantern.0x39, Helpers.CanFuseGreenShared3), (&Items.Lantern.0x3C, Helpers.CanFuseGreenShared3), (&Items.Lantern.0x44, Helpers.CanFuseGreenShared3), (&Items.Lantern.0x46, Helpers.CanFuseGreenShared3), (&Items.Lantern.0x47, Helpers.CanFuseGreenShared3), (&Items.Lantern.0x4E, Helpers.CanFuseGreenShared3), (&Items.Lantern.0x50, Helpers.CanFuseGreenShared3), (&Items.Lantern.0x53, Helpers.CanFuseGreenShared3), (&Items.Lantern.0x55, Helpers.CanFuseGreenShared3), (&Items.Lantern.0x56, Helpers.CanFuseGreenShared3), (&Items.Lantern.0x58, Helpers.CanFuseGreenShared3), (&Items.Lantern.0x5F, Helpers.CanFuseGreenShared3), (&Items.Lantern.0x60, Helpers.CanFuseGreenShared3));					`GREENSHARED36`
+		Shared04:SF;   OverworldConstraint; fusionScrap04:Define:FirstByte, 0x0C9848:SecondByte;	(+4, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenShared4), (&Items.Lantern.0x36, Helpers.CanFuseGreenShared4), (&Items.Lantern.0x37, Helpers.CanFuseGreenShared4), (&Items.Lantern.0x39, Helpers.CanFuseGreenShared4), (&Items.Lantern.0x3C, Helpers.CanFuseGreenShared4), (&Items.Lantern.0x44, Helpers.CanFuseGreenShared4), (&Items.Lantern.0x46, Helpers.CanFuseGreenShared4), (&Items.Lantern.0x47, Helpers.CanFuseGreenShared4), (&Items.Lantern.0x4E, Helpers.CanFuseGreenShared4), (&Items.Lantern.0x50, Helpers.CanFuseGreenShared4), (&Items.Lantern.0x53, Helpers.CanFuseGreenShared4), (&Items.Lantern.0x55, Helpers.CanFuseGreenShared4), (&Items.Lantern.0x56, Helpers.CanFuseGreenShared4), (&Items.Lantern.0x58, Helpers.CanFuseGreenShared4), (&Items.Lantern.0x5F, Helpers.CanFuseGreenShared4), (&Items.Lantern.0x60, Helpers.CanFuseGreenShared4));					`GREENSHARED37`
+		Shared05:SF;   OverworldConstraint; fusionScrap05:Define:FirstByte, 0x0C9849:SecondByte;	(+5, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenShared5), (&Items.Lantern.0x36, Helpers.CanFuseGreenShared5), (&Items.Lantern.0x37, Helpers.CanFuseGreenShared5), (&Items.Lantern.0x39, Helpers.CanFuseGreenShared5), (&Items.Lantern.0x3C, Helpers.CanFuseGreenShared5), (&Items.Lantern.0x44, Helpers.CanFuseGreenShared5), (&Items.Lantern.0x46, Helpers.CanFuseGreenShared5), (&Items.Lantern.0x47, Helpers.CanFuseGreenShared5), (&Items.Lantern.0x4E, Helpers.CanFuseGreenShared5), (&Items.Lantern.0x50, Helpers.CanFuseGreenShared5), (&Items.Lantern.0x53, Helpers.CanFuseGreenShared5), (&Items.Lantern.0x55, Helpers.CanFuseGreenShared5), (&Items.Lantern.0x56, Helpers.CanFuseGreenShared5), (&Items.Lantern.0x58, Helpers.CanFuseGreenShared5), (&Items.Lantern.0x5F, Helpers.CanFuseGreenShared5), (&Items.Lantern.0x60, Helpers.CanFuseGreenShared5));					`GREENSHARED39`
+		Shared06:SF;   OverworldConstraint; fusionScrap06:Define:FirstByte, 0x0C984A:SecondByte;	(+6, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenShared6), (&Items.Lantern.0x36, Helpers.CanFuseGreenShared6), (&Items.Lantern.0x37, Helpers.CanFuseGreenShared6), (&Items.Lantern.0x39, Helpers.CanFuseGreenShared6), (&Items.Lantern.0x3C, Helpers.CanFuseGreenShared6), (&Items.Lantern.0x44, Helpers.CanFuseGreenShared6), (&Items.Lantern.0x46, Helpers.CanFuseGreenShared6), (&Items.Lantern.0x47, Helpers.CanFuseGreenShared6), (&Items.Lantern.0x4E, Helpers.CanFuseGreenShared6), (&Items.Lantern.0x50, Helpers.CanFuseGreenShared6), (&Items.Lantern.0x53, Helpers.CanFuseGreenShared6), (&Items.Lantern.0x55, Helpers.CanFuseGreenShared6), (&Items.Lantern.0x56, Helpers.CanFuseGreenShared6), (&Items.Lantern.0x58, Helpers.CanFuseGreenShared6), (&Items.Lantern.0x5F, Helpers.CanFuseGreenShared6), (&Items.Lantern.0x60, Helpers.CanFuseGreenShared6));					`GREENSHARED3C`
+		Shared07:SF;   OverworldConstraint; fusionScrap07:Define:FirstByte, 0x0C984B:SecondByte;	(+7, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenShared7), (&Items.Lantern.0x36, Helpers.CanFuseGreenShared7), (&Items.Lantern.0x37, Helpers.CanFuseGreenShared7), (&Items.Lantern.0x39, Helpers.CanFuseGreenShared7), (&Items.Lantern.0x3C, Helpers.CanFuseGreenShared7), (&Items.Lantern.0x44, Helpers.CanFuseGreenShared7), (&Items.Lantern.0x46, Helpers.CanFuseGreenShared7), (&Items.Lantern.0x47, Helpers.CanFuseGreenShared7), (&Items.Lantern.0x4E, Helpers.CanFuseGreenShared7), (&Items.Lantern.0x50, Helpers.CanFuseGreenShared7), (&Items.Lantern.0x53, Helpers.CanFuseGreenShared7), (&Items.Lantern.0x55, Helpers.CanFuseGreenShared7), (&Items.Lantern.0x56, Helpers.CanFuseGreenShared7), (&Items.Lantern.0x58, Helpers.CanFuseGreenShared7), (&Items.Lantern.0x5F, Helpers.CanFuseGreenShared7), (&Items.Lantern.0x60, Helpers.CanFuseGreenShared7));					`GREENSHARED44`
+		Shared08:SF;   OverworldConstraint; fusionScrap08:Define:FirstByte, 0x0C984C:SecondByte;	(+8, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenShared8), (&Items.Lantern.0x36, Helpers.CanFuseGreenShared8), (&Items.Lantern.0x37, Helpers.CanFuseGreenShared8), (&Items.Lantern.0x39, Helpers.CanFuseGreenShared8), (&Items.Lantern.0x3C, Helpers.CanFuseGreenShared8), (&Items.Lantern.0x44, Helpers.CanFuseGreenShared8), (&Items.Lantern.0x46, Helpers.CanFuseGreenShared8), (&Items.Lantern.0x47, Helpers.CanFuseGreenShared8), (&Items.Lantern.0x4E, Helpers.CanFuseGreenShared8), (&Items.Lantern.0x50, Helpers.CanFuseGreenShared8), (&Items.Lantern.0x53, Helpers.CanFuseGreenShared8), (&Items.Lantern.0x55, Helpers.CanFuseGreenShared8), (&Items.Lantern.0x56, Helpers.CanFuseGreenShared8), (&Items.Lantern.0x58, Helpers.CanFuseGreenShared8), (&Items.Lantern.0x5F, Helpers.CanFuseGreenShared8), (&Items.Lantern.0x60, Helpers.CanFuseGreenShared8));					`GREENSHARED46`
+		Shared09:SF;   OverworldConstraint; fusionScrap09:Define:FirstByte, 0x0C984D:SecondByte;	(+9, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenShared9), (&Items.Lantern.0x36, Helpers.CanFuseGreenShared9), (&Items.Lantern.0x37, Helpers.CanFuseGreenShared9), (&Items.Lantern.0x39, Helpers.CanFuseGreenShared9), (&Items.Lantern.0x3C, Helpers.CanFuseGreenShared9), (&Items.Lantern.0x44, Helpers.CanFuseGreenShared9), (&Items.Lantern.0x46, Helpers.CanFuseGreenShared9), (&Items.Lantern.0x47, Helpers.CanFuseGreenShared9), (&Items.Lantern.0x4E, Helpers.CanFuseGreenShared9), (&Items.Lantern.0x50, Helpers.CanFuseGreenShared9), (&Items.Lantern.0x53, Helpers.CanFuseGreenShared9), (&Items.Lantern.0x55, Helpers.CanFuseGreenShared9), (&Items.Lantern.0x56, Helpers.CanFuseGreenShared9), (&Items.Lantern.0x58, Helpers.CanFuseGreenShared9), (&Items.Lantern.0x5F, Helpers.CanFuseGreenShared9), (&Items.Lantern.0x60, Helpers.CanFuseGreenShared9));					`GREENSHARED47`
+		Shared0A:SF;   OverworldConstraint; fusionScrap0A:Define:FirstByte, 0x0C984E:SecondByte;	(+10, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenShared10), (&Items.Lantern.0x36, Helpers.CanFuseGreenShared10), (&Items.Lantern.0x37, Helpers.CanFuseGreenShared10), (&Items.Lantern.0x39, Helpers.CanFuseGreenShared10), (&Items.Lantern.0x3C, Helpers.CanFuseGreenShared10), (&Items.Lantern.0x44, Helpers.CanFuseGreenShared10), (&Items.Lantern.0x46, Helpers.CanFuseGreenShared10), (&Items.Lantern.0x47, Helpers.CanFuseGreenShared10), (&Items.Lantern.0x4E, Helpers.CanFuseGreenShared10), (&Items.Lantern.0x50, Helpers.CanFuseGreenShared10), (&Items.Lantern.0x53, Helpers.CanFuseGreenShared10), (&Items.Lantern.0x55, Helpers.CanFuseGreenShared10), (&Items.Lantern.0x56, Helpers.CanFuseGreenShared10), (&Items.Lantern.0x58, Helpers.CanFuseGreenShared10), (&Items.Lantern.0x5F, Helpers.CanFuseGreenShared10), (&Items.Lantern.0x60, Helpers.CanFuseGreenShared10));	`GREENSHARED4E`
+		Shared0B:SF;   OverworldConstraint; fusionScrap0B:Define:FirstByte, 0x0C984F:SecondByte;	(+11, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenShared11), (&Items.Lantern.0x36, Helpers.CanFuseGreenShared11), (&Items.Lantern.0x37, Helpers.CanFuseGreenShared11), (&Items.Lantern.0x39, Helpers.CanFuseGreenShared11), (&Items.Lantern.0x3C, Helpers.CanFuseGreenShared11), (&Items.Lantern.0x44, Helpers.CanFuseGreenShared11), (&Items.Lantern.0x46, Helpers.CanFuseGreenShared11), (&Items.Lantern.0x47, Helpers.CanFuseGreenShared11), (&Items.Lantern.0x4E, Helpers.CanFuseGreenShared11), (&Items.Lantern.0x50, Helpers.CanFuseGreenShared11), (&Items.Lantern.0x53, Helpers.CanFuseGreenShared11), (&Items.Lantern.0x55, Helpers.CanFuseGreenShared11), (&Items.Lantern.0x56, Helpers.CanFuseGreenShared11), (&Items.Lantern.0x58, Helpers.CanFuseGreenShared11), (&Items.Lantern.0x5F, Helpers.CanFuseGreenShared11), (&Items.Lantern.0x60, Helpers.CanFuseGreenShared11));	`GREENSHARED50`
+		Shared0C:SF;   OverworldConstraint; fusionScrap0C:Define:FirstByte, 0x0C9850:SecondByte;	(+12, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenShared12), (&Items.Lantern.0x36, Helpers.CanFuseGreenShared12), (&Items.Lantern.0x37, Helpers.CanFuseGreenShared12), (&Items.Lantern.0x39, Helpers.CanFuseGreenShared12), (&Items.Lantern.0x3C, Helpers.CanFuseGreenShared12), (&Items.Lantern.0x44, Helpers.CanFuseGreenShared12), (&Items.Lantern.0x46, Helpers.CanFuseGreenShared12), (&Items.Lantern.0x47, Helpers.CanFuseGreenShared12), (&Items.Lantern.0x4E, Helpers.CanFuseGreenShared12), (&Items.Lantern.0x50, Helpers.CanFuseGreenShared12), (&Items.Lantern.0x53, Helpers.CanFuseGreenShared12), (&Items.Lantern.0x55, Helpers.CanFuseGreenShared12), (&Items.Lantern.0x56, Helpers.CanFuseGreenShared12), (&Items.Lantern.0x58, Helpers.CanFuseGreenShared12), (&Items.Lantern.0x5F, Helpers.CanFuseGreenShared12), (&Items.Lantern.0x60, Helpers.CanFuseGreenShared12));	`GREENSHARED53`
+		Shared0D:SF;   OverworldConstraint; fusionScrap0D:Define:FirstByte, 0x0C9851:SecondByte;	(+13, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenShared13), (&Items.Lantern.0x36, Helpers.CanFuseGreenShared13), (&Items.Lantern.0x37, Helpers.CanFuseGreenShared13), (&Items.Lantern.0x39, Helpers.CanFuseGreenShared13), (&Items.Lantern.0x3C, Helpers.CanFuseGreenShared13), (&Items.Lantern.0x44, Helpers.CanFuseGreenShared13), (&Items.Lantern.0x46, Helpers.CanFuseGreenShared13), (&Items.Lantern.0x47, Helpers.CanFuseGreenShared13), (&Items.Lantern.0x4E, Helpers.CanFuseGreenShared13), (&Items.Lantern.0x50, Helpers.CanFuseGreenShared13), (&Items.Lantern.0x53, Helpers.CanFuseGreenShared13), (&Items.Lantern.0x55, Helpers.CanFuseGreenShared13), (&Items.Lantern.0x56, Helpers.CanFuseGreenShared13), (&Items.Lantern.0x58, Helpers.CanFuseGreenShared13), (&Items.Lantern.0x5F, Helpers.CanFuseGreenShared13), (&Items.Lantern.0x60, Helpers.CanFuseGreenShared13));	`GREENSHARED55`
+		Shared0E:SF;   OverworldConstraint; fusionScrap0E:Define:FirstByte, 0x0C9852:SecondByte;	(+14, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenShared14), (&Items.Lantern.0x36, Helpers.CanFuseGreenShared14), (&Items.Lantern.0x37, Helpers.CanFuseGreenShared14), (&Items.Lantern.0x39, Helpers.CanFuseGreenShared14), (&Items.Lantern.0x3C, Helpers.CanFuseGreenShared14), (&Items.Lantern.0x44, Helpers.CanFuseGreenShared14), (&Items.Lantern.0x46, Helpers.CanFuseGreenShared14), (&Items.Lantern.0x47, Helpers.CanFuseGreenShared14), (&Items.Lantern.0x4E, Helpers.CanFuseGreenShared14), (&Items.Lantern.0x50, Helpers.CanFuseGreenShared14), (&Items.Lantern.0x53, Helpers.CanFuseGreenShared14), (&Items.Lantern.0x55, Helpers.CanFuseGreenShared14), (&Items.Lantern.0x56, Helpers.CanFuseGreenShared14), (&Items.Lantern.0x58, Helpers.CanFuseGreenShared14), (&Items.Lantern.0x5F, Helpers.CanFuseGreenShared14), (&Items.Lantern.0x60, Helpers.CanFuseGreenShared14));	`GREENSHARED56`
+		Shared0F:SF;   OverworldConstraint; fusionScrap0F:Define:FirstByte, 0x0C9853:SecondByte;	(+15, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenShared15), (&Items.Lantern.0x36, Helpers.CanFuseGreenShared15), (&Items.Lantern.0x37, Helpers.CanFuseGreenShared15), (&Items.Lantern.0x39, Helpers.CanFuseGreenShared15), (&Items.Lantern.0x3C, Helpers.CanFuseGreenShared15), (&Items.Lantern.0x44, Helpers.CanFuseGreenShared15), (&Items.Lantern.0x46, Helpers.CanFuseGreenShared15), (&Items.Lantern.0x47, Helpers.CanFuseGreenShared15), (&Items.Lantern.0x4E, Helpers.CanFuseGreenShared15), (&Items.Lantern.0x50, Helpers.CanFuseGreenShared15), (&Items.Lantern.0x53, Helpers.CanFuseGreenShared15), (&Items.Lantern.0x55, Helpers.CanFuseGreenShared15), (&Items.Lantern.0x56, Helpers.CanFuseGreenShared15), (&Items.Lantern.0x58, Helpers.CanFuseGreenShared15), (&Items.Lantern.0x5F, Helpers.CanFuseGreenShared15), (&Items.Lantern.0x60, Helpers.CanFuseGreenShared15));	`GREENSHARED58`
+		Shared10:SF;   OverworldConstraint; fusionScrap10:Define:FirstByte, 0x0C9854:SecondByte;	(+16, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenC), (&Items.Lantern.0x36, Helpers.CanFuseGreenC), (&Items.Lantern.0x37, Helpers.CanFuseGreenC), (&Items.Lantern.0x39, Helpers.CanFuseGreenC), (&Items.Lantern.0x3C, Helpers.CanFuseGreenC), (&Items.Lantern.0x44, Helpers.CanFuseGreenC), (&Items.Lantern.0x46, Helpers.CanFuseGreenC), (&Items.Lantern.0x47, Helpers.CanFuseGreenC), (&Items.Lantern.0x4E, Helpers.CanFuseGreenC), (&Items.Lantern.0x50, Helpers.CanFuseGreenC), (&Items.Lantern.0x53, Helpers.CanFuseGreenC), (&Items.Lantern.0x55, Helpers.CanFuseGreenC), (&Items.Lantern.0x56, Helpers.CanFuseGreenC), (&Items.Lantern.0x58, Helpers.CanFuseGreenC), (&Items.Lantern.0x5F, Helpers.CanFuseGreenC), (&Items.Lantern.0x60, Helpers.CanFuseGreenC));	`GREENSHARED5F`
+		Shared11:SF;   OverworldConstraint; fusionScrap11:Define:FirstByte, 0x0C9855:SecondByte;	(+17, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenC), (&Items.Lantern.0x36, Helpers.CanFuseGreenC), (&Items.Lantern.0x37, Helpers.CanFuseGreenC), (&Items.Lantern.0x39, Helpers.CanFuseGreenC), (&Items.Lantern.0x3C, Helpers.CanFuseGreenC), (&Items.Lantern.0x44, Helpers.CanFuseGreenC), (&Items.Lantern.0x46, Helpers.CanFuseGreenC), (&Items.Lantern.0x47, Helpers.CanFuseGreenC), (&Items.Lantern.0x4E, Helpers.CanFuseGreenC), (&Items.Lantern.0x50, Helpers.CanFuseGreenC), (&Items.Lantern.0x53, Helpers.CanFuseGreenC), (&Items.Lantern.0x55, Helpers.CanFuseGreenC), (&Items.Lantern.0x56, Helpers.CanFuseGreenC), (&Items.Lantern.0x58, Helpers.CanFuseGreenC), (&Items.Lantern.0x5F, Helpers.CanFuseGreenC), (&Items.Lantern.0x60, Helpers.CanFuseGreenC));	`GREENSHARED60`
+	!endif
 	CanFuseSharedRed;	Helper;;	Items.Lantern.0x18, Helpers.CanFuseRedV
 	CanFuseSharedBlue;	Helper;;	Items.Lantern.0x2D, Helpers.CanFuseBlueS
 	CanFuseShared35;	Helper;;	Items.Lantern.0x35, Helpers.CanFuseGreenC
@@ -1923,6 +1944,9 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 	PoWRollerRoom;		Helper;;		
 !endif
 
+!ifndef - NO_RED_FUSIONS
+	!define - TRIBE_PORTAL
+!endif
 !ifdef - CREST_FALLS
 	!define - FALLS_ACCESS
 !else
@@ -1935,11 +1959,27 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 	!endif
 !endif
 !ifdef - CREST_CLOUD
-	!define - WTACCESS
+	!define - POW_ACCESS
 !else
 	!ifndef - NO_GOLD_FUSIONS
-		!define - WTACCESS
+		!define - POW_ACCESS
 	!endif
+!endif
+!ifdef - CREST_CLOUD
+	!define - TRIBE_ACCESS
+!else
+	!ifndef - NO_GOLD_FUSIONS
+		!define - TRIBE_ACCESS
+	!else
+		!ifdef - TRIBE_PORTAL
+			!define - TRIBE_ACCESS
+		!endif
+	!endif
+!endif
+!ifndef - NO_BLUE_FUSIONS
+	!define - RIGHT_GRAVE
+	!define - MINISH_TREE
+	!define - GORON_CAVE
 !endif
 
 #All Fusion Helpers
@@ -2033,67 +2073,114 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 		PercyFusion;				Helper;;																																#PercyHouse			21
 	!else				
 		!ifndef - COMBINED_RED_FUSIONS
-			!ifdef - NO_BLUE_FUSIONS
-				Items.Kinstone.RedW:8;	Major;
-				CanFuseRedW;		Helper;; Items.Kinstone.RedW:8
-			!else
+			!ifdef - GORON_CAVE
 				Items.Kinstone.RedW:9;	Major;
 				CanFuseRedW;		Helper;; Items.Kinstone.RedW:9
-			!endif
-			!ifndef - FALLS_ACCESS
-				Items.Kinstone.RedV:6;	Major;
-				CanFuseRedV;		Helper;; Items.Kinstone.RedV:6
-				CanFuseRedMinish0;	Helper;; Items.Kinstone.RedV:6
 			!else
+				Items.Kinstone.RedW:8;	Major;
+				CanFuseRedW;		Helper;; Items.Kinstone.RedW:8
+			!endif
+			!ifdef - FALLS_ACCESS
 				Items.Kinstone.RedV:7;	Major;
 				CanFuseRedV;		Helper;; Items.Kinstone.RedV:7
 				CanFuseRedMinish0;	Helper;; Items.Kinstone.RedV:7
+			!else
+				Items.Kinstone.RedV:6;	Major;
+				CanFuseRedV;		Helper;; Items.Kinstone.RedV:6
+				CanFuseRedMinish0;	Helper;; Items.Kinstone.RedV:6
+			!endif
+			!ifndef - NO_GOLD_FUSIONS
+				Items.Kinstone.RedE:8;	Major;
+				CanFuseRedE;		Helper;; Items.Kinstone.RedE:8
+				CanFuseRedDin;		Helper;; Items.Kinstone.RedE:7
+				CanFuseRedMinish;	Helper;; Items.Kinstone.RedE:8
+			!else
+				Items.Kinstone.RedE:7;	Major;
+				CanFuseRedE;		Helper;; Items.Kinstone.RedE:7
+				CanFuseRedDin;		Helper;; Items.Kinstone.RedE:6
+				CanFuseRedMinish;	Helper;; Items.Kinstone.RedE:7
 			!endif
 			!ifdef - ITEM_POOL_PLENTIFUL
 				Items.Kinstone.RedW:2;	Minor;
 				Items.Kinstone.RedV:2;	Minor;
 				Items.Kinstone.RedE:2;	Minor;
 			!endif
-			Items.Kinstone.RedE:8;	Major;
-			CanFuseRedE;		Helper;; Items.Kinstone.RedE:8
-			CanFuseRedDin;		Helper;; Items.Kinstone.RedE:7
-			CanFuseRedMinish;	Helper;; Items.Kinstone.RedE:7
 		!else
-			!ifdef - NO_BLUE_FUSIONS
-				!ifdef - NO_GOLD_FUSIONS
-					Items.Kinstone.RedW:22;	Major;
-					CanFuseRedW;		Helper;; Items.Kinstone.RedW:22
-					CanFuseRedV;		Helper;; Items.Kinstone.RedW:22
-					CanFuseRedMinish0;	Helper;; Items.Kinstone.RedW:20
-					CanFuseRedE;		Helper;; Items.Kinstone.RedW:22
-					CanFuseRedDin;		Helper;; Items.Kinstone.RedW:18
-					CanFuseRedMinish;	Helper;; Items.Kinstone.RedW:21
+			!ifndef - NO_GOLD_FUSIONS
+				!ifdef - GORON_CAVE
+					!ifdef - FALLS_ACCESS
+						Items.Kinstone.RedW:24;	Major;
+						CanFuseRedW;		Helper;; Items.Kinstone.RedW:24
+						CanFuseRedV;		Helper;; Items.Kinstone.RedW:24
+						CanFuseRedMinish0;	Helper;; Items.Kinstone.RedW:22
+						CanFuseRedE;		Helper;; Items.Kinstone.RedW:24
+						CanFuseRedDin;		Helper;; Items.Kinstone.RedW:20
+						CanFuseRedMinish;	Helper;; Items.Kinstone.RedW:23
+					!else
+						Items.Kinstone.RedW:23;	Major;
+						CanFuseRedW;		Helper;; Items.Kinstone.RedW:23
+						CanFuseRedV;		Helper;; Items.Kinstone.RedW:23
+						CanFuseRedMinish0;	Helper;; Items.Kinstone.RedW:21
+						CanFuseRedE;		Helper;; Items.Kinstone.RedW:23
+						CanFuseRedDin;		Helper;; Items.Kinstone.RedW:19
+						CanFuseRedMinish;	Helper;; Items.Kinstone.RedW:22
+					!endif
 				!else
-					Items.Kinstone.RedW:23;	Major;
-					CanFuseRedW;		Helper;; Items.Kinstone.RedW:23
-					CanFuseRedV;		Helper;; Items.Kinstone.RedW:23
-					CanFuseRedMinish0;	Helper;; Items.Kinstone.RedW:21
-					CanFuseRedE;		Helper;; Items.Kinstone.RedW:23
-					CanFuseRedDin;		Helper;; Items.Kinstone.RedW:19
-					CanFuseRedMinish;	Helper;; Items.Kinstone.RedW:22
+					!ifdef - FALLS_ACCESS
+						Items.Kinstone.RedW:23;	Major;
+						CanFuseRedW;		Helper;; Items.Kinstone.RedW:23
+						CanFuseRedV;		Helper;; Items.Kinstone.RedW:23
+						CanFuseRedMinish0;	Helper;; Items.Kinstone.RedW:21
+						CanFuseRedE;		Helper;; Items.Kinstone.RedW:23
+						CanFuseRedDin;		Helper;; Items.Kinstone.RedW:19
+						CanFuseRedMinish;	Helper;; Items.Kinstone.RedW:22
+					!else
+						Items.Kinstone.RedW:22;	Major;
+						CanFuseRedW;		Helper;; Items.Kinstone.RedW:22
+						CanFuseRedV;		Helper;; Items.Kinstone.RedW:22
+						CanFuseRedMinish0;	Helper;; Items.Kinstone.RedW:20
+						CanFuseRedE;		Helper;; Items.Kinstone.RedW:22
+						CanFuseRedDin;		Helper;; Items.Kinstone.RedW:18
+						CanFuseRedMinish;	Helper;; Items.Kinstone.RedW:21
+					!endif
 				!endif
 			!else
-				!ifdef - NO_GOLD_FUSIONS
-					Items.Kinstone.RedW:23;	Major;
-					CanFuseRedW;		Helper;; Items.Kinstone.RedW:23
-					CanFuseRedV;		Helper;; Items.Kinstone.RedW:23
-					CanFuseRedMinish0;	Helper;; Items.Kinstone.RedW:21
-					CanFuseRedE;		Helper;; Items.Kinstone.RedW:23
-					CanFuseRedDin;		Helper;; Items.Kinstone.RedW:19
-					CanFuseRedMinish;	Helper;; Items.Kinstone.RedW:22
+				!ifdef - GORON_CAVE
+					!ifdef - FALLS_ACCESS
+						Items.Kinstone.RedW:23;	Major;
+						CanFuseRedW;		Helper;; Items.Kinstone.RedW:23
+						CanFuseRedV;		Helper;; Items.Kinstone.RedW:23
+						CanFuseRedMinish0;	Helper;; Items.Kinstone.RedW:21
+						CanFuseRedE;		Helper;; Items.Kinstone.RedW:23
+						CanFuseRedDin;		Helper;; Items.Kinstone.RedW:19
+						CanFuseRedMinish;	Helper;; Items.Kinstone.RedW:22
+					!else
+						Items.Kinstone.RedW:22;	Major;
+						CanFuseRedW;		Helper;; Items.Kinstone.RedW:22
+						CanFuseRedV;		Helper;; Items.Kinstone.RedW:22
+						CanFuseRedMinish0;	Helper;; Items.Kinstone.RedW:20
+						CanFuseRedE;		Helper;; Items.Kinstone.RedW:22
+						CanFuseRedDin;		Helper;; Items.Kinstone.RedW:18
+						CanFuseRedMinish;	Helper;; Items.Kinstone.RedW:21
+					!endif
 				!else
-					Items.Kinstone.RedW:24;	Major;
-					CanFuseRedW;		Helper;; Items.Kinstone.RedW:24
-					CanFuseRedV;		Helper;; Items.Kinstone.RedW:24
-					CanFuseRedMinish0;	Helper;; Items.Kinstone.RedW:22
-					CanFuseRedE;		Helper;; Items.Kinstone.RedW:24
-					CanFuseRedDin;		Helper;; Items.Kinstone.RedW:20
-					CanFuseRedMinish;	Helper;; Items.Kinstone.RedW:23
+					!ifdef - FALLS_ACCESS
+						Items.Kinstone.RedW:22;	Major;
+						CanFuseRedW;		Helper;; Items.Kinstone.RedW:22
+						CanFuseRedV;		Helper;; Items.Kinstone.RedW:22
+						CanFuseRedMinish0;	Helper;; Items.Kinstone.RedW:20
+						CanFuseRedE;		Helper;; Items.Kinstone.RedW:22
+						CanFuseRedDin;		Helper;; Items.Kinstone.RedW:18
+						CanFuseRedMinish;	Helper;; Items.Kinstone.RedW:21
+					!else
+						Items.Kinstone.RedW:21;	Major;
+						CanFuseRedW;		Helper;; Items.Kinstone.RedW:21
+						CanFuseRedV;		Helper;; Items.Kinstone.RedW:21
+						CanFuseRedMinish0;	Helper;; Items.Kinstone.RedW:19
+						CanFuseRedE;		Helper;; Items.Kinstone.RedW:21
+						CanFuseRedDin;		Helper;; Items.Kinstone.RedW:17
+						CanFuseRedMinish;	Helper;; Items.Kinstone.RedW:20
+					!endif
 				!endif
 			!endif
 			!ifdef - ITEM_POOL_PLENTIFUL
@@ -2310,134 +2397,139 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 		NHFMinishFusion;			Helper;;																																#RuinsPillarChest		64
 	!else
 		!ifndef - COMBINED_GREEN_FUSIONS
-			!ifdef - NO_BLUE_FUSIONS
-				!ifdef - NO_GOLD_FUSIONS
-					Items.Kinstone.GreenC:13;	Major;
-					CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:13
-					CanFuseGreenScrub;		Helper;; Items.Kinstone.GreenC:13
-					CanFuseGreenGina;		Helper;; Items.Kinstone.GreenC:12
-					CanFuseGreenSiroc;		Helper;; Items.Kinstone.GreenC:13
-					CanFuseGreenCShared1;	Helper;; Items.Kinstone.GreenC:7
-					CanFuseGreenCShared2;	Helper;; Items.Kinstone.GreenC:8
-					CanFuseGreenCShared3;	Helper;; Items.Kinstone.GreenC:9
-					CanFuseGreenCShared4;	Helper;; Items.Kinstone.GreenC:10
-					CanFuseGreenCShared5;	Helper;; Items.Kinstone.GreenC:11
-					CanFuseGreenCShared6;	Helper;; Items.Kinstone.GreenC:12
+			!ifdef - RIGHT_GRAVE
+				!ifdef - MINISH_TREE
+					!ifdef - POW_ACCESS
+						Items.Kinstone.GreenC:17;	Major;
+						CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:17
+						CanFuseGreenScrub;		Helper;; Items.Kinstone.GreenC:17
+						CanFuseGreenGina;		Helper;; Items.Kinstone.GreenC:16
+						CanFuseGreenSiroc;		Helper;; Items.Kinstone.GreenC:17
+						CanFuseGreenCShared1;	Helper;; Items.Kinstone.GreenC:11
+						CanFuseGreenCShared2;	Helper;; Items.Kinstone.GreenC:12
+						CanFuseGreenCShared3;	Helper;; Items.Kinstone.GreenC:13
+						CanFuseGreenCShared4;	Helper;; Items.Kinstone.GreenC:14
+						CanFuseGreenCShared5;	Helper;; Items.Kinstone.GreenC:15
+						CanFuseGreenCShared6;	Helper;; Items.Kinstone.GreenC:16
+					!else
+						Items.Kinstone.GreenC:16;	Major;
+						CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:16
+						CanFuseGreenScrub;		Helper;; Items.Kinstone.GreenC:16
+						CanFuseGreenGina;		Helper;; Items.Kinstone.GreenC:15
+						CanFuseGreenSiroc;		Helper;; Helpers.Inaccessible
+						CanFuseGreenCShared1;	Helper;; Items.Kinstone.GreenC:10
+						CanFuseGreenCShared2;	Helper;; Items.Kinstone.GreenC:11
+						CanFuseGreenCShared3;	Helper;; Items.Kinstone.GreenC:12
+						CanFuseGreenCShared4;	Helper;; Items.Kinstone.GreenC:13
+						CanFuseGreenCShared5;	Helper;; Items.Kinstone.GreenC:14
+						CanFuseGreenCShared6;	Helper;; Items.Kinstone.GreenC:15
+					!endif
 				!else
-					Items.Kinstone.GreenC:14;	Major;
-					CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:14
-					CanFuseGreenScrub;		Helper;; Items.Kinstone.GreenC:14
-					CanFuseGreenGina;		Helper;; Items.Kinstone.GreenC:13
-					CanFuseGreenSiroc;		Helper;; Items.Kinstone.GreenC:14
-					CanFuseGreenCShared1;	Helper;; Items.Kinstone.GreenC:8
-					CanFuseGreenCShared2;	Helper;; Items.Kinstone.GreenC:9
-					CanFuseGreenCShared3;	Helper;; Items.Kinstone.GreenC:10
-					CanFuseGreenCShared4;	Helper;; Items.Kinstone.GreenC:11
-					CanFuseGreenCShared5;	Helper;; Items.Kinstone.GreenC:12
-					CanFuseGreenCShared6;	Helper;; Items.Kinstone.GreenC:13
+					!ifdef - POW_ACCESS
+						Items.Kinstone.GreenC:16;	Major;
+						CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:16
+						CanFuseGreenScrub;		Helper;; Helpers.Inaccessible
+						CanFuseGreenGina;		Helper;; Items.Kinstone.GreenC:15
+						CanFuseGreenSiroc;		Helper;; Items.Kinstone.GreenC:16
+						CanFuseGreenCShared1;	Helper;; Items.Kinstone.GreenC:10
+						CanFuseGreenCShared2;	Helper;; Items.Kinstone.GreenC:11
+						CanFuseGreenCShared3;	Helper;; Items.Kinstone.GreenC:12
+						CanFuseGreenCShared4;	Helper;; Items.Kinstone.GreenC:13
+						CanFuseGreenCShared5;	Helper;; Items.Kinstone.GreenC:14
+						CanFuseGreenCShared6;	Helper;; Items.Kinstone.GreenC:15
+					!else
+						Items.Kinstone.GreenC:15;	Major;
+						CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:15
+						CanFuseGreenScrub;		Helper;; Helpers.Inaccessible
+						CanFuseGreenGina;		Helper;; Items.Kinstone.GreenC:14
+						CanFuseGreenSiroc;		Helper;; Helpers.Inaccessible
+						CanFuseGreenCShared1;	Helper;; Items.Kinstone.GreenC:9
+						CanFuseGreenCShared2;	Helper;; Items.Kinstone.GreenC:10
+						CanFuseGreenCShared3;	Helper;; Items.Kinstone.GreenC:11
+						CanFuseGreenCShared4;	Helper;; Items.Kinstone.GreenC:12
+						CanFuseGreenCShared5;	Helper;; Items.Kinstone.GreenC:13
+						CanFuseGreenCShared6;	Helper;; Items.Kinstone.GreenC:14
+					!endif
 				!endif
 			!else
-				!ifdef - NO_GOLD_FUSIONS
-					Items.Kinstone.GreenC:16;	Major;
-					CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:16
-					CanFuseGreenScrub;		Helper;; Items.Kinstone.GreenC:16
-					CanFuseGreenGina;		Helper;; Items.Kinstone.GreenC:15
-					CanFuseGreenSiroc;		Helper;; Items.Kinstone.GreenC:16
-					CanFuseGreenCShared1;	Helper;; Items.Kinstone.GreenC:10
-					CanFuseGreenCShared2;	Helper;; Items.Kinstone.GreenC:11
-					CanFuseGreenCShared3;	Helper;; Items.Kinstone.GreenC:12
-					CanFuseGreenCShared4;	Helper;; Items.Kinstone.GreenC:13
-					CanFuseGreenCShared5;	Helper;; Items.Kinstone.GreenC:14
-					CanFuseGreenCShared6;	Helper;; Items.Kinstone.GreenC:15
+				!ifdef - MINISH_TREE
+					!ifdef - POW_ACCESS
+						Items.Kinstone.GreenC:15;	Major;
+						CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:15
+						CanFuseGreenScrub;		Helper;; Items.Kinstone.GreenC:15
+						CanFuseGreenGina;		Helper;; Helpers.Inaccessible
+						CanFuseGreenSiroc;		Helper;; Items.Kinstone.GreenC:15
+						CanFuseGreenCShared1;	Helper;; Items.Kinstone.GreenC:9
+						CanFuseGreenCShared2;	Helper;; Items.Kinstone.GreenC:10
+						CanFuseGreenCShared3;	Helper;; Items.Kinstone.GreenC:11
+						CanFuseGreenCShared4;	Helper;; Items.Kinstone.GreenC:12
+						CanFuseGreenCShared5;	Helper;; Items.Kinstone.GreenC:13
+						CanFuseGreenCShared6;	Helper;; Items.Kinstone.GreenC:14
+					!else
+						Items.Kinstone.GreenC:14;	Major;
+						CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:14
+						CanFuseGreenScrub;		Helper;; Items.Kinstone.GreenC:14
+						CanFuseGreenGina;		Helper;; Helpers.Inaccessible
+						CanFuseGreenSiroc;		Helper;; Helpers.Inaccessible
+						CanFuseGreenCShared1;	Helper;; Items.Kinstone.GreenC:8
+						CanFuseGreenCShared2;	Helper;; Items.Kinstone.GreenC:9
+						CanFuseGreenCShared3;	Helper;; Items.Kinstone.GreenC:10
+						CanFuseGreenCShared4;	Helper;; Items.Kinstone.GreenC:11
+						CanFuseGreenCShared5;	Helper;; Items.Kinstone.GreenC:12
+						CanFuseGreenCShared6;	Helper;; Items.Kinstone.GreenC:13
+					!endif
 				!else
-					Items.Kinstone.GreenC:17;	Major;
-					CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:17
-					CanFuseGreenScrub;		Helper;; Items.Kinstone.GreenC:17
-					CanFuseGreenGina;		Helper;; Items.Kinstone.GreenC:16
-					CanFuseGreenSiroc;		Helper;; Items.Kinstone.GreenC:17
-					CanFuseGreenCShared1;	Helper;; Items.Kinstone.GreenC:11
-					CanFuseGreenCShared2;	Helper;; Items.Kinstone.GreenC:12
-					CanFuseGreenCShared3;	Helper;; Items.Kinstone.GreenC:13
-					CanFuseGreenCShared4;	Helper;; Items.Kinstone.GreenC:14
-					CanFuseGreenCShared5;	Helper;; Items.Kinstone.GreenC:15
-					CanFuseGreenCShared6;	Helper;; Items.Kinstone.GreenC:16
+					!ifdef - POW_ACCESS
+						Items.Kinstone.GreenC:14;	Major;
+						CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:14
+						CanFuseGreenScrub;		Helper;; Helpers.Inaccessible
+						CanFuseGreenGina;		Helper;; Helpers.Inaccessible
+						CanFuseGreenSiroc;		Helper;; Items.Kinstone.GreenC:14
+						CanFuseGreenCShared1;	Helper;; Items.Kinstone.GreenC:8
+						CanFuseGreenCShared2;	Helper;; Items.Kinstone.GreenC:9
+						CanFuseGreenCShared3;	Helper;; Items.Kinstone.GreenC:10
+						CanFuseGreenCShared4;	Helper;; Items.Kinstone.GreenC:11
+						CanFuseGreenCShared5;	Helper;; Items.Kinstone.GreenC:12
+						CanFuseGreenCShared6;	Helper;; Items.Kinstone.GreenC:13
+					!else
+						Items.Kinstone.GreenC:13;	Major;
+						CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:13
+						CanFuseGreenScrub;		Helper;; Helpers.Inaccessible
+						CanFuseGreenGina;		Helper;; Helpers.Inaccessible
+						CanFuseGreenSiroc;		Helper;; Helpers.Inaccessible
+						CanFuseGreenCShared1;	Helper;; Items.Kinstone.GreenC:7
+						CanFuseGreenCShared2;	Helper;; Items.Kinstone.GreenC:8
+						CanFuseGreenCShared3;	Helper;; Items.Kinstone.GreenC:9
+						CanFuseGreenCShared4;	Helper;; Items.Kinstone.GreenC:10
+						CanFuseGreenCShared5;	Helper;; Items.Kinstone.GreenC:11
+						CanFuseGreenCShared6;	Helper;; Items.Kinstone.GreenC:12
+					!endif
 				!endif
 			!endif
-			!ifdef - NO_GOLD_FUSIONS
-				!ifdef - NO_RED_FUSIONS
-					Items.Kinstone.GreenG:12;	Major;
-					CanFuseGreenG;   		Helper;; Items.Kinstone.GreenG:12
-					CanFuseGreenFlurris;	Helper;; Items.Kinstone.GreenG:11
-					CanFuseGreenTFZ1;		Helper;; Items.Kinstone.GreenG:12
-					CanFuseGreenGShared1;	Helper;; Items.Kinstone.GreenG:7
-					CanFuseGreenGShared2;	Helper;; Items.Kinstone.GreenG:8
-					CanFuseGreenGShared3;	Helper;; Items.Kinstone.GreenG:9
-					CanFuseGreenGShared4;	Helper;; Items.Kinstone.GreenG:10
-					CanFuseGreenGShared5;	Helper;; Items.Kinstone.GreenG:11
-					!ifdef - NO_BLUE_FUSIONS
-						Items.Kinstone.GreenP:14;	Major;
-						CanFuseGreenP;   		Helper;; Items.Kinstone.GreenP:14
-						CanFuseGreenTFZ2;		Helper;; Items.Kinstone.GreenP:14
-						CanFuseGreenDavid;		Helper;; Items.Kinstone.GreenP:14
-						CanFuseGreenPShared1;	Helper;; Items.Kinstone.GreenP:9
-						CanFuseGreenPShared2;	Helper;; Items.Kinstone.GreenP:10
-						CanFuseGreenPShared3;	Helper;; Items.Kinstone.GreenP:11
-						CanFuseGreenPShared4;	Helper;; Items.Kinstone.GreenP:12
-						CanFuseGreenPShared5;	Helper;; Items.Kinstone.GreenP:13
-					!else
-						Items.Kinstone.GreenP:15;	Major;
-						CanFuseGreenP;   		Helper;; Items.Kinstone.GreenP:15
-						CanFuseGreenTFZ2;		Helper;; Items.Kinstone.GreenP:15
-						CanFuseGreenDavid;		Helper;; Items.Kinstone.GreenP:15
-						CanFuseGreenPShared1;	Helper;; Items.Kinstone.GreenP:10
-						CanFuseGreenPShared2;	Helper;; Items.Kinstone.GreenP:11
-						CanFuseGreenPShared3;	Helper;; Items.Kinstone.GreenP:12
-						CanFuseGreenPShared4;	Helper;; Items.Kinstone.GreenP:13
-						CanFuseGreenPShared5;	Helper;; Items.Kinstone.GreenP:14
-					!endif
+			!ifdef - TRIBE_ACCESS
+				!ifdef - MINISH_TREE
+					Items.Kinstone.GreenP:16;	Major;
+					CanFuseGreenP;   		Helper;; Items.Kinstone.GreenP:16
+					CanFuseGreenTFZ2;		Helper;; Items.Kinstone.GreenP:16
+					CanFuseGreenDavid;		Helper;; Items.Kinstone.GreenP:16
+					CanFuseGreenPShared1;	Helper;; Items.Kinstone.GreenP:11
+					CanFuseGreenPShared2;	Helper;; Items.Kinstone.GreenP:12
+					CanFuseGreenPShared3;	Helper;; Items.Kinstone.GreenP:13
+					CanFuseGreenPShared4;	Helper;; Items.Kinstone.GreenP:14
+					CanFuseGreenPShared5;	Helper;; Items.Kinstone.GreenP:15
 				!else
-					Items.Kinstone.GreenG:14;	Major;
-					CanFuseGreenG;   		Helper;; Items.Kinstone.GreenG:14
-					CanFuseGreenFlurris;	Helper;; Items.Kinstone.GreenG:13
-					CanFuseGreenTFZ1;		Helper;; Items.Kinstone.GreenG:14
-					CanFuseGreenGShared1;	Helper;; Items.Kinstone.GreenG:9
-					CanFuseGreenGShared2;	Helper;; Items.Kinstone.GreenG:10
-					CanFuseGreenGShared3;	Helper;; Items.Kinstone.GreenG:11
-					CanFuseGreenGShared4;	Helper;; Items.Kinstone.GreenG:12
-					CanFuseGreenGShared5;	Helper;; Items.Kinstone.GreenG:13
-					!ifdef - NO_BLUE_FUSIONS
-						Items.Kinstone.GreenP:15;	Major;
-						CanFuseGreenP;   		Helper;; Items.Kinstone.GreenP:15
-						CanFuseGreenTFZ2;		Helper;; Items.Kinstone.GreenP:15
-						CanFuseGreenDavid;		Helper;; Items.Kinstone.GreenP:15
-						CanFuseGreenPShared1;	Helper;; Items.Kinstone.GreenP:10
-						CanFuseGreenPShared2;	Helper;; Items.Kinstone.GreenP:11
-						CanFuseGreenPShared3;	Helper;; Items.Kinstone.GreenP:12
-						CanFuseGreenPShared4;	Helper;; Items.Kinstone.GreenP:13
-						CanFuseGreenPShared5;	Helper;; Items.Kinstone.GreenP:14
-					!else
-						Items.Kinstone.GreenP:16;	Major;
-						CanFuseGreenP;   		Helper;; Items.Kinstone.GreenP:16
-						CanFuseGreenTFZ2;		Helper;; Items.Kinstone.GreenP:16
-						CanFuseGreenDavid;		Helper;; Items.Kinstone.GreenP:16
-						CanFuseGreenPShared1;	Helper;; Items.Kinstone.GreenP:11
-						CanFuseGreenPShared2;	Helper;; Items.Kinstone.GreenP:12
-						CanFuseGreenPShared3;	Helper;; Items.Kinstone.GreenP:13
-						CanFuseGreenPShared4;	Helper;; Items.Kinstone.GreenP:14
-						CanFuseGreenPShared5;	Helper;; Items.Kinstone.GreenP:15
-					!endif
+					Items.Kinstone.GreenP:15;	Major;
+					CanFuseGreenP;   		Helper;; Items.Kinstone.GreenP:15
+					CanFuseGreenTFZ2;		Helper;; Items.Kinstone.GreenP:15
+					CanFuseGreenDavid;		Helper;; Items.Kinstone.GreenP:15
+					CanFuseGreenPShared1;	Helper;; Items.Kinstone.GreenP:10
+					CanFuseGreenPShared2;	Helper;; Items.Kinstone.GreenP:11
+					CanFuseGreenPShared3;	Helper;; Items.Kinstone.GreenP:12
+					CanFuseGreenPShared4;	Helper;; Items.Kinstone.GreenP:13
+					CanFuseGreenPShared5;	Helper;; Items.Kinstone.GreenP:14
 				!endif
 			!else
-				Items.Kinstone.GreenG:16;	Major;
-				CanFuseGreenG;   		Helper;; Items.Kinstone.GreenG:16
-				CanFuseGreenFlurris;	Helper;; Items.Kinstone.GreenG:15
-				CanFuseGreenTFZ1;		Helper;; Items.Kinstone.GreenG:16
-				CanFuseGreenGShared1;	Helper;; Items.Kinstone.GreenG:11
-				CanFuseGreenGShared2;	Helper;; Items.Kinstone.GreenG:12
-				CanFuseGreenGShared3;	Helper;; Items.Kinstone.GreenG:13
-				CanFuseGreenGShared4;	Helper;; Items.Kinstone.GreenG:14
-				CanFuseGreenGShared5;	Helper;; Items.Kinstone.GreenG:15
-				!ifdef - NO_BLUE_FUSIONS
+				!ifdef - MINISH_TREE
 					Items.Kinstone.GreenP:15;	Major;
 					CanFuseGreenP;   		Helper;; Items.Kinstone.GreenP:15
 					CanFuseGreenTFZ2;		Helper;; Items.Kinstone.GreenP:15
@@ -2448,15 +2540,72 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 					CanFuseGreenPShared4;	Helper;; Items.Kinstone.GreenP:13
 					CanFuseGreenPShared5;	Helper;; Items.Kinstone.GreenP:14
 				!else
-					Items.Kinstone.GreenP:16;	Major;
-					CanFuseGreenP;   		Helper;; Items.Kinstone.GreenP:16
-					CanFuseGreenTFZ2;		Helper;; Items.Kinstone.GreenP:16
-					CanFuseGreenDavid;		Helper;; Items.Kinstone.GreenP:16
-					CanFuseGreenPShared1;	Helper;; Items.Kinstone.GreenP:11
-					CanFuseGreenPShared2;	Helper;; Items.Kinstone.GreenP:12
-					CanFuseGreenPShared3;	Helper;; Items.Kinstone.GreenP:13
-					CanFuseGreenPShared4;	Helper;; Items.Kinstone.GreenP:14
-					CanFuseGreenPShared5;	Helper;; Items.Kinstone.GreenP:15
+					Items.Kinstone.GreenP:14;	Major;
+					CanFuseGreenP;   		Helper;; Items.Kinstone.GreenP:14
+					CanFuseGreenTFZ2;		Helper;; Items.Kinstone.GreenP:14
+					CanFuseGreenDavid;		Helper;; Items.Kinstone.GreenP:14
+					CanFuseGreenPShared1;	Helper;; Items.Kinstone.GreenP:9
+					CanFuseGreenPShared2;	Helper;; Items.Kinstone.GreenP:10
+					CanFuseGreenPShared3;	Helper;; Items.Kinstone.GreenP:11
+					CanFuseGreenPShared4;	Helper;; Items.Kinstone.GreenP:12
+					CanFuseGreenPShared5;	Helper;; Items.Kinstone.GreenP:13
+				!endif
+			!endif
+			!ifdef - POW_ACCESS
+				Items.Kinstone.GreenG:16;	Major;
+				CanFuseGreenG;   		Helper;; Items.Kinstone.GreenG:16
+				CanFuseGreenFlurris;	Helper;; Items.Kinstone.GreenG:15
+				CanFuseGreenTFZ1;		Helper;; Items.Kinstone.GreenG:16
+				CanFuseGreenGShared1;	Helper;; Items.Kinstone.GreenG:11
+				CanFuseGreenGShared2;	Helper;; Items.Kinstone.GreenG:12
+				CanFuseGreenGShared3;	Helper;; Items.Kinstone.GreenG:13
+				CanFuseGreenGShared4;	Helper;; Items.Kinstone.GreenG:14
+				CanFuseGreenGShared5;	Helper;; Items.Kinstone.GreenG:15
+			!else
+				!ifdef - TRIBE_ACCESS
+					!ifdef - FALLS_ACCESS
+						Items.Kinstone.GreenG:15;	Major;
+						CanFuseGreenG;   		Helper;; Items.Kinstone.GreenG:15
+						CanFuseGreenFlurris;	Helper;; Items.Kinstone.GreenG:14
+						CanFuseGreenTFZ1;		Helper;; Items.Kinstone.GreenG:15
+						CanFuseGreenGShared1;	Helper;; Items.Kinstone.GreenG:10
+						CanFuseGreenGShared2;	Helper;; Items.Kinstone.GreenG:11
+						CanFuseGreenGShared3;	Helper;; Items.Kinstone.GreenG:12
+						CanFuseGreenGShared4;	Helper;; Items.Kinstone.GreenG:13
+						CanFuseGreenGShared5;	Helper;; Items.Kinstone.GreenG:14						
+					!else
+						Items.Kinstone.GreenG:14;	Major;
+						CanFuseGreenG;   		Helper;; Items.Kinstone.GreenG:14
+						CanFuseGreenFlurris;	Helper;; Items.Kinstone.GreenG:13
+						CanFuseGreenTFZ1;		Helper;; Items.Kinstone.GreenG:14
+						CanFuseGreenGShared1;	Helper;; Items.Kinstone.GreenG:9
+						CanFuseGreenGShared2;	Helper;; Items.Kinstone.GreenG:10
+						CanFuseGreenGShared3;	Helper;; Items.Kinstone.GreenG:11
+						CanFuseGreenGShared4;	Helper;; Items.Kinstone.GreenG:12
+						CanFuseGreenGShared5;	Helper;; Items.Kinstone.GreenG:13
+					!endif
+				!else
+					!ifdef - FALLS_ACCESS
+						Items.Kinstone.GreenG:13;	Major;
+						CanFuseGreenG;   		Helper;; Items.Kinstone.GreenG:13
+						CanFuseGreenFlurris;	Helper;; Helpers.Inaccessible
+						CanFuseGreenTFZ1;		Helper;; Items.Kinstone.GreenG:13
+						CanFuseGreenGShared1;	Helper;; Items.Kinstone.GreenG:8
+						CanFuseGreenGShared2;	Helper;; Items.Kinstone.GreenG:9
+						CanFuseGreenGShared3;	Helper;; Items.Kinstone.GreenG:10
+						CanFuseGreenGShared4;	Helper;; Items.Kinstone.GreenG:11
+						CanFuseGreenGShared5;	Helper;; Items.Kinstone.GreenG:12
+					!else
+						Items.Kinstone.GreenG:12;	Major;
+						CanFuseGreenG;   		Helper;; Items.Kinstone.GreenG:12
+						CanFuseGreenFlurris;	Helper;; Helpers.Inaccessible
+						CanFuseGreenTFZ1;		Helper;; Items.Kinstone.GreenG:12
+						CanFuseGreenGShared1;	Helper;; Items.Kinstone.GreenG:7
+						CanFuseGreenGShared2;	Helper;; Items.Kinstone.GreenG:8
+						CanFuseGreenGShared3;	Helper;; Items.Kinstone.GreenG:9
+						CanFuseGreenGShared4;	Helper;; Items.Kinstone.GreenG:10
+						CanFuseGreenGShared5;	Helper;; Items.Kinstone.GreenG:11
+					!endif
 				!endif
 			!endif
 			!ifdef - ITEM_POOL_PLENTIFUL
@@ -2465,181 +2614,581 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 				Items.Kinstone.GreenP:3;	Minor;
 			!endif
 		!else
-			!ifdef - NO_BLUE_FUSIONS
-				!ifdef - NO_GOLD_FUSIONS
-					!ifdef - NO_RED_FUSIONS
-						Items.Kinstone.GreenC:39;	Major;
-						CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:39
-						CanFuseGreenScrub;		Helper;; Items.Kinstone.GreenC:38
-						CanFuseGreenGina;		Helper;; Items.Kinstone.GreenC:38
-						CanFuseGreenSiroc;		Helper;; Items.Kinstone.GreenC:38
-						CanFuseGreenCShared1;	Helper;; Items.Kinstone.GreenC:23
-						CanFuseGreenCShared2;	Helper;; Items.Kinstone.GreenC:26
-						CanFuseGreenCShared3;	Helper;; Items.Kinstone.GreenC:29
-						CanFuseGreenCShared4;	Helper;; Items.Kinstone.GreenC:32
-						CanFuseGreenCShared5;	Helper;; Items.Kinstone.GreenC:35
-						CanFuseGreenCShared6;	Helper;; Items.Kinstone.GreenC:38
-						CanFuseGreenG;   		Helper;; Items.Kinstone.GreenC:39
-						CanFuseGreenFlurris;	Helper;; Items.Kinstone.GreenC:38
-						CanFuseGreenTFZ1;		Helper;; Items.Kinstone.GreenC:37
-						CanFuseGreenGShared1;	Helper;; Items.Kinstone.GreenC:23
-						CanFuseGreenGShared2;	Helper;; Items.Kinstone.GreenC:26
-						CanFuseGreenGShared3;	Helper;; Items.Kinstone.GreenC:29
-						CanFuseGreenGShared4;	Helper;; Items.Kinstone.GreenC:32
-						CanFuseGreenGShared5;	Helper;; Items.Kinstone.GreenC:35
-						CanFuseGreenP;   		Helper;; Items.Kinstone.GreenC:39
-						CanFuseGreenTFZ2;		Helper;; Items.Kinstone.GreenC:38
-						CanFuseGreenDavid;		Helper;; Items.Kinstone.GreenC:38
-						CanFuseGreenPShared1;	Helper;; Items.Kinstone.GreenC:23
-						CanFuseGreenPShared2;	Helper;; Items.Kinstone.GreenC:26
-						CanFuseGreenPShared3;	Helper;; Items.Kinstone.GreenC:29
-						CanFuseGreenPShared4;	Helper;; Items.Kinstone.GreenC:32
-						CanFuseGreenPShared5;	Helper;; Items.Kinstone.GreenC:35
+			!ifdef - POW_ACCESS
+				!ifdef - RIGHT_GRAVE
+					!ifdef - MINISH_TREE
+						Items.Kinstone.GreenC:49;	Major;
+						CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:49
+						CanFuseGreenScrub;		Helper;; Items.Kinstone.GreenC:48
+						CanFuseGreenGina;		Helper;; Items.Kinstone.GreenC:48
+						CanFuseGreenSiroc;		Helper;; Items.Kinstone.GreenC:48
+						CanFuseGreenG;   		Helper;; Items.Kinstone.GreenC:49
+						CanFuseGreenFlurris;	Helper;; Items.Kinstone.GreenC:48
+						CanFuseGreenTFZ1;		Helper;; Items.Kinstone.GreenC:47
+						CanFuseGreenP;   		Helper;; Items.Kinstone.GreenC:49
+						CanFuseGreenTFZ2;		Helper;; Items.Kinstone.GreenC:48
+						CanFuseGreenDavid;		Helper;; Items.Kinstone.GreenC:48
+						CanFuseGreenShared15;	Helper;; Items.Kinstone.GreenC:49
+						CanFuseGreenShared14;	Helper;; Items.Kinstone.GreenC:48
+						CanFuseGreenShared13;	Helper;; Items.Kinstone.GreenC:47
+						CanFuseGreenShared12;	Helper;; Items.Kinstone.GreenC:46
+						CanFuseGreenShared11;	Helper;; Items.Kinstone.GreenC:45
+						CanFuseGreenShared10;	Helper;; Items.Kinstone.GreenC:44
+						CanFuseGreenShared9;	Helper;; Items.Kinstone.GreenC:43
+						CanFuseGreenShared8;	Helper;; Items.Kinstone.GreenC:42
+						CanFuseGreenShared7;	Helper;; Items.Kinstone.GreenC:41
+						CanFuseGreenShared6;	Helper;; Items.Kinstone.GreenC:40
+						CanFuseGreenShared5;	Helper;; Items.Kinstone.GreenC:39
+						CanFuseGreenShared4;	Helper;; Items.Kinstone.GreenC:38
+						CanFuseGreenShared3;	Helper;; Items.Kinstone.GreenC:37
+						CanFuseGreenShared2;	Helper;; Items.Kinstone.GreenC:36
+						CanFuseGreenShared1;	Helper;; Items.Kinstone.GreenC:35
 					!else
-						Items.Kinstone.GreenC:42;	Major;
-						CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:42
-						CanFuseGreenScrub;		Helper;; Items.Kinstone.GreenC:41
-						CanFuseGreenGina;		Helper;; Items.Kinstone.GreenC:41
-						CanFuseGreenSiroc;		Helper;; Items.Kinstone.GreenC:41
-						CanFuseGreenCShared1;	Helper;; Items.Kinstone.GreenC:26
-						CanFuseGreenCShared2;	Helper;; Items.Kinstone.GreenC:29
-						CanFuseGreenCShared3;	Helper;; Items.Kinstone.GreenC:32
-						CanFuseGreenCShared4;	Helper;; Items.Kinstone.GreenC:35
-						CanFuseGreenCShared5;	Helper;; Items.Kinstone.GreenC:38
-						CanFuseGreenCShared6;	Helper;; Items.Kinstone.GreenC:41
-						CanFuseGreenG;   		Helper;; Items.Kinstone.GreenC:42
-						CanFuseGreenFlurris;	Helper;; Items.Kinstone.GreenC:41
-						CanFuseGreenTFZ1;		Helper;; Items.Kinstone.GreenC:40
-						CanFuseGreenGShared1;	Helper;; Items.Kinstone.GreenC:26
-						CanFuseGreenGShared2;	Helper;; Items.Kinstone.GreenC:29
-						CanFuseGreenGShared3;	Helper;; Items.Kinstone.GreenC:32
-						CanFuseGreenGShared4;	Helper;; Items.Kinstone.GreenC:35
-						CanFuseGreenGShared5;	Helper;; Items.Kinstone.GreenC:38
-						CanFuseGreenP;   		Helper;; Items.Kinstone.GreenC:42
-						CanFuseGreenTFZ2;		Helper;; Items.Kinstone.GreenC:41
-						CanFuseGreenDavid;		Helper;; Items.Kinstone.GreenC:41
-						CanFuseGreenPShared1;	Helper;; Items.Kinstone.GreenC:26
-						CanFuseGreenPShared2;	Helper;; Items.Kinstone.GreenC:29
-						CanFuseGreenPShared3;	Helper;; Items.Kinstone.GreenC:32
-						CanFuseGreenPShared4;	Helper;; Items.Kinstone.GreenC:35
-						CanFuseGreenPShared5;	Helper;; Items.Kinstone.GreenC:38
+						Items.Kinstone.GreenC:47;	Major;
+						CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:47
+						CanFuseGreenScrub;		Helper;; Helpers.Inaccessible
+						CanFuseGreenGina;		Helper;; Items.Kinstone.GreenC:46
+						CanFuseGreenSiroc;		Helper;; Items.Kinstone.GreenC:46
+						CanFuseGreenG;   		Helper;; Items.Kinstone.GreenC:47
+						CanFuseGreenFlurris;	Helper;; Items.Kinstone.GreenC:46
+						CanFuseGreenTFZ1;		Helper;; Items.Kinstone.GreenC:45
+						CanFuseGreenP;   		Helper;; Items.Kinstone.GreenC:47
+						CanFuseGreenTFZ2;		Helper;; Items.Kinstone.GreenC:46
+						CanFuseGreenDavid;		Helper;; Items.Kinstone.GreenC:46
+						CanFuseGreenShared15;	Helper;; Items.Kinstone.GreenC:47
+						CanFuseGreenShared14;	Helper;; Items.Kinstone.GreenC:46
+						CanFuseGreenShared13;	Helper;; Items.Kinstone.GreenC:45
+						CanFuseGreenShared12;	Helper;; Items.Kinstone.GreenC:44
+						CanFuseGreenShared11;	Helper;; Items.Kinstone.GreenC:43
+						CanFuseGreenShared10;	Helper;; Items.Kinstone.GreenC:42
+						CanFuseGreenShared9;	Helper;; Items.Kinstone.GreenC:41
+						CanFuseGreenShared8;	Helper;; Items.Kinstone.GreenC:40
+						CanFuseGreenShared7;	Helper;; Items.Kinstone.GreenC:39
+						CanFuseGreenShared6;	Helper;; Items.Kinstone.GreenC:38
+						CanFuseGreenShared5;	Helper;; Items.Kinstone.GreenC:37
+						CanFuseGreenShared4;	Helper;; Items.Kinstone.GreenC:36
+						CanFuseGreenShared3;	Helper;; Items.Kinstone.GreenC:35
+						CanFuseGreenShared2;	Helper;; Items.Kinstone.GreenC:34
+						CanFuseGreenShared1;	Helper;; Items.Kinstone.GreenC:33
 					!endif
 				!else
-					Items.Kinstone.GreenC:45;	Major;
-					CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:45
-					CanFuseGreenScrub;		Helper;; Items.Kinstone.GreenC:44
-					CanFuseGreenGina;		Helper;; Items.Kinstone.GreenC:44
-					CanFuseGreenSiroc;		Helper;; Items.Kinstone.GreenC:44
-					CanFuseGreenCShared1;	Helper;; Items.Kinstone.GreenC:29
-					CanFuseGreenCShared2;	Helper;; Items.Kinstone.GreenC:32
-					CanFuseGreenCShared3;	Helper;; Items.Kinstone.GreenC:35
-					CanFuseGreenCShared4;	Helper;; Items.Kinstone.GreenC:38
-					CanFuseGreenCShared5;	Helper;; Items.Kinstone.GreenC:41
-					CanFuseGreenCShared6;	Helper;; Items.Kinstone.GreenC:44
-					CanFuseGreenG;   		Helper;; Items.Kinstone.GreenC:45
-					CanFuseGreenFlurris;	Helper;; Items.Kinstone.GreenC:44
-					CanFuseGreenTFZ1;		Helper;; Items.Kinstone.GreenC:43
-					CanFuseGreenGShared1;	Helper;; Items.Kinstone.GreenC:29
-					CanFuseGreenGShared2;	Helper;; Items.Kinstone.GreenC:32
-					CanFuseGreenGShared3;	Helper;; Items.Kinstone.GreenC:35
-					CanFuseGreenGShared4;	Helper;; Items.Kinstone.GreenC:38
-					CanFuseGreenGShared5;	Helper;; Items.Kinstone.GreenC:41
-					CanFuseGreenP;   		Helper;; Items.Kinstone.GreenC:45
-					CanFuseGreenTFZ2;		Helper;; Items.Kinstone.GreenC:44
-					CanFuseGreenDavid;		Helper;; Items.Kinstone.GreenC:44
-					CanFuseGreenPShared1;	Helper;; Items.Kinstone.GreenC:29
-					CanFuseGreenPShared2;	Helper;; Items.Kinstone.GreenC:32
-					CanFuseGreenPShared3;	Helper;; Items.Kinstone.GreenC:35
-					CanFuseGreenPShared4;	Helper;; Items.Kinstone.GreenC:38
-					CanFuseGreenPShared5;	Helper;; Items.Kinstone.GreenC:41
+					!ifdef - MINISH_TREE
+						Items.Kinstone.GreenC:47;	Major;
+						CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:47
+						CanFuseGreenScrub;		Helper;; Items.Kinstone.GreenC:46
+						CanFuseGreenGina;		Helper;; Helpers.Inaccessible
+						CanFuseGreenSiroc;		Helper;; Items.Kinstone.GreenC:46
+						CanFuseGreenG;   		Helper;; Items.Kinstone.GreenC:47
+						CanFuseGreenFlurris;	Helper;; Items.Kinstone.GreenC:46
+						CanFuseGreenTFZ1;		Helper;; Items.Kinstone.GreenC:45
+						CanFuseGreenP;   		Helper;; Items.Kinstone.GreenC:47
+						CanFuseGreenTFZ2;		Helper;; Items.Kinstone.GreenC:46
+						CanFuseGreenDavid;		Helper;; Items.Kinstone.GreenC:46
+						CanFuseGreenShared15;	Helper;; Items.Kinstone.GreenC:47
+						CanFuseGreenShared14;	Helper;; Items.Kinstone.GreenC:46
+						CanFuseGreenShared13;	Helper;; Items.Kinstone.GreenC:45
+						CanFuseGreenShared12;	Helper;; Items.Kinstone.GreenC:44
+						CanFuseGreenShared11;	Helper;; Items.Kinstone.GreenC:43
+						CanFuseGreenShared10;	Helper;; Items.Kinstone.GreenC:42
+						CanFuseGreenShared9;	Helper;; Items.Kinstone.GreenC:41
+						CanFuseGreenShared8;	Helper;; Items.Kinstone.GreenC:40
+						CanFuseGreenShared7;	Helper;; Items.Kinstone.GreenC:39
+						CanFuseGreenShared6;	Helper;; Items.Kinstone.GreenC:38
+						CanFuseGreenShared5;	Helper;; Items.Kinstone.GreenC:37
+						CanFuseGreenShared4;	Helper;; Items.Kinstone.GreenC:36
+						CanFuseGreenShared3;	Helper;; Items.Kinstone.GreenC:35
+						CanFuseGreenShared2;	Helper;; Items.Kinstone.GreenC:34
+						CanFuseGreenShared1;	Helper;; Items.Kinstone.GreenC:33
+					!else
+						Items.Kinstone.GreenC:45;	Major;
+						CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:45
+						CanFuseGreenScrub;		Helper;; Helpers.Inaccessible
+						CanFuseGreenGina;		Helper;; Helpers.Inaccessible
+						CanFuseGreenSiroc;		Helper;; Items.Kinstone.GreenC:44
+						CanFuseGreenG;   		Helper;; Items.Kinstone.GreenC:45
+						CanFuseGreenFlurris;	Helper;; Items.Kinstone.GreenC:44
+						CanFuseGreenTFZ1;		Helper;; Items.Kinstone.GreenC:43
+						CanFuseGreenP;   		Helper;; Items.Kinstone.GreenC:45
+						CanFuseGreenTFZ2;		Helper;; Items.Kinstone.GreenC:44
+						CanFuseGreenDavid;		Helper;; Items.Kinstone.GreenC:44
+						CanFuseGreenShared15;	Helper;; Items.Kinstone.GreenC:45
+						CanFuseGreenShared14;	Helper;; Items.Kinstone.GreenC:44
+						CanFuseGreenShared13;	Helper;; Items.Kinstone.GreenC:43
+						CanFuseGreenShared12;	Helper;; Items.Kinstone.GreenC:42
+						CanFuseGreenShared11;	Helper;; Items.Kinstone.GreenC:41
+						CanFuseGreenShared10;	Helper;; Items.Kinstone.GreenC:40
+						CanFuseGreenShared9;	Helper;; Items.Kinstone.GreenC:39
+						CanFuseGreenShared8;	Helper;; Items.Kinstone.GreenC:38
+						CanFuseGreenShared7;	Helper;; Items.Kinstone.GreenC:37
+						CanFuseGreenShared6;	Helper;; Items.Kinstone.GreenC:36
+						CanFuseGreenShared5;	Helper;; Items.Kinstone.GreenC:35
+						CanFuseGreenShared4;	Helper;; Items.Kinstone.GreenC:34
+						CanFuseGreenShared3;	Helper;; Items.Kinstone.GreenC:33
+						CanFuseGreenShared2;	Helper;; Items.Kinstone.GreenC:32
+						CanFuseGreenShared1;	Helper;; Items.Kinstone.GreenC:31
+					!endif
 				!endif
 			!else
-				!ifdef - NO_GOLD_FUSIONS
-					!ifdef - NO_RED_FUSIONS
-						Items.Kinstone.GreenC:43;	Major;
-						CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:43
-						CanFuseGreenScrub;		Helper;; Items.Kinstone.GreenC:42
-						CanFuseGreenGina;		Helper;; Items.Kinstone.GreenC:42
-						CanFuseGreenSiroc;		Helper;; Items.Kinstone.GreenC:42
-						CanFuseGreenCShared1;	Helper;; Items.Kinstone.GreenC:27
-						CanFuseGreenCShared2;	Helper;; Items.Kinstone.GreenC:30
-						CanFuseGreenCShared3;	Helper;; Items.Kinstone.GreenC:33
-						CanFuseGreenCShared4;	Helper;; Items.Kinstone.GreenC:36
-						CanFuseGreenCShared5;	Helper;; Items.Kinstone.GreenC:39
-						CanFuseGreenCShared6;	Helper;; Items.Kinstone.GreenC:42
-						CanFuseGreenG;   		Helper;; Items.Kinstone.GreenC:43
-						CanFuseGreenFlurris;	Helper;; Items.Kinstone.GreenC:42
-						CanFuseGreenTFZ1;		Helper;; Items.Kinstone.GreenC:41
-						CanFuseGreenGShared1;	Helper;; Items.Kinstone.GreenC:27
-						CanFuseGreenGShared2;	Helper;; Items.Kinstone.GreenC:30
-						CanFuseGreenGShared3;	Helper;; Items.Kinstone.GreenC:33
-						CanFuseGreenGShared4;	Helper;; Items.Kinstone.GreenC:36
-						CanFuseGreenGShared5;	Helper;; Items.Kinstone.GreenC:39
-						CanFuseGreenP;   		Helper;; Items.Kinstone.GreenC:43
-						CanFuseGreenTFZ2;		Helper;; Items.Kinstone.GreenC:42
-						CanFuseGreenDavid;		Helper;; Items.Kinstone.GreenC:42
-						CanFuseGreenPShared1;	Helper;; Items.Kinstone.GreenC:27
-						CanFuseGreenPShared2;	Helper;; Items.Kinstone.GreenC:30
-						CanFuseGreenPShared3;	Helper;; Items.Kinstone.GreenC:33
-						CanFuseGreenPShared4;	Helper;; Items.Kinstone.GreenC:36
-						CanFuseGreenPShared5;	Helper;; Items.Kinstone.GreenC:39
+				!ifdef - TRIBE_ACCESS
+					!ifdef - RIGHT_GRAVE
+						!ifdef - MINISH_TREE
+							!ifdef - FALLS_ACCESS
+								Items.Kinstone.GreenC:47;	Major;
+								CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:47
+								CanFuseGreenScrub;		Helper;; Items.Kinstone.GreenC:46
+								CanFuseGreenGina;		Helper;; Items.Kinstone.GreenC:46
+								CanFuseGreenSiroc;		Helper;; Helpers.Inaccessible
+								CanFuseGreenG;   		Helper;; Items.Kinstone.GreenC:47
+								CanFuseGreenFlurris;	Helper;; Items.Kinstone.GreenC:46
+								CanFuseGreenTFZ1;		Helper;; Items.Kinstone.GreenC:45
+								CanFuseGreenP;   		Helper;; Items.Kinstone.GreenC:47
+								CanFuseGreenTFZ2;		Helper;; Items.Kinstone.GreenC:46
+								CanFuseGreenDavid;		Helper;; Items.Kinstone.GreenC:46
+								CanFuseGreenShared15;	Helper;; Items.Kinstone.GreenC:47
+								CanFuseGreenShared14;	Helper;; Items.Kinstone.GreenC:46
+								CanFuseGreenShared13;	Helper;; Items.Kinstone.GreenC:45
+								CanFuseGreenShared12;	Helper;; Items.Kinstone.GreenC:44
+								CanFuseGreenShared11;	Helper;; Items.Kinstone.GreenC:43
+								CanFuseGreenShared10;	Helper;; Items.Kinstone.GreenC:42
+								CanFuseGreenShared9;	Helper;; Items.Kinstone.GreenC:41
+								CanFuseGreenShared8;	Helper;; Items.Kinstone.GreenC:40
+								CanFuseGreenShared7;	Helper;; Items.Kinstone.GreenC:39
+								CanFuseGreenShared6;	Helper;; Items.Kinstone.GreenC:38
+								CanFuseGreenShared5;	Helper;; Items.Kinstone.GreenC:37
+								CanFuseGreenShared4;	Helper;; Items.Kinstone.GreenC:36
+								CanFuseGreenShared3;	Helper;; Items.Kinstone.GreenC:35
+								CanFuseGreenShared2;	Helper;; Items.Kinstone.GreenC:34
+								CanFuseGreenShared1;	Helper;; Items.Kinstone.GreenC:33
+							!else
+								Items.Kinstone.GreenC:46;	Major;
+								CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:46
+								CanFuseGreenScrub;		Helper;; Items.Kinstone.GreenC:45
+								CanFuseGreenGina;		Helper;; Items.Kinstone.GreenC:45
+								CanFuseGreenSiroc;		Helper;; Helpers.Inaccessible
+								CanFuseGreenG;   		Helper;; Items.Kinstone.GreenC:46
+								CanFuseGreenFlurris;	Helper;; Items.Kinstone.GreenC:45
+								CanFuseGreenTFZ1;		Helper;; Items.Kinstone.GreenC:44
+								CanFuseGreenP;   		Helper;; Items.Kinstone.GreenC:46
+								CanFuseGreenTFZ2;		Helper;; Items.Kinstone.GreenC:45
+								CanFuseGreenDavid;		Helper;; Items.Kinstone.GreenC:45
+								CanFuseGreenShared15;	Helper;; Items.Kinstone.GreenC:46
+								CanFuseGreenShared14;	Helper;; Items.Kinstone.GreenC:45
+								CanFuseGreenShared13;	Helper;; Items.Kinstone.GreenC:44
+								CanFuseGreenShared12;	Helper;; Items.Kinstone.GreenC:43
+								CanFuseGreenShared11;	Helper;; Items.Kinstone.GreenC:42
+								CanFuseGreenShared10;	Helper;; Items.Kinstone.GreenC:41
+								CanFuseGreenShared9;	Helper;; Items.Kinstone.GreenC:40
+								CanFuseGreenShared8;	Helper;; Items.Kinstone.GreenC:39
+								CanFuseGreenShared7;	Helper;; Items.Kinstone.GreenC:38
+								CanFuseGreenShared6;	Helper;; Items.Kinstone.GreenC:37
+								CanFuseGreenShared5;	Helper;; Items.Kinstone.GreenC:36
+								CanFuseGreenShared4;	Helper;; Items.Kinstone.GreenC:35
+								CanFuseGreenShared3;	Helper;; Items.Kinstone.GreenC:34
+								CanFuseGreenShared2;	Helper;; Items.Kinstone.GreenC:33
+								CanFuseGreenShared1;	Helper;; Items.Kinstone.GreenC:32
+							!endif
+						!else
+							!ifdef - FALLS_ACCESS
+								Items.Kinstone.GreenC:45;	Major;
+								CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:45
+								CanFuseGreenScrub;		Helper;; Helpers.Inaccessible
+								CanFuseGreenGina;		Helper;; Items.Kinstone.GreenC:44
+								CanFuseGreenSiroc;		Helper;; Helpers.Inaccessible
+								CanFuseGreenG;   		Helper;; Items.Kinstone.GreenC:45
+								CanFuseGreenFlurris;	Helper;; Items.Kinstone.GreenC:44
+								CanFuseGreenTFZ1;		Helper;; Items.Kinstone.GreenC:43
+								CanFuseGreenP;   		Helper;; Items.Kinstone.GreenC:45
+								CanFuseGreenTFZ2;		Helper;; Items.Kinstone.GreenC:44
+								CanFuseGreenDavid;		Helper;; Items.Kinstone.GreenC:44
+								CanFuseGreenShared15;	Helper;; Items.Kinstone.GreenC:45
+								CanFuseGreenShared14;	Helper;; Items.Kinstone.GreenC:44
+								CanFuseGreenShared13;	Helper;; Items.Kinstone.GreenC:43
+								CanFuseGreenShared12;	Helper;; Items.Kinstone.GreenC:42
+								CanFuseGreenShared11;	Helper;; Items.Kinstone.GreenC:41
+								CanFuseGreenShared10;	Helper;; Items.Kinstone.GreenC:40
+								CanFuseGreenShared9;	Helper;; Items.Kinstone.GreenC:39
+								CanFuseGreenShared8;	Helper;; Items.Kinstone.GreenC:38
+								CanFuseGreenShared7;	Helper;; Items.Kinstone.GreenC:37
+								CanFuseGreenShared6;	Helper;; Items.Kinstone.GreenC:36
+								CanFuseGreenShared5;	Helper;; Items.Kinstone.GreenC:35
+								CanFuseGreenShared4;	Helper;; Items.Kinstone.GreenC:34
+								CanFuseGreenShared3;	Helper;; Items.Kinstone.GreenC:33
+								CanFuseGreenShared2;	Helper;; Items.Kinstone.GreenC:32
+								CanFuseGreenShared1;	Helper;; Items.Kinstone.GreenC:31
+							!else
+								Items.Kinstone.GreenC:44;	Major;
+								CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:44
+								CanFuseGreenScrub;		Helper;; Helpers.Inaccessible
+								CanFuseGreenGina;		Helper;; Items.Kinstone.GreenC:43
+								CanFuseGreenSiroc;		Helper;; Helpers.Inaccessible
+								CanFuseGreenG;   		Helper;; Items.Kinstone.GreenC:44
+								CanFuseGreenFlurris;	Helper;; Items.Kinstone.GreenC:43
+								CanFuseGreenTFZ1;		Helper;; Items.Kinstone.GreenC:42
+								CanFuseGreenP;   		Helper;; Items.Kinstone.GreenC:44
+								CanFuseGreenTFZ2;		Helper;; Items.Kinstone.GreenC:43
+								CanFuseGreenDavid;		Helper;; Items.Kinstone.GreenC:43
+								CanFuseGreenShared15;	Helper;; Items.Kinstone.GreenC:44
+								CanFuseGreenShared14;	Helper;; Items.Kinstone.GreenC:43
+								CanFuseGreenShared13;	Helper;; Items.Kinstone.GreenC:42
+								CanFuseGreenShared12;	Helper;; Items.Kinstone.GreenC:41
+								CanFuseGreenShared11;	Helper;; Items.Kinstone.GreenC:40
+								CanFuseGreenShared10;	Helper;; Items.Kinstone.GreenC:39
+								CanFuseGreenShared9;	Helper;; Items.Kinstone.GreenC:38
+								CanFuseGreenShared8;	Helper;; Items.Kinstone.GreenC:37
+								CanFuseGreenShared7;	Helper;; Items.Kinstone.GreenC:36
+								CanFuseGreenShared6;	Helper;; Items.Kinstone.GreenC:35
+								CanFuseGreenShared5;	Helper;; Items.Kinstone.GreenC:34
+								CanFuseGreenShared4;	Helper;; Items.Kinstone.GreenC:33
+								CanFuseGreenShared3;	Helper;; Items.Kinstone.GreenC:32
+								CanFuseGreenShared2;	Helper;; Items.Kinstone.GreenC:31
+								CanFuseGreenShared1;	Helper;; Items.Kinstone.GreenC:30
+							!endif
+						!endif
 					!else
-						Items.Kinstone.GreenC:46;	Major;
-						CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:46
-						CanFuseGreenScrub;		Helper;; Items.Kinstone.GreenC:45
-						CanFuseGreenGina;		Helper;; Items.Kinstone.GreenC:45
-						CanFuseGreenSiroc;		Helper;; Items.Kinstone.GreenC:45
-						CanFuseGreenCShared1;	Helper;; Items.Kinstone.GreenC:30
-						CanFuseGreenCShared2;	Helper;; Items.Kinstone.GreenC:33
-						CanFuseGreenCShared3;	Helper;; Items.Kinstone.GreenC:36
-						CanFuseGreenCShared4;	Helper;; Items.Kinstone.GreenC:39
-						CanFuseGreenCShared5;	Helper;; Items.Kinstone.GreenC:42
-						CanFuseGreenCShared6;	Helper;; Items.Kinstone.GreenC:45
-						CanFuseGreenG;   		Helper;; Items.Kinstone.GreenC:46
-						CanFuseGreenFlurris;	Helper;; Items.Kinstone.GreenC:45
-						CanFuseGreenTFZ1;		Helper;; Items.Kinstone.GreenC:44
-						CanFuseGreenGShared1;	Helper;; Items.Kinstone.GreenC:30
-						CanFuseGreenGShared2;	Helper;; Items.Kinstone.GreenC:33
-						CanFuseGreenGShared3;	Helper;; Items.Kinstone.GreenC:36
-						CanFuseGreenGShared4;	Helper;; Items.Kinstone.GreenC:39
-						CanFuseGreenGShared5;	Helper;; Items.Kinstone.GreenC:42
-						CanFuseGreenP;   		Helper;; Items.Kinstone.GreenC:46
-						CanFuseGreenTFZ2;		Helper;; Items.Kinstone.GreenC:45
-						CanFuseGreenDavid;		Helper;; Items.Kinstone.GreenC:45
-						CanFuseGreenPShared1;	Helper;; Items.Kinstone.GreenC:30
-						CanFuseGreenPShared2;	Helper;; Items.Kinstone.GreenC:33
-						CanFuseGreenPShared3;	Helper;; Items.Kinstone.GreenC:36
-						CanFuseGreenPShared4;	Helper;; Items.Kinstone.GreenC:39
-						CanFuseGreenPShared5;	Helper;; Items.Kinstone.GreenC:42
+						!ifdef - MINISH_TREE
+							!ifdef - FALLS_ACCESS
+								Items.Kinstone.GreenC:45;	Major;
+								CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:45
+								CanFuseGreenScrub;		Helper;; Items.Kinstone.GreenC:44
+								CanFuseGreenGina;		Helper;; Helpers.Inaccessible
+								CanFuseGreenSiroc;		Helper;; Helpers.Inaccessible
+								CanFuseGreenG;   		Helper;; Items.Kinstone.GreenC:45
+								CanFuseGreenFlurris;	Helper;; Items.Kinstone.GreenC:44
+								CanFuseGreenTFZ1;		Helper;; Items.Kinstone.GreenC:43
+								CanFuseGreenP;   		Helper;; Items.Kinstone.GreenC:45
+								CanFuseGreenTFZ2;		Helper;; Items.Kinstone.GreenC:44
+								CanFuseGreenDavid;		Helper;; Items.Kinstone.GreenC:44
+								CanFuseGreenShared15;	Helper;; Items.Kinstone.GreenC:45
+								CanFuseGreenShared14;	Helper;; Items.Kinstone.GreenC:44
+								CanFuseGreenShared13;	Helper;; Items.Kinstone.GreenC:43
+								CanFuseGreenShared12;	Helper;; Items.Kinstone.GreenC:42
+								CanFuseGreenShared11;	Helper;; Items.Kinstone.GreenC:41
+								CanFuseGreenShared10;	Helper;; Items.Kinstone.GreenC:40
+								CanFuseGreenShared9;	Helper;; Items.Kinstone.GreenC:39
+								CanFuseGreenShared8;	Helper;; Items.Kinstone.GreenC:38
+								CanFuseGreenShared7;	Helper;; Items.Kinstone.GreenC:37
+								CanFuseGreenShared6;	Helper;; Items.Kinstone.GreenC:36
+								CanFuseGreenShared5;	Helper;; Items.Kinstone.GreenC:35
+								CanFuseGreenShared4;	Helper;; Items.Kinstone.GreenC:34
+								CanFuseGreenShared3;	Helper;; Items.Kinstone.GreenC:33
+								CanFuseGreenShared2;	Helper;; Items.Kinstone.GreenC:32
+								CanFuseGreenShared1;	Helper;; Items.Kinstone.GreenC:31
+							!else
+								Items.Kinstone.GreenC:44;	Major;
+								CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:44
+								CanFuseGreenScrub;		Helper;; Items.Kinstone.GreenC:43
+								CanFuseGreenGina;		Helper;; Helpers.Inaccessible
+								CanFuseGreenSiroc;		Helper;; Helpers.Inaccessible
+								CanFuseGreenG;   		Helper;; Items.Kinstone.GreenC:44
+								CanFuseGreenFlurris;	Helper;; Items.Kinstone.GreenC:43
+								CanFuseGreenTFZ1;		Helper;; Items.Kinstone.GreenC:42
+								CanFuseGreenP;   		Helper;; Items.Kinstone.GreenC:44
+								CanFuseGreenTFZ2;		Helper;; Items.Kinstone.GreenC:43
+								CanFuseGreenDavid;		Helper;; Items.Kinstone.GreenC:43
+								CanFuseGreenShared15;	Helper;; Items.Kinstone.GreenC:44
+								CanFuseGreenShared14;	Helper;; Items.Kinstone.GreenC:43
+								CanFuseGreenShared13;	Helper;; Items.Kinstone.GreenC:42
+								CanFuseGreenShared12;	Helper;; Items.Kinstone.GreenC:41
+								CanFuseGreenShared11;	Helper;; Items.Kinstone.GreenC:40
+								CanFuseGreenShared10;	Helper;; Items.Kinstone.GreenC:39
+								CanFuseGreenShared9;	Helper;; Items.Kinstone.GreenC:38
+								CanFuseGreenShared8;	Helper;; Items.Kinstone.GreenC:37
+								CanFuseGreenShared7;	Helper;; Items.Kinstone.GreenC:36
+								CanFuseGreenShared6;	Helper;; Items.Kinstone.GreenC:35
+								CanFuseGreenShared5;	Helper;; Items.Kinstone.GreenC:34
+								CanFuseGreenShared4;	Helper;; Items.Kinstone.GreenC:33
+								CanFuseGreenShared3;	Helper;; Items.Kinstone.GreenC:32
+								CanFuseGreenShared2;	Helper;; Items.Kinstone.GreenC:31
+								CanFuseGreenShared1;	Helper;; Items.Kinstone.GreenC:30
+							!endif
+						!else
+							!ifdef - FALLS_ACCESS
+								Items.Kinstone.GreenC:43;	Major;
+								CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:43
+								CanFuseGreenScrub;		Helper;; Helpers.Inaccessible
+								CanFuseGreenGina;		Helper;; Helpers.Inaccessible
+								CanFuseGreenSiroc;		Helper;; Helpers.Inaccessible
+								CanFuseGreenG;   		Helper;; Items.Kinstone.GreenC:43
+								CanFuseGreenFlurris;	Helper;; Items.Kinstone.GreenC:42
+								CanFuseGreenTFZ1;		Helper;; Items.Kinstone.GreenC:41
+								CanFuseGreenP;   		Helper;; Items.Kinstone.GreenC:43
+								CanFuseGreenTFZ2;		Helper;; Items.Kinstone.GreenC:42
+								CanFuseGreenDavid;		Helper;; Items.Kinstone.GreenC:42
+								CanFuseGreenShared15;	Helper;; Items.Kinstone.GreenC:43
+								CanFuseGreenShared14;	Helper;; Items.Kinstone.GreenC:42
+								CanFuseGreenShared13;	Helper;; Items.Kinstone.GreenC:41
+								CanFuseGreenShared12;	Helper;; Items.Kinstone.GreenC:40
+								CanFuseGreenShared11;	Helper;; Items.Kinstone.GreenC:39
+								CanFuseGreenShared10;	Helper;; Items.Kinstone.GreenC:38
+								CanFuseGreenShared9;	Helper;; Items.Kinstone.GreenC:37
+								CanFuseGreenShared8;	Helper;; Items.Kinstone.GreenC:36
+								CanFuseGreenShared7;	Helper;; Items.Kinstone.GreenC:35
+								CanFuseGreenShared6;	Helper;; Items.Kinstone.GreenC:34
+								CanFuseGreenShared5;	Helper;; Items.Kinstone.GreenC:33
+								CanFuseGreenShared4;	Helper;; Items.Kinstone.GreenC:32
+								CanFuseGreenShared3;	Helper;; Items.Kinstone.GreenC:31
+								CanFuseGreenShared2;	Helper;; Items.Kinstone.GreenC:30
+								CanFuseGreenShared1;	Helper;; Items.Kinstone.GreenC:29
+							!else
+								Items.Kinstone.GreenC:42;	Major;
+								CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:42
+								CanFuseGreenScrub;		Helper;; Helpers.Inaccessible
+								CanFuseGreenGina;		Helper;; Helpers.Inaccessible
+								CanFuseGreenSiroc;		Helper;; Helpers.Inaccessible
+								CanFuseGreenG;   		Helper;; Items.Kinstone.GreenC:42
+								CanFuseGreenFlurris;	Helper;; Items.Kinstone.GreenC:41
+								CanFuseGreenTFZ1;		Helper;; Items.Kinstone.GreenC:40
+								CanFuseGreenP;   		Helper;; Items.Kinstone.GreenC:42
+								CanFuseGreenTFZ2;		Helper;; Items.Kinstone.GreenC:41
+								CanFuseGreenDavid;		Helper;; Items.Kinstone.GreenC:41
+								CanFuseGreenShared15;	Helper;; Items.Kinstone.GreenC:42
+								CanFuseGreenShared14;	Helper;; Items.Kinstone.GreenC:41
+								CanFuseGreenShared13;	Helper;; Items.Kinstone.GreenC:40
+								CanFuseGreenShared12;	Helper;; Items.Kinstone.GreenC:39
+								CanFuseGreenShared11;	Helper;; Items.Kinstone.GreenC:38
+								CanFuseGreenShared10;	Helper;; Items.Kinstone.GreenC:37
+								CanFuseGreenShared9;	Helper;; Items.Kinstone.GreenC:36
+								CanFuseGreenShared8;	Helper;; Items.Kinstone.GreenC:35
+								CanFuseGreenShared7;	Helper;; Items.Kinstone.GreenC:34
+								CanFuseGreenShared6;	Helper;; Items.Kinstone.GreenC:33
+								CanFuseGreenShared5;	Helper;; Items.Kinstone.GreenC:32
+								CanFuseGreenShared4;	Helper;; Items.Kinstone.GreenC:31
+								CanFuseGreenShared3;	Helper;; Items.Kinstone.GreenC:30
+								CanFuseGreenShared2;	Helper;; Items.Kinstone.GreenC:29
+								CanFuseGreenShared1;	Helper;; Items.Kinstone.GreenC:28
+							!endif
+						!endif
 					!endif
 				!else
-					Items.Kinstone.GreenC:49;	Major;
-					CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:49
-					CanFuseGreenScrub;		Helper;; Items.Kinstone.GreenC:48
-					CanFuseGreenGina;		Helper;; Items.Kinstone.GreenC:48
-					CanFuseGreenSiroc;		Helper;; Items.Kinstone.GreenC:48
-					CanFuseGreenCShared1;	Helper;; Items.Kinstone.GreenC:33
-					CanFuseGreenCShared2;	Helper;; Items.Kinstone.GreenC:36
-					CanFuseGreenCShared3;	Helper;; Items.Kinstone.GreenC:39
-					CanFuseGreenCShared4;	Helper;; Items.Kinstone.GreenC:42
-					CanFuseGreenCShared5;	Helper;; Items.Kinstone.GreenC:45
-					CanFuseGreenCShared6;	Helper;; Items.Kinstone.GreenC:48
-					CanFuseGreenG;   		Helper;; Items.Kinstone.GreenC:49
-					CanFuseGreenFlurris;	Helper;; Items.Kinstone.GreenC:48
-					CanFuseGreenTFZ1;		Helper;; Items.Kinstone.GreenC:47
-					CanFuseGreenGShared1;	Helper;; Items.Kinstone.GreenC:33
-					CanFuseGreenGShared2;	Helper;; Items.Kinstone.GreenC:36
-					CanFuseGreenGShared3;	Helper;; Items.Kinstone.GreenC:39
-					CanFuseGreenGShared4;	Helper;; Items.Kinstone.GreenC:42
-					CanFuseGreenGShared5;	Helper;; Items.Kinstone.GreenC:45
-					CanFuseGreenP;   		Helper;; Items.Kinstone.GreenC:49
-					CanFuseGreenTFZ2;		Helper;; Items.Kinstone.GreenC:48
-					CanFuseGreenDavid;		Helper;; Items.Kinstone.GreenC:48
-					CanFuseGreenPShared1;	Helper;; Items.Kinstone.GreenC:33
-					CanFuseGreenPShared2;	Helper;; Items.Kinstone.GreenC:36
-					CanFuseGreenPShared3;	Helper;; Items.Kinstone.GreenC:39
-					CanFuseGreenPShared4;	Helper;; Items.Kinstone.GreenC:42
-					CanFuseGreenPShared5;	Helper;; Items.Kinstone.GreenC:45
+					!ifdef - RIGHT_GRAVE
+						!ifdef - MINISH_TREE
+							!ifdef - FALLS_ACCESS
+								Items.Kinstone.GreenC:44;	Major;
+								CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:44
+								CanFuseGreenScrub;		Helper;; Items.Kinstone.GreenC:43
+								CanFuseGreenGina;		Helper;; Items.Kinstone.GreenC:43
+								CanFuseGreenSiroc;		Helper;; Helpers.Inaccessible
+								CanFuseGreenG;   		Helper;; Items.Kinstone.GreenC:44
+								CanFuseGreenFlurris;	Helper;; Helpers.Inaccessible
+								CanFuseGreenTFZ1;		Helper;; Items.Kinstone.GreenC:42
+								CanFuseGreenP;   		Helper;; Items.Kinstone.GreenC:44
+								CanFuseGreenTFZ2;		Helper;; Items.Kinstone.GreenC:43
+								CanFuseGreenDavid;		Helper;; Items.Kinstone.GreenC:43
+								CanFuseGreenShared15;	Helper;; Items.Kinstone.GreenC:44
+								CanFuseGreenShared14;	Helper;; Items.Kinstone.GreenC:43
+								CanFuseGreenShared13;	Helper;; Items.Kinstone.GreenC:42
+								CanFuseGreenShared12;	Helper;; Items.Kinstone.GreenC:41
+								CanFuseGreenShared11;	Helper;; Items.Kinstone.GreenC:40
+								CanFuseGreenShared10;	Helper;; Items.Kinstone.GreenC:39
+								CanFuseGreenShared9;	Helper;; Items.Kinstone.GreenC:38
+								CanFuseGreenShared8;	Helper;; Items.Kinstone.GreenC:37
+								CanFuseGreenShared7;	Helper;; Items.Kinstone.GreenC:36
+								CanFuseGreenShared6;	Helper;; Items.Kinstone.GreenC:35
+								CanFuseGreenShared5;	Helper;; Items.Kinstone.GreenC:34
+								CanFuseGreenShared4;	Helper;; Items.Kinstone.GreenC:33
+								CanFuseGreenShared3;	Helper;; Items.Kinstone.GreenC:32
+								CanFuseGreenShared2;	Helper;; Items.Kinstone.GreenC:31
+								CanFuseGreenShared1;	Helper;; Items.Kinstone.GreenC:30
+							!else
+								Items.Kinstone.GreenC:43;	Major;
+								CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:43
+								CanFuseGreenScrub;		Helper;; Items.Kinstone.GreenC:43
+								CanFuseGreenGina;		Helper;; Items.Kinstone.GreenC:43
+								CanFuseGreenSiroc;		Helper;; Helpers.Inaccessible
+								CanFuseGreenG;   		Helper;; Items.Kinstone.GreenC:43
+								CanFuseGreenFlurris;	Helper;; Helpers.Inaccessible
+								CanFuseGreenTFZ1;		Helper;; Items.Kinstone.GreenC:41
+								CanFuseGreenP;   		Helper;; Items.Kinstone.GreenC:43
+								CanFuseGreenTFZ2;		Helper;; Items.Kinstone.GreenC:42
+								CanFuseGreenDavid;		Helper;; Items.Kinstone.GreenC:42
+								CanFuseGreenShared15;	Helper;; Items.Kinstone.GreenC:43
+								CanFuseGreenShared14;	Helper;; Items.Kinstone.GreenC:42
+								CanFuseGreenShared13;	Helper;; Items.Kinstone.GreenC:41
+								CanFuseGreenShared12;	Helper;; Items.Kinstone.GreenC:40
+								CanFuseGreenShared11;	Helper;; Items.Kinstone.GreenC:39
+								CanFuseGreenShared10;	Helper;; Items.Kinstone.GreenC:38
+								CanFuseGreenShared9;	Helper;; Items.Kinstone.GreenC:37
+								CanFuseGreenShared8;	Helper;; Items.Kinstone.GreenC:36
+								CanFuseGreenShared7;	Helper;; Items.Kinstone.GreenC:35
+								CanFuseGreenShared6;	Helper;; Items.Kinstone.GreenC:34
+								CanFuseGreenShared5;	Helper;; Items.Kinstone.GreenC:33
+								CanFuseGreenShared4;	Helper;; Items.Kinstone.GreenC:32
+								CanFuseGreenShared3;	Helper;; Items.Kinstone.GreenC:31
+								CanFuseGreenShared2;	Helper;; Items.Kinstone.GreenC:30
+								CanFuseGreenShared1;	Helper;; Items.Kinstone.GreenC:29
+							!endif
+						!else
+							!ifdef - FALLS_ACCESS
+								Items.Kinstone.GreenC:42;	Major;
+								CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:42
+								CanFuseGreenScrub;		Helper;; Helpers.Inaccessible
+								CanFuseGreenGina;		Helper;; Items.Kinstone.GreenC:41
+								CanFuseGreenSiroc;		Helper;; Helpers.Inaccessible
+								CanFuseGreenG;   		Helper;; Items.Kinstone.GreenC:42
+								CanFuseGreenFlurris;	Helper;; Helpers.Inaccessible
+								CanFuseGreenTFZ1;		Helper;; Items.Kinstone.GreenC:40
+								CanFuseGreenP;   		Helper;; Items.Kinstone.GreenC:42
+								CanFuseGreenTFZ2;		Helper;; Items.Kinstone.GreenC:41
+								CanFuseGreenDavid;		Helper;; Items.Kinstone.GreenC:41
+								CanFuseGreenShared15;	Helper;; Items.Kinstone.GreenC:42
+								CanFuseGreenShared14;	Helper;; Items.Kinstone.GreenC:41
+								CanFuseGreenShared13;	Helper;; Items.Kinstone.GreenC:40
+								CanFuseGreenShared12;	Helper;; Items.Kinstone.GreenC:39
+								CanFuseGreenShared11;	Helper;; Items.Kinstone.GreenC:38
+								CanFuseGreenShared10;	Helper;; Items.Kinstone.GreenC:37
+								CanFuseGreenShared9;	Helper;; Items.Kinstone.GreenC:36
+								CanFuseGreenShared8;	Helper;; Items.Kinstone.GreenC:35
+								CanFuseGreenShared7;	Helper;; Items.Kinstone.GreenC:34
+								CanFuseGreenShared6;	Helper;; Items.Kinstone.GreenC:33
+								CanFuseGreenShared5;	Helper;; Items.Kinstone.GreenC:32
+								CanFuseGreenShared4;	Helper;; Items.Kinstone.GreenC:31
+								CanFuseGreenShared3;	Helper;; Items.Kinstone.GreenC:30
+								CanFuseGreenShared2;	Helper;; Items.Kinstone.GreenC:29
+								CanFuseGreenShared1;	Helper;; Items.Kinstone.GreenC:28
+							!else
+								Items.Kinstone.GreenC:41;	Major;
+								CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:41
+								CanFuseGreenScrub;		Helper;; Helpers.Inaccessible
+								CanFuseGreenGina;		Helper;; Items.Kinstone.GreenC:40
+								CanFuseGreenSiroc;		Helper;; Helpers.Inaccessible
+								CanFuseGreenG;   		Helper;; Items.Kinstone.GreenC:41
+								CanFuseGreenFlurris;	Helper;; Helpers.Inaccessible
+								CanFuseGreenTFZ1;		Helper;; Items.Kinstone.GreenC:39
+								CanFuseGreenP;   		Helper;; Items.Kinstone.GreenC:41
+								CanFuseGreenTFZ2;		Helper;; Items.Kinstone.GreenC:40
+								CanFuseGreenDavid;		Helper;; Items.Kinstone.GreenC:40
+								CanFuseGreenShared15;	Helper;; Items.Kinstone.GreenC:41
+								CanFuseGreenShared14;	Helper;; Items.Kinstone.GreenC:40
+								CanFuseGreenShared13;	Helper;; Items.Kinstone.GreenC:39
+								CanFuseGreenShared12;	Helper;; Items.Kinstone.GreenC:38
+								CanFuseGreenShared11;	Helper;; Items.Kinstone.GreenC:37
+								CanFuseGreenShared10;	Helper;; Items.Kinstone.GreenC:36
+								CanFuseGreenShared9;	Helper;; Items.Kinstone.GreenC:35
+								CanFuseGreenShared8;	Helper;; Items.Kinstone.GreenC:34
+								CanFuseGreenShared7;	Helper;; Items.Kinstone.GreenC:33
+								CanFuseGreenShared6;	Helper;; Items.Kinstone.GreenC:32
+								CanFuseGreenShared5;	Helper;; Items.Kinstone.GreenC:31
+								CanFuseGreenShared4;	Helper;; Items.Kinstone.GreenC:30
+								CanFuseGreenShared3;	Helper;; Items.Kinstone.GreenC:29
+								CanFuseGreenShared2;	Helper;; Items.Kinstone.GreenC:28
+								CanFuseGreenShared1;	Helper;; Items.Kinstone.GreenC:27
+							!endif
+						!endif
+					!else
+						!ifdef - MINISH_TREE
+							!ifdef - FALLS_ACCESS
+								Items.Kinstone.GreenC:42;	Major;
+								CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:42
+								CanFuseGreenScrub;		Helper;; Items.Kinstone.GreenC:41
+								CanFuseGreenGina;		Helper;; Helpers.Inaccessible
+								CanFuseGreenSiroc;		Helper;; Helpers.Inaccessible
+								CanFuseGreenG;   		Helper;; Items.Kinstone.GreenC:42
+								CanFuseGreenFlurris;	Helper;; Helpers.Inaccessible
+								CanFuseGreenTFZ1;		Helper;; Items.Kinstone.GreenC:40
+								CanFuseGreenP;   		Helper;; Items.Kinstone.GreenC:42
+								CanFuseGreenTFZ2;		Helper;; Items.Kinstone.GreenC:41
+								CanFuseGreenDavid;		Helper;; Items.Kinstone.GreenC:41
+								CanFuseGreenShared15;	Helper;; Items.Kinstone.GreenC:42
+								CanFuseGreenShared14;	Helper;; Items.Kinstone.GreenC:41
+								CanFuseGreenShared13;	Helper;; Items.Kinstone.GreenC:40
+								CanFuseGreenShared12;	Helper;; Items.Kinstone.GreenC:39
+								CanFuseGreenShared11;	Helper;; Items.Kinstone.GreenC:38
+								CanFuseGreenShared10;	Helper;; Items.Kinstone.GreenC:37
+								CanFuseGreenShared9;	Helper;; Items.Kinstone.GreenC:36
+								CanFuseGreenShared8;	Helper;; Items.Kinstone.GreenC:35
+								CanFuseGreenShared7;	Helper;; Items.Kinstone.GreenC:34
+								CanFuseGreenShared6;	Helper;; Items.Kinstone.GreenC:33
+								CanFuseGreenShared5;	Helper;; Items.Kinstone.GreenC:32
+								CanFuseGreenShared4;	Helper;; Items.Kinstone.GreenC:31
+								CanFuseGreenShared3;	Helper;; Items.Kinstone.GreenC:30
+								CanFuseGreenShared2;	Helper;; Items.Kinstone.GreenC:29
+								CanFuseGreenShared1;	Helper;; Items.Kinstone.GreenC:28
+							!else
+								Items.Kinstone.GreenC:41;	Major;
+								CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:41
+								CanFuseGreenScrub;		Helper;; Items.Kinstone.GreenC:40
+								CanFuseGreenGina;		Helper;; Helpers.Inaccessible
+								CanFuseGreenSiroc;		Helper;; Helpers.Inaccessible
+								CanFuseGreenG;   		Helper;; Items.Kinstone.GreenC:41
+								CanFuseGreenFlurris;	Helper;; Helpers.Inaccessible
+								CanFuseGreenTFZ1;		Helper;; Items.Kinstone.GreenC:39
+								CanFuseGreenP;   		Helper;; Items.Kinstone.GreenC:41
+								CanFuseGreenTFZ2;		Helper;; Items.Kinstone.GreenC:40
+								CanFuseGreenDavid;		Helper;; Items.Kinstone.GreenC:40
+								CanFuseGreenShared15;	Helper;; Items.Kinstone.GreenC:41
+								CanFuseGreenShared14;	Helper;; Items.Kinstone.GreenC:40
+								CanFuseGreenShared13;	Helper;; Items.Kinstone.GreenC:39
+								CanFuseGreenShared12;	Helper;; Items.Kinstone.GreenC:38
+								CanFuseGreenShared11;	Helper;; Items.Kinstone.GreenC:37
+								CanFuseGreenShared10;	Helper;; Items.Kinstone.GreenC:36
+								CanFuseGreenShared9;	Helper;; Items.Kinstone.GreenC:35
+								CanFuseGreenShared8;	Helper;; Items.Kinstone.GreenC:34
+								CanFuseGreenShared7;	Helper;; Items.Kinstone.GreenC:33
+								CanFuseGreenShared6;	Helper;; Items.Kinstone.GreenC:32
+								CanFuseGreenShared5;	Helper;; Items.Kinstone.GreenC:31
+								CanFuseGreenShared4;	Helper;; Items.Kinstone.GreenC:30
+								CanFuseGreenShared3;	Helper;; Items.Kinstone.GreenC:29
+								CanFuseGreenShared2;	Helper;; Items.Kinstone.GreenC:28
+								CanFuseGreenShared1;	Helper;; Items.Kinstone.GreenC:27
+							!endif
+						!else
+							!ifdef - FALLS_ACCESS
+								Items.Kinstone.GreenC:40;	Major;
+								CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:40
+								CanFuseGreenScrub;		Helper;; Helpers.Inaccessible
+								CanFuseGreenGina;		Helper;; Helpers.Inaccessible
+								CanFuseGreenSiroc;		Helper;; Helpers.Inaccessible
+								CanFuseGreenG;   		Helper;; Items.Kinstone.GreenC:40
+								CanFuseGreenFlurris;	Helper;; Helpers.Inaccessible
+								CanFuseGreenTFZ1;		Helper;; Items.Kinstone.GreenC:38
+								CanFuseGreenP;   		Helper;; Items.Kinstone.GreenC:40
+								CanFuseGreenTFZ2;		Helper;; Items.Kinstone.GreenC:39
+								CanFuseGreenDavid;		Helper;; Items.Kinstone.GreenC:39
+								CanFuseGreenShared15;	Helper;; Items.Kinstone.GreenC:40
+								CanFuseGreenShared14;	Helper;; Items.Kinstone.GreenC:39
+								CanFuseGreenShared13;	Helper;; Items.Kinstone.GreenC:38
+								CanFuseGreenShared12;	Helper;; Items.Kinstone.GreenC:37
+								CanFuseGreenShared11;	Helper;; Items.Kinstone.GreenC:36
+								CanFuseGreenShared10;	Helper;; Items.Kinstone.GreenC:35
+								CanFuseGreenShared9;	Helper;; Items.Kinstone.GreenC:34
+								CanFuseGreenShared8;	Helper;; Items.Kinstone.GreenC:33
+								CanFuseGreenShared7;	Helper;; Items.Kinstone.GreenC:32
+								CanFuseGreenShared6;	Helper;; Items.Kinstone.GreenC:31
+								CanFuseGreenShared5;	Helper;; Items.Kinstone.GreenC:30
+								CanFuseGreenShared4;	Helper;; Items.Kinstone.GreenC:29
+								CanFuseGreenShared3;	Helper;; Items.Kinstone.GreenC:28
+								CanFuseGreenShared2;	Helper;; Items.Kinstone.GreenC:27
+								CanFuseGreenShared1;	Helper;; Items.Kinstone.GreenC:26
+							!else
+								Items.Kinstone.GreenC:39;	Major;
+								CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:39
+								CanFuseGreenScrub;		Helper;; Helpers.Inaccessible
+								CanFuseGreenGina;		Helper;; Helpers.Inaccessible
+								CanFuseGreenSiroc;		Helper;; Helpers.Inaccessible
+								CanFuseGreenG;   		Helper;; Items.Kinstone.GreenC:39
+								CanFuseGreenFlurris;	Helper;; Helpers.Inaccessible
+								CanFuseGreenTFZ1;		Helper;; Items.Kinstone.GreenC:37
+								CanFuseGreenP;   		Helper;; Items.Kinstone.GreenC:39
+								CanFuseGreenTFZ2;		Helper;; Items.Kinstone.GreenC:38
+								CanFuseGreenDavid;		Helper;; Items.Kinstone.GreenC:38
+								CanFuseGreenShared15;	Helper;; Items.Kinstone.GreenC:39
+								CanFuseGreenShared14;	Helper;; Items.Kinstone.GreenC:38
+								CanFuseGreenShared13;	Helper;; Items.Kinstone.GreenC:37
+								CanFuseGreenShared12;	Helper;; Items.Kinstone.GreenC:36
+								CanFuseGreenShared11;	Helper;; Items.Kinstone.GreenC:35
+								CanFuseGreenShared10;	Helper;; Items.Kinstone.GreenC:34
+								CanFuseGreenShared9;	Helper;; Items.Kinstone.GreenC:33
+								CanFuseGreenShared8;	Helper;; Items.Kinstone.GreenC:32
+								CanFuseGreenShared7;	Helper;; Items.Kinstone.GreenC:31
+								CanFuseGreenShared6;	Helper;; Items.Kinstone.GreenC:30
+								CanFuseGreenShared5;	Helper;; Items.Kinstone.GreenC:29
+								CanFuseGreenShared4;	Helper;; Items.Kinstone.GreenC:28
+								CanFuseGreenShared3;	Helper;; Items.Kinstone.GreenC:27
+								CanFuseGreenShared2;	Helper;; Items.Kinstone.GreenC:26
+								CanFuseGreenShared1;	Helper;; Items.Kinstone.GreenC:25
+							!endif
+						!endif
+					!endif
 				!endif
 			!endif
 			!ifdef - ITEM_POOL_PLENTIFUL
@@ -2929,7 +3478,12 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 	MayorCabin;					Helper;;	
 	LonLonSouthShortcut;		Helper;;	
 	LakeShortcut;				Helper;;	
-	WindCrest;					Helper;;	Items.Ocarina
+	CrenelWindCrest;			Helper;;	Items.Ocarina
+	FallsWindCrest;				Helper;;	Items.Ocarina
+	CloudWindCrest;				Helper;;	Items.Ocarina
+	SwampWindCrest;				Helper;;	Items.Ocarina
+	SHFWindCrest;				Helper;;	Items.Ocarina
+	MinishWindCrest;			Helper;;	Items.Ocarina
 	WesternShortcut;			Helper;;	
 	TrilbyShortcut;				Helper;;	
 	Scrubs;						Helper;;	
@@ -3045,7 +3599,36 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 	MayorCabin;					Helper;;	(|(&Helpers.BonkedTrees, Helpers.CabinSwim), (&Helpers.LakeMinish, Items.Flippers, Helpers.CabinSwim)), Items.PowerBracelets
 	LonLonSouthShortcut;		Helper;;	(|(&Helpers.AccessLonLon, Items.PacciCane), Items.Flippers, Items.RocsCape)
 	LakeShortcut;				Helper;;	Helpers.CapeExtension
-	WindCrest;					Helper;;	Helpers.Inaccessible
+	!ifdef - CREST_CRENEL
+		CrenelWindCrest;			Helper;;	Items.Ocarina
+	!else
+		CrenelWindCrest;			Helper;;	Helpers.Inaccessible
+	!endif
+	!ifdef - CREST_FALLS
+		FallsWindCrest;				Helper;;	Items.Ocarina
+	!else
+		FallsWindCrest;				Helper;;	Helpers.Inaccessible
+	!endif
+	!ifdef - CREST_CLOUD
+		CloudWindCrest;				Helper;;	Items.Ocarina
+	!else
+		CloudWindCrest;				Helper;;	Helpers.Inaccessible
+	!endif
+	!ifdef - CREST_SWAMP
+		SwampWindCrest;				Helper;;	Items.Ocarina
+	!else
+		SwampWindCrest;				Helper;;	Helpers.Inaccessible
+	!endif
+	!ifdef - CREST_SHF
+		SHFWindCrest;				Helper;;	Items.Ocarina
+	!else
+		SHFWindCrest;				Helper;;	Helpers.Inaccessible
+	!endif
+	!ifdef - CREST_MINISH
+		MinishWindCrest;			Helper;;	Items.Ocarina
+	!else
+		MinishWindCrest;			Helper;;	Helpers.Inaccessible
+	!endif
 	WesternShortcut;			Helper;;	Helpers.AccessTrilby, (|(|Helpers.CanSplit2, Helpers.CanSplit3, Helpers.CanSplit4), Helpers.TrilbyShortcut)
 	TrilbyShortcut;				Helper;;	(|Helpers.CanSplit2, Helpers.CanSplit3, Helpers.CanSplit4)
 	Scrubs;						Helper;;	Items.Shield
@@ -3055,7 +3638,7 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 	CrenelDust;					Helper;;	Helpers.BlowDust
 	CrenelDojo;					Helper;;	(|Helpers.CanSplit2, Helpers.CanSplit3, Helpers.CanSplit4)
 	CrenelSwitch;				Helper;;	(|Items.BombBag, Items.RocsCape, Helpers.HasBow, Helpers.HasBoomerang, Helpers.CrenelBeam)
-	SwampShortcut;				Helper;;	(|Helpers.WindCrest, Items.Flippers, Items.RocsCape, (&Items.PegasusBoots, Helpers.HasBow))
+	SwampShortcut;				Helper;;	(|Helpers.SwampWindCrest, Items.Flippers, Items.RocsCape, (&Items.PegasusBoots, Helpers.HasBow))
 	SwampNorthShortcut;			Helper;;	Helpers.HasBow
 	SwampSouthShortcut;			Helper;;	(|Items.Flippers, Items.RocsCape, Helpers.HasBow)
 	Festari;					Helper;;	(|Items.Flippers, Items.JabberNut)
@@ -3143,10 +3726,69 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 
 Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for good measure
 
+!ifdef - NO_GOLD_FUSIONS
+	!ifdef - SMALL_KEYS_VANILLA
+		!define - GOLDFUSIONSMALL - Unshuffled
+	!else
+		!define - GOLDFUSIONSMALL - Dungeon
+	!endif
+	!ifdef - BIG_KEYS_VANILLA
+		!define - GOLDFUSIONBIG - Unshuffled
+	!else
+		!define - GOLDFUSIONBIG - Dungeon
+	!endif
+	!ifdef - COMPASS_VANILLA
+		!define - GOLDFUSIONCOMPASS - Unshuffled
+	!else
+		!define - GOLDFUSIONCOMPASS - Dungeon
+	!endif
+!else
+	!define - GOLDFUSIONSMALL - Inaccessible
+	!define - GOLDFUSIONBIG - Inaccessible
+	!define - GOLDFUSIONCOMPASS - Inaccessible
+!endif
+
+!ifdef - POW_ACCESS
+	!define - PALACECHEST - Dungeon
+	!define - PALACEPRIZE - DungeonPrize
+	!ifdef - SMALL_KEYS_VANILLA
+		!define - PALACESMALL - Unshuffled
+	!else
+		!define - PALACESMALL - Dungeon
+	!endif
+	!ifdef - BIG_KEYS_VANILLA
+		!define - PALACEBIG - Unshuffled
+	!else
+		!define - PALACEBIG - Dungeon
+	!endif
+	!ifdef - COMPASS_VANILLA
+		!define - PALACECOMPASS - Unshuffled
+	!else
+		!define - PALACECOMPASS - Dungeon
+	!endif
+	!ifdef - HEART_RANDO
+		!define - PALACEHP - Dungeon
+	!else
+		!define - PALACEHP - Unshuffled
+	!endif
+	!ifdef - RUPEEMANIA
+		!define - PALACERUPEE - ;	Dungeon
+	!else
+		!define - PALACERUPEE - :NoSpoiler; Unshuffled
+	!endif
+!else
+	!define - PALACECHEST - Inaccessible
+	!define - PALACEPRIZE - Inaccessible
+	!define - PALACESMALL - Inaccessible
+	!define - PALACEBIG - Inaccessible
+	!define - PALACECOMPASS - Inaccessible
+	!define - PALACEHP - Inaccessible
+	!define - PALACERUPEE - ;	Inaccessible
+!endif
+
 !ifdef - SMALL_KEYS_VANILLA
 	!define - DUNGEONSMALL - Unshuffled
 	!define - DUNGEONSMALLUNDERWATER - Unshuffled
-	!define - GOLDFUSIONSMALL - Unshuffled
 !else
 	!define - DUNGEONSMALL - Dungeon
 	!ifdef - UNDERWATER
@@ -3154,35 +3796,18 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 	!else
 		!define - DUNGEONSMALLUNDERWATER - Inaccessible
 	!endif
-	!ifdef - NO_GOLD_FUSIONS
-		!define - GOLDFUSIONSMALL - Inaccessible
-	!else
-		!define - GOLDFUSIONSMALL - Dungeon
-	!endif
 !endif
 
 !ifdef - BIG_KEYS_VANILLA
 	!define - DUNGEONBIG - Unshuffled
-	!define - GOLDFUSIONBIG - Unshuffled
 !else
 	!define - DUNGEONBIG - Dungeon
-	!ifdef - NO_GOLD_FUSIONS
-		!define - GOLDFUSIONBIG - Inaccessible
-	!else
-		!define - GOLDFUSIONBIG - Dungeon
-	!endif
 !endif
 
 !ifdef - COMPASS_VANILLA
 	!define - DUNGEONCOMPASS - Unshuffled
-	!define - GOLDFUSIONCOMPASS - Unshuffled
 !else
 	!define - DUNGEONCOMPASS - Dungeon
-	!ifdef - NO_GOLD_FUSIONS
-		!define - GOLDFUSIONCOMPASS - Inaccessible
-	!else
-		!define - GOLDFUSIONCOMPASS - Dungeon
-	!endif
 !endif
 
 !ifdef - NO_GOLD_FUSIONS
@@ -3191,10 +3816,7 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 	!define - GOLDGREENFUSION - Inaccessible
 	!define - GOLDGREENFUSIONENEMY - Inaccessible
 	!define - GOLDFUSIONHP - Inaccessible
-	!define - GOLDREDFUSIONHP - Inaccessible
 	!define - GOLDFUSIONRUPEE - ;	Inaccessible
-	!define - GOLDFUSIONDIG - Inaccessible
-	!define - GOLDFUSIONUNDERWATER - ;	Inaccessible
 	!define - GOLDFUSIONPRIZE - Inaccessible
 !else
 	!define - GOLDFUSION - Dungeon
@@ -3216,30 +3838,64 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 	!endif
 	!ifdef - HEART_RANDO
 		!define - GOLDFUSIONHP - Dungeon
-		!define - GOLDREDFUSIONHP - `GOLDREDFUSION`
 	!else
 		!define - GOLDFUSIONHP - Unshuffled
-		!ifdef - NO_RED_FUSIONS
-			!define - GOLDREDFUSIONHP - Inaccessible
-		!else
-			!define - GOLDREDFUSIONHP - Unshuffled
-		!endif
 	!endif
 	!ifdef - RUPEEMANIA
 		!define - GOLDFUSIONRUPEE - ;	Dungeon
 	!else
 		!define - GOLDFUSIONRUPEE - :NoSpoiler;	Unshuffled
 	!endif
-	!ifdef - DIGGING
-		!define - GOLDFUSIONDIG - Any
+!endif
+
+!ifdef - FALLS_ACCESS
+	!define - FALLSCHEST - Any
+	!ifdef - NO_GREEN_FUSIONS
+		!define - FALLSGREEN - Inaccessible
 	!else
-		!define - GOLDFUSIONDIG - Inaccessible
+		!define - FALLSGREEN - Dungeon
+	!endif
+	!ifdef - GOLDEN_ENEMY_GREEN
+		!define - FALLSENEMY - Any
+	!else
+		!define - FALLSENEMY - Inaccessible
+	!endif
+	!ifdef - HEART_RANDO
+		!ifdef - NO_RED_FUSIONS
+			!define - FALLSHP - Inaccessible
+		!else
+			!define - FALLSHP - Any
+		!endif
+	!else
+		!ifdef - NO_RED_FUSIONS
+			!define - FALLSHP - Inaccessible
+		!else
+			!define - FALLSHP - Unshuffled
+		!endif
+	!endif
+	!ifdef - RUPEEMANIA
+		!define - FALLSRUPEE - ;	Any
+	!else
+		!define - FALLSRUPEE - :NoSpoiler;	Unshuffled
 	!endif
 	!ifdef - UNDERWATER
-		!define - GOLDFUSIONUNDERWATER - ;	Any
+		!define - FALLSWATER - ;	Any
 	!else
-		!define - GOLDFUSIONUNDERWATER - :NoSpoiler;	Unshuffled
+		!define - FALLSWATER - :NoSpoiler;	Unshuffled
 	!endif
+	!ifdef - DIGGING
+		!define - FALLSDIG - Any
+	!else
+		!define - FALLSDIG - Inaccessible
+	!endif
+!else
+	!define - FALLSCHEST - Inaccessible
+	!define - FALLSGREEN - Inaccessible
+	!define - FALLSHP - Inaccessible
+	!define - FALLSENEMY - Inaccessible
+	!define - FALLSRUPEE - ;	Inaccessible
+	!define - FALLSWATER - ;	Inaccessible
+	!define - FALLSDIG - Inaccessible
 !endif
 
 !ifdef - NO_RED_FUSIONS
@@ -3312,14 +3968,10 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 	!endif
 !endif
 
-!ifdef - NO_GOLD_FUSIONS
-	!ifdef - NO_RED_FUSIONS
-		!define - WTFUSION - Inaccessible
-	!else
-		!define - WTFUSION - Dungeon
-	!endif
-!else
+!ifdef - TRIBE_PORTAL
 	!define - WTFUSION - Dungeon
+!else
+	!define - WTFUSION - Inaccessible
 !endif
 
 !ifdef - OPEN_GREEN_FUSIONS
@@ -3331,7 +3983,7 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 		!define - UWTFUSIONGREEN - Inaccessible
 	!else
 		!define - WTFUSIONGREEN - `WTFUSION`
-		!define - UWTFUSIONGREEN - `GOLDFUSION`
+		!define - UWTFUSIONGREEN - `PALACECHEST`
 	!endif
 !endif
 
@@ -3445,10 +4097,10 @@ SouthField_PuddleFusion_Item12;		`GREENFUSIONRUPEE`;	0x0F8333;		(|(&Helpers.Shar
 SouthField_PuddleFusion_Item13;		`GREENFUSIONRUPEE`;	0x0F8343;		(|(&Helpers.Shared58Fusion,  (|Helpers.CanDestroyTrees, Items.RocsCape, Items.Flippers, Helpers.AccessWestern)), Helpers.Hundo);	Items.Rupee5
 SouthField_PuddleFusion_Item14;		`GREENFUSIONRUPEE`;	0x0F8353;		(|(&Helpers.Shared58Fusion,  (|Helpers.CanDestroyTrees, Items.RocsCape, Items.Flippers, Helpers.AccessWestern)), Helpers.Hundo);	Items.Rupee5
 SouthField_PuddleFusion_Item15; 	`GREENFUSIONRUPEE`;	0x0F8363;		(|(&Helpers.Shared58Fusion,  (|Helpers.CanDestroyTrees, Items.RocsCape, Items.Flippers, Helpers.AccessWestern)), Helpers.Hundo);	Items.Rupee5
-SouthField_Fusion_Chest;			`GREENFUSION`;		0x0FE0D6;		(|(&Helpers.Shared53Fusion, (|Helpers.CanDestroyTrees, Helpers.WindCrest)), Helpers.Hundo);					Items.Shells.200
-SouthField_TreeFusion_HP;			`BLUEFUSIONHP`;		0x0F9BA7;		(|(&Helpers.HurdyFusion, (|Helpers.CanDestroyTrees, Helpers.WindCrest)), Helpers.Hundo);					Items.PieceOfHeart
-SouthField_MinishSize_WaterHole_HP;	`HP`;				0x0DB55F;		(|(&Items.Flippers, Helpers.CanDestroyTrees, Helpers.BonkedTrees), Helpers.Hundo);							Items.PieceOfHeart
-SouthField_Tingle_NPC;				Any;				0x016966;		(|(&Items.PacciCane, Items.TingleTrophy, (|Helpers.CanDestroyTrees, Helpers.WindCrest)), Helpers.Hundo);	Items.TingleTrophy
+SouthField_Fusion_Chest;			`GREENFUSION`;		0x0FE0D6;		(|(&Helpers.Shared53Fusion, Helpers.AccessEasternHills), Helpers.Hundo);															Items.Shells.200
+SouthField_TreeFusion_HP;			`BLUEFUSIONHP`;		0x0F9BA7;		(|(&Helpers.HurdyFusion, Helpers.AccessEasternHills), Helpers.Hundo);																Items.PieceOfHeart
+SouthField_MinishSize_WaterHole_HP;	`HP`;				0x0DB55F;		(|(&Items.Flippers, Helpers.CanDestroyTrees, Helpers.BonkedTrees), Helpers.Hundo);													Items.PieceOfHeart
+SouthField_Tingle_NPC;				Any;				0x016966;		(|(&Items.PacciCane, Items.TingleTrophy, Helpers.AccessEasternHills), Helpers.Hundo);												Items.TingleTrophy
 
 # Town
 Town_CafeLady_NPC;				Any;			0x00EDDA;																	;																																																			Items.Kinstone.RedW
@@ -3523,14 +4175,15 @@ Castle_RightFountainFusion_MinishHoleChest	`DHC_OUTSIDE`;	`REDFUSIONDUNGEON`;		0
 Castle_LeftFountainFusion_MinishHoleChest	`DHC_OUTSIDE`;	`GREENFUSIONDUNGEON`;	0x36-0x01-0x00;																(|(&Helpers.Shared35Fusion, Helpers.BonkedTrees), Helpers.Hundo);	Items.Shells.50
 
 # Eastern Hills and LonLonRanch
-Hills_GoldenRope;					`GREENFUSIONENEMY`;	golden4Item:Define:FirstByte, golden4Sub:Define:SecondByte;	(|(&Helpers.Shared55Fusion,  Helpers.HasSword), Helpers.Hundo);									Items.Rupee100
-Hills_Fusion_Chest;					`REDFUSION`;		0x0FE05E;													(|(&Helpers.Smith1Fusion, Helpers.CanDestroyTrees), Helpers.WindCrest);							Items.Bottle
-Hills_BeanstalkFusion_LeftChest;	`BLUEFUSION`;		0x0D-0x03-0x01;												(|(&Helpers.HillsMinishFusion, (|Helpers.CanDestroyTrees, Helpers.WindCrest)), Helpers.Hundo);	Items.Shells.200
-Hills_BeanstalkFusion_HP;			`BLUEFUSIONHP`;		0x0F6073;													(|(&Helpers.HillsMinishFusion, (|Helpers.CanDestroyTrees, Helpers.WindCrest)), Helpers.Hundo);	Items.PieceOfHeart
-Hills_BeanstalkFusion_RightChest;	`BLUEFUSION`;		0x0D-0x03-0x00;												(|(&Helpers.HillsMinishFusion, (|Helpers.CanDestroyTrees, Helpers.WindCrest)), Helpers.Hundo);	Items.Rupee200
-Hills_BombCave_Chest;				Any;				0x32-0x13-0x00;												(|(&(|Helpers.CanDestroyTrees, Helpers.WindCrest), Helpers.BombWalls), Helpers.Hundo);			Items.Shells.20
-Minish_GreatFairy_NPC;				Any;				0x00B7B4;													(|(&Helpers.AccessMinishWoods, Items.PacciCane), Helpers.Hundo);								Items.Wallet
-Hills_FarmDigCave_Item				`RUPEE`;			0x0F3C9F;													(|(&Helpers.AccessMinishWoods, Items.MoleMitts), Helpers.Hundo);								Items.Rupee20
+AccessEasternHills;					Helper;;														(|Helpers.CanDestroyTrees, Helpers.SHFWindCrest, (&Helpers.OverworldBlocks, Helpers.AccessMinishWoods))
+Hills_GoldenRope;					`GREENFUSIONENEMY`;	golden4Item:Define:FirstByte, golden4Sub:Define:SecondByte;	(|(&Helpers.Shared55Fusion,  Helpers.HasSword), Helpers.Hundo);				Items.Rupee100
+Hills_Fusion_Chest;					`REDFUSION`;		0x0FE05E;													(|(&Helpers.AccessEasternHills, Helpers.Smith1Fusion), Helpers.Hundo);		Items.Bottle
+Hills_BeanstalkFusion_LeftChest;	`BLUEFUSION`;		0x0D-0x03-0x01;												(|(&Helpers.HillsMinishFusion, Helpers.AccessEasternHills), Helpers.Hundo);	Items.Shells.200
+Hills_BeanstalkFusion_HP;			`BLUEFUSIONHP`;		0x0F6073;													(|(&Helpers.HillsMinishFusion, Helpers.AccessEasternHills), Helpers.Hundo);	Items.PieceOfHeart
+Hills_BeanstalkFusion_RightChest;	`BLUEFUSION`;		0x0D-0x03-0x00;												(|(&Helpers.HillsMinishFusion, Helpers.AccessEasternHills), Helpers.Hundo);	Items.Rupee200
+Hills_BombCave_Chest;				Any;				0x32-0x13-0x00;												(|(&Helpers.AccessEasternHills, Helpers.BombWalls), Helpers.Hundo);			Items.Shells.20
+Minish_GreatFairy_NPC;				Any;				0x00B7B4;													(|(&Helpers.AccessMinishWoods, Items.PacciCane), Helpers.Hundo);			Items.Wallet
+Hills_FarmDigCave_Item				`RUPEE`;			0x0F3C9F;													(|(&Helpers.AccessMinishWoods, Items.MoleMitts), Helpers.Hundo);			Items.Rupee20
 
 AccessLonLon;						Helper;	;													(|Items.Ocarina, (&Helpers.CanDestroyTrees, (|Items.LonLonKey, Items.RocsCape, Helpers.LonLonNorthShortcut, (&Items.Flippers, Items.MoleMitts))), Helpers.Hundo);
 LonLon_RanchPot;					`POT`;				0x0F2C9B:FirstByte, 0x0F2C9D:SecondByte;	(|Helpers.CanDestroyTrees, Items.Ocarina);																																Items.LonLonKey
@@ -3575,7 +4228,7 @@ Hylia_BeanstalkFusion_RightChest;		`BLUEFUSION`;	0x0D-0x01-0x01;	(|(&Helpers.Lak
 Hylia_MiddleIslandFusion_DigCaveChest;	`GREENFUSION`;	0x19-0x00-0x00;															(|(&Helpers.MamaFusion, Helpers.AccessLonLon, Items.MoleMitts, Helpers.CapeExtension), Helpers.Hundo);																		Items.Rupee50
 Hylia_BottomHP;							`HP`;			0x0F324B;																(|(&Helpers.AccessLonLon, Helpers.CapeExtension), Helpers.Hundo);																											Items.PieceOfHeart
 Hylia_Dojo_HP;							`HP`;			0x0D7B03;																(|(&Helpers.AccessLonLon, (|Helpers.CapeExtension, Helpers.LakeShortcut)), Helpers.Hundo);																					Items.PieceOfHeart
-Hylia_Dojo_NPC;							Any;			wavebladeDojoItem:Define:FirstByte, wavebladeDojoSub:Define:SecondByte;	(|(&Helpers.AccessLonLon, (+28, Items.PieceOfHeart, Items.HeartContainer:4), Helpers.HasSword, (|Helpers.CapeExtension, Helpers.LakeShortcut)), Helpers.Hundo);			Items.PerilBeam
+Hylia_Dojo_NPC;							Any;			wavebladeDojoItem:Define:FirstByte, wavebladeDojoSub:Define:SecondByte;	(|(&Helpers.AccessLonLon, (+28, Items.PieceOfHeart, Items.HeartContainer:4), Helpers.HasSword, (|Helpers.CapeExtension, Helpers.LakeShortcut)), Helpers.Hundo);				Items.PerilBeam
 Hylia_CrackFusion_LibrariNPC;			`REDFUSION`;	0x0124EC;																(|(&Helpers.VillageSideMinish3Fusion, Items.Ocarina, (|Items.Flippers,Items.RocsCape)), Helpers.Hundo);																		Items.HeartContainer
 Hylia_NorthMinishHole_Chest;			Any;			0x35-0x07-0x00;															(|(&Helpers.AccessSouthLake, (|Helpers.BonkedTrees, Helpers.LakeMinish), Items.Flippers), Helpers.Hundo);																	Items.Kinstone.RedV
 Hylia_SouthMinishHole_Chest;			Any;			0x35-0x05-0x00;															(|(&Helpers.AccessSouthLake, (|Helpers.BonkedTrees, Helpers.LakeMinish), Items.Flippers), Helpers.Hundo);																	Items.Kinstone.RedE
@@ -3585,7 +4238,7 @@ Hylia_MayorCabin_Item;					Any;			blueBookItem:Define:FirstByte, blueBookSub:Def
 # Minish Woods
 AccessMinishWoods;							Helper;	;					(|Helpers.CanDestroyTrees, Items.Ocarina);
 AccessNorthMinish;							Helper;	;					Helpers.AccessMinishWoods, (|Items.Flippers, Items.RocsCape, Helpers.LonLonSouthShortcut));
-AccessBelari;								Helper;	;					(|(&Helpers.AccessMinishWoods, Helpers.OverworldBlocks), Helpers.WindCrest, Helpers.CompleteDeepwood);
+AccessBelari;								Helper;	;					(|(&Helpers.AccessMinishWoods, Helpers.OverworldBlocks), Helpers.MinishWindCrest, Helpers.CompleteDeepwood);
 MinishWoods_GoldenOcto;						`GREENFUSIONENEMY`;	golden8Item:Define:FirstByte, golden8Sub:Define:SecondByte;	(|(&Helpers.Shared56Fusion, Helpers.AccessNorthMinish, Helpers.HasSword), Helpers.Hundo);	Items.Rupee100
 MinishWoods_WitchHut_Item;					Any;				0x0F94D7;       											(|Helpers.AccessNorthMinish, Helpers.Hundo);												Items.WakeUpMushroom
 WitchDiggingCave_Chest;						Any;				0x0C-0x00-0x00;												(|(&Helpers.AccessNorthMinish, Items.MoleMitts), Helpers.Hundo);							Items.Kinstone.BlueL
@@ -3612,8 +4265,8 @@ MinishWoods_FlipperHole_LeftChest	`DWS_OUTSIDE`;	Dungeon;				0x35-0x09-0x02; (|(
 MinishWoods_FlipperHole_HP			`DWS_OUTSIDE`;	`DUNGEONHP`;			0x0DB8BF;       (|(&Helpers.AccessBelari, Items.Flippers), Helpers.Hundo);										Items.PieceOfHeart
 
 # Trilby Highlands and Western Woods
-AccessTrilby;						Helper;				;																	(|Helpers.WesternShortcut, Items.Flippers, Items.RocsCape, (&Helpers.HasSword, Helpers.HasSpin), Helpers.GuardSkip, (&Helpers.WindCrest, (|Helpers.UpperBean, Items.GripRing)))
-AccessWestern;						Helper;				;																	(|Helpers.WesternShortcut, (&Helpers.AccessTrilby, (|(|Helpers.CanSplit2, Helpers.CanSplit3, Helpers.CanSplit4), Helpers.TrilbyShortcut)), (&Helpers.WindCrest, (|Items.PegasusBoots, Items.RocsCape)))
+AccessTrilby;						Helper;				;																	(|Helpers.WesternShortcut, Items.Flippers, Items.RocsCape, (&Helpers.HasSword, Helpers.HasSpin), Helpers.GuardSkip, (&Helpers.CrenelWindCrest, (|Helpers.UpperBean, Items.GripRing)))
+AccessWestern;						Helper;				;																	(|Helpers.WesternShortcut, (&Helpers.AccessTrilby, (|(|Helpers.CanSplit2, Helpers.CanSplit3, Helpers.CanSplit4), Helpers.TrilbyShortcut)), (&Helpers.SwampWindCrest, (|Items.PegasusBoots, Items.RocsCape)))
 Trilby_MiddleFusion_Chest;			`GREENFUSION`;		0x0FE0EE;															(|(&Helpers.TinaFusion, Helpers.AccessTrilby), Helpers.Hundo);														Items.Kinstone.RedV
 Trilby_TopFusion_Chest;				`GREENFUSION`;		0x0FE0BE;															(|(&Helpers.Smith2Fusion, Helpers.AccessTrilby), Helpers.Hundo);													Items.Kinstone.RedW
 Trilby_DigCave_LeftChest;			Any;				0x13-0x03-0x00;                       								(|(&Helpers.AccessTrilby, Items.MoleMitts), Helpers.Hundo);															Items.Kinstone.BlueL
@@ -3671,24 +4324,24 @@ WesternWoods_BeanstalkFusion_Item15;	`BLUEFUSIONRUPEE`;	0x0F6223;													(|
 WesternWoods_BeanstalkFusion_Item16;	`BLUEFUSIONRUPEE`;	0x0F6233;													(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);					Items.Rupee20
 
 # Mount Crenel
-AccessCrenel;						Helper;			;							(|(&Helpers.AccessTrilby, Helpers.LowerBean, (|Items.GripRing, (&(|Helpers.BombWalls, Items.RocsCape), Helpers.CrenelDust))), Helpers.WindCrest)
+AccessCrenel;						Helper;			;							(|(&Helpers.AccessTrilby, Helpers.LowerBean, (|Items.GripRing, (&(|Helpers.BombWalls, Items.RocsCape), Helpers.CrenelDust))), Helpers.CrenelWindCrest)
 CrenelBase_EntranceVine				`RUPEE`;		0x0FAACF;																(|Helpers.AccessTrilby, Helpers.Hundo);																																																																			Items.Rupee20
-CrenelBase_FairyCave_Item1			`RUPEE`;		0x0FB3F3;																(|(&Helpers.AccessTrilby, Helpers.LowerBean, Helpers.BombWalls), (&Helpers.WindCrest, (|Helpers.UpperBean, Items.GripRing), Helpers.BombWalls), Helpers.Hundo);																																					Items.Rupee5
-CrenelBase_FairyCave_Item2			`RUPEE`;		0x0FB403;																(|(&Helpers.AccessTrilby, Helpers.LowerBean, Helpers.BombWalls), (&Helpers.WindCrest, (|Helpers.UpperBean, Items.GripRing), Helpers.BombWalls), Helpers.Hundo);																																					Items.Rupee5
-CrenelBase_FairyCave_Item3			`RUPEE`;		0x0FB413;																(|(&Helpers.AccessTrilby, Helpers.LowerBean, Helpers.BombWalls), (&Helpers.WindCrest, (|Helpers.UpperBean, Items.GripRing), Helpers.BombWalls), Helpers.Hundo);																																					Items.Rupee5
-CrenelBase_GreenWaterFusion_Chest;	`GREENFUSION`;	0x0FE06E;																(|(&Helpers.MinesMinishNWFusion, Helpers.AccessTrilby, Helpers.LowerBean, Helpers.BombWalls, Helpers.OverworldBlocks), (&Helpers.MinesMinishNWFusion, Helpers.WindCrest, (|Helpers.UpperBean, Items.GripRing), Helpers.BombWalls, Helpers.OverworldBlocks), Helpers.Hundo);										Items.Kinstone.BlueS
-CrenelBase_WestFusion_Chest;		`GREENFUSION`;	0x0FE116;																(|(&Helpers.CrenelLowerMinishFusion, Helpers.AccessTrilby, Helpers.LowerBean, (|Helpers.BombWalls, Items.RocsCape)), (&Helpers.CrenelLowerMinishFusion, Helpers.WindCrest, (|Helpers.UpperBean, (&Items.GripRing, (|Helpers.BombWalls, Items.RocsCape)))), Helpers.Hundo);										Items.Rupee200
-CrenelBase_WaterCave_LeftChest;		Any;			0x26-0x08-0x00;															(|(&Helpers.AccessTrilby, Helpers.LowerBean, Helpers.BombWalls, (|Items.BombBag, Items.RocsCape)), (&Helpers.WindCrest, (|Helpers.UpperBean, (&Items.GripRing, (|Helpers.BombWalls, Items.RocsCape))), Helpers.BombWalls, (|Items.BombBag, Items.RocsCape)), Helpers.Hundo);									Items.Rupee50
-CrenelBase_WaterCave_RightChest;	Any;			0x26-0x08-0x01;															(|(&Helpers.AccessTrilby, Helpers.LowerBean, Helpers.BombWalls, (|Items.BombBag, Items.RocsCape)), (&Helpers.WindCrest, (|Helpers.UpperBean, (&Items.GripRing, (|Helpers.BombWalls, Items.RocsCape))), Helpers.BombWalls, (|Items.BombBag, Items.RocsCape)), Helpers.Hundo);									Items.Kinstone.BlueS
-CrenelBase_WaterCave_HP;			`HP`;			0x0FB32B;																(|(&Helpers.AccessTrilby, Helpers.LowerBean, Helpers.BombWalls, (|Items.BombBag, Items.RocsCape, Items.Flippers)), (&Helpers.WindCrest, (|Helpers.UpperBean, (&Items.GripRing, (|Helpers.BombWalls, Items.RocsCape))), Helpers.BombWalls, (|Items.BombBag, Items.RocsCape, Items.Flippers)), Helpers.Hundo);	Items.PieceOfHeart
-CrenelBase_MinishVineHole_Chest;	Any;			0x35-0x00-0x00;															(|(&Helpers.AccessTrilby, Helpers.LowerBean, (|Helpers.BombWalls, Items.RocsCape), Helpers.CrenelDust), (&Helpers.WindCrest, (|Helpers.UpperBean, (&Items.GripRing, (|Helpers.BombWalls, Items.RocsCape))), Helpers.CrenelDust), Helpers.Hundo);																Items.Kinstone.BlueL
-CrenelBase_MinishCrack_Chest;		Any;			0x27-0x03-0x00;															(|(&Helpers.AccessTrilby, Helpers.LowerBean, (|Helpers.BombWalls, Items.RocsCape), Helpers.CrenelDust), (&Helpers.WindCrest, (|Helpers.UpperBean, (&Items.GripRing, (|Helpers.BombWalls, Items.RocsCape))), Helpers.CrenelDust), Helpers.Hundo);																Items.Kinstone.RedW
+CrenelBase_FairyCave_Item1			`RUPEE`;		0x0FB3F3;																(|(&Helpers.AccessTrilby, Helpers.LowerBean, Helpers.BombWalls), (&Helpers.CrenelWindCrest, (|Helpers.UpperBean, Items.GripRing), Helpers.BombWalls), Helpers.Hundo);																																			Items.Rupee5
+CrenelBase_FairyCave_Item2			`RUPEE`;		0x0FB403;																(|(&Helpers.AccessTrilby, Helpers.LowerBean, Helpers.BombWalls), (&Helpers.CrenelWindCrest, (|Helpers.UpperBean, Items.GripRing), Helpers.BombWalls), Helpers.Hundo);																																			Items.Rupee5
+CrenelBase_FairyCave_Item3			`RUPEE`;		0x0FB413;																(|(&Helpers.AccessTrilby, Helpers.LowerBean, Helpers.BombWalls), (&Helpers.CrenelWindCrest, (|Helpers.UpperBean, Items.GripRing), Helpers.BombWalls), Helpers.Hundo);																																			Items.Rupee5
+CrenelBase_GreenWaterFusion_Chest;	`GREENFUSION`;	0x0FE06E;																(|(&Helpers.MinesMinishNWFusion, Helpers.AccessTrilby, Helpers.LowerBean, Helpers.BombWalls, Helpers.OverworldBlocks), (&Helpers.MinesMinishNWFusion, Helpers.CrenelWindCrest, (|Helpers.UpperBean, Items.GripRing), Helpers.BombWalls, Helpers.OverworldBlocks), Helpers.Hundo);								Items.Kinstone.BlueS
+CrenelBase_WestFusion_Chest;		`GREENFUSION`;	0x0FE116;																(|(&Helpers.CrenelLowerMinishFusion, Helpers.AccessTrilby, Helpers.LowerBean, (|Helpers.BombWalls, Items.RocsCape)), (&Helpers.CrenelLowerMinishFusion, Helpers.CrenelWindCrest, (|Helpers.UpperBean, (&Items.GripRing, (|Helpers.BombWalls, Items.RocsCape)))), Helpers.Hundo);										Items.Rupee200
+CrenelBase_WaterCave_LeftChest;		Any;			0x26-0x08-0x00;															(|(&Helpers.AccessTrilby, Helpers.LowerBean, Helpers.BombWalls, (|Items.BombBag, Items.RocsCape)), (&Helpers.CrenelWindCrest, (|Helpers.UpperBean, (&Items.GripRing, (|Helpers.BombWalls, Items.RocsCape))), Helpers.BombWalls, (|Items.BombBag, Items.RocsCape)), Helpers.Hundo);									Items.Rupee50
+CrenelBase_WaterCave_RightChest;	Any;			0x26-0x08-0x01;															(|(&Helpers.AccessTrilby, Helpers.LowerBean, Helpers.BombWalls, (|Items.BombBag, Items.RocsCape)), (&Helpers.CrenelWindCrest, (|Helpers.UpperBean, (&Items.GripRing, (|Helpers.BombWalls, Items.RocsCape))), Helpers.BombWalls, (|Items.BombBag, Items.RocsCape)), Helpers.Hundo);									Items.Kinstone.BlueS
+CrenelBase_WaterCave_HP;			`HP`;			0x0FB32B;																(|(&Helpers.AccessTrilby, Helpers.LowerBean, Helpers.BombWalls, (|Items.BombBag, Items.RocsCape, Items.Flippers)), (&Helpers.CrenelWindCrest, (|Helpers.UpperBean, (&Items.GripRing, (|Helpers.BombWalls, Items.RocsCape))), Helpers.BombWalls, (|Items.BombBag, Items.RocsCape, Items.Flippers)), Helpers.Hundo);	Items.PieceOfHeart
+CrenelBase_MinishVineHole_Chest;	Any;			0x35-0x00-0x00;															(|(&Helpers.AccessTrilby, Helpers.LowerBean, (|Helpers.BombWalls, Items.RocsCape), Helpers.CrenelDust), (&Helpers.CrenelWindCrest, (|Helpers.UpperBean, (&Items.GripRing, (|Helpers.BombWalls, Items.RocsCape))), Helpers.CrenelDust), Helpers.Hundo);																Items.Kinstone.BlueL
+CrenelBase_MinishCrack_Chest;		Any;			0x27-0x03-0x00;															(|(&Helpers.AccessTrilby, Helpers.LowerBean, (|Helpers.BombWalls, Items.RocsCape), Helpers.CrenelDust), (&Helpers.CrenelWindCrest, (|Helpers.UpperBean, (&Items.GripRing, (|Helpers.BombWalls, Items.RocsCape))), Helpers.CrenelDust), Helpers.Hundo);																Items.Kinstone.RedW
 
 Crenel_VineTop_GoldenTektite;		`GREENFUSIONENEMY`;	golden2Item:Define:FirstByte, golden2Sub:Define:SecondByte; 			(|(&Helpers.MinesMinishKitchenFusion,Helpers.AccessCrenel, Helpers.HasSword), Helpers.Hundo);																		Items.Rupee100
 Crenel_BridgeCave_Chest;			Any;				0x26-0x07-0x00;															(|(&Helpers.AccessCrenel, Helpers.BombWalls), Helpers.Hundo);																										Items.Kinstone.BlueL
 Crenel_FairyCave_HP;				`HP`;				0x0FB0BB;																(|(&Helpers.AccessCrenel, Helpers.BombWalls), Helpers.Hundo);																										Items.PieceOfHeart
-Crenel_BelowCoF_GoldenTektite;		`REDFUSIONENEMY`;	golden7Item:Define:FirstByte, golden7Sub:Define:SecondByte;				(|(&Helpers.Tingle2Fusion, Helpers.AccessCrenel, Helpers.HasSword, (|Items.GripRing, Items.BombBag, Helpers.CrenelMushroom, Helpers.WindCrest)), Helpers.Hundo);	Items.Rupee100
-Crenel_Scrub_NPC;					Any;				gripScrubItem:Define:FirstByte, gripScrubSub:Define:SecondByte;			(|(&Helpers.AccessCrenel, Helpers.BombWalls, (|Items.GripRing, Items.BombBag, Helpers.CrenelMushroom, Helpers.WindCrest), Helpers.Scrubs), Helpers.Hundo);			Items.GripRing
+Crenel_BelowCoF_GoldenTektite;		`REDFUSIONENEMY`;	golden7Item:Define:FirstByte, golden7Sub:Define:SecondByte;				(|(&Helpers.Tingle2Fusion, Helpers.AccessCrenel, Helpers.HasSword, (|Items.GripRing, Items.BombBag, Helpers.CrenelMushroom, Helpers.CrenelWindCrest)), Helpers.Hundo);	Items.Rupee100
+Crenel_Scrub_NPC;					Any;				gripScrubItem:Define:FirstByte, gripScrubSub:Define:SecondByte;			(|(&Helpers.AccessCrenel, Helpers.BombWalls, (|Items.GripRing, Items.BombBag, Helpers.CrenelMushroom, Helpers.CrenelWindCrest), Helpers.Scrubs), Helpers.Hundo);			Items.GripRing
 Crenel_Dojo_LeftChest;				Any;				0x25-0x00-0x00;															(|(&Helpers.AccessCrenel, Items.GripRing, Helpers.CrenelDojo), Helpers.Hundo);																						Items.Rupee50
 Crenel_Dojo_RightChest;				Any;				0x25-0x00-0x01;															(|(&Helpers.AccessCrenel, Items.GripRing, Helpers.CrenelDojo), Helpers.Hundo);																						Items.Rupee50
 Crenel_Dojo_HP;						`HP`;				0x0D752B;																(|(&Helpers.AccessCrenel, Items.GripRing, Helpers.CrenelDojo), Helpers.Hundo);																						Items.PieceOfHeart
@@ -3721,7 +4374,7 @@ Crenel_Melari_UpperTop_MiddleDig	`COF_OUTSIDE`;	`DIG`;			0x0DC8D3;	 	(|(&Helpers
 Crenel_Melari_UpperTop_LeftDig		`COF_OUTSIDE`;	`DIG`;			0x0DC8E3;	 	(|(&Helpers.AccessMelari, Items.MoleMitts), Helpers.Hundo);			Items.Kinstone.BlueS
 
 # Swamp
-AccessSwamp;						Helper;				;																			(|Helpers.WindCrest, (&Helpers.AccessWestern, (|Items.PegasusBoots, Items.RocsCape)))
+AccessSwamp;						Helper;				;																			(|Helpers.SwampWindCrest, (&Helpers.AccessWestern, (|Items.PegasusBoots, Items.RocsCape)))
 GotScrolls;							Helper;				;																			(+7, Items.SpinAttack, Items.RockBreaker, Items.DashAttack, Items.DownThrust, Items.RollAttack, Items.SwordBeam, Items.PerilBeam, Items.GreatSpin, Items.FastSpin, Items.FastSplit, Items.LongSpin);
 Swamp_ButterflyFusion_Item;			`REDFUSION`;			0x0FE13F;																	(|(&Helpers.Farore2Fusion, Helpers.AccessSwamp), Helpers.Hundo);																																		Items.DigButterfly
 Swamp_CenterCave_DarknutChest;		Any;					0x2B-0x00-0x00;																(|(&Helpers.AccessSwamp, Helpers.HasDamageSource), Helpers.Hundo);																																		Items.Kinstone.GoldenSwamp
@@ -3736,8 +4389,8 @@ Swamp_Underwater_Top;				`WATERKINSTONE`;		0x0D9347;																	(|(&Helpers
 Swamp_Underwater_Middle;			`WATERKINSTONE`;		0x0D9357;																	(|(&Helpers.AccessSwamp, Items.Flippers), Helpers.Hundo);																																				Items.Kinstone.RedW
 Swamp_Underwater_Bottom;			`WATERKINSTONE`;		0x0D9367;																	(|(&Helpers.AccessSwamp, Items.Flippers), Helpers.Hundo);																																				Items.Kinstone.RedE
 Swamp_SouthCave_Chest;				Any;					0x2A-0x00-0x00;																(|(&Helpers.AccessSwamp, Helpers.SwampShortcut, Helpers.SwampSouthShortcut), Helpers.Hundo);																											Items.Kinstone.GoldenSwamp
-Swamp_Dojo_HP;						`HP`;					0x0D78CB;																	(|(&Helpers.AccessSwamp, (|Items.RocsCape, Helpers.HasBow)), (&Helpers.WindCrest, Items.PegasusBoots), Helpers.Hundo);																					Items.PieceOfHeart
-Swamp_Dojo_NPC;						Any;					swiftbladeIDojoItem:Define:FirstByte, swiftbladeIDojoSub:Define:SecondByte;	(|(&Helpers.AccessSwamp, (|Items.RocsCape, Helpers.HasBow), Helpers.GotScrolls, Helpers.HasSword), (&Helpers.WindCrest, Items.PegasusBoots, Helpers.GotScrolls, Helpers.HasSword), Helpers.Hundo);		Items.GreatSpin
+Swamp_Dojo_HP;						`HP`;					0x0D78CB;																	(|(&Helpers.AccessSwamp, (|Items.RocsCape, Helpers.HasBow)), (&Helpers.SwampWindCrest, Items.PegasusBoots), Helpers.Hundo);																					Items.PieceOfHeart
+Swamp_Dojo_NPC;						Any;					swiftbladeIDojoItem:Define:FirstByte, swiftbladeIDojoSub:Define:SecondByte;	(|(&Helpers.AccessSwamp, (|Items.RocsCape, Helpers.HasBow), Helpers.GotScrolls, Helpers.HasSword), (&Helpers.SwampWindCrest, Items.PegasusBoots, Helpers.GotScrolls, Helpers.HasSword), Helpers.Hundo);		Items.GreatSpin
 
 Swamp_MinishFusion_NorthCrack_Chest;		`GREENFUSION`;		0x27-0x09-0x00;		(|(&Helpers.TFZ1Fusion, Helpers.AccessSwamp, (|Items.PegasusBoots, Items.RocsCape, Helpers.HasBow)), Helpers.Hundo);											Items.Kinstone.BlueS
 Swamp_Minish_Mulldozer_BigChest;			Any;				0x27-0x06-0x00;		(|(&Helpers.AccessSwamp, (|Items.PegasusBoots, Items.RocsCape, Helpers.HasBow), (|Items.Flippers, Items.GustJar), Helpers.HasDamageSource), Helpers.Hundo);		Items.Bow
@@ -3750,7 +4403,7 @@ Swamp_MinishFusion_WaterHole_HP;			`GREENFUSIONHP`;	0x0DB3F7;			(|(&Helpers.TFZ2
 
 # Wind Ruins
 	!define - FOW_OUTSIDE - :FoWSmallOutside	:FoWBigOutside	:FoWCompassOutside	:SmallOutside	:BigOutside	:CompassOutside
-AccessRuins;									Helper;				;	(|Items.PegasusBoots, Items.RocsCape), (|(&Helpers.AccessSwamp, Helpers.SwampShortcut), Helpers.WindCrest), Helpers.RuinsFusion;
+AccessRuins;									Helper;				;	(|Items.PegasusBoots, Items.RocsCape), (|(&Helpers.AccessSwamp, Helpers.SwampShortcut), Helpers.SwampWindCrest), Helpers.RuinsFusion;
 Ruins_ButterflyFusion_Item		`FOW_OUTSIDE`;	`GOLDREDFUSION`;		0x0FE12F;													(|(&Helpers.Din2Fusion, Helpers.AccessRuins), Helpers.Hundo);														Items.ArrowButterfly
 Ruins_BombCave_Chest			`FOW_OUTSIDE`;	`GOLDFUSION`;			0x2A-0x02-0x00;												(|(&Helpers.AccessRuins, Helpers.BombWalls), Helpers.Hundo);														Items.Kinstone.BlueS
 Ruins_MinishHome_Chest			`FOW_OUTSIDE`;	`GOLDFUSION`;			0x27-0x07-0x00;												(|Helpers.AccessRuins, Helpers.Hundo);																				Items.Kinstone.RedE
@@ -3790,53 +4443,53 @@ Crypt_Prize				`RC_PRIZE`;			DungeonPrize;	0x00DA5A;	(|(&Helpers.AccessValley, H
 #Secret Chest reachable with Firerod
 
 # Veil Falls
-AccessFalls;				Helper;		;				(|(&Helpers.OverworldBlocks, Helpers.FallsFusion, Helpers.DarkRooms, Items.GripRing), Helpers.WindCrest, (&Helpers.AccessWindTribe, Items.GripRing));
-Falls_Entrance_HP;						`HP`;					0x0F87C3;													(|(&Helpers.OverworldBlocks, Helpers.CapeExtension), (&Helpers.AccessFalls, Items.GripRing, (|Items.Flippers, (&Items.RocsCape, Helpers.DarkRooms))), Helpers.Hundo);																										Items.PieceOfHeart
-Falls_WaterDigCaveFusion_HP;			`REDFUSIONHP`;			0x0F3DD7;													(|(&Helpers.VillageSideMinish2Fusion, Helpers.OverworldBlocks, Helpers.CapeExtension, Items.MoleMitts), (&Helpers.VillageSideMinish2Fusion, Helpers.AccessFalls, Items.GripRing, (|Items.Flippers, (&Items.RocsCape, Helpers.DarkRooms)), Items.MoleMitts), Helpers.Hundo);	Items.PieceOfHeart
-Falls_WaterDigCaveFusion_Chest;			`REDFUSION`;			0x16-0x00-0x00;												(|(&Helpers.VillageSideMinish2Fusion, Helpers.OverworldBlocks, Helpers.CapeExtension, Items.MoleMitts), (&Helpers.VillageSideMinish2Fusion, Helpers.AccessFalls, Items.GripRing, (|Items.Flippers, (&Items.RocsCape, Helpers.DarkRooms)), Items.MoleMitts), Helpers.Hundo);	Items.Shells.50
-Falls_1stCave_Chest;					`GOLDFUSION`;			0x33-0x05-0x00;												(|(&Helpers.OverworldBlocks, Helpers.FallsFusion, Helpers.DarkRooms, Helpers.BombWalls), (&Helpers.AccessFalls, Items.GripRing, Helpers.BombWalls), Helpers.Hundo);																											Items.Shells.50
-Falls_Cliff_Chest;						`GOLDFUSION`;			0x0A-0x00-0x00;												(|(&Helpers.OverworldBlocks, Helpers.FallsFusion, Helpers.DarkRooms, Helpers.BombWalls, (|Helpers.CanSplit3, Helpers.CanSplit4)), (&Helpers.AccessFalls, Items.GripRing, Helpers.BombWalls, Helpers.DarkRooms, (|Helpers.CanSplit3, Helpers.CanSplit4)), Helpers.Hundo);	Items.Shells.100
-Falls_SouthDigSpot;						`GOLDFUSIONDIG`;		0x0F8823;													(|(&Helpers.OverworldBlocks, Helpers.FallsFusion, Helpers.DarkRooms, Items.MoleMitts), (&Helpers.AccessFalls, Items.GripRing, Items.MoleMitts), Helpers.Hundo);																												Items.Rupee50
-Falls_GoldenTektite;					`GOLDGREENFUSIONENEMY`;	golden6Item:Define:FirstByte, golden6Sub:Define:SecondByte;	(|(&Helpers.HaileyFusion,  Helpers.AccessFalls, Helpers.HasSword), Helpers.Hundo);	Items.Rupee100
-Falls_NorthDigSpot;						`GOLDFUSIONDIG`;		0x0F8813;													(|(&Helpers.AccessFalls, Items.MoleMitts), Helpers.Hundo);							Items.Rupee50
-Falls_RockFusion_Chest;					`GOLDGREENFUSION`;		0x0FE106;													(|(&Helpers.CapriceFusion, Helpers.AccessFalls), Helpers.Hundo);					Items.Kinstone.BlueS
-Falls_WaterfallFusion_HP;				`GOLDREDFUSIONHP`;	0x0F906F;													(|(&Helpers.GaleFusion, Helpers.AccessFalls, Items.Flippers), Helpers.Hundo);		Items.PieceOfHeart
-Falls_RupeeCave_TopTop					`GOLDFUSIONRUPEE`;		0x0F8F27;													(|Helpers.AccessFalls, Helpers.Hundo);						Items.Rupee1
-Falls_RupeeCave_TopLeft					`GOLDFUSIONRUPEE`;		0x0F8F37;													(|Helpers.AccessFalls, Helpers.Hundo);						Items.Rupee1
-Falls_RupeeCave_TopMiddle				`GOLDFUSIONRUPEE`;		0x0F8F47;													(|Helpers.AccessFalls, Helpers.Hundo);						Items.Rupee20
-Falls_RupeeCave_TopRight				`GOLDFUSIONRUPEE`;		0x0F8F57;													(|Helpers.AccessFalls, Helpers.Hundo);						Items.Rupee1
-Falls_RupeeCave_TopBottom				`GOLDFUSIONRUPEE`;		0x0F8F67;													(|Helpers.AccessFalls, Helpers.Hundo);						Items.Rupee1
-Falls_RupeeCave_SideTop					`GOLDFUSIONRUPEE`;		0x0F8F77;													(|Helpers.AccessFalls, Helpers.Hundo);						Items.Rupee1
-Falls_RupeeCave_SideLeft				`GOLDFUSIONRUPEE`;		0x0F8F87;													(|Helpers.AccessFalls, Helpers.Hundo);						Items.Rupee1
-Falls_RupeeCave_SideRight				`GOLDFUSIONRUPEE`;		0x0F8F97;													(|Helpers.AccessFalls, Helpers.Hundo);						Items.Rupee1
-Falls_RupeeCave_SideBottom				`GOLDFUSIONRUPEE`;		0x0F8FA7;													(|Helpers.AccessFalls, Helpers.Hundo);						Items.Rupee1
-Falls_RupeeCave_Underwater_TopLeft		`GOLDFUSIONUNDERWATER`;	0x0F8FB7;													(|(&Helpers.AccessFalls, Items.Flippers), Helpers.Hundo);	Items.Rupee1
-Falls_RupeeCave_Underwater_TopRight		`GOLDFUSIONUNDERWATER`;	0x0F8FC7;													(|(&Helpers.AccessFalls, Items.Flippers), Helpers.Hundo);	Items.Rupee1
-Falls_RupeeCave_Underwater_MiddleLeft	`GOLDFUSIONUNDERWATER`;	0x0F8FD7;													(|(&Helpers.AccessFalls, Items.Flippers), Helpers.Hundo);	Items.Rupee5
-Falls_RupeeCave_Underwater_MiddleRight	`GOLDFUSIONUNDERWATER`;	0x0F8FE7;													(|(&Helpers.AccessFalls, Items.Flippers), Helpers.Hundo);	Items.Rupee5
-Falls_RupeeCave_Underwater_BottomLeft	`GOLDFUSIONUNDERWATER`;	0x0F8FF7;													(|(&Helpers.AccessFalls, Items.Flippers), Helpers.Hundo);	Items.Rupee20
-Falls_RupeeCave_Underwater_BottomRight	`GOLDFUSIONUNDERWATER`;	0x0F9007;													(|(&Helpers.AccessFalls, Items.Flippers), Helpers.Hundo);	Items.Rupee20
-Falls_TopCave_BombWall_Chest;			`GOLDFUSION`;			0x33-0x02-0x00;												(|(&Helpers.AccessFalls, Helpers.BombWalls), Helpers.Hundo);	Items.Shells.50
-Falls_TopCave_Chest;					`GOLDFUSION`;			0x33-0x00-0x00;												(|Helpers.AccessFalls, Helpers.Hundo);							Items.Rupee100
+AccessFalls;				Helper;		;				(|(&Helpers.OverworldBlocks, Helpers.FallsFusion, Helpers.DarkRooms, Items.GripRing), Helpers.FallsWindCrest, (&Helpers.AccessWindTribe, Items.GripRing));
+Falls_Entrance_HP;						`HP`;			0x0F87C3;													(|(&Helpers.OverworldBlocks, Helpers.CapeExtension), (&Helpers.AccessFalls, Items.GripRing, (|Items.Flippers, (&Items.RocsCape, Helpers.DarkRooms))), Helpers.Hundo);																										Items.PieceOfHeart
+Falls_WaterDigCaveFusion_HP;			`REDFUSIONHP`;	0x0F3DD7;													(|(&Helpers.VillageSideMinish2Fusion, Helpers.OverworldBlocks, Helpers.CapeExtension, Items.MoleMitts), (&Helpers.VillageSideMinish2Fusion, Helpers.AccessFalls, Items.GripRing, (|Items.Flippers, (&Items.RocsCape, Helpers.DarkRooms)), Items.MoleMitts), Helpers.Hundo);	Items.PieceOfHeart
+Falls_WaterDigCaveFusion_Chest;			`REDFUSION`;	0x16-0x00-0x00;												(|(&Helpers.VillageSideMinish2Fusion, Helpers.OverworldBlocks, Helpers.CapeExtension, Items.MoleMitts), (&Helpers.VillageSideMinish2Fusion, Helpers.AccessFalls, Items.GripRing, (|Items.Flippers, (&Items.RocsCape, Helpers.DarkRooms)), Items.MoleMitts), Helpers.Hundo);	Items.Shells.50
+Falls_1stCave_Chest;					`FALLSCHEST`;	0x33-0x05-0x00;												(|(&Helpers.OverworldBlocks, Helpers.FallsFusion, Helpers.DarkRooms, Helpers.BombWalls), (&Helpers.AccessFalls, Items.GripRing, Helpers.BombWalls), Helpers.Hundo);																											Items.Shells.50
+Falls_Cliff_Chest;						`FALLSCHEST`;	0x0A-0x00-0x00;												(|(&Helpers.OverworldBlocks, Helpers.FallsFusion, Helpers.DarkRooms, Helpers.BombWalls, (|Helpers.CanSplit3, Helpers.CanSplit4)), (&Helpers.AccessFalls, Items.GripRing, Helpers.BombWalls, Helpers.DarkRooms, (|Helpers.CanSplit3, Helpers.CanSplit4)), Helpers.Hundo);	Items.Shells.100
+Falls_SouthDigSpot;						`FALLSDIG`;		0x0F8823;													(|(&Helpers.OverworldBlocks, Helpers.FallsFusion, Helpers.DarkRooms, Items.MoleMitts), (&Helpers.AccessFalls, Items.GripRing, Items.MoleMitts), Helpers.Hundo);																												Items.Rupee50
+Falls_GoldenTektite;					`FALLSENEMY`;	golden6Item:Define:FirstByte, golden6Sub:Define:SecondByte;	(|(&Helpers.HaileyFusion,  Helpers.AccessFalls, Helpers.HasSword), Helpers.Hundo);	Items.Rupee100
+Falls_NorthDigSpot;						`FALLSDIG`;		0x0F8813;													(|(&Helpers.AccessFalls, Items.MoleMitts), Helpers.Hundo);							Items.Rupee50
+Falls_RockFusion_Chest;					`FALLSGREEN`;	0x0FE106;													(|(&Helpers.CapriceFusion, Helpers.AccessFalls), Helpers.Hundo);					Items.Kinstone.BlueS
+Falls_WaterfallFusion_HP;				`FALLSHP`;		0x0F906F;													(|(&Helpers.GaleFusion, Helpers.AccessFalls, Items.Flippers), Helpers.Hundo);		Items.PieceOfHeart
+Falls_RupeeCave_TopTop					`FALLSRUPEE`;	0x0F8F27;													(|Helpers.AccessFalls, Helpers.Hundo);						Items.Rupee1
+Falls_RupeeCave_TopLeft					`FALLSRUPEE`;	0x0F8F37;													(|Helpers.AccessFalls, Helpers.Hundo);						Items.Rupee1
+Falls_RupeeCave_TopMiddle				`FALLSRUPEE`;	0x0F8F47;													(|Helpers.AccessFalls, Helpers.Hundo);						Items.Rupee20
+Falls_RupeeCave_TopRight				`FALLSRUPEE`;	0x0F8F57;													(|Helpers.AccessFalls, Helpers.Hundo);						Items.Rupee1
+Falls_RupeeCave_TopBottom				`FALLSRUPEE`;	0x0F8F67;													(|Helpers.AccessFalls, Helpers.Hundo);						Items.Rupee1
+Falls_RupeeCave_SideTop					`FALLSRUPEE`;	0x0F8F77;													(|Helpers.AccessFalls, Helpers.Hundo);						Items.Rupee1
+Falls_RupeeCave_SideLeft				`FALLSRUPEE`;	0x0F8F87;													(|Helpers.AccessFalls, Helpers.Hundo);						Items.Rupee1
+Falls_RupeeCave_SideRight				`FALLSRUPEE`;	0x0F8F97;													(|Helpers.AccessFalls, Helpers.Hundo);						Items.Rupee1
+Falls_RupeeCave_SideBottom				`FALLSRUPEE`;	0x0F8FA7;													(|Helpers.AccessFalls, Helpers.Hundo);						Items.Rupee1
+Falls_RupeeCave_Underwater_TopLeft		`FALLSWATER`;	0x0F8FB7;													(|(&Helpers.AccessFalls, Items.Flippers), Helpers.Hundo);	Items.Rupee1
+Falls_RupeeCave_Underwater_TopRight		`FALLSWATER`;	0x0F8FC7;													(|(&Helpers.AccessFalls, Items.Flippers), Helpers.Hundo);	Items.Rupee1
+Falls_RupeeCave_Underwater_MiddleLeft	`FALLSWATER`;	0x0F8FD7;													(|(&Helpers.AccessFalls, Items.Flippers), Helpers.Hundo);	Items.Rupee5
+Falls_RupeeCave_Underwater_MiddleRight	`FALLSWATER`;	0x0F8FE7;													(|(&Helpers.AccessFalls, Items.Flippers), Helpers.Hundo);	Items.Rupee5
+Falls_RupeeCave_Underwater_BottomLeft	`FALLSWATER`;	0x0F8FF7;													(|(&Helpers.AccessFalls, Items.Flippers), Helpers.Hundo);	Items.Rupee20
+Falls_RupeeCave_Underwater_BottomRight	`FALLSWATER`;	0x0F9007;													(|(&Helpers.AccessFalls, Items.Flippers), Helpers.Hundo);	Items.Rupee20
+Falls_TopCave_BombWall_Chest;			`FALLSCHEST`;	0x33-0x02-0x00;												(|(&Helpers.AccessFalls, Helpers.BombWalls), Helpers.Hundo);	Items.Shells.50
+Falls_TopCave_Chest;					`FALLSCHEST`;	0x33-0x00-0x00;												(|Helpers.AccessFalls, Helpers.Hundo);							Items.Rupee100
 
 # Cloud Tops
-AccessClouds;					Helper;		;					(|Helpers.WindCrest, (&Helpers.AccessFalls, Items.GripRing), Helpers.AccessWindTribe)
-Clouds_FreeChest;				`GOLDFUSION`;		0x08-0x01-0x00;	(|Helpers.AccessClouds, Helpers.Hundo);																Items.Kinstone.GoldenCloudTops
-Clouds_NorthEast_DigSpot;		`GOLDFUSIONDIG`;	0x0DCB5B;		(|(&Helpers.AccessClouds, Items.MoleMitts), Helpers.Hundo);											Items.Kinstone.RedW
-Clouds_North_Kill;				`GOLDFUSION`;		0x0DCEDF;		(|(&Helpers.AccessClouds, (|Items.RocsCape, Items.MoleMitts), Helpers.CloudsKill), Helpers.Hundo);	Items.Kinstone.GoldenCloudTops
-Clouds_NorthWest_LeftChest;		`GOLDFUSION`;		0x08-0x01-0x03;	(|(&Helpers.AccessClouds, Items.MoleMitts), Helpers.Hundo);											Items.Shells.50
-Clouds_NorthWest_RightChest;	`GOLDFUSION`;		0x08-0x01-0x04;	(|(&Helpers.AccessClouds, Items.MoleMitts), Helpers.Hundo);											Items.Shells.50
-Clouds_NorthWest_DigSpot;		`GOLDFUSIONDIG`;	0x0DCB4B;		(|(&Helpers.AccessClouds, Items.MoleMitts), Helpers.Hundo);											Items.Kinstone.GreenC
-Clouds_NorthWest_BottomChest;	`GOLDFUSION`;		0x08-0x01-0x02;	(|(&Helpers.AccessClouds, (|Items.RocsCape, Items.MoleMitts)), Helpers.Hundo);						Items.Kinstone.GoldenCloudTops
-Clouds_South_LeftChest;			`GOLDFUSION`;		0x08-0x01-0x05;	(|(&Helpers.AccessClouds, Items.MoleMitts), Helpers.Hundo);											Items.Shells.50
-Clouds_South_DigSpot;			`GOLDFUSIONDIG`;	0x0DCB8B;		(|(&Helpers.AccessClouds, Items.MoleMitts), Helpers.Hundo);											Items.Kinstone.GreenP
-Clouds_South_MiddleChest;		`GOLDFUSION`;		0x08-0x01-0x01;	(|(&Helpers.AccessClouds, (|Items.RocsCape, Items.MoleMitts)), Helpers.Hundo);						Items.Kinstone.GoldenCloudTops
-Clouds_South_MiddleDigSpot;		`GOLDFUSIONDIG`;	0x0DCB6B;		(|(&Helpers.AccessClouds, Items.MoleMitts), Helpers.Hundo);											Items.Kinstone.BlueL
-Clouds_South_Kill;				`GOLDFUSION`;		0x0DCEEF;		(|(&Helpers.AccessClouds, (|Items.RocsCape, Items.MoleMitts), Helpers.CloudsKill), Helpers.Hundo);	Items.Kinstone.GoldenCloudTops
-Clouds_South_RightChest;		`GOLDFUSION`;		0x08-0x01-0x06;	(|(&Helpers.AccessClouds, (|Items.RocsCape, Items.MoleMitts)), Helpers.Hundo);						Items.Shells.50
-Clouds_South_RightDigSpot;		`GOLDFUSIONDIG`;	0x0DCB9B;		(|(&Helpers.AccessClouds, Items.MoleMitts), Helpers.Hundo);											Items.Kinstone.RedV
-Clouds_SouthEast_BottomDigSpot;	`GOLDFUSIONDIG`;	0x0DCBAB;		(|(&Helpers.AccessClouds, Items.MoleMitts), Helpers.Hundo);											Items.Kinstone.BlueS
-Clouds_SouthEast_TopDigSpot;    `GOLDFUSIONDIG`;	0x0DCB7B;		(|(&Helpers.AccessClouds, Items.MoleMitts), Helpers.Hundo);											Items.Kinstone.GreenG
+AccessClouds;					Helper;		;					(|(&Helpers.AccessFalls, Items.GripRing), Helpers.AccessWindTribe)
+Clouds_FreeChest;				`FALLSCHEST`;	0x08-0x01-0x00;	(|Helpers.AccessClouds, Helpers.Hundo);																Items.Kinstone.GoldenCloudTops
+Clouds_NorthEast_DigSpot;		`FALLSDIG`;		0x0DCB5B;		(|(&Helpers.AccessClouds, Items.MoleMitts), Helpers.Hundo);											Items.Kinstone.RedW
+Clouds_North_Kill;				`FALLSCHEST`;	0x0DCEDF;		(|(&Helpers.AccessClouds, (|Items.RocsCape, Items.MoleMitts), Helpers.CloudsKill), Helpers.Hundo);	Items.Kinstone.GoldenCloudTops
+Clouds_NorthWest_LeftChest;		`FALLSCHEST`;	0x08-0x01-0x03;	(|(&Helpers.AccessClouds, Items.MoleMitts), Helpers.Hundo);											Items.Shells.50
+Clouds_NorthWest_RightChest;	`FALLSCHEST`;	0x08-0x01-0x04;	(|(&Helpers.AccessClouds, Items.MoleMitts), Helpers.Hundo);											Items.Shells.50
+Clouds_NorthWest_DigSpot;		`FALLSDIG`;		0x0DCB4B;		(|(&Helpers.AccessClouds, Items.MoleMitts), Helpers.Hundo);											Items.Kinstone.GreenC
+Clouds_NorthWest_BottomChest;	`FALLSCHEST`;	0x08-0x01-0x02;	(|(&Helpers.AccessClouds, (|Items.RocsCape, Items.MoleMitts)), Helpers.Hundo);						Items.Kinstone.GoldenCloudTops
+Clouds_South_LeftChest;			`FALLSCHEST`;	0x08-0x01-0x05;	(|(&Helpers.AccessClouds, Items.MoleMitts), Helpers.Hundo);											Items.Shells.50
+Clouds_South_DigSpot;			`FALLSDIG`;		0x0DCB8B;		(|(&Helpers.AccessClouds, Items.MoleMitts), Helpers.Hundo);											Items.Kinstone.GreenP
+Clouds_South_MiddleChest;		`FALLSCHEST`;	0x08-0x01-0x01;	(|(&Helpers.AccessClouds, (|Items.RocsCape, Items.MoleMitts)), Helpers.Hundo);						Items.Kinstone.GoldenCloudTops
+Clouds_South_MiddleDigSpot;		`FALLSDIG`;		0x0DCB6B;		(|(&Helpers.AccessClouds, Items.MoleMitts), Helpers.Hundo);											Items.Kinstone.BlueL
+Clouds_South_Kill;				`FALLSCHEST`;	0x0DCEEF;		(|(&Helpers.AccessClouds, (|Items.RocsCape, Items.MoleMitts), Helpers.CloudsKill), Helpers.Hundo);	Items.Kinstone.GoldenCloudTops
+Clouds_South_RightChest;		`FALLSCHEST`;	0x08-0x01-0x06;	(|(&Helpers.AccessClouds, (|Items.RocsCape, Items.MoleMitts)), Helpers.Hundo);						Items.Shells.50
+Clouds_South_RightDigSpot;		`FALLSDIG`;		0x0DCB9B;		(|(&Helpers.AccessClouds, Items.MoleMitts), Helpers.Hundo);											Items.Kinstone.RedV
+Clouds_SouthEast_BottomDigSpot;	`FALLSDIG`;		0x0DCBAB;		(|(&Helpers.AccessClouds, Items.MoleMitts), Helpers.Hundo);											Items.Kinstone.BlueS
+Clouds_SouthEast_TopDigSpot;    `FALLSDIG`;		0x0DCB7B;		(|(&Helpers.AccessClouds, Items.MoleMitts), Helpers.Hundo);											Items.Kinstone.GreenG
 
 	!define - POW_OUTSIDE - :PoWSmallOutside	:PoWBigOutside	:PoWCompassOutside	:SmallOutside	:BigOutside	:CompassOutside
 !ifdef - NO_RED_FUSIONS
@@ -3844,17 +4497,17 @@ Clouds_SouthEast_TopDigSpot;    `GOLDFUSIONDIG`;	0x0DCB7B;		(|(&Helpers.AccessCl
 !else
 	!define - POW_F_OUTSIDE - 
 !endif
-AccessWindTribe;					Helper;	;					(|Helpers.OpenWindTribe, (&Helpers.AccessClouds, Helpers.CloudFusions),  Helpers.WindCrest)
+AccessWindTribe;					Helper;	;					(|Helpers.OpenWindTribe, (&Helpers.AccessClouds, Helpers.CloudFusions),  Helpers.CloudWindCrest)
 WindTribe_1F_LeftChest		`POW_F_OUTSIDE`;	`WTFUSION`;		0x30-0x00-0x00;		(|Helpers.StrangerFusion, Helpers.AccessWindTribe, Helpers.Hundo);							Items.Kinstone.GreenC
 WindTribe_1F_RightChest		`POW_F_OUTSIDE`;	`WTFUSION`;		0x30-0x00-0x01;		(|Helpers.StrangerFusion, Helpers.AccessWindTribe, Helpers.Hundo);							Items.Kinstone.GreenG
 WindTribe_2F_Chest			`POW_F_OUTSIDE`;	`WTFUSION`;		0x30-0x01-0x00;		(|Helpers.StrangerFusion, Helpers.AccessWindTribe, Helpers.Hundo);							Items.Kinstone.GreenP
 WindTribe_2F_Gregal_NPC1	`POW_F_OUTSIDE`;	`WTFUSION`;		0x014C5C;			(|(&Helpers.Gregal, (|Helpers.StrangerFusion, Helpers.AccessWindTribe)), Helpers.Hundo);	Items.Shells.100
-WindTribe_2F_Gregal_NPC2	`POW_OUTSIDE`;		`GOLDFUSION`;	0x014CBC;			(|(&Helpers.Gregal, Helpers.AccessWindTribe), Helpers.Hundo);								Items.Bow
-WindTribe_3F_LeftChest		`POW_OUTSIDE`;		`GOLDFUSION`;	0x30-0x02-0x02;		(|Helpers.AccessWindTribe, Helpers.Hundo);													Items.Kinstone.BlueL
-WindTribe_3F_CenterChest	`POW_OUTSIDE`;		`GOLDFUSION`;	0x30-0x02-0x01;		(|Helpers.AccessWindTribe, Helpers.Hundo);													Items.Kinstone.BlueS
-WindTribe_3F_RightChest		`POW_OUTSIDE`;		`GOLDFUSION`;	0x30-0x02-0x00;		(|Helpers.AccessWindTribe, Helpers.Hundo);													Items.Kinstone.RedV
-WindTribe_4F_LeftChest		`POW_OUTSIDE`;		`GOLDFUSION`;	0x30-0x03-0x00;		(|Helpers.AccessWindTribe, Helpers.Hundo);													Items.Kinstone.RedW
-WindTribe_4F_RightChest		`POW_OUTSIDE`;		`GOLDFUSION`;	0x30-0x03-0x01;		(|Helpers.AccessWindTribe, Helpers.Hundo);													Items.Kinstone.RedE
+WindTribe_2F_Gregal_NPC2	`POW_OUTSIDE`;		`PALACECHEST`;	0x014CBC;			(|(&Helpers.Gregal, Helpers.AccessWindTribe), Helpers.Hundo);								Items.Bow
+WindTribe_3F_LeftChest		`POW_OUTSIDE`;		`PALACECHEST`;	0x30-0x02-0x02;		(|Helpers.AccessWindTribe, Helpers.Hundo);													Items.Kinstone.BlueL
+WindTribe_3F_CenterChest	`POW_OUTSIDE`;		`PALACECHEST`;	0x30-0x02-0x01;		(|Helpers.AccessWindTribe, Helpers.Hundo);													Items.Kinstone.BlueS
+WindTribe_3F_RightChest		`POW_OUTSIDE`;		`PALACECHEST`;	0x30-0x02-0x00;		(|Helpers.AccessWindTribe, Helpers.Hundo);													Items.Kinstone.RedV
+WindTribe_4F_LeftChest		`POW_OUTSIDE`;		`PALACECHEST`;	0x30-0x03-0x00;		(|Helpers.AccessWindTribe, Helpers.Hundo);													Items.Kinstone.RedW
+WindTribe_4F_RightChest		`POW_OUTSIDE`;		`PALACECHEST`;	0x30-0x03-0x01;		(|Helpers.AccessWindTribe, Helpers.Hundo);													Items.Kinstone.RedE
 
 # Deepwood locations
 
@@ -4058,36 +4711,36 @@ AccessPalace						;	Helper;			;				Helpers.AccessWindTribe;
 
 # This randomizes some dummy items to determine where to place the PoW Big Key, then it adjusts all the logic to allow that key to be placed there without errors
 
-Palace_1stHalf_1F_GrateChest		`POW_INSIDE`;	`GOLDFUSION`;			0x70-0x2D-0x00;	(|(&Helpers.AccessPalace, Items.RocsCape, (|Helpers.CanSplit3, Helpers.CanSplit4)), Helpers.Hundo);														Items.Kinstone.RedE
-Palace_1stHalf_1F_Wizrobe_BigChest	`POW_INSIDE`;	`GOLDFUSION`;			0x70-0x2C-0x00;	(|(&Helpers.AccessPalace, (|Items.RocsCape, Items.BombBag, Helpers.HasMagicBoomerang), (|Helpers.CanSplit3, Helpers.CanSplit4)), Helpers.Hundo);		Items.RocsCape
-Palace_1stHalf_2F_Item1				`POW_INSIDE`	`GOLDFUSIONRUPEE`;		0x0E8B1F;		 (|(&Helpers.AccessPalace, Items.RocsCape, (|Helpers.CanSplit3, Helpers.CanSplit4), Helpers.PoWJump), Helpers.Hundo);									Items.Rupee1
-Palace_1stHalf_2F_Item2				`POW_INSIDE`	`GOLDFUSIONRUPEE`;		0x0E8B2F;		 (|(&Helpers.AccessPalace, Items.RocsCape, (|Helpers.CanSplit3, Helpers.CanSplit4), Helpers.PoWJump), Helpers.Hundo);									Items.Rupee1
-Palace_1stHalf_2F_Item3				`POW_INSIDE`	`GOLDFUSIONRUPEE`;		0x0E8B3F;		 (|(&Helpers.AccessPalace, Items.RocsCape, (|Helpers.CanSplit3, Helpers.CanSplit4), Helpers.PoWJump), Helpers.Hundo);									Items.Rupee1
-Palace_1stHalf_2F_Item4				`POW_INSIDE`	`GOLDFUSIONRUPEE`;		0x0E8B4F;		 (|(&Helpers.AccessPalace, Items.RocsCape, (|Helpers.CanSplit3, Helpers.CanSplit4), Helpers.PoWJump), Helpers.Hundo);									Items.Rupee1
-Palace_1stHalf_2F_Item5				`POW_INSIDE`	`GOLDFUSIONRUPEE`;		0x0E8B5F;		 (|(&Helpers.AccessPalace, Items.RocsCape, (|Helpers.CanSplit3, Helpers.CanSplit4), Helpers.PoWJump), Helpers.Hundo);									Items.Rupee1
+Palace_1stHalf_1F_GrateChest		`POW_INSIDE`;	`PALACECHEST`;		0x70-0x2D-0x00;	(|(&Helpers.AccessPalace, Items.RocsCape, (|Helpers.CanSplit3, Helpers.CanSplit4)), Helpers.Hundo);														Items.Kinstone.RedE
+Palace_1stHalf_1F_Wizrobe_BigChest	`POW_INSIDE`;	`PALACECHEST`;		0x70-0x2C-0x00;	(|(&Helpers.AccessPalace, (|Items.RocsCape, Items.BombBag, Helpers.HasMagicBoomerang), (|Helpers.CanSplit3, Helpers.CanSplit4)), Helpers.Hundo);		Items.RocsCape
+Palace_1stHalf_2F_Item1				`POW_INSIDE`	`PALACERUPEE`;		0x0E8B1F;		 (|(&Helpers.AccessPalace, Items.RocsCape, (|Helpers.CanSplit3, Helpers.CanSplit4), Helpers.PoWJump), Helpers.Hundo);									Items.Rupee1
+Palace_1stHalf_2F_Item2				`POW_INSIDE`	`PALACERUPEE`;		0x0E8B2F;		 (|(&Helpers.AccessPalace, Items.RocsCape, (|Helpers.CanSplit3, Helpers.CanSplit4), Helpers.PoWJump), Helpers.Hundo);									Items.Rupee1
+Palace_1stHalf_2F_Item3				`POW_INSIDE`	`PALACERUPEE`;		0x0E8B3F;		 (|(&Helpers.AccessPalace, Items.RocsCape, (|Helpers.CanSplit3, Helpers.CanSplit4), Helpers.PoWJump), Helpers.Hundo);									Items.Rupee1
+Palace_1stHalf_2F_Item4				`POW_INSIDE`	`PALACERUPEE`;		0x0E8B4F;		 (|(&Helpers.AccessPalace, Items.RocsCape, (|Helpers.CanSplit3, Helpers.CanSplit4), Helpers.PoWJump), Helpers.Hundo);									Items.Rupee1
+Palace_1stHalf_2F_Item5				`POW_INSIDE`	`PALACERUPEE`;		0x0E8B5F;		 (|(&Helpers.AccessPalace, Items.RocsCape, (|Helpers.CanSplit3, Helpers.CanSplit4), Helpers.PoWJump), Helpers.Hundo);									Items.Rupee1
 
-Palace_1stHalf_3F_PotPuzzle_ItemDrop			`POW_INSIDE`;	`GOLDFUSIONSMALL`;	0x0E896F;		(|(&Helpers.AccessPalace, Items.RocsCape, (|Helpers.CanSplit3, Helpers.CanSplit4), Items.PacciCane, Helpers.PoWPotPuzzle), Helpers.Hundo);		Items.SmallKey.0x1C
-Palace_1stHalf_4F_BowMoblins_Chest				`POW_INSIDE`;	`GOLDFUSION`;		0x70-0x0F-0x00;	(|(&Helpers.AccessPalace, Items.RocsCape, (|Helpers.CanSplit3, Helpers.CanSplit4), Helpers.PoWJump, Helpers.PoWPostKeyDoor), Helpers.Hundo);	Items.Kinstone.BlueL
-Palace_1stHalf_5F_BallAndChainSoldiers_ItemDrop	`POW_INSIDE`;	`GOLDFUSIONSMALL`;	0x0E719F;		(|(&Helpers.AccessPalace, Items.RocsCape, (|Helpers.CanSplit3, Helpers.CanSplit4), Helpers.PoWJump, Helpers.PoWPostKeyDoor), Helpers.Hundo);	Items.SmallKey.0x1C
-Palace_1stHalf_5F_FanLoop_Chest					`POW_INSIDE`;	`GOLDFUSIONSMALL`;	0x70-0x07-0x00;	(|(&Helpers.AccessPalace, Items.RocsCape, (|Helpers.CanSplit3, Helpers.CanSplit4), Helpers.PoWJump, Helpers.PoWFans), Helpers.Hundo);			Items.SmallKey.0x1C
-Palace_1stHalf_5F_BigChest						`POW_INSIDE`;	`GOLDFUSIONBIG`;	0x70-0x01-0x00;	(|(&Helpers.AccessPalace, Items.RocsCape, (|Helpers.CanSplit3, Helpers.CanSplit4), Helpers.PoWJump, Helpers.PoWBigChest), Helpers.Hundo);		Items.BigKey.0x1C
+Palace_1stHalf_3F_PotPuzzle_ItemDrop			`POW_INSIDE`;	`PALACESMALL`;	0x0E896F;		(|(&Helpers.AccessPalace, Items.RocsCape, (|Helpers.CanSplit3, Helpers.CanSplit4), Items.PacciCane, Helpers.PoWPotPuzzle), Helpers.Hundo);		Items.SmallKey.0x1C
+Palace_1stHalf_4F_BowMoblins_Chest				`POW_INSIDE`;	`PALACECHEST`;	0x70-0x0F-0x00;	(|(&Helpers.AccessPalace, Items.RocsCape, (|Helpers.CanSplit3, Helpers.CanSplit4), Helpers.PoWJump, Helpers.PoWPostKeyDoor), Helpers.Hundo);	Items.Kinstone.BlueL
+Palace_1stHalf_5F_BallAndChainSoldiers_ItemDrop	`POW_INSIDE`;	`PALACESMALL`;	0x0E719F;		(|(&Helpers.AccessPalace, Items.RocsCape, (|Helpers.CanSplit3, Helpers.CanSplit4), Helpers.PoWJump, Helpers.PoWPostKeyDoor), Helpers.Hundo);	Items.SmallKey.0x1C
+Palace_1stHalf_5F_FanLoop_Chest					`POW_INSIDE`;	`PALACESMALL`;	0x70-0x07-0x00;	(|(&Helpers.AccessPalace, Items.RocsCape, (|Helpers.CanSplit3, Helpers.CanSplit4), Helpers.PoWJump, Helpers.PoWFans), Helpers.Hundo);			Items.SmallKey.0x1C
+Palace_1stHalf_5F_BigChest						`POW_INSIDE`;	`PALACEBIG`;	0x70-0x01-0x00;	(|(&Helpers.AccessPalace, Items.RocsCape, (|Helpers.CanSplit3, Helpers.CanSplit4), Helpers.PoWJump, Helpers.PoWBigChest), Helpers.Hundo);		Items.BigKey.0x1C
 
 PoW2ndHalf;					Helper;			;				Helpers.AccessPalace, Items.RocsCape, (|Helpers.CanSplit3, Helpers.CanSplit4), Helpers.PoWJump, Helpers.PoW1stDoor, Helpers.PoWBossDoor
 
-Palace_2ndHalf_1F_DarkRoom_BigChest		`POW_INSIDE`;	`GOLDFUSIONCOMPASS`;	0x70-0x32-0x00;	(|(&Helpers.AccessPalace, (|Helpers.PoW2ndHalf, Helpers.PoWBlueWarp, (&Helpers.PoWRedWarp, Helpers.OverworldBlocks)), Helpers.DarkRooms), Helpers.Hundo);																																																	Items.Compass.0x1C
-Palace_2ndHalf_1F_DarkRoom_SmallChest	`POW_INSIDE`;	`GOLDFUSIONSMALL`;		0x70-0x32-0x01;	(|(&Helpers.AccessPalace, (|Helpers.PoW2ndHalf, Helpers.PoWBlueWarp, (&Helpers.PoWRedWarp, Helpers.OverworldBlocks)), Helpers.DarkRooms), Helpers.Hundo);																																																	Items.SmallKey.0x1C
-Palace_2ndHalf_2F_ManyRollers_Chest		`POW_INSIDE`;	`GOLDFUSIONSMALL`;		0x70-0x2B-0x00;	(|(&Helpers.AccessPalace, (|(&Helpers.DarkRooms, (|Helpers.PoW2ndHalf, Helpers.PoWBlueWarp)), (&Helpers.PoWRedWarp, Helpers.OverworldBlocks)), Helpers.PoWPeahatRoom, Helpers.PoWRollerRoom), Helpers.Hundo);																																				Items.SmallKey.0x1C
-Palace_2ndHalf_2F_TwinWizrobes_Chest	`POW_INSIDE`;	`GOLDFUSION`;			0x70-0x29-0x00;	(|(&Helpers.AccessPalace, (|(&Helpers.DarkRooms, (|(&Helpers.PoW2ndHalf1stDoor, Items.RocsCape), Helpers.PoWShortcuts), (|Helpers.PoW2ndHalf, Helpers.PoWBlueWarp)), (&Helpers.PoWRedWarp, Helpers.OverworldBlocks)), Helpers.PoWDoubleWiz), Helpers.Hundo);																								Items.Kinstone.RedW
-Palace_2ndHalf_3F_FireWizrobes_BigChest	`POW_INSIDE`;	`GOLDFUSIONCOMPASS`;	0x70-0x1C-0x00;	(|(&Helpers.AccessPalace, (|(&Helpers.DarkRooms, (|(&Helpers.PoW2ndHalf1stDoor, Items.RocsCape), Helpers.PoWShortcuts), (|Helpers.PoW2ndHalf, Helpers.PoWBlueWarp)), (&Helpers.PoWRedWarp, Helpers.OverworldBlocks)), Helpers.PoWTribleWiz), Helpers.Hundo);																								Items.DungeonMap.0x1C
-Palace_2ndHalf_4F_HP					`POW_INSIDE`;	`GOLDFUSIONHP`;			0x0E77A7;		(|(&Helpers.AccessPalace, Items.RocsCape, (|(&Helpers.DarkRooms, (|(&Helpers.PoW2ndHalf1stDoor, Items.RocsCape), Helpers.PoWShortcuts), Helpers.PoWHandRoom, (|Helpers.PoW2ndHalf, Helpers.PoWBlueWarp)), (&Helpers.PoWRedWarp, Helpers.OverworldBlocks))), Helpers.Hundo);																					Items.PieceOfHeart
-Palace_2ndHalf_4F_SwitchHit_Chest		`POW_INSIDE`;	`GOLDFUSION`;			0x70-0x15-0x00;	(|(&Helpers.AccessPalace, (|(&Helpers.DarkRooms, (|(&Helpers.PoW2ndHalf1stDoor, Items.RocsCape), Helpers.PoWShortcuts), Helpers.PoWHandRoom, Items.RocsCape, Helpers.PoWSwitch,(|Helpers.PoW2ndHalf, Helpers.PoWBlueWarp)), (&Helpers.PoWRedWarp, Helpers.OverworldBlocks, Helpers.PoWSwitch, (|Items.RocsCape, Helpers.PoWHandRoom)))), Helpers.Hundo);	Items.Rupee200
-Palace_2ndHalf_5F_Bombarossa_Chest		`POW_INSIDE`;	`GOLDFUSIONSMALL`;		0x70-0x03-0x00;	(|(&Helpers.AccessPalace, (|(&Helpers.DarkRooms, (|(&Helpers.PoW2ndHalf1stDoor, Items.RocsCape), Helpers.PoWShortcuts), Helpers.PoWHandRoom, Items.RocsCape, (|Helpers.PoW2ndHalf, Helpers.PoWBlueWarp)), Helpers.PoWRedWarp), Helpers.PoWRedWarpDoor, Helpers.BombWalls, Helpers.OverworldBlocks), Helpers.Hundo);											Items.SmallKey.0x1C
-Palace_2ndHalf_4F_BlockMaze_Chest		`POW_INSIDE`;	`GOLDFUSION`;			0x70-0x10-0x00;	(|(&Helpers.AccessPalace, (|(&Helpers.DarkRooms, (|(&Helpers.PoW2ndHalf1stDoor, Items.RocsCape), Helpers.PoWShortcuts), Helpers.PoWHandRoom, Items.RocsCape, (|Helpers.PoW2ndHalf, Helpers.PoWBlueWarp)), Helpers.PoWRedWarp), Helpers.PoWRedWarpDoor, Helpers.BombWalls, Helpers.OverworldBlocks, Helpers.PoWLastDoor), Helpers.Hundo);					Items.Kinstone.BlueS
-Palace_2ndHalf_5F_RightSide_Chest		`POW_INSIDE`;	`GOLDFUSION`;			0x70-0x04-0x00;	(|(&Helpers.AccessPalace, (|(&Helpers.DarkRooms, (|(&Helpers.PoW2ndHalf1stDoor, Items.RocsCape), Helpers.PoWShortcuts), Helpers.PoWHandRoom, Items.RocsCape, (|Helpers.PoW2ndHalf, Helpers.PoWBlueWarp)), Helpers.PoWRedWarp), Helpers.PoWRedWarpDoor, Helpers.BombWalls, Helpers.OverworldBlocks, Helpers.PoWLastDoor, Items.RocsCape), Helpers.Hundo);	Items.Kinstone.RedV
+Palace_2ndHalf_1F_DarkRoom_BigChest		`POW_INSIDE`;	`PALACECOMPASS`;	0x70-0x32-0x00;	(|(&Helpers.AccessPalace, (|Helpers.PoW2ndHalf, Helpers.PoWBlueWarp, (&Helpers.PoWRedWarp, Helpers.OverworldBlocks)), Helpers.DarkRooms), Helpers.Hundo);																																																	Items.Compass.0x1C
+Palace_2ndHalf_1F_DarkRoom_SmallChest	`POW_INSIDE`;	`PALACESMALL`;		0x70-0x32-0x01;	(|(&Helpers.AccessPalace, (|Helpers.PoW2ndHalf, Helpers.PoWBlueWarp, (&Helpers.PoWRedWarp, Helpers.OverworldBlocks)), Helpers.DarkRooms), Helpers.Hundo);																																																	Items.SmallKey.0x1C
+Palace_2ndHalf_2F_ManyRollers_Chest		`POW_INSIDE`;	`PALACESMALL`;		0x70-0x2B-0x00;	(|(&Helpers.AccessPalace, (|(&Helpers.DarkRooms, (|Helpers.PoW2ndHalf, Helpers.PoWBlueWarp)), (&Helpers.PoWRedWarp, Helpers.OverworldBlocks)), Helpers.PoWPeahatRoom, Helpers.PoWRollerRoom), Helpers.Hundo);																																				Items.SmallKey.0x1C
+Palace_2ndHalf_2F_TwinWizrobes_Chest	`POW_INSIDE`;	`PALACECHEST`;		0x70-0x29-0x00;	(|(&Helpers.AccessPalace, (|(&Helpers.DarkRooms, (|(&Helpers.PoW2ndHalf1stDoor, Items.RocsCape), Helpers.PoWShortcuts), (|Helpers.PoW2ndHalf, Helpers.PoWBlueWarp)), (&Helpers.PoWRedWarp, Helpers.OverworldBlocks)), Helpers.PoWDoubleWiz), Helpers.Hundo);																								Items.Kinstone.RedW
+Palace_2ndHalf_3F_FireWizrobes_BigChest	`POW_INSIDE`;	`PALACECOMPASS`;	0x70-0x1C-0x00;	(|(&Helpers.AccessPalace, (|(&Helpers.DarkRooms, (|(&Helpers.PoW2ndHalf1stDoor, Items.RocsCape), Helpers.PoWShortcuts), (|Helpers.PoW2ndHalf, Helpers.PoWBlueWarp)), (&Helpers.PoWRedWarp, Helpers.OverworldBlocks)), Helpers.PoWTribleWiz), Helpers.Hundo);																								Items.DungeonMap.0x1C
+Palace_2ndHalf_4F_HP					`POW_INSIDE`;	`PALACEHP`;			0x0E77A7;		(|(&Helpers.AccessPalace, Items.RocsCape, (|(&Helpers.DarkRooms, (|(&Helpers.PoW2ndHalf1stDoor, Items.RocsCape), Helpers.PoWShortcuts), Helpers.PoWHandRoom, (|Helpers.PoW2ndHalf, Helpers.PoWBlueWarp)), (&Helpers.PoWRedWarp, Helpers.OverworldBlocks))), Helpers.Hundo);																					Items.PieceOfHeart
+Palace_2ndHalf_4F_SwitchHit_Chest		`POW_INSIDE`;	`PALACECHEST`;		0x70-0x15-0x00;	(|(&Helpers.AccessPalace, (|(&Helpers.DarkRooms, (|(&Helpers.PoW2ndHalf1stDoor, Items.RocsCape), Helpers.PoWShortcuts), Helpers.PoWHandRoom, Items.RocsCape, Helpers.PoWSwitch,(|Helpers.PoW2ndHalf, Helpers.PoWBlueWarp)), (&Helpers.PoWRedWarp, Helpers.OverworldBlocks, Helpers.PoWSwitch, (|Items.RocsCape, Helpers.PoWHandRoom)))), Helpers.Hundo);	Items.Rupee200
+Palace_2ndHalf_5F_Bombarossa_Chest		`POW_INSIDE`;	`PALACESMALL`;		0x70-0x03-0x00;	(|(&Helpers.AccessPalace, (|(&Helpers.DarkRooms, (|(&Helpers.PoW2ndHalf1stDoor, Items.RocsCape), Helpers.PoWShortcuts), Helpers.PoWHandRoom, Items.RocsCape, (|Helpers.PoW2ndHalf, Helpers.PoWBlueWarp)), Helpers.PoWRedWarp), Helpers.PoWRedWarpDoor, Helpers.BombWalls, Helpers.OverworldBlocks), Helpers.Hundo);											Items.SmallKey.0x1C
+Palace_2ndHalf_4F_BlockMaze_Chest		`POW_INSIDE`;	`PALACECHEST`;		0x70-0x10-0x00;	(|(&Helpers.AccessPalace, (|(&Helpers.DarkRooms, (|(&Helpers.PoW2ndHalf1stDoor, Items.RocsCape), Helpers.PoWShortcuts), Helpers.PoWHandRoom, Items.RocsCape, (|Helpers.PoW2ndHalf, Helpers.PoWBlueWarp)), Helpers.PoWRedWarp), Helpers.PoWRedWarpDoor, Helpers.BombWalls, Helpers.OverworldBlocks, Helpers.PoWLastDoor), Helpers.Hundo);					Items.Kinstone.BlueS
+Palace_2ndHalf_5F_RightSide_Chest		`POW_INSIDE`;	`PALACECHEST`;		0x70-0x04-0x00;	(|(&Helpers.AccessPalace, (|(&Helpers.DarkRooms, (|(&Helpers.PoW2ndHalf1stDoor, Items.RocsCape), Helpers.PoWShortcuts), Helpers.PoWHandRoom, Items.RocsCape, (|Helpers.PoW2ndHalf, Helpers.PoWBlueWarp)), Helpers.PoWRedWarp), Helpers.PoWRedWarpDoor, Helpers.BombWalls, Helpers.OverworldBlocks, Helpers.PoWLastDoor, Items.RocsCape), Helpers.Hundo);	Items.Kinstone.RedV
 
 CompletePalace;				Helper;		;																			Helpers.AccessPalace, (|(&Helpers.DarkRooms, (|(&Helpers.PoW2ndHalf1stDoor, Items.RocsCape), Helpers.PoWShortcuts), Helpers.PoWHandRoom, Items.RocsCape, (|Helpers.PoW2ndHalf, Helpers.PoWBlueWarp)), Helpers.PoWRedWarp), Helpers.PoWRedWarpDoor, Helpers.BombWalls, Helpers.OverworldBlocks, Helpers.PoWLastDoor, Items.RocsCape, Helpers.PoWBossDoor, (|Helpers.CanDownThrust, (|Helpers.CanSplit2, Helpers.CanSplit3, Helpers.CanSplit4));
-Palace_BossItem	`POW_INSIDE`;	`GOLDFUSIONHP`;		gyorgContainerItem:Define:FirstByte, gyorgContainerSub:Define:SecondByte;	(|Helpers.CompletePalace, Helpers.Hundo);										Items.HeartContainer
-Palace_Prize	`POW_PRIZE`;	`GOLDFUSIONPRIZE`;	0x0E69E3;																	(|Helpers.CompletePalace, Helpers.Hundo);											Items.WindElement
+Palace_BossItem	`POW_INSIDE`;	`PALACEHP`;		gyorgContainerItem:Define:FirstByte, gyorgContainerSub:Define:SecondByte;	(|Helpers.CompletePalace, Helpers.Hundo);										Items.HeartContainer
+Palace_Prize	`POW_PRIZE`;	`PALACEPRIZE`;	0x0E69E3;																	(|Helpers.CompletePalace, Helpers.Hundo);											Items.WindElement
 
 # Pedestal Items
 
