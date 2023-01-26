@@ -47,6 +47,7 @@ BYTE 0x01 //0x00 -> Sword
 BYTE 0x09 //0x01 -> Bow
 BYTE 0x0B //0x02 -> Boomerang
 BYTE 0x0D //0x03 -> Shield
+BYTE 0x48 //0x04 -> Spin
 
 //table to determine which sub id each item icon translates to
 progressiveTraps:
