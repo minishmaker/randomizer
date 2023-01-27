@@ -1053,13 +1053,13 @@ internal class Shuffler
             foreach (var location in _locations) location.WriteLocation(writer);
 
             WriteElementPositions(writer);
-            UpdateSpecialEntrances(writer, new Location(LocationType.DungeonEntrance, "CoF_Entrance", new List<string>(), new List<LocationAddress>(), new List<EventLocationAddress>(), new List<DependencyBase>(), new Item(ItemType.Untyped, 0x01, shufflePool: ItemPool.DungeonEntrance))); UpdateSpecialEntrances(writer, new Location(LocationType.DungeonEntrance, "CoF_Entrance", new List<string>(), new List<LocationAddress>(), new List<EventLocationAddress>(), new List<DependencyBase>(), new Item(ItemType.Untyped, 0x01, shufflePool: ItemPool.DungeonEntrance)));
-            UpdateSpecialEntrances(writer, new Location(LocationType.DungeonEntrance, "Fortress_Entrance", new List<string>(), new List<LocationAddress>(), new List<EventLocationAddress>(), new List<DependencyBase>(), new Item(ItemType.Untyped, 0x02, shufflePool: ItemPool.DungeonEntrance)));
-            UpdateSpecialEntrances(writer, new Location(LocationType.DungeonEntrance, "Droplets_Entrance", new List<string>(), new List<LocationAddress>(), new List<EventLocationAddress>(), new List<DependencyBase>(), new Item(ItemType.Untyped, 0x03, shufflePool: ItemPool.DungeonEntrance)));
-            UpdateSpecialEntrances(writer, new Location(LocationType.DungeonEntrance, "Crypt_Entrance", new List<string>(), new List<LocationAddress>(), new List<EventLocationAddress>(), new List<DependencyBase>(), new Item(ItemType.Untyped, 0x04, shufflePool: ItemPool.DungeonEntrance)));
-            UpdateSpecialEntrances(writer, new Location(LocationType.DungeonEntrance, "Palace_Entrance", new List<string>(), new List<LocationAddress>(), new List<EventLocationAddress>(), new List<DependencyBase>(), new Item(ItemType.Untyped, 0x05, shufflePool: ItemPool.DungeonEntrance)));
-            UpdateSpecialEntrances(writer, new Location(LocationType.DungeonEntrance, "Deepwood_Entrance", new List<string>(), new List<LocationAddress>(), new List<EventLocationAddress>(), new List<DependencyBase>(), new Item(ItemType.Untyped, 0x06, shufflePool: ItemPool.DungeonEntrance)));
-
+            //UpdateSpecialEntrances(writer, new Location(LocationType.DungeonEntrance, "CoF_Entrance", new List<string>(), new List<LocationAddress>(), new List<EventLocationAddress>(), new List<DependencyBase>(), new Item(ItemType.Untyped, 0x01, shufflePool: ItemPool.DungeonEntrance))); UpdateSpecialEntrances(writer, new Location(LocationType.DungeonEntrance, "CoF_Entrance", new List<string>(), new List<LocationAddress>(), new List<EventLocationAddress>(), new List<DependencyBase>(), new Item(ItemType.Untyped, 0x01, shufflePool: ItemPool.DungeonEntrance)));
+            //UpdateSpecialEntrances(writer, new Location(LocationType.DungeonEntrance, "Fortress_Entrance", new List<string>(), new List<LocationAddress>(), new List<EventLocationAddress>(), new List<DependencyBase>(), new Item(ItemType.Untyped, 0x02, shufflePool: ItemPool.DungeonEntrance)));
+            //UpdateSpecialEntrances(writer, new Location(LocationType.DungeonEntrance, "Droplets_Entrance", new List<string>(), new List<LocationAddress>(), new List<EventLocationAddress>(), new List<DependencyBase>(), new Item(ItemType.Untyped, 0x03, shufflePool: ItemPool.DungeonEntrance)));
+            //UpdateSpecialEntrances(writer, new Location(LocationType.DungeonEntrance, "Crypt_Entrance", new List<string>(), new List<LocationAddress>(), new List<EventLocationAddress>(), new List<DependencyBase>(), new Item(ItemType.Untyped, 0x04, shufflePool: ItemPool.DungeonEntrance)));
+            //UpdateSpecialEntrances(writer, new Location(LocationType.DungeonEntrance, "Palace_Entrance", new List<string>(), new List<LocationAddress>(), new List<EventLocationAddress>(), new List<DependencyBase>(), new Item(ItemType.Untyped, 0x05, shufflePool: ItemPool.DungeonEntrance)));
+            //UpdateSpecialEntrances(writer, new Location(LocationType.DungeonEntrance, "Deepwood_Entrance", new List<string>(), new List<LocationAddress>(), new List<EventLocationAddress>(), new List<DependencyBase>(), new Item(ItemType.Untyped, 0x06, shufflePool: ItemPool.DungeonEntrance)));
+            UpdateEntrances(writer);
         }
 
         return outputBytes;
@@ -1389,6 +1389,16 @@ internal class Shuffler
         w.SetPosition(smallAddress);
         w.WriteUInt16(smallCoords[0]);
         w.WriteUInt16(smallCoords[1]);
+    }
+
+    private void UpdateEntrances(Writer w)
+    {
+        var entranceChangedLocations = _locations.Where(location => location.Type is LocationType.DungeonEntrance).ToList();
+
+        foreach (var entrance in entranceChangedLocations)
+        {
+            UpdateSpecialEntrances(w, entrance);
+        }
     }
 
     /// <summary>
