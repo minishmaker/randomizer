@@ -221,7 +221,11 @@ public enum ItemType
     SwimButterfly = 0x72,
     FastSpin = 0x73,
     FastSplit = 0x74,
-    LongSpin = 0x75
+    LongSpin = 0x75,
+    
+
+
+    Entrance = 0xF0,
 }
 
 public class Header
