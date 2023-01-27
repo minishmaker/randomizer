@@ -23,7 +23,6 @@
 #   DungeonConstraint - Used by dummy items to manipulate where other items can get placed in dungeons, only items of type DungeonConstraint can be placed here. If there are any unfilled locations after placing all DungeonConstraint items, randomization will fail.
 #   OverworldConstraint - Used by dummy items to manipulate where other items can get placed in the overworld, only items of type OverworldConstraint can be placed here. If there are any unfilled locations after placing all OverworldConstraint items, randomization will fail.
 #   DungeonPrize - Used to specify that a location can have an item with type DungeonPrize placed on it, if any locations are left after placing prizes, they will get added to the Any pool.
-#   DungeonMajor - Used to specify that only items of type DungeonMajor can be placed here. Not recommended for use unless you want to force an item of type DungeonMajor to be placed here. Generally, you should use Dungeon instead. Any locations that aren't filled after placing all DungeonMajor items will be added to the Dungeon pool.
 #   Major - Used to specify that only items of type Major can be placed here. Any locations that aren't filled after placing all Major items will be added to the Any pool.
 #   Dungeon - Used to specify that any item with type DungeonMajor can be placed here. Any locations that aren't filled after placing all DungeonMajor items will be added to the Any pool.
 #   Any - Used to specify that any item with type DungeonMajor, DungeonMinor, Major, Minor, or Filler can be placed here.
@@ -107,6 +106,7 @@
 #!numberbox - Main Settings - Setting - Dark Hyrule Castle Requirements - FIGURINE_TOTAL - Figurines in world: - The total number of Figurines that get added to the item pool, the maximum amount is 136. - 30
 #!numberbox - Main Settings - Setting - Dark Hyrule Castle Requirements - FIGURINE_COUNT - Figurines required: - The number of Figurines required to activate the Sanctuary, do not raise this to higher than the total number of Figurines or you won't be able to beat the game silly. - 20
 
+!dropdown - Main Settings - Setting - Shuffle - DOJO - Dojo Scrolls -	Dojo Swordmasters have Scrolls as their rewards. - Vanilla Scrolls - DOJOVANILLA - 'Vanilla Scrolls': Dojo Swordmasters offer their vanilla rewards. - Randomized Scrolls - DOJORANDOM - 'Randomized Scrolls': Scrolls are shuffled between the Dojo Swordmasters. - Any Item - DOJOANY - 'Any Item': Dojo Swordmasters are shuffled into the main pool.
 !flag - Main Settings - Setting - Shuffle - HEART_RANDO - Heart Pieces and Containers - If enabled will shuffle Heart Pieces and Heart Containers into the pool, This makes any items randomized to Heart Piece locations visible prior to collecting them. - true
 !flag - Main Settings - Setting - Shuffle - RUPEEMANIA - Rupees - If enabled will shuffle any free standing Rupees normally found in the world that are one off collectable, this adds a lot of extra money in the pool and certain locations will be very item dense.\n\n If combined with 'Dig Spots', will shuffle Rupees found when digging in special dig spots.\n\n If combined with 'Underwater Items', will shuffle Rupees found underwater at special waterfalls.
 !flag - Main Settings - Setting - Shuffle - SPECIALPOTS - Special Pots - If enabled will shuffle items found is special pots around the world that contain one off collectables, this setting does not affect the LonLonRanch Key that is always shuffled.
@@ -138,33 +138,34 @@
 !dropdown - Logic Settings - Setting - Weapons - GUSTWEAPON - Gust Jar: - Gust Jar can suck up various enemies like Ghini(Ghosts) and Beetles (The things that grab onto link). It can also grab objects and fire them like projectiles to kill enemies, some enemies or parts of enemies can be used as projectiles such as Helmasaurs and Stalfos. - No - NOGUST - 'No': Gust Jar is never considered for killing enemies. - Yes - YESGUST - 'Yes': Gust Jar is considered as weapons for all enemies that get sucked up by it, you are never expected to use objects as projectiles to kill enemies.
 !dropdown - Logic Settings - Setting - Weapons - LAMPWEAPON - Lantern: - The lit Lantern can instantly kill wizrobes by walking through them. - No - NOLAMP - 'No': Lantern is not considered as a Weapon. - Yes - YESLAMP - 'Yes': Lantern is considered as a weapon for fighting Wizrobes.
 
+!dropdown - Logic Settings - Setting - Require Tricks - MITTSMONEY - Mole Mitts farm Infinite Rupees: - Low:Difficulty:\n A single spot outside of Link's house can be dug to find a 20 Rupee that respawns every time you leave link's house. - No - NOFARM - 'No': You will always require finding enough rupees in the item pool before you have to buy items. - Yes - YESFARM - 'Yes': You may be required to farm rupees outside link's house to afford purchasing items if Mitts are acquired.
 !dropdown - Logic Settings - Setting - Require Tricks - BLOWDUST - Bombs blow away dust: - Low Difficulty:\n Dust piles can be found that can be blown away to what is underneath. - No - GUST - 'No': Gust Jar will always be required to blow away dust piles. - Yes - GUSTBOMBS - 'Yes': Bombs may be required to blow away dust piles instead of Gust Jar. 
+
 !dropdown - Logic Settings - Setting - Require Tricks - MUSHROOM - Crenel mushroom grab with Gust jar: - Low Difficulty:\n Half way up Mt Crenel across the wooden bridge, the mushroom on the ledge above can be grabbed with the Gust Jar to continue climbing up the mountain.\n This only matters when playing with 'OpenWorld' enabled, since reaching this area requires either Bombs or Grip ring. - No - NOMUSH - 'No': You will always be expected to have Bombs or Grip Ring to continue up the mountain. - Yes - YESMUSH - 'Yes': You may be required to use the Gust Jar to grab the mushroom to continue up the mountain.
-
 !dropdown - Logic Settings - Setting - Require Tricks - ARROWBREAK - Light Arrows break objects: - Low Difficulty:\n Fully charged Light Arrow shots can break pots, bushes, and small trees. - No - NOLIGHTS - 'No': Light Arrows will never be required to break objects. - Yes - YESLIGHTS - 'Yes': Some obstacles may require Light Arrows to destroy.
+
 !dropdown - Logic Settings - Setting - Require Tricks - BOBOMBS - Use Bobombs to destroy walls: - Low Difficulty:\n Bobombs can be used in 2 rooms in Cave of Flames, when a Bobomb is killed it explodes which can open Bomb Walls.\n Items such as Sword and Gust Jar can easily be used to move the Bobombs near the bomb wall to blow it up.\n Other items like the Boomerang, Shield, Bow, and even thrown pots can be used to make bobombs explode but with much higher difficulty, these will never be required due to it being mostly luck.\n If you killed all the bobombs in a room without blowing up the wall, they will respawn after you do a QUICKWARP. - No - NOBOBOMBS - 'No': A Bomb Bag will always be required to destroy bombable walls. - Yes - YESBOBOMBS - 'Yes': Either a Sword, the Gust Jar, or a Bomb bag will be required to blow up bombable walls near Bobombs.
-
 !dropdown - Logic Settings - Setting - Require Tricks - LIKELIKE - LikeLike cave without a Sword: - Medium Difficulty:\n The LikeLike digging cave in Minish Woods has 2 chests and has several LikeLikes that grab you when you try to open them. - No - NOLIKELIKE - 'No': A sword will always be required to reach these chests. - Yes - YESLIKELIKE - 'Yes': You may be required to collect these chests without a sword.
+
 !dropdown - Logic Settings - Setting - Require Tricks - GUARDSKIP - Skip Town guard using Boots: - High Difficulty:\n The Guard found on the West side of Town blocks your path to Trilby Highlands and beyond, unless you have: a Sword+Spin, a Cape, or Flippers.\n It is possible to dash with the boots faster than the guard and then quickly roll past them. - No - NOGUARDSKIP - 'No': You will only be expected to get past the guard if the guard has moved out of the way because you have the required items. - Yes - YESGUARDSKIP - 'Yes': You may be required to reach Trilby Highlands and beyond by using just the boots.
-
 !dropdown - Logic Settings - Setting - Require Tricks - CRENELBEAM - Use Beam to hit switch on Mt Crenel:  - Medium Difficulty:\n In the section after the rain on Mt Crenel is a series of caves, one cave has a switch on the other side of a gap that needs to be hit to extend a bridge.\n This switch can be hit with any of: Boomerang, Bomb Bag, Bow, Sword and Peril Beam, Sword and Sword Beam, or can be skipped entirely with the Rocs Cape. - No - NOBEAM - 'No': The switch will never require being hit with a sword beam or peril beam. - Yes - YESBEAM - 'Yes': You may be required to hit the switch with a beam, if you have peril beam then you can damage down on the chuchu enemies nearby. If sword beam is required to hit the switch then a bottle will always be required as well (To store a fairy/potion so you can be on full HP to fire a beam).
+
 !dropdown - Logic Settings - Setting - Require Tricks - DTBEETLE - Use DownThrust to flip Spikey Beetles: - Low Difficulty:\n The spikey beetles found in the entrance of Cave of Flames need to be flipped onto their back in order to be killed.\n The actions that can do this are: Cane shot, Shield bonk, Bomb explosion, or Down Strike. - No - NOTHRUST - 'No': DownThrust will never be required to flip spikey beetles. - Yes - YESTHRUST - 'Yes': DownThrust may be required to flip spikey beetles.
-
 !dropdown - Logic Settings - Setting - Require Tricks - DARKROOMS - Dark Rooms without a Lantern: - Low/Medium Difficulty:\n Various rooms in the game are dark which makes the room black except for a small circle around link at all times, if the Lantern is equipped then the light extends to a much larger circle. - No - NODARK - 'No': Dark rooms will always require a Lantern in order to navigate. The only exception is a small section of a dark room lit by a lamp in Temple of Droplets after the lilypad section to reach the Blue Warp, as this is required in the vanilla game. - Yes - YESDARK - 'Yes': Dark rooms may require to be navigated without a lantern. In most setting combinations this is low difficulty, however if Open World is enabled then some sections of Temple of Droplets may require navigation in the dark that are much harder.
+
 !dropdown - Logic Settings - Setting - Require Tricks - EXTENDCAPE - Tricky Cape jumps across water: - Medium Difficulty:\n The Cape can be used to make many unintended jumps across bodies of water you wouldn't expect. Some gaps seem too far to be reachable normally or require jumping at a weird angle, however the distance of the cape glide can be extended:\n Instead of holding the cape button the entire time, tap the cape to do a hop and then press and hold to glide after link is near the end of his hop. - No - NOEXTENSION - 'No': Cape jumps across large bodies of water will always require the flippers. - Yes - YESEXTENSION - 'Yes': Cape can be required to make jumps across sections of water. The Cape jump to the moving platform in Palace is its own setting.
-
 !dropdown - Logic Settings - Setting - Require Tricks - LAKEMINISH - Minish in Lake without Boots: - Medium Difficulty:\n Turning Minish in lake normally requires using the boots to bonk into a tree near the cabin, however that is not the only way of turning minish in lake.\n If Red Fusions are enabled then you can ocarina warp to lake to shrink at the stump located there instead, navigate through the path opened by the crack to reach the island in the middle of the lake where Librari can be found.\n From here you can then jump off the ledge into the middle of the lake. You can always regrow at the tree without having to bonk into it first so you will never be softlocked. - No - NOLAKEMINISH - 'No': Minish Sized locations in lake will always require the boots to reach. - Yes - YESLAKEMINISH - 'Yes': Boots may not be required to reach lake minish if it is possible to reach Librari and you have the Flippers.
+
 !dropdown - Logic Settings - Setting - Require Tricks - CABINSWIM - Swim to Cabin without lilypad: - Low Difficulty:\n In the Minish path located at the lake cabin, there is a lilypad you can use to reach the pier on the bottom side of the path. If you try and swim down to the pier you cannot climb up onto it from in the water,\n however you can instead swim to the screen transition at the bottom which will make you enter the cabin, you can then exit the doorway you came from to be placed on the pier. - No - NOCABIN - 'No': Gust Jar will always be required to reach the lake cabin as minish. - Yes - YESCABIN - 'Yes': Either Gust Jar or Flippers can be required to reach the lake cabin as minish.
-
 !dropdown - Logic Settings - Setting - Require Tricks - CLOUDSKILL - Kill Cloud Sharks without Weapons: - Medium Difficulty:\n The Cloud Shark enemies found in Cloud Tops can be killed with various damaging items like Sword, Bombs or Bow.\n However they can die if they jump off a ledge into the void, this can be easy to do by just standing still on the edge of the platform and waiting for them to jump attack you. - No - NOCLOUDSKILL - 'No': Cloud Sharks will always require a Weapon to kill, depending on what weapon settings are chosen. - Yes - YESCLOUDSKILL - 'Yes': Cloud Sharks can require no items to kill them, stand still by and edge and wait until they jump off to their deaths.
+
 !dropdown - Logic Settings - Setting - Require Tricks - POWJUMP - PoW 2F is clearable without a Cane: - High Difficulty:\n In Palace of Winds 2F is a sequence of rooms that at the end requires the Cane of Pacci to hole jump up to a higher platform.\n However the majority of the floor can be skipped with a reasonably precise jump to a moving platform seen when first entering that floor at the bottom of the screen, this skips all the other rooms on this floor which never have any items.\n The jump can be done either with a known setup to make it completely consistent, or the player can just attempt to jump and land on the platform when it stops moving. - No - NOPOWJUMP - 'No': Everything in Palace of Winds on the 2nd floor or later will require the Cane of Pacci to reach. - Yes - YESPOWJUMP - 'Yes': The only location in Palace of Winds that will require the Cane of Pacci to reach is the Pot Push Puzzle item drop.
-
 !dropdown - Logic Settings - Setting - Require Tricks - POWPOTOOL - Pot Puzzle without Power Bracelets: - Medium Difficulty:\n In Palace of Winds 3F is a section you have to push some pots while minish to reach an item, these pots require the Power Bracelets to be pushed.\n Once you regrow, you then must hit a switch which makes the item drop and a door open. This switch is reachable from a later part of the dungeon, which means the Power Bracelets can be avoided by reaching this later part of the dungeon, hitting the switch, and then backtracking back to the beginning. - No - NOPOWOOL - 'No': Power Bracelets will always be required to reach this location. - Yes - YESPOWOOL - 'Yes': It may be required to reach 3F of the internal section of the dungeon during the 2nd half, located near the blue and red warps. Once the switch has been hit then you can return to the entrance of the dungeon and continue to the item location without having to shrink.
+
 !dropdown - Logic Settings - Setting - Require Tricks - DHCCANON - DHC Canon rooms without Four Sword: - High Difficulty:\n In Dark Hyrule are two rooms that require knocking canon balls back at canons to complete a puzzle.\n These two rooms are located near the main entrance of the dungeon, one on 1F found by heading north from the main entrance, the other found on B1 by going down the right staircase from the main entrance.\n The intended method of completing these puzzles is by creating 4 Links with the Four Sword, and then doing a sword slash to knock all of the 4 canonballs back simultanously.\n However, it is possible (with setups and practice) to complete these without cloning but by instead using a well timed and placed bomb and sword slash.\n Despite this being a High Difficulty setting, it is unlikely to be required without Four Sword unless you play on the DHC: 'Always Open' setting. Having Four Sword as a requirement for entering DHC will make this always require Four Sword. - No - NODHCCANON - 'No': Four Sword (and a Spin) is always required to clear any canon room puzzle in DHC. - Yes - YESDHCCANON - 'Yes': DHC Canon rooms may require only a sword and a bomb bag.
-
 !dropdown - Logic Settings - Setting - Require Tricks - DHCJOSTLE - DHC Pressure Pads without Four Sword: - High Difficulty:\n After the 1F Canon room in the room with the moving blade trap, there are 4 pressure pads that must be depressed to spawn a chest containing an item.\n The intended method to do this puzzle is to use the Four Sword and create 4 Links to stand on these pads simultanously, however it is possible to this with less clones.\n These pads have a slight lag in their detection, which means you can use 2 Links (the amount you get with Red Sword) and make Link quickly walk between 2 pads adjacent to each other for the game to detect both as pressed,\n the clone will mirror the main link and do the same on the other 2 switches to trigger all the pads simultanously and spawn the chest.\n Similar to the DHC Canon setting, this is unlikely to be required unless you play on the DHC: 'Always Open' setting, and will always require Four Sword if one of the DHC requirements is Four Sword.\n This trick is relatively low difficulty to execute, however to reach this area without the Four Sword you must pass a Canon room which will never be required unless the DHC Canon setting is set to 'Yes'. - No - NODHCJOSTLE - 'No': Four Sword (and a Spin) will always be required for this location. - Yes - YESDHCJOSTLE - 'Yes': Red Sword (and a Spin) is all that is required for this location. If DHC Canon is set to 'No' then this location requires Four Sword (and a Spin).
-!dropdown - Logic Settings - Setting - Require Tricks - DHCSWITCHES - DHC Switches without Four Sword: - Medium/High Difficulty:\n In Dark Hyrule Castle 2F are 2 rooms that contain puzzles which require hitting 4 switches simultanously to solve the puzzle,\n these switches are close enough together at each location that a single spin attack from a precise spot can hit all the switches and solve the puzzle without having to create clones.\n However because they are located late in the dungeon behind puzzles that always require the Four Sword, this setting will only matter when playing Open World and going through the red warp to reach this floor. - No - NODHCSWITCHES - 'No': Four Sword (and a Spin) will always be required to hit these switches. - Yes - YESDHCSWITCHES - 'Yes': A sword and spin is all that is needed to do these puzzles. If Open World is off then Four Sword (and Spin) are required.
 
+!dropdown - Logic Settings - Setting - Require Tricks - DHCSWITCHES - DHC Switches without Four Sword: - Medium/High Difficulty:\n In Dark Hyrule Castle 2F are 2 rooms that contain puzzles which require hitting 4 switches simultanously to solve the puzzle,\n these switches are close enough together at each location that a single spin attack from a precise spot can hit all the switches and solve the puzzle without having to create clones.\n However because they are located late in the dungeon behind puzzles that always require the Four Sword, this setting will only matter when playing Open World and going through the red warp to reach this floor. - No - NODHCSWITCHES - 'No': Four Sword (and a Spin) will always be required to hit these switches. - Yes - YESDHCSWITCHES - 'Yes': A sword and spin is all that is needed to do these puzzles. If Open World is off then Four Sword (and Spin) are required.
 !dropdown - Logic Settings - Setting - Require Tricks - FOWPOT - FoW Pot item early using the Gust Jar: - Low Difficulty:\n In Fortress of Winds there are 2 pots that contain items when playing with 'Special Pots', these are located in a dirt filled room in the back right section of the dungeon on 2F locked behind various locked doors.\n However the lower of the 2 pots can be grabbed with the Gust Jar from a much earlier part of the dungeon located in the front right section 2F.\n The pot can accidentally be released inside the wall which makes the item unobtainable, simply reload the room and the pot and item will respawn. - No - NOFOWPOT - 'No': From the entrance of Fortress, this location always requires at least 3 Fortress small keys as well as the Mole Mitts and Bow. - Yes - YESFOWPOT - 'Yes': From the entrance of Fortress, this location may only require the Gust Jar.
 
 !dropdown - Other - Setting - Item Pool - ITEM_POOL - Item Pool: -  - Balanced - ITEM_POOL_NORMAL - 'Balanced': Normal Item Pool. - Reduced (RIP) - ITEM_POOL_RIP - 'Reduced': Removes many items from the pool:\n All Heart Containers removed and some Heart Pieces removed (Max Hearts available is 10)\n Remote Bombs removed\n All Spin Scroll Upgrades removed, a single Spin Scroll remains\n All Butterflies removed\n All Quivers removed\n A Shield is removed, a single Shield remains\n A Boomerang is removed, a single Boomerang remains. If either 'Vanilla Red Fusions' or 'Vanilla Green Fusions' are on then no Boomerangs are removed.\n 3 Bottles removed, a single Bottle remains\n 3 Bomb bags are removed, a single Bomb bag remains - Plentiful - ITEM_POOL_PLENTIFUL - 'Plentiful': Adds extra copies of major items to the pool.\n Items with 2 extra copies:\n Sword\n Lantern\n Gust Jar\n Cane of Pacci\n Rocs Cape\n Ocarina\n Flippers\n Spin Attack\n Items with 1 extra copy:\n Bow\n Mole Mitts\n Pegasus Boots\n Grip Ring\n Graveyard Key\n If Gold Kinstones are randomized:\n 2 extra Cloud Kinstones, 2 extra Swamp Kinstones, and an extra Falls Kinstone (5 extra if combined)\n If other fusion colors are randomized:\n 2 of each red shape (6 if combined)\n 2 of each blue shape (4 if combined)\n 3 of each green shape (9 if combined)\n If Big Keysanity is on then there is an extra Big Key for each Dungeon\n If Small Keysanity is on then there are 2 extra Small Keys for each Dungeon
@@ -266,8 +267,13 @@
 !define - `DUNGEON`
 !define - `AD_PED`
 !define - `PROGRESSIVE`
+!define - `DOJO`
 
 # Logic setting defines
+!define - `MITTSMONEY`
+!ifdef - NOFARM
+	!undefine - MITTSMONEY
+!endif
 !define - `BLOWDUST`
 !ifdef - GUST
 	!undefine - BLOWDUST
@@ -909,11 +915,6 @@
 	!define - MAGICBOOMERANG - Items.MagicBoomerang
 	!define - SHIELD - Items.Shield
 	!define - MIRROR - Items.MirrorShield
-	!define - SPIN - Items.SpinAttack
-	!define - GREATSPIN - Items.GreatSpin
-	!define - FASTSPIN - Items.FastSpin
-	!define - FASTPLIT - Items.FastSplit
-	!define - LONGSPIN - Items.LongSpin
 !else
 	!define - SMITHSWORD - Items.ProgressiveItem.0x00
 	!define - GREENSWORD - Items.ProgressiveItem.0x00
@@ -926,11 +927,6 @@
 	!define - MAGICBOOMERANG - Items.ProgressiveItem.0x02
 	!define - SHIELD - Items.ProgressiveItem.0x03
 	!define - MIRROR - Items.ProgressiveItem.0x03
-	!define - SPIN - Items.ProgressiveItem.0x04
-	!define - GREATSPIN - Items.ProgressiveItem.0x04
-	!define - FASTSPIN - Items.ProgressiveItem.0x04
-	!define - FASTPLIT - Items.ProgressiveItem.0x04
-	!define - LONGSPIN - Items.ProgressiveItem.0x04
 !endif
 !ifdef - NOPROG
 	Items.SmithSword;		Major;
@@ -942,13 +938,25 @@
 	Items.LightArrow;		Major;
 	Items.Boomerang;		Major;
 	Items.Shield;			Major;
-	Items.SpinAttack;		Major;
+	!ifndef - DOJOVANILLA
+		!ifdef - DOJORANDOM
+			Items.SpinAttack;		Major;	dojo
+		!else
+			Items.SpinAttack;		Major;
+		!endif
+	!endif
 !else
 	Items.ProgressiveItem.0x00:5;	Major;	#Sword
 	Items.ProgressiveItem.0x01:2;	Major;	#Bow
 	Items.ProgressiveItem.0x02;		Major;	#Boomerang
 	Items.ProgressiveItem.0x03;		Major;	#Shield
-	Items.ProgressiveItem.0x04;		Major;	#Scroll
+	!ifndef - DOJOVANILLA
+		!ifdef - DOJORANDOM
+			Items.ProgressiveItem.0x04;		DungeonMajor;	dojo	#Scroll
+		!else
+			Items.ProgressiveItem.0x04;		Major;	#Scroll
+		!endif
+	!endif
 !endif
 	Items.Lantern;			Major;
 	Items.GustJar;			Major;
@@ -1002,12 +1010,23 @@
 	!endif
 	Items.GripRing;			Major;
 	Items.Flippers;			Major;
-	Items.RollAttack;		Major;
-	Items.DashAttack;		Major;
-	Items.RockBreaker;		Major;
-	Items.SwordBeam;		Major;
-	Items.DownThrust;		Major;
-	Items.PerilBeam;		Major;
+	!ifndef - DOJOVANILLA
+		!ifdef - DOJORANDOM
+			Items.RollAttack;		DungeonMajor;	dojo
+			Items.DashAttack;		DungeonMajor;	dojo
+			Items.RockBreaker;		DungeonMajor;	dojo
+			Items.SwordBeam;		DungeonMajor;	dojo
+			Items.DownThrust;		DungeonMajor;	dojo
+			Items.PerilBeam;		DungeonMajor;	dojo		
+		!else
+			Items.RollAttack;		Major;
+			Items.DashAttack;		Major;
+			Items.RockBreaker;		Major;
+			Items.SwordBeam;		Major;
+			Items.DownThrust;		Major;
+			Items.PerilBeam;		Major;
+		!endif
+	!endif
 	!ifndef - Replace_Compass
 		!ifndef - COMPASS_VANILLA
 			Items.DungeonMap.0x18;	`COMPASS`;	`DWS_COMPASS`
@@ -1162,20 +1181,38 @@
 	!ifdef - HEART_RANDO
 		Items.PieceOfHeart:24;	Major;
 	!endif
+	!ifdef - DOJORANDOM
+		Items.Rupee5:4;		DungeonMajor;	dojo
+	!endif
 !endif
 !ifdef - ITEM_POOL_NORMAL
 	Items.RemoteBombs;		Minor;
 	!ifdef - NOPROG
 		Items.MagicBoomerang;			Major;
 		Items.MirrorShield;				Major;
-		Items.GreatSpin;				Major;
-		Items.FastSpin;					Major;
-		Items.FastSplit;				Major;
-		Items.LongSpin;					Major;
+		!ifndef - DOJOVANILLA
+			!ifdef - DOJORANDOM
+				Items.GreatSpin;				DungeonMajor;	dojo
+				Items.FastSpin;					DungeonMajor;	dojo
+				Items.FastSplit;				DungeonMajor;	dojo
+				Items.LongSpin;					DungeonMajor;	dojo
+			!else
+				Items.GreatSpin;				Major;
+				Items.FastSpin;					Major;
+				Items.FastSplit;				Major;
+				Items.LongSpin;					Major;
+			!endif
+		!endif
 	!else
 		Items.ProgressiveItem.0x02;		Major;	#Boomerang
 		Items.ProgressiveItem.0x03;		Minor;	#Shield
-		Items.ProgressiveItem.0x04:4;	Major;	#Scroll
+		!ifndef - DOJOVANILLA
+			!ifdef - DOJORANDOM
+				Items.ProgressiveItem.0x04:4;	DungeonMajor;	dojo	#Scroll
+			!else
+				Items.ProgressiveItem.0x04:4;	Major;	#Scroll
+			!endif
+		!endif
 	!endif
 	!ifdef - FIREROD_CHEST
 		Items.Firerod;		Minor;
@@ -1218,17 +1255,32 @@
 		Items.Bow;						Minor;
 		Items.MagicBoomerang;			Major;
 		Items.MirrorShield;				Major;
-		Items.SpinAttack:2;				Minor;
-		Items.GreatSpin;				Major;
-		Items.FastSpin;					Major;
-		Items.FastSplit;				Major;
-		Items.LongSpin;					Major;
+		!ifndef - DOJOVANILLA
+			!ifdef - DOJORANDOM
+				Items.GreatSpin;				DungeonMajor;	dojo
+				Items.FastSpin;					DungeonMajor;	dojo
+				Items.FastSplit;				DungeonMajor;	dojo
+				Items.LongSpin;					DungeonMajor;	dojo
+			!else
+				Items.SpinAttack:2;				Minor;
+				Items.GreatSpin;				Major;
+				Items.FastSpin;					Major;
+				Items.FastSplit;				Major;
+				Items.LongSpin;					Major;
+			!endif
+		!endif
 	!else
 		Items.ProgressiveItem.0x00:2;	Minor;	#Sword
 		Items.ProgressiveItem.0x01;		Minor;	#Bow
 		Items.ProgressiveItem.0x02;		Major;	#Boomerang
 		Items.ProgressiveItem.0x03;		Minor;	#Shield
-		Items.ProgressiveItem.0x04:6;	Major;	#Scroll
+		!ifndef - DOJOVANILLA
+			!ifdef - DOJORANDOM
+				Items.ProgressiveItem.0x04:4;	DungeonMajor;	dojo	#Scroll
+			!else
+				Items.ProgressiveItem.0x04:6;	Major;	#Scroll
+			!endif
+		!endif
 	!endif
 	Items.RemoteBombs;		Minor;
 	Items.Lantern:2;		Minor;
@@ -1874,6 +1926,7 @@ HasBow;          	Helper;; (|Items.Bow, Items.LightArrow, Items.ProgressiveItem.
 HasLightBow;     	Helper;; (|Items.ProgressiveItem.0x01:2, Items.LightArrow)
 HasBoomerang;    	Helper;; (|Items.Boomerang, Items.MagicBoomerang, Items.ProgressiveItem.0x02)
 HasMagicBoomerang;	Helper;; (|Items.ProgressiveItem.0x02:2, Items.MagicBoomerang)
+HasShield;			Helper;; (|Items.Shield, Items.MirrorShield, Items.ProgressiveItem.0x03)
 !ifdef - HEARTS_20
 SwordBeam;			Helper;; Items.SwordBeam, Helpers.HasBottle
 !else
@@ -1940,6 +1993,23 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 
 #Trick Requirements, Easy Option 1st then Hard Option 2nd
 #Make trick for CoF entrance bob-ombs
+!ifndef - MITTSMONEY
+ShopSimon;				Helper;;	(|(&Items.Rupee20:2, Items.Rupee50), Items.Rupee20:5, Items.Rupee50:2, Items.Rupee100, Items.Rupee200) #(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200)
+Shop80;					Helper;;	(|(&Items.Rupee100, Items.Rupee50:2), Items.Rupee50:4, Items.Rupee100:2, Items.Rupee200) #(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200)
+Shop300;				Helper;;	(|(&Items.Rupee200:2, Items.Rupee100), (&Items.Rupee200, Items.Rupee100:3), Items.Rupee100:5, Items.Rupee200:3) #(+510, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200)
+Shop600;				Helper;;	(|(&Items.Rupee200:4, Items.Rupee100), (&Items.Rupee200:3, Items.Rupee100:3), (&Items.Rupee200:4, Items.Rupee100:5), (&Items.Rupee200:2, Items.Rupee100:7), (&Items.Rupee200, Items.Rupee100:9), Items.Rupee100:11, Items.Rupee200:6) #(+1110, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200)
+ShopWitch;				Helper;;	(|Items.Rupee50:3, Items.Rupee100, Items.Rupee200) #(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200)
+ShopScrubTrilby;		Helper;;	(|Items.Rupee50:3, Items.Rupee100, Items.Rupee200) #(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200)
+ShopScrubCrenel;		Helper;;	(|Items.Rupee50:3, Items.Rupee100, Items.Rupee200) #(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200)
+!else
+ShopSimon;				Helper;;	(|(&Items.Rupee20:2, Items.Rupee50), Items.Rupee20:5, Items.Rupee50:2, Items.Rupee100, Items.Rupee200, Items.MoleMitts)#(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Items.MoleMitts)
+Shop80;					Helper;;	(|(&Items.Rupee100, Items.Rupee50:2), Items.Rupee50:4, Items.Rupee100:2, Items.Rupee200, Items.MoleMitts)#(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Items.MoleMitts)
+Shop300;				Helper;;	(|(&Items.Rupee200:2, Items.Rupee100), (&Items.Rupee200, Items.Rupee100:3), Items.Rupee100:5, Items.Rupee200:3, Items.MoleMitts)#(|(+510, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Items.MoleMitts)
+Shop600;				Helper;;	(|(&Items.Rupee200:4, Items.Rupee100), (&Items.Rupee200:3, Items.Rupee100:3), (&Items.Rupee200:4, Items.Rupee100:5), (&Items.Rupee200:2, Items.Rupee100:7), (&Items.Rupee200, Items.Rupee100:9), Items.Rupee100:11, Items.Rupee200:6, Items.MoleMitts) #(|(+1110, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Items.MoleMitts)
+ShopWitch;				Helper;;	(|Items.Rupee50:3, Items.Rupee100, Items.Rupee200, Items.MoleMitts) #(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Items.MoleMitts)
+ShopScrubTrilby;		Helper;;	(|Items.Rupee50:3, Items.Rupee100, Items.Rupee200, Items.MoleMitts) #(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Items.MoleMitts)
+ShopScrubCrenel;		Helper;;	(|Items.Rupee50:3, Items.Rupee100, Items.Rupee200, Items.MoleMitts) #(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Items.MoleMitts)
+!endif
 !ifndef - GUARDSKIP
 GuardSkip;				Helper;;	Helpers.Inaccessible
 !else
@@ -3737,7 +3807,7 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 	!endif
 	WesternShortcut;			Helper;;	Helpers.AccessTrilby, (|(|Helpers.CanSplit2, Helpers.CanSplit3, Helpers.CanSplit4), Helpers.TrilbyShortcut)
 	TrilbyShortcut;				Helper;;	(|Helpers.CanSplit2, Helpers.CanSplit3, Helpers.CanSplit4)
-	Scrubs;						Helper;;	Items.Shield
+	Scrubs;						Helper;;	Helpers.HasShield
 	Percy;						Helper;;	Items.Lantern
 	LowerBean;					Helper;;	Helpers.HasBottle
 	UpperBean;					Helper;;	Helpers.Inaccessible
@@ -3764,7 +3834,7 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 	DeepwoodMadderpillarFight;	Helper;;	Helpers.HasMadderDamage
 	DeepwoodMadderpillarWeb;	Helper;;	Items.Lantern
 	DeepwoodRedWarp;			Helper;;	Helpers.Inaccessible
-	CoFSpikeBeetle;				Helper;;	Helpers.HasDamageSource, (|Helpers.DownThrustBeetle, Items.PacciCane, Items.Shield, Items.BombBag)
+	CoFSpikeBeetle;				Helper;;	Helpers.HasDamageSource, (|Helpers.DownThrustBeetle, Items.PacciCane, Helpers.HasShield, Items.BombBag)
 	CoFHelmasaur;				Helper;;	Helpers.HasHelmasaurDamage
 	CoFBlueWarp;				Helper;;	Helpers.Inaccessible
 	CoFChuFight;				Helper;;	Helpers.HasDamageSource
@@ -3914,6 +3984,22 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 	!define - DUNGEONCOMPASS - Unshuffled
 !else
 	!define - DUNGEONCOMPASS - Dungeon
+!endif
+
+!ifdef - DOJOVANILLA
+	!define - DOJOITEM - Unshuffled
+	!define - DOJOITEMRED - Unshuffled
+!else
+	!define - DOJOITEM - Dungeon
+	!ifdef - DOJORANDOM
+		!define - DOJOITEMRED - Dungeon
+	!else
+		!ifdef - NO_RED_FUSIONS
+			!define - DOJOITEMRED - Inaccessible
+		!else
+			!define - DOJOITEMRED - Any
+		!endif
+	!endif
 !endif
 
 !ifdef - NO_GOLD_FUSIONS
@@ -4209,53 +4295,53 @@ SouthField_MinishSize_WaterHole_HP;	`HP`;				0x0DB55F;		(|(&Items.Flippers, Help
 SouthField_Tingle_NPC;				Any;				0x016966;		(|(&Items.PacciCane, Items.TingleTrophy, Helpers.AccessEasternHills), Helpers.Hundo);												Items.TingleTrophy
 
 # Town
-Town_CafeLady_NPC;				Any;			0x00EDDA;																	;																																																			Items.Kinstone.RedW
-Town_Shop_80Item;				Any;			walletShopItem:Define:FirstByte, walletShopSub:Define:SecondByte;			(|Items.Rupee200, Helpers.Hundo);																																											Items.Wallet
-Town_Shop_300Item;				Any;			boomerangShopItem:Define:FirstByte, boomerangShopSub:Define:SecondByte;		(|(&Items.Wallet, (+2, Items.Rupee200)), Helpers.Hundo);																																					`BOOMERANG`
-Town_Shop_600Item;				Any;			quiverShopItem:Define:FirstByte, quiverShopSub:Define:SecondByte;			(|(&Items.Wallet:3, (+5, Items.Rupee200)), Helpers.Hundo);																																					Items.LargeQuiver
-Town_Shop_BehindCounterItem;	Any;			dogShopItem:Define:FirstByte, dogShopSub:Define:SecondByte;					(|Helpers.TownDog,Helpers.Hundo);																																											Items.DogFoodBottle
-Town_Shop_AtticChest;			Any;			0x2E-0x01-0x01;																(|Helpers.TownDog, Helpers.Hundo);																																											Items.Shells.10
-Town_Bakery_AtticChest;			Any;			0x2E-0x03-0x00;																(|Helpers.TownDog, Helpers.Hundo);																																											Items.Rupee100
-Town_Inn_BackdoorHP;			`HP`;			0x0D66D7;																	(|Helpers.TownDog, Helpers.Hundo);																																											Items.PieceOfHeart
-Town_Inn_LedgeChest;			Any;			0x02-0x00-0x06;																(|Helpers.InnLedge, Helpers.Hundo);																																											Items.Kinstone.RedW
-Town_Inn_Pot;					`POT`;			0x0D663B:FirstByte, 0x0D663D:SecondByte;									;																																																			Items.Kinstone.RedE
-Town_Well_RightChest;			Any;			0x41-0x00-0x04;																;																																																			Items.Kinstone.RedE
-Town_Dojo_NPC1;					Any;			swiftblade1DojoItem:Define:FirstByte, swiftblade1DojoSub:Define:SecondByte;	(|Helpers.HasSword, Helpers.Hundo);																																											`SPIN`
-Town_Dojo_NPC2;					Any;			swiftblade2DojoItem:Define:FirstByte, swiftblade2DojoSub:Define:SecondByte;	(|Helpers.HasGreenSword, Helpers.Hundo);																																									Items.RockBreaker
-Town_Dojo_NPC3;					Any;			swiftblade3DojoItem:Define:FirstByte, swiftblade3DojoSub:Define:SecondByte;	(|(&Helpers.HasDojoSword, Items.PegasusBoots), Helpers.Hundo);																																					Items.DashAttack
-Town_Dojo_NPC4;					Any;			swiftblade4DojoItem:Define:FirstByte, swiftblade4DojoSub:Define:SecondByte;	(|(&Helpers.HasDojoSword, Items.RocsCape), Helpers.Hundo);																																						Items.DownThrust
-Town_Well_TopChest;				Any;			0x41-0x00-0x00;																(|Items.BombBag, Helpers.Hundo);																																											Items.Rupee100
-Town_School_Roof_Chest;			Any;			0x02-0x00-0x07;																(|Items.PacciCane, Helpers.Hundo);																																											Items.Kinstone.RedV
-Town_School_PathFusion_Chest;	`GREENFUSION`;	0x0FE076;																	(|(&Helpers.Shared36Fusion, Items.PacciCane), Helpers.Hundo);																																				Items.Kinstone.RedV
-Town_School_Path_LeftChest;		Any;			0x11-0x02-0x00;																(|(&Items.PacciCane, Helpers.CanSplit4), Helpers.Hundo);																																					Items.Kinstone.RedW
-Town_School_Path_MiddleChest;	Any;			0x11-0x02-0x01;																(|(&Items.PacciCane, Helpers.CanSplit4), Helpers.Hundo);																																					Items.Kinstone.RedE
-Town_School_Path_RightChest;	Any;			0x11-0x02-0x02;																(|(&Items.PacciCane, Helpers.CanSplit4), Helpers.Hundo);																																					Items.Kinstone.RedW
-Town_School_Path_HP;			`HP`;			0x0D5557;																	(|(&Items.PacciCane, Helpers.CanSplit4), Helpers.Hundo);																																					Items.PieceOfHeart
-Town_Digging_TopChest;			Any;			0x0F-0x00-0x00;																(|Items.MoleMitts, Helpers.Hundo);																																											Items.Kinstone.RedV
-Town_Digging_RightChest;		Any;			0x0F-0x00-0x01;																(|Items.MoleMitts, Helpers.Hundo);																																											Items.Kinstone.RedW
-Town_Digging_LeftChest;			Any;			0x0F-0x00-0x02;																(|Items.MoleMitts, Helpers.Hundo);																																											Items.Kinstone.RedE
-Town_Well_LeftChest;			Any;			0x41-0x00-0x01;																(|Helpers.WellPillar, Items.MoleMitts, Helpers.Hundo);																																						Items.Rupee100
-Town_Bell_HP;					`HP`;			0x05D602:FirstByte, 0x5D604:SecondByte;										(|Items.RocsCape, Helpers.Hundo);																																											Items.PieceOfHeart
+Town_CafeLady_NPC;				Any;				0x00EDDA;																	;																																																		Items.Kinstone.RedW
+Town_Shop_80Item;				Any;				walletShopItem:Define:FirstByte, walletShopSub:Define:SecondByte;			(|Helpers.Shop80, Helpers.Hundo);																																										Items.Wallet
+Town_Shop_300Item;				Any;				boomerangShopItem:Define:FirstByte, boomerangShopSub:Define:SecondByte;		(|(&Items.Wallet, Helpers.Shop300), Helpers.Hundo);																																						`BOOMERANG`
+Town_Shop_600Item;				Any;				quiverShopItem:Define:FirstByte, quiverShopSub:Define:SecondByte;			(|(&Items.Wallet:3, Helpers.Shop600), Helpers.Hundo);																																					Items.LargeQuiver
+Town_Shop_BehindCounterItem;	Any;				dogShopItem:Define:FirstByte, dogShopSub:Define:SecondByte;					(|Helpers.TownDog,Helpers.Hundo);																																										Items.DogFoodBottle
+Town_Shop_AtticChest;			Any;				0x2E-0x01-0x01;																(|Helpers.TownDog, Helpers.Hundo);																																										Items.Shells.10
+Town_Bakery_AtticChest;			Any;				0x2E-0x03-0x00;																(|Helpers.TownDog, Helpers.Hundo);																																										Items.Rupee100
+Town_Inn_BackdoorHP;			`HP`;				0x0D66D7;																	(|Helpers.TownDog, Helpers.Hundo);																																										Items.PieceOfHeart
+Town_Inn_LedgeChest;			Any;				0x02-0x00-0x06;																(|Helpers.InnLedge, Helpers.Hundo);																																										Items.Kinstone.RedW
+Town_Inn_Pot;					`POT`;				0x0D663B:FirstByte, 0x0D663D:SecondByte;									;																																																		Items.Kinstone.RedE
+Town_Well_RightChest;			Any;				0x41-0x00-0x04;																;																																																		Items.Kinstone.RedE
+Town_Dojo_NPC1:dojo;			`DOJOITEM`;			swiftblade1DojoItem:Define:FirstByte, swiftblade1DojoSub:Define:SecondByte;	(|Helpers.HasSword, Helpers.Hundo);																																										Items.SpinAttack
+Town_Dojo_NPC2:dojo;			`DOJOITEM`;			swiftblade2DojoItem:Define:FirstByte, swiftblade2DojoSub:Define:SecondByte;	(|Helpers.HasGreenSword, Helpers.Hundo);																																								Items.RockBreaker
+Town_Dojo_NPC3:dojo;			`DOJOITEM`;			swiftblade3DojoItem:Define:FirstByte, swiftblade3DojoSub:Define:SecondByte;	(|(&Helpers.HasDojoSword, Items.PegasusBoots), Helpers.Hundo);																																			Items.DashAttack
+Town_Dojo_NPC4:dojo;			`DOJOITEM`;			swiftblade4DojoItem:Define:FirstByte, swiftblade4DojoSub:Define:SecondByte;	(|(&Helpers.HasDojoSword, Items.RocsCape), Helpers.Hundo);																																				Items.DownThrust
+Town_Well_TopChest;				Any;				0x41-0x00-0x00;																(|Items.BombBag, Helpers.Hundo);																																										Items.Rupee100
+Town_School_Roof_Chest;			Any;				0x02-0x00-0x07;																(|Items.PacciCane, Helpers.Hundo);																																										Items.Kinstone.RedV
+Town_School_PathFusion_Chest;	`GREENFUSION`;		0x0FE076;																	(|(&Helpers.Shared36Fusion, Items.PacciCane), Helpers.Hundo);																																			Items.Kinstone.RedV
+Town_School_Path_LeftChest;		Any;				0x11-0x02-0x00;																(|(&Items.PacciCane, Helpers.CanSplit4), Helpers.Hundo);																																				Items.Kinstone.RedW
+Town_School_Path_MiddleChest;	Any;				0x11-0x02-0x01;																(|(&Items.PacciCane, Helpers.CanSplit4), Helpers.Hundo);																																				Items.Kinstone.RedE
+Town_School_Path_RightChest;	Any;				0x11-0x02-0x02;																(|(&Items.PacciCane, Helpers.CanSplit4), Helpers.Hundo);																																				Items.Kinstone.RedW
+Town_School_Path_HP;			`HP`;				0x0D5557;																	(|(&Items.PacciCane, Helpers.CanSplit4), Helpers.Hundo);																																				Items.PieceOfHeart
+Town_Digging_TopChest;			Any;				0x0F-0x00-0x00;																(|Items.MoleMitts, Helpers.Hundo);																																										Items.Kinstone.RedV
+Town_Digging_RightChest;		Any;				0x0F-0x00-0x01;																(|Items.MoleMitts, Helpers.Hundo);																																										Items.Kinstone.RedW
+Town_Digging_LeftChest;			Any;				0x0F-0x00-0x02;																(|Items.MoleMitts, Helpers.Hundo);																																										Items.Kinstone.RedE
+Town_Well_LeftChest;			Any;				0x41-0x00-0x01;																(|Helpers.WellPillar, Items.MoleMitts, Helpers.Hundo);																																					Items.Rupee100
+Town_Bell_HP;					`HP`;				0x05D602:FirstByte, 0x5D604:SecondByte;										(|Items.RocsCape, Helpers.Hundo);																																										Items.PieceOfHeart
 Town_WaterfallFusion_Chest;		`BLUEGREENFUSION`;	0x32-0x0B-0x00;																(|(&Helpers.Gina1Fusion, (|Items.Flippers, Helpers.Hundo)), Helpers.Hundo);																																Items.Shells.200
-Town_Carlov_NPC;				Any;			carlovSpotItem:Define:FirstByte, carlovSpotSub:Define:SecondByte;			(|Helpers.TownDog, Helpers.Hundo);																																											Items.CarlovMedal
-Town_Well_BottomChest;			Any;			0x41-0x00-0x02;																(|Helpers.WellPillar, Items.Flippers, Items.RocsCape, Helpers.Hundo);																																		Items.Rupee100
-Town_Cuccos_NPC;				`HP`;			0x12460C;																	(|Items.RocsCape, Items.Flippers, Helpers.Hundo);																																							Items.PieceOfHeart
-Town_Jullieta_Item;				Any;			redBookItem:Define:FirstByte, redBookSub:Define:SecondByte;					(|Helpers.Julietta, Helpers.Hundo);																																											Items.RedBook
-Town_Simulation_Chest;			`HP`;			0x0F04C2;																	(|(&Helpers.HasSword, Items.Rupee200), Helpers.Hundo);																																						Items.PieceOfHeart
-Town_ShoeShop_NPC;				Any;			0x0130EE;																	(|Items.WakeUpMushroom, Helpers.Hundo);																																										Items.PegasusBoots
-Town_MusicHouse_LeftChest;		Any;			0x23-0x05-0x00;																(|Helpers.MusicHouse, Helpers.Hundo);																																										Items.Rupee200
-Town_MusicHouse_MiddleChest;	Any;			0x23-0x05-0x01;																(|Helpers.MusicHouse, Helpers.Hundo);																																										Items.Rupee200
-Town_MusicHouse_RightChest;		Any;			0x23-0x05-0x02;																(|Helpers.MusicHouse, Helpers.Hundo);																																										Items.Rupee200
-Town_MusicHouse_HP;				`HP`;			0x0F5407;																	(|Helpers.MusicHouse, Helpers.Hundo);																																										Items.PieceOfHeart
-Town_Well_PillarChest;			Any;			0x41-0x00-0x03;																(|Helpers.WellPillar, Helpers.Hundo);																																										Items.Rupee200
-Town_DrLeft_AtticItem;			Any;			greenBookItem:Define:FirstByte, greenBookSub:Define:SecondByte;				(|(&Helpers.DrLeft, Helpers.TownDog), Helpers.Hundo);																																						Items.GreenBook
-Town_Fountain_BigChest;			Any;			0x62-0x03-0x00;																(|Helpers.TownMulldozers, Helpers.Hundo);																																									Items.PowerBracelets
-Town_Fountain_SmallChest;		Any;			0x62-0x04-0x00;																(|(&Helpers.Fountain, (|Items.Flippers, Items.RocsCape)), Helpers.Hundo);																																	Items.Rupee100
-Town_Fountain_HP;				`HP`;			0x0EF3B7;																	(|(&Helpers.Fountain, Items.RocsCape), Helpers.Hundo);																																						Items.PieceOfHeart
-Town_Library_YellowMinish_NPC;	Any;			0x00E7BE;																	(|(&Helpers.Library, Items.PacciCane, Items.RedBook, Items.GreenBook, Items.BlueBook), Helpers.Hundo);																										Items.Rupee50
-Town_UnderLibrary_FrozenChest;	Any;			0x62-0x12-0x00;																(|(&Helpers.Library, Items.Flippers, Items.PacciCane, Items.Lantern), Helpers.Hundo);																														Items.Shells.100
-Town_UnderLibrary_BigChest;		Any;			0x62-0x10-0x00;																(|(&Helpers.Library, Items.PacciCane, Helpers.HasDamageSource, (|Items.Flippers, (&Items.RedBook, Items.GreenBook, Items.BlueBook, Items.GripRing, (|Items.GustJar, Items.RocsCape)))), Helpers.Hundo);		Items.Flippers
-Town_UnderLibrary_Underwater	`WATER`;		0x0EF79B;																	(|(&Helpers.Library,Items.Flippers, Items.PacciCane), Helpers.Hundo);																																		Items.Rupee50
+Town_Carlov_NPC;				Any;				carlovSpotItem:Define:FirstByte, carlovSpotSub:Define:SecondByte;			(|Helpers.TownDog, Helpers.Hundo);																																										Items.CarlovMedal
+Town_Well_BottomChest;			Any;				0x41-0x00-0x02;																(|Helpers.WellPillar, Items.Flippers, Items.RocsCape, Helpers.Hundo);																																	Items.Rupee100
+Town_Cuccos_NPC;				`HP`;				0x12460C;																	(|Items.RocsCape, Items.Flippers, Helpers.Hundo);																																						Items.PieceOfHeart
+Town_Jullieta_Item;				Any;				redBookItem:Define:FirstByte, redBookSub:Define:SecondByte;					(|Helpers.Julietta, Helpers.Hundo);																																										Items.RedBook
+Town_Simulation_Chest;			`HP`;				0x0F04C2;																	(|(&Helpers.HasSword, Helpers.ShopSimon), Helpers.Hundo);																																				Items.PieceOfHeart
+Town_ShoeShop_NPC;				Any;				0x0130EE;																	(|Items.WakeUpMushroom, Helpers.Hundo);																																									Items.PegasusBoots
+Town_MusicHouse_LeftChest;		Any;				0x23-0x05-0x00;																(|Helpers.MusicHouse, Helpers.Hundo);																																									Items.Rupee200
+Town_MusicHouse_MiddleChest;	Any;				0x23-0x05-0x01;																(|Helpers.MusicHouse, Helpers.Hundo);																																									Items.Rupee200
+Town_MusicHouse_RightChest;		Any;				0x23-0x05-0x02;																(|Helpers.MusicHouse, Helpers.Hundo);																																									Items.Rupee200
+Town_MusicHouse_HP;				`HP`;				0x0F5407;																	(|Helpers.MusicHouse, Helpers.Hundo);																																									Items.PieceOfHeart
+Town_Well_PillarChest;			Any;				0x41-0x00-0x03;																(|Helpers.WellPillar, Helpers.Hundo);																																									Items.Rupee200
+Town_DrLeft_AtticItem;			Any;				greenBookItem:Define:FirstByte, greenBookSub:Define:SecondByte;				(|(&Helpers.DrLeft, Helpers.TownDog), Helpers.Hundo);																																					Items.GreenBook
+Town_Fountain_BigChest;			Any;				0x62-0x03-0x00;																(|Helpers.TownMulldozers, Helpers.Hundo);																																								Items.PowerBracelets
+Town_Fountain_SmallChest;		Any;				0x62-0x04-0x00;																(|(&Helpers.Fountain, (|Items.Flippers, Items.RocsCape)), Helpers.Hundo);																																Items.Rupee100
+Town_Fountain_HP;				`HP`;				0x0EF3B7;																	(|(&Helpers.Fountain, Items.RocsCape), Helpers.Hundo);																																					Items.PieceOfHeart
+Town_Library_YellowMinish_NPC;	Any;				0x00E7BE;																	(|(&Helpers.Library, Items.PacciCane, Items.RedBook, Items.GreenBook, Items.BlueBook), Helpers.Hundo);																									Items.Rupee50
+Town_UnderLibrary_FrozenChest;	Any;				0x62-0x12-0x00;																(|(&Helpers.Library, Items.Flippers, Items.PacciCane, Items.Lantern), Helpers.Hundo);																													Items.Shells.100
+Town_UnderLibrary_BigChest;		Any;				0x62-0x10-0x00;																(|(&Helpers.Library, Items.PacciCane, Helpers.HasDamageSource, (|Items.Flippers, (&Items.RedBook, Items.GreenBook, Items.BlueBook, Items.GripRing, (|Items.GustJar, Items.RocsCape)))), Helpers.Hundo);	Items.Flippers
+Town_UnderLibrary_Underwater	`WATER`;			0x0EF79B;																	(|(&Helpers.Library,Items.Flippers, Items.PacciCane), Helpers.Hundo);																																	Items.Rupee50
 
 # North Field
 NorthField_DigSpot;							`DIG`;			0x0F720F;																	(|Items.MoleMitts, Helpers.Hundo);												Items.Rupee50
@@ -4265,18 +4351,23 @@ NorthField_TreeFusion_TopRightChest;		`GREENFUSION`;	0x32-0x00-0x01;												
 NorthField_TreeFusion_BottomLeftChest;		`GREENFUSION`;	0x32-0x00-0x02;																(|Helpers.KnuckleFusion, Helpers.Hundo);										Items.Kinstone.RedE
 NorthField_TreeFusion_BottomRightChest;		`GREENFUSION`;	0x32-0x00-0x03;																(|Helpers.DavidJr1Fusion, Helpers.Hundo);										Items.Shells.200
 NorthField_TreeFusion_CenterBigChest;		`GREENFUSION`;	0x32-0x00-0x04;																(|Helpers.NorthFieldLadder, Helpers.Hundo);										`MAGICBOOMERANG`
-NorthField_WaterfallFusion_DojoNPC;			`REDFUSION`;	greatbladeDojoItem:Define:FirstByte, greatbladeDojoSub:Define:SecondByte;	(|(&Helpers.WavebladeFusion, Items.Flippers, Helpers.HasSword), Helpers.Hundo);	`LONGSPIN`
+NorthField_WaterfallFusion_DojoNPC:dojo;	`DOJOITEMRED`;	greatbladeDojoItem:Define:FirstByte, greatbladeDojoSub:Define:SecondByte;	(|(&Helpers.WavebladeFusion, Items.Flippers, Helpers.HasSword), Helpers.Hundo);	Items.LongSpin
 
 #Castle
 Castle_Moat_LeftChest;						Any;			0x07-0x00-0x01;																(|Items.Flippers, Helpers.Hundo);	Items.Shells.100
 Castle_Moat_RightChest;						Any;			0x07-0x00-0x02;																(|Items.Flippers, Helpers.Hundo);	Items.Rupee200
 
 !define - DHC_OUTSIDE - :DHCSmallOutside	:DHCBigOutside	:DHCCompassOutside	:SmallOutside	:BigOutside	:CompassOutside
+!ifdef - DOJORANDOM
+	!define - DHC_DOJO - :dojo
+!else
+	!define - DHC_DOJO - `DHC_OUTSIDE`
+!endif
 
 Castle_GoldenRope							`DHC_OUTSIDE`;	`GREENFUSIONENEMY`;		golden5Item:Define:FirstByte, golden5Sub:Define:SecondByte;					(|(&Helpers.Shared3CFusion, Helpers.HasSword), Helpers.Hundo);		Items.Rupee100
 Castle_RightFountainFusion_HP				`DHC_OUTSIDE`;	`REDFUSIONDUNGEONHP`;	0x0D9C2B;																	(|Helpers.Shared18Fusion, Helpers.Hundo);							Items.PieceOfHeart
 Castle_Dojo_HP								`DHC_OUTSIDE`;	`DUNGEONHP`;			0x0D79BB;																	;																	Items.PieceOfHeart
-Castle_Dojo_NPC								`DHC_OUTSIDE`;	Dungeon;				grimbladeDojoItem:Define:FirstByte, grimbladeDojoSub:Define:SecondByte;		(|(&Helpers.CastleDojo, Helpers.HasSword), Helpers.Hundo);			Items.SwordBeam
+Castle_Dojo_NPC								`DHC_DOJO`;		`DOJOITEM`;				grimbladeDojoItem:Define:FirstByte, grimbladeDojoSub:Define:SecondByte;		(|(&Helpers.CastleDojo, Helpers.HasSword), Helpers.Hundo);			Items.SwordBeam
 Castle_RightFountainFusion_MinishHoleChest	`DHC_OUTSIDE`;	`REDFUSIONDUNGEON`;		0x36-0x00-0x00;																(|(&Helpers.Shared18Fusion, Helpers.BonkedTrees), Helpers.Hundo);	Items.Shells.50
 Castle_LeftFountainFusion_MinishHoleChest	`DHC_OUTSIDE`;	`GREENFUSIONDUNGEON`;	0x36-0x01-0x00;																(|(&Helpers.Shared35Fusion, Helpers.BonkedTrees), Helpers.Hundo);	Items.Shells.50
 
@@ -4304,18 +4395,19 @@ LonLon_GoronCaveFusion_SmallChest;	`BLUEFUSION`;		0x2F-0x01-0x00;								(|(&Hel
 LonLon_GoronCaveFusion_BigChest;	`BLUEFUSION`;		0x2F-0x01-0x01;								(|(&Helpers.6WallFusions, Helpers.GoronCave, (|Helpers.CanDestroyTrees, Items.Ocarina)), Helpers.Hundo);																Items.Bottle
 
 # Lower Veil Falls
-FallsLower_LonLonFusion_Chest;		`GREENFUSION`;	0x0FE0FE;																	(|(&Helpers.Shared60Fusion, Helpers.AccessMinishWoods, Items.PacciCane), Helpers.Hundo);									Items.Rupee200
-FallsLower_HP;						`HP`;			0x0F87D3;																	(|(&Helpers.AccessMinishWoods, Items.PacciCane), Helpers.Hundo);															Items.PieceOfHeart
-FallsLower_WaterfallFusion_DojoNPC;	`REDFUSION`;	splitbladeDojoItem:Define:FirstByte, splitbladeDojoSub:Define:SecondByte;	(|(&Helpers.GrimbladeFusion, Helpers.AccessMinishWoods, Items.PacciCane, Items.Flippers, Helpers.HasSword), Helpers.Hundo);	`FASTPLIT`
-FallsLower_RockItem1				`RUPEE`;		0x0F87E3;																	(|(&Helpers.AccessMinishWoods, Items.PacciCane, (|Items.Flippers, Items.RocsCape)), Helpers.Hundo);							Items.Rupee20
-FallsLower_RockItem2				`RUPEE`;		0x0F87F3;																	(|(&Helpers.AccessMinishWoods, Items.PacciCane, (|Items.Flippers, Items.RocsCape)), Helpers.Hundo);							Items.Rupee20
-FallsLower_RockItem3				`RUPEE`;		0x0F8803;																	(|(&Helpers.AccessMinishWoods, Items.PacciCane, (|Items.Flippers, Items.RocsCape)), Helpers.Hundo);							Items.Rupee20
-FallsLower_DigCave_LeftChest;		Any;			0x16-0x00-0x01; 															(|(&Helpers.AccessMinishWoods, Items.PacciCane, (|Items.RocsCape, Items.Flippers), Items.MoleMitts), Helpers.Hundo);		Items.Shells.50
-FallsLower_DigCave_RightChest;		Any;			0x16-0x00-0x02; 															(|(&Helpers.AccessMinishWoods, Items.PacciCane, (|Items.RocsCape, Items.Flippers), Items.MoleMitts), Helpers.Hundo);		Items.Rupee50
+FallsLower_LonLonFusion_Chest;				`GREENFUSION`;	0x0FE0FE;																	(|(&Helpers.Shared60Fusion, Helpers.AccessMinishWoods, Items.PacciCane), Helpers.Hundo);									Items.Rupee200
+FallsLower_HP;								`HP`;			0x0F87D3;																	(|(&Helpers.AccessMinishWoods, Items.PacciCane), Helpers.Hundo);															Items.PieceOfHeart
+FallsLower_WaterfallFusion_DojoNPC:dojo;	`DOJOITEMRED`;	splitbladeDojoItem:Define:FirstByte, splitbladeDojoSub:Define:SecondByte;	(|(&Helpers.GrimbladeFusion, Helpers.AccessMinishWoods, Items.PacciCane, Items.Flippers, Helpers.HasSword), Helpers.Hundo);	Items.FastSplit
+FallsLower_RockItem1						`RUPEE`;		0x0F87E3;																	(|(&Helpers.AccessMinishWoods, Items.PacciCane, (|Items.Flippers, Items.RocsCape)), Helpers.Hundo);							Items.Rupee20
+FallsLower_RockItem2						`RUPEE`;		0x0F87F3;																	(|(&Helpers.AccessMinishWoods, Items.PacciCane, (|Items.Flippers, Items.RocsCape)), Helpers.Hundo);							Items.Rupee20
+FallsLower_RockItem3						`RUPEE`;		0x0F8803;																	(|(&Helpers.AccessMinishWoods, Items.PacciCane, (|Items.Flippers, Items.RocsCape)), Helpers.Hundo);							Items.Rupee20
+FallsLower_DigCave_LeftChest;				Any;			0x16-0x00-0x01; 															(|(&Helpers.AccessMinishWoods, Items.PacciCane, (|Items.RocsCape, Items.Flippers), Items.MoleMitts), Helpers.Hundo);		Items.Shells.50
+FallsLower_DigCave_RightChest;				Any;			0x16-0x00-0x02; 															(|(&Helpers.AccessMinishWoods, Items.PacciCane, (|Items.RocsCape, Items.Flippers), Items.MoleMitts), Helpers.Hundo);		Items.Rupee50
 
 # Lake Hylia Locations
 AccessSouthLake;						Helper;		;																	(|(&Helpers.AccessLonLon, Helpers.CapeExtension), (&Helpers.AccessNorthMinish, Items.MoleMitts))
 AccessTreasureCave;          			Helper;		;               													Helpers.AccessMinishWoods, Items.MoleMitts, Items.RocsCape;
+HasHearts;								Helper;		;																	(|Items.PieceOfHeart:28, (&Items.PieceOfHeart:24, Items.HeartContainer), (&Items.PieceOfHeart:20, Items.HeartContainer:2), (&Items.PieceOfHeart:16, Items.HeartContainer:3), (&Items.PieceOfHeart:12, Items.HeartContainer:4), (&Items.PieceOfHeart:8, Items.HeartContainer:5), (&Items.PieceOfHeart:4, Items.HeartContainer:6))
 Hylia_SunkenHP							`UNDERWATERHP`;	0x0F323B;																(|(&Helpers.AccessLonLon, Items.Flippers), Helpers.Hundo);																													Items.PieceOfHeart
 Hylia_DogNPC;							Any;			0x094908:FirstByte, 0x09490A:SecondByte;								(|(&Helpers.AccessLonLon, Items.DogFoodBottle), Helpers.Hundo);																												Items.Bottle
 Hylia_SmallIsland_HP;					`HP`;			0x0F322B;																(|(&Helpers.AccessLonLon, Items.RocsCape), Helpers.Hundo);																													Items.PieceOfHeart
@@ -4334,7 +4426,7 @@ Hylia_BeanstalkFusion_RightChest;		`BLUEFUSION`;	0x0D-0x01-0x01;	(|(&Helpers.Lak
 Hylia_MiddleIslandFusion_DigCaveChest;	`GREENFUSION`;	0x19-0x00-0x00;															(|(&Helpers.MamaFusion, Helpers.AccessLonLon, Items.MoleMitts, Helpers.CapeExtension), Helpers.Hundo);																		Items.Rupee50
 Hylia_BottomHP;							`HP`;			0x0F324B;																(|(&Helpers.AccessLonLon, Helpers.CapeExtension), Helpers.Hundo);																											Items.PieceOfHeart
 Hylia_Dojo_HP;							`HP`;			0x0D7B03;																(|(&Helpers.AccessLonLon, (|Helpers.CapeExtension, Helpers.LakeShortcut)), Helpers.Hundo);																					Items.PieceOfHeart
-Hylia_Dojo_NPC;							Any;			wavebladeDojoItem:Define:FirstByte, wavebladeDojoSub:Define:SecondByte;	(|(&Helpers.AccessLonLon, (+28, Items.PieceOfHeart, Items.HeartContainer:4), Helpers.HasSword, (|Helpers.CapeExtension, Helpers.LakeShortcut)), Helpers.Hundo);				Items.PerilBeam
+Hylia_Dojo_NPC:dojo;					`DOJOITEM`;		wavebladeDojoItem:Define:FirstByte, wavebladeDojoSub:Define:SecondByte;	(|(&Helpers.AccessLonLon, Helpers.HasHearts, Helpers.HasSword, (|Helpers.CapeExtension, Helpers.LakeShortcut)), Helpers.Hundo);												Items.PerilBeam
 Hylia_CrackFusion_LibrariNPC;			`REDFUSION`;	0x0124EC;																(|(&Helpers.VillageSideMinish3Fusion, Items.Ocarina, (|Items.Flippers,Items.RocsCape)), Helpers.Hundo);																		Items.HeartContainer
 Hylia_NorthMinishHole_Chest;			Any;			0x35-0x07-0x00;															(|(&Helpers.AccessSouthLake, (|Helpers.BonkedTrees, Helpers.LakeMinish), Items.Flippers), Helpers.Hundo);																	Items.Kinstone.RedV
 Hylia_SouthMinishHole_Chest;			Any;			0x35-0x05-0x00;															(|(&Helpers.AccessSouthLake, (|Helpers.BonkedTrees, Helpers.LakeMinish), Items.Flippers), Helpers.Hundo);																	Items.Kinstone.RedE
@@ -4346,7 +4438,7 @@ AccessMinishWoods;							Helper;	;					(|Helpers.CanDestroyTrees, Items.Ocarina)
 AccessNorthMinish;							Helper;	;					Helpers.AccessMinishWoods, (|Items.Flippers, Items.RocsCape, Helpers.LonLonSouthShortcut));
 AccessBelari;								Helper;	;					(|(&Helpers.AccessMinishWoods, Helpers.OverworldBlocks), Helpers.MinishWindCrest, Helpers.CompleteDeepwood);
 MinishWoods_GoldenOcto;						`GREENFUSIONENEMY`;	golden8Item:Define:FirstByte, golden8Sub:Define:SecondByte;	(|(&Helpers.Shared56Fusion, Helpers.AccessNorthMinish, Helpers.HasSword), Helpers.Hundo);	Items.Rupee100
-MinishWoods_WitchHut_Item;					Any;				0x0F94D7;       											(|Helpers.AccessNorthMinish, Helpers.Hundo);												Items.WakeUpMushroom
+MinishWoods_WitchHut_Item;					Any;				0x0F94D7;       											(|(&Helpers.AccessNorthMinish, Helpers.ShopWitch), Helpers.Hundo);							Items.WakeUpMushroom
 WitchDiggingCave_Chest;						Any;				0x0C-0x00-0x00;												(|(&Helpers.AccessNorthMinish, Items.MoleMitts), Helpers.Hundo);							Items.Kinstone.BlueL
 MinishWoods_NorthFusion_Chest;				`GREENFUSION`;		0x0FE07E;													(|(&Helpers.Shared44Fusion, Helpers.AccessNorthMinish), Helpers.Hundo);						Items.Kinstone.BlueS
 MinishWoods_TopHP;							`HP`;				0x0F4347;       											(|Helpers.AccessNorthMinish, Helpers.Hundo);												Items.PieceOfHeart
@@ -4378,7 +4470,7 @@ Trilby_TopFusion_Chest;				`GREENFUSION`;		0x0FE0BE;															(|(&Helpers.S
 Trilby_DigCave_LeftChest;			Any;				0x13-0x03-0x00;                       								(|(&Helpers.AccessTrilby, Items.MoleMitts), Helpers.Hundo);															Items.Kinstone.BlueL
 Trilby_DigCave_RightChest;			Any;				0x13-0x03-0x02;                       								(|(&Helpers.AccessTrilby, Items.MoleMitts), Helpers.Hundo);															Items.Kinstone.BlueS
 Trilby_DigCave_WaterFusion_Chest;	`BLUEFUSION`;		0x13-0x03-0x01;														(|(&Helpers.CandyFusion, Helpers.AccessTrilby, Items.MoleMitts, (|Items.RocsCape,Items.Flippers)), Helpers.Hundo);	Items.Kinstone.RedW
-Trilby_Scrub_NPC;					Any;				bottleScrubItem:Define:FirstByte, bottleScrubSub:Define:SecondByte;	(|(&Helpers.AccessTrilby, Helpers.BombWalls, Helpers.Scrubs), Helpers.Hundo);        								Items.Bottle
+Trilby_Scrub_NPC;					Any;				bottleScrubItem:Define:FirstByte, bottleScrubSub:Define:SecondByte;	(|(&Helpers.AccessTrilby, Helpers.BombWalls, Helpers.Scrubs, Helpers.ShopScrubTrilby), Helpers.Hundo);        		Items.Bottle
 
 Trilby_BombCave_Chest;				Any;				0x32-0x07-0x00;                       								(|(&Helpers.AccessWestern, Helpers.BombWalls), Helpers.Hundo);														Items.Kinstone.RedE
 Trilby_PuddleFusion_Item1;			`GREENFUSIONRUPEE`;	0x0F83BB;															(|(&Helpers.TrilbyMinishFusion,  Helpers.AccessWestern), Helpers.Hundo);											Items.Rupee5
@@ -4443,19 +4535,19 @@ CrenelBase_WaterCave_HP;			`HP`;			0x0FB32B;																(|(&Helpers.AccessTr
 CrenelBase_MinishVineHole_Chest;	Any;			0x35-0x00-0x00;															(|(&Helpers.AccessTrilby, Helpers.LowerBean, (|Helpers.BombWalls, Items.RocsCape), Helpers.CrenelDust), (&Helpers.CrenelWindCrest, (|Helpers.UpperBean, (&Items.GripRing, (|Helpers.BombWalls, Items.RocsCape))), Helpers.CrenelDust), Helpers.Hundo);																Items.Kinstone.BlueL
 CrenelBase_MinishCrack_Chest;		Any;			0x27-0x03-0x00;															(|(&Helpers.AccessTrilby, Helpers.LowerBean, (|Helpers.BombWalls, Items.RocsCape), Helpers.CrenelDust), (&Helpers.CrenelWindCrest, (|Helpers.UpperBean, (&Items.GripRing, (|Helpers.BombWalls, Items.RocsCape))), Helpers.CrenelDust), Helpers.Hundo);																Items.Kinstone.RedW
 
-Crenel_VineTop_GoldenTektite;		`GREENFUSIONENEMY`;	golden2Item:Define:FirstByte, golden2Sub:Define:SecondByte; 			(|(&Helpers.MinesMinishKitchenFusion,Helpers.AccessCrenel, Helpers.HasSword), Helpers.Hundo);																		Items.Rupee100
-Crenel_BridgeCave_Chest;			Any;				0x26-0x07-0x00;															(|(&Helpers.AccessCrenel, Helpers.BombWalls), Helpers.Hundo);																										Items.Kinstone.BlueL
-Crenel_FairyCave_HP;				`HP`;				0x0FB0BB;																(|(&Helpers.AccessCrenel, Helpers.BombWalls), Helpers.Hundo);																										Items.PieceOfHeart
-Crenel_BelowCoF_GoldenTektite;		`REDFUSIONENEMY`;	golden7Item:Define:FirstByte, golden7Sub:Define:SecondByte;				(|(&Helpers.Tingle2Fusion, Helpers.AccessCrenel, Helpers.HasSword, (|Items.GripRing, Items.BombBag, Helpers.CrenelMushroom, Helpers.CrenelWindCrest)), Helpers.Hundo);	Items.Rupee100
-Crenel_Scrub_NPC;					Any;				gripScrubItem:Define:FirstByte, gripScrubSub:Define:SecondByte;			(|(&Helpers.AccessCrenel, Helpers.BombWalls, (|Items.GripRing, Items.BombBag, Helpers.CrenelMushroom, Helpers.CrenelWindCrest), Helpers.Scrubs), Helpers.Hundo);			Items.GripRing
-Crenel_Dojo_LeftChest;				Any;				0x25-0x00-0x00;															(|(&Helpers.AccessCrenel, Items.GripRing, Helpers.CrenelDojo), Helpers.Hundo);																						Items.Rupee50
-Crenel_Dojo_RightChest;				Any;				0x25-0x00-0x01;															(|(&Helpers.AccessCrenel, Items.GripRing, Helpers.CrenelDojo), Helpers.Hundo);																						Items.Rupee50
-Crenel_Dojo_HP;						`HP`;				0x0D752B;																(|(&Helpers.AccessCrenel, Items.GripRing, Helpers.CrenelDojo), Helpers.Hundo);																						Items.PieceOfHeart
-Crenel_Dojo_NPC;					Any;				graybladeDojoItem:Define:FirstByte, graybladeDojoSub:Define:SecondByte;	(|(&Helpers.AccessCrenel, Items.GripRing, Helpers.CrenelDojo, Helpers.HasSword), Helpers.Hundo);																	Items.RollAttack
-Crenel_GreatFairy_NPC;				Any;				0x00B828;																(|(&Helpers.AccessCrenel, Items.GripRing, Helpers.BombWalls, (|Items.BombBag, Helpers.HasBottle)), Helpers.Hundo);													Items.BombBag
-Crenel_ClimbFusion_Chest;			`GREENFUSION`;		0x0FE10E;																(|(&Helpers.MeenieFusion, Helpers.AccessCrenel, Items.GripRing), Helpers.Hundo);																					Items.Kinstone.BlueL
-Crenel_DigCave_HP;					`HP`;				0x0F3BA7;																(|(&Helpers.AccessCrenel, Items.GripRing, Items.MoleMitts), Helpers.Hundo);																							Items.PieceOfHeart
-Crenel_BeanstalkFusion_HP;			`REDFUSIONHP`;		0x0F5D9B;																(|(&Helpers.MelariFusion, Helpers.AccessCrenel, Items.GripRing), Helpers.Hundo);																					Items.PieceOfHeart
+Crenel_VineTop_GoldenTektite;		`GREENFUSIONENEMY`;	golden2Item:Define:FirstByte, golden2Sub:Define:SecondByte; 			(|(&Helpers.MinesMinishKitchenFusion,Helpers.AccessCrenel, Helpers.HasSword), Helpers.Hundo);																								Items.Rupee100
+Crenel_BridgeCave_Chest;			Any;				0x26-0x07-0x00;															(|(&Helpers.AccessCrenel, Helpers.BombWalls), Helpers.Hundo);																																Items.Kinstone.BlueL
+Crenel_FairyCave_HP;				`HP`;				0x0FB0BB;																(|(&Helpers.AccessCrenel, Helpers.BombWalls), Helpers.Hundo);																																Items.PieceOfHeart
+Crenel_BelowCoF_GoldenTektite;		`REDFUSIONENEMY`;	golden7Item:Define:FirstByte, golden7Sub:Define:SecondByte;				(|(&Helpers.Tingle2Fusion, Helpers.AccessCrenel, Helpers.HasSword, (|Items.GripRing, Items.BombBag, Helpers.CrenelMushroom, Helpers.CrenelWindCrest)), Helpers.Hundo);						Items.Rupee100
+Crenel_Scrub_NPC;					Any;				gripScrubItem:Define:FirstByte, gripScrubSub:Define:SecondByte;			(|(&Helpers.AccessCrenel, Helpers.BombWalls, (|Items.GripRing, Items.BombBag, Helpers.CrenelMushroom, Helpers.CrenelWindCrest), Helpers.Scrubs, Helpers.ShopScrubCrenel), Helpers.Hundo);	Items.GripRing
+Crenel_Dojo_LeftChest;				Any;				0x25-0x00-0x00;															(|(&Helpers.AccessCrenel, Items.GripRing, Helpers.CrenelDojo), Helpers.Hundo);																												Items.Rupee50
+Crenel_Dojo_RightChest;				Any;				0x25-0x00-0x01;															(|(&Helpers.AccessCrenel, Items.GripRing, Helpers.CrenelDojo), Helpers.Hundo);																												Items.Rupee50
+Crenel_Dojo_HP;						`HP`;				0x0D752B;																(|(&Helpers.AccessCrenel, Items.GripRing, Helpers.CrenelDojo), Helpers.Hundo);																												Items.PieceOfHeart
+Crenel_Dojo_NPC:dojo;				`DOJOITEM`;			graybladeDojoItem:Define:FirstByte, graybladeDojoSub:Define:SecondByte;	(|(&Helpers.AccessCrenel, Items.GripRing, Helpers.CrenelDojo, Helpers.HasSword), Helpers.Hundo);																							Items.RollAttack
+Crenel_GreatFairy_NPC;				Any;				0x00B828;																(|(&Helpers.AccessCrenel, Items.GripRing, Helpers.BombWalls, (|Items.BombBag, Helpers.HasBottle)), Helpers.Hundo);																			Items.BombBag
+Crenel_ClimbFusion_Chest;			`GREENFUSION`;		0x0FE10E;																(|(&Helpers.MeenieFusion, Helpers.AccessCrenel, Items.GripRing), Helpers.Hundo);																											Items.Kinstone.BlueL
+Crenel_DigCave_HP;					`HP`;				0x0F3BA7;																(|(&Helpers.AccessCrenel, Items.GripRing, Items.MoleMitts), Helpers.Hundo);																													Items.PieceOfHeart
+Crenel_BeanstalkFusion_HP;			`REDFUSIONHP`;		0x0F5D9B;																(|(&Helpers.MelariFusion, Helpers.AccessCrenel, Items.GripRing), Helpers.Hundo);																											Items.PieceOfHeart
 Crenel_BeanstalkFusion_Item1		`REDFUSIONRUPEE`;	0x0F5DAB;																(|(&Helpers.MelariFusion, Helpers.AccessCrenel, Items.GripRing), Helpers.Hundo);				Items.Rupee20
 Crenel_BeanstalkFusion_Item2		`REDFUSIONRUPEE`;	0x0F5DBB;																(|(&Helpers.MelariFusion, Helpers.AccessCrenel, Items.GripRing), Helpers.Hundo);				Items.Rupee20
 Crenel_BeanstalkFusion_Item3		`REDFUSIONRUPEE`;	0x0F5DCB;																(|(&Helpers.MelariFusion, Helpers.AccessCrenel, Items.GripRing), Helpers.Hundo);				Items.Rupee20
@@ -4481,13 +4573,19 @@ Crenel_Melari_UpperTop_LeftDig		`COF_OUTSIDE`;	`DIG`;			0x0DC8E3;	 	(|(&Helpers.
 
 # Swamp
 AccessSwamp;						Helper;				;																			(|Helpers.SwampWindCrest, (&Helpers.AccessWestern, (|Items.PegasusBoots, Items.RocsCape)))
-GotScrolls;							Helper;				;																			(+7, Items.SpinAttack, Items.RockBreaker, Items.DashAttack, Items.DownThrust, Items.RollAttack, Items.SwordBeam, Items.PerilBeam, Items.GreatSpin, Items.FastSpin, Items.FastSplit, Items.LongSpin);
+NonSpinScrolls;						Helper;				;																			Items.RockBreaker, Items.DashAttack, Items.DownThrust, Items.RollAttack, Items.SwordBeam, Items.PerilBeam
+SpinScrolls;						Helper;				;																			Items.SpinAttack, Items.GreatSpin, Items.FastSpin, Items.FastSplit, Items.LongSpin
+!ifdef - NOPROG
+	GotScrolls;							Helper;				;																			(+7, Items.SpinAttack, Items.GreatSpin, Items.FastSpin, Items.FastSplit, Items.LongSpin, Items.RockBreaker, Items.DashAttack, Items.DownThrust, Items.RollAttack, Items.SwordBeam, Items.PerilBeam);
+!else
+	GotScrolls;							Helper;				;																			(|(&Items.RockBreaker, Items.DashAttack, Items.DownThrust, Items.RollAttack, Items.SwordBeam, Items.PerilBeam, Items.ProgressiveItem.0x04), (&Items.ProgressiveItem.0x04:2, (+5, Items.RockBreaker, Items.DashAttack, Items.DownThrust, Items.RollAttack, Items.SwordBeam, Items.PerilBeam)), (&Items.ProgressiveItem.0x04:3, (+4, Items.RockBreaker, Items.DashAttack, Items.DownThrust, Items.RollAttack, Items.SwordBeam, Items.PerilBeam)), (&Items.ProgressiveItem.0x04:4, (+3, Items.RockBreaker, Items.DashAttack, Items.DownThrust, Items.RollAttack, Items.SwordBeam, Items.PerilBeam)), (&Items.ProgressiveItem.0x04:5, (+2, Items.RockBreaker, Items.DashAttack, Items.DownThrust, Items.RollAttack, Items.SwordBeam, Items.PerilBeam)));
+!endif
 Swamp_ButterflyFusion_Item;			`REDFUSION`;			0x0FE13F;																	(|(&Helpers.Farore2Fusion, Helpers.AccessSwamp), Helpers.Hundo);																																		Items.DigButterfly
 Swamp_CenterCave_DarknutChest;		Any;					0x2B-0x00-0x00;																(|(&Helpers.AccessSwamp, Helpers.HasDamageSource), Helpers.Hundo);																																		Items.Kinstone.GoldenSwamp
 Swamp_CenterChest;					Any;					0x04-0x00-0x00;																(|(&Helpers.AccessSwamp, Helpers.HasBow), Helpers.Hundo);																																				Items.Kinstone.BlueL
 Swamp_GoldenRope;					`WTFUSIONGREENENEMY`;	golden3Item:Define:FirstByte, golden3Sub:Define:SecondByte;					(|(&Helpers.Flurris1Fusion, Helpers.AccessSwamp, Helpers.HasSword), Helpers.Hundo);																														Items.Rupee100
 Swamp_NearWaterfall_CaveHP;			`HP`;					0x0D9907;																	(|(&Helpers.AccessSwamp, Helpers.SwampNorthShortcut, (|Items.RocsCape, Items.Flippers)), Helpers.Hundo);																								Items.PieceOfHeart
-Swamp_WaterfallFusion_DojoNPC;		`REDFUSION`;			scarbladeDojoItem:Define:FirstByte, scarbladeDojoSub:Define:SecondByte;		(|(&Helpers.GreybladeFusion, Helpers.AccessSwamp, Helpers.SwampNorthShortcut, Items.Flippers), Helpers.Hundo);																							`FASTSPIN`
+Swamp_WaterfallFusion_DojoNPC:dojo;	`DOJOITEMRED`;			scarbladeDojoItem:Define:FirstByte, scarbladeDojoSub:Define:SecondByte;		(|(&Helpers.GreybladeFusion, Helpers.AccessSwamp, Helpers.SwampNorthShortcut, Items.Flippers), Helpers.Hundo);																							Items.FastSpin
 Swamp_NorthCave_Chest;				Any;					0x2A-0x01-0x00;																(|(&Helpers.AccessSwamp, Helpers.SwampNorthShortcut), Helpers.Hundo);																																	Items.Kinstone.GoldenSwamp
 Swamp_DiggingCave_LeftChest;		Any;					0x17-0x00-0x00;																(|(&Helpers.AccessSwamp, Items.MoleMitts), Helpers.Hundo);																																				Items.Shells.50
 Swamp_DiggingCave_RightChest;		Any;					0x17-0x00-0x01;																(|(&Helpers.AccessSwamp, Items.MoleMitts), Helpers.Hundo);																																				Items.Kinstone.RedV
@@ -4496,7 +4594,7 @@ Swamp_Underwater_Middle;			`WATERKINSTONE`;		0x0D9357;																	(|(&Helpe
 Swamp_Underwater_Bottom;			`WATERKINSTONE`;		0x0D9367;																	(|(&Helpers.AccessSwamp, Items.Flippers), Helpers.Hundo);																																				Items.Kinstone.RedE
 Swamp_SouthCave_Chest;				Any;					0x2A-0x00-0x00;																(|(&Helpers.AccessSwamp, Helpers.SwampShortcut, Helpers.SwampSouthShortcut), Helpers.Hundo);																											Items.Kinstone.GoldenSwamp
 Swamp_Dojo_HP;						`HP`;					0x0D78CB;																	(|(&Helpers.AccessSwamp, (|Items.RocsCape, Helpers.HasBow, (&Items.PegasusBoots, Items.Flippers))), (&Helpers.SwampWindCrest, Items.PegasusBoots), Helpers.Hundo);																					Items.PieceOfHeart
-Swamp_Dojo_NPC;						Any;					swiftbladeIDojoItem:Define:FirstByte, swiftbladeIDojoSub:Define:SecondByte;	(|(&Helpers.AccessSwamp, (|Items.RocsCape, Helpers.HasBow, (&Items.PegasusBoots, Items.Flippers)), Helpers.GotScrolls, Helpers.HasSword), (&Helpers.SwampWindCrest, Items.PegasusBoots, Helpers.GotScrolls, Helpers.HasSword), Helpers.Hundo);		`GREATSPIN`
+Swamp_Dojo_NPC:dojo;				`DOJOITEM`;				swiftbladeIDojoItem:Define:FirstByte, swiftbladeIDojoSub:Define:SecondByte;	(|(&Helpers.AccessSwamp, (|Items.RocsCape, Helpers.HasBow, (&Items.PegasusBoots, Items.Flippers)), Helpers.GotScrolls, Helpers.HasSword), (&Helpers.SwampWindCrest, Items.PegasusBoots, Helpers.GotScrolls, Helpers.HasSword), Helpers.Hundo);		Items.GreatSpin
 
 Swamp_MinishFusion_NorthCrack_Chest;		`GREENFUSION`;		0x27-0x09-0x00;		(|(&Helpers.TFZ1Fusion, Helpers.AccessSwamp, (|Items.PegasusBoots, Items.RocsCape, Helpers.HasBow)), Helpers.Hundo);											Items.Kinstone.BlueS
 Swamp_Minish_Mulldozer_BigChest;			Any;				0x27-0x06-0x00;		(|(&Helpers.AccessSwamp, (|Items.PegasusBoots, Items.RocsCape, Helpers.HasBow), (|Items.Flippers, Items.GustJar), Helpers.HasDamageSource), Helpers.Hundo);		`BOW`
@@ -4804,7 +4902,7 @@ Droplets_RightPath_B2_UnderpassItem3		`TOD_INSIDE`	`DUNGEONRUPEE`;					0x0E485F;
 Droplets_RightPath_B2_UnderpassItem4		`TOD_INSIDE`	`DUNGEONRUPEE`;					0x0E486F;									(|(&Helpers.AccessDroplets, Helpers.ToD2ndRupeePath), Helpers.Hundo);	Items.Rupee1
 Droplets_RightPath_B2_UnderpassItem5		`TOD_INSIDE`	`DUNGEONRUPEE`;					0x0E487F;									(|(&Helpers.AccessDroplets, Helpers.ToD2ndRupeePath), Helpers.Hundo);	Items.Rupee1
 
-CompleteDroplets;	Helper;	;	Helpers.AccessOcto, Items.Lantern, (|Helpers.HasSword, Items.Shield);
+CompleteDroplets;	Helper;	;	Helpers.AccessOcto, Items.Lantern, (|Helpers.HasSword, Helpers.HasShield);
 Droplets_BossItem	`TOD_INSIDE`;	`DUNGEONHP`;	octoContainerItem:Define:FirstByte, octoContainerSub:Define:SecondByte; 			(|Helpers.CompleteDroplets, Helpers.Hundo);												Items.HeartContainer
 Droplets_Prize		`TOD_PRIZE`;	DungeonPrize;	0x0E40C3;                                                               			(|Helpers.CompleteDroplets, Helpers.Hundo);												Items.WaterElement
 
