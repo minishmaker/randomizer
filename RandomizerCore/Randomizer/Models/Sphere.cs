@@ -19,12 +19,4 @@ public class Sphere
     public List<Item> PreFilledItemsAddedThisSphere { get; set; }
 
     public List<Location> PreFilledLocationsAddedThisSphere { get; set; }
-
-    //public List<Item> ElementsPlacedThisSphere { get; set; }
-
-    //public List<Location> ElementLocationsThisSphere { get; set; }
-
-    //public List<Item> DungeonItemsPlacedThisSphere { get; set; }
-
-    //public List<Location> DungeonLocationsPlacedThisSphere { get; set; }
 }

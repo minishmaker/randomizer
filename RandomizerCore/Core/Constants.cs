@@ -63,6 +63,16 @@ public enum TileEntityType
     TestC = 0x05
 }
 
+public enum DungeonEntranceType
+{
+    DWS = 0x01,
+    CoF = 0x02,
+    FoW = 0x03,
+    ToD = 0x04,
+    Crypt = 0x05,
+    PoW = 0x06,
+}
+
 public enum KinstoneType
 {
     UnTyped,
