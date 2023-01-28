@@ -402,9 +402,9 @@ String("Deoxis"); BYTE 0
 
 credits2:
 BYTE 0x0A
-BYTE 0x0A
 BYTE 2 0x03; String("Patches and Assembly"); BYTE 2 0 0x0A
 String("Leonarth     CatoBat"); BYTE 0x0A
+String("Henny        Dreamie"); BYTE 0x0A
 BYTE 0x0A
 BYTE 2 0x01; String("Tracker Package"); BYTE 2 0 0x0A
 String("Ibot      Cubesolver"); BYTE 0x0A
@@ -420,7 +420,7 @@ String("Berylliosis     Leonarth"); BYTE 0x0A
 String("UselessHobo   Cubesolver"); BYTE 0x0A
 String("Ibot           Straylite"); BYTE 0x0A
 String("Myth               Henny"); BYTE 0x0A
-String("Dreamie"); BYTE 0
+String("Dreamie          CatoBat"); BYTE 0
 
 credits4:
 BYTE 2 0x1A; String("Additional Contributors"); BYTE 2 0 0x0A

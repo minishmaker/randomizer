@@ -17,6 +17,7 @@ POIN fastShell; WORD 0x2002B41 1
 POIN startingFlags; WORD 0x2002C9C 308
 POIN fusionFlags; WORD 0x2002C81 13
 POIN kinstoneBag; WORD 0x2002B4B 1
+POIN disableKinstones; WORD 0x2002B56 1
 POIN cityCrest; WORD 0x2002A83 1
 #ifndef requirementFigurinesAmmount
 	POIN figurines; WORD 0x2002B0E 18
@@ -83,6 +84,9 @@ BYTE mC81 mC82 mC83 mC84 mC85 mC86 mC87 mC88 mC89 mC8A mC8B mC8C mC8D
 
 kinstoneBag:
 BYTE 0x40
+
+disableKinstones:
+BYTE 0x01
 
 figurines:
 BYTE 0xFE 0xFF 0xFF 0xFF 0xFF 0xFF 0xFF 0xFF 0xFF 0xFF 0xFF 0xFF 0xFF 0xFF 0xFF 0xFF 0xFF 0x01
