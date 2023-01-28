@@ -56,11 +56,12 @@ public class NumberBoxWrapper : WrapperBase
         {
             var tip = new ToolTip();
             tip.UseFading = true;
-            tip.AutoPopDelay = 30000;
-            tip.InitialDelay = 1000;
-            tip.ReshowDelay = 500;
+            tip.AutoPopDelay = Constants.TooltipDisplayLengthMs;
+            tip.InitialDelay = Constants.TooltipInitialShowDelayMs;
+            tip.ReshowDelay = Constants.TooltipRepeatDelayMs;
             tip.ShowAlways = true;
             tip.SetToolTip(_label, _numberBox.DescriptionText);
+            tip.SetToolTip(_textBox, _numberBox.DescriptionText);
         }
 
         _textBox.TextChanged += (object sender, EventArgs e) =>

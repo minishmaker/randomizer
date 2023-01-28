@@ -110,8 +110,8 @@ namespace RandomizerCore.Randomizer.Helpers
                     TransitionType = 0x0,
                     EntranceAddress1 = _cryptEntrance,
                     GreenWarpExitCoordinate = 0x024E,
-                    ElementGetExitX = 0xF0,
-                    ElementGetExitY = 0xBC,
+                    ElementGetExitX = 0xE8,
+                    ElementGetExitY = 0x98,
                 },
                 DungeonEntranceType.PoW => new ScreenTransition
                 {

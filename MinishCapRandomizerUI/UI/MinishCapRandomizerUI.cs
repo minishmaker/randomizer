@@ -144,7 +144,7 @@ public sealed partial class MinishCapRandomizerUI : Form
 
         _shufflerController.SetRandomizationSeed(seed);
         _shufflerController.LoadLocations(UseCustomLogic.Checked && LogicFilePath.Text.Length > 0 ? LogicFilePath.Text : null);
-        if (_shufflerController.Randomize(retryAttempts))
+        if (_shufflerController.Randomize(retryAttempts, UseSphereBasedShuffler.Checked))
         {
             _randomizedRomCreated = true;
             

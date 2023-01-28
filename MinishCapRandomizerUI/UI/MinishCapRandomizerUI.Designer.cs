@@ -125,6 +125,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.RandomizationAttempts = new System.Windows.Forms.TextBox();
+            this.UseSphereBasedShuffler = new System.Windows.Forms.CheckBox();
             this.menuStrip1.SuspendLayout();
             this.General.SuspendLayout();
             this.panel9.SuspendLayout();
@@ -245,9 +246,9 @@
             // 
             // Randomize
             // 
-            this.Randomize.Location = new System.Drawing.Point(570, 696);
+            this.Randomize.Location = new System.Drawing.Point(577, 696);
             this.Randomize.Name = "Randomize";
-            this.Randomize.Size = new System.Drawing.Size(218, 23);
+            this.Randomize.Size = new System.Drawing.Size(211, 23);
             this.Randomize.TabIndex = 3;
             this.Randomize.Text = "Randomize";
             this.Randomize.UseVisualStyleBackColor = true;
@@ -1107,25 +1108,35 @@
             this.label16.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.label16.Location = new System.Drawing.Point(16, 700);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(200, 15);
+            this.label16.Size = new System.Drawing.Size(168, 15);
             this.label16.TabIndex = 26;
-            this.label16.Text = "Maximum Randomization Attempts:";
+            this.label16.Text = "Max Randomization Attempts:";
             this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // RandomizationAttempts
             // 
-            this.RandomizationAttempts.Location = new System.Drawing.Point(222, 696);
+            this.RandomizationAttempts.Location = new System.Drawing.Point(190, 696);
             this.RandomizationAttempts.Name = "RandomizationAttempts";
             this.RandomizationAttempts.Size = new System.Drawing.Size(136, 23);
             this.RandomizationAttempts.TabIndex = 27;
             this.RandomizationAttempts.Text = "1";
             this.RandomizationAttempts.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
+            // UseSphereBasedShuffler
+            // 
+            this.UseSphereBasedShuffler.Location = new System.Drawing.Point(336, 696);
+            this.UseSphereBasedShuffler.Name = "UseSphereBasedShuffler";
+            this.UseSphereBasedShuffler.Size = new System.Drawing.Size(235, 24);
+            this.UseSphereBasedShuffler.TabIndex = 28;
+            this.UseSphereBasedShuffler.Text = "Use Hendrus Seed Shuffler";
+            this.UseSphereBasedShuffler.UseVisualStyleBackColor = true;
+            // 
             // MinishCapRandomizerUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(804, 731);
+            this.Controls.Add(this.UseSphereBasedShuffler);
             this.Controls.Add(this.RandomizationAttempts);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.Randomize);
@@ -1257,5 +1268,6 @@
         private ToolStripMenuItem writeAndFlushLoggerToolStripMenuItem;
         private Label label16;
         private TextBox RandomizationAttempts;
+        private CheckBox UseSphereBasedShuffler;
     }
 }

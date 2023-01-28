@@ -141,7 +141,7 @@ public class ShufflerController
         }
     }
 
-    public bool Randomize(int retries = 1)
+    public bool Randomize(int retries = 1, bool useSphereBasedShuffler = false)
     {
         try
         {
@@ -154,7 +154,7 @@ public class ShufflerController
             {
                 try
                 {
-                    _shuffler.RandomizeLocations();
+                    _shuffler.RandomizeLocations(useSphereBasedShuffler);
                     successfulGeneration = true;
                 }
                 catch (Exception e)

@@ -41,16 +41,6 @@ public class DropdownWrapper : WrapperBase
             UseMnemonic = Constants.UseMnemonic,
         };
 
-        if (!string.IsNullOrEmpty(_dropdown.DescriptionText))
-        {
-            var tip = new ToolTip();
-            tip.UseFading = true;
-            tip.AutoPopDelay = 30000;
-            tip.InitialDelay = 1000;
-            tip.ReshowDelay = 500;
-            tip.SetToolTip(_label, _dropdown.DescriptionText);
-        }
-
         _comboBox = new ComboBox
         {
             AutoSize = false,
@@ -62,7 +52,18 @@ public class DropdownWrapper : WrapperBase
             SelectedText = _dropdown.Selection,
             DataSource = _dropdown.Selections.Keys.ToList(),
         };
-        
+
+        if (!string.IsNullOrEmpty(_dropdown.DescriptionText))
+        {
+            var tip = new ToolTip();
+            tip.UseFading = true;
+            tip.AutoPopDelay = Constants.TooltipDisplayLengthMs;
+            tip.InitialDelay = Constants.TooltipInitialShowDelayMs;
+            tip.ReshowDelay = Constants.TooltipRepeatDelayMs;
+            tip.SetToolTip(_label, _dropdown.DescriptionText);
+            tip.SetToolTip(_comboBox, _dropdown.DescriptionText);
+        }
+
         _comboBox.SelectedIndexChanged += (object sender, EventArgs e) =>
         {
             _dropdown.Selection = (string)_comboBox.SelectedValue;
