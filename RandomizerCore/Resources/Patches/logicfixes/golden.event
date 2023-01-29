@@ -1,0 +1,99 @@
+#ifndef golden1Item
+	#define golden1Item "0x58"
+#endif
+#ifndef golden1Sub
+	#define golden1Sub "0x00"
+#endif
+#ifndef golden2Item
+	#define golden2Item "0x58"
+#endif
+#ifndef golden2Sub
+	#define golden2Sub "0x00"
+#endif
+#ifndef golden3Item
+	#define golden3Item "0x58"
+#endif
+#ifndef golden3Sub
+	#define golden3Sub "0x00"
+#endif
+#ifndef golden4Item
+	#define golden4Item "0x58"
+#endif
+#ifndef golden4Sub
+	#define golden4Sub "0x00"
+#endif
+#ifndef golden5Item
+	#define golden5Item "0x58"
+#endif
+#ifndef golden5Sub
+	#define golden5Sub "0x00"
+#endif
+#ifndef golden6Item
+	#define golden6Item "0x58"
+#endif
+#ifndef golden6Sub
+	#define golden6Sub "0x00"
+#endif
+#ifndef golden7Item
+	#define golden7Item "0x58"
+#endif
+#ifndef golden7Sub
+	#define golden7Sub "0x00"
+#endif
+#ifndef golden8Item
+	#define golden8Item "0x58"
+#endif
+#ifndef golden8Sub
+	#define golden8Sub "0x00"
+#endif
+#ifndef golden9Item
+	#define golden9Item "0x58"
+#endif
+#ifndef golden9Sub
+	#define golden9Sub "0x00"
+#endif
+
+//make the item spawning routine "return" the offset of the object in r2
+PUSH
+ORG $543EA
+SHORT 0x1C01 //mov r1, r0
+SHORT 0x1C20 //mov r0, r4
+SHORT 0xBD70 //pop {r4-r6, pc}
+POP
+
+//remove the flags from the golden enemies themselves
+PUSH
+ORG $FE16C + 4 + (0x10 * 0); SHORT 0 //flag 0x31
+ORG $FE16C + 4 + (0x10 * 1); SHORT 0 //flag 0x32
+ORG $FE16C + 4 + (0x10 * 2); SHORT 0 //flag 0x33
+ORG $FE16C + 4 + (0x10 * 3); SHORT 0 //flag 0x34
+ORG $FE16C + 4 + (0x10 * 4); SHORT 0 //flag 0x35
+ORG $FE16C + 4 + (0x10 * 5); SHORT 0 //flag 0x36
+ORG $FE16C + 4 + (0x10 * 6); SHORT 0 //flag 0x37
+ORG $FE16C + 4 + (0x10 * 7); SHORT 0 //flag 0x38
+ORG $FE16C + 4 + (0x10 * 8); SHORT 0 //flag 0x39
+POP
+
+PUSH; ORG $811D0; jumpToHack(goldenDrops); POP
+ALIGN 4
+goldenDrops:
+#incbin "asm/goldenDrops.dmp"
+POIN goldenDropsList
+
+//the wrong flag is being set.......
+//it's 0x100 flags too big
+//is the enemy flag somehow not affected by area flag offseting?
+
+ALIGN 4
+// BYTE area room itemid subid; SHORT flag
+goldenDropsList:
+BYTE 0x05 0x05 golden1Item golden1Sub; SHORT 0x31|0x4000 //Golden Octorok - Wind Ruins
+BYTE 0x06 0x03 golden2Item golden2Sub; SHORT 0x32|0x4000 //Golden Tektite - Mt. Crenel(Lower Area)
+BYTE 0x04 0x00 golden3Item golden3Sub; SHORT 0x33|0x4000 //Golden Rope - Castor Wilds
+BYTE 0x03 0x04 golden4Item golden4Sub; SHORT 0x34|0x4000 //Golden Rope - Eastern Hills
+BYTE 0x07 0x00 golden5Item golden5Sub; SHORT 0x35|0x4000 //Golden Rope - Hyrule Castle Garden
+BYTE 0x0A 0x00 golden6Item golden6Sub; SHORT 0x36|0x4000 //Golden Tektite - Veil Falls
+BYTE 0x06 0x02 golden7Item golden7Sub; SHORT 0x37|0x4000 //Golden Tektite - Mt. Crenel(Middle Area)
+BYTE 0x00 0x00 golden8Item golden8Sub; SHORT 0x38|0x4000 //Golden Octorok - Minish Woods, Witch's Hut area
+BYTE 0x03 0x09 golden9Item golden9Sub; SHORT 0x39|0x4000 //Golden Octorok - Western Wood
+SHORT 0 0 0 //terminator

@@ -1,0 +1,3504 @@
+//Event file generated from Sappy .s format.
+	#include "MPlayDef.event"
+
+	#define	mus_sootopolis_grp  voicegroup091
+	#define	mus_sootopolis_pri  0
+	#define	mus_sootopolis_rev  reverb_set+50
+	#define	mus_sootopolis_mvl  62
+	#define	mus_sootopolis_key  0
+	#define	mus_sootopolis_tbs  1
+	#define	mus_sootopolis_exg  1
+	#define	mus_sootopolis_cmp  1
+
+	// .rodata
+	//	mus_sootopolis
+	ALIGN 4
+
+//**************** Track 1 (Midi-Chn.1) ****************//
+
+mus_sootopolis_1:
+	BYTE	KEYSH   mus_sootopolis_key+0
+// 000   ----------------------------------------
+	BYTE	TEMPO   136*mus_sootopolis_tbs/2
+	BYTE		VOICE   127
+	BYTE		LFOS    44
+	BYTE		BENDR   12
+	BYTE		PAN     c_v+63
+	BYTE		VOL     97*mus_sootopolis_mvl/mxv
+	BYTE	W12
+mus_sootopolis_1_B1:
+// 001   ----------------------------------------
+mus_sootopolis_1_001:
+	BYTE		N02     Gn5   v112
+	BYTE	W16
+	BYTE		        Gn5   v072
+	BYTE	W08
+	BYTE		        Gn5   v112
+	BYTE	W24
+	BYTE		N02   
+	BYTE	W24
+	BYTE	PEND
+// 002   ----------------------------------------
+mus_sootopolis_1_002:
+	BYTE		N02     Gn5   v112
+	BYTE	W16
+	BYTE		        Gn5   v064
+	BYTE	W08
+	BYTE		        Gn5   v112
+	BYTE	W04
+	BYTE		        Gn5   v064
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W08
+	BYTE		        Gn5   v096
+	BYTE	W08
+	BYTE		        Gn5   v112
+	BYTE	W08
+	BYTE		        Gn5   v072
+	BYTE	W08
+	BYTE		        Gn5   v084
+	BYTE	W08
+	BYTE	PEND
+// 003   ----------------------------------------
+mus_sootopolis_1_003:
+	BYTE		N02     Gn5   v112
+	BYTE	W16
+	BYTE		        Gn5   v072
+	BYTE	W08
+	BYTE		        Gn5   v112
+	BYTE	W16
+	BYTE		        Gn5   v064
+	BYTE	W24
+	BYTE		        Gn5   v060
+	BYTE	W08
+	BYTE	PEND
+// 004   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_sootopolis_1_002
+// 005   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_sootopolis_1_001
+// 006   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_sootopolis_1_002
+// 007   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_sootopolis_1_003
+// 008   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_sootopolis_1_002
+// 009   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_sootopolis_1_001
+// 010   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_sootopolis_1_002
+// 011   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_sootopolis_1_001
+// 012   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_sootopolis_1_002
+// 013   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_sootopolis_1_001
+// 014   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_sootopolis_1_002
+// 015   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_sootopolis_1_001
+// 016   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_sootopolis_1_002
+// 017   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_sootopolis_1_001
+// 018   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_sootopolis_1_002
+// 019   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_sootopolis_1_001
+// 020   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_sootopolis_1_002
+// 021   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_sootopolis_1_001
+// 022   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_sootopolis_1_002
+// 023   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_sootopolis_1_001
+// 024   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_sootopolis_1_002
+// 025   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_sootopolis_1_001
+// 026   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_sootopolis_1_002
+// 027   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_sootopolis_1_001
+// 028   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_sootopolis_1_002
+// 029   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_sootopolis_1_001
+// 030   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_sootopolis_1_002
+// 031   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_sootopolis_1_001
+// 032   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_sootopolis_1_002
+// 033   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_sootopolis_1_001
+// 034   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_sootopolis_1_002
+// 035   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_sootopolis_1_001
+// 036   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_sootopolis_1_002
+// 037   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_sootopolis_1_001
+// 038   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_sootopolis_1_002
+// 039   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_sootopolis_1_001
+// 040   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_sootopolis_1_002
+// 041   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_sootopolis_1_002
+	BYTE	GoTo
+	 POIN2	mus_sootopolis_1_B1
+mus_sootopolis_1_B2:
+// 042   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 2 (Midi-Chn.2) ****************//
+
+mus_sootopolis_2:
+	BYTE	KEYSH   mus_sootopolis_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   73
+	BYTE		LFOS    44
+	BYTE		BENDR   12
+	BYTE		PAN     c_v+0
+	BYTE		VOL     93*mus_sootopolis_mvl/mxv
+	BYTE	W02
+	BYTE		N04     Fs4   v112
+	BYTE	W04
+	BYTE		        Gs4 
+	BYTE	W02
+	BYTE		        As4 
+	BYTE	W04
+mus_sootopolis_2_B1:
+// 001   ----------------------------------------
+	BYTE		VOICE   73
+	BYTE		N48     Bn4   v112
+	BYTE	W48
+	BYTE		N08     Fs4 
+	BYTE	W08
+	BYTE		N02     Bn4 
+	BYTE	W02
+	BYTE		        As4 
+	BYTE	W02
+	BYTE		        Gs4 
+	BYTE	W02
+	BYTE		        Fs4 
+	BYTE	W02
+	BYTE		N04     Bn3 
+	BYTE	W04
+	BYTE		        Bn3   v032
+	BYTE	W04
+// 002   ----------------------------------------
+mus_sootopolis_2_002:
+	BYTE		N60     Gs4   v112
+	BYTE	W24
+	BYTE		MOD     7
+	BYTE	W12
+	BYTE		VOL     91*mus_sootopolis_mvl/mxv
+	BYTE	W04
+	BYTE		        82*mus_sootopolis_mvl/mxv
+	BYTE	W04
+	BYTE		        62*mus_sootopolis_mvl/mxv
+	BYTE	W04
+	BYTE		        52*mus_sootopolis_mvl/mxv
+	BYTE	W04
+	BYTE		        33*mus_sootopolis_mvl/mxv
+	BYTE	W04
+	BYTE		        19*mus_sootopolis_mvl/mxv
+	BYTE	W04
+	BYTE		MOD     0
+	BYTE		VOL     93*mus_sootopolis_mvl/mxv
+	BYTE		N04     En4 
+	BYTE	W04
+	BYTE		        Fs4 
+	BYTE	W04
+	BYTE		        Gs4 
+	BYTE	W04
+	BYTE	PEND
+// 003   ----------------------------------------
+	BYTE		N48     An4 
+	BYTE	W24
+	BYTE		MOD     7
+	BYTE		VOL     91*mus_sootopolis_mvl/mxv
+	BYTE	W04
+	BYTE		        82*mus_sootopolis_mvl/mxv
+	BYTE	W04
+	BYTE		        62*mus_sootopolis_mvl/mxv
+	BYTE	W04
+	BYTE		        52*mus_sootopolis_mvl/mxv
+	BYTE	W04
+	BYTE		        33*mus_sootopolis_mvl/mxv
+	BYTE	W04
+	BYTE		        19*mus_sootopolis_mvl/mxv
+	BYTE	W04
+	BYTE		MOD     0
+	BYTE		VOL     93*mus_sootopolis_mvl/mxv
+	BYTE		N04     Bn4 
+	BYTE	W04
+	BYTE		        Bn4   v032
+	BYTE	W12
+	BYTE		        An4   v112
+	BYTE	W08
+// 004   ----------------------------------------
+	BYTE		N16   
+	BYTE	W16
+	BYTE		N04     An4   v032
+	BYTE	W08
+	BYTE		        Dn4   v112
+	BYTE	W04
+	BYTE		        Dn4   v032
+	BYTE	W04
+	BYTE		        Gs4   v112
+	BYTE	W04
+	BYTE		        Gs4   v032
+	BYTE	W04
+	BYTE		N08     Fs4   v112
+	BYTE	W08
+	BYTE		N16     Gs4 
+	BYTE	W16
+	BYTE		N04     Dn4 
+	BYTE	W04
+	BYTE		        Dn4   v032
+	BYTE	W04
+// 005   ----------------------------------------
+	BYTE		N40     Bn4   v112
+	BYTE	W24
+	BYTE		MOD     7
+	BYTE	W16
+	BYTE		        0
+	BYTE		N08     As4 
+	BYTE	W08
+	BYTE		MOD     0
+	BYTE		N08     Fs4 
+	BYTE	W08
+	BYTE		N02     Bn4 
+	BYTE	W02
+	BYTE		        As4 
+	BYTE	W02
+	BYTE		        An4 
+	BYTE	W02
+	BYTE		        Gs4 
+	BYTE	W02
+	BYTE		N04     Bn3 
+	BYTE	W04
+	BYTE		        Bn3   v032
+	BYTE	W04
+// 006   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_sootopolis_2_002
+// 007   ----------------------------------------
+	BYTE		N48     An4   v112
+	BYTE	W24
+	BYTE		MOD     7
+	BYTE		VOL     91*mus_sootopolis_mvl/mxv
+	BYTE	W04
+	BYTE		        82*mus_sootopolis_mvl/mxv
+	BYTE	W04
+	BYTE		        62*mus_sootopolis_mvl/mxv
+	BYTE	W04
+	BYTE		        52*mus_sootopolis_mvl/mxv
+	BYTE	W04
+	BYTE		        41*mus_sootopolis_mvl/mxv
+	BYTE	W04
+	BYTE		        31*mus_sootopolis_mvl/mxv
+	BYTE	W04
+	BYTE		MOD     0
+	BYTE		VOL     93*mus_sootopolis_mvl/mxv
+	BYTE		N04     Bn4 
+	BYTE	W04
+	BYTE		        Bn4   v032
+	BYTE	W12
+	BYTE		        An4   v112
+	BYTE	W08
+// 008   ----------------------------------------
+	BYTE		N16   
+	BYTE	W16
+	BYTE		N04     Dn4 
+	BYTE	W04
+	BYTE		        Dn4   v032
+	BYTE	W04
+	BYTE		N24     Bn4   v112
+	BYTE	W24
+	BYTE		VOICE   58
+	BYTE		VOL     87*mus_sootopolis_mvl/mxv
+	BYTE		N08     Fn3 
+	BYTE	W08
+	BYTE		N04     Bn3 
+	BYTE	W04
+	BYTE		        Bn3   v032
+	BYTE	W04
+	BYTE		        Dn4   v112
+	BYTE	W04
+	BYTE		        Dn4   v032
+	BYTE	W04
+// 009   ----------------------------------------
+	BYTE		N02     Fn4   v112
+	BYTE	W02
+	BYTE		N44     Fs4 
+	BYTE	W22
+	BYTE		MOD     6
+	BYTE		VOL     76*mus_sootopolis_mvl/mxv
+	BYTE	W04
+	BYTE		        70*mus_sootopolis_mvl/mxv
+	BYTE	W04
+	BYTE		        60*mus_sootopolis_mvl/mxv
+	BYTE	W04
+	BYTE		        50*mus_sootopolis_mvl/mxv
+	BYTE	W04
+	BYTE		        37*mus_sootopolis_mvl/mxv
+	BYTE	W04
+	BYTE		        27*mus_sootopolis_mvl/mxv
+	BYTE	W04
+	BYTE		MOD     0
+	BYTE		VOL     89*mus_sootopolis_mvl/mxv
+	BYTE		N02     Dn5   v072
+	BYTE	W02
+	BYTE		N12     Cs5   v076
+	BYTE	W12
+	BYTE		N02     Cn5   v064
+	BYTE	W02
+	BYTE		N04     Bn4   v068
+	BYTE	W08
+// 010   ----------------------------------------
+	BYTE		N48     Fs4   v112
+	BYTE	W24
+	BYTE		MOD     6
+	BYTE		VOL     76*mus_sootopolis_mvl/mxv
+	BYTE	W04
+	BYTE		        70*mus_sootopolis_mvl/mxv
+	BYTE	W04
+	BYTE		        60*mus_sootopolis_mvl/mxv
+	BYTE	W04
+	BYTE		        50*mus_sootopolis_mvl/mxv
+	BYTE	W04
+	BYTE		        37*mus_sootopolis_mvl/mxv
+	BYTE	W04
+	BYTE		        27*mus_sootopolis_mvl/mxv
+	BYTE	W04
+	BYTE		MOD     0
+	BYTE		VOL     89*mus_sootopolis_mvl/mxv
+	BYTE		N04     Fs3 
+	BYTE	W04
+	BYTE		        Fs3   v032
+	BYTE	W04
+	BYTE		        Bn3   v112
+	BYTE	W04
+	BYTE		        Bn3   v032
+	BYTE	W04
+	BYTE		        Dn4   v112
+	BYTE	W04
+	BYTE		        Dn4   v032
+	BYTE	W04
+// 011   ----------------------------------------
+	BYTE		N40     Fs4   v112
+	BYTE	W24
+	BYTE		MOD     5
+	BYTE	W16
+	BYTE		        0
+	BYTE		N04     En4 
+	BYTE	W04
+	BYTE		        En4   v032
+	BYTE	W04
+	BYTE		N16     Ds4   v112
+	BYTE	W16
+	BYTE		N04     Fs4 
+	BYTE	W04
+	BYTE		        Fs4   v032
+	BYTE	W04
+// 012   ----------------------------------------
+	BYTE		N16     En4   v112
+	BYTE	W16
+	BYTE		N04     Dn4 
+	BYTE	W04
+	BYTE		        Dn4   v032
+	BYTE	W04
+	BYTE		        Gs3   v112
+	BYTE	W04
+	BYTE		        Gs3   v032
+	BYTE	W12
+	BYTE		        Bn3   v112
+	BYTE	W04
+	BYTE		        Bn3   v032
+	BYTE	W04
+	BYTE		N16     En4   v112
+	BYTE	W16
+	BYTE		N04     Bn3 
+	BYTE	W04
+	BYTE		        Bn3   v032
+	BYTE	W04
+// 013   ----------------------------------------
+	BYTE		N40     En4   v112
+	BYTE	W24
+	BYTE		MOD     5
+	BYTE		VOL     82*mus_sootopolis_mvl/mxv
+	BYTE	W04
+	BYTE		        68*mus_sootopolis_mvl/mxv
+	BYTE	W04
+	BYTE		        54*mus_sootopolis_mvl/mxv
+	BYTE	W08
+	BYTE		MOD     0
+	BYTE		VOL     91*mus_sootopolis_mvl/mxv
+	BYTE		N04     Fs4 
+	BYTE	W08
+	BYTE		        En4 
+	BYTE	W04
+	BYTE		        En4   v032
+	BYTE	W12
+	BYTE		N08     Bn3   v112
+	BYTE	W08
+// 014   ----------------------------------------
+	BYTE	W08
+	BYTE		N04     Dn4 
+	BYTE	W08
+	BYTE		        Cs4 
+	BYTE	W08
+	BYTE		N02   
+	BYTE	W02
+	BYTE		N14     Dn4 
+	BYTE	W14
+	BYTE		N04     Fs4 
+	BYTE	W04
+	BYTE		        Fs4   v032
+	BYTE	W04
+	BYTE		N08     Bn4   v088
+	BYTE	W08
+	BYTE		N02     As4   v084
+	BYTE	W02
+	BYTE		        An4   v080
+	BYTE	W02
+	BYTE		        Gs4   v076
+	BYTE	W02
+	BYTE		        Gn4 
+	BYTE	W02
+	BYTE		N08     Fs4   v088
+	BYTE	W08
+// 015   ----------------------------------------
+	BYTE		N40     Dn4   v112
+	BYTE	W24
+	BYTE		MOD     6
+	BYTE	W16
+	BYTE		        0
+	BYTE		N04     En4 
+	BYTE	W04
+	BYTE		        En4   v032
+	BYTE	W04
+	BYTE		N16     Dn4   v112
+	BYTE	W16
+	BYTE		N04     Bn3 
+	BYTE	W04
+	BYTE		        Bn3   v032
+	BYTE	W04
+// 016   ----------------------------------------
+	BYTE		N02     Cs4   v112
+	BYTE	W02
+	BYTE		N22     Dn4 
+	BYTE	W22
+	BYTE		N24     Cs4 
+	BYTE	W08
+	BYTE		VOL     82*mus_sootopolis_mvl/mxv
+	BYTE	W04
+	BYTE		MOD     5
+	BYTE		VOL     76*mus_sootopolis_mvl/mxv
+	BYTE	W04
+	BYTE		        70*mus_sootopolis_mvl/mxv
+	BYTE	W04
+	BYTE		        60*mus_sootopolis_mvl/mxv
+	BYTE	W04
+	BYTE		VOICE   1
+	BYTE		MOD     0
+	BYTE		VOL     84*mus_sootopolis_mvl/mxv
+	BYTE		N12     As3 
+	BYTE	W12
+	BYTE		VOL     127*mus_sootopolis_mvl/mxv
+	BYTE		N04     Dn4   v080
+	BYTE	W04
+	BYTE		        En4   v092
+	BYTE	W04
+	BYTE		        Fn4   v096
+	BYTE	W04
+// 017   ----------------------------------------
+	BYTE	W02
+	BYTE		N36     Fs4   v112
+	BYTE	W36
+	BYTE	W02
+	BYTE		N04     Bn3 
+	BYTE	W08
+	BYTE		N02     Cs5 
+	BYTE	W16
+	BYTE		N04     Bn4 
+	BYTE	W08
+// 018   ----------------------------------------
+	BYTE	W02
+	BYTE		N44     Fs4 
+	BYTE	W44
+	BYTE	W02
+	BYTE		N04     Fs3 
+	BYTE	W08
+	BYTE		        Bn3 
+	BYTE	W08
+	BYTE		        Dn4 
+	BYTE	W08
+// 019   ----------------------------------------
+	BYTE	W02
+	BYTE		N36     Fs4 
+	BYTE	W36
+	BYTE	W02
+	BYTE		N04     En4 
+	BYTE	W08
+	BYTE		        Ds4 
+	BYTE	W16
+	BYTE		        Fs4 
+	BYTE	W08
+// 020   ----------------------------------------
+	BYTE	W02
+	BYTE		N16     En4 
+	BYTE	W14
+	BYTE		N04     Gs3 
+	BYTE	W08
+	BYTE		        Bn3 
+	BYTE	W16
+	BYTE		        As3 
+	BYTE	W08
+	BYTE		        Bn3 
+	BYTE	W16
+	BYTE		        En4 
+	BYTE	W08
+// 021   ----------------------------------------
+	BYTE	W02
+	BYTE		N36     Gn4 
+	BYTE	W36
+	BYTE	W02
+	BYTE		N04     An4 
+	BYTE	W08
+	BYTE		        Gn4 
+	BYTE	W16
+	BYTE		N08     En4 
+	BYTE	W08
+// 022   ----------------------------------------
+	BYTE		N04     Fs4 
+	BYTE	W16
+	BYTE		        Dn4 
+	BYTE	W08
+	BYTE		N16     Fs4 
+	BYTE	W16
+	BYTE		N04     As4 
+	BYTE	W08
+	BYTE		N16     Bn4 
+	BYTE	W16
+	BYTE		N04     Dn5 
+	BYTE	W08
+// 023   ----------------------------------------
+	BYTE	W02
+	BYTE		N40     Cs5 
+	BYTE	W36
+	BYTE	W02
+	BYTE		N04     Gs4 
+	BYTE	W08
+	BYTE		N16   
+	BYTE	W16
+	BYTE		N04     Bn4 
+	BYTE	W08
+// 024   ----------------------------------------
+	BYTE		N02     An4 
+	BYTE	W02
+	BYTE		N22     As4 
+	BYTE	W22
+	BYTE		N24     Bn4 
+	BYTE	W24
+	BYTE		N12     Cs5 
+	BYTE	W12
+	BYTE		N04     Bn4 
+	BYTE	W02
+	BYTE		VOICE   17
+	BYTE	W02
+	BYTE		N04     An4 
+	BYTE	W04
+	BYTE		        Gn4 
+	BYTE	W04
+// 025   ----------------------------------------
+	BYTE		VOL     117*mus_sootopolis_mvl/mxv
+	BYTE		N56     Fs4 
+	BYTE	W56
+	BYTE		N04     Gn4 
+	BYTE	W04
+	BYTE		        Gn4   v032
+	BYTE	W04
+	BYTE		        Fs4   v112
+	BYTE	W04
+	BYTE		        Fs4   v032
+	BYTE	W04
+// 026   ----------------------------------------
+	BYTE		N56     An4   v112
+	BYTE	W56
+	BYTE		N04   
+	BYTE	W08
+	BYTE		        Bn4 
+	BYTE	W08
+// 027   ----------------------------------------
+	BYTE		N40     Cn5 
+	BYTE	W48
+	BYTE		N04   
+	BYTE	W04
+	BYTE		        Cn5   v032
+	BYTE	W04
+	BYTE		        Bn4   v112
+	BYTE	W04
+	BYTE		        Bn4   v032
+	BYTE	W04
+	BYTE		        An4   v112
+	BYTE	W04
+	BYTE		        An4   v032
+	BYTE	W04
+// 028   ----------------------------------------
+	BYTE		N16     Bn4   v112
+	BYTE	W16
+	BYTE		N02     Ds4 
+	BYTE	W08
+	BYTE		N16     An4 
+	BYTE	W16
+	BYTE		N02     Ds4 
+	BYTE	W08
+	BYTE		N16     Fs4 
+	BYTE	W16
+	BYTE		N02     Ds4 
+	BYTE	W02
+	BYTE		        En4 
+	BYTE	W02
+	BYTE		        Fn4 
+	BYTE	W02
+	BYTE		        Fs4 
+	BYTE	W02
+// 029   ----------------------------------------
+	BYTE		N56     Gn4 
+	BYTE	W56
+	BYTE		N04     An4 
+	BYTE	W04
+	BYTE		        An4   v032
+	BYTE	W04
+	BYTE		        Gn4   v112
+	BYTE	W04
+	BYTE		        Gn4   v032
+	BYTE	W04
+// 030   ----------------------------------------
+	BYTE		        Fs4   v112
+	BYTE	W04
+	BYTE		        Fs4   v032
+	BYTE	W04
+	BYTE		N48     Dn5   v112
+	BYTE	W48
+	BYTE		N04     Dn4 
+	BYTE	W04
+	BYTE		        Dn4   v032
+	BYTE	W04
+	BYTE		        Fs4   v112
+	BYTE	W04
+	BYTE		        Fs4   v032
+	BYTE	W04
+// 031   ----------------------------------------
+	BYTE		N48     En4   v112
+	BYTE	W48
+	BYTE		N04     Bn3 
+	BYTE	W04
+	BYTE		        Bn3   v032
+	BYTE	W12
+	BYTE		        Dn4   v112
+	BYTE	W04
+	BYTE		        Dn4   v032
+	BYTE	W04
+// 032   ----------------------------------------
+	BYTE		N16     Cs4   v112
+	BYTE	W16
+	BYTE		N04     En3 
+	BYTE	W04
+	BYTE		        En3   v032
+	BYTE	W04
+	BYTE		N16     Dn4   v112
+	BYTE	W16
+	BYTE		N04     Fs3 
+	BYTE	W04
+	BYTE		        Fs3   v032
+	BYTE	W04
+	BYTE		N12     En4   v112
+	BYTE	W12
+	BYTE		VOICE   24
+	BYTE		VOL     121*mus_sootopolis_mvl/mxv
+	BYTE		N04     Bn4 
+	BYTE	W04
+	BYTE		        An4 
+	BYTE	W04
+	BYTE		        Gn4 
+	BYTE	W04
+// 033   ----------------------------------------
+	BYTE		N56     Fs4 
+	BYTE	W24
+	BYTE		MOD     7
+	BYTE	W32
+	BYTE		        0
+	BYTE		N04     Gn4 
+	BYTE	W04
+	BYTE		        Gn4   v032
+	BYTE	W04
+	BYTE		        Fs4   v112
+	BYTE	W04
+	BYTE		        Fs4   v032
+	BYTE	W04
+// 034   ----------------------------------------
+	BYTE		N56     An4   v112
+	BYTE	W24
+	BYTE		MOD     7
+	BYTE	W32
+	BYTE		        0
+	BYTE		N04   
+	BYTE	W04
+	BYTE		        An4   v032
+	BYTE	W04
+	BYTE		        Bn4   v112
+	BYTE	W04
+	BYTE		        Bn4   v032
+	BYTE	W04
+// 035   ----------------------------------------
+	BYTE		N40     Cn5   v112
+	BYTE	W24
+	BYTE		MOD     6
+	BYTE	W24
+	BYTE		        0
+	BYTE		N04   
+	BYTE	W04
+	BYTE		        Cn5   v032
+	BYTE	W04
+	BYTE		        Dn5   v112
+	BYTE	W04
+	BYTE		        Dn5   v032
+	BYTE	W04
+	BYTE		        En5   v112
+	BYTE	W04
+	BYTE		        En5   v032
+	BYTE	W04
+// 036   ----------------------------------------
+	BYTE		N24     Fs5   v112
+	BYTE	W24
+	BYTE		        En5 
+	BYTE	W24
+	BYTE		        Ds5 
+	BYTE	W24
+// 037   ----------------------------------------
+	BYTE		N40     Gn5 
+	BYTE	W24
+	BYTE		MOD     7
+	BYTE	W16
+	BYTE		        0
+	BYTE		N04     An5 
+	BYTE	W04
+	BYTE		        An5   v032
+	BYTE	W04
+	BYTE		        Gn5   v112
+	BYTE	W04
+	BYTE		        Gn5   v032
+	BYTE	W04
+	BYTE		        Fs5   v112
+	BYTE	W04
+	BYTE		        Fs5   v032
+	BYTE	W04
+	BYTE		        En5   v112
+	BYTE	W04
+	BYTE		        En5   v032
+	BYTE	W04
+// 038   ----------------------------------------
+	BYTE		        Dn5   v112
+	BYTE	W04
+	BYTE		        Dn5   v032
+	BYTE	W04
+	BYTE		N40     Fs5   v112
+	BYTE	W16
+	BYTE		MOD     5
+	BYTE	W24
+	BYTE		        0
+	BYTE		N04     Dn5 
+	BYTE	W04
+	BYTE		        Dn5   v032
+	BYTE	W12
+	BYTE		        Fs5   v112
+	BYTE	W04
+	BYTE		        Fs5   v032
+	BYTE	W04
+// 039   ----------------------------------------
+	BYTE		N40     En5   v112
+	BYTE	W24
+	BYTE		MOD     6
+	BYTE	W16
+	BYTE		        0
+	BYTE		N04     Bn4 
+	BYTE	W04
+	BYTE		        Bn4   v032
+	BYTE	W04
+	BYTE		        En5   v112
+	BYTE	W04
+	BYTE		        En5   v032
+	BYTE	W12
+	BYTE		        Bn4   v112
+	BYTE	W04
+	BYTE		        Bn4   v032
+	BYTE	W04
+// 040   ----------------------------------------
+	BYTE		N16     Cs4   v112
+	BYTE	W16
+	BYTE		N04     An3 
+	BYTE	W04
+	BYTE		        An3   v032
+	BYTE	W04
+	BYTE		N16     Dn4   v112
+	BYTE	W16
+	BYTE		N04     Bn3 
+	BYTE	W04
+	BYTE		        Bn3   v032
+	BYTE	W04
+	BYTE		N16     En4   v112
+	BYTE	W16
+	BYTE		N04     Gs3 
+	BYTE	W04
+	BYTE		        Gs3   v032
+	BYTE	W04
+// 041   ----------------------------------------
+	BYTE		N16     Fs4   v112
+	BYTE	W16
+	BYTE		N04     Cs4 
+	BYTE	W04
+	BYTE		        Cs4   v032
+	BYTE	W04
+	BYTE		N16     Gs4   v112
+	BYTE	W16
+	BYTE		N04     Cs4 
+	BYTE	W04
+	BYTE		        Cs4   v032
+	BYTE	W04
+	BYTE		N16     As4   v112
+	BYTE	W16
+	BYTE		N04     Cs4 
+	BYTE	W04
+	BYTE		        Cs4   v032
+	BYTE	W04
+	BYTE	GoTo
+	 POIN2	mus_sootopolis_2_B1
+mus_sootopolis_2_B2:
+// 042   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 3 (Midi-Chn.3) ****************//
+
+mus_sootopolis_3:
+	BYTE	KEYSH   mus_sootopolis_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   126
+	BYTE		LFOS    44
+	BYTE		BENDR   12
+	BYTE		PAN     c_v+63
+	BYTE		VOL     95*mus_sootopolis_mvl/mxv
+	BYTE	W12
+mus_sootopolis_3_B1:
+// 001   ----------------------------------------
+	BYTE	W72
+// 002   ----------------------------------------
+	BYTE	W72
+// 003   ----------------------------------------
+	BYTE	W48
+	BYTE		N16     En5   v112
+	BYTE	W24
+// 004   ----------------------------------------
+	BYTE	W72
+// 005   ----------------------------------------
+	BYTE	W72
+// 006   ----------------------------------------
+	BYTE	W72
+// 007   ----------------------------------------
+	BYTE	W48
+	BYTE		N16   
+	BYTE	W24
+// 008   ----------------------------------------
+	BYTE	W72
+// 009   ----------------------------------------
+	BYTE	W72
+// 010   ----------------------------------------
+	BYTE	W72
+// 011   ----------------------------------------
+	BYTE	W72
+// 012   ----------------------------------------
+	BYTE	W72
+// 013   ----------------------------------------
+	BYTE	W72
+// 014   ----------------------------------------
+	BYTE	W72
+// 015   ----------------------------------------
+	BYTE	W72
+// 016   ----------------------------------------
+	BYTE	W72
+// 017   ----------------------------------------
+	BYTE	W72
+// 018   ----------------------------------------
+	BYTE	W72
+// 019   ----------------------------------------
+	BYTE	W72
+// 020   ----------------------------------------
+	BYTE	W72
+// 021   ----------------------------------------
+	BYTE	W72
+// 022   ----------------------------------------
+	BYTE	W72
+// 023   ----------------------------------------
+	BYTE	W72
+// 024   ----------------------------------------
+	BYTE	W72
+// 025   ----------------------------------------
+	BYTE	W72
+// 026   ----------------------------------------
+	BYTE	W72
+// 027   ----------------------------------------
+	BYTE	W72
+// 028   ----------------------------------------
+	BYTE	W72
+// 029   ----------------------------------------
+	BYTE	W72
+// 030   ----------------------------------------
+	BYTE	W72
+// 031   ----------------------------------------
+	BYTE	W72
+// 032   ----------------------------------------
+	BYTE	W72
+// 033   ----------------------------------------
+	BYTE	W72
+// 034   ----------------------------------------
+	BYTE	W72
+// 035   ----------------------------------------
+	BYTE	W72
+// 036   ----------------------------------------
+	BYTE	W72
+// 037   ----------------------------------------
+	BYTE	W72
+// 038   ----------------------------------------
+	BYTE	W72
+// 039   ----------------------------------------
+	BYTE	W72
+// 040   ----------------------------------------
+	BYTE	W72
+// 041   ----------------------------------------
+	BYTE	W72
+	BYTE	GoTo
+	 POIN2	mus_sootopolis_3_B1
+mus_sootopolis_3_B2:
+// 042   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 4 (Midi-Chn.4) ****************//
+
+mus_sootopolis_4:
+	BYTE	KEYSH   mus_sootopolis_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   80
+	BYTE		LFOS    44
+	BYTE		XCMD    xIECV   18
+	BYTE		        xIECV   16
+	BYTE		BENDR   12
+	BYTE		PAN     c_v-64
+	BYTE		VOL     76*mus_sootopolis_mvl/mxv
+	BYTE	W12
+mus_sootopolis_4_B1:
+// 001   ----------------------------------------
+mus_sootopolis_4_001:
+	BYTE		N02     Fs2   v112
+	BYTE	W16
+	BYTE		N04     Dn3 
+	BYTE	W24
+	BYTE		N02     Fs2 
+	BYTE	W08
+	BYTE		N08     Dn3 
+	BYTE	W16
+	BYTE		N02     Fs2 
+	BYTE	W08
+	BYTE	PEND
+// 002   ----------------------------------------
+mus_sootopolis_4_002:
+	BYTE		N02     Fs2   v112
+	BYTE	W16
+	BYTE		N02   
+	BYTE	W08
+	BYTE		N16     En3 
+	BYTE	W16
+	BYTE		N04     Fs2 
+	BYTE	W08
+	BYTE		        Cs3 
+	BYTE	W08
+	BYTE		        As2 
+	BYTE	W08
+	BYTE		        Fs2 
+	BYTE	W08
+	BYTE	PEND
+// 003   ----------------------------------------
+mus_sootopolis_4_003:
+	BYTE		N02     Fs2   v112
+	BYTE	W16
+	BYTE		N04     Fs3 
+	BYTE	W24
+	BYTE		N02     Fs2 
+	BYTE	W08
+	BYTE		N08     Fs3 
+	BYTE	W16
+	BYTE		N02     Fs2 
+	BYTE	W08
+	BYTE	PEND
+// 004   ----------------------------------------
+	BYTE		N02   
+	BYTE	W16
+	BYTE		N02   
+	BYTE	W08
+	BYTE		N24     En3 
+	BYTE	W24
+	BYTE		N04   
+	BYTE	W08
+	BYTE		        Fs3 
+	BYTE	W08
+	BYTE		        En3 
+	BYTE	W08
+// 005   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_sootopolis_4_001
+// 006   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_sootopolis_4_002
+// 007   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_sootopolis_4_003
+// 008   ----------------------------------------
+	BYTE		N02     Fs2   v112
+	BYTE	W16
+	BYTE		N02   
+	BYTE	W08
+	BYTE		N24     Fn3 
+	BYTE	W48
+// 009   ----------------------------------------
+	BYTE		N02     Fs2 
+	BYTE	W16
+	BYTE		N04     Dn3 
+	BYTE	W24
+	BYTE		        Cs3 
+	BYTE	W08
+	BYTE		N08     Dn3 
+	BYTE	W16
+	BYTE		N02     Fs2 
+	BYTE	W08
+// 010   ----------------------------------------
+	BYTE		N02   
+	BYTE	W16
+	BYTE		N04     Cs3 
+	BYTE	W24
+	BYTE		        Cn3 
+	BYTE	W08
+	BYTE		N08     Cs3 
+	BYTE	W16
+	BYTE		N02     Fs2 
+	BYTE	W08
+// 011   ----------------------------------------
+	BYTE		N02   
+	BYTE	W16
+	BYTE		N04     Cn3 
+	BYTE	W24
+	BYTE		        Bn2 
+	BYTE	W08
+	BYTE		        Cn3 
+	BYTE	W08
+	BYTE		        Bn2 
+	BYTE	W08
+	BYTE		        An2 
+	BYTE	W08
+// 012   ----------------------------------------
+mus_sootopolis_4_012:
+	BYTE		N16     Bn2   v112
+	BYTE	W16
+	BYTE		N02     Gs2 
+	BYTE	W08
+	BYTE		N16   
+	BYTE	W16
+	BYTE		N02     En2 
+	BYTE	W08
+	BYTE		N24     Bn2 
+	BYTE	W24
+	BYTE	PEND
+// 013   ----------------------------------------
+	BYTE		N02     Gn2 
+	BYTE	W16
+	BYTE		N04     Bn2 
+	BYTE	W24
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N08   
+	BYTE	W16
+	BYTE		N02     Fs2 
+	BYTE	W08
+// 014   ----------------------------------------
+	BYTE		N02   
+	BYTE	W16
+	BYTE		N04     An2 
+	BYTE	W24
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N08   
+	BYTE	W16
+	BYTE		N02     Fs2 
+	BYTE	W08
+// 015   ----------------------------------------
+	BYTE		        Fn2 
+	BYTE	W16
+	BYTE		N04     Gs2 
+	BYTE	W24
+	BYTE		N04   
+	BYTE	W08
+	BYTE		        Bn2 
+	BYTE	W08
+	BYTE		        Gs2 
+	BYTE	W08
+	BYTE		        Fn2 
+	BYTE	W08
+// 016   ----------------------------------------
+	BYTE		N08     Fs2 
+	BYTE	W08
+	BYTE		N04     Cs2 
+	BYTE	W08
+	BYTE		        As1 
+	BYTE	W08
+	BYTE		N08     Fs2 
+	BYTE	W08
+	BYTE		N04     Cs2 
+	BYTE	W08
+	BYTE		        As1 
+	BYTE	W08
+	BYTE		N08     As2 
+	BYTE	W08
+	BYTE		N04     Fs2 
+	BYTE	W08
+	BYTE		        Cs2 
+	BYTE	W08
+// 017   ----------------------------------------
+	BYTE		N02     Fs2 
+	BYTE	W16
+	BYTE		N04     Dn3 
+	BYTE	W24
+	BYTE		        Cs3 
+	BYTE	W08
+	BYTE		N08     Dn3 
+	BYTE	W16
+	BYTE		N02   
+	BYTE	W08
+// 018   ----------------------------------------
+	BYTE		        Fs2 
+	BYTE	W16
+	BYTE		N04     Cs3 
+	BYTE	W24
+	BYTE		        Bn2 
+	BYTE	W08
+	BYTE		N08     Cs3 
+	BYTE	W16
+	BYTE		N02   
+	BYTE	W08
+// 019   ----------------------------------------
+	BYTE		        Fs2 
+	BYTE	W16
+	BYTE		N04     Cn3 
+	BYTE	W24
+	BYTE		        Bn2 
+	BYTE	W08
+	BYTE		        Cn3 
+	BYTE	W08
+	BYTE		        Bn2 
+	BYTE	W08
+	BYTE		        Fs2 
+	BYTE	W08
+// 020   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_sootopolis_4_012
+// 021   ----------------------------------------
+	BYTE		N02     Gn2   v112
+	BYTE	W16
+	BYTE		N04     Bn2 
+	BYTE	W24
+	BYTE		        As2 
+	BYTE	W08
+	BYTE		N08     Bn2 
+	BYTE	W16
+	BYTE		N02     Gn2 
+	BYTE	W08
+// 022   ----------------------------------------
+	BYTE		N16     Fs2 
+	BYTE	W16
+	BYTE		N04     Dn2 
+	BYTE	W08
+	BYTE		N16     Bn2 
+	BYTE	W16
+	BYTE		N04     Gn2 
+	BYTE	W08
+	BYTE		N16     Dn3 
+	BYTE	W16
+	BYTE		N04     Bn2 
+	BYTE	W08
+// 023   ----------------------------------------
+	BYTE		N24     Fn3 
+	BYTE	W24
+	BYTE		N04     Cs3 
+	BYTE	W08
+	BYTE		        Bn2 
+	BYTE	W08
+	BYTE		        As2 
+	BYTE	W08
+	BYTE		        Gs2 
+	BYTE	W08
+	BYTE		        As2 
+	BYTE	W08
+	BYTE		        Bn2 
+	BYTE	W08
+// 024   ----------------------------------------
+	BYTE		N08     Cs3 
+	BYTE	W08
+	BYTE		N04     As2 
+	BYTE	W08
+	BYTE		        Fs2 
+	BYTE	W08
+	BYTE		N08     En3 
+	BYTE	W08
+	BYTE		N04     Cs3 
+	BYTE	W08
+	BYTE		        As2 
+	BYTE	W08
+	BYTE		N08     Fs3 
+	BYTE	W08
+	BYTE		N04     Cs3 
+	BYTE	W08
+	BYTE		        As2 
+	BYTE	W08
+// 025   ----------------------------------------
+	BYTE		N02     An2 
+	BYTE	W16
+	BYTE		N04     An3 
+	BYTE	W24
+	BYTE		        Fs3 
+	BYTE	W08
+	BYTE		N08     An3 
+	BYTE	W16
+	BYTE		N02     An2 
+	BYTE	W08
+// 026   ----------------------------------------
+	BYTE		        Cs3 
+	BYTE	W16
+	BYTE		N04     En3 
+	BYTE	W24
+	BYTE		        Dn3 
+	BYTE	W08
+	BYTE		N08     En3 
+	BYTE	W16
+	BYTE		N02     Cs3 
+	BYTE	W08
+// 027   ----------------------------------------
+	BYTE		        Cn3 
+	BYTE	W16
+	BYTE		N04     En3 
+	BYTE	W24
+	BYTE		        Dn3 
+	BYTE	W08
+	BYTE		        En3 
+	BYTE	W08
+	BYTE		        Dn3 
+	BYTE	W08
+	BYTE		        Cn3 
+	BYTE	W08
+// 028   ----------------------------------------
+	BYTE		N16     Fs3 
+	BYTE	W16
+	BYTE		N02     Bn2 
+	BYTE	W08
+	BYTE		N16     Ds3 
+	BYTE	W16
+	BYTE		N02     An2 
+	BYTE	W08
+	BYTE		N24     Bn2 
+	BYTE	W24
+// 029   ----------------------------------------
+	BYTE		N02     As2 
+	BYTE	W16
+	BYTE		N04     Dn3 
+	BYTE	W24
+	BYTE		        En3 
+	BYTE	W08
+	BYTE		        Dn3 
+	BYTE	W08
+	BYTE		        Cs3 
+	BYTE	W08
+	BYTE		        Bn2 
+	BYTE	W08
+// 030   ----------------------------------------
+	BYTE		N02     Fs2 
+	BYTE	W16
+	BYTE		N04     An2 
+	BYTE	W24
+	BYTE		        Gs2 
+	BYTE	W08
+	BYTE		        An2 
+	BYTE	W08
+	BYTE		        Dn3 
+	BYTE	W08
+	BYTE		        Fs3 
+	BYTE	W08
+// 031   ----------------------------------------
+	BYTE		N02     Fn2 
+	BYTE	W16
+	BYTE		N04     Bn2 
+	BYTE	W24
+	BYTE		        En2 
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W08
+	BYTE		        Fs2 
+	BYTE	W08
+	BYTE		        Gn2 
+	BYTE	W08
+// 032   ----------------------------------------
+	BYTE		N08     En2 
+	BYTE	W08
+	BYTE		N04     Cs2 
+	BYTE	W08
+	BYTE		        An1 
+	BYTE	W08
+	BYTE		N08     Fs2 
+	BYTE	W08
+	BYTE		N04     Dn2 
+	BYTE	W08
+	BYTE		        Bn1 
+	BYTE	W08
+	BYTE		N08     Gn2 
+	BYTE	W08
+	BYTE		N04     En2 
+	BYTE	W08
+	BYTE		        Cs2 
+	BYTE	W08
+// 033   ----------------------------------------
+	BYTE		N02     Fs3 
+	BYTE	W16
+	BYTE		N04     An3 
+	BYTE	W24
+	BYTE		        Gs3 
+	BYTE	W08
+	BYTE		N08     An3 
+	BYTE	W16
+	BYTE		N02     Fs3 
+	BYTE	W08
+// 034   ----------------------------------------
+	BYTE		        En3 
+	BYTE	W16
+	BYTE		N04     Gn3 
+	BYTE	W24
+	BYTE		        Fs3 
+	BYTE	W08
+	BYTE		N08     Gn3 
+	BYTE	W16
+	BYTE		N02     En3 
+	BYTE	W08
+// 035   ----------------------------------------
+	BYTE		N02   
+	BYTE	W16
+	BYTE		N04     Gn3 
+	BYTE	W24
+	BYTE		        Fs3 
+	BYTE	W08
+	BYTE		        En3 
+	BYTE	W08
+	BYTE		        Fs3 
+	BYTE	W08
+	BYTE		        An3 
+	BYTE	W08
+// 036   ----------------------------------------
+	BYTE		N16     Ds4 
+	BYTE	W16
+	BYTE		N02     Fs3 
+	BYTE	W08
+	BYTE		N16     Cn4 
+	BYTE	W16
+	BYTE		N02     Fs3 
+	BYTE	W08
+	BYTE		N24     Bn3 
+	BYTE	W24
+// 037   ----------------------------------------
+	BYTE		N02     Bn2 
+	BYTE	W16
+	BYTE		N04     As3 
+	BYTE	W24
+	BYTE		        Cn4 
+	BYTE	W08
+	BYTE		        As3 
+	BYTE	W08
+	BYTE		        An3 
+	BYTE	W08
+	BYTE		        Gn3 
+	BYTE	W08
+// 038   ----------------------------------------
+	BYTE		N02     As2 
+	BYTE	W16
+	BYTE		N04     An3 
+	BYTE	W24
+	BYTE		        Bn3 
+	BYTE	W08
+	BYTE		        An3 
+	BYTE	W08
+	BYTE		        Gn3 
+	BYTE	W08
+	BYTE		        Fs3 
+	BYTE	W08
+// 039   ----------------------------------------
+	BYTE		N16     Gs3 
+	BYTE	W16
+	BYTE		N04     En3 
+	BYTE	W08
+	BYTE		N16   
+	BYTE	W16
+	BYTE		N04     Bn2 
+	BYTE	W08
+	BYTE		N16     Bn3 
+	BYTE	W16
+	BYTE		N04     En3 
+	BYTE	W08
+// 040   ----------------------------------------
+	BYTE		N08   
+	BYTE	W08
+	BYTE		N04     Cs3 
+	BYTE	W08
+	BYTE		        An2 
+	BYTE	W08
+	BYTE		N08     Fs3 
+	BYTE	W08
+	BYTE		N04     Dn3 
+	BYTE	W08
+	BYTE		        Bn2 
+	BYTE	W08
+	BYTE		N08     Gs3 
+	BYTE	W08
+	BYTE		N04     En3 
+	BYTE	W08
+	BYTE		        Bn2 
+	BYTE	W08
+// 041   ----------------------------------------
+	BYTE		N08     Fs3 
+	BYTE	W08
+	BYTE		N04     En3 
+	BYTE	W08
+	BYTE		        Cs3 
+	BYTE	W08
+	BYTE		N08     As3 
+	BYTE	W08
+	BYTE		N04     Fs3 
+	BYTE	W08
+	BYTE		        En3 
+	BYTE	W08
+	BYTE		N08     As3 
+	BYTE	W08
+	BYTE		N04     Fs3 
+	BYTE	W08
+	BYTE		        Cs3 
+	BYTE	W08
+	BYTE	GoTo
+	 POIN2	mus_sootopolis_4_B1
+mus_sootopolis_4_B2:
+// 042   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 5 (Midi-Chn.5) ****************//
+
+mus_sootopolis_5:
+	BYTE	KEYSH   mus_sootopolis_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   81
+	BYTE		LFOS    44
+	BYTE		XCMD    xIECV   18
+	BYTE		        xIECV   16
+	BYTE		BENDR   12
+	BYTE		PAN     c_v+63
+	BYTE		VOL     76*mus_sootopolis_mvl/mxv
+	BYTE	W12
+mus_sootopolis_5_B1:
+// 001   ----------------------------------------
+mus_sootopolis_5_001:
+	BYTE		N02     Bn2   v112
+	BYTE	W16
+	BYTE		N04     Fs3 
+	BYTE	W24
+	BYTE		N02     Bn2 
+	BYTE	W08
+	BYTE		N08     Fs3 
+	BYTE	W16
+	BYTE		N02     Bn2 
+	BYTE	W08
+	BYTE	PEND
+// 002   ----------------------------------------
+mus_sootopolis_5_002:
+	BYTE		N02     Bn2   v112
+	BYTE	W16
+	BYTE		N02   
+	BYTE	W08
+	BYTE		N16     Gs3 
+	BYTE	W16
+	BYTE		N04     Bn2 
+	BYTE	W08
+	BYTE		        Fs3 
+	BYTE	W08
+	BYTE		        En3 
+	BYTE	W08
+	BYTE		        Cs3 
+	BYTE	W08
+	BYTE	PEND
+// 003   ----------------------------------------
+mus_sootopolis_5_003:
+	BYTE		N02     Bn2   v112
+	BYTE	W16
+	BYTE		N04     An3 
+	BYTE	W24
+	BYTE		N02     Bn2 
+	BYTE	W08
+	BYTE		N08     An3 
+	BYTE	W16
+	BYTE		N02     Bn2 
+	BYTE	W08
+	BYTE	PEND
+// 004   ----------------------------------------
+	BYTE		N02   
+	BYTE	W16
+	BYTE		N02   
+	BYTE	W08
+	BYTE		N24     Gs3 
+	BYTE	W24
+	BYTE		N04   
+	BYTE	W08
+	BYTE		        An3 
+	BYTE	W08
+	BYTE		        Gs3 
+	BYTE	W08
+// 005   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_sootopolis_5_001
+// 006   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_sootopolis_5_002
+// 007   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_sootopolis_5_003
+// 008   ----------------------------------------
+	BYTE		N02     Bn2   v112
+	BYTE	W16
+	BYTE		N02   
+	BYTE	W08
+	BYTE		N24     Bn3 
+	BYTE	W48
+// 009   ----------------------------------------
+	BYTE		N02     Dn3 
+	BYTE	W16
+	BYTE		N04     Fs3 
+	BYTE	W24
+	BYTE		        Fn3 
+	BYTE	W08
+	BYTE		N08     Fs3 
+	BYTE	W16
+	BYTE		N02     Dn3 
+	BYTE	W08
+// 010   ----------------------------------------
+	BYTE		        Cs3 
+	BYTE	W16
+	BYTE		N04     Fs3 
+	BYTE	W24
+	BYTE		        Fn3 
+	BYTE	W08
+	BYTE		N08     Fs3 
+	BYTE	W16
+	BYTE		N02     Cs3 
+	BYTE	W08
+// 011   ----------------------------------------
+	BYTE		        Cn3 
+	BYTE	W16
+	BYTE		N04     Fs3 
+	BYTE	W24
+	BYTE		        Fn3 
+	BYTE	W08
+	BYTE		        Fs3 
+	BYTE	W08
+	BYTE		        En3 
+	BYTE	W08
+	BYTE		        Dn3 
+	BYTE	W08
+// 012   ----------------------------------------
+	BYTE		N16     En3 
+	BYTE	W16
+	BYTE		N02     Bn2 
+	BYTE	W08
+	BYTE		N16     Ds3 
+	BYTE	W16
+	BYTE		N02     Bn2 
+	BYTE	W08
+	BYTE		N24     En3 
+	BYTE	W24
+// 013   ----------------------------------------
+	BYTE		N02     Dn3 
+	BYTE	W16
+	BYTE		N04     En3 
+	BYTE	W24
+	BYTE		        Fs3 
+	BYTE	W08
+	BYTE		N08     En3 
+	BYTE	W16
+	BYTE		N02     Bn2 
+	BYTE	W08
+// 014   ----------------------------------------
+	BYTE		        An2 
+	BYTE	W16
+	BYTE		N04     Dn3 
+	BYTE	W24
+	BYTE		        Cs3 
+	BYTE	W08
+	BYTE		N08     Dn3 
+	BYTE	W16
+	BYTE		N02     An2 
+	BYTE	W08
+// 015   ----------------------------------------
+	BYTE		        Gs2 
+	BYTE	W16
+	BYTE		N04     Dn3 
+	BYTE	W24
+	BYTE		        En3 
+	BYTE	W08
+	BYTE		        Dn3 
+	BYTE	W08
+	BYTE		        Cs3 
+	BYTE	W08
+	BYTE		        Bn2 
+	BYTE	W08
+// 016   ----------------------------------------
+	BYTE		N08     As2 
+	BYTE	W08
+	BYTE		N04     Fs2 
+	BYTE	W08
+	BYTE		        Cs2 
+	BYTE	W08
+	BYTE		N08     Bn2 
+	BYTE	W08
+	BYTE		N04     Fs2 
+	BYTE	W08
+	BYTE		        Cs2 
+	BYTE	W08
+	BYTE		N08     Cs3 
+	BYTE	W08
+	BYTE		N04     As2 
+	BYTE	W08
+	BYTE		        Fs2 
+	BYTE	W08
+// 017   ----------------------------------------
+	BYTE		N02     Fs3 
+	BYTE	W16
+	BYTE		N04     Bn3 
+	BYTE	W24
+	BYTE		        As3 
+	BYTE	W08
+	BYTE		N08     Bn3 
+	BYTE	W16
+	BYTE		N02     Fs3 
+	BYTE	W08
+// 018   ----------------------------------------
+	BYTE		N02   
+	BYTE	W16
+	BYTE		N04     As3 
+	BYTE	W24
+	BYTE		        Gs3 
+	BYTE	W08
+	BYTE		N08     As3 
+	BYTE	W16
+	BYTE		N02     Fs3 
+	BYTE	W08
+// 019   ----------------------------------------
+	BYTE		N02   
+	BYTE	W16
+	BYTE		N04     An3 
+	BYTE	W24
+	BYTE		        Gs3 
+	BYTE	W08
+	BYTE		        An3 
+	BYTE	W08
+	BYTE		        Gs3 
+	BYTE	W08
+	BYTE		        En3 
+	BYTE	W08
+// 020   ----------------------------------------
+	BYTE		N16     Gs3 
+	BYTE	W16
+	BYTE		N02     En3 
+	BYTE	W08
+	BYTE		N16     Gn3 
+	BYTE	W16
+	BYTE		N02     En3 
+	BYTE	W08
+	BYTE		N24     Gs3 
+	BYTE	W24
+// 021   ----------------------------------------
+	BYTE		N02     En3 
+	BYTE	W16
+	BYTE		N04     Gn3 
+	BYTE	W24
+	BYTE		        Fs3 
+	BYTE	W08
+	BYTE		N08     Gn3 
+	BYTE	W16
+	BYTE		N02     En3 
+	BYTE	W08
+// 022   ----------------------------------------
+	BYTE		N16     Dn3 
+	BYTE	W16
+	BYTE		N04     Bn2 
+	BYTE	W08
+	BYTE		N16     Fs3 
+	BYTE	W16
+	BYTE		N04     En3 
+	BYTE	W08
+	BYTE		N16     Bn3 
+	BYTE	W16
+	BYTE		N04     Fs3 
+	BYTE	W08
+// 023   ----------------------------------------
+	BYTE		N24     Cs4 
+	BYTE	W24
+	BYTE		N04     Bn3 
+	BYTE	W08
+	BYTE		        As3 
+	BYTE	W08
+	BYTE		        Gs3 
+	BYTE	W08
+	BYTE		        Fn3 
+	BYTE	W08
+	BYTE		        Fs3 
+	BYTE	W08
+	BYTE		        Gs3 
+	BYTE	W08
+// 024   ----------------------------------------
+	BYTE		N08     As3 
+	BYTE	W08
+	BYTE		N04     Fs3 
+	BYTE	W08
+	BYTE		        Cs3 
+	BYTE	W08
+	BYTE		N08     Bn3 
+	BYTE	W08
+	BYTE		N04     Fs3 
+	BYTE	W08
+	BYTE		        Cs3 
+	BYTE	W08
+	BYTE		N08     Cs4 
+	BYTE	W08
+	BYTE		N04     As3 
+	BYTE	W08
+	BYTE		        Fs3 
+	BYTE	W08
+// 025   ----------------------------------------
+	BYTE		N02   
+	BYTE	W16
+	BYTE		N04     Dn4 
+	BYTE	W24
+	BYTE		        Cs4 
+	BYTE	W08
+	BYTE		N08     Dn4 
+	BYTE	W16
+	BYTE		N02     Fs3 
+	BYTE	W08
+// 026   ----------------------------------------
+	BYTE		        An3 
+	BYTE	W16
+	BYTE		N04     Cs4 
+	BYTE	W24
+	BYTE		        Bn3 
+	BYTE	W08
+	BYTE		N08     Cs4 
+	BYTE	W16
+	BYTE		N02     An3 
+	BYTE	W08
+// 027   ----------------------------------------
+	BYTE		        Gn3 
+	BYTE	W16
+	BYTE		N04     Cn4 
+	BYTE	W24
+	BYTE		        Bn3 
+	BYTE	W08
+	BYTE		        Cn4 
+	BYTE	W08
+	BYTE		        Bn3 
+	BYTE	W08
+	BYTE		        Gn3 
+	BYTE	W08
+// 028   ----------------------------------------
+	BYTE		N16     Bn3 
+	BYTE	W16
+	BYTE		N02     Ds3 
+	BYTE	W08
+	BYTE		N16     An3 
+	BYTE	W16
+	BYTE		N02     Ds3 
+	BYTE	W08
+	BYTE		N24     Fs3 
+	BYTE	W24
+// 029   ----------------------------------------
+	BYTE		N02     Cs3 
+	BYTE	W16
+	BYTE		N04     Gn3 
+	BYTE	W24
+	BYTE		        An3 
+	BYTE	W08
+	BYTE		        Gn3 
+	BYTE	W08
+	BYTE		        Fs3 
+	BYTE	W08
+	BYTE		        En3 
+	BYTE	W08
+// 030   ----------------------------------------
+	BYTE		N02     An2 
+	BYTE	W16
+	BYTE		N04     Fs3 
+	BYTE	W24
+	BYTE		        Fn3 
+	BYTE	W08
+	BYTE		        Fs3 
+	BYTE	W08
+	BYTE		        An3 
+	BYTE	W08
+	BYTE		        Dn4 
+	BYTE	W08
+// 031   ----------------------------------------
+	BYTE		N02     Gs2 
+	BYTE	W16
+	BYTE		N04     En3 
+	BYTE	W24
+	BYTE		        Bn2 
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W08
+	BYTE		        Cs3 
+	BYTE	W08
+	BYTE		        Dn3 
+	BYTE	W08
+// 032   ----------------------------------------
+	BYTE		N08     Cs3 
+	BYTE	W08
+	BYTE		N04     An2 
+	BYTE	W08
+	BYTE		        En2 
+	BYTE	W08
+	BYTE		N08     Dn3 
+	BYTE	W08
+	BYTE		N04     Bn2 
+	BYTE	W08
+	BYTE		        Fs2 
+	BYTE	W08
+	BYTE		N08     En3 
+	BYTE	W08
+	BYTE		N04     Bn2 
+	BYTE	W08
+	BYTE		        Gn2 
+	BYTE	W08
+// 033   ----------------------------------------
+	BYTE		N02     Dn4 
+	BYTE	W16
+	BYTE		N04     Fs4 
+	BYTE	W24
+	BYTE		        Fn4 
+	BYTE	W08
+	BYTE		N08     Fs4 
+	BYTE	W16
+	BYTE		N02     Dn4 
+	BYTE	W08
+// 034   ----------------------------------------
+	BYTE		        Cs4 
+	BYTE	W16
+	BYTE		N04     En4 
+	BYTE	W24
+	BYTE		        Ds4 
+	BYTE	W08
+	BYTE		N08     En4 
+	BYTE	W16
+	BYTE		N02     Cs4 
+	BYTE	W08
+// 035   ----------------------------------------
+	BYTE		        Bn3 
+	BYTE	W16
+	BYTE		N04     En4 
+	BYTE	W24
+	BYTE		        Ds4 
+	BYTE	W08
+	BYTE		        Cn4 
+	BYTE	W08
+	BYTE		        Dn4 
+	BYTE	W08
+	BYTE		        En4 
+	BYTE	W08
+// 036   ----------------------------------------
+	BYTE		N16     An4 
+	BYTE	W16
+	BYTE		N02     Ds4 
+	BYTE	W08
+	BYTE		N16     Gn4 
+	BYTE	W16
+	BYTE		N02     Ds4 
+	BYTE	W08
+	BYTE		N24     Fs4 
+	BYTE	W24
+// 037   ----------------------------------------
+	BYTE		N02     Fn3 
+	BYTE	W16
+	BYTE		N04     Gn4 
+	BYTE	W24
+	BYTE		        An4 
+	BYTE	W08
+	BYTE		        Gn4 
+	BYTE	W08
+	BYTE		        Fs4 
+	BYTE	W08
+	BYTE		        En4 
+	BYTE	W08
+// 038   ----------------------------------------
+	BYTE		N02     Cs3 
+	BYTE	W16
+	BYTE		N04     Fs4 
+	BYTE	W24
+	BYTE		        Gn4 
+	BYTE	W08
+	BYTE		        Fs4 
+	BYTE	W08
+	BYTE		        En4 
+	BYTE	W08
+	BYTE		        Dn4 
+	BYTE	W08
+// 039   ----------------------------------------
+	BYTE		N16     En4 
+	BYTE	W16
+	BYTE		N04     Bn3 
+	BYTE	W08
+	BYTE		N16   
+	BYTE	W16
+	BYTE		N04     Gs3 
+	BYTE	W08
+	BYTE		N16     Dn4 
+	BYTE	W16
+	BYTE		N04     Gs3 
+	BYTE	W08
+// 040   ----------------------------------------
+	BYTE		N08     Cs4 
+	BYTE	W08
+	BYTE		N04     An3 
+	BYTE	W08
+	BYTE		        En3 
+	BYTE	W08
+	BYTE		N08     Dn4 
+	BYTE	W06
+	BYTE		N04     Bn3 
+	BYTE	W10
+	BYTE		        Fs3 
+	BYTE	W08
+	BYTE		N08     En4 
+	BYTE	W08
+	BYTE		N04     Bn3 
+	BYTE	W08
+	BYTE		        Gs3 
+	BYTE	W08
+// 041   ----------------------------------------
+	BYTE		N08     Cs4 
+	BYTE	W08
+	BYTE		N04     As3 
+	BYTE	W08
+	BYTE		        Fs3 
+	BYTE	W08
+	BYTE		N08     En4 
+	BYTE	W08
+	BYTE		N04     Cs4 
+	BYTE	W08
+	BYTE		        As3 
+	BYTE	W08
+	BYTE		N08     Fs4 
+	BYTE	W08
+	BYTE		N04     Cs4 
+	BYTE	W08
+	BYTE		        As3 
+	BYTE	W08
+	BYTE	GoTo
+	 POIN2	mus_sootopolis_5_B1
+mus_sootopolis_5_B2:
+// 042   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 6 (Midi-Chn.6) ****************//
+
+mus_sootopolis_6:
+	BYTE	KEYSH   mus_sootopolis_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   0
+	BYTE		PAN     c_v+0
+	BYTE		VOL     121*mus_sootopolis_mvl/mxv
+	BYTE	W12
+mus_sootopolis_6_B1:
+// 001   ----------------------------------------
+	BYTE	W72
+// 002   ----------------------------------------
+mus_sootopolis_6_002:
+	BYTE	W24
+	BYTE		N04     Fs2   v112
+	BYTE	W04
+	BYTE		        Fs2   v060
+	BYTE	W04
+	BYTE		N04   
+	BYTE	W08
+	BYTE		        Fs2   v064
+	BYTE	W08
+	BYTE		        Fs2   v112
+	BYTE	W24
+	BYTE	PEND
+// 003   ----------------------------------------
+	BYTE	W72
+// 004   ----------------------------------------
+	BYTE	W72
+// 005   ----------------------------------------
+	BYTE	W72
+// 006   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_sootopolis_6_002
+// 007   ----------------------------------------
+	BYTE	W72
+// 008   ----------------------------------------
+	BYTE	W72
+// 009   ----------------------------------------
+	BYTE	W72
+// 010   ----------------------------------------
+	BYTE	W72
+// 011   ----------------------------------------
+	BYTE	W72
+// 012   ----------------------------------------
+	BYTE	W72
+// 013   ----------------------------------------
+	BYTE	W72
+// 014   ----------------------------------------
+	BYTE	W72
+// 015   ----------------------------------------
+	BYTE	W72
+// 016   ----------------------------------------
+	BYTE	W72
+// 017   ----------------------------------------
+	BYTE	W72
+// 018   ----------------------------------------
+	BYTE	W72
+// 019   ----------------------------------------
+	BYTE	W72
+// 020   ----------------------------------------
+	BYTE	W72
+// 021   ----------------------------------------
+	BYTE	W72
+// 022   ----------------------------------------
+	BYTE	W72
+// 023   ----------------------------------------
+	BYTE	W72
+// 024   ----------------------------------------
+	BYTE	W72
+// 025   ----------------------------------------
+	BYTE	W72
+// 026   ----------------------------------------
+	BYTE	W72
+// 027   ----------------------------------------
+	BYTE	W72
+// 028   ----------------------------------------
+	BYTE	W72
+// 029   ----------------------------------------
+	BYTE	W72
+// 030   ----------------------------------------
+	BYTE	W72
+// 031   ----------------------------------------
+	BYTE	W72
+// 032   ----------------------------------------
+	BYTE	W72
+// 033   ----------------------------------------
+	BYTE	W72
+// 034   ----------------------------------------
+	BYTE	W72
+// 035   ----------------------------------------
+	BYTE	W72
+// 036   ----------------------------------------
+	BYTE	W72
+// 037   ----------------------------------------
+	BYTE	W72
+// 038   ----------------------------------------
+	BYTE	W72
+// 039   ----------------------------------------
+	BYTE	W72
+// 040   ----------------------------------------
+	BYTE	W72
+// 041   ----------------------------------------
+	BYTE	W72
+	BYTE	GoTo
+	 POIN2	mus_sootopolis_6_B1
+mus_sootopolis_6_B2:
+// 042   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 7 (Midi-Chn.7) ****************//
+
+mus_sootopolis_7:
+	BYTE	KEYSH   mus_sootopolis_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   82
+	BYTE		LFOS    44
+	BYTE		XCMD    xIECV   18
+	BYTE		        xIECV   16
+	BYTE		BENDR   12
+	BYTE		PAN     c_v+0
+	BYTE		VOL     119*mus_sootopolis_mvl/mxv
+	BYTE		N04     Gs1   v112
+	BYTE	W06
+	BYTE		        Bn1 
+	BYTE	W02
+	BYTE		        Cs2 
+	BYTE	W04
+mus_sootopolis_7_B1:
+// 001   ----------------------------------------
+	BYTE		N16     Bn1   v112
+	BYTE	W16
+	BYTE		N04     Bn2 
+	BYTE	W24
+	BYTE		N08     Bn1 
+	BYTE	W08
+	BYTE		        Bn2 
+	BYTE	W24
+// 002   ----------------------------------------
+	BYTE		N04     Bn1 
+	BYTE	W16
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N16     Bn2 
+	BYTE	W16
+	BYTE		N04     Bn1 
+	BYTE	W08
+	BYTE		        Fs1 
+	BYTE	W08
+	BYTE		        Gs1 
+	BYTE	W08
+	BYTE		        As1 
+	BYTE	W08
+// 003   ----------------------------------------
+mus_sootopolis_7_003:
+	BYTE		N16     Bn1   v112
+	BYTE	W16
+	BYTE		N04     Cs3 
+	BYTE	W24
+	BYTE		N08     Bn1 
+	BYTE	W08
+	BYTE		        Cs3 
+	BYTE	W24
+	BYTE	PEND
+// 004   ----------------------------------------
+	BYTE		N04     Bn1 
+	BYTE	W16
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N24     Bn2 
+	BYTE	W24
+	BYTE		N04     Bn1 
+	BYTE	W08
+	BYTE		        An1 
+	BYTE	W08
+	BYTE		        Fs1 
+	BYTE	W08
+// 005   ----------------------------------------
+	BYTE		N16     Bn1 
+	BYTE	W16
+	BYTE		N04     Bn2 
+	BYTE	W24
+	BYTE		        Bn1 
+	BYTE	W08
+	BYTE		N08     Bn2 
+	BYTE	W24
+// 006   ----------------------------------------
+	BYTE		N04     Bn1 
+	BYTE	W16
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N16     Bn2 
+	BYTE	W24
+	BYTE		N04     Fs1 
+	BYTE	W08
+	BYTE		        Gs1 
+	BYTE	W08
+	BYTE		        As1 
+	BYTE	W08
+// 007   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_sootopolis_7_003
+// 008   ----------------------------------------
+	BYTE		N16     Bn1   v112
+	BYTE	W16
+	BYTE		N02     Fs1 
+	BYTE	W08
+	BYTE		N24     Dn3 
+	BYTE	W24
+	BYTE		N04     Fs1 
+	BYTE	W08
+	BYTE		        Gs1 
+	BYTE	W08
+	BYTE		        As1 
+	BYTE	W08
+// 009   ----------------------------------------
+	BYTE		N16     Bn1 
+	BYTE	W16
+	BYTE		N02     Bn2 
+	BYTE	W24
+	BYTE		N04     Bn1 
+	BYTE	W08
+	BYTE		N08     Bn2 
+	BYTE	W16
+	BYTE		N02     Dn2 
+	BYTE	W08
+// 010   ----------------------------------------
+	BYTE		N16     As1 
+	BYTE	W16
+	BYTE		N02     As2 
+	BYTE	W24
+	BYTE		N04     As1 
+	BYTE	W08
+	BYTE		N08     As2 
+	BYTE	W16
+	BYTE		N02     Dn2 
+	BYTE	W08
+// 011   ----------------------------------------
+	BYTE		N16     An1 
+	BYTE	W16
+	BYTE		N02     An2 
+	BYTE	W24
+	BYTE		N04     An1 
+	BYTE	W08
+	BYTE		        An2 
+	BYTE	W08
+	BYTE		N02     En2 
+	BYTE	W08
+	BYTE		N04     An1 
+	BYTE	W08
+// 012   ----------------------------------------
+	BYTE		N16     Gs1 
+	BYTE	W24
+	BYTE		        Bn1 
+	BYTE	W24
+	BYTE		        An1 
+	BYTE	W16
+	BYTE		N08     Gs1 
+	BYTE	W08
+// 013   ----------------------------------------
+	BYTE		N16     Gn1 
+	BYTE	W16
+	BYTE		N04     Fs1 
+	BYTE	W08
+	BYTE		        Gn1 
+	BYTE	W16
+	BYTE		        En2 
+	BYTE	W08
+	BYTE		        Cs2 
+	BYTE	W08
+	BYTE		        As1 
+	BYTE	W08
+	BYTE		        Gn1 
+	BYTE	W08
+// 014   ----------------------------------------
+	BYTE		N16     Fs1 
+	BYTE	W16
+	BYTE		N02     Dn2 
+	BYTE	W08
+	BYTE		N04     Fs1 
+	BYTE	W16
+	BYTE		N04   
+	BYTE	W24
+	BYTE		N02   
+	BYTE	W08
+// 015   ----------------------------------------
+	BYTE		N16     Fn1 
+	BYTE	W16
+	BYTE		N02     Dn2 
+	BYTE	W24
+	BYTE		N04     Fn1 
+	BYTE	W32
+// 016   ----------------------------------------
+	BYTE		N16     Fs1 
+	BYTE	W16
+	BYTE		N02     Fs2 
+	BYTE	W08
+	BYTE		N04     As1 
+	BYTE	W08
+	BYTE		        Fs1 
+	BYTE	W08
+	BYTE		        As1 
+	BYTE	W08
+	BYTE		        Fs2 
+	BYTE	W16
+	BYTE		        As2 
+	BYTE	W08
+// 017   ----------------------------------------
+	BYTE		N16     Bn1 
+	BYTE	W16
+	BYTE		N02     Bn2 
+	BYTE	W24
+	BYTE		N04     Bn1 
+	BYTE	W08
+	BYTE		N16   
+	BYTE	W16
+	BYTE		N02     Dn2 
+	BYTE	W08
+// 018   ----------------------------------------
+	BYTE		N16     As1 
+	BYTE	W16
+	BYTE		N02     As2 
+	BYTE	W08
+	BYTE		N04     As1 
+	BYTE	W16
+	BYTE		N02     As2 
+	BYTE	W08
+	BYTE		N08     As1 
+	BYTE	W08
+	BYTE		N04     Bn1 
+	BYTE	W08
+	BYTE		        As1 
+	BYTE	W08
+// 019   ----------------------------------------
+	BYTE		N16     An1 
+	BYTE	W40
+	BYTE		N04   
+	BYTE	W32
+// 020   ----------------------------------------
+	BYTE		N16     Gs1 
+	BYTE	W24
+	BYTE		        Bn1 
+	BYTE	W16
+	BYTE		N02     Gs1 
+	BYTE	W08
+	BYTE		N16     An1 
+	BYTE	W16
+	BYTE		N04     Gs1 
+	BYTE	W08
+// 021   ----------------------------------------
+	BYTE		N16     Gn1 
+	BYTE	W40
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N02     Bn1 
+	BYTE	W16
+	BYTE		N08     Gn1 
+	BYTE	W08
+// 022   ----------------------------------------
+	BYTE		N16     Fs1 
+	BYTE	W16
+	BYTE		N02     Bn1 
+	BYTE	W08
+	BYTE		N16     Fs1 
+	BYTE	W16
+	BYTE		N02     Bn1 
+	BYTE	W08
+	BYTE		N16     Dn2 
+	BYTE	W16
+	BYTE		N04     Cs2 
+	BYTE	W08
+// 023   ----------------------------------------
+	BYTE		N16     Fn1 
+	BYTE	W16
+	BYTE		N02     Fn2 
+	BYTE	W08
+	BYTE		N04     Fn1 
+	BYTE	W08
+	BYTE		        Fn2 
+	BYTE	W08
+	BYTE		        Dn2 
+	BYTE	W08
+	BYTE		        Cs2 
+	BYTE	W08
+	BYTE		        Bn1 
+	BYTE	W08
+	BYTE		N08     Gn1 
+	BYTE	W08
+// 024   ----------------------------------------
+	BYTE		N16     Fs1 
+	BYTE	W24
+	BYTE		        En1 
+	BYTE	W16
+	BYTE		N04     Fs1 
+	BYTE	W08
+	BYTE		N12     Cs1 
+	BYTE	W16
+	BYTE		N08     Cs2 
+	BYTE	W08
+// 025   ----------------------------------------
+	BYTE		N16     Dn2 
+	BYTE	W16
+	BYTE		N02     An1 
+	BYTE	W08
+	BYTE		N04     Dn2 
+	BYTE	W16
+	BYTE		N02     Fs2 
+	BYTE	W08
+	BYTE		N04     An1 
+	BYTE	W16
+	BYTE		N08     Dn2 
+	BYTE	W08
+// 026   ----------------------------------------
+	BYTE		N16     Cs2 
+	BYTE	W40
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N16     An1 
+	BYTE	W16
+	BYTE		N08     Cs2 
+	BYTE	W08
+// 027   ----------------------------------------
+	BYTE		N16     Cn2 
+	BYTE	W16
+	BYTE		N02     An1 
+	BYTE	W08
+	BYTE		N04     Cn2 
+	BYTE	W16
+	BYTE		N02     Fs2 
+	BYTE	W08
+	BYTE		N04     Cn2 
+	BYTE	W16
+	BYTE		N08     An1 
+	BYTE	W08
+// 028   ----------------------------------------
+	BYTE		N16     Bn1 
+	BYTE	W24
+	BYTE		        Cs2 
+	BYTE	W16
+	BYTE		N04     Bn1 
+	BYTE	W08
+	BYTE		N16     Ds2 
+	BYTE	W16
+	BYTE		N08     Bn1 
+	BYTE	W08
+// 029   ----------------------------------------
+	BYTE		N16     As1 
+	BYTE	W16
+	BYTE		N04     Gn1 
+	BYTE	W24
+	BYTE		        As1 
+	BYTE	W08
+	BYTE		N02     Gn2 
+	BYTE	W16
+	BYTE		N08     As1 
+	BYTE	W08
+// 030   ----------------------------------------
+	BYTE		N16     An1 
+	BYTE	W16
+	BYTE		N02     Dn2 
+	BYTE	W24
+	BYTE		N04     An1 
+	BYTE	W08
+	BYTE		        Dn2 
+	BYTE	W08
+	BYTE		        Cs2 
+	BYTE	W08
+	BYTE		N08     An1 
+	BYTE	W08
+// 031   ----------------------------------------
+	BYTE		N16     Gs1 
+	BYTE	W40
+	BYTE		N04   
+	BYTE	W24
+	BYTE		N08   
+	BYTE	W08
+// 032   ----------------------------------------
+	BYTE		N16     An1 
+	BYTE	W16
+	BYTE		N02     Bn1 
+	BYTE	W08
+	BYTE		N16     Gn1 
+	BYTE	W16
+	BYTE		N02     An1 
+	BYTE	W08
+	BYTE		N16     En1 
+	BYTE	W16
+	BYTE		N08     Cs2 
+	BYTE	W08
+// 033   ----------------------------------------
+	BYTE		N16     Dn2 
+	BYTE	W16
+	BYTE		N02     An2 
+	BYTE	W24
+	BYTE		N04     Dn2 
+	BYTE	W08
+	BYTE		N06   
+	BYTE	W08
+	BYTE		N02     Fs2 
+	BYTE	W08
+	BYTE		N08     Dn2 
+	BYTE	W08
+// 034   ----------------------------------------
+	BYTE		N16     Cs2 
+	BYTE	W16
+	BYTE		N04     An1 
+	BYTE	W08
+	BYTE		        Dn2 
+	BYTE	W16
+	BYTE		        Bn1 
+	BYTE	W08
+	BYTE		        En2 
+	BYTE	W08
+	BYTE		        Dn2 
+	BYTE	W08
+	BYTE		N08     Cs2 
+	BYTE	W08
+// 035   ----------------------------------------
+	BYTE		N16     Cn2 
+	BYTE	W40
+	BYTE		N04   
+	BYTE	W32
+// 036   ----------------------------------------
+	BYTE		N16     Bn1 
+	BYTE	W16
+	BYTE		N04     Fs1 
+	BYTE	W08
+	BYTE		N16     Cs2 
+	BYTE	W16
+	BYTE		N04     Bn1 
+	BYTE	W08
+	BYTE		N16     Ds2 
+	BYTE	W16
+	BYTE		N08     Bn1 
+	BYTE	W08
+// 037   ----------------------------------------
+	BYTE		N16     As1 
+	BYTE	W16
+	BYTE		N02     Gn2 
+	BYTE	W08
+	BYTE		N04     As1 
+	BYTE	W16
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N08     Bn1 
+	BYTE	W08
+	BYTE		N04     As1 
+	BYTE	W08
+// 038   ----------------------------------------
+	BYTE		N16     An1 
+	BYTE	W24
+	BYTE		N04   
+	BYTE	W16
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N16     Dn2 
+	BYTE	W16
+	BYTE		N08     Cs2 
+	BYTE	W08
+// 039   ----------------------------------------
+	BYTE		N16     Gs1 
+	BYTE	W16
+	BYTE		N04     Bn1 
+	BYTE	W08
+	BYTE		        Dn2 
+	BYTE	W16
+	BYTE		        Bn1 
+	BYTE	W08
+	BYTE		N16     Gs1 
+	BYTE	W16
+	BYTE		N02     Bn1 
+	BYTE	W08
+// 040   ----------------------------------------
+	BYTE		N16     An1 
+	BYTE	W24
+	BYTE		N04   
+	BYTE	W16
+	BYTE		N02     An2 
+	BYTE	W08
+	BYTE		N04     An1 
+	BYTE	W08
+	BYTE		        Gs1 
+	BYTE	W08
+	BYTE		        Gn1 
+	BYTE	W08
+// 041   ----------------------------------------
+	BYTE		N16     Fs1 
+	BYTE	W16
+	BYTE		N02     Fs2 
+	BYTE	W08
+	BYTE		N04     Fs1 
+	BYTE	W16
+	BYTE		N02     Fs2 
+	BYTE	W08
+	BYTE		N06     Fs1 
+	BYTE	W08
+	BYTE		N04     En1 
+	BYTE	W08
+	BYTE		        Cs1 
+	BYTE	W08
+	BYTE	GoTo
+	 POIN2	mus_sootopolis_7_B1
+mus_sootopolis_7_B2:
+// 042   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 8 (Midi-Chn.8) ****************//
+
+mus_sootopolis_8:
+	BYTE	KEYSH   mus_sootopolis_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   73
+	BYTE		LFOS    44
+	BYTE		BENDR   12
+	BYTE		VOL     93*mus_sootopolis_mvl/mxv
+	BYTE		PAN     c_v-19
+	BYTE		N04     Bn3   v112
+	BYTE	W04
+	BYTE		        Cn4 
+	BYTE	W04
+	BYTE		        Cs4 
+	BYTE	W04
+mus_sootopolis_8_B1:
+// 001   ----------------------------------------
+	BYTE		VOICE   73
+	BYTE		N48     Dn4   v112
+	BYTE	W48
+	BYTE		N10     Bn3 
+	BYTE	W16
+	BYTE		N04     Fs3 
+	BYTE	W08
+// 002   ----------------------------------------
+	BYTE		N60     En4 
+	BYTE	W24
+	BYTE		MOD     7
+	BYTE	W12
+	BYTE		VOL     91*mus_sootopolis_mvl/mxv
+	BYTE	W04
+	BYTE		        82*mus_sootopolis_mvl/mxv
+	BYTE	W04
+	BYTE		        62*mus_sootopolis_mvl/mxv
+	BYTE	W04
+	BYTE		        52*mus_sootopolis_mvl/mxv
+	BYTE	W04
+	BYTE		        33*mus_sootopolis_mvl/mxv
+	BYTE	W04
+	BYTE		        19*mus_sootopolis_mvl/mxv
+	BYTE	W04
+	BYTE		MOD     0
+	BYTE		VOL     93*mus_sootopolis_mvl/mxv
+	BYTE		N04     As3 
+	BYTE	W04
+	BYTE		        Bn3 
+	BYTE	W04
+	BYTE		        Cn4 
+	BYTE	W04
+// 003   ----------------------------------------
+	BYTE		N48     Cs4 
+	BYTE	W24
+	BYTE		MOD     7
+	BYTE		VOL     91*mus_sootopolis_mvl/mxv
+	BYTE	W04
+	BYTE		        82*mus_sootopolis_mvl/mxv
+	BYTE	W04
+	BYTE		        62*mus_sootopolis_mvl/mxv
+	BYTE	W04
+	BYTE		        52*mus_sootopolis_mvl/mxv
+	BYTE	W04
+	BYTE		        33*mus_sootopolis_mvl/mxv
+	BYTE	W04
+	BYTE		        19*mus_sootopolis_mvl/mxv
+	BYTE	W04
+	BYTE		MOD     0
+	BYTE		VOL     93*mus_sootopolis_mvl/mxv
+	BYTE		N04     Dn4 
+	BYTE	W16
+	BYTE		        Cs4 
+	BYTE	W08
+// 004   ----------------------------------------
+	BYTE		N16     En4 
+	BYTE	W24
+	BYTE		N04     Bn3 
+	BYTE	W08
+	BYTE		        Dn4 
+	BYTE	W08
+	BYTE		N08     Bn3 
+	BYTE	W08
+	BYTE		N16     Dn4 
+	BYTE	W16
+	BYTE		N04     Fs3 
+	BYTE	W08
+// 005   ----------------------------------------
+	BYTE		N40     Dn4 
+	BYTE	W24
+	BYTE		MOD     7
+	BYTE	W16
+	BYTE		        0
+	BYTE		N08     Cs4 
+	BYTE	W08
+	BYTE		MOD     0
+	BYTE		N08     Bn3 
+	BYTE	W16
+	BYTE		N04     Fs3 
+	BYTE	W08
+// 006   ----------------------------------------
+	BYTE		N40     En4 
+	BYTE	W24
+	BYTE		MOD     7
+	BYTE	W12
+	BYTE		VOL     91*mus_sootopolis_mvl/mxv
+	BYTE	W04
+	BYTE		        82*mus_sootopolis_mvl/mxv
+	BYTE		N08     Dn4 
+	BYTE	W04
+	BYTE		VOL     62*mus_sootopolis_mvl/mxv
+	BYTE	W04
+	BYTE		        52*mus_sootopolis_mvl/mxv
+	BYTE		N12     Cs4 
+	BYTE	W04
+	BYTE		VOL     33*mus_sootopolis_mvl/mxv
+	BYTE	W04
+	BYTE		        19*mus_sootopolis_mvl/mxv
+	BYTE	W04
+	BYTE		MOD     0
+	BYTE		VOL     93*mus_sootopolis_mvl/mxv
+	BYTE		N04     An3 
+	BYTE	W04
+	BYTE		        As3 
+	BYTE	W04
+	BYTE		        Bn3 
+	BYTE	W04
+// 007   ----------------------------------------
+	BYTE		N40     Cs4 
+	BYTE	W24
+	BYTE		MOD     7
+	BYTE		VOL     91*mus_sootopolis_mvl/mxv
+	BYTE	W04
+	BYTE		        82*mus_sootopolis_mvl/mxv
+	BYTE	W04
+	BYTE		        62*mus_sootopolis_mvl/mxv
+	BYTE	W04
+	BYTE		        52*mus_sootopolis_mvl/mxv
+	BYTE	W04
+	BYTE		        93*mus_sootopolis_mvl/mxv
+	BYTE		MOD     0
+	BYTE		N08     Bn3 
+	BYTE	W08
+	BYTE		MOD     0
+	BYTE		N04     Dn4 
+	BYTE	W16
+	BYTE		        Cs4 
+	BYTE	W08
+// 008   ----------------------------------------
+	BYTE	W24
+	BYTE		N24     Dn4 
+	BYTE	W24
+	BYTE		VOICE   13
+	BYTE		VOL     80*mus_sootopolis_mvl/mxv
+	BYTE		N08     Fn3   v088
+	BYTE	W08
+	BYTE		N04     Bn3   v096
+	BYTE	W08
+	BYTE		        Dn4   v104
+	BYTE	W08
+// 009   ----------------------------------------
+	BYTE	W02
+	BYTE		N02     Fs4   v048
+	BYTE	W02
+	BYTE		N04     Bn3 
+	BYTE	W04
+	BYTE		        Fs4   v052
+	BYTE	W04
+	BYTE		        Bn3   v056
+	BYTE	W04
+	BYTE		        Fs4 
+	BYTE	W04
+	BYTE		        Bn3   v060
+	BYTE	W04
+	BYTE		        Fs4   v064
+	BYTE	W04
+	BYTE		        Bn3   v068
+	BYTE	W04
+	BYTE		        Fs4   v072
+	BYTE	W04
+	BYTE		        Bn3   v080
+	BYTE	W04
+	BYTE		        Fs4   v084
+	BYTE	W04
+	BYTE		        Bn3   v092
+	BYTE	W04
+	BYTE		        Fs4   v096
+	BYTE	W04
+	BYTE		        Bn3 
+	BYTE	W04
+	BYTE		        Fs4   v104
+	BYTE	W04
+	BYTE		        Bn3 
+	BYTE	W04
+	BYTE		        Fs4   v108
+	BYTE	W04
+	BYTE		        Bn3   v112
+	BYTE	W04
+// 010   ----------------------------------------
+	BYTE		        Fs4 
+	BYTE	W04
+	BYTE		        As3   v108
+	BYTE	W04
+	BYTE		        Fs4   v104
+	BYTE	W04
+	BYTE		        As3 
+	BYTE	W04
+	BYTE		        Fs4   v096
+	BYTE	W04
+	BYTE		        As3 
+	BYTE	W04
+	BYTE		        Fs4   v092
+	BYTE	W04
+	BYTE		        As3   v088
+	BYTE	W04
+	BYTE		        Fs4   v084
+	BYTE	W04
+	BYTE		        As3   v080
+	BYTE	W04
+	BYTE		        Fs4   v076
+	BYTE	W04
+	BYTE		        As3   v068
+	BYTE	W04
+	BYTE		        Fs4   v064
+	BYTE	W04
+	BYTE		        As3   v060
+	BYTE	W04
+	BYTE		        Fs4   v056
+	BYTE	W04
+	BYTE		        As3   v048
+	BYTE	W04
+	BYTE		        Fs4   v044
+	BYTE	W04
+	BYTE		        As3   v036
+	BYTE	W04
+// 011   ----------------------------------------
+	BYTE		        Fs4   v048
+	BYTE	W04
+	BYTE		        An3 
+	BYTE	W04
+	BYTE		        Fs4   v052
+	BYTE	W04
+	BYTE		        An3   v056
+	BYTE	W04
+	BYTE		        Fs4 
+	BYTE	W04
+	BYTE		        An3   v060
+	BYTE	W04
+	BYTE		        Fs4   v064
+	BYTE	W04
+	BYTE		        An3   v068
+	BYTE	W04
+	BYTE		        Fs4   v072
+	BYTE	W04
+	BYTE		        An3   v080
+	BYTE	W04
+	BYTE		        Fs4   v084
+	BYTE	W04
+	BYTE		        An3   v092
+	BYTE	W04
+	BYTE		        Fs4   v096
+	BYTE	W04
+	BYTE		        An3 
+	BYTE	W04
+	BYTE		        Fs4   v104
+	BYTE	W04
+	BYTE		        An3 
+	BYTE	W04
+	BYTE		        Fs4   v108
+	BYTE	W04
+	BYTE		        An3   v112
+	BYTE	W04
+// 012   ----------------------------------------
+	BYTE		        En4 
+	BYTE	W04
+	BYTE		        Gs3   v108
+	BYTE	W04
+	BYTE		        En4   v104
+	BYTE	W04
+	BYTE		        Gs3 
+	BYTE	W04
+	BYTE		        En4   v096
+	BYTE	W04
+	BYTE		        Gs3 
+	BYTE	W04
+	BYTE		        En4   v092
+	BYTE	W04
+	BYTE		        Gs3   v088
+	BYTE	W04
+	BYTE		        En4   v084
+	BYTE	W04
+	BYTE		        Gs3   v080
+	BYTE	W04
+	BYTE		        En4   v076
+	BYTE	W04
+	BYTE		        Gs3   v068
+	BYTE	W04
+	BYTE		        En4   v064
+	BYTE	W04
+	BYTE		        Gs3   v060
+	BYTE	W04
+	BYTE		        En4   v056
+	BYTE	W04
+	BYTE		        Gs3   v048
+	BYTE	W04
+	BYTE		        En4   v044
+	BYTE	W04
+	BYTE		        Gs3   v036
+	BYTE	W04
+// 013   ----------------------------------------
+	BYTE		        En4   v048
+	BYTE	W04
+	BYTE		        Gn3 
+	BYTE	W04
+	BYTE		        En4   v052
+	BYTE	W04
+	BYTE		        Gn3   v056
+	BYTE	W04
+	BYTE		        En4 
+	BYTE	W04
+	BYTE		        Gn3   v060
+	BYTE	W04
+	BYTE		        En4   v064
+	BYTE	W04
+	BYTE		        Gn3   v068
+	BYTE	W04
+	BYTE		        En4   v072
+	BYTE	W04
+	BYTE		        Gn3   v080
+	BYTE	W04
+	BYTE		        En4   v084
+	BYTE	W04
+	BYTE		        Gn3   v092
+	BYTE	W04
+	BYTE		        En4   v096
+	BYTE	W04
+	BYTE		        Gn3 
+	BYTE	W04
+	BYTE		        En4   v104
+	BYTE	W04
+	BYTE		        Gn3 
+	BYTE	W04
+	BYTE		        En4   v108
+	BYTE	W04
+	BYTE		        Gn3   v112
+	BYTE	W04
+// 014   ----------------------------------------
+	BYTE		        Dn4 
+	BYTE	W04
+	BYTE		        An3   v108
+	BYTE	W04
+	BYTE		        Dn4   v104
+	BYTE	W04
+	BYTE		        An3 
+	BYTE	W04
+	BYTE		        Dn4   v096
+	BYTE	W04
+	BYTE		        An3 
+	BYTE	W04
+	BYTE		        Dn4   v092
+	BYTE	W04
+	BYTE		        An3   v088
+	BYTE	W04
+	BYTE		        Dn4   v084
+	BYTE	W04
+	BYTE		        An3   v080
+	BYTE	W04
+	BYTE		        Dn4   v076
+	BYTE	W04
+	BYTE		        An3   v068
+	BYTE	W04
+	BYTE		        Dn4   v064
+	BYTE	W04
+	BYTE		        An3   v060
+	BYTE	W04
+	BYTE		        Dn4   v056
+	BYTE	W04
+	BYTE		        An3   v048
+	BYTE	W04
+	BYTE		        Dn4   v044
+	BYTE	W04
+	BYTE		        An3   v036
+	BYTE	W04
+// 015   ----------------------------------------
+	BYTE		        Dn4   v048
+	BYTE	W04
+	BYTE		        Gs3 
+	BYTE	W04
+	BYTE		        Dn4   v052
+	BYTE	W04
+	BYTE		        Gs3   v056
+	BYTE	W04
+	BYTE		        Dn4 
+	BYTE	W04
+	BYTE		        Gs3   v060
+	BYTE	W04
+	BYTE		        Dn4   v064
+	BYTE	W04
+	BYTE		        Gs3   v068
+	BYTE	W04
+	BYTE		        Dn4   v072
+	BYTE	W04
+	BYTE		        Gs3   v080
+	BYTE	W04
+	BYTE		        Dn4   v084
+	BYTE	W04
+	BYTE		        Gs3   v092
+	BYTE	W04
+	BYTE		        Dn4   v096
+	BYTE	W04
+	BYTE		        Gs3 
+	BYTE	W04
+	BYTE		        Dn4   v104
+	BYTE	W04
+	BYTE		        Gs3 
+	BYTE	W04
+	BYTE		        Dn4   v108
+	BYTE	W04
+	BYTE		        Gs3   v112
+	BYTE	W04
+// 016   ----------------------------------------
+	BYTE		        Fs4 
+	BYTE	W04
+	BYTE		        As3   v108
+	BYTE	W04
+	BYTE		        Fs4   v104
+	BYTE	W04
+	BYTE		        As3 
+	BYTE	W04
+	BYTE		        Fs4   v096
+	BYTE	W04
+	BYTE		        As3 
+	BYTE	W04
+	BYTE		        Fs4   v092
+	BYTE	W04
+	BYTE		        As3   v088
+	BYTE	W04
+	BYTE		        Fs4   v084
+	BYTE	W04
+	BYTE		        As3   v080
+	BYTE	W04
+	BYTE		        Fs4   v076
+	BYTE	W04
+	BYTE		        As3   v068
+	BYTE	W04
+	BYTE		VOICE   1
+	BYTE		N04     Fs4   v064
+	BYTE	W04
+	BYTE		        As3   v060
+	BYTE	W04
+	BYTE		        Fs4   v056
+	BYTE	W04
+	BYTE		        As3   v048
+	BYTE	W04
+	BYTE		        Fs4   v044
+	BYTE	W04
+	BYTE		        As3   v036
+	BYTE	W04
+// 017   ----------------------------------------
+	BYTE		VOL     91*mus_sootopolis_mvl/mxv
+	BYTE		N16     Bn3   v112
+	BYTE	W16
+	BYTE		N04     Fs3 
+	BYTE	W08
+	BYTE		        Bn2 
+	BYTE	W08
+	BYTE		        As2 
+	BYTE	W08
+	BYTE		        Bn2 
+	BYTE	W08
+	BYTE		N02     Bn4 
+	BYTE	W10
+	BYTE		N04     Dn3 
+	BYTE	W06
+	BYTE		        Fs4 
+	BYTE	W08
+// 018   ----------------------------------------
+	BYTE		N16     Dn4 
+	BYTE	W16
+	BYTE		N04     As3 
+	BYTE	W08
+	BYTE		N06     Dn3 
+	BYTE	W08
+	BYTE		N04     Cs3 
+	BYTE	W08
+	BYTE		        Bn2 
+	BYTE	W08
+	BYTE		N16     As3 
+	BYTE	W16
+	BYTE		N04     Fs3 
+	BYTE	W08
+// 019   ----------------------------------------
+	BYTE		N14     An3 
+	BYTE	W16
+	BYTE		N04     Fs3 
+	BYTE	W32
+	BYTE		        Bn3 
+	BYTE	W16
+	BYTE		        Gs3 
+	BYTE	W08
+// 020   ----------------------------------------
+	BYTE		N16   
+	BYTE	W16
+	BYTE		N02     En3 
+	BYTE	W08
+	BYTE		N04     Dn3 
+	BYTE	W08
+	BYTE		        Cs3 
+	BYTE	W08
+	BYTE		        Bn2 
+	BYTE	W08
+	BYTE		        Cs3 
+	BYTE	W08
+	BYTE		        Dn3 
+	BYTE	W08
+	BYTE		        En3 
+	BYTE	W08
+// 021   ----------------------------------------
+	BYTE		N16     Dn4 
+	BYTE	W16
+	BYTE		N04     Bn3 
+	BYTE	W08
+	BYTE		        Bn2 
+	BYTE	W16
+	BYTE		        As2 
+	BYTE	W08
+	BYTE		        Dn3 
+	BYTE	W16
+	BYTE		        Bn2 
+	BYTE	W08
+// 022   ----------------------------------------
+	BYTE		        Bn3 
+	BYTE	W16
+	BYTE		        Fs3 
+	BYTE	W08
+	BYTE		N16     Bn3 
+	BYTE	W16
+	BYTE		N04     Dn4 
+	BYTE	W08
+	BYTE		N16     Fn4 
+	BYTE	W16
+	BYTE		N04     Gs4 
+	BYTE	W08
+// 023   ----------------------------------------
+	BYTE		N16   
+	BYTE	W16
+	BYTE		N04     Cs4 
+	BYTE	W08
+	BYTE		N16     Fn4 
+	BYTE	W16
+	BYTE		N04     Bn3 
+	BYTE	W08
+	BYTE		N16     Cs4 
+	BYTE	W16
+	BYTE		N04     Gs3 
+	BYTE	W08
+// 024   ----------------------------------------
+	BYTE		N02     Fn4 
+	BYTE	W02
+	BYTE		N22     Fs4 
+	BYTE	W22
+	BYTE		N24     Gs4 
+	BYTE	W24
+	BYTE		N12     As4 
+	BYTE	W12
+	BYTE		VOICE   17
+	BYTE	W12
+// 025   ----------------------------------------
+	BYTE		N04     An4 
+	BYTE	W10
+	BYTE		        An3 
+	BYTE	W06
+	BYTE		        Bn3 
+	BYTE	W08
+	BYTE		        Cs4 
+	BYTE	W08
+	BYTE		        Dn4 
+	BYTE	W08
+	BYTE		        En4 
+	BYTE	W08
+	BYTE		        Fs4 
+	BYTE	W08
+	BYTE		        An4 
+	BYTE	W08
+	BYTE		        Bn4 
+	BYTE	W08
+// 026   ----------------------------------------
+	BYTE		N16     Cs5 
+	BYTE	W16
+	BYTE		N04     Bn4 
+	BYTE	W08
+	BYTE		N16     An4 
+	BYTE	W16
+	BYTE		N04     Gn4 
+	BYTE	W08
+	BYTE		N16     Fs4 
+	BYTE	W16
+	BYTE		N04     En4 
+	BYTE	W08
+// 027   ----------------------------------------
+	BYTE		N16     An4 
+	BYTE	W16
+	BYTE		N04     Bn4 
+	BYTE	W08
+	BYTE		N16     An4 
+	BYTE	W16
+	BYTE		N04     Fs4 
+	BYTE	W08
+	BYTE		N16     Gn4 
+	BYTE	W16
+	BYTE		N04     En4 
+	BYTE	W08
+// 028   ----------------------------------------
+	BYTE		        Gn4 
+	BYTE	W08
+	BYTE		        Fs4 
+	BYTE	W08
+	BYTE		        En4 
+	BYTE	W08
+	BYTE		        Fs4 
+	BYTE	W08
+	BYTE		        En4 
+	BYTE	W08
+	BYTE		        Ds4 
+	BYTE	W08
+	BYTE		        En4 
+	BYTE	W08
+	BYTE		        Ds4 
+	BYTE	W08
+	BYTE		        Dn4 
+	BYTE	W08
+// 029   ----------------------------------------
+	BYTE		N16     Cs4 
+	BYTE	W16
+	BYTE		N04     Dn4 
+	BYTE	W08
+	BYTE		N16     En4 
+	BYTE	W16
+	BYTE		N04     Dn4 
+	BYTE	W08
+	BYTE		N16     Cs4 
+	BYTE	W16
+	BYTE		N08     An3 
+	BYTE	W08
+// 030   ----------------------------------------
+	BYTE		N04     Dn4 
+	BYTE	W08
+	BYTE		        Gn4 
+	BYTE	W08
+	BYTE		        Fs4 
+	BYTE	W08
+	BYTE		        En4 
+	BYTE	W08
+	BYTE		        Fs4 
+	BYTE	W08
+	BYTE		        En4 
+	BYTE	W08
+	BYTE		        Dn4 
+	BYTE	W08
+	BYTE		        En4 
+	BYTE	W08
+	BYTE		        Dn4 
+	BYTE	W08
+// 031   ----------------------------------------
+	BYTE		N40     Bn3 
+	BYTE	W40
+	BYTE		N08     Dn4 
+	BYTE	W08
+	BYTE		N04     Gn3 
+	BYTE	W16
+	BYTE		        An3 
+	BYTE	W08
+// 032   ----------------------------------------
+	BYTE		N04   
+	BYTE	W08
+	BYTE		        Gs3 
+	BYTE	W08
+	BYTE		        An3 
+	BYTE	W08
+	BYTE		        Bn3 
+	BYTE	W08
+	BYTE		        As3 
+	BYTE	W08
+	BYTE		        Bn3 
+	BYTE	W08
+	BYTE		        Cs4 
+	BYTE	W08
+	BYTE		        Cn4 
+	BYTE	W08
+	BYTE		        Cs4 
+	BYTE	W06
+	BYTE		N56     Dn4 
+	BYTE	W02
+// 033   ----------------------------------------
+	BYTE	W56
+	BYTE		N04     En4 
+	BYTE	W08
+	BYTE		        Dn4 
+	BYTE	W08
+// 034   ----------------------------------------
+	BYTE		N20     Cs4 
+	BYTE	W20
+	BYTE		N04     Dn4 
+	BYTE	W04
+	BYTE		N24     Cn4 
+	BYTE	W24
+	BYTE		        Bn3 
+	BYTE	W24
+// 035   ----------------------------------------
+	BYTE		N40     An3 
+	BYTE	W40
+	BYTE		N04     Fs3 
+	BYTE	W08
+	BYTE		        An3 
+	BYTE	W08
+	BYTE		        Bn3 
+	BYTE	W08
+	BYTE		        Cn4 
+	BYTE	W08
+// 036   ----------------------------------------
+	BYTE		        Fs4 
+	BYTE	W08
+	BYTE		        Gn4 
+	BYTE	W08
+	BYTE		        Fs4 
+	BYTE	W08
+	BYTE		        En4 
+	BYTE	W08
+	BYTE		        Fs4 
+	BYTE	W08
+	BYTE		        En4 
+	BYTE	W08
+	BYTE		        Ds4 
+	BYTE	W08
+	BYTE		        En4 
+	BYTE	W08
+	BYTE		        Ds4 
+	BYTE	W08
+// 037   ----------------------------------------
+	BYTE		        An3 
+	BYTE	W04
+	BYTE		        Bn3 
+	BYTE	W04
+	BYTE		        Cs4 
+	BYTE	W04
+	BYTE		        Dn4 
+	BYTE	W04
+	BYTE		        En4 
+	BYTE	W04
+	BYTE		        Fs4 
+	BYTE	W04
+	BYTE		N16     Gn4 
+	BYTE	W16
+	BYTE		N04     Fs4 
+	BYTE	W08
+	BYTE		        Gn4 
+	BYTE	W16
+	BYTE		        En4 
+	BYTE	W08
+// 038   ----------------------------------------
+	BYTE		        Dn4 
+	BYTE	W08
+	BYTE		N40     Dn5 
+	BYTE	W40
+	BYTE		N04     An4 
+	BYTE	W16
+	BYTE		        Dn5 
+	BYTE	W08
+// 039   ----------------------------------------
+	BYTE		N40     Bn4 
+	BYTE	W40
+	BYTE		N04     An4 
+	BYTE	W08
+	BYTE		        Gs4 
+	BYTE	W16
+	BYTE		        Bn4 
+	BYTE	W08
+// 040   ----------------------------------------
+	BYTE		N16     An3 
+	BYTE	W24
+	BYTE		        Bn3 
+	BYTE	W24
+	BYTE		        Cs4 
+	BYTE	W24
+// 041   ----------------------------------------
+	BYTE		N16   
+	BYTE	W24
+	BYTE		        En4 
+	BYTE	W24
+	BYTE		N04     Cs4 
+	BYTE	W04
+	BYTE		        En4 
+	BYTE	W04
+	BYTE		        Fs4 
+	BYTE	W04
+	BYTE		        As4 
+	BYTE	W04
+	BYTE		        Cs5 
+	BYTE	W04
+	BYTE		        Fs5 
+	BYTE	W04
+	BYTE	GoTo
+	 POIN2	mus_sootopolis_8_B1
+mus_sootopolis_8_B2:
+// 042   ----------------------------------------
+	BYTE	FINE
+
+//******************************************************//
+	ALIGN 4
+
+mus_sootopolis:
+	BYTE	8	// NumTrks
+	BYTE	0	// NumBlks
+	BYTE	mus_sootopolis_pri	// Priority
+	BYTE	mus_sootopolis_rev	// Reverb.
+
+	POIN2	mus_sootopolis_grp
+
+	POIN2	mus_sootopolis_1
+	POIN2	mus_sootopolis_2
+	POIN2	mus_sootopolis_3
+	POIN2	mus_sootopolis_4
+	POIN2	mus_sootopolis_5
+	POIN2	mus_sootopolis_6
+	POIN2	mus_sootopolis_7
+	POIN2	mus_sootopolis_8
+
+	

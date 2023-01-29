@@ -1,0 +1,595 @@
+#define jumpToHack(offset) "BYTE 0x00 0x4B 0x18 0x47; POIN (offset|0x1)"
+#include "extDefinitions.event" //a file reserved for the randomizer to output definitions for the patches
+
+#ifndef seedHashed
+	#define seedHashed "0"
+#endif
+#ifndef customRNG
+	#define customRNG "0x20120825"
+#endif
+#ifndef settingHash
+	#define settingHash "0"
+#endif
+
+// Define hash and such
+#define hash
+#define seedHash1 (seedHashed >> 24)
+#define seedHash2 ((seedHashed >> 16) & 0xFF)
+#define seedHash3 ((seedHashed >> 08) & 0xFF)
+#define seedHash4 ((seedHashed >> 00) & 0xFF)
+#define seedHash5 ((customRNG >> 08) & 0xFF)
+#define optionsHash1 ((settingHash >> 08) & 0xFF)
+#define optionsHash2 ((settingHash >> 16) & 0xFF)
+
+//#define DEBUG 0
+//#define TEST 0
+
+#ifndef FreeSpace
+	#define FreeSpace $EF3340
+#endif
+ORG FreeSpace
+
+#define BLRange(pointer) "((pointer - (CURRENTOFFSET + 4))>>1)"
+#define BL(pointer) "SHORT (((BLRange(pointer)>>11)&0x7ff)|0xf000) ((BLRange(pointer)&0x7ff)|0xf800);"
+
+// function call veneer
+// veneer:
+//   push {r3}
+//   ldr r3, _function
+//   mov ip, r3
+//   pop {r3}
+//   bx ip
+//   nop
+// _function:
+//   .word 0
+#define veneer(offset) "SHORT 0xB408 0x4B02 0x469C 0xBC08 0x4760; ALIGN 4; POIN (offset|0x1)"
+
+#ifdef no_music
+#include "c/nobgm.cevent"
+#endif
+
+//savetype check
+PUSH; ORG $559FA; SHORT 0; jumpToHack(saveTypeCheck); POP
+ALIGN 4
+saveTypeCheck:
+#incbin "asm/saveTypeCheck.dmp"
+POIN badSave1
+POIN badSave2
+POIN badSave3
+POIN badEmu1
+POIN badEmu2
+POIN badEmu3
+POIN badEmu4
+POIN badEmu5
+POIN badEmu6
+badSave1:
+String("save type mismatch detected!"); BYTE 0
+badSave2:
+String("make sure to use sram"); BYTE 0
+badSave3:
+String("minishmaker.com"); BYTE 0x2F; String("discord"); BYTE 0
+badEmu1:
+String("this emulator is inaccurate!"); BYTE 0
+badEmu2:
+String("please, consider switching"); BYTE 0
+badEmu3:
+String("mgba.io"); BYTE 0x2F; String("downloads.html"); BYTE 0
+badEmu4:
+String("press any button to play"); BYTE 0
+badEmu5:
+String("(pedestal will always"); BYTE 0
+badEmu6:
+String("crash on vba and vbam)"); BYTE 0
+
+#ifdef TEST
+	PUSH
+	ORG  $EDD8+2; BYTE 0x5C 0x70	//lady kinstone
+	ORG  $DA58+2; BYTE 0x5C 0x6C	//ghost kinstone
+	ORG $F2528+3; BYTE 0x01 0x00	//new item in smith's room, write item to $F252B
+	ORG $F2538+3; BYTE 0x0D 0x00	//new item in smith's room, write item to $F253B
+	ORG   $5D602; BYTE 0x63	//bell heart piece
+	ORG $DA280+3; BYTE 0x5B 0x00	//nut
+	ORG $E688B; BYTE 0x5D 0x00 0x3B 0x00 0x00 //gibdo 1
+	ORG $E68AB; BYTE 0x53 0x00 0x3B 0x00 0x00 //gibdo 2
+	ORG $E2F4F; BYTE 0x17 0x00 0xFE //ocarina
+	POP
+#endif
+
+//unify golden kinstone fusions (obviously no need to change the royal piece)
+PUSH
+//tornado pieces first, all set to match with 0x65
+ORG $C93E4+(8*1)+1; BYTE 0x8; ORG $C93E4+(8*1)+5; BYTE 0x1
+ORG $C93E4+(8*2)+1; BYTE 0x8; ORG $C93E4+(8*2)+5; BYTE 0x1
+ORG $C93E4+(8*3)+1; BYTE 0x8; ORG $C93E4+(8*3)+5; BYTE 0x1
+ORG $C93E4+(8*4)+1; BYTE 0x8; ORG $C93E4+(8*4)+5; BYTE 0x1
+ORG $C93E4+(8*5)+1; BYTE 0x8; ORG $C93E4+(8*5)+5; BYTE 0x1
+//swamp second, all set to match with 0x6A
+#ifndef combineKinstonesGold
+	//swamp second, all set to match with 0x6A
+	ORG $C93E4+(8*6)+1; BYTE 0xD; ORG $C93E4+(8*6)+5; BYTE 0x6
+	ORG $C93E4+(8*7)+1; BYTE 0xD; ORG $C93E4+(8*7)+5; BYTE 0x6
+	ORG $C93E4+(8*8)+1; BYTE 0xD; ORG $C93E4+(8*8)+5; BYTE 0x6
+#else
+	//swamp second, all set to match with 0x65 as well
+	ORG $C93E4+(8*6)+1; BYTE 0x8; ORG $C93E4+(8*6)+5; BYTE 0x1
+	ORG $C93E4+(8*7)+1; BYTE 0x8; ORG $C93E4+(8*7)+5; BYTE 0x1
+	ORG $C93E4+(8*8)+1; BYTE 0x8; ORG $C93E4+(8*8)+5; BYTE 0x1
+	//lastly waterfall, also matching 0x65
+	ORG $C93E4+(8*9)+1; BYTE 0x8; ORG $C93E4+(8*9)+5; BYTE 0x1
+#endif
+POP
+
+//text ids set flags hacks
+PUSH; ORG $5E93C; jumpToHack(textFlags); POP
+ALIGN 4
+textFlags:
+#incbin "asm/textFlags.dmp"
+POIN textFlagsTable
+//we use 0x2002EA4 as our custom flag table, this is where the unused small key bytes start
+ALIGN 4
+textFlagsTable: //SHORT textid flag; WORD baseoffset
+SHORT 0x1F1F 0; WORD 0x2002EA4 //jabber nut sets custom flag 0
+//custom flag 1 is used for the ocarina
+SHORT 0x2D08 2; WORD 0x2002EA4 //buying mushroom sets custom flag 2
+SHORT 0x4404 3; WORD 0x2002EA4 //giving mushroom to rem sets custom flag 3
+//custom flags 4, 5 and 6 are used by the library book item spots
+SHORT 0x125C 7; WORD 0x2002EA4 //melari uses custom flag 7
+SHORT 0x1F01 8; WORD 0x2002EA4 //getting bombs from belari sets custom flag 8
+//getting medal from carlov sets custom flag 9
+//grip scrub sets custom flag 10
+//wind element spot sets custom flag 11
+//dojos use custom flags 12 through 22
+SHORT 0x050D 23; WORD 0x2002EA4 //shield sets flag 23, which makes small shields spawn at the store
+SHORT 0x050E 23; WORD 0x2002EA4 //mirror shield also sets flag 23, just in case
+//the shop uses custom flags 24, 25 and 26
+//butterflies use custom flags 27, 28 and 29
+//flag 30 means link found two shields (shops do not count)
+//flags 31, 32 and 33 are used for the items in pedestals mode
+SHORT 0x3D07 6; WORD 0x2002CB4 //set the simulation heart piece flag after it ends
+SHORT 0x4803 1; WORD 0x2002CA1 //library quest can be started with flippers
+SHORT 0x0517 1; WORD 0x2002CA1 //picking up the ocarina automatically starts the library quest
+SHORT 0x0507 3; WORD 0x2002CEC //gentari door opens when getting bombs
+SHORT 0x0563 3; WORD 0x2002CEC //gentari door opens when getting bombs
+SHORT 0x0546 3; WORD 0x2002CD5 //the soldier goes away when you get the flippers
+SHORT 0x0514 3; WORD 0x2002CD5 //the soldier goes away when you get the cape
+SHORT 0x055B 2; WORD 0x2002CEC //festari moves automatically when getting the nut
+SHORT 0x0546 2; WORD 0x2002CEC //festari moves automatically when getting the flippers
+SHORT 0x0596 6; WORD 0x2002CD5//getting carlov medal opens figurine house
+SHORT 0x0514 4; WORD 0x2002CD5 //stairs dog moves when you get the cape
+SHORT 0x0512 4; WORD 0x2002CD5 //stairs dog moves when you get the cane
+SHORT 0x0546 4; WORD 0x2002CD5 //stairs dog moves when you get the flippers
+SHORT 0x1639 2; WORD 0x2002DC1 //killing vaati 2 opens the first dhc key door
+SHORT 0 0; WORD 0 //terminator
+
+//flag hacks
+PUSH; ORG $7DBAC; jumpToHack(flagHack); POP
+ALIGN 4
+flagHack:
+#incbin "asm/flagHack.dmp"
+POIN newFlags
+ALIGN 4
+newFlags: //WORD originaloffset baseoffset bits
+WORD 0x800C710 0x2002C9C 0x04 //Festari - check for big chu being defeated instead of having earth element for special dialogue
+WORD 0x800D2A6 0x2002C9C 0x08 //Melari - instead of having fire element, check defeated gleerok
+WORD 0x800D30E 0x2002C9C 0x08 //Melari - instead of having fire element, check defeated gleerok
+WORD 0x800D04A 0x2002C9C 0x08 //Melari - instead of having fire element, check defeated gleerok
+WORD 0x800D066 0x2002C9C 0x08 //Melari - instead of having fire element, check defeated gleerok
+WORD 0x800D0BE 0x2002C9C 0x08 //Melari - instead of having fire element, check defeated gleerok
+WORD 0x800D0A0 0x2002EA4 0x80 //Melari - instead of having white sword, get item from melari
+WORD 0x800D05E 0x2002EA4 0x80 //Melari - instead of having white sword, get item from melari
+WORD 0x800D944 0x2002D74 0x20 //Zeffa - check for ocarina being dropped instead of ocarina being collected
+WORD 0x800D976 0x2002EA4 0x02 //Ocarina - check for a new flag for the ocarina being collected
+WORD 0x800D980 0x2002EA4 0x02 //Ocarina - check for a new flag for the ocarina being collected
+	WORD 0x8014070 0x2002B32 0xFF //Sanctuary - Ezlo doesn't nag you about the first stone tablet
+	WORD 0x8013BA8 0x2002B32 0xFF //Sanctuary - Ezlo doesn't nag you about the second stone tablet
+	//WORD 0x8014014 0x2002B32 0xFF //Sanctuary - yet more stone tablet
+WORD 0x8012F9C 0x2002EA4 0x08 //Rem - check a custom flag instead of boots
+WORD 0x8009FC4 0x2002EA5 0x01 //Belari - check a custom flag instead of bombs
+WORD 0x8012310 0x2002B32 0x01 //Percy's house - don't check for boots
+WORD 0 0 0 //terminator
+
+//Melari's Mine room flags
+//Instead of exited mine with White Sword, check if defeated Gleerok
+PUSH
+ORG $4C2AE //Melari's room
+BYTE 0x03
+ORG $4C2CE //Kitchen
+BYTE 0x03
+ORG $4C2EE //Bedroom
+BYTE 0x03
+POP
+
+//ice blocks have a question mark inside
+PUSH
+ORG $5EE3D0
+#incbin "ice.img.bin"
+ORG $5F12D0
+#incbin "bigice.img.bin"
+POP
+
+//given text id, get text offset
+ALIGN 4
+getTextOffset:
+#incbin "asm/getTextOffset.dmp"
+
+//fix the D in the debug font
+PUSH; ORG $5C33FD; BYTE 0xFE; POP
+
+//draw to layer 0 using the debug font
+ALIGN 4
+drawText:
+#incbin "asm/drawText.dmp"
+ALIGN 4
+drawNumber:
+#incbin "asm/drawNumber.dmp"
+POIN drawText
+ALIGN 4
+drawTime:
+#incbin "asm/drawTime.dmp"
+POIN drawText
+
+//get a number from the custom rng and advance it
+getRNG:
+#incbin "asm/getRNG.dmp"
+WORD customRNG
+
+#include "pedestal.event"
+#include "timedohko.event"
+#include "newGame.event"
+#include "progressiveItems.event"
+#include "scrubs.event"
+#include "books.event"
+#include "containers.event"
+#include "titlescreenInfo.event"
+#include "logicfixes/installer.event"
+#include "gamefixes/installer.event"
+#include "improvements/installer.event"
+#include "save/installer.event"
+#include "hearts.event"
+#include "randomLanguage.event"
+#include "tunic.event"
+#include "hash.event"
+#include "traps.event"
+#include "removeFusions.event"
+#include "c/textSpeed.cevent"
+
+#ifdef heartLimited // extra hearts do not grant extra hp
+
+	// when checking for beeps, max hp is 3 hearts
+	PUSH; ORG $17128; jumpToHack(heartLimitBeeps); POP
+	ALIGN 4
+	heartLimitBeeps:
+	#incbin "asm/heartLimitBeeps.dmp"
+	WORD (heartLimited << 3)
+
+	// when healing, max hp is 3 hearts
+	PUSH; ORG $522CC; jumpToHack(heartLimitHeals); POP
+	ALIGN 4
+	heartLimitHeals:
+	#incbin "asm/heartLimitHeals.dmp"
+	WORD (heartLimited << 3)
+
+#endif
+
+#ifdef fuzzy //size of the mosaic, 0 to 14
+	PUSH; ORG $4FD90; jumpToHack(fuzzyMode); POP
+	ALIGN 4
+	fuzzyMode:
+	#incbin "asm/fuzzyMode.dmp"
+	WORD ((fuzzy))|((fuzzy)<<4)|((fuzzy)<<8)|((fuzzy)<<12)
+	WORD ((fuzzy+1))|((fuzzy+1)<<4)|((fuzzy+1)<<8)|((fuzzy+1)<<12)
+#endif
+
+//some fixes for followers
+PUSH; ORG $D8F3F; BYTE 0; POP //make the green minish blue in left's attic
+PUSH; ORG $D90C7; BYTE 0; POP //make the green minish blue in the bakery attic
+PUSH; ORG $D90D7; BYTE 3; POP //make the magenta minish red in the bakery attic
+PUSH; ORG $4F05A; SHORT 0xE002; POP //remove soldiers near lon lon
+#ifdef follower
+	#ifndef followerID
+		#define followerID 0x05
+	#endif
+	PUSH; ORG $6043E; SHORT 0; POP //always have zelda companion
+	PUSH; ORG $6E690; jumpToHack(randomFollower); POP //if sprite is 0x2E, change it
+	ALIGN 4
+	randomFollower:
+	#incbin "asm/randomFollower.dmp"
+	WORD followerID
+#endif
+
+#ifdef timerOption
+	PUSH; ORG $1C4E8; jumpToHack(timerDisplay); POP
+	ALIGN 4
+	timerDisplay:
+	#incbin "asm/timerDisplay.dmp"
+	#ifdef timedohkoOption
+		POIN ohkoDrawTime
+		POIN timedohkoGetTime
+		ALIGN 4
+		ohkoDrawTime:
+		#incbin "asm/drawTime.dmp"
+		POIN ohkoDrawText
+		ALIGN 4
+		ohkoDrawText:
+		#incbin "asm/ohkoDrawText.dmp"
+	#else
+		POIN drawTime
+		WORD 0 //if 0, draw total time, it non-0, draw timer returned by routine called
+	#endif
+#endif
+
+#ifdef ohkoOption
+	PUSH; ORG $522BC; jumpToHack(ohkoCheck); POP
+	ALIGN 4
+	ohkoCheck:
+	#incbin "asm/ohkoCheck.dmp"
+	#ifdef timedohkoOption
+		POIN timedohkoCheckTime
+	#endif
+	WORD 0 //if 0, any damage will kill link, if non-0 this will be used as a pointer to a routine to determine if link will die
+#endif
+
+#ifdef counterOption
+	PUSH; ORG $1C4F0; jumpToHack(counterDisplay); POP
+	ALIGN 4
+	counterDisplay:
+	#incbin "asm/counterDisplay.dmp"
+	POIN drawNumber
+	#ifdef timerOption
+		WORD 1
+	#else
+		WORD 0
+	#endif
+	#ifdef requirementFigurinesAmmount
+		WORD requirementFigurinesAmmount
+		POIN requirementFigurinesCounter
+	#endif
+	WORD 0 0
+#endif
+
+#ifdef noFairy //shy fairies patch (fairies don't come out of bottles automatically)
+	PUSH; ORG $7175C; SHORT 0x4289; POP
+#endif
+
+#ifdef chocolateLink //link with a brown layer on top
+	PUSH; ORG $79A80; SHORT 0x22FF; ORG $79AC8; SHORT 0x20FF; POP
+#endif
+
+PUSH //change the jabber nut so it doesn't share a palette with link
+ORG $5C26B0 //new graphics
+#incbin "nut.img.bin"
+ORG $125DFC; BYTE 2 //new palette ids
+ORG $2FE210; WORD newNut1-$2F3460 newNut2-$2F3460; POP //repoint the sprite data
+ALIGN 4
+newNut1:
+BYTE 3
+BYTE 0xF8 0xF4 0x40 0x00 0
+BYTE 0xF8 0xF4 0x81 0x04 0
+BYTE 0x00 0xFB 0x01 0x07 0
+ALIGN 4
+newNut2:
+BYTE 3
+BYTE 0xF8 0xF4 0x40 0x02 0
+BYTE 0xF8 0xFB 0x01 0x06 0
+BYTE 0x00 0xFB 0x01 0x07 0
+
+PUSH //replace kinstone bag with the new figurine item
+ORG $2E84C0
+#incbin "figurine.img.bin"
+WORD 0 0 0 0 0 0 0 0
+ORG $31EB51; BYTE 0xF6
+POP
+
+// randomizable bottle contents (uses sub id)
+// if sub id is 0, pretend like it's 0x20 (empty bottle)
+PUSH
+ORG $53C7E
+SHORT 0x2F00 // cmp r7,#0
+SHORT 0xD100 // bne bottleWithSub
+SHORT 0x2720 // mov r7,#0x20
+SHORT 0x700F // bottleWithSub: strb r7,[r1]
+POP
+
+// TESTING: boots still work while small
+#ifdef bootsMinish
+PUSH; ORG $11B694; BYTE 1; POP
+#endif
+
+// Combine Kinstone pieces of the same color
+PUSH
+// Fusions
+#ifdef combineKinstonesRed
+	ORG $C93E4+(8*0x13)+1; BYTE 0x12; ORG $C93E4+(8*0x13)+5; BYTE 0x0B
+	ORG $C93E4+(8*0x14)+1; BYTE 0x12; ORG $C93E4+(8*0x14)+5; BYTE 0x0B
+	ORG $C93E4+(8*0x15)+1; BYTE 0x12; ORG $C93E4+(8*0x15)+5; BYTE 0x0B
+	ORG $C93E4+(8*0x16)+1; BYTE 0x12; ORG $C93E4+(8*0x16)+5; BYTE 0x0B
+	ORG $C93E4+(8*0x17)+1; BYTE 0x12; ORG $C93E4+(8*0x17)+5; BYTE 0x0B
+	ORG $C93E4+(8*0x18)+1; BYTE 0x12; ORG $C93E4+(8*0x18)+5; BYTE 0x0B
+	ORG $C93E4+(8*0x19)+1; BYTE 0x12; ORG $C93E4+(8*0x19)+5; BYTE 0x0B
+	ORG $C93E4+(8*0x1A)+1; BYTE 0x12; ORG $C93E4+(8*0x1A)+5; BYTE 0x0B
+	ORG $C93E4+(8*0x1B)+1; BYTE 0x12; ORG $C93E4+(8*0x1B)+5; BYTE 0x0B
+	ORG $C93E4+(8*0x1C)+1; BYTE 0x12; ORG $C93E4+(8*0x1C)+5; BYTE 0x0B
+	ORG $C93E4+(8*0x1D)+1; BYTE 0x12; ORG $C93E4+(8*0x1D)+5; BYTE 0x0B
+	ORG $C93E4+(8*0x1E)+1; BYTE 0x12; ORG $C93E4+(8*0x1E)+5; BYTE 0x0B
+	ORG $C93E4+(8*0x1F)+1; BYTE 0x12; ORG $C93E4+(8*0x1F)+5; BYTE 0x0B
+	ORG $C93E4+(8*0x20)+1; BYTE 0x12; ORG $C93E4+(8*0x20)+5; BYTE 0x0B
+	ORG $C93E4+(8*0x21)+1; BYTE 0x12; ORG $C93E4+(8*0x21)+5; BYTE 0x0B
+#endif
+#ifdef combineKinstonesBlue
+	ORG $C93E4+(8*0x25)+1; BYTE 0x15; ORG $C93E4+(8*0x25)+5; BYTE 0x0E
+	ORG $C93E4+(8*0x26)+1; BYTE 0x15; ORG $C93E4+(8*0x26)+5; BYTE 0x0E
+	ORG $C93E4+(8*0x2D)+1; BYTE 0x15; ORG $C93E4+(8*0x2D)+5; BYTE 0x0E
+	ORG $C93E4+(8*0x2E)+1; BYTE 0x15; ORG $C93E4+(8*0x2E)+5; BYTE 0x0E
+	ORG $C93E4+(8*0x2F)+1; BYTE 0x15; ORG $C93E4+(8*0x2F)+5; BYTE 0x0E
+	ORG $C93E4+(8*0x30)+1; BYTE 0x15; ORG $C93E4+(8*0x30)+5; BYTE 0x0E
+	ORG $C93E4+(8*0x31)+1; BYTE 0x15; ORG $C93E4+(8*0x31)+5; BYTE 0x0E
+	ORG $C93E4+(8*0x32)+1; BYTE 0x15; ORG $C93E4+(8*0x32)+5; BYTE 0x0E
+	ORG $C93E4+(8*0x33)+1; BYTE 0x15; ORG $C93E4+(8*0x33)+5; BYTE 0x0E
+#endif
+#ifdef combineKinstonesGreen
+	ORG $C93E4+(8*0x43)+1; BYTE 0x17; ORG $C93E4+(8*0x43)+5; BYTE 0x10
+	ORG $C93E4+(8*0x44)+1; BYTE 0x17; ORG $C93E4+(8*0x44)+5; BYTE 0x10
+	ORG $C93E4+(8*0x45)+1; BYTE 0x17; ORG $C93E4+(8*0x45)+5; BYTE 0x10
+	ORG $C93E4+(8*0x46)+1; BYTE 0x17; ORG $C93E4+(8*0x46)+5; BYTE 0x10
+	ORG $C93E4+(8*0x47)+1; BYTE 0x17; ORG $C93E4+(8*0x47)+5; BYTE 0x10
+	ORG $C93E4+(8*0x48)+1; BYTE 0x17; ORG $C93E4+(8*0x48)+5; BYTE 0x10
+	ORG $C93E4+(8*0x49)+1; BYTE 0x17; ORG $C93E4+(8*0x49)+5; BYTE 0x10
+	ORG $C93E4+(8*0x4A)+1; BYTE 0x17; ORG $C93E4+(8*0x4A)+5; BYTE 0x10
+	ORG $C93E4+(8*0x4B)+1; BYTE 0x17; ORG $C93E4+(8*0x4B)+5; BYTE 0x10
+	ORG $C93E4+(8*0x4C)+1; BYTE 0x17; ORG $C93E4+(8*0x4C)+5; BYTE 0x10
+	ORG $C93E4+(8*0x4D)+1; BYTE 0x17; ORG $C93E4+(8*0x4D)+5; BYTE 0x10
+	ORG $C93E4+(8*0x4E)+1; BYTE 0x17; ORG $C93E4+(8*0x4E)+5; BYTE 0x10
+	ORG $C93E4+(8*0x4F)+1; BYTE 0x17; ORG $C93E4+(8*0x4F)+5; BYTE 0x10
+	ORG $C93E4+(8*0x50)+1; BYTE 0x17; ORG $C93E4+(8*0x50)+5; BYTE 0x10
+	ORG $C93E4+(8*0x51)+1; BYTE 0x17; ORG $C93E4+(8*0x51)+5; BYTE 0x10
+	ORG $C93E4+(8*0x52)+1; BYTE 0x17; ORG $C93E4+(8*0x52)+5; BYTE 0x10
+	ORG $C93E4+(8*0x53)+1; BYTE 0x17; ORG $C93E4+(8*0x53)+5; BYTE 0x10
+	ORG $C93E4+(8*0x54)+1; BYTE 0x17; ORG $C93E4+(8*0x54)+5; BYTE 0x10
+	ORG $C93E4+(8*0x55)+1; BYTE 0x17; ORG $C93E4+(8*0x55)+5; BYTE 0x10
+	ORG $C93E4+(8*0x56)+1; BYTE 0x17; ORG $C93E4+(8*0x56)+5; BYTE 0x10
+	ORG $C93E4+(8*0x57)+1; BYTE 0x17; ORG $C93E4+(8*0x57)+5; BYTE 0x10
+	ORG $C93E4+(8*0x58)+1; BYTE 0x17; ORG $C93E4+(8*0x58)+5; BYTE 0x10
+	ORG $C93E4+(8*0x59)+1; BYTE 0x17; ORG $C93E4+(8*0x59)+5; BYTE 0x10
+	ORG $C93E4+(8*0x5A)+1; BYTE 0x17; ORG $C93E4+(8*0x5A)+5; BYTE 0x10
+	ORG $C93E4+(8*0x5B)+1; BYTE 0x17; ORG $C93E4+(8*0x5B)+5; BYTE 0x10
+	ORG $C93E4+(8*0x5D)+1; BYTE 0x17; ORG $C93E4+(8*0x5D)+5; BYTE 0x10
+	ORG $C93E4+(8*0x5E)+1; BYTE 0x17; ORG $C93E4+(8*0x5E)+5; BYTE 0x10
+	ORG $C93E4+(8*0x60)+1; BYTE 0x17; ORG $C93E4+(8*0x60)+5; BYTE 0x10
+	ORG $C93E4+(8*0x61)+1; BYTE 0x17; ORG $C93E4+(8*0x61)+5; BYTE 0x10
+	ORG $C93E4+(8*0x62)+1; BYTE 0x17; ORG $C93E4+(8*0x62)+5; BYTE 0x10
+	ORG $C93E4+(8*0x63)+1; BYTE 0x17; ORG $C93E4+(8*0x63)+5; BYTE 0x10
+	ORG $C93E4+(8*0x64)+1; BYTE 0x17; ORG $C93E4+(8*0x64)+5; BYTE 0x10
+#endif
+// Random drops
+#ifdef combineKinstonesRed
+	ORG $FD721
+	BYTE 0x6E 0x6E 0x6E 0x6E 0x6E 0x6E 0x6E 0x6E 0x6E 0x6E 0x6E 0x6E 0x6E 0x6E 0x6E 0x6E
+	BYTE 0x6E 0x6E 0x6E 0x6E 0x6E 0x6E 0x6E 0x6E 0x6E 0x6E 0x6E 0x6E 0x6E 0x6E 0x6E 0x6E
+	BYTE 0x6E 0x6E 0x6E 0x6E 0x6E 0x6E 0x6E 0x6E 0x6E 0x6E 0x6E 0x6E 0x6E 0x6E 0x6E 0x6E
+	BYTE 0x6E 0x6E 0x6E 0x6E 0x6E 0x6E 0x6E 0x6E 0x6E 0x6E 0x6E 0x6E 0x6E 0x6E 0x6E 0x00
+#endif
+#ifdef combineKinstonesBlue
+	ORG $FD761
+	BYTE 0x71 0x71 0x71 0x71 0x71 0x71 0x71 0x71 0x71 0x71 0x71 0x71 0x71 0x71 0x71 0x71
+	BYTE 0x71 0x71 0x71 0x71 0x71 0x71 0x71 0x71 0x71 0x71 0x71 0x71 0x71 0x71 0x71 0x71
+	BYTE 0x71 0x71 0x71 0x71 0x71 0x71 0x71 0x71 0x71 0x71 0x71 0x71 0x71 0x71 0x71 0x71
+	BYTE 0x71 0x71 0x71 0x71 0x71 0x71 0x71 0x71 0x71 0x71 0x71 0x71 0x71 0x71 0x71 0x71
+#endif
+#ifdef combineKinstonesGreen
+	ORG $FD7A1
+	BYTE 0x73 0x73 0x73 0x73 0x73 0x73 0x73 0x73 0x73 0x73 0x73 0x73 0x73 0x73 0x73 0x73
+	BYTE 0x73 0x73 0x73 0x73 0x73 0x73 0x73 0x73 0x73 0x73 0x73 0x73 0x73 0x73 0x73 0x73
+	BYTE 0x73 0x73 0x73 0x73 0x73 0x73 0x73 0x73 0x73 0x73 0x73 0x73 0x73 0x73 0x73 0x73
+	BYTE 0x73 0x73 0x73 0x73 0x73 0x73 0x73 0x73 0x73 0x73 0x73 0x73 0x73 0x73 0x73 0x00
+#endif
+// Tree drops
+#ifdef combineKinstonesRed
+	ORG $D21DC
+	BYTE 0x6E 0x6E 0x6E
+#endif
+#ifdef combineKinstonesBlue
+	ORG $D21DF
+	BYTE 0x71 0x71
+#endif
+#ifdef combineKinstonesGreen
+	ORG $D21E1
+	BYTE 0x73 0x73 0x73
+#endif
+// Business Scrub
+#ifdef combineKinstonesRed
+	ORG $CC0E8
+	BYTE 0x6E 0x6E 0x6E
+#endif
+#ifdef combineKinstonesBlue
+	ORG $CC0EB
+	BYTE 0x71 0x71
+#endif
+#ifdef combineKinstonesGreen
+	ORG $CC0ED
+	BYTE 0x73 0x73 0x73
+#endif
+// Goron Merchant
+#ifdef combineKinstonesRed
+	ORG $1084B2
+	BYTE 0x01
+#endif
+#ifdef combineKinstonesBlue
+	ORG $1084BA
+	BYTE 0x01
+#endif
+#ifdef combineKinstonesGreen
+	ORG $1084C2
+	BYTE 0x01
+#endif
+// Bakery
+#ifdef combineKinstonesRed
+	ORG $10BB91
+	BYTE 0x6E 0x6E 0x6E
+#endif
+#ifdef combineKinstonesBlue
+	ORG $10BB94
+	BYTE 0x71 0x71
+#endif
+#ifdef combineKinstonesGreen
+	ORG $10BB96
+	BYTE 0x73 0x73 0x73
+#endif
+// Inn
+#ifdef combineKinstonesRed
+	ORG $D61A3
+	BYTE 0x6E
+	ORG $D61B3
+	BYTE 0x6E
+	ORG $D61C3
+	BYTE 0x6E
+#endif
+#ifdef combineKinstonesBlue
+	ORG $D6257
+	BYTE 0x71
+	ORG $D6267
+	BYTE 0x71
+#endif
+#ifdef combineKinstonesGreen
+	ORG $D62E7
+	BYTE 0x73
+	ORG $D62F7
+	BYTE 0x73
+	ORG $D6307
+	BYTE 0x73
+#endif
+// Simon's Simulations
+#ifdef combineKinstonesRed
+	ORG $F048B
+	BYTE 0x6E
+	ORG $F04A3
+	BYTE 0x6E
+	ORG $F04AB
+	BYTE 0x6E
+#endif
+#ifdef combineKinstonesBlue
+	ORG $F0483
+	BYTE 0x71
+	ORG $F048B
+	BYTE 0x71
+#endif
+#ifdef combineKinstonesGreen
+	ORG $F045B
+	BYTE 0x73
+	ORG $F0463
+	BYTE 0x73
+	ORG $F046B
+	BYTE 0x73
+#endif
+POP
+
+#ifdef enable_firerod
+#include "firerod/firerodInventory.event"
+#endif
+#ifdef pokemon_music
+#include "sound/sound.event"
+#endif
+#ifdef heroMode
+#include "c/heroMode.cevent"
+damageMultiplier:
+WORD dmgMulti;
+#endif

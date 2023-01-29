@@ -1,0 +1,18 @@
+
+##4 byte raw value
+WORD, 0, 4, -game:FE6:FE7:FE8 -repeatable -priority:low -indexMode:8 -offsetMod:4
+##Value
+	Value, 0, 4
+
+##2 byte raw value
+SHORT, 0, 2, -game:FE6:FE7:FE8 -repeatable -priority:low -indexMode:8 -offsetMod:2
+##Value
+	Value, 0, 2
+
+##1 byte raw value
+BYTE, 0, 1, -game:FE6:FE7:FE8 -repeatable -priority:low -indexMode:8 -offsetMod:1
+##Value
+	Value, 0, 1
+
+
+

@@ -1,0 +1,429 @@
+//Event file generated from Sappy .s format.
+	#include "MPlayDef.event"
+
+	#define	mus_b_dome_lobby_grp  voicegroup111
+	#define	mus_b_dome_lobby_pri  0
+	#define	mus_b_dome_lobby_rev  reverb_set+50
+	#define	mus_b_dome_lobby_mvl  56
+	#define	mus_b_dome_lobby_key  0
+	#define	mus_b_dome_lobby_tbs  1
+	#define	mus_b_dome_lobby_exg  1
+	#define	mus_b_dome_lobby_cmp  1
+
+	// .rodata
+	//	mus_b_dome_lobby
+	ALIGN 4
+
+//**************** Track 1 (Midi-Chn.1) ****************//
+
+mus_b_dome_lobby_1:
+	BYTE	KEYSH   mus_b_dome_lobby_key+0
+// 000   ----------------------------------------
+	BYTE	TEMPO   144*mus_b_dome_lobby_tbs/2
+	BYTE		VOICE   0
+	BYTE		PAN     c_v+0
+	BYTE		VOL     127*mus_b_dome_lobby_mvl/mxv
+	BYTE		N06     Cn1   v112
+	BYTE		N06     Fn1 
+	BYTE	W24
+	BYTE		        Cn1 
+	BYTE		N06     Fn1 
+	BYTE	W24
+	BYTE		        Dn1 
+	BYTE		N06     Ds1 
+	BYTE	W12
+	BYTE		        Ds1   v064
+	BYTE	W12
+	BYTE		        Ds1   v036
+	BYTE	W12
+	BYTE		        Ds1   v028
+	BYTE		N06     Dn2   v112
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+// 001   ----------------------------------------
+	BYTE		        Cn1 
+	BYTE		N12     Cn2 
+	BYTE	W12
+	BYTE		        An1 
+	BYTE	W12
+	BYTE		N06     Cn1 
+	BYTE		N12     Gn1 
+	BYTE	W12
+	BYTE		        Fn1 
+	BYTE	W12
+	BYTE		N06     Dn1 
+	BYTE		N06     Ds1 
+	BYTE	W12
+	BYTE		        Ds1   v064
+	BYTE	W12
+	BYTE		        Ds1   v036
+	BYTE	W12
+	BYTE		        Ds1   v028
+	BYTE	W12
+// 002   ----------------------------------------
+mus_b_dome_lobby_1_002:
+	BYTE		N06     Cn1   v112
+	BYTE		N06     Fn1 
+	BYTE	W24
+	BYTE		        Cn1 
+	BYTE		N06     Fn1 
+	BYTE	W24
+	BYTE		        Dn1 
+	BYTE		N06     Ds1 
+	BYTE	W12
+	BYTE		        Ds1   v064
+	BYTE	W12
+	BYTE		        Ds1   v036
+	BYTE	W12
+	BYTE		        Ds1   v028
+	BYTE		N06     Dn2   v112
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE	PEND
+// 003   ----------------------------------------
+	BYTE		        Cn1 
+	BYTE		N12     Cn2 
+	BYTE	W12
+	BYTE		N06     An1 
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		        Cn1 
+	BYTE		N12     Gn1 
+	BYTE	W12
+	BYTE		N06     Fn1 
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+	BYTE		        Cn1 
+	BYTE		N36     Cs2   v068
+	BYTE	W12
+	BYTE		N06     Dn1   v112
+	BYTE		N06     Ds1 
+	BYTE	W12
+	BYTE		        Cn1 
+	BYTE		N06     Ds1   v064
+	BYTE	W12
+	BYTE		        Ds1   v112
+	BYTE		N12     An2   v072
+	BYTE	W06
+	BYTE		N06     Dn1   v112
+	BYTE	W06
+mus_b_dome_lobby_1_B1:
+// 004   ----------------------------------------
+	BYTE		N06     Cn1   v112
+	BYTE		N06     Fn1 
+	BYTE		N24     Gn2   v084
+	BYTE	W24
+	BYTE		N06     Cn1   v112
+	BYTE		N06     Fn1 
+	BYTE	W24
+	BYTE		        Dn1 
+	BYTE		N06     Ds1 
+	BYTE	W12
+	BYTE		        Ds1   v064
+	BYTE		N06     Cn2   v112
+	BYTE	W12
+	BYTE		        Ds1   v036
+	BYTE		N06     Bn1   v112
+	BYTE	W12
+	BYTE		        Ds1   v028
+	BYTE		N06     Gn1   v112
+	BYTE	W12
+// 005   ----------------------------------------
+mus_b_dome_lobby_1_005:
+	BYTE		N06     Cn1   v112
+	BYTE		N06     Fn1 
+	BYTE	W24
+	BYTE		        Cn1 
+	BYTE		N06     Fn1 
+	BYTE	W24
+	BYTE		        Dn1 
+	BYTE		N06     Ds1 
+	BYTE	W12
+	BYTE		        Ds1   v064
+	BYTE	W12
+	BYTE		        Ds1   v036
+	BYTE	W12
+	BYTE		        Ds1   v028
+	BYTE	W12
+	BYTE	PEND
+// 006   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_b_dome_lobby_1_002
+// 007   ----------------------------------------
+	BYTE		N06     Cn1   v112
+	BYTE		N12     Cn2 
+	BYTE	W12
+	BYTE		        An1 
+	BYTE	W12
+	BYTE		N06     Cn1 
+	BYTE		N06     Dn1 
+	BYTE		N12     Gn1 
+	BYTE		N24     An2   v072
+	BYTE	W12
+	BYTE		N12     Fn1   v112
+	BYTE	W09
+	BYTE		N03     Dn1   v072
+	BYTE	W03
+	BYTE		N06     Dn1   v112
+	BYTE		N06     Ds1 
+	BYTE		N24     Cs2   v076
+	BYTE	W12
+	BYTE		N06     Cn1   v112
+	BYTE		N06     Ds1   v064
+	BYTE		N12     Fn1   v112
+	BYTE	W12
+	BYTE		N06     Ds1   v036
+	BYTE	W12
+	BYTE		        Dn1   v112
+	BYTE		N06     Ds1 
+	BYTE	W06
+	BYTE		        Dn1   v068
+	BYTE	W06
+// 008   ----------------------------------------
+	BYTE		        Cn1   v112
+	BYTE		N06     Fn1 
+	BYTE	W24
+	BYTE		        Cn1 
+	BYTE		N06     Fn1 
+	BYTE	W24
+	BYTE		        Dn1 
+	BYTE		N06     Ds1 
+	BYTE	W12
+	BYTE		        Ds1   v064
+	BYTE		N12     Cn2   v112
+	BYTE	W12
+	BYTE		N06     Ds1   v036
+	BYTE		N12     Bn1   v112
+	BYTE	W12
+	BYTE		N06     Ds1   v028
+	BYTE		N12     Gn1   v112
+	BYTE	W12
+// 009   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_b_dome_lobby_1_005
+// 010   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_b_dome_lobby_1_002
+// 011   ----------------------------------------
+	BYTE		N06     Cn1   v112
+	BYTE		N06     Cn2 
+	BYTE	W12
+	BYTE		        An1 
+	BYTE	W06
+	BYTE		        Cn1 
+	BYTE	W06
+	BYTE		N06   
+	BYTE		N06     Dn1 
+	BYTE		N12     Gn1 
+	BYTE		N12     Cs2   v076
+	BYTE	W12
+	BYTE		N06     Dn1   v112
+	BYTE		N12     An2   v088
+	BYTE	W06
+	BYTE		N06     Cn1   v112
+	BYTE	W06
+	BYTE		N06   
+	BYTE		N06     Fn1 
+	BYTE	W06
+	BYTE		        Dn1 
+	BYTE	W06
+	BYTE		        Fn1 
+	BYTE	W06
+	BYTE		        Cn1 
+	BYTE	W06
+	BYTE		        Dn1 
+	BYTE		N06     Ds1 
+	BYTE		N24     Gn2   v084
+	BYTE	W06
+	BYTE		N06     Cn1   v112
+	BYTE	W06
+	BYTE		        An1 
+	BYTE	W06
+	BYTE		        Gn1 
+	BYTE	W06
+	BYTE	GoTo
+	 POIN2	mus_b_dome_lobby_1_B1
+mus_b_dome_lobby_1_B2:
+// 012   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 2 (Midi-Chn.2) ****************//
+
+mus_b_dome_lobby_2:
+	BYTE	KEYSH   mus_b_dome_lobby_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   127
+	BYTE		LFOS    44
+	BYTE		XCMD    xIECV   18
+	BYTE		        xIECV   16
+	BYTE		BENDR   12
+	BYTE		VOL     87*mus_b_dome_lobby_mvl/mxv
+	BYTE		PAN     c_v+63
+	BYTE		N01     Cn5   v112
+	BYTE	W12
+	BYTE		        Cn5   v032
+	BYTE	W12
+	BYTE		        Cn5   v060
+	BYTE	W12
+	BYTE		        Cn5   v032
+	BYTE	W12
+	BYTE		        Cn5   v060
+	BYTE	W12
+	BYTE		        Cn5   v036
+	BYTE	W12
+	BYTE		        Cn5   v080
+	BYTE	W12
+	BYTE		        Cn5   v048
+	BYTE	W12
+// 001   ----------------------------------------
+mus_b_dome_lobby_2_001:
+	BYTE		N01     Cn5   v112
+	BYTE	W12
+	BYTE		        Cn5   v032
+	BYTE	W12
+	BYTE		        Cn5   v060
+	BYTE	W12
+	BYTE		        Cn5   v032
+	BYTE	W12
+	BYTE		        Cn5   v060
+	BYTE	W12
+	BYTE		        Cn5   v032
+	BYTE	W12
+	BYTE		        Cn5   v096
+	BYTE	W24
+	BYTE	PEND
+// 002   ----------------------------------------
+mus_b_dome_lobby_2_002:
+	BYTE		N01     Cn5   v112
+	BYTE	W12
+	BYTE		        Cn5   v032
+	BYTE	W12
+	BYTE		        Cn5   v060
+	BYTE	W12
+	BYTE		        Cn5   v032
+	BYTE	W12
+	BYTE		        Cn5   v060
+	BYTE	W12
+	BYTE		        Cn5   v032
+	BYTE	W12
+	BYTE		        Cn5   v060
+	BYTE	W12
+	BYTE		        Cn5   v032
+	BYTE	W12
+	BYTE	PEND
+// 003   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_b_dome_lobby_2_002
+mus_b_dome_lobby_2_B1:
+// 004   ----------------------------------------
+mus_b_dome_lobby_2_004:
+	BYTE		N01     Cn5   v112
+	BYTE	W12
+	BYTE		        Cn5   v032
+	BYTE	W12
+	BYTE		        Cn5   v060
+	BYTE	W12
+	BYTE		        Cn5   v032
+	BYTE	W12
+	BYTE		        Cn5   v060
+	BYTE	W12
+	BYTE		        Cn5   v036
+	BYTE	W12
+	BYTE		        Cn5   v080
+	BYTE	W12
+	BYTE		        Cn5   v048
+	BYTE	W12
+	BYTE	PEND
+// 005   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_b_dome_lobby_2_001
+// 006   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_b_dome_lobby_2_002
+// 007   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_b_dome_lobby_2_002
+// 008   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_b_dome_lobby_2_004
+// 009   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_b_dome_lobby_2_001
+// 010   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_b_dome_lobby_2_002
+// 011   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_b_dome_lobby_2_002
+	BYTE	GoTo
+	 POIN2	mus_b_dome_lobby_2_B1
+mus_b_dome_lobby_2_B2:
+// 012   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 3 (Midi-Chn.3) ****************//
+
+mus_b_dome_lobby_3:
+	BYTE	KEYSH   mus_b_dome_lobby_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   126
+	BYTE		LFOS    44
+	BYTE		BENDR   12
+	BYTE		VOL     127*mus_b_dome_lobby_mvl/mxv
+	BYTE		PAN     c_v+63
+	BYTE	W96
+// 001   ----------------------------------------
+	BYTE	W84
+	BYTE		N12     Gn5   v064
+	BYTE	W12
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W96
+mus_b_dome_lobby_3_B1:
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W84
+	BYTE		N12     Gn5   v064
+	BYTE	W12
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE	W96
+// 009   ----------------------------------------
+	BYTE	W84
+	BYTE		N12   
+	BYTE	W12
+// 010   ----------------------------------------
+	BYTE	W96
+// 011   ----------------------------------------
+	BYTE	W96
+	BYTE	GoTo
+	 POIN2	mus_b_dome_lobby_3_B1
+mus_b_dome_lobby_3_B2:
+// 012   ----------------------------------------
+	BYTE	FINE
+
+//******************************************************//
+	ALIGN 4
+
+mus_b_dome_lobby:
+	BYTE	3	// NumTrks
+	BYTE	0	// NumBlks
+	BYTE	mus_b_dome_lobby_pri	// Priority
+	BYTE	mus_b_dome_lobby_rev	// Reverb.
+
+	POIN2	mus_b_dome_lobby_grp
+
+	POIN2	mus_b_dome_lobby_1
+	POIN2	mus_b_dome_lobby_2
+	POIN2	mus_b_dome_lobby_3
+
+	

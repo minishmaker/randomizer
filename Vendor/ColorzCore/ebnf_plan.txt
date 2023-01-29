@@ -1,0 +1,53 @@
+EAPROGRAM = [ LINE , { NEWLINE , LINE } ];
+
+LINE = PREPROCESSOR_COMMAND | LABEL | STATEMENT_LIST;
+
+PREPROCESSOR_COMMAND = "#include" , WIN_PATHNAME | "#incbin" , WIN_PATHNAME | "#" , IDENTIFIER , { PREPROC_PARAM }; //No whitespace between # and Identifier
+WIN_PATHNAME = STRING | [^Path.GetInvalidPathChars()]+ //Note WIN_PATHNAME is a superset of NUMBER and IDENTIFIER
+PREPROC_PARAM = -[^\w]+ | IDENTIFIER
+
+LABEL = INDENTIFIER , COLON;
+
+STATEMENT_LIST = STATEMENT , { SEMICOLON , STATEMENTS };
+STATEMENT = MACRO | RAW , { PARAM };
+MACRO = IDENTIFIER , OPEN_PAREN , PARAM_LIST , CLOSE_PAREN; //Expands to the string with a matching number of parameters, in code (think python's exec()). Gets parsed as such immediately.
+//Note: NO WHITESPACE between the identifier and open_paren
+PARAM_LIST = PARAM , { COMMA , PARAM };
+RAW = IDENTIFIER;
+
+PARAM = ATOM | LIST | STRING;
+
+ATOM = ATOM , MUL_OP , PREC4 | ATOM , DIV_OP , PREC4 | PREC4;
+PREC4 = PREC4 , ADD_OP , PREC5 | PREC4 , SUB_OP , PREC5 | PREC5
+PREC5 = PREC5 , LSHIFT_OP , PREC8 | PREC5 , RSHIFT_OP , PREC8 | PREC8
+PREC8 = PREC8 , AND_OP , PREC9 | PREC9
+PREC9 = PREC9 , XOR_OP , PREC10 | PREC10
+PREC10 = LITERAL , OR_OP , PREC10 | LITERAL
+LITERAL = OPEN_PAREN , ATOM , CLOSE_PAREN | IDENTIFIER | MACRO | NUMBER
+
+LIST = OPEN_BRACKET , ATOM , { COMMA , ATOM } , CLOSE_BRACKET; //Shorthand for construction of a large int / series of ints?
+
+STRING = QUOTE , STRING_ELEM , QUOTE; //Quotes handled in tokenization
+
+NEWLINE = "\n";
+SEMICOLON = ";";
+COLON = ":";
+OPEN_PAREN = "(";
+CLOSE_PAREN = ")";
+MUL_OP = "*";
+DIV_OP = "/";
+ADD_OP = "+";
+SUB_OP = "_";
+LSHIFT_OP = "<<";
+RSHIFT_OP = ">>";
+AND_OP = "&";
+XOR_OP = "^";
+OR_OP = "|";
+NUMBER = SUB_OP USIGNED_NUMBER | USIGNED_NUMBER
+USIGNED_NUMBER = [0_9]+ | \$[0_9]+ | 0x[0_9]+;
+OPEN_BRACKET = "[";
+CLOSE_BRACKET = "]";
+QUOTE = "\"";
+ESCAPE_CHAR = [trn\"\\]; //Might be missing some
+STRING_ELEM = [^\"\\] | "\\" , ESCAPE_CHAR;
+IDENTIFIER = [a_zA_Z][a_zA_Z0_9\_]*;

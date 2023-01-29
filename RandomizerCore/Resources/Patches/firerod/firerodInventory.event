@@ -1,0 +1,45 @@
+PUSH
+	ORG $A4AEC; POIN newItemMenuTable
+	ORG $A4C20; POIN newItemMenuTable
+	ORG $A4D54; POIN newItemMenuTable
+	POP
+#define itemMenuSquare(squareID,up,down,left,right,type,squarex,squarey) "PUSH; ORG (newItemMenuTable+(8*squareID)); BYTE up down left right type 0 squarex squarey; POP"
+ALIGN 4
+newItemMenuTable:
+#incbin "oldItemMenuTable.bin"
+ORG currentOffset+8*0x20 //save space for up to 0x20 extra entries, although you can only have IDs from 0 to 0x1D
+itemMenuSquare(0x00,0x0C,0x04,0x12,0x01,1,0x42,0x33) //new sword
+itemMenuSquare(0x03,0x10,0x07,0x02,0x12,1,0xAE,0x33) //new boomerang
+itemMenuSquare(0x12,0x0C,0x04,0x03,0x00,1,0x24,0x33) //fire rod
+PUSH
+	// set fire rod to take slot 0x12 of the inventory
+	ORG $FCBA8; BYTE 0x12
+	
+	// raise the limit of slots to 0x12 for the item name fetching
+	ORG $A4A70; SHORT 0x2912
+	
+	// raise the limit of slots to 0x12 for the item icon drawing
+	ORG $A4C6C; SHORT 0x2D12
+	
+	// raise the limit of slots to 0x12 for the selected item drawing
+	ORG $A4D7E; SHORT 0x2912 0xD9F4 0x2011
+	ORG $A4CF4; SHORT 0x2D11 0xD00A
+	ORG $A4D1A; SHORT 0x2D11 0xD00B
+POP
+
+//PUSH
+//	ORG $a4a4c
+//	jumpToHack(hack2)
+//	ORG $a4aec
+//	WORD (hack1 | 0x08000000)
+//	ORG $a4c20
+//	WORD (hack1 | 0x08000000)
+//	ORG $a4d54
+//	WORD (hack1 | 0x08000000)
+//POP
+//ALIGN 4
+//hack1:
+//#incbin "./hack1.bin"
+//ALIGN 4
+//hack2:
+//#incbin "./hack2.bin"
