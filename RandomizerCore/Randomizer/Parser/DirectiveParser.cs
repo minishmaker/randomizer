@@ -260,6 +260,34 @@ public class DirectiveParser
 			}
 	}
 
+	public uint GetLogicOptionsCrc32()
+	{
+		var bytes = new List<byte>();
+
+		foreach (var option in Options.Where(option => option.Type is LogicOptionType.Setting))
+		{
+			bytes.AddRange(Encoding.UTF8.GetBytes(option.Name));
+			bytes.AddRange(Encoding.UTF8.GetBytes(option.Type.ToString()));
+			bytes.AddRange(Encoding.UTF8.GetBytes(option.GetType().ToString()));
+		}
+
+		return CrcUtil.Crc32(bytes.ToArray());
+	}
+
+	public uint GetCosmeticOptionsCrc32()
+	{
+		var bytes = new List<byte>();
+
+		foreach (var option in Options.Where(option => option.Type is LogicOptionType.Cosmetic))
+		{
+			bytes.AddRange(Encoding.UTF8.GetBytes(option.Name));
+			bytes.AddRange(Encoding.UTF8.GetBytes(option.Type.ToString()));
+			bytes.AddRange(Encoding.UTF8.GetBytes(option.GetType().ToString()));
+		}
+
+		return CrcUtil.Crc32(bytes.ToArray());
+	}
+
 	public List<LogicOptionBase> GetSortedSettings()
 	{
 		var settings = Options.Where(option => option.Type == LogicOptionType.Setting).ToList();
@@ -267,7 +295,7 @@ public class DirectiveParser
 		return settings;
 	}
 
-	public List<LogicOptionBase> GetSortedGimmicks()
+	public List<LogicOptionBase> GetSortedCosmetics()
 	{
 		var settings = Options.Where(option => option.Type == LogicOptionType.Cosmetic).ToList();
 		settings.Sort((option1, option2) => string.CompareOrdinal(option1.Name, option2.Name));

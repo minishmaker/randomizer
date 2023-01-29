@@ -11,6 +11,8 @@ public class LogicColorPicker : LogicOptionBase
     public Color BaseColor { get; set; }
     public Color DefinedColor { get; set; }
     public List<Color> InitialColors { get; set; }
+
+    public bool UseRandomColor { get; set; }
     
     public LogicColorPicker(
         string name, 
@@ -28,6 +30,7 @@ public class LogicColorPicker : LogicOptionBase
         {
             startingColor
         };
+        UseRandomColor = false;
     }
 
     public LogicColorPicker(
@@ -57,6 +60,11 @@ public class LogicColorPicker : LogicOptionBase
 
         // Only true if a color has been selected
         if (!Active) return defineList;
+
+        if (UseRandomColor)
+        {
+            PickRandomColor();
+        }
 
         defineList.Add(new LogicDefine(Name));
 

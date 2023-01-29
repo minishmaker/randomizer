@@ -12,7 +12,9 @@ public abstract class LogicOptionBase
     public LogicOptionType Type { get; set; }
     public string SettingGroup { get; set; }
     public string SettingPage { get; set; }
-    public string DescriptionText { get; set; }    
+    public string DescriptionText { get; set; }
+
+    private List<ILogicOptionObserver> _observers;
     
     protected LogicOptionBase(
         string name, 
@@ -36,7 +38,18 @@ public abstract class LogicOptionBase
             builder.AppendLine(s);
         }
         DescriptionText = builder.ToString();
+        _observers = new List<ILogicOptionObserver>();
     }
+
+    public void NotifyObservers()
+    {
+        foreach (var observer in _observers)
+        {
+            observer.NotifyObserver();
+        }
+    }
+
+    public void RegisterObserver(ILogicOptionObserver observer) => _observers.Add(observer);
 
     public abstract List<LogicDefine> GetLogicDefines();
 

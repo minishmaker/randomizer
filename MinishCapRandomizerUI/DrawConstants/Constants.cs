@@ -16,7 +16,7 @@ public static class Constants
 
     public static BorderStyle CategoryBorderStyle => BorderStyle.FixedSingle;
     public static Color DefaultBackgroundColor => Color.White;
-    public static Color DefaultButtonBackgroundColor => Color.Gainsboro; //Never heard of this color but it matches on the UI
+    public static Color DefaultButtonBackgroundColor => Color.Transparent; //Never heard of this color but it matches on the UI
 
     public static bool CategoryLabelsUseAutosize => true;
 

@@ -343,7 +343,7 @@ Exit                Exits the program
     private static void GetSettingString()
     {
         Console.WriteLine("Setting String:");
-        Console.WriteLine(_shufflerController.GetSettingString());
+        Console.WriteLine(_shufflerController.GetSettingsString());
         BlockUntilNewline();
     }
     

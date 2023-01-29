@@ -3,7 +3,7 @@ using RandomizerCore.Randomizer.Logic.Options;
 
 namespace MinishCapRandomizerUI.Elements;
 
-public class FlagWrapper : WrapperBase
+public class FlagWrapper : WrapperBase, ILogicOptionObserver
 {
     private const int DefaultBottomMargin = 6;
     private const int Width = 240;
@@ -17,6 +17,7 @@ public class FlagWrapper : WrapperBase
     public FlagWrapper(LogicFlag flag) : base(Width, ElementHeight, flag.SettingGroup, flag.SettingPage)
     {
         _flag = flag;
+        _flag.RegisterObserver(this);
     }
     
     public override List<Control> GetControls(int initialX, int initialY)
@@ -55,4 +56,9 @@ public class FlagWrapper : WrapperBase
         
         return new List<Control> { _checkBox };
     }
+
+	public void NotifyObserver()
+	{
+        _checkBox.Checked = _flag.Active;
+	}
 }

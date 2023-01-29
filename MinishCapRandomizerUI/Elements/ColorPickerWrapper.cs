@@ -4,20 +4,20 @@ using RandomizerCore.Utilities.Models;
 
 namespace MinishCapRandomizerUI.Elements;
 
-public class ColorPickerWrapper : WrapperBase
+public class ColorPickerWrapper : WrapperBase, ILogicOptionObserver
 {
     private const int DefaultBottomMargin = 11; 
-    private const int CheckboxWidth = 125;
+    private const int CheckboxWidth = 155;
     private const int CheckboxHeight = 19;
     private const int TextWidth = 85;
     private const int TextHeight = 15;
     private const int ButtonWidth = 130;
     private const int ButtonHeight = 23;
-    private const int PictureBoxWidth = 90;
+    private const int PictureBoxWidth = 60;
     private const int PictureBoxHeight = 23;
     private const int TextAlign = 1;
     private const int ButtonAndPictureBoxAlign = -3;
-    private const string CheckboxText = "Use Custom Color";
+    private const string CheckboxText = "Use True Random Color";
     private const string SelectColorText = "Select Custom Color";
     private const string SelectRandomColorText = "Pick Random Color";
     private const string UseDefaultColorText = "Use Default Color";
@@ -37,6 +37,7 @@ public class ColorPickerWrapper : WrapperBase
     public ColorPickerWrapper(LogicColorPicker colorPicker) : base(ElementWidth, ElementHeight, colorPicker.SettingGroup, colorPicker.SettingPage)
     {
         _colorPicker = colorPicker;
+        _colorPicker.RegisterObserver(this);
     }
 
     public override List<Control> GetControls(int initialX, int initialY)
@@ -54,7 +55,7 @@ public class ColorPickerWrapper : WrapperBase
         {
             AutoEllipsis = Constants.LabelsAndCheckboxesUseAutoEllipsis,
             AutoSize = false,
-            Checked = true,
+            Checked = false,
             Name = "Checkbox",
             Location = new Point(initialX, initialY),
             Height = CheckboxHeight,
@@ -101,10 +102,10 @@ public class ColorPickerWrapper : WrapperBase
         
         _checkBox.CheckedChanged += (sender, e) =>
         {
-            _colorPicker.Active = _checkBox.Checked;
-            _selectColorButton.Enabled = _checkBox.Checked;
-            _selectRandomColorButton.Enabled = _checkBox.Checked;
-            _useDefaultColorButton.Enabled = _checkBox.Checked;
+            _colorPicker.UseRandomColor = _checkBox.Checked;
+            _selectColorButton.Enabled = !_checkBox.Checked;
+            _selectRandomColorButton.Enabled = !_checkBox.Checked;
+            _useDefaultColorButton.Enabled = !_checkBox.Checked;
         };
 
         return new List<Control>
@@ -172,4 +173,10 @@ public class ColorPickerWrapper : WrapperBase
 
         _colorPreview.BackColor = _colorPicker.DefinedColor;
     }
+
+	public void NotifyObserver()
+	{
+        UpdateColorPreview();
+        _checkBox.Checked = _colorPicker.UseRandomColor;
+	}
 }

@@ -73,6 +73,27 @@ public enum DungeonEntranceType
     PoW = 0x06,
 }
 
+public enum DungeonType
+{
+    Dojo = 00,
+    DWS = 24,
+    CoF = 25,
+    FoW = 26,
+    ToD = 27,
+    PoW = 28,
+    DHC = 29,
+    Crypt = 30,
+}
+
+public enum ProgressiveItemType
+{
+	Sword = 0x0,
+	Bow = 0x1,
+	Boomerang = 0x2,
+	Shield = 0x3,
+	SpinAttack = 0x4,
+}
+
 public enum KinstoneType
 {
     UnTyped,

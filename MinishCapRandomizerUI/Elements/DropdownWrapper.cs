@@ -3,7 +3,7 @@ using RandomizerCore.Randomizer.Logic.Options;
 
 namespace MinishCapRandomizerUI.Elements;
 
-public class DropdownWrapper : WrapperBase
+public class DropdownWrapper : WrapperBase, ILogicOptionObserver
 {
     private const int DefaultBottomMargin = 15;
     private const int TextWidth = 225;
@@ -21,6 +21,7 @@ public class DropdownWrapper : WrapperBase
     public DropdownWrapper(LogicDropdown dropdown) : base(ElementWidth, ElementHeight, dropdown.SettingGroup, dropdown.SettingPage)
     {
         _dropdown = dropdown;
+        _dropdown.RegisterObserver(this);
     }
 
     public override List<Control> GetControls(int initialX, int initialY)
@@ -81,4 +82,10 @@ public class DropdownWrapper : WrapperBase
 
         return new List<Control> { _label, _comboBox };
     }
+
+	public void NotifyObserver()
+	{
+        var index = _dropdown.Selections.Keys.ToList().IndexOf(_dropdown.Selection);
+        _comboBox.SelectedIndex = index;
+	}
 }

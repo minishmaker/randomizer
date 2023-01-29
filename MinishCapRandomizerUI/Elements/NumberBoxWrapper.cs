@@ -3,7 +3,7 @@ using RandomizerCore.Randomizer.Logic.Options;
 
 namespace MinishCapRandomizerUI.Elements;
 
-public class NumberBoxWrapper : WrapperBase
+public class NumberBoxWrapper : WrapperBase, ILogicOptionObserver
 {
     private const int DefaultBottomMargin = 15;
     private const int TextWidth = 225;
@@ -21,6 +21,7 @@ public class NumberBoxWrapper : WrapperBase
     public NumberBoxWrapper(LogicNumberBox numberBox) : base(ElementWidth, ElementHeight, numberBox.SettingGroup, numberBox.SettingPage)
     {
         _numberBox = numberBox;
+        _numberBox.RegisterObserver(this);
     }
 
     public override List<Control> GetControls(int initialX, int initialY)
@@ -77,4 +78,9 @@ public class NumberBoxWrapper : WrapperBase
 
         return new List<Control> { _label, _textBox };
     }
+
+	public void NotifyObserver()
+	{
+        _textBox.Text = _numberBox.Value.ToString();
+	}
 }
