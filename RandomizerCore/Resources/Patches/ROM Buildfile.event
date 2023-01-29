@@ -585,9 +585,9 @@ POP
 #ifdef enable_firerod
 #include "firerod/firerodInventory.event"
 #endif
-#ifdef pokemon_music
-#include "sound/sound.event"
-#endif
+//#ifdef pokemon_music
+//#include "sound/sound.event"
+//#endif
 #ifdef heroMode
 #include "c/heroMode.cevent"
 damageMultiplier:
