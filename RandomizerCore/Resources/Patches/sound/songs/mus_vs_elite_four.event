@@ -1,0 +1,2724 @@
+//Event file generated from Sappy .s format.
+	#include "MPlayDef.event"
+
+	#define	mus_vs_elite_four_grp  voicegroup125
+	#define	mus_vs_elite_four_pri  1
+	#define	mus_vs_elite_four_rev  reverb_set+50
+	#define	mus_vs_elite_four_mvl  80
+	#define	mus_vs_elite_four_key  0
+	#define	mus_vs_elite_four_tbs  1
+	#define	mus_vs_elite_four_exg  1
+	#define	mus_vs_elite_four_cmp  1
+
+	// .rodata
+	//	mus_vs_elite_four
+	ALIGN 4
+
+//**************** Track 1 (Midi-Chn.1) ****************//
+
+mus_vs_elite_four_1:
+	BYTE	KEYSH   mus_vs_elite_four_key+0
+// 000   ----------------------------------------
+	BYTE	TEMPO   214*mus_vs_elite_four_tbs/2
+	BYTE		VOICE   60
+	BYTE		LFOS    15
+	BYTE		VOL     127*mus_vs_elite_four_mvl/mxv
+	BYTE		PAN     c_v+10
+	BYTE		N12     An3   v108
+	BYTE	W48
+	BYTE		TIE     Ds4 
+	BYTE	W48
+// 001   ----------------------------------------
+	BYTE	W96
+	BYTE		EOT   
+// 002   ----------------------------------------
+	BYTE		N12     Dn4 
+	BYTE	W96
+// 003   ----------------------------------------
+mus_vs_elite_four_1_003:
+	BYTE		N12     Dn4   v096
+	BYTE	W72
+	BYTE		N24     Ds4   v108
+	BYTE	W24
+	BYTE	PEND
+// 004   ----------------------------------------
+	BYTE		N12     Fn4 
+	BYTE	W72
+	BYTE		        Ds4 
+	BYTE	W24
+// 005   ----------------------------------------
+	BYTE		        Dn4 
+	BYTE	W48
+	BYTE		N48     Ds4 
+	BYTE	W48
+// 006   ----------------------------------------
+	BYTE		N12     Dn4 
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_1_003
+// 008   ----------------------------------------
+	BYTE		N12     Fn4   v108
+	BYTE	W72
+	BYTE		N24     Ds4 
+	BYTE	W24
+// 009   ----------------------------------------
+	BYTE		N12     Dn4 
+	BYTE	W36
+	BYTE		        Cn4 
+	BYTE	W36
+	BYTE		N24     Ds4 
+	BYTE	W24
+mus_vs_elite_four_1_B1:
+// 010   ----------------------------------------
+	BYTE		VOICE   56
+	BYTE		VOL     127*mus_vs_elite_four_mvl/mxv
+	BYTE		PAN     c_v+10
+	BYTE		N06     An3   v112
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N24     As3 
+	BYTE	W12
+	BYTE		MOD     6
+	BYTE	W12
+	BYTE		        0
+	BYTE		N12     An3 
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE		        As3 
+	BYTE	W12
+// 011   ----------------------------------------
+	BYTE		N06     An3 
+	BYTE	W12
+	BYTE		VOICE   48
+	BYTE		N12     Ds3   v100
+	BYTE	W12
+	BYTE		        Fn3 
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE	W12
+	BYTE		        Ds3 
+	BYTE	W12
+	BYTE		        An2 
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE	W12
+	BYTE		        Gn2 
+	BYTE	W12
+// 012   ----------------------------------------
+	BYTE		VOICE   56
+	BYTE		N06     An3   v112
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N24     As3 
+	BYTE	W12
+	BYTE		MOD     6
+	BYTE	W12
+	BYTE		        0
+	BYTE		N12     Cn4 
+	BYTE	W12
+	BYTE		        Dn4 
+	BYTE	W12
+	BYTE		        As3 
+	BYTE	W12
+// 013   ----------------------------------------
+	BYTE		N06     An3 
+	BYTE	W12
+	BYTE		N12     Ds3   v100
+	BYTE	W03
+	BYTE		VOICE   48
+	BYTE	W09
+	BYTE		N12     Gn3 
+	BYTE	W12
+	BYTE		        Fn3 
+	BYTE	W12
+	BYTE		        As3 
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE	W12
+	BYTE		        An3 
+	BYTE	W12
+// 014   ----------------------------------------
+	BYTE		N24     Dn4   v096
+	BYTE	W24
+	BYTE		        An3 
+	BYTE	W24
+	BYTE		        As3 
+	BYTE	W24
+	BYTE		        An3 
+	BYTE	W24
+// 015   ----------------------------------------
+	BYTE		        Ds4 
+	BYTE	W24
+	BYTE		        As3 
+	BYTE	W24
+	BYTE		        Cn4 
+	BYTE	W24
+	BYTE		        As3 
+	BYTE	W24
+// 016   ----------------------------------------
+	BYTE		        Fn4 
+	BYTE	W24
+	BYTE		        Cn4 
+	BYTE	W24
+	BYTE		        Dn4 
+	BYTE	W24
+	BYTE		        Cn4 
+	BYTE	W24
+// 017   ----------------------------------------
+	BYTE		N48     Gs4 
+	BYTE	W48
+	BYTE		        Gn4 
+	BYTE	W48
+// 018   ----------------------------------------
+	BYTE		N12     An4 
+	BYTE	W12
+	BYTE		        Gn4 
+	BYTE	W12
+	BYTE		        Fs4 
+	BYTE	W12
+	BYTE		        Gn4 
+	BYTE	W12
+	BYTE		        An4 
+	BYTE	W12
+	BYTE		        Gn4 
+	BYTE	W12
+	BYTE		        Fs4 
+	BYTE	W12
+	BYTE		        En4 
+	BYTE	W12
+// 019   ----------------------------------------
+	BYTE		N48     Fs4 
+	BYTE	W48
+	BYTE		        An4 
+	BYTE	W48
+// 020   ----------------------------------------
+	BYTE		        Dn4 
+	BYTE	W48
+	BYTE		        Fs4 
+	BYTE	W48
+// 021   ----------------------------------------
+	BYTE		        An3   v088
+	BYTE	W48
+	BYTE		        Dn4 
+	BYTE	W48
+// 022   ----------------------------------------
+	BYTE		        Fs3   v072
+	BYTE	W48
+	BYTE		        An3 
+	BYTE	W48
+// 023   ----------------------------------------
+	BYTE		VOICE   48
+	BYTE		PAN     c_v+36
+	BYTE	W24
+	BYTE		TIE     Gn3   v088
+	BYTE	W72
+// 024   ----------------------------------------
+	BYTE	W96
+	BYTE		EOT   
+// 025   ----------------------------------------
+	BYTE	W24
+	BYTE		TIE     Fs3 
+	BYTE	W72
+// 026   ----------------------------------------
+	BYTE	W96
+	BYTE		EOT   
+// 027   ----------------------------------------
+	BYTE	W24
+	BYTE		TIE     Gn3 
+	BYTE	W72
+// 028   ----------------------------------------
+	BYTE	W48
+	BYTE		EOT   
+	BYTE		N24     Ds4 
+	BYTE	W24
+	BYTE		N24   
+	BYTE	W24
+// 029   ----------------------------------------
+	BYTE		TIE     An3 
+	BYTE	W96
+// 030   ----------------------------------------
+	BYTE	W96
+	BYTE		EOT   
+// 031   ----------------------------------------
+	BYTE		VOICE   60
+	BYTE	W24
+	BYTE		PAN     c_v+6
+	BYTE		TIE     Gn3   v096
+	BYTE	W72
+// 032   ----------------------------------------
+	BYTE	W96
+	BYTE		EOT   
+// 033   ----------------------------------------
+	BYTE	W24
+	BYTE		TIE     Fs3 
+	BYTE	W72
+// 034   ----------------------------------------
+	BYTE	W96
+	BYTE		EOT   
+// 035   ----------------------------------------
+	BYTE	W24
+	BYTE		TIE     Gn3 
+	BYTE	W72
+// 036   ----------------------------------------
+	BYTE	W48
+	BYTE		EOT   
+	BYTE		N24     Ds4 
+	BYTE	W24
+	BYTE		N24   
+	BYTE	W24
+// 037   ----------------------------------------
+	BYTE		TIE     An3 
+	BYTE	W96
+// 038   ----------------------------------------
+	BYTE	W30
+	BYTE		VOL     124*mus_vs_elite_four_mvl/mxv
+	BYTE	W09
+	BYTE		        121*mus_vs_elite_four_mvl/mxv
+	BYTE	W09
+	BYTE		        112*mus_vs_elite_four_mvl/mxv
+	BYTE	W09
+	BYTE		        104*mus_vs_elite_four_mvl/mxv
+	BYTE	W09
+	BYTE		        93*mus_vs_elite_four_mvl/mxv
+	BYTE	W09
+	BYTE		        86*mus_vs_elite_four_mvl/mxv
+	BYTE	W09
+	BYTE		        70*mus_vs_elite_four_mvl/mxv
+	BYTE	W06
+	BYTE		        51*mus_vs_elite_four_mvl/mxv
+	BYTE	W03
+	BYTE		EOT   
+	BYTE	W03
+// 039   ----------------------------------------
+	BYTE	W96
+// 040   ----------------------------------------
+	BYTE	W96
+// 041   ----------------------------------------
+	BYTE	W96
+// 042   ----------------------------------------
+	BYTE	W96
+// 043   ----------------------------------------
+	BYTE		VOL     127*mus_vs_elite_four_mvl/mxv
+	BYTE		N36     Bn3 
+	BYTE	W36
+	BYTE		        An3 
+	BYTE	W36
+	BYTE		N24     Gn3 
+	BYTE	W24
+// 044   ----------------------------------------
+	BYTE		N36     An3 
+	BYTE	W36
+	BYTE		        Gn3 
+	BYTE	W36
+	BYTE		N24     Fs3 
+	BYTE	W24
+// 045   ----------------------------------------
+	BYTE		N36     Gn3 
+	BYTE	W36
+	BYTE		        Fs3 
+	BYTE	W36
+	BYTE		N24     En3 
+	BYTE	W24
+// 046   ----------------------------------------
+	BYTE		N36     Fs3 
+	BYTE	W36
+	BYTE		        Gn3 
+	BYTE	W36
+	BYTE		N24     An3 
+	BYTE	W24
+// 047   ----------------------------------------
+	BYTE		PAN     c_v+22
+	BYTE		TIE     Gn3 
+	BYTE	W96
+// 048   ----------------------------------------
+	BYTE	W96
+	BYTE		EOT   
+// 049   ----------------------------------------
+	BYTE		TIE     Fs3 
+	BYTE	W96
+// 050   ----------------------------------------
+	BYTE	W96
+	BYTE		EOT   
+// 051   ----------------------------------------
+	BYTE		TIE     Dn3 
+	BYTE	W96
+// 052   ----------------------------------------
+	BYTE	W96
+	BYTE		EOT   
+// 053   ----------------------------------------
+	BYTE		TIE   
+	BYTE	W96
+// 054   ----------------------------------------
+	BYTE	W96
+	BYTE		EOT   
+	BYTE	GoTo
+	 POIN2	mus_vs_elite_four_1_B1
+mus_vs_elite_four_1_B2:
+// 055   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 2 (Midi-Chn.2) ****************//
+
+mus_vs_elite_four_2:
+	BYTE	KEYSH   mus_vs_elite_four_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   48
+	BYTE		LFOS    15
+	BYTE		VOL     127*mus_vs_elite_four_mvl/mxv
+	BYTE		PAN     c_v+0
+	BYTE		N12     Dn4   v108
+	BYTE	W48
+	BYTE		TIE     As4 
+	BYTE	W48
+// 001   ----------------------------------------
+	BYTE	W96
+	BYTE		EOT   
+// 002   ----------------------------------------
+	BYTE		N12     An4 
+	BYTE	W96
+// 003   ----------------------------------------
+mus_vs_elite_four_2_003:
+	BYTE		N12     An4   v096
+	BYTE	W72
+	BYTE		N24     As4   v108
+	BYTE	W24
+	BYTE	PEND
+// 004   ----------------------------------------
+	BYTE		N12     Cn5 
+	BYTE	W72
+	BYTE		        As4 
+	BYTE	W24
+// 005   ----------------------------------------
+	BYTE		        An4 
+	BYTE	W48
+	BYTE		N48     As4 
+	BYTE	W48
+// 006   ----------------------------------------
+	BYTE		N12     An4 
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_2_003
+// 008   ----------------------------------------
+	BYTE		N12     Cn5   v108
+	BYTE	W72
+	BYTE		N24     As4 
+	BYTE	W24
+// 009   ----------------------------------------
+	BYTE		N12     An4 
+	BYTE	W36
+	BYTE		        Gn4 
+	BYTE	W36
+	BYTE		N24     As4 
+	BYTE	W24
+mus_vs_elite_four_2_B1:
+// 010   ----------------------------------------
+	BYTE		VOICE   56
+	BYTE		VOL     127*mus_vs_elite_four_mvl/mxv
+	BYTE		PAN     c_v+0
+	BYTE		N06     Dn4   v112
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N24     Ds4 
+	BYTE	W12
+	BYTE		MOD     6
+	BYTE	W12
+	BYTE		        0
+	BYTE		N12     Dn4 
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE	W12
+	BYTE		        Ds4 
+	BYTE	W12
+// 011   ----------------------------------------
+	BYTE		N24     Dn4 
+	BYTE	W12
+	BYTE		MOD     6
+	BYTE	W12
+	BYTE		        0
+	BYTE		N24     An3 
+	BYTE	W24
+	BYTE		        Cn4 
+	BYTE	W12
+	BYTE		MOD     6
+	BYTE	W12
+	BYTE		        0
+	BYTE		N24     Gn3 
+	BYTE	W24
+// 012   ----------------------------------------
+	BYTE		N06     Dn4 
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W12
+	BYTE		N24     Ds4 
+	BYTE	W12
+	BYTE		MOD     6
+	BYTE	W12
+	BYTE		        0
+	BYTE		N12     Fn4 
+	BYTE	W12
+	BYTE		        Gn4 
+	BYTE	W12
+	BYTE		        Ds4 
+	BYTE	W12
+// 013   ----------------------------------------
+	BYTE		N24     Dn4 
+	BYTE	W12
+	BYTE		MOD     6
+	BYTE	W12
+	BYTE		        0
+	BYTE		N24     An4 
+	BYTE	W24
+	BYTE		        Dn4 
+	BYTE	W12
+	BYTE		MOD     6
+	BYTE	W12
+	BYTE		        0
+	BYTE		N24     As4 
+	BYTE	W24
+// 014   ----------------------------------------
+	BYTE		N36     An4 
+	BYTE	W18
+	BYTE		MOD     6
+	BYTE	W18
+	BYTE		        0
+	BYTE		N36     Dn4 
+	BYTE	W21
+	BYTE		MOD     6
+	BYTE	W15
+	BYTE		        0
+	BYTE		N24     An4 
+	BYTE	W12
+	BYTE		MOD     6
+	BYTE	W12
+// 015   ----------------------------------------
+	BYTE		        0
+	BYTE		N36     As4 
+	BYTE	W18
+	BYTE		MOD     6
+	BYTE	W18
+	BYTE		        0
+	BYTE		N36     Ds4 
+	BYTE	W21
+	BYTE		MOD     6
+	BYTE	W15
+	BYTE		        0
+	BYTE		N24     As4 
+	BYTE	W12
+	BYTE		MOD     6
+	BYTE	W12
+// 016   ----------------------------------------
+	BYTE		        0
+	BYTE		N36     Cn5 
+	BYTE	W18
+	BYTE		MOD     6
+	BYTE	W18
+	BYTE		        0
+	BYTE		N36     Fn4 
+	BYTE	W21
+	BYTE		MOD     6
+	BYTE	W15
+	BYTE		        0
+	BYTE		N24     Cn5 
+	BYTE	W12
+	BYTE		MOD     6
+	BYTE	W12
+// 017   ----------------------------------------
+	BYTE		        0
+	BYTE		N48     Ds5 
+	BYTE	W12
+	BYTE		MOD     6
+	BYTE	W12
+	BYTE		        0
+	BYTE	W24
+	BYTE		N48     Dn5 
+	BYTE	W12
+	BYTE		MOD     6
+	BYTE	W12
+	BYTE		        0
+	BYTE	W24
+// 018   ----------------------------------------
+	BYTE		VOICE   48
+	BYTE		N12     Cn5   v100
+	BYTE	W12
+	BYTE		        As4 
+	BYTE	W12
+	BYTE		        An4 
+	BYTE	W12
+	BYTE		        As4 
+	BYTE	W12
+	BYTE		        Cn5 
+	BYTE	W12
+	BYTE		        As4 
+	BYTE	W12
+	BYTE		        Cn5 
+	BYTE	W12
+	BYTE		        Cs5 
+	BYTE	W12
+// 019   ----------------------------------------
+	BYTE		TIE     Dn5 
+	BYTE	W96
+// 020   ----------------------------------------
+	BYTE	W96
+// 021   ----------------------------------------
+	BYTE		VOL     118*mus_vs_elite_four_mvl/mxv
+	BYTE	W09
+	BYTE		        112*mus_vs_elite_four_mvl/mxv
+	BYTE	W09
+	BYTE		        104*mus_vs_elite_four_mvl/mxv
+	BYTE	W09
+	BYTE		        96*mus_vs_elite_four_mvl/mxv
+	BYTE	W09
+	BYTE		        85*mus_vs_elite_four_mvl/mxv
+	BYTE	W09
+	BYTE		        72*mus_vs_elite_four_mvl/mxv
+	BYTE	W09
+	BYTE		        56*mus_vs_elite_four_mvl/mxv
+	BYTE	W09
+	BYTE		        40*mus_vs_elite_four_mvl/mxv
+	BYTE	W09
+	BYTE		        24*mus_vs_elite_four_mvl/mxv
+	BYTE	W09
+	BYTE		        12*mus_vs_elite_four_mvl/mxv
+	BYTE	W09
+	BYTE		EOT   
+	BYTE	W06
+// 022   ----------------------------------------
+	BYTE	W96
+// 023   ----------------------------------------
+	BYTE		VOICE   60
+	BYTE		VOL     127*mus_vs_elite_four_mvl/mxv
+	BYTE		N24     As3 
+	BYTE	W24
+	BYTE		TIE     Cn4 
+	BYTE	W72
+// 024   ----------------------------------------
+	BYTE	W96
+	BYTE		EOT   
+// 025   ----------------------------------------
+	BYTE		N24     An3 
+	BYTE	W24
+	BYTE		TIE     Dn4 
+	BYTE	W72
+// 026   ----------------------------------------
+	BYTE	W96
+	BYTE		EOT   
+// 027   ----------------------------------------
+	BYTE		N24     An3 
+	BYTE	W24
+	BYTE		TIE     Ds4 
+	BYTE	W72
+// 028   ----------------------------------------
+	BYTE	W48
+	BYTE		EOT   
+	BYTE		N24     Gn4 
+	BYTE	W24
+	BYTE		N24   
+	BYTE	W24
+// 029   ----------------------------------------
+	BYTE		TIE     Fs4 
+	BYTE	W96
+// 030   ----------------------------------------
+	BYTE	W96
+	BYTE		EOT   
+// 031   ----------------------------------------
+	BYTE		VOICE   48
+	BYTE		N24     As3 
+	BYTE	W24
+	BYTE		TIE     Cn5 
+	BYTE	W72
+// 032   ----------------------------------------
+	BYTE	W96
+	BYTE		EOT   
+// 033   ----------------------------------------
+	BYTE		N24     An3 
+	BYTE	W24
+	BYTE		TIE     Dn5 
+	BYTE	W72
+// 034   ----------------------------------------
+	BYTE	W96
+	BYTE		EOT   
+// 035   ----------------------------------------
+	BYTE		N24     An3 
+	BYTE	W24
+	BYTE		TIE     Ds5 
+	BYTE	W72
+// 036   ----------------------------------------
+	BYTE	W48
+	BYTE		EOT   
+	BYTE		N24     Cn5 
+	BYTE	W24
+	BYTE		N24   
+	BYTE	W24
+// 037   ----------------------------------------
+	BYTE		TIE     Fs4 
+	BYTE	W96
+// 038   ----------------------------------------
+	BYTE	W30
+	BYTE		VOL     124*mus_vs_elite_four_mvl/mxv
+	BYTE	W09
+	BYTE		        121*mus_vs_elite_four_mvl/mxv
+	BYTE	W09
+	BYTE		        112*mus_vs_elite_four_mvl/mxv
+	BYTE	W09
+	BYTE		        104*mus_vs_elite_four_mvl/mxv
+	BYTE	W09
+	BYTE		        93*mus_vs_elite_four_mvl/mxv
+	BYTE	W09
+	BYTE		        86*mus_vs_elite_four_mvl/mxv
+	BYTE	W09
+	BYTE		        70*mus_vs_elite_four_mvl/mxv
+	BYTE	W06
+	BYTE		        51*mus_vs_elite_four_mvl/mxv
+	BYTE	W03
+	BYTE		EOT   
+	BYTE	W03
+// 039   ----------------------------------------
+	BYTE		VOICE   56
+	BYTE		VOL     127*mus_vs_elite_four_mvl/mxv
+	BYTE		N36     Gn3   v116
+	BYTE	W18
+	BYTE		MOD     6
+	BYTE	W18
+	BYTE		        0
+	BYTE		N36     Fs3 
+	BYTE	W21
+	BYTE		MOD     6
+	BYTE	W15
+	BYTE		        0
+	BYTE		N24     En3 
+	BYTE	W12
+	BYTE		MOD     6
+	BYTE	W12
+// 040   ----------------------------------------
+	BYTE		        0
+	BYTE		N36     Fs3 
+	BYTE	W18
+	BYTE		MOD     6
+	BYTE	W18
+	BYTE		        0
+	BYTE		N36     En3 
+	BYTE	W21
+	BYTE		MOD     6
+	BYTE	W15
+	BYTE		        0
+	BYTE		N24     Dn3 
+	BYTE	W12
+	BYTE		MOD     6
+	BYTE	W12
+// 041   ----------------------------------------
+	BYTE		        0
+	BYTE		N36     En3 
+	BYTE	W18
+	BYTE		MOD     6
+	BYTE	W18
+	BYTE		        0
+	BYTE		N36     Dn3 
+	BYTE	W21
+	BYTE		MOD     6
+	BYTE	W15
+	BYTE		        0
+	BYTE		N24     Cs3 
+	BYTE	W12
+	BYTE		MOD     6
+	BYTE	W12
+// 042   ----------------------------------------
+	BYTE		        0
+	BYTE		N36     Dn3 
+	BYTE	W18
+	BYTE		MOD     6
+	BYTE	W18
+	BYTE		        0
+	BYTE		N36     En3 
+	BYTE	W21
+	BYTE		MOD     6
+	BYTE	W15
+	BYTE		        0
+	BYTE		N24     Fs3 
+	BYTE	W12
+	BYTE		MOD     6
+	BYTE	W12
+// 043   ----------------------------------------
+	BYTE		VOICE   48
+	BYTE		MOD     0
+	BYTE		N36     Gn4   v100
+	BYTE	W36
+	BYTE		        Fs4 
+	BYTE	W36
+	BYTE		N24     En4 
+	BYTE	W24
+// 044   ----------------------------------------
+	BYTE		N36     Fs4 
+	BYTE	W36
+	BYTE		        En4 
+	BYTE	W36
+	BYTE		N24     Dn4 
+	BYTE	W24
+// 045   ----------------------------------------
+	BYTE		N36     En4 
+	BYTE	W36
+	BYTE		        Dn4 
+	BYTE	W36
+	BYTE		N24     Cs4 
+	BYTE	W24
+// 046   ----------------------------------------
+	BYTE		N36     Dn4 
+	BYTE	W36
+	BYTE		        En4 
+	BYTE	W36
+	BYTE		N24     Fs4 
+	BYTE	W24
+// 047   ----------------------------------------
+	BYTE		TIE     Cn4 
+	BYTE	W96
+// 048   ----------------------------------------
+	BYTE	W84
+	BYTE		EOT   
+	BYTE		N06     Bn3 
+	BYTE	W06
+	BYTE		        As3 
+	BYTE	W06
+// 049   ----------------------------------------
+	BYTE		TIE     An3 
+	BYTE	W96
+// 050   ----------------------------------------
+	BYTE	W96
+	BYTE		EOT   
+// 051   ----------------------------------------
+	BYTE		TIE     Gn3 
+	BYTE	W96
+// 052   ----------------------------------------
+	BYTE	W84
+	BYTE		EOT   
+	BYTE		N06   
+	BYTE	W06
+	BYTE		        Gs3 
+	BYTE	W06
+// 053   ----------------------------------------
+	BYTE		TIE     An3 
+	BYTE	W96
+// 054   ----------------------------------------
+	BYTE	W96
+	BYTE		EOT   
+	BYTE	GoTo
+	 POIN2	mus_vs_elite_four_2_B1
+mus_vs_elite_four_2_B2:
+// 055   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 3 (Midi-Chn.3) ****************//
+
+mus_vs_elite_four_3:
+	BYTE	KEYSH   mus_vs_elite_four_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   38
+	BYTE		VOL     127*mus_vs_elite_four_mvl/mxv
+	BYTE		N12     Dn1   v120
+	BYTE	W48
+	BYTE		N12   
+	BYTE	W48
+// 001   ----------------------------------------
+	BYTE		N12   
+	BYTE	W48
+	BYTE		N12   
+	BYTE	W48
+// 002   ----------------------------------------
+mus_vs_elite_four_3_002:
+	BYTE		N12     Dn1   v120
+	BYTE	W12
+	BYTE		        Cn1 
+	BYTE	W12
+	BYTE		        Dn1 
+	BYTE	W12
+	BYTE		        Ds1 
+	BYTE	W12
+	BYTE		        Dn1 
+	BYTE	W12
+	BYTE		        Cn1 
+	BYTE	W12
+	BYTE		        Dn1 
+	BYTE	W12
+	BYTE		        Ds1 
+	BYTE	W12
+	BYTE	PEND
+// 003   ----------------------------------------
+mus_vs_elite_four_3_003:
+	BYTE		N12     Dn1   v120
+	BYTE	W12
+	BYTE		        Cn1 
+	BYTE	W12
+	BYTE		        Dn1 
+	BYTE	W12
+	BYTE		        Ds1 
+	BYTE	W12
+	BYTE		        Dn1 
+	BYTE	W12
+	BYTE		        Gn1 
+	BYTE	W12
+	BYTE		N24     An1 
+	BYTE	W24
+	BYTE	PEND
+// 004   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_3_002
+// 005   ----------------------------------------
+mus_vs_elite_four_3_005:
+	BYTE		N12     Dn1   v120
+	BYTE	W12
+	BYTE		        Cn1 
+	BYTE	W12
+	BYTE		        Dn1 
+	BYTE	W12
+	BYTE		        Ds1 
+	BYTE	W12
+	BYTE		        Dn1 
+	BYTE	W12
+	BYTE		        Gn1 
+	BYTE	W12
+	BYTE		N24     Cn2 
+	BYTE	W24
+	BYTE	PEND
+// 006   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_3_002
+// 007   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_3_003
+// 008   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_3_002
+// 009   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_3_005
+mus_vs_elite_four_3_B1:
+// 010   ----------------------------------------
+mus_vs_elite_four_3_010:
+	BYTE		N12     Dn1   v120
+	BYTE	W12
+	BYTE		        An1 
+	BYTE	W12
+	BYTE		        Dn1 
+	BYTE	W12
+	BYTE		        An1 
+	BYTE	W12
+	BYTE		        Dn1 
+	BYTE	W12
+	BYTE		        An1 
+	BYTE	W12
+	BYTE		        Dn1 
+	BYTE	W12
+	BYTE		        An1 
+	BYTE	W12
+	BYTE	PEND
+// 011   ----------------------------------------
+	BYTE		        Dn1 
+	BYTE	W12
+	BYTE		        An1 
+	BYTE	W12
+	BYTE		        Fn1 
+	BYTE	W12
+	BYTE		        An1 
+	BYTE	W12
+	BYTE		        Cn2 
+	BYTE	W12
+	BYTE		        An1 
+	BYTE	W12
+	BYTE		        Dn1 
+	BYTE	W12
+	BYTE		        An1 
+	BYTE	W12
+// 012   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_3_010
+// 013   ----------------------------------------
+	BYTE		N12     Dn1   v120
+	BYTE	W12
+	BYTE		        An1 
+	BYTE	W12
+	BYTE		        Fn1 
+	BYTE	W12
+	BYTE		        An1 
+	BYTE	W12
+	BYTE		        Cn2 
+	BYTE	W12
+	BYTE		        An1 
+	BYTE	W12
+	BYTE		        Ds2 
+	BYTE	W12
+	BYTE		        Cn2 
+	BYTE	W12
+// 014   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_3_010
+// 015   ----------------------------------------
+	BYTE		N12     Ds1   v120
+	BYTE	W12
+	BYTE		        As1 
+	BYTE	W12
+	BYTE		        Ds1 
+	BYTE	W12
+	BYTE		        As1 
+	BYTE	W12
+	BYTE		        Ds1 
+	BYTE	W12
+	BYTE		        As1 
+	BYTE	W12
+	BYTE		        Ds1 
+	BYTE	W12
+	BYTE		        As1 
+	BYTE	W12
+// 016   ----------------------------------------
+	BYTE		        Fn1 
+	BYTE	W12
+	BYTE		        Cn2 
+	BYTE	W12
+	BYTE		        Fn1 
+	BYTE	W12
+	BYTE		        Cn2 
+	BYTE	W12
+	BYTE		        Fn1 
+	BYTE	W12
+	BYTE		        Cn2 
+	BYTE	W12
+	BYTE		        Fn1 
+	BYTE	W12
+	BYTE		        Cn2 
+	BYTE	W12
+// 017   ----------------------------------------
+	BYTE		        Fn1 
+	BYTE	W12
+	BYTE		        Gs1 
+	BYTE	W12
+	BYTE		        Fn1 
+	BYTE	W12
+	BYTE		        Ds2 
+	BYTE	W12
+	BYTE		        Fn1 
+	BYTE	W12
+	BYTE		        Gn1 
+	BYTE	W12
+	BYTE		        Fn1 
+	BYTE	W12
+	BYTE		        Dn2 
+	BYTE	W12
+// 018   ----------------------------------------
+	BYTE		        Cn1 
+	BYTE	W12
+	BYTE		        Fn1 
+	BYTE	W12
+	BYTE		        Cn1 
+	BYTE	W12
+	BYTE		        Fn1 
+	BYTE	W12
+	BYTE		        Cn1 
+	BYTE	W12
+	BYTE		        Fn1 
+	BYTE	W12
+	BYTE		        Cn1 
+	BYTE	W12
+	BYTE		        Fn1 
+	BYTE	W12
+// 019   ----------------------------------------
+mus_vs_elite_four_3_019:
+	BYTE		N12     Dn1   v120
+	BYTE	W12
+	BYTE		        An1 
+	BYTE	W12
+	BYTE		        Dn2 
+	BYTE	W12
+	BYTE		        Dn1 
+	BYTE	W12
+	BYTE		        An1 
+	BYTE	W12
+	BYTE		        Dn2 
+	BYTE	W12
+	BYTE		        Dn1 
+	BYTE	W12
+	BYTE		        An1 
+	BYTE	W12
+	BYTE	PEND
+// 020   ----------------------------------------
+mus_vs_elite_four_3_020:
+	BYTE		N12     Dn1   v120
+	BYTE	W12
+	BYTE		        An1 
+	BYTE	W12
+	BYTE		        Dn2 
+	BYTE	W12
+	BYTE		        Dn1 
+	BYTE	W12
+	BYTE		        An1 
+	BYTE	W12
+	BYTE		        Dn2 
+	BYTE	W12
+	BYTE		        Dn1 
+	BYTE	W12
+	BYTE		        Dn2 
+	BYTE	W12
+	BYTE	PEND
+// 021   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_3_019
+// 022   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_3_020
+// 023   ----------------------------------------
+mus_vs_elite_four_3_023:
+	BYTE		N12     Dn1   v120
+	BYTE	W24
+	BYTE		        Dn2 
+	BYTE	W12
+	BYTE		        Dn1 
+	BYTE	W12
+	BYTE		        An1 
+	BYTE	W12
+	BYTE		        Dn2 
+	BYTE	W12
+	BYTE		        Dn1 
+	BYTE	W12
+	BYTE		        An1 
+	BYTE	W12
+	BYTE	PEND
+// 024   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_3_020
+// 025   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_3_019
+// 026   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_3_020
+// 027   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_3_019
+// 028   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_3_020
+// 029   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_3_019
+// 030   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_3_020
+// 031   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_3_023
+// 032   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_3_020
+// 033   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_3_019
+// 034   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_3_020
+// 035   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_3_023
+// 036   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_3_020
+// 037   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_3_019
+// 038   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_3_020
+// 039   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_3_010
+// 040   ----------------------------------------
+	BYTE		N12     Dn1   v120
+	BYTE	W12
+	BYTE		        An1 
+	BYTE	W12
+	BYTE		        Dn2 
+	BYTE	W12
+	BYTE		        An1 
+	BYTE	W12
+	BYTE		        Cn2 
+	BYTE	W12
+	BYTE		        An1 
+	BYTE	W12
+	BYTE		        Bn1 
+	BYTE	W12
+	BYTE		        An1 
+	BYTE	W12
+// 041   ----------------------------------------
+	BYTE		        Dn1 
+	BYTE	W12
+	BYTE		        An1 
+	BYTE	W12
+	BYTE		N12   
+	BYTE	W12
+	BYTE		N12   
+	BYTE	W12
+	BYTE		        Bn1 
+	BYTE	W12
+	BYTE		        An1 
+	BYTE	W12
+	BYTE		        Gn1 
+	BYTE	W12
+	BYTE		        An1 
+	BYTE	W12
+// 042   ----------------------------------------
+	BYTE		        Dn1 
+	BYTE	W12
+	BYTE		        An1 
+	BYTE	W12
+	BYTE		        Dn1 
+	BYTE	W12
+	BYTE		        Bn1 
+	BYTE	W12
+	BYTE		        Dn1 
+	BYTE	W12
+	BYTE		        Cn2 
+	BYTE	W12
+	BYTE		        Dn1 
+	BYTE	W12
+	BYTE		        En2 
+	BYTE	W12
+// 043   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_3_010
+// 044   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_3_010
+// 045   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_3_010
+// 046   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_3_010
+// 047   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_3_010
+// 048   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_3_010
+// 049   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_3_010
+// 050   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_3_010
+// 051   ----------------------------------------
+mus_vs_elite_four_3_051:
+	BYTE		N12     Dn1   v120
+	BYTE	W12
+	BYTE		        Gn1 
+	BYTE	W12
+	BYTE		        Dn1 
+	BYTE	W12
+	BYTE		        Gn1 
+	BYTE	W12
+	BYTE		        Dn1 
+	BYTE	W12
+	BYTE		        Gn1 
+	BYTE	W12
+	BYTE		        Dn1 
+	BYTE	W12
+	BYTE		        Gn1 
+	BYTE	W12
+	BYTE	PEND
+// 052   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_3_051
+// 053   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_3_010
+// 054   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_3_010
+	BYTE	GoTo
+	 POIN2	mus_vs_elite_four_3_B1
+mus_vs_elite_four_3_B2:
+// 055   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 4 (Midi-Chn.4) ****************//
+
+mus_vs_elite_four_4:
+	BYTE	KEYSH   mus_vs_elite_four_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   80
+	BYTE		XCMD    xIECV   10
+	BYTE		        xIECL   8
+	BYTE		LFOS    15
+	BYTE		VOL     127*mus_vs_elite_four_mvl/mxv
+	BYTE		PAN     c_v-48
+	BYTE		N12     Dn3   v060
+	BYTE	W48
+	BYTE		TIE     As3 
+	BYTE	W48
+// 001   ----------------------------------------
+	BYTE		MOD     7
+	BYTE	W96
+	BYTE		EOT   
+// 002   ----------------------------------------
+	BYTE		MOD     0
+	BYTE		N12     An3 
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE		PAN     c_v+0
+	BYTE		N12     An3   v052
+	BYTE	W72
+	BYTE		N24     As3   v060
+	BYTE	W24
+// 004   ----------------------------------------
+	BYTE		N12     Cn4 
+	BYTE	W72
+	BYTE		        As3 
+	BYTE	W24
+// 005   ----------------------------------------
+	BYTE		        An3 
+	BYTE	W48
+	BYTE		N48     As3 
+	BYTE	W48
+// 006   ----------------------------------------
+	BYTE		N12     An3 
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE		        An3   v052
+	BYTE	W72
+	BYTE		N24     As3   v060
+	BYTE	W24
+// 008   ----------------------------------------
+	BYTE		N12     Cn4 
+	BYTE	W72
+	BYTE		N24     As3 
+	BYTE	W24
+// 009   ----------------------------------------
+	BYTE		N12     An3 
+	BYTE	W36
+	BYTE		        Gn3 
+	BYTE	W36
+	BYTE		N24     As3 
+	BYTE	W24
+mus_vs_elite_four_4_B1:
+// 010   ----------------------------------------
+	BYTE		PAN     c_v+0
+	BYTE		N36     Dn3   v072
+	BYTE	W36
+	BYTE		N24     An2 
+	BYTE	W24
+	BYTE		N12     Bn2 
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE	W12
+	BYTE		        Cs3 
+	BYTE	W12
+// 011   ----------------------------------------
+	BYTE		N06     Dn3 
+	BYTE	W96
+// 012   ----------------------------------------
+	BYTE		N36   
+	BYTE	W36
+	BYTE		N24     Ds3 
+	BYTE	W24
+	BYTE		N12     Fn3 
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE		        Ds3 
+	BYTE	W12
+// 013   ----------------------------------------
+	BYTE		N06     Fs3 
+	BYTE	W96
+// 014   ----------------------------------------
+	BYTE		N12     Dn3   v060
+	BYTE	W12
+	BYTE		        En3 
+	BYTE	W12
+	BYTE		        Fn3 
+	BYTE	W12
+	BYTE		N24     Fs3 
+	BYTE	W24
+	BYTE		N12     Fn3 
+	BYTE	W12
+	BYTE		        En3 
+	BYTE	W12
+	BYTE		        Dn3 
+	BYTE	W12
+// 015   ----------------------------------------
+	BYTE		        Ds3 
+	BYTE	W12
+	BYTE		        Fn3 
+	BYTE	W12
+	BYTE		        Fs3 
+	BYTE	W12
+	BYTE		N24     Gn3 
+	BYTE	W24
+	BYTE		N12     Fs3 
+	BYTE	W12
+	BYTE		        Fn3 
+	BYTE	W12
+	BYTE		        Ds3 
+	BYTE	W12
+// 016   ----------------------------------------
+	BYTE		        Fn3 
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE		        Gs3 
+	BYTE	W12
+	BYTE		N24     An3 
+	BYTE	W24
+	BYTE		N12     Gs3 
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE		        Fn3 
+	BYTE	W12
+// 017   ----------------------------------------
+	BYTE		VOICE   81
+	BYTE		PAN     c_v-48
+	BYTE		N12     Ds3   v048
+	BYTE	W12
+	BYTE		        Ds2 
+	BYTE	W12
+	BYTE		        As2 
+	BYTE	W12
+	BYTE		        Ds3 
+	BYTE	W12
+	BYTE		        Dn3 
+	BYTE	W12
+	BYTE		        Dn2 
+	BYTE	W12
+	BYTE		        An2 
+	BYTE	W12
+	BYTE		        Dn3 
+	BYTE	W12
+// 018   ----------------------------------------
+	BYTE		        Cn3 
+	BYTE	W12
+	BYTE		        Cn2 
+	BYTE	W12
+	BYTE		        Fn2 
+	BYTE	W12
+	BYTE		        Cn3 
+	BYTE	W12
+	BYTE		N12   
+	BYTE	W12
+	BYTE		        Cn2 
+	BYTE	W12
+	BYTE		        Fn2 
+	BYTE	W12
+	BYTE		        Cs3 
+	BYTE	W12
+// 019   ----------------------------------------
+mus_vs_elite_four_4_019:
+	BYTE		N12     Dn3   v048
+	BYTE	W12
+	BYTE		        Dn2 
+	BYTE	W12
+	BYTE		        An2 
+	BYTE	W12
+	BYTE		        Dn3 
+	BYTE	W12
+	BYTE		N12   
+	BYTE	W12
+	BYTE		        Dn2 
+	BYTE	W12
+	BYTE		        An2 
+	BYTE	W12
+	BYTE		        Dn3 
+	BYTE	W12
+	BYTE	PEND
+// 020   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_4_019
+// 021   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_4_019
+// 022   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_4_019
+// 023   ----------------------------------------
+mus_vs_elite_four_4_023:
+	BYTE		N12     Dn3   v048
+	BYTE	W24
+	BYTE		        An2 
+	BYTE	W12
+	BYTE		        Dn3 
+	BYTE	W12
+	BYTE		N12   
+	BYTE	W12
+	BYTE		        Dn2 
+	BYTE	W12
+	BYTE		        An2 
+	BYTE	W12
+	BYTE		        Dn3 
+	BYTE	W12
+	BYTE	PEND
+// 024   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_4_019
+// 025   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_4_019
+// 026   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_4_019
+// 027   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_4_019
+// 028   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_4_019
+// 029   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_4_019
+// 030   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_4_019
+// 031   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_4_023
+// 032   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_4_019
+// 033   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_4_019
+// 034   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_4_019
+// 035   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_4_023
+// 036   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_4_019
+// 037   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_4_019
+// 038   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_4_019
+// 039   ----------------------------------------
+	BYTE	W96
+// 040   ----------------------------------------
+	BYTE	W96
+// 041   ----------------------------------------
+	BYTE	W96
+// 042   ----------------------------------------
+	BYTE	W96
+// 043   ----------------------------------------
+	BYTE	W96
+// 044   ----------------------------------------
+	BYTE	W96
+// 045   ----------------------------------------
+	BYTE	W96
+// 046   ----------------------------------------
+	BYTE	W96
+// 047   ----------------------------------------
+	BYTE		VOICE   80
+	BYTE		N12     Cn3   v060
+	BYTE	W12
+	BYTE		        En3 
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE	W12
+	BYTE		        En3 
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE	W12
+	BYTE		        En4 
+	BYTE	W12
+// 048   ----------------------------------------
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE	W12
+	BYTE		        En4 
+	BYTE	W12
+	BYTE		        Gn4 
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE	W12
+	BYTE		        En4 
+	BYTE	W12
+	BYTE		        Gn4 
+	BYTE	W12
+	BYTE		        Cn5 
+	BYTE	W12
+// 049   ----------------------------------------
+	BYTE		        Dn5 
+	BYTE	W12
+	BYTE		        En5   v048
+	BYTE	W12
+	BYTE		        Cn5 
+	BYTE	W12
+	BYTE		        Dn5   v044
+	BYTE	W12
+	BYTE		        Bn4 
+	BYTE	W12
+	BYTE		        Cn5   v040
+	BYTE	W12
+	BYTE		        An4   v036
+	BYTE	W12
+	BYTE		        Bn4 
+	BYTE	W12
+// 050   ----------------------------------------
+	BYTE		        Gn4   v032
+	BYTE	W12
+	BYTE		        An4 
+	BYTE	W12
+	BYTE		        Fs4   v028
+	BYTE	W12
+	BYTE		        Gn4   v024
+	BYTE	W12
+	BYTE		        En4 
+	BYTE	W12
+	BYTE		        Fs4   v020
+	BYTE	W12
+	BYTE		        Dn4 
+	BYTE	W12
+	BYTE		        En4   v016
+	BYTE	W12
+// 051   ----------------------------------------
+	BYTE		        Gn2   v060
+	BYTE	W12
+	BYTE		        Bn2 
+	BYTE	W12
+	BYTE		        Dn3 
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE		        Bn2 
+	BYTE	W12
+	BYTE		        Dn3 
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE		        Bn3 
+	BYTE	W12
+// 052   ----------------------------------------
+	BYTE		        Dn3 
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE		        Bn3 
+	BYTE	W12
+	BYTE		        Dn4 
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE		        Bn3 
+	BYTE	W12
+	BYTE		        Dn4 
+	BYTE	W12
+	BYTE		        Gn4 
+	BYTE	W12
+// 053   ----------------------------------------
+	BYTE		        An4 
+	BYTE	W12
+	BYTE		        Bn4   v048
+	BYTE	W12
+	BYTE		        Gn4   v044
+	BYTE	W12
+	BYTE		        An4 
+	BYTE	W12
+	BYTE		        Fs4   v040
+	BYTE	W12
+	BYTE		        Gn4 
+	BYTE	W12
+	BYTE		        En4   v036
+	BYTE	W12
+	BYTE		        Fs4   v032
+	BYTE	W12
+// 054   ----------------------------------------
+	BYTE		        Dn4 
+	BYTE	W12
+	BYTE		        En4   v028
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE	W12
+	BYTE		        Dn4   v024
+	BYTE	W12
+	BYTE		        Bn3 
+	BYTE	W12
+	BYTE		        Cn4   v020
+	BYTE	W12
+	BYTE		        An3   v016
+	BYTE	W12
+	BYTE		        Bn3 
+	BYTE	W12
+	BYTE	GoTo
+	 POIN2	mus_vs_elite_four_4_B1
+mus_vs_elite_four_4_B2:
+// 055   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 5 (Midi-Chn.5) ****************//
+
+mus_vs_elite_four_5:
+	BYTE	KEYSH   mus_vs_elite_four_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   82
+	BYTE		XCMD    xIECV   10
+	BYTE		        xIECL   8
+	BYTE		LFOS    15
+	BYTE		VOL     127*mus_vs_elite_four_mvl/mxv
+	BYTE		PAN     c_v+48
+	BYTE		BEND    c_v+0
+	BYTE		N12     An2   v060
+	BYTE	W48
+	BYTE		        Ds3 
+	BYTE	W12
+	BYTE		VOICE   83
+	BYTE		N12   
+	BYTE	W12
+	BYTE		N12   
+	BYTE	W12
+	BYTE		N12   
+	BYTE	W12
+// 001   ----------------------------------------
+	BYTE		MOD     7
+	BYTE		N12   
+	BYTE	W12
+	BYTE		N12   
+	BYTE	W12
+	BYTE		N12   
+	BYTE	W12
+	BYTE		N12   
+	BYTE	W12
+	BYTE		N12   
+	BYTE	W12
+	BYTE		N12   
+	BYTE	W12
+	BYTE		N12   
+	BYTE	W12
+	BYTE		N12   
+	BYTE	W12
+// 002   ----------------------------------------
+	BYTE		VOICE   82
+	BYTE		MOD     0
+	BYTE		N12     Dn3 
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE	W96
+// 009   ----------------------------------------
+	BYTE	W96
+mus_vs_elite_four_5_B1:
+// 010   ----------------------------------------
+	BYTE	W96
+// 011   ----------------------------------------
+	BYTE	W96
+// 012   ----------------------------------------
+	BYTE	W96
+// 013   ----------------------------------------
+	BYTE	W96
+// 014   ----------------------------------------
+	BYTE	W96
+// 015   ----------------------------------------
+	BYTE	W96
+// 016   ----------------------------------------
+	BYTE	W96
+// 017   ----------------------------------------
+	BYTE		VOICE   80
+	BYTE		PAN     c_v+48
+	BYTE		BEND    c_v-2
+	BYTE		N48     Ds3   v052
+	BYTE	W48
+	BYTE		        Dn3 
+	BYTE	W48
+// 018   ----------------------------------------
+	BYTE		N84     Cn4 
+	BYTE	W84
+	BYTE		N12     Cs4   v060
+	BYTE	W12
+// 019   ----------------------------------------
+	BYTE		N48     Dn4 
+	BYTE	W48
+	BYTE		        Cn4 
+	BYTE	W48
+// 020   ----------------------------------------
+	BYTE		        Bn3 
+	BYTE	W48
+	BYTE		        An3 
+	BYTE	W48
+// 021   ----------------------------------------
+	BYTE		        Fs3 
+	BYTE	W48
+	BYTE		        En3 
+	BYTE	W48
+// 022   ----------------------------------------
+	BYTE		        Dn3   v052
+	BYTE	W48
+	BYTE		        En3 
+	BYTE	W48
+// 023   ----------------------------------------
+	BYTE	W96
+// 024   ----------------------------------------
+	BYTE	W96
+// 025   ----------------------------------------
+	BYTE	W96
+// 026   ----------------------------------------
+	BYTE	W96
+// 027   ----------------------------------------
+	BYTE	W96
+// 028   ----------------------------------------
+	BYTE	W96
+// 029   ----------------------------------------
+	BYTE	W96
+// 030   ----------------------------------------
+	BYTE	W96
+// 031   ----------------------------------------
+	BYTE		BEND    c_v+0
+	BYTE	W24
+	BYTE		VOICE   82
+	BYTE		N12     Cn4   v060
+	BYTE	W12
+	BYTE		VOICE   83
+	BYTE		N12   
+	BYTE	W12
+	BYTE		N12   
+	BYTE	W12
+	BYTE		N12   
+	BYTE	W12
+	BYTE		N12   
+	BYTE	W12
+	BYTE		N12   
+	BYTE	W12
+// 032   ----------------------------------------
+	BYTE		N12   
+	BYTE	W12
+	BYTE		N12   
+	BYTE	W12
+	BYTE		N12   
+	BYTE	W12
+	BYTE		N12   
+	BYTE	W12
+	BYTE		N12   
+	BYTE	W12
+	BYTE		N12   
+	BYTE	W12
+	BYTE		N12   
+	BYTE	W12
+	BYTE		N12   
+	BYTE	W12
+// 033   ----------------------------------------
+	BYTE	W24
+	BYTE		VOICE   82
+	BYTE		N12     Dn4 
+	BYTE	W12
+	BYTE		VOICE   83
+	BYTE		N12   
+	BYTE	W12
+	BYTE		N12   
+	BYTE	W12
+	BYTE		N12   
+	BYTE	W12
+	BYTE		N12   
+	BYTE	W12
+	BYTE		N12   
+	BYTE	W12
+// 034   ----------------------------------------
+	BYTE		N12   
+	BYTE	W12
+	BYTE		N12   
+	BYTE	W12
+	BYTE		N12   
+	BYTE	W12
+	BYTE		N12   
+	BYTE	W12
+	BYTE		N12   
+	BYTE	W12
+	BYTE		N12   
+	BYTE	W12
+	BYTE		N12   
+	BYTE	W12
+	BYTE		N12   
+	BYTE	W12
+// 035   ----------------------------------------
+	BYTE	W24
+	BYTE		VOICE   82
+	BYTE		N12     Ds4 
+	BYTE	W12
+	BYTE		VOICE   83
+	BYTE		N12   
+	BYTE	W12
+	BYTE		N12   
+	BYTE	W12
+	BYTE		N12   
+	BYTE	W12
+	BYTE		N12   
+	BYTE	W12
+	BYTE		N12   
+	BYTE	W12
+// 036   ----------------------------------------
+	BYTE		N12   
+	BYTE	W12
+	BYTE		N12   
+	BYTE	W12
+	BYTE		N12   
+	BYTE	W12
+	BYTE		N12   
+	BYTE	W12
+	BYTE		VOICE   82
+	BYTE		N24     Gn4 
+	BYTE	W24
+	BYTE		N24   
+	BYTE	W24
+// 037   ----------------------------------------
+	BYTE		N12     Dn4 
+	BYTE	W12
+	BYTE		VOICE   83
+	BYTE		N12   
+	BYTE	W12
+	BYTE		N12   
+	BYTE	W12
+	BYTE		N12   
+	BYTE	W12
+	BYTE		N12   
+	BYTE	W12
+	BYTE		N12   
+	BYTE	W12
+	BYTE		N12   
+	BYTE	W12
+	BYTE		N12   
+	BYTE	W12
+// 038   ----------------------------------------
+	BYTE		N12   
+	BYTE	W12
+	BYTE		N12   
+	BYTE	W12
+	BYTE		N12   
+	BYTE	W06
+	BYTE		VOL     124*mus_vs_elite_four_mvl/mxv
+	BYTE	W06
+	BYTE		N12   
+	BYTE	W03
+	BYTE		VOL     121*mus_vs_elite_four_mvl/mxv
+	BYTE	W09
+	BYTE		        112*mus_vs_elite_four_mvl/mxv
+	BYTE		N12   
+	BYTE	W09
+	BYTE		VOL     104*mus_vs_elite_four_mvl/mxv
+	BYTE	W03
+	BYTE		N12   
+	BYTE	W06
+	BYTE		VOL     93*mus_vs_elite_four_mvl/mxv
+	BYTE	W06
+	BYTE		N12   
+	BYTE	W03
+	BYTE		VOL     86*mus_vs_elite_four_mvl/mxv
+	BYTE	W09
+	BYTE		        70*mus_vs_elite_four_mvl/mxv
+	BYTE		N12   
+	BYTE	W06
+	BYTE		VOL     51*mus_vs_elite_four_mvl/mxv
+	BYTE	W06
+// 039   ----------------------------------------
+	BYTE	W96
+// 040   ----------------------------------------
+	BYTE	W96
+// 041   ----------------------------------------
+	BYTE	W96
+// 042   ----------------------------------------
+	BYTE	W96
+// 043   ----------------------------------------
+	BYTE	W96
+// 044   ----------------------------------------
+	BYTE	W96
+// 045   ----------------------------------------
+	BYTE	W96
+// 046   ----------------------------------------
+	BYTE	W96
+// 047   ----------------------------------------
+	BYTE		VOICE   82
+	BYTE		VOL     127*mus_vs_elite_four_mvl/mxv
+	BYTE	W12
+	BYTE		N12     Cn3   v052
+	BYTE	W12
+	BYTE		        En3 
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE	W12
+	BYTE		        En3 
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE	W12
+// 048   ----------------------------------------
+	BYTE		        En4 
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE	W12
+	BYTE		        En4 
+	BYTE	W12
+	BYTE		        Gn4 
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE	W12
+	BYTE		        En4 
+	BYTE	W12
+	BYTE		        Gn4 
+	BYTE	W12
+// 049   ----------------------------------------
+	BYTE		        Cn5 
+	BYTE	W12
+	BYTE		        Dn5 
+	BYTE	W12
+	BYTE		        En5   v044
+	BYTE	W12
+	BYTE		        Cn5   v040
+	BYTE	W12
+	BYTE		        Dn5 
+	BYTE	W12
+	BYTE		        Bn4 
+	BYTE	W12
+	BYTE		        Cn5   v036
+	BYTE	W12
+	BYTE		        An4 
+	BYTE	W12
+// 050   ----------------------------------------
+	BYTE		        Bn4 
+	BYTE	W12
+	BYTE		        Gn4   v032
+	BYTE	W12
+	BYTE		        An4 
+	BYTE	W12
+	BYTE		        Fs4   v028
+	BYTE	W12
+	BYTE		        Gn4 
+	BYTE	W12
+	BYTE		        En4 
+	BYTE	W12
+	BYTE		        Fs4   v024
+	BYTE	W12
+	BYTE		        Dn4 
+	BYTE	W12
+// 051   ----------------------------------------
+	BYTE		        En4   v028
+	BYTE	W12
+	BYTE		        Gn2   v052
+	BYTE	W12
+	BYTE		        Bn2 
+	BYTE	W12
+	BYTE		        Dn3 
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE		        Bn2 
+	BYTE	W12
+	BYTE		        Dn3 
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W12
+// 052   ----------------------------------------
+	BYTE		        Bn3 
+	BYTE	W12
+	BYTE		        Dn3 
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE		        Bn3 
+	BYTE	W12
+	BYTE		        Dn4 
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE		        Bn3 
+	BYTE	W12
+	BYTE		        Dn4 
+	BYTE	W12
+// 053   ----------------------------------------
+	BYTE		        Gn4 
+	BYTE	W12
+	BYTE		        An4 
+	BYTE	W12
+	BYTE		        Bn4   v036
+	BYTE	W12
+	BYTE		        Gn4 
+	BYTE	W12
+	BYTE		        An4 
+	BYTE	W12
+	BYTE		        Fs4   v032
+	BYTE	W12
+	BYTE		        Gn4 
+	BYTE	W12
+	BYTE		        En4 
+	BYTE	W12
+// 054   ----------------------------------------
+	BYTE		        Fs4 
+	BYTE	W12
+	BYTE		        Dn4   v028
+	BYTE	W12
+	BYTE		        En4 
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE	W12
+	BYTE		        Dn4   v024
+	BYTE	W12
+	BYTE		        Bn3 
+	BYTE	W12
+	BYTE		        Cn4 
+	BYTE	W12
+	BYTE		        An3 
+	BYTE	W12
+	BYTE	GoTo
+	 POIN2	mus_vs_elite_four_5_B1
+mus_vs_elite_four_5_B2:
+// 055   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 6 (Midi-Chn.6) ****************//
+
+mus_vs_elite_four_6:
+	BYTE	KEYSH   mus_vs_elite_four_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   80
+	BYTE		XCMD    xIECV   10
+	BYTE		        xIECL   8
+	BYTE		VOL     127*mus_vs_elite_four_mvl/mxv
+	BYTE	W96
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE	W96
+// 009   ----------------------------------------
+	BYTE	W96
+mus_vs_elite_four_6_B1:
+// 010   ----------------------------------------
+	BYTE	W96
+// 011   ----------------------------------------
+	BYTE	W96
+// 012   ----------------------------------------
+	BYTE	W96
+// 013   ----------------------------------------
+	BYTE	W96
+// 014   ----------------------------------------
+	BYTE	W96
+// 015   ----------------------------------------
+	BYTE	W96
+// 016   ----------------------------------------
+	BYTE	W96
+// 017   ----------------------------------------
+	BYTE	W96
+// 018   ----------------------------------------
+	BYTE	W96
+// 019   ----------------------------------------
+	BYTE	W96
+// 020   ----------------------------------------
+	BYTE	W96
+// 021   ----------------------------------------
+	BYTE	W96
+// 022   ----------------------------------------
+	BYTE	W96
+// 023   ----------------------------------------
+	BYTE	W96
+// 024   ----------------------------------------
+	BYTE	W96
+// 025   ----------------------------------------
+	BYTE	W96
+// 026   ----------------------------------------
+	BYTE	W96
+// 027   ----------------------------------------
+	BYTE	W96
+// 028   ----------------------------------------
+	BYTE	W96
+// 029   ----------------------------------------
+	BYTE	W96
+// 030   ----------------------------------------
+	BYTE	W96
+// 031   ----------------------------------------
+	BYTE	W96
+// 032   ----------------------------------------
+	BYTE		VOICE   4
+	BYTE		N06     Gn4   v060
+	BYTE	W12
+	BYTE		        Fs4 
+	BYTE	W12
+	BYTE		        En4 
+	BYTE	W12
+	BYTE		        Fs4 
+	BYTE	W12
+	BYTE		        Gn4 
+	BYTE	W12
+	BYTE		        An4 
+	BYTE	W12
+	BYTE		        Gn4 
+	BYTE	W12
+	BYTE		        An4 
+	BYTE	W12
+// 033   ----------------------------------------
+	BYTE		        Gn4   v052
+	BYTE	W12
+	BYTE		        An4   v048
+	BYTE	W12
+	BYTE		        Gn4   v040
+	BYTE	W12
+	BYTE		        An4   v032
+	BYTE	W60
+// 034   ----------------------------------------
+	BYTE		        An4   v060
+	BYTE	W12
+	BYTE		        Gn4 
+	BYTE	W12
+	BYTE		        Fs4 
+	BYTE	W12
+	BYTE		        Gn4 
+	BYTE	W12
+	BYTE		        An4 
+	BYTE	W12
+	BYTE		        Bn4 
+	BYTE	W12
+	BYTE		        An4 
+	BYTE	W12
+	BYTE		        Bn4 
+	BYTE	W12
+// 035   ----------------------------------------
+	BYTE		        An4   v052
+	BYTE	W12
+	BYTE		        Bn4   v044
+	BYTE	W12
+	BYTE		        An4   v040
+	BYTE	W12
+	BYTE		        Bn4   v032
+	BYTE	W60
+// 036   ----------------------------------------
+	BYTE	W96
+// 037   ----------------------------------------
+	BYTE	W96
+// 038   ----------------------------------------
+	BYTE	W96
+// 039   ----------------------------------------
+	BYTE	W96
+// 040   ----------------------------------------
+	BYTE	W96
+// 041   ----------------------------------------
+	BYTE	W96
+// 042   ----------------------------------------
+	BYTE	W96
+// 043   ----------------------------------------
+	BYTE	W96
+// 044   ----------------------------------------
+	BYTE	W96
+// 045   ----------------------------------------
+	BYTE	W96
+// 046   ----------------------------------------
+	BYTE	W96
+// 047   ----------------------------------------
+	BYTE	W96
+// 048   ----------------------------------------
+	BYTE	W96
+// 049   ----------------------------------------
+	BYTE	W96
+// 050   ----------------------------------------
+	BYTE	W96
+// 051   ----------------------------------------
+	BYTE	W96
+// 052   ----------------------------------------
+	BYTE	W96
+// 053   ----------------------------------------
+	BYTE	W96
+// 054   ----------------------------------------
+	BYTE	W96
+	BYTE	GoTo
+	 POIN2	mus_vs_elite_four_6_B1
+mus_vs_elite_four_6_B2:
+// 055   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 7 (Midi-Chn.7) ****************//
+
+mus_vs_elite_four_7:
+	BYTE	KEYSH   mus_vs_elite_four_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   0
+	BYTE		VOL     127*mus_vs_elite_four_mvl/mxv
+	BYTE	W96
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE	W96
+// 009   ----------------------------------------
+	BYTE		N06     Dn1   v056
+	BYTE	W06
+	BYTE		        Dn1   v060
+	BYTE	W06
+	BYTE		        Dn1   v064
+	BYTE	W06
+	BYTE		        Dn1   v068
+	BYTE	W06
+	BYTE		        Dn1   v072
+	BYTE	W06
+	BYTE		        Dn1   v076
+	BYTE	W06
+	BYTE		        Dn1   v080
+	BYTE	W06
+	BYTE		        Dn1   v088
+	BYTE	W06
+	BYTE		        Dn1   v092
+	BYTE	W06
+	BYTE		        Dn1   v096
+	BYTE	W06
+	BYTE		        Dn1   v100
+	BYTE	W06
+	BYTE		        Dn1   v104
+	BYTE	W06
+	BYTE		N12     Dn1   v112
+	BYTE	W12
+	BYTE		N12   
+	BYTE	W12
+mus_vs_elite_four_7_B1:
+// 010   ----------------------------------------
+mus_vs_elite_four_7_010:
+	BYTE	W24
+	BYTE		N12     Dn1   v112
+	BYTE	W48
+	BYTE		N12   
+	BYTE	W24
+	BYTE	PEND
+// 011   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_7_010
+// 012   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_7_010
+// 013   ----------------------------------------
+mus_vs_elite_four_7_013:
+	BYTE	W24
+	BYTE		N12     Dn1   v112
+	BYTE	W36
+	BYTE		N12   
+	BYTE	W24
+	BYTE		N12   
+	BYTE	W12
+	BYTE	PEND
+// 014   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_7_010
+// 015   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_7_010
+// 016   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_7_010
+// 017   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_7_010
+// 018   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_7_010
+// 019   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_7_010
+// 020   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_7_010
+// 021   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_7_010
+// 022   ----------------------------------------
+	BYTE		N12     Dn1   v112
+	BYTE	W48
+	BYTE		N12   
+	BYTE	W36
+	BYTE		N12   
+	BYTE	W12
+// 023   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_7_010
+// 024   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_7_010
+// 025   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_7_010
+// 026   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_7_010
+// 027   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_7_010
+// 028   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_7_010
+// 029   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_7_010
+// 030   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_7_010
+// 031   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_7_010
+// 032   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_7_010
+// 033   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_7_010
+// 034   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_7_010
+// 035   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_7_010
+// 036   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_7_010
+// 037   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_7_010
+// 038   ----------------------------------------
+	BYTE	W24
+	BYTE		N12     Dn1   v112
+	BYTE	W48
+	BYTE		N12   
+	BYTE	W12
+	BYTE		N12   
+	BYTE	W12
+// 039   ----------------------------------------
+mus_vs_elite_four_7_039:
+	BYTE	W24
+	BYTE		N12     Ds1   v092
+	BYTE	W48
+	BYTE		N12   
+	BYTE	W24
+	BYTE	PEND
+// 040   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_7_039
+// 041   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_7_039
+// 042   ----------------------------------------
+	BYTE	W24
+	BYTE		N12     Ds1   v092
+	BYTE	W48
+	BYTE		N12   
+	BYTE	W12
+	BYTE		N12   
+	BYTE	W12
+// 043   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_7_010
+// 044   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_7_010
+// 045   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_7_010
+// 046   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_7_013
+// 047   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_7_010
+// 048   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_7_010
+// 049   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_7_010
+// 050   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_7_013
+// 051   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_7_010
+// 052   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_7_010
+// 053   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_7_010
+// 054   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_7_013
+	BYTE	GoTo
+	 POIN2	mus_vs_elite_four_7_B1
+mus_vs_elite_four_7_B2:
+// 055   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 8 (Midi-Chn.8) ****************//
+
+mus_vs_elite_four_8:
+	BYTE	KEYSH   mus_vs_elite_four_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   47
+	BYTE		VOL     127*mus_vs_elite_four_mvl/mxv
+	BYTE		PAN     c_v-8
+	BYTE		N12     Dn2   v112
+	BYTE	W48
+	BYTE		N12   
+	BYTE	W48
+// 001   ----------------------------------------
+mus_vs_elite_four_8_001:
+	BYTE		N12     Dn2   v112
+	BYTE	W48
+	BYTE		N12   
+	BYTE	W48
+	BYTE	PEND
+// 002   ----------------------------------------
+mus_vs_elite_four_8_002:
+	BYTE		N12     Dn2   v112
+	BYTE	W12
+	BYTE		N12   
+	BYTE	W36
+	BYTE		N12   
+	BYTE	W12
+	BYTE		N12   
+	BYTE	W36
+	BYTE	PEND
+// 003   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_8_002
+// 004   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_8_002
+// 005   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_8_002
+// 006   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_8_002
+// 007   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_8_002
+// 008   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_8_002
+// 009   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_8_002
+mus_vs_elite_four_8_B1:
+// 010   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_8_001
+// 011   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_8_001
+// 012   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_8_001
+// 013   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_8_001
+// 014   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_8_001
+// 015   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_8_001
+// 016   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_8_001
+// 017   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_8_001
+// 018   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_8_001
+// 019   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_8_001
+// 020   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_8_001
+// 021   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_8_001
+// 022   ----------------------------------------
+	BYTE	W12
+	BYTE		N12     Dn2   v112
+	BYTE	W12
+	BYTE		N12   
+	BYTE	W12
+	BYTE		N12   
+	BYTE	W36
+	BYTE		N12   
+	BYTE	W24
+// 023   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_8_001
+// 024   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_8_001
+// 025   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_8_001
+// 026   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_8_001
+// 027   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_8_001
+// 028   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_8_001
+// 029   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_8_001
+// 030   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_8_001
+// 031   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_8_001
+// 032   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_8_001
+// 033   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_8_001
+// 034   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_8_001
+// 035   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_8_001
+// 036   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_8_001
+// 037   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_8_001
+// 038   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_8_001
+// 039   ----------------------------------------
+mus_vs_elite_four_8_039:
+	BYTE		N12     Dn2   v112
+	BYTE	W36
+	BYTE		N12   
+	BYTE	W24
+	BYTE		N12   
+	BYTE	W36
+	BYTE	PEND
+// 040   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_8_039
+// 041   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_8_039
+// 042   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_8_039
+// 043   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_8_039
+// 044   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_8_039
+// 045   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_8_039
+// 046   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_8_039
+// 047   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_8_001
+// 048   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_8_001
+// 049   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_8_001
+// 050   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_8_001
+// 051   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_8_001
+// 052   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_8_001
+// 053   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_8_001
+// 054   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_vs_elite_four_8_001
+	BYTE	GoTo
+	 POIN2	mus_vs_elite_four_8_B1
+mus_vs_elite_four_8_B2:
+// 055   ----------------------------------------
+	BYTE	FINE
+
+//******************************************************//
+	ALIGN 4
+
+mus_vs_elite_four:
+	BYTE	8	// NumTrks
+	BYTE	0	// NumBlks
+	BYTE	mus_vs_elite_four_pri	// Priority
+	BYTE	mus_vs_elite_four_rev	// Reverb.
+
+	POIN2	mus_vs_elite_four_grp
+
+	POIN2	mus_vs_elite_four_1
+	POIN2	mus_vs_elite_four_2
+	POIN2	mus_vs_elite_four_3
+	POIN2	mus_vs_elite_four_4
+	POIN2	mus_vs_elite_four_5
+	POIN2	mus_vs_elite_four_6
+	POIN2	mus_vs_elite_four_7
+	POIN2	mus_vs_elite_four_8
+
+	

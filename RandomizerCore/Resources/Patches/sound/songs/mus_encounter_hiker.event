@@ -1,0 +1,1128 @@
+//Event file generated from Sappy .s format.
+	#include "MPlayDef.event"
+
+	#define	mus_encounter_hiker_grp  voicegroup097
+	#define	mus_encounter_hiker_pri  0
+	#define	mus_encounter_hiker_rev  reverb_set+50
+	#define	mus_encounter_hiker_mvl  76
+	#define	mus_encounter_hiker_key  0
+	#define	mus_encounter_hiker_tbs  1
+	#define	mus_encounter_hiker_exg  1
+	#define	mus_encounter_hiker_cmp  1
+
+	// .rodata
+	//	mus_encounter_hiker
+	ALIGN 4
+
+//**************** Track 1 (Midi-Chn.1) ****************//
+
+mus_encounter_hiker_1:
+	BYTE	KEYSH   mus_encounter_hiker_key+0
+// 000   ----------------------------------------
+	BYTE	TEMPO   128*mus_encounter_hiker_tbs/2
+	BYTE		VOICE   1
+	BYTE		LFOS    44
+	BYTE		PAN     c_v+4
+	BYTE		LFOS    44
+	BYTE		BENDR   12
+	BYTE		VOL     64*mus_encounter_hiker_mvl/mxv
+	BYTE		N04     Fs5   v112
+	BYTE	W16
+	BYTE		        Dn5 
+	BYTE	W04
+	BYTE		        Bn4 
+	BYTE	W04
+	BYTE		N48     An4 
+	BYTE	W48
+	BYTE		N16     Gn4 
+	BYTE	W16
+	BYTE		N08     Fs4 
+	BYTE	W08
+mus_encounter_hiker_1_B1:
+// 001   ----------------------------------------
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE	W96
+	BYTE	GoTo
+	 POIN2	mus_encounter_hiker_1_B1
+mus_encounter_hiker_1_B2:
+// 009   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 2 (Midi-Chn.2) ****************//
+
+mus_encounter_hiker_2:
+	BYTE	KEYSH   mus_encounter_hiker_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   60
+	BYTE		LFOS    44
+	BYTE		BENDR   12
+	BYTE		PAN     c_v+0
+	BYTE		VOL     104*mus_encounter_hiker_mvl/mxv
+	BYTE		N04     Fs4   v112
+	BYTE	W16
+	BYTE		        Dn4 
+	BYTE	W04
+	BYTE		        Bn3 
+	BYTE	W04
+	BYTE		N48     An3 
+	BYTE	W24
+	BYTE		MOD     7
+	BYTE	W24
+	BYTE		        0
+	BYTE		N16     Gn3 
+	BYTE	W16
+	BYTE		N08     Fs3 
+	BYTE	W08
+mus_encounter_hiker_2_B1:
+// 001   ----------------------------------------
+	BYTE		N08     Dn4   v096
+	BYTE	W08
+	BYTE		N04     Cs4 
+	BYTE	W08
+	BYTE		        Dn4 
+	BYTE	W08
+	BYTE		        Fs4 
+	BYTE	W16
+	BYTE		        Dn4 
+	BYTE	W08
+	BYTE		N48     An3 
+	BYTE	W24
+	BYTE		MOD     7
+	BYTE		VOL     97*mus_encounter_hiker_mvl/mxv
+	BYTE	W04
+	BYTE		        84*mus_encounter_hiker_mvl/mxv
+	BYTE	W04
+	BYTE		        72*mus_encounter_hiker_mvl/mxv
+	BYTE	W04
+	BYTE		        56*mus_encounter_hiker_mvl/mxv
+	BYTE	W04
+	BYTE		        52*mus_encounter_hiker_mvl/mxv
+	BYTE	W04
+	BYTE		        44*mus_encounter_hiker_mvl/mxv
+	BYTE	W04
+// 002   ----------------------------------------
+	BYTE		MOD     0
+	BYTE		VOL     106*mus_encounter_hiker_mvl/mxv
+	BYTE		N08     Fs3 
+	BYTE	W08
+	BYTE		N04     Fn3 
+	BYTE	W08
+	BYTE		        Fs3 
+	BYTE	W08
+	BYTE		        An3 
+	BYTE	W16
+	BYTE		        Fs3 
+	BYTE	W08
+	BYTE		N24     Dn3 
+	BYTE	W24
+	BYTE		        An2 
+	BYTE	W24
+// 003   ----------------------------------------
+	BYTE		N04     Fs3 
+	BYTE	W16
+	BYTE		N04   
+	BYTE	W08
+	BYTE		        Fn3 
+	BYTE	W16
+	BYTE		        Fs3 
+	BYTE	W08
+	BYTE		N16     An3 
+	BYTE	W16
+	BYTE		N04     Gs3 
+	BYTE	W04
+	BYTE		        Gn3 
+	BYTE	W04
+	BYTE		N24     Fs3 
+	BYTE	W24
+// 004   ----------------------------------------
+	BYTE		N72     Gn3 
+	BYTE	W24
+	BYTE		VOL     104*mus_encounter_hiker_mvl/mxv
+	BYTE		MOD     8
+	BYTE	W08
+	BYTE		VOL     101*mus_encounter_hiker_mvl/mxv
+	BYTE	W04
+	BYTE		        97*mus_encounter_hiker_mvl/mxv
+	BYTE	W04
+	BYTE		        92*mus_encounter_hiker_mvl/mxv
+	BYTE	W04
+	BYTE		        89*mus_encounter_hiker_mvl/mxv
+	BYTE	W04
+	BYTE		        87*mus_encounter_hiker_mvl/mxv
+	BYTE	W04
+	BYTE		        84*mus_encounter_hiker_mvl/mxv
+	BYTE	W04
+	BYTE		        77*mus_encounter_hiker_mvl/mxv
+	BYTE	W04
+	BYTE		        69*mus_encounter_hiker_mvl/mxv
+	BYTE	W04
+	BYTE		        67*mus_encounter_hiker_mvl/mxv
+	BYTE	W04
+	BYTE		        61*mus_encounter_hiker_mvl/mxv
+	BYTE	W04
+	BYTE		        106*mus_encounter_hiker_mvl/mxv
+	BYTE		MOD     0
+	BYTE	W24
+// 005   ----------------------------------------
+	BYTE		N08     En4 
+	BYTE	W08
+	BYTE		N04     Ds4 
+	BYTE	W08
+	BYTE		        En4 
+	BYTE	W08
+	BYTE		        Gn4 
+	BYTE	W16
+	BYTE		        En4 
+	BYTE	W08
+	BYTE		N48     Bn3 
+	BYTE	W24
+	BYTE		VOL     104*mus_encounter_hiker_mvl/mxv
+	BYTE	W04
+	BYTE		        101*mus_encounter_hiker_mvl/mxv
+	BYTE	W04
+	BYTE		        96*mus_encounter_hiker_mvl/mxv
+	BYTE	W04
+	BYTE		        79*mus_encounter_hiker_mvl/mxv
+	BYTE	W04
+	BYTE		        69*mus_encounter_hiker_mvl/mxv
+	BYTE	W04
+	BYTE		        64*mus_encounter_hiker_mvl/mxv
+	BYTE	W04
+// 006   ----------------------------------------
+	BYTE		        106*mus_encounter_hiker_mvl/mxv
+	BYTE		N08     Cs4 
+	BYTE	W08
+	BYTE		N04     Cn4 
+	BYTE	W08
+	BYTE		        Cs4 
+	BYTE	W08
+	BYTE		        En4 
+	BYTE	W16
+	BYTE		        Cs4 
+	BYTE	W08
+	BYTE		N32     Bn4   v072
+	BYTE	W32
+	BYTE		N08     As4   v068
+	BYTE	W08
+	BYTE		N04     An4 
+	BYTE	W08
+// 007   ----------------------------------------
+	BYTE		N08     An3   v096
+	BYTE	W16
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N08     Gs3 
+	BYTE	W16
+	BYTE		N04     An3 
+	BYTE	W08
+	BYTE		N08     Bn3 
+	BYTE	W16
+	BYTE		N04     Cs4 
+	BYTE	W08
+	BYTE		N08     Dn4 
+	BYTE	W16
+	BYTE		N04     En4 
+	BYTE	W08
+// 008   ----------------------------------------
+	BYTE		N72     Fs4 
+	BYTE	W24
+	BYTE		VOL     104*mus_encounter_hiker_mvl/mxv
+	BYTE		MOD     5
+	BYTE	W04
+	BYTE		VOL     101*mus_encounter_hiker_mvl/mxv
+	BYTE	W04
+	BYTE		        92*mus_encounter_hiker_mvl/mxv
+	BYTE	W04
+	BYTE		        87*mus_encounter_hiker_mvl/mxv
+	BYTE	W04
+	BYTE		        84*mus_encounter_hiker_mvl/mxv
+	BYTE	W04
+	BYTE		        77*mus_encounter_hiker_mvl/mxv
+	BYTE	W04
+	BYTE		        72*mus_encounter_hiker_mvl/mxv
+	BYTE	W08
+	BYTE		        67*mus_encounter_hiker_mvl/mxv
+	BYTE	W04
+	BYTE		        64*mus_encounter_hiker_mvl/mxv
+	BYTE	W04
+	BYTE		        61*mus_encounter_hiker_mvl/mxv
+	BYTE	W04
+	BYTE		        56*mus_encounter_hiker_mvl/mxv
+	BYTE	W04
+	BYTE		        106*mus_encounter_hiker_mvl/mxv
+	BYTE		MOD     0
+	BYTE	W24
+	BYTE	GoTo
+	 POIN2	mus_encounter_hiker_2_B1
+mus_encounter_hiker_2_B2:
+// 009   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 3 (Midi-Chn.3) ****************//
+
+mus_encounter_hiker_3:
+	BYTE	KEYSH   mus_encounter_hiker_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   58
+	BYTE		BENDR   12
+	BYTE		LFOS    44
+	BYTE		BENDR   12
+	BYTE		LFOS    44
+	BYTE		PAN     c_v+0
+	BYTE		VOL     127*mus_encounter_hiker_mvl/mxv
+	BYTE		N04     An1   v112
+	BYTE	W16
+	BYTE		        Fs1 
+	BYTE	W04
+	BYTE		        Dn1 
+	BYTE	W04
+	BYTE		N48     An0 
+	BYTE	W24
+	BYTE		MOD     7
+	BYTE	W24
+	BYTE		        0
+	BYTE		N16     Cs1 
+	BYTE	W24
+mus_encounter_hiker_3_B1:
+// 001   ----------------------------------------
+	BYTE		N08     Dn1   v112
+	BYTE	W48
+	BYTE		        An0 
+	BYTE	W48
+// 002   ----------------------------------------
+mus_encounter_hiker_3_002:
+	BYTE		N08     Dn1   v112
+	BYTE	W24
+	BYTE		        An0 
+	BYTE	W24
+	BYTE		        Dn1 
+	BYTE	W08
+	BYTE		N04     Cs1   v072
+	BYTE	W04
+	BYTE		        Cn1 
+	BYTE	W04
+	BYTE		        Bn0 
+	BYTE	W04
+	BYTE		        As0 
+	BYTE	W04
+	BYTE		N24     An0   v112
+	BYTE	W16
+	BYTE		BEND    c_v+20
+	BYTE	W08
+	BYTE	PEND
+// 003   ----------------------------------------
+	BYTE		        c_v+0
+	BYTE		N08     Dn1 
+	BYTE	W48
+	BYTE		        An0 
+	BYTE	W48
+// 004   ----------------------------------------
+mus_encounter_hiker_3_004:
+	BYTE		N08     En1   v112
+	BYTE	W24
+	BYTE		        Bn0 
+	BYTE	W24
+	BYTE		        En1 
+	BYTE	W08
+	BYTE		N04     Ds1   v072
+	BYTE	W04
+	BYTE		        Dn1 
+	BYTE	W04
+	BYTE		        Cs1 
+	BYTE	W04
+	BYTE		        Cn1 
+	BYTE	W04
+	BYTE		N24     Bn0   v112
+	BYTE	W16
+	BYTE		BEND    c_v+20
+	BYTE	W08
+	BYTE	PEND
+// 005   ----------------------------------------
+	BYTE		        c_v+0
+	BYTE		N08     En1 
+	BYTE	W48
+	BYTE		        Bn0 
+	BYTE	W48
+// 006   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_encounter_hiker_3_004
+// 007   ----------------------------------------
+	BYTE		BEND    c_v+0
+	BYTE		N08     An0   v112
+	BYTE	W48
+	BYTE		        En0 
+	BYTE	W48
+// 008   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_encounter_hiker_3_002
+	BYTE	GoTo
+	 POIN2	mus_encounter_hiker_3_B1
+mus_encounter_hiker_3_B2:
+// 009   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 4 (Midi-Chn.4) ****************//
+
+mus_encounter_hiker_4:
+	BYTE	KEYSH   mus_encounter_hiker_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   47
+	BYTE		LFOS    44
+	BYTE		BENDR   12
+	BYTE		VOL     127*mus_encounter_hiker_mvl/mxv
+	BYTE		PAN     c_v+32
+	BYTE		N04     An2   v124
+	BYTE	W16
+	BYTE		        Fs2 
+	BYTE	W04
+	BYTE		PAN     c_v+0
+	BYTE		N04     Dn2   v120
+	BYTE	W04
+	BYTE		PAN     c_v-32
+	BYTE		N08     An1   v127
+	BYTE	W24
+	BYTE		PAN     c_v+22
+	BYTE		N08     An2   v124
+	BYTE	W16
+	BYTE		N04     An2   v112
+	BYTE	W08
+	BYTE		PAN     c_v-33
+	BYTE		N08     An1   v127
+	BYTE	W16
+	BYTE		N04     An1   v112
+	BYTE	W08
+mus_encounter_hiker_4_B1:
+// 001   ----------------------------------------
+	BYTE		PAN     c_v+22
+	BYTE		BEND    c_v+0
+	BYTE		N08     Dn2   v127
+	BYTE	W48
+	BYTE		PAN     c_v-33
+	BYTE		N08     An1   v112
+	BYTE	W48
+// 002   ----------------------------------------
+	BYTE		PAN     c_v+24
+	BYTE		BEND    c_v+0
+	BYTE		N08     Dn2   v127
+	BYTE	W24
+	BYTE		PAN     c_v-32
+	BYTE		N08     An1   v112
+	BYTE	W24
+	BYTE		PAN     c_v+24
+	BYTE		N08     Dn2 
+	BYTE	W16
+	BYTE		N04     Dn2   v064
+	BYTE	W08
+	BYTE		PAN     c_v-33
+	BYTE		N24     An1   v120
+	BYTE	W16
+	BYTE		BEND    c_v+20
+	BYTE	W08
+// 003   ----------------------------------------
+	BYTE		PAN     c_v+21
+	BYTE		BEND    c_v+0
+	BYTE		N08     Dn2   v127
+	BYTE	W48
+	BYTE		PAN     c_v-33
+	BYTE		N08     An1   v112
+	BYTE	W48
+// 004   ----------------------------------------
+	BYTE		PAN     c_v+24
+	BYTE		BEND    c_v+0
+	BYTE		N08     En2   v127
+	BYTE	W24
+	BYTE		PAN     c_v-32
+	BYTE		N08     Bn1   v112
+	BYTE	W24
+	BYTE		PAN     c_v+24
+	BYTE		N08     En2 
+	BYTE	W16
+	BYTE		N04     En2   v064
+	BYTE	W08
+	BYTE		PAN     c_v-33
+	BYTE		N24     Bn1   v120
+	BYTE	W16
+	BYTE		BEND    c_v+20
+	BYTE	W08
+// 005   ----------------------------------------
+	BYTE		PAN     c_v+25
+	BYTE		BEND    c_v+0
+	BYTE		N08     En2   v127
+	BYTE	W48
+	BYTE		PAN     c_v-32
+	BYTE		N08     Bn1   v112
+	BYTE	W48
+// 006   ----------------------------------------
+	BYTE		PAN     c_v+24
+	BYTE		BEND    c_v+0
+	BYTE		N08     En2   v127
+	BYTE	W24
+	BYTE		PAN     c_v-32
+	BYTE		N08     Bn1   v112
+	BYTE	W24
+	BYTE		PAN     c_v+28
+	BYTE		N08     En2 
+	BYTE	W16
+	BYTE		N04     En2   v064
+	BYTE	W08
+	BYTE		PAN     c_v-33
+	BYTE		N24     Bn1   v120
+	BYTE	W16
+	BYTE		BEND    c_v+20
+	BYTE	W08
+// 007   ----------------------------------------
+	BYTE		PAN     c_v+24
+	BYTE		BEND    c_v+0
+	BYTE		N08     An1   v127
+	BYTE	W48
+	BYTE		PAN     c_v-33
+	BYTE		N08     En1   v112
+	BYTE	W48
+// 008   ----------------------------------------
+	BYTE		PAN     c_v+24
+	BYTE		BEND    c_v+0
+	BYTE		N08     Dn2   v127
+	BYTE	W24
+	BYTE		PAN     c_v-32
+	BYTE		N08     An1   v112
+	BYTE	W24
+	BYTE		PAN     c_v+24
+	BYTE		N08     Dn2 
+	BYTE	W16
+	BYTE		N04     Dn2   v064
+	BYTE	W08
+	BYTE		PAN     c_v-32
+	BYTE		N24     An1   v120
+	BYTE	W16
+	BYTE		BEND    c_v+20
+	BYTE	W08
+	BYTE	GoTo
+	 POIN2	mus_encounter_hiker_4_B1
+mus_encounter_hiker_4_B2:
+// 009   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 5 (Midi-Chn.5) ****************//
+
+mus_encounter_hiker_5:
+	BYTE	KEYSH   mus_encounter_hiker_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   80
+	BYTE		LFOS    44
+	BYTE		XCMD    xIECV   18
+	BYTE		        xIECV   16
+	BYTE		BENDR   12
+	BYTE		PAN     c_v-64
+	BYTE		VOL     59*mus_encounter_hiker_mvl/mxv
+	BYTE		N04     An2   v112
+	BYTE	W16
+	BYTE		        Fs2 
+	BYTE	W04
+	BYTE		        Dn2 
+	BYTE	W04
+	BYTE		N48     An1 
+	BYTE	W24
+	BYTE		MOD     7
+	BYTE	W24
+	BYTE		        0
+	BYTE		N16     Cs2 
+	BYTE	W16
+	BYTE		N04     Dn3 
+	BYTE	W04
+	BYTE		        En3 
+	BYTE	W04
+mus_encounter_hiker_5_B1:
+// 001   ----------------------------------------
+mus_encounter_hiker_5_001:
+	BYTE		N12     Fs3   v112
+	BYTE	W16
+	BYTE		N02   
+	BYTE	W08
+	BYTE		N02   
+	BYTE	W08
+	BYTE		        Fs3   v088
+	BYTE	W08
+	BYTE		N02   
+	BYTE	W16
+	BYTE		        An3   v112
+	BYTE	W08
+	BYTE		        Fs3 
+	BYTE	W16
+	BYTE		N02   
+	BYTE	W08
+	BYTE		N02   
+	BYTE	W08
+	BYTE	PEND
+// 002   ----------------------------------------
+	BYTE		N04   
+	BYTE	W12
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W08
+	BYTE		N02   
+	BYTE	W08
+	BYTE		N02   
+	BYTE	W16
+	BYTE		        An3 
+	BYTE	W08
+	BYTE		        Fs3 
+	BYTE	W08
+	BYTE		N02   
+	BYTE	W08
+	BYTE		N08     Fn3 
+	BYTE	W08
+	BYTE		N02     Fs3 
+	BYTE	W08
+// 003   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_encounter_hiker_5_001
+// 004   ----------------------------------------
+mus_encounter_hiker_5_004:
+	BYTE		N04     Gn3   v112
+	BYTE	W12
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W08
+	BYTE		N02   
+	BYTE	W08
+	BYTE		N02   
+	BYTE	W16
+	BYTE		        Bn3 
+	BYTE	W08
+	BYTE		        Gn3 
+	BYTE	W08
+	BYTE		N02   
+	BYTE	W08
+	BYTE		N08     Fs3 
+	BYTE	W08
+	BYTE		N02     Gn3 
+	BYTE	W08
+	BYTE	PEND
+// 005   ----------------------------------------
+	BYTE		N12   
+	BYTE	W16
+	BYTE		N02   
+	BYTE	W08
+	BYTE		N02   
+	BYTE	W08
+	BYTE		        Gn3   v088
+	BYTE	W08
+	BYTE		N02   
+	BYTE	W16
+	BYTE		        Gn3   v112
+	BYTE	W08
+	BYTE		N02   
+	BYTE	W16
+	BYTE		N02   
+	BYTE	W08
+	BYTE		N02   
+	BYTE	W08
+// 006   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_encounter_hiker_5_004
+// 007   ----------------------------------------
+	BYTE		N12     En3   v112
+	BYTE	W16
+	BYTE		N02   
+	BYTE	W08
+	BYTE		N02   
+	BYTE	W08
+	BYTE		        En3   v088
+	BYTE	W08
+	BYTE		N02   
+	BYTE	W16
+	BYTE		        An3   v112
+	BYTE	W08
+	BYTE		        En3 
+	BYTE	W16
+	BYTE		N02   
+	BYTE	W08
+	BYTE		N02   
+	BYTE	W08
+// 008   ----------------------------------------
+	BYTE		N04     Dn3 
+	BYTE	W12
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W08
+	BYTE		N02   
+	BYTE	W08
+	BYTE		N02   
+	BYTE	W16
+	BYTE		N02   
+	BYTE	W08
+	BYTE		N02   
+	BYTE	W08
+	BYTE		N02   
+	BYTE	W08
+	BYTE		N08     Cs3 
+	BYTE	W08
+	BYTE		N02     Dn3 
+	BYTE	W08
+	BYTE	GoTo
+	 POIN2	mus_encounter_hiker_5_B1
+mus_encounter_hiker_5_B2:
+// 009   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 6 (Midi-Chn.6) ****************//
+
+mus_encounter_hiker_6:
+	BYTE	KEYSH   mus_encounter_hiker_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   81
+	BYTE		LFOS    44
+	BYTE		XCMD    xIECV   18
+	BYTE		        xIECV   16
+	BYTE		BENDR   12
+	BYTE		PAN     c_v+63
+	BYTE		VOL     62*mus_encounter_hiker_mvl/mxv
+	BYTE		N04     Dn3   v112
+	BYTE	W16
+	BYTE		        An2 
+	BYTE	W04
+	BYTE		        Gn2 
+	BYTE	W04
+	BYTE		N48     Dn3 
+	BYTE	W24
+	BYTE		MOD     7
+	BYTE	W24
+	BYTE		        0
+	BYTE		N16     Cs3 
+	BYTE	W16
+	BYTE		N04     Fs3 
+	BYTE	W04
+	BYTE		        Gn3 
+	BYTE	W04
+mus_encounter_hiker_6_B1:
+// 001   ----------------------------------------
+mus_encounter_hiker_6_001:
+	BYTE		N12     An3   v112
+	BYTE	W16
+	BYTE		N02   
+	BYTE	W08
+	BYTE		N02   
+	BYTE	W08
+	BYTE		        An3   v088
+	BYTE	W08
+	BYTE		N02   
+	BYTE	W16
+	BYTE		        Dn4   v112
+	BYTE	W08
+	BYTE		        An3 
+	BYTE	W16
+	BYTE		N02   
+	BYTE	W08
+	BYTE		N02   
+	BYTE	W08
+	BYTE	PEND
+// 002   ----------------------------------------
+	BYTE		N04   
+	BYTE	W12
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W08
+	BYTE		N02   
+	BYTE	W08
+	BYTE		N02   
+	BYTE	W16
+	BYTE		        Dn4 
+	BYTE	W08
+	BYTE		        An3 
+	BYTE	W08
+	BYTE		N02   
+	BYTE	W08
+	BYTE		N08     Gs3 
+	BYTE	W08
+	BYTE		N02     An3 
+	BYTE	W08
+// 003   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_encounter_hiker_6_001
+// 004   ----------------------------------------
+mus_encounter_hiker_6_004:
+	BYTE		N04     Bn3   v112
+	BYTE	W12
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W08
+	BYTE		N02   
+	BYTE	W08
+	BYTE		N02   
+	BYTE	W16
+	BYTE		        En4 
+	BYTE	W08
+	BYTE		        Bn3 
+	BYTE	W08
+	BYTE		N02   
+	BYTE	W08
+	BYTE		N08     As3 
+	BYTE	W08
+	BYTE		N02     Bn3 
+	BYTE	W08
+	BYTE	PEND
+// 005   ----------------------------------------
+	BYTE		N12   
+	BYTE	W16
+	BYTE		N02   
+	BYTE	W08
+	BYTE		N02   
+	BYTE	W08
+	BYTE		        Bn3   v088
+	BYTE	W08
+	BYTE		N02   
+	BYTE	W16
+	BYTE		        Bn3   v112
+	BYTE	W08
+	BYTE		N02   
+	BYTE	W16
+	BYTE		N02   
+	BYTE	W08
+	BYTE		N02   
+	BYTE	W08
+// 006   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_encounter_hiker_6_004
+// 007   ----------------------------------------
+	BYTE		N12     An3   v112
+	BYTE	W16
+	BYTE		N02   
+	BYTE	W08
+	BYTE		N02   
+	BYTE	W08
+	BYTE		        An3   v088
+	BYTE	W08
+	BYTE		N02   
+	BYTE	W16
+	BYTE		        Cs4   v112
+	BYTE	W08
+	BYTE		        An3 
+	BYTE	W16
+	BYTE		N02   
+	BYTE	W08
+	BYTE		N02   
+	BYTE	W08
+// 008   ----------------------------------------
+	BYTE		N04   
+	BYTE	W12
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W04
+	BYTE		N02   
+	BYTE	W08
+	BYTE		N02   
+	BYTE	W08
+	BYTE		N02   
+	BYTE	W16
+	BYTE		N02   
+	BYTE	W08
+	BYTE		N02   
+	BYTE	W08
+	BYTE		N02   
+	BYTE	W08
+	BYTE		N08     Gs3 
+	BYTE	W08
+	BYTE		N02     An3 
+	BYTE	W08
+	BYTE	GoTo
+	 POIN2	mus_encounter_hiker_6_B1
+mus_encounter_hiker_6_B2:
+// 009   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 7 (Midi-Chn.7) ****************//
+
+mus_encounter_hiker_7:
+	BYTE	KEYSH   mus_encounter_hiker_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   0
+	BYTE		PAN     c_v+0
+	BYTE		VOL     94*mus_encounter_hiker_mvl/mxv
+	BYTE	W96
+mus_encounter_hiker_7_B1:
+// 001   ----------------------------------------
+mus_encounter_hiker_7_001:
+	BYTE		N04     En1   v112
+	BYTE	W16
+	BYTE		        En1   v084
+	BYTE	W08
+	BYTE		        En1   v112
+	BYTE	W04
+	BYTE		        En1   v052
+	BYTE	W04
+	BYTE		N04   
+	BYTE	W04
+	BYTE		N04   
+	BYTE	W04
+	BYTE		N04   
+	BYTE	W04
+	BYTE		N04   
+	BYTE	W04
+	BYTE		        En1   v112
+	BYTE	W08
+	BYTE		        En1   v060
+	BYTE	W08
+	BYTE		        En1   v084
+	BYTE	W08
+	BYTE		        En1   v112
+	BYTE	W04
+	BYTE		        En1   v052
+	BYTE	W04
+	BYTE		N04   
+	BYTE	W04
+	BYTE		N04   
+	BYTE	W04
+	BYTE		N04   
+	BYTE	W04
+	BYTE		N04   
+	BYTE	W04
+	BYTE	PEND
+// 002   ----------------------------------------
+mus_encounter_hiker_7_002:
+	BYTE		N04     En1   v112
+	BYTE	W08
+	BYTE		        En1   v060
+	BYTE	W08
+	BYTE		        En1   v084
+	BYTE	W08
+	BYTE		        En1   v112
+	BYTE	W16
+	BYTE		        En1   v084
+	BYTE	W08
+	BYTE		        En1   v112
+	BYTE	W16
+	BYTE		        En1   v084
+	BYTE	W08
+	BYTE		        En1   v112
+	BYTE	W04
+	BYTE		        En1   v052
+	BYTE	W04
+	BYTE		N04   
+	BYTE	W04
+	BYTE		N04   
+	BYTE	W04
+	BYTE		N04   
+	BYTE	W04
+	BYTE		N04   
+	BYTE	W04
+	BYTE	PEND
+// 003   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_encounter_hiker_7_001
+// 004   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_encounter_hiker_7_002
+// 005   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_encounter_hiker_7_001
+// 006   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_encounter_hiker_7_002
+// 007   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_encounter_hiker_7_001
+// 008   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_encounter_hiker_7_002
+	BYTE	GoTo
+	 POIN2	mus_encounter_hiker_7_B1
+mus_encounter_hiker_7_B2:
+// 009   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 8 (Midi-Chn.8) ****************//
+
+mus_encounter_hiker_8:
+	BYTE	KEYSH   mus_encounter_hiker_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   82
+	BYTE		LFOS    44
+	BYTE		XCMD    xIECV   18
+	BYTE		        xIECV   16
+	BYTE		BENDR   12
+	BYTE		PAN     c_v+0
+	BYTE		VOL     37*mus_encounter_hiker_mvl/mxv
+	BYTE	W48
+	BYTE		MOD     7
+	BYTE	W24
+	BYTE		        0
+	BYTE	W24
+mus_encounter_hiker_8_B1:
+// 001   ----------------------------------------
+	BYTE		BEND    c_v+1
+	BYTE		N08     Dn4   v112
+	BYTE	W08
+	BYTE		N04     Cs4 
+	BYTE	W08
+	BYTE		        Dn4 
+	BYTE	W08
+	BYTE		        Fs4 
+	BYTE	W16
+	BYTE		        Dn4 
+	BYTE	W08
+	BYTE		N48     An3 
+	BYTE	W24
+	BYTE		MOD     7
+	BYTE	W24
+// 002   ----------------------------------------
+	BYTE		        0
+	BYTE		N08     Fs3 
+	BYTE	W08
+	BYTE		N04     Fn3 
+	BYTE	W08
+	BYTE		        Fs3 
+	BYTE	W08
+	BYTE		        An3 
+	BYTE	W16
+	BYTE		        Fs3 
+	BYTE	W08
+	BYTE		N24     Dn3 
+	BYTE	W24
+	BYTE		        An2 
+	BYTE	W24
+// 003   ----------------------------------------
+	BYTE		N04     Fs3 
+	BYTE	W16
+	BYTE		N04   
+	BYTE	W08
+	BYTE		        Fn3 
+	BYTE	W16
+	BYTE		        Fs3 
+	BYTE	W08
+	BYTE		N16     An3 
+	BYTE	W16
+	BYTE		N04     Gs3   v080
+	BYTE	W04
+	BYTE		        Gn3 
+	BYTE	W04
+	BYTE		N24     Fs3   v112
+	BYTE	W24
+// 004   ----------------------------------------
+	BYTE		N72     Gn3 
+	BYTE	W24
+	BYTE		MOD     8
+	BYTE	W48
+	BYTE		        0
+	BYTE	W24
+// 005   ----------------------------------------
+	BYTE		N08     En4 
+	BYTE	W08
+	BYTE		N04     Ds4 
+	BYTE	W08
+	BYTE		        En4 
+	BYTE	W08
+	BYTE		        Gn4 
+	BYTE	W16
+	BYTE		        En4 
+	BYTE	W08
+	BYTE		N48     Bn3 
+	BYTE	W48
+// 006   ----------------------------------------
+	BYTE		N08     Cs4 
+	BYTE	W08
+	BYTE		N04     Cn4 
+	BYTE	W08
+	BYTE		        Cs4 
+	BYTE	W08
+	BYTE		        En4 
+	BYTE	W16
+	BYTE		        Cs4 
+	BYTE	W08
+	BYTE		N32     Bn4   v068
+	BYTE	W32
+	BYTE		N08     As4   v076
+	BYTE	W08
+	BYTE		N04     An4 
+	BYTE	W08
+// 007   ----------------------------------------
+	BYTE		N08     An3   v112
+	BYTE	W16
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N08     Gs3 
+	BYTE	W16
+	BYTE		N04     An3 
+	BYTE	W08
+	BYTE		N08     Bn3 
+	BYTE	W16
+	BYTE		N04     Cs4 
+	BYTE	W08
+	BYTE		N08     Dn4 
+	BYTE	W16
+	BYTE		N04     En4 
+	BYTE	W08
+// 008   ----------------------------------------
+	BYTE		N72     Fs4 
+	BYTE	W24
+	BYTE		MOD     5
+	BYTE	W48
+	BYTE		        0
+	BYTE	W24
+	BYTE	GoTo
+	 POIN2	mus_encounter_hiker_8_B1
+mus_encounter_hiker_8_B2:
+// 009   ----------------------------------------
+	BYTE	FINE
+
+//******************************************************//
+	ALIGN 4
+
+mus_encounter_hiker:
+	BYTE	8	// NumTrks
+	BYTE	0	// NumBlks
+	BYTE	mus_encounter_hiker_pri	// Priority
+	BYTE	mus_encounter_hiker_rev	// Reverb.
+
+	POIN2	mus_encounter_hiker_grp
+
+	POIN2	mus_encounter_hiker_1
+	POIN2	mus_encounter_hiker_2
+	POIN2	mus_encounter_hiker_3
+	POIN2	mus_encounter_hiker_4
+	POIN2	mus_encounter_hiker_5
+	POIN2	mus_encounter_hiker_6
+	POIN2	mus_encounter_hiker_7
+	POIN2	mus_encounter_hiker_8
+
+	

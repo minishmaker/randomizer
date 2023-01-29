@@ -1,0 +1,2116 @@
+//Event file generated from Sappy .s format.
+	#include "MPlayDef.event"
+
+	#define	mus_cave_of_origin_grp  voicegroup037
+	#define	mus_cave_of_origin_pri  0
+	#define	mus_cave_of_origin_rev  reverb_set+50
+	#define	mus_cave_of_origin_mvl  80
+	#define	mus_cave_of_origin_key  0
+	#define	mus_cave_of_origin_tbs  1
+	#define	mus_cave_of_origin_exg  1
+	#define	mus_cave_of_origin_cmp  1
+
+	// .rodata
+	//	mus_cave_of_origin
+	ALIGN 4
+
+//**************** Track 1 (Midi-Chn.1) ****************//
+
+mus_cave_of_origin_1:
+	BYTE	KEYSH   mus_cave_of_origin_key+0
+// 000   ----------------------------------------
+	BYTE	TEMPO   100*mus_cave_of_origin_tbs/2
+	BYTE	W24
+mus_cave_of_origin_1_B1:
+// 001   ----------------------------------------
+	BYTE		VOICE   46
+	BYTE		VOL     127*mus_cave_of_origin_mvl/mxv
+	BYTE		PAN     c_v-12
+	BYTE		N08     Ds4   v096
+	BYTE	W08
+	BYTE		        Gn4 
+	BYTE	W08
+	BYTE		        Gs4 
+	BYTE	W08
+	BYTE		        Gn4 
+	BYTE	W08
+	BYTE		        Ds4 
+	BYTE	W08
+	BYTE		        As3 
+	BYTE	W08
+	BYTE		        Ds3 
+	BYTE	W08
+	BYTE		        Gn3 
+	BYTE	W08
+	BYTE		        Gs3 
+	BYTE	W08
+	BYTE		        Gn3 
+	BYTE	W08
+	BYTE		        Gn4 
+	BYTE	W08
+	BYTE		        Ds5 
+	BYTE	W08
+// 002   ----------------------------------------
+	BYTE		N72     As4 
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE		N08     Cs4 
+	BYTE	W08
+	BYTE		        Ds4 
+	BYTE	W08
+	BYTE		        En4 
+	BYTE	W08
+	BYTE		        Ds4 
+	BYTE	W08
+	BYTE		        Cs4 
+	BYTE	W08
+	BYTE		        An3 
+	BYTE	W08
+	BYTE		        Cs3 
+	BYTE	W08
+	BYTE		        Ds3 
+	BYTE	W08
+	BYTE		        En3 
+	BYTE	W08
+	BYTE		        Ds3 
+	BYTE	W08
+	BYTE		        Cs4 
+	BYTE	W08
+	BYTE		        Cs5 
+	BYTE	W08
+// 004   ----------------------------------------
+	BYTE		N72     An4 
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE		VOICE   14
+	BYTE		N24     Gs3 
+	BYTE	W24
+	BYTE		N24   
+	BYTE	W24
+	BYTE		N24   
+	BYTE	W48
+// 006   ----------------------------------------
+	BYTE		N24   
+	BYTE	W24
+	BYTE		N24   
+	BYTE	W24
+	BYTE		N24   
+	BYTE	W48
+// 007   ----------------------------------------
+	BYTE		VOICE   46
+	BYTE		N08     As3 
+	BYTE	W08
+	BYTE		        En4 
+	BYTE	W08
+	BYTE		        Fn4 
+	BYTE	W08
+	BYTE		        En4 
+	BYTE	W08
+	BYTE		        As3 
+	BYTE	W08
+	BYTE		        En3 
+	BYTE	W08
+	BYTE		        As2 
+	BYTE	W08
+	BYTE		        En3 
+	BYTE	W08
+	BYTE		        Fn3 
+	BYTE	W08
+	BYTE		        En3 
+	BYTE	W08
+	BYTE		        As3 
+	BYTE	W08
+	BYTE		        As4 
+	BYTE	W08
+// 008   ----------------------------------------
+	BYTE		        As3 
+	BYTE	W08
+	BYTE		        En4 
+	BYTE	W08
+	BYTE		        Fn4 
+	BYTE	W08
+	BYTE		        En4 
+	BYTE	W08
+	BYTE		        As3 
+	BYTE	W08
+	BYTE		        En3 
+	BYTE	W08
+	BYTE		        Cs3 
+	BYTE	W08
+	BYTE		        En3 
+	BYTE	W08
+	BYTE		        Fn3 
+	BYTE	W08
+	BYTE		        En3 
+	BYTE	W08
+	BYTE		        En4 
+	BYTE	W08
+	BYTE		        Cs5 
+	BYTE	W08
+// 009   ----------------------------------------
+	BYTE		        As3 
+	BYTE	W08
+	BYTE		        En4 
+	BYTE	W08
+	BYTE		        Fn4 
+	BYTE	W08
+	BYTE		        En4 
+	BYTE	W08
+	BYTE		        As3 
+	BYTE	W08
+	BYTE		        En3 
+	BYTE	W08
+	BYTE		        As2 
+	BYTE	W08
+	BYTE		        En3 
+	BYTE	W08
+	BYTE		        Fn3 
+	BYTE	W08
+	BYTE		        En3 
+	BYTE	W08
+	BYTE		        As3 
+	BYTE	W08
+	BYTE		        As4 
+	BYTE	W08
+// 010   ----------------------------------------
+	BYTE		        Cs5   v068
+	BYTE	W08
+	BYTE		        As4 
+	BYTE	W08
+	BYTE		        Gn4   v072
+	BYTE	W08
+	BYTE		        Cs5   v076
+	BYTE	W08
+	BYTE		        As4 
+	BYTE	W08
+	BYTE		        Gn4   v080
+	BYTE	W08
+	BYTE		        Cs5   v084
+	BYTE	W08
+	BYTE		        As4 
+	BYTE	W08
+	BYTE		        Gn4   v088
+	BYTE	W08
+	BYTE		        Cs5   v092
+	BYTE	W08
+	BYTE		        As4 
+	BYTE	W08
+	BYTE		        Gn4   v096
+	BYTE	W08
+// 011   ----------------------------------------
+	BYTE		        Cn5 
+	BYTE	W08
+	BYTE		        As4 
+	BYTE	W08
+	BYTE		        Gn4 
+	BYTE	W08
+	BYTE		        Ds4 
+	BYTE	W08
+	BYTE		        Dn4 
+	BYTE	W08
+	BYTE		        Gn3 
+	BYTE	W08
+	BYTE		        Ds3 
+	BYTE	W08
+	BYTE		        Cn3 
+	BYTE	W08
+	BYTE		        Dn3 
+	BYTE	W08
+	BYTE		        Ds3 
+	BYTE	W08
+	BYTE		        Ds4 
+	BYTE	W08
+	BYTE		        Gn5 
+	BYTE	W08
+// 012   ----------------------------------------
+	BYTE		        Cn6 
+	BYTE	W08
+	BYTE		        As5 
+	BYTE	W08
+	BYTE		        Gn5 
+	BYTE	W08
+	BYTE		        Ds5 
+	BYTE	W08
+	BYTE		        Dn5 
+	BYTE	W08
+	BYTE		        Gn4 
+	BYTE	W08
+	BYTE		        Ds4 
+	BYTE	W08
+	BYTE		        Cn4 
+	BYTE	W08
+	BYTE		        Dn4 
+	BYTE	W08
+	BYTE		        Ds4 
+	BYTE	W08
+	BYTE		        Dn4 
+	BYTE	W08
+	BYTE		        Cn4 
+	BYTE	W08
+// 013   ----------------------------------------
+	BYTE		        Ds5 
+	BYTE	W08
+	BYTE		        Cn5 
+	BYTE	W08
+	BYTE		        Gs4 
+	BYTE	W08
+	BYTE		        Fn4 
+	BYTE	W08
+	BYTE		        Ds4 
+	BYTE	W08
+	BYTE		        Cn4 
+	BYTE	W08
+	BYTE		        Gs3 
+	BYTE	W08
+	BYTE		        Fn3 
+	BYTE	W08
+	BYTE		        Gn3 
+	BYTE	W08
+	BYTE		        Gs3 
+	BYTE	W08
+	BYTE		        Gs4 
+	BYTE	W08
+	BYTE		        Fn5 
+	BYTE	W08
+// 014   ----------------------------------------
+	BYTE		        Gs5 
+	BYTE	W08
+	BYTE		        Gn5 
+	BYTE	W08
+	BYTE		        Fn5 
+	BYTE	W08
+	BYTE		        Ds5 
+	BYTE	W08
+	BYTE		        Dn5 
+	BYTE	W08
+	BYTE		        Cn5 
+	BYTE	W08
+	BYTE		        Gs4 
+	BYTE	W08
+	BYTE		        Fn4 
+	BYTE	W08
+	BYTE		        Gn4 
+	BYTE	W08
+	BYTE		        Gs4 
+	BYTE	W08
+	BYTE		        Gn4 
+	BYTE	W08
+	BYTE		        Fn4 
+	BYTE	W08
+// 015   ----------------------------------------
+	BYTE		        Dn4 
+	BYTE	W08
+	BYTE		        Ds4 
+	BYTE	W08
+	BYTE		        Fn4 
+	BYTE	W08
+	BYTE		        Dn5 
+	BYTE	W08
+	BYTE		        Bn4 
+	BYTE	W08
+	BYTE		        Cn5 
+	BYTE	W08
+	BYTE		        Dn5 
+	BYTE	W08
+	BYTE		        Ds5 
+	BYTE	W08
+	BYTE		        Dn5 
+	BYTE	W08
+	BYTE		        Bn4 
+	BYTE	W08
+	BYTE		        Gs4 
+	BYTE	W08
+	BYTE		        Fn4 
+	BYTE	W08
+// 016   ----------------------------------------
+	BYTE		        Cs4 
+	BYTE	W08
+	BYTE		        Dn4 
+	BYTE	W08
+	BYTE		        En4 
+	BYTE	W08
+	BYTE		        Cs5 
+	BYTE	W08
+	BYTE		        As4 
+	BYTE	W08
+	BYTE		        Bn4 
+	BYTE	W08
+	BYTE		        Cs5 
+	BYTE	W08
+	BYTE		        Dn5 
+	BYTE	W08
+	BYTE		        Cs5 
+	BYTE	W08
+	BYTE		        As4 
+	BYTE	W08
+	BYTE		        Gn4 
+	BYTE	W08
+	BYTE		        En4 
+	BYTE	W08
+// 017   ----------------------------------------
+	BYTE		        Fs4 
+	BYTE	W08
+	BYTE		        Ds4   v084
+	BYTE	W08
+	BYTE		        An4   v076
+	BYTE	W08
+	BYTE		        Ds4   v064
+	BYTE	W08
+	BYTE		        Fs4   v052
+	BYTE	W08
+	BYTE		        An4   v044
+	BYTE	W08
+	BYTE		        Fs4   v032
+	BYTE	W08
+	BYTE		        Ds4   v024
+	BYTE	W08
+	BYTE		        An4   v016
+	BYTE	W08
+	BYTE		VOICE   48
+	BYTE		N04     Fs3   v068
+	BYTE	W04
+	BYTE		        An3 
+	BYTE	W04
+	BYTE		        Cn4 
+	BYTE	W04
+	BYTE		        Ds4 
+	BYTE	W04
+	BYTE		        Fs4 
+	BYTE	W04
+	BYTE		        An4 
+	BYTE	W04
+// 018   ----------------------------------------
+	BYTE		N44     As4 
+	BYTE	W48
+	BYTE		N48   
+	BYTE	W48
+	BYTE	GoTo
+	 POIN2	mus_cave_of_origin_1_B1
+mus_cave_of_origin_1_B2:
+// 019   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 2 (Midi-Chn.2) ****************//
+
+mus_cave_of_origin_2:
+	BYTE	KEYSH   mus_cave_of_origin_key+0
+// 000   ----------------------------------------
+	BYTE	W24
+mus_cave_of_origin_2_B1:
+// 001   ----------------------------------------
+	BYTE		VOICE   58
+	BYTE		VOL     127*mus_cave_of_origin_mvl/mxv
+	BYTE		PAN     c_v+6
+	BYTE		N84     Ds1   v127
+	BYTE	W84
+	BYTE		N12     As1 
+	BYTE	W12
+// 002   ----------------------------------------
+	BYTE		N44     Ds1 
+	BYTE	W48
+	BYTE		N16     Gn1 
+	BYTE	W16
+	BYTE		        Fn1 
+	BYTE	W16
+	BYTE		        Gn1 
+	BYTE	W16
+// 003   ----------------------------------------
+	BYTE		N84     An1 
+	BYTE	W84
+	BYTE		N12     Cs2 
+	BYTE	W12
+// 004   ----------------------------------------
+	BYTE		N44     An1 
+	BYTE	W48
+	BYTE		N16   
+	BYTE	W16
+	BYTE		        Gn1 
+	BYTE	W16
+	BYTE		        An1 
+	BYTE	W16
+// 005   ----------------------------------------
+	BYTE		N12     Gs1 
+	BYTE	W24
+	BYTE		N12   
+	BYTE	W24
+	BYTE		N12   
+	BYTE	W32
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W08
+// 006   ----------------------------------------
+	BYTE		N12   
+	BYTE	W24
+	BYTE		N12   
+	BYTE	W24
+	BYTE		N12   
+	BYTE	W24
+	BYTE		N24     Cn2 
+	BYTE	W24
+// 007   ----------------------------------------
+	BYTE		TIE     Cs2 
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE	W48
+	BYTE		EOT   
+	BYTE		N16   
+	BYTE	W16
+	BYTE		        Bn1 
+	BYTE	W16
+	BYTE		        Gs1 
+	BYTE	W16
+// 009   ----------------------------------------
+	BYTE		N92     Gn1 
+	BYTE	W96
+// 010   ----------------------------------------
+	BYTE		N12   
+	BYTE	W24
+	BYTE		N12   
+	BYTE	W24
+	BYTE		N12   
+	BYTE	W24
+	BYTE		N12   
+	BYTE	W24
+// 011   ----------------------------------------
+	BYTE	W96
+// 012   ----------------------------------------
+	BYTE	W96
+// 013   ----------------------------------------
+	BYTE	W96
+// 014   ----------------------------------------
+	BYTE	W96
+// 015   ----------------------------------------
+	BYTE	W96
+// 016   ----------------------------------------
+	BYTE	W96
+// 017   ----------------------------------------
+	BYTE	W96
+// 018   ----------------------------------------
+	BYTE		N44     As1 
+	BYTE	W48
+	BYTE		N16   
+	BYTE	W16
+	BYTE		        Gs1 
+	BYTE	W16
+	BYTE		        Fn1 
+	BYTE	W16
+	BYTE	GoTo
+	 POIN2	mus_cave_of_origin_2_B1
+mus_cave_of_origin_2_B2:
+// 019   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 3 (Midi-Chn.3) ****************//
+
+mus_cave_of_origin_3:
+	BYTE	KEYSH   mus_cave_of_origin_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   48
+	BYTE		VOL     127*mus_cave_of_origin_mvl/mxv
+	BYTE		PAN     c_v+18
+	BYTE		N04     As3   v068
+	BYTE	W04
+	BYTE		        Dn4 
+	BYTE	W04
+	BYTE		        Fn4 
+	BYTE	W04
+	BYTE		        Gs4 
+	BYTE	W04
+	BYTE		        As4 
+	BYTE	W04
+	BYTE		        Cn5 
+	BYTE	W04
+mus_cave_of_origin_3_B1:
+// 001   ----------------------------------------
+	BYTE		VOICE   48
+	BYTE		VOL     127*mus_cave_of_origin_mvl/mxv
+	BYTE		PAN     c_v+18
+	BYTE		TIE     Dn5   v068
+	BYTE	W24
+	BYTE		BEND    c_v+0
+	BYTE	W08
+	BYTE		VOL     120*mus_cave_of_origin_mvl/mxv
+	BYTE	W12
+	BYTE		        113*mus_cave_of_origin_mvl/mxv
+	BYTE	W12
+	BYTE		        105*mus_cave_of_origin_mvl/mxv
+	BYTE	W12
+	BYTE		        97*mus_cave_of_origin_mvl/mxv
+	BYTE	W12
+	BYTE		        91*mus_cave_of_origin_mvl/mxv
+	BYTE	W16
+// 002   ----------------------------------------
+mus_cave_of_origin_3_002:
+	BYTE		VOL     83*mus_cave_of_origin_mvl/mxv
+	BYTE	W16
+	BYTE		        91*mus_cave_of_origin_mvl/mxv
+	BYTE	W16
+	BYTE		        99*mus_cave_of_origin_mvl/mxv
+	BYTE	W12
+	BYTE		        107*mus_cave_of_origin_mvl/mxv
+	BYTE	W12
+	BYTE		        110*mus_cave_of_origin_mvl/mxv
+	BYTE	W08
+	BYTE		        116*mus_cave_of_origin_mvl/mxv
+	BYTE	W08
+	BYTE		        118*mus_cave_of_origin_mvl/mxv
+	BYTE	W08
+	BYTE		        127*mus_cave_of_origin_mvl/mxv
+	BYTE	W16
+	BYTE	PEND
+	BYTE		EOT     Dn5 
+// 003   ----------------------------------------
+	BYTE		TIE     Cs5   v068
+	BYTE	W32
+	BYTE		VOL     120*mus_cave_of_origin_mvl/mxv
+	BYTE	W12
+	BYTE		        113*mus_cave_of_origin_mvl/mxv
+	BYTE	W12
+	BYTE		        105*mus_cave_of_origin_mvl/mxv
+	BYTE	W12
+	BYTE		        97*mus_cave_of_origin_mvl/mxv
+	BYTE	W12
+	BYTE		        91*mus_cave_of_origin_mvl/mxv
+	BYTE	W16
+// 004   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_cave_of_origin_3_002
+	BYTE		EOT     Cs5 
+// 005   ----------------------------------------
+	BYTE		N12     Gs4   v088
+	BYTE	W24
+	BYTE		N12   
+	BYTE	W24
+	BYTE		N12   
+	BYTE	W32
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W08
+// 006   ----------------------------------------
+	BYTE		N12   
+	BYTE	W24
+	BYTE		N12   
+	BYTE	W24
+	BYTE		N12   
+	BYTE	W48
+// 007   ----------------------------------------
+mus_cave_of_origin_3_007:
+	BYTE		TIE     As4   v068
+	BYTE	W32
+	BYTE		VOL     120*mus_cave_of_origin_mvl/mxv
+	BYTE	W12
+	BYTE		        113*mus_cave_of_origin_mvl/mxv
+	BYTE	W12
+	BYTE		        105*mus_cave_of_origin_mvl/mxv
+	BYTE	W12
+	BYTE		        97*mus_cave_of_origin_mvl/mxv
+	BYTE	W12
+	BYTE		        91*mus_cave_of_origin_mvl/mxv
+	BYTE	W16
+	BYTE	PEND
+// 008   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_cave_of_origin_3_002
+	BYTE		EOT     As4 
+// 009   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_cave_of_origin_3_007
+// 010   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_cave_of_origin_3_002
+	BYTE		EOT     As4 
+// 011   ----------------------------------------
+mus_cave_of_origin_3_011:
+	BYTE		N12     Ds4   v088
+	BYTE	W32
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N08   
+	BYTE	W32
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W08
+	BYTE	PEND
+// 012   ----------------------------------------
+	BYTE		N12   
+	BYTE	W96
+// 013   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_cave_of_origin_3_011
+// 014   ----------------------------------------
+	BYTE		N12     Ds4   v088
+	BYTE	W96
+// 015   ----------------------------------------
+	BYTE		        Dn4 
+	BYTE	W32
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N08   
+	BYTE	W32
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W08
+// 016   ----------------------------------------
+	BYTE		N12     Cs4 
+	BYTE	W32
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N08   
+	BYTE	W32
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W08
+// 017   ----------------------------------------
+	BYTE		N12     Cn4 
+	BYTE	W32
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N08   
+	BYTE	W32
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W08
+// 018   ----------------------------------------
+	BYTE		N44     Ds4 
+	BYTE	W48
+	BYTE		N24     Dn4 
+	BYTE	W24
+	BYTE		N04     As3   v068
+	BYTE	W04
+	BYTE		        Dn4 
+	BYTE	W04
+	BYTE		        Fn4 
+	BYTE	W04
+	BYTE		        Gs4 
+	BYTE	W04
+	BYTE		        As4 
+	BYTE	W04
+	BYTE		        Cn5 
+	BYTE	W04
+	BYTE	GoTo
+	 POIN2	mus_cave_of_origin_3_B1
+mus_cave_of_origin_3_B2:
+// 019   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 4 (Midi-Chn.4) ****************//
+
+mus_cave_of_origin_4:
+	BYTE	KEYSH   mus_cave_of_origin_key+0
+// 000   ----------------------------------------
+	BYTE		BENDR   38
+	BYTE		XCMD    xIECV   13
+	BYTE		        xIECL   10
+	BYTE	W24
+mus_cave_of_origin_4_B1:
+// 001   ----------------------------------------
+	BYTE		VOICE   80
+	BYTE		VOL     127*mus_cave_of_origin_mvl/mxv
+	BYTE		PAN     c_v-48
+	BYTE		N92     As3   v060
+	BYTE	W24
+	BYTE		MOD     7
+	BYTE	W24
+	BYTE		VOL     121*mus_cave_of_origin_mvl/mxv
+	BYTE	W09
+	BYTE		        112*mus_cave_of_origin_mvl/mxv
+	BYTE	W09
+	BYTE		        102*mus_cave_of_origin_mvl/mxv
+	BYTE	W09
+	BYTE		        88*mus_cave_of_origin_mvl/mxv
+	BYTE	W09
+	BYTE		        70*mus_cave_of_origin_mvl/mxv
+	BYTE	W06
+	BYTE		        43*mus_cave_of_origin_mvl/mxv
+	BYTE	W02
+	BYTE		MOD     0
+	BYTE	W04
+// 002   ----------------------------------------
+	BYTE		VOICE   4
+	BYTE		VOL     127*mus_cave_of_origin_mvl/mxv
+	BYTE		PAN     c_v-1
+	BYTE		N06     Ds6   v052
+	BYTE	W08
+	BYTE		        As5 
+	BYTE	W08
+	BYTE		        Ds5 
+	BYTE	W08
+	BYTE		        As4 
+	BYTE	W08
+	BYTE		        Ds4 
+	BYTE	W08
+	BYTE		        As3 
+	BYTE	W08
+	BYTE		        Ds3 
+	BYTE	W08
+	BYTE		        As3 
+	BYTE	W08
+	BYTE		        Ds4 
+	BYTE	W08
+	BYTE		        As4 
+	BYTE	W08
+	BYTE		        Ds5 
+	BYTE	W08
+	BYTE		        As5 
+	BYTE	W08
+// 003   ----------------------------------------
+	BYTE		VOICE   80
+	BYTE		PAN     c_v-48
+	BYTE		N92     An3   v060
+	BYTE	W24
+	BYTE		MOD     7
+	BYTE	W24
+	BYTE		VOL     121*mus_cave_of_origin_mvl/mxv
+	BYTE	W09
+	BYTE		        112*mus_cave_of_origin_mvl/mxv
+	BYTE	W09
+	BYTE		        102*mus_cave_of_origin_mvl/mxv
+	BYTE	W09
+	BYTE		        88*mus_cave_of_origin_mvl/mxv
+	BYTE	W09
+	BYTE		        70*mus_cave_of_origin_mvl/mxv
+	BYTE	W06
+	BYTE		        43*mus_cave_of_origin_mvl/mxv
+	BYTE	W02
+	BYTE		MOD     0
+	BYTE	W04
+// 004   ----------------------------------------
+	BYTE		VOICE   4
+	BYTE		VOL     127*mus_cave_of_origin_mvl/mxv
+	BYTE		PAN     c_v-1
+	BYTE		N06     Ds6   v052
+	BYTE	W08
+	BYTE		        An5 
+	BYTE	W08
+	BYTE		        Ds5 
+	BYTE	W08
+	BYTE		        An4 
+	BYTE	W08
+	BYTE		        Ds4 
+	BYTE	W08
+	BYTE		        An3 
+	BYTE	W08
+	BYTE		        Ds3 
+	BYTE	W08
+	BYTE		        An3 
+	BYTE	W08
+	BYTE		        Ds4 
+	BYTE	W08
+	BYTE		        An4 
+	BYTE	W08
+	BYTE		        Ds5 
+	BYTE	W08
+	BYTE		        An5 
+	BYTE	W08
+// 005   ----------------------------------------
+	BYTE		VOICE   80
+	BYTE		PAN     c_v-48
+	BYTE		N06     Cn4   v060
+	BYTE	W08
+	BYTE		        Fs3 
+	BYTE	W08
+	BYTE		        Cn3 
+	BYTE	W08
+	BYTE		        Cn4   v040
+	BYTE	W08
+	BYTE		        Fs3 
+	BYTE	W08
+	BYTE		        Cn3 
+	BYTE	W08
+	BYTE		        Cn4   v052
+	BYTE	W08
+	BYTE		        Fs3 
+	BYTE	W08
+	BYTE		        Cn3 
+	BYTE	W08
+	BYTE		        Cn4   v060
+	BYTE	W08
+	BYTE		        Fs3 
+	BYTE	W08
+	BYTE		        Cn3 
+	BYTE	W08
+// 006   ----------------------------------------
+	BYTE		VOICE   4
+	BYTE		PAN     c_v-1
+	BYTE		N06     Ds6   v052
+	BYTE	W08
+	BYTE		        Gs5 
+	BYTE	W08
+	BYTE		        Ds5 
+	BYTE	W08
+	BYTE		        Gs4 
+	BYTE	W08
+	BYTE		        Ds4 
+	BYTE	W08
+	BYTE		        Gs3 
+	BYTE	W08
+	BYTE		        Ds3 
+	BYTE	W08
+	BYTE		        Gs3 
+	BYTE	W08
+	BYTE		        Ds4 
+	BYTE	W08
+	BYTE		        Gs4 
+	BYTE	W08
+	BYTE		        Ds5 
+	BYTE	W08
+	BYTE		        Gs5 
+	BYTE	W08
+// 007   ----------------------------------------
+	BYTE		        Cs6 
+	BYTE	W08
+	BYTE		        Gs5 
+	BYTE	W08
+	BYTE		        As4 
+	BYTE	W08
+	BYTE		PAN     c_v-48
+	BYTE		N06     As5   v040
+	BYTE	W08
+	BYTE		PAN     c_v+0
+	BYTE		N06     En5 
+	BYTE	W08
+	BYTE		PAN     c_v-48
+	BYTE		N06     Cs6   v032
+	BYTE	W08
+	BYTE		PAN     c_v+0
+	BYTE		N06     Gs5 
+	BYTE	W08
+	BYTE		PAN     c_v-48
+	BYTE		N08     As4 
+	BYTE	W08
+	BYTE		N06     As5   v020
+	BYTE	W08
+	BYTE		        En5 
+	BYTE	W08
+	BYTE		        Cs6   v012
+	BYTE	W16
+// 008   ----------------------------------------
+	BYTE	W48
+	BYTE		VOICE   80
+	BYTE		VOL     70*mus_cave_of_origin_mvl/mxv
+	BYTE		N48     Gs3   v072
+	BYTE	W08
+	BYTE		VOL     80*mus_cave_of_origin_mvl/mxv
+	BYTE	W08
+	BYTE		        94*mus_cave_of_origin_mvl/mxv
+	BYTE		MOD     7
+	BYTE	W08
+	BYTE		VOL     108*mus_cave_of_origin_mvl/mxv
+	BYTE	W08
+	BYTE		        116*mus_cave_of_origin_mvl/mxv
+	BYTE	W08
+	BYTE		        127*mus_cave_of_origin_mvl/mxv
+	BYTE	W08
+// 009   ----------------------------------------
+	BYTE		MOD     0
+	BYTE		N96     Gn3   v060
+	BYTE	W36
+	BYTE		MOD     7
+	BYTE	W12
+	BYTE		VOL     121*mus_cave_of_origin_mvl/mxv
+	BYTE	W09
+	BYTE		        112*mus_cave_of_origin_mvl/mxv
+	BYTE	W09
+	BYTE		        102*mus_cave_of_origin_mvl/mxv
+	BYTE	W09
+	BYTE		        88*mus_cave_of_origin_mvl/mxv
+	BYTE	W09
+	BYTE		        70*mus_cave_of_origin_mvl/mxv
+	BYTE	W06
+	BYTE		        43*mus_cave_of_origin_mvl/mxv
+	BYTE	W06
+// 010   ----------------------------------------
+	BYTE		        127*mus_cave_of_origin_mvl/mxv
+	BYTE		MOD     0
+	BYTE		N06     Gn3   v040
+	BYTE	W08
+	BYTE		        En3 
+	BYTE	W08
+	BYTE		        Cs3 
+	BYTE	W08
+	BYTE		        Gn3   v052
+	BYTE	W08
+	BYTE		        En3 
+	BYTE	W08
+	BYTE		        Cs3 
+	BYTE	W08
+	BYTE		        Gn3   v060
+	BYTE	W08
+	BYTE		        En3 
+	BYTE	W08
+	BYTE		        Cs3 
+	BYTE	W08
+	BYTE		        Gn3   v072
+	BYTE	W08
+	BYTE		        En3 
+	BYTE	W08
+	BYTE		        Cs3 
+	BYTE	W08
+// 011   ----------------------------------------
+	BYTE		N12     As3   v060
+	BYTE	W32
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N08   
+	BYTE	W32
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W08
+// 012   ----------------------------------------
+	BYTE		N12   
+	BYTE	W96
+// 013   ----------------------------------------
+	BYTE		        Cn4 
+	BYTE	W32
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N08   
+	BYTE	W32
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W08
+// 014   ----------------------------------------
+	BYTE		N12   
+	BYTE	W96
+// 015   ----------------------------------------
+	BYTE		        Gs3 
+	BYTE	W32
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N08   
+	BYTE	W32
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W08
+// 016   ----------------------------------------
+	BYTE		N12     Gn3 
+	BYTE	W32
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N08   
+	BYTE	W32
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W08
+// 017   ----------------------------------------
+	BYTE		N12     Fs3 
+	BYTE	W32
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N08   
+	BYTE	W32
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W08
+// 018   ----------------------------------------
+	BYTE		N06     As3 
+	BYTE	W08
+	BYTE		        Fn3 
+	BYTE	W08
+	BYTE		        Ds3 
+	BYTE	W08
+	BYTE		        As3 
+	BYTE	W08
+	BYTE		        Fn3 
+	BYTE	W08
+	BYTE		        Ds3 
+	BYTE	W08
+	BYTE		        As3 
+	BYTE	W08
+	BYTE		        Fn3 
+	BYTE	W08
+	BYTE		        Dn3 
+	BYTE	W08
+	BYTE		        As3 
+	BYTE	W08
+	BYTE		        Fn3 
+	BYTE	W08
+	BYTE		        Dn3 
+	BYTE	W08
+	BYTE	GoTo
+	 POIN2	mus_cave_of_origin_4_B1
+mus_cave_of_origin_4_B2:
+// 019   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 5 (Midi-Chn.5) ****************//
+
+mus_cave_of_origin_5:
+	BYTE	KEYSH   mus_cave_of_origin_key+0
+// 000   ----------------------------------------
+	BYTE		BENDR   38
+	BYTE		XCMD    xIECV   13
+	BYTE		        xIECL   10
+	BYTE	W24
+mus_cave_of_origin_5_B1:
+// 001   ----------------------------------------
+	BYTE		VOICE   82
+	BYTE		VOL     127*mus_cave_of_origin_mvl/mxv
+	BYTE		PAN     c_v+48
+	BYTE		N12     Gn3   v060
+	BYTE	W12
+	BYTE		VOICE   83
+	BYTE		N12   
+	BYTE	W12
+	BYTE		MOD     7
+	BYTE		N12   
+	BYTE	W12
+	BYTE		N12   
+	BYTE	W12
+	BYTE		VOL     121*mus_cave_of_origin_mvl/mxv
+	BYTE		N12   
+	BYTE	W09
+	BYTE		VOL     112*mus_cave_of_origin_mvl/mxv
+	BYTE	W03
+	BYTE		N12   
+	BYTE	W06
+	BYTE		VOL     102*mus_cave_of_origin_mvl/mxv
+	BYTE	W06
+	BYTE		N12   
+	BYTE	W03
+	BYTE		VOL     88*mus_cave_of_origin_mvl/mxv
+	BYTE	W09
+	BYTE		        70*mus_cave_of_origin_mvl/mxv
+	BYTE		N09   
+	BYTE	W06
+	BYTE		VOL     43*mus_cave_of_origin_mvl/mxv
+	BYTE	W02
+	BYTE		MOD     0
+	BYTE	W04
+// 002   ----------------------------------------
+	BYTE		VOICE   5
+	BYTE		VOL     127*mus_cave_of_origin_mvl/mxv
+	BYTE		PAN     c_v+0
+	BYTE	W04
+	BYTE		N06     Dn6   v052
+	BYTE	W08
+	BYTE		        Gn5 
+	BYTE	W08
+	BYTE		        Dn5 
+	BYTE	W08
+	BYTE		        Gn4 
+	BYTE	W08
+	BYTE		        Dn4 
+	BYTE	W08
+	BYTE		        Gn3 
+	BYTE	W08
+	BYTE		N06   
+	BYTE	W08
+	BYTE		        Dn4 
+	BYTE	W08
+	BYTE		        Gn4 
+	BYTE	W08
+	BYTE		        Dn5 
+	BYTE	W08
+	BYTE		        Gn5 
+	BYTE	W08
+	BYTE		N04     Dn6 
+	BYTE	W04
+// 003   ----------------------------------------
+	BYTE		VOICE   82
+	BYTE		PAN     c_v+48
+	BYTE		N12     Ds3   v060
+	BYTE	W12
+	BYTE		VOICE   83
+	BYTE		N12   
+	BYTE	W12
+	BYTE		MOD     7
+	BYTE		N12   
+	BYTE	W12
+	BYTE		N12   
+	BYTE	W12
+	BYTE		VOL     121*mus_cave_of_origin_mvl/mxv
+	BYTE		N12   
+	BYTE	W09
+	BYTE		VOL     112*mus_cave_of_origin_mvl/mxv
+	BYTE	W03
+	BYTE		N12   
+	BYTE	W06
+	BYTE		VOL     102*mus_cave_of_origin_mvl/mxv
+	BYTE	W06
+	BYTE		N12   
+	BYTE	W03
+	BYTE		VOL     88*mus_cave_of_origin_mvl/mxv
+	BYTE	W09
+	BYTE		        70*mus_cave_of_origin_mvl/mxv
+	BYTE		N09   
+	BYTE	W06
+	BYTE		VOL     43*mus_cave_of_origin_mvl/mxv
+	BYTE	W02
+	BYTE		MOD     0
+	BYTE	W04
+// 004   ----------------------------------------
+	BYTE		VOICE   5
+	BYTE		VOL     127*mus_cave_of_origin_mvl/mxv
+	BYTE		PAN     c_v+0
+	BYTE	W04
+	BYTE		N06     Cs6   v052
+	BYTE	W08
+	BYTE		        Gn5 
+	BYTE	W08
+	BYTE		        Cs5 
+	BYTE	W08
+	BYTE		        Gn4 
+	BYTE	W08
+	BYTE		        Cs4 
+	BYTE	W08
+	BYTE		        Gn3 
+	BYTE	W08
+	BYTE		N06   
+	BYTE	W08
+	BYTE		        Cs4 
+	BYTE	W08
+	BYTE		        Gn4 
+	BYTE	W08
+	BYTE		        Cs5 
+	BYTE	W08
+	BYTE		        Gn5 
+	BYTE	W08
+	BYTE		N04     Cs6 
+	BYTE	W04
+// 005   ----------------------------------------
+	BYTE		VOICE   82
+	BYTE		PAN     c_v+48
+	BYTE		N06     Gs3   v060
+	BYTE	W08
+	BYTE		        Ds3 
+	BYTE	W08
+	BYTE		        Gs2 
+	BYTE	W08
+	BYTE		        Gs3   v040
+	BYTE	W08
+	BYTE		        Ds3 
+	BYTE	W08
+	BYTE		        Gs2 
+	BYTE	W08
+	BYTE		        Gs3   v052
+	BYTE	W08
+	BYTE		        Ds3 
+	BYTE	W08
+	BYTE		        Gs2 
+	BYTE	W08
+	BYTE		        Gs3   v060
+	BYTE	W08
+	BYTE		        Ds3 
+	BYTE	W08
+	BYTE		        Gs2 
+	BYTE	W08
+// 006   ----------------------------------------
+	BYTE		VOICE   5
+	BYTE		PAN     c_v+0
+	BYTE	W04
+	BYTE		N06     Cn6   v052
+	BYTE	W08
+	BYTE		        Fs5 
+	BYTE	W08
+	BYTE		        Cn5 
+	BYTE	W08
+	BYTE		        Fs4 
+	BYTE	W08
+	BYTE		        Cn4 
+	BYTE	W08
+	BYTE		        Fs3 
+	BYTE	W08
+	BYTE		N06   
+	BYTE	W08
+	BYTE		        Cn4 
+	BYTE	W08
+	BYTE		        Fs4 
+	BYTE	W08
+	BYTE		        Cn5 
+	BYTE	W08
+	BYTE		        Fs5 
+	BYTE	W08
+	BYTE		        Cn6 
+	BYTE	W04
+// 007   ----------------------------------------
+	BYTE		PAN     c_v+48
+	BYTE	W04
+	BYTE		N06     As5 
+	BYTE	W08
+	BYTE		        En5 
+	BYTE	W08
+	BYTE		        Cs6   v040
+	BYTE	W08
+	BYTE		        Gs5 
+	BYTE	W04
+	BYTE		PAN     c_v-1
+	BYTE	W04
+	BYTE		N06     As4 
+	BYTE	W04
+	BYTE		PAN     c_v+48
+	BYTE	W04
+	BYTE		N06     As5   v032
+	BYTE	W04
+	BYTE		PAN     c_v+0
+	BYTE	W04
+	BYTE		N06     En5 
+	BYTE	W04
+	BYTE		PAN     c_v+48
+	BYTE	W04
+	BYTE		N06     Cs6   v020
+	BYTE	W08
+	BYTE		        Gs5 
+	BYTE	W08
+	BYTE		        As4 
+	BYTE	W08
+	BYTE		        As5   v012
+	BYTE	W12
+// 008   ----------------------------------------
+	BYTE	W48
+	BYTE		VOICE   82
+	BYTE		VOL     70*mus_cave_of_origin_mvl/mxv
+	BYTE		N12     En3   v072
+	BYTE	W08
+	BYTE		VOL     80*mus_cave_of_origin_mvl/mxv
+	BYTE	W04
+	BYTE		VOICE   83
+	BYTE		N12   
+	BYTE	W04
+	BYTE		VOL     94*mus_cave_of_origin_mvl/mxv
+	BYTE		MOD     7
+	BYTE	W08
+	BYTE		VOL     108*mus_cave_of_origin_mvl/mxv
+	BYTE		N12   
+	BYTE	W08
+	BYTE		VOL     116*mus_cave_of_origin_mvl/mxv
+	BYTE	W04
+	BYTE		N12   
+	BYTE	W04
+	BYTE		VOL     127*mus_cave_of_origin_mvl/mxv
+	BYTE	W08
+// 009   ----------------------------------------
+	BYTE		VOICE   82
+	BYTE		MOD     0
+	BYTE		N12     En3   v060
+	BYTE	W12
+	BYTE		VOICE   83
+	BYTE		N12   
+	BYTE	W12
+	BYTE		N12   
+	BYTE	W12
+	BYTE		MOD     7
+	BYTE		N12   
+	BYTE	W12
+	BYTE		VOL     121*mus_cave_of_origin_mvl/mxv
+	BYTE		N12   
+	BYTE	W09
+	BYTE		VOL     112*mus_cave_of_origin_mvl/mxv
+	BYTE	W03
+	BYTE		N12   
+	BYTE	W06
+	BYTE		VOL     102*mus_cave_of_origin_mvl/mxv
+	BYTE	W06
+	BYTE		N12   
+	BYTE	W03
+	BYTE		VOL     88*mus_cave_of_origin_mvl/mxv
+	BYTE	W09
+	BYTE		        70*mus_cave_of_origin_mvl/mxv
+	BYTE		N12   
+	BYTE	W06
+	BYTE		VOL     43*mus_cave_of_origin_mvl/mxv
+	BYTE	W06
+// 010   ----------------------------------------
+	BYTE		VOICE   82
+	BYTE		VOL     127*mus_cave_of_origin_mvl/mxv
+	BYTE		MOD     0
+	BYTE		N06     En3   v040
+	BYTE	W08
+	BYTE		        Cs3 
+	BYTE	W08
+	BYTE		        As2 
+	BYTE	W08
+	BYTE		        En3   v052
+	BYTE	W08
+	BYTE		        Cs3 
+	BYTE	W08
+	BYTE		        As2 
+	BYTE	W08
+	BYTE		        En3   v060
+	BYTE	W08
+	BYTE		        Cs3 
+	BYTE	W08
+	BYTE		        As2 
+	BYTE	W08
+	BYTE		        En3   v072
+	BYTE	W08
+	BYTE		        Cs3 
+	BYTE	W08
+	BYTE		        As2 
+	BYTE	W08
+// 011   ----------------------------------------
+	BYTE		N12     Gn3   v060
+	BYTE	W32
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N08   
+	BYTE	W32
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W08
+// 012   ----------------------------------------
+	BYTE		N12   
+	BYTE	W96
+// 013   ----------------------------------------
+	BYTE		        Gs3 
+	BYTE	W32
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N08   
+	BYTE	W32
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W08
+// 014   ----------------------------------------
+	BYTE		N12   
+	BYTE	W96
+// 015   ----------------------------------------
+	BYTE		        Fn3 
+	BYTE	W32
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N08   
+	BYTE	W32
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W08
+// 016   ----------------------------------------
+	BYTE		N12     En3 
+	BYTE	W32
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N08   
+	BYTE	W32
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W08
+// 017   ----------------------------------------
+	BYTE		N12     Ds3 
+	BYTE	W32
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N08   
+	BYTE	W32
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W08
+// 018   ----------------------------------------
+	BYTE		N06     Fn3 
+	BYTE	W08
+	BYTE		        Ds3 
+	BYTE	W08
+	BYTE		        As2 
+	BYTE	W08
+	BYTE		        Fn3 
+	BYTE	W08
+	BYTE		        Ds3 
+	BYTE	W08
+	BYTE		        As2 
+	BYTE	W08
+	BYTE		        Fn3 
+	BYTE	W08
+	BYTE		        Dn3 
+	BYTE	W08
+	BYTE		        An2 
+	BYTE	W08
+	BYTE		        Fn3 
+	BYTE	W08
+	BYTE		        Dn3 
+	BYTE	W08
+	BYTE		        An2 
+	BYTE	W08
+	BYTE	GoTo
+	 POIN2	mus_cave_of_origin_5_B1
+mus_cave_of_origin_5_B2:
+// 019   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 6 (Midi-Chn.6) ****************//
+
+mus_cave_of_origin_6:
+	BYTE	KEYSH   mus_cave_of_origin_key+0
+// 000   ----------------------------------------
+	BYTE	W24
+mus_cave_of_origin_6_B1:
+// 001   ----------------------------------------
+	BYTE		VOICE   46
+	BYTE		VOL     127*mus_cave_of_origin_mvl/mxv
+	BYTE		PAN     c_v+12
+	BYTE		BEND    c_v+0
+	BYTE		N08     As3   v088
+	BYTE	W08
+	BYTE		        Dn4 
+	BYTE	W08
+	BYTE		        Ds4 
+	BYTE	W08
+	BYTE		        Dn4 
+	BYTE	W08
+	BYTE		        As3 
+	BYTE	W08
+	BYTE		        Ds3 
+	BYTE	W08
+	BYTE		        As2 
+	BYTE	W08
+	BYTE		        Dn3 
+	BYTE	W08
+	BYTE		        Ds3 
+	BYTE	W08
+	BYTE		        Dn3 
+	BYTE	W08
+	BYTE		        Ds4 
+	BYTE	W08
+	BYTE		        As4 
+	BYTE	W08
+// 002   ----------------------------------------
+	BYTE		        Ds3   v096
+	BYTE	W08
+	BYTE		        Gn3 
+	BYTE	W08
+	BYTE		        Gs3 
+	BYTE	W08
+	BYTE		        Gn3 
+	BYTE	W08
+	BYTE		        Ds3 
+	BYTE	W08
+	BYTE		        As2 
+	BYTE	W08
+	BYTE		N48     As3 
+	BYTE	W48
+// 003   ----------------------------------------
+	BYTE		N08     An3   v088
+	BYTE	W08
+	BYTE		        Cs4 
+	BYTE	W08
+	BYTE		N08   
+	BYTE	W08
+	BYTE		N08   
+	BYTE	W08
+	BYTE		        An3 
+	BYTE	W08
+	BYTE		        Ds3 
+	BYTE	W08
+	BYTE		        An2 
+	BYTE	W08
+	BYTE		        Cs3 
+	BYTE	W08
+	BYTE		N08   
+	BYTE	W08
+	BYTE		N08   
+	BYTE	W08
+	BYTE		        An3 
+	BYTE	W08
+	BYTE		        An4 
+	BYTE	W08
+// 004   ----------------------------------------
+	BYTE		        Cs3   v096
+	BYTE	W08
+	BYTE		        Ds3 
+	BYTE	W08
+	BYTE		        En3 
+	BYTE	W08
+	BYTE		        Ds3 
+	BYTE	W08
+	BYTE		        Cs3 
+	BYTE	W08
+	BYTE		        An2 
+	BYTE	W08
+	BYTE		N48     An3 
+	BYTE	W48
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W96
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE	W96
+// 009   ----------------------------------------
+	BYTE	W48
+	BYTE		VOICE   60
+	BYTE		VOL     72*mus_cave_of_origin_mvl/mxv
+	BYTE		PAN     c_v+0
+	BYTE		N48     As2   v108
+	BYTE	W08
+	BYTE		VOL     83*mus_cave_of_origin_mvl/mxv
+	BYTE	W08
+	BYTE		        97*mus_cave_of_origin_mvl/mxv
+	BYTE	W08
+	BYTE		        110*mus_cave_of_origin_mvl/mxv
+	BYTE	W08
+	BYTE		        118*mus_cave_of_origin_mvl/mxv
+	BYTE	W08
+	BYTE		        127*mus_cave_of_origin_mvl/mxv
+	BYTE	W08
+// 010   ----------------------------------------
+	BYTE		N12     As2   v072
+	BYTE	W24
+	BYTE		        As2   v084
+	BYTE	W24
+	BYTE		        As2   v096
+	BYTE	W24
+	BYTE		N24     As2   v108
+	BYTE	W24
+// 011   ----------------------------------------
+	BYTE		N12     Cn3 
+	BYTE	W32
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N08   
+	BYTE	W32
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W08
+// 012   ----------------------------------------
+	BYTE		N12   
+	BYTE	W36
+	BYTE		VOICE   46
+	BYTE		BEND    c_v-5
+	BYTE		N08     Ds5   v052
+	BYTE	W08
+	BYTE		        Dn5   v056
+	BYTE	W08
+	BYTE		        Gn4   v072
+	BYTE	W08
+	BYTE		        Ds4   v084
+	BYTE	W08
+	BYTE		        Cn4   v072
+	BYTE	W08
+	BYTE		        Dn4   v056
+	BYTE	W08
+	BYTE		        Ds4   v052
+	BYTE	W08
+	BYTE		N04     Dn4   v040
+	BYTE	W04
+// 013   ----------------------------------------
+	BYTE		VOICE   60
+	BYTE		BEND    c_v+0
+	BYTE		N12     Fn2   v108
+	BYTE	W32
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N08   
+	BYTE	W32
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W08
+// 014   ----------------------------------------
+	BYTE		N12   
+	BYTE	W36
+	BYTE		VOICE   46
+	BYTE		BEND    c_v-5
+	BYTE		N08     Ds5   v052
+	BYTE	W08
+	BYTE		        Dn5   v060
+	BYTE	W08
+	BYTE		        Cn5   v072
+	BYTE	W08
+	BYTE		        Gs4   v084
+	BYTE	W08
+	BYTE		        Fn4   v072
+	BYTE	W08
+	BYTE		        Gn4   v060
+	BYTE	W08
+	BYTE		        Gs4   v052
+	BYTE	W08
+	BYTE		N04     Gn4   v040
+	BYTE	W04
+// 015   ----------------------------------------
+	BYTE		VOICE   60
+	BYTE		BEND    c_v+0
+	BYTE		N12     Bn2   v108
+	BYTE	W32
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N08   
+	BYTE	W32
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W08
+// 016   ----------------------------------------
+	BYTE		N12     As2 
+	BYTE	W32
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N08   
+	BYTE	W32
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W08
+// 017   ----------------------------------------
+	BYTE		N12     An2 
+	BYTE	W32
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N08   
+	BYTE	W32
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W08
+// 018   ----------------------------------------
+	BYTE	W96
+	BYTE	GoTo
+	 POIN2	mus_cave_of_origin_6_B1
+mus_cave_of_origin_6_B2:
+// 019   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 7 (Midi-Chn.7) ****************//
+
+mus_cave_of_origin_7:
+	BYTE	KEYSH   mus_cave_of_origin_key+0
+// 000   ----------------------------------------
+	BYTE		PAN     c_v-8
+	BYTE	W24
+mus_cave_of_origin_7_B1:
+// 001   ----------------------------------------
+	BYTE		VOICE   47
+	BYTE		VOL     127*mus_cave_of_origin_mvl/mxv
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	W80
+	BYTE		N08     An1   v120
+	BYTE	W08
+	BYTE		N08   
+	BYTE	W08
+// 005   ----------------------------------------
+	BYTE		N12     Gs1 
+	BYTE	W24
+	BYTE		N12   
+	BYTE	W24
+	BYTE		N12   
+	BYTE	W32
+	BYTE		N08   
+	BYTE	W08
+	BYTE		        Gn1   v112
+	BYTE	W08
+// 006   ----------------------------------------
+	BYTE		N12     Gs1   v120
+	BYTE	W24
+	BYTE		N12   
+	BYTE	W24
+	BYTE		N12   
+	BYTE	W48
+// 007   ----------------------------------------
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE	W32
+	BYTE		N08     Cs2   v112
+	BYTE	W08
+	BYTE		N08   
+	BYTE	W08
+	BYTE		N16     Cs2   v127
+	BYTE	W16
+	BYTE		        Bn1 
+	BYTE	W16
+	BYTE		        Gs1 
+	BYTE	W16
+// 009   ----------------------------------------
+	BYTE		N15     Gn1 
+	BYTE	W96
+// 010   ----------------------------------------
+	BYTE	W96
+// 011   ----------------------------------------
+	BYTE		N12     Cn2 
+	BYTE	W32
+	BYTE		N08     Cn2   v112
+	BYTE	W08
+	BYTE		N08   
+	BYTE	W08
+	BYTE		N12     Cn2   v127
+	BYTE	W32
+	BYTE		N08     Cn2   v112
+	BYTE	W08
+	BYTE		N08   
+	BYTE	W08
+// 012   ----------------------------------------
+	BYTE		N12     Cn2   v127
+	BYTE	W96
+// 013   ----------------------------------------
+	BYTE		        Fn1 
+	BYTE	W32
+	BYTE		N08     Fn1   v112
+	BYTE	W08
+	BYTE		N08   
+	BYTE	W08
+	BYTE		N12     Fn1   v127
+	BYTE	W32
+	BYTE		N08     Fn1   v112
+	BYTE	W08
+	BYTE		N08   
+	BYTE	W08
+// 014   ----------------------------------------
+	BYTE		N12     Fn1   v127
+	BYTE	W96
+// 015   ----------------------------------------
+	BYTE		        Bn1 
+	BYTE	W32
+	BYTE		N08     Bn1   v112
+	BYTE	W08
+	BYTE		N08   
+	BYTE	W08
+	BYTE		N12     Bn1   v127
+	BYTE	W32
+	BYTE		N08     Bn1   v112
+	BYTE	W08
+	BYTE		N08   
+	BYTE	W08
+// 016   ----------------------------------------
+	BYTE		N12     As1   v127
+	BYTE	W32
+	BYTE		N08     As1   v112
+	BYTE	W08
+	BYTE		N08   
+	BYTE	W08
+	BYTE		N12     As1   v127
+	BYTE	W32
+	BYTE		N08     As1   v112
+	BYTE	W08
+	BYTE		N08   
+	BYTE	W08
+// 017   ----------------------------------------
+	BYTE		N12     An1   v127
+	BYTE	W32
+	BYTE		N08     An1   v112
+	BYTE	W08
+	BYTE		N08   
+	BYTE	W08
+	BYTE		N12     An1   v127
+	BYTE	W32
+	BYTE		N08   
+	BYTE	W08
+	BYTE		        An1   v112
+	BYTE	W08
+// 018   ----------------------------------------
+	BYTE		N24     As1   v127
+	BYTE	W48
+	BYTE		N24   
+	BYTE	W48
+	BYTE	GoTo
+	 POIN2	mus_cave_of_origin_7_B1
+mus_cave_of_origin_7_B2:
+// 019   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 8 (Midi-Chn.8) ****************//
+
+mus_cave_of_origin_8:
+	BYTE	KEYSH   mus_cave_of_origin_key+0
+// 000   ----------------------------------------
+	BYTE	W24
+mus_cave_of_origin_8_B1:
+// 001   ----------------------------------------
+	BYTE		VOICE   81
+	BYTE		VOL     127*mus_cave_of_origin_mvl/mxv
+	BYTE		N84     Ds1   v052
+	BYTE	W84
+	BYTE		N12     As1 
+	BYTE	W12
+// 002   ----------------------------------------
+	BYTE		N44     Ds1 
+	BYTE	W48
+	BYTE		N16     Gn1 
+	BYTE	W16
+	BYTE		        Fn1 
+	BYTE	W16
+	BYTE		        Gn1 
+	BYTE	W16
+// 003   ----------------------------------------
+	BYTE		N84     An1 
+	BYTE	W84
+	BYTE		N12     Cs2 
+	BYTE	W12
+// 004   ----------------------------------------
+	BYTE		N44     An1 
+	BYTE	W48
+	BYTE		N16   
+	BYTE	W16
+	BYTE		        Gn1 
+	BYTE	W16
+	BYTE		        An1 
+	BYTE	W16
+// 005   ----------------------------------------
+	BYTE		N12     Gs1 
+	BYTE	W24
+	BYTE		N12   
+	BYTE	W24
+	BYTE		N12   
+	BYTE	W32
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W08
+// 006   ----------------------------------------
+	BYTE		N12   
+	BYTE	W24
+	BYTE		N12   
+	BYTE	W24
+	BYTE		N12   
+	BYTE	W24
+	BYTE		N24     Cn2 
+	BYTE	W24
+// 007   ----------------------------------------
+	BYTE		TIE     Cs2 
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE	W48
+	BYTE		EOT   
+	BYTE		N16   
+	BYTE	W16
+	BYTE		        Bn1 
+	BYTE	W16
+	BYTE		        Gs1 
+	BYTE	W16
+// 009   ----------------------------------------
+	BYTE		N92     Gn1 
+	BYTE	W96
+// 010   ----------------------------------------
+	BYTE		N12   
+	BYTE	W24
+	BYTE		N12   
+	BYTE	W24
+	BYTE		N12   
+	BYTE	W24
+	BYTE		N12   
+	BYTE	W24
+// 011   ----------------------------------------
+	BYTE		VOICE   88
+	BYTE		N12     Cn2   v080
+	BYTE	W32
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N12   
+	BYTE	W32
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W08
+// 012   ----------------------------------------
+	BYTE		N12   
+	BYTE	W96
+// 013   ----------------------------------------
+	BYTE		        Fn1 
+	BYTE	W32
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N12   
+	BYTE	W32
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W08
+// 014   ----------------------------------------
+	BYTE		N12   
+	BYTE	W96
+// 015   ----------------------------------------
+	BYTE		        Bn1 
+	BYTE	W32
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N12   
+	BYTE	W32
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W08
+// 016   ----------------------------------------
+	BYTE		N12     As1 
+	BYTE	W32
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N12   
+	BYTE	W32
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W08
+// 017   ----------------------------------------
+	BYTE		N12     An1 
+	BYTE	W32
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N12   
+	BYTE	W32
+	BYTE		N04   
+	BYTE	W08
+	BYTE		N04   
+	BYTE	W08
+// 018   ----------------------------------------
+	BYTE		VOICE   81
+	BYTE		N44     As1   v052
+	BYTE	W48
+	BYTE		N16   
+	BYTE	W16
+	BYTE		        Gs1 
+	BYTE	W16
+	BYTE		        Fn1 
+	BYTE	W16
+	BYTE	GoTo
+	 POIN2	mus_cave_of_origin_8_B1
+mus_cave_of_origin_8_B2:
+// 019   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 9 (Midi-Chn.9) ****************//
+
+mus_cave_of_origin_9:
+	BYTE	KEYSH   mus_cave_of_origin_key+0
+// 000   ----------------------------------------
+	BYTE	W24
+mus_cave_of_origin_9_B1:
+// 001   ----------------------------------------
+	BYTE		VOICE   0
+	BYTE		VOL     127*mus_cave_of_origin_mvl/mxv
+	BYTE	W96
+// 002   ----------------------------------------
+	BYTE	W96
+// 003   ----------------------------------------
+	BYTE	W96
+// 004   ----------------------------------------
+	BYTE	W96
+// 005   ----------------------------------------
+	BYTE	W96
+// 006   ----------------------------------------
+	BYTE	W64
+	BYTE		        62*mus_cave_of_origin_mvl/mxv
+	BYTE		N32     An2   v064
+	BYTE	W04
+	BYTE		VOL     70*mus_cave_of_origin_mvl/mxv
+	BYTE	W04
+	BYTE		        78*mus_cave_of_origin_mvl/mxv
+	BYTE	W04
+	BYTE		        86*mus_cave_of_origin_mvl/mxv
+	BYTE	W04
+	BYTE		        94*mus_cave_of_origin_mvl/mxv
+	BYTE	W04
+	BYTE		        104*mus_cave_of_origin_mvl/mxv
+	BYTE	W04
+	BYTE		        115*mus_cave_of_origin_mvl/mxv
+	BYTE	W04
+	BYTE		        127*mus_cave_of_origin_mvl/mxv
+	BYTE	W04
+// 007   ----------------------------------------
+	BYTE		N96     Bn2   v100
+	BYTE	W96
+// 008   ----------------------------------------
+	BYTE	W96
+// 009   ----------------------------------------
+	BYTE	W96
+// 010   ----------------------------------------
+	BYTE	W96
+// 011   ----------------------------------------
+	BYTE	W96
+// 012   ----------------------------------------
+	BYTE	W96
+// 013   ----------------------------------------
+	BYTE	W96
+// 014   ----------------------------------------
+	BYTE	W96
+// 015   ----------------------------------------
+	BYTE	W96
+// 016   ----------------------------------------
+	BYTE	W96
+// 017   ----------------------------------------
+	BYTE	W96
+// 018   ----------------------------------------
+	BYTE	W96
+	BYTE	GoTo
+	 POIN2	mus_cave_of_origin_9_B1
+mus_cave_of_origin_9_B2:
+// 019   ----------------------------------------
+	BYTE	FINE
+
+//******************************************************//
+	ALIGN 4
+
+mus_cave_of_origin:
+	BYTE	9	// NumTrks
+	BYTE	0	// NumBlks
+	BYTE	mus_cave_of_origin_pri	// Priority
+	BYTE	mus_cave_of_origin_rev	// Reverb.
+
+	POIN2	mus_cave_of_origin_grp
+
+	POIN2	mus_cave_of_origin_1
+	POIN2	mus_cave_of_origin_2
+	POIN2	mus_cave_of_origin_3
+	POIN2	mus_cave_of_origin_4
+	POIN2	mus_cave_of_origin_5
+	POIN2	mus_cave_of_origin_6
+	POIN2	mus_cave_of_origin_7
+	POIN2	mus_cave_of_origin_8
+	POIN2	mus_cave_of_origin_9
+
+	

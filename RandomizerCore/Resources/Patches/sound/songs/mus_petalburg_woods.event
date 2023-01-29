@@ -1,0 +1,1933 @@
+//Event file generated from Sappy .s format.
+	#include "MPlayDef.event"
+
+	#define	mus_petalburg_woods_grp  voicegroup018
+	#define	mus_petalburg_woods_pri  0
+	#define	mus_petalburg_woods_rev  reverb_set+50
+	#define	mus_petalburg_woods_mvl  80
+	#define	mus_petalburg_woods_key  0
+	#define	mus_petalburg_woods_tbs  1
+	#define	mus_petalburg_woods_exg  1
+	#define	mus_petalburg_woods_cmp  1
+
+	// .rodata
+	//	mus_petalburg_woods
+	ALIGN 4
+
+//**************** Track 1 (Midi-Chn.1) ****************//
+
+mus_petalburg_woods_1:
+	BYTE	KEYSH   mus_petalburg_woods_key+0
+// 000   ----------------------------------------
+	BYTE	TEMPO   130*mus_petalburg_woods_tbs/2
+	BYTE		VOICE   45
+	BYTE		VOL     127*mus_petalburg_woods_mvl/mxv
+	BYTE		PAN     c_v-9
+	BYTE		N06     Dn4   v080
+	BYTE	W12
+	BYTE		        As4 
+	BYTE	W12
+	BYTE		        Fs4 
+	BYTE	W12
+// 001   ----------------------------------------
+mus_petalburg_woods_1_001:
+	BYTE		N06     Dn5   v080
+	BYTE	W60
+	BYTE		        Cs5 
+	BYTE	W12
+	BYTE	PEND
+// 002   ----------------------------------------
+	BYTE		        As4 
+	BYTE	W72
+mus_petalburg_woods_1_B1:
+// 003   ----------------------------------------
+mus_petalburg_woods_1_003:
+	BYTE		N06     Dn3   v080
+	BYTE	W12
+	BYTE		        As3 
+	BYTE	W12
+	BYTE		        Fs4 
+	BYTE	W12
+	BYTE		        As4 
+	BYTE	W36
+	BYTE	PEND
+// 004   ----------------------------------------
+	BYTE	W72
+// 005   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_petalburg_woods_1_003
+// 006   ----------------------------------------
+	BYTE	W72
+// 007   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_petalburg_woods_1_003
+// 008   ----------------------------------------
+	BYTE	W72
+// 009   ----------------------------------------
+mus_petalburg_woods_1_009:
+	BYTE		N06     Ds3   v080
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W12
+	BYTE		        Ds4 
+	BYTE	W12
+	BYTE		        Bn4 
+	BYTE	W36
+	BYTE	PEND
+// 010   ----------------------------------------
+	BYTE	W72
+// 011   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_petalburg_woods_1_009
+// 012   ----------------------------------------
+	BYTE	W72
+// 013   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_petalburg_woods_1_009
+// 014   ----------------------------------------
+	BYTE	W72
+// 015   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_petalburg_woods_1_009
+// 016   ----------------------------------------
+	BYTE	W72
+// 017   ----------------------------------------
+mus_petalburg_woods_1_017:
+	BYTE		N06     Dn3   v080
+	BYTE	W12
+	BYTE		        Fs3 
+	BYTE	W12
+	BYTE		        Dn4 
+	BYTE	W12
+	BYTE		        As4 
+	BYTE	W36
+	BYTE	PEND
+// 018   ----------------------------------------
+	BYTE	W72
+// 019   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_petalburg_woods_1_017
+// 020   ----------------------------------------
+	BYTE	W72
+// 021   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_petalburg_woods_1_017
+// 022   ----------------------------------------
+	BYTE	W72
+// 023   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_petalburg_woods_1_017
+// 024   ----------------------------------------
+	BYTE	W72
+// 025   ----------------------------------------
+	BYTE	W72
+// 026   ----------------------------------------
+	BYTE	W72
+// 027   ----------------------------------------
+	BYTE	W72
+// 028   ----------------------------------------
+	BYTE	W36
+	BYTE		N06     Dn4   v080
+	BYTE	W12
+	BYTE		        As4 
+	BYTE	W12
+	BYTE		        Fs4 
+	BYTE	W12
+// 029   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_petalburg_woods_1_001
+// 030   ----------------------------------------
+	BYTE		N06     As4   v080
+	BYTE	W72
+	BYTE	GoTo
+	 POIN2	mus_petalburg_woods_1_B1
+mus_petalburg_woods_1_B2:
+// 031   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 2 (Midi-Chn.2) ****************//
+
+mus_petalburg_woods_2:
+	BYTE	KEYSH   mus_petalburg_woods_key+0
+// 000   ----------------------------------------
+	BYTE	W36
+// 001   ----------------------------------------
+	BYTE		VOICE   1
+	BYTE	W72
+// 002   ----------------------------------------
+mus_petalburg_woods_2_002:
+	BYTE		VOL     127*mus_petalburg_woods_mvl/mxv
+	BYTE	W12
+	BYTE		N06     Dn2   v056
+	BYTE	W12
+	BYTE		        Dn2   v064
+	BYTE	W12
+	BYTE		        Dn2   v072
+	BYTE	W12
+	BYTE		        Dn2   v088
+	BYTE	W12
+	BYTE		        Dn2   v096
+	BYTE	W12
+	BYTE	PEND
+mus_petalburg_woods_2_B1:
+// 003   ----------------------------------------
+	BYTE		N36     Dn2   v116
+	BYTE	W36
+	BYTE		N06     Dn2   v112
+	BYTE	W24
+	BYTE		N06   
+	BYTE	W12
+// 004   ----------------------------------------
+	BYTE		TIE     Dn1   v120
+	BYTE	W72
+// 005   ----------------------------------------
+	BYTE	W48
+	BYTE		EOT   
+	BYTE	W12
+	BYTE		N06     Dn1   v112
+	BYTE	W06
+	BYTE		N06   
+	BYTE	W06
+// 006   ----------------------------------------
+	BYTE		TIE     Dn1   v120
+	BYTE	W72
+// 007   ----------------------------------------
+	BYTE	W48
+	BYTE		EOT   
+	BYTE	W24
+// 008   ----------------------------------------
+	BYTE		N36     As1 
+	BYTE	W36
+	BYTE		N06   
+	BYTE	W24
+	BYTE		N06   
+	BYTE	W12
+// 009   ----------------------------------------
+	BYTE		TIE     Ds1   v112
+	BYTE	W72
+// 010   ----------------------------------------
+	BYTE	W36
+	BYTE		EOT   
+	BYTE		N06     Ds2   v088
+	BYTE	W12
+	BYTE		        Bn2 
+	BYTE	W12
+	BYTE		        Gn2 
+	BYTE	W12
+// 011   ----------------------------------------
+	BYTE		N44     Ds3   v088  gtp1
+	BYTE	W60
+	BYTE		N06     Dn3 
+	BYTE	W06
+	BYTE		N03     Cs3 
+	BYTE	W03
+	BYTE		        Cn3 
+	BYTE	W03
+// 012   ----------------------------------------
+	BYTE		TIE     Bn2 
+	BYTE	W72
+// 013   ----------------------------------------
+	BYTE	W68
+	BYTE	W01
+	BYTE		EOT   
+	BYTE	W03
+// 014   ----------------------------------------
+	BYTE	W60
+	BYTE		N06     Ds2   v112
+	BYTE	W12
+// 015   ----------------------------------------
+	BYTE		TIE     Ds1   v124
+	BYTE	W72
+// 016   ----------------------------------------
+	BYTE	W72
+	BYTE		EOT   
+// 017   ----------------------------------------
+mus_petalburg_woods_2_017:
+	BYTE	W12
+	BYTE		N06     Dn2   v112
+	BYTE	W24
+	BYTE		N06   
+	BYTE	W24
+	BYTE		N06   
+	BYTE	W12
+	BYTE	PEND
+// 018   ----------------------------------------
+	BYTE		N06   
+	BYTE	W72
+// 019   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_petalburg_woods_2_017
+// 020   ----------------------------------------
+	BYTE		TIE     Dn1   v124
+	BYTE	W72
+// 021   ----------------------------------------
+	BYTE	W72
+	BYTE		EOT   
+// 022   ----------------------------------------
+	BYTE	W60
+	BYTE		N06     Dn5   v064
+	BYTE	W12
+// 023   ----------------------------------------
+	BYTE		TIE   
+	BYTE	W72
+// 024   ----------------------------------------
+	BYTE	W72
+	BYTE		EOT   
+// 025   ----------------------------------------
+	BYTE	W72
+// 026   ----------------------------------------
+	BYTE		VOICE   48
+	BYTE		VOL     58*mus_petalburg_woods_mvl/mxv
+	BYTE		MOD     9
+	BYTE		TIE     Fs1   v096
+	BYTE	W05
+	BYTE		VOL     64*mus_petalburg_woods_mvl/mxv
+	BYTE	W07
+	BYTE		        67*mus_petalburg_woods_mvl/mxv
+	BYTE	W05
+	BYTE		        74*mus_petalburg_woods_mvl/mxv
+	BYTE	W07
+	BYTE		        77*mus_petalburg_woods_mvl/mxv
+	BYTE	W05
+	BYTE		        85*mus_petalburg_woods_mvl/mxv
+	BYTE	W07
+	BYTE		        91*mus_petalburg_woods_mvl/mxv
+	BYTE	W05
+	BYTE		        96*mus_petalburg_woods_mvl/mxv
+	BYTE	W07
+	BYTE		        102*mus_petalburg_woods_mvl/mxv
+	BYTE	W05
+	BYTE		        108*mus_petalburg_woods_mvl/mxv
+	BYTE	W07
+	BYTE		        118*mus_petalburg_woods_mvl/mxv
+	BYTE	W05
+	BYTE		        123*mus_petalburg_woods_mvl/mxv
+	BYTE	W07
+// 027   ----------------------------------------
+	BYTE		        124*mus_petalburg_woods_mvl/mxv
+	BYTE	W36
+	BYTE		        127*mus_petalburg_woods_mvl/mxv
+	BYTE	W24
+	BYTE		        123*mus_petalburg_woods_mvl/mxv
+	BYTE	W05
+	BYTE		        121*mus_petalburg_woods_mvl/mxv
+	BYTE	W07
+// 028   ----------------------------------------
+	BYTE		        120*mus_petalburg_woods_mvl/mxv
+	BYTE	W05
+	BYTE		        110*mus_petalburg_woods_mvl/mxv
+	BYTE	W07
+	BYTE		        105*mus_petalburg_woods_mvl/mxv
+	BYTE	W05
+	BYTE		        97*mus_petalburg_woods_mvl/mxv
+	BYTE	W07
+	BYTE		        91*mus_petalburg_woods_mvl/mxv
+	BYTE	W05
+	BYTE		        85*mus_petalburg_woods_mvl/mxv
+	BYTE	W07
+	BYTE		        74*mus_petalburg_woods_mvl/mxv
+	BYTE	W05
+	BYTE		        61*mus_petalburg_woods_mvl/mxv
+	BYTE	W07
+	BYTE		        51*mus_petalburg_woods_mvl/mxv
+	BYTE	W05
+	BYTE		        34*mus_petalburg_woods_mvl/mxv
+	BYTE	W07
+	BYTE		        16*mus_petalburg_woods_mvl/mxv
+	BYTE	W05
+	BYTE		        2*mus_petalburg_woods_mvl/mxv
+	BYTE	W07
+	BYTE		EOT   
+// 029   ----------------------------------------
+	BYTE		VOICE   1
+	BYTE		MOD     0
+	BYTE	W72
+// 030   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_petalburg_woods_2_002
+	BYTE	GoTo
+	 POIN2	mus_petalburg_woods_2_B1
+mus_petalburg_woods_2_B2:
+// 031   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 3 (Midi-Chn.3) ****************//
+
+mus_petalburg_woods_3:
+	BYTE	KEYSH   mus_petalburg_woods_key+0
+// 000   ----------------------------------------
+	BYTE		VOICE   73
+	BYTE		VOL     127*mus_petalburg_woods_mvl/mxv
+	BYTE		PAN     c_v+9
+	BYTE		N06     Dn4   v100
+	BYTE	W12
+	BYTE		        As4 
+	BYTE	W12
+	BYTE		        Fs4 
+	BYTE	W12
+// 001   ----------------------------------------
+mus_petalburg_woods_3_001:
+	BYTE		N44     Dn5   v100  gtp1
+	BYTE	W15
+	BYTE		MOD     8
+	BYTE	W03
+	BYTE		VOL     112*mus_petalburg_woods_mvl/mxv
+	BYTE	W06
+	BYTE		        86*mus_petalburg_woods_mvl/mxv
+	BYTE	W06
+	BYTE		        64*mus_petalburg_woods_mvl/mxv
+	BYTE	W06
+	BYTE		        43*mus_petalburg_woods_mvl/mxv
+	BYTE	W09
+	BYTE		MOD     0
+	BYTE	W03
+	BYTE		VOL     124*mus_petalburg_woods_mvl/mxv
+	BYTE	W12
+	BYTE		N06     Cs5 
+	BYTE	W06
+	BYTE		N03     Cn5 
+	BYTE	W03
+	BYTE		        Bn4 
+	BYTE	W03
+	BYTE	PEND
+// 002   ----------------------------------------
+mus_petalburg_woods_3_002:
+	BYTE		N68     As4   v100  gtp1
+	BYTE	W24
+	BYTE		VOL     127*mus_petalburg_woods_mvl/mxv
+	BYTE		MOD     8
+	BYTE	W05
+	BYTE		VOL     104*mus_petalburg_woods_mvl/mxv
+	BYTE	W07
+	BYTE		        97*mus_petalburg_woods_mvl/mxv
+	BYTE	W05
+	BYTE		        81*mus_petalburg_woods_mvl/mxv
+	BYTE	W07
+	BYTE		        70*mus_petalburg_woods_mvl/mxv
+	BYTE	W05
+	BYTE		        54*mus_petalburg_woods_mvl/mxv
+	BYTE	W07
+	BYTE		        37*mus_petalburg_woods_mvl/mxv
+	BYTE	W05
+	BYTE		        5*mus_petalburg_woods_mvl/mxv
+	BYTE	W04
+	BYTE		MOD     0
+	BYTE	W03
+	BYTE	PEND
+mus_petalburg_woods_3_B1:
+// 003   ----------------------------------------
+mus_petalburg_woods_3_003:
+	BYTE		VOICE   48
+	BYTE		VOL     56*mus_petalburg_woods_mvl/mxv
+	BYTE		N03     Dn6   v048
+	BYTE	W03
+	BYTE		        As5   v040
+	BYTE	W02
+	BYTE		VOL     66*mus_petalburg_woods_mvl/mxv
+	BYTE	W01
+	BYTE		N03     Dn6   v048
+	BYTE	W03
+	BYTE		        As5   v040
+	BYTE	W03
+	BYTE		VOL     67*mus_petalburg_woods_mvl/mxv
+	BYTE		N03     Dn6   v048
+	BYTE	W03
+	BYTE		        As5   v040
+	BYTE	W02
+	BYTE		VOL     75*mus_petalburg_woods_mvl/mxv
+	BYTE	W01
+	BYTE		N03     Dn6   v048
+	BYTE	W03
+	BYTE		        As5   v040
+	BYTE	W03
+	BYTE		VOL     78*mus_petalburg_woods_mvl/mxv
+	BYTE		N03     Dn6   v048
+	BYTE	W03
+	BYTE		        As5   v040
+	BYTE	W02
+	BYTE		VOL     88*mus_petalburg_woods_mvl/mxv
+	BYTE	W01
+	BYTE		N03     Dn6   v048
+	BYTE	W03
+	BYTE		        As5   v040
+	BYTE	W03
+	BYTE		VOL     93*mus_petalburg_woods_mvl/mxv
+	BYTE		N03     Dn6   v048
+	BYTE	W03
+	BYTE		        As5   v040
+	BYTE	W02
+	BYTE		VOL     101*mus_petalburg_woods_mvl/mxv
+	BYTE	W01
+	BYTE		N03     Dn6   v048
+	BYTE	W03
+	BYTE		        As5   v040
+	BYTE	W03
+	BYTE		VOL     108*mus_petalburg_woods_mvl/mxv
+	BYTE		N03     Dn6   v048
+	BYTE	W03
+	BYTE		        As5   v040
+	BYTE	W02
+	BYTE		VOL     118*mus_petalburg_woods_mvl/mxv
+	BYTE	W01
+	BYTE		N03     Dn6   v048
+	BYTE	W03
+	BYTE		        As5   v040
+	BYTE	W03
+	BYTE		VOL     124*mus_petalburg_woods_mvl/mxv
+	BYTE		N03     Dn6   v048
+	BYTE	W03
+	BYTE		        As5   v040
+	BYTE	W02
+	BYTE		VOL     127*mus_petalburg_woods_mvl/mxv
+	BYTE	W01
+	BYTE		N03     Dn6   v048
+	BYTE	W03
+	BYTE		        As5   v040
+	BYTE	W03
+	BYTE	PEND
+// 004   ----------------------------------------
+mus_petalburg_woods_3_004:
+	BYTE		N03     Dn6   v048
+	BYTE	W03
+	BYTE		        As5   v040
+	BYTE	W03
+	BYTE		        Dn6   v048
+	BYTE	W03
+	BYTE		        As5   v040
+	BYTE	W03
+	BYTE		        Dn6   v048
+	BYTE	W03
+	BYTE		        As5   v040
+	BYTE	W03
+	BYTE		        Dn6   v048
+	BYTE	W03
+	BYTE		        As5   v040
+	BYTE	W03
+	BYTE		        Dn6   v048
+	BYTE	W03
+	BYTE		        As5   v040
+	BYTE	W03
+	BYTE		VOL     127*mus_petalburg_woods_mvl/mxv
+	BYTE		N03     Dn6   v048
+	BYTE	W03
+	BYTE		        As5   v040
+	BYTE	W03
+	BYTE		VOL     113*mus_petalburg_woods_mvl/mxv
+	BYTE		N03     Dn6   v048
+	BYTE	W03
+	BYTE		        As5   v040
+	BYTE	W02
+	BYTE		VOL     110*mus_petalburg_woods_mvl/mxv
+	BYTE	W01
+	BYTE		N03     Dn6   v048
+	BYTE	W03
+	BYTE		        As5   v040
+	BYTE	W03
+	BYTE		VOL     105*mus_petalburg_woods_mvl/mxv
+	BYTE		N03     Dn6   v048
+	BYTE	W03
+	BYTE		        As5   v040
+	BYTE	W02
+	BYTE		VOL     102*mus_petalburg_woods_mvl/mxv
+	BYTE	W01
+	BYTE		N03     Dn6   v048
+	BYTE	W03
+	BYTE		        As5   v040
+	BYTE	W03
+	BYTE		VOL     97*mus_petalburg_woods_mvl/mxv
+	BYTE		N03     Dn6   v048
+	BYTE	W03
+	BYTE		        As5   v040
+	BYTE	W02
+	BYTE		VOL     94*mus_petalburg_woods_mvl/mxv
+	BYTE	W01
+	BYTE		N03     Dn6   v048
+	BYTE	W03
+	BYTE		        As5   v040
+	BYTE	W03
+	BYTE	PEND
+// 005   ----------------------------------------
+mus_petalburg_woods_3_005:
+	BYTE		VOL     89*mus_petalburg_woods_mvl/mxv
+	BYTE		N03     Dn6   v048
+	BYTE	W03
+	BYTE		        As5   v040
+	BYTE	W02
+	BYTE		VOL     86*mus_petalburg_woods_mvl/mxv
+	BYTE	W01
+	BYTE		N03     Dn6   v048
+	BYTE	W03
+	BYTE		        As5   v040
+	BYTE	W03
+	BYTE		VOL     77*mus_petalburg_woods_mvl/mxv
+	BYTE		N03     Dn6   v048
+	BYTE	W03
+	BYTE		        As5   v040
+	BYTE	W02
+	BYTE		VOL     72*mus_petalburg_woods_mvl/mxv
+	BYTE	W01
+	BYTE		N03     Dn6   v048
+	BYTE	W03
+	BYTE		        As5   v040
+	BYTE	W03
+	BYTE		VOL     64*mus_petalburg_woods_mvl/mxv
+	BYTE		N03     Dn6   v048
+	BYTE	W03
+	BYTE		        As5   v040
+	BYTE	W02
+	BYTE		VOL     61*mus_petalburg_woods_mvl/mxv
+	BYTE	W01
+	BYTE		N03     Dn6   v048
+	BYTE	W03
+	BYTE		        As5   v040
+	BYTE	W03
+	BYTE		VOL     56*mus_petalburg_woods_mvl/mxv
+	BYTE		N03     Dn6   v048
+	BYTE	W03
+	BYTE		        As5   v040
+	BYTE	W02
+	BYTE		VOL     51*mus_petalburg_woods_mvl/mxv
+	BYTE	W01
+	BYTE		N03     Dn6   v048
+	BYTE	W03
+	BYTE		        As5   v040
+	BYTE	W03
+	BYTE		VOL     48*mus_petalburg_woods_mvl/mxv
+	BYTE		N03     Dn6   v048
+	BYTE	W03
+	BYTE		        As5   v040
+	BYTE	W02
+	BYTE		VOL     42*mus_petalburg_woods_mvl/mxv
+	BYTE	W01
+	BYTE		N03     Dn6   v048
+	BYTE	W03
+	BYTE		        As5   v040
+	BYTE	W03
+	BYTE		VOL     39*mus_petalburg_woods_mvl/mxv
+	BYTE		N03     Dn6   v048
+	BYTE	W03
+	BYTE		        As5   v040
+	BYTE	W02
+	BYTE		VOL     32*mus_petalburg_woods_mvl/mxv
+	BYTE	W01
+	BYTE		N03     Dn6   v048
+	BYTE	W03
+	BYTE		        As5   v040
+	BYTE	W03
+	BYTE	PEND
+// 006   ----------------------------------------
+mus_petalburg_woods_3_006:
+	BYTE		VOL     26*mus_petalburg_woods_mvl/mxv
+	BYTE		N03     Dn6   v048
+	BYTE	W03
+	BYTE		        As5   v040
+	BYTE	W02
+	BYTE		VOL     20*mus_petalburg_woods_mvl/mxv
+	BYTE	W01
+	BYTE		N03     Dn6   v048
+	BYTE	W03
+	BYTE		        As5   v040
+	BYTE	W03
+	BYTE		VOL     12*mus_petalburg_woods_mvl/mxv
+	BYTE		N03     Dn6   v048
+	BYTE	W03
+	BYTE		        As5   v040
+	BYTE	W02
+	BYTE		VOL     5*mus_petalburg_woods_mvl/mxv
+	BYTE	W01
+	BYTE		N03     Dn6   v048
+	BYTE	W03
+	BYTE		        As5   v040
+	BYTE	W03
+	BYTE		VOL     2*mus_petalburg_woods_mvl/mxv
+	BYTE	W48
+	BYTE	PEND
+// 007   ----------------------------------------
+	BYTE	W72
+// 008   ----------------------------------------
+	BYTE	W72
+// 009   ----------------------------------------
+	BYTE		        56*mus_petalburg_woods_mvl/mxv
+	BYTE		N03     Ds6   v048
+	BYTE	W03
+	BYTE		        Gn5   v040
+	BYTE	W02
+	BYTE		VOL     66*mus_petalburg_woods_mvl/mxv
+	BYTE	W01
+	BYTE		N03     Ds6   v048
+	BYTE	W03
+	BYTE		        Gn5   v040
+	BYTE	W03
+	BYTE		VOL     67*mus_petalburg_woods_mvl/mxv
+	BYTE		N03     Ds6   v048
+	BYTE	W03
+	BYTE		        Gn5   v040
+	BYTE	W02
+	BYTE		VOL     75*mus_petalburg_woods_mvl/mxv
+	BYTE	W01
+	BYTE		N03     Ds6   v048
+	BYTE	W03
+	BYTE		        Gn5   v040
+	BYTE	W03
+	BYTE		VOL     78*mus_petalburg_woods_mvl/mxv
+	BYTE		N03     Ds6   v048
+	BYTE	W03
+	BYTE		        Gn5   v040
+	BYTE	W02
+	BYTE		VOL     88*mus_petalburg_woods_mvl/mxv
+	BYTE	W01
+	BYTE		N03     Ds6   v048
+	BYTE	W03
+	BYTE		        Gn5   v040
+	BYTE	W03
+	BYTE		VOL     93*mus_petalburg_woods_mvl/mxv
+	BYTE		N03     Ds6   v048
+	BYTE	W03
+	BYTE		        Gn5   v040
+	BYTE	W02
+	BYTE		VOL     101*mus_petalburg_woods_mvl/mxv
+	BYTE	W01
+	BYTE		N03     Ds6   v048
+	BYTE	W03
+	BYTE		        Gn5   v040
+	BYTE	W03
+	BYTE		VOL     108*mus_petalburg_woods_mvl/mxv
+	BYTE		N03     Ds6   v048
+	BYTE	W03
+	BYTE		        Gn5   v040
+	BYTE	W02
+	BYTE		VOL     118*mus_petalburg_woods_mvl/mxv
+	BYTE	W01
+	BYTE		N03     Ds6   v048
+	BYTE	W03
+	BYTE		        Gn5   v040
+	BYTE	W03
+	BYTE		VOL     124*mus_petalburg_woods_mvl/mxv
+	BYTE		N03     Ds6   v048
+	BYTE	W03
+	BYTE		        Gn5   v040
+	BYTE	W02
+	BYTE		VOL     127*mus_petalburg_woods_mvl/mxv
+	BYTE	W01
+	BYTE		N03     Ds6   v048
+	BYTE	W03
+	BYTE		        Gn5   v040
+	BYTE	W03
+// 010   ----------------------------------------
+	BYTE		        Ds6   v048
+	BYTE	W03
+	BYTE		        Gn5   v040
+	BYTE	W03
+	BYTE		        Ds6   v048
+	BYTE	W03
+	BYTE		        Gn5   v040
+	BYTE	W03
+	BYTE		        Ds6   v048
+	BYTE	W03
+	BYTE		        Gn5   v040
+	BYTE	W03
+	BYTE		        Ds6   v048
+	BYTE	W03
+	BYTE		        Gn5   v040
+	BYTE	W03
+	BYTE		        Ds6   v048
+	BYTE	W03
+	BYTE		        Gn5   v040
+	BYTE	W03
+	BYTE		VOL     127*mus_petalburg_woods_mvl/mxv
+	BYTE		N03     Ds6   v048
+	BYTE	W03
+	BYTE		        Gn5   v040
+	BYTE	W03
+	BYTE		VOL     113*mus_petalburg_woods_mvl/mxv
+	BYTE		N03     Ds6   v048
+	BYTE	W03
+	BYTE		        Gn5   v040
+	BYTE	W02
+	BYTE		VOL     110*mus_petalburg_woods_mvl/mxv
+	BYTE	W01
+	BYTE		N03     Ds6   v048
+	BYTE	W03
+	BYTE		        Gn5   v040
+	BYTE	W03
+	BYTE		VOL     105*mus_petalburg_woods_mvl/mxv
+	BYTE		N03     Ds6   v048
+	BYTE	W03
+	BYTE		        Gn5   v040
+	BYTE	W02
+	BYTE		VOL     102*mus_petalburg_woods_mvl/mxv
+	BYTE	W01
+	BYTE		N03     Ds6   v048
+	BYTE	W03
+	BYTE		        Gn5   v040
+	BYTE	W03
+	BYTE		VOL     97*mus_petalburg_woods_mvl/mxv
+	BYTE		N03     Ds6   v048
+	BYTE	W03
+	BYTE		        Gn5   v040
+	BYTE	W02
+	BYTE		VOL     94*mus_petalburg_woods_mvl/mxv
+	BYTE	W01
+	BYTE		N03     Ds6   v048
+	BYTE	W03
+	BYTE		        Gn5   v040
+	BYTE	W03
+// 011   ----------------------------------------
+	BYTE		VOL     89*mus_petalburg_woods_mvl/mxv
+	BYTE		N03     Ds6   v048
+	BYTE	W03
+	BYTE		        Gn5   v040
+	BYTE	W02
+	BYTE		VOL     86*mus_petalburg_woods_mvl/mxv
+	BYTE	W01
+	BYTE		N03     Ds6   v048
+	BYTE	W03
+	BYTE		        Gn5   v040
+	BYTE	W03
+	BYTE		VOL     77*mus_petalburg_woods_mvl/mxv
+	BYTE		N03     Ds6   v048
+	BYTE	W03
+	BYTE		        Gn5   v040
+	BYTE	W02
+	BYTE		VOL     72*mus_petalburg_woods_mvl/mxv
+	BYTE	W01
+	BYTE		N03     Ds6   v048
+	BYTE	W03
+	BYTE		        Gn5   v040
+	BYTE	W03
+	BYTE		VOL     64*mus_petalburg_woods_mvl/mxv
+	BYTE		N03     Ds6   v048
+	BYTE	W03
+	BYTE		        Gn5   v040
+	BYTE	W02
+	BYTE		VOL     61*mus_petalburg_woods_mvl/mxv
+	BYTE	W01
+	BYTE		N03     Ds6   v048
+	BYTE	W03
+	BYTE		        Gn5   v040
+	BYTE	W03
+	BYTE		VOL     56*mus_petalburg_woods_mvl/mxv
+	BYTE		N03     Ds6   v048
+	BYTE	W03
+	BYTE		        Gn5   v040
+	BYTE	W02
+	BYTE		VOL     51*mus_petalburg_woods_mvl/mxv
+	BYTE	W01
+	BYTE		N03     Ds6   v048
+	BYTE	W03
+	BYTE		        Gn5   v040
+	BYTE	W03
+	BYTE		VOL     48*mus_petalburg_woods_mvl/mxv
+	BYTE		N03     Ds6   v048
+	BYTE	W03
+	BYTE		        Gn5   v040
+	BYTE	W02
+	BYTE		VOL     42*mus_petalburg_woods_mvl/mxv
+	BYTE	W01
+	BYTE		N03     Ds6   v048
+	BYTE	W03
+	BYTE		        Gn5   v040
+	BYTE	W03
+	BYTE		VOL     39*mus_petalburg_woods_mvl/mxv
+	BYTE		N03     Ds6   v048
+	BYTE	W03
+	BYTE		        Gn5   v040
+	BYTE	W02
+	BYTE		VOL     32*mus_petalburg_woods_mvl/mxv
+	BYTE	W01
+	BYTE		N03     Ds6   v048
+	BYTE	W03
+	BYTE		        Gn5   v040
+	BYTE	W03
+// 012   ----------------------------------------
+	BYTE		VOL     26*mus_petalburg_woods_mvl/mxv
+	BYTE		N03     Ds6   v048
+	BYTE	W03
+	BYTE		        Gn5   v040
+	BYTE	W02
+	BYTE		VOL     20*mus_petalburg_woods_mvl/mxv
+	BYTE	W01
+	BYTE		N03     Ds6   v048
+	BYTE	W03
+	BYTE		        Gn5   v040
+	BYTE	W03
+	BYTE		VOL     12*mus_petalburg_woods_mvl/mxv
+	BYTE		N03     Ds6   v048
+	BYTE	W03
+	BYTE		        Gn5   v040
+	BYTE	W02
+	BYTE		VOL     5*mus_petalburg_woods_mvl/mxv
+	BYTE	W01
+	BYTE		N03     Ds6   v048
+	BYTE	W03
+	BYTE		        Gn5   v040
+	BYTE	W03
+	BYTE		VOL     2*mus_petalburg_woods_mvl/mxv
+	BYTE	W48
+// 013   ----------------------------------------
+	BYTE		VOICE   73
+	BYTE		VOL     127*mus_petalburg_woods_mvl/mxv
+	BYTE		N06     Dn6   v056
+	BYTE	W06
+	BYTE		        Ds6 
+	BYTE	W06
+	BYTE		        Dn6 
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		        Ds6 
+	BYTE	W06
+	BYTE		        Dn6 
+	BYTE	W36
+// 014   ----------------------------------------
+	BYTE	W72
+// 015   ----------------------------------------
+	BYTE	W72
+// 016   ----------------------------------------
+	BYTE	W72
+// 017   ----------------------------------------
+	BYTE	W72
+// 018   ----------------------------------------
+	BYTE		        Cs6 
+	BYTE	W06
+	BYTE		        Dn6 
+	BYTE	W06
+	BYTE		        Cs6 
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W06
+	BYTE		        Dn6 
+	BYTE	W06
+	BYTE		        Cs6 
+	BYTE	W24
+	BYTE		        Dn6 
+	BYTE	W06
+	BYTE		        Ds6 
+	BYTE	W06
+// 019   ----------------------------------------
+	BYTE		        As5 
+	BYTE	W72
+// 020   ----------------------------------------
+	BYTE	W72
+// 021   ----------------------------------------
+	BYTE	W72
+// 022   ----------------------------------------
+	BYTE	W72
+// 023   ----------------------------------------
+	BYTE	W72
+// 024   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_petalburg_woods_3_003
+// 025   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_petalburg_woods_3_004
+// 026   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_petalburg_woods_3_005
+// 027   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_petalburg_woods_3_006
+// 028   ----------------------------------------
+	BYTE	W36
+	BYTE		VOICE   73
+	BYTE		VOL     127*mus_petalburg_woods_mvl/mxv
+	BYTE		N06     Dn4   v100
+	BYTE	W12
+	BYTE		        As4 
+	BYTE	W12
+	BYTE		        Fs4 
+	BYTE	W12
+// 029   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_petalburg_woods_3_001
+// 030   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_petalburg_woods_3_002
+	BYTE	GoTo
+	 POIN2	mus_petalburg_woods_3_B1
+mus_petalburg_woods_3_B2:
+// 031   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 4 (Midi-Chn.4) ****************//
+
+mus_petalburg_woods_4:
+	BYTE	KEYSH   mus_petalburg_woods_key+0
+// 000   ----------------------------------------
+	BYTE	W36
+// 001   ----------------------------------------
+	BYTE		XCMD    xIECV   10
+	BYTE		        xIECL   8
+	BYTE		PAN     c_v-47
+	BYTE		VOL     127*mus_petalburg_woods_mvl/mxv
+	BYTE	W72
+// 002   ----------------------------------------
+	BYTE	W72
+mus_petalburg_woods_4_B1:
+// 003   ----------------------------------------
+	BYTE		VOICE   80
+	BYTE	W72
+// 004   ----------------------------------------
+	BYTE	W72
+// 005   ----------------------------------------
+	BYTE	W72
+// 006   ----------------------------------------
+	BYTE	W72
+// 007   ----------------------------------------
+	BYTE	W72
+// 008   ----------------------------------------
+	BYTE		        4
+	BYTE		N72     Dn4   v060
+	BYTE	W06
+	BYTE		VOL     104*mus_petalburg_woods_mvl/mxv
+	BYTE	W06
+	BYTE		        81*mus_petalburg_woods_mvl/mxv
+	BYTE	W05
+	BYTE		        89*mus_petalburg_woods_mvl/mxv
+	BYTE	W07
+	BYTE		        93*mus_petalburg_woods_mvl/mxv
+	BYTE		MOD     12
+	BYTE	W05
+	BYTE		VOL     99*mus_petalburg_woods_mvl/mxv
+	BYTE	W07
+	BYTE		        104*mus_petalburg_woods_mvl/mxv
+	BYTE	W05
+	BYTE		        112*mus_petalburg_woods_mvl/mxv
+	BYTE	W07
+	BYTE		        121*mus_petalburg_woods_mvl/mxv
+	BYTE	W05
+	BYTE		        127*mus_petalburg_woods_mvl/mxv
+	BYTE	W19
+// 009   ----------------------------------------
+	BYTE		MOD     0
+	BYTE		TIE     Ds4   v056
+	BYTE	W40
+	BYTE	W01
+	BYTE		VOL     121*mus_petalburg_woods_mvl/mxv
+	BYTE	W07
+	BYTE		        120*mus_petalburg_woods_mvl/mxv
+	BYTE		MOD     12
+	BYTE	W05
+	BYTE		VOL     112*mus_petalburg_woods_mvl/mxv
+	BYTE	W07
+	BYTE		        110*mus_petalburg_woods_mvl/mxv
+	BYTE	W05
+	BYTE		        105*mus_petalburg_woods_mvl/mxv
+	BYTE	W07
+// 010   ----------------------------------------
+	BYTE		        97*mus_petalburg_woods_mvl/mxv
+	BYTE	W05
+	BYTE		        93*mus_petalburg_woods_mvl/mxv
+	BYTE	W07
+	BYTE		        86*mus_petalburg_woods_mvl/mxv
+	BYTE	W05
+	BYTE		        78*mus_petalburg_woods_mvl/mxv
+	BYTE	W07
+	BYTE		        75*mus_petalburg_woods_mvl/mxv
+	BYTE	W05
+	BYTE		        67*mus_petalburg_woods_mvl/mxv
+	BYTE	W07
+	BYTE		        59*mus_petalburg_woods_mvl/mxv
+	BYTE	W05
+	BYTE		        51*mus_petalburg_woods_mvl/mxv
+	BYTE	W07
+	BYTE		        42*mus_petalburg_woods_mvl/mxv
+	BYTE	W05
+	BYTE		        27*mus_petalburg_woods_mvl/mxv
+	BYTE	W07
+	BYTE		        13*mus_petalburg_woods_mvl/mxv
+	BYTE	W05
+	BYTE		        2*mus_petalburg_woods_mvl/mxv
+	BYTE	W07
+	BYTE		EOT   
+// 011   ----------------------------------------
+	BYTE		MOD     0
+	BYTE	W72
+// 012   ----------------------------------------
+	BYTE	W72
+// 013   ----------------------------------------
+	BYTE		VOICE   80
+	BYTE		VOL     127*mus_petalburg_woods_mvl/mxv
+	BYTE	W12
+	BYTE		N06     Bn4 
+	BYTE	W24
+	BYTE		N06   
+	BYTE	W24
+	BYTE		N06   
+	BYTE	W12
+// 014   ----------------------------------------
+	BYTE	W72
+// 015   ----------------------------------------
+	BYTE	W12
+	BYTE		        Bn3 
+	BYTE	W24
+	BYTE		N06   
+	BYTE	W24
+	BYTE		N06   
+	BYTE	W12
+// 016   ----------------------------------------
+	BYTE		N06   
+	BYTE	W72
+// 017   ----------------------------------------
+mus_petalburg_woods_4_017:
+	BYTE	W12
+	BYTE		N06     As3   v056
+	BYTE	W24
+	BYTE		N06   
+	BYTE	W24
+	BYTE		N06   
+	BYTE	W12
+	BYTE	PEND
+// 018   ----------------------------------------
+	BYTE		N06   
+	BYTE	W72
+// 019   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_petalburg_woods_4_017
+// 020   ----------------------------------------
+	BYTE		N06     As3   v056
+	BYTE	W72
+// 021   ----------------------------------------
+mus_petalburg_woods_4_021:
+	BYTE	W36
+	BYTE		N06     Dn3   v060
+	BYTE	W12
+	BYTE		        Fs3 
+	BYTE	W12
+	BYTE		        Dn4 
+	BYTE	W12
+	BYTE	PEND
+// 022   ----------------------------------------
+mus_petalburg_woods_4_022:
+	BYTE		N06     As4   v060
+	BYTE	W12
+	BYTE		        Dn4   v040
+	BYTE	W12
+	BYTE		        As4 
+	BYTE	W12
+	BYTE		        Dn4   v020
+	BYTE	W12
+	BYTE		        As4 
+	BYTE	W24
+	BYTE	PEND
+// 023   ----------------------------------------
+	BYTE	W72
+// 024   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_petalburg_woods_4_021
+// 025   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_petalburg_woods_4_022
+// 026   ----------------------------------------
+	BYTE	W72
+// 027   ----------------------------------------
+	BYTE	W36
+	BYTE		VOICE   4
+	BYTE		N06     Dn2   v068
+	BYTE	W12
+	BYTE		        Fs2 
+	BYTE	W12
+	BYTE		        Dn3 
+	BYTE	W12
+// 028   ----------------------------------------
+	BYTE		        As3 
+	BYTE	W12
+	BYTE		        Dn3   v048
+	BYTE	W12
+	BYTE		        As3 
+	BYTE	W12
+	BYTE		        Dn3   v020
+	BYTE	W12
+	BYTE		        As3 
+	BYTE	W24
+// 029   ----------------------------------------
+	BYTE	W72
+// 030   ----------------------------------------
+	BYTE	W72
+	BYTE	GoTo
+	 POIN2	mus_petalburg_woods_4_B1
+mus_petalburg_woods_4_B2:
+// 031   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 5 (Midi-Chn.5) ****************//
+
+mus_petalburg_woods_5:
+	BYTE	KEYSH   mus_petalburg_woods_key+0
+// 000   ----------------------------------------
+	BYTE	W36
+// 001   ----------------------------------------
+	BYTE		XCMD    xIECV   10
+	BYTE		        xIECL   8
+	BYTE		PAN     c_v+48
+	BYTE		VOL     127*mus_petalburg_woods_mvl/mxv
+	BYTE	W72
+// 002   ----------------------------------------
+	BYTE	W72
+mus_petalburg_woods_5_B1:
+// 003   ----------------------------------------
+	BYTE		VOICE   82
+	BYTE	W72
+// 004   ----------------------------------------
+	BYTE	W72
+// 005   ----------------------------------------
+	BYTE	W72
+// 006   ----------------------------------------
+	BYTE	W72
+// 007   ----------------------------------------
+	BYTE	W72
+// 008   ----------------------------------------
+	BYTE		        5
+	BYTE		N12     As3   v060
+	BYTE	W06
+	BYTE		VOL     104*mus_petalburg_woods_mvl/mxv
+	BYTE	W06
+	BYTE		VOICE   6
+	BYTE		VOL     81*mus_petalburg_woods_mvl/mxv
+	BYTE		N12   
+	BYTE	W05
+	BYTE		VOL     89*mus_petalburg_woods_mvl/mxv
+	BYTE	W07
+	BYTE		        93*mus_petalburg_woods_mvl/mxv
+	BYTE		MOD     12
+	BYTE		N12   
+	BYTE	W05
+	BYTE		VOL     99*mus_petalburg_woods_mvl/mxv
+	BYTE	W07
+	BYTE		        104*mus_petalburg_woods_mvl/mxv
+	BYTE		N12   
+	BYTE	W05
+	BYTE		VOL     112*mus_petalburg_woods_mvl/mxv
+	BYTE	W07
+	BYTE		        121*mus_petalburg_woods_mvl/mxv
+	BYTE		N12   
+	BYTE	W05
+	BYTE		VOL     127*mus_petalburg_woods_mvl/mxv
+	BYTE	W07
+	BYTE		N12   
+	BYTE	W12
+// 009   ----------------------------------------
+	BYTE		VOICE   5
+	BYTE		MOD     0
+	BYTE		N12     Bn3   v056
+	BYTE	W12
+	BYTE		VOICE   6
+	BYTE		N12     Bn3   v060
+	BYTE	W12
+	BYTE		N12   
+	BYTE	W12
+	BYTE		N12   
+	BYTE	W05
+	BYTE		VOL     121*mus_petalburg_woods_mvl/mxv
+	BYTE	W07
+	BYTE		        120*mus_petalburg_woods_mvl/mxv
+	BYTE		MOD     12
+	BYTE		N12   
+	BYTE	W05
+	BYTE		VOL     112*mus_petalburg_woods_mvl/mxv
+	BYTE	W07
+	BYTE		        110*mus_petalburg_woods_mvl/mxv
+	BYTE		N12   
+	BYTE	W05
+	BYTE		VOL     105*mus_petalburg_woods_mvl/mxv
+	BYTE	W07
+// 010   ----------------------------------------
+	BYTE		        97*mus_petalburg_woods_mvl/mxv
+	BYTE		N12   
+	BYTE	W05
+	BYTE		VOL     93*mus_petalburg_woods_mvl/mxv
+	BYTE	W07
+	BYTE		        86*mus_petalburg_woods_mvl/mxv
+	BYTE		N12   
+	BYTE	W05
+	BYTE		VOL     78*mus_petalburg_woods_mvl/mxv
+	BYTE	W07
+	BYTE		        75*mus_petalburg_woods_mvl/mxv
+	BYTE		N12   
+	BYTE	W05
+	BYTE		VOL     67*mus_petalburg_woods_mvl/mxv
+	BYTE	W07
+	BYTE		        59*mus_petalburg_woods_mvl/mxv
+	BYTE		N12   
+	BYTE	W05
+	BYTE		VOL     51*mus_petalburg_woods_mvl/mxv
+	BYTE	W07
+	BYTE		        42*mus_petalburg_woods_mvl/mxv
+	BYTE		N12   
+	BYTE	W05
+	BYTE		VOL     27*mus_petalburg_woods_mvl/mxv
+	BYTE	W07
+	BYTE		        13*mus_petalburg_woods_mvl/mxv
+	BYTE		N12   
+	BYTE	W05
+	BYTE		VOL     2*mus_petalburg_woods_mvl/mxv
+	BYTE	W07
+// 011   ----------------------------------------
+	BYTE		MOD     0
+	BYTE	W72
+// 012   ----------------------------------------
+	BYTE	W72
+// 013   ----------------------------------------
+	BYTE		VOICE   82
+	BYTE		VOL     127*mus_petalburg_woods_mvl/mxv
+	BYTE	W12
+	BYTE		N06     Gn4   v056
+	BYTE	W24
+	BYTE		N06   
+	BYTE	W24
+	BYTE		N06   
+	BYTE	W12
+// 014   ----------------------------------------
+	BYTE	W72
+// 015   ----------------------------------------
+	BYTE	W12
+	BYTE		        Gn3 
+	BYTE	W24
+	BYTE		N06   
+	BYTE	W24
+	BYTE		N06   
+	BYTE	W12
+// 016   ----------------------------------------
+	BYTE		N06   
+	BYTE	W72
+// 017   ----------------------------------------
+mus_petalburg_woods_5_017:
+	BYTE	W12
+	BYTE		N06     Fs3   v056
+	BYTE	W24
+	BYTE		N06   
+	BYTE	W24
+	BYTE		N06   
+	BYTE	W12
+	BYTE	PEND
+// 018   ----------------------------------------
+	BYTE		N06   
+	BYTE	W72
+// 019   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_petalburg_woods_5_017
+// 020   ----------------------------------------
+	BYTE		N06     Fs3   v056
+	BYTE	W72
+// 021   ----------------------------------------
+mus_petalburg_woods_5_021:
+	BYTE	W42
+	BYTE		N06     Dn3   v060
+	BYTE	W12
+	BYTE		        Fs3 
+	BYTE	W12
+	BYTE		        Dn4 
+	BYTE	W06
+	BYTE	PEND
+// 022   ----------------------------------------
+mus_petalburg_woods_5_022:
+	BYTE	W06
+	BYTE		N06     As4   v060
+	BYTE	W12
+	BYTE		        Dn4   v040
+	BYTE	W12
+	BYTE		        As4 
+	BYTE	W12
+	BYTE		        Dn4   v020
+	BYTE	W12
+	BYTE		        As4 
+	BYTE	W18
+	BYTE	PEND
+// 023   ----------------------------------------
+	BYTE	W72
+// 024   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_petalburg_woods_5_021
+// 025   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_petalburg_woods_5_022
+// 026   ----------------------------------------
+	BYTE	W72
+// 027   ----------------------------------------
+	BYTE	W36
+	BYTE		VOICE   5
+	BYTE	W06
+	BYTE		N06     Dn2   v068
+	BYTE	W12
+	BYTE		        Fs2 
+	BYTE	W12
+	BYTE		        Dn3 
+	BYTE	W06
+// 028   ----------------------------------------
+	BYTE	W06
+	BYTE		        As3 
+	BYTE	W12
+	BYTE		        Dn3   v048
+	BYTE	W12
+	BYTE		        As3 
+	BYTE	W12
+	BYTE		        Dn3   v020
+	BYTE	W12
+	BYTE		        As3 
+	BYTE	W18
+// 029   ----------------------------------------
+	BYTE	W72
+// 030   ----------------------------------------
+	BYTE	W72
+	BYTE	GoTo
+	 POIN2	mus_petalburg_woods_5_B1
+mus_petalburg_woods_5_B2:
+// 031   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 6 (Midi-Chn.6) ****************//
+
+mus_petalburg_woods_6:
+	BYTE		VOL     127*mus_petalburg_woods_mvl/mxv
+	BYTE	KEYSH   mus_petalburg_woods_key+0
+// 000   ----------------------------------------
+	BYTE	W36
+// 001   ----------------------------------------
+	BYTE		VOICE   81
+	BYTE		PAN     c_v+0
+	BYTE	W12
+	BYTE		N06     Dn2   v064
+	BYTE	W24
+	BYTE		N06   
+	BYTE	W24
+	BYTE		N06   
+	BYTE	W12
+// 002   ----------------------------------------
+	BYTE		N06   
+	BYTE	W72
+mus_petalburg_woods_6_B1:
+// 003   ----------------------------------------
+mus_petalburg_woods_6_003:
+	BYTE	W12
+	BYTE		N06     Dn3   v064
+	BYTE	W24
+	BYTE		N06   
+	BYTE	W24
+	BYTE		N06   
+	BYTE	W12
+	BYTE	PEND
+// 004   ----------------------------------------
+	BYTE		N06   
+	BYTE	W72
+// 005   ----------------------------------------
+mus_petalburg_woods_6_005:
+	BYTE	W12
+	BYTE		N06     Dn2   v064
+	BYTE	W24
+	BYTE		N06   
+	BYTE	W24
+	BYTE		N06   
+	BYTE	W12
+	BYTE	PEND
+// 006   ----------------------------------------
+	BYTE		N06   
+	BYTE	W72
+// 007   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_petalburg_woods_6_005
+// 008   ----------------------------------------
+	BYTE		N06     Dn2   v064
+	BYTE	W72
+// 009   ----------------------------------------
+mus_petalburg_woods_6_009:
+	BYTE	W12
+	BYTE		N06     Ds2   v064
+	BYTE	W24
+	BYTE		N06   
+	BYTE	W24
+	BYTE		N06   
+	BYTE	W12
+	BYTE	PEND
+// 010   ----------------------------------------
+	BYTE		N06   
+	BYTE	W72
+// 011   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_petalburg_woods_6_009
+// 012   ----------------------------------------
+	BYTE		N06     Ds2   v064
+	BYTE	W72
+// 013   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_petalburg_woods_6_009
+// 014   ----------------------------------------
+	BYTE		N06     Ds2   v064
+	BYTE	W72
+// 015   ----------------------------------------
+	BYTE	W12
+	BYTE		        Ds3 
+	BYTE	W24
+	BYTE		N06   
+	BYTE	W24
+	BYTE		N06   
+	BYTE	W12
+// 016   ----------------------------------------
+	BYTE		N06   
+	BYTE	W72
+// 017   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_petalburg_woods_6_003
+// 018   ----------------------------------------
+	BYTE		N06     Dn3   v064
+	BYTE	W72
+// 019   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_petalburg_woods_6_003
+// 020   ----------------------------------------
+	BYTE		N06     Dn3   v064
+	BYTE	W72
+// 021   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_petalburg_woods_6_005
+// 022   ----------------------------------------
+	BYTE		N06     Dn2   v064
+	BYTE	W72
+// 023   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_petalburg_woods_6_005
+// 024   ----------------------------------------
+	BYTE		N06     Dn2   v064
+	BYTE	W72
+// 025   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_petalburg_woods_6_005
+// 026   ----------------------------------------
+	BYTE		N06     Dn2   v064
+	BYTE	W72
+// 027   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_petalburg_woods_6_005
+// 028   ----------------------------------------
+	BYTE		N06     Dn2   v064
+	BYTE	W72
+// 029   ----------------------------------------
+	BYTE		VOICE   81
+	BYTE	W12
+	BYTE		N06   
+	BYTE	W24
+	BYTE		N06   
+	BYTE	W24
+	BYTE		N06   
+	BYTE	W12
+// 030   ----------------------------------------
+	BYTE		N06   
+	BYTE	W72
+	BYTE	GoTo
+	 POIN2	mus_petalburg_woods_6_B1
+mus_petalburg_woods_6_B2:
+// 031   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 7 (Midi-Chn.7) ****************//
+
+mus_petalburg_woods_7:
+	BYTE	KEYSH   mus_petalburg_woods_key+0
+// 000   ----------------------------------------
+	BYTE	W36
+// 001   ----------------------------------------
+	BYTE		PAN     c_v+10
+	BYTE		VOL     127*mus_petalburg_woods_mvl/mxv
+	BYTE	W72
+// 002   ----------------------------------------
+mus_petalburg_woods_7_002:
+	BYTE	W12
+	BYTE		N06     As2   v036
+	BYTE	W12
+	BYTE		        As2   v040
+	BYTE	W12
+	BYTE		        As2   v048
+	BYTE	W12
+	BYTE		        As2   v056
+	BYTE	W12
+	BYTE		        As2   v060
+	BYTE	W12
+	BYTE	PEND
+mus_petalburg_woods_7_B1:
+// 003   ----------------------------------------
+	BYTE		N36     As2   v064
+	BYTE	W36
+	BYTE		N06   
+	BYTE	W24
+	BYTE		N06   
+	BYTE	W12
+// 004   ----------------------------------------
+	BYTE		N36     As1 
+	BYTE	W36
+	BYTE		VOICE   48
+	BYTE		PAN     c_v+32
+	BYTE		N06     Dn2   v088
+	BYTE	W12
+	BYTE		        As2 
+	BYTE	W12
+	BYTE		        Fs2 
+	BYTE	W12
+// 005   ----------------------------------------
+	BYTE		N44     Dn3   v088  gtp1
+	BYTE	W60
+	BYTE		N06     Cs3 
+	BYTE	W06
+	BYTE		N03     Cn3 
+	BYTE	W03
+	BYTE		        Bn2 
+	BYTE	W03
+// 006   ----------------------------------------
+	BYTE		TIE     As2 
+	BYTE	W42
+	BYTE		VOL     127*mus_petalburg_woods_mvl/mxv
+	BYTE	W06
+	BYTE		        123*mus_petalburg_woods_mvl/mxv
+	BYTE	W05
+	BYTE		        118*mus_petalburg_woods_mvl/mxv
+	BYTE	W07
+	BYTE		        112*mus_petalburg_woods_mvl/mxv
+	BYTE	W05
+	BYTE		        105*mus_petalburg_woods_mvl/mxv
+	BYTE	W07
+// 007   ----------------------------------------
+	BYTE		        99*mus_petalburg_woods_mvl/mxv
+	BYTE	W05
+	BYTE		        88*mus_petalburg_woods_mvl/mxv
+	BYTE	W07
+	BYTE		        80*mus_petalburg_woods_mvl/mxv
+	BYTE	W05
+	BYTE		        70*mus_petalburg_woods_mvl/mxv
+	BYTE	W07
+	BYTE		        61*mus_petalburg_woods_mvl/mxv
+	BYTE	W05
+	BYTE		        48*mus_petalburg_woods_mvl/mxv
+	BYTE	W07
+	BYTE		        37*mus_petalburg_woods_mvl/mxv
+	BYTE	W05
+	BYTE		        20*mus_petalburg_woods_mvl/mxv
+	BYTE	W07
+	BYTE		        8*mus_petalburg_woods_mvl/mxv
+	BYTE	W05
+	BYTE		        2*mus_petalburg_woods_mvl/mxv
+	BYTE	W16
+	BYTE		EOT   
+	BYTE	W03
+// 008   ----------------------------------------
+	BYTE		VOICE   1
+	BYTE		PAN     c_v+10
+	BYTE		N36     Dn2   v120
+	BYTE	W36
+	BYTE		N06   
+	BYTE	W24
+	BYTE		N06   
+	BYTE	W12
+// 009   ----------------------------------------
+	BYTE		VOL     127*mus_petalburg_woods_mvl/mxv
+	BYTE		TIE     Gn1 
+	BYTE	W72
+// 010   ----------------------------------------
+	BYTE	W36
+	BYTE		EOT   
+	BYTE		N06     Bn1   v084
+	BYTE	W12
+	BYTE		        Gn2 
+	BYTE	W12
+	BYTE		        Ds2 
+	BYTE	W12
+// 011   ----------------------------------------
+	BYTE		N44     Bn2   v084  gtp1
+	BYTE	W60
+	BYTE		N06     Bn2   v080
+	BYTE	W12
+// 012   ----------------------------------------
+	BYTE		TIE     Gn2   v084
+	BYTE	W72
+// 013   ----------------------------------------
+	BYTE	W68
+	BYTE	W01
+	BYTE		EOT   
+	BYTE	W03
+// 014   ----------------------------------------
+	BYTE	W72
+// 015   ----------------------------------------
+	BYTE	W72
+// 016   ----------------------------------------
+	BYTE	W72
+// 017   ----------------------------------------
+mus_petalburg_woods_7_017:
+	BYTE	W12
+	BYTE		N06     As2   v112
+	BYTE	W24
+	BYTE		N06   
+	BYTE	W24
+	BYTE		N06   
+	BYTE	W12
+	BYTE	PEND
+// 018   ----------------------------------------
+	BYTE		N06   
+	BYTE	W72
+// 019   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_petalburg_woods_7_017
+// 020   ----------------------------------------
+	BYTE		TIE     As1   v120
+	BYTE	W72
+// 021   ----------------------------------------
+	BYTE	W72
+	BYTE		EOT   
+// 022   ----------------------------------------
+	BYTE	W60
+	BYTE		N06     Fs5   v064
+	BYTE	W12
+// 023   ----------------------------------------
+	BYTE		TIE   
+	BYTE	W72
+// 024   ----------------------------------------
+	BYTE	W72
+	BYTE		EOT   
+// 025   ----------------------------------------
+	BYTE	W72
+// 026   ----------------------------------------
+	BYTE	W72
+// 027   ----------------------------------------
+	BYTE	W72
+// 028   ----------------------------------------
+	BYTE	W72
+// 029   ----------------------------------------
+	BYTE	W72
+// 030   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_petalburg_woods_7_002
+	BYTE	GoTo
+	 POIN2	mus_petalburg_woods_7_B1
+mus_petalburg_woods_7_B2:
+// 031   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 8 (Midi-Chn.8) ****************//
+
+mus_petalburg_woods_8:
+	BYTE	KEYSH   mus_petalburg_woods_key+0
+// 000   ----------------------------------------
+	BYTE	W36
+// 001   ----------------------------------------
+	BYTE		VOICE   127
+	BYTE		VOL     120*mus_petalburg_woods_mvl/mxv
+	BYTE		PAN     c_v+0
+	BYTE		N11     Gs4   v040
+	BYTE	W60
+	BYTE		N11   
+	BYTE	W12
+// 002   ----------------------------------------
+	BYTE		N11   
+	BYTE	W72
+mus_petalburg_woods_8_B1:
+// 003   ----------------------------------------
+mus_petalburg_woods_8_003:
+	BYTE		N11     Gs4   v040
+	BYTE	W60
+	BYTE		N11   
+	BYTE	W12
+	BYTE	PEND
+// 004   ----------------------------------------
+	BYTE		N11   
+	BYTE	W72
+// 005   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_petalburg_woods_8_003
+// 006   ----------------------------------------
+	BYTE		N11     Gs4   v040
+	BYTE	W72
+// 007   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_petalburg_woods_8_003
+// 008   ----------------------------------------
+	BYTE		N11     Gs4   v040
+	BYTE	W72
+// 009   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_petalburg_woods_8_003
+// 010   ----------------------------------------
+	BYTE		N11     Gs4   v040
+	BYTE	W72
+// 011   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_petalburg_woods_8_003
+// 012   ----------------------------------------
+	BYTE		N11     Gs4   v040
+	BYTE	W72
+// 013   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_petalburg_woods_8_003
+// 014   ----------------------------------------
+	BYTE		N11     Gs4   v040
+	BYTE	W72
+// 015   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_petalburg_woods_8_003
+// 016   ----------------------------------------
+	BYTE		N11     Gs4   v040
+	BYTE	W72
+// 017   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_petalburg_woods_8_003
+// 018   ----------------------------------------
+	BYTE		N11     Gs4   v040
+	BYTE	W72
+// 019   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_petalburg_woods_8_003
+// 020   ----------------------------------------
+	BYTE		N11     Gs4   v040
+	BYTE	W72
+// 021   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_petalburg_woods_8_003
+// 022   ----------------------------------------
+	BYTE		N11     Gs4   v040
+	BYTE	W72
+// 023   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_petalburg_woods_8_003
+// 024   ----------------------------------------
+	BYTE		N11     Gs4   v040
+	BYTE	W72
+// 025   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_petalburg_woods_8_003
+// 026   ----------------------------------------
+	BYTE		N11     Gs4   v040
+	BYTE	W72
+// 027   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_petalburg_woods_8_003
+// 028   ----------------------------------------
+	BYTE		N11     Gs4   v040
+	BYTE	W72
+// 029   ----------------------------------------
+	BYTE	PATT
+	 POIN2	mus_petalburg_woods_8_003
+// 030   ----------------------------------------
+	BYTE		N11     Gs4   v040
+	BYTE	W72
+	BYTE	GoTo
+	 POIN2	mus_petalburg_woods_8_B1
+mus_petalburg_woods_8_B2:
+// 031   ----------------------------------------
+	BYTE	FINE
+
+//**************** Track 9 (Midi-Chn.9) ****************//
+
+mus_petalburg_woods_9:
+	BYTE		VOL     127*mus_petalburg_woods_mvl/mxv
+	BYTE	KEYSH   mus_petalburg_woods_key+0
+// 000   ----------------------------------------
+	BYTE	W36
+// 001   ----------------------------------------
+	BYTE		VOICE   0
+	BYTE	W72
+// 002   ----------------------------------------
+	BYTE	W72
+mus_petalburg_woods_9_B1:
+// 003   ----------------------------------------
+	BYTE	W72
+// 004   ----------------------------------------
+	BYTE	W72
+// 005   ----------------------------------------
+	BYTE	W72
+// 006   ----------------------------------------
+	BYTE	W72
+// 007   ----------------------------------------
+	BYTE	W72
+// 008   ----------------------------------------
+	BYTE	W72
+// 009   ----------------------------------------
+	BYTE	W72
+// 010   ----------------------------------------
+	BYTE	W72
+// 011   ----------------------------------------
+	BYTE	W72
+// 012   ----------------------------------------
+	BYTE	W72
+// 013   ----------------------------------------
+	BYTE	W72
+// 014   ----------------------------------------
+	BYTE	W60
+	BYTE		N06     Cn1   v112
+	BYTE	W12
+// 015   ----------------------------------------
+	BYTE		N06   
+	BYTE	W72
+// 016   ----------------------------------------
+	BYTE	W60
+	BYTE		N06   
+	BYTE	W12
+// 017   ----------------------------------------
+	BYTE		N06   
+	BYTE	W72
+// 018   ----------------------------------------
+	BYTE	W60
+	BYTE		N06   
+	BYTE	W12
+// 019   ----------------------------------------
+	BYTE		N06   
+	BYTE	W72
+// 020   ----------------------------------------
+	BYTE	W60
+	BYTE		N06   
+	BYTE	W12
+// 021   ----------------------------------------
+	BYTE		N06   
+	BYTE	W72
+// 022   ----------------------------------------
+	BYTE	W60
+	BYTE		N06   
+	BYTE	W12
+// 023   ----------------------------------------
+	BYTE		N06   
+	BYTE	W72
+// 024   ----------------------------------------
+	BYTE	W60
+	BYTE		N06   
+	BYTE	W12
+// 025   ----------------------------------------
+	BYTE		N06   
+	BYTE	W72
+// 026   ----------------------------------------
+	BYTE	W60
+	BYTE		N06   
+	BYTE	W12
+// 027   ----------------------------------------
+	BYTE		N06   
+	BYTE	W72
+// 028   ----------------------------------------
+	BYTE	W60
+	BYTE		N06   
+	BYTE	W12
+// 029   ----------------------------------------
+	BYTE		N06   
+	BYTE	W72
+// 030   ----------------------------------------
+	BYTE	W72
+	BYTE	GoTo
+	 POIN2	mus_petalburg_woods_9_B1
+mus_petalburg_woods_9_B2:
+// 031   ----------------------------------------
+	BYTE	FINE
+
+//******************************************************//
+	ALIGN 4
+
+mus_petalburg_woods:
+	BYTE	9	// NumTrks
+	BYTE	0	// NumBlks
+	BYTE	mus_petalburg_woods_pri	// Priority
+	BYTE	mus_petalburg_woods_rev	// Reverb.
+
+	POIN2	mus_petalburg_woods_grp
+
+	POIN2	mus_petalburg_woods_1
+	POIN2	mus_petalburg_woods_2
+	POIN2	mus_petalburg_woods_3
+	POIN2	mus_petalburg_woods_4
+	POIN2	mus_petalburg_woods_5
+	POIN2	mus_petalburg_woods_6
+	POIN2	mus_petalburg_woods_7
+	POIN2	mus_petalburg_woods_8
+	POIN2	mus_petalburg_woods_9
+
+	

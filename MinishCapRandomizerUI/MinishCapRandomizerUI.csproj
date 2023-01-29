@@ -1,0 +1,59 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net6.0-windows</TargetFramework>
+        <Nullable>enable</Nullable>
+        <UseWindowsForms>true</UseWindowsForms>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+		<PublishSingleFile>true</PublishSingleFile>
+		<PublishReadyToRun>true</PublishReadyToRun>
+		<SelfContained>true</SelfContained>
+		<StartupObject>MinishCapRandomizerUI.Program</StartupObject>
+		<ApplicationIcon>Resources\icon.ico</ApplicationIcon>
+    </PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<DebugType>portable</DebugType>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<DebugType>none</DebugType>
+	</PropertyGroup>
+
+    <ItemGroup>
+      <Content Include="Resources\icon.ico" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\RandomizerCore\RandomizerCore.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Properties\Resources.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Resources.resx</DependentUpon>
+      </Compile>
+      <Compile Update="UI\MinishCapRandomizerUI.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Update="Properties\Resources.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+    </ItemGroup>
+	
+	<Target Name="PostBuildDebug" Condition="'$(Configuration)' == 'Debug'" AfterTargets="PostBuildEvent">
+		<Exec Command="xcopy &quot;$(ProjectDir)..\RandomizerCore\Resources\Patches\&quot; &quot;$(TargetDir)Patches\&quot; /y /d /s" />
+		<Exec Command="xcopy &quot;$(ProjectDir)..\Vendor\Language Raws\&quot; &quot;$(TargetDir)Language Raws\&quot; /y /d /s" />
+	</Target>
+
+	<Target Name="PostBuildRelease" Condition="'$(Configuration)' == 'Release'" AfterTargets="PostBuildEvent">
+		<Exec Command="xcopy &quot;$(ProjectDir)..\RandomizerCore\Resources\Patches\&quot; &quot;$(PublishDir)Patches\&quot; /y /d /s" />
+		<Exec Command="xcopy &quot;$(ProjectDir)..\Vendor\Language Raws\&quot; &quot;$(PublishDir)Language Raws\&quot; /y /d /s" />
+	</Target>
+	
+</Project>

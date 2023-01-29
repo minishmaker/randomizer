@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.6
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorzCore", "ColorzCore.csproj", "{B98F7CCF-9CAA-406E-88D7-2040FA99F631}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		32bit|Any CPU = 32bit|Any CPU
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B98F7CCF-9CAA-406E-88D7-2040FA99F631}.32bit|Any CPU.ActiveCfg = 32bit|Any CPU
+		{B98F7CCF-9CAA-406E-88D7-2040FA99F631}.32bit|Any CPU.Build.0 = 32bit|Any CPU
+		{B98F7CCF-9CAA-406E-88D7-2040FA99F631}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B98F7CCF-9CAA-406E-88D7-2040FA99F631}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B98F7CCF-9CAA-406E-88D7-2040FA99F631}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B98F7CCF-9CAA-406E-88D7-2040FA99F631}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {21D63160-BE4B-46B7-995A-04D8AC7B4472}
+	EndGlobalSection
+EndGlobal

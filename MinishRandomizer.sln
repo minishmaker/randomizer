@@ -1,13 +1,24 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29001.49
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33110.190
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinishRandomizer", "MinishRandomizer.csproj", "{704DAD64-9C28-458B-8980-A945C1159FFA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RandomizerCore", "RandomizerCore\RandomizerCore.csproj", "{026480FB-89D6-4B8A-9CFD-FB802ADA4874}"
+	ProjectSection(ProjectDependencies) = postProject
+		{543270C3-D6FB-48AB-90EB-4E153FC4FE79} = {543270C3-D6FB-48AB-90EB-4E153FC4FE79}
+	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Vendor", "Vendor", "{E5E80AB9-F3A1-4B3F-BAC1-46C864EB76E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ColorzCore", "Vendor\ColorzCore\ColorzCore\ColorzCore.csproj", "{543270C3-D6FB-48AB-90EB-4E153FC4FE79}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorzCore", "Vendor\ColorzCore\ColorzCore\ColorzCore.csproj", "{B98F7CCF-9CAA-406E-88D7-2040FA99F631}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinishCapRandomizerUI", "MinishCapRandomizerUI\MinishCapRandomizerUI.csproj", "{0B6035E9-E168-4E27-A128-8FF63B9E7B46}"
+	ProjectSection(ProjectDependencies) = postProject
+		{026480FB-89D6-4B8A-9CFD-FB802ADA4874} = {026480FB-89D6-4B8A-9CFD-FB802ADA4874}
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinishCapRandomizerCLI", "MinishCapRandomizerCLI\MinishCapRandomizerCLI.csproj", "{1639ECF2-E3CE-431E-9C39-769B03597942}"
+	ProjectSection(ProjectDependencies) = postProject
+		{026480FB-89D6-4B8A-9CFD-FB802ADA4874} = {026480FB-89D6-4B8A-9CFD-FB802ADA4874}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,20 +26,25 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{704DAD64-9C28-458B-8980-A945C1159FFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{704DAD64-9C28-458B-8980-A945C1159FFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{704DAD64-9C28-458B-8980-A945C1159FFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{704DAD64-9C28-458B-8980-A945C1159FFA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B98F7CCF-9CAA-406E-88D7-2040FA99F631}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B98F7CCF-9CAA-406E-88D7-2040FA99F631}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B98F7CCF-9CAA-406E-88D7-2040FA99F631}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B98F7CCF-9CAA-406E-88D7-2040FA99F631}.Release|Any CPU.Build.0 = Release|Any CPU
+		{026480FB-89D6-4B8A-9CFD-FB802ADA4874}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{026480FB-89D6-4B8A-9CFD-FB802ADA4874}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{026480FB-89D6-4B8A-9CFD-FB802ADA4874}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{026480FB-89D6-4B8A-9CFD-FB802ADA4874}.Release|Any CPU.Build.0 = Release|Any CPU
+		{543270C3-D6FB-48AB-90EB-4E153FC4FE79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{543270C3-D6FB-48AB-90EB-4E153FC4FE79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{543270C3-D6FB-48AB-90EB-4E153FC4FE79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{543270C3-D6FB-48AB-90EB-4E153FC4FE79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B6035E9-E168-4E27-A128-8FF63B9E7B46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B6035E9-E168-4E27-A128-8FF63B9E7B46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B6035E9-E168-4E27-A128-8FF63B9E7B46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B6035E9-E168-4E27-A128-8FF63B9E7B46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1639ECF2-E3CE-431E-9C39-769B03597942}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1639ECF2-E3CE-431E-9C39-769B03597942}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1639ECF2-E3CE-431E-9C39-769B03597942}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1639ECF2-E3CE-431E-9C39-769B03597942}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{B98F7CCF-9CAA-406E-88D7-2040FA99F631} = {E5E80AB9-F3A1-4B3F-BAC1-46C864EB76E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3200685A-8233-4883-B294-A2CBC408902C}
