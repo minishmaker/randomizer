@@ -115,23 +115,23 @@
 !flag - Main Settings - Setting - Shuffle - GOLDEN_ENEMY - Golden Enemies - If enabled will shuffle items dropped by Golden Enemies once then are defeated. There are 3 kinds of Golden Enemy: "Golden Octo", "Golden Tektite" and "Golden Rope".\n These Enemies are spawned by completing certain Kinstone Fusions in the game, if you remove certain kinstone colors then those enemies made innaccessible will not have items.\n These enemies have a lot of health but are not invulnerable, Keep hitting them!
 !flag - Main Settings - Setting - Shuffle - PED_ITEMS - Sanctuary Pedestal - This setting is force disabled when playing on any DHC setting other than 'Always Open'.\n If enabled will shuffle 3 items onto the pedestal found in the Sanctuary, these can be collected when the pedestal is visited with 2 elements, 3 elements and 4 elements respectively.
 
-!flag - World Setting - Setting - Global - OPENWORLD - Open World - Opens every obstacle in the game: Every tree, block, bomb wall, boulder, door, vine, fusion, switch, lever, barricade, bridge, Dungeon Portal and Wind Crest.\n\n The World is open from the start.
-!dropdown - World Setting - Setting - Global - ENTRANCES - Dungeon Entrances are: - The 6 Dungeons that can hold elements may have their entrances shuffled. These are always coupled entrance swaps which means when you leave a shuffled dungeon you will always go back to the place you originally came from.\n Dark Hyrule Castle is not currently shuffled. - Vanilla - ENTRANCES_VANILLA - 'Vanilla': Dungeon entrances are not shuffled. - Shuffled - ENTRANCES_COUPLED - 'Shuffled': All Dungeon entrances are shuffled between each other, these are the following dungeons that are shuffled:\n Deepwood Shrine\n Cave of Flames\n Fortress of Winds\n Temple of Droplets\n Royal Crypt\n Palace of Winds
-!dropdown - World Setting - Setting - Fusions - GOLD_FUSION_SETTING - Gold Fusions are: - Golden Kinstones come in 3 shapes: 5 for Cloud Tops, 3 for Castor Wilds (Swamp), and 1 for Veil Falls (A Crown) for 9 in Total.\n The fusions that require Golden Kinstones lock major areas of the game. - Removed (Closed) - NO_GOLD_FUSIONS - 'Removed': All the Gold Kinstones are removed from the pool, and the fusions are unable to be completed. This prevents Fortress of Winds from being reachable, and without the Open Wind Tribe setting this will prevent Palace of Winds from being reachable. - Vanilla - VANILLA_GOLD_FUSIONS - 'Vanilla': This shuffles the 3 different shaped Golden Kinstones into the pool (9 total: 5/3/1), the locations of the fusions and what shape they ask for are not shuffled. - Combined - COMBINED_GOLD_FUSIONS - 'Combined': This converts the different shaped Golden Kinstones into a single Golden shape. 9 of these are shuffled into the world, the locations of the fusions are not shuffled and all ask for the same shape. - Completed (Open) - OPEN_GOLD_FUSIONS - 'Completed': All the Golden Kinstones are removed from the pool, and all the fusions are already completed.
-!dropdown - World Setting - Setting - Fusions - RED_FUSION_SETTING - Red Fusions are: - Red Kinstones come in 3 shapes, Fusions can be found everywhere but are mostly from unique individuals.\n There are 24 Fusions in total, There are more Kinstones in the pool than fusions available just to be generous. - Removed (Closed) - NO_RED_FUSIONS - 'Removed': All the Red Kinstones are removed from the pool, and the fusions are unable to be completed. - Vanilla - VANILLA_RED_FUSIONS - 'Vanilla': This shuffles the 3 different shaped Red Kinstones into the pool, the exact amount needed to do every available fusion, the locations of the fusions and what shape they ask for are not shuffled. - Combined - COMBINED_RED_FUSIONS - 'Combined': This converts the different shaped Red Kinstones into a single Red shape. The locations of the fusions are not shuffled and all ask for the same shape. - Completed (Open) - OPEN_RED_FUSIONS - 'Completed': All the Red Kinstones are removed from the pool, and all the fusions are already completed.
-!dropdown - World Setting - Setting - Fusions - BLUE_FUSION_SETTING - Blue Fusions are: - Blue Kinstones come in 2 shapes, Fusions can be found everywhere but are mostly from Walls or unique individuals.\n There are 18 Fusions in total, There are more Kinstones in the pool than fusions available just to be generous. - Removed (Closed) - NO_BLUE_FUSIONS - 'Removed': All the Blue Kinstones are removed from the pool, and the fusions are unable to be completed. - Vanilla - VANILLA_BLUE_FUSIONS - 'Vanilla': This shuffles the 2 different shaped Blue Kinstones into the pool, the exact amount needed to do every available fusion, the locations of the fusions and what shape they ask for are not shuffled. - Combined - COMBINED_BLUE_FUSIONS - 'Combined': This converts the different shaped Blue Kinstones into a single Blue shape. The locations of the fusions are not shuffled and all ask for the same shape. - Completed (Open) - OPEN_BLUE_FUSIONS - 'Completed': All the Blue Kinstones are removed from the pool, and all the fusions are already completed.
-!dropdown - World Setting - Setting - Fusions - GREEN_FUSION_SETTING - Green Fusions are: - Green Kinstones come in 3 shapes, Fusions can be found everywhere and a large amount are shared between many people.\n There are 49 Fusions in total, There are more Kinstones in the pool than fusions available just to be generous. - Removed (Closed) - NO_GREEN_FUSIONS - 'Removed': All the Green Kinstones are removed from the pool, and the fusions are unable to be completed. - Vanilla - VANILLA_GREEN_FUSIONS - 'Vanilla': This shuffles the 3 different shaped Green Kinstones into the pool, the exact amount needed to do every available fusion, the locations of the fusions and what shape they ask for are not shuffled. - Combined - COMBINED_GREEN_FUSIONS - 'Combined': This converts the different shaped Green Kinstones into a single Green shape. The locations of the fusions are not shuffled and all ask for the same shape. - Completed (Open) - OPEN_GREEN_FUSIONS - 'Completed': All the Green Kinstones are removed from the pool, and all the fusions are already completed.
-#!flag - World Setting - Setting - Fusions - SEEDED_SHARED - Order Shared Fusions - There are a Pool of 18 Shared Fusions in the Game: 16 Green, 1 Blue and 1 Red. These Fusions are randomly selected by an NPC who offers Shared Fusions when you enter the room they are in.\n\n If this setting is enabled then the seed generates a listed order these NPCs offer the fusions in. This makes different people playing the same seed have the same fusions available which is useful for races. - true
-!flag - World Setting - Setting - Fusions - DEFICKLE - Defickle Fusers - Many NPCs who offer fusions are considered 'Fickle', this means they can randomly decide to NOT offer their fusion.\n\n Enable this to make them ALWAYS offer a fusion. - true
-!dropdown - World Setting - Setting - Fusions - FUSION_SKIPS - Skip Fusion Cutscenes: - When doing a Kinstone Fusion you get a cutscene aftewards to show you what the fusion activated, and then a Map indicator spawns. - Choose - ALLOW_FUSION_SKIPS - 'Choose': If you hold a button prior to the start of the cutscene, then the cutscene is skipped, otherwise the cutscene plays normally.\n If 'Show Map' is enabled then only the cutscene is skipped, but the map screen is still shown. - Always - INSTANT_SKIP - 'Always': The cutscene is always skipped without player input.\n If 'Show Map' is enabled then it will always show the map screen. - Never - NO_FUSION_SKIP - 'Never': The cutscene is never able to be skipped by the player.
-!flag - World Setting - Setting - Fusions - SHOW_MAP - Show Map - If enabled, it will always show the map screen at the end of a cutscene, even if the cutscene is skipped.
+!flag - World Settings - Setting - Global - OPENWORLD - Open World - Opens every obstacle in the game: Every tree, block, bomb wall, boulder, door, vine, fusion, switch, lever, barricade, bridge, Dungeon Portal and Wind Crest.\n\n The World is open from the start.
+!dropdown - World Settings - Setting - Global - ENTRANCES - Dungeon Entrances are: - The 6 Dungeons that can hold elements may have their entrances shuffled. These are always coupled entrance swaps which means when you leave a shuffled dungeon you will always go back to the place you originally came from.\n Dark Hyrule Castle is not currently shuffled. - Vanilla - ENTRANCES_VANILLA - 'Vanilla': Dungeon entrances are not shuffled. - Shuffled - ENTRANCES_COUPLED - 'Shuffled': All Dungeon entrances are shuffled between each other, these are the following dungeons that are shuffled:\n Deepwood Shrine\n Cave of Flames\n Fortress of Winds\n Temple of Droplets\n Royal Crypt\n Palace of Winds
+!dropdown - World Settings - Setting - Fusions - GOLD_FUSION_SETTING - Gold Fusions are: - Golden Kinstones come in 3 shapes: 5 for Cloud Tops, 3 for Castor Wilds (Swamp), and 1 for Veil Falls (A Crown) for 9 in Total.\n The fusions that require Golden Kinstones lock major areas of the game. - Removed (Closed) - NO_GOLD_FUSIONS - 'Removed': All the Gold Kinstones are removed from the pool, and the fusions are unable to be completed. This prevents Fortress of Winds from being reachable, and without the Open Wind Tribe setting this will prevent Palace of Winds from being reachable. - Vanilla - VANILLA_GOLD_FUSIONS - 'Vanilla': This shuffles the 3 different shaped Golden Kinstones into the pool (9 total: 5/3/1), the locations of the fusions and what shape they ask for are not shuffled. - Combined - COMBINED_GOLD_FUSIONS - 'Combined': This converts the different shaped Golden Kinstones into a single Golden shape. 9 of these are shuffled into the world, the locations of the fusions are not shuffled and all ask for the same shape. - Completed (Open) - OPEN_GOLD_FUSIONS - 'Completed': All the Golden Kinstones are removed from the pool, and all the fusions are already completed.
+!dropdown - World Settings - Setting - Fusions - RED_FUSION_SETTING - Red Fusions are: - Red Kinstones come in 3 shapes, Fusions can be found everywhere but are mostly from unique individuals.\n There are 24 Fusions in total, There are more Kinstones in the pool than fusions available just to be generous. - Removed (Closed) - NO_RED_FUSIONS - 'Removed': All the Red Kinstones are removed from the pool, and the fusions are unable to be completed. - Vanilla - VANILLA_RED_FUSIONS - 'Vanilla': This shuffles the 3 different shaped Red Kinstones into the pool, the exact amount needed to do every available fusion, the locations of the fusions and what shape they ask for are not shuffled. - Combined - COMBINED_RED_FUSIONS - 'Combined': This converts the different shaped Red Kinstones into a single Red shape. The locations of the fusions are not shuffled and all ask for the same shape. - Completed (Open) - OPEN_RED_FUSIONS - 'Completed': All the Red Kinstones are removed from the pool, and all the fusions are already completed.
+!dropdown - World Settings - Setting - Fusions - BLUE_FUSION_SETTING - Blue Fusions are: - Blue Kinstones come in 2 shapes, Fusions can be found everywhere but are mostly from Walls or unique individuals.\n There are 18 Fusions in total, There are more Kinstones in the pool than fusions available just to be generous. - Removed (Closed) - NO_BLUE_FUSIONS - 'Removed': All the Blue Kinstones are removed from the pool, and the fusions are unable to be completed. - Vanilla - VANILLA_BLUE_FUSIONS - 'Vanilla': This shuffles the 2 different shaped Blue Kinstones into the pool, the exact amount needed to do every available fusion, the locations of the fusions and what shape they ask for are not shuffled. - Combined - COMBINED_BLUE_FUSIONS - 'Combined': This converts the different shaped Blue Kinstones into a single Blue shape. The locations of the fusions are not shuffled and all ask for the same shape. - Completed (Open) - OPEN_BLUE_FUSIONS - 'Completed': All the Blue Kinstones are removed from the pool, and all the fusions are already completed.
+!dropdown - World Settings - Setting - Fusions - GREEN_FUSION_SETTING - Green Fusions are: - Green Kinstones come in 3 shapes, Fusions can be found everywhere and a large amount are shared between many people.\n There are 49 Fusions in total, There are more Kinstones in the pool than fusions available just to be generous. - Removed (Closed) - NO_GREEN_FUSIONS - 'Removed': All the Green Kinstones are removed from the pool, and the fusions are unable to be completed. - Vanilla - VANILLA_GREEN_FUSIONS - 'Vanilla': This shuffles the 3 different shaped Green Kinstones into the pool, the exact amount needed to do every available fusion, the locations of the fusions and what shape they ask for are not shuffled. - Combined - COMBINED_GREEN_FUSIONS - 'Combined': This converts the different shaped Green Kinstones into a single Green shape. The locations of the fusions are not shuffled and all ask for the same shape. - Completed (Open) - OPEN_GREEN_FUSIONS - 'Completed': All the Green Kinstones are removed from the pool, and all the fusions are already completed.
+#!flag - World Settings - Setting - Fusions - SEEDED_SHARED - Order Shared Fusions - There are a Pool of 18 Shared Fusions in the Game: 16 Green, 1 Blue and 1 Red. These Fusions are randomly selected by an NPC who offers Shared Fusions when you enter the room they are in.\n\n If this setting is enabled then the seed generates a listed order these NPCs offer the fusions in. This makes different people playing the same seed have the same fusions available which is useful for races. - true
+!flag - World Settings - Setting - Fusions - DEFICKLE - Defickle Fusers - Many NPCs who offer fusions are considered 'Fickle', this means they can randomly decide to NOT offer their fusion.\n\n Enable this to make them ALWAYS offer a fusion. - true
+!dropdown - World Settings - Setting - Fusions - FUSION_SKIPS - Skip Fusion Cutscenes: - When doing a Kinstone Fusion you get a cutscene aftewards to show you what the fusion activated, and then a Map indicator spawns. - Choose - ALLOW_FUSION_SKIPS - 'Choose': If you hold a button prior to the start of the cutscene, then the cutscene is skipped, otherwise the cutscene plays normally.\n If 'Show Map' is enabled then only the cutscene is skipped, but the map screen is still shown. - Always - INSTANT_SKIP - 'Always': The cutscene is always skipped without player input.\n If 'Show Map' is enabled then it will always show the map screen. - Never - NO_FUSION_SKIP - 'Never': The cutscene is never able to be skipped by the player.
+!flag - World Settings - Setting - Fusions - SHOW_MAP - Show Map - If enabled, it will always show the map screen at the end of a cutscene, even if the cutscene is skipped.
 
-!flag - World Setting - Setting - Wind Crests - CREST_CRENEL - Mt Crenel - If enabled, will activate the wind crest in Mt Crenel from the start of the game.
-!flag - World Setting - Setting - Wind Crests - CREST_FALLS - Veil Falls - If enabled, will activate the wind crest in Veil Falls from the start of the game.
-!flag - World Setting - Setting - Wind Crests - CREST_CLOUD - Cloud Tops - If enabled, will activate the wind crest in Cloud Tops from the start of the game.
-!flag - World Setting - Setting - Wind Crests - CREST_SWAMP - Swamp - If enabled, will activate the wind crest in Swamp from the start of the game.
-!flag - World Setting - Setting - Wind Crests - CREST_SHF - Link's House - If enabled, will activate the wind crest near Link's House from the start of the game.
-!flag - World Setting - Setting - Wind Crests - CREST_MINISH - Minish Woods - If enabled, will activate the wind crest in Minish Woods from the start of the game.
+!flag - World Settings - Setting - Wind Crests - CREST_CRENEL - Mt Crenel - If enabled, will activate the wind crest in Mt Crenel from the start of the game.
+!flag - World Settings - Setting - Wind Crests - CREST_FALLS - Veil Falls - If enabled, will activate the wind crest in Veil Falls from the start of the game.
+!flag - World Settings - Setting - Wind Crests - CREST_CLOUD - Cloud Tops - If enabled, will activate the wind crest in Cloud Tops from the start of the game.
+!flag - World Settings - Setting - Wind Crests - CREST_SWAMP - Swamp - If enabled, will activate the wind crest in Swamp from the start of the game.
+!flag - World Settings - Setting - Wind Crests - CREST_SHF - Link's House - If enabled, will activate the wind crest near Link's House from the start of the game.
+!flag - World Settings - Setting - Wind Crests - CREST_MINISH - Minish Woods - If enabled, will activate the wind crest in Minish Woods from the start of the game.
 
 !flag - Logic Settings - Setting - Logic Rules - NO_LOGIC - No Logic - Items can go anywhere without regard to logic.\n LIKELY RESULTS IN UNBEATABLE SEEDS!
 !dropdown - Logic Settings - Setting - Weapons - BOMBWEAPON - Bombs: - Bombs can damage nearly every enemy, Bombs are never considered for Simon Simulations, and Golden Enemies. - No - NOBOMB - 'No': Bombs are not considered as Weapons. - Yes - YESBOMB - 'Yes': Bombs are considered as weapons for most regular enemy fights. - Yes + Bosses - BOSSBOMB - 'Yes + Bosses': Bombs are considered as weapons for most enemy fights. Fighting Green/Blu Chu, Madderpillars and Darknuts require only 10 bomb bag. Gleerok, Mazaal and Scissor Beetles require at least 30 bomb bag. Octo and Gyorg cannot be defeated with bombs.
@@ -186,15 +186,15 @@
 !dropdown - Other - Setting - Extras - FIREROD - Firerod: - The Firerod is a leftover developer testing tool. It lets the user copy and paste tiles, effectively allowing you to walk through walls and most obstacles.\n\n WARNING: It is extremely easy to softlock yourself with this item, it is recommended to enable 'Homewarp' with this item, however some softlocks will completely prevent you from being able to beat the game. - No Firerod - NO_FIREROD - 'No Firerod': Standard - Start With - FIREROD_START - 'Start With': Firerod is in Links Starting Inventory - Shuffled - FIREROD_CHEST - 'Shuffled': Firerod is added to the item pool, it can be randomized to any location.
 
 # Cosmetic settings
-!flag - Cosmetic - Cosmetic - Music - MUSIC_RANDO - Randomize Music - Not currently a Cosmetic, changes the randomization of the seed.
-!dropdown - Cosmetic - Cosmetic - Music - MUSIC_SETTING - Music: - - Vanilla - VANILLA_MUSIC - 'Vanilla': Plays the original game music - Pokemon Emerald - POKEEMERALD_MUSIC - 'Pokemon Emerald': Plays Pokemon Emerald Music - None - NO_MUSIC - 'None': Removes Background Music
-!flag - Cosmetic - Cosmetic - Text - RANDOM_LANGUAGE - Randomize language - Every textbox opened will have the language randomized
-!flag - Cosmetic - Cosmetic - Hearts - RAINBOW_HEARTS - Rainbow Hearts - Links Hearts shimmer through the colors of the rainbow, and not just for the month of June!
-!color - Cosmetic - Cosmetic - Hearts - HEART_COLOR - Heart Color - Rainbow Hearts overwrites this -    0xFF - 0x50 - 0x10
-!color - Cosmetic - Cosmetic - Tunic - TUNIC_COLOR - Tunic Color - Links Tunic Color -    0x10 - 0xFF - 0x08    -    0x10 - 0x7B - 0x29    -    0x41 - 0xA0 - 0x28    -    0xBD - 0xFF - 0xA0
-!color - Cosmetic - Cosmetic - Split Bar - SPLIT_COLOR - Split Bar Color - When holding a Spin Attack (Having either Red/Blue/Four Sword) there is a Bar that appears under Links Hearts -    0x4A - 0xFF - 0x18     -    0x31 - 0x9C - 0x18    -   0x31 - 0x52 - 0x18
-!dropdown - Cosmetic - Cosmetic - Follower - FOLLOWER_SETTING - Follower: - Followers are NPCs that follow behind link, they do not interact with anything and have no effect on gameplay other than providing moral support.\n WARNING: Some game sprites won't load if a follower is used but the objects still exist. This mainly affects the climbable clouds in Palace of Winds, leaving and reentering the room should fix the sprite. - None - NOFOLLOWER -  - Mailman - 0x04 - - Zelda - 0x05 - - Malon - 0x1E - - Smith - 0x22 - - King Daltus - 0x24 - - Cow - 0x31 - - Goron - 0x32 - - Anju - 0x45 -
-!dropdown - Cosmetic - Cosmetic - Don't do this - FUZZY_SETTING - Nausia rating: - Seriously just don't do this to yourself, you'll thank me later - No thanks - NOFUZZ - - 1 - 0x0 - - 2 - 0x1 - - 3 - 0x2 - - 4 - 0x3 - - 5 - 0x4 - - 6 - 0x5 - - 7 - 0x6 - - 8 - 0x7 - - 9 - 0x8 - - 10 - 0x9 - - 11 - 0xA - - 12 - 0xB - - 13 - 0xC - - 14 - 0xD - - 15 - 0xE -
+!flag - Cosmetics - Cosmetic - Music - MUSIC_RANDO - Randomize Music - Not currently a Cosmetic, changes the randomization of the seed.
+!dropdown - Cosmetics - Cosmetic - Music - MUSIC_SETTING - Music: - - Vanilla - VANILLA_MUSIC - 'Vanilla': Plays the original game music - Pokemon Emerald - POKEEMERALD_MUSIC - 'Pokemon Emerald': Plays Pokemon Emerald Music - None - NO_MUSIC - 'None': Removes Background Music
+!flag - Cosmetics - Cosmetic - Text - RANDOM_LANGUAGE - Randomize language - Every textbox opened will have the language randomized
+!flag - Cosmetics - Cosmetic - Hearts - RAINBOW_HEARTS - Rainbow Hearts - Links Hearts shimmer through the colors of the rainbow, and not just for the month of June!
+!color - Cosmetics - Cosmetic - Hearts - HEART_COLOR - Heart Color - Rainbow Hearts overwrites this -    0xFF - 0x50 - 0x10
+!color - Cosmetics - Cosmetic - Tunic - TUNIC_COLOR - Tunic Color - Links Tunic Color -    0x10 - 0xFF - 0x08    -    0x10 - 0x7B - 0x29    -    0x41 - 0xA0 - 0x28    -    0xBD - 0xFF - 0xA0
+!color - Cosmetics - Cosmetic - Split Bar - SPLIT_COLOR - Split Bar Color - When holding a Spin Attack (Having either Red/Blue/Four Sword) there is a Bar that appears under Links Hearts -    0x4A - 0xFF - 0x18     -    0x31 - 0x9C - 0x18    -   0x31 - 0x52 - 0x18
+!dropdown - Cosmetics - Cosmetic - Follower - FOLLOWER_SETTING - Follower: - Followers are NPCs that follow behind link, they do not interact with anything and have no effect on gameplay other than providing moral support.\n WARNING: Some game sprites won't load if a follower is used but the objects still exist. This mainly affects the climbable clouds in Palace of Winds, leaving and reentering the room should fix the sprite. - None - NOFOLLOWER -  - Mailman - 0x04 - - Zelda - 0x05 - - Malon - 0x1E - - Smith - 0x22 - - King Daltus - 0x24 - - Cow - 0x31 - - Goron - 0x32 - - Anju - 0x45 -
+!dropdown - Cosmetics - Cosmetic - Don't do this - FUZZY_SETTING - Nausia rating: - Seriously just don't do this to yourself, you'll thank me later - No thanks - NOFUZZ - - 1 - 0x0 - - 2 - 0x1 - - 3 - 0x2 - - 4 - 0x3 - - 5 - 0x4 - - 6 - 0x5 - - 7 - 0x6 - - 8 - 0x7 - - 9 - 0x8 - - 10 - 0x9 - - 11 - 0xA - - 12 - 0xB - - 13 - 0xC - - 14 - 0xD - - 15 - 0xE -
 
 !eventdefine - customRNG - 0x`RAND_INT`
 
@@ -1022,7 +1022,7 @@
 	Items.Shield;			Major;
 	!ifndef - DOJOVANILLA
 		!ifdef - DOJORANDOM
-			Items.SpinAttack;		Major;	dojo
+			Items.SpinAttack;		DungeonMajor;	dojo
 		!else
 			Items.SpinAttack;		Major;
 		!endif
@@ -2009,7 +2009,7 @@ CanFuseShared;	Helper;; Helpers.Start `ALLREDSHARED` `ALLBLUESHARED` `ALLGREENSH
 HasSword;        	Helper;; (|Items.SmithSword, Items.GreenSword, Items.RedSword, Items.BlueSword, Items.FourSword, Items.ProgressiveItem.0x00)
 HasGreenSword;		Helper;; (|Items.GreenSword, Items.ProgressiveItem.0x00:2)
 HasSpin;         	Helper;; (|Items.SpinAttack, Items.ProgressiveItem.0x04)
-HasDojoSword;		Helper;; (|Items.SmithSword, Items.GreenSword, Items.ProgressiveItem.0x00:2)
+HasDojoSword;		Helper;; (|Items.SmithSword, Items.GreenSword, Items.ProgressiveItem.0x00)
 CanSplit2;       	Helper;; (|Items.ProgressiveItem.0x00:3, Items.RedSword), Helpers.HasSpin
 CanSplit3;       	Helper;; (|Items.ProgressiveItem.0x00:4, Items.BlueSword), Helpers.HasSpin
 CanSplit4;       	Helper;; (|Items.ProgressiveItem.0x00:5, Items.FourSword), Helpers.HasSpin
@@ -4526,6 +4526,7 @@ Hylia_BeanstalkFusion_LeftChest;		`BLUEFUSION`;	0x0D-0x01-0x00;	(|(&Helpers.Lake
 Hylia_BeanstalkFusion_HP;				`BLUEFUSIONHP`;	0x0F5EDB;		(|(&Helpers.LakeEastMinishFusion, Helpers.AccessTreasureCave), Helpers.Hundo);	Items.PieceOfHeart
 Hylia_BeanstalkFusion_RightChest;		`BLUEFUSION`;	0x0D-0x01-0x01;	(|(&Helpers.LakeEastMinishFusion, Helpers.AccessTreasureCave), Helpers.Hundo);	Items.Shells.200
 Hylia_MiddleIslandFusion_DigCaveChest;	`GREENFUSION`;	0x19-0x00-0x00;															(|(&Helpers.MamaFusion, Helpers.AccessLonLon, Items.MoleMitts, Helpers.CapeExtension), Helpers.Hundo);																		Items.Rupee50
+	Droplets_Entrance	`DUNGEONENTRANCE`;	DumToDENT:Define:FirstByte, DumToDENT:Define:SecondByte;	Helpers.AccessDroplets;	Items.Entrance.0x04
 Hylia_BottomHP;							`HP`;			0x0F324B;																(|(&Helpers.AccessLonLon, Helpers.CapeExtension), Helpers.Hundo);																											Items.PieceOfHeart
 Hylia_Dojo_HP;							`HP`;			0x0D7B03;																(|(&Helpers.AccessLonLon, (|Helpers.CapeExtension, Helpers.LakeShortcut)), Helpers.Hundo);																					Items.PieceOfHeart
 Hylia_Dojo_NPC:dojo;					`DOJOITEM`;		wavebladeDojoItem:Define:FirstByte, wavebladeDojoSub:Define:SecondByte;	(|(&Helpers.AccessLonLon, Helpers.HasHearts, Helpers.HasSword, (|Helpers.CapeExtension, Helpers.LakeShortcut)), Helpers.Hundo);												Items.PerilBeam
@@ -4556,6 +4557,7 @@ MinishWoods_MinishPathFusion_Chest;			`GREENFUSION`;		0x0FE08E;		(|(&Helpers.Sha
 	!define - DWS_OUTSIDE - :DWSSmallOutside	:DWSBigOutside	:DWSCompassOutside	:SmallOutside	:BigOutside	:CompassOutside
 MinishVillage_BarrelHouse_Item		`DWS_OUTSIDE`;	Dungeon;				0x0DA283;		(|Helpers.AccessMinishWoods, Helpers.Hundo);													Items.JabberNut
 MinishVillage_HP					`DWS_OUTSIDE`;	`DUNGEONHP`;			0x0DBCC7;		(|Helpers.AccessMinishWoods, Helpers.Hundo);													Items.PieceOfHeart
+	Deepwood_Entrance	`DUNGEONENTRANCE`;	DumDWSENT:Define:FirstByte, DumDWSENT:Define:SecondByte;	Helpers.AccessDeepwood;	Items.Entrance.0x01
 MinishWoods_BombMinish_NPC1			`DWS_OUTSIDE`;	Dungeon;				0x00A00C;		(|Helpers.AccessBelari, Helpers.Hundo);															Items.BombBag
 MinishWoods_BombMinish_NPC2			`DWS_OUTSIDE`;	`REDFUSIONDUNGEON`;		0x00A0A0;		(|(&Helpers.GentariFusion, (|Helpers.AccessBelari, Helpers.Hundo)), Helpers.Hundo);				Items.RemoteBombs
 MinishWoods_PostVillageFusion_Chest	`DWS_OUTSIDE`;	`GREENFUSIONDUNGEON`;	0x0FE0A6;		(|(&Helpers.MinesMinishExitFusion, (|Helpers.AccessBelari, Helpers.Hundo)), Helpers.Hundo);		Items.Kinstone.BlueS
@@ -4672,6 +4674,7 @@ Crenel_Melari_UpperMiddle_RightDig	`COF_OUTSIDE`;	`DIG`;			0x0DC903;	 	(|(&Helpe
 Crenel_Melari_UpperTop_RightDig		`COF_OUTSIDE`;	`DIG`;			0x0DC8F3;	 	(|(&Helpers.AccessMelari, Items.MoleMitts), Helpers.Hundo);			Items.Rupee20
 Crenel_Melari_UpperTop_MiddleDig	`COF_OUTSIDE`;	`DIG`;			0x0DC8D3;	 	(|(&Helpers.AccessMelari, Items.MoleMitts), Helpers.Hundo);			Items.Rupee20
 Crenel_Melari_UpperTop_LeftDig		`COF_OUTSIDE`;	`DIG`;			0x0DC8E3;	 	(|(&Helpers.AccessMelari, Items.MoleMitts), Helpers.Hundo);			Items.Kinstone.BlueS
+	CoF_Entrance		`DUNGEONENTRANCE`;	DumCoFENT:Define:FirstByte, DumCoFENT:Define:SecondByte;	Helpers.AccessCoF;		Items.Entrance.0x02
 
 # Swamp
 AccessSwamp;						Helper;				;																			(|Helpers.SwampWindCrest, (&Helpers.AccessWestern, (|Items.PegasusBoots, Items.RocsCape)))
@@ -4721,6 +4724,7 @@ Ruins_ArmosKill_LeftChest		`FOW_OUTSIDE`;	`GOLDFUSION`;			0x05-0x05-0x00;							
 Ruins_ArmosKill_RightChest		`FOW_OUTSIDE`;	`GOLDFUSION`;			0x05-0x05-0x01;												(|(&Helpers.AccessRuins, Helpers.HasDamageSource), Helpers.Hundo);													Items.Shells.50
 Ruins_GoldenOcto				`FOW_OUTSIDE`;	`GOLDGREENFUSIONENEMY`;	golden1Item:Define:FirstByte, golden1Sub:Define:SecondByte;	(|(&Helpers.LibrariFusion, Helpers.AccessRuins, Helpers.HasSword), Helpers.Hundo);									Items.Rupee100
 Ruins_NearFoWFusion_Chest		`FOW_OUTSIDE`;	`GOLDREDFUSION`;		0x0FE0AE;													(|(&Helpers.BelariFusion, Helpers.AccessRuins, Helpers.HasSword), Helpers.Hundo);									Items.BombBag
+	Fortress_Entrance	`DUNGEONENTRANCE`;	DumFoWENT:Define:FirstByte, DumFoWENT:Define:SecondByte;	Helpers.AccessFortress;	Items.Entrance.0x03
 
 # Royal Valley
 AccessValley;							Helper;		;				(|Helpers.CanSplit3, Helpers.CanSplit4), (|Helpers.OverworldBlocks, Helpers.CapeExtension);
@@ -4816,6 +4820,8 @@ WindTribe_3F_RightChest		`POW_OUTSIDE`;		`PALACEOUTSIDECHEST`;	0x30-0x02-0x00;		
 WindTribe_4F_LeftChest		`POW_OUTSIDE`;		`PALACEOUTSIDECHEST`;	0x30-0x03-0x00;		(|Helpers.AccessWindTribe, Helpers.Hundo);													Items.Kinstone.RedW
 WindTribe_4F_RightChest		`POW_OUTSIDE`;		`PALACEOUTSIDECHEST`;	0x30-0x03-0x01;		(|Helpers.AccessWindTribe, Helpers.Hundo);													Items.Kinstone.RedE
 
+	Palace_Entrance	`DUNGEONENTRANCE`;	DumPoWENT:Define:FirstByte, DumPoWENT:Define:SecondByte;	Helpers.AccessPalace;	Items.Entrance.0x06
+
 # Deepwood locations
 
 	!define - DWS_INSIDE - `DWS_OUTSIDE`	:DWSSmall	:DWSBig	:DWSCompass	:Small	:Big	:Compass
@@ -4825,7 +4831,6 @@ WindTribe_4F_RightChest		`POW_OUTSIDE`;		`PALACEOUTSIDECHEST`;	0x30-0x03-0x01;		
 		!define - DWS_PRIZE - :DWSSmall	:DWSBig	:DWSCompass	:DWSSmallOutside	:DWSBigOutside	:DWSCompassOutside
 	!endif
 AccessDeepwood;									Helper;				;				Helpers.AccessMinishWoods, Helpers.Festari;
-	Deepwood_Entrance	`DUNGEONENTRANCE`;	DumDWSENT:Define:FirstByte, DumDWSENT:Define:SecondByte;	Helpers.AccessDeepwood;	Items.Entrance.0x01
 
 Deepwood_2F_Chest						`DWS_INSIDE`;	Dungeon;			0x48-0x17-0x01;	(|(&`ENTERDWS`, Helpers.DeepwoodWeb), Helpers.Hundo);																												Items.Rupee20
 Deepwood_1F_SlugTorches_Chest			`DWS_INSIDE`;	`DUNGEONSMALL`;		0x48-0x10-0x01;	(|`ENTERDWS`, Helpers.Hundo);																																		Items.SmallKey.0x18
@@ -4852,9 +4857,8 @@ Deepwood_Prize							`DWS_PRIZE`;	DungeonPrize;		0x0DF03B;																(|Help
 
 	!define - COF_INSIDE - `COF_OUTSIDE`	:CoFSmall	:CoFBig	:CoFCompass	:Small	:Big	:Compass
 	!define - COF_PRIZE - :CoFSmall	:CoFBig	:CoFCompass	:CoFSmallOutside	:CoFBigOutside	:CoFCompassOutside
-	
+
 AccessCoF;									Helper;				;				Helpers.AccessMelari;
-	CoF_Entrance		`DUNGEONENTRANCE`;	DumCoFENT:Define:FirstByte, DumCoFENT:Define:SecondByte;	Helpers.AccessCoF;		Items.Entrance.0x02
 
 CoF_1F_SpikeBeetle_BigChest		`COF_INSIDE`;	`DUNGEONCOMPASS`;	0x50-0x15-0x00;	(|(&`ENTERCOF`, (|Helpers.BombWalls, Helpers.Bobombs), Helpers.CoFSpikeBeetle), Helpers.Hundo);																																Items.DungeonMap.0x19
 CoF_1F_Item1					`COF_INSIDE`	`DUNGEONRUPEE`;		0x0DFAEB;		(|(&`ENTERCOF`, (|Helpers.BombWalls, Helpers.Bobombs), Helpers.CoFSpikeBeetle), Helpers.Hundo);																																Items.Rupee1
@@ -4891,7 +4895,6 @@ Crenel_Melari_NPC				`COF_OUTSIDE`;	Dungeon;		0x00D26E;																		(|Helpe
 # Fortress of Winds Locations
 
 AccessFortress			;	Helper;				;																Helpers.AccessRuins, Helpers.HasSword;
-	Fortress_Entrance	`DUNGEONENTRANCE`;	DumFoWENT:Define:FirstByte, DumFoWENT:Define:SecondByte;	Helpers.AccessFortress;	Items.Entrance.0x03
 	
 Fortress_Entrance_1F_LeftChest			`FOW_INSIDE`;	`FORTRESSCHEST`;	0x18-0x00-0x00;													(|(&`ENTERFOW`, Items.MoleMitts), Helpers.Hundo);																																		Items.Kinstone.BlueS
 Fortress_Entrance_1F_LeftWizrobeChest	`FOW_INSIDE`;	`FORTRESSCHEST`;	0x58-0x23-0x00;													(|(&`ENTERFOW`, Items.MoleMitts, Helpers.FoWWizrobes), Helpers.Hundo);																													Items.Shells.80
@@ -4938,7 +4941,6 @@ Fortress_Prize							`FOW_INSIDE`;	`FORTRESSPRIZE`;	0x09C9E6:FirstByte, 0x09C9E8
 	!define - TOD_PRIZE - :ToDSmall	:ToDBig	:ToDCompass
 
 AccessDroplets								;	Helper;				;											(&Helpers.AccessLonLon, Helpers.CapeExtension)
-	Droplets_Entrance	`DUNGEONENTRANCE`;	DumToDENT:Define:FirstByte, DumToDENT:Define:SecondByte;	Helpers.AccessDroplets;	Items.Entrance.0x04
 
 # This randomizes some dummy items to determine where to place the ToD Big Key, then it adjusts all the logic to allow that key to be placed there without errors
 !ifdef - BIG_KEYS_STANDARD
@@ -5020,7 +5022,6 @@ Droplets_Prize		`TOD_PRIZE`;	DungeonPrize;	0x0E40C3;                            
 	!define - POW_PRIZE - :PoWSmall	:PoWBig	:PoWCompass :PoWSmallOutside	:PoWBigOutside	:PoWCompassOutside
 
 AccessPalace						;	Helper;			;				Helpers.AccessWindTribe;
-	Palace_Entrance	`DUNGEONENTRANCE`;	DumPoWENT:Define:FirstByte, DumPoWENT:Define:SecondByte;	Helpers.AccessPalace;	Items.Entrance.0x06
 
 # This randomizes some dummy items to determine where to place the PoW Big Key, then it adjusts all the logic to allow that key to be placed there without errors
 
