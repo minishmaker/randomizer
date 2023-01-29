@@ -4239,7 +4239,7 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 	!define - GREENFUSIONDUNGEON - Inaccessible
 	!define - GREENFUSIONRUPEE - Inaccessible
 	!define - GREENFUSIONENEMY - Inaccessible
-	!define - GREENFUSIONDIG - Inaccessible
+	!define - GREENFUSIONDIG - ; Inaccessible
 !else
 	!define - GREENFUSION - Any
 	!define - GREENFUSIONDUNGEON - Dungeon
