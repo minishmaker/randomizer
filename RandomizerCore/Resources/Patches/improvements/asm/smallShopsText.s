@@ -14,7 +14,8 @@
 .equ figurineCredits, redclockCredits+4
 .equ trapGetIcon, figurineCredits+4
 .equ extraText, trapGetIcon+4
-.equ progressiveTraps, extraText+4
+.equ kinstoneText, extraText+4
+.equ progressiveTraps, kinstoneText+4
 .thumb
 ldrh	r1,[r4,#8]
 ldr	r3,=#0x2D07
@@ -359,7 +360,7 @@ b	normal
 kinstone:
 cmp	r1,#0x65
 blo	normal
-cmp	r1,#0x6D
+cmp	r1,#0x75
 bhi	normal
 cmp	r1,#0x65
 beq	tornado
@@ -379,7 +380,14 @@ cmp	r1,#0x6C
 beq	totem
 cmp	r1,#0x6D
 beq	crown
-b	normal
+
+commonkinstone:
+ldr	r0,kinstoneText
+sub	r1,#0x6E
+lsl	r1,#2
+ldr	r0,[r1, r0]
+bx	lr
+
 tornado:
 ldr	r3,=#0x71A
 b	normal
@@ -459,4 +467,5 @@ bottleScrubItem:
 @POIN figurineCredits
 @POIN trapGetIcon
 @POIN extraText
+@POIN kinstoneText
 @POIN progressiveTraps

@@ -79,6 +79,7 @@ POIN redclockCredits
 POIN figurineCredits
 POIN trapGetIcon
 POIN extraText
+POIN kinstoneText
 POIN progressiveTraps
 
 //repoint this text id (0x2C05) so it points to ram
@@ -122,3 +123,182 @@ ALIGN 4
 shopBuy3:
 shopItem(quiverShopItem,quiverShopSub,0x66,0x52,0x80) //third randomized item
 shopTerminator
+
+ALIGN 4
+kinstoneText:
+POIN redWText
+POIN redVText
+POIN redEText
+POIN blueLText
+POIN blueSText
+POIN greenCText
+POIN greenGText
+POIN greenPText
+
+ALIGN 4
+redWText:
+POIN redWTextEnglish
+POIN redWTextEnglish
+POIN redWTextEnglish
+POIN redWTextFrench
+POIN redWTextGerman
+POIN redWTextSpanish
+POIN redWTextItalian
+
+redWTextEnglish:
+String("Kinstone Piece (Red W)"); BYTE 0
+redWTextFrench:
+String("Fragments du Bonheur (Rouge W)"); BYTE 0
+redWTextGerman:
+String("Gl"); BYTE 0xFC; String("cksfragment (Rotes W)"); BYTE 0
+redWTextSpanish:
+String("Piedra de la suerte (Red W)"); BYTE 0
+redWTextItalian:
+String("Frammenti di gioia (Red W)"); BYTE 0
+
+ALIGN 4
+redVText:
+POIN redVTextEnglish
+POIN redVTextEnglish
+POIN redVTextEnglish
+POIN redVTextFrench
+POIN redVTextGerman
+POIN redVTextSpanish
+POIN redVTextItalian
+
+redVTextEnglish:
+String("Kinstone Piece (Red V)"); BYTE 0
+redVTextFrench:
+String("Fragments du Bonheur (Rouge V)"); BYTE 0
+redVTextGerman:
+String("Gl"); BYTE 0xFC; String("cksfragment (Rotes V)"); BYTE 0
+redVTextSpanish:
+String("Piedra de la suerte (Red V)"); BYTE 0
+redVTextItalian:
+String("Frammenti di gioia (Red V)"); BYTE 0
+
+ALIGN 4
+redEText:
+POIN redETextEnglish
+POIN redETextEnglish
+POIN redETextEnglish
+POIN redETextFrench
+POIN redETextGerman
+POIN redETextSpanish
+POIN redETextItalian
+
+redETextEnglish:
+String("Kinstone Piece (Red E)"); BYTE 0
+redETextFrench:
+String("Fragments du Bonheur (Rouge E)"); BYTE 0
+redETextGerman:
+String("Gl"); BYTE 0xFC; String("cksfragment (Rotes E)"); BYTE 0
+redETextSpanish:
+String("Piedra de la suerte (Red E)"); BYTE 0
+redETextItalian:
+String("Frammenti di gioia (Red E)"); BYTE 0
+
+ALIGN 4
+blueLText:
+POIN blueLTextEnglish
+POIN blueLTextEnglish
+POIN blueLTextEnglish
+POIN blueLTextFrench
+POIN blueLTextGerman
+POIN blueLTextSpanish
+POIN blueLTextItalian
+
+blueLTextEnglish:
+String("Kinstone Piece (Blue L)"); BYTE 0
+blueLTextFrench:
+String("Fragments du Bonheur (Bleu L)"); BYTE 0
+blueLTextGerman:
+String("Gl"); BYTE 0xFC; String("cksfragment (Blaues L)"); BYTE 0
+blueLTextSpanish:
+String("Piedra de la suerte (Blue L)"); BYTE 0
+blueLTextItalian:
+String("Frammenti di gioia (Blue L)"); BYTE 0
+
+ALIGN 4
+blueSText:
+POIN blueSTextEnglish
+POIN blueSTextEnglish
+POIN blueSTextEnglish
+POIN blueSTextFrench
+POIN blueSTextGerman
+POIN blueSTextSpanish
+POIN blueSTextItalian
+
+blueSTextEnglish:
+String("Kinstone Piece (Blue S)"); BYTE 0
+blueSTextFrench:
+String("Fragments du Bonheur (Bleu S)"); BYTE 0
+blueSTextGerman:
+String("Gl"); BYTE 0xFC; String("cksfragment (Blaues S)"); BYTE 0
+blueSTextSpanish:
+String("Piedra de la suerte (Blue S)"); BYTE 0
+blueSTextItalian:
+String("Frammenti di gioia (Blue S)"); BYTE 0
+
+ALIGN 4
+greenCText:
+POIN greenCTextEnglish
+POIN greenCTextEnglish
+POIN greenCTextEnglish
+POIN greenCTextFrench
+POIN greenCTextGerman
+POIN greenCTextSpanish
+POIN greenCTextItalian
+
+greenCTextEnglish:
+String("Kinstone Piece (Green C)"); BYTE 0
+greenCTextFrench:
+String("Fragments du Bonheur (Vert C)"); BYTE 0
+greenCTextGerman:
+String("Gl"); BYTE 0xFC; String("cksfragment (Gr"); BYTE 0xFC; String("nes C)"); BYTE 0
+greenCTextSpanish:
+String("Piedra de la suerte (Green C)"); BYTE 0
+greenCTextItalian:
+String("Frammenti di gioia (Green C)"); BYTE 0
+
+ALIGN 4
+greenGText:
+POIN greenGTextEnglish
+POIN greenGTextEnglish
+POIN greenGTextEnglish
+POIN greenGTextFrench
+POIN greenGTextGerman
+POIN greenGTextSpanish
+POIN greenGTextItalian
+
+greenGTextEnglish:
+String("Kinstone Piece (Green G)"); BYTE 0
+greenGTextFrench:
+String("Fragments du Bonheur (Vert G)"); BYTE 0
+greenGTextGerman:
+String("Gl"); BYTE 0xFC; String("cksfragment (Gr"); BYTE 0xFC; String("nes G)"); BYTE 0
+greenGTextSpanish:
+String("Piedra de la suerte (Green G)"); BYTE 0
+greenGTextItalian:
+String("Frammenti di gioia (Green G)"); BYTE 0
+
+ALIGN 4
+greenPText:
+POIN greenPTextEnglish
+POIN greenPTextEnglish
+POIN greenPTextEnglish
+POIN greenPTextFrench
+POIN greenPTextGerman
+POIN greenPTextSpanish
+POIN greenPTextItalian
+
+greenPTextEnglish:
+String("Kinstone Piece (Green P)"); BYTE 0
+greenPTextFrench:
+String("Fragments du Bonheur (Vert P)"); BYTE 0
+greenPTextGerman:
+String("Gl"); BYTE 0xFC; String("cksfragment (Gr"); BYTE 0xFC; String("nes P)"); BYTE 0
+greenPTextSpanish:
+String("Piedra de la suerte (Green P)"); BYTE 0
+greenPTextItalian:
+String("Frammenti di gioia (Green P)"); BYTE 0
