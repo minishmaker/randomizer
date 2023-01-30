@@ -185,15 +185,23 @@ ALIGN 4
 spinSoldier:
 #incbin "asm/spinSoldier.dmp"
 
-//boomerang can no longer grab golden kinstones
-PUSH; ORG $80A18; jumpToHack(boomerangFix); POP
-ALIGN 4
-boomerangFix:
-#incbin "asm/boomerangFix.dmp"
-#ifdef fastKinstones
-	WORD 0x6D
+#ifndef itemsCanCollectItems
+	//boomerang, gust jar and sword can no longer grab golden (or any) kinstones
+	PUSH; ORG $80A18; jumpToHack(boomerangFix); POP
+	ALIGN 4
+	boomerangFix:
+	#incbin "asm/boomerangFix.dmp"
+	#ifdef fastKinstones
+		WORD 0x6D
+	#else
+		WORD 0x75
+	#endif
 #else
-	WORD 0x75
+	//boomerang, gust jar and sword can grab any item
+	PUSH
+	ORG $80A14
+	BYTE 0x17
+	POP
 #endif
 
 //sword techniques are unlocked instantly
