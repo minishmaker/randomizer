@@ -1,7 +1,8 @@
 .equ bottleScrubSub, bottleScrubItem+4
 .equ gripScrubItem, bottleScrubSub+4
 .equ gripScrubSub, gripScrubItem+4
-.equ getTextOffset, gripScrubSub+4
+.equ goronMerchantCustomSets, gripScrubSub+4
+.equ getTextOffset, goronMerchantCustomSets+4
 .equ shootbutterflyCredits, getTextOffset+4
 .equ digbutterflyCredits, shootbutterflyCredits+4
 .equ swimbutterflyCredits, digbutterflyCredits+4
@@ -27,6 +28,40 @@ beq	bottleShop
 ldr	r3,=#0x290C
 cmp	r3,r1
 beq	gripShop
+ldr	r3,=#0x2C1C
+cmp	r3,r1
+bne	branchtoend
+
+@check current Goron Merchant set number
+push	{r0-r3}
+ldr	r1,=#0x2002CA3
+ldrb	r3,[r1]
+mov	r2,#0
+mov	r0,#0x40
+tst	r3,r0
+beq	result
+add	r2,#1
+mov	r0,#0x80
+tst	r3,r0
+beq	result
+add	r2,#1
+ldrb	r3,[r1,#1]
+mov	r0,#0x01
+tst	r3,r0
+beq	result
+add	r2,#1
+mov	r0,#0x02
+tst	r3,r0
+beq	result
+add	r2,#1
+
+result:
+ldr	r1,goronMerchantCustomSets
+cmp	r1,r2
+pop	{r0-r3}
+bhi	goronShop
+
+branchtoend:
 b	end
 
 witchShop:
@@ -60,6 +95,17 @@ mov	r1,r3
 mov	r2,#2
 b	buildText
 
+goronShop:
+ldr	r1,=#0x2C05
+push	{r0-r7}
+ldr	r1,=#0x2034356
+ldrb	r0,[r1]
+ldrb	r1,[r1,#1]
+bl	getText
+mov	r1,r3
+mov	r2,#3
+b	buildText
+
 buildText:
 ldr	r7,=#0x203F200	@offset
 mov	r4,r0		@name
@@ -91,6 +137,8 @@ cmp	r6,#1
 beq	is20
 cmp	r6,#2
 beq	is40
+cmp	r6,#3
+beq	pricefrommessage
 b	isFree
 is60:
 mov	r0,#'6'
@@ -100,18 +148,43 @@ strb	r0,[r7, #1]
 add	r7,#2
 b	doneprice
 is20:
-mov r0,#'2'
+mov	r0,#'2'
 strb	r0,[r7]
 mov	r0,#'0'
 strb	r0,[r7, #1]
 add	r7,#2
 b	doneprice
 is40:
-mov r0,#'4'
+mov	r0,#'4'
 strb	r0,[r7]
 mov	r0,#'0'
 strb	r0,[r7, #1]
 add	r7,#2
+b	doneprice
+pricefrommessage:
+push	{r1-r4}
+ldr	r3,=#0x2000060
+ldr	r3,[r3]
+cmp	r3,#100
+blo	twodigits
+threedigits:
+mov	r0,r3
+mov	r1,#100
+svc	#6 @division
+add	r0,#'0'
+strb	r0,[r7]
+mov	r3,r1
+add	r7,#1
+twodigits:
+mov	r0,r3
+mov	r1,#10
+svc	#6 @division
+add	r0,#'0'
+strb	r0,[r7]
+add	r1,#'0'
+strb	r1,[r7, #1]
+add	r7,#2
+pop	{r1-r4}
 b	doneprice
 isFree:
 sub	r7, #4
@@ -166,13 +239,13 @@ add	r7,#1
 
 @write the buy text to ram
 cmp	r6,#3
-beq	anjuhelp
+beq	goronbuy
 cmp	r6,#0
 beq	witchbuy
 ldr	r0,=#0x2901
 b	buytext
-anjuhelp:
-ldr	r0, =#0x89DD802
+goronbuy:
+ldr	r0,=#0x89DB8F4
 mov	r1,r7
 bl	writeText
 b	buydone
@@ -425,7 +498,7 @@ cmp	r0, #0x52
 beq	fakeKey
 cmp	r0, #0x53
 beq	fakeKey
-@check if its in the list
+@check if it's in the list
 ldr	r2,progressiveTraps
 ldrb	r2, [r2, r0]
 cmp	r2, #0xFF
@@ -454,6 +527,7 @@ bottleScrubItem:
 @WORD bottleScrubSub
 @WORD gripScrubItem
 @WORD gripScrubSub
+@WORD goronMerchantCustomSets
 @POIN getTextOffset
 @POIN shootbutterflyCredits
 @POIN digbutterflyCredits

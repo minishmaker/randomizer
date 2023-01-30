@@ -22,6 +22,99 @@
 #ifndef quiverShopSub
 	#define quiverShopSub "0x00"
 #endif
+#ifndef goronMerchantCustomSets
+	#define goronMerchantCustomSets "0"
+#endif
+#ifndef goron1LeftItem
+	#define goron1LeftItem "0x5C"
+#endif
+#ifndef goron1LeftSub
+	#define goron1LeftSub "0x6E"
+#endif
+#ifndef goron1MiddleItem
+	#define goron1MiddleItem "0x5C"
+#endif
+#ifndef goron1MiddleSub
+	#define goron1MiddleSub "0x71"
+#endif
+#ifndef goron1RightItem
+	#define goron1RightItem "0x5C"
+#endif
+#ifndef goron1RightSub
+	#define goron1RightSub "0x73"
+#endif
+#ifndef goron2LeftItem
+	#define goron2LeftItem "0x5C"
+#endif
+#ifndef goron2LeftSub
+	#define goron2LeftSub "0x6E"
+#endif
+#ifndef goron2MiddleItem
+	#define goron2MiddleItem "0x5C"
+#endif
+#ifndef goron2MiddleSub
+	#define goron2MiddleSub "0x71"
+#endif
+#ifndef goron2RightItem
+	#define goron2RightItem "0x5C"
+#endif
+#ifndef goron2RightSub
+	#define goron2RightSub "0x73"
+#endif
+#ifndef goron3LeftItem
+	#define goron3LeftItem "0x5C"
+#endif
+#ifndef goron3LeftSub
+	#define goron3LeftSub "0x6E"
+#endif
+#ifndef goron3MiddleItem
+	#define goron3MiddleItem "0x5C"
+#endif
+#ifndef goron3MiddleSub
+	#define goron3MiddleSub "0x71"
+#endif
+#ifndef goron3RightItem
+	#define goron3RightItem "0x5C"
+#endif
+#ifndef goron3RightSub
+	#define goron3RightSub "0x73"
+#endif
+#ifndef goron4LeftItem
+	#define goron4LeftItem "0x5C"
+#endif
+#ifndef goron4LeftSub
+	#define goron4LeftSub "0x6E"
+#endif
+#ifndef goron4MiddleItem
+	#define goron4MiddleItem "0x5C"
+#endif
+#ifndef goron4MiddleSub
+	#define goron4MiddleSub "0x71"
+#endif
+#ifndef goron4RightItem
+	#define goron4RightItem "0x5C"
+#endif
+#ifndef goron4RightSub
+	#define goron4RightSub "0x73"
+#endif
+#ifndef goron5LeftItem
+	#define goron5LeftItem "0x5C"
+#endif
+#ifndef goron5LeftSub
+	#define goron5LeftSub "0x6E"
+#endif
+#ifndef goron5MiddleItem
+	#define goron5MiddleItem "0x5C"
+#endif
+#ifndef goron5MiddleSub
+	#define goron5MiddleSub "0x71"
+#endif
+#ifndef goron5RightItem
+	#define goron5RightItem "0x5C"
+#endif
+#ifndef goron5RightSub
+	#define goron5RightSub "0x73"
+#endif
 
 #define shopItem(itemID,subID,originalItem,itemX,itemY) "BYTE 0x06 0x0F 0x02 itemID subID 0; SHORT originalItem itemX itemY 0 0"
 #define shopTerminator "WORD (-1) (-1) (-1) (-1)"
@@ -91,6 +184,43 @@ ORG $AAAB9C+20; WORD 0x203F200-$8AAAB9C
 ORG $AED2FC+20; WORD 0x203F200-$8AED2FC
 POP
 
+//Goron Merchant can sell any items
+PUSH; ORG $5D1B8; jumpToHack(goronMerchantItems); POP
+ALIGN 4
+goronMerchantItems:
+#incbin "asm/goronMerchantItems.dmp"
+WORD goronMerchantCustomSets
+POIN goronMerchantData
+
+//Goron Merchant uses Link's position instead of subtype to determine price
+PUSH; ORG $69134; jumpToHack(goronMerchantPrice); POP
+ALIGN 4
+goronMerchantPrice:
+#incbin "asm/goronMerchantPrice.dmp"
+
+PUSH
+//Goron Merchant doesn't care about boss flags for restocking
+ORG $5D112; SHORT 0x46C0
+ORG $5D12E; SHORT 0x46C0
+ORG $5D14A; SHORT 0x46C0
+ORG $5D166; SHORT 0x46C0
+//Allow buying item even if Kinstone bag is full
+ORG $691A8; SHORT 0x46C0
+//Receive bought item instead of Kinstone
+ORG $691B2; SHORT 0x79A8 // ldrb r0,[r5,#6]
+POP
+
+#ifdef goronJPPrices
+	PUSH
+	ORG $1112F0
+	SHORT 300 200 50
+	SHORT 300 200 50
+	SHORT 300 200 50
+	SHORT 300 200 50
+	SHORT 300 200 50
+	POP
+#endif
+
 ALIGN 4
 shopFloor:
 BYTE 0x06 0x0F 0x00 dogShopItem dogShopSub 0x04; SHORT 0 0x90 0x54 0 0x53 //floor item
@@ -123,6 +253,15 @@ ALIGN 4
 shopBuy3:
 shopItem(quiverShopItem,quiverShopSub,0x66,0x52,0x80) //third randomized item
 shopTerminator
+
+ALIGN 4
+goronMerchantData:
+//Only the first goronMerchantCustomSets rows are used, otherwise vanilla behavior
+BYTE goron1LeftItem goron1LeftSub goron1MiddleItem goron1MiddleSub goron1RightItem goron1RightSub 0 0
+BYTE goron2LeftItem goron2LeftSub goron2MiddleItem goron2MiddleSub goron2RightItem goron2RightSub 0 0
+BYTE goron3LeftItem goron3LeftSub goron3MiddleItem goron3MiddleSub goron3RightItem goron3RightSub 0 0
+BYTE goron4LeftItem goron4LeftSub goron4MiddleItem goron4MiddleSub goron4RightItem goron4RightSub 0 0
+BYTE goron5LeftItem goron5LeftSub goron5MiddleItem goron5MiddleSub goron5RightItem goron5RightSub 0 0
 
 ALIGN 4
 kinstoneText:
