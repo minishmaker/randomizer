@@ -1,30 +1,21 @@
 .thumb
-pop	{r3}
-add	r0,r1
-ldrh	r0,[r0]
-str	r3,[sp]
-ldr	r3,=#0x80A2A80
-mov	lr,r3
-.short	0xF800
 
 @check if we won
-mov	r0,r9
-add	r0,#0x70
-loop:
-ldrb	r1,[r0]
-cmp	r1,#0
-beq	end
-cmp	r1,#0xFF
-beq	won
-add	r0,#1
-b	loop
+ldrh	r0,[r1,#0x02] @ current cuccos
+ldrh	r3,[r1,#0x04] @ required cuccos
+cmp	r0,r3
+blo	normal
 
 won:
-mov	r0,r9
-add	r0,#0x68
-mov	r1,#0
-strh	r1,[r0]
+mov	r0,#0
+b	end
+
+normal:
+ldrh	r0,[r1]
+sub	r0,#1
 
 end:
-ldr	r3,=#0x80A0B31
+strh	r0,[r1]
+lsl	r0,#0x10
+ldr	r3,=#0x80A0B99
 bx	r3

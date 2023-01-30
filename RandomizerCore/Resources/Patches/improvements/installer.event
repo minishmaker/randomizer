@@ -463,7 +463,7 @@ ORG $7ACC0; SHORT 0x201E
 POP
 
 //cucco game ends instantly if you won
-PUSH; ORG $A0B26; SHORT 0xB408; jumpToHack(cuccoWin); POP
+PUSH; ORG $A0B90; jumpToHack(cuccoWin); POP
 ALIGN 4
 cuccoWin:
 #incbin "asm/cuccoWin.dmp"
