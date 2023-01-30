@@ -634,6 +634,13 @@ ALIGN 4
 sharedFusionPlaceholders:
 #incbin "asm/sharedFusionPlaceholders.dmp"
 
+//selecting "No" in ocarina menu doesn't close the menu
+PUSH
+ORG $A65D8
+SHORT 0x2001 //mov r0,#1
+SHORT 0xE004 //b #0x080A65E6
+POP
+
 #include "glitchless.event"
 #include "dungeon.event"
 #include "fairy.event"
