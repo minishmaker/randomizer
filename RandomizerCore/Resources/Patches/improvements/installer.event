@@ -614,6 +614,12 @@ cafe:
 	POP
 #endif
 
+//allow 0xF2 placeholders in shared fusion list
+PUSH; ORG $1EA88; jumpToHack(sharedFusionPlaceholders); POP
+ALIGN 4
+sharedFusionPlaceholders:
+#incbin "asm/sharedFusionPlaceholders.dmp"
+
 #include "glitchless.event"
 #include "dungeon.event"
 #include "fairy.event"
