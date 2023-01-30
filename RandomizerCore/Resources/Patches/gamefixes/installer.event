@@ -21,10 +21,7 @@ PUSH; ORG $4BCE4; jumpToHack(graveyardGate); POP //new graveyard gate area check
 ALIGN 4
 graveyardGate:
 #incbin "asm/graveyardGate.dmp"
-PUSH; ORG $4E414; jumpToHack(dampeHouse); POP //dampe's house, dampe is at house if not talekd to or gate is open
-ALIGN 4
-dampeHouse:
-#incbin "asm/dampeHouse.dmp"
+PUSH; ORG $4E41E; SHORT 0xE004; POP //Dampé is always in his house
 
 //fix cave of flames two way key door that's in one room, used to eat two keys at once
 PUSH; ORG $DF8CB; BYTE 1; POP
