@@ -97,12 +97,6 @@ ALIGN 4
 todPads:
 #incbin "asm/todPads.dmp"
 
-//first fusion can be done at any point in the game
-PUSH; ORG $1EA3C; jumpToHack(hurdyFix); POP
-ALIGN 4
-hurdyFix:
-#incbin "asm/hurdyFix.dmp"
-
 //fix getting stuck inside ice chest in tod basement
 PUSH; ORG $4CE7C; jumpToHack(iceChestFix); POP
 ALIGN 4
