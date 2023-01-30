@@ -352,8 +352,11 @@ libraryTrapdoor:
 //carpenters don't need cane to spawn
 PUSH; ORG $4E53A; SHORT 0; POP
 
-//set cucco minigame flag whenever you win, not only when you win a heart
-PUSH; ORG $A0C36; SHORT 0xE019; POP
+//set cucco minigame flag whenever you win the final round, and remove checks that can sometimes prevent prizes
+PUSH; ORG $A0C34; jumpToHack(cuccoFix); POP
+ALIGN 4
+cuccoFix:
+#incbin "asm/cuccoFix.dmp"
 
 //tingle checks for tingle trophy instead of all fusions
 PUSH; ORG $64A1C; jumpToHack(tingleCheck); POP
