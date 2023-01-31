@@ -68,10 +68,18 @@ public class NumberBoxWrapper : WrapperBase, ILogicOptionObserver
         _textBox.TextChanged += (object sender, EventArgs e) =>
         {
             if (_textBox.Text.Length == 0)
-                _textBox.Text = $"{_numberBox.DefaultValue}";
+            {
+                _numberBox.Value = _textBox.Text = _numberBox.DefaultValue.ToString();
+                return;
+            }
 
             if (byte.TryParse(_textBox.Text, out var val))
-                _numberBox.Value = val.ToString();
+            {
+                if (val > _numberBox.MaxValue)
+                    _numberBox.Value = _textBox.Text = _numberBox.MaxValue.ToString();
+                else
+                    _numberBox.Value = val.ToString();
+            }
             else
                 _textBox.Text = _numberBox.Value;
         };

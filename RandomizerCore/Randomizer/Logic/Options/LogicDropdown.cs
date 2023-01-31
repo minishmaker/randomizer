@@ -8,8 +8,8 @@ namespace RandomizerCore.Randomizer.Logic.Options;
 
 public class LogicDropdown : LogicOptionBase
 {
-    public string Selection;
-    public Dictionary<string, string> Selections;
+    public string Selection { get; set; }
+    public Dictionary<string, string> Selections { get; }
 
     public LogicDropdown(
         string name, 
@@ -17,12 +17,13 @@ public class LogicDropdown : LogicOptionBase
         string settingGroup, 
         string settingPage, 
         string descriptionText,
+        string defaultSelection,
         LogicOptionType type,
         Dictionary<string, string> selections) :
         base(name, niceName, true, settingGroup, settingPage, descriptionText, type)
     {
         Selections = selections;
-        Selection = selections.Keys.First();
+        Selection = selections.Keys.ToList()[selections.Values.ToList().IndexOf(defaultSelection)]; //Not sure if this works, it should but needs to be tested
     }
 
     public override List<LogicDefine> GetLogicDefines()

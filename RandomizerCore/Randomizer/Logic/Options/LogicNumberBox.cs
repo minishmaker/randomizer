@@ -6,22 +6,24 @@ namespace RandomizerCore.Randomizer.Logic.Options;
 
 public class LogicNumberBox : LogicOptionBase
 {
-    public bool isSelf = false;
-    public string placeholder = "";
-    public string Value = "";
-    public int DefaultValue { get; }
+    public string Value { get; set; }
+    public byte MaxValue { get; }
+    public byte DefaultValue { get; }
 
     public LogicNumberBox(
         string name, 
         string niceName, 
         string settingGroup, 
         string settingPage, 
-        int defaultValue, 
+        byte defaultValue, 
+        byte maximumValue,
         string descriptionText,
         LogicOptionType type) :
         base(name, niceName, true, settingGroup, settingPage, descriptionText, type)
     {
-        Value = $"{defaultValue}";
+        MaxValue = maximumValue;
+        DefaultValue = defaultValue > maximumValue ? maximumValue : defaultValue;
+        Value = $"{DefaultValue}";
     }
 
     public override List<LogicDefine> GetLogicDefines()
