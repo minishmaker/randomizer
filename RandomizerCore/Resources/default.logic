@@ -1,8 +1,8 @@
 
 #Default logic for the randomizer - Doesn't allow glitches, but allows unintuitive tricks
 
-!name - 0.7.0 prealpha rev1
-!version - 0.7.0_prealpha_rev1
+!name - 0.7.0 prealpha rev2
+!version - 0.7.0_prealpha_rev2
 !crc - 0xE8637292
 
 #Explanation on the required format and features
@@ -170,6 +170,7 @@
 !dropdown - Logic Settings - Setting - Require Tricks - FOWPOT - FoW Pot item early using the Gust Jar: - Low Difficulty:\n In Fortress of Winds there are 2 pots that contain items when playing with 'Special Pots', these are located in a dirt filled room in the back right section of the dungeon on 2F locked behind various locked doors.\n However the lower of the 2 pots can be grabbed with the Gust Jar from a much earlier part of the dungeon located in the front right section 2F.\n The pot can accidentally be released inside the wall which makes the item unobtainable, simply reload the room and the pot and item will respawn. - No - NOFOWPOT - 'No': From the entrance of Fortress, this location always requires at least 3 Fortress small keys as well as the Mole Mitts and Bow. - Yes - YESFOWPOT - 'Yes': From the entrance of Fortress, this location may only require the Gust Jar.
 
 !dropdown - Other - Setting - Item Pool - ITEM_POOL - Item Pool: -  - Balanced - ITEM_POOL_NORMAL - 'Balanced': Normal Item Pool. - Reduced (RIP) - ITEM_POOL_RIP - 'Reduced': Removes many items from the pool:\n All Heart Containers removed and some Heart Pieces removed (Max Hearts available is 10)\n Remote Bombs removed\n All Spin Scroll Upgrades removed, a single Spin Scroll remains\n All Butterflies removed\n All Quivers removed\n A Shield is removed, a single Shield remains\n A Boomerang is removed, a single Boomerang remains. If either 'Vanilla Red Fusions' or 'Vanilla Green Fusions' are on then no Boomerangs are removed.\n 3 Bottles removed, a single Bottle remains\n 3 Bomb bags are removed, a single Bomb bag remains - Plentiful - ITEM_POOL_PLENTIFUL - 'Plentiful': Adds extra copies of major items to the pool.\n Items with 2 extra copies:\n Sword\n Lantern\n Gust Jar\n Cane of Pacci\n Rocs Cape\n Ocarina\n Flippers\n Spin Attack\n Items with 1 extra copy:\n Bow\n Mole Mitts\n Pegasus Boots\n Grip Ring\n Graveyard Key\n If Gold Kinstones are randomized:\n 2 extra Cloud Kinstones, 2 extra Swamp Kinstones, and an extra Falls Kinstone (5 extra if combined)\n If other fusion colors are randomized:\n 2 of each red shape (6 if combined)\n 2 of each blue shape (4 if combined)\n 3 of each green shape (9 if combined)\n If Big Keysanity is on then there is an extra Big Key for each Dungeon\n If Small Keysanity is on then there are 2 extra Small Keys for each Dungeon
+#!flag - Other - Setting - Extras - RANDOM_BOTTLE_CONTENT - Random Bottle Contents - Randomizes the contents of the bottles that are shuffled in the pool, these contents are never considered by logic. - true
 !flag - Other - Setting - Item Pool - TRAPS - Traps - Add Trap items to the item pool, These items are disguised to look like major items if they are in visible locations.\n Traps have 10 different possible effects they can deploy when collected, see if you can experience them all! 
 !flag - Other - Setting - Item Pool - MEME - Fun Junk - Add some items to the item pool to replace junk, these items are completely useless.
 !dropdown - Other - Setting - Item Pool - PROGRESSIVE - Items are Progressive: - Some item upgrades are treated as completely independent items by the game. - Yes - YESPROG - 'Yes': These items are replaced with a generic "Progressive" form that upgrades your item to the next level. - No - NOPROG - 'No': Unique copies of each item will be found in the seed\n\n 5 different swords:\n Smith Sword\n Green Sword\n Red Sword\ Blue Sword\n Four Sword\n\n 2 Bows:\n Bow\n Light Arrows\n\n 2 Boomerangs:\n Boomerang\n Magic Boomerang\n\n 2 Shields:\n Shield\n Mirror Shield\n\n 5 Scrolls:\n Spin Attack\n Fast Spin\n Fast Split\n Greatspin\n Long Spin
@@ -179,15 +180,13 @@
 !flag - Other - Setting - Restrictions - HERO_MODE - Hero Mode (WIP) - Currently only enable to allow damage multiplier, will have a different function in the future. WARNING: Do not enable this with Timed OHKO. #Disables health drops from enemies/pots.\n WARNING: Do not enable this with Timed OHKO.
 !dropdown - Other - Setting - Restrictions - DAMAGE_MULTI - Damage Multiplier: - Multiply the damage received from enemies. Currently only enabled if Hero Mode is enabled. - 1x - MULTI_1 - - 2x - MULTI_2 - - 3x - MULTI_3 - - 4x - MULTI_4 - 
 !flag - Other - Setting - Extras - ITEM_HISTORY - Item Name Display - Collecting an item will display text at the bottom left corner of the screen telling you what you just picked up, useful in Keysanity modes where the textbox closes too quickly for you to read which dungeon it came from. - true
-#!flag - Other - Setting - Extras - RANDOM_BOTTLE_CONTENT - Random Bottle Contents - Randomizes the contents of the bottles that are shuffled in the pool, these contents are never considered by logic. - true
 !flag - Other - Setting - Extras - SHY_FAIRIES - Shy Fairies - Faires do not come out of bottles when your health reaches 0.
 !flag - Other - Setting - Extras - HOMEWARP - Homewarp - In the Pause menu there is a 'SLEEP' option on the 'QUEST STATUS' screen, using this will warp Link back to his bed from wherever he is. - true
 !flag - Other - Setting - Extras - BOOTS_MINISH - Minish Dash - Enables a hack that allows Minish Sized Link to use the boots. Warning: Has some unintended effects.
 !dropdown - Other - Setting - Extras - FIREROD - Firerod: - The Firerod is a leftover developer testing tool. It lets the user copy and paste tiles, effectively allowing you to walk through walls and most obstacles.\n\n WARNING: It is extremely easy to softlock yourself with this item, it is recommended to enable 'Homewarp' with this item, however some softlocks will completely prevent you from being able to beat the game. - No Firerod - NO_FIREROD - 'No Firerod': Standard - Start With - FIREROD_START - 'Start With': Firerod is in Links Starting Inventory - Shuffled - FIREROD_CHEST - 'Shuffled': Firerod is added to the item pool, it can be randomized to any location.
 
 # Cosmetic settings
-!flag - Cosmetics - Cosmetic - Music - MUSIC_RANDO - Randomize Music - Not currently a Cosmetic, changes the randomization of the seed.
-!dropdown - Cosmetics - Cosmetic - Music - MUSIC_SETTING - Music: - - Vanilla - VANILLA_MUSIC - 'Vanilla': Plays the original game music - Pokemon Emerald - POKEEMERALD_MUSIC - 'Pokemon Emerald': Plays Pokemon Emerald Music - None - NO_MUSIC - 'None': Removes Background Music
+!dropdown - Cosmetics - Cosmetic - Music - MUSIC_SETTING - Music: - - Vanilla - VANILLA_MUSIC - 'Vanilla': Plays the original game music. - Shuffled - MUSIC_RANDO - 'Shuffled': Shuffles the Music heard throughout the game. - None - NO_MUSIC - 'None': Removes Background Music.
 !flag - Cosmetics - Cosmetic - Text - RANDOM_LANGUAGE - Randomize language - Every textbox opened will have the language randomized
 !flag - Cosmetics - Cosmetic - Hearts - RAINBOW_HEARTS - Rainbow Hearts - Links Hearts shimmer through the colors of the rainbow, and not just for the month of June!
 !color - Cosmetics - Cosmetic - Hearts - HEART_COLOR - Heart Color - Rainbow Hearts overwrites this -    0xFF - 0x50 - 0x10
@@ -199,8 +198,8 @@
 !eventdefine - customRNG - 0x`RAND_INT`
 
 #version 0.6.2t
-!eventdefine - versionNumber - 0x00070017
-!eventdefine - versionNumbers - 0x00070017
+!eventdefine - versionNumber - 0x00070000
+!eventdefine - versionNumbers - 0x00070000
 
 #Cosmetic defines
 
@@ -729,6 +728,7 @@
 				!define - RC_SMALL - SmallOutside
 			!else
 				!ifdef - SMALL_KEYSANITY
+					!eventdefine - smallKeysanityTraps
 					!undefine - SMALL_KEY
 					!define - SMALL_KEY - Major
 					!define - DWS_SMALL - 
@@ -776,6 +776,7 @@
 				!define - DHC_BIG - BigOutside
 			!else
 				!ifdef - BIG_KEYSANITY
+					!eventdefine - bigKeysanityTraps
 					!undefine - BIG_KEY
 					!define - BIG_KEY - Major
 					!define - DWS_BIG - 
@@ -1101,6 +1102,7 @@
 			Items.DownThrust;		DungeonMajor;	dojo
 			Items.PerilBeam;		DungeonMajor;	dojo		
 		!else
+			!eventdefine - scrollsTraps
 			Items.RollAttack;		Major;
 			Items.DashAttack;		Major;
 			Items.RockBreaker;		Major;
@@ -3956,6 +3958,8 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 
 Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for good measure
 
+# This section before the locations is a horrible mess, feel free to refactor
+
 !ifndef - NO_GOLD_FUSIONS
 	!ifdef - SMALL_KEYS_VANILLA
 		!define - GOLDFUSIONSMALL - Unshuffled
@@ -4172,9 +4176,11 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 		!define - FALLSWATER - :NoSpoiler;	Unshuffled
 	!endif
 	!ifdef - DIGGING
-		!define - FALLSDIG - Any
+		!define - FALLSDIG - ;	Any
+		!define - FALLSDIGKINSTONE - Any
 	!else
-		!define - FALLSDIG - Inaccessible
+		!define - FALLSDIG - :NoSpoiler;	Unshuffled
+		!define - FALLSDIGKINSTONE - Inaccessible
 	!endif
 !else
 	!define - FALLSCHEST - Inaccessible
@@ -4183,7 +4189,8 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 	!define - FALLSENEMY - Inaccessible
 	!define - FALLSRUPEE - ;	Inaccessible
 	!define - FALLSWATER - ;	Inaccessible
-	!define - FALLSDIG - Inaccessible
+	!define - FALLSDIG - ; Inaccessible
+	!define - FALLSDIGKINSTONE - Inaccessible
 !endif
 
 !ifdef - NO_RED_FUSIONS
@@ -4235,7 +4242,7 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 	!define - GREENFUSIONDUNGEON - Inaccessible
 	!define - GREENFUSIONRUPEE - Inaccessible
 	!define - GREENFUSIONENEMY - Inaccessible
-	!define - GREENFUSIONDIG - Inaccessible
+	!define - GREENFUSIONDIG - ; Inaccessible
 !else
 	!define - GREENFUSION - Any
 	!define - GREENFUSIONDUNGEON - Dungeon
@@ -4250,9 +4257,9 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 		!define - GREENFUSIONENEMY - Inaccessible
 	!endif
 	!ifdef - DIGGING
-		!define - GREENFUSIONDIG - Any
+		!define - GREENFUSIONDIG - ; Any
 	!else
-		!define - GREENFUSIONDIG - Inaccessible
+		!define - GREENFUSIONDIG - :NoSpoiler; Unshuffled
 	!endif
 !endif
 
@@ -4354,11 +4361,13 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 !endif
 
 !ifdef - DIGGING
-	!define - DIG - Any
-	!define - WTFUSIONGREENDIG - `WTFUSIONGREEN`
+	!define - DIG - ; Any
+	!define - DIGKINSTONE - Any
+	!define - WTFUSIONGREENDIG - ;`WTFUSIONGREEN`
 !else
-	!define - DIG - Inaccessible
-	!define - WTFUSIONGREENDIG - Inaccessible
+	!define - DIG - :NoSpoiler ; Inaccessible
+	!define - DIGKINSTONE - Inaccessible
+	!define - WTFUSIONGREENDIG - :NoSpoiler; Inaccessible
 !endif
 
 !ifdef - UNDERWATER
@@ -4446,7 +4455,7 @@ Town_UnderLibrary_BigChest;		Any;				0x62-0x10-0x00;																(|(&Helpers.
 Town_UnderLibrary_Underwater	`WATER`;			0x0EF79B;																	(|(&Helpers.Library,Items.Flippers, Items.PacciCane), Helpers.Hundo);																																	Items.Rupee50
 
 # North Field
-NorthField_DigSpot;							`DIG`;			0x0F720F;																	(|Items.MoleMitts, Helpers.Hundo);												Items.Rupee50
+NorthField_DigSpot							`DIG`;			0x0F720F;																	(|Items.MoleMitts, Helpers.Hundo);												Items.Rupee50
 NorthField_HP;								`HP`;			0x0F864B;																	(|Helpers.OverworldBlocks, Helpers.CapeExtension, Helpers.Hundo);				Items.PieceOfHeart
 NorthField_TreeFusion_TopLeftChest;			`GREENFUSION`;	0x32-0x00-0x00;																(|Helpers.Tingle1Fusion,  Helpers.Hundo);										Items.Kinstone.RedV
 NorthField_TreeFusion_TopRightChest;		`GREENFUSION`;	0x32-0x00-0x01;																(|Helpers.AnkleFusion, Helpers.Hundo);											Items.Kinstone.RedW
@@ -4491,7 +4500,7 @@ LonLon_Cave_Chest;					Any;				0x32-0x0C-0x00;								(|(&Helpers.AccessLonLon, 
 LonLon_CaveSecret_Chest;			Any;				0x32-0x0D-0x00;								(|(&Helpers.AccessLonLon, (|Helpers.CanSplit2, Helpers.CanSplit3, Helpers.CanSplit4), Helpers.BombWalls, Items.Lantern), Helpers.Hundo);								Items.Kinstone.BlueS
 LonLon_Path_FusionChest;			`GREENFUSION`;		0x0FE086;									(|(&Helpers.Shared50Fusion, Helpers.AccessLonLon, Helpers.BonkedTrees), Helpers.Hundo);																					Items.Kinstone.RedE
 LonLon_Path_HP;						`HP`;				0x0D56EF;									(|(&Helpers.AccessLonLon, Helpers.BonkedTrees), Helpers.Hundo);																											Items.PieceOfHeart
-LonLon_DigSpot;						`DIG`;				0x0F6CFF;									(|(&Helpers.AccessLonLon, (|Items.PacciCane, Items.RocsCape), Items.MoleMitts), Helpers.Hundo);																			Items.Rupee50
+LonLon_DigSpot						`DIG`;				0x0F6CFF;									(|(&Helpers.AccessLonLon, (|Items.PacciCane, Items.RocsCape), Items.MoleMitts), Helpers.Hundo);																			Items.Rupee50
 LonLon_NorthMinishCrack_Chest;		Any;				0x27-0x00-0x00;								(|(&Helpers.AccessLonLon, (|Items.PacciCane, Items.RocsCape)), Helpers.Hundo);																							Items.Kinstone.RedW
 LonLon_GoronCaveFusion_SmallChest;	`BLUEFUSION`;		0x2F-0x01-0x00;								(|(&Helpers.4WallFusions, Helpers.GoronCave, (|Helpers.CanDestroyTrees, Items.Ocarina)), Helpers.Hundo);																Items.Rupee200
 LonLon_GoronCaveFusion_BigChest;	`BLUEFUSION`;		0x2F-0x01-0x01;								(|(&Helpers.6WallFusions, Helpers.GoronCave, (|Helpers.CanDestroyTrees, Items.Ocarina)), Helpers.Hundo);																Items.Bottle
@@ -4595,16 +4604,16 @@ Trilby_PuddleFusion_Item15; 		`GREENFUSIONRUPEE`;	0x0F849B;															(|(&He
 
 WesternWoods_FusionChest;				`BLUEGREENFUSION`;			0x03-0x08-0x01;											(|(&Helpers.Gina2Fusion, Helpers.AccessWestern), Helpers.Hundo);							Items.Shells.100
 WesternWoods_TreeFusion_HP;				`REDFUSIONHP`;			0x0F9E1F;													(|(&Helpers.HyliaMiddleMinishFusion, Helpers.AccessWestern), Helpers.Hundo);				Items.PieceOfHeart
-WesternWoods_TopDig1;					`WTFUSIONGREENDIG`;		0x0F77CF;													(|(&Helpers.Flurris2Fusion, Helpers.AccessWestern, Items.MoleMitts), Helpers.Hundo);		Items.Rupee50
-WesternWoods_TopDig2;					`WTFUSIONGREENDIG`;		0x0F77DF;													(|(&Helpers.Flurris2Fusion, Helpers.AccessWestern, Items.MoleMitts), Helpers.Hundo);		Items.Rupee50
-WesternWoods_TopDig3;					`WTFUSIONGREENDIG`;		0x0F77EF;													(|(&Helpers.Flurris2Fusion, Helpers.AccessWestern, Items.MoleMitts), Helpers.Hundo);		Items.Rupee50
-WesternWoods_TopDig4;					`WTFUSIONGREENDIG`;		0x0F77FF;													(|(&Helpers.Flurris2Fusion, Helpers.AccessWestern, Items.MoleMitts), Helpers.Hundo);		Items.Rupee50
-WesternWoods_TopDig5;					`WTFUSIONGREENDIG`;		0x0F780F;													(|(&Helpers.Flurris2Fusion, Helpers.AccessWestern, Items.MoleMitts), Helpers.Hundo);		Items.Rupee50
-WesternWoods_TopDig6;					`WTFUSIONGREENDIG`;		0x0F781F;													(|(&Helpers.Flurris2Fusion, Helpers.AccessWestern, Items.MoleMitts), Helpers.Hundo);		Items.Rupee50
+WesternWoods_TopDig1					`WTFUSIONGREENDIG`;		0x0F77CF;													(|(&Helpers.Flurris2Fusion, Helpers.AccessWestern, Items.MoleMitts), Helpers.Hundo);		Items.Rupee50
+WesternWoods_TopDig2					`WTFUSIONGREENDIG`;		0x0F77DF;													(|(&Helpers.Flurris2Fusion, Helpers.AccessWestern, Items.MoleMitts), Helpers.Hundo);		Items.Rupee50
+WesternWoods_TopDig3					`WTFUSIONGREENDIG`;		0x0F77EF;													(|(&Helpers.Flurris2Fusion, Helpers.AccessWestern, Items.MoleMitts), Helpers.Hundo);		Items.Rupee50
+WesternWoods_TopDig4					`WTFUSIONGREENDIG`;		0x0F77FF;													(|(&Helpers.Flurris2Fusion, Helpers.AccessWestern, Items.MoleMitts), Helpers.Hundo);		Items.Rupee50
+WesternWoods_TopDig5					`WTFUSIONGREENDIG`;		0x0F780F;													(|(&Helpers.Flurris2Fusion, Helpers.AccessWestern, Items.MoleMitts), Helpers.Hundo);		Items.Rupee50
+WesternWoods_TopDig6					`WTFUSIONGREENDIG`;		0x0F781F;													(|(&Helpers.Flurris2Fusion, Helpers.AccessWestern, Items.MoleMitts), Helpers.Hundo);		Items.Rupee50
 WesternWoods_PercyFusion_Moblin;		`REDFUSION`;			0x0123D6;													(|(&Helpers.PercyFusion, Helpers.AccessWestern, Helpers.Percy), Helpers.Hundo);				Items.Rupee50
 WesternWoods_PercyFusion_Percy;			`REDFUSION`;			0x06B058:FirstByte, 0x06B05A:SecondByte;					(|(&Helpers.PercyFusion, Helpers.AccessWestern, Helpers.Percy), Helpers.Hundo);				Items.Shells.100
-WesternWoods_BottomDig1;				`GREENFUSIONDIG`;		0x0F782F;													(|(&Helpers.CastleMinishFusion, Helpers.AccessWestern, Items.MoleMitts), Helpers.Hundo);	Items.Rupee200
-WesternWoods_BottomDig2;				`GREENFUSIONDIG`;		0x0F783F;													(|(&Helpers.CastleMinishFusion, Helpers.AccessWestern, Items.MoleMitts), Helpers.Hundo);	Items.Rupee200
+WesternWoods_BottomDig1					`GREENFUSIONDIG`;		0x0F782F;													(|(&Helpers.CastleMinishFusion, Helpers.AccessWestern, Items.MoleMitts), Helpers.Hundo);	Items.Rupee200
+WesternWoods_BottomDig2					`GREENFUSIONDIG`;		0x0F783F;													(|(&Helpers.CastleMinishFusion, Helpers.AccessWestern, Items.MoleMitts), Helpers.Hundo);	Items.Rupee200
 WesternWoods_GoldenOcto;				`BLUEGREENFUSIONENEMY`;	golden9Item:Define:FirstByte, golden9Sub:Define:SecondByte;	(|(&Helpers.MinishScrub1Fusion, Helpers.AccessWestern, Helpers.HasSword), Helpers.Hundo);	Items.Rupee100
 
 WesternWoods_BeanstalkFusion_Chest;		`BLUEFUSION`;		0x0D-0x04-0x00;												(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);					Items.Kinstone.RedW
@@ -4666,14 +4675,14 @@ Crenel_RainPathFusion_Chest;		`GREENFUSION`;		0x0FE066;																(|(&Helpe
 AccessMelari;	Helper;	;	(|Helpers.CrenelWindCrest, (&Helpers.AccessCrenel, (|(&Items.PacciCane, (|Items.GripRing, Helpers.CrenelMushroom)), (&Items.GripRing, (|Items.RocsCape, Helpers.LightArrowBreak, Items.GustJar), Helpers.CrenelSwitch))))
 Crenel_UpperBlock_Chest				`COF_OUTSIDE`;	Dungeon;		0x26-0x03-0x00;	(|Helpers.AccessMelari, Helpers.Hundo);								Items.Kinstone.BlueS
 Crenel_MinesPathFusion_Chest		`COF_OUTSIDE`;	`GREENFUSION`;	0x0FE096;		(|(&Helpers.DavidJr2Fusion, Helpers.AccessMelari), Helpers.Hundo);	Items.Shells.200
-Crenel_Melari_LowerMiddle_Dig		`COF_OUTSIDE`;	`DIG`;			0x0DC8C3;	 	(|(&Helpers.AccessMelari, Items.MoleMitts), Helpers.Hundo);			Items.Kinstone.BlueL
-Crenel_Melari_VeryBottom_Dig		`COF_OUTSIDE`;	`DIG`;			0x0DC933;	 	(|(&Helpers.AccessMelari, Items.MoleMitts), Helpers.Hundo);			Items.Kinstone.RedV
-Crenel_Melari_UpperMiddle_LeftDig	`COF_OUTSIDE`;	`DIG`;			0x0DC923;	 	(|(&Helpers.AccessMelari, Items.MoleMitts), Helpers.Hundo);			Items.Rupee20
-Crenel_Melari_UpperMiddle_MiddleDig	`COF_OUTSIDE`;	`DIG`;			0x0DC913;	 	(|(&Helpers.AccessMelari, Items.MoleMitts), Helpers.Hundo);			Items.Kinstone.GreenG
-Crenel_Melari_UpperMiddle_RightDig	`COF_OUTSIDE`;	`DIG`;			0x0DC903;	 	(|(&Helpers.AccessMelari, Items.MoleMitts), Helpers.Hundo);			Items.Rupee20
-Crenel_Melari_UpperTop_RightDig		`COF_OUTSIDE`;	`DIG`;			0x0DC8F3;	 	(|(&Helpers.AccessMelari, Items.MoleMitts), Helpers.Hundo);			Items.Rupee20
-Crenel_Melari_UpperTop_MiddleDig	`COF_OUTSIDE`;	`DIG`;			0x0DC8D3;	 	(|(&Helpers.AccessMelari, Items.MoleMitts), Helpers.Hundo);			Items.Rupee20
-Crenel_Melari_UpperTop_LeftDig		`COF_OUTSIDE`;	`DIG`;			0x0DC8E3;	 	(|(&Helpers.AccessMelari, Items.MoleMitts), Helpers.Hundo);			Items.Kinstone.BlueS
+Crenel_Melari_LowerMiddle_Dig		`COF_OUTSIDE`;	`DIGKINSTONE`;	0x0DC8C3;	 	(|(&Helpers.AccessMelari, Items.MoleMitts), Helpers.Hundo);			Items.Kinstone.BlueL
+Crenel_Melari_VeryBottom_Dig		`COF_OUTSIDE`;	`DIGKINSTONE`;	0x0DC933;	 	(|(&Helpers.AccessMelari, Items.MoleMitts), Helpers.Hundo);			Items.Kinstone.RedV
+Crenel_Melari_UpperMiddle_LeftDig	`COF_OUTSIDE`	`DIG`;			0x0DC923;	 	(|(&Helpers.AccessMelari, Items.MoleMitts), Helpers.Hundo);			Items.Rupee20
+Crenel_Melari_UpperMiddle_MiddleDig	`COF_OUTSIDE`;	`DIGKINSTONE`;	0x0DC913;	 	(|(&Helpers.AccessMelari, Items.MoleMitts), Helpers.Hundo);			Items.Kinstone.GreenG
+Crenel_Melari_UpperMiddle_RightDig	`COF_OUTSIDE`	`DIG`;			0x0DC903;	 	(|(&Helpers.AccessMelari, Items.MoleMitts), Helpers.Hundo);			Items.Rupee20
+Crenel_Melari_UpperTop_RightDig		`COF_OUTSIDE`	`DIG`;			0x0DC8F3;	 	(|(&Helpers.AccessMelari, Items.MoleMitts), Helpers.Hundo);			Items.Rupee20
+Crenel_Melari_UpperTop_MiddleDig	`COF_OUTSIDE`	`DIG`;			0x0DC8D3;	 	(|(&Helpers.AccessMelari, Items.MoleMitts), Helpers.Hundo);			Items.Rupee20
+Crenel_Melari_UpperTop_LeftDig		`COF_OUTSIDE`;	`DIGKINSTONE`;	0x0DC8E3;	 	(|(&Helpers.AccessMelari, Items.MoleMitts), Helpers.Hundo);			Items.Kinstone.BlueS
 	CoF_Entrance		`DUNGEONENTRANCE`;	DumCoFENT:Define:FirstByte, DumCoFENT:Define:SecondByte;	Helpers.AccessCoF;		Items.Entrance.0x02
 
 # Swamp
@@ -4760,9 +4769,9 @@ Falls_WaterDigCaveFusion_HP;			`REDFUSIONHP`;	0x0F3DD7;													(|(&Helpers.
 Falls_WaterDigCaveFusion_Chest;			`REDFUSION`;	0x16-0x00-0x00;												(|(&Helpers.VillageSideMinish2Fusion, Helpers.OverworldBlocks, Helpers.CapeExtension, Items.MoleMitts), (&Helpers.VillageSideMinish2Fusion, Helpers.AccessFalls, Items.GripRing, (|Items.Flippers, (&Items.RocsCape, Helpers.DarkRooms)), Items.MoleMitts), Helpers.Hundo);	Items.Shells.50
 Falls_1stCave_Chest;					`FALLSCHEST`;	0x33-0x05-0x00;												(|(&Helpers.OverworldBlocks, Helpers.FallsFusion, Helpers.DarkRooms, Helpers.BombWalls), (&Helpers.AccessFalls, Items.GripRing, Helpers.BombWalls), Helpers.Hundo);																											Items.Shells.50
 Falls_Cliff_Chest;						`FALLSCHEST`;	0x0A-0x00-0x00;												(|(&Helpers.OverworldBlocks, Helpers.FallsFusion, Helpers.DarkRooms, Helpers.BombWalls, (|Helpers.CanSplit3, Helpers.CanSplit4)), (&Helpers.AccessFalls, Items.GripRing, Helpers.BombWalls, Helpers.DarkRooms, (|Helpers.CanSplit3, Helpers.CanSplit4)), Helpers.Hundo);	Items.Shells.100
-Falls_SouthDigSpot;						`FALLSDIG`;		0x0F8823;													(|(&Helpers.OverworldBlocks, Helpers.FallsFusion, Helpers.DarkRooms, Items.MoleMitts), (&Helpers.AccessFalls, Items.GripRing, Items.MoleMitts), Helpers.Hundo);																												Items.Rupee50
+Falls_SouthDigSpot						`FALLSDIG`;		0x0F8823;													(|(&Helpers.OverworldBlocks, Helpers.FallsFusion, Helpers.DarkRooms, Items.MoleMitts), (&Helpers.AccessFalls, Items.GripRing, Items.MoleMitts), Helpers.Hundo);																												Items.Rupee50
 Falls_GoldenTektite;					`FALLSENEMY`;	golden6Item:Define:FirstByte, golden6Sub:Define:SecondByte;	(|(&Helpers.HaileyFusion,  Helpers.AccessFalls, Helpers.HasSword), Helpers.Hundo);	Items.Rupee100
-Falls_NorthDigSpot;						`FALLSDIG`;		0x0F8813;													(|(&Helpers.AccessFalls, Items.MoleMitts), Helpers.Hundo);							Items.Rupee50
+Falls_NorthDigSpot						`FALLSDIG`;		0x0F8813;													(|(&Helpers.AccessFalls, Items.MoleMitts), Helpers.Hundo);							Items.Rupee50
 Falls_RockFusion_Chest;					`FALLSGREEN`;	0x0FE106;													(|(&Helpers.CapriceFusion, Helpers.AccessFalls), Helpers.Hundo);					Items.Kinstone.BlueS
 Falls_WaterfallFusion_HP;				`FALLSHP`;		0x0F906F;													(|(&Helpers.GaleFusion, Helpers.AccessFalls, Items.Flippers), Helpers.Hundo);		Items.PieceOfHeart
 Falls_RupeeCave_TopTop					`FALLSRUPEE`;	0x0F8F27;													(|Helpers.AccessFalls, Helpers.Hundo);						Items.Rupee1
@@ -4785,22 +4794,22 @@ Falls_TopCave_Chest;					`FALLSCHEST`;	0x33-0x00-0x00;												(|Helpers.Acce
 
 # Cloud Tops
 AccessClouds;					Helper;		;					(|(&Helpers.AccessFalls, Items.GripRing), Helpers.AccessWindTribe)
-Clouds_FreeChest;				`FALLSCHEST`;	0x08-0x01-0x00;	(|Helpers.AccessClouds, Helpers.Hundo);																Items.Kinstone.GoldenCloudTops
-Clouds_NorthEast_DigSpot;		`FALLSDIG`;		0x0DCB5B;		(|(&Helpers.AccessClouds, Items.MoleMitts), Helpers.Hundo);											Items.Kinstone.RedW
-Clouds_North_Kill;				`FALLSCHEST`;	0x0DCEDF;		(|(&Helpers.AccessClouds, (|Items.RocsCape, Items.MoleMitts), Helpers.CloudsKill), Helpers.Hundo);	Items.Kinstone.GoldenCloudTops
-Clouds_NorthWest_LeftChest;		`FALLSCHEST`;	0x08-0x01-0x03;	(|(&Helpers.AccessClouds, Items.MoleMitts), Helpers.Hundo);											Items.Shells.50
-Clouds_NorthWest_RightChest;	`FALLSCHEST`;	0x08-0x01-0x04;	(|(&Helpers.AccessClouds, Items.MoleMitts), Helpers.Hundo);											Items.Shells.50
-Clouds_NorthWest_DigSpot;		`FALLSDIG`;		0x0DCB4B;		(|(&Helpers.AccessClouds, Items.MoleMitts), Helpers.Hundo);											Items.Kinstone.GreenC
-Clouds_NorthWest_BottomChest;	`FALLSCHEST`;	0x08-0x01-0x02;	(|(&Helpers.AccessClouds, (|Items.RocsCape, Items.MoleMitts)), Helpers.Hundo);						Items.Kinstone.GoldenCloudTops
-Clouds_South_LeftChest;			`FALLSCHEST`;	0x08-0x01-0x05;	(|(&Helpers.AccessClouds, Items.MoleMitts), Helpers.Hundo);											Items.Shells.50
-Clouds_South_DigSpot;			`FALLSDIG`;		0x0DCB8B;		(|(&Helpers.AccessClouds, Items.MoleMitts), Helpers.Hundo);											Items.Kinstone.GreenP
-Clouds_South_MiddleChest;		`FALLSCHEST`;	0x08-0x01-0x01;	(|(&Helpers.AccessClouds, (|Items.RocsCape, Items.MoleMitts)), Helpers.Hundo);						Items.Kinstone.GoldenCloudTops
-Clouds_South_MiddleDigSpot;		`FALLSDIG`;		0x0DCB6B;		(|(&Helpers.AccessClouds, Items.MoleMitts), Helpers.Hundo);											Items.Kinstone.BlueL
-Clouds_South_Kill;				`FALLSCHEST`;	0x0DCEEF;		(|(&Helpers.AccessClouds, (|Items.RocsCape, Items.MoleMitts), Helpers.CloudsKill), Helpers.Hundo);	Items.Kinstone.GoldenCloudTops
-Clouds_South_RightChest;		`FALLSCHEST`;	0x08-0x01-0x06;	(|(&Helpers.AccessClouds, (|Items.RocsCape, Items.MoleMitts)), Helpers.Hundo);						Items.Shells.50
-Clouds_South_RightDigSpot;		`FALLSDIG`;		0x0DCB9B;		(|(&Helpers.AccessClouds, Items.MoleMitts), Helpers.Hundo);											Items.Kinstone.RedV
-Clouds_SouthEast_BottomDigSpot;	`FALLSDIG`;		0x0DCBAB;		(|(&Helpers.AccessClouds, Items.MoleMitts), Helpers.Hundo);											Items.Kinstone.BlueS
-Clouds_SouthEast_TopDigSpot;    `FALLSDIG`;		0x0DCB7B;		(|(&Helpers.AccessClouds, Items.MoleMitts), Helpers.Hundo);											Items.Kinstone.GreenG
+Clouds_FreeChest;				`FALLSCHEST`;		0x08-0x01-0x00;	(|Helpers.AccessClouds, Helpers.Hundo);																Items.Kinstone.GoldenCloudTops
+Clouds_NorthEast_DigSpot;		`FALLSDIGKINSTONE`;	0x0DCB5B;		(|(&Helpers.AccessClouds, Items.MoleMitts), Helpers.Hundo);											Items.Kinstone.RedW
+Clouds_North_Kill;				`FALLSCHEST`;		0x0DCEDF;		(|(&Helpers.AccessClouds, (|Items.RocsCape, Items.MoleMitts), Helpers.CloudsKill), Helpers.Hundo);	Items.Kinstone.GoldenCloudTops
+Clouds_NorthWest_LeftChest;		`FALLSCHEST`;		0x08-0x01-0x03;	(|(&Helpers.AccessClouds, Items.MoleMitts), Helpers.Hundo);											Items.Shells.50
+Clouds_NorthWest_RightChest;	`FALLSCHEST`;		0x08-0x01-0x04;	(|(&Helpers.AccessClouds, Items.MoleMitts), Helpers.Hundo);											Items.Shells.50
+Clouds_NorthWest_DigSpot;		`FALLSDIGKINSTONE`;	0x0DCB4B;		(|(&Helpers.AccessClouds, Items.MoleMitts), Helpers.Hundo);											Items.Kinstone.GreenC
+Clouds_NorthWest_BottomChest;	`FALLSCHEST`;		0x08-0x01-0x02;	(|(&Helpers.AccessClouds, (|Items.RocsCape, Items.MoleMitts)), Helpers.Hundo);						Items.Kinstone.GoldenCloudTops
+Clouds_South_LeftChest;			`FALLSCHEST`;		0x08-0x01-0x05;	(|(&Helpers.AccessClouds, Items.MoleMitts), Helpers.Hundo);											Items.Shells.50
+Clouds_South_DigSpot;			`FALLSDIGKINSTONE`;	0x0DCB8B;		(|(&Helpers.AccessClouds, Items.MoleMitts), Helpers.Hundo);											Items.Kinstone.GreenP
+Clouds_South_MiddleChest;		`FALLSCHEST`;		0x08-0x01-0x01;	(|(&Helpers.AccessClouds, (|Items.RocsCape, Items.MoleMitts)), Helpers.Hundo);						Items.Kinstone.GoldenCloudTops
+Clouds_South_MiddleDigSpot;		`FALLSDIGKINSTONE`;	0x0DCB6B;		(|(&Helpers.AccessClouds, Items.MoleMitts), Helpers.Hundo);											Items.Kinstone.BlueL
+Clouds_South_Kill;				`FALLSCHEST`;		0x0DCEEF;		(|(&Helpers.AccessClouds, (|Items.RocsCape, Items.MoleMitts), Helpers.CloudsKill), Helpers.Hundo);	Items.Kinstone.GoldenCloudTops
+Clouds_South_RightChest;		`FALLSCHEST`;		0x08-0x01-0x06;	(|(&Helpers.AccessClouds, (|Items.RocsCape, Items.MoleMitts)), Helpers.Hundo);						Items.Shells.50
+Clouds_South_RightDigSpot;		`FALLSDIGKINSTONE`;	0x0DCB9B;		(|(&Helpers.AccessClouds, Items.MoleMitts), Helpers.Hundo);											Items.Kinstone.RedV
+Clouds_SouthEast_BottomDigSpot;	`FALLSDIGKINSTONE`;	0x0DCBAB;		(|(&Helpers.AccessClouds, Items.MoleMitts), Helpers.Hundo);											Items.Kinstone.BlueS
+Clouds_SouthEast_TopDigSpot;    `FALLSDIGKINSTONE`;	0x0DCB7B;		(|(&Helpers.AccessClouds, Items.MoleMitts), Helpers.Hundo);											Items.Kinstone.GreenG
 
 	!define - POW_OUTSIDE - :PoWSmallOutside	:PoWBigOutside	:PoWCompassOutside	:SmallOutside	:BigOutside	:CompassOutside
 !ifdef - NO_RED_FUSIONS
