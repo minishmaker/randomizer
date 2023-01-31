@@ -185,11 +185,24 @@ ALIGN 4
 spinSoldier:
 #incbin "asm/spinSoldier.dmp"
 
-//boomerang can no longer grab golden kinstones
-PUSH; ORG $80A18; jumpToHack(boomerangFix); POP
-ALIGN 4
-boomerangFix:
-#incbin "asm/boomerangFix.dmp"
+#ifndef itemsCanCollectItems
+	//boomerang, gust jar and sword can no longer grab golden (or any) kinstones
+	PUSH; ORG $80A18; jumpToHack(boomerangFix); POP
+	ALIGN 4
+	boomerangFix:
+	#incbin "asm/boomerangFix.dmp"
+	#ifdef fastKinstones
+		WORD 0x6D
+	#else
+		WORD 0x75
+	#endif
+#else
+	//boomerang, gust jar and sword can grab any item
+	PUSH
+	ORG $80A14
+	BYTE 0x17
+	POP
+#endif
 
 //sword techniques are unlocked instantly
 PUSH; ORG $83618; jumpToHack(scrollFix); POP
@@ -450,7 +463,7 @@ ORG $7ACC0; SHORT 0x201E
 POP
 
 //cucco game ends instantly if you won
-PUSH; ORG $A0B26; SHORT 0xB408; jumpToHack(cuccoWin); POP
+PUSH; ORG $A0B90; jumpToHack(cuccoWin); POP
 ALIGN 4
 cuccoWin:
 #incbin "asm/cuccoWin.dmp"
@@ -470,6 +483,7 @@ WORD bottleScrubItem
 WORD bottleScrubSub
 WORD gripScrubItem
 WORD gripScrubSub
+WORD goronMerchantCustomSets
 POIN getTextOffset
 POIN shootbutterflyCredits
 POIN digbutterflyCredits
@@ -483,6 +497,7 @@ POIN redclockCredits
 POIN figurineCredits
 POIN trapGetIcon
 POIN extraText
+POIN kinstoneText
 POIN progressiveTraps
 
 //skip big chu cutscenes
@@ -613,6 +628,19 @@ cafe:
 	//BYTE 0x47 0x4E 0x50 0x53 0x55 0x56 0x58 0x5F 0x60
 	POP
 #endif
+
+//allow 0xF2 placeholders in shared fusion list
+PUSH; ORG $1EA88; jumpToHack(sharedFusionPlaceholders); POP
+ALIGN 4
+sharedFusionPlaceholders:
+#incbin "asm/sharedFusionPlaceholders.dmp"
+
+//selecting "No" in ocarina menu doesn't close the menu
+PUSH
+ORG $A65D8
+SHORT 0x2001 //mov r0,#1
+SHORT 0xE004 //b #0x080A65E6
+POP
 
 #include "glitchless.event"
 #include "dungeon.event"

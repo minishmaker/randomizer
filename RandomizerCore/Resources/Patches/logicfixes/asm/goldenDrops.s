@@ -39,9 +39,19 @@ bhi	rupeelike
 match:
 ldrb	r1, [r4, #2]
 ldrb	r2, [r4, #3]
-ldr	r3, =#0x80542D4
-mov	lr, r3
-.short	0xF800
+
+@ late entry to CreateItemDrop to skip checks whether item can drop
+getPC:
+mov	r3, pc
+add	r3, #(returnCreateItemDrop-getPC-4)|1
+push	{r3}
+push	{r4-r6}
+mov	r6, r0
+mov	r4, r1
+mov	r5, r2
+ldr	r3, =#0x805435A|1
+bx	r3
+returnCreateItemDrop:
 
 @ give the item the flag we want
 ldrh	r0, [r4, #4]
