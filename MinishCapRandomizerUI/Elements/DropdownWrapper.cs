@@ -50,9 +50,21 @@ public class DropdownWrapper : WrapperBase, ILogicOptionObserver
             Location = new Point(initialX + TextWidth + Constants.WidthMargin, initialY + DropdownAlign),
             Height = DropdownHeight,
             Width = DropdownWidth,
-            SelectedText = _dropdown.Selection,
-            DataSource = _dropdown.Selections.Keys.ToList(),
         };
+
+        var selectedDefaultItem = false;
+        foreach (var key in _dropdown.Selections.Keys) 
+        {
+            _comboBox.Items.Add(key);
+            if (!selectedDefaultItem && key == _dropdown.Selection) 
+            {
+                _comboBox.SelectedItem = _dropdown.Selection; 
+                selectedDefaultItem = true;
+            }
+        }
+
+        if (!selectedDefaultItem)
+            _comboBox.SelectedItem = _comboBox.Items[0];
 
         if (!string.IsNullOrEmpty(_dropdown.DescriptionText))
         {
@@ -67,12 +79,12 @@ public class DropdownWrapper : WrapperBase, ILogicOptionObserver
 
         _comboBox.SelectedIndexChanged += (object sender, EventArgs e) =>
         {
-            _dropdown.Selection = (string)_comboBox.SelectedValue;
+            _dropdown.Selection = (string)_comboBox.SelectedItem;
         };
         
         _comboBox.SelectedValueChanged += (object sender, EventArgs e) =>
         {
-            _dropdown.Selection = (string)_comboBox.SelectedValue;
+            _dropdown.Selection = (string)_comboBox.SelectedItem;
         };
         
         _comboBox.KeyPress += (object sender, KeyPressEventArgs e) =>
