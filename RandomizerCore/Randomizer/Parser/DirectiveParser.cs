@@ -613,7 +613,7 @@ public class DirectiveParser
 
 	private LogicOptionBase ParseDropdownDirective(string[] directiveParts)
 	{
-		if (directiveParts.Length % 3 != 1 || directiveParts.Length < 10)
+		if (directiveParts.Length % 3 != 2 || directiveParts.Length < 11)
 			throw new ParserException("A dropdown somewhere has an incorrect number of parameters!");
 
 		var optionType = GetOptionType(directiveParts[2]);
@@ -624,15 +624,16 @@ public class DirectiveParser
 		var selectionDict = new Dictionary<string, string>();
 		var descriptionText = new StringBuilder();
 		descriptionText.AppendLine(directiveParts[6]);
+        var defaultSelection = directiveParts[7];
 		
-		for (var i = 7; i < directiveParts.Length; )
+		for (var i = 8; i < directiveParts.Length; )
 		{
 			selectionDict.Add(directiveParts[i++], directiveParts[i++]);
 			descriptionText.AppendLine($"\n{directiveParts[i++]}");
 		}
 
 		return new LogicDropdown(directiveParts[4], directiveParts[5], directiveParts[3], 
-			directiveParts[1], descriptionText.ToString(), optionType, selectionDict);
+			directiveParts[1], descriptionText.ToString(), defaultSelection, optionType, selectionDict);
 	}
 
 	private LogicColorPicker ParseColorDirective(string[] directiveParts)
@@ -670,7 +671,7 @@ public class DirectiveParser
 
 	private LogicOptionBase ParseNumberboxDirective(string[] directiveParts)
 	{
-		if (directiveParts.Length != 8)
+		if (directiveParts.Length != 9)
 			throw new ParserException("Numberbox does not have the right number of parameters!");
 
 		var optionType = GetOptionType(directiveParts[2]);
@@ -680,8 +681,11 @@ public class DirectiveParser
 		
 		if (!byte.TryParse(directiveParts[7], out var defaultValue))
 			throw new ParserException($"Numberbox has invalid default value {directiveParts[7]}!");
+		
+        if (!byte.TryParse(directiveParts[7], out var maxValue))
+            throw new ParserException($"Numberbox has invalid maximum value {directiveParts[8]}!");
 
 		return new LogicNumberBox(directiveParts[4], directiveParts[5], directiveParts[3], 
-			directiveParts[1], defaultValue, directiveParts[6], optionType);
+			directiveParts[1], defaultValue, maxValue, directiveParts[6], optionType);
 	}
 }
