@@ -107,6 +107,7 @@
 #!numberbox - Main Settings - Setting - Dark Hyrule Castle Requirements - FIGURINE_COUNT - Figurines required: - The number of Figurines required to activate the Sanctuary, do not raise this to higher than the total number of Figurines or you won't be able to beat the game silly. - 20
 
 !dropdown - Main Settings - Setting - Shuffle - DOJO - Dojo Swordmasters: -	Dojo Swordmasters have Scrolls as their rewards. - Vanilla Scrolls - DOJOVANILLA - 'Vanilla Scrolls': Dojo Swordmasters offer their vanilla rewards. - Randomized Scrolls - DOJORANDOM - 'Randomized Scrolls': Scrolls are shuffled between the Dojo Swordmasters. - Any Item - DOJOANY - 'Any Item': Dojo Swordmasters are shuffled into the main pool.
+!dropdown - Main Settings - Setting - Shuffle - CUCCO_SETTING - Cucco Minigame: - How many rounds of the Cucco Minigame are playable and have an item. - Nothing - CUCCO_0 - - 1 Round - CUCCO_1 - - 2 Rounds - CUCCO_2 - - 3 Rounds - CUCCO_3 - - 4 Rounds - CUCCO_4 - - 5 Rounds - CUCCO_5 - - 6 Rounds - CUCCO_6 - - 7 Rounds - CUCCO_7 - - 8 Rounds - CUCCO_8 - - 9 Rounds - CUCCO_9 - - 10 Rounds - CUCCO_10 -
 !flag - Main Settings - Setting - Shuffle - HEART_RANDO - Heart Pieces and Containers - If enabled will shuffle Heart Pieces and Heart Containers into the pool, This makes any items randomized to Heart Piece locations visible prior to collecting them. - true
 !flag - Main Settings - Setting - Shuffle - RUPEEMANIA - Rupees - If enabled will shuffle any free standing Rupees normally found in the world that are one off collectable, this adds a lot of extra money in the pool and certain locations will be very item dense.\n\n If combined with 'Dig Spots', will shuffle Rupees found when digging in special dig spots.\n\n If combined with 'Underwater Items', will shuffle Rupees found underwater at special waterfalls.
 !flag - Main Settings - Setting - Shuffle - SPECIALPOTS - Special Pots - If enabled will shuffle items found is special pots around the world that contain one off collectables, this setting does not affect the LonLonRanch Key that is always shuffled.
@@ -268,6 +269,7 @@
 !define - `AD_PED`
 !define - `PROGRESSIVE`
 !define - `DOJO`
+!define - `CUCCO_SETTING`
 !define - `ENTRANCES`
 
 # Logic setting defines
@@ -4377,6 +4379,195 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 	!define - DUNGEONUNDERWATER - :NoSpoiler;	Unshuffled
 !endif
 
+!ifdef - CUCCO_0
+    !eventdefine - cuccoSkippedLevels - 9
+    !eventdefine - cuccoHeartPieceFlag - 1
+	!define - CUCCO1 - :NoSpoiler; Inaccessible
+	!define - CUCCO2 - :NoSpoiler; Inaccessible
+	!define - CUCCO3 - :NoSpoiler; Inaccessible
+	!define - CUCCO4 - :NoSpoiler; Inaccessible
+	!define - CUCCO5 - :NoSpoiler; Inaccessible
+	!define - CUCCO6 - :NoSpoiler; Inaccessible
+	!define - CUCCO7 - :NoSpoiler; Inaccessible
+	!define - CUCCO8 - :NoSpoiler; Inaccessible
+	!define - CUCCO9 - :NoSpoiler; Inaccessible
+	!ifdef - HEART_RANDO
+		!define - CUCCO10 - :NoSpoiler; Inaccessible
+	!else
+		!define - CUCCO10 - ; Inaccessible
+	!endif
+!endif
+!ifdef - CUCCO_1
+    !eventdefine - cuccoSkippedLevels - 9
+	!define - CUCCO1 - :NoSpoiler; Inaccessible
+	!define - CUCCO2 - :NoSpoiler; Inaccessible
+	!define - CUCCO3 - :NoSpoiler; Inaccessible
+	!define - CUCCO4 - :NoSpoiler; Inaccessible
+	!define - CUCCO5 - :NoSpoiler; Inaccessible
+	!define - CUCCO6 - :NoSpoiler; Inaccessible
+	!define - CUCCO7 - :NoSpoiler; Inaccessible
+	!define - CUCCO8 - :NoSpoiler; Inaccessible
+	!define - CUCCO9 - :NoSpoiler; Inaccessible
+	!ifdef - HEART_RANDO
+		!define - CUCCO10 - ; Any
+	!else
+		!define - CUCCO10 - ; Unshuffled
+	!endif
+!endif
+!ifdef - CUCCO_2
+    !eventdefine - cuccoSkippedLevels - 8
+	!define - CUCCO1 - :NoSpoiler; Inaccessible
+	!define - CUCCO2 - :NoSpoiler; Inaccessible
+	!define - CUCCO3 - :NoSpoiler; Inaccessible
+	!define - CUCCO4 - :NoSpoiler; Inaccessible
+	!define - CUCCO5 - :NoSpoiler; Inaccessible
+	!define - CUCCO6 - :NoSpoiler; Inaccessible
+	!define - CUCCO7 - :NoSpoiler; Inaccessible
+	!define - CUCCO8 - :NoSpoiler; Inaccessible
+	!define - CUCCO9 - ; Any
+	!ifdef - HEART_RANDO
+		!define - CUCCO10 - ; Any
+	!else
+		!define - CUCCO10 - ; Unshuffled
+	!endif
+!endif
+!ifdef - CUCCO_3
+    !eventdefine - cuccoSkippedLevels - 7
+	!define - CUCCO1 - :NoSpoiler; Inaccessible
+	!define - CUCCO2 - :NoSpoiler; Inaccessible
+	!define - CUCCO3 - :NoSpoiler; Inaccessible
+	!define - CUCCO4 - :NoSpoiler; Inaccessible
+	!define - CUCCO5 - :NoSpoiler; Inaccessible
+	!define - CUCCO6 - :NoSpoiler; Inaccessible
+	!define - CUCCO7 - :NoSpoiler; Inaccessible
+	!define - CUCCO8 - ; Any
+	!define - CUCCO9 - ; Any
+	!ifdef - HEART_RANDO
+		!define - CUCCO10 - ; Any
+	!else
+		!define - CUCCO10 - ; Unshuffled
+	!endif
+!endif
+!ifdef - CUCCO_4
+    !eventdefine - cuccoSkippedLevels - 6
+	!define - CUCCO1 - :NoSpoiler; Inaccessible
+	!define - CUCCO2 - :NoSpoiler; Inaccessible
+	!define - CUCCO3 - :NoSpoiler; Inaccessible
+	!define - CUCCO4 - :NoSpoiler; Inaccessible
+	!define - CUCCO5 - :NoSpoiler; Inaccessible
+	!define - CUCCO6 - :NoSpoiler; Inaccessible
+	!define - CUCCO7 - ; Any
+	!define - CUCCO8 - ; Any
+	!define - CUCCO9 - ; Any
+	!ifdef - HEART_RANDO
+		!define - CUCCO10 - ; Any
+	!else
+		!define - CUCCO10 - ; Unshuffled
+	!endif
+!endif
+!ifdef - CUCCO_5
+    !eventdefine - cuccoSkippedLevels - 5
+	!define - CUCCO1 - :NoSpoiler; Inaccessible
+	!define - CUCCO2 - :NoSpoiler; Inaccessible
+	!define - CUCCO3 - :NoSpoiler; Inaccessible
+	!define - CUCCO4 - :NoSpoiler; Inaccessible
+	!define - CUCCO5 - :NoSpoiler; Inaccessible
+	!define - CUCCO6 - ; Any
+	!define - CUCCO7 - ; Any
+	!define - CUCCO8 - ; Any
+	!define - CUCCO9 - ; Any
+	!ifdef - HEART_RANDO
+		!define - CUCCO10 - ; Any
+	!else
+		!define - CUCCO10 - ; Unshuffled
+	!endif
+!endif
+!ifdef - CUCCO_6
+    !eventdefine - cuccoSkippedLevels - 4
+	!define - CUCCO1 - :NoSpoiler; Inaccessible
+	!define - CUCCO2 - :NoSpoiler; Inaccessible
+	!define - CUCCO3 - :NoSpoiler; Inaccessible
+	!define - CUCCO4 - :NoSpoiler; Inaccessible
+	!define - CUCCO5 - ; Any
+	!define - CUCCO6 - ; Any
+	!define - CUCCO7 - ; Any
+	!define - CUCCO8 - ; Any
+	!define - CUCCO9 - ; Any
+	!ifdef - HEART_RANDO
+		!define - CUCCO10 - ; Any
+	!else
+		!define - CUCCO10 - ; Unshuffled
+	!endif
+!endif
+!ifdef - CUCCO_7
+    !eventdefine - cuccoSkippedLevels - 3
+	!define - CUCCO1 - :NoSpoiler; Inaccessible
+	!define - CUCCO2 - :NoSpoiler; Inaccessible
+	!define - CUCCO3 - :NoSpoiler; Inaccessible
+	!define - CUCCO4 - ; Any
+	!define - CUCCO5 - ; Any
+	!define - CUCCO6 - ; Any
+	!define - CUCCO7 - ; Any
+	!define - CUCCO8 - ; Any
+	!define - CUCCO9 - ; Any
+	!ifdef - HEART_RANDO
+		!define - CUCCO10 - ; Any
+	!else
+		!define - CUCCO10 - ; Unshuffled
+	!endif
+!endif
+!ifdef - CUCCO_8
+    !eventdefine - cuccoSkippedLevels - 2
+	!define - CUCCO1 - :NoSpoiler; Inaccessible
+	!define - CUCCO2 - :NoSpoiler; Inaccessible
+	!define - CUCCO3 - ; Any
+	!define - CUCCO4 - ; Any
+	!define - CUCCO5 - ; Any
+	!define - CUCCO6 - ; Any
+	!define - CUCCO7 - ; Any
+	!define - CUCCO8 - ; Any
+	!define - CUCCO9 - ; Any
+	!ifdef - HEART_RANDO
+		!define - CUCCO10 - ; Any
+	!else
+		!define - CUCCO10 - ; Unshuffled
+	!endif
+!endif
+!ifdef - CUCCO_9
+    !eventdefine - cuccoSkippedLevels - 1
+	!define - CUCCO1 - :NoSpoiler; Inaccessible
+	!define - CUCCO2 - ; Any
+	!define - CUCCO3 - ; Any
+	!define - CUCCO4 - ; Any
+	!define - CUCCO5 - ; Any
+	!define - CUCCO6 - ; Any
+	!define - CUCCO7 - ; Any
+	!define - CUCCO8 - ; Any
+	!define - CUCCO9 - ; Any
+	!ifdef - HEART_RANDO
+		!define - CUCCO10 - ; Any
+	!else
+		!define - CUCCO10 - ; Unshuffled
+	!endif
+!endif
+!ifdef - CUCCO_10
+    !eventdefine - cuccoSkippedLevels - 0
+	!define - CUCCO1 - ; Any
+	!define - CUCCO2 - ; Any
+	!define - CUCCO3 - ; Any
+	!define - CUCCO4 - ; Any
+	!define - CUCCO5 - ; Any
+	!define - CUCCO6 - ; Any
+	!define - CUCCO7 - ; Any
+	!define - CUCCO8 - ; Any
+	!define - CUCCO9 - ; Any
+	!ifdef - HEART_RANDO
+		!define - CUCCO10 - ; Any
+	!else
+		!define - CUCCO10 - ; Unshuffled
+	!endif
+!endif
+
 # South Field
 
 Smith_House_Chest;					Any;				0x22-0x11-0x00;	;	Items.Rupee20
@@ -4433,7 +4624,16 @@ Town_Bell_HP;					`HP`;				0x05D602:FirstByte, 0x5D604:SecondByte;										(|It
 Town_WaterfallFusion_Chest;		`BLUEGREENFUSION`;	0x32-0x0B-0x00;																(|(&Helpers.Gina1Fusion, (|Items.Flippers, Helpers.Hundo)), Helpers.Hundo);																																Items.Shells.200
 Town_Carlov_NPC;				Any;				carlovSpotItem:Define:FirstByte, carlovSpotSub:Define:SecondByte;			(|Helpers.TownDog, Helpers.Hundo);																																										Items.CarlovMedal
 Town_Well_BottomChest;			Any;				0x41-0x00-0x02;																(|Helpers.WellPillar, Items.Flippers, Items.RocsCape, Helpers.Hundo);																																	Items.Rupee100
-Town_Cuccos_NPC;				`HP`;				0x12460C;																	(|Items.RocsCape, Items.Flippers, Helpers.Hundo);																																						Items.PieceOfHeart
+Town_Cuccos_Lv_1_NPC			`CUCCO1`;			0x1245E8;																	;																																																		Items.Shells.10
+Town_Cuccos_Lv_2_NPC			`CUCCO2`;			0x1245EC;																	;																																																		Items.Shells.10
+Town_Cuccos_Lv_3_NPC			`CUCCO3`;			0x1245F0;																	;																																																		Items.Shells.20
+Town_Cuccos_Lv_4_NPC			`CUCCO4`;			0x1245F4;																	;																																																		Items.Shells.20
+Town_Cuccos_Lv_5_NPC			`CUCCO5`;			0x1245F8;																	;																																																		Items.Shells.30
+Town_Cuccos_Lv_6_NPC			`CUCCO6`;			0x1245FC;																	;																																																		Items.Shells.30
+Town_Cuccos_Lv_7_NPC			`CUCCO7`;			0x124600;																	;																																																		Items.Kinstone.RedW
+Town_Cuccos_Lv_8_NPC			`CUCCO8`;			0x124604;																	;																																																		Items.Kinstone.RedV
+Town_Cuccos_Lv_9_NPC			`CUCCO9`;			0x124608;																	;																																																		Items.Kinstone.RedE
+Town_Cuccos_Lv_10_NPC			`CUCCO10`;			0x12460C;																	(|Items.RocsCape, Items.Flippers, Helpers.Hundo);																																						Items.PieceOfHeart
 Town_Jullieta_Item;				Any;				redBookItem:Define:FirstByte, redBookSub:Define:SecondByte;					(|Helpers.Julietta, Helpers.Hundo);																																										Items.RedBook
 Town_Simulation_Chest;			`HP`;				0x0F04C2;																	(|(&Helpers.HasSword, Helpers.ShopSimon), Helpers.Hundo);																																				Items.PieceOfHeart
 Town_ShoeShop_NPC;				Any;				0x0130EE;																	(|Items.WakeUpMushroom, Helpers.Hundo);																																									Items.PegasusBoots
