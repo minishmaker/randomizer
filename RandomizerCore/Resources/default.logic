@@ -108,6 +108,7 @@
 
 !dropdown - Main Settings - Setting - Shuffle - DOJO - Dojo Swordmasters: -	Dojo Swordmasters have Scrolls as their rewards. - Vanilla Scrolls - DOJOVANILLA - 'Vanilla Scrolls': Dojo Swordmasters offer their vanilla rewards. - Randomized Scrolls - DOJORANDOM - 'Randomized Scrolls': Scrolls are shuffled between the Dojo Swordmasters. - Any Item - DOJOANY - 'Any Item': Dojo Swordmasters are shuffled into the main pool.
 !dropdown - Main Settings - Setting - Shuffle - CUCCO_SETTING - Cucco Minigame: - How many rounds of the Cucco Minigame are playable and have an item. - Nothing - CUCCO_0 - - 1 Round - CUCCO_1 - - 2 Rounds - CUCCO_2 - - 3 Rounds - CUCCO_3 - - 4 Rounds - CUCCO_4 - - 5 Rounds - CUCCO_5 - - 6 Rounds - CUCCO_6 - - 7 Rounds - CUCCO_7 - - 8 Rounds - CUCCO_8 - - 9 Rounds - CUCCO_9 - - 10 Rounds - CUCCO_10 -
+!dropdown - Main Settings - Setting - Shuffle - GORON_SETTING - Goron Merchant: - How many sets of Goron Merchant items are included in the random item pool.\nEach set consists of 3 items, and all 3 must be bought to advance to the next set.\nThere are 5 sets in total.\nThe remaining sets will be vanilla (red, blue and green Kinstone pieces). - Nothing - GORON_0 - - 1 Set - GORON_1 - - 2 Sets - GORON_2 - - 3 Sets - GORON_3 - - 4 Sets - GORON_4 - - 5 Sets - GORON_5 -
 !flag - Main Settings - Setting - Shuffle - HEART_RANDO - Heart Pieces and Containers - If enabled will shuffle Heart Pieces and Heart Containers into the pool, This makes any items randomized to Heart Piece locations visible prior to collecting them. - true
 !flag - Main Settings - Setting - Shuffle - RUPEEMANIA - Rupees - If enabled will shuffle any free standing Rupees normally found in the world that are one off collectable, this adds a lot of extra money in the pool and certain locations will be very item dense.\n\n If combined with 'Dig Spots', will shuffle Rupees found when digging in special dig spots.\n\n If combined with 'Underwater Items', will shuffle Rupees found underwater at special waterfalls.
 !flag - Main Settings - Setting - Shuffle - SPECIALPOTS - Special Pots - If enabled will shuffle items found is special pots around the world that contain one off collectables, this setting does not affect the LonLonRanch Key that is always shuffled.
@@ -184,6 +185,7 @@
 !flag - Other - Setting - Extras - SHY_FAIRIES - Shy Fairies - Faires do not come out of bottles when your health reaches 0.
 !flag - Other - Setting - Extras - HOMEWARP - Homewarp - In the Pause menu there is a 'SLEEP' option on the 'QUEST STATUS' screen, using this will warp Link back to his bed from wherever he is. - true
 !flag - Other - Setting - Extras - BOOTS_MINISH - Minish Dash - Enables a hack that allows Minish Sized Link to use the boots. Warning: Has some unintended effects.
+!flag - Other - Setting - Extras - GORON_ALT_PRICES - Goron Merchant JP/US prices - If enabled will use the prices found in the JP and US versions.\nThese are the prices from left to right:\nEU 1st set: 200, 100, 50\nEU 2nd set: 300, 200, 100\nEU 3rd set: 400, 300, 200\nEU 4th set: 500, 400, 300\nEU 5th set: 600, 500, 400\nJP any set: 300, 200, 50
 !dropdown - Other - Setting - Extras - FIREROD - Firerod: - The Firerod is a leftover developer testing tool. It lets the user copy and paste tiles, effectively allowing you to walk through walls and most obstacles.\n\n WARNING: It is extremely easy to softlock yourself with this item, it is recommended to enable 'Homewarp' with this item, however some softlocks will completely prevent you from being able to beat the game. - No Firerod - NO_FIREROD - 'No Firerod': Standard - Start With - FIREROD_START - 'Start With': Firerod is in Links Starting Inventory - Shuffled - FIREROD_CHEST - 'Shuffled': Firerod is added to the item pool, it can be randomized to any location.
 
 # Cosmetic settings
@@ -270,6 +272,7 @@
 !define - `PROGRESSIVE`
 !define - `DOJO`
 !define - `CUCCO_SETTING`
+!define - `GORON_SETTING`
 !define - `ENTRANCES`
 
 # Logic setting defines
@@ -389,6 +392,10 @@
 
 !ifdef - SHY_FAIRIES
 	!eventdefine - noFairy
+!endif
+
+!ifdef - GORON_ALT_PRICES
+	!eventdefine - goronJPPrices
 !endif
 
 # Set the number of required dungeons
@@ -4568,6 +4575,55 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 	!endif
 !endif
 
+!ifdef - GORON_0
+	!eventdefine - goronMerchantCustomSets - 0
+	!define - GORONSET1 - :NoSpoiler; Inaccessible
+	!define - GORONSET2 - :NoSpoiler; Inaccessible
+	!define - GORONSET3 - :NoSpoiler; Inaccessible
+	!define - GORONSET4 - :NoSpoiler; Inaccessible
+	!define - GORONSET5 - :NoSpoiler; Inaccessible
+!endif
+!ifdef - GORON_1
+	!eventdefine - goronMerchantCustomSets - 1
+	!define - GORONSET1 - ; Any
+	!define - GORONSET2 - :NoSpoiler; Inaccessible
+	!define - GORONSET3 - :NoSpoiler; Inaccessible
+	!define - GORONSET4 - :NoSpoiler; Inaccessible
+	!define - GORONSET5 - :NoSpoiler; Inaccessible
+!endif
+!ifdef - GORON_2
+	!eventdefine - goronMerchantCustomSets - 2
+	!define - GORONSET1 - ; Any
+	!define - GORONSET2 - ; Any
+	!define - GORONSET3 - :NoSpoiler; Inaccessible
+	!define - GORONSET4 - :NoSpoiler; Inaccessible
+	!define - GORONSET5 - :NoSpoiler; Inaccessible
+!endif
+!ifdef - GORON_3
+	!eventdefine - goronMerchantCustomSets - 3
+	!define - GORONSET1 - ; Any
+	!define - GORONSET2 - ; Any
+	!define - GORONSET3 - ; Any
+	!define - GORONSET4 - :NoSpoiler; Inaccessible
+	!define - GORONSET5 - :NoSpoiler; Inaccessible
+!endif
+!ifdef - GORON_4
+	!eventdefine - goronMerchantCustomSets - 4
+	!define - GORONSET1 - ; Any
+	!define - GORONSET2 - ; Any
+	!define - GORONSET3 - ; Any
+	!define - GORONSET4 - ; Any
+	!define - GORONSET5 - :NoSpoiler; Inaccessible
+!endif
+!ifdef - GORON_5
+	!eventdefine - goronMerchantCustomSets - 5
+	!define - GORONSET1 - ; Any
+	!define - GORONSET2 - ; Any
+	!define - GORONSET3 - ; Any
+	!define - GORONSET4 - ; Any
+	!define - GORONSET5 - ; Any
+!endif
+
 # South Field
 
 Smith_House_Chest;					Any;				0x22-0x11-0x00;	;	Items.Rupee20
@@ -4650,6 +4706,40 @@ Town_Library_YellowMinish_NPC;	Any;				0x00E7BE;																	(|(&Helpers.Lib
 Town_UnderLibrary_FrozenChest;	Any;				0x62-0x12-0x00;																(|(&Helpers.Library, Items.Flippers, Items.PacciCane, Items.Lantern), Helpers.Hundo);																													Items.Shells.100
 Town_UnderLibrary_BigChest;		Any;				0x62-0x10-0x00;																(|(&Helpers.Library, Items.PacciCane, Helpers.HasDamageSource, (|Items.Flippers, (&Items.RedBook, Items.GreenBook, Items.BlueBook, Items.GripRing, (|Items.GustJar, Items.RocsCape)))), Helpers.Hundo);	Items.Flippers
 Town_UnderLibrary_Underwater	`WATER`;			0x0EF79B;																	(|(&Helpers.Library,Items.Flippers, Items.PacciCane), Helpers.Hundo);																																	Items.Rupee50
+
+!ifndef - GORON_ALT_PRICES
+	Town_GoronMerchant_1_Left		`GORONSET1`;	goron1LeftItem:Define:FirstByte,	goron1LeftSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet,		(+4,  Items.Rupee100, Items.Rupee200:2)), Helpers.Hundo);																								Items.KinstoneX.0x6E
+	Town_GoronMerchant_1_Middle		`GORONSET1`;	goron1MiddleItem:Define:FirstByte,	goron1MiddleSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion,					(+2,  Items.Rupee100, Items.Rupee200:2)), Helpers.Hundo);																								Items.KinstoneX.0x71
+	Town_GoronMerchant_1_Right		`GORONSET1`;	goron1RightItem:Define:FirstByte,	goron1RightSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion,					(+1,  Items.Rupee100, Items.Rupee200:2)), Helpers.Hundo);																								Items.KinstoneX.0x75
+	Town_GoronMerchant_2_Left		`GORONSET2`;	goron2LeftItem:Define:FirstByte,	goron2LeftSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet,		(+10, Items.Rupee100, Items.Rupee200:2)), Helpers.Hundo);																								Items.KinstoneX.0x6F
+	Town_GoronMerchant_2_Middle		`GORONSET2`;	goron2MiddleItem:Define:FirstByte,	goron2MiddleSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet,		(+7,  Items.Rupee100, Items.Rupee200:2)), Helpers.Hundo);																								Items.KinstoneX.0x72
+	Town_GoronMerchant_2_Right		`GORONSET2`;	goron2RightItem:Define:FirstByte,	goron2RightSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet,		(+5,  Items.Rupee100, Items.Rupee200:2)), Helpers.Hundo);																								Items.KinstoneX.0x73
+	Town_GoronMerchant_3_Left		`GORONSET3`;	goron3LeftItem:Define:FirstByte,	goron3LeftSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet:2,	(+19, Items.Rupee100, Items.Rupee200:2)), Helpers.Hundo);																								Items.KinstoneX.0x70
+	Town_GoronMerchant_3_Middle		`GORONSET3`;	goron3MiddleItem:Define:FirstByte,	goron3MiddleSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet,		(+15, Items.Rupee100, Items.Rupee200:2)), Helpers.Hundo);																								Items.KinstoneX.0x71
+	Town_GoronMerchant_3_Right		`GORONSET3`;	goron3RightItem:Define:FirstByte,	goron3RightSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet,		(+12, Items.Rupee100, Items.Rupee200:2)), Helpers.Hundo);																								Items.KinstoneX.0x74
+	Town_GoronMerchant_4_Left		`GORONSET4`;	goron4LeftItem:Define:FirstByte,	goron4LeftSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet:2,	(+31, Items.Rupee100, Items.Rupee200:2)), Helpers.Hundo);																								Items.KinstoneX.0x6E
+	Town_GoronMerchant_4_Middle		`GORONSET4`;	goron4MiddleItem:Define:FirstByte,	goron4MiddleSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet:2,	(+26, Items.Rupee100, Items.Rupee200:2)), Helpers.Hundo);																								Items.KinstoneX.0x72
+	Town_GoronMerchant_4_Right		`GORONSET4`;	goron4RightItem:Define:FirstByte,	goron4RightSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet:2,	(+22, Items.Rupee100, Items.Rupee200:2)), Helpers.Hundo);																								Items.KinstoneX.0x75
+	Town_GoronMerchant_5_Left		`GORONSET5`;	goron5LeftItem:Define:FirstByte,	goron5LeftSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet:3,	(+46, Items.Rupee100, Items.Rupee200:2)), Helpers.Hundo);																								Items.KinstoneX.0x6F
+	Town_GoronMerchant_5_Middle		`GORONSET5`;	goron5MiddleItem:Define:FirstByte,	goron5MiddleSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet:2,	(+40, Items.Rupee100, Items.Rupee200:2)), Helpers.Hundo);																								Items.KinstoneX.0x71
+	Town_GoronMerchant_5_Right		`GORONSET5`;	goron5RightItem:Define:FirstByte,	goron5RightSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet:2,	(+35, Items.Rupee100, Items.Rupee200:2)), Helpers.Hundo);																								Items.KinstoneX.0x73
+!else
+	Town_GoronMerchant_1_Left		`GORONSET1`;	goron1LeftItem:Define:FirstByte,	goron1LeftSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet,		(+6,  Items.Rupee100, Items.Rupee200:2)), Helpers.Hundo);																								Items.KinstoneX.0x6E
+	Town_GoronMerchant_1_Middle		`GORONSET1`;	goron1MiddleItem:Define:FirstByte,	goron1MiddleSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet,		(+3,  Items.Rupee100, Items.Rupee200:2)), Helpers.Hundo);																								Items.KinstoneX.0x71
+	Town_GoronMerchant_1_Right		`GORONSET1`;	goron1RightItem:Define:FirstByte,	goron1RightSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion,					(+1,  Items.Rupee100, Items.Rupee200:2)), Helpers.Hundo);																								Items.KinstoneX.0x75
+	Town_GoronMerchant_2_Left		`GORONSET2`;	goron2LeftItem:Define:FirstByte,	goron2LeftSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet,		(+12, Items.Rupee100, Items.Rupee200:2)), Helpers.Hundo);																								Items.KinstoneX.0x6F
+	Town_GoronMerchant_2_Middle		`GORONSET2`;	goron2MiddleItem:Define:FirstByte,	goron2MiddleSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet,		(+9,  Items.Rupee100, Items.Rupee200:2)), Helpers.Hundo);																								Items.KinstoneX.0x72
+	Town_GoronMerchant_2_Right		`GORONSET2`;	goron2RightItem:Define:FirstByte,	goron2RightSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet,		(+7,  Items.Rupee100, Items.Rupee200:2)), Helpers.Hundo);																								Items.KinstoneX.0x73
+	Town_GoronMerchant_3_Left		`GORONSET3`;	goron3LeftItem:Define:FirstByte,	goron3LeftSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet,		(+18, Items.Rupee100, Items.Rupee200:2)), Helpers.Hundo);																								Items.KinstoneX.0x70
+	Town_GoronMerchant_3_Middle		`GORONSET3`;	goron3MiddleItem:Define:FirstByte,	goron3MiddleSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet,		(+15, Items.Rupee100, Items.Rupee200:2)), Helpers.Hundo);																								Items.KinstoneX.0x71
+	Town_GoronMerchant_3_Right		`GORONSET3`;	goron3RightItem:Define:FirstByte,	goron3RightSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet,		(+13, Items.Rupee100, Items.Rupee200:2)), Helpers.Hundo);																								Items.KinstoneX.0x74
+	Town_GoronMerchant_4_Left		`GORONSET4`;	goron4LeftItem:Define:FirstByte,	goron4LeftSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet,		(+24, Items.Rupee100, Items.Rupee200:2)), Helpers.Hundo);																								Items.KinstoneX.0x6E
+	Town_GoronMerchant_4_Middle		`GORONSET4`;	goron4MiddleItem:Define:FirstByte,	goron4MiddleSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet,		(+21, Items.Rupee100, Items.Rupee200:2)), Helpers.Hundo);																								Items.KinstoneX.0x72
+	Town_GoronMerchant_4_Right		`GORONSET4`;	goron4RightItem:Define:FirstByte,	goron4RightSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet,		(+19, Items.Rupee100, Items.Rupee200:2)), Helpers.Hundo);																								Items.KinstoneX.0x75
+	Town_GoronMerchant_5_Left		`GORONSET5`;	goron5LeftItem:Define:FirstByte,	goron5LeftSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet,		(+30, Items.Rupee100, Items.Rupee200:2)), Helpers.Hundo);																								Items.KinstoneX.0x6F
+	Town_GoronMerchant_5_Middle		`GORONSET5`;	goron5MiddleItem:Define:FirstByte,	goron5MiddleSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet,		(+27, Items.Rupee100, Items.Rupee200:2)), Helpers.Hundo);																								Items.KinstoneX.0x71
+	Town_GoronMerchant_5_Right		`GORONSET5`;	goron5RightItem:Define:FirstByte,	goron5RightSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet,		(+25, Items.Rupee100, Items.Rupee200:2)), Helpers.Hundo);																								Items.KinstoneX.0x73
+!endif
 
 # North Field
 NorthField_DigSpot							`DIG`;			0x0F720F;																	(|Items.MoleMitts, Helpers.Hundo);												Items.Rupee50
