@@ -200,9 +200,9 @@
 
 !eventdefine - customRNG - 0x`RAND_INT`
 
-#version 0.6.2t
-!eventdefine - versionNumber - 0x00070017
-!eventdefine - versionNumbers - 0x00070017
+#version 0.7.0a
+!eventdefine - versionNumber - 0x00070000
+!eventdefine - versionNumbers - 0x00070000
 
 #Cosmetic defines
 
@@ -394,7 +394,36 @@
 	!eventdefine - noFairy
 !endif
 
-!ifdef - GORON_ALT_PRICES
+!ifndef - GORON_ALT_PRICES
+	!define - GORONLEFT1 -				(+4,  Items.Rupee100, Items.Rupee200:2)
+	!define - GORONMID1 -					(+2,  Items.Rupee100, Items.Rupee200:2)
+	!define - GORONRIGHT1 - 				(+1,  Items.Rupee100, Items.Rupee200:2)
+	!define - GORONLEFT2 - 				(+10, Items.Rupee100, Items.Rupee200:2)
+	!define - GORONMID2 -					(+7,  Items.Rupee100, Items.Rupee200:2)
+	!define - GORONRIGHT2 -				(+5,  Items.Rupee100, Items.Rupee200:2)
+	!define - GORONLEFT3 - :2,			(+19, Items.Rupee100, Items.Rupee200:2)
+	!define - GORONRIGHT3 - 				(+12, Items.Rupee100, Items.Rupee200:2)
+	!define - GORONLEFT4 - :2,			(+31, Items.Rupee100, Items.Rupee200:2)
+	!define - GORONMID4 - :2,				(+26, Items.Rupee100, Items.Rupee200:2)
+	!define - GORONRIGHT4 - :2,			(+22, Items.Rupee100, Items.Rupee200:2)
+	!define - GORONLEFT5 - :3,			(+46, Items.Rupee100, Items.Rupee200:2)
+	!define - GORONMID5 - :2,				(+40, Items.Rupee100, Items.Rupee200:2)
+	!define - GORONRIGHT5 - :2,			(+35, Items.Rupee100, Items.Rupee200:2)
+!else
+	!define - GORONLEFT1 -				(+6,  Items.Rupee100, Items.Rupee200:2)
+	!define - GORONMID1 -	Items.Wallet,	(+3,  Items.Rupee100, Items.Rupee200:2)
+	!define - GORONRIGHT1 - 				(+1,  Items.Rupee100, Items.Rupee200:2)
+	!define - GORONLEFT2 - 				(+12, Items.Rupee100, Items.Rupee200:2)
+	!define - GORONMID2 -					(+9,  Items.Rupee100, Items.Rupee200:2)
+	!define - GORONRIGHT2 -				(+7,  Items.Rupee100, Items.Rupee200:2)
+	!define - GORONLEFT3 - ,				(+18, Items.Rupee100, Items.Rupee200:2)
+	!define - GORONRIGHT3 - 				(+13, Items.Rupee100, Items.Rupee200:2)
+	!define - GORONLEFT4 - ,				(+24, Items.Rupee100, Items.Rupee200:2)
+	!define - GORONMID4 - ,				(+21, Items.Rupee100, Items.Rupee200:2)
+	!define - GORONRIGHT4 - ,				(+19, Items.Rupee100, Items.Rupee200:2)
+	!define - GORONLEFT5 - ,				(+30, Items.Rupee100, Items.Rupee200:2)
+	!define - GORONMID5 - ,				(+27, Items.Rupee100, Items.Rupee200:2)
+	!define - GORONRIGHT5 - ,				(+25, Items.Rupee100, Items.Rupee200:2)
 	!eventdefine - goronJPPrices
 !endif
 
@@ -3964,6 +3993,8 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 
 Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for good measure
 
+#This whole section is a mess and wants refactoring
+
 !ifndef - NO_GOLD_FUSIONS
 	!ifdef - SMALL_KEYS_VANILLA
 		!define - GOLDFUSIONSMALL - Unshuffled
@@ -4661,6 +4692,21 @@ Town_Inn_BackdoorHP;			`HP`;				0x0D66D7;																	(|Helpers.TownDog, Hel
 Town_Inn_LedgeChest;			Any;				0x02-0x00-0x06;																(|Helpers.InnLedge, Helpers.Hundo);																																										Items.Kinstone.RedW
 Town_Inn_Pot;					`POT`;				0x0D663B:FirstByte, 0x0D663D:SecondByte;									;																																																		Items.Kinstone.RedE
 Town_Well_RightChest;			Any;				0x41-0x00-0x04;																;																																																		Items.Kinstone.RedE
+Town_GoronMerchant_1_Left		`GORONSET1`;		goron1LeftItem:Define:FirstByte,	goron1LeftSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet, 	`GORONLEFT1`							), Helpers.Hundo);																									Items.Kinstone.RedW
+Town_GoronMerchant_1_Middle		`GORONSET1`;		goron1MiddleItem:Define:FirstByte,	goron1MiddleSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion,				`GORONMID1`								), Helpers.Hundo);																									Items.Kinstone.BlueL
+Town_GoronMerchant_1_Right		`GORONSET1`;		goron1RightItem:Define:FirstByte,	goron1RightSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion,				(+1, Items.Rupee100, Items.Rupee200:2)	), Helpers.Hundo);																									Items.Kinstone.GreenP
+Town_GoronMerchant_2_Left		`GORONSET2`;		goron2LeftItem:Define:FirstByte,	goron2LeftSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet,	`GORONLEFT2`							), Helpers.Hundo);																									Items.Kinstone.RedV
+Town_GoronMerchant_2_Middle		`GORONSET2`;		goron2MiddleItem:Define:FirstByte,	goron2MiddleSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet,	`GORONMID2`								), Helpers.Hundo);																									Items.Kinstone.BlueS
+Town_GoronMerchant_2_Right		`GORONSET2`;		goron2RightItem:Define:FirstByte,	goron2RightSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet,	`GORONRIGHT2`							), Helpers.Hundo);																									Items.Kinstone.GreenC
+Town_GoronMerchant_3_Left		`GORONSET3`;		goron3LeftItem:Define:FirstByte,	goron3LeftSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet	`GORONLEFT3`							), Helpers.Hundo);																									Items.Kinstone.RedE
+Town_GoronMerchant_3_Middle		`GORONSET3`;		goron3MiddleItem:Define:FirstByte,	goron3MiddleSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet,	(+15, Items.Rupee100, Items.Rupee200:2)	), Helpers.Hundo);																									Items.Kinstone.BlueL
+Town_GoronMerchant_3_Right		`GORONSET3`;		goron3RightItem:Define:FirstByte,	goron3RightSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet,	`GORONRIGHT3`							), Helpers.Hundo);																									Items.Kinstone.GreenG
+Town_GoronMerchant_4_Left		`GORONSET4`;		goron4LeftItem:Define:FirstByte,	goron4LeftSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet	`GORONLEFT4`							), Helpers.Hundo);																									Items.Kinstone.RedW
+Town_GoronMerchant_4_Middle		`GORONSET4`;		goron4MiddleItem:Define:FirstByte,	goron4MiddleSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet	`GORONMID4`								), Helpers.Hundo);																									Items.Kinstone.BlueS
+Town_GoronMerchant_4_Right		`GORONSET4`;		goron4RightItem:Define:FirstByte,	goron4RightSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet	`GORONRIGHT4`							), Helpers.Hundo);																									Items.Kinstone.GreenP
+Town_GoronMerchant_5_Left		`GORONSET5`;		goron5LeftItem:Define:FirstByte,	goron5LeftSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet	`GORONLEFT5`							), Helpers.Hundo);																									Items.Kinstone.RedV
+Town_GoronMerchant_5_Middle		`GORONSET5`;		goron5MiddleItem:Define:FirstByte,	goron5MiddleSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet	`GORONMID5`								), Helpers.Hundo);																									Items.Kinstone.BlueL
+Town_GoronMerchant_5_Right		`GORONSET5`;		goron5RightItem:Define:FirstByte,	goron5RightSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet	`GORONRIGHT5`							), Helpers.Hundo);																									Items.Kinstone.GreenC
 Town_Dojo_NPC1:dojo;			`DOJOITEM`;			swiftblade1DojoItem:Define:FirstByte, swiftblade1DojoSub:Define:SecondByte;	(|Helpers.HasSword, Helpers.Hundo);																																										Items.SpinAttack
 Town_Dojo_NPC2:dojo;			`DOJOITEM`;			swiftblade2DojoItem:Define:FirstByte, swiftblade2DojoSub:Define:SecondByte;	(|Helpers.HasGreenSword, Helpers.Hundo);																																								Items.RockBreaker
 Town_Dojo_NPC3:dojo;			`DOJOITEM`;			swiftblade3DojoItem:Define:FirstByte, swiftblade3DojoSub:Define:SecondByte;	(|(&Helpers.HasDojoSword, Items.PegasusBoots), Helpers.Hundo);																																			Items.DashAttack
@@ -4706,40 +4752,6 @@ Town_Library_YellowMinish_NPC;	Any;				0x00E7BE;																	(|(&Helpers.Lib
 Town_UnderLibrary_FrozenChest;	Any;				0x62-0x12-0x00;																(|(&Helpers.Library, Items.Flippers, Items.PacciCane, Items.Lantern), Helpers.Hundo);																													Items.Shells.100
 Town_UnderLibrary_BigChest;		Any;				0x62-0x10-0x00;																(|(&Helpers.Library, Items.PacciCane, Helpers.HasDamageSource, (|Items.Flippers, (&Items.RedBook, Items.GreenBook, Items.BlueBook, Items.GripRing, (|Items.GustJar, Items.RocsCape)))), Helpers.Hundo);	Items.Flippers
 Town_UnderLibrary_Underwater	`WATER`;			0x0EF79B;																	(|(&Helpers.Library,Items.Flippers, Items.PacciCane), Helpers.Hundo);																																	Items.Rupee50
-
-!ifndef - GORON_ALT_PRICES
-	Town_GoronMerchant_1_Left		`GORONSET1`;	goron1LeftItem:Define:FirstByte,	goron1LeftSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet,		(+4,  Items.Rupee100, Items.Rupee200:2)), Helpers.Hundo);																								Items.Kinstone.RedW
-	Town_GoronMerchant_1_Middle		`GORONSET1`;	goron1MiddleItem:Define:FirstByte,	goron1MiddleSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion,					(+2,  Items.Rupee100, Items.Rupee200:2)), Helpers.Hundo);																								Items.Kinstone.BlueL
-	Town_GoronMerchant_1_Right		`GORONSET1`;	goron1RightItem:Define:FirstByte,	goron1RightSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion,					(+1,  Items.Rupee100, Items.Rupee200:2)), Helpers.Hundo);																								Items.Kinstone.GreenP
-	Town_GoronMerchant_2_Left		`GORONSET2`;	goron2LeftItem:Define:FirstByte,	goron2LeftSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet,		(+10, Items.Rupee100, Items.Rupee200:2)), Helpers.Hundo);																								Items.Kinstone.RedV
-	Town_GoronMerchant_2_Middle		`GORONSET2`;	goron2MiddleItem:Define:FirstByte,	goron2MiddleSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet,		(+7,  Items.Rupee100, Items.Rupee200:2)), Helpers.Hundo);																								Items.Kinstone.BlueS
-	Town_GoronMerchant_2_Right		`GORONSET2`;	goron2RightItem:Define:FirstByte,	goron2RightSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet,		(+5,  Items.Rupee100, Items.Rupee200:2)), Helpers.Hundo);																								Items.Kinstone.GreenC
-	Town_GoronMerchant_3_Left		`GORONSET3`;	goron3LeftItem:Define:FirstByte,	goron3LeftSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet:2,	(+19, Items.Rupee100, Items.Rupee200:2)), Helpers.Hundo);																								Items.Kinstone.RedE
-	Town_GoronMerchant_3_Middle		`GORONSET3`;	goron3MiddleItem:Define:FirstByte,	goron3MiddleSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet,		(+15, Items.Rupee100, Items.Rupee200:2)), Helpers.Hundo);																								Items.Kinstone.BlueL
-	Town_GoronMerchant_3_Right		`GORONSET3`;	goron3RightItem:Define:FirstByte,	goron3RightSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet,		(+12, Items.Rupee100, Items.Rupee200:2)), Helpers.Hundo);																								Items.Kinstone.GreenG
-	Town_GoronMerchant_4_Left		`GORONSET4`;	goron4LeftItem:Define:FirstByte,	goron4LeftSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet:2,	(+31, Items.Rupee100, Items.Rupee200:2)), Helpers.Hundo);																								Items.Kinstone.RedW
-	Town_GoronMerchant_4_Middle		`GORONSET4`;	goron4MiddleItem:Define:FirstByte,	goron4MiddleSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet:2,	(+26, Items.Rupee100, Items.Rupee200:2)), Helpers.Hundo);																								Items.Kinstone.BlueS
-	Town_GoronMerchant_4_Right		`GORONSET4`;	goron4RightItem:Define:FirstByte,	goron4RightSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet:2,	(+22, Items.Rupee100, Items.Rupee200:2)), Helpers.Hundo);																								Items.Kinstone.GreenP
-	Town_GoronMerchant_5_Left		`GORONSET5`;	goron5LeftItem:Define:FirstByte,	goron5LeftSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet:3,	(+46, Items.Rupee100, Items.Rupee200:2)), Helpers.Hundo);																								Items.Kinstone.RedV
-	Town_GoronMerchant_5_Middle		`GORONSET5`;	goron5MiddleItem:Define:FirstByte,	goron5MiddleSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet:2,	(+40, Items.Rupee100, Items.Rupee200:2)), Helpers.Hundo);																								Items.Kinstone.BlueL
-	Town_GoronMerchant_5_Right		`GORONSET5`;	goron5RightItem:Define:FirstByte,	goron5RightSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet:2,	(+35, Items.Rupee100, Items.Rupee200:2)), Helpers.Hundo);																								Items.Kinstone.GreenC
-!else
-	Town_GoronMerchant_1_Left		`GORONSET1`;	goron1LeftItem:Define:FirstByte,	goron1LeftSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet,		(+6,  Items.Rupee100, Items.Rupee200:2)), Helpers.Hundo);																								Items.Kinstone.RedW
-	Town_GoronMerchant_1_Middle		`GORONSET1`;	goron1MiddleItem:Define:FirstByte,	goron1MiddleSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet,		(+3,  Items.Rupee100, Items.Rupee200:2)), Helpers.Hundo);																								Items.Kinstone.BlueL
-	Town_GoronMerchant_1_Right		`GORONSET1`;	goron1RightItem:Define:FirstByte,	goron1RightSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion,					(+1,  Items.Rupee100, Items.Rupee200:2)), Helpers.Hundo);																								Items.Kinstone.GreenP
-	Town_GoronMerchant_2_Left		`GORONSET2`;	goron2LeftItem:Define:FirstByte,	goron2LeftSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet,		(+12, Items.Rupee100, Items.Rupee200:2)), Helpers.Hundo);																								Items.Kinstone.RedV
-	Town_GoronMerchant_2_Middle		`GORONSET2`;	goron2MiddleItem:Define:FirstByte,	goron2MiddleSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet,		(+9,  Items.Rupee100, Items.Rupee200:2)), Helpers.Hundo);																								Items.Kinstone.BlueS
-	Town_GoronMerchant_2_Right		`GORONSET2`;	goron2RightItem:Define:FirstByte,	goron2RightSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet,		(+7,  Items.Rupee100, Items.Rupee200:2)), Helpers.Hundo);																								Items.Kinstone.GreenC
-	Town_GoronMerchant_3_Left		`GORONSET3`;	goron3LeftItem:Define:FirstByte,	goron3LeftSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet,		(+18, Items.Rupee100, Items.Rupee200:2)), Helpers.Hundo);																								Items.Kinstone.RedE
-	Town_GoronMerchant_3_Middle		`GORONSET3`;	goron3MiddleItem:Define:FirstByte,	goron3MiddleSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet,		(+15, Items.Rupee100, Items.Rupee200:2)), Helpers.Hundo);																								Items.Kinstone.BlueL
-	Town_GoronMerchant_3_Right		`GORONSET3`;	goron3RightItem:Define:FirstByte,	goron3RightSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet,		(+13, Items.Rupee100, Items.Rupee200:2)), Helpers.Hundo);																								Items.Kinstone.GreenG
-	Town_GoronMerchant_4_Left		`GORONSET4`;	goron4LeftItem:Define:FirstByte,	goron4LeftSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet,		(+24, Items.Rupee100, Items.Rupee200:2)), Helpers.Hundo);																								Items.Kinstone.RedW
-	Town_GoronMerchant_4_Middle		`GORONSET4`;	goron4MiddleItem:Define:FirstByte,	goron4MiddleSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet,		(+21, Items.Rupee100, Items.Rupee200:2)), Helpers.Hundo);																								Items.Kinstone.BlueS
-	Town_GoronMerchant_4_Right		`GORONSET4`;	goron4RightItem:Define:FirstByte,	goron4RightSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet,		(+19, Items.Rupee100, Items.Rupee200:2)), Helpers.Hundo);																								Items.Kinstone.GreenP
-	Town_GoronMerchant_5_Left		`GORONSET5`;	goron5LeftItem:Define:FirstByte,	goron5LeftSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet,		(+30, Items.Rupee100, Items.Rupee200:2)), Helpers.Hundo);																								Items.Kinstone.RedV
-	Town_GoronMerchant_5_Middle		`GORONSET5`;	goron5MiddleItem:Define:FirstByte,	goron5MiddleSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet,		(+27, Items.Rupee100, Items.Rupee200:2)), Helpers.Hundo);																								Items.Kinstone.BlueL
-	Town_GoronMerchant_5_Right		`GORONSET5`;	goron5RightItem:Define:FirstByte,	goron5RightSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet,		(+25, Items.Rupee100, Items.Rupee200:2)), Helpers.Hundo);																								Items.Kinstone.GreenC
-!endif
 
 # North Field
 NorthField_DigSpot							`DIG`;			0x0F720F;																	(|Items.MoleMitts, Helpers.Hundo);												Items.Rupee50
