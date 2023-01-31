@@ -682,7 +682,7 @@ public class DirectiveParser
 		if (!byte.TryParse(directiveParts[7], out var defaultValue))
 			throw new ParserException($"Numberbox has invalid default value {directiveParts[7]}!");
 		
-        if (!byte.TryParse(directiveParts[7], out var maxValue))
+        if (!byte.TryParse(directiveParts[8], out var maxValue))
             throw new ParserException($"Numberbox has invalid maximum value {directiveParts[8]}!");
 
 		return new LogicNumberBox(directiveParts[4], directiveParts[5], directiveParts[3], 
