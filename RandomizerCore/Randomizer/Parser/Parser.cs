@@ -470,16 +470,26 @@ public class Parser
 
     public void PreParse(string[] lines)
     {
-        foreach (var line in lines)
+        for (var lineNumber = 0; lineNumber < lines.Length; ++lineNumber)
         {
+            var line = lines[lineNumber];
             if (string.IsNullOrWhiteSpace(line)) continue;
 
             if (line[0] == '!')
             {
                 // Remove comments and excess whitespace
                 var trimmedLine = line.Split('#')[0].Trim();
-
-                if (SubParser.ParseOnLoad(trimmedLine)) SubParser.ParseDirective(trimmedLine);
+                try
+                {
+                    if (SubParser.ParseOnLoad(trimmedLine)) SubParser.ParseDirective(trimmedLine);
+                }
+                catch (Exception e)
+                {
+                    Logger.Instance.LogError($"Failed to parse line {lineNumber + 1}!");
+                    Logger.Instance.LogException(e);
+                    throw new ParserException(
+                        $"Error at line \"{lineNumber + 1}\", directive \"{line}\": {e.Message}");
+                }
             }
         }
     }
