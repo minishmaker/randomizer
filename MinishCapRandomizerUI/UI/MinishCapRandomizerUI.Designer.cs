@@ -814,10 +814,11 @@
 			this.BrowseCustomPatch.TabIndex = 20;
 			this.BrowseCustomPatch.Text = "Browse";
 			this.BrowseCustomPatch.UseVisualStyleBackColor = true;
-			// 
-			// RomBuildfilePath
-			// 
-			this.RomBuildfilePath.Enabled = false;
+            this.BrowseCustomPatch.Click += BrowseCustomPatch_Click;
+            // 
+            // RomBuildfilePath
+            // 
+            this.RomBuildfilePath.Enabled = false;
 			this.RomBuildfilePath.Location = new System.Drawing.Point(153, 102);
 			this.RomBuildfilePath.Name = "RomBuildfilePath";
 			this.RomBuildfilePath.Size = new System.Drawing.Size(501, 23);
@@ -844,16 +845,18 @@
 			this.UseCustomPatch.Text = "Use Custom Patch Files";
 			this.UseCustomPatch.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.UseCustomPatch.UseVisualStyleBackColor = true;
-			// 
-			// BrowseCustomLogicFile
-			// 
-			this.BrowseCustomLogicFile.Enabled = false;
+            this.UseCustomPatch.CheckedChanged += UseCustomPatch_CheckedChanged;
+            // 
+            // BrowseCustomLogicFile
+            // 
+            this.BrowseCustomLogicFile.Enabled = false;
 			this.BrowseCustomLogicFile.Location = new System.Drawing.Point(660, 41);
 			this.BrowseCustomLogicFile.Name = "BrowseCustomLogicFile";
 			this.BrowseCustomLogicFile.Size = new System.Drawing.Size(90, 23);
 			this.BrowseCustomLogicFile.TabIndex = 16;
 			this.BrowseCustomLogicFile.Text = "Browse";
 			this.BrowseCustomLogicFile.UseVisualStyleBackColor = true;
+            this.BrowseCustomLogicFile.Click += BrowseCustomLogicFile_Click;
 			// 
 			// LogicFilePath
 			// 
@@ -873,6 +876,7 @@
 			this.UseCustomLogic.Text = "Use Custom Logic File";
 			this.UseCustomLogic.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
 			this.UseCustomLogic.UseVisualStyleBackColor = true;
+            this.UseCustomLogic.CheckedChanged += UseCustomLogic_CheckedChanged;
 			// 
 			// label6
 			// 
