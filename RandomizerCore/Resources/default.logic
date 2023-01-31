@@ -67,9 +67,9 @@
 #
 # = Window Elements =
 # (window tab) is what tab the element shows up in, can be anything, (setting type) is the type of the setting, either Setting or Cosmetic, (setting group) is the grouping for the setting so similar settings can be placed together on the UI, and(readable text) is the text written next to the element
-# !flag - (window tab) - (setting type) - (setting group) - (define name) - (readable text) - [default value] : adds a checkbox that sets (define name) if checked, defaults to false unless [default value] exists and is "true".
-# !dropdown - (window tab) - (setting type) - (setting group) - (define name) - (readable text) ~(readable text) - (define name) ~            : requires sets of "(define name) - (readable name)", each set adds a new entry to the dropdown, the selected option will have its define set, the first option is the default value.
-# !numberbox - (window tab) - (setting type) - (setting group) - (define name) - (readable text)              : a textbox where you can input a number, (define name) will be set to the number that was input.
+# !flag - (window tab) - (setting type) - (setting group) - (define name) - (readable text) - (tooltip text) - [default value] : adds a checkbox that sets (define name) if checked, defaults to false unless [default value] exists and is "true".
+# !dropdown - (window tab) - (setting type) - (setting group) - (define name) - (readable text) - (tooltip text) - (default value) - ~(readable name) - (define name) - (tooltip text)~ : requires sets of "(readable name) - (define name) - (tooltip text)", each set adds a new entry to the dropdown, the selected option will have its define set. (default value) is the value of the (define name) you want as the default value
+# !numberbox - (window tab) - (setting type) - (setting group) - (define name) - (readable text) - (tooltip text) - (default value) - (max value) : a textbox where you can input a number, (define name) will be set to the number that was input, (default value) is the default value to put in the box, (max value) is the maximum supported value
 # !color - (window tab) - (setting type) - (setting group) - (define name) - (readable text) - ~ [default color R] - [default color G] - [default color B] ~ : adds a color picker, the default color is white if no hexadecimal [default color R/G/B] is set, (define name) is set if the color is changed, (define name)_X is set to the color in set X starting from 0.
 # 
 # = Parser Commands = 
