@@ -4934,7 +4934,7 @@ WesternWoods_BeanstalkFusion_Item15;	`BLUEFUSIONRUPEE`;	0x0F6223;													(|
 WesternWoods_BeanstalkFusion_Item16;	`BLUEFUSIONRUPEE`;	0x0F6233;													(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);					Items.Rupee20
 
 # Mount Crenel
-AccessCrenel;						Helper;			;							(|(&Helpers.AccessTrilby, Helpers.LowerBean, (|Items.GripRing, (&(|Helpers.BombWalls, Items.RocsCape), Helpers.CrenelDust))), Helpers.CrenelWindCrest)
+AccessCrenel;						Helper;			;							(|(&Helpers.AccessTrilby, Helpers.LowerBean, (|Items.GripRing, (&(|Helpers.BombWalls, Items.RocsCape), Helpers.CrenelDust, (|Helpers.UpperBean, (&Helpers.BombWalls, Helpers.OverworldBlocks))))), Helpers.CrenelWindCrest)
 CrenelBase_EntranceVine				`RUPEE`;		0x0FAACF;																(|Helpers.AccessTrilby, Helpers.Hundo);																																																																				Items.Rupee20
 CrenelBase_FairyCave_Item1			`RUPEE`;		0x0FB3F3;																(|(&Helpers.AccessTrilby, Helpers.LowerBean, Helpers.BombWalls), (&Helpers.CrenelWindCrest, (|Helpers.UpperBean, Items.GripRing), Helpers.BombWalls), Helpers.Hundo);																																				Items.Rupee5
 CrenelBase_FairyCave_Item2			`RUPEE`;		0x0FB403;																(|(&Helpers.AccessTrilby, Helpers.LowerBean, Helpers.BombWalls), (&Helpers.CrenelWindCrest, (|Helpers.UpperBean, Items.GripRing), Helpers.BombWalls), Helpers.Hundo);																																				Items.Rupee5
