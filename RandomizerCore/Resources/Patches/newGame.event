@@ -4,6 +4,8 @@ ALIGN 4
 newGame:
 #incbin "asm/newGame.dmp"
 POIN newGameTable
+POIN newGameOrTable
+POIN newGameAndTable
 POIN ($7C480+10)|1
 
 ALIGN 4
@@ -47,6 +49,14 @@ POIN map; WORD 0x2002A80 3
 	POIN timedohkoStartingTime; WORD 0x203FFE0 4
 #endif
 POIN shells; WORD 0x2002AFB 1
+WORD 0 0 0 //terminator
+
+ALIGN 4
+newGameOrTable:
+WORD 0 0 0 //terminator
+
+ALIGN 4
+newGameAndTable:
 WORD 0 0 0 //terminator
 
 #ifdef DEBUG
