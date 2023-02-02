@@ -642,6 +642,15 @@ SHORT 0x2001 //mov r0,#1
 SHORT 0xE004 //b #0x080A65E6
 POP
 
+//every how many frames the low health beep plays
+#ifndef lowHealthBeep
+	#define lowHealthBeep "90"
+#endif
+PUSH
+ORG $1711E
+BYTE lowHealthBeep
+POP
+
 #include "glitchless.event"
 #include "dungeon.event"
 #include "fairy.event"
