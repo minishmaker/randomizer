@@ -217,7 +217,7 @@ public enum ItemType
     Rupee200 = 0x59,
 
     JabberNut = 0x5B,
-    Kinstone = 0x5C, //Kinstone
+    Kinstone = 0x5C, //KinstoneX
     Bombs5 = 0x5D,
     Arrows5 = 0x5E,
     SmallHeart = 0x5F,
