@@ -1,6 +1,7 @@
 ﻿using RandomizerCore.Controllers.Models;
 using RandomizerCore.Core;
 using RandomizerCore.Randomizer;
+using RandomizerCore.Randomizer.Exceptions;
 using RandomizerCore.Randomizer.Logic.Options;
 using RandomizerCore.Utilities.Logging;
 using RandomizerCore.Utilities.Models;
@@ -199,6 +200,7 @@ public class ShufflerController
 			var attempts = 1;
 			if (retries <= 0) retries = 1;
 			var successfulGeneration = false;
+            var capturedExceptions = new List<Exception>();
 			while (attempts <= retries && !successfulGeneration)
 			{
 				try
@@ -209,12 +211,15 @@ public class ShufflerController
 				catch (Exception e)
 				{
 					Logger.Instance.LogException(e);
+                    capturedExceptions.Add(e);
 					attempts++;
 					LoadLocations(_cachedLogicFile);
 					_shuffler.SetSeed(new Random(_shuffler.Seed).Next());
 					Logger.Instance.SaveLogTransaction();
 				}
 			}
+
+            if (!successfulGeneration) throw new ShuffleException($"Multiple Failures Occurred - Only showing last failure message: {capturedExceptions.Last().Message}");
 
 			return new ShufflerControllerResult { WasSuccessful = successfulGeneration };
 		} 
