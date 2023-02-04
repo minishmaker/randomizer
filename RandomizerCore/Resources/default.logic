@@ -1263,7 +1263,6 @@
 	Items.Arrows30;			Filler;
 !ifdef - ITEM_POOL_RIP
 	!ifdef - NOPROG
-		Items.LightArrow;	Major;
 		!ifdef - VANILLA_RED_FUSIONS
 			Items.MagicBoomerang;		Major;
 		!else
@@ -1280,7 +1279,6 @@
 			!endif
 		!endif
 	!else
-		Items.ProgressiveItem.0x01;		Major;	#Bow
 		!ifdef - VANILLA_RED_FUSIONS
 			Items.ProgressiveItem.0x02;		Major;	#Boomerang
 		!else
