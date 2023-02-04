@@ -1537,11 +1537,12 @@
     !ifdef - OPENDHC
         !eventdefine - openDHC
     !else
+		!eventdefine - requirementSwordTier       - `SWORDLEVEL`
+		!eventdefine - requirementElementsAmmount - `ELEMENTAMOUNT`
         !ifdef - NODHC
             !eventdefine - noDHC
         !endif
         !ifndef - SWORDEX
-            !eventdefine - requirementSwordTier       - `SWORDLEVEL`
 			!undefine - GotSwords
 			!ifdef - NOPROG
 				!ifdef - 1SWORD
@@ -1566,7 +1567,6 @@
 			!endif
         !endif
         !ifndef - ELEMENTEX
-            !eventdefine - requirementElementsAmmount - `ELEMENTAMOUNT`
 			!undefine - GotElements
             !define - GotElements - , (+`ELEMENTAMOUNT`, Items.WaterElement, Items.FireElement, Items.WindElement, Items.EarthElement)
         !endif
