@@ -30,19 +30,49 @@ UI overhaul:
 	- Load a `.bps` file given to you to play a seed someone else made.
 
 All the following settings have Tooltips that fully explain their function:
-- New Key settings: Vanilla, In Dungeon, Keasy and Keysanity.
-	- Small Keys, Big Keys, and Maps&Compasses are independent.
-	- New Option: Regional Dungeon items.
-	- New Option: Inter Dungeon shuffle.
+- New Key settings: Small Keys, Big Keys, and Maps&Compasses are independent.
+	- Removed (Keasy), for Keys only
+	- Start With, for Maps&Compasses only
+	- Vanilla
+	- Own Dungeon
+	- Own Region
+	- Any Dungeon
+	- Any Region
+	- Anywhere (Keysanity)
+- New Option: NonElement Dungeons options: 
+	- Standard.
+	- Unrequired: No items found in these dungeons are needed to beat the game.
+	- Barren: No Major items can be found in these dungeons at all.
+	- Regions Unrequired: Includes Dungeon Regions
+	- Regions Barren: Includes Dungeon Regions
+- "Reqiured Number of Dungeons" added to requirements for Dark Hyrule Castle.
+- New Option: Dojo Swordmasters: (Previously always set to 'Any Item')
+	- Vanilla Scrolls
+	- Randomized Scrolls
+	- Any Item
+- New Option: Heart Pieces and Containers are randomized. (Previously always on, now a togglable setting)
+- Obscure Spots is split into three different settings: 
+	- Special Pots
+	- Dig Spots
+	- Underwater Spots
+- New Option: Golden Enemies can have randomized items.
+
+- New Option: Open World: 
+	- Removes all temporary obstacles, Blocks, Bomb Walls, Doors... you name it and its opened.
+- New Option: Dungeon Entrance Shuffle: 
+	- All Dungeons that can have elements get their entrances shuffled.
 - Fusions overhaul: Gold, Red, Blue and Green Kinstone Fusions are independent.
 	- Each type can be: Removed, Vanilla, Combined, or Completed.
 	- New Option: Defickle Fusers.
 	- New Option: Seeded Shared Fusion Pool.
 - Fusion Cutscene Setting Fixes.
 	- New Option: Always show the map after fusing.
-- "Reqiured Number of Dungeons" added to requirements for Dark Hyrule Castle.
-- New Option: Open World: 
-	- Removes all temporary obstacles, Blocks, Bomb Walls, Doors... you name it and its opened.
+- New Options: Wind Crests active from the start:
+	- Mt Crenel, Veil Falls, Cloud Tops, Swamp, Link's House and Minish Woods can all be independently toggled.
+
+- New Option: No Logic
+- New Option: Weapons considered by logic
+	- Bombs, Bows, Gust Jar and Lantern get their own independent dropdown selectors.
 - New Section: Trick requirements:
 	- ~20 Tricks used while playing the game, These can be toggled to choose if they should be considered by the logic or left as optional out of logic plays.
 	- Ranges from simple strats like using dust to blow away dust instead of the gust jar, all the way up to difficult strats like using a sword and a bomb to skip cloning at the Canon rooms in DHC.
@@ -51,35 +81,31 @@ All the following settings have Tooltips that fully explain their function:
 	- Plentiful: Extra copies of important items are added to the pool.
 	- Balanced: Normal item pool.
 	- Reduced: Unnecessary items removed.
+- New Option: Items are Progressive
 - New Option: Fun Junk items
-- New Option: No Logic
-- New Option: Items can lock themselves.
-- New Option: NonElement Dungeons options: 
-	- Standard.
-	- Unrequired: No items found in these dungeons are needed to beat the game.
-	- Barren: No Major items can be found in these dungeons at all.
-- New Option: Heart Pieces and Containers are randomized. (Previously always on, now a togglable setting)
-- Obscure Spots is split into three different settings: Special Pots, Dig Spots, Underwater Spots
 - New Option: Random Bottle contents.
-- New Option: Golden Enemies can have randomized items.
-- New Option: Visible items are collectable from a distance.
 - New Option: Maximum Health.
 - New Option: Hero Mode.
 - New Option: Damage Multiplier.
+- New Option: Item Text Display added.
 - New Option: Homewarp on Sleep option.
 - New Option: Use boots while Minish sized.
-- New Option: Item Text Display added.
+- New Option: Visible items are collectable from a distance.
+- New Option: Select button to use Ocarina.
 - New Option: Firerod dev tool.
-- Music Options: Vanilla, Pokémon Emerald, Disabled.
-- Select button to use Ocarina without equiping.
-- Text speed on newly created files preset to `FAST`
-- Spoiler Log restructure with better names and more logical order
-- Version number is displayed on the File Select screen.
 
+- Music Options: Vanilla, Shuffled, Disabled.
+
+- Items can now lock themselves, however seeds will always be beatable.
+- Text speed on newly created files preset to `FAST`
+- Spoiler Log restructure with better names, a more logical order, and a new `Playthrough` section.
+- Version number is displayed on the File Select screen.
 - Traps activated are counted and displayed in the credit stats.
 	- Traps have smart disguises that depend on settings.
-- Refill Hearts and Fairies have been added to the item pool as junk items.
+- Refill Hearts have been added to the item pool as junk items.
+- Smith Sword (Quest), Broken Picori Blade, and Bakery goods have been added to the Fun Junk Item Pool
 - Door mimics added to credit stats.
+- Created clone count is now controllable by the player
 - Simon now requires rupees in the pool.
 - Dojo tutorial cutscenes skipped.
 - Café sprite bug fixed.
@@ -127,8 +153,11 @@ This game is originally completely linear, a lot of work has been put in to open
 ## Getting Stuck
 
 Started playing and got stuck? Don't worry, your seed isn't unbeatable, you are just lacking the knowledge to progress, we have all been there before. The first recommendation is to play with a Map Tracker! If you are on PC we recommend [Emotracker](https://emotracker.net/service/install/emotracker_setup.exe), just load it up and use one of the regularly updated Minish Cap Packages.
+
 My Tracker is empty or My Tracker is telling me to go somewhere I can't reach? Make sure you configure the settings in your Tracker to reflect the settings your seed was randomized with, these trackers are powerful and can be configured for all combinations of settings you might be using. Later sections explain all the settings available for randomization.
+
 Tracker not an option? If you really want to know where items are then its all available if you save the 'Spoiler Log', The first half lists all the locations (and what items are there) sorted by region, the second half of the log has a playthrough of the game using the Sphere System. The Sphere System is: Sphere 1 is all the locations reachable without ANY items, Sphere 2 is all the locations you can now reach with all the items from Sphere 1, Sphere 3 is then reached by items from Sphere 2 and lower, this repeats to reach all locations in the game.
+
 Can't make heads nor tails of the Spoiler log? Ask in the [Discord](https://discord.gg/ndFuWbV)! there are people regularly playing the randomizer that you can ask for help if it is simple questions like "Where is `LonLon_CaveSecret_Chest`?" (You bomb the right wall). We aren't psychics though, if you are just stuck in general then you need to give us some information so we can help you, things like: The Spoiler Log (if you don't have that then: The Settings String and Seed Number you used) and The items you have collected so far.
 
 ## Settings
@@ -160,27 +189,19 @@ Settings allow you to the following items to the pool (and where they should be 
 - Special items depending on the game mode (Figurines and Timer Clocks)
 - A lot of junk items :)
 - Music (if set)
+- Dungeon Entrances
 
 ### Where can they be found?
 
-Here are all the locations that you can expect to find items:
+Here are all the locations that you can expect to find items, depending on the settings you select:
 - All chests in the game
-- Freestanding HP locations (if enabled)
-- 
-
-### Resources
-
-The most complete resource for the randomizer, including maps of all locations, can be
-found [here](https://docs.google.com/document/d/e/2PACX-1vQrBNKQQnZ1xtjDzbWabN5tjd7801j2jAvz9-QNC1acpMxGioExWfzbfOOMGKk9f5MkL5MHCofVeaEc/pub)
-. It was developed by the fabulous Myth197.
-More comprehensive resources pertaining to randomizer gotchas and speed strats are pending.
-
-### Usage
-
-Download the latest zip from the [releases](https://github.com/minishmaker/randomizer/releases) page, you'll need all
-the files it comes with. Choose a seed or leave it default, choose settings and gimmicks, then hit randomize. You'll
-need to provide an EU copy of Minish Cap, don't ask us where to get one. Hitting 'Save ROM' will prompt you to save the
-randomized game. You can also save a spoiler log for if you get stuck/want some help.
+- Given by NPCs
+- Purchased from Shops
+- Freestanding HP locations
+- Keys that drop from the ceiling
+- In special pots
+- In certain dig spots
+- In special underwater spots
 
 ### Known Issues
 
