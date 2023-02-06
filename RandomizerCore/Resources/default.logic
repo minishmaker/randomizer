@@ -136,6 +136,8 @@
 !flag - World Settings - Setting - Wind Crests - CREST_MINISH - Minish Woods - If enabled, will activate the wind crest in Minish Woods from the start of the game.
 
 !flag - Logic Settings - Setting - Logic Rules - NO_LOGIC - No Logic - Items can go anywhere without regard to logic.\n LIKELY RESULTS IN UNBEATABLE SEEDS!
+!dropdown - Logic Settings - Setting - Logic Rules - ACCESSIBILITY - Accessibiliy: - Determines which items and locations are guaranteed to be reachable. - ACCESS_LOCATIONS - 100% Collection Possible - ACCESS_LOCATIONS - '100% Collection Possible': All enabled locations are reachable. - Keys Can Lock Themselves - ACCESS_INVENTORY - 'Keys Can Lock Themselves': Like '100% Collection Possible', except keys can lock themselves. - Items Can Lock Themselves - ACCESS_BEATABLE - 'Items Can Lock Themselves': Only the goal is guaranteed to be reachable. Some locations and items may be inaccessible.
+
 !dropdown - Logic Settings - Setting - Weapons - BOMBWEAPON - Bombs: - Bombs can damage nearly every enemy, Bombs are never considered for Simon Simulations, and Golden Enemies. - NOBOMB - No - NOBOMB - 'No': Bombs are not considered as Weapons. - Yes - YESBOMB - 'Yes': Bombs are considered as weapons for most regular enemy fights. - Yes + Bosses - BOSSBOMB - 'Yes + Bosses': Bombs are considered as weapons for most enemy fights. Fighting Green/Blu Chu, Madderpillars and Darknuts require only 10 bomb bag. Gleerok, Mazaal and Scissor Beetles require at least 30 bomb bag. Octo and Gyorg cannot be defeated with bombs.
 !dropdown - Logic Settings - Setting - Weapons - BOWWEAPON - Bows: - Bow can damage most enemies, many enemies are very resiliant to damage. Chu Bosses and Darknuts are Immune. - NOBOW - No - NOBOW - 'No': Bows are not considered as Weapons. - Yes - YESBOW - 'Yes': Bows are considered as weapons for most enemy fights. Bows are never considered for Chu Bossfights, Darknuts, Scissor Beetles, Madderpillar, Wizrobes, Simon Simulations, and Golden Enemies.
 !dropdown - Logic Settings - Setting - Weapons - GUSTWEAPON - Gust Jar: - Gust Jar can suck up various enemies like Ghini(Ghosts) and Beetles (The things that grab onto link). It can also grab objects and fire them like projectiles to kill enemies, some enemies or parts of enemies can be used as projectiles such as Helmasaurs and Stalfos. - NOGUST - No - NOGUST - 'No': Gust Jar is never considered for killing enemies. - Yes - YESGUST - 'Yes': Gust Jar is considered as weapons for all enemies that get sucked up by it, you are never expected to use objects as projectiles to kill enemies.
@@ -2118,7 +2120,11 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 	Hundo;	Helper;	;	
 !else
 	!import - VERIFY_LOCATION_IS_ACCESSIBLE
-	Hundo;	Helper;	;	Helpers.BeatVaati
+	!ifdef - ACCESS_BEATABLE
+		Hundo;	Helper;	;	Helpers.BeatVaati
+	!else
+		Hundo;	Helper;	;	Items.Untyped.0xFF:0xFF
+	!endif
 !endif
 
 #Trick Requirements, Easy Option 1st then Hard Option 2nd
@@ -3525,36 +3531,38 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 	Deepwood1stDoor;			Helper;;	Items.SmallKey.0x18
 	!define - Deepwood2ndDoor - 
 	!define - DeepwoodBasementDoor - 
-	!ifdef - SMALL_KEYS_ELSE
-		!undefine - Deepwood2ndDoor
-		!undefine - DeepwoodBasementDoor
-		!define - Deepwood2ndDoor - , (&Items.SmallKey.0x18:2, Helpers.BeatVaati)
-		!define - DeepwoodBasementDoor - `Deepwood2ndDoor`	
-	!else
-		!ifdef - SMALL_KEYS_VANILLA
+	!ifndef - ACCESS_LOCATIONS
+		!ifdef - SMALL_KEYS_ELSE
 			!undefine - Deepwood2ndDoor
-			!define - Deepwood2ndDoor - , Items.SmallKey.0x18:2
+			!undefine - DeepwoodBasementDoor
+			!define - Deepwood2ndDoor - , (&Items.SmallKey.0x18:2, Helpers.Hundo)
+			!define - DeepwoodBasementDoor - `Deepwood2ndDoor`	
 		!else
-			!ifdef - SMALL_KEYS_STANDARD
+			!ifdef - SMALL_KEYS_VANILLA
 				!undefine - Deepwood2ndDoor
-				!undefine - DeepwoodBasementDoor
-				!define - Deepwood2ndDoor - , (&Items.SmallKey.0x18:2, Helpers.CompleteDeepwood, Locations.Deepwood_1F_Madderpillar_BigChest)
-				!define - DeepwoodBasementDoor - `Deepwood2ndDoor`
+				!define - Deepwood2ndDoor - , Items.SmallKey.0x18:2
 			!else
-				!define - MinishWoods_BombMinish_NPC2 - 
-				!define - MinishWoods_PostVillageFusion_Chest -
-				!ifndef - NO_RED_FUSIONS
-					!undefine - MinishWoods_BombMinish_NPC2
-					!define - MinishWoods_BombMinish_NPC2 - , Locations.MinishWoods_BombMinish_NPC2
+				!ifdef - SMALL_KEYS_STANDARD
+					!undefine - Deepwood2ndDoor
+					!undefine - DeepwoodBasementDoor
+					!define - Deepwood2ndDoor - , (&Items.SmallKey.0x18:2, Helpers.CompleteDeepwood, Locations.Deepwood_1F_Madderpillar_BigChest)
+					!define - DeepwoodBasementDoor - `Deepwood2ndDoor`
+				!else
+					!define - MinishWoods_BombMinish_NPC2 - 
+					!define - MinishWoods_PostVillageFusion_Chest -
+					!ifndef - NO_RED_FUSIONS
+						!undefine - MinishWoods_BombMinish_NPC2
+						!define - MinishWoods_BombMinish_NPC2 - , Locations.MinishWoods_BombMinish_NPC2
+					!endif
+					!ifndef - NO_GREEN_FUSIONS
+						!undefine - MinishWoods_PostVillageFusion_Chest
+						!define - MinishWoods_PostVillageFusion_Chest - , Locations.MinishWoods_PostVillageFusion_Chest
+					!endif
+					!undefine - Deepwood2ndDoor
+					!undefine - DeepwoodBasementDoor
+					!define - Deepwood2ndDoor - , (&Items.SmallKey.0x18:2, Helpers.CompleteDeepwood, Locations.Deepwood_1F_Madderpillar_BigChest, Locations.MinishWoods_FlipperHole_RightChest `MinishWoods_BombMinish_NPC2` `MinishWoods_PostVillageFusion_Chest`)
+					!define - DeepwoodBasementDoor - `Deepwood2ndDoor`
 				!endif
-				!ifndef - NO_GREEN_FUSIONS
-					!undefine - MinishWoods_PostVillageFusion_Chest
-					!define - MinishWoods_PostVillageFusion_Chest - , Locations.MinishWoods_PostVillageFusion_Chest
-				!endif
-				!undefine - Deepwood2ndDoor
-				!undefine - DeepwoodBasementDoor
-				!define - Deepwood2ndDoor - , (&Items.SmallKey.0x18:2, Helpers.CompleteDeepwood, Locations.Deepwood_1F_Madderpillar_BigChest, Locations.MinishWoods_FlipperHole_RightChest `MinishWoods_BombMinish_NPC2` `MinishWoods_PostVillageFusion_Chest`)
-				!define - DeepwoodBasementDoor - `Deepwood2ndDoor`
 			!endif
 		!endif
 	!endif
@@ -3566,59 +3574,61 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 	!define - FoWRightDoor - 
 	!define - FoWMiddleDoor - 
 	!define - FoWLastDoor - 
-	!ifdef - SMALL_KEYS_ELSE
-		!ifndef - SPECIALPOTS 
-			!undefine - FoWRightDoor
-			!undefine - FoWMiddleDoor
-			!define - FoWRightDoor - , (&Items.SmallKey.0x1A, Helpers.BeatVaati)
-			!define - FoWMiddleDoor - , (&Items.SmallKey.0x1A:2, Helpers.BeatVaati)
-		!endif
-		!undefine - FoWLastDoor
-		!define - FoWLastDoor - , (&Items.SmallKey.0x1A:3, Helpers.BeatVaati)
-	!else
-		!ifndef - SMALL_KEYS_VANILLA
-			!ifdef - SMALL_KEYS_STANDARD
-				!ifndef - SPECIALPOTS 
-					!undefine - FoWRightDoor
-					!undefine - FoWMiddleDoor
-					!define - FoWRightDoor - , (&Items.SmallKey.0x1A, Helpers.CompleteFortress, (|Helpers.CanSplit2, Helpers.CanSplit3))
-					!define - FoWMiddleDoor - , (&Items.SmallKey.0x1A:2, Helpers.CompleteFortress, (|Helpers.CanSplit2, Helpers.CanSplit3))
+	!ifndef - ACCESS_LOCATIONS
+		!ifdef - SMALL_KEYS_ELSE
+			!ifndef - SPECIALPOTS 
+				!undefine - FoWRightDoor
+				!undefine - FoWMiddleDoor
+				!define - FoWRightDoor - , (&Items.SmallKey.0x1A, Helpers.Hundo)
+				!define - FoWMiddleDoor - , (&Items.SmallKey.0x1A:2, Helpers.Hundo)
+			!endif
+			!undefine - FoWLastDoor
+			!define - FoWLastDoor - , (&Items.SmallKey.0x1A:3, Helpers.Hundo)
+		!else
+			!ifndef - SMALL_KEYS_VANILLA
+				!ifdef - SMALL_KEYS_STANDARD
+					!ifndef - SPECIALPOTS 
+						!undefine - FoWRightDoor
+						!undefine - FoWMiddleDoor
+						!define - FoWRightDoor - , (&Items.SmallKey.0x1A, Helpers.CompleteFortress, (|Helpers.CanSplit2, Helpers.CanSplit3))
+						!define - FoWMiddleDoor - , (&Items.SmallKey.0x1A:2, Helpers.CompleteFortress, (|Helpers.CanSplit2, Helpers.CanSplit3))
+					!endif
+					!undefine - FoWLastDoor
+					!define - FoWLastDoor - , (&Items.SmallKey.0x1A:3, Helpers.CompleteFortress, (|Helpers.CanSplit2, Helpers.CanSplit3))
+				!else
+					!define - Ruins_ButterflyFusion_Item - 
+					!define - Ruins_BeanStalkFusion_BigChest -
+					!define - Ruins_NearFoWFusion_Chest - 
+					!define - Ruins_PillarsFusion_Chest - 
+					!define - Ruins_CrackFusion_Chest -
+					!define - Ruins_GoldenOcto - 
+					!ifndef - NO_RED_FUSIONS
+						!undefine - Ruins_ButterflyFusion_Item
+						!define - Ruins_ButterflyFusion_Item - , Locations.Ruins_ButterflyFusion_Item
+						!undefine - Ruins_BeanStalkFusion_BigChest
+						!define - Ruins_BeanStalkFusion_BigChest - , Locations.Ruins_BeanStalkFusion_BigChest
+						!undefine - Ruins_NearFoWFusion_Chest
+						!define - Ruins_NearFoWFusion_Chest - , Locations.Ruins_NearFoWFusion_Chest
+					!endif
+					!ifndef - NO_GREEN_FUSIONS
+						!undefine - Ruins_PillarsFusion_Chest
+						!define - Ruins_PillarsFusion_Chest - , Locations.Ruins_PillarsFusion_Chest
+						!undefine - Ruins_CrackFusion_Chest
+						!define - Ruins_CrackFusion_Chest - , Locations.Ruins_CrackFusion_Chest
+					!endif
+					!ifndef - GOLDEN_ENEMY_GREEN
+						!undefine - Ruins_GoldenOcto
+						!define - Ruins_GoldenOcto - , Locations.Ruins_GoldenOcto
+					!endif
+					!ifndef - SPECIALPOTS
+						!undefine - FoWRightDoor
+						!undefine - FoWMiddleDoor
+						!define - FoWRightDoor - , (&Items.SmallKey.0x1A, Helpers.CompleteFortress, Helpers.BombWalls, (|Helpers.CanSplit2, Helpers.CanSplit3) `Ruins_ButterflyFusion_Item` `Ruins_BeanStalkFusion_BigChest` `Ruins_NearFoWFusion_Chest` `Ruins_PillarsFusion_Chest` `Ruins_CrackFusion_Chest` `Ruins_GoldenOcto`)
+						!define - FoWMiddleDoor - , (&Items.SmallKey.0x1A:2, Helpers.CompleteFortress, Helpers.BombWalls, (|Helpers.CanSplit2, Helpers.CanSplit3) `Ruins_ButterflyFusion_Item` `Ruins_BeanStalkFusion_BigChest` `Ruins_NearFoWFusion_Chest` `Ruins_PillarsFusion_Chest` `Ruins_CrackFusion_Chest` `Ruins_GoldenOcto`)
+					!endif
+					!undefine - FoWLastDoor
+					!define - FoWLastDoor - , (&Items.SmallKey.0x1A:3, Helpers.CompleteFortress, Helpers.BombWalls, (|Helpers.CanSplit2, Helpers.CanSplit3) `Ruins_ButterflyFusion_Item` `Ruins_BeanStalkFusion_BigChest` `Ruins_NearFoWFusion_Chest` `Ruins_PillarsFusion_Chest` `Ruins_CrackFusion_Chest` `Ruins_GoldenOcto`)
 				!endif
-				!undefine - FoWLastDoor
-				!define - FoWLastDoor - , (&Items.SmallKey.0x1A:3, Helpers.CompleteFortress, (|Helpers.CanSplit2, Helpers.CanSplit3))
-			!else
-				!define - Ruins_ButterflyFusion_Item - 
-				!define - Ruins_BeanStalkFusion_BigChest -
-				!define - Ruins_NearFoWFusion_Chest - 
-				!define - Ruins_PillarsFusion_Chest - 
-				!define - Ruins_CrackFusion_Chest -
-				!define - Ruins_GoldenOcto - 
-				!ifndef - NO_RED_FUSIONS
-					!undefine - Ruins_ButterflyFusion_Item
-					!define - Ruins_ButterflyFusion_Item - , Locations.Ruins_ButterflyFusion_Item
-					!undefine - Ruins_BeanStalkFusion_BigChest
-					!define - Ruins_BeanStalkFusion_BigChest - , Locations.Ruins_BeanStalkFusion_BigChest
-					!undefine - Ruins_NearFoWFusion_Chest
-					!define - Ruins_NearFoWFusion_Chest - , Locations.Ruins_NearFoWFusion_Chest
-				!endif
-				!ifndef - NO_GREEN_FUSIONS
-					!undefine - Ruins_PillarsFusion_Chest
-					!define - Ruins_PillarsFusion_Chest - , Locations.Ruins_PillarsFusion_Chest
-					!undefine - Ruins_CrackFusion_Chest
-					!define - Ruins_CrackFusion_Chest - , Locations.Ruins_CrackFusion_Chest
-				!endif
-				!ifndef - GOLDEN_ENEMY_GREEN
-					!undefine - Ruins_GoldenOcto
-					!define - Ruins_GoldenOcto - , Locations.Ruins_GoldenOcto
-				!endif
-				!ifndef - SPECIALPOTS
-					!undefine - FoWRightDoor
-					!undefine - FoWMiddleDoor
-					!define - FoWRightDoor - , (&Items.SmallKey.0x1A, Helpers.CompleteFortress, Helpers.BombWalls, (|Helpers.CanSplit2, Helpers.CanSplit3) `Ruins_ButterflyFusion_Item` `Ruins_BeanStalkFusion_BigChest` `Ruins_NearFoWFusion_Chest` `Ruins_PillarsFusion_Chest` `Ruins_CrackFusion_Chest` `Ruins_GoldenOcto`)
-					!define - FoWMiddleDoor - , (&Items.SmallKey.0x1A:2, Helpers.CompleteFortress, Helpers.BombWalls, (|Helpers.CanSplit2, Helpers.CanSplit3) `Ruins_ButterflyFusion_Item` `Ruins_BeanStalkFusion_BigChest` `Ruins_NearFoWFusion_Chest` `Ruins_PillarsFusion_Chest` `Ruins_CrackFusion_Chest` `Ruins_GoldenOcto`)
-				!endif
-				!undefine - FoWLastDoor
-				!define - FoWLastDoor - , (&Items.SmallKey.0x1A:3, Helpers.CompleteFortress, Helpers.BombWalls, (|Helpers.CanSplit2, Helpers.CanSplit3) `Ruins_ButterflyFusion_Item` `Ruins_BeanStalkFusion_BigChest` `Ruins_NearFoWFusion_Chest` `Ruins_PillarsFusion_Chest` `Ruins_CrackFusion_Chest` `Ruins_GoldenOcto`)
 			!endif
 		!endif
 	!endif
@@ -3630,6 +3640,7 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 	!define - ToDLeftBlock - Items.SmallKey.0x1B:4
 	!define - ToDBigDoor - Items.BigKey.0x1B
 	!define - ToDChuDoor - 
+	!ifndef - ACCESS_LOCATIONS
 		!ifdef - SMALL_KEYS_ELSE
 			!ifndef - BIG_KEYS_ELSE
 				!ifdef - BIG_KEYS_VANILLA
@@ -3675,6 +3686,7 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 				!endif
 			!endif
 		!endif
+	!endif
 	ToDRightBlock;				Helper;;	`ToDRightBlock`
 	ToDLeftBlock;				Helper;;	`ToDLeftBlock`
 	ToDBigDoor;					Helper;;	`ToDBigDoor`
@@ -3685,13 +3697,14 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 	CryptDoor;					Helper;;	Items.SmallKey.0x1E
 	CryptBlocks;				Helper;; 	Items.SmallKey.0x1E:3
 	PoWPostKeyDoor;				Helper;;	Helpers.PoW1stDoor
+	!ifndef - ACCESS_LOCATIONS
 		!ifdef - BIG_KEYS_VANILLA
 			!define - PoWFans - , Items.SmallKey.0x1C:2
 			!define - PoWBigChest - , Items.SmallKey.0x1C:3
 		!else
 			!ifdef - SMALL_KEYS_ELSE
-				!define - PoWFans - , (&Items.SmallKey.0x1C:2, Helpers.BeatVaati)
-				!define - PoWBigChest - , (&Items.SmallKey.0x1C:3, Helpers.BeatVaati)
+				!define - PoWFans - , (&Items.SmallKey.0x1C:2, Helpers.Hundo)
+				!define - PoWBigChest - , (&Items.SmallKey.0x1C:3, Helpers.Hundo)
 			!else
 				!ifdef - SMALL_KEYS_VANILLA
 					!define - PoWFans - , Items.SmallKey.0x1C:2
@@ -3707,6 +3720,7 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 				!endif
 			!endif
 		!endif
+	!endif
 	PoWFans;					Helper;;	(|Items.SmallKey.0x1C:5 `PoWFans`)
 	PoWBigChest;				Helper;;	(|Items.SmallKey.0x1C:6 `PoWBigChest`)
 	PoW1stDoor;					Helper;;	(|(&Items.SmallKey.0x1C, Helpers.PoWNoWarps), (&Helpers.PoWBlueWarp, Items.SmallKey.0x1C:4))
@@ -3714,7 +3728,7 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 	PoWRedWarpDoor;				Helper;;	Items.SmallKey.0x1C:5
 	PoWLastDoor;				Helper;;	Items.SmallKey.0x1C:6
 	DHC1stDoor;					Helper;;	Items.SmallKey.0x1D
-	DHCBigBlock;				Helper;;	(|Items.SmallKey.0x1D:5, (&Items.SmallKey.0x1D:4, Helpers.BeatVaati))
+	DHCBigBlock;				Helper;;	(|Items.SmallKey.0x1D:5, (&Items.SmallKey.0x1D:4, Helpers.Hundo))
 
 	DeepwoodBossDoor;			Helper;;	Items.BigKey.0x18
 	CoFBossDoor;				Helper;;	Items.BigKey.0x19
