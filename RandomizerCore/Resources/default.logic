@@ -1848,24 +1848,24 @@
 			!define - GREENSHARED60 - 0x60
 		!endif
 	!endif
-	Items.Lantern.`REDSHARED`;		OverworldConstraint;	SF;
-	Items.Lantern.`BLUESHARED`;		OverworldConstraint;	SF;
-	Items.Lantern.`GREENSHARED35`;	OverworldConstraint;	SF;
-	Items.Lantern.`GREENSHARED36`;	OverworldConstraint;	SF;
-	Items.Lantern.`GREENSHARED37`;	OverworldConstraint;	SF;
-	Items.Lantern.`GREENSHARED39`;	OverworldConstraint;	SF;
-	Items.Lantern.`GREENSHARED3C`;	OverworldConstraint;	SF;
-	Items.Lantern.`GREENSHARED44`;	OverworldConstraint;	SF;
-	Items.Lantern.`GREENSHARED46`;	OverworldConstraint;	SF;
-	Items.Lantern.`GREENSHARED47`;	OverworldConstraint;	SF;
-	Items.Lantern.`GREENSHARED4E`;	OverworldConstraint;	SF;
-	Items.Lantern.`GREENSHARED50`;	OverworldConstraint;	SF;
-	Items.Lantern.`GREENSHARED53`;	OverworldConstraint;	SF;
-	Items.Lantern.`GREENSHARED55`;	OverworldConstraint;	SF;
-	Items.Lantern.`GREENSHARED56`;	OverworldConstraint;	SF;
-	Items.Lantern.`GREENSHARED58`;	OverworldConstraint;	SF;
-	Items.Lantern.`GREENSHARED5F`;	OverworldConstraint;	SF;
-	Items.Lantern.`GREENSHARED60`;	OverworldConstraint;	SF;
+	Items.Lantern.`REDSHARED`;		OverworldConstraint;	SF
+	Items.Lantern.`BLUESHARED`;		OverworldConstraint;	SF
+	Items.Lantern.`GREENSHARED35`;	OverworldConstraint;	SF
+	Items.Lantern.`GREENSHARED36`;	OverworldConstraint;	SF
+	Items.Lantern.`GREENSHARED37`;	OverworldConstraint;	SF
+	Items.Lantern.`GREENSHARED39`;	OverworldConstraint;	SF
+	Items.Lantern.`GREENSHARED3C`;	OverworldConstraint;	SF
+	Items.Lantern.`GREENSHARED44`;	OverworldConstraint;	SF
+	Items.Lantern.`GREENSHARED46`;	OverworldConstraint;	SF
+	Items.Lantern.`GREENSHARED47`;	OverworldConstraint;	SF
+	Items.Lantern.`GREENSHARED4E`;	OverworldConstraint;	SF
+	Items.Lantern.`GREENSHARED50`;	OverworldConstraint;	SF
+	Items.Lantern.`GREENSHARED53`;	OverworldConstraint;	SF
+	Items.Lantern.`GREENSHARED55`;	OverworldConstraint;	SF
+	Items.Lantern.`GREENSHARED56`;	OverworldConstraint;	SF
+	Items.Lantern.`GREENSHARED58`;	OverworldConstraint;	SF
+	Items.Lantern.`GREENSHARED5F`;	OverworldConstraint;	SF
+	Items.Lantern.`GREENSHARED60`;	OverworldConstraint;	SF
 	!ifndef - COMBINED_GREEN_FUSIONS
 		Shared00:SF;   OverworldConstraint; fusionScrap00:Define:FirstByte, 0x0C9844:SecondByte;;																																																																																																																																																																																																																																													`REDSHARED`
 		Shared01:SF;   OverworldConstraint; fusionScrap01:Define:FirstByte, 0x0C9845:SecondByte;	(|(&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenCShared1), (&Items.Lantern.0x36, Helpers.CanFuseGreenCShared1), (&Items.Lantern.0x37, Helpers.CanFuseGreenCShared1), (&Items.Lantern.0x39, Helpers.CanFuseGreenCShared1), (&Items.Lantern.0x3C, Helpers.CanFuseGreenCShared1), (&Items.Lantern.0x44, Helpers.CanFuseGreenGShared1), (&Items.Lantern.0x46, Helpers.CanFuseGreenGShared1), (&Items.Lantern.0x47, Helpers.CanFuseGreenGShared1), (&Items.Lantern.0x4E, Helpers.CanFuseGreenGShared1), (&Items.Lantern.0x50, Helpers.CanFuseGreenPShared1), (&Items.Lantern.0x53, Helpers.CanFuseGreenPShared1), (&Items.Lantern.0x55, Helpers.CanFuseGreenPShared1), (&Items.Lantern.0x56, Helpers.CanFuseGreenPShared1), (&Items.Lantern.0x58, Helpers.CanFuseGreenPShared1), (&Items.Lantern.0x5F, Helpers.CanFuseGreenCShared1), (&Items.Lantern.0x60, Helpers.CanFuseGreenGShared1)); 	`BLUESHARED`
@@ -2279,8 +2279,16 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 			!eventdefine - combineKinstonesGold
 			Items.Kinstone.GoldenCloudTops:9;	Major;
 			CanFuseGoldTornado;  Helper;; Items.Kinstone.GoldenCloudTops:9
-			CanFuseGoldTotem;    Helper;; Items.Kinstone.GoldenCloudTops:9
-			CanFuseGoldCrown;    Helper;; Items.Kinstone.GoldenCloudTops:4
+			CanFuseGoldTotem;    Helper;; Items.Kinstone.GoldenCloudTops:9			
+			!ifdef - CREST_CLOUD
+				CanFuseGoldCrown;    Helper;; Items.Kinstone.GoldenCloudTops:9
+			!else
+				!ifdef - CREST_FALLS
+					CanFuseGoldCrown;    Helper;; Items.Kinstone.GoldenCloudTops:9
+				!else
+					CanFuseGoldCrown;    Helper;; Items.Kinstone.GoldenCloudTops:4
+				!endif
+			!endif
 		!endif
 		CloudFusions;				Helper;;	Helpers.CanFuseGoldTornado, (|Items.RocsCape, Items.MoleMitts)																#CloudTopsTornado
 		FallsFusion;				Helper;;	Helpers.CanFuseGoldCrown																									#FallsDoor
