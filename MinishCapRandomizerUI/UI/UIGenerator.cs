@@ -61,6 +61,7 @@ public static class UIGenerator
                 Name = $"{group.Key}_label",
                 Location = new Point(Constants.CategoryLabelAlignX, totalPaneHeight + Constants.CategoryLabelAlignY),
                 Text = group.Key,
+                UseMnemonic = Constants.UseMnemonic,
             };
 
             var currentElementXLocation = Constants.FirstElementInRowX;
