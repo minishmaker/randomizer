@@ -1573,6 +1573,16 @@
 			!undefine - GotElements
             !define - GotElements - , (+`ELEMENTAMOUNT`, Items.WaterElement, Items.FireElement, Items.WindElement, Items.EarthElement)
         !endif
+		!ifdef - SWORDEX
+			!ifdef - ELEMENTEX
+				!ifndef - FIGURINE_HUNT
+					!ifdef - AD_PED_0
+						!undefine - GotElements
+						!define - GotElements - , (+4, Items.WaterElement, Items.FireElement, Items.WindElement, Items.EarthElement)
+					!endif
+				!endif
+			!endif
+		!endif
 	!endif
 !endif
 GotSwords; 	Helper; ; `GotSwords`
