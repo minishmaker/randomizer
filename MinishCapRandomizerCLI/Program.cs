@@ -45,8 +45,8 @@ internal class Program
 
     private static void BlockUntilNewline()
     {
-        Console.WriteLine("Press enter to continue...");
-        Console.ReadLine();
+        // Console.WriteLine("Press enter to continue...");
+        // Console.ReadLine();
     }
 
     private static void LoadCommands()
