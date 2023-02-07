@@ -136,7 +136,7 @@
 !flag - World Settings - Setting - Wind Crests - CREST_MINISH - Minish Woods - If enabled, will activate the wind crest in Minish Woods from the start of the game.
 
 !flag - Logic Settings - Setting - Logic Rules - NO_LOGIC - No Logic - Items can go anywhere without regard to logic.\n LIKELY RESULTS IN UNBEATABLE SEEDS!
-!dropdown - Logic Settings - Setting - Logic Rules - ACCESSIBILITY - Accessibiliy: - Determines which items and locations are guaranteed to be reachable. - ACCESS_LOCATIONS - 100% Collection Possible - ACCESS_LOCATIONS - '100% Collection Possible': All enabled locations are reachable. - Keys Can Lock Themselves - ACCESS_INVENTORY - 'Keys Can Lock Themselves': Like '100% Collection Possible', except keys can lock themselves. - Items Can Lock Themselves - ACCESS_BEATABLE - 'Items Can Lock Themselves': Only the goal is guaranteed to be reachable. Some locations and items may be inaccessible.
+!dropdown - Logic Settings - Setting - Logic Rules - ACCESSIBILITY - Reachable: - Determines which items and locations are guaranteed to be reachable. - ACCESS_LOCATIONS - All Locations - ACCESS_LOCATIONS - 'All Locations': All enabled locations are reachable. - All NonKeys - ACCESS_INVENTORY - 'All NonKeys': Like 'All Locations', except keys can lock themselves. - Always the Goal - ACCESS_BEATABLE - 'Always the Goal': Only the goal is guaranteed to be reachable. Some locations and items may be inaccessible. If DHC setting is set to 'Never Open' then the goal is the pedestal requirements, otherwise the goal is Defeat Vaati.
 
 !dropdown - Logic Settings - Setting - Weapons - BOMBWEAPON - Bombs: - Bombs can damage nearly every enemy, Bombs are never considered for Simon Simulations, and Golden Enemies. - NOBOMB - No - NOBOMB - 'No': Bombs are not considered as Weapons. - Yes - YESBOMB - 'Yes': Bombs are considered as weapons for most regular enemy fights. - Yes + Bosses - BOSSBOMB - 'Yes + Bosses': Bombs are considered as weapons for most enemy fights. Fighting Green/Blu Chu, Madderpillars and Darknuts require only 10 bomb bag. Gleerok, Mazaal and Scissor Beetles require at least 30 bomb bag. Octo and Gyorg cannot be defeated with bombs.
 !dropdown - Logic Settings - Setting - Weapons - BOWWEAPON - Bows: - Bow can damage most enemies, many enemies are very resiliant to damage. Chu Bosses and Darknuts are Immune. - NOBOW - No - NOBOW - 'No': Bows are not considered as Weapons. - Yes - YESBOW - 'Yes': Bows are considered as weapons for most enemy fights. Bows are never considered for Chu Bossfights, Darknuts, Scissor Beetles, Madderpillar, Wizrobes, Simon Simulations, and Golden Enemies.
@@ -279,6 +279,7 @@
 !define - `CUCCO_SETTING`
 !define - `GORON_SETTING`
 !define - `ENTRANCES`
+!define - `ACCESSIBILITY`
 
 # Logic setting defines
 !define - `MITTSMONEY`
