@@ -123,7 +123,7 @@
 !dropdown - World Settings - Setting - Fusions - RED_FUSION_SETTING - Red Fusions are: - Red Kinstones come in 3 shapes, Fusions can be found everywhere but are mostly from unique individuals.\n There are 24 Fusions in total, There are more Kinstones in the pool than fusions available just to be generous. - NO_RED_FUSIONS - Removed (Closed) - NO_RED_FUSIONS - 'Removed': All the Red Kinstones are removed from the pool, and the fusions are unable to be completed. - Vanilla - VANILLA_RED_FUSIONS - 'Vanilla': This shuffles the 3 different shaped Red Kinstones into the pool, the exact amount needed to do every available fusion, the locations of the fusions and what shape they ask for are not shuffled. - Combined - COMBINED_RED_FUSIONS - 'Combined': This converts the different shaped Red Kinstones into a single Red shape. The locations of the fusions are not shuffled and all ask for the same shape. - Completed (Open) - OPEN_RED_FUSIONS - 'Completed': All the Red Kinstones are removed from the pool, and all the fusions are already completed.
 !dropdown - World Settings - Setting - Fusions - BLUE_FUSION_SETTING - Blue Fusions are: - Blue Kinstones come in 2 shapes, Fusions can be found everywhere but are mostly from Walls or unique individuals.\n There are 18 Fusions in total, There are more Kinstones in the pool than fusions available just to be generous. - NO_BLUE_FUSIONS - Removed (Closed) - NO_BLUE_FUSIONS - 'Removed': All the Blue Kinstones are removed from the pool, and the fusions are unable to be completed. - Vanilla - VANILLA_BLUE_FUSIONS - 'Vanilla': This shuffles the 2 different shaped Blue Kinstones into the pool, the exact amount needed to do every available fusion, the locations of the fusions and what shape they ask for are not shuffled. - Combined - COMBINED_BLUE_FUSIONS - 'Combined': This converts the different shaped Blue Kinstones into a single Blue shape. The locations of the fusions are not shuffled and all ask for the same shape. - Completed (Open) - OPEN_BLUE_FUSIONS - 'Completed': All the Blue Kinstones are removed from the pool, and all the fusions are already completed.
 !dropdown - World Settings - Setting - Fusions - GREEN_FUSION_SETTING - Green Fusions are: - Green Kinstones come in 3 shapes, Fusions can be found everywhere and a large amount are shared between many people.\n There are 49 Fusions in total, There are more Kinstones in the pool than fusions available just to be generous. - NO_GREEN_FUSIONS - Removed (Closed) - NO_GREEN_FUSIONS - 'Removed': All the Green Kinstones are removed from the pool, and the fusions are unable to be completed. - Vanilla - VANILLA_GREEN_FUSIONS - 'Vanilla': This shuffles the 3 different shaped Green Kinstones into the pool, the exact amount needed to do every available fusion, the locations of the fusions and what shape they ask for are not shuffled. - Combined - COMBINED_GREEN_FUSIONS - 'Combined': This converts the different shaped Green Kinstones into a single Green shape. The locations of the fusions are not shuffled and all ask for the same shape. - Completed (Open) - OPEN_GREEN_FUSIONS - 'Completed': All the Green Kinstones are removed from the pool, and all the fusions are already completed.
-!flag - World Settings - Setting - Fusions - SEEDED_SHARED - Order Shared Fusions - There are a Pool of 18 Shared Fusions in the Game: 16 Green, 1 Blue and 1 Red. These Fusions are randomly selected by an NPC who offers Shared Fusions when you enter the room they are in.\n\n If this setting is enabled then the seed generates a listed order these NPCs offer the fusions in. This makes different people playing the same seed have the same fusions available which is useful for races. - true
+#!flag - World Settings - Setting - Fusions - SEEDED_SHARED - Order Shared Fusions - There are a Pool of 18 Shared Fusions in the Game: 16 Green, 1 Blue and 1 Red. These Fusions are randomly selected by an NPC who offers Shared Fusions when you enter the room they are in.\n\n If this setting is enabled then the seed generates a listed order these NPCs offer the fusions in. This makes different people playing the same seed have the same fusions available which is useful for races. - true
 !flag - World Settings - Setting - Fusions - DEFICKLE - Defickle Fusers - Many NPCs who offer fusions are considered 'Fickle', this means they can randomly decide to NOT offer their fusion.\n\n Enable this to make them ALWAYS offer a fusion. - true
 !dropdown - World Settings - Setting - Fusions - FUSION_SKIPS - Skip Fusion Cutscenes: - When doing a Kinstone Fusion you get a cutscene aftewards to show you what the fusion activated, and then a Map indicator spawns. - ALLOW_FUSION_SKIPS - Choose - ALLOW_FUSION_SKIPS - 'Choose': If you hold a button prior to the start of the cutscene, then the cutscene is skipped, otherwise the cutscene plays normally.\n If 'Show Map' is enabled then only the cutscene is skipped, but the map screen is still shown. - Always - INSTANT_SKIP - 'Always': The cutscene is always skipped without player input.\n If 'Show Map' is enabled then it will always show the map screen. - Never - NO_FUSION_SKIP - 'Never': The cutscene is never able to be skipped by the player.
 !flag - World Settings - Setting - Fusions - SHOW_MAP - Show Map - If enabled, it will always show the map screen at the end of a cutscene, even if the cutscene is skipped.
@@ -3579,8 +3579,8 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 	Deepwood2ndDoor;			Helper;;	(|Items.SmallKey.0x18:4 `Deepwood2ndDoor`)
 	DeepwoodMadderpillarDoor;	Helper;;	(|Helpers.DeepwoodMadderpillarWeb, Items.SmallKey.0x18:4)
 	DeepwoodBasementDoor;		Helper;;	(|Items.SmallKey.0x18:4 `DeepwoodBasementDoor`)
-	CoF1stDoor;					Helper;;	Items.SmallKey.0x19
-	CoF2ndDoor;					Helper;;	(|Items.SmallKey.0x19:2, (&Helpers.CoFBlueWarp, Items.SmallKey.0x19))
+	CoF1stDoor;				Helper;;	(|Items.SmallKey.0x19:2, (&Helpers.CoFNoBlueWarp, Items.SmallKey.0x19))
+	CoF2ndDoor;				Helper;;	Items.SmallKey.0x19:2
 	!define - FoWRightDoor - 
 	!define - FoWMiddleDoor - 
 	!define - FoWLastDoor - 
@@ -3650,7 +3650,44 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 	!define - ToDLeftBlock - Items.SmallKey.0x1B:4
 	!define - ToDBigDoor - Items.BigKey.0x1B
 	!define - ToDChuDoor - 
-	!ifndef - ACCESS_LOCATIONS
+	!ifdef - ACCESS_LOCATIONS
+		!ifdef - SMALL_KEYS_ELSE
+			!ifndef - BIG_KEYS_ELSE
+				!ifdef - BIG_KEYS_VANILLA
+					!undefine - ToDLeftBlock
+					!define - ToDLeftBlock - Items.SmallKey.0x1B
+				!else
+					!undefine - ToDRightBlock
+					!undefine - ToDLeftBlock
+					!undefine - ToDBigDoor
+					!define - ToDRightBlock - (|(&Items.Untyped.0xb, ~Items.BigKey.0x1B), (&Items.Untyped.0xa, ~Items.SmallKey.0x1B, ~Items.DungeonMap.0x1B, ~Items.Compass.0x1B))
+					!define - ToDLeftBlock - (|(&Items.Untyped.0xb, Items.SmallKey.0x1B, ~Items.SmallKey.0x1B, ~Items.DungeonMap.0x1B, ~Items.Compass.0x1B), (&Items.Untyped.0xa, Items.BigKey.0x1B, Items.SmallKey.0x1B:4))
+					!define - ToDBigDoor - (|(&Items.SmallKey.0x1B, Items.BigKey.0x1B, Items.Untyped.0xb), (&Items.BigKey.0x1B, Items.Untyped.0xa))
+				!endif
+			!endif
+		!else
+			!ifdef - SMALL_KEYS_VANILLA
+				!ifndef - BIG_KEYS_ELSE
+					!undefine - ToDLeftBlock
+					!define - ToDLeftBlock - Items.SmallKey.0x1B
+				!endif
+			!else
+				!ifndef - BIG_KEYS_ELSE
+					!ifdef - BIG_KEYS_VANILLA
+						!undefine - ToDLeftBlock
+						!define - ToDLeftBlock - Items.SmallKey.0x1B
+					!else
+						!undefine - ToDRightBlock
+						!undefine - ToDLeftBlock
+						!undefine - ToDBigDoor
+						!define - ToDRightBlock - (|(&Items.Untyped.0xb, ~Items.BigKey.0x1B, ~Items.DungeonMap.0x1B, ~Items.Compass.0x1B), (&Items.Untyped.0xa, ~Items.SmallKey.0x1B, ~Items.DungeonMap.0x1B, ~Items.Compass.0x1B))
+						!define - ToDLeftBlock - (|(&Items.Untyped.0xb, Items.SmallKey.0x1B, ~Items.SmallKey.0x1B, ~Items.DungeonMap.0x1B, ~Items.Compass.0x1B), (&Items.Untyped.0xa, Items.BigKey.0x1B, Items.SmallKey.0x1B:4))
+						!define - ToDBigDoor - (|(&Items.SmallKey.0x1B, Items.BigKey.0x1B, Items.Untyped.0xb), (&Items.BigKey.0x1B, Items.Untyped.0xa))
+					!endif
+				!endif
+			!endif
+		!endif
+	!else
 		!ifdef - SMALL_KEYS_ELSE
 			!ifndef - BIG_KEYS_ELSE
 				!ifdef - BIG_KEYS_VANILLA
@@ -3707,6 +3744,8 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 	CryptDoor;				Helper;;	Items.SmallKey.0x1E
 	CryptBlocks;				Helper;; Items.SmallKey.0x1E:3
 	PoWPostKeyDoor;			Helper;;	Helpers.PoW1stDoor
+	!define - PoWFans -
+	!define - PoWBigChest - 
 	!ifndef - ACCESS_LOCATIONS
 		!ifdef - BIG_KEYS_VANILLA
 			!define - PoWFans - , Items.SmallKey.0x1C:2
