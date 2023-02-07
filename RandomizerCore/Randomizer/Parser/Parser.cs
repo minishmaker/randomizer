@@ -75,11 +75,11 @@ public class Parser
                         var depValue = 1;
                         var values = dependencyString.Split(':');
 
-                        if (values.Length >= 3)
+                        if (values.Length >= 2)
                         {
-                            if (!StringUtil.ParseString(values[2], out depValue)) depValue = 1;
+                            if (!StringUtil.ParseString(values[1], out depValue)) depValue = 1;
                             dependencyString =
-                                dependencyString.Substring(0, dependencyString.Length - (values[2].Length + 1));
+                                dependencyString.Substring(0, dependencyString.Length - (values[1].Length + 1));
                         }
 
                         var temp = GetDependencies(dependencyString);
