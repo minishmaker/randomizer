@@ -4468,9 +4468,9 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 	!define - DIGKINSTONE - Any
 	!define - WTFUSIONGREENDIG - ;`WTFUSIONGREEN`
 !else
-	!define - DIG - :NoSpoiler ; Inaccessible
+	!define - DIG - :NoSpoiler; Unshuffled
 	!define - DIGKINSTONE - Inaccessible
-	!define - WTFUSIONGREENDIG - :NoSpoiler; Inaccessible
+	!define - WTFUSIONGREENDIG - :NoSpoiler; Unshuffled
 !endif
 
 !ifdef - UNDERWATER
@@ -4486,241 +4486,248 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 !ifdef - CUCCO_0
     !eventdefine - cuccoSkippedLevels - 9
     !eventdefine - cuccoHeartPieceFlag - 1
-	!define - CUCCO1 - :NoSpoiler; Inaccessible
-	!define - CUCCO2 - :NoSpoiler; Inaccessible
-	!define - CUCCO3 - :NoSpoiler; Inaccessible
-	!define - CUCCO4 - :NoSpoiler; Inaccessible
-	!define - CUCCO5 - :NoSpoiler; Inaccessible
-	!define - CUCCO6 - :NoSpoiler; Inaccessible
-	!define - CUCCO7 - :NoSpoiler; Inaccessible
-	!define - CUCCO8 - :NoSpoiler; Inaccessible
-	!define - CUCCO9 - :NoSpoiler; Inaccessible
+	!define - CUCCO1 - Inaccessible
+	!define - CUCCO2 - Inaccessible
+	!define - CUCCO3 - Inaccessible
+	!define - CUCCO4 - Inaccessible
+	!define - CUCCO5 - Inaccessible
+	!define - CUCCO6 - Inaccessible
+	!define - CUCCO7 - Inaccessible
+	!define - CUCCO8 - Inaccessible
+	!define - CUCCO9 - Inaccessible
 	!ifdef - HEART_RANDO
-		!define - CUCCO10 - :NoSpoiler; Inaccessible
+		!define - CUCCO10 - Inaccessible
 	!else
-		!define - CUCCO10 - ; Inaccessible
+		!define - CUCCO10 - Inaccessible
 	!endif
 !endif
 !ifdef - CUCCO_1
     !eventdefine - cuccoSkippedLevels - 9
-	!define - CUCCO1 - :NoSpoiler; Inaccessible
-	!define - CUCCO2 - :NoSpoiler; Inaccessible
-	!define - CUCCO3 - :NoSpoiler; Inaccessible
-	!define - CUCCO4 - :NoSpoiler; Inaccessible
-	!define - CUCCO5 - :NoSpoiler; Inaccessible
-	!define - CUCCO6 - :NoSpoiler; Inaccessible
-	!define - CUCCO7 - :NoSpoiler; Inaccessible
-	!define - CUCCO8 - :NoSpoiler; Inaccessible
-	!define - CUCCO9 - :NoSpoiler; Inaccessible
+	!define - CUCCO1 - Inaccessible
+	!define - CUCCO2 - Inaccessible
+	!define - CUCCO3 - Inaccessible
+	!define - CUCCO4 - Inaccessible
+	!define - CUCCO5 - Inaccessible
+	!define - CUCCO6 - Inaccessible
+	!define - CUCCO7 - Inaccessible
+	!define - CUCCO8 - Inaccessible
+	!define - CUCCO9 - Inaccessible
 	!ifdef - HEART_RANDO
-		!define - CUCCO10 - ; Any
+		!define - CUCCO10 - Any
 	!else
-		!define - CUCCO10 - ; Unshuffled
+		!define - CUCCO10 - Unshuffled
 	!endif
 !endif
 !ifdef - CUCCO_2
     !eventdefine - cuccoSkippedLevels - 8
-	!define - CUCCO1 - :NoSpoiler; Inaccessible
-	!define - CUCCO2 - :NoSpoiler; Inaccessible
-	!define - CUCCO3 - :NoSpoiler; Inaccessible
-	!define - CUCCO4 - :NoSpoiler; Inaccessible
-	!define - CUCCO5 - :NoSpoiler; Inaccessible
-	!define - CUCCO6 - :NoSpoiler; Inaccessible
-	!define - CUCCO7 - :NoSpoiler; Inaccessible
-	!define - CUCCO8 - :NoSpoiler; Inaccessible
-	!define - CUCCO9 - ; Any
+	!define - CUCCO1 - Inaccessible
+	!define - CUCCO2 - Inaccessible
+	!define - CUCCO3 - Inaccessible
+	!define - CUCCO4 - Inaccessible
+	!define - CUCCO5 - Inaccessible
+	!define - CUCCO6 - Inaccessible
+	!define - CUCCO7 - Inaccessible
+	!define - CUCCO8 - Inaccessible
+	!define - CUCCO9 - Any
 	!ifdef - HEART_RANDO
-		!define - CUCCO10 - ; Any
+		!define - CUCCO10 - Any
 	!else
-		!define - CUCCO10 - ; Unshuffled
+		!define - CUCCO10 - Unshuffled
 	!endif
 !endif
 !ifdef - CUCCO_3
     !eventdefine - cuccoSkippedLevels - 7
-	!define - CUCCO1 - :NoSpoiler; Inaccessible
-	!define - CUCCO2 - :NoSpoiler; Inaccessible
-	!define - CUCCO3 - :NoSpoiler; Inaccessible
-	!define - CUCCO4 - :NoSpoiler; Inaccessible
-	!define - CUCCO5 - :NoSpoiler; Inaccessible
-	!define - CUCCO6 - :NoSpoiler; Inaccessible
-	!define - CUCCO7 - :NoSpoiler; Inaccessible
-	!define - CUCCO8 - ; Any
-	!define - CUCCO9 - ; Any
+	!define - CUCCO1 - Inaccessible
+	!define - CUCCO2 - Inaccessible
+	!define - CUCCO3 - Inaccessible
+	!define - CUCCO4 - Inaccessible
+	!define - CUCCO5 - Inaccessible
+	!define - CUCCO6 - Inaccessible
+	!define - CUCCO7 - Inaccessible
+	!define - CUCCO8 - Any
+	!define - CUCCO9 - Any
 	!ifdef - HEART_RANDO
-		!define - CUCCO10 - ; Any
+		!define - CUCCO10 - Any
 	!else
-		!define - CUCCO10 - ; Unshuffled
+		!define - CUCCO10 - Unshuffled
 	!endif
 !endif
 !ifdef - CUCCO_4
     !eventdefine - cuccoSkippedLevels - 6
-	!define - CUCCO1 - :NoSpoiler; Inaccessible
-	!define - CUCCO2 - :NoSpoiler; Inaccessible
-	!define - CUCCO3 - :NoSpoiler; Inaccessible
-	!define - CUCCO4 - :NoSpoiler; Inaccessible
-	!define - CUCCO5 - :NoSpoiler; Inaccessible
-	!define - CUCCO6 - :NoSpoiler; Inaccessible
-	!define - CUCCO7 - ; Any
-	!define - CUCCO8 - ; Any
-	!define - CUCCO9 - ; Any
+	!define - CUCCO1 - Inaccessible
+	!define - CUCCO2 - Inaccessible
+	!define - CUCCO3 - Inaccessible
+	!define - CUCCO4 - Inaccessible
+	!define - CUCCO5 - Inaccessible
+	!define - CUCCO6 - Inaccessible
+	!define - CUCCO7 - Any
+	!define - CUCCO8 - Any
+	!define - CUCCO9 - Any
 	!ifdef - HEART_RANDO
-		!define - CUCCO10 - ; Any
+		!define - CUCCO10 - Any
 	!else
-		!define - CUCCO10 - ; Unshuffled
+		!define - CUCCO10 - Unshuffled
 	!endif
 !endif
 !ifdef - CUCCO_5
     !eventdefine - cuccoSkippedLevels - 5
-	!define - CUCCO1 - :NoSpoiler; Inaccessible
-	!define - CUCCO2 - :NoSpoiler; Inaccessible
-	!define - CUCCO3 - :NoSpoiler; Inaccessible
-	!define - CUCCO4 - :NoSpoiler; Inaccessible
-	!define - CUCCO5 - :NoSpoiler; Inaccessible
-	!define - CUCCO6 - ; Any
-	!define - CUCCO7 - ; Any
-	!define - CUCCO8 - ; Any
-	!define - CUCCO9 - ; Any
+	!define - CUCCO1 - Inaccessible
+	!define - CUCCO2 - Inaccessible
+	!define - CUCCO3 - Inaccessible
+	!define - CUCCO4 - Inaccessible
+	!define - CUCCO5 - Inaccessible
+	!define - CUCCO6 - Any
+	!define - CUCCO7 - Any
+	!define - CUCCO8 - Any
+	!define - CUCCO9 - Any
 	!ifdef - HEART_RANDO
-		!define - CUCCO10 - ; Any
+		!define - CUCCO10 - Any
 	!else
-		!define - CUCCO10 - ; Unshuffled
+		!define - CUCCO10 - Unshuffled
 	!endif
 !endif
 !ifdef - CUCCO_6
     !eventdefine - cuccoSkippedLevels - 4
-	!define - CUCCO1 - :NoSpoiler; Inaccessible
-	!define - CUCCO2 - :NoSpoiler; Inaccessible
-	!define - CUCCO3 - :NoSpoiler; Inaccessible
-	!define - CUCCO4 - :NoSpoiler; Inaccessible
-	!define - CUCCO5 - ; Any
-	!define - CUCCO6 - ; Any
-	!define - CUCCO7 - ; Any
-	!define - CUCCO8 - ; Any
-	!define - CUCCO9 - ; Any
+	!define - CUCCO1 - Inaccessible
+	!define - CUCCO2 - Inaccessible
+	!define - CUCCO3 - Inaccessible
+	!define - CUCCO4 - Inaccessible
+	!define - CUCCO5 - Any
+	!define - CUCCO6 - Any
+	!define - CUCCO7 - Any
+	!define - CUCCO8 - Any
+	!define - CUCCO9 - Any
 	!ifdef - HEART_RANDO
-		!define - CUCCO10 - ; Any
+		!define - CUCCO10 - Any
 	!else
-		!define - CUCCO10 - ; Unshuffled
+		!define - CUCCO10 - Unshuffled
 	!endif
 !endif
 !ifdef - CUCCO_7
     !eventdefine - cuccoSkippedLevels - 3
-	!define - CUCCO1 - :NoSpoiler; Inaccessible
-	!define - CUCCO2 - :NoSpoiler; Inaccessible
-	!define - CUCCO3 - :NoSpoiler; Inaccessible
-	!define - CUCCO4 - ; Any
-	!define - CUCCO5 - ; Any
-	!define - CUCCO6 - ; Any
-	!define - CUCCO7 - ; Any
-	!define - CUCCO8 - ; Any
-	!define - CUCCO9 - ; Any
+	!define - CUCCO1 - Inaccessible
+	!define - CUCCO2 - Inaccessible
+	!define - CUCCO3 - Inaccessible
+	!define - CUCCO4 - Any
+	!define - CUCCO5 - Any
+	!define - CUCCO6 - Any
+	!define - CUCCO7 - Any
+	!define - CUCCO8 - Any
+	!define - CUCCO9 - Any
 	!ifdef - HEART_RANDO
-		!define - CUCCO10 - ; Any
+		!define - CUCCO10 - Any
 	!else
-		!define - CUCCO10 - ; Unshuffled
+		!define - CUCCO10 - Unshuffled
 	!endif
 !endif
 !ifdef - CUCCO_8
     !eventdefine - cuccoSkippedLevels - 2
-	!define - CUCCO1 - :NoSpoiler; Inaccessible
-	!define - CUCCO2 - :NoSpoiler; Inaccessible
-	!define - CUCCO3 - ; Any
-	!define - CUCCO4 - ; Any
-	!define - CUCCO5 - ; Any
-	!define - CUCCO6 - ; Any
-	!define - CUCCO7 - ; Any
-	!define - CUCCO8 - ; Any
-	!define - CUCCO9 - ; Any
+	!define - CUCCO1 - Inaccessible
+	!define - CUCCO2 - Inaccessible
+	!define - CUCCO3 - Any
+	!define - CUCCO4 - Any
+	!define - CUCCO5 - Any
+	!define - CUCCO6 - Any
+	!define - CUCCO7 - Any
+	!define - CUCCO8 - Any
+	!define - CUCCO9 - Any
 	!ifdef - HEART_RANDO
-		!define - CUCCO10 - ; Any
+		!define - CUCCO10 - Any
 	!else
-		!define - CUCCO10 - ; Unshuffled
+		!define - CUCCO10 - Unshuffled
 	!endif
 !endif
 !ifdef - CUCCO_9
     !eventdefine - cuccoSkippedLevels - 1
-	!define - CUCCO1 - :NoSpoiler; Inaccessible
-	!define - CUCCO2 - ; Any
-	!define - CUCCO3 - ; Any
-	!define - CUCCO4 - ; Any
-	!define - CUCCO5 - ; Any
-	!define - CUCCO6 - ; Any
-	!define - CUCCO7 - ; Any
-	!define - CUCCO8 - ; Any
-	!define - CUCCO9 - ; Any
+	!define - CUCCO1 - Inaccessible
+	!define - CUCCO2 - Any
+	!define - CUCCO3 - Any
+	!define - CUCCO4 - Any
+	!define - CUCCO5 - Any
+	!define - CUCCO6 - Any
+	!define - CUCCO7 - Any
+	!define - CUCCO8 - Any
+	!define - CUCCO9 - Any
 	!ifdef - HEART_RANDO
-		!define - CUCCO10 - ; Any
+		!define - CUCCO10 - Any
 	!else
-		!define - CUCCO10 - ; Unshuffled
+		!define - CUCCO10 - Unshuffled
 	!endif
 !endif
 !ifdef - CUCCO_10
     !eventdefine - cuccoSkippedLevels - 0
-	!define - CUCCO1 - ; Any
-	!define - CUCCO2 - ; Any
-	!define - CUCCO3 - ; Any
-	!define - CUCCO4 - ; Any
-	!define - CUCCO5 - ; Any
-	!define - CUCCO6 - ; Any
-	!define - CUCCO7 - ; Any
-	!define - CUCCO8 - ; Any
-	!define - CUCCO9 - ; Any
+	!define - CUCCO1 - Any
+	!define - CUCCO2 - Any
+	!define - CUCCO3 - Any
+	!define - CUCCO4 - Any
+	!define - CUCCO5 - Any
+	!define - CUCCO6 - Any
+	!define - CUCCO7 - Any
+	!define - CUCCO8 - Any
+	!define - CUCCO9 - Any
 	!ifdef - HEART_RANDO
-		!define - CUCCO10 - ; Any
+		!define - CUCCO10 - Any
 	!else
-		!define - CUCCO10 - ; Unshuffled
+		!define - CUCCO10 - Unshuffled
 	!endif
 !endif
-
-!ifdef - GORON_0
+!ifdef - NO_BLUE_FUSIONS
 	!eventdefine - goronMerchantCustomSets - 0
-	!define - GORONSET1 - :NoSpoiler; Inaccessible
-	!define - GORONSET2 - :NoSpoiler; Inaccessible
-	!define - GORONSET3 - :NoSpoiler; Inaccessible
-	!define - GORONSET4 - :NoSpoiler; Inaccessible
-	!define - GORONSET5 - :NoSpoiler; Inaccessible
+	!define - GORONSET1 - Inaccessible
+	!define - GORONSET2 - Inaccessible
+	!define - GORONSET3 - Inaccessible
+	!define - GORONSET4 - Inaccessible
+	!define - GORONSET5 - Inaccessible
+!else
+	!ifdef - GORON_0
+		!eventdefine - goronMerchantCustomSets - 0
+		!define - GORONSET1 - Inaccessible
+		!define - GORONSET2 - Inaccessible
+		!define - GORONSET3 - Inaccessible
+		!define - GORONSET4 - Inaccessible
+		!define - GORONSET5 - Inaccessible
+	!endif
+	!ifdef - GORON_1
+		!eventdefine - goronMerchantCustomSets - 1
+		!define - GORONSET1 - Any
+		!define - GORONSET2 - Inaccessible
+		!define - GORONSET3 - Inaccessible
+		!define - GORONSET4 - Inaccessible
+		!define - GORONSET5 - Inaccessible
+	!endif
+	!ifdef - GORON_2
+		!eventdefine - goronMerchantCustomSets - 2
+		!define - GORONSET1 - Any
+		!define - GORONSET2 - Any
+		!define - GORONSET3 - Inaccessible
+		!define - GORONSET4 - Inaccessible
+		!define - GORONSET5 - Inaccessible
+	!endif
+	!ifdef - GORON_3
+		!eventdefine - goronMerchantCustomSets - 3
+		!define - GORONSET1 - Any
+		!define - GORONSET2 - Any
+		!define - GORONSET3 - Any
+		!define - GORONSET4 - Inaccessible
+		!define - GORONSET5 - Inaccessible
+	!endif
+	!ifdef - GORON_4
+		!eventdefine - goronMerchantCustomSets - 4
+		!define - GORONSET1 - Any
+		!define - GORONSET2 - Any
+		!define - GORONSET3 - Any
+		!define - GORONSET4 - Any
+		!define - GORONSET5 - Inaccessible
+	!endif
+	!ifdef - GORON_5
+		!eventdefine - goronMerchantCustomSets - 5
+		!define - GORONSET1 - Any
+		!define - GORONSET2 - Any
+		!define - GORONSET3 - Any
+		!define - GORONSET4 - Any
+		!define - GORONSET5 - Any
+	!endif
 !endif
-!ifdef - GORON_1
-	!eventdefine - goronMerchantCustomSets - 1
-	!define - GORONSET1 - ; Any
-	!define - GORONSET2 - :NoSpoiler; Inaccessible
-	!define - GORONSET3 - :NoSpoiler; Inaccessible
-	!define - GORONSET4 - :NoSpoiler; Inaccessible
-	!define - GORONSET5 - :NoSpoiler; Inaccessible
-!endif
-!ifdef - GORON_2
-	!eventdefine - goronMerchantCustomSets - 2
-	!define - GORONSET1 - ; Any
-	!define - GORONSET2 - ; Any
-	!define - GORONSET3 - :NoSpoiler; Inaccessible
-	!define - GORONSET4 - :NoSpoiler; Inaccessible
-	!define - GORONSET5 - :NoSpoiler; Inaccessible
-!endif
-!ifdef - GORON_3
-	!eventdefine - goronMerchantCustomSets - 3
-	!define - GORONSET1 - ; Any
-	!define - GORONSET2 - ; Any
-	!define - GORONSET3 - ; Any
-	!define - GORONSET4 - :NoSpoiler; Inaccessible
-	!define - GORONSET5 - :NoSpoiler; Inaccessible
-!endif
-!ifdef - GORON_4
-	!eventdefine - goronMerchantCustomSets - 4
-	!define - GORONSET1 - ; Any
-	!define - GORONSET2 - ; Any
-	!define - GORONSET3 - ; Any
-	!define - GORONSET4 - ; Any
-	!define - GORONSET5 - :NoSpoiler; Inaccessible
-!endif
-!ifdef - GORON_5
-	!eventdefine - goronMerchantCustomSets - 5
-	!define - GORONSET1 - ; Any
-	!define - GORONSET2 - ; Any
-	!define - GORONSET3 - ; Any
-	!define - GORONSET4 - ; Any
-	!define - GORONSET5 - ; Any
-!endif
-
 # South Field
 
 Smith_House_Chest;				Any;					0x22-0x11-0x00;	;																													Items.Rupee20
