@@ -73,6 +73,7 @@ public class ShufflerController
 			return new ShufflerControllerResult { 
 				WasSuccessful = false,
 				Error = e,
+                ErrorMessage = e.Message,
 			};
 		}
 	}
@@ -93,6 +94,7 @@ public class ShufflerController
 			{
 				WasSuccessful = false,
 				Error = e,
+                ErrorMessage = e.Message,
 			};
 		}
 	}
@@ -121,6 +123,7 @@ public class ShufflerController
 			{
 				WasSuccessful = false,
 				Error = e,
+                ErrorMessage = e.Message,
 			};
 		}
 		finally
@@ -159,6 +162,7 @@ public class ShufflerController
 			{
 				WasSuccessful = false,
 				Error = e,
+                ErrorMessage = e.Message,
 			};
 		}
 		finally
@@ -183,6 +187,7 @@ public class ShufflerController
 			{
 				WasSuccessful = false,
 				Error = e,
+                ErrorMessage = e.Message,
 			};
 		}
 		finally
@@ -230,6 +235,7 @@ public class ShufflerController
 			{
 				WasSuccessful = false,
 				Error = e,
+                ErrorMessage = e.Message,
 			};
 		}
 		finally
@@ -255,6 +261,7 @@ public class ShufflerController
 			{
 				WasSuccessful = false,
 				Error = e,
+                ErrorMessage = e.Message,
 			};
 		}
 		finally
@@ -282,6 +289,7 @@ public class ShufflerController
 			{
 				WasSuccessful = false,
 				Error = e,
+                ErrorMessage = e.Message,
 			};
 		}
 		finally
@@ -319,6 +327,7 @@ public class ShufflerController
 			{
 				WasSuccessful = false,
 				Error = e,
+                ErrorMessage = e.Message,
 			};
 		}
 		finally
@@ -356,6 +365,7 @@ public class ShufflerController
 			{
 				WasSuccessful = false,
 				Error = e,
+                ErrorMessage = e.Message,
 			};
 		}
 		finally
@@ -380,6 +390,7 @@ public class ShufflerController
 			{
 				WasSuccessful = false,
 				Error = e,
+                ErrorMessage = e.Message,
 			};
 		}
 		finally
@@ -404,6 +415,7 @@ public class ShufflerController
 			{
 				WasSuccessful = false,
 				Error = e,
+                ErrorMessage = e.Message,
 			};
 		}
 		finally

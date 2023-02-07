@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using RandomizerCore.Controllers;
+using RandomizerCore.Controllers.Models;
 using RandomizerCore.Randomizer.Logic.Options;
 
 namespace MinishCapRandomizerCLI;
@@ -287,8 +288,8 @@ Exit                Exits the program
         if (!string.IsNullOrEmpty(attemptsStr) || !int.TryParse(attemptsStr, out var attempts) || attempts <= 0) attempts = 1;
         
         _shufflerController.LoadLocations(_cachedLogicPath);
-        var success = _shufflerController.Randomize(attempts);
-        Console.WriteLine(success ? "Randomization successful!" : "Randomization failed! Please try again!");
+        ShufflerControllerResult result = _shufflerController.Randomize(attempts);
+        Console.WriteLine(result.WasSuccessful ? "Randomization successful!" : "Randomization failed! "+result.ErrorMessage);
         BlockUntilNewline();
     }
     
@@ -355,12 +356,19 @@ Exit                Exits the program
         
         Console.Write("Please enter the path to save the ROM to: ");
         var rom = Console.ReadLine();
-            
-        var result = rom != null && patch != null && _shufflerController.PatchRom(rom, patch);
 
-        Console.WriteLine(!result
-            ? "Failed to patch ROM! Please check your file paths and make sure you have read/write access."
-            : "Rom patched successfully!");
+        if (rom == null || patch == null)
+        {
+            Console.WriteLine("Failed to save patch! Please check your file paths and make sure you have read/write access.");
+        }
+        else
+        {
+            var result = _shufflerController.SaveRomPatch(patch, rom);
+
+            Console.WriteLine(!result.WasSuccessful
+                ? "Failed to patch ROM! "+result.ErrorMessage
+                : "ROM patched successfully!");
+        }
 
         BlockUntilNewline();
     }
@@ -372,13 +380,20 @@ Exit                Exits the program
             
         Console.Write("Please enter the path to save the patch to: ");
         var patch = Console.ReadLine();
-                
-        var result = rom != null && patch != null && _shufflerController.SaveRomPatch(patch, rom);
 
-        Console.WriteLine(!result
-            ? "Failed to save patch! Please check your file paths and make sure you have read/write access."
-            : "Patch saved successfully!");
-        
+        if (rom == null || patch == null)
+        {
+            Console.WriteLine("Failed to save patch! Please check your file paths and make sure you have read/write access.");
+        }
+        else
+        {
+            var result = _shufflerController.SaveRomPatch(patch, rom);
+
+            Console.WriteLine(!result.WasSuccessful
+                ? "Failed to save patch! "+result.ErrorMessage
+                : "Patch saved successfully!");
+        }
+
         BlockUntilNewline();
     }
     
