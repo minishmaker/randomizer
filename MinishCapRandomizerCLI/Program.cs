@@ -299,7 +299,7 @@ Exit                Exits the program
         try
         {
             var input = Console.ReadLine();
-            _shufflerController.SaveAndPatchRom(input ?? $"{Directory.GetCurrentDirectory()}/MinishRandomizer-ROM.gba");
+            _shufflerController.SaveAndPatchRom(string.IsNullOrEmpty(input) ? $"{Directory.GetCurrentDirectory()}{Path.DirectorySeparatorChar}MinishRandomizer-ROM.gba" : input);
             Console.WriteLine("Rom saved successfully!");
         }
         catch
@@ -315,7 +315,7 @@ Exit                Exits the program
         try
         {
             var input = Console.ReadLine();
-            _shufflerController.SaveSpoiler(input ?? $"{Directory.GetCurrentDirectory()}/MinishRandomizer-Spoiler.txt");
+            _shufflerController.SaveSpoiler(string.IsNullOrEmpty(input) ? $"{Directory.GetCurrentDirectory()}{Path.DirectorySeparatorChar}MinishRandomizer-Spoiler.txt" : input);
             Console.WriteLine("Spoiler saved successfully!");
         }
         catch
@@ -331,7 +331,7 @@ Exit                Exits the program
         try
         {
             var input = Console.ReadLine();
-            _shufflerController.CreatePatch(input ?? $"{Directory.GetCurrentDirectory()}/NewPatch.bps", _cachedPatchPath);
+            _shufflerController.CreatePatch(string.IsNullOrEmpty(input) ? $"{Directory.GetCurrentDirectory()}{Path.DirectorySeparatorChar}MinishRandomizer-Patch.bps" : input, _cachedPatchPath);
             Console.WriteLine("Patch saved successfully!");
         }
         catch
