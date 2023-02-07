@@ -71,7 +71,7 @@ internal class Program
             {"Exit", Exit},
         };
     }
-    
+
     private static void PrintCommands()
     {
         Console.WriteLine(@"Available Commands, note that commands are case-sensitive!
@@ -108,7 +108,7 @@ Exit                Exits the program
         }
         BlockUntilNewline();
     }
-    
+
     private static void Seed()
     {
         Console.Write("Would you like a random seed or a set seed? (R or S): ");
@@ -136,17 +136,20 @@ Exit                Exits the program
                     Console.WriteLine("Seed set successfully!");
                     break;
                 default:
-                    Console.WriteLine("Invalid input!");
+                    if (!input.Equals("exit", StringComparison.OrdinalIgnoreCase))
+                    {
+                        Console.WriteLine("Invalid Input!");
+                    }
                     break;
             }
         }
-        else Console.WriteLine("Invalid input!");
-        
+        else Console.WriteLine("Invalid Input!");
+
         BlockUntilNewline();
     }
-    
+
     private static void LoadLogic()
-    {        
+    {
         Console.Write("Please enter the path to the Logic File you want to use (leave empty to use default logic): ");
         try
         {
@@ -160,7 +163,7 @@ Exit                Exits the program
         }
         BlockUntilNewline();
     }
-    
+
     private static void LoadPatch()
     {        
         Console.Write("Please enter the path to the Patch File you want to use (leave empty to use default patch): ");
@@ -168,7 +171,7 @@ Exit                Exits the program
         Console.WriteLine("Patch file loaded successfully!");
         BlockUntilNewline();
     }
-    
+
     private static void LoadSettings()
     {
         Console.Write("Please enter the setting string to load: ");
@@ -177,7 +180,7 @@ Exit                Exits the program
         Console.WriteLine("Settings loaded successfully!");
         BlockUntilNewline();
     }
-    
+
     private static void Options()
     {
         Console.WriteLine("Options for current logic file:");
@@ -185,9 +188,9 @@ Exit                Exits the program
         for (var i = 0; i < options.Count; )
         {
             var option = options[i];
-            Console.WriteLine($"{++i}) Type: {option.GetOptionUIType()}, Option Name: {option.NiceName}, Setting Type: {option.Type}");
+            Console.WriteLine($"{++i}) Type: {option.GetOptionUIType()}, Option Name: {option.NiceName}, Setting Type: {option.Type}, Value: {GetOptionValue(option)}");
         }
-        
+
         Console.Write("Please enter the number of the setting you would like to change, enter \"Exit\" to stop editing, or enter \"List\" to list all of the options again: ");
         var input = Console.ReadLine();
         
@@ -200,7 +203,7 @@ Exit                Exits the program
                     for (var i = 0; i < options.Count; )
                     {
                         var option = options[i];
-                        Console.WriteLine($"{++i}) Type: {option.GetOptionUIType()}, Option Name: {option.NiceName}, Setting Type: {option.Type}");
+                        Console.WriteLine($"{++i}) Type: {option.GetOptionUIType()}, Option Name: {option.NiceName}, Setting Type: {option.Type}, Value: {GetOptionValue(option)}");
                     }
                 }
                 else if (int.TryParse(input, out var num))
@@ -228,7 +231,7 @@ Exit                Exits the program
         }
         BlockUntilNewline();
     }
-    
+
     private static void Logging()
     {
         Console.WriteLine("1) Logger verbosity");
@@ -280,19 +283,19 @@ Exit                Exits the program
         }
         BlockUntilNewline();
     }
-    
+
     private static void Randomize()
     {
         Console.Write("How many times would you like the randomizer to attempt to generate a new seed if randomization fails? ");
         var attemptsStr = Console.ReadLine();
         if (!string.IsNullOrEmpty(attemptsStr) || !int.TryParse(attemptsStr, out var attempts) || attempts <= 0) attempts = 1;
-        
+
         _shufflerController.LoadLocations(_cachedLogicPath);
         ShufflerControllerResult result = _shufflerController.Randomize(attempts);
         Console.WriteLine(result.WasSuccessful ? "Randomization successful!" : "Randomization failed! "+result.ErrorMessage);
         BlockUntilNewline();
     }
-    
+
     private static void SaveRom()
     {        
         Console.Write("Please enter the path to save the ROM (blank for default): ");
@@ -308,7 +311,7 @@ Exit                Exits the program
         }
         BlockUntilNewline();
     }
-    
+
     private static void SaveSpoiler()
     {        
         Console.Write("Please enter the path to save the spoiler (blank for default): ");
@@ -340,16 +343,16 @@ Exit                Exits the program
         }
         BlockUntilNewline();
     }
-    
+
     private static void GetSettingString()
     {
         Console.WriteLine("Setting String:");
         Console.WriteLine(_shufflerController.GetSettingsString());
         BlockUntilNewline();
     }
-    
+
     private static void PatchRom()
-    {    
+    {
 
         Console.Write("Please enter the path of the rom patch: ");
         var patch = Console.ReadLine();
@@ -396,7 +399,7 @@ Exit                Exits the program
 
         BlockUntilNewline();
     }
-    
+
     private static void Exit()
     {
         Console.Write("Are you sure you want to exit? (Yes or No): ");
@@ -412,6 +415,30 @@ Exit                Exits the program
         BlockUntilNewline();
     }
 
+    private static string GetOptionValue(LogicOptionBase option)
+    {
+        switch (option)
+        {
+            case LogicFlag:
+            {
+                return option.Active.ToString();
+            }
+            case LogicDropdown dropdown:
+            {
+                return dropdown.Selection.ToString();
+            }
+            case LogicColorPicker colorPicker:
+            {
+                return colorPicker.Active ? colorPicker.DefinedColor.ToString() : "Vanilla";
+            }
+            case LogicNumberBox box:
+            {
+                return box.Value;
+            }
+        }
+        return "";
+    }
+
     private static void EditOption(LogicOptionBase option)
     {
         switch (option)
@@ -424,7 +451,10 @@ Exit                Exits the program
                 var input = Console.ReadLine();
                 if (string.IsNullOrEmpty(input) || !int.TryParse(input, out var i) || (i != 1 && i != 2))
                 {
-                    Console.WriteLine("Invalid Input!");
+                    if (!input.Equals("exit", StringComparison.OrdinalIgnoreCase))
+                    {
+                        Console.WriteLine("Invalid Input!");
+                    }
                     BlockUntilNewline();
                     break;
                 }
@@ -448,7 +478,10 @@ Exit                Exits the program
                 
                 if (string.IsNullOrEmpty(input) || !int.TryParse(input, out var o) || o < 1 || o > keys.Count)
                 {
-                    Console.WriteLine("Invalid Input!");
+                    if (!input.Equals("exit", StringComparison.OrdinalIgnoreCase))
+                    {
+                        Console.WriteLine("Invalid Input!");
+                    }
                     BlockUntilNewline();
                     break;
                 }
@@ -457,7 +490,7 @@ Exit                Exits the program
                 Console.WriteLine("Dropdown option set successfully!");
                 BlockUntilNewline();
                 break;
-            }            
+            }
             case LogicColorPicker colorPicker:
             {
                 Console.WriteLine("1) Use Vanilla Color");
@@ -468,7 +501,10 @@ Exit                Exits the program
                 var input = Console.ReadLine();
                 if (string.IsNullOrEmpty(input) || !int.TryParse(input, out var i) || i is < 1 or > 4)
                 {
-                    Console.WriteLine("Invalid Input!");
+                    if (!input.Equals("exit", StringComparison.OrdinalIgnoreCase))
+                    {
+                        Console.WriteLine("Invalid Input!");
+                    }
                     BlockUntilNewline();
                     break;
                 }
@@ -480,10 +516,12 @@ Exit                Exits the program
                         Console.WriteLine("Color set successfully!");
                         break;
                     case 2:
+                        colorPicker.Active = true;
                         colorPicker.DefinedColor = colorPicker.BaseColor;
                         Console.WriteLine("Color set successfully!");
                         break;
                     case 3:
+                        colorPicker.Active = true;
                         colorPicker.PickRandomColor();
                         Console.WriteLine("Color set successfully!");
                         break;
@@ -492,10 +530,14 @@ Exit                Exits the program
                         var argb = Console.ReadLine();
                         if (string.IsNullOrEmpty(argb) || !int.TryParse(argb, out var color))
                         {
-                            Console.WriteLine("Invalid Input!");
+                            if (!argb.Equals("exit", StringComparison.OrdinalIgnoreCase))
+                            {
+                                Console.WriteLine("Invalid Input!");
+                            }
                             break;
                         }
 
+                        colorPicker.Active = true;
                         colorPicker.DefinedColor = Color.FromArgb(color);
                         Console.WriteLine("Color set successfully!");
                         break;
@@ -504,12 +546,15 @@ Exit                Exits the program
                 break;
             }
             case LogicNumberBox box:
-            {               
+            {
                 Console.Write($"Please enter a number from 0 to 255 for {box.NiceName}: ");
                 var input = Console.ReadLine();
                 if (string.IsNullOrEmpty(input) || !int.TryParse(input, out var i) || i is < 0 or > 255)
                 {
-                    Console.WriteLine("Invalid Input!");
+                    if (!input.Equals("exit", StringComparison.OrdinalIgnoreCase))
+                    {
+                        Console.WriteLine("Invalid Input!");
+                    }
                     BlockUntilNewline();
                     break;
                 }
