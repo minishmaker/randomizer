@@ -1154,10 +1154,14 @@ internal class Shuffler
 	private void AppendSubvalue(StringBuilder spoilerBuilder, Location location)
 	{
 		if (!location.Contents.HasValue) return;
+        
+        ItemType[] dungeonItems = {ItemType.DungeonMap, ItemType.Compass, ItemType.SmallKey, ItemType.BigKey};
 
 		// Display subvalue if relevant
-		if (location.Contents.Value.Type == ItemType.Kinstone)
+		if (location.Contents.Value.Type is ItemType.Kinstone)
 			spoilerBuilder.AppendLine($"\t\tKinstone Type: {location.Contents.Value.Kinstone}");
+        else if (dungeonItems.Contains(location.Contents.Value.Type) && location.Contents.Value.SubValue != 0)
+			spoilerBuilder.AppendLine($"\t\tDungeon: {GetDungeonNameFromDungeonSubvalue(location.Contents.Value.SubValue)}");
 		else if (location.Contents.Value.Type is ItemType.ProgressiveItem)
 			spoilerBuilder.AppendLine($"\t\tItem: {GetProgressiveItemName(location.Contents.Value.SubValue)}");
 		else if (location.Contents.Value.ShufflePool is ItemPool.DungeonEntrance)
