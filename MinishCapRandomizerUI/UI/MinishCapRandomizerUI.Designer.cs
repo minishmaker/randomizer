@@ -1,4 +1,6 @@
-﻿namespace MinishCapRandomizerUI.UI
+﻿using MinishCapRandomizerUI.DrawConstants;
+
+namespace MinishCapRandomizerUI.UI
 {
     sealed partial class MinishCapRandomizerUI
     {
@@ -144,6 +146,7 @@
 			this.panel2.SuspendLayout();
 			this.panel1.SuspendLayout();
 			this.SuspendLayout();
+            Constants.SpecialScaling = this.TabPane.DeviceDpi/96.0;
 			// 
 			// menuStrip1
 			// 
@@ -154,7 +157,7 @@
             this.aboutToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
-			this.menuStrip1.Size = new System.Drawing.Size(804, 24);
+			this.menuStrip1.Size = new System.Drawing.Size((int)(Constants.CategoryWidth*3/8*Constants.SpecialScaling + Constants.CategoryWidth*5/8) + 44, 24);
 			this.menuStrip1.TabIndex = 0;
 			this.menuStrip1.Text = "menuStrip1";
 			// 
@@ -713,7 +716,7 @@
 			this.TabPane.Location = new System.Drawing.Point(12, 27);
 			this.TabPane.Name = "TabPane";
 			this.TabPane.SelectedIndex = 0;
-			this.TabPane.Size = new System.Drawing.Size(780, 663);
+			this.TabPane.Size = new System.Drawing.Size((int)(Constants.CategoryWidth*3/8*Constants.SpecialScaling + Constants.CategoryWidth*5/8) + 20, 663);
 			this.TabPane.TabIndex = 1;
 			// 
 			// Advanced
@@ -1199,7 +1202,7 @@
 			// 
 			// RandomizationAttempts
 			// 
-			this.RandomizationAttempts.Location = new System.Drawing.Point(190, 696);
+			this.RandomizationAttempts.Location = new System.Drawing.Point((int)(168*Constants.SpecialScaling) + 22, 696);
 			this.RandomizationAttempts.Name = "RandomizationAttempts";
 			this.RandomizationAttempts.Size = new System.Drawing.Size(136, 23);
 			this.RandomizationAttempts.TabIndex = 27;
@@ -1210,7 +1213,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(804, 731);
+			this.ClientSize = new System.Drawing.Size((int)(Constants.CategoryWidth*3/8*Constants.SpecialScaling + Constants.CategoryWidth*5/8) + 44, 731);
 			this.Controls.Add(this.RandomizationAttempts);
 			this.Controls.Add(this.label16);
 			this.Controls.Add(this.Randomize);

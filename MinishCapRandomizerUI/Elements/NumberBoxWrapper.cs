@@ -7,12 +7,12 @@ public class NumberBoxWrapper : WrapperBase, ILogicOptionObserver
 {
     private const int DefaultBottomMargin = 15;
     private const int TextWidth = 225;
-    private const int TextHeight = 15;
+    private const int TextHeight = 19;
     private const int NumberBoxWidth = 130;
     private const int NumberBoxHeight = 23;
     private const int NumberBoxAlign = -2;
     private new static readonly int ElementWidth = TextWidth + NumberBoxWidth + Constants.WidthMargin;
-    private new const int ElementHeight = TextHeight + DefaultBottomMargin;
+    private new const int ElementHeight = NumberBoxHeight + DefaultBottomMargin - 8;
     
     private Label? _label;
     private TextBox? _textBox;
@@ -37,8 +37,8 @@ public class NumberBoxWrapper : WrapperBase, ILogicOptionObserver
             Name = _numberBox.Name,
             Text = _numberBox.NiceName,
             Location = new Point(initialX, initialY),
-            Height = TextHeight,
-            Width = TextWidth,
+            Height = (int)(TextHeight*Constants.SpecialScaling),
+            Width = (int)(TextWidth*Constants.SpecialScaling),
             TextAlign = ContentAlignment.MiddleRight,
             UseMnemonic = Constants.UseMnemonic,
         };
@@ -48,9 +48,9 @@ public class NumberBoxWrapper : WrapperBase, ILogicOptionObserver
             AutoSize = false,
             Name = _numberBox.Name,
             Text = _numberBox.Value,
-            Location = new Point(initialX + TextWidth + Constants.WidthMargin, initialY + NumberBoxAlign),
-            Height = NumberBoxHeight,
-            Width = NumberBoxWidth,
+            Location = new Point(initialX + (int)((TextWidth + Constants.WidthMargin)*Constants.SpecialScaling), initialY + NumberBoxAlign),
+            Height = (int)(NumberBoxHeight*Constants.SpecialScaling),
+            Width = (int)(NumberBoxWidth*Constants.SpecialScaling),
         };        
         
         if (!string.IsNullOrEmpty(_numberBox.DescriptionText))

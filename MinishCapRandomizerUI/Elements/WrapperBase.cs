@@ -1,4 +1,6 @@
-﻿namespace MinishCapRandomizerUI.Elements;
+﻿using MinishCapRandomizerUI.DrawConstants;
+
+namespace MinishCapRandomizerUI.Elements;
 
 public abstract class WrapperBase
 {
@@ -9,8 +11,8 @@ public abstract class WrapperBase
 
     protected WrapperBase(int elementWidth, int elementHeight, string settingGrouping, string page)
     {
-        ElementWidth = elementWidth;
-        ElementHeight = elementHeight;
+        ElementWidth = (int)(elementWidth*Constants.SpecialScaling);
+        ElementHeight = (int)(elementHeight*Constants.SpecialScaling);
         SettingGrouping = settingGrouping;
         Page = page;
     }

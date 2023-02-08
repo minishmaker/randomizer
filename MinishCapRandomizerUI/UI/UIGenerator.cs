@@ -47,7 +47,7 @@ public static class UIGenerator
             var pane = new Panel
             {
                 Name = group.Key,
-                Width = Constants.CategoryWidth,
+                Width = (int)(Constants.CategoryWidth*Constants.SpecialScaling),
                 Height = height,
                 AutoScroll = false,
                 Location = new Point(Constants.DefaultStartingPaneX, totalPaneHeight),
