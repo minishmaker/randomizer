@@ -1517,7 +1517,6 @@
 		!endif
 	!endif
 !endif
-!undefine - `SWORD_SETTING`
 
 !define - `ELEMENT_SETTING`
 !ifdef - 0ELEMENT
@@ -1526,7 +1525,6 @@
 !else
     !define - ELEMENTAMOUNT - `ELEMENT_SETTING`
 !endif
-!undefine - `ELEMENT_SETTING`
 
 # Makes sure that only 1 of these settings is active at the same time
 !define - GotSwords -
