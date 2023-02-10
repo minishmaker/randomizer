@@ -6,7 +6,7 @@ namespace RandomizerCore.Randomizer.Logic.Dependency;
 
 public class LocationDependency : DependencyBase
 {
-    private readonly string _requiredLocationName;
+    internal readonly string _requiredLocationName;
 
     public LocationDependency(string locationName)
     {
