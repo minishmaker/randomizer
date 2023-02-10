@@ -108,6 +108,9 @@ BYTE 22 greatbladeDojoItem greatbladeDojoSub //0x75 Increased Great Spin Attack 
 //long great spin bro does not ask for great spin
 PUSH; ORG $68818; SHORT 0x2000; POP
 
+//swiftblade checks for one out of 4 different swords
+PUSH; ORG $687B6; SHORT 0xE034; POP
+
 //swiftblade I now checks for 7 scrolls total, instead of 7 specific scrolls
 PUSH; ORG $687D8; jumpToHack(dojosScrollCount); POP
 ALIGN 4
