@@ -1259,103 +1259,106 @@ internal class Shuffler
 		MoveElement(w, windLocation);
 	}
 
-	/// <summary>
-	///     Moves a single element marker to the location that contains it
-	/// </summary>
-	/// <param name="w">The writer to write to</param>
-	/// <param name="location">The location that contains the element</param>
-	private void MoveElement(Writer w, Location location)
-	{
-		// Coordinates for the unzoomed map
-		var largeCoords = new byte[2];
+    /// <summary>
+    ///     Moves a single element marker to the location that contains it
+    /// </summary>
+    /// <param name="w">The writer to write to</param>
+    /// <param name="location">The location that contains the element</param>
+    private void MoveElement(Writer w, Location prizeLocation)
+    {
+        // Coordinates for the unzoomed map
+        var largeCoords = new byte[2];
 
-		// Coordinates for the zoomed in map
-		var smallCoords = new ushort[2];
-		switch (location.Name)
-		{
-			case "Deepwood_Prize":
-				largeCoords[0] = 0xB2;
-				largeCoords[1] = 0x7A;
+        // Coordinates for the zoomed in map
+        var smallCoords = new ushort[2];
+        (ushort largeAddress, uint smallAdress) coords = (0, 0);
+        Location correspondingEntrance;
+        switch (prizeLocation.Name)
+        {
+            case "Deepwood_Prize":
+                correspondingEntrance = _locations.First(location => location.Type is LocationType.DungeonEntrance or LocationType.Unshuffled && location.Contents is not null && (DungeonEntranceType)location.Contents.Value.SubValue is DungeonEntranceType.DWS);
+                coords = GetAddressFromDungeonEntranceName(correspondingEntrance.Name);
+                break;
+            case "CoF_Prize":
+                correspondingEntrance = _locations.First(location => location.Type is LocationType.DungeonEntrance or LocationType.Unshuffled && location.Contents is not null && (DungeonEntranceType)location.Contents.Value.SubValue is DungeonEntranceType.CoF);
+                coords = GetAddressFromDungeonEntranceName(correspondingEntrance.Name);
+                break;
+            case "Fortress_Prize":
+                correspondingEntrance = _locations.First(location => location.Type is LocationType.DungeonEntrance or LocationType.Unshuffled && location.Contents is not null && (DungeonEntranceType)location.Contents.Value.SubValue is DungeonEntranceType.FoW);
+                coords = GetAddressFromDungeonEntranceName(correspondingEntrance.Name);
+                break;
+            case "Droplets_Prize":
+                correspondingEntrance = _locations.First(location => location.Type is LocationType.DungeonEntrance or LocationType.Unshuffled && location.Contents is not null && (DungeonEntranceType)location.Contents.Value.SubValue is DungeonEntranceType.ToD);
+                coords = GetAddressFromDungeonEntranceName(correspondingEntrance.Name);
+                break;
+            case "Crypt_Prize":
+                correspondingEntrance = _locations.First(location => location.Type is LocationType.DungeonEntrance or LocationType.Unshuffled && location.Contents is not null && (DungeonEntranceType)location.Contents.Value.SubValue is DungeonEntranceType.Crypt);
+                coords = GetAddressFromDungeonEntranceName(correspondingEntrance.Name);
+                break;
+            case "Palace_Prize":
+                correspondingEntrance = _locations.First(location => location.Type is LocationType.DungeonEntrance or LocationType.Unshuffled && location.Contents is not null && (DungeonEntranceType)location.Contents.Value.SubValue is DungeonEntranceType.PoW);
+                coords = GetAddressFromDungeonEntranceName(correspondingEntrance.Name);
+                break;
+            default:
+                return;
+        }
 
-				smallCoords[0] = 0x0D7D;
-				smallCoords[1] = 0x0AC8;
-				break;
-			case "CoF_Prize":
-				largeCoords[0] = 0x3B;
-				largeCoords[1] = 0x1B;
+        largeCoords[0] = (byte)((coords.largeAddress >> 8) & 0xFF);
+        largeCoords[1] = (byte)(coords.largeAddress & 0xFF);
 
-				smallCoords[0] = 0x01E8;
-				smallCoords[1] = 0x0178;
-				break;
-			case "Fortress_Prize":
-				largeCoords[0] = 0x4B;
-				largeCoords[1] = 0x77;
+        smallCoords[0] = (ushort)((coords.smallAdress >> 16) & 0xFFFF);
+        smallCoords[1] = (ushort)(coords.smallAdress & 0xFFFF);
 
-				smallCoords[0] = 0x0378;
-				smallCoords[1] = 0x0A78;
-				break;
-			case "Droplets_Prize":
-				largeCoords[0] = 0xB5;
-				largeCoords[1] = 0x4B;
+        int largeAddress;
+        int smallAddress;
 
-				smallCoords[0] = 0x0DB8;
-				smallCoords[1] = 0x0638;
-				break;
-			case "Crypt_Prize":
-				largeCoords[0] = 0x5A;
-				largeCoords[1] = 0x15;
+        switch (prizeLocation.Contents!.Value.Type)
+        {
+            case ItemType.EarthElement:
+                largeAddress = 0x128699;
+                smallAddress = 0x12869C;
+                break;
+            case ItemType.FireElement:
+                largeAddress = 0x1286A1;
+                smallAddress = 0x1286A4;
+                break;
+            case ItemType.WaterElement:
+                largeAddress = 0x1286B1;
+                smallAddress = 0x1286B4;
+                break;
+            case ItemType.WindElement:
+                largeAddress = 0x1286A9;
+                smallAddress = 0x1286AC;
+                break;
+            default:
+                return;
+        }
 
-				smallCoords[0] = 0x04DC;
-				smallCoords[1] = 0x0148;
-				break;
-			case "Palace_Prize":
-				largeCoords[0] = 0xB5;
-				largeCoords[1] = 0x1B;
+        // Write zoomed out coordinates
+        w.SetPosition(largeAddress);
+        w.WriteByte(largeCoords[0]);
+        w.WriteByte(largeCoords[1]);
 
-				smallCoords[0] = 0x0D88;
-				smallCoords[1] = 0x00E8;
-				break;
-			default:
-				return;
-		}
+        // Write zoomed in coordinates
+        w.SetPosition(smallAddress);
+        w.WriteUInt16(smallCoords[0]);
+        w.WriteUInt16(smallCoords[1]);
+    }
 
-		int largeAddress;
-		int smallAddress;
+    private (ushort largeAddress, uint smallAdress) GetAddressFromDungeonEntranceName(string locationName)
+    {
+        return locationName switch
+        {
+            "Deepwood_Entrance" => (0xB27A, 0x0D7D0AC8),
+            "CoF_Entrance" => (0x3B1B, 0x01E80178),
+            "Fortress_Entrance" => (0x4B77, 0x03780A78),
+            "Droplets_Entrance" => (0xB54B, 0x0DB80638),
+            "Crypt_Entrance" => (0x5A15, 0x04DC0148),
+            "Palace_Entrance" => (0xB51B, 0x0D8800E8),
+        };
+    }
 
-		switch (location.Contents!.Value.Type)
-		{
-			case ItemType.EarthElement:
-				largeAddress = 0x128699;
-				smallAddress = 0x12869C;
-				break;
-			case ItemType.FireElement:
-				largeAddress = 0x1286A1;
-				smallAddress = 0x1286A4;
-				break;
-			case ItemType.WaterElement:
-				largeAddress = 0x1286B1;
-				smallAddress = 0x1286B4;
-				break;
-			case ItemType.WindElement:
-				largeAddress = 0x1286A9;
-				smallAddress = 0x1286AC;
-				break;
-			default:
-				return;
-		}
-
-		// Write zoomed out coordinates
-		w.SetPosition(largeAddress);
-		w.WriteByte(largeCoords[0]);
-		w.WriteByte(largeCoords[1]);
-
-		// Write zoomed in coordinates
-		w.SetPosition(smallAddress);
-		w.WriteUInt16(smallCoords[0]);
-		w.WriteUInt16(smallCoords[1]);
-	}
-
-	private void UpdateEntrances(Writer w)
+    private void UpdateEntrances(Writer w)
 	{
 		var entranceChangedLocations = _locations.Where(location => location.Type is LocationType.DungeonEntrance).ToList();
 
