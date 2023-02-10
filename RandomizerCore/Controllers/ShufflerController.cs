@@ -28,17 +28,22 @@ public class ShufflerController
 	public string AppName => "Minish Cap Randomizer";
 #endif
 
-	public string VersionName => "v0.7.0";
-	public string RevName => "alpha-rev2";
+	public string VersionName => VersionIdentifier;
+	public string RevName => RevisionIdentifier;
 
-	public string SeedFilename => $"Minish Randomizer-{_shuffler.Seed}-{_shuffler.Version}-{_shuffler.GetOptionsIdentifier()}";
+    internal static string VersionIdentifier => "v0.7.0";
+    internal static string RevisionIdentifier => "alpha-rev2";
 
-	public int FinalSeed => _shuffler.Seed;
+    public string SeedFilename => $"Minish Randomizer-{_shuffler.Seed}-{_shuffler.Version}-{_shuffler.GetOptionsIdentifier()}";
+
+    public int FinalSeed => _shuffler.Seed;
 
 	public ShufflerController()
 	{
 		_shuffler = new Shuffler();
-	}
+        Logger.Instance.LogInfo($"Minish Cap Randomizer Core Version {VersionName} {RevName} initialized!");
+        Logger.Instance.SaveLogTransaction(true);
+    }
 
 	public void SetLogOutputPath(string logFilePath)
 	{

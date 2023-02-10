@@ -1,6 +1,7 @@
 using System.Reflection;
 using System.Text;
 using ColorzCore;
+using RandomizerCore.Controllers;
 using RandomizerCore.Core;
 using RandomizerCore.Properties;
 using RandomizerCore.Randomizer.Enumerables;
@@ -13,6 +14,7 @@ using RandomizerCore.Randomizer.Models;
 using RandomizerCore.Utilities.Extensions;
 using RandomizerCore.Utilities.IO;
 using RandomizerCore.Utilities.Logging;
+using RandomizerCore.Utilities.Models;
 using RandomizerCore.Utilities.Util;
 
 namespace RandomizerCore.Randomizer;
@@ -87,12 +89,13 @@ internal class Shuffler
 
 	public string GetVersionName()
 	{
-#if DEBUG
-		return $"{AssemblyInfo.GetGitTag()}-DEBUG-{AssemblyInfo.GetGitHash()}";
-#else
-		return $"{AssemblyInfo.GetGitTag()}";
-#endif
-	}
+        //#if DEBUG
+        //		return $"{AssemblyInfo.GetGitTag()}-DEBUG-{AssemblyInfo.GetGitHash()}";
+        //#else
+        //		return $"{AssemblyInfo.GetGitTag()}";
+        //#endif
+        return "0.7.0";
+    }
 
 	public string GetLogicIdentifier()
 	{
@@ -565,12 +568,16 @@ internal class Shuffler
 		}
 
 		var retryCount = 0;
+        var totalPermutations = 0;
 
-		while (!canBeatVaati)
+        while (!canBeatVaati)
 		{
-			shuffledLocationsThisSphere.Shuffle(_rng);
+            if (totalPermutations++ > 50000)
+                throw new ShuffleException("Could not find a viable seed with Hendrus Shuffler after 50,000 permutations! Please let the dev team know what settings and seed you are using!");
 
-			var availableMajorItems = allShuffledItems.Where(item => item.ShufflePool is ItemPool.Major or ItemPool.DungeonMajor).ToList();
+            shuffledLocationsThisSphere.Shuffle(_rng);
+
+            var availableMajorItems = allShuffledItems.Where(item => item.ShufflePool is ItemPool.Major or ItemPool.DungeonMajor).ToList();
 			var placedItemsThisSphere = new List<Item>();
 			
 			var forLoopRetryCount = 0;
@@ -1006,8 +1013,10 @@ internal class Shuffler
 		var spoilerBuilder = new StringBuilder();
 		spoilerBuilder.AppendLine("Spoiler for Minish Cap Randomizer");
 		spoilerBuilder.AppendLine($"Seed: {Seed}");
+        spoilerBuilder.AppendLine($"Version: {ShufflerController.VersionIdentifier} {ShufflerController.RevisionIdentifier}");
+        spoilerBuilder.AppendLine($"Settings String: {MinifiedSettings.GenerateSettingsString(GetSortedSettings(), GetLogicOptionsCrc32())}");
 
-		spoilerBuilder.AppendLine();
+        spoilerBuilder.AppendLine();
 		AppendLocationSpoiler(spoilerBuilder);
 
 		spoilerBuilder.AppendLine();
@@ -1153,30 +1162,28 @@ internal class Shuffler
 
 	private void AppendSubvalue(StringBuilder spoilerBuilder, Location location)
 	{
-		if (!location.Contents.HasValue) return;
-        
-        ItemType[] dungeonItems = {ItemType.DungeonMap, ItemType.Compass, ItemType.SmallKey, ItemType.BigKey};
+        if (!location.Contents.HasValue) return;
 
-		// Display subvalue if relevant
-		if (location.Contents.Value.Type is ItemType.Kinstone)
-			spoilerBuilder.AppendLine($"\t\tKinstone Type: {location.Contents.Value.Kinstone}");
-        else if (dungeonItems.Contains(location.Contents.Value.Type) && location.Contents.Value.SubValue != 0)
-			spoilerBuilder.AppendLine($"\t\tDungeon: {GetDungeonNameFromDungeonSubvalue(location.Contents.Value.SubValue)}");
-		else if (location.Contents.Value.Type is ItemType.ProgressiveItem)
-			spoilerBuilder.AppendLine($"\t\tItem: {GetProgressiveItemName(location.Contents.Value.SubValue)}");
-		else if (location.Contents.Value.ShufflePool is ItemPool.DungeonEntrance)
-			spoilerBuilder.AppendLine($"\t\tDungeon: {GetEntranceNameFromSubvalue(location.Contents.Value.SubValue)}");
-		else if (location.Contents.Value.ShufflePool is ItemPool.DungeonMajor)
-			spoilerBuilder.AppendLine($"\t\tDungeon: {GetDungeonNameFromDungeonSubvalue(location.Contents.Value.SubValue)}");
-		else if (location.Contents.Value.SubValue != 0)
-			spoilerBuilder.AppendLine($"\t\tSubvalue: {location.Contents.Value.SubValue}");
+        // Display subvalue if relevant
+        if (location.Contents.Value.Type == ItemType.Kinstone)
+            spoilerBuilder.AppendLine($"\t\tKinstone Type: {location.Contents.Value.Kinstone}");
+        else if (location.Contents.Value.Type is ItemType.ProgressiveItem)
+            spoilerBuilder.AppendLine($"\t\tItem: {GetProgressiveItemName(location.Contents.Value.SubValue)}");
+        else if (location.Contents.Value.ShufflePool is ItemPool.DungeonEntrance)
+            spoilerBuilder.AppendLine($"\t\tDungeon: {GetEntranceNameFromSubvalue(location.Contents.Value.SubValue)}");
+        else if (location.Contents.Value.ShufflePool is ItemPool.DungeonMajor ||
+                (location.Contents.Value.SubValue != 0 &&
+                location.Contents.Value.Type is ItemType.SmallKey or ItemType.BigKey or ItemType.Compass or ItemType.DungeonMap))
+            spoilerBuilder.AppendLine($"\t\tDungeon: {GetDungeonNameFromDungeonSubvalue(location.Contents.Value.SubValue)}");
+        else if (location.Contents.Value.SubValue != 0)
+            spoilerBuilder.AppendLine($"\t\tSubvalue: {location.Contents.Value.SubValue}");
 
-		// Display dungeon contents if relevant
-		//if (!string.IsNullOrEmpty(location.Contents.Value.Dungeon))
-		//	spoilerBuilder.AppendLine($"\t\tDungeon: {location.Contents.Value.Dungeon}");
-	}
+        // Display dungeon contents if relevant
+        //if (!string.IsNullOrEmpty(location.Contents.Value.Dungeon))
+        //	spoilerBuilder.AppendLine($"\t\tDungeon: {location.Contents.Value.Dungeon}");
+    }
 
-	private string GetProgressiveItemName(int subvalue)
+    private string GetProgressiveItemName(int subvalue)
 	{
 		return (ProgressiveItemType)subvalue switch
 		{
