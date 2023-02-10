@@ -506,6 +506,11 @@
 !define - GOLDEN_ENEMY_GREEN
 !define - GOLDEN_ENEMY_RED
 
+!ifndef - GOLDEN_ENEMY
+	!undefine - GOLDEN_ENEMY_GREEN
+	!undefine - GOLDEN_ENEMY_RED
+!endif
+
 !ifdef - CREST_CRENEL
 	!ifdef - CREST_FALLS
 		!ifdef - CREST_CLOUD
