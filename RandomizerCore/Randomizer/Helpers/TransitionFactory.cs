@@ -120,7 +120,7 @@ namespace RandomizerCore.Randomizer.Helpers
                     EntranceArea = 0x31,
                     EntranceRoom = 0x0,
                     Height = 0x1,
-                    FacingDirection = 0x0,
+                    FacingDirection = 0x4,
                     TransitionType = 0x2,
                     EntranceAddress1 = _powEntrance,
                     GreenWarpExitCoordinate = 0x01C7,

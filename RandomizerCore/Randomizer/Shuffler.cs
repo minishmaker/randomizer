@@ -1459,7 +1459,7 @@ internal class Shuffler
 				targetArea = 0x60;
 				targetRoom = 0x03;
 				entranceAnimation = 0x2;
-				facingDirection = 0x2;
+				facingDirection = 0x4;
 				exitAddress = todExit;
 				greenWarpAddress = todGreenWarp;
 				break;
