@@ -2060,19 +2060,18 @@ CompletePed; Helper; ; Helpers.GotSwords `GotElements` `DHC_FIG` `DHC_AD`
 !endif
 Start;				Helper;;	
 CanFuseShared;		Helper;; Helpers.Start `ALLREDSHARED` `ALLBLUESHARED` `ALLGREENSHARED`
-	
+
 # Helpers, these let us write shorter expressions we would normally use often
-HasSword;        	Helper;; (|Items.SmithSword, Items.GreenSword, Items.RedSword, Items.BlueSword, Items.FourSword, Items.ProgressiveItem.0x00)
-HasGreenSword;		Helper;; (|Items.GreenSword, Items.ProgressiveItem.0x00:2)
-HasSpin;         	Helper;; (|Items.SpinAttack, Items.ProgressiveItem.0x04)
-HasDojoSword;			Helper;; (|Items.SmithSword, Items.GreenSword, Items.ProgressiveItem.0x00)
-CanSplit2;       	Helper;; (|Items.ProgressiveItem.0x00:3, Items.RedSword), Helpers.HasSpin
-CanSplit3;       	Helper;; (|Items.ProgressiveItem.0x00:4, Items.BlueSword), Helpers.HasSpin
-CanSplit4;       	Helper;; (|Items.ProgressiveItem.0x00:5, Items.FourSword), Helpers.HasSpin
-HasBottle;       	Helper;; (|Items.Bottle1, Items.Bottle2, Items.Bottle3, Items.Bottle, Items.Bottle.0x20, Items.Bottle.0x21, Items.Bottle.0x22, Items.Bottle.0x23, Items.Bottle.0x24, Items.Bottle.0x25, Items.Bottle.0x26, Items.Bottle.0x27, Items.Bottle.0x28, Items.Bottle.0x29, Items.Bottle.0x2A, Items.Bottle.0x2B, Items.Bottle.0x2C, Items.Bottle.0x2D, Items.Bottle.0x2E, Items.Bottle.0x2F, Items.Bottle.0x30, Items.Bottle.0x31)
-HasBow;          	Helper;; (|Items.Bow, Items.LightArrow, Items.ProgressiveItem.0x01)
-HasLightBow;     		Helper;; (|Items.ProgressiveItem.0x01:2, Items.LightArrow)
-HasBoomerang;    		Helper;; (|Items.Boomerang, Items.MagicBoomerang, Items.ProgressiveItem.0x02)
+HasSword;			Helper;; (|Items.SmithSword, Items.GreenSword, Items.RedSword, Items.BlueSword, Items.FourSword, Items.ProgressiveItem.0x00)
+HasWhiteSword;		Helper;; (|Items.GreenSword, Items.RedSword, Items.BlueSword, Items.FourSword, Items.ProgressiveItem.0x00:2)
+HasSpin;			Helper;; (|Items.SpinAttack, Items.ProgressiveItem.0x04)
+CanSplit2;			Helper;; (|Items.ProgressiveItem.0x00:3, Items.RedSword), Helpers.HasSpin
+CanSplit3;			Helper;; (|Items.ProgressiveItem.0x00:4, Items.BlueSword), Helpers.HasSpin
+CanSplit4;			Helper;; (|Items.ProgressiveItem.0x00:5, Items.FourSword), Helpers.HasSpin
+HasBottle;			Helper;; (|Items.Bottle1, Items.Bottle2, Items.Bottle3, Items.Bottle, Items.Bottle.0x20, Items.Bottle.0x21, Items.Bottle.0x22, Items.Bottle.0x23, Items.Bottle.0x24, Items.Bottle.0x25, Items.Bottle.0x26, Items.Bottle.0x27, Items.Bottle.0x28, Items.Bottle.0x29, Items.Bottle.0x2A, Items.Bottle.0x2B, Items.Bottle.0x2C, Items.Bottle.0x2D, Items.Bottle.0x2E, Items.Bottle.0x2F, Items.Bottle.0x30, Items.Bottle.0x31)
+HasBow;				Helper;; (|Items.Bow, Items.LightArrow, Items.ProgressiveItem.0x01)
+HasLightBow;		Helper;; (|Items.ProgressiveItem.0x01:2, Items.LightArrow)
+HasBoomerang;		Helper;; (|Items.Boomerang, Items.MagicBoomerang, Items.ProgressiveItem.0x02)
 HasMagicBoomerang;	Helper;; (|Items.ProgressiveItem.0x02:2, Items.MagicBoomerang)
 HasShield;			Helper;; (|Items.Shield, Items.MirrorShield, Items.ProgressiveItem.0x03)
 !ifdef - HEARTS_20
@@ -4795,9 +4794,9 @@ Town_GoronMerchant_5_Left;			`GORONSET5`;			goron5LeftItem:Define:FirstByte,	gor
 Town_GoronMerchant_5_Middle;		`GORONSET5`;			goron5MiddleItem:Define:FirstByte,	goron5MiddleSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet	`GORONMID5`								), Helpers.Hundo);																					Items.Kinstone.BlueL
 Town_GoronMerchant_5_Right;		`GORONSET5`;			goron5RightItem:Define:FirstByte,	goron5RightSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet	`GORONRIGHT5`							), Helpers.Hundo);																						Items.Kinstone.GreenC
 Town_Dojo_NPC1:dojo;				`DOJOITEM`;			swiftblade1DojoItem:Define:FirstByte, swiftblade1DojoSub:Define:SecondByte;	(|Helpers.HasSword, Helpers.Hundo);																																						Items.SpinAttack
-Town_Dojo_NPC2:dojo;				`DOJOITEM`;			swiftblade2DojoItem:Define:FirstByte, swiftblade2DojoSub:Define:SecondByte;	(|Helpers.HasGreenSword, Helpers.Hundo);																																					Items.RockBreaker
-Town_Dojo_NPC3:dojo;				`DOJOITEM`;			swiftblade3DojoItem:Define:FirstByte, swiftblade3DojoSub:Define:SecondByte;	(|(&Helpers.HasDojoSword, Items.PegasusBoots), Helpers.Hundo);																																Items.DashAttack
-Town_Dojo_NPC4:dojo;				`DOJOITEM`;			swiftblade4DojoItem:Define:FirstByte, swiftblade4DojoSub:Define:SecondByte;	(|(&Helpers.HasDojoSword, Items.RocsCape), Helpers.Hundo);																																	Items.DownThrust
+Town_Dojo_NPC2:dojo;				`DOJOITEM`;			swiftblade2DojoItem:Define:FirstByte, swiftblade2DojoSub:Define:SecondByte;	(|Helpers.HasWhiteSword, Helpers.Hundo);																																					Items.RockBreaker
+Town_Dojo_NPC3:dojo;				`DOJOITEM`;			swiftblade3DojoItem:Define:FirstByte, swiftblade3DojoSub:Define:SecondByte;	(|(&Helpers.HasSword, Items.PegasusBoots), Helpers.Hundo);																																Items.DashAttack
+Town_Dojo_NPC4:dojo;				`DOJOITEM`;			swiftblade4DojoItem:Define:FirstByte, swiftblade4DojoSub:Define:SecondByte;	(|(&Helpers.HasSword, Items.RocsCape), Helpers.Hundo);																																	Items.DownThrust
 Town_Well_TopChest;				Any;					0x41-0x00-0x00;														(|Items.BombBag, Helpers.Hundo);																																						Items.Rupee100
 Town_School_Roof_Chest;			Any;					0x02-0x00-0x07;														(|Items.PacciCane, Helpers.Hundo);																																						Items.Kinstone.RedV
 Town_School_PathFusion_Chest;		`GREENFUSION`;		0x0FE076;															(|(&Helpers.Shared36Fusion, Items.PacciCane), Helpers.Hundo);																																Items.Kinstone.RedV
