@@ -5355,7 +5355,7 @@ Fortress_BackRight_BigChest			`FOW_INSIDE`;	`FORTRESSBIG`;		0x58-0x1B-0x00;					
 CompleteFortress;									Helper;				;																	`ENTERFOW`, Items.MoleMitts, Helpers.FoWBossDoor, Helpers.HasMazaalDamage, Helpers.HasBow;
 
 Fortress_BossItem						`FOW_INSIDE`;	`FORTRESSHP`;			mazaalContainerItem:Define:FirstByte, mazaalContainerSub:Define:SecondByte;	(|Helpers.CompleteFortress, Helpers.Hundo);																													Items.HeartContainer
-Fortress_Prize						`FOW_INSIDE`;	`FORTRESSPRIZE`;		0x09C9E6:FirstByte, 0x09C9E8:SecondByte;									(|Helpers.CompleteFortress, Helpers.Hundo);																													Items.Ocarina
+Fortress_Prize						`FOW_PRIZE`;	`FORTRESSPRIZE`;		0x09C9E6:FirstByte, 0x09C9E8:SecondByte;									(|Helpers.CompleteFortress, Helpers.Hundo);																													Items.Ocarina
 
 # Temple of Droplets Locations
 
