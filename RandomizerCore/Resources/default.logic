@@ -4220,7 +4220,7 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 	!define - GOLDFUSION - Inaccessible
 	!define - GOLDREDFUSION - Inaccessible
 	!define - GOLDGREENFUSION - Inaccessible
-	!define - GOLDGREENFUSIONENEMY - Inaccessible
+	!define - GOLDGREENFUSIONENEMY - ; Inaccessible
 	!define - GOLDFUSIONHP - Inaccessible
 	!define - GOLDFUSIONRUPEE - ;	Inaccessible
 	!define - GOLDFUSIONPRIZE - Inaccessible
@@ -4238,9 +4238,9 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 		!define - GOLDGREENFUSION - Dungeon
 	!endif
 	!ifdef - GOLDEN_ENEMY_GREEN
-		!define - GOLDGREENFUSIONENEMY - Dungeon
+		!define - GOLDGREENFUSIONENEMY - ; Dungeon
 	!else
-		!define - GOLDGREENFUSIONENEMY - Inaccessible
+		!define - GOLDGREENFUSIONENEMY - :NoSpoiler; Unshuffled
 	!endif
 	!ifdef - HEART_RANDO
 		!define - GOLDFUSIONHP - Dungeon
@@ -4262,9 +4262,9 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 		!define - FALLSGREEN - Dungeon
 	!endif
 	!ifdef - GOLDEN_ENEMY_GREEN
-		!define - FALLSENEMY - Any
+		!define - FALLSENEMY - ; Any
 	!else
-		!define - FALLSENEMY - Inaccessible
+		!define - FALLSENEMY - :NoSpoiler; Unshuffled
 	!endif
 	!ifdef - HEART_RANDO
 		!ifdef - NO_RED_FUSIONS
@@ -4300,7 +4300,7 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 	!define - FALLSCHEST - Inaccessible
 	!define - FALLSGREEN - Inaccessible
 	!define - FALLSHP - Inaccessible
-	!define - FALLSENEMY - Inaccessible
+	!define - FALLSENEMY - ;	Inaccessible
 	!define - FALLSRUPEE - ;	Inaccessible
 	!define - FALLSWATER - ;	Inaccessible
 	!define - FALLSDIG - ; Inaccessible
@@ -4311,7 +4311,7 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 	!define - REDFUSION - Inaccessible
 	!define - REDFUSIONDUNGEON - Inaccessible
 	!define - REDFUSIONRUPEE - ;	Inaccessible
-	!define - REDFUSIONENEMY - Inaccessible
+	!define - REDFUSIONENEMY - ;	Inaccessible
 !else
 	!define - REDFUSION - Any
 	!define - REDFUSIONDUNGEON - Dungeon
@@ -4321,9 +4321,9 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 		!define - REDFUSIONRUPEE - :NoSpoiler;	Unshuffled
 	!endif
 	!ifdef - GOLDEN_ENEMY
-		!define - REDFUSIONENEMY - Any
+		!define - REDFUSIONENEMY - ;	Any
 	!else
-		!define - REDFUSIONENEMY - Inaccessible
+		!define - REDFUSIONENEMY - :NoSpoiler;	Unshuffled
 	!endif
 !endif
 
@@ -4354,21 +4354,21 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 !ifdef - NO_GREEN_FUSIONS
 	!define - GREENFUSION - Inaccessible
 	!define - GREENFUSIONDUNGEON - Inaccessible
-	!define - GREENFUSIONRUPEE - Inaccessible
-	!define - GREENFUSIONENEMY - Inaccessible
+	!define - GREENFUSIONRUPEE - ; Inaccessible
+	!define - GREENFUSIONENEMY - ;	Inaccessible
 	!define - GREENFUSIONDIG - ; Inaccessible
 !else
 	!define - GREENFUSION - Any
 	!define - GREENFUSIONDUNGEON - Dungeon
 	!ifdef - RUPEEMANIA
-		!define - GREENFUSIONRUPEE - Any
+		!define - GREENFUSIONRUPEE - ;	Any
 	!else
-		!define - GREENFUSIONRUPEE - Inaccessible
+		!define - GREENFUSIONRUPEE - :NoSpoiler;	Unshuffled
 	!endif
 	!ifdef - GOLDEN_ENEMY
-		!define - GREENFUSIONENEMY - Dungeon
+		!define - GREENFUSIONENEMY - ;	Dungeon
 	!else
-		!define - GREENFUSIONENEMY - Inaccessible
+		!define - GREENFUSIONENEMY - :NoSpoiler;	Unshuffled
 	!endif
 	!ifdef - DIGGING
 		!define - GREENFUSIONDIG - ; Any
@@ -4403,11 +4403,11 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 !endif
 
 !ifdef - GOLDEN_ENEMY
-	!define - BLUEGREENFUSIONENEMY - `BLUEGREENFUSION`
-	!define - WTFUSIONGREENENEMY - `WTFUSIONGREEN`
+	!define - BLUEGREENFUSIONENEMY - ;`BLUEGREENFUSION`
+	!define - WTFUSIONGREENENEMY - ;`WTFUSIONGREEN`
 !else
-	!define - BLUEGREENFUSIONENEMY - Inaccessible
-	!define - WTFUSIONGREENENEMY - Inaccessible
+	!define - BLUEGREENFUSIONENEMY - :NoSpoiler;	Unshuffled
+	!define - WTFUSIONGREENENEMY - :NoSpoiler;	Unshuffled
 !endif
 
 !ifdef - HEART_RANDO
@@ -4744,21 +4744,21 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 Smith_House_Chest;				Any;					0x22-0x11-0x00;	;																													Items.Rupee20
 Smith_Floor_Item1;				Any;					0x0F252B;		;																													`SMITHSWORD`
 Smith_Floor_Item2;				Any;					0x0F253B;		;																													`SHIELD`
-SouthField_PuddleFusion_Item1;		`GREENFUSIONRUPEE`;	0x0F8283;		(|(&Helpers.Shared58Fusion,  (|Helpers.CanDestroyTrees, Items.RocsCape, Items.Flippers, Helpers.AccessWestern)), Helpers.Hundo);	Items.Rupee5
-SouthField_PuddleFusion_Item2;		`GREENFUSIONRUPEE`;	0x0F8293;		(|(&Helpers.Shared58Fusion,  (|Helpers.CanDestroyTrees, Items.RocsCape, Items.Flippers, Helpers.AccessWestern)), Helpers.Hundo);	Items.Rupee5
-SouthField_PuddleFusion_Item3;		`GREENFUSIONRUPEE`;	0x0F82A3;		(|(&Helpers.Shared58Fusion,  (|Helpers.CanDestroyTrees, Items.RocsCape, Items.Flippers, Helpers.AccessWestern)), Helpers.Hundo);	Items.Rupee5
-SouthField_PuddleFusion_Item4;		`GREENFUSIONRUPEE`;	0x0F82B3;		(|(&Helpers.Shared58Fusion,  (|Helpers.CanDestroyTrees, Items.RocsCape, Items.Flippers, Helpers.AccessWestern)), Helpers.Hundo);	Items.Rupee5
-SouthField_PuddleFusion_Item5;		`GREENFUSIONRUPEE`;	0x0F82C3;		(|(&Helpers.Shared58Fusion,  (|Helpers.CanDestroyTrees, Items.RocsCape, Items.Flippers, Helpers.AccessWestern)), Helpers.Hundo);	Items.Rupee5
-SouthField_PuddleFusion_Item6; 		`GREENFUSIONRUPEE`;	0x0F82D3;		(|(&Helpers.Shared58Fusion,  (|Helpers.CanDestroyTrees, Items.RocsCape, Items.Flippers, Helpers.AccessWestern)), Helpers.Hundo);	Items.Rupee5
-SouthField_PuddleFusion_Item7;		`GREENFUSIONRUPEE`;	0x0F82E3;		(|(&Helpers.Shared58Fusion,  (|Helpers.CanDestroyTrees, Items.RocsCape, Items.Flippers, Helpers.AccessWestern)), Helpers.Hundo);	Items.Rupee5
-SouthField_PuddleFusion_Item8;		`GREENFUSIONRUPEE`;	0x0F82F3;		(|(&Helpers.Shared58Fusion,  (|Helpers.CanDestroyTrees, Items.RocsCape, Items.Flippers, Helpers.AccessWestern)), Helpers.Hundo);	Items.Rupee5
-SouthField_PuddleFusion_Item9;		`GREENFUSIONRUPEE`;	0x0F8303;		(|(&Helpers.Shared58Fusion,  (|Helpers.CanDestroyTrees, Items.RocsCape, Items.Flippers, Helpers.AccessWestern)), Helpers.Hundo);	Items.Rupee5
-SouthField_PuddleFusion_Item10;		`GREENFUSIONRUPEE`;	0x0F8313;		(|(&Helpers.Shared58Fusion,  (|Helpers.CanDestroyTrees, Items.RocsCape, Items.Flippers, Helpers.AccessWestern)), Helpers.Hundo);	Items.Rupee5
-SouthField_PuddleFusion_Item11;		`GREENFUSIONRUPEE`;	0x0F8323;		(|(&Helpers.Shared58Fusion,  (|Helpers.CanDestroyTrees, Items.RocsCape, Items.Flippers, Helpers.AccessWestern)), Helpers.Hundo);	Items.Rupee5
-SouthField_PuddleFusion_Item12;		`GREENFUSIONRUPEE`;	0x0F8333;		(|(&Helpers.Shared58Fusion,  (|Helpers.CanDestroyTrees, Items.RocsCape, Items.Flippers, Helpers.AccessWestern)), Helpers.Hundo);	Items.Rupee5
-SouthField_PuddleFusion_Item13;		`GREENFUSIONRUPEE`;	0x0F8343;		(|(&Helpers.Shared58Fusion,  (|Helpers.CanDestroyTrees, Items.RocsCape, Items.Flippers, Helpers.AccessWestern)), Helpers.Hundo);	Items.Rupee5
-SouthField_PuddleFusion_Item14;		`GREENFUSIONRUPEE`;	0x0F8353;		(|(&Helpers.Shared58Fusion,  (|Helpers.CanDestroyTrees, Items.RocsCape, Items.Flippers, Helpers.AccessWestern)), Helpers.Hundo);	Items.Rupee5
-SouthField_PuddleFusion_Item15; 	`GREENFUSIONRUPEE`;	0x0F8363;		(|(&Helpers.Shared58Fusion,  (|Helpers.CanDestroyTrees, Items.RocsCape, Items.Flippers, Helpers.AccessWestern)), Helpers.Hundo);	Items.Rupee5
+SouthField_PuddleFusion_Item1		`GREENFUSIONRUPEE`;	0x0F8283;		(|(&Helpers.Shared58Fusion,  (|Helpers.CanDestroyTrees, Items.RocsCape, Items.Flippers, Helpers.AccessWestern)), Helpers.Hundo);	Items.Rupee5
+SouthField_PuddleFusion_Item2		`GREENFUSIONRUPEE`;	0x0F8293;		(|(&Helpers.Shared58Fusion,  (|Helpers.CanDestroyTrees, Items.RocsCape, Items.Flippers, Helpers.AccessWestern)), Helpers.Hundo);	Items.Rupee5
+SouthField_PuddleFusion_Item3		`GREENFUSIONRUPEE`;	0x0F82A3;		(|(&Helpers.Shared58Fusion,  (|Helpers.CanDestroyTrees, Items.RocsCape, Items.Flippers, Helpers.AccessWestern)), Helpers.Hundo);	Items.Rupee5
+SouthField_PuddleFusion_Item4		`GREENFUSIONRUPEE`;	0x0F82B3;		(|(&Helpers.Shared58Fusion,  (|Helpers.CanDestroyTrees, Items.RocsCape, Items.Flippers, Helpers.AccessWestern)), Helpers.Hundo);	Items.Rupee5
+SouthField_PuddleFusion_Item5		`GREENFUSIONRUPEE`;	0x0F82C3;		(|(&Helpers.Shared58Fusion,  (|Helpers.CanDestroyTrees, Items.RocsCape, Items.Flippers, Helpers.AccessWestern)), Helpers.Hundo);	Items.Rupee5
+SouthField_PuddleFusion_Item6 		`GREENFUSIONRUPEE`;	0x0F82D3;		(|(&Helpers.Shared58Fusion,  (|Helpers.CanDestroyTrees, Items.RocsCape, Items.Flippers, Helpers.AccessWestern)), Helpers.Hundo);	Items.Rupee5
+SouthField_PuddleFusion_Item7		`GREENFUSIONRUPEE`;	0x0F82E3;		(|(&Helpers.Shared58Fusion,  (|Helpers.CanDestroyTrees, Items.RocsCape, Items.Flippers, Helpers.AccessWestern)), Helpers.Hundo);	Items.Rupee5
+SouthField_PuddleFusion_Item8		`GREENFUSIONRUPEE`;	0x0F82F3;		(|(&Helpers.Shared58Fusion,  (|Helpers.CanDestroyTrees, Items.RocsCape, Items.Flippers, Helpers.AccessWestern)), Helpers.Hundo);	Items.Rupee5
+SouthField_PuddleFusion_Item9		`GREENFUSIONRUPEE`;	0x0F8303;		(|(&Helpers.Shared58Fusion,  (|Helpers.CanDestroyTrees, Items.RocsCape, Items.Flippers, Helpers.AccessWestern)), Helpers.Hundo);	Items.Rupee5
+SouthField_PuddleFusion_Item10		`GREENFUSIONRUPEE`;	0x0F8313;		(|(&Helpers.Shared58Fusion,  (|Helpers.CanDestroyTrees, Items.RocsCape, Items.Flippers, Helpers.AccessWestern)), Helpers.Hundo);	Items.Rupee5
+SouthField_PuddleFusion_Item11		`GREENFUSIONRUPEE`;	0x0F8323;		(|(&Helpers.Shared58Fusion,  (|Helpers.CanDestroyTrees, Items.RocsCape, Items.Flippers, Helpers.AccessWestern)), Helpers.Hundo);	Items.Rupee5
+SouthField_PuddleFusion_Item12		`GREENFUSIONRUPEE`;	0x0F8333;		(|(&Helpers.Shared58Fusion,  (|Helpers.CanDestroyTrees, Items.RocsCape, Items.Flippers, Helpers.AccessWestern)), Helpers.Hundo);	Items.Rupee5
+SouthField_PuddleFusion_Item13		`GREENFUSIONRUPEE`;	0x0F8343;		(|(&Helpers.Shared58Fusion,  (|Helpers.CanDestroyTrees, Items.RocsCape, Items.Flippers, Helpers.AccessWestern)), Helpers.Hundo);	Items.Rupee5
+SouthField_PuddleFusion_Item14		`GREENFUSIONRUPEE`;	0x0F8353;		(|(&Helpers.Shared58Fusion,  (|Helpers.CanDestroyTrees, Items.RocsCape, Items.Flippers, Helpers.AccessWestern)), Helpers.Hundo);	Items.Rupee5
+SouthField_PuddleFusion_Item15		`GREENFUSIONRUPEE`;	0x0F8363;		(|(&Helpers.Shared58Fusion,  (|Helpers.CanDestroyTrees, Items.RocsCape, Items.Flippers, Helpers.AccessWestern)), Helpers.Hundo);	Items.Rupee5
 SouthField_Fusion_Chest;			`GREENFUSION`;		0x0FE0D6;		(|(&Helpers.Shared53Fusion, Helpers.AccessEasternHills), Helpers.Hundo);													Items.Shells.200
 SouthField_TreeFusion_HP;			`BLUEFUSIONHP`;		0x0F9BA7;		(|(&Helpers.HurdyFusion, Helpers.AccessEasternHills), Helpers.Hundo);														Items.PieceOfHeart
 SouthField_MinishSize_WaterHole_HP;	`HP`;				0x0DB55F;		(|(&Items.Flippers, Helpers.CanDestroyTrees, Helpers.BonkedTrees), Helpers.Hundo);											Items.PieceOfHeart
@@ -4858,7 +4858,7 @@ Castle_Moat_RightChest;				Any;				0x07-0x00-0x02;														(|Items.Flippers
 	!define - DHC_DOJO - `DHC_OUTSIDE`
 !endif
 
-Castle_GoldenRope							`DHC_OUTSIDE`;	`GREENFUSIONENEMY`;	golden5Item:Define:FirstByte, golden5Sub:Define:SecondByte;			(|(&Helpers.Shared3CFusion, Helpers.HasSword), Helpers.Hundo);		Items.Rupee100
+Castle_GoldenRope							`DHC_OUTSIDE`		`GREENFUSIONENEMY`;	golden5Item:Define:FirstByte, golden5Sub:Define:SecondByte;			(|(&Helpers.Shared3CFusion, Helpers.HasSword), Helpers.Hundo);		Items.Rupee100
 Castle_RightFountainFusion_HP				`DHC_OUTSIDE`;	`REDFUSIONDUNGEONHP`;	0x0D9C2B;														(|Helpers.Shared18Fusion, Helpers.Hundo);						Items.PieceOfHeart
 Castle_Dojo_HP							`DHC_OUTSIDE`;	`DUNGEONHP`;			0x0D79BB;														;															Items.PieceOfHeart
 Castle_Dojo_NPC							`DHC_DOJO`;		`DOJOITEM`;			grimbladeDojoItem:Define:FirstByte, grimbladeDojoSub:Define:SecondByte;	(|(&Helpers.CastleDojo, Helpers.HasSword), Helpers.Hundo);			Items.SwordBeam
@@ -4868,7 +4868,7 @@ Castle_LeftFountainFusion_MinishHoleChest	`DHC_OUTSIDE`;	`GREENFUSIONDUNGEON`;	0
 # Eastern Hills and LonLonRanch
 AccessEasternHills;				Helper;				;														(|Helpers.CanDestroyTrees, Helpers.SHFWindCrest, (&Helpers.OverworldBlocks, Helpers.AccessMinishWoods))
 
-Hills_GoldenRope;					`GREENFUSIONENEMY`;	golden4Item:Define:FirstByte, golden4Sub:Define:SecondByte;	(|(&Helpers.Shared55Fusion,  Helpers.HasSword), Helpers.Hundo);										Items.Rupee100
+Hills_GoldenRope					`GREENFUSIONENEMY`;	golden4Item:Define:FirstByte, golden4Sub:Define:SecondByte;	(|(&Helpers.Shared55Fusion,  Helpers.HasSword), Helpers.Hundo);										Items.Rupee100
 Hills_Fusion_Chest;				`REDFUSION`;			0x0FE05E;												(|(&Helpers.AccessEasternHills, Helpers.Smith1Fusion), Helpers.Hundo);									Items.Bottle
 Hills_BeanstalkFusion_LeftChest;	`BLUEFUSION`;			0x0D-0x03-0x01;											(|(&Helpers.HillsMinishFusion, Helpers.AccessEasternHills), Helpers.Hundo);								Items.Shells.200
 Hills_BeanstalkFusion_HP;			`BLUEFUSIONHP`;		0x0F6073;												(|(&Helpers.HillsMinishFusion, Helpers.AccessEasternHills), Helpers.Hundo);								Items.PieceOfHeart
@@ -4938,7 +4938,7 @@ AccessMinishWoods;						Helper;				;														(|Helpers.CanDestroyTrees, Ite
 AccessNorthMinish;						Helper;				;														Helpers.AccessMinishWoods, (|Items.Flippers, Items.RocsCape, Helpers.LonLonSouthShortcut));
 AccessBelari;								Helper;				;														(|(&Helpers.AccessMinishWoods, Helpers.OverworldBlocks), Helpers.MinishWindCrest, Helpers.CompleteDeepwood);
 
-MinishWoods_GoldenOcto;					`GREENFUSIONENEMY`;	golden8Item:Define:FirstByte, golden8Sub:Define:SecondByte;	(|(&Helpers.Shared56Fusion, Helpers.AccessNorthMinish, Helpers.HasSword), Helpers.Hundo);	Items.Rupee100
+MinishWoods_GoldenOcto						`GREENFUSIONENEMY`;	golden8Item:Define:FirstByte, golden8Sub:Define:SecondByte;	(|(&Helpers.Shared56Fusion, Helpers.AccessNorthMinish, Helpers.HasSword), Helpers.Hundo);	Items.Rupee100
 MinishWoods_WitchHut_Item;					Any;					0x0F94D7;       											(|(&Helpers.AccessNorthMinish, Helpers.ShopWitch), Helpers.Hundo);						Items.WakeUpMushroom
 WitchDiggingCave_Chest;					Any;					0x0C-0x00-0x00;											(|(&Helpers.AccessNorthMinish, Items.MoleMitts), Helpers.Hundo);						Items.Kinstone.BlueL
 MinishWoods_NorthFusion_Chest;				`GREENFUSION`;		0x0FE07E;												(|(&Helpers.Shared44Fusion, Helpers.AccessNorthMinish), Helpers.Hundo);					Items.Kinstone.BlueS
@@ -4979,21 +4979,21 @@ Trilby_DigCave_WaterFusion_Chest;	`BLUEFUSION`;		0x13-0x03-0x01;												(|(&
 Trilby_Scrub_NPC;					Any;				bottleScrubItem:Define:FirstByte, bottleScrubSub:Define:SecondByte;	(|(&Helpers.AccessTrilby, Helpers.BombWalls, Helpers.Scrubs, Helpers.ShopScrubTrilby), Helpers.Hundo);        		Items.Bottle
 
 Trilby_BombCave_Chest;			Any;					0x32-0x07-0x00;                       						(|(&Helpers.AccessWestern, Helpers.BombWalls), Helpers.Hundo);				Items.Kinstone.RedE
-Trilby_PuddleFusion_Item1;		`GREENFUSIONRUPEE`;	0x0F83BB;													(|(&Helpers.TrilbyMinishFusion,  Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee5
-Trilby_PuddleFusion_Item2;		`GREENFUSIONRUPEE`;	0x0F83CB;													(|(&Helpers.TrilbyMinishFusion,  Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee5
-Trilby_PuddleFusion_Item3;		`GREENFUSIONRUPEE`;	0x0F83DB;													(|(&Helpers.TrilbyMinishFusion,  Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee5
-Trilby_PuddleFusion_Item4;  	`GREENFUSIONRUPEE`;	0x0F83EB;													(|(&Helpers.TrilbyMinishFusion,  Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee5
-Trilby_PuddleFusion_Item5;  	`GREENFUSIONRUPEE`;	0x0F83FB;													(|(&Helpers.TrilbyMinishFusion,  Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee5
-Trilby_PuddleFusion_Item6;  	`GREENFUSIONRUPEE`;	0x0F840B;													(|(&Helpers.TrilbyMinishFusion,  Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee5
-Trilby_PuddleFusion_Item7;  	`GREENFUSIONRUPEE`;	0x0F841B;													(|(&Helpers.TrilbyMinishFusion,  Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee5
-Trilby_PuddleFusion_Item8;  	`GREENFUSIONRUPEE`;	0x0F842B;													(|(&Helpers.TrilbyMinishFusion,  Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee5
-Trilby_PuddleFusion_Item9;  	`GREENFUSIONRUPEE`;	0x0F843B;													(|(&Helpers.TrilbyMinishFusion,  Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee5
-Trilby_PuddleFusion_Item10; 	`GREENFUSIONRUPEE`;	0x0F844B;													(|(&Helpers.TrilbyMinishFusion,  Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee5
-Trilby_PuddleFusion_Item11; 	`GREENFUSIONRUPEE`;	0x0F845B;													(|(&Helpers.TrilbyMinishFusion,  Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee5
-Trilby_PuddleFusion_Item12; 	`GREENFUSIONRUPEE`;	0x0F846B;													(|(&Helpers.TrilbyMinishFusion,  Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee5
-Trilby_PuddleFusion_Item13; 	`GREENFUSIONRUPEE`;	0x0F847B;													(|(&Helpers.TrilbyMinishFusion,  Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee5
-Trilby_PuddleFusion_Item14; 	`GREENFUSIONRUPEE`;	0x0F848B;													(|(&Helpers.TrilbyMinishFusion,  Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee5
-Trilby_PuddleFusion_Item15;	`GREENFUSIONRUPEE`;	0x0F849B;													(|(&Helpers.TrilbyMinishFusion,  Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee5
+Trilby_PuddleFusion_Item1		`GREENFUSIONRUPEE`;	0x0F83BB;													(|(&Helpers.TrilbyMinishFusion,  Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee5
+Trilby_PuddleFusion_Item2		`GREENFUSIONRUPEE`;	0x0F83CB;													(|(&Helpers.TrilbyMinishFusion,  Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee5
+Trilby_PuddleFusion_Item3		`GREENFUSIONRUPEE`;	0x0F83DB;													(|(&Helpers.TrilbyMinishFusion,  Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee5
+Trilby_PuddleFusion_Item4  	`GREENFUSIONRUPEE`;	0x0F83EB;													(|(&Helpers.TrilbyMinishFusion,  Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee5
+Trilby_PuddleFusion_Item5  	`GREENFUSIONRUPEE`;	0x0F83FB;													(|(&Helpers.TrilbyMinishFusion,  Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee5
+Trilby_PuddleFusion_Item6  	`GREENFUSIONRUPEE`;	0x0F840B;													(|(&Helpers.TrilbyMinishFusion,  Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee5
+Trilby_PuddleFusion_Item7  	`GREENFUSIONRUPEE`;	0x0F841B;													(|(&Helpers.TrilbyMinishFusion,  Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee5
+Trilby_PuddleFusion_Item8  	`GREENFUSIONRUPEE`;	0x0F842B;													(|(&Helpers.TrilbyMinishFusion,  Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee5
+Trilby_PuddleFusion_Item9  	`GREENFUSIONRUPEE`;	0x0F843B;													(|(&Helpers.TrilbyMinishFusion,  Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee5
+Trilby_PuddleFusion_Item10 	`GREENFUSIONRUPEE`;	0x0F844B;													(|(&Helpers.TrilbyMinishFusion,  Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee5
+Trilby_PuddleFusion_Item11 	`GREENFUSIONRUPEE`;	0x0F845B;													(|(&Helpers.TrilbyMinishFusion,  Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee5
+Trilby_PuddleFusion_Item12 	`GREENFUSIONRUPEE`;	0x0F846B;													(|(&Helpers.TrilbyMinishFusion,  Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee5
+Trilby_PuddleFusion_Item13 	`GREENFUSIONRUPEE`;	0x0F847B;													(|(&Helpers.TrilbyMinishFusion,  Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee5
+Trilby_PuddleFusion_Item14 	`GREENFUSIONRUPEE`;	0x0F848B;													(|(&Helpers.TrilbyMinishFusion,  Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee5
+Trilby_PuddleFusion_Item15		`GREENFUSIONRUPEE`;	0x0F849B;													(|(&Helpers.TrilbyMinishFusion,  Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee5
 
 WesternWoods_FusionChest;			`BLUEGREENFUSION`;		0x03-0x08-0x01;											(|(&Helpers.Gina2Fusion, Helpers.AccessWestern), Helpers.Hundo);						Items.Shells.100
 WesternWoods_TreeFusion_HP;		`REDFUSIONHP`;			0x0F9E1F;												(|(&Helpers.HyliaMiddleMinishFusion, Helpers.AccessWestern), Helpers.Hundo);				Items.PieceOfHeart
@@ -5007,25 +5007,25 @@ WesternWoods_PercyFusion_Moblin;	`REDFUSION`;				0x0123D6;												(|(&Helper
 WesternWoods_PercyFusion_Percy;		`REDFUSION`;				0x06B058:FirstByte, 0x06B05A:SecondByte;						(|(&Helpers.PercyFusion, Helpers.AccessWestern, Helpers.Percy), Helpers.Hundo);			Items.Shells.100
 WesternWoods_BottomDig1			`GREENFUSIONDIG`;			0x0F782F;												(|(&Helpers.CastleMinishFusion, Helpers.AccessWestern, Items.MoleMitts), Helpers.Hundo);	Items.Rupee200
 WesternWoods_BottomDig2			`GREENFUSIONDIG`;			0x0F783F;												(|(&Helpers.CastleMinishFusion, Helpers.AccessWestern, Items.MoleMitts), Helpers.Hundo);	Items.Rupee200
-WesternWoods_GoldenOcto;			`BLUEGREENFUSIONENEMY`;	golden9Item:Define:FirstByte, golden9Sub:Define:SecondByte;	(|(&Helpers.MinishScrub1Fusion, Helpers.AccessWestern, Helpers.HasSword), Helpers.Hundo);	Items.Rupee100
+WesternWoods_GoldenOcto			`BLUEGREENFUSIONENEMY`;	golden9Item:Define:FirstByte, golden9Sub:Define:SecondByte;	(|(&Helpers.MinishScrub1Fusion, Helpers.AccessWestern, Helpers.HasSword), Helpers.Hundo);	Items.Rupee100
 
 WesternWoods_BeanstalkFusion_Chest;		`BLUEFUSION`;			0x0D-0x04-0x00;	(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);	Items.Kinstone.RedW
-WesternWoods_BeanstalkFusion_Item1;		`BLUEFUSIONRUPEE`;	0x0F6143;		(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee20
-WesternWoods_BeanstalkFusion_Item2;		`BLUEFUSIONRUPEE`;	0x0F6153;		(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee20
-WesternWoods_BeanstalkFusion_Item3;		`BLUEFUSIONRUPEE`;	0x0F6163;		(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee20
-WesternWoods_BeanstalkFusion_Item4;		`BLUEFUSIONRUPEE`;	0x0F6173;		(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee20
-WesternWoods_BeanstalkFusion_Item5;		`BLUEFUSIONRUPEE`;	0x0F6183;		(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee20
-WesternWoods_BeanstalkFusion_Item6;		`BLUEFUSIONRUPEE`;	0x0F6193;		(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee20
-WesternWoods_BeanstalkFusion_Item7;		`BLUEFUSIONRUPEE`;	0x0F61A3;		(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee20
-WesternWoods_BeanstalkFusion_Item8;		`BLUEFUSIONRUPEE`;	0x0F61B3;		(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee20
-WesternWoods_BeanstalkFusion_Item9;		`BLUEFUSIONRUPEE`;	0x0F61C3;		(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee20
-WesternWoods_BeanstalkFusion_Item10;	`BLUEFUSIONRUPEE`;	0x0F61D3;		(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee20
-WesternWoods_BeanstalkFusion_Item11;	`BLUEFUSIONRUPEE`;	0x0F61E3;		(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee20
-WesternWoods_BeanstalkFusion_Item12;	`BLUEFUSIONRUPEE`;	0x0F61F3;		(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee20
-WesternWoods_BeanstalkFusion_Item13;	`BLUEFUSIONRUPEE`;	0x0F6203;		(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee20
-WesternWoods_BeanstalkFusion_Item14;	`BLUEFUSIONRUPEE`;	0x0F6213;		(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee20
-WesternWoods_BeanstalkFusion_Item15;	`BLUEFUSIONRUPEE`;	0x0F6223;		(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee20
-WesternWoods_BeanstalkFusion_Item16;	`BLUEFUSIONRUPEE`;	0x0F6233;		(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee20
+WesternWoods_BeanstalkFusion_Item1		`BLUEFUSIONRUPEE`;	0x0F6143;		(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee20
+WesternWoods_BeanstalkFusion_Item2		`BLUEFUSIONRUPEE`;	0x0F6153;		(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee20
+WesternWoods_BeanstalkFusion_Item3		`BLUEFUSIONRUPEE`;	0x0F6163;		(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee20
+WesternWoods_BeanstalkFusion_Item4		`BLUEFUSIONRUPEE`;	0x0F6173;		(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee20
+WesternWoods_BeanstalkFusion_Item5		`BLUEFUSIONRUPEE`;	0x0F6183;		(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee20
+WesternWoods_BeanstalkFusion_Item6		`BLUEFUSIONRUPEE`;	0x0F6193;		(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee20
+WesternWoods_BeanstalkFusion_Item7		`BLUEFUSIONRUPEE`;	0x0F61A3;		(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee20
+WesternWoods_BeanstalkFusion_Item8		`BLUEFUSIONRUPEE`;	0x0F61B3;		(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee20
+WesternWoods_BeanstalkFusion_Item9		`BLUEFUSIONRUPEE`;	0x0F61C3;		(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee20
+WesternWoods_BeanstalkFusion_Item10		`BLUEFUSIONRUPEE`;	0x0F61D3;		(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee20
+WesternWoods_BeanstalkFusion_Item11		`BLUEFUSIONRUPEE`;	0x0F61E3;		(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee20
+WesternWoods_BeanstalkFusion_Item12		`BLUEFUSIONRUPEE`;	0x0F61F3;		(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee20
+WesternWoods_BeanstalkFusion_Item13		`BLUEFUSIONRUPEE`;	0x0F6203;		(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee20
+WesternWoods_BeanstalkFusion_Item14		`BLUEFUSIONRUPEE`;	0x0F6213;		(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee20
+WesternWoods_BeanstalkFusion_Item15		`BLUEFUSIONRUPEE`;	0x0F6223;		(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee20
+WesternWoods_BeanstalkFusion_Item16		`BLUEFUSIONRUPEE`;	0x0F6233;		(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee20
 
 # Mount Crenel
 AccessCrenel;						Helper;				;																(|(&Helpers.AccessTrilby, Helpers.LowerBean, (|Items.GripRing, (&(|Helpers.BombWalls, Items.RocsCape), Helpers.CrenelDust, (|Helpers.UpperBean, (&Helpers.BombWalls, Helpers.OverworldBlocks))))), Helpers.CrenelWindCrest)
@@ -5042,10 +5042,10 @@ CrenelBase_WaterCave_HP;			`HP`;				0x0FB32B;														(|(&Helpers.AccessTri
 CrenelBase_MinishVineHole_Chest;	Any;					0x35-0x00-0x00;													(|(&Helpers.AccessTrilby, Helpers.LowerBean, (|Helpers.BombWalls, Items.RocsCape), Helpers.CrenelDust), (&Helpers.CrenelWindCrest, (|Helpers.UpperBean, (&Items.GripRing, (|Helpers.BombWalls, Items.RocsCape))), Helpers.CrenelDust), Helpers.Hundo);															Items.Kinstone.BlueL
 CrenelBase_MinishCrack_Chest;		Any;					0x27-0x03-0x00;													(|(&Helpers.AccessTrilby, Helpers.LowerBean, (|Helpers.BombWalls, Items.RocsCape), Helpers.CrenelDust), (&Helpers.CrenelWindCrest, (|Helpers.UpperBean, (&Items.GripRing, (|Helpers.BombWalls, Items.RocsCape))), Helpers.CrenelDust), Helpers.Hundo);															Items.Kinstone.RedW
 
-Crenel_VineTop_GoldenTektite;		`GREENFUSIONENEMY`;	golden2Item:Define:FirstByte, golden2Sub:Define:SecondByte; 			(|(&Helpers.MinesMinishKitchenFusion,Helpers.AccessCrenel, Helpers.HasSword), Helpers.Hundo);																						Items.Rupee100
+Crenel_VineTop_GoldenTektite		`GREENFUSIONENEMY`;	golden2Item:Define:FirstByte, golden2Sub:Define:SecondByte; 			(|(&Helpers.MinesMinishKitchenFusion,Helpers.AccessCrenel, Helpers.HasSword), Helpers.Hundo);																						Items.Rupee100
 Crenel_BridgeCave_Chest;			Any;					0x26-0x07-0x00;													(|(&Helpers.AccessCrenel, Helpers.BombWalls), Helpers.Hundo);																													Items.Kinstone.BlueL
 Crenel_FairyCave_HP;				`HP`;				0x0FB0BB;														(|(&Helpers.AccessCrenel, Helpers.BombWalls), Helpers.Hundo);																													Items.PieceOfHeart
-Crenel_BelowCoF_GoldenTektite;		`REDFUSIONENEMY`;		golden7Item:Define:FirstByte, golden7Sub:Define:SecondByte;			(|(&Helpers.Tingle2Fusion, Helpers.AccessCrenel, Helpers.HasSword, (|Items.GripRing, Items.BombBag, Helpers.CrenelMushroom, Helpers.CrenelWindCrest)), Helpers.Hundo);						Items.Rupee100
+Crenel_BelowCoF_GoldenTektite		`REDFUSIONENEMY`;		golden7Item:Define:FirstByte, golden7Sub:Define:SecondByte;			(|(&Helpers.Tingle2Fusion, Helpers.AccessCrenel, Helpers.HasSword, (|Items.GripRing, Items.BombBag, Helpers.CrenelMushroom, Helpers.CrenelWindCrest)), Helpers.Hundo);						Items.Rupee100
 Crenel_Scrub_NPC;					Any;					gripScrubItem:Define:FirstByte, gripScrubSub:Define:SecondByte;		(|(&Helpers.AccessCrenel, Helpers.BombWalls, (|Items.GripRing, Items.BombBag, Helpers.CrenelMushroom, Helpers.CrenelWindCrest), Helpers.Scrubs, Helpers.ShopScrubCrenel), Helpers.Hundo);	Items.GripRing
 Crenel_Dojo_LeftChest;				Any;					0x25-0x00-0x00;													(|(&Helpers.AccessCrenel, Items.GripRing, Helpers.CrenelDojo), Helpers.Hundo);																									Items.Rupee50
 Crenel_Dojo_RightChest;			Any;					0x25-0x00-0x01;													(|(&Helpers.AccessCrenel, Items.GripRing, Helpers.CrenelDojo), Helpers.Hundo);																									Items.Rupee50
@@ -5093,7 +5093,7 @@ SpinScrolls;						Helper;				;																	Items.SpinAttack, Items.GreatSpin
 Swamp_ButterflyFusion_Item;		`REDFUSION`;			0x0FE13F;															(|(&Helpers.Farore2Fusion, Helpers.AccessSwamp), Helpers.Hundo);																																							Items.DigButterfly
 Swamp_CenterCave_DarknutChest;		Any;					0x2B-0x00-0x00;														(|(&Helpers.AccessSwamp, Helpers.HasDamageSource), Helpers.Hundo);																																							Items.Kinstone.GoldenSwamp
 Swamp_CenterChest;				Any;					0x04-0x00-0x00;														(|(&Helpers.AccessSwamp, Helpers.HasBow), Helpers.Hundo);																																									Items.Kinstone.BlueL
-Swamp_GoldenRope;					`WTFUSIONGREENENEMY`;	golden3Item:Define:FirstByte, golden3Sub:Define:SecondByte;				(|(&Helpers.Flurris1Fusion, Helpers.AccessSwamp, Helpers.HasSword), Helpers.Hundo);																																			Items.Rupee100
+Swamp_GoldenRope					`WTFUSIONGREENENEMY`;	golden3Item:Define:FirstByte, golden3Sub:Define:SecondByte;				(|(&Helpers.Flurris1Fusion, Helpers.AccessSwamp, Helpers.HasSword), Helpers.Hundo);																																			Items.Rupee100
 Swamp_NearWaterfall_CaveHP;		`HP`;				0x0D9907;															(|(&Helpers.AccessSwamp, Helpers.SwampNorthShortcut, (|Items.RocsCape, Items.Flippers)), Helpers.Hundo);																														Items.PieceOfHeart
 Swamp_WaterfallFusion_DojoNPC:dojo;	`DOJOITEMRED`;		scarbladeDojoItem:Define:FirstByte, scarbladeDojoSub:Define:SecondByte;		(|(&Helpers.GreybladeFusion, Helpers.AccessSwamp, Helpers.SwampNorthShortcut, Items.Flippers), Helpers.Hundo);																													Items.FastSpin
 Swamp_NorthCave_Chest;				Any;					0x2A-0x01-0x00;														(|(&Helpers.AccessSwamp, Helpers.SwampNorthShortcut), Helpers.Hundo);																																						Items.Kinstone.GoldenSwamp
@@ -5129,7 +5129,7 @@ Ruins_CrackFusion_Chest		`FOW_OUTSIDE`;	`GOLDGREENFUSION`;		0x27-0x0C-0x00;					
 Ruins_MinishCave_HP			`FOW_OUTSIDE`;	`GOLDFUSIONHP`;			0x0DB4BF;												(|(&Helpers.AccessRuins, Helpers.RuinsShortcut, Helpers.RuinsTektites), Helpers.Hundo);							Items.PieceOfHeart
 Ruins_ArmosKill_LeftChest		`FOW_OUTSIDE`;	`GOLDFUSION`;				0x05-0x05-0x00;											(|(&Helpers.AccessRuins, Helpers.HasDamageSource), Helpers.Hundo);												Items.Rupee50
 Ruins_ArmosKill_RightChest		`FOW_OUTSIDE`;	`GOLDFUSION`;				0x05-0x05-0x01;											(|(&Helpers.AccessRuins, Helpers.HasDamageSource), Helpers.Hundo);												Items.Shells.50
-Ruins_GoldenOcto				`FOW_OUTSIDE`;	`GOLDGREENFUSIONENEMY`;	golden1Item:Define:FirstByte, golden1Sub:Define:SecondByte;	(|(&Helpers.LibrariFusion, Helpers.AccessRuins, Helpers.HasSword), Helpers.Hundo);								Items.Rupee100
+Ruins_GoldenOcto				`FOW_OUTSIDE`		`GOLDGREENFUSIONENEMY`;	golden1Item:Define:FirstByte, golden1Sub:Define:SecondByte;	(|(&Helpers.LibrariFusion, Helpers.AccessRuins, Helpers.HasSword), Helpers.Hundo);								Items.Rupee100
 Ruins_NearFoWFusion_Chest		`FOW_OUTSIDE`;	`GOLDREDFUSION`;			0x0FE0AE;												(|(&Helpers.BelariFusion, Helpers.AccessRuins, Helpers.HasSword), Helpers.Hundo);								Items.BombBag
 
 Fortress_Entrance								`DUNGEONENTRANCE`;		DumFoWENT:Define:FirstByte, DumFoWENT:Define:SecondByte;		Helpers.AccessFortress;																					Items.Entrance.0x03
@@ -5178,7 +5178,7 @@ Falls_1stCave_Chest;					`FALLSCHEST`;		0x33-0x05-0x00;											(|(&Helpers.Ov
 Falls_Cliff_Chest;					`FALLSCHEST`;		0x0A-0x00-0x00;											(|(&Helpers.OverworldBlocks, Helpers.FallsFusion, Helpers.DarkRooms, Helpers.BombWalls, (|Helpers.CanSplit3, Helpers.CanSplit4)), (&Helpers.AccessFalls, Items.GripRing, Helpers.BombWalls, Helpers.DarkRooms, (|Helpers.CanSplit3, Helpers.CanSplit4)), Helpers.Hundo);		Items.Shells.100
 Falls_SouthDigSpot					`FALLSDIG`;		0x0F8823;												(|(&Helpers.OverworldBlocks, Helpers.FallsFusion, Helpers.DarkRooms, Items.MoleMitts), (&Helpers.AccessFalls, Items.GripRing, Items.MoleMitts), Helpers.Hundo);																									Items.Rupee50
 
-Falls_GoldenTektite;					`FALLSENEMY`;		golden6Item:Define:FirstByte, golden6Sub:Define:SecondByte;	(|(&Helpers.HaileyFusion,  Helpers.AccessFalls, Helpers.HasSword), Helpers.Hundo);	Items.Rupee100
+Falls_GoldenTektite					`FALLSENEMY`;		golden6Item:Define:FirstByte, golden6Sub:Define:SecondByte;	(|(&Helpers.HaileyFusion,  Helpers.AccessFalls, Helpers.HasSword), Helpers.Hundo);	Items.Rupee100
 Falls_NorthDigSpot					`FALLSDIG`;		0x0F8813;												(|(&Helpers.AccessFalls, Items.MoleMitts), Helpers.Hundo);							Items.Rupee50
 Falls_RockFusion_Chest;				`FALLSGREEN`;		0x0FE106;												(|(&Helpers.CapriceFusion, Helpers.AccessFalls), Helpers.Hundo);					Items.Kinstone.BlueS
 Falls_WaterfallFusion_HP;				`FALLSHP`;		0x0F906F;												(|(&Helpers.GaleFusion, Helpers.AccessFalls, Items.Flippers), Helpers.Hundo);		Items.PieceOfHeart
