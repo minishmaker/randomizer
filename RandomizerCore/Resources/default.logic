@@ -5310,7 +5310,7 @@ CompleteCoF;									Helper;			;																		Helpers.CoFBasementAccess, Hel
 
 CoF_BossItem					`COF_INSIDE`;		`DUNGEONHP`;		gleerokContainerItem:Define:FirstByte, gleerokContainerSub:Define:SecondByte;	(|Helpers.CompleteCoF, Helpers.Hundo);																																									Items.HeartContainer
 CoF_Prize					`COF_PRIZE`;		DungeonPrize;		0x0E0F03;																(|Helpers.CompleteCoF, Helpers.Hundo);																																									Items.FireElement
-Crenel_Melari_NPC				`COF_OUTSIDE`;	Dungeon;			0x00D26E;																(|Helpers.CompleteCoF, Helpers.Hundo);																																									`GREENSWORD`
+Crenel_Melari_NPC				`COF_INSIDE`;		Dungeon;			0x00D26E;																(|Helpers.CompleteCoF, Helpers.Hundo);																																									`GREENSWORD`
 
 
 !define - FOW_INSIDE - `FOW_OUTSIDE`	:FoWSmall	:FoWBig	:FoWCompass	:Small	:Big	:Compass
