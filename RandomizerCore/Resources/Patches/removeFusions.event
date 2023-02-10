@@ -74,5 +74,6 @@ PUSH;
 	ORG 0x233A;	BYTE 0xF2;				//Librari
 	ORG 0x23A0;	BYTE 0xF2 0xF2;			//Minish Scrub
 	ORG 0x23A8;	BYTE 0xF2;				//Fifi
+	ORG 0x64952; SHORT 0x46C0			//Restore Magic Boomerang requirement for Tingle 2
 #endif
 POP
