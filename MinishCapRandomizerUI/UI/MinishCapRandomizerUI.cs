@@ -61,14 +61,18 @@ public sealed partial class MinishCapRandomizerUI : Form
 		{
 			var result = _shufflerController.LoadLogicFile(filename);
 
-			if (result.WasSuccessful)
-			{
-				_configuration.CustomLogicFilepath = filename;
-				LogicFilePath.Text = filename;
-				UpdateUIWithLogicOptions();
-			} 
-			else
-				DisplayConditionalAlertFromShufflerResult(result, "You shouldn't be seeing this, but if you are it means something weird happened. Please report to the dev team.", "You Shouldn't See This", "Failed to load Logic File!", "Failed to Load Logic File");
+            if (result.WasSuccessful)
+            {
+                _configuration.CustomLogicFilepath = filename;
+                LogicFilePath.Text = filename;
+                UpdateUIWithLogicOptions();
+            }
+            else
+            {
+                DisplayConditionalAlertFromShufflerResult(result, "You shouldn't be seeing this, but if you are it means something weird happened. Please report to the dev team.", "You Shouldn't See This", "Failed to load Logic File!", "Failed to Load Logic File");
+                _shufflerController.LoadLogicFile();
+                UpdateUIWithLogicOptions();
+            }
 		});
 	}
 

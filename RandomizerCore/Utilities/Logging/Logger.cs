@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using RandomizerCore.Controllers;
 
 namespace RandomizerCore.Utilities.Logging;
 
@@ -22,6 +23,8 @@ internal class Logger
     public void Flush()
     {
         Transactions = new List<Log>();
+        LogInfo($"Minish Cap Randomizer Core Version {ShufflerController.VersionIdentifier} {ShufflerController.RevisionIdentifier} initialized!");
+        SaveLogTransaction(true);
     }
     public void LogInfo(string message)
     {

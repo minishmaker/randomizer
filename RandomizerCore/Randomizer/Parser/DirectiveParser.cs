@@ -477,7 +477,7 @@ public class DirectiveParser
 			var chanceItemStrings = chanceItemData[0].Split('.');
 
 			var chance = 0;
-			if (!StringUtil.ParseString(chanceItemData[2], out chance))
+			if (!StringUtil.ParseString(chanceItemData[1], out chance))
 				throw new ParserException("!replace has an invalid new item chance value");
 
 			var item = new Item(trimmed, "!replace");

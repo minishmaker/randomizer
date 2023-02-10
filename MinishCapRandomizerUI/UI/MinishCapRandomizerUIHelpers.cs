@@ -129,15 +129,15 @@ namespace MinishCapRandomizerUI.UI
 			tip.InitialDelay = Constants.TooltipInitialShowDelayMs;
 			tip.ReshowDelay = Constants.TooltipRepeatDelayMs;
 			tip.SetToolTip(UseCustomCosmetics, "Patches in cosmetics based on what you have selected in the cosmetics tab.\nOnly works if both logic and patches are set to default.");
-			tip.SetToolTip(UseSphereBasedShuffler, @"Generates the seed using the sphere based shuffler. This shuffler is guaranteed to generate a seed that can beat vaati on the first attempt unless it is impossible to get out of the first sphere.
+            tip.SetToolTip(UseSphereBasedShuffler, @"Generates the seed using the sphere based shuffler. This shuffler is guaranteed to generate a seed that can beat vaati on the first attempt unless it is impossible to get out of the first sphere or takes more than 50,000 attempts to gen the seed.
 
 This shuffler gets the locations in sphere 1, fills them, checks for progression, advances to the next sphere, etc. until it can beat vaati. 
 If no progression is available, it goes to the previous sphere and re-places items there to try and change what is processed the next time.
 
 This shuffler is known for creating very linear and plando-esque seeds, use as your own risk. We have cases where it has generated 30+ sphere seeds when the normal shuffler generated 12-15 sphere seeds.
 
-If you click randomize with this shuffler and it is frozen for more than about a minute, close the application and report the issue to the dev team. This shuffler can pseudo-infinite loop although we haven't had it happen in a long time.");
-		}
+Generating seeds with this shuffler may freeze the randomizer application for many minutes while it tries different permutations, however if it exceeds 50,000 attempts it will break out and error. If this happens, let us know so we can make improvements to the shuffler.");
+        }
 
 		private void LoadPresets()
 		{

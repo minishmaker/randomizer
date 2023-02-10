@@ -1,6 +1,7 @@
 ﻿using RandomizerCore.Controllers.Models;
 using RandomizerCore.Core;
 using RandomizerCore.Randomizer;
+using RandomizerCore.Randomizer.Exceptions;
 using RandomizerCore.Randomizer.Logic.Options;
 using RandomizerCore.Utilities.Logging;
 using RandomizerCore.Utilities.Models;
@@ -27,19 +28,24 @@ public class ShufflerController
 	public string AppName => "Minish Cap Randomizer";
 #endif
 
-	public string VersionName => "v0.7.0";
-	public string RevName => "alpha-rev2";
+    public string VersionName => VersionIdentifier;
+    public string RevName => RevisionIdentifier;
 
-	public string SeedFilename => $"Minish Randomizer-{_shuffler.Seed}-{_shuffler.Version}-{_shuffler.GetOptionsIdentifier()}";
+    internal static string VersionIdentifier => "v0.7.0";
+    internal static string RevisionIdentifier => "alpha-rev2";
+
+    public string SeedFilename => $"Minish Randomizer-{_shuffler.Seed}-{_shuffler.Version}-{_shuffler.GetOptionsIdentifier()}";
 
 	public int FinalSeed => _shuffler.Seed;
 
 	public ShufflerController()
 	{
 		_shuffler = new Shuffler();
-	}
+        Logger.Instance.LogInfo($"Minish Cap Randomizer Core Version {VersionName} {RevName} initialized!");
+        Logger.Instance.SaveLogTransaction(true);
+    }
 
-	public void SetLogOutputPath(string logFilePath)
+    public void SetLogOutputPath(string logFilePath)
 	{
 		Logger.Instance.OutputFilePath = logFilePath;
 	}
@@ -148,7 +154,7 @@ public class ShufflerController
 	{
 		try
 		{
-			_shuffler.LoadOptions(filename);
+            _shuffler.LoadOptions(filename);
 			return new ShufflerControllerResult { WasSuccessful = true };
 		}
 		catch (Exception e)
@@ -190,50 +196,54 @@ public class ShufflerController
 		}
 	}
 
-	public ShufflerControllerResult Randomize(int retries = 1, bool useSphereBasedShuffler = false)
-	{
-		try
-		{
-			_shuffler.ValidateState();
+    public ShufflerControllerResult Randomize(int retries = 1, bool useSphereBasedShuffler = false)
+    {
+        try
+        {
+            _shuffler.ValidateState();
 
-			var attempts = 1;
-			if (retries <= 0) retries = 1;
-			var successfulGeneration = false;
-			while (attempts <= retries && !successfulGeneration)
-			{
-				try
-				{
-					_shuffler.RandomizeLocations(useSphereBasedShuffler);
-					successfulGeneration = true;
-				}
-				catch (Exception e)
-				{
-					Logger.Instance.LogException(e);
-					attempts++;
-					LoadLocations(_cachedLogicFile);
-					_shuffler.SetSeed(new Random(_shuffler.Seed).Next());
-					Logger.Instance.SaveLogTransaction();
-				}
-			}
+            var attempts = 1;
+            if (retries <= 0) retries = 1;
+            var successfulGeneration = false;
+            var capturedExceptions = new List<Exception>();
+            while (attempts <= retries && !successfulGeneration)
+            {
+                try
+                {
+                    _shuffler.RandomizeLocations(useSphereBasedShuffler);
+                    successfulGeneration = true;
+                }
+                catch (Exception e)
+                {
+                    Logger.Instance.LogException(e);
+                    capturedExceptions.Add(e);
+                    attempts++;
+                    LoadLocations(_cachedLogicFile);
+                    _shuffler.SetSeed(new Random(_shuffler.Seed).Next());
+                    Logger.Instance.SaveLogTransaction();
+                }
+            }
 
-			return new ShufflerControllerResult { WasSuccessful = successfulGeneration };
-		} 
-		catch (Exception e)
-		{
-			Logger.Instance.LogException(e);
-			return new ShufflerControllerResult
-			{
-				WasSuccessful = false,
-				Error = e,
-			};
-		}
-		finally
-		{
-			Logger.Instance.SaveLogTransaction();
-		}
-	}
+            if (!successfulGeneration) throw new ShuffleException($"Multiple Failures Occurred - Only showing last failure message: {capturedExceptions.Last().Message}");
 
-	public ShufflerControllerResult SaveAndPatchRom(string filename, string? patchFile = null)
+            return new ShufflerControllerResult { WasSuccessful = successfulGeneration };
+        }
+        catch (Exception e)
+        {
+            Logger.Instance.LogException(e);
+            return new ShufflerControllerResult
+            {
+                WasSuccessful = false,
+                Error = e,
+            };
+        }
+        finally
+        {
+            Logger.Instance.SaveLogTransaction();
+        }
+    }
+
+    public ShufflerControllerResult SaveAndPatchRom(string filename, string? patchFile = null)
 	{
 		try
 		{

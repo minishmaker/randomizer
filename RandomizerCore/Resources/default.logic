@@ -67,9 +67,9 @@
 #
 # = Window Elements =
 # (window tab) is what tab the element shows up in, can be anything, (setting type) is the type of the setting, either Setting or Cosmetic, (setting group) is the grouping for the setting so similar settings can be placed together on the UI, and(readable text) is the text written next to the element
-# !flag - (window tab) - (setting type) - (setting group) - (define name) - (readable text) - [default value] : adds a checkbox that sets (define name) if checked, defaults to false unless [default value] exists and is "true".
-# !dropdown - (window tab) - (setting type) - (setting group) - (define name) - (readable text) ~(readable text) - (define name) ~            : requires sets of "(define name) - (readable name)", each set adds a new entry to the dropdown, the selected option will have its define set, the first option is the default value.
-# !numberbox - (window tab) - (setting type) - (setting group) - (define name) - (readable text)              : a textbox where you can input a number, (define name) will be set to the number that was input.
+# !flag - (window tab) - (setting type) - (setting group) - (define name) - (readable text) - (tooltip text) - [default value] : adds a checkbox that sets (define name) if checked, defaults to false unless [default value] exists and is "true".
+# !dropdown - (window tab) - (setting type) - (setting group) - (define name) - (readable text) - (tooltip text) - (default value) - ~(readable name) - (define name) - (tooltip text)~ : requires sets of "(readable name) - (define name) - (tooltip text)", each set adds a new entry to the dropdown, the selected option will have its define set. (default value) is the value of the (define name) you want as the default value
+# !numberbox - (window tab) - (setting type) - (setting group) - (define name) - (readable text) - (tooltip text) - (default value) - (max value) : a textbox where you can input a number, (define name) will be set to the number that was input, (default value) is the default value to put in the box, (max value) is the maximum supported value
 # !color - (window tab) - (setting type) - (setting group) - (define name) - (readable text) - ~ [default color R] - [default color G] - [default color B] ~ : adds a color picker, the default color is white if no hexadecimal [default color R/G/B] is set, (define name) is set if the color is changed, (define name)_X is set to the color in set X starting from 0.
 # 
 # = Parser Commands = 
@@ -98,13 +98,13 @@
 !dropdown - Main Settings - Setting - Dungeon Settings - DUNGEON - NonElement Dungeons: - NonElement Dungeons, This setting is disabled when 'Shuffle Elements' is enabled or when 'Dungeons Required' is set to '5' or '6'. - Standard - NONE - 'Standard': NonElement Dungeons have no special rules. - Unrequired - UNREQ - 'Unrequired': NonElement Dungeons do not have items required to beat the game. - Barren - BARREN - 'Barren': NonElement Dungeons only contain junk items. - Regions Unrequired - UNREQSUR - 'Regions Unrequired': NonElement Dungeons and their Regions do not contain items needed to beat the game. - Regions Barren - BARRENSUR - 'Regions Barren': NonElement Dungeons and their Regions only contain junk items. \n\n DWS Region: 'Minish Village', 'Belari's House', 'Chest near Belari', 'Minish Cave near Belari'.\n CoF Region: 'Melari's Mines', 'Melari's Mines Outside Path', 'Pre Melari Block Puzzle Chest'.\n FOW Region: 'Wind Ruins'.\n TOD Region: 'Nothing'.\n RC Region: 'Graveyard (Not Dampe)'.\n POW Region: If Red Fusions are Removed: 'Wind Tribe', Otherwise: 'Upper Wind Tribe'.
 !flag - Main Settings - Setting - Dungeon Settings - SHUFFLE_ELEMENTS - Shuffle Elements - Shuffle Elements allows the Elements to be shuffled to anywhere in the world, not just as Dungeon Rewards. The Element icons on the map are removed.
 
-!dropdown - Main Settings - Setting - Dark Hyrule Castle Requirements - DHC_SETTING - DHC Opens: - Dark Hyrule Castle is the last dungeon in the game, it has the final boss Vaati. - Open After Requirements - NORMALDHC - 'Open After Requirements': A barrier is placed at the front of the dungeon, This barrier is removed when you visit the sanctuary after completing ALL the requirements. The game ends when you defeat Vaati. - Never Open - NODHC - 'Never Open': A barrier is placed at the front of the dungeon, The game ends when you visit the sanctuary after completing all the requirements. - Always Open - OPENDHC - 'Always Open': There is no barrier at the front of the dungeon, the game ends when you defeat Vaati.
+!dropdown - Main Settings - Setting - Dark Hyrule Castle Requirements - DHC_SETTING - DHC Opens: - Dark Hyrule Castle is the last dungeon in the game, it has the final boss Vaati. - After Requirements - NORMALDHC - 'After Requirements': A barrier is placed at the front of the dungeon, This barrier is removed when you visit the sanctuary after completing ALL the requirements. The game ends when you defeat Vaati. - Never Open - NODHC - 'Never Open': A barrier is placed at the front of the dungeon, The game ends when you visit the sanctuary after completing all the requirements. - Always Open - OPENDHC - 'Always Open': There is no barrier at the front of the dungeon, the game ends when you defeat Vaati.
 !dropdown - Main Settings - Setting - Dark Hyrule Castle Requirements - AD_PED - Dungeons Required: - The number of dungeons that have to be beaten to activate the Sanctuary. There are 6 dungeons in the game that count:\n Deepwood Shrine\n Cave of Flames\n Fortress of Winds\n Temple of Droplets\n Royal Crypt\n Palace of Winds - 0 - AD_PED_0 - - 1 - AD_PED_1 - - 2 - AD_PED_2 - - 3 - AD_PED_3 - - 4 - AD_PED_4 - - 5 - AD_PED_5 - - 6 - AD_PED_6 -
 !dropdown - Main Settings - Setting - Dark Hyrule Castle Requirements - SWORD_SETTING - Sword Requirement: - The level of sword that needs to be collected to activate the Sanctuary - No Sword - 0SWORD - - Smith Sword - 1SWORD - - Green Sword - 2SWORD - - Red Sword - 3SWORD - - Blue Sword - 4SWORD - - Four Sword - 5SWORD -
 !dropdown - Main Settings - Setting - Dark Hyrule Castle Requirements - ELEMENT_SETTING - Elements Required: - The number of Elements that need to be collected to activate the Sanctuary - 4 - 4 - - 3 - 3 - - 2 - 2 - - 1 - 1 - - 0 - 0ELEMENT -
-#!flag - Main Settings - Setting - Dark Hyrule Castle Requirements - FIGURINE_HUNT - Figurine Hunt - Carlov's Figurine pieces have been scattered into the world, collect enough of them to be able to activate the Sanctuary, this is way better than a gacha game!\n Don't forget to visit Carlov's Machine to view the figurines you have collected so far.
-#!numberbox - Main Settings - Setting - Dark Hyrule Castle Requirements - FIGURINE_TOTAL - Figurines in world: - The total number of Figurines that get added to the item pool, the maximum amount is 136. - 30
-#!numberbox - Main Settings - Setting - Dark Hyrule Castle Requirements - FIGURINE_COUNT - Figurines required: - The number of Figurines required to activate the Sanctuary, do not raise this to higher than the total number of Figurines or you won't be able to beat the game silly. - 20
+!flag - Main Settings - Setting - Dark Hyrule Castle Requirements - FIGURINE_HUNT - Figurine Hunt - Carlov's Figurine pieces have been scattered into the world, collect enough of them to be able to activate the Sanctuary, this is way better than a gacha game!\n Don't forget to visit Carlov's Machine to view the figurines you have collected so far.
+!numberbox - Main Settings - Setting - Dark Hyrule Castle Requirements - FIGURINE_TOTAL - Figurines in world: - The total number of Figurines that get added to the item pool, the maximum amount is 136. - 30
+!numberbox - Main Settings - Setting - Dark Hyrule Castle Requirements - FIGURINE_COUNT - Figurines required: - The number of Figurines required to activate the Sanctuary, do not raise this to higher than the total number of Figurines or you won't be able to beat the game silly. - 20
 
 !dropdown - Main Settings - Setting - Shuffle - DOJO - Dojo Swordmasters: -	Dojo Swordmasters have Scrolls as their rewards. - Vanilla Scrolls - DOJOVANILLA - 'Vanilla Scrolls': Dojo Swordmasters offer their vanilla rewards. - Randomized Scrolls - DOJORANDOM - 'Randomized Scrolls': Scrolls are shuffled between the Dojo Swordmasters. - Any Item - DOJOANY - 'Any Item': Dojo Swordmasters are shuffled into the main pool.
 !flag - Main Settings - Setting - Shuffle - HEART_RANDO - Heart Pieces and Containers - If enabled will shuffle Heart Pieces and Heart Containers into the pool, This makes any items randomized to Heart Piece locations visible prior to collecting them. - true
@@ -170,6 +170,7 @@
 !dropdown - Logic Settings - Setting - Require Tricks - FOWPOT - FoW Pot item early using the Gust Jar: - Low Difficulty:\n In Fortress of Winds there are 2 pots that contain items when playing with 'Special Pots', these are located in a dirt filled room in the back right section of the dungeon on 2F locked behind various locked doors.\n However the lower of the 2 pots can be grabbed with the Gust Jar from a much earlier part of the dungeon located in the front right section 2F.\n The pot can accidentally be released inside the wall which makes the item unobtainable, simply reload the room and the pot and item will respawn. - No - NOFOWPOT - 'No': From the entrance of Fortress, this location always requires at least 3 Fortress small keys as well as the Mole Mitts and Bow. - Yes - YESFOWPOT - 'Yes': From the entrance of Fortress, this location may only require the Gust Jar.
 
 !dropdown - Other - Setting - Item Pool - ITEM_POOL - Item Pool: -  - Balanced - ITEM_POOL_NORMAL - 'Balanced': Normal Item Pool. - Reduced (RIP) - ITEM_POOL_RIP - 'Reduced': Removes many items from the pool:\n All Heart Containers removed and some Heart Pieces removed (Max Hearts available is 10)\n Remote Bombs removed\n All Spin Scroll Upgrades removed, a single Spin Scroll remains\n All Butterflies removed\n All Quivers removed\n A Shield is removed, a single Shield remains\n A Boomerang is removed, a single Boomerang remains. If either 'Vanilla Red Fusions' or 'Vanilla Green Fusions' are on then no Boomerangs are removed.\n 3 Bottles removed, a single Bottle remains\n 3 Bomb bags are removed, a single Bomb bag remains - Plentiful - ITEM_POOL_PLENTIFUL - 'Plentiful': Adds extra copies of major items to the pool.\n Items with 2 extra copies:\n Sword\n Lantern\n Gust Jar\n Cane of Pacci\n Rocs Cape\n Ocarina\n Flippers\n Spin Attack\n Items with 1 extra copy:\n Bow\n Mole Mitts\n Pegasus Boots\n Grip Ring\n Graveyard Key\n If Gold Kinstones are randomized:\n 2 extra Cloud Kinstones, 2 extra Swamp Kinstones, and an extra Falls Kinstone (5 extra if combined)\n If other fusion colors are randomized:\n 2 of each red shape (6 if combined)\n 2 of each blue shape (4 if combined)\n 3 of each green shape (9 if combined)\n If Big Keysanity is on then there is an extra Big Key for each Dungeon\n If Small Keysanity is on then there are 2 extra Small Keys for each Dungeon
+!flag - Other - Setting - Extras - RANDOM_BOTTLE_CONTENT - Random Bottle Contents - Randomizes the contents of the bottles that are shuffled in the pool, these contents are never considered by logic. - true
 !flag - Other - Setting - Item Pool - TRAPS - Traps - Add Trap items to the item pool, These items are disguised to look like major items if they are in visible locations.\n Traps have 10 different possible effects they can deploy when collected, see if you can experience them all! 
 !flag - Other - Setting - Item Pool - MEME - Fun Junk - Add some items to the item pool to replace junk, these items are completely useless.
 !dropdown - Other - Setting - Item Pool - PROGRESSIVE - Items are Progressive: - Some item upgrades are treated as completely independent items by the game. - Yes - YESPROG - 'Yes': These items are replaced with a generic "Progressive" form that upgrades your item to the next level. - No - NOPROG - 'No': Unique copies of each item will be found in the seed\n\n 5 different swords:\n Smith Sword\n Green Sword\n Red Sword\ Blue Sword\n Four Sword\n\n 2 Bows:\n Bow\n Light Arrows\n\n 2 Boomerangs:\n Boomerang\n Magic Boomerang\n\n 2 Shields:\n Shield\n Mirror Shield\n\n 5 Scrolls:\n Spin Attack\n Fast Spin\n Fast Split\n Greatspin\n Long Spin
@@ -179,7 +180,6 @@
 !flag - Other - Setting - Restrictions - HERO_MODE - Hero Mode (WIP) - Currently only enable to allow damage multiplier, will have a different function in the future. WARNING: Do not enable this with Timed OHKO. #Disables health drops from enemies/pots.\n WARNING: Do not enable this with Timed OHKO.
 !dropdown - Other - Setting - Restrictions - DAMAGE_MULTI - Damage Multiplier: - Multiply the damage received from enemies. Currently only enabled if Hero Mode is enabled. - 1x - MULTI_1 - - 2x - MULTI_2 - - 3x - MULTI_3 - - 4x - MULTI_4 - 
 !flag - Other - Setting - Extras - ITEM_HISTORY - Item Name Display - Collecting an item will display text at the bottom left corner of the screen telling you what you just picked up, useful in Keysanity modes where the textbox closes too quickly for you to read which dungeon it came from. - true
-#!flag - Other - Setting - Extras - RANDOM_BOTTLE_CONTENT - Random Bottle Contents - Randomizes the contents of the bottles that are shuffled in the pool, these contents are never considered by logic. - true
 !flag - Other - Setting - Extras - SHY_FAIRIES - Shy Fairies - Faires do not come out of bottles when your health reaches 0.
 !flag - Other - Setting - Extras - HOMEWARP - Homewarp - In the Pause menu there is a 'SLEEP' option on the 'QUEST STATUS' screen, using this will warp Link back to his bed from wherever he is. - true
 !flag - Other - Setting - Extras - BOOTS_MINISH - Minish Dash - Enables a hack that allows Minish Sized Link to use the boots. Warning: Has some unintended effects.
@@ -197,9 +197,9 @@
 
 !eventdefine - customRNG - 0x`RAND_INT`
 
-#version 0.6.2t
-!eventdefine - versionNumber - 0x00070017
-!eventdefine - versionNumbers - 0x00070017
+#version 0.7.0a
+!eventdefine - versionNumber - 0x00070000
+!eventdefine - versionNumbers - 0x00070000
 
 #Cosmetic defines
 
@@ -462,6 +462,11 @@
 !define - GOLDEN_ENEMY_GREEN
 !define - GOLDEN_ENEMY_RED
 
+!ifndef - GOLDEN_ENEMY
+	!undefine - GOLDEN_ENEMY_GREEN
+	!undefine - GOLDEN_ENEMY_RED
+!endif
+
 !ifdef - CREST_CRENEL
 	!ifdef - CREST_FALLS
 		!ifdef - CREST_CLOUD
@@ -622,7 +627,7 @@
 	!ifdef - OPEN_GREEN_FUSIONS
 		!eventdefine - mC87 - 0xFF
 	!else
-		!eventdefine - mC87 - 0x07
+		!eventdefine - mC87 - 0x0F
 	!endif
 !else
 	!ifdef - OPEN_GREEN_FUSIONS
@@ -1222,7 +1227,6 @@
 	Items.Arrows30;			Filler;
 !ifdef - ITEM_POOL_RIP
 	!ifdef - NOPROG
-		Items.LightArrow;	Major;
 		!ifdef - VANILLA_RED_FUSIONS
 			Items.MagicBoomerang;		Major;
 		!else
@@ -1239,7 +1243,6 @@
 			!endif
 		!endif
 	!else
-		Items.ProgressiveItem.0x01;		Major;	#Bow
 		!ifdef - VANILLA_RED_FUSIONS
 			Items.ProgressiveItem.0x02;		Major;	#Boomerang
 		!else
@@ -1475,7 +1478,6 @@
 		!endif
 	!endif
 !endif
-!undefine - `SWORD_SETTING`
 
 !define - `ELEMENT_SETTING`
 !ifdef - 0ELEMENT
@@ -1484,7 +1486,7 @@
 !else
     !define - ELEMENTAMOUNT - `ELEMENT_SETTING`
 !endif
-!undefine - `ELEMENT_SETTING`
+
 
 #make sure that only 1 of these settings is active at the same time
 !define - GotSwords -
@@ -1531,6 +1533,16 @@
 			!undefine - GotElements
             !define - GotElements - , (+`ELEMENTAMOUNT`, Items.WaterElement, Items.FireElement, Items.WindElement, Items.EarthElement)
         !endif
+		!ifdef - SWORDEX
+			!ifdef - ELEMENTEX
+				!ifndef - FIGURINE_HUNT
+					!ifdef - AD_PED_0
+						!undefine - GotElements
+						!define - GotElements - , (+4, Items.WaterElement, Items.FireElement, Items.WindElement, Items.EarthElement)
+					!endif
+				!endif
+			!endif
+		!endif
 	!endif
 !endif
 	GotSwords; Helper; ; `GotSwords`
@@ -1589,147 +1601,147 @@
     Items.Untyped.0x39:2;	Music;	Music
     Items.Untyped.0x3a:2;	Music;	Music
     Items.Untyped.0x3b:2;	Music;	Music
-    Area0Music:Music;  Music; musicScrap:Define:FirstByte, 0x12746b:SecondByte;;
-    Area1Music:Music;  Music; musicScrap:Define:FirstByte, 0x12746f:SecondByte;;
-    Area2Music:Music;  Music; musicScrap:Define:FirstByte, 0x127473:SecondByte;;
-    Area3Music:Music;  Music; musicScrap:Define:FirstByte, 0x127477:SecondByte;;
-    Area4Music:Music;  Music; musicScrap:Define:FirstByte, 0x12747b:SecondByte;;
-    Area5Music:Music;  Music; musicScrap:Define:FirstByte, 0x12747f:SecondByte;;
-    Area6Music:Music;  Music; musicScrap:Define:FirstByte, 0x127483:SecondByte;;
-    Area7Music:Music;  Music; musicScrap:Define:FirstByte, 0x127487:SecondByte;;
-    Area8Music:Music;  Music; musicScrap:Define:FirstByte, 0x12748b:SecondByte;;
-    Area9Music:Music;  Music; musicScrap:Define:FirstByte, 0x12748f:SecondByte;;
-    AreaaMusic:Music;  Music; musicScrap:Define:FirstByte, 0x127493:SecondByte;;
-    AreabMusic:Music;  Music; musicScrap:Define:FirstByte, 0x127497:SecondByte;;
-    AreacMusic:Music;  Music; musicScrap:Define:FirstByte, 0x12749b:SecondByte;;
-    AreadMusic:Music;  Music; musicScrap:Define:FirstByte, 0x12749f:SecondByte;;
-    AreaeMusic:Music;  Music; musicScrap:Define:FirstByte, 0x1274a3:SecondByte;;
-    AreafMusic:Music;  Music; musicScrap:Define:FirstByte, 0x1274a7:SecondByte;;
-    Area10Music:Music; Music; musicScrap:Define:FirstByte, 0x1274ab:SecondByte;;
-    Area11Music:Music; Music; musicScrap:Define:FirstByte, 0x1274af:SecondByte;;
-    Area12Music:Music; Music; musicScrap:Define:FirstByte, 0x1274b3:SecondByte;;
-    Area13Music:Music; Music; musicScrap:Define:FirstByte, 0x1274b7:SecondByte;;
-    Area14Music:Music; Music; musicScrap:Define:FirstByte, 0x1274bb:SecondByte;;
-    Area15Music:Music; Music; musicScrap:Define:FirstByte, 0x1274bf:SecondByte;;
-    Area16Music:Music; Music; musicScrap:Define:FirstByte, 0x1274c3:SecondByte;;
-    Area17Music:Music; Music; musicScrap:Define:FirstByte, 0x1274c7:SecondByte;;
-    Area18Music:Music; Music; musicScrap:Define:FirstByte, 0x1274cb:SecondByte;;
-    Area19Music:Music; Music; musicScrap:Define:FirstByte, 0x1274cf:SecondByte;;
-    Area1aMusic:Music; Music; musicScrap:Define:FirstByte, 0x1274d3:SecondByte;;
-    Area1bMusic:Music; Music; musicScrap:Define:FirstByte, 0x1274d7:SecondByte;;
-    Area1cMusic:Music; Music; musicScrap:Define:FirstByte, 0x1274db:SecondByte;;
-    Area1dMusic:Music; Music; musicScrap:Define:FirstByte, 0x1274df:SecondByte;;
-    Area1eMusic:Music; Music; musicScrap:Define:FirstByte, 0x1274e3:SecondByte;;
-    Area1fMusic:Music; Music; musicScrap:Define:FirstByte, 0x1274e7:SecondByte;;
-    Area20Music:Music; Music; musicScrap:Define:FirstByte, 0x1274eb:SecondByte;;
-    Area21Music:Music; Music; musicScrap:Define:FirstByte, 0x1274ef:SecondByte;;
-    Area22Music:Music; Music; musicScrap:Define:FirstByte, 0x1274f3:SecondByte;;
-    Area23Music:Music; Music; musicScrap:Define:FirstByte, 0x1274f7:SecondByte;;
-    Area24Music:Music; Music; musicScrap:Define:FirstByte, 0x1274fb:SecondByte;;
-    Area25Music:Music; Music; musicScrap:Define:FirstByte, 0x1274ff:SecondByte;;
-    Area26Music:Music; Music; musicScrap:Define:FirstByte, 0x127503:SecondByte;;
-    Area27Music:Music; Music; musicScrap:Define:FirstByte, 0x127507:SecondByte;;
-    Area28Music:Music; Music; musicScrap:Define:FirstByte, 0x12750b:SecondByte;;
-    Area29Music:Music; Music; musicScrap:Define:FirstByte, 0x12750f:SecondByte;;
-    Area2aMusic:Music; Music; musicScrap:Define:FirstByte, 0x127513:SecondByte;;
-    Area2bMusic:Music; Music; musicScrap:Define:FirstByte, 0x127517:SecondByte;;
-    Area2cMusic:Music; Music; musicScrap:Define:FirstByte, 0x12751b:SecondByte;;
-    Area2dMusic:Music; Music; musicScrap:Define:FirstByte, 0x12751f:SecondByte;;
-    Area2eMusic:Music; Music; musicScrap:Define:FirstByte, 0x127523:SecondByte;;
-    Area2fMusic:Music; Music; musicScrap:Define:FirstByte, 0x127527:SecondByte;;
-    Area30Music:Music; Music; musicScrap:Define:FirstByte, 0x12752b:SecondByte;;
-    Area31Music:Music; Music; musicScrap:Define:FirstByte, 0x12752f:SecondByte;;
-    Area32Music:Music; Music; musicScrap:Define:FirstByte, 0x127533:SecondByte;;
-    Area33Music:Music; Music; musicScrap:Define:FirstByte, 0x127537:SecondByte;;
-    Area34Music:Music; Music; musicScrap:Define:FirstByte, 0x12753b:SecondByte;;
-    Area35Music:Music; Music; musicScrap:Define:FirstByte, 0x12753f:SecondByte;;
-    Area36Music:Music; Music; musicScrap:Define:FirstByte, 0x127543:SecondByte;;
-    Area37Music:Music; Music; musicScrap:Define:FirstByte, 0x127547:SecondByte;;
-    Area38Music:Music; Music; musicScrap:Define:FirstByte, 0x12754b:SecondByte;;
-    Area39Music:Music; Music; musicScrap:Define:FirstByte, 0x12754f:SecondByte;;
-    Area3aMusic:Music; Music; musicScrap:Define:FirstByte, 0x127553:SecondByte;;
-    Area3bMusic:Music; Music; musicScrap:Define:FirstByte, 0x127557:SecondByte;;
-    Area3cMusic:Music; Music; musicScrap:Define:FirstByte, 0x12755b:SecondByte;;
-    Area3dMusic:Music; Music; musicScrap:Define:FirstByte, 0x12755f:SecondByte;;
-    Area3eMusic:Music; Music; musicScrap:Define:FirstByte, 0x127563:SecondByte;;
-    Area3fMusic:Music; Music; musicScrap:Define:FirstByte, 0x127567:SecondByte;;
-    Area40Music:Music; Music; musicScrap:Define:FirstByte, 0x12756b:SecondByte;;
-    Area41Music:Music; Music; musicScrap:Define:FirstByte, 0x12756f:SecondByte;;
-    Area42Music:Music; Music; musicScrap:Define:FirstByte, 0x127573:SecondByte;;
-    Area43Music:Music; Music; musicScrap:Define:FirstByte, 0x127577:SecondByte;;
-    Area44Music:Music; Music; musicScrap:Define:FirstByte, 0x12757b:SecondByte;;
-    Area45Music:Music; Music; musicScrap:Define:FirstByte, 0x12757f:SecondByte;;
-    Area46Music:Music; Music; musicScrap:Define:FirstByte, 0x127583:SecondByte;;
-    Area47Music:Music; Music; musicScrap:Define:FirstByte, 0x127587:SecondByte;;
-    Area48Music:Music; Music; musicScrap:Define:FirstByte, 0x12758b:SecondByte;;
-    Area49Music:Music; Music; musicScrap:Define:FirstByte, 0x12758f:SecondByte;;
-    Area4aMusic:Music; Music; musicScrap:Define:FirstByte, 0x127593:SecondByte;;
-    Area4bMusic:Music; Music; musicScrap:Define:FirstByte, 0x127597:SecondByte;;
-    Area4cMusic:Music; Music; musicScrap:Define:FirstByte, 0x12759b:SecondByte;;
-    Area4dMusic:Music; Music; musicScrap:Define:FirstByte, 0x12759f:SecondByte;;
-    Area4eMusic:Music; Music; musicScrap:Define:FirstByte, 0x1275a3:SecondByte;;
-    Area4fMusic:Music; Music; musicScrap:Define:FirstByte, 0x1275a7:SecondByte;;
-    Area50Music:Music; Music; musicScrap:Define:FirstByte, 0x1275ab:SecondByte;;
-    Area51Music:Music; Music; musicScrap:Define:FirstByte, 0x1275af:SecondByte;;
-    Area52Music:Music; Music; musicScrap:Define:FirstByte, 0x1275b3:SecondByte;;
-    Area53Music:Music; Music; musicScrap:Define:FirstByte, 0x1275b7:SecondByte;;
-    Area54Music:Music; Music; musicScrap:Define:FirstByte, 0x1275bb:SecondByte;;
-    Area55Music:Music; Music; musicScrap:Define:FirstByte, 0x1275bf:SecondByte;;
-    Area56Music:Music; Music; musicScrap:Define:FirstByte, 0x1275c3:SecondByte;;
-    Area57Music:Music; Music; musicScrap:Define:FirstByte, 0x1275c7:SecondByte;;
-    Area58Music:Music; Music; musicScrap:Define:FirstByte, 0x1275cb:SecondByte;;
-    Area59Music:Music; Music; musicScrap:Define:FirstByte, 0x1275cf:SecondByte;;
-    Area5aMusic:Music; Music; musicScrap:Define:FirstByte, 0x1275d3:SecondByte;;
-    Area5bMusic:Music; Music; musicScrap:Define:FirstByte, 0x1275d7:SecondByte;;
-    Area5cMusic:Music; Music; musicScrap:Define:FirstByte, 0x1275db:SecondByte;;
-    Area5dMusic:Music; Music; musicScrap:Define:FirstByte, 0x1275df:SecondByte;;
-    Area5eMusic:Music; Music; musicScrap:Define:FirstByte, 0x1275e3:SecondByte;;
-    Area5fMusic:Music; Music; musicScrap:Define:FirstByte, 0x1275e7:SecondByte;;
-    Area60Music:Music; Music; musicScrap:Define:FirstByte, 0x1275eb:SecondByte;;
-    Area61Music:Music; Music; musicScrap:Define:FirstByte, 0x1275ef:SecondByte;;
-    Area62Music:Music; Music; musicScrap:Define:FirstByte, 0x1275f3:SecondByte;;
-    Area63Music:Music; Music; musicScrap:Define:FirstByte, 0x1275f7:SecondByte;;
-    Area64Music:Music; Music; musicScrap:Define:FirstByte, 0x1275fb:SecondByte;;
-    Area65Music:Music; Music; musicScrap:Define:FirstByte, 0x1275ff:SecondByte;;
-    Area66Music:Music; Music; musicScrap:Define:FirstByte, 0x127603:SecondByte;;
-    Area67Music:Music; Music; musicScrap:Define:FirstByte, 0x127607:SecondByte;;
-    Area68Music:Music; Music; musicScrap:Define:FirstByte, 0x12760b:SecondByte;;
-    Area69Music:Music; Music; musicScrap:Define:FirstByte, 0x12760f:SecondByte;;
-    Area6aMusic:Music; Music; musicScrap:Define:FirstByte, 0x127613:SecondByte;;
-    Area6bMusic:Music; Music; musicScrap:Define:FirstByte, 0x127617:SecondByte;;
-    Area6cMusic:Music; Music; musicScrap:Define:FirstByte, 0x12761b:SecondByte;;
-    Area6dMusic:Music; Music; musicScrap:Define:FirstByte, 0x12761f:SecondByte;;
-    Area6eMusic:Music; Music; musicScrap:Define:FirstByte, 0x127623:SecondByte;;
-    Area6fMusic:Music; Music; musicScrap:Define:FirstByte, 0x127627:SecondByte;;
-    Area70Music:Music; Music; musicScrap:Define:FirstByte, 0x12762b:SecondByte;;
-    Area71Music:Music; Music; musicScrap:Define:FirstByte, 0x12762f:SecondByte;;
-    Area72Music:Music; Music; musicScrap:Define:FirstByte, 0x127633:SecondByte;;
-    Area73Music:Music; Music; musicScrap:Define:FirstByte, 0x127637:SecondByte;;
-    Area74Music:Music; Music; musicScrap:Define:FirstByte, 0x12763b:SecondByte;;
-    Area75Music:Music; Music; musicScrap:Define:FirstByte, 0x12763f:SecondByte;;
-    Area76Music:Music; Music; musicScrap:Define:FirstByte, 0x127643:SecondByte;;
-    Area77Music:Music; Music; musicScrap:Define:FirstByte, 0x127647:SecondByte;;
-    Area78Music:Music; Music; musicScrap:Define:FirstByte, 0x12764b:SecondByte;;
-    Area79Music:Music; Music; musicScrap:Define:FirstByte, 0x12764f:SecondByte;;
-    Area7aMusic:Music; Music; musicScrap:Define:FirstByte, 0x127653:SecondByte;;
-    Area7bMusic:Music; Music; musicScrap:Define:FirstByte, 0x127657:SecondByte;;
-    Area7cMusic:Music; Music; musicScrap:Define:FirstByte, 0x12765b:SecondByte;;
-    Area7dMusic:Music; Music; musicScrap:Define:FirstByte, 0x12765f:SecondByte;;
-    Area7eMusic:Music; Music; musicScrap:Define:FirstByte, 0x127663:SecondByte;;
-    Area7fMusic:Music; Music; musicScrap:Define:FirstByte, 0x127667:SecondByte;;
-    Area80Music:Music; Music; musicScrap:Define:FirstByte, 0x12766b:SecondByte;;
-    Area81Music:Music; Music; musicScrap:Define:FirstByte, 0x12766f:SecondByte;;
-    Area82Music:Music; Music; musicScrap:Define:FirstByte, 0x127673:SecondByte;;
-    Area83Music:Music; Music; musicScrap:Define:FirstByte, 0x127677:SecondByte;;
-    Area84Music:Music; Music; musicScrap:Define:FirstByte, 0x12767b:SecondByte;;
-    Area85Music:Music; Music; musicScrap:Define:FirstByte, 0x12767f:SecondByte;;
-    Area86Music:Music; Music; musicScrap:Define:FirstByte, 0x127683:SecondByte;;
-    Area87Music:Music; Music; musicScrap:Define:FirstByte, 0x127687:SecondByte;;
-    Area88Music:Music; Music; musicScrap:Define:FirstByte, 0x12768b:SecondByte;;
-    Area89Music:Music; Music; musicScrap:Define:FirstByte, 0x12768f:SecondByte;;
-    Area8aMusic:Music; Music; musicScrap:Define:FirstByte, 0x127693:SecondByte;;
-    Area8bMusic:Music; Music; musicScrap:Define:FirstByte, 0x127697:SecondByte;;
-    Area8cMusic:Music; Music; musicScrap:Define:FirstByte, 0x12769b:SecondByte;;
+    Area0Music:Music:NoSpoiler;  Music; musicScrap:Define:FirstByte, 0x12746b:SecondByte;;
+    Area1Music:Music:NoSpoiler;  Music; musicScrap:Define:FirstByte, 0x12746f:SecondByte;;
+    Area2Music:Music:NoSpoiler;  Music; musicScrap:Define:FirstByte, 0x127473:SecondByte;;
+    Area3Music:Music:NoSpoiler;  Music; musicScrap:Define:FirstByte, 0x127477:SecondByte;;
+    Area4Music:Music:NoSpoiler;  Music; musicScrap:Define:FirstByte, 0x12747b:SecondByte;;
+    Area5Music:Music:NoSpoiler;  Music; musicScrap:Define:FirstByte, 0x12747f:SecondByte;;
+    Area6Music:Music:NoSpoiler;  Music; musicScrap:Define:FirstByte, 0x127483:SecondByte;;
+    Area7Music:Music:NoSpoiler;  Music; musicScrap:Define:FirstByte, 0x127487:SecondByte;;
+    Area8Music:Music:NoSpoiler;  Music; musicScrap:Define:FirstByte, 0x12748b:SecondByte;;
+    Area9Music:Music:NoSpoiler;  Music; musicScrap:Define:FirstByte, 0x12748f:SecondByte;;
+    AreaaMusic:Music:NoSpoiler;  Music; musicScrap:Define:FirstByte, 0x127493:SecondByte;;
+    AreabMusic:Music:NoSpoiler;  Music; musicScrap:Define:FirstByte, 0x127497:SecondByte;;
+    AreacMusic:Music:NoSpoiler;  Music; musicScrap:Define:FirstByte, 0x12749b:SecondByte;;
+    AreadMusic:Music:NoSpoiler;  Music; musicScrap:Define:FirstByte, 0x12749f:SecondByte;;
+    AreaeMusic:Music:NoSpoiler;  Music; musicScrap:Define:FirstByte, 0x1274a3:SecondByte;;
+    AreafMusic:Music:NoSpoiler;  Music; musicScrap:Define:FirstByte, 0x1274a7:SecondByte;;
+    Area10Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x1274ab:SecondByte;;
+    Area11Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x1274af:SecondByte;;
+    Area12Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x1274b3:SecondByte;;
+    Area13Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x1274b7:SecondByte;;
+    Area14Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x1274bb:SecondByte;;
+    Area15Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x1274bf:SecondByte;;
+    Area16Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x1274c3:SecondByte;;
+    Area17Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x1274c7:SecondByte;;
+    Area18Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x1274cb:SecondByte;;
+    Area19Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x1274cf:SecondByte;;
+    Area1aMusic:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x1274d3:SecondByte;;
+    Area1bMusic:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x1274d7:SecondByte;;
+    Area1cMusic:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x1274db:SecondByte;;
+    Area1dMusic:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x1274df:SecondByte;;
+    Area1eMusic:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x1274e3:SecondByte;;
+    Area1fMusic:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x1274e7:SecondByte;;
+    Area20Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x1274eb:SecondByte;;
+    Area21Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x1274ef:SecondByte;;
+    Area22Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x1274f3:SecondByte;;
+    Area23Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x1274f7:SecondByte;;
+    Area24Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x1274fb:SecondByte;;
+    Area25Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x1274ff:SecondByte;;
+    Area26Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x127503:SecondByte;;
+    Area27Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x127507:SecondByte;;
+    Area28Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x12750b:SecondByte;;
+    Area29Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x12750f:SecondByte;;
+    Area2aMusic:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x127513:SecondByte;;
+    Area2bMusic:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x127517:SecondByte;;
+    Area2cMusic:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x12751b:SecondByte;;
+    Area2dMusic:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x12751f:SecondByte;;
+    Area2eMusic:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x127523:SecondByte;;
+    Area2fMusic:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x127527:SecondByte;;
+    Area30Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x12752b:SecondByte;;
+    Area31Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x12752f:SecondByte;;
+    Area32Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x127533:SecondByte;;
+    Area33Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x127537:SecondByte;;
+    Area34Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x12753b:SecondByte;;
+    Area35Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x12753f:SecondByte;;
+    Area36Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x127543:SecondByte;;
+    Area37Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x127547:SecondByte;;
+    Area38Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x12754b:SecondByte;;
+    Area39Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x12754f:SecondByte;;
+    Area3aMusic:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x127553:SecondByte;;
+    Area3bMusic:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x127557:SecondByte;;
+    Area3cMusic:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x12755b:SecondByte;;
+    Area3dMusic:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x12755f:SecondByte;;
+    Area3eMusic:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x127563:SecondByte;;
+    Area3fMusic:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x127567:SecondByte;;
+    Area40Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x12756b:SecondByte;;
+    Area41Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x12756f:SecondByte;;
+    Area42Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x127573:SecondByte;;
+    Area43Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x127577:SecondByte;;
+    Area44Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x12757b:SecondByte;;
+    Area45Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x12757f:SecondByte;;
+    Area46Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x127583:SecondByte;;
+    Area47Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x127587:SecondByte;;
+    Area48Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x12758b:SecondByte;;
+    Area49Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x12758f:SecondByte;;
+    Area4aMusic:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x127593:SecondByte;;
+    Area4bMusic:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x127597:SecondByte;;
+    Area4cMusic:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x12759b:SecondByte;;
+    Area4dMusic:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x12759f:SecondByte;;
+    Area4eMusic:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x1275a3:SecondByte;;
+    Area4fMusic:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x1275a7:SecondByte;;
+    Area50Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x1275ab:SecondByte;;
+    Area51Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x1275af:SecondByte;;
+    Area52Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x1275b3:SecondByte;;
+    Area53Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x1275b7:SecondByte;;
+    Area54Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x1275bb:SecondByte;;
+    Area55Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x1275bf:SecondByte;;
+    Area56Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x1275c3:SecondByte;;
+    Area57Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x1275c7:SecondByte;;
+    Area58Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x1275cb:SecondByte;;
+    Area59Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x1275cf:SecondByte;;
+    Area5aMusic:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x1275d3:SecondByte;;
+    Area5bMusic:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x1275d7:SecondByte;;
+    Area5cMusic:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x1275db:SecondByte;;
+    Area5dMusic:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x1275df:SecondByte;;
+    Area5eMusic:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x1275e3:SecondByte;;
+    Area5fMusic:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x1275e7:SecondByte;;
+    Area60Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x1275eb:SecondByte;;
+    Area61Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x1275ef:SecondByte;;
+    Area62Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x1275f3:SecondByte;;
+    Area63Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x1275f7:SecondByte;;
+    Area64Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x1275fb:SecondByte;;
+    Area65Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x1275ff:SecondByte;;
+    Area66Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x127603:SecondByte;;
+    Area67Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x127607:SecondByte;;
+    Area68Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x12760b:SecondByte;;
+    Area69Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x12760f:SecondByte;;
+    Area6aMusic:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x127613:SecondByte;;
+    Area6bMusic:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x127617:SecondByte;;
+    Area6cMusic:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x12761b:SecondByte;;
+    Area6dMusic:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x12761f:SecondByte;;
+    Area6eMusic:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x127623:SecondByte;;
+    Area6fMusic:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x127627:SecondByte;;
+    Area70Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x12762b:SecondByte;;
+    Area71Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x12762f:SecondByte;;
+    Area72Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x127633:SecondByte;;
+    Area73Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x127637:SecondByte;;
+    Area74Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x12763b:SecondByte;;
+    Area75Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x12763f:SecondByte;;
+    Area76Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x127643:SecondByte;;
+    Area77Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x127647:SecondByte;;
+    Area78Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x12764b:SecondByte;;
+    Area79Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x12764f:SecondByte;;
+    Area7aMusic:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x127653:SecondByte;;
+    Area7bMusic:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x127657:SecondByte;;
+    Area7cMusic:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x12765b:SecondByte;;
+    Area7dMusic:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x12765f:SecondByte;;
+    Area7eMusic:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x127663:SecondByte;;
+    Area7fMusic:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x127667:SecondByte;;
+    Area80Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x12766b:SecondByte;;
+    Area81Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x12766f:SecondByte;;
+    Area82Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x127673:SecondByte;;
+    Area83Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x127677:SecondByte;;
+    Area84Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x12767b:SecondByte;;
+    Area85Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x12767f:SecondByte;;
+    Area86Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x127683:SecondByte;;
+    Area87Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x127687:SecondByte;;
+    Area88Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x12768b:SecondByte;;
+    Area89Music:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x12768f:SecondByte;;
+    Area8aMusic:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x127693:SecondByte;;
+    Area8bMusic:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x127697:SecondByte;;
+    Area8cMusic:Music:NoSpoiler; Music; musicScrap:Define:FirstByte, 0x12769b:SecondByte;;
 !endif
 
 # Randomize Shared Fusion order if seeded
@@ -1807,24 +1819,24 @@
 			!define - GREENSHARED60 - 0x60
 		!endif
 	!endif
-	Items.Lantern.`REDSHARED`;		OverworldConstraint;	SF;
-	Items.Lantern.`BLUESHARED`;		OverworldConstraint;	SF;
-	Items.Lantern.`GREENSHARED35`;	OverworldConstraint;	SF;
-	Items.Lantern.`GREENSHARED36`;	OverworldConstraint;	SF;
-	Items.Lantern.`GREENSHARED37`;	OverworldConstraint;	SF;
-	Items.Lantern.`GREENSHARED39`;	OverworldConstraint;	SF;
-	Items.Lantern.`GREENSHARED3C`;	OverworldConstraint;	SF;
-	Items.Lantern.`GREENSHARED44`;	OverworldConstraint;	SF;
-	Items.Lantern.`GREENSHARED46`;	OverworldConstraint;	SF;
-	Items.Lantern.`GREENSHARED47`;	OverworldConstraint;	SF;
-	Items.Lantern.`GREENSHARED4E`;	OverworldConstraint;	SF;
-	Items.Lantern.`GREENSHARED50`;	OverworldConstraint;	SF;
-	Items.Lantern.`GREENSHARED53`;	OverworldConstraint;	SF;
-	Items.Lantern.`GREENSHARED55`;	OverworldConstraint;	SF;
-	Items.Lantern.`GREENSHARED56`;	OverworldConstraint;	SF;
-	Items.Lantern.`GREENSHARED58`;	OverworldConstraint;	SF;
-	Items.Lantern.`GREENSHARED5F`;	OverworldConstraint;	SF;
-	Items.Lantern.`GREENSHARED60`;	OverworldConstraint;	SF;
+	Items.Lantern.`REDSHARED`;		OverworldConstraint;	SF
+	Items.Lantern.`BLUESHARED`;		OverworldConstraint;	SF
+	Items.Lantern.`GREENSHARED35`;	OverworldConstraint;	SF
+	Items.Lantern.`GREENSHARED36`;	OverworldConstraint;	SF
+	Items.Lantern.`GREENSHARED37`;	OverworldConstraint;	SF
+	Items.Lantern.`GREENSHARED39`;	OverworldConstraint;	SF
+	Items.Lantern.`GREENSHARED3C`;	OverworldConstraint;	SF
+	Items.Lantern.`GREENSHARED44`;	OverworldConstraint;	SF
+	Items.Lantern.`GREENSHARED46`;	OverworldConstraint;	SF
+	Items.Lantern.`GREENSHARED47`;	OverworldConstraint;	SF
+	Items.Lantern.`GREENSHARED4E`;	OverworldConstraint;	SF
+	Items.Lantern.`GREENSHARED50`;	OverworldConstraint;	SF
+	Items.Lantern.`GREENSHARED53`;	OverworldConstraint;	SF
+	Items.Lantern.`GREENSHARED55`;	OverworldConstraint;	SF
+	Items.Lantern.`GREENSHARED56`;	OverworldConstraint;	SF
+	Items.Lantern.`GREENSHARED58`;	OverworldConstraint;	SF
+	Items.Lantern.`GREENSHARED5F`;	OverworldConstraint;	SF
+	Items.Lantern.`GREENSHARED60`;	OverworldConstraint;	SF
 	!ifndef - COMBINED_GREEN_FUSIONS
 		Shared00:SF;   OverworldConstraint; fusionScrap00:Define:FirstByte, 0x0C9844:SecondByte;;																																																																																																																																																																																																																																													`REDSHARED`
 		Shared01:SF;   OverworldConstraint; fusionScrap01:Define:FirstByte, 0x0C9845:SecondByte;	(|(&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenCShared1), (&Items.Lantern.0x36, Helpers.CanFuseGreenCShared1), (&Items.Lantern.0x37, Helpers.CanFuseGreenCShared1), (&Items.Lantern.0x39, Helpers.CanFuseGreenCShared1), (&Items.Lantern.0x3C, Helpers.CanFuseGreenCShared1), (&Items.Lantern.0x44, Helpers.CanFuseGreenGShared1), (&Items.Lantern.0x46, Helpers.CanFuseGreenGShared1), (&Items.Lantern.0x47, Helpers.CanFuseGreenGShared1), (&Items.Lantern.0x4E, Helpers.CanFuseGreenGShared1), (&Items.Lantern.0x50, Helpers.CanFuseGreenPShared1), (&Items.Lantern.0x53, Helpers.CanFuseGreenPShared1), (&Items.Lantern.0x55, Helpers.CanFuseGreenPShared1), (&Items.Lantern.0x56, Helpers.CanFuseGreenPShared1), (&Items.Lantern.0x58, Helpers.CanFuseGreenPShared1), (&Items.Lantern.0x5F, Helpers.CanFuseGreenCShared1), (&Items.Lantern.0x60, Helpers.CanFuseGreenGShared1)); 	`BLUESHARED`
@@ -2235,8 +2247,16 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 			Items.Kinstone.GoldenCloudTops:9;	Major;
 			CanFuseGoldTornado;  Helper;; Items.Kinstone.GoldenCloudTops:9
 			CanFuseGoldTotem;    Helper;; Items.Kinstone.GoldenCloudTops:9
-			CanFuseGoldCrown;    Helper;; Items.Kinstone.GoldenCloudTops:4
-		!endif
+			!ifdef - CREST_CLOUD
+					CanFuseGoldCrown;    Helper;; Items.Kinstone.GoldenCloudTops:9
+				!else
+					!ifdef - CREST_FALLS
+						CanFuseGoldCrown;    Helper;; Items.Kinstone.GoldenCloudTops:9
+					!else
+						CanFuseGoldCrown;    Helper;; Items.Kinstone.GoldenCloudTops:4
+					!endif
+				!endif
+			!endif
 		CloudFusions;				Helper;;	Helpers.CanFuseGoldTornado, (|Items.RocsCape, Items.MoleMitts)																#CloudTopsTornado
 		FallsFusion;				Helper;;	Helpers.CanFuseGoldCrown																									#FallsDoor
 		RuinsFusion;				Helper;;	Helpers.CanFuseGoldTotem																									#SwampBlock
@@ -3955,6 +3975,8 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 
 Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for good measure
 
+#This whole section is a mess, feel free to refactor
+
 !ifndef - NO_GOLD_FUSIONS
 	!ifdef - SMALL_KEYS_VANILLA
 		!define - GOLDFUSIONSMALL - Unshuffled
@@ -4103,7 +4125,7 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 	!define - GOLDFUSION - Inaccessible
 	!define - GOLDREDFUSION - Inaccessible
 	!define - GOLDGREENFUSION - Inaccessible
-	!define - GOLDGREENFUSIONENEMY - Inaccessible
+	!define - GOLDGREENFUSIONENEMY - ; Inaccessible
 	!define - GOLDFUSIONHP - Inaccessible
 	!define - GOLDFUSIONRUPEE - ;	Inaccessible
 	!define - GOLDFUSIONPRIZE - Inaccessible
@@ -4121,9 +4143,9 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 		!define - GOLDGREENFUSION - Dungeon
 	!endif
 	!ifdef - GOLDEN_ENEMY_GREEN
-		!define - GOLDGREENFUSIONENEMY - Dungeon
+		!define - GOLDGREENFUSIONENEMY - ; Dungeon
 	!else
-		!define - GOLDGREENFUSIONENEMY - Inaccessible
+		!define - GOLDGREENFUSIONENEMY - :NoSpoiler; Unshuffled
 	!endif
 	!ifdef - HEART_RANDO
 		!define - GOLDFUSIONHP - Dungeon
@@ -4145,9 +4167,9 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 		!define - FALLSGREEN - Dungeon
 	!endif
 	!ifdef - GOLDEN_ENEMY_GREEN
-		!define - FALLSENEMY - Any
+		!define - FALLSENEMY - ; Any
 	!else
-		!define - FALLSENEMY - Inaccessible
+		!define - FALLSENEMY - :NoSpoiler; Unshuffled
 	!endif
 	!ifdef - HEART_RANDO
 		!ifdef - NO_RED_FUSIONS
@@ -4183,7 +4205,7 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 	!define - FALLSCHEST - Inaccessible
 	!define - FALLSGREEN - Inaccessible
 	!define - FALLSHP - Inaccessible
-	!define - FALLSENEMY - Inaccessible
+	!define - FALLSENEMY - ; Inaccessible
 	!define - FALLSRUPEE - ;	Inaccessible
 	!define - FALLSWATER - ;	Inaccessible
 	!define - FALLSDIG - ; Inaccessible
@@ -4194,7 +4216,7 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 	!define - REDFUSION - Inaccessible
 	!define - REDFUSIONDUNGEON - Inaccessible
 	!define - REDFUSIONRUPEE - ;	Inaccessible
-	!define - REDFUSIONENEMY - Inaccessible
+	!define - REDFUSIONENEMY - ; Inaccessible
 !else
 	!define - REDFUSION - Any
 	!define - REDFUSIONDUNGEON - Dungeon
@@ -4204,15 +4226,15 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 		!define - REDFUSIONRUPEE - :NoSpoiler;	Unshuffled
 	!endif
 	!ifdef - GOLDEN_ENEMY
-		!define - REDFUSIONENEMY - Any
+		!define - REDFUSIONENEMY - ; Any
 	!else
-		!define - REDFUSIONENEMY - Inaccessible
+		!define - REDFUSIONENEMY - :NoSpoiler; Unshuffled
 	!endif
 !endif
 
 !ifdef - NO_BLUE_FUSIONS
 	!define - BLUEFUSION - Inaccessible
-	!define - BLUEFUSIONRUPEE - Inaccessible
+	!define - BLUEFUSIONRUPEE - ; Inaccessible
 	!define - BLUEFUSIONDUNGEON - Inaccessible
 	!ifdef - OPEN_GREEN_FUSIONS
 		!define - BLUEGREENFUSION - Any
@@ -4228,30 +4250,30 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 		!define - BLUEGREENFUSION - Any
 	!endif
 	!ifdef - RUPEEMANIA
-		!define - BLUEFUSIONRUPEE - Any
+		!define - BLUEFUSIONRUPEE - ; Any
 	!else
-		!define - BLUEFUSIONRUPEE - Inaccessible
+		!define - BLUEFUSIONRUPEE - :NoSpoiler; Unshuffled
 	!endif
 !endif
 	
 !ifdef - NO_GREEN_FUSIONS
 	!define - GREENFUSION - Inaccessible
 	!define - GREENFUSIONDUNGEON - Inaccessible
-	!define - GREENFUSIONRUPEE - Inaccessible
-	!define - GREENFUSIONENEMY - Inaccessible
+	!define - GREENFUSIONRUPEE - ; Inaccessible
+	!define - GREENFUSIONENEMY - ; Inaccessible
 	!define - GREENFUSIONDIG - ; Inaccessible
 !else
 	!define - GREENFUSION - Any
 	!define - GREENFUSIONDUNGEON - Dungeon
 	!ifdef - RUPEEMANIA
-		!define - GREENFUSIONRUPEE - Any
+		!define - GREENFUSIONRUPEE - ; Any
 	!else
-		!define - GREENFUSIONRUPEE - Inaccessible
+		!define - GREENFUSIONRUPEE - :NoSpoiler; Unshuffled
 	!endif
 	!ifdef - GOLDEN_ENEMY
-		!define - GREENFUSIONENEMY - Dungeon
+		!define - GREENFUSIONENEMY - ; Dungeon
 	!else
-		!define - GREENFUSIONENEMY - Inaccessible
+		!define - GREENFUSIONENEMY - :NoSpoiler; Unshuffled
 	!endif
 	!ifdef - DIGGING
 		!define - GREENFUSIONDIG - ; Any
@@ -4285,12 +4307,12 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 	!endif
 !endif
 
-!ifdef - GOLDEN_ENEMY
-	!define - BLUEGREENFUSIONENEMY - `BLUEGREENFUSION`
-	!define - WTFUSIONGREENENEMY - `WTFUSIONGREEN`
+!ifdef - GOLDEN_ENEMY_GREEN
+	!define - BLUEGREENFUSIONENEMY - ; `BLUEGREENFUSION`
+	!define - WTFUSIONGREENENEMY - ; `WTFUSIONGREEN`
 !else
-	!define - BLUEGREENFUSIONENEMY - Inaccessible
-	!define - WTFUSIONGREENENEMY - Inaccessible
+	!define - BLUEGREENFUSIONENEMY - :NoSpoiler; Unshuffled
+	!define - WTFUSIONGREENENEMY - :NoSpoiler; Unshuffled
 !endif
 
 !ifdef - HEART_RANDO
@@ -4382,21 +4404,21 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 Smith_House_Chest;					Any;				0x22-0x11-0x00;	;	Items.Rupee20
 Smith_Floor_Item1;					Any;				0x0F252B;		;	`SMITHSWORD`
 Smith_Floor_Item2;					Any;				0x0F253B;		;	`SHIELD`
-SouthField_PuddleFusion_Item1;		`GREENFUSIONRUPEE`;	0x0F8283;		(|(&Helpers.Shared58Fusion,  (|Helpers.CanDestroyTrees, Items.RocsCape, Items.Flippers, Helpers.AccessWestern)), Helpers.Hundo);	Items.Rupee5
-SouthField_PuddleFusion_Item2;		`GREENFUSIONRUPEE`;	0x0F8293;		(|(&Helpers.Shared58Fusion,  (|Helpers.CanDestroyTrees, Items.RocsCape, Items.Flippers, Helpers.AccessWestern)), Helpers.Hundo);	Items.Rupee5
-SouthField_PuddleFusion_Item3;		`GREENFUSIONRUPEE`;	0x0F82A3;		(|(&Helpers.Shared58Fusion,  (|Helpers.CanDestroyTrees, Items.RocsCape, Items.Flippers, Helpers.AccessWestern)), Helpers.Hundo);	Items.Rupee5
-SouthField_PuddleFusion_Item4;		`GREENFUSIONRUPEE`;	0x0F82B3;		(|(&Helpers.Shared58Fusion,  (|Helpers.CanDestroyTrees, Items.RocsCape, Items.Flippers, Helpers.AccessWestern)), Helpers.Hundo);	Items.Rupee5
-SouthField_PuddleFusion_Item5;		`GREENFUSIONRUPEE`;	0x0F82C3;		(|(&Helpers.Shared58Fusion,  (|Helpers.CanDestroyTrees, Items.RocsCape, Items.Flippers, Helpers.AccessWestern)), Helpers.Hundo);	Items.Rupee5
-SouthField_PuddleFusion_Item6; 		`GREENFUSIONRUPEE`;	0x0F82D3;		(|(&Helpers.Shared58Fusion,  (|Helpers.CanDestroyTrees, Items.RocsCape, Items.Flippers, Helpers.AccessWestern)), Helpers.Hundo);	Items.Rupee5
-SouthField_PuddleFusion_Item7;		`GREENFUSIONRUPEE`;	0x0F82E3;		(|(&Helpers.Shared58Fusion,  (|Helpers.CanDestroyTrees, Items.RocsCape, Items.Flippers, Helpers.AccessWestern)), Helpers.Hundo);	Items.Rupee5
-SouthField_PuddleFusion_Item8;		`GREENFUSIONRUPEE`;	0x0F82F3;		(|(&Helpers.Shared58Fusion,  (|Helpers.CanDestroyTrees, Items.RocsCape, Items.Flippers, Helpers.AccessWestern)), Helpers.Hundo);	Items.Rupee5
-SouthField_PuddleFusion_Item9;		`GREENFUSIONRUPEE`;	0x0F8303;		(|(&Helpers.Shared58Fusion,  (|Helpers.CanDestroyTrees, Items.RocsCape, Items.Flippers, Helpers.AccessWestern)), Helpers.Hundo);	Items.Rupee5
-SouthField_PuddleFusion_Item10;		`GREENFUSIONRUPEE`;	0x0F8313;		(|(&Helpers.Shared58Fusion,  (|Helpers.CanDestroyTrees, Items.RocsCape, Items.Flippers, Helpers.AccessWestern)), Helpers.Hundo);	Items.Rupee5
-SouthField_PuddleFusion_Item11;		`GREENFUSIONRUPEE`;	0x0F8323;		(|(&Helpers.Shared58Fusion,  (|Helpers.CanDestroyTrees, Items.RocsCape, Items.Flippers, Helpers.AccessWestern)), Helpers.Hundo);	Items.Rupee5
-SouthField_PuddleFusion_Item12;		`GREENFUSIONRUPEE`;	0x0F8333;		(|(&Helpers.Shared58Fusion,  (|Helpers.CanDestroyTrees, Items.RocsCape, Items.Flippers, Helpers.AccessWestern)), Helpers.Hundo);	Items.Rupee5
-SouthField_PuddleFusion_Item13;		`GREENFUSIONRUPEE`;	0x0F8343;		(|(&Helpers.Shared58Fusion,  (|Helpers.CanDestroyTrees, Items.RocsCape, Items.Flippers, Helpers.AccessWestern)), Helpers.Hundo);	Items.Rupee5
-SouthField_PuddleFusion_Item14;		`GREENFUSIONRUPEE`;	0x0F8353;		(|(&Helpers.Shared58Fusion,  (|Helpers.CanDestroyTrees, Items.RocsCape, Items.Flippers, Helpers.AccessWestern)), Helpers.Hundo);	Items.Rupee5
-SouthField_PuddleFusion_Item15; 	`GREENFUSIONRUPEE`;	0x0F8363;		(|(&Helpers.Shared58Fusion,  (|Helpers.CanDestroyTrees, Items.RocsCape, Items.Flippers, Helpers.AccessWestern)), Helpers.Hundo);	Items.Rupee5
+SouthField_PuddleFusion_Item1		`GREENFUSIONRUPEE`;	0x0F8283;		(|(&Helpers.Shared58Fusion,  (|Helpers.CanDestroyTrees, Items.RocsCape, Items.Flippers, Helpers.AccessWestern)), Helpers.Hundo);	Items.Rupee5
+SouthField_PuddleFusion_Item2		`GREENFUSIONRUPEE`;	0x0F8293;		(|(&Helpers.Shared58Fusion,  (|Helpers.CanDestroyTrees, Items.RocsCape, Items.Flippers, Helpers.AccessWestern)), Helpers.Hundo);	Items.Rupee5
+SouthField_PuddleFusion_Item3		`GREENFUSIONRUPEE`;	0x0F82A3;		(|(&Helpers.Shared58Fusion,  (|Helpers.CanDestroyTrees, Items.RocsCape, Items.Flippers, Helpers.AccessWestern)), Helpers.Hundo);	Items.Rupee5
+SouthField_PuddleFusion_Item4		`GREENFUSIONRUPEE`;	0x0F82B3;		(|(&Helpers.Shared58Fusion,  (|Helpers.CanDestroyTrees, Items.RocsCape, Items.Flippers, Helpers.AccessWestern)), Helpers.Hundo);	Items.Rupee5
+SouthField_PuddleFusion_Item5		`GREENFUSIONRUPEE`;	0x0F82C3;		(|(&Helpers.Shared58Fusion,  (|Helpers.CanDestroyTrees, Items.RocsCape, Items.Flippers, Helpers.AccessWestern)), Helpers.Hundo);	Items.Rupee5
+SouthField_PuddleFusion_Item6 		`GREENFUSIONRUPEE`;	0x0F82D3;		(|(&Helpers.Shared58Fusion,  (|Helpers.CanDestroyTrees, Items.RocsCape, Items.Flippers, Helpers.AccessWestern)), Helpers.Hundo);	Items.Rupee5
+SouthField_PuddleFusion_Item7		`GREENFUSIONRUPEE`;	0x0F82E3;		(|(&Helpers.Shared58Fusion,  (|Helpers.CanDestroyTrees, Items.RocsCape, Items.Flippers, Helpers.AccessWestern)), Helpers.Hundo);	Items.Rupee5
+SouthField_PuddleFusion_Item8		`GREENFUSIONRUPEE`;	0x0F82F3;		(|(&Helpers.Shared58Fusion,  (|Helpers.CanDestroyTrees, Items.RocsCape, Items.Flippers, Helpers.AccessWestern)), Helpers.Hundo);	Items.Rupee5
+SouthField_PuddleFusion_Item9		`GREENFUSIONRUPEE`;	0x0F8303;		(|(&Helpers.Shared58Fusion,  (|Helpers.CanDestroyTrees, Items.RocsCape, Items.Flippers, Helpers.AccessWestern)), Helpers.Hundo);	Items.Rupee5
+SouthField_PuddleFusion_Item10		`GREENFUSIONRUPEE`;	0x0F8313;		(|(&Helpers.Shared58Fusion,  (|Helpers.CanDestroyTrees, Items.RocsCape, Items.Flippers, Helpers.AccessWestern)), Helpers.Hundo);	Items.Rupee5
+SouthField_PuddleFusion_Item11		`GREENFUSIONRUPEE`;	0x0F8323;		(|(&Helpers.Shared58Fusion,  (|Helpers.CanDestroyTrees, Items.RocsCape, Items.Flippers, Helpers.AccessWestern)), Helpers.Hundo);	Items.Rupee5
+SouthField_PuddleFusion_Item12		`GREENFUSIONRUPEE`;	0x0F8333;		(|(&Helpers.Shared58Fusion,  (|Helpers.CanDestroyTrees, Items.RocsCape, Items.Flippers, Helpers.AccessWestern)), Helpers.Hundo);	Items.Rupee5
+SouthField_PuddleFusion_Item13		`GREENFUSIONRUPEE`;	0x0F8343;		(|(&Helpers.Shared58Fusion,  (|Helpers.CanDestroyTrees, Items.RocsCape, Items.Flippers, Helpers.AccessWestern)), Helpers.Hundo);	Items.Rupee5
+SouthField_PuddleFusion_Item14		`GREENFUSIONRUPEE`;	0x0F8353;		(|(&Helpers.Shared58Fusion,  (|Helpers.CanDestroyTrees, Items.RocsCape, Items.Flippers, Helpers.AccessWestern)), Helpers.Hundo);	Items.Rupee5
+SouthField_PuddleFusion_Item15 		`GREENFUSIONRUPEE`;	0x0F8363;		(|(&Helpers.Shared58Fusion,  (|Helpers.CanDestroyTrees, Items.RocsCape, Items.Flippers, Helpers.AccessWestern)), Helpers.Hundo);	Items.Rupee5
 SouthField_Fusion_Chest;			`GREENFUSION`;		0x0FE0D6;		(|(&Helpers.Shared53Fusion, Helpers.AccessEasternHills), Helpers.Hundo);															Items.Shells.200
 SouthField_TreeFusion_HP;			`BLUEFUSIONHP`;		0x0F9BA7;		(|(&Helpers.HurdyFusion, Helpers.AccessEasternHills), Helpers.Hundo);																Items.PieceOfHeart
 SouthField_MinishSize_WaterHole_HP;	`HP`;				0x0DB55F;		(|(&Items.Flippers, Helpers.CanDestroyTrees, Helpers.BonkedTrees), Helpers.Hundo);													Items.PieceOfHeart
@@ -4472,7 +4494,7 @@ Castle_Moat_RightChest;						Any;			0x07-0x00-0x02;																(|Items.Flipp
 	!define - DHC_DOJO - `DHC_OUTSIDE`
 !endif
 
-Castle_GoldenRope							`DHC_OUTSIDE`;	`GREENFUSIONENEMY`;		golden5Item:Define:FirstByte, golden5Sub:Define:SecondByte;					(|(&Helpers.Shared3CFusion, Helpers.HasSword), Helpers.Hundo);		Items.Rupee100
+Castle_GoldenRope							`DHC_OUTSIDE`	`GREENFUSIONENEMY`;		golden5Item:Define:FirstByte, golden5Sub:Define:SecondByte;					(|(&Helpers.Shared3CFusion, Helpers.HasSword), Helpers.Hundo);		Items.Rupee100
 Castle_RightFountainFusion_HP				`DHC_OUTSIDE`;	`REDFUSIONDUNGEONHP`;	0x0D9C2B;																	(|Helpers.Shared18Fusion, Helpers.Hundo);							Items.PieceOfHeart
 Castle_Dojo_HP								`DHC_OUTSIDE`;	`DUNGEONHP`;			0x0D79BB;																	;																	Items.PieceOfHeart
 Castle_Dojo_NPC								`DHC_DOJO`;		`DOJOITEM`;				grimbladeDojoItem:Define:FirstByte, grimbladeDojoSub:Define:SecondByte;		(|(&Helpers.CastleDojo, Helpers.HasSword), Helpers.Hundo);			Items.SwordBeam
@@ -4481,7 +4503,7 @@ Castle_LeftFountainFusion_MinishHoleChest	`DHC_OUTSIDE`;	`GREENFUSIONDUNGEON`;	0
 
 # Eastern Hills and LonLonRanch
 AccessEasternHills;					Helper;;														(|Helpers.CanDestroyTrees, Helpers.SHFWindCrest, (&Helpers.OverworldBlocks, Helpers.AccessMinishWoods))
-Hills_GoldenRope;					`GREENFUSIONENEMY`;	golden4Item:Define:FirstByte, golden4Sub:Define:SecondByte;	(|(&Helpers.Shared55Fusion,  Helpers.HasSword), Helpers.Hundo);				Items.Rupee100
+Hills_GoldenRope					`GREENFUSIONENEMY`;	golden4Item:Define:FirstByte, golden4Sub:Define:SecondByte;	(|(&Helpers.Shared55Fusion,  Helpers.HasSword), Helpers.Hundo);				Items.Rupee100
 Hills_Fusion_Chest;					`REDFUSION`;		0x0FE05E;													(|(&Helpers.AccessEasternHills, Helpers.Smith1Fusion), Helpers.Hundo);		Items.Bottle
 Hills_BeanstalkFusion_LeftChest;	`BLUEFUSION`;		0x0D-0x03-0x01;												(|(&Helpers.HillsMinishFusion, Helpers.AccessEasternHills), Helpers.Hundo);	Items.Shells.200
 Hills_BeanstalkFusion_HP;			`BLUEFUSIONHP`;		0x0F6073;													(|(&Helpers.HillsMinishFusion, Helpers.AccessEasternHills), Helpers.Hundo);	Items.PieceOfHeart
@@ -4546,7 +4568,7 @@ Hylia_MayorCabin_Item;					Any;			blueBookItem:Define:FirstByte, blueBookSub:Def
 AccessMinishWoods;							Helper;	;					(|Helpers.CanDestroyTrees, Items.Ocarina);
 AccessNorthMinish;							Helper;	;					Helpers.AccessMinishWoods, (|Items.Flippers, Items.RocsCape, Helpers.LonLonSouthShortcut));
 AccessBelari;								Helper;	;					(|(&Helpers.AccessMinishWoods, Helpers.OverworldBlocks), Helpers.MinishWindCrest, Helpers.CompleteDeepwood);
-MinishWoods_GoldenOcto;						`GREENFUSIONENEMY`;	golden8Item:Define:FirstByte, golden8Sub:Define:SecondByte;	(|(&Helpers.Shared56Fusion, Helpers.AccessNorthMinish, Helpers.HasSword), Helpers.Hundo);	Items.Rupee100
+MinishWoods_GoldenOcto						`GREENFUSIONENEMY`;	golden8Item:Define:FirstByte, golden8Sub:Define:SecondByte;	(|(&Helpers.Shared56Fusion, Helpers.AccessNorthMinish, Helpers.HasSword), Helpers.Hundo);	Items.Rupee100
 MinishWoods_WitchHut_Item;					Any;				0x0F94D7;       											(|(&Helpers.AccessNorthMinish, Helpers.ShopWitch), Helpers.Hundo);							Items.WakeUpMushroom
 WitchDiggingCave_Chest;						Any;				0x0C-0x00-0x00;												(|(&Helpers.AccessNorthMinish, Items.MoleMitts), Helpers.Hundo);							Items.Kinstone.BlueL
 MinishWoods_NorthFusion_Chest;				`GREENFUSION`;		0x0FE07E;													(|(&Helpers.Shared44Fusion, Helpers.AccessNorthMinish), Helpers.Hundo);						Items.Kinstone.BlueS
@@ -4583,21 +4605,21 @@ Trilby_DigCave_WaterFusion_Chest;	`BLUEFUSION`;		0x13-0x03-0x01;														(|
 Trilby_Scrub_NPC;					Any;				bottleScrubItem:Define:FirstByte, bottleScrubSub:Define:SecondByte;	(|(&Helpers.AccessTrilby, Helpers.BombWalls, Helpers.Scrubs, Helpers.ShopScrubTrilby), Helpers.Hundo);        		Items.Bottle
 
 Trilby_BombCave_Chest;				Any;				0x32-0x07-0x00;                       								(|(&Helpers.AccessWestern, Helpers.BombWalls), Helpers.Hundo);														Items.Kinstone.RedE
-Trilby_PuddleFusion_Item1;			`GREENFUSIONRUPEE`;	0x0F83BB;															(|(&Helpers.TrilbyMinishFusion,  Helpers.AccessWestern), Helpers.Hundo);											Items.Rupee5
-Trilby_PuddleFusion_Item2;			`GREENFUSIONRUPEE`;	0x0F83CB;															(|(&Helpers.TrilbyMinishFusion,  Helpers.AccessWestern), Helpers.Hundo);											Items.Rupee5
-Trilby_PuddleFusion_Item3;			`GREENFUSIONRUPEE`;	0x0F83DB;															(|(&Helpers.TrilbyMinishFusion,  Helpers.AccessWestern), Helpers.Hundo);											Items.Rupee5
-Trilby_PuddleFusion_Item4;  		`GREENFUSIONRUPEE`;	0x0F83EB;															(|(&Helpers.TrilbyMinishFusion,  Helpers.AccessWestern), Helpers.Hundo);											Items.Rupee5
-Trilby_PuddleFusion_Item5;  		`GREENFUSIONRUPEE`;	0x0F83FB;															(|(&Helpers.TrilbyMinishFusion,  Helpers.AccessWestern), Helpers.Hundo);											Items.Rupee5
-Trilby_PuddleFusion_Item6;  		`GREENFUSIONRUPEE`;	0x0F840B;															(|(&Helpers.TrilbyMinishFusion,  Helpers.AccessWestern), Helpers.Hundo);											Items.Rupee5
-Trilby_PuddleFusion_Item7;  		`GREENFUSIONRUPEE`;	0x0F841B;															(|(&Helpers.TrilbyMinishFusion,  Helpers.AccessWestern), Helpers.Hundo);											Items.Rupee5
-Trilby_PuddleFusion_Item8;  		`GREENFUSIONRUPEE`;	0x0F842B;															(|(&Helpers.TrilbyMinishFusion,  Helpers.AccessWestern), Helpers.Hundo);											Items.Rupee5
-Trilby_PuddleFusion_Item9;  		`GREENFUSIONRUPEE`;	0x0F843B;															(|(&Helpers.TrilbyMinishFusion,  Helpers.AccessWestern), Helpers.Hundo);											Items.Rupee5
-Trilby_PuddleFusion_Item10; 		`GREENFUSIONRUPEE`;	0x0F844B;															(|(&Helpers.TrilbyMinishFusion,  Helpers.AccessWestern), Helpers.Hundo);											Items.Rupee5
-Trilby_PuddleFusion_Item11; 		`GREENFUSIONRUPEE`;	0x0F845B;															(|(&Helpers.TrilbyMinishFusion,  Helpers.AccessWestern), Helpers.Hundo);											Items.Rupee5
-Trilby_PuddleFusion_Item12; 		`GREENFUSIONRUPEE`;	0x0F846B;															(|(&Helpers.TrilbyMinishFusion,  Helpers.AccessWestern), Helpers.Hundo);											Items.Rupee5
-Trilby_PuddleFusion_Item13; 		`GREENFUSIONRUPEE`;	0x0F847B;															(|(&Helpers.TrilbyMinishFusion,  Helpers.AccessWestern), Helpers.Hundo);											Items.Rupee5
-Trilby_PuddleFusion_Item14; 		`GREENFUSIONRUPEE`;	0x0F848B;															(|(&Helpers.TrilbyMinishFusion,  Helpers.AccessWestern), Helpers.Hundo);											Items.Rupee5
-Trilby_PuddleFusion_Item15; 		`GREENFUSIONRUPEE`;	0x0F849B;															(|(&Helpers.TrilbyMinishFusion,  Helpers.AccessWestern), Helpers.Hundo);											Items.Rupee5
+Trilby_PuddleFusion_Item1			`GREENFUSIONRUPEE`;	0x0F83BB;															(|(&Helpers.TrilbyMinishFusion,  Helpers.AccessWestern), Helpers.Hundo);											Items.Rupee5
+Trilby_PuddleFusion_Item2			`GREENFUSIONRUPEE`;	0x0F83CB;															(|(&Helpers.TrilbyMinishFusion,  Helpers.AccessWestern), Helpers.Hundo);											Items.Rupee5
+Trilby_PuddleFusion_Item3			`GREENFUSIONRUPEE`;	0x0F83DB;															(|(&Helpers.TrilbyMinishFusion,  Helpers.AccessWestern), Helpers.Hundo);											Items.Rupee5
+Trilby_PuddleFusion_Item4  		`GREENFUSIONRUPEE`;	0x0F83EB;															(|(&Helpers.TrilbyMinishFusion,  Helpers.AccessWestern), Helpers.Hundo);											Items.Rupee5
+Trilby_PuddleFusion_Item5  		`GREENFUSIONRUPEE`;	0x0F83FB;															(|(&Helpers.TrilbyMinishFusion,  Helpers.AccessWestern), Helpers.Hundo);											Items.Rupee5
+Trilby_PuddleFusion_Item6  		`GREENFUSIONRUPEE`;	0x0F840B;															(|(&Helpers.TrilbyMinishFusion,  Helpers.AccessWestern), Helpers.Hundo);											Items.Rupee5
+Trilby_PuddleFusion_Item7  		`GREENFUSIONRUPEE`;	0x0F841B;															(|(&Helpers.TrilbyMinishFusion,  Helpers.AccessWestern), Helpers.Hundo);											Items.Rupee5
+Trilby_PuddleFusion_Item8  		`GREENFUSIONRUPEE`;	0x0F842B;															(|(&Helpers.TrilbyMinishFusion,  Helpers.AccessWestern), Helpers.Hundo);											Items.Rupee5
+Trilby_PuddleFusion_Item9  		`GREENFUSIONRUPEE`;	0x0F843B;															(|(&Helpers.TrilbyMinishFusion,  Helpers.AccessWestern), Helpers.Hundo);											Items.Rupee5
+Trilby_PuddleFusion_Item10 		`GREENFUSIONRUPEE`;	0x0F844B;															(|(&Helpers.TrilbyMinishFusion,  Helpers.AccessWestern), Helpers.Hundo);											Items.Rupee5
+Trilby_PuddleFusion_Item11 		`GREENFUSIONRUPEE`;	0x0F845B;															(|(&Helpers.TrilbyMinishFusion,  Helpers.AccessWestern), Helpers.Hundo);											Items.Rupee5
+Trilby_PuddleFusion_Item12 		`GREENFUSIONRUPEE`;	0x0F846B;															(|(&Helpers.TrilbyMinishFusion,  Helpers.AccessWestern), Helpers.Hundo);											Items.Rupee5
+Trilby_PuddleFusion_Item13 		`GREENFUSIONRUPEE`;	0x0F847B;															(|(&Helpers.TrilbyMinishFusion,  Helpers.AccessWestern), Helpers.Hundo);											Items.Rupee5
+Trilby_PuddleFusion_Item14 		`GREENFUSIONRUPEE`;	0x0F848B;															(|(&Helpers.TrilbyMinishFusion,  Helpers.AccessWestern), Helpers.Hundo);											Items.Rupee5
+Trilby_PuddleFusion_Item15 		`GREENFUSIONRUPEE`;	0x0F849B;															(|(&Helpers.TrilbyMinishFusion,  Helpers.AccessWestern), Helpers.Hundo);											Items.Rupee5
 
 WesternWoods_FusionChest;				`BLUEGREENFUSION`;			0x03-0x08-0x01;											(|(&Helpers.Gina2Fusion, Helpers.AccessWestern), Helpers.Hundo);							Items.Shells.100
 WesternWoods_TreeFusion_HP;				`REDFUSIONHP`;			0x0F9E1F;													(|(&Helpers.HyliaMiddleMinishFusion, Helpers.AccessWestern), Helpers.Hundo);				Items.PieceOfHeart
@@ -4611,28 +4633,28 @@ WesternWoods_PercyFusion_Moblin;		`REDFUSION`;			0x0123D6;													(|(&Helpe
 WesternWoods_PercyFusion_Percy;			`REDFUSION`;			0x06B058:FirstByte, 0x06B05A:SecondByte;					(|(&Helpers.PercyFusion, Helpers.AccessWestern, Helpers.Percy), Helpers.Hundo);				Items.Shells.100
 WesternWoods_BottomDig1					`GREENFUSIONDIG`;		0x0F782F;													(|(&Helpers.CastleMinishFusion, Helpers.AccessWestern, Items.MoleMitts), Helpers.Hundo);	Items.Rupee200
 WesternWoods_BottomDig2					`GREENFUSIONDIG`;		0x0F783F;													(|(&Helpers.CastleMinishFusion, Helpers.AccessWestern, Items.MoleMitts), Helpers.Hundo);	Items.Rupee200
-WesternWoods_GoldenOcto;				`BLUEGREENFUSIONENEMY`;	golden9Item:Define:FirstByte, golden9Sub:Define:SecondByte;	(|(&Helpers.MinishScrub1Fusion, Helpers.AccessWestern, Helpers.HasSword), Helpers.Hundo);	Items.Rupee100
+WesternWoods_GoldenOcto				`BLUEGREENFUSIONENEMY`;	golden9Item:Define:FirstByte, golden9Sub:Define:SecondByte;	(|(&Helpers.MinishScrub1Fusion, Helpers.AccessWestern, Helpers.HasSword), Helpers.Hundo);	Items.Rupee100
 
 WesternWoods_BeanstalkFusion_Chest;		`BLUEFUSION`;		0x0D-0x04-0x00;												(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);					Items.Kinstone.RedW
-WesternWoods_BeanstalkFusion_Item1;		`BLUEFUSIONRUPEE`;	0x0F6143;													(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);					Items.Rupee20
-WesternWoods_BeanstalkFusion_Item2;		`BLUEFUSIONRUPEE`;	0x0F6153;													(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);					Items.Rupee20
-WesternWoods_BeanstalkFusion_Item3;		`BLUEFUSIONRUPEE`;	0x0F6163;													(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);					Items.Rupee20
-WesternWoods_BeanstalkFusion_Item4;		`BLUEFUSIONRUPEE`;	0x0F6173;													(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);					Items.Rupee20
-WesternWoods_BeanstalkFusion_Item5;		`BLUEFUSIONRUPEE`;	0x0F6183;													(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);					Items.Rupee20
-WesternWoods_BeanstalkFusion_Item6;		`BLUEFUSIONRUPEE`;	0x0F6193;													(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);					Items.Rupee20
-WesternWoods_BeanstalkFusion_Item7;		`BLUEFUSIONRUPEE`;	0x0F61A3;													(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);					Items.Rupee20
-WesternWoods_BeanstalkFusion_Item8;		`BLUEFUSIONRUPEE`;	0x0F61B3;													(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);					Items.Rupee20
-WesternWoods_BeanstalkFusion_Item9;		`BLUEFUSIONRUPEE`;	0x0F61C3;													(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);					Items.Rupee20
-WesternWoods_BeanstalkFusion_Item10;	`BLUEFUSIONRUPEE`;	0x0F61D3;													(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);					Items.Rupee20
-WesternWoods_BeanstalkFusion_Item11;	`BLUEFUSIONRUPEE`;	0x0F61E3;													(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);					Items.Rupee20
-WesternWoods_BeanstalkFusion_Item12;	`BLUEFUSIONRUPEE`;	0x0F61F3;													(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);					Items.Rupee20
-WesternWoods_BeanstalkFusion_Item13;	`BLUEFUSIONRUPEE`;	0x0F6203;													(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);					Items.Rupee20
-WesternWoods_BeanstalkFusion_Item14;	`BLUEFUSIONRUPEE`;	0x0F6213; 													(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);					Items.Rupee20
-WesternWoods_BeanstalkFusion_Item15;	`BLUEFUSIONRUPEE`;	0x0F6223;													(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);					Items.Rupee20
-WesternWoods_BeanstalkFusion_Item16;	`BLUEFUSIONRUPEE`;	0x0F6233;													(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);					Items.Rupee20
+WesternWoods_BeanstalkFusion_Item1		`BLUEFUSIONRUPEE`;	0x0F6143;													(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);					Items.Rupee20
+WesternWoods_BeanstalkFusion_Item2		`BLUEFUSIONRUPEE`;	0x0F6153;													(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);					Items.Rupee20
+WesternWoods_BeanstalkFusion_Item3		`BLUEFUSIONRUPEE`;	0x0F6163;													(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);					Items.Rupee20
+WesternWoods_BeanstalkFusion_Item4		`BLUEFUSIONRUPEE`;	0x0F6173;													(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);					Items.Rupee20
+WesternWoods_BeanstalkFusion_Item5		`BLUEFUSIONRUPEE`;	0x0F6183;													(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);					Items.Rupee20
+WesternWoods_BeanstalkFusion_Item6		`BLUEFUSIONRUPEE`;	0x0F6193;													(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);					Items.Rupee20
+WesternWoods_BeanstalkFusion_Item7		`BLUEFUSIONRUPEE`;	0x0F61A3;													(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);					Items.Rupee20
+WesternWoods_BeanstalkFusion_Item8		`BLUEFUSIONRUPEE`;	0x0F61B3;													(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);					Items.Rupee20
+WesternWoods_BeanstalkFusion_Item9		`BLUEFUSIONRUPEE`;	0x0F61C3;													(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);					Items.Rupee20
+WesternWoods_BeanstalkFusion_Item10		`BLUEFUSIONRUPEE`;	0x0F61D3;													(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);					Items.Rupee20
+WesternWoods_BeanstalkFusion_Item11		`BLUEFUSIONRUPEE`;	0x0F61E3;													(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);					Items.Rupee20
+WesternWoods_BeanstalkFusion_Item12		`BLUEFUSIONRUPEE`;	0x0F61F3;													(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);					Items.Rupee20
+WesternWoods_BeanstalkFusion_Item13		`BLUEFUSIONRUPEE`;	0x0F6203;													(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);					Items.Rupee20
+WesternWoods_BeanstalkFusion_Item14		`BLUEFUSIONRUPEE`;	0x0F6213; 													(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);					Items.Rupee20
+WesternWoods_BeanstalkFusion_Item15		`BLUEFUSIONRUPEE`;	0x0F6223;													(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);					Items.Rupee20
+WesternWoods_BeanstalkFusion_Item16		`BLUEFUSIONRUPEE`;	0x0F6233;													(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);					Items.Rupee20
 
 # Mount Crenel
-AccessCrenel;						Helper;			;							(|(&Helpers.AccessTrilby, Helpers.LowerBean, (|Items.GripRing, (&(|Helpers.BombWalls, Items.RocsCape), Helpers.CrenelDust))), Helpers.CrenelWindCrest)
+AccessCrenel; Helper; ; (|(&Helpers.AccessTrilby, Helpers.LowerBean, (|Items.GripRing, (&(|Helpers.BombWalls, Items.RocsCape), Helpers.CrenelDust, (|Helpers.UpperBean, (&Helpers.BombWalls, Helpers.OverworldBlocks))))), Helpers.CrenelWindCrest)
 CrenelBase_EntranceVine				`RUPEE`;		0x0FAACF;																(|Helpers.AccessTrilby, Helpers.Hundo);																																																																				Items.Rupee20
 CrenelBase_FairyCave_Item1			`RUPEE`;		0x0FB3F3;																(|(&Helpers.AccessTrilby, Helpers.LowerBean, Helpers.BombWalls), (&Helpers.CrenelWindCrest, (|Helpers.UpperBean, Items.GripRing), Helpers.BombWalls), Helpers.Hundo);																																				Items.Rupee5
 CrenelBase_FairyCave_Item2			`RUPEE`;		0x0FB403;																(|(&Helpers.AccessTrilby, Helpers.LowerBean, Helpers.BombWalls), (&Helpers.CrenelWindCrest, (|Helpers.UpperBean, Items.GripRing), Helpers.BombWalls), Helpers.Hundo);																																				Items.Rupee5
@@ -4645,10 +4667,10 @@ CrenelBase_WaterCave_HP;			`HP`;			0x0FB32B;																(|(&Helpers.AccessTr
 CrenelBase_MinishVineHole_Chest;	Any;			0x35-0x00-0x00;															(|(&Helpers.AccessTrilby, Helpers.LowerBean, (|Helpers.BombWalls, Items.RocsCape), Helpers.CrenelDust), (&Helpers.CrenelWindCrest, (|Helpers.UpperBean, (&Items.GripRing, (|Helpers.BombWalls, Items.RocsCape))), Helpers.CrenelDust), Helpers.Hundo);																Items.Kinstone.BlueL
 CrenelBase_MinishCrack_Chest;		Any;			0x27-0x03-0x00;															(|(&Helpers.AccessTrilby, Helpers.LowerBean, (|Helpers.BombWalls, Items.RocsCape), Helpers.CrenelDust), (&Helpers.CrenelWindCrest, (|Helpers.UpperBean, (&Items.GripRing, (|Helpers.BombWalls, Items.RocsCape))), Helpers.CrenelDust), Helpers.Hundo);																Items.Kinstone.RedW
 
-Crenel_VineTop_GoldenTektite;		`GREENFUSIONENEMY`;	golden2Item:Define:FirstByte, golden2Sub:Define:SecondByte; 			(|(&Helpers.MinesMinishKitchenFusion,Helpers.AccessCrenel, Helpers.HasSword), Helpers.Hundo);																								Items.Rupee100
+Crenel_VineTop_GoldenTektite		`GREENFUSIONENEMY`;	golden2Item:Define:FirstByte, golden2Sub:Define:SecondByte; 			(|(&Helpers.MinesMinishKitchenFusion,Helpers.AccessCrenel, Helpers.HasSword), Helpers.Hundo);																								Items.Rupee100
 Crenel_BridgeCave_Chest;			Any;				0x26-0x07-0x00;															(|(&Helpers.AccessCrenel, Helpers.BombWalls), Helpers.Hundo);																																Items.Kinstone.BlueL
 Crenel_FairyCave_HP;				`HP`;				0x0FB0BB;																(|(&Helpers.AccessCrenel, Helpers.BombWalls), Helpers.Hundo);																																Items.PieceOfHeart
-Crenel_BelowCoF_GoldenTektite;		`REDFUSIONENEMY`;	golden7Item:Define:FirstByte, golden7Sub:Define:SecondByte;				(|(&Helpers.Tingle2Fusion, Helpers.AccessCrenel, Helpers.HasSword, (|Items.GripRing, Items.BombBag, Helpers.CrenelMushroom, Helpers.CrenelWindCrest)), Helpers.Hundo);						Items.Rupee100
+Crenel_BelowCoF_GoldenTektite		`REDFUSIONENEMY`;	golden7Item:Define:FirstByte, golden7Sub:Define:SecondByte;				(|(&Helpers.Tingle2Fusion, Helpers.AccessCrenel, Helpers.HasSword, (|Items.GripRing, Items.BombBag, Helpers.CrenelMushroom, Helpers.CrenelWindCrest)), Helpers.Hundo);						Items.Rupee100
 Crenel_Scrub_NPC;					Any;				gripScrubItem:Define:FirstByte, gripScrubSub:Define:SecondByte;			(|(&Helpers.AccessCrenel, Helpers.BombWalls, (|Items.GripRing, Items.BombBag, Helpers.CrenelMushroom, Helpers.CrenelWindCrest), Helpers.Scrubs, Helpers.ShopScrubCrenel), Helpers.Hundo);	Items.GripRing
 Crenel_Dojo_LeftChest;				Any;				0x25-0x00-0x00;															(|(&Helpers.AccessCrenel, Items.GripRing, Helpers.CrenelDojo), Helpers.Hundo);																												Items.Rupee50
 Crenel_Dojo_RightChest;				Any;				0x25-0x00-0x01;															(|(&Helpers.AccessCrenel, Items.GripRing, Helpers.CrenelDojo), Helpers.Hundo);																												Items.Rupee50
@@ -4694,7 +4716,7 @@ SpinScrolls;						Helper;				;																			Items.SpinAttack, Items.GreatSp
 Swamp_ButterflyFusion_Item;			`REDFUSION`;			0x0FE13F;																	(|(&Helpers.Farore2Fusion, Helpers.AccessSwamp), Helpers.Hundo);																																		Items.DigButterfly
 Swamp_CenterCave_DarknutChest;		Any;					0x2B-0x00-0x00;																(|(&Helpers.AccessSwamp, Helpers.HasDamageSource), Helpers.Hundo);																																		Items.Kinstone.GoldenSwamp
 Swamp_CenterChest;					Any;					0x04-0x00-0x00;																(|(&Helpers.AccessSwamp, Helpers.HasBow), Helpers.Hundo);																																				Items.Kinstone.BlueL
-Swamp_GoldenRope;					`WTFUSIONGREENENEMY`;	golden3Item:Define:FirstByte, golden3Sub:Define:SecondByte;					(|(&Helpers.Flurris1Fusion, Helpers.AccessSwamp, Helpers.HasSword), Helpers.Hundo);																														Items.Rupee100
+Swamp_GoldenRope					`WTFUSIONGREENENEMY`;	golden3Item:Define:FirstByte, golden3Sub:Define:SecondByte;					(|(&Helpers.Flurris1Fusion, Helpers.AccessSwamp, Helpers.HasSword), Helpers.Hundo);																														Items.Rupee100
 Swamp_NearWaterfall_CaveHP;			`HP`;					0x0D9907;																	(|(&Helpers.AccessSwamp, Helpers.SwampNorthShortcut, (|Items.RocsCape, Items.Flippers)), Helpers.Hundo);																								Items.PieceOfHeart
 Swamp_WaterfallFusion_DojoNPC:dojo;	`DOJOITEMRED`;			scarbladeDojoItem:Define:FirstByte, scarbladeDojoSub:Define:SecondByte;		(|(&Helpers.GreybladeFusion, Helpers.AccessSwamp, Helpers.SwampNorthShortcut, Items.Flippers), Helpers.Hundo);																							Items.FastSpin
 Swamp_NorthCave_Chest;				Any;					0x2A-0x01-0x00;																(|(&Helpers.AccessSwamp, Helpers.SwampNorthShortcut), Helpers.Hundo);																																	Items.Kinstone.GoldenSwamp
@@ -4728,7 +4750,7 @@ Ruins_CrackFusion_Chest			`FOW_OUTSIDE`;	`GOLDGREENFUSION`;		0x27-0x0C-0x00;				
 Ruins_MinishCave_HP				`FOW_OUTSIDE`;	`GOLDFUSIONHP`;			0x0DB4BF;													(|(&Helpers.AccessRuins, Helpers.RuinsShortcut, Helpers.RuinsTektites), Helpers.Hundo);								Items.PieceOfHeart
 Ruins_ArmosKill_LeftChest		`FOW_OUTSIDE`;	`GOLDFUSION`;			0x05-0x05-0x00;												(|(&Helpers.AccessRuins, Helpers.HasDamageSource), Helpers.Hundo);													Items.Rupee50
 Ruins_ArmosKill_RightChest		`FOW_OUTSIDE`;	`GOLDFUSION`;			0x05-0x05-0x01;												(|(&Helpers.AccessRuins, Helpers.HasDamageSource), Helpers.Hundo);													Items.Shells.50
-Ruins_GoldenOcto				`FOW_OUTSIDE`;	`GOLDGREENFUSIONENEMY`;	golden1Item:Define:FirstByte, golden1Sub:Define:SecondByte;	(|(&Helpers.LibrariFusion, Helpers.AccessRuins, Helpers.HasSword), Helpers.Hundo);									Items.Rupee100
+Ruins_GoldenOcto				`FOW_OUTSIDE`		`GOLDGREENFUSIONENEMY`;	golden1Item:Define:FirstByte, golden1Sub:Define:SecondByte;	(|(&Helpers.LibrariFusion, Helpers.AccessRuins, Helpers.HasSword), Helpers.Hundo);									Items.Rupee100
 Ruins_NearFoWFusion_Chest		`FOW_OUTSIDE`;	`GOLDREDFUSION`;		0x0FE0AE;													(|(&Helpers.BelariFusion, Helpers.AccessRuins, Helpers.HasSword), Helpers.Hundo);									Items.BombBag
 	Fortress_Entrance	`DUNGEONENTRANCE`;	DumFoWENT:Define:FirstByte, DumFoWENT:Define:SecondByte;	Helpers.AccessFortress;	Items.Entrance.0x03
 
@@ -4767,7 +4789,7 @@ Falls_WaterDigCaveFusion_Chest;			`REDFUSION`;	0x16-0x00-0x00;												(|(&He
 Falls_1stCave_Chest;					`FALLSCHEST`;	0x33-0x05-0x00;												(|(&Helpers.OverworldBlocks, Helpers.FallsFusion, Helpers.DarkRooms, Helpers.BombWalls), (&Helpers.AccessFalls, Items.GripRing, Helpers.BombWalls), Helpers.Hundo);																											Items.Shells.50
 Falls_Cliff_Chest;						`FALLSCHEST`;	0x0A-0x00-0x00;												(|(&Helpers.OverworldBlocks, Helpers.FallsFusion, Helpers.DarkRooms, Helpers.BombWalls, (|Helpers.CanSplit3, Helpers.CanSplit4)), (&Helpers.AccessFalls, Items.GripRing, Helpers.BombWalls, Helpers.DarkRooms, (|Helpers.CanSplit3, Helpers.CanSplit4)), Helpers.Hundo);	Items.Shells.100
 Falls_SouthDigSpot						`FALLSDIG`;		0x0F8823;													(|(&Helpers.OverworldBlocks, Helpers.FallsFusion, Helpers.DarkRooms, Items.MoleMitts), (&Helpers.AccessFalls, Items.GripRing, Items.MoleMitts), Helpers.Hundo);																												Items.Rupee50
-Falls_GoldenTektite;					`FALLSENEMY`;	golden6Item:Define:FirstByte, golden6Sub:Define:SecondByte;	(|(&Helpers.HaileyFusion,  Helpers.AccessFalls, Helpers.HasSword), Helpers.Hundo);	Items.Rupee100
+Falls_GoldenTektite					`FALLSENEMY`;	golden6Item:Define:FirstByte, golden6Sub:Define:SecondByte;	(|(&Helpers.HaileyFusion,  Helpers.AccessFalls, Helpers.HasSword), Helpers.Hundo);	Items.Rupee100
 Falls_NorthDigSpot						`FALLSDIG`;		0x0F8813;													(|(&Helpers.AccessFalls, Items.MoleMitts), Helpers.Hundo);							Items.Rupee50
 Falls_RockFusion_Chest;					`FALLSGREEN`;	0x0FE106;													(|(&Helpers.CapriceFusion, Helpers.AccessFalls), Helpers.Hundo);					Items.Kinstone.BlueS
 Falls_WaterfallFusion_HP;				`FALLSHP`;		0x0F906F;													(|(&Helpers.GaleFusion, Helpers.AccessFalls, Items.Flippers), Helpers.Hundo);		Items.PieceOfHeart
@@ -4939,7 +4961,7 @@ Fortress_BackRight_BigChest				`FOW_INSIDE`;	`FORTRESSBIG`;		0x58-0x1B-0x00;				
 	
 CompleteFortress;	Helper;	;	`ENTERFOW`, Items.MoleMitts, Helpers.FoWBossDoor, Helpers.HasMazaalDamage, Helpers.HasBow;
 Fortress_BossItem						`FOW_INSIDE`;	`FORTRESSHP`;		mazaalContainerItem:Define:FirstByte, mazaalContainerSub:Define:SecondByte;	(|Helpers.CompleteFortress, Helpers.Hundo);																																			Items.HeartContainer
-Fortress_Prize							`FOW_INSIDE`;	`FORTRESSPRIZE`;	0x09C9E6:FirstByte, 0x09C9E8:SecondByte;									(|Helpers.CompleteFortress, Helpers.Hundo);																																			Items.Ocarina
+Fortress_Prize							`FOW_PRIZE`;	`FORTRESSPRIZE`;	0x09C9E6:FirstByte, 0x09C9E8:SecondByte;									(|Helpers.CompleteFortress, Helpers.Hundo);																																			Items.Ocarina
 
 # Temple of Droplets Locations
 
@@ -5086,9 +5108,9 @@ DHC_3F_SouthEast_Chest		`DHC_INSIDE`;	`DUNGEONSMALL`;		0x88-0x04-0x00; (|(&Helpe
 DHC_2F_BlueWarp_BigChest	`DHC_INSIDE`;	`DUNGEONBIG`;		0x88-0x09-0x00; (|(&Helpers.AccessDHC, Helpers.DHCBlackKnight, Helpers.DHCBigBlock, Helpers.CanSplit4), Helpers.Hundo);								Items.BigKey.0x1D
 
 !ifdef - NODHC
-BeatVaati;	Helper;	;	Helpers.AccessDHC
+	BeatVaati;	Helper;	;	Helpers.AccessDHC
 !else
-BeatVaati;	Helper;	;	Helpers.AccessDHC, (|(&Helpers.DHC1stDoor, Helpers.BombWalls), Helpers.DHCRedWarp, (&Helpers.DHCBlueWarp, (|Helpers.OverworldBlocks, Items.RocsCape))), Helpers.DHCBossDoor, Helpers.CanSplit4, Helpers.HasBow, Items.GustJar, Items.PacciCane, Helpers.DarkRooms
+	BeatVaati;	Helper;	;	Helpers.AccessDHC, (|(&Helpers.DHC1stDoor, Helpers.BombWalls), Helpers.DHCRedWarp, (&Helpers.DHCBlueWarp, (|Helpers.OverworldBlocks, Items.RocsCape))), Helpers.DHCBossDoor, Helpers.CanSplit4, Helpers.HasBow, Items.GustJar, Items.PacciCane, Helpers.DarkRooms
 !endif
 
 #Unrandomized locations

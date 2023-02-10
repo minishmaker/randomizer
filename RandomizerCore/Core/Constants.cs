@@ -147,7 +147,7 @@ public enum ItemType
     MoleMitts = 0x13,
     RocsCape = 0x14,
     PegasusBoots = 0x15,
-    FireRod = 0x16,
+    Firerod = 0x16,
     Ocarina = 0x17,
     GreenClock = 0x18, //GreenOrb
     BlueClock = 0x19, //BlueOrb
