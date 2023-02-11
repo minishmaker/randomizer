@@ -16,8 +16,6 @@ cmp	r4,#0x44
 bne	loop
 
 ldr	r0,ammount
-cmp	r0,#0
-beq	min
 cmp	r0,#4
 bhi	max
 check:
@@ -32,10 +30,6 @@ pop	{r4-r6,pc}
 true:
 mov	r0,#1
 pop	{r4-r6,pc}
-
-min:
-mov	r0,#1
-b	check
 
 max:
 mov	r0,#4
