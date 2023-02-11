@@ -32,7 +32,7 @@ public class ShufflerController
     public string RevName => RevisionIdentifier;
 
     internal static string VersionIdentifier => "v0.7.0";
-    internal static string RevisionIdentifier => "alpha-rev2";
+    internal static string RevisionIdentifier => "alpha-rev2.1";
 
     public string SeedFilename => $"Minish Randomizer-{_shuffler.Seed}-{_shuffler.Version}-{_shuffler.GetOptionsIdentifier()}";
 
