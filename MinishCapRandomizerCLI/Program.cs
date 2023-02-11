@@ -292,7 +292,7 @@ Exit                Exits the program
 
         _shufflerController.LoadLocations(_cachedLogicPath);
         ShufflerControllerResult result = _shufflerController.Randomize(attempts);
-        Console.WriteLine(result.WasSuccessful ? "Randomization successful!" : "Randomization failed! "+result.ErrorMessage);
+        Console.WriteLine(result ? "Randomization successful!" : "Randomization failed! "+result.ErrorMessage);
         BlockUntilNewline();
     }
 
@@ -368,7 +368,7 @@ Exit                Exits the program
         {
             var result = _shufflerController.SaveRomPatch(patch, rom);
 
-            Console.WriteLine(!result.WasSuccessful
+            Console.WriteLine(!result
                 ? "Failed to patch ROM! "+result.ErrorMessage
                 : "ROM patched successfully!");
         }
@@ -392,7 +392,7 @@ Exit                Exits the program
         {
             var result = _shufflerController.SaveRomPatch(patch, rom);
 
-            Console.WriteLine(!result.WasSuccessful
+            Console.WriteLine(!result
                 ? "Failed to save patch! "+result.ErrorMessage
                 : "Patch saved successfully!");
         }
