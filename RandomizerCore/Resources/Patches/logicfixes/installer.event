@@ -1,0 +1,386 @@
+//limit split ammount
+PUSH
+ORG $73E8E
+SHORT 0
+#incbin "asm/splitHack.dmp"
+POP
+
+PUSH //new items
+ORG $F2528; BYTE 0x06 0x0F 0x00; ORG currentoffset+2; BYTE 0x04; ORG currentoffset+8; SHORT 0xC8 //new item in smith's room, write item to $F252B
+ORG $F2538; BYTE 0x06 0x0F 0x00; ORG currentoffset+2; BYTE 0x04; ORG currentoffset+8; SHORT 0xC9 //new item in smith's room, write item to $F253B
+POP
+
+//gregal never dies, even if main entrance was used, as long as gregal hasn't been saved he will still spawn along with his nurse or whatever
+//he also stays in bed until you collect his item (the one he gives you after helping him but before using the main entrance)
+PUSH; ORG $4ED98; jumpToHack(gregal); POP
+PUSH; ORG $6C282; SHORT 0x46C0; POP //fix the gregal healing animation... not sure why this check exists? it prevents the animation from working correctly if the main entrance has been used, anti-cheating perhaps?
+ALIGN 4
+gregal:
+#incbin "asm/gregal.dmp"
+POIN gregalObjects
+ALIGN 4
+gregalObjects:
+BYTE 0x06 0x0F 0x18 0x00 0x00 0x00 0x00 0x00 0xA0 0x00 0x28 0x00 0x00 0x00 0x00 0x00
+BYTE 0x07 0x4F 0x4A 0x00 0x00 0x00 0x00 0x00 0xA0 0x00 0x38 0x00 0x7C 0x4B 0x01 0x08
+WORD 0xFFFFFFFF
+
+//check a custom flag to move melari
+PUSH; ORG $4C6DC; jumpToHack(melari); POP
+ALIGN 4
+melari:
+#incbin "asm/melari.dmp"
+
+//sword fix: makes sword spots act like normal item spots (also dampe apparently)
+PUSH; ORG $7EA9C; jumpToHack(swordFix); POP
+ALIGN 4
+swordFix:
+#incbin "asm/swordFix.dmp"
+POIN swordFixPointers
+#ifdef pedestalItems
+WORD 1
+WORD pedestalSpot1Item
+WORD pedestalSpot1Sub
+WORD pedestalSpot2Item
+WORD pedestalSpot2Sub
+WORD pedestalSpot3Item
+WORD pedestalSpot3Sub
+#else
+WORD 0
+WORD 0
+WORD 0
+WORD 0
+WORD 0
+WORD 0
+WORD 0
+#endif
+ALIGN 4
+swordFixPointers:
+POIN $D26C //melari
+POIN $96B4 //dampe
+POIN $B720 //arrow fairy
+POIN $B7B2 //rupee fairy
+POIN $B826 //bomb fairy
+WORD 0
+
+//stone fix: makes kinstone spots act like normal item spots
+PUSH; ORG $7EA74; jumpToHack(stoneFix); POP
+ALIGN 4
+stoneFix:
+#incbin "asm/stoneFix.dmp"
+POIN stoneFixPointers
+ALIGN 4
+stoneFixPointers:
+POIN $EDD8 //lady
+POIN $DA58 //ghost
+WORD 0
+
+//cutscene skipper, just nops out instructions comming from specific offsets since we have no doc on any of that
+PUSH; ORG $7D9BC; jumpToHack(skipHack); POP
+ALIGN 4
+skipHack:
+#incbin "asm/skipHack.dmp"
+POIN skipTable
+ALIGN 4
+skipTable:
+//melari events to skip
+POIN $D272
+POIN $D27C
+POIN $D280
+POIN $D288
+POIN $D28A
+POIN $D290
+//dampe events to skip
+POIN $96A4
+POIN $96A8
+POIN $96AC
+POIN $96B0
+#ifndef pedestalItems
+//pedestal skip
+POIN $13A7E
+#endif
+WORD 0
+
+//soldiers always on patrol in the garden
+PUSH
+ORG $4DF3C; SHORT 0 0x2001
+ORG $4DF56; SHORT 0 0x2001
+ORG $4DFB2; SHORT 0 0x2001
+ORG $4DFE8; SHORT 0 0x2001
+POP
+
+//move mushroom so syrup can sell both mushroom and red potion at the same time
+PUSH; ORG $F94DC; SHORT 0x78; POP
+//and make mushroom check for custom flag 2 to spawn
+PUSH; ORG $4F908; jumpToHack(mushroomFlag); POP
+ALIGN 4
+mushroomFlag:
+#incbin "asm/mushroomFlag.dmp"
+//make all items at the potion shop have a consistent price
+PUSH; ORG $7DE64; jumpToHack(mushroomPrice); POP
+ALIGN 4
+mushroomPrice:
+#incbin "asm/mushroomPrice.dmp"
+WORD 60 //mushroom spot price
+WORD 60 //blue potion price
+WORD 150 //red potion price
+WORD 20 //brioche price
+WORD 30 //croissant price
+WORD 40 //pie price
+WORD 60 //cake price
+
+//set flag when ocarina is collected, custom flag 1
+PUSH; ORG $9C9F4; jumpToHack(ocarinaFlag1); POP
+ALIGN 4
+ocarinaFlag1:
+#incbin "asm/ocarinaFlag1.dmp"
+//check the new flag for spawning the ocarina on the floor
+PUSH; ORG $4CD54; jumpToHack(ocarinaFlag2); POP
+ALIGN 4
+ocarinaFlag2:
+#incbin "asm/ocarinaFlag2.dmp"
+//and check the new flag for making the green portal show up
+PUSH; ORG $9A608; jumpToHack(ocarinaFlag3); POP
+ALIGN 4
+ocarinaFlag3:
+#incbin "asm/ocarinaFlag3.dmp"
+
+//give the jabber nut item spot its own flag, custm flag 0
+PUSH; ORG $4C15C; jumpToHack(jabberNut1); POP
+ALIGN 4
+jabberNut1:
+#incbin "asm/jabberNut1.dmp"
+PUSH; ORG $94934; jumpToHack(jabberNut2); POP
+ALIGN 4
+jabberNut2:
+#incbin "asm/jabberNut2.dmp"
+PUSH; ORG $9D6411; String("Go get the nut!"); BYTE 0; POP //gentari sends you get the nut
+PUSH; ORG $DA280+2; BYTE 0; ORG $DA280+5; BYTE 4; ORG $DA280+8; SHORT 0x3C; ORG $DA280+0xE; SHORT 0xCA; POP //made the nut a normal item
+
+//hyrule town fixes
+PUSH; ORG $4F0C8; SHORT 0x46C0 0x2000; POP //no carpenters blocking north exit
+PUSH; ORG $52C60; SHORT 0x481D 0x2107 0x7201 0x46F7; POP //permanent town state
+PUSH; ORG $4DDA4; SHORT 0x46C0; POP //old man in front of library always attempted to load
+PUSH; ORG $EEDF2; SHORT 0xFFFF; POP //and old man in front of library is in all town states
+PUSH; ORG $EEA12; SHORT 0xFFFF; POP //soldier that wants you to spin is in all town states
+//remove some annoying soldiers
+PUSH; ORG $EEA32; SHORT 0; POP
+PUSH; ORG $EEA82; SHORT 0; POP
+PUSH; ORG $EEA92; SHORT 0; POP
+
+//biggoron changes
+PUSH; ORG $9402; SHORT 21; POP //biggoron doesn't ask for a major feat (checks if you have ezlo instead)
+PUSH; ORG $6D082; SHORT 0x2000; POP //no timer for mirror shield
+
+//all fusions are available in all town states
+#ifdef noFusions
+	PUSH; ORG $1E9C2; SHORT 0xE048; POP
+#else
+	PUSH; ORG $1E9C2; SHORT 0x46C0; POP
+#endif
+
+//minish village is always in the post-temple state, except for festari which asks for the nut
+PUSH; ORG $4C55A; SHORT 0xE011; ORG $4C5AC; SHORT 0xE002; POP
+
+//yellow book quest minish spawns even if you have flippers
+PUSH; ORG $4C434; SHORT 0; POP
+
+//carpentes no longer spawn by the farm
+PUSH; ORG $4EFB4; SHORT 0xE017; POP
+
+//make rem item have a sub id
+PUSH; ORG $7EA5E; SHORT 0x7890; ORG $7EA66; SHORT 0x7890 0x78D1; POP
+
+//simon fights appear in a consistent order, advancing each time you open the chest; always first fight unless item spot is opened
+//counter at 0x203FFE0 (new save space), one byte
+PUSH; ORG $4E098; SHORT 0x46C0; ORG $4E09E; SHORT 0x1C30; POP
+PUSH; ORG $4E05C; jumpToHack(simonCycle); POP
+ALIGN 4
+simonCycle:
+#incbin "asm/simonCycle.dmp"
+
+//yellow library minish rewards link even if he has the flippers
+PUSH; ORG $6AAA4; SHORT 0; POP
+
+//fusion flag requirements: fusion flags will return false if these aren't set
+PUSH; ORG $1E82C; jumpToHack(fusionLock); POP
+ALIGN 4
+fusionLock:
+#incbin "asm/fusionLock.dmp"
+POIN fusionLockTable
+ALIGN 4
+fusionLockTable: //WORD offsetoflockerflag; SHORT lockerflagid fusionflagid
+WORD 0x2002EA4; SHORT 8 0x1C //belari won't talk about remote bombs until he has handed the first item
+WORD 0 0 //terminator
+//belari will not trade bombs more than once
+PUSH; ORG $A0EC; BYTE 9; POP
+PUSH; ORG $A0D2; BYTE 0; POP
+PUSH; ORG $7EA68; jumpToHack(noSwaps); POP
+ALIGN 4
+noSwaps:
+#incbin "asm/noSwaps.dmp"
+
+//ranch door is closed on both sides insetad of just one
+PUSH; ORG $F2F34; POIN ranchDoor|1; POP
+ALIGN 4
+ranchDoor:
+#incbin "asm/ranchDoor.dmp"
+POIN ranchDoorData
+ALIGN 4
+ranchDoorData:
+BYTE 0x06 0x0F 0x5D 0x00 0x03 0x01; SHORT 0 0x18 0x58 0 0
+BYTE 0xFF 0x00 0x00 0x00 0x00 0x00; SHORT 0 0x00 0x00 0 0
+
+//gentari's curtain opens if you kill the green chu (or have bombs but that's handled somewhere else)
+PUSH; ORG $91924; jumpToHack(openCurtain); POP
+ALIGN 4
+openCurtain:
+#incbin "asm/openCurtain.dmp"
+//and it does not open even if you have the earth element
+PUSH; ORG $C826; BYTE 0; POP
+
+//make the bell heart piece randomizable
+PUSH; ORG $5D600; SHORT 0x2000; POP
+PUSH; ORG $5D606; SHORT 0; jumpToHack(bellHeart); POP
+ALIGN 4
+bellHeart:
+#incbin "asm/bellHeart.dmp"
+
+#ifndef carlovSpotItem
+	#define carlovSpotItem 0x3E
+#endif
+#ifndef carlovSpotSub
+	#define carlovSpotSub 0x00
+#endif
+#ifndef carlovFigurineRequirement
+	#define carlovFigurineRequirement 0x00
+#endif
+//carlov gives out medal when you talk to him
+PUSH; ORG $87EF4; jumpToHack(carlov); POP
+ALIGN 4
+carlov:
+#incbin "asm/carlov.dmp"
+WORD carlovSpotItem
+WORD carlovSpotSub
+WORD carlovFigurineRequirement
+PUSH; ORG $146F2; SHORT 0; POP //carlov doesn't check for medal
+PUSH; ORG $7DDEE; SHORT 0x2100; ORG $14812; SHORT 0x432B; POP //carlov thinks you never have shells
+PUSH; ORG $9EA77C; String("RNG manipulation is"); BYTE 0x20 2 1; String("illegal"); BYTE 2 0; String("!"); BYTE 0; POP //carlov has some insight
+PUSH; ORG $A32101; String("La manipulation de la RNG est"); BYTE 0x20 2 1; String("ill"); BYTE 0xE9; String("gale"); BYTE 2 0; String("!"); BYTE 0; POP //carlov has some insight
+PUSH; ORG $A7631B; String("Das Manipulieren des RNGs ist"); BYTE 0x20 2 1; String(illegal); BYTE 2 0; String("!"); BYTE 0; POP //carlov has some insight
+PUSH; ORG $AB7F02; BYTE 0xA1; String("Manipular la RNG es"); BYTE 0x20 2 1; String("ilegal"); BYTE 2 0; String("!"); BYTE 0; POP //carlov has some insight
+PUSH; ORG $A3EA2; SHORT 0xE000; ORG $A41BE; SHORT 0xE000; ORG $A416E; SHORT 0xE000; ORG $A440E; SHORT 0xE000; ORG $A40FE; SHORT 0xE000; POP //can always see all figurines
+PUSH; ORG $63338; SHORT 0; POP //man outside cafe doesn't open the figurine house
+PUSH; ORG $9E2A27; String("You should try"); BYTE 0x20 2 1; String("Figuresanity"); BYTE 2 0 0x2E 0x0A; String("You'll"); BYTE 0x20 2 1; String("love"); BYTE 0x20 2 0; String("it, trust me"); BYTE 0; POP
+PUSH; ORG $9E39AA; String("You should try"); BYTE 0x20 2 1; String("Figuresanity"); BYTE 2 0 0x2E 0x0A; String("You'll"); BYTE 0x20 2 1; String("love"); BYTE 0x20 2 0; String("it, trust me"); BYTE 0; POP
+PUSH; ORG $9E4A08; String("You should try"); BYTE 0x20 2 1; String("Figuresanity"); BYTE 2 0 0x2E 0x0A; String("You'll"); BYTE 0x20 2 1; String("love"); BYTE 0x20 2 0; String("it, trust me"); BYTE 0; POP
+PUSH; ORG $9E54A7; String("You should try"); BYTE 0x20 2 1; String("Figuresanity"); BYTE 2 0 0x2E 0x0A; String("You'll"); BYTE 0x20 2 1; String("love"); BYTE 0x20 2 0; String("it, trust me"); BYTE 0; POP
+
+//fix elements hardcoded movement
+PUSH; ORG $9FA70; jumpToHack(elementsFix); POP
+ALIGN 4
+elementsFix:
+#incbin "asm/elementsFix.dmp"
+POIN elementsTable
+ALIGN 4
+elementsTable:
+BYTE 0x49 0x00 0x40
+BYTE 0x51 0x00 0x41
+BYTE 0x60 0x0E 0x42
+BYTE 0x70 0x00 0x43
+BYTE 0x00 0x00 0x00 //terminator
+//and give the wind element object a custom flag to check
+PUSH; ORG $4D08C; jumpToHack(windFix); POP
+ALIGN 4
+windFix:
+#incbin "asm/windFix.dmp"
+
+//fix yet another element spots issue
+PUSH; ORG $9FAB8; jumpToHack(elementsFixAgain); POP
+ALIGN 4
+elementsFixAgain:
+#incbin "asm/elementsFixAgain.dmp"
+POIN elementsTable
+//fix element spot text
+PUSH; ORG $9FC2E; SHORT 0; jumpToHack(elementsFixText); POP
+ALIGN 4
+elementsFixText:
+#incbin "asm/elementsFixText.dmp"
+
+//fix the graphics for the two fancy fow keys
+PUSH; ORG $58BA0; jumpToHack(holeKeys); POP
+ALIGN 4
+holeKeys:
+#incbin "asm/holeKeys.dmp"
+#ifndef fowLeftItem
+	#define fowLeftItem "0x53"
+#endif
+#ifndef fowLeftSub
+	#define fowLeftSub "0x00"
+#endif
+#ifndef fowRightItem
+	#define fowRightItem "0x53"
+#endif
+#ifndef fowRightSub
+	#define fowRightSub "0x00"
+#endif
+PUSH
+ORG $E2B0B; BYTE fowLeftItem  fowLeftSub
+ORG $FC46B; BYTE fowLeftItem  fowLeftSub
+ORG $FC48B; BYTE fowLeftItem  fowLeftSub
+ORG $E2C4B; BYTE fowRightItem fowRightSub
+ORG $FC4AB; BYTE fowRightItem fowRightSub
+ORG $FC4CB; BYTE fowRightItem fowRightSub
+POP
+
+//bloomboy always spawns
+PUSH; ORG $4C166; SHORT 0; ORG $4C16E; SHORT 0xE001; POP
+
+//fix how pico bloom kill counters work: count up from 0 instead of from kill counters
+PUSH; ORG $5FDD0; SHORT 0x2000; POP //store 0 instead of kill counter
+PUSH; ORG $5FDEA; SHORT 0x1C04; POP //don't use kill counter for the check
+//pico bloom kill counter is now increased every time an enemy is killed, handled at the enemies killed tracker
+
+//librari always spawns at lake house
+PUSH; ORG $4C338; SHORT 0; POP
+
+//librari will drop you down again if you talk to him again, instead of automatically dropping you on entry
+PUSH; ORG $EF87C; POIN libraryTrapdoor|1; POP
+ALIGN 4
+libraryTrapdoor:
+#incbin "asm/libraryTrapdoor.dmp"
+
+//carpenters don't need cane to spawn
+PUSH; ORG $4E53A; SHORT 0; POP
+
+//set cucco minigame flag whenever you win, not only when you win a heart
+PUSH; ORG $A0C36; SHORT 0xE019; POP
+
+//tingle checks for tingle trophy instead of all fusions
+PUSH; ORG $64A1C; jumpToHack(tingleCheck); POP
+ALIGN 4
+tingleCheck:
+#incbin "asm/tingleCheck.dmp"
+
+//remove percy shell check
+PUSH; ORG $6B03C; SHORT 0x2000; POP
+
+//peril beam always active under ohko, or when out of time in timed ohko
+#ifdef ohkoOption
+	PUSH; ORG $7AA80; jumpToHack(ohkoPeril); POP
+	ALIGN 4
+	ohkoPeril:
+	#incbin "asm/ohkoPeril.dmp"
+	WORD 0
+#else
+	#ifdef timedohkoOption
+		PUSH; ORG $7AA80; jumpToHack(ohkoPeril); POP
+		ALIGN 4
+		ohkoPeril:
+		#incbin "asm/ohkoPeril.dmp"
+		POIN timedohkoCheckTime
+	#endif
+#endif
+
+#include "dojos.event"
+#include "shop.event"
+#include "golden.event"

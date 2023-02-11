@@ -1,0 +1,174 @@
+//when item 0x1B is collected, save the trap type for it to trigger when link regains control
+PUSH; ORG $A744A; SHORT 0; jumpToHack(trapSet); POP
+ALIGN 4
+trapSet:
+#incbin "asm/trapSet.dmp"
+
+//when links regains control, trigger the trap
+PUSH; ORG $804DA; SHORT 0; jumpToHack(trapTrigger); POP
+ALIGN 4
+trapTrigger:
+#incbin "asm/trapTrigger.dmp"
+POIN trapTable
+POIN getRNG
+
+ALIGN 4
+trapTable: //pointers to routines for each trap, based on subID of the 0x1B item
+POIN iceTrap; WORD 8
+POIN fireTrap; WORD 8
+POIN $797B0; WORD 8 //zapTrap
+POIN bombTrap; WORD 0
+POIN moneyTrap; WORD 0
+POIN stinkTrap; WORD 0
+POIN snekTrap; WORD 0
+POIN batTrap; WORD 0
+POIN suckTrap; WORD 0
+POIN curseTrap; WORD 0
+WORD 0 0 //terminator
+
+ALIGN 4
+iceTrap:
+#incbin "asm/iceTrap.dmp"
+
+ALIGN 4
+fireTrap:
+#incbin "asm/fireTrap.dmp"
+
+ALIGN 4
+bombTrap:
+#incbin "asm/bombTrap.dmp"
+
+ALIGN 4
+moneyTrap:
+#incbin "asm/moneyTrap.dmp"
+
+PUSH; ORG $85C60; jumpToHack(moneyTrapEffect); POP
+ALIGN 4
+moneyTrapEffect:
+#incbin "asm/moneyTrapEffect.dmp"
+
+ALIGN 4
+stinkTrap:
+#incbin "asm/stinkTrap.dmp"
+
+ALIGN 4
+snekTrap:
+#incbin "asm/snekTrap.dmp"
+POIN spawnEnemy
+
+ALIGN 4
+batTrap:
+#incbin "asm/batTrap.dmp"
+POIN spawnEnemy
+
+ALIGN 4
+suckTrap:
+#incbin "asm/suckTrap.dmp"
+POIN spawnEnemy
+POIN getRNG
+
+ALIGN 4
+curseTrap:
+#incbin "asm/curseTrap.dmp"
+POIN spawnEnemy
+
+//enemy spawning routine
+ALIGN 4
+spawnEnemy:
+#incbin "asm/spawnEnemy.dmp"
+
+//set the default icon for traps, this is the icon that displays when you pick them up
+PUSH; ORG $125BF8; BYTE 1 0 1 4 0 0 0x41 5; POP
+PUSH; ORG $FD588; POIN trapIconData; POP
+trapIconData:
+BYTE 0x82 0xFF 0x00 0x80 0x01
+
+PUSH //the graphics for the trap icon
+ORG $2E9960
+#incbin "trap.img.bin"
+POP
+
+//give traps "random" icons
+PUSH; ORG $80694; jumpToHack(trapIcon); POP
+ALIGN 4
+trapIcon:
+#incbin "asm/trapIcon.dmp"
+POIN trapGetIcon
+
+//given a pointer to an object, calculate which icon from the table should be used for it
+trapGetIcon:
+#incbin "asm/trapGetIcon.dmp"
+WORD customRNG
+POIN trapIconTable
+
+ALIGN 4
+trapIconTable: //BYTE itemID
+BYTE 0x03 //white sword (2)
+BYTE 0x04 //white sword (3)
+BYTE 0x06 //four sword
+BYTE 0x08 //remote bombs
+BYTE 0x09 //bow
+BYTE 0x0A //light arrow
+BYTE 0x0B //boomerang
+BYTE 0x0C //magic boomerang
+BYTE 0x0D //shield
+BYTE 0x0E //mirror shield
+BYTE 0x0F //lantern
+BYTE 0x11 //jar
+BYTE 0x12 //cane
+BYTE 0x13 //mitts
+BYTE 0x14 //cape
+BYTE 0x15 //boots
+BYTE 0x17 //ocarina
+BYTE 0x1E //bottle
+BYTE 0x36 //dog food
+#ifndef openWorld
+	BYTE 0x37 //silver key
+#endif
+BYTE 0x38 //mushroom
+BYTE 0x39 //red book
+BYTE 0x3A //green book
+BYTE 0x3B //blue book
+#ifndef openWorld
+	BYTE 0x3C //gold key
+#endif
+BYTE 0x3D //tingle trophy
+#ifndef openWorld
+	BYTE 0x3E //carlov medal
+#endif
+#ifdef elementTraps
+	BYTE 0x40 //earth element
+	BYTE 0x40 //earth element
+	BYTE 0x40 //earth element
+	BYTE 0x41 //fire element
+	BYTE 0x41 //fire element
+	BYTE 0x41 //fire element
+	BYTE 0x42 //water element
+	BYTE 0x42 //water element
+	BYTE 0x42 //water element
+	BYTE 0x43 //wind element
+	BYTE 0x43 //wind element
+	BYTE 0x43 //wind element
+#endif
+BYTE 0x44 //grip ring
+BYTE 0x45 //power bracelet
+BYTE 0x46 //flippers
+#ifdef bigKeysanityTraps
+	BYTE 0x52 //big key
+#endif
+#ifdef smallKeysanityTraps
+	BYTE 0x53 //small key
+	BYTE 0x53 //small key
+	BYTE 0x53 //small key
+#endif
+#ifdef heartTraps
+	BYTE 0x62 //heart container
+	BYTE 0x63 //piece of heart
+#endif
+BYTE 0x64 //wallet
+BYTE 0x65 //bomb bag
+BYTE 0x66 //quiver
+#ifdef requirementFigurinesAmmount
+	BYTE 0x67 //figurine
+#endif
+BYTE 0 //terminator

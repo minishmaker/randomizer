@@ -1,0 +1,12 @@
+1) Tokenization and Lexing
+2) Line-by-line: Parsing, Label definitions, Macro expansion, Preprocessor evaluation*, in that order (First Pass)
+3) Interpret byte changes (Second Pass)
+
+*) Preprocessor parsing is a bit special. What I've decided upon is that each directive gets handed its parameters which it then may decide how to simplify.
+#include / #incbin have their first parameter implicitly parsed as a windows pathname.
+All parameters must still be proper EA syntax (i.e. identifiers or expressions), with the exception that flags may be passed as -foobar,
+    where foobar may be any non-whitespace-containing string.
+#incext / #inctevent attempt to simplify all parameters before passing them out.
+    What this means is that using an identifier that has been defined by that point will pass out the defined value.
+All directives get their first and ONLY their first parameter to not be expanded (i.e. if it's already defined, it will not be expanded).
+    As such, #ifdef / #ifndef are now limited to only one parameter.
