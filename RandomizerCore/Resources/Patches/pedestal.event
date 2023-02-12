@@ -69,7 +69,6 @@ ALIGN 4
 pedestalPull:
 #incbin "asm/pedestalPull.dmp"
 POIN requirementTable
-POIN defaultRequirement
 POIN pedestalearth
 POIN pedestalfire
 POIN pedestalwater
@@ -141,10 +140,6 @@ requirementDungeonsASM:
 #incbin "asm/pedestalRequirements/requirementDungeonsASM.dmp"
 WORD requirementDungeonsAmmount
 #endif
-
-ALIGN 4
-defaultRequirement:
-#incbin "asm/pedestalElements.dmp"
 
 #ifdef pedestalItems
 //do not equip swords when pulled, also set flags

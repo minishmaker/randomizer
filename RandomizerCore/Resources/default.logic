@@ -1536,20 +1536,20 @@
 !define - GotSwords -
 !define - GotElements -
 !ifdef - PED_ITEMS
-    !eventdefine - openDHC
-    !eventdefine - pedestalItems
+	!eventdefine - openDHC
+	!eventdefine - pedestalItems
 	!define - PED - Dungeon
 !else
 	!define - PED - Inaccessible
-    !ifdef - OPENDHC
-        !eventdefine - openDHC
-    !else
+	!ifdef - OPENDHC
+		!eventdefine - openDHC
+	!else
 		!eventdefine - requirementSwordTier       - `SWORDLEVEL`
 		!eventdefine - requirementElementsAmmount - `ELEMENTAMOUNT`
-        !ifdef - NODHC
-            !eventdefine - noDHC
-        !endif
-        !ifndef - SWORDEX
+		!ifdef - NODHC
+			!eventdefine - noDHC
+		!endif
+		!ifndef - SWORDEX
 			!undefine - GotSwords
 			!ifdef - NOPROG
 				!ifdef - 1SWORD
@@ -1572,20 +1572,10 @@
 			!else
 				!define - GotSwords - (+`SWORDLEVEL`, Items.ProgressiveItem.0x00)
 			!endif
-        !endif
-        !ifndef - ELEMENTEX
+		!endif
+		!ifndef - ELEMENTEX
 			!undefine - GotElements
-            !define - GotElements - , (+`ELEMENTAMOUNT`, Items.WaterElement, Items.FireElement, Items.WindElement, Items.EarthElement)
-        !endif
-		!ifdef - SWORDEX
-			!ifdef - ELEMENTEX
-				!ifndef - FIGURINE_HUNT
-					!ifdef - AD_PED_0
-						!undefine - GotElements
-						!define - GotElements - , (+4, Items.WaterElement, Items.FireElement, Items.WindElement, Items.EarthElement)
-					!endif
-				!endif
-			!endif
+			!define - GotElements - , (+`ELEMENTAMOUNT`, Items.WaterElement, Items.FireElement, Items.WindElement, Items.EarthElement)
 		!endif
 	!endif
 !endif

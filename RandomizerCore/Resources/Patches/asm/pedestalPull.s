@@ -1,5 +1,4 @@
-.equ defaultRequirement, requirementTable+4
-.equ pedestalearth, defaultRequirement+4
+.equ pedestalearth, requirementTable+4
 .equ pedestalfire, pedestalearth+4
 .equ pedestalwater, pedestalfire+4
 .equ pedestalwind, pedestalwater+4
@@ -26,7 +25,7 @@ ldr	r4,requirementTable
 loop:
 ldr	r0,[r4]
 cmp	r0,#0
-beq	endLoop
+beq	drop
 mov	lr,r0
 .short	0xF800
 cmp	r0,#0
@@ -34,19 +33,8 @@ beq	elements
 add	r4,#4
 b	loop
 
-endLoop:
-ldr	r0,requirementTable
-cmp	r0,r4
-bne	drop
-@run the default requirement
-ldr	r0,defaultRequirement
-mov	lr,r0
-.short	0xF800
-cmp	r0,#0
-beq	elements
-
-@place the drop object
 drop:
+@place the drop object
 ldr	r0,=#0x80F4B9C
 ldr	r3,=#0x804AAF8
 mov	lr,r3
@@ -103,7 +91,6 @@ pop	{r4,pc}
 .ltorg
 requirementTable:
 @POIN requirementTable
-@POIN defaultRequirement
 @POIN pedestalearth
 @POIN pedestalfire
 @POIN pedestalwater
