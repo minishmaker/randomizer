@@ -912,7 +912,7 @@ namespace MinishCapRandomizerUI.UI
 			// 
 			// SaveRom
 			// 
-			this.SaveRom.Location = new System.Drawing.Point(519, 600);
+			this.SaveRom.Location = new System.Drawing.Point(519, 520);
 			this.SaveRom.Name = "SaveRom";
 			this.SaveRom.Size = new System.Drawing.Size(247, 23);
 			this.SaveRom.TabIndex = 24;
@@ -922,7 +922,7 @@ namespace MinishCapRandomizerUI.UI
 			// 
 			// SavePatch
 			// 
-			this.SavePatch.Location = new System.Drawing.Point(263, 600);
+			this.SavePatch.Location = new System.Drawing.Point(263, 520);
 			this.SavePatch.Name = "SavePatch";
 			this.SavePatch.Size = new System.Drawing.Size(246, 23);
 			this.SavePatch.TabIndex = 23;
@@ -932,7 +932,7 @@ namespace MinishCapRandomizerUI.UI
 			// 
 			// SaveSpoiler
 			// 
-			this.SaveSpoiler.Location = new System.Drawing.Point(6, 600);
+			this.SaveSpoiler.Location = new System.Drawing.Point(6, 520);
 			this.SaveSpoiler.Name = "SaveSpoiler";
 			this.SaveSpoiler.Size = new System.Drawing.Size(247, 23);
 			this.SaveSpoiler.TabIndex = 22;
