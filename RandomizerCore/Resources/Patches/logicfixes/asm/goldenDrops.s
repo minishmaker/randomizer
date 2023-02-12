@@ -37,6 +37,7 @@ bhi	rupeelike
 
 @ right area and room, spawn the item
 match:
+mov	r0, r7
 ldrb	r1, [r4, #2]
 ldrb	r2, [r4, #3]
 
