@@ -2138,6 +2138,7 @@ CanDownThrust;		Helper;; Helpers.HasSword, Items.DownThrust, Items.RocsCape
 !endif
 !ifdef - NOBOW
 	!define - BOWHELPER -
+	!define - GLEEROKBOW - 
 !else
 	!ifdef - YESBOW
 		!define - BOWHELPER - , Helpers.HasBow
