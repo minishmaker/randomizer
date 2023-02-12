@@ -42,7 +42,7 @@ public static class LogicImports
     {
         const string beatVaatiDefineName = "BeatVaati";
 
-        if (itemToPlace.ShufflePool is not ItemPool.Major || self.Dungeons.Count == 0 || self.Dungeons.All(dungeon => dungeon != itemToPlace.Dungeon)) return true;
+        if (itemToPlace.ShufflePool is not ItemPool.Major and not ItemPool.DungeonMajor || self.Dungeons.Count == 0) return true;
 
         var prizeDungeonForItem = allLocations.Where(location => location.Type == LocationType.DungeonPrize)
             .FirstOrDefault(prize => prize.Dungeons.Any(dungeon => self.Dungeons.Any(dun => dun == dungeon)));
