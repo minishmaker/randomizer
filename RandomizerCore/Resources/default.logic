@@ -187,8 +187,9 @@
 !flag - Other - Setting - Extras - ITEM_HISTORY - Item Name Display - Collecting an item will display text at the bottom left corner of the screen telling you what you just picked up, useful in Keysanity modes where the textbox closes too quickly for you to read which dungeon it came from. - true
 !flag - Other - Setting - Extras - SHY_FAIRIES - Shy Fairies - Faires do not come out of bottles when your health reaches 0.
 !flag - Other - Setting - Extras - HOMEWARP - Homewarp - In the Pause menu there is a 'SLEEP' option on the 'QUEST STATUS' screen, using this will warp Link back to his bed from wherever he is. - true
-!flag - Other - Setting - Extras - BOOTS_MINISH - Minish Dash - Enables a hack that allows Minish Sized Link to use the boots. Warning: Has some unintended effects.
+!flag - Other - Setting - Extras - OCARINA_SELECT - Ocarina on Select - Allows you to use the Ocarina by pressing the Select button, once obtained.\nWarning: Since this removes the Ezlo interaction, this prevents certain glitches. - true
 !flag - Other - Setting - Extras - GORON_ALT_PRICES - Goron Merchant JP/US prices - If enabled will use the prices found in the JP and US versions.\nThese are the prices from left to right:\nEU 1st set: 200, 100, 50\nEU 2nd set: 300, 200, 100\nEU 3rd set: 400, 300, 200\nEU 4th set: 500, 400, 300\nEU 5th set: 600, 500, 400\nJP any set: 300, 200, 50
+!dropdown - Other - Setting - Extras - BOOTS_L - Boots on L: - Allows you to use the Pegasus Boots by pressing the L button, once obtained. - BOOTS_L_NORMAL - Disabled - BOOTS_L_OFF - 'Disabled': Boots can only be used when equipped on the A or B button. - Enabled - BOOTS_L_NORMAL - 'Enabled': Boots can also be used with the L button. - Enabled + Minish - BOOTS_L_MINISH - 'Enabled + Minish': Even as a Minish, Boots can be used with the L button.\nWarning: Dashing as a Minish has some unintended effects.
 !dropdown - Other - Setting - Extras - FIREROD - Firerod: - The Firerod is a leftover developer testing tool. It lets the user copy and paste tiles, effectively allowing you to walk through walls and most obstacles.\n\n WARNING: It is extremely easy to softlock yourself with this item, it is recommended to enable 'Homewarp' with this item, however some softlocks will completely prevent you from being able to beat the game. - NO_FIREROD - No Firerod - NO_FIREROD - 'No Firerod': Standard - Start With - FIREROD_START - 'Start With': Firerod is in Links Starting Inventory - Shuffled - FIREROD_CHEST - 'Shuffled': Firerod is added to the item pool, it can be randomized to any location.
 
 # Cosmetic settings
@@ -281,6 +282,7 @@
 !define - `GORON_SETTING`
 !define - `ENTRANCES`
 !define - `ACCESSIBILITY`
+!define - `BOOTS_L`
 
 # Logic setting defines
 !define - `MITTSMONEY`
@@ -885,8 +887,16 @@
 	!endif
 !endif
 
-!ifdef - BOOTS_MINISH
+!ifdef - BOOTS_L_NORMAL
+	!eventdefine - bootsOnL
+!endif
+!ifdef - BOOTS_L_MINISH
+	!eventdefine - bootsOnL
 	!eventdefine - bootsMinish
+!endif
+
+!ifdef - OCARINA_SELECT
+	!eventdefine - ocarinaOnSelect
 !endif
 
 !ifdef - DEFICKLE

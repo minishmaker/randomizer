@@ -1,6 +1,7 @@
 .equ	ReturnTrue, ReturnFalse+4
 .equ	buttonTable, ReturnTrue+4
-.equ	glitchless, buttonTable+4
+.equ	bootsOnL, buttonTable+4
+.equ	ocarinaOnSelect, bootsOnL+4
 .thumb
 push	{r4-r6,lr}
 mov	r4,r0
@@ -10,6 +11,11 @@ push	{r5-r6}
 @check if we are checking for the A button
 cmp	r6,#1
 bne	end
+
+@check if boots on L
+ldr	r5,bootsOnL
+cmp	r5,#0
+beq	noBoots
 
 @check if the L button is pressed
 ldr	r5,=#0x3004010
@@ -33,10 +39,10 @@ and	r6,r5
 cmp	r6,#0
 bne	boots
 
-@check if glitchless
+@check if ocarina on Select
 noBoots:
-ldr	r5, glitchless
-cmp	r5, #0
+ldr	r5,ocarinaOnSelect
+cmp	r5,#0
 beq	end
 
 @check if the Select button is pressed
@@ -92,4 +98,5 @@ ReturnFalse:
 @POIN ReturnFalse
 @POIN ReturnTrue
 @POIN buttonTable
-@WORD glitchless
+@WORD bootsOnL
+@WORD ocarinaOnSelect

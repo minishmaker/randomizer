@@ -1,4 +1,5 @@
-.equ	glitchless, graphics+4
+.equ	bootsOnL, graphics+4
+.equ	ocarinaOnSelect, bootsOnL+4
 .thumb
 strh	r4,[r1,#0x2E]
 ldr	r0,=#0x20350F0
@@ -228,13 +229,16 @@ b	doneDrawLinks
 
 @check if we have boots
 doneDrawLinks:
+ldr	r3,bootsOnL
+cmp	r3,#0
+beq	noBoots
 ldr	r3,=#0x2002B37
 ldrb	r0,[r3]
 mov	r1,#0x0C
 and	r1,r0
 cmp	r1,#0
 beq	noBoots
-@draw boots icon
+@draw boots L icon
 ldr	r0,=#0x292
 add	r0,r7
 mov	r1,#0x13
@@ -260,7 +264,7 @@ noBoots:
 
 noShield:
 @check if we have ocarina
-ldr	r3,glitchless
+ldr	r3,ocarinaOnSelect
 cmp	r3,#0
 beq	noOcarina
 ldr	r3,=#0x2002B37
@@ -269,7 +273,7 @@ mov	r1,#0xC0
 and	r1,r0
 cmp	r1,#0
 beq	noOcarina
-@draw boots icon
+@draw ocarina Select icon
 ldr	r0,=#0x2A2
 add	r0,r7
 mov	r1,#0x37
@@ -425,4 +429,5 @@ pop	{r4-r5,pc}
 .ltorg
 graphics:
 @POIN graphics
-@WOROD glitchless
+@WORD bootsOnL
+@WORD ocarinaOnSelect

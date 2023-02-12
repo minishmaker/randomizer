@@ -238,7 +238,12 @@ ALIGN 4
 progressiveIcon:
 #incbin "asm/progressiveIcon.dmp"
 POIN progressiveIconGraphics
-#ifdef glitchless
+#ifdef bootsOnL
+	WORD 1
+#else
+	WORD 0
+#endif
+#ifdef ocarinaOnSelect
 	WORD 1
 #else
 	WORD 0
