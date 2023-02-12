@@ -140,7 +140,7 @@
 !dropdown - Logic Settings - Setting - Logic Rules - GRABBABLE - Grab items from a distance: - Items can be collected from a distance with either Gust Jar, Boomerang, or even a Sword Slash. - NOT_GRABBABLE - Not Allowed - NOT_GRABBABLE - 'Not Allowed': Items cannot be grabbed from a distance - Allowed - GRABBABLE - 'Allowed': Items can be grabbed from a distance, but this will never be required by logic. - Require - GRABBABLE_LOGIC - 'Require': Items can be grabbed from a distance and logic can require doing so.
 
 !dropdown - Logic Settings - Setting - Weapons - BOMBWEAPON - Bombs: - Bombs can damage nearly every enemy, Bombs are never considered for Simon Simulations, and Golden Enemies. - NOBOMB - No - NOBOMB - 'No': Bombs are not considered as Weapons. - Yes - YESBOMB - 'Yes': Bombs are considered as weapons for most regular enemy fights. - Yes + Bosses - BOSSBOMB - 'Yes + Bosses': Bombs are considered as weapons for most enemy fights. Fighting Green/Blu Chu, Madderpillars and Darknuts require only 10 bomb bag. Gleerok, Mazaal and Scissor Beetles require at least 30 bomb bag. Octo and Gyorg cannot be defeated with bombs.
-!dropdown - Logic Settings - Setting - Weapons - BOWWEAPON - Bows: - Bow can damage most enemies, many enemies are very resiliant to damage. Chu Bosses and Darknuts are Immune. - NOBOW - No - NOBOW - 'No': Bows are not considered as Weapons. - Yes - YESBOW - 'Yes': Bows are considered as weapons for most enemy fights. Bows are never considered for Chu Bossfights, Darknuts, Scissor Beetles, Madderpillar, Wizrobes, Simon Simulations, and Golden Enemies.
+!dropdown - Logic Settings - Setting - Weapons - BOWWEAPON - Bows: - Bow can damage most enemies, many enemies are very resiliant to damage. Chu Bosses and Darknuts are Immune. - NOBOW - No - NOBOW - 'No': Bows are not considered as Weapons. - Yes - YESBOW - 'Yes': Bows are considered as weapons for most enemy fights. Bows are never considered for Chu Bossfights, Darknuts, Scissor Beetles, Madderpillar, Wizrobes, Simon Simulations, and Golden Enemies. - Yes + Bosses - BOSSBOW - 'Yes + Bosses': Bows are considered as weapons for most enemy fights, but can also be soley required to defeat Gleerok and Mazaal.
 !dropdown - Logic Settings - Setting - Weapons - GUSTWEAPON - Gust Jar: - Gust Jar can suck up various enemies like Ghini(Ghosts) and Beetles (The things that grab onto link). It can also grab objects and fire them like projectiles to kill enemies, some enemies or parts of enemies can be used as projectiles such as Helmasaurs and Stalfos. - NOGUST - No - NOGUST - 'No': Gust Jar is never considered for killing enemies. - Yes - YESGUST - 'Yes': Gust Jar is considered as weapons for all enemies that get sucked up by it, you are never expected to use objects as projectiles to kill enemies.
 !dropdown - Logic Settings - Setting - Weapons - LAMPWEAPON - Lantern: - The lit Lantern can instantly kill wizrobes by walking through them. - NOLAMP - No - NOLAMP - 'No': Lantern is not considered as a Weapon. - Yes - YESLAMP - 'Yes': Lantern is considered as a weapon for fighting Wizrobes.
 
@@ -1264,8 +1264,51 @@
 	Items.Rupee50;		Filler;
 	Items.Rupee100;		Filler;
 	Items.Rupee200;		Filler;
-	Items.Rupee100:23;	Major;
-	Items.Rupee200:11;	Major;
+	!ifndef - MITTSMONEY
+		!ifndef - GORON_ALT_PRICES
+			!ifdef - GORON_1
+				Items.Rupee100:2;		Major;
+				Items.Rupee200:1;		Major;
+			!endif
+			!ifdef - GORON_2
+				Items.Rupee100:4;		Major;
+				Items.Rupee200:3;		Major;
+			!endif
+			!ifdef - GORON_3
+				Items.Rupee100:9;		Major;
+				Items.Rupee200:5;		Major;
+			!endif
+			!ifdef - GORON_4
+				Items.Rupee100:15;	Major;
+				Items.Rupee200:8;		Major;
+			!endif
+			!ifdef - GORON_5
+				Items.Rupee100:22;	Major;
+				Items.Rupee200:12;	Major;
+			!endif
+		!else
+			!ifdef - GORON_1
+				Items.Rupee100:2;		Major;
+				Items.Rupee200:2;		Major;
+			!endif
+			!ifdef - GORON_2
+				Items.Rupee100:6;		Major;
+				Items.Rupee200:3;		Major;
+			!endif
+			!ifdef - GORON_3
+				Items.Rupee100:8;		Major;
+				Items.Rupee200:5;		Major;
+			!endif
+			!ifdef - GORON_4
+				Items.Rupee100:12;	Major;
+				Items.Rupee200:6;		Major;
+			!endif
+			!ifdef - GORON_5
+				Items.Rupee100:14;	Major;
+				Items.Rupee200:8;		Major;
+			!endif
+		!endif
+	!endif
 	Items.Bombs5;			Filler;
 	Items.Arrows5;		Filler;
 	Items.SmallHeart;		Filler;
@@ -2065,14 +2108,14 @@ CanFuseShared;		Helper;; Helpers.Start `ALLREDSHARED` `ALLBLUESHARED` `ALLGREENS
 # Helpers, these let us write shorter expressions we would normally use often
 HasSword;			Helper;; (|Items.SmithSword, Items.GreenSword, Items.RedSword, Items.BlueSword, Items.FourSword, Items.ProgressiveItem.0x00)
 HasWhiteSword;		Helper;; (|Items.GreenSword, Items.RedSword, Items.BlueSword, Items.FourSword, Items.ProgressiveItem.0x00:2)
-HasSpin;			Helper;; (|Items.SpinAttack, Items.ProgressiveItem.0x04)
+HasSpin;				Helper;; (|Items.SpinAttack, Items.ProgressiveItem.0x04)
 CanSplit2;			Helper;; (|Items.ProgressiveItem.0x00:3, Items.RedSword), Helpers.HasSpin
 CanSplit3;			Helper;; (|Items.ProgressiveItem.0x00:4, Items.BlueSword), Helpers.HasSpin
 CanSplit4;			Helper;; (|Items.ProgressiveItem.0x00:5, Items.FourSword), Helpers.HasSpin
 HasBottle;			Helper;; (|Items.Bottle1, Items.Bottle2, Items.Bottle3, Items.Bottle, Items.Bottle.0x20, Items.Bottle.0x21, Items.Bottle.0x22, Items.Bottle.0x23, Items.Bottle.0x24, Items.Bottle.0x25, Items.Bottle.0x26, Items.Bottle.0x27, Items.Bottle.0x28, Items.Bottle.0x29, Items.Bottle.0x2A, Items.Bottle.0x2B, Items.Bottle.0x2C, Items.Bottle.0x2D, Items.Bottle.0x2E, Items.Bottle.0x2F, Items.Bottle.0x30, Items.Bottle.0x31)
 HasBow;				Helper;; (|Items.Bow, Items.LightArrow, Items.ProgressiveItem.0x01)
-HasLightBow;		Helper;; (|Items.ProgressiveItem.0x01:2, Items.LightArrow)
-HasBoomerang;		Helper;; (|Items.Boomerang, Items.MagicBoomerang, Items.ProgressiveItem.0x02)
+HasLightBow;			Helper;; (|Items.ProgressiveItem.0x01:2, Items.LightArrow)
+HasBoomerang;			Helper;; (|Items.Boomerang, Items.MagicBoomerang, Items.ProgressiveItem.0x02)
 HasMagicBoomerang;	Helper;; (|Items.ProgressiveItem.0x02:2, Items.MagicBoomerang)
 HasShield;			Helper;; (|Items.Shield, Items.MirrorShield, Items.ProgressiveItem.0x03)
 !ifdef - HEARTS_20
@@ -2105,8 +2148,15 @@ CanDownThrust;		Helper;; Helpers.HasSword, Items.DownThrust, Items.RocsCape
 !endif
 !ifdef - NOBOW
 	!define - BOWHELPER -
+	!define - GLEEROKBOW - 
 !else
-	!define - BOWHELPER - , Helpers.HasBow
+	!ifdef - YESBOW
+		!define - BOWHELPER - , Helpers.HasBow
+		!define - GLEEROKBOW - 
+	!else
+		!define - BOWHELPER - , Helpers.HasBow
+		!define - GLEEROKBOW - , Helpers.HasBow
+	!endif
 !endif
 !ifdef - NOGUST
 	!define - GUSTHELPER - 
@@ -2122,10 +2172,10 @@ HasDamageSource;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER`)
 HasMadderDamage;		Helper;;	(|Helpers.HasSword `CHUBOMBS`)
 HasChuDamage;			Helper;;	(|Helpers.HasSword `CHUBOMBS`)
 HasHelmasaurDamage;	Helper;;	(|Helpers.HasSword `BOMBHELPER` `BOWHELPER` `GUSTHELPER`)
-HasGleerokDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `GLEEROKBOMBS`)
+HasGleerokDamage;		Helper;;	(|Helpers.HasSword `GLEEROKBOW` `GLEEROKBOMBS`)
 HasWizrobeDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `LAMPHELPER`)
 HasDarknutDamage;		Helper;;	(|Helpers.HasSword `CHUBOMBS`)
-HasMazaalDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `GLEEROKBOMBS`)
+HasMazaalDamage;		Helper;;	(|Helpers.HasSword `GLEEROKBOW` `GLEEROKBOMBS`)
 HasScissorDamage;		Helper;;	(|Helpers.HasSword `GLEEROKBOMBS`)
 HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPER`)
 
@@ -2146,21 +2196,21 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 # Trick Requirements, Easy Option 1st then Hard Option 2nd
 # Make trick for CoF entrance bob-ombs
 !ifndef - MITTSMONEY
-ShopSimon;				Helper;;	(|(&Items.Rupee20:2, Items.Rupee50), Items.Rupee20:5, Items.Rupee50:2, Items.Rupee100, Items.Rupee200) #(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200)
-Shop80;					Helper;;	(|(&Items.Rupee100, Items.Rupee50:2), Items.Rupee50:4, Items.Rupee100:2, Items.Rupee200) #(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200)
-Shop300;				Helper;;	(|(&Items.Rupee200:2, Items.Rupee100), (&Items.Rupee200, Items.Rupee100:3), Items.Rupee100:5, Items.Rupee200:3) #(+510, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200)
-Shop600;				Helper;;	(|(&Items.Rupee200:4, Items.Rupee100), (&Items.Rupee200:3, Items.Rupee100:3), (&Items.Rupee200:4, Items.Rupee100:5), (&Items.Rupee200:2, Items.Rupee100:7), (&Items.Rupee200, Items.Rupee100:9), Items.Rupee100:11, Items.Rupee200:6) #(+1110, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200)
-ShopWitch;				Helper;;	(|Items.Rupee50:3, Items.Rupee100, Items.Rupee200) #(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200)
-ShopScrubTrilby;		Helper;;	(|Items.Rupee50:3, Items.Rupee100, Items.Rupee200) #(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200)
-ShopScrubCrenel;		Helper;;	(|Items.Rupee50:3, Items.Rupee100, Items.Rupee200) #(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200)
+ShopSimon;			Helper;;	(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200)
+Shop80;				Helper;;	(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200)
+Shop300;				Helper;;	(+510, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200)
+Shop600;				Helper;;	(+1110, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200)
+ShopWitch;			Helper;;	(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200)
+ShopScrubTrilby;		Helper;;	(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200)
+ShopScrubCrenel;		Helper;;	(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200)
 !else
-ShopSimon;				Helper;;	(|(&Items.Rupee20:2, Items.Rupee50), Items.Rupee20:5, Items.Rupee50:2, Items.Rupee100, Items.Rupee200, Items.MoleMitts)#(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Items.MoleMitts)
-Shop80;					Helper;;	(|(&Items.Rupee100, Items.Rupee50:2), Items.Rupee50:4, Items.Rupee100:2, Items.Rupee200, Items.MoleMitts)#(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Items.MoleMitts)
-Shop300;				Helper;;	(|(&Items.Rupee200:2, Items.Rupee100), (&Items.Rupee200, Items.Rupee100:3), Items.Rupee100:5, Items.Rupee200:3, Items.MoleMitts)#(|(+510, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Items.MoleMitts)
-Shop600;				Helper;;	(|(&Items.Rupee200:4, Items.Rupee100), (&Items.Rupee200:3, Items.Rupee100:3), (&Items.Rupee200:4, Items.Rupee100:5), (&Items.Rupee200:2, Items.Rupee100:7), (&Items.Rupee200, Items.Rupee100:9), Items.Rupee100:11, Items.Rupee200:6, Items.MoleMitts) #(|(+1110, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Items.MoleMitts)
-ShopWitch;				Helper;;	(|Items.Rupee50:3, Items.Rupee100, Items.Rupee200, Items.MoleMitts) #(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Items.MoleMitts)
-ShopScrubTrilby;		Helper;;	(|Items.Rupee50:3, Items.Rupee100, Items.Rupee200, Items.MoleMitts) #(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Items.MoleMitts)
-ShopScrubCrenel;		Helper;;	(|Items.Rupee50:3, Items.Rupee100, Items.Rupee200, Items.MoleMitts) #(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Items.MoleMitts)
+ShopSimon;			Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Items.MoleMitts)
+Shop80;				Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Items.MoleMitts)
+Shop300;				Helper;;	(|(+510, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Items.MoleMitts)
+Shop600;				Helper;;	(|(+1110, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Items.MoleMitts)
+ShopWitch;			Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Items.MoleMitts)
+ShopScrubTrilby;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Items.MoleMitts)
+ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Items.MoleMitts)
 !endif
 !ifndef - GUARDSKIP
 GuardSkip;				Helper;;	Helpers.Inaccessible
