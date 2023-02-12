@@ -206,7 +206,22 @@ Exit                Exits the program
                 }
                 else
                 {
-                    Console.WriteLine("Invalid Input!");
+                    if (options.Exists(option => String.Equals(option.Name, input)))
+                    {
+                        var option = options.Find(option => String.Equals(option.Name, input));
+                        if (option != null)
+                        {
+                            EditOption(option);
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Unknown Option {input}!");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Unknown Option {input}!");
+                    }
                 }
             }
             else
