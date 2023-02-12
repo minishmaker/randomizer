@@ -1536,20 +1536,20 @@
 !define - GotSwords -
 !define - GotElements -
 !ifdef - PED_ITEMS
-	!eventdefine - openDHC
-	!eventdefine - pedestalItems
+    !eventdefine - openDHC
+    !eventdefine - pedestalItems
 	!define - PED - Dungeon
 !else
 	!define - PED - Inaccessible
-	!ifdef - OPENDHC
-		!eventdefine - openDHC
-	!else
+    !ifdef - OPENDHC
+        !eventdefine - openDHC
+    !else
 		!eventdefine - requirementSwordTier       - `SWORDLEVEL`
 		!eventdefine - requirementElementsAmmount - `ELEMENTAMOUNT`
-		!ifdef - NODHC
-			!eventdefine - noDHC
-		!endif
-		!ifndef - SWORDEX
+        !ifdef - NODHC
+            !eventdefine - noDHC
+        !endif
+        !ifndef - SWORDEX
 			!undefine - GotSwords
 			!ifdef - NOPROG
 				!ifdef - 1SWORD
@@ -1572,11 +1572,11 @@
 			!else
 				!define - GotSwords - (+`SWORDLEVEL`, Items.ProgressiveItem.0x00)
 			!endif
-		!endif
-		!ifndef - ELEMENTEX
+        !endif
+        !ifndef - ELEMENTEX
 			!undefine - GotElements
-			!define - GotElements - , (+`ELEMENTAMOUNT`, Items.WaterElement, Items.FireElement, Items.WindElement, Items.EarthElement)
-		!endif
+            !define - GotElements - , (+`ELEMENTAMOUNT`, Items.WaterElement, Items.FireElement, Items.WindElement, Items.EarthElement)
+        !endif
 	!endif
 !endif
 GotSwords; 	Helper; ; `GotSwords`
@@ -5237,11 +5237,23 @@ Palace_Entrance							`DUNGEONENTRANCE`;	DumPoWENT:Define:FirstByte, DumPoWENT:D
 # Deepwood locations
 
 !define - DWS_INSIDE - `DWS_OUTSIDE`	:DWSSmall	:DWSBig	:DWSCompass	:Small	:Big	:Compass
-!ifdef - NONE
-		!define - DWS_PRIZE - `DWS_INSIDE`
+!ifdef - UNREQSUR
+	!define - DWS_PRIZE - :DWSSmall	:DWSBig	:DWSCompass	:DWSSmallOutside	:DWSBigOutside	:DWSCompassOutside
 !else
+	!ifdef - BARRENSUR
 		!define - DWS_PRIZE - :DWSSmall	:DWSBig	:DWSCompass	:DWSSmallOutside	:DWSBigOutside	:DWSCompassOutside
+	!else
+		!ifdef - UNREQ
+			!define - DWS_PRIZE - :DWSSmall	:DWSBig	:DWSCompass
+		!else
+			!ifdef - BARREN
+				!define - DWS_PRIZE - :DWSSmall	:DWSBig	:DWSCompass
+			!else
+				!define - DWS_PRIZE - `DWS_INSIDE`
+			!endif
+		!endif
 	!endif
+!endif
 AccessDeepwood;									Helper;			;																Helpers.AccessMinishWoods, Helpers.Festari;
 
 Deepwood_2F_Chest						`DWS_INSIDE`;	Dungeon;			0x48-0x17-0x01;													(|(&`ENTERDWS`, Helpers.DeepwoodWeb), Helpers.Hundo);																										Items.Rupee20
@@ -5269,7 +5281,23 @@ Deepwood_Prize						`DWS_PRIZE`;	DungeonPrize;		0x0DF03B;														(|Helpers
 # Cave of Flames locations
 
 !define - COF_INSIDE - `COF_OUTSIDE`	:CoFSmall	:CoFBig	:CoFCompass	:Small	:Big	:Compass
-!define - COF_PRIZE - :CoFSmall	:CoFBig	:CoFCompass	:CoFSmallOutside	:CoFBigOutside	:CoFCompassOutside
+!ifdef - UNREQSUR
+	!define - COF_PRIZE - :CoFSmall	:CoFBig	:CoFCompass	:CoFSmallOutside	:CoFBigOutside	:CoFCompassOutside
+!else
+	!ifdef - BARRENSUR
+		!define - COF_PRIZE - :CoFSmall	:CoFBig	:CoFCompass	:CoFSmallOutside	:CoFBigOutside	:CoFCompassOutside
+	!else
+		!ifdef - UNREQ
+			!define - COF_PRIZE - :CoFSmall	:CoFBig	:CoFCompass
+		!else
+			!ifdef - BARREN
+				!define - COF_PRIZE - :CoFSmall	:CoFBig	:CoFCompass
+			!else
+				!define - COF_PRIZE - `COF_INSIDE`
+			!endif
+		!endif
+	!endif
+!endif
 
 AccessCoF;									Helper;			;																		Helpers.AccessMelari;
 
@@ -5305,7 +5333,23 @@ Crenel_Melari_NPC				`COF_INSIDE`;		Dungeon;			0x00D26E;																(|Helper
 
 
 !define - FOW_INSIDE - `FOW_OUTSIDE`	:FoWSmall	:FoWBig	:FoWCompass	:Small	:Big	:Compass
-!define - FOW_PRIZE - :FoWSmall	:FoWBig	:FoWCompass	:FoWSmallOutside	:FoWBigOutside	:FoWCompassOutside
+!ifdef - UNREQSUR
+	!define - FOW_PRIZE - :FoWSmall	:FoWBig	:FoWCompass	:FoWSmallOutside	:FoWBigOutside	:FoWCompassOutside
+!else
+	!ifdef - BARRENSUR
+		!define - FOW_PRIZE - :FoWSmall	:FoWBig	:FoWCompass	:FoWSmallOutside	:FoWBigOutside	:FoWCompassOutside
+	!else
+		!ifdef - UNREQ
+			!define - FOW_PRIZE - :FoWSmall	:FoWBig	:FoWCompass
+		!else
+			!ifdef - BARREN
+				!define - FOW_PRIZE - :FoWSmall	:FoWBig	:FoWCompass
+			!else
+				!define - FOW_PRIZE - `FOW_INSIDE`
+			!endif
+		!endif
+	!endif
+!endif
 
 # Fortress of Winds Locations
 
@@ -5354,6 +5398,11 @@ Fortress_Prize						`FOW_PRIZE`;	`FORTRESSPRIZE`;		0x09C9E6:FirstByte, 0x09C9E8:
 
 !define - TOD_INSIDE - :ToDSmall	:ToDBig	:ToDCompass	:Small	:Big	:Compass
 !define - TOD_PRIZE - :ToDSmall	:ToDBig	:ToDCompass
+!ifdef - NONE
+	!define - TOD_PRIZE - `TOD_INSIDE`
+!else
+	!define - TOD_PRIZE - :ToDSmall	:ToDBig	:ToDCompass
+!endif
 
 AccessDroplets;	Helper;	;	(&Helpers.AccessLonLon, Helpers.CapeExtension)
 
@@ -5427,6 +5476,23 @@ Droplets_Prize								`TOD_PRIZE`;	DungeonPrize;				0x0E40C3;														(|Hel
 
 !define - POW_INSIDE - `POW_OUTSIDE`	:PoWSmall	:PoWBig	:PoWCompass	:Small	:Big	:Compass
 !define - POW_PRIZE - :PoWSmall	:PoWBig	:PoWCompass :PoWSmallOutside	:PoWBigOutside	:PoWCompassOutside
+!ifdef - UNREQSUR
+	!define - POW_PRIZE - :PoWSmall	:PoWBig	:PoWCompass :PoWSmallOutside	:PoWBigOutside	:PoWCompassOutside
+!else
+	!ifdef - BARRENSUR
+		!define - POW_PRIZE - :PoWSmall	:PoWBig	:PoWCompass :PoWSmallOutside	:PoWBigOutside	:PoWCompassOutside
+	!else
+		!ifdef - UNREQ
+			!define - POW_PRIZE - :PoWSmall	:PoWBig	:PoWCompass
+		!else
+			!ifdef - BARREN
+				!define - POW_PRIZE - :PoWSmall	:PoWBig	:PoWCompass
+			!else
+				!define - POW_PRIZE - `POW_INSIDE`
+			!endif
+		!endif
+	!endif
+!endif
 
 AccessPalace						;	Helper;			;				Helpers.AccessWindTribe;
 
