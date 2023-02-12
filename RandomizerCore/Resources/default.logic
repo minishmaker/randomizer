@@ -123,7 +123,7 @@
 !dropdown - World Settings - Setting - Fusions - RED_FUSION_SETTING - Red Fusions are: - Red Kinstones come in 3 shapes, Fusions can be found everywhere but are mostly from unique individuals.\n There are 24 Fusions in total, There are more Kinstones in the pool than fusions available just to be generous. - NO_RED_FUSIONS - Removed (Closed) - NO_RED_FUSIONS - 'Removed': All the Red Kinstones are removed from the pool, and the fusions are unable to be completed. - Vanilla - VANILLA_RED_FUSIONS - 'Vanilla': This shuffles the 3 different shaped Red Kinstones into the pool, the exact amount needed to do every available fusion, the locations of the fusions and what shape they ask for are not shuffled. - Combined - COMBINED_RED_FUSIONS - 'Combined': This converts the different shaped Red Kinstones into a single Red shape. The locations of the fusions are not shuffled and all ask for the same shape. - Completed (Open) - OPEN_RED_FUSIONS - 'Completed': All the Red Kinstones are removed from the pool, and all the fusions are already completed.
 !dropdown - World Settings - Setting - Fusions - BLUE_FUSION_SETTING - Blue Fusions are: - Blue Kinstones come in 2 shapes, Fusions can be found everywhere but are mostly from Walls or unique individuals.\n There are 18 Fusions in total, There are more Kinstones in the pool than fusions available just to be generous. - NO_BLUE_FUSIONS - Removed (Closed) - NO_BLUE_FUSIONS - 'Removed': All the Blue Kinstones are removed from the pool, and the fusions are unable to be completed. - Vanilla - VANILLA_BLUE_FUSIONS - 'Vanilla': This shuffles the 2 different shaped Blue Kinstones into the pool, the exact amount needed to do every available fusion, the locations of the fusions and what shape they ask for are not shuffled. - Combined - COMBINED_BLUE_FUSIONS - 'Combined': This converts the different shaped Blue Kinstones into a single Blue shape. The locations of the fusions are not shuffled and all ask for the same shape. - Completed (Open) - OPEN_BLUE_FUSIONS - 'Completed': All the Blue Kinstones are removed from the pool, and all the fusions are already completed.
 !dropdown - World Settings - Setting - Fusions - GREEN_FUSION_SETTING - Green Fusions are: - Green Kinstones come in 3 shapes, Fusions can be found everywhere and a large amount are shared between many people.\n There are 49 Fusions in total, There are more Kinstones in the pool than fusions available just to be generous. - NO_GREEN_FUSIONS - Removed (Closed) - NO_GREEN_FUSIONS - 'Removed': All the Green Kinstones are removed from the pool, and the fusions are unable to be completed. - Vanilla - VANILLA_GREEN_FUSIONS - 'Vanilla': This shuffles the 3 different shaped Green Kinstones into the pool, the exact amount needed to do every available fusion, the locations of the fusions and what shape they ask for are not shuffled. - Combined - COMBINED_GREEN_FUSIONS - 'Combined': This converts the different shaped Green Kinstones into a single Green shape. The locations of the fusions are not shuffled and all ask for the same shape. - Completed (Open) - OPEN_GREEN_FUSIONS - 'Completed': All the Green Kinstones are removed from the pool, and all the fusions are already completed.
-#!flag - World Settings - Setting - Fusions - SEEDED_SHARED - Order Shared Fusions - There are a Pool of 18 Shared Fusions in the Game: 16 Green, 1 Blue and 1 Red. These Fusions are randomly selected by an NPC who offers Shared Fusions when you enter the room they are in.\n\n If this setting is enabled then the seed generates a listed order these NPCs offer the fusions in. This makes different people playing the same seed have the same fusions available which is useful for races. - true
+!flag - World Settings - Setting - Fusions - SEEDED_SHARED - Order Shared Fusions - There are a Pool of 18 Shared Fusions in the Game: 16 Green, 1 Blue and 1 Red. These Fusions are randomly selected by an NPC who offers Shared Fusions when you enter the room they are in.\n\n If this setting is enabled then the seed generates a listed order these NPCs offer the fusions in. This makes different people playing the same seed have the same fusions available which is useful for races. - true
 !flag - World Settings - Setting - Fusions - DEFICKLE - Defickle Fusers - Many NPCs who offer fusions are considered 'Fickle', this means they can randomly decide to NOT offer their fusion.\n\n Enable this to make them ALWAYS offer a fusion. - true
 !dropdown - World Settings - Setting - Fusions - FUSION_SKIPS - Skip Fusion Cutscenes: - When doing a Kinstone Fusion you get a cutscene aftewards to show you what the fusion activated, and then a Map indicator spawns. - ALLOW_FUSION_SKIPS - Choose - ALLOW_FUSION_SKIPS - 'Choose': If you hold a button prior to the start of the cutscene, then the cutscene is skipped, otherwise the cutscene plays normally.\n If 'Show Map' is enabled then only the cutscene is skipped, but the map screen is still shown. - Always - INSTANT_SKIP - 'Always': The cutscene is always skipped without player input.\n If 'Show Map' is enabled then it will always show the map screen. - Never - NO_FUSION_SKIP - 'Never': The cutscene is never able to be skipped by the player.
 !flag - World Settings - Setting - Fusions - SHOW_MAP - Show Map - If enabled, it will always show the map screen at the end of a cutscene, even if the cutscene is skipped.
@@ -1932,44 +1932,398 @@ CompletePed; Helper; ; Helpers.GotSwords `GotElements` `DHC_FIG` `DHC_AD`
 	Items.Lantern.`GREENSHARED58`;	OverworldConstraint;	SF
 	Items.Lantern.`GREENSHARED5F`;	OverworldConstraint;	SF
 	Items.Lantern.`GREENSHARED60`;	OverworldConstraint;	SF
+	SeededRed18;		Helper;	;	Items.Lantern.0x18, Helpers.CanFuseRedV
+	SeededBlue2D;		Helper;	;	Items.Lantern.0x2D, Helpers.CanFuseBlueS
+	SeededGreen35;	Helper;	;	Items.Lantern.0x35, Helpers.CanFuseGreenC
+	SeededGreen35C1;	Helper;	;	Items.Lantern.0x35, Helpers.CanFuseGreenCShared1
+	SeededGreen35C2;	Helper;	;	Items.Lantern.0x35, Helpers.CanFuseGreenCShared2
+	SeededGreen35C3;	Helper;	;	Items.Lantern.0x35, Helpers.CanFuseGreenCShared3
+	SeededGreen35C4;	Helper;	;	Items.Lantern.0x35, Helpers.CanFuseGreenCShared4
+	SeededGreen35C5;	Helper;	;	Items.Lantern.0x35, Helpers.CanFuseGreenCShared5
+	SeededGreen35C6;	Helper;	;	Items.Lantern.0x35, Helpers.CanFuseGreenCShared6
+	SeededGreen35S1;	Helper;	;	Items.Lantern.0x35, Helpers.CanFuseGreenShared1
+	SeededGreen35S2;	Helper;	;	Items.Lantern.0x35, Helpers.CanFuseGreenShared2
+	SeededGreen35S3;	Helper;	;	Items.Lantern.0x35, Helpers.CanFuseGreenShared3
+	SeededGreen35S4;	Helper;	;	Items.Lantern.0x35, Helpers.CanFuseGreenShared4
+	SeededGreen35S5;	Helper;	;	Items.Lantern.0x35, Helpers.CanFuseGreenShared5
+	SeededGreen35S6;	Helper;	;	Items.Lantern.0x35, Helpers.CanFuseGreenShared6
+	SeededGreen35S7;	Helper;	;	Items.Lantern.0x35, Helpers.CanFuseGreenShared7
+	SeededGreen35S8;	Helper;	;	Items.Lantern.0x35, Helpers.CanFuseGreenShared8
+	SeededGreen35S9;	Helper;	;	Items.Lantern.0x35, Helpers.CanFuseGreenShared9
+	SeededGreen35S10;	Helper;	;	Items.Lantern.0x35, Helpers.CanFuseGreenShared10
+	SeededGreen35S11;	Helper;	;	Items.Lantern.0x35, Helpers.CanFuseGreenShared11
+	SeededGreen35S12;	Helper;	;	Items.Lantern.0x35, Helpers.CanFuseGreenShared12
+	SeededGreen35S13;	Helper;	;	Items.Lantern.0x35, Helpers.CanFuseGreenShared13
+	SeededGreen35S14;	Helper;	;	Items.Lantern.0x35, Helpers.CanFuseGreenShared14
+	SeededGreen35S15;	Helper;	;	Items.Lantern.0x35, Helpers.CanFuseGreenShared15
+	SeededGreen36;	Helper;	;	Items.Lantern.0x36, Helpers.CanFuseGreenC
+	SeededGreen36C1;	Helper;	;	Items.Lantern.0x36, Helpers.CanFuseGreenCShared1
+	SeededGreen36C2;	Helper;	;	Items.Lantern.0x36, Helpers.CanFuseGreenCShared2
+	SeededGreen36C3;	Helper;	;	Items.Lantern.0x36, Helpers.CanFuseGreenCShared3
+	SeededGreen36C4;	Helper;	;	Items.Lantern.0x36, Helpers.CanFuseGreenCShared4
+	SeededGreen36C5;	Helper;	;	Items.Lantern.0x36, Helpers.CanFuseGreenCShared5
+	SeededGreen36C6;	Helper;	;	Items.Lantern.0x36, Helpers.CanFuseGreenCShared6
+	SeededGreen36S1;	Helper;	;	Items.Lantern.0x36, Helpers.CanFuseGreenShared1
+	SeededGreen36S2;	Helper;	;	Items.Lantern.0x36, Helpers.CanFuseGreenShared2
+	SeededGreen36S3;	Helper;	;	Items.Lantern.0x36, Helpers.CanFuseGreenShared3
+	SeededGreen36S4;	Helper;	;	Items.Lantern.0x36, Helpers.CanFuseGreenShared4
+	SeededGreen36S5;	Helper;	;	Items.Lantern.0x36, Helpers.CanFuseGreenShared5
+	SeededGreen36S6;	Helper;	;	Items.Lantern.0x36, Helpers.CanFuseGreenShared6
+	SeededGreen36S7;	Helper;	;	Items.Lantern.0x36, Helpers.CanFuseGreenShared7
+	SeededGreen36S8;	Helper;	;	Items.Lantern.0x36, Helpers.CanFuseGreenShared8
+	SeededGreen36S9;	Helper;	;	Items.Lantern.0x36, Helpers.CanFuseGreenShared9
+	SeededGreen36S10;	Helper;	;	Items.Lantern.0x36, Helpers.CanFuseGreenShared10
+	SeededGreen36S11;	Helper;	;	Items.Lantern.0x36, Helpers.CanFuseGreenShared11
+	SeededGreen36S12;	Helper;	;	Items.Lantern.0x36, Helpers.CanFuseGreenShared12
+	SeededGreen36S13;	Helper;	;	Items.Lantern.0x36, Helpers.CanFuseGreenShared13
+	SeededGreen36S14;	Helper;	;	Items.Lantern.0x36, Helpers.CanFuseGreenShared14
+	SeededGreen36S15;	Helper;	;	Items.Lantern.0x36, Helpers.CanFuseGreenShared15
+	SeededGreen37;	Helper;	;	Items.Lantern.0x37, Helpers.CanFuseGreenC
+	SeededGreen37C1;	Helper;	;	Items.Lantern.0x37, Helpers.CanFuseGreenCShared1
+	SeededGreen37C2;	Helper;	;	Items.Lantern.0x37, Helpers.CanFuseGreenCShared2
+	SeededGreen37C3;	Helper;	;	Items.Lantern.0x37, Helpers.CanFuseGreenCShared3
+	SeededGreen37C4;	Helper;	;	Items.Lantern.0x37, Helpers.CanFuseGreenCShared4
+	SeededGreen37C5;	Helper;	;	Items.Lantern.0x37, Helpers.CanFuseGreenCShared5
+	SeededGreen37C6;	Helper;	;	Items.Lantern.0x37, Helpers.CanFuseGreenCShared6
+	SeededGreen37S1;	Helper;	;	Items.Lantern.0x37, Helpers.CanFuseGreenShared1
+	SeededGreen37S2;	Helper;	;	Items.Lantern.0x37, Helpers.CanFuseGreenShared2
+	SeededGreen37S3;	Helper;	;	Items.Lantern.0x37, Helpers.CanFuseGreenShared3
+	SeededGreen37S4;	Helper;	;	Items.Lantern.0x37, Helpers.CanFuseGreenShared4
+	SeededGreen37S5;	Helper;	;	Items.Lantern.0x37, Helpers.CanFuseGreenShared5
+	SeededGreen37S6;	Helper;	;	Items.Lantern.0x37, Helpers.CanFuseGreenShared6
+	SeededGreen37S7;	Helper;	;	Items.Lantern.0x37, Helpers.CanFuseGreenShared7
+	SeededGreen37S8;	Helper;	;	Items.Lantern.0x37, Helpers.CanFuseGreenShared8
+	SeededGreen37S9;	Helper;	;	Items.Lantern.0x37, Helpers.CanFuseGreenShared9
+	SeededGreen37S10;	Helper;	;	Items.Lantern.0x37, Helpers.CanFuseGreenShared10
+	SeededGreen37S11;	Helper;	;	Items.Lantern.0x37, Helpers.CanFuseGreenShared11
+	SeededGreen37S12;	Helper;	;	Items.Lantern.0x37, Helpers.CanFuseGreenShared12
+	SeededGreen37S13;	Helper;	;	Items.Lantern.0x37, Helpers.CanFuseGreenShared13
+	SeededGreen37S14;	Helper;	;	Items.Lantern.0x37, Helpers.CanFuseGreenShared14
+	SeededGreen37S15;	Helper;	;	Items.Lantern.0x37, Helpers.CanFuseGreenShared15
+	SeededGreen39;	Helper;	;	Items.Lantern.0x39, Helpers.CanFuseGreenC
+	SeededGreen39C1;	Helper;	;	Items.Lantern.0x39, Helpers.CanFuseGreenCShared1
+	SeededGreen39C2;	Helper;	;	Items.Lantern.0x39, Helpers.CanFuseGreenCShared2
+	SeededGreen39C3;	Helper;	;	Items.Lantern.0x39, Helpers.CanFuseGreenCShared3
+	SeededGreen39C4;	Helper;	;	Items.Lantern.0x39, Helpers.CanFuseGreenCShared4
+	SeededGreen39C5;	Helper;	;	Items.Lantern.0x39, Helpers.CanFuseGreenCShared5
+	SeededGreen39C6;	Helper;	;	Items.Lantern.0x39, Helpers.CanFuseGreenCShared6
+	SeededGreen39S1;	Helper;	;	Items.Lantern.0x39, Helpers.CanFuseGreenShared1
+	SeededGreen39S2;	Helper;	;	Items.Lantern.0x39, Helpers.CanFuseGreenShared2
+	SeededGreen39S3;	Helper;	;	Items.Lantern.0x39, Helpers.CanFuseGreenShared3
+	SeededGreen39S4;	Helper;	;	Items.Lantern.0x39, Helpers.CanFuseGreenShared4
+	SeededGreen39S5;	Helper;	;	Items.Lantern.0x39, Helpers.CanFuseGreenShared5
+	SeededGreen39S6;	Helper;	;	Items.Lantern.0x39, Helpers.CanFuseGreenShared6
+	SeededGreen39S7;	Helper;	;	Items.Lantern.0x39, Helpers.CanFuseGreenShared7
+	SeededGreen39S8;	Helper;	;	Items.Lantern.0x39, Helpers.CanFuseGreenShared8
+	SeededGreen39S9;	Helper;	;	Items.Lantern.0x39, Helpers.CanFuseGreenShared9
+	SeededGreen39S10;	Helper;	;	Items.Lantern.0x39, Helpers.CanFuseGreenShared10
+	SeededGreen39S11;	Helper;	;	Items.Lantern.0x39, Helpers.CanFuseGreenShared11
+	SeededGreen39S12;	Helper;	;	Items.Lantern.0x39, Helpers.CanFuseGreenShared12
+	SeededGreen39S13;	Helper;	;	Items.Lantern.0x39, Helpers.CanFuseGreenShared13
+	SeededGreen39S14;	Helper;	;	Items.Lantern.0x39, Helpers.CanFuseGreenShared14
+	SeededGreen39S15;	Helper;	;	Items.Lantern.0x39, Helpers.CanFuseGreenShared15
+	SeededGreen3C;	Helper;	;	Items.Lantern.0x3C, Helpers.CanFuseGreenC
+	SeededGreen3CC1;	Helper;	;	Items.Lantern.0x3C, Helpers.CanFuseGreenCShared1
+	SeededGreen3CC2;	Helper;	;	Items.Lantern.0x3C, Helpers.CanFuseGreenCShared2
+	SeededGreen3CC3;	Helper;	;	Items.Lantern.0x3C, Helpers.CanFuseGreenCShared3
+	SeededGreen3CC4;	Helper;	;	Items.Lantern.0x3C, Helpers.CanFuseGreenCShared4
+	SeededGreen3CC5;	Helper;	;	Items.Lantern.0x3C, Helpers.CanFuseGreenCShared5
+	SeededGreen3CC6;	Helper;	;	Items.Lantern.0x3C, Helpers.CanFuseGreenCShared6
+	SeededGreen3CS1;	Helper;	;	Items.Lantern.0x3C, Helpers.CanFuseGreenShared1
+	SeededGreen3CS2;	Helper;	;	Items.Lantern.0x3C, Helpers.CanFuseGreenShared2
+	SeededGreen3CS3;	Helper;	;	Items.Lantern.0x3C, Helpers.CanFuseGreenShared3
+	SeededGreen3CS4;	Helper;	;	Items.Lantern.0x3C, Helpers.CanFuseGreenShared4
+	SeededGreen3CS5;	Helper;	;	Items.Lantern.0x3C, Helpers.CanFuseGreenShared5
+	SeededGreen3CS6;	Helper;	;	Items.Lantern.0x3C, Helpers.CanFuseGreenShared6
+	SeededGreen3CS7;	Helper;	;	Items.Lantern.0x3C, Helpers.CanFuseGreenShared7
+	SeededGreen3CS8;	Helper;	;	Items.Lantern.0x3C, Helpers.CanFuseGreenShared8
+	SeededGreen3CS9;	Helper;	;	Items.Lantern.0x3C, Helpers.CanFuseGreenShared9
+	SeededGreen3CS10;	Helper;	;	Items.Lantern.0x3C, Helpers.CanFuseGreenShared10
+	SeededGreen3CS11;	Helper;	;	Items.Lantern.0x3C, Helpers.CanFuseGreenShared11
+	SeededGreen3CS12;	Helper;	;	Items.Lantern.0x3C, Helpers.CanFuseGreenShared12
+	SeededGreen3CS13;	Helper;	;	Items.Lantern.0x3C, Helpers.CanFuseGreenShared13
+	SeededGreen3CS14;	Helper;	;	Items.Lantern.0x3C, Helpers.CanFuseGreenShared14
+	SeededGreen3CS15;	Helper;	;	Items.Lantern.0x3C, Helpers.CanFuseGreenShared15
+	SeededGreen44;	Helper;	;	Items.Lantern.0x44, Helpers.CanFuseGreenG
+	SeededGreen44G1;	Helper;	;	Items.Lantern.0x44, Helpers.CanFuseGreenGShared1
+	SeededGreen44G2;	Helper;	;	Items.Lantern.0x44, Helpers.CanFuseGreenGShared2
+	SeededGreen44G3;	Helper;	;	Items.Lantern.0x44, Helpers.CanFuseGreenGShared3
+	SeededGreen44G4;	Helper;	;	Items.Lantern.0x44, Helpers.CanFuseGreenGShared4
+	SeededGreen44G5;	Helper;	;	Items.Lantern.0x44, Helpers.CanFuseGreenGShared5
+	SeededGreen44S1;	Helper;	;	Items.Lantern.0x44, Helpers.CanFuseGreenShared1
+	SeededGreen44S2;	Helper;	;	Items.Lantern.0x44, Helpers.CanFuseGreenShared2
+	SeededGreen44S3;	Helper;	;	Items.Lantern.0x44, Helpers.CanFuseGreenShared3
+	SeededGreen44S4;	Helper;	;	Items.Lantern.0x44, Helpers.CanFuseGreenShared4
+	SeededGreen44S5;	Helper;	;	Items.Lantern.0x44, Helpers.CanFuseGreenShared5
+	SeededGreen44S6;	Helper;	;	Items.Lantern.0x44, Helpers.CanFuseGreenShared6
+	SeededGreen44S7;	Helper;	;	Items.Lantern.0x44, Helpers.CanFuseGreenShared7
+	SeededGreen44S8;	Helper;	;	Items.Lantern.0x44, Helpers.CanFuseGreenShared8
+	SeededGreen44S9;	Helper;	;	Items.Lantern.0x44, Helpers.CanFuseGreenShared9
+	SeededGreen44S10;	Helper;	;	Items.Lantern.0x44, Helpers.CanFuseGreenShared10
+	SeededGreen44S11;	Helper;	;	Items.Lantern.0x44, Helpers.CanFuseGreenShared11
+	SeededGreen44S12;	Helper;	;	Items.Lantern.0x44, Helpers.CanFuseGreenShared12
+	SeededGreen44S13;	Helper;	;	Items.Lantern.0x44, Helpers.CanFuseGreenShared13
+	SeededGreen44S14;	Helper;	;	Items.Lantern.0x44, Helpers.CanFuseGreenShared14
+	SeededGreen44S15;	Helper;	;	Items.Lantern.0x44, Helpers.CanFuseGreenShared15
+	SeededGreen44C;	Helper;	;	Items.Lantern.0x44, Helpers.CanFuseGreenC
+	SeededGreen46;	Helper;	;	Items.Lantern.0x46, Helpers.CanFuseGreenG
+	SeededGreen46G1;	Helper;	;	Items.Lantern.0x46, Helpers.CanFuseGreenGShared1
+	SeededGreen46G2;	Helper;	;	Items.Lantern.0x46, Helpers.CanFuseGreenGShared2
+	SeededGreen46G3;	Helper;	;	Items.Lantern.0x46, Helpers.CanFuseGreenGShared3
+	SeededGreen46G4;	Helper;	;	Items.Lantern.0x46, Helpers.CanFuseGreenGShared4
+	SeededGreen46G5;	Helper;	;	Items.Lantern.0x46, Helpers.CanFuseGreenGShared5
+	SeededGreen46S1;	Helper;	;	Items.Lantern.0x46, Helpers.CanFuseGreenShared1
+	SeededGreen46S2;	Helper;	;	Items.Lantern.0x46, Helpers.CanFuseGreenShared2
+	SeededGreen46S3;	Helper;	;	Items.Lantern.0x46, Helpers.CanFuseGreenShared3
+	SeededGreen46S4;	Helper;	;	Items.Lantern.0x46, Helpers.CanFuseGreenShared4
+	SeededGreen46S5;	Helper;	;	Items.Lantern.0x46, Helpers.CanFuseGreenShared5
+	SeededGreen46S6;	Helper;	;	Items.Lantern.0x46, Helpers.CanFuseGreenShared6
+	SeededGreen46S7;	Helper;	;	Items.Lantern.0x46, Helpers.CanFuseGreenShared7
+	SeededGreen46S8;	Helper;	;	Items.Lantern.0x46, Helpers.CanFuseGreenShared8
+	SeededGreen46S9;	Helper;	;	Items.Lantern.0x46, Helpers.CanFuseGreenShared9
+	SeededGreen46S10;	Helper;	;	Items.Lantern.0x46, Helpers.CanFuseGreenShared10
+	SeededGreen46S11;	Helper;	;	Items.Lantern.0x46, Helpers.CanFuseGreenShared11
+	SeededGreen46S12;	Helper;	;	Items.Lantern.0x46, Helpers.CanFuseGreenShared12
+	SeededGreen46S13;	Helper;	;	Items.Lantern.0x46, Helpers.CanFuseGreenShared13
+	SeededGreen46S14;	Helper;	;	Items.Lantern.0x46, Helpers.CanFuseGreenShared14
+	SeededGreen46S15;	Helper;	;	Items.Lantern.0x46, Helpers.CanFuseGreenShared15
+	SeededGreen46C;	Helper;	;	Items.Lantern.0x46, Helpers.CanFuseGreenC
+	SeededGreen47;	Helper;	;	Items.Lantern.0x47, Helpers.CanFuseGreenG
+	SeededGreen47G1;	Helper;	;	Items.Lantern.0x47, Helpers.CanFuseGreenGShared1
+	SeededGreen47G2;	Helper;	;	Items.Lantern.0x47, Helpers.CanFuseGreenGShared2
+	SeededGreen47G3;	Helper;	;	Items.Lantern.0x47, Helpers.CanFuseGreenGShared3
+	SeededGreen47G4;	Helper;	;	Items.Lantern.0x47, Helpers.CanFuseGreenGShared4
+	SeededGreen47G5;	Helper;	;	Items.Lantern.0x47, Helpers.CanFuseGreenGShared5
+	SeededGreen47S1;	Helper;	;	Items.Lantern.0x47, Helpers.CanFuseGreenShared1
+	SeededGreen47S2;	Helper;	;	Items.Lantern.0x47, Helpers.CanFuseGreenShared2
+	SeededGreen47S3;	Helper;	;	Items.Lantern.0x47, Helpers.CanFuseGreenShared3
+	SeededGreen47S4;	Helper;	;	Items.Lantern.0x47, Helpers.CanFuseGreenShared4
+	SeededGreen47S5;	Helper;	;	Items.Lantern.0x47, Helpers.CanFuseGreenShared5
+	SeededGreen47S6;	Helper;	;	Items.Lantern.0x47, Helpers.CanFuseGreenShared6
+	SeededGreen47S7;	Helper;	;	Items.Lantern.0x47, Helpers.CanFuseGreenShared7
+	SeededGreen47S8;	Helper;	;	Items.Lantern.0x47, Helpers.CanFuseGreenShared8
+	SeededGreen47S9;	Helper;	;	Items.Lantern.0x47, Helpers.CanFuseGreenShared9
+	SeededGreen47S10;	Helper;	;	Items.Lantern.0x47, Helpers.CanFuseGreenShared10
+	SeededGreen47S11;	Helper;	;	Items.Lantern.0x47, Helpers.CanFuseGreenShared11
+	SeededGreen47S12;	Helper;	;	Items.Lantern.0x47, Helpers.CanFuseGreenShared12
+	SeededGreen47S13;	Helper;	;	Items.Lantern.0x47, Helpers.CanFuseGreenShared13
+	SeededGreen47S14;	Helper;	;	Items.Lantern.0x47, Helpers.CanFuseGreenShared14
+	SeededGreen47S15;	Helper;	;	Items.Lantern.0x47, Helpers.CanFuseGreenShared15
+	SeededGreen47C;	Helper;	;	Items.Lantern.0x47, Helpers.CanFuseGreenC
+	SeededGreen4E;	Helper;	;	Items.Lantern.0x4E, Helpers.CanFuseGreenG
+	SeededGreen4EG1;	Helper;	;	Items.Lantern.0x4E, Helpers.CanFuseGreenGShared1
+	SeededGreen4EG2;	Helper;	;	Items.Lantern.0x4E, Helpers.CanFuseGreenGShared2
+	SeededGreen4EG3;	Helper;	;	Items.Lantern.0x4E, Helpers.CanFuseGreenGShared3
+	SeededGreen4EG4;	Helper;	;	Items.Lantern.0x4E, Helpers.CanFuseGreenGShared4
+	SeededGreen4EG5;	Helper;	;	Items.Lantern.0x4E, Helpers.CanFuseGreenGShared5
+	SeededGreen4ES1;	Helper;	;	Items.Lantern.0x4E, Helpers.CanFuseGreenShared1
+	SeededGreen4ES2;	Helper;	;	Items.Lantern.0x4E, Helpers.CanFuseGreenShared2
+	SeededGreen4ES3;	Helper;	;	Items.Lantern.0x4E, Helpers.CanFuseGreenShared3
+	SeededGreen4ES4;	Helper;	;	Items.Lantern.0x4E, Helpers.CanFuseGreenShared4
+	SeededGreen4ES5;	Helper;	;	Items.Lantern.0x4E, Helpers.CanFuseGreenShared5
+	SeededGreen4ES6;	Helper;	;	Items.Lantern.0x4E, Helpers.CanFuseGreenShared6
+	SeededGreen4ES7;	Helper;	;	Items.Lantern.0x4E, Helpers.CanFuseGreenShared7
+	SeededGreen4ES8;	Helper;	;	Items.Lantern.0x4E, Helpers.CanFuseGreenShared8
+	SeededGreen4ES9;	Helper;	;	Items.Lantern.0x4E, Helpers.CanFuseGreenShared9
+	SeededGreen4ES10;	Helper;	;	Items.Lantern.0x4E, Helpers.CanFuseGreenShared10
+	SeededGreen4ES11;	Helper;	;	Items.Lantern.0x4E, Helpers.CanFuseGreenShared11
+	SeededGreen4ES12;	Helper;	;	Items.Lantern.0x4E, Helpers.CanFuseGreenShared12
+	SeededGreen4ES13;	Helper;	;	Items.Lantern.0x4E, Helpers.CanFuseGreenShared13
+	SeededGreen4ES14;	Helper;	;	Items.Lantern.0x4E, Helpers.CanFuseGreenShared14
+	SeededGreen4ES15;	Helper;	;	Items.Lantern.0x4E, Helpers.CanFuseGreenShared15
+	SeededGreen4EC;	Helper;	;	Items.Lantern.0x4E, Helpers.CanFuseGreenC
+	SeededGreen50;	Helper;	;	Items.Lantern.0x50, Helpers.CanFuseGreenP
+	SeededGreen50P1;	Helper;	;	Items.Lantern.0x50, Helpers.CanFuseGreenPShared1
+	SeededGreen50P2;	Helper;	;	Items.Lantern.0x50, Helpers.CanFuseGreenPShared2
+	SeededGreen50P3;	Helper;	;	Items.Lantern.0x50, Helpers.CanFuseGreenPShared3
+	SeededGreen50P4;	Helper;	;	Items.Lantern.0x50, Helpers.CanFuseGreenPShared4
+	SeededGreen50P5;	Helper;	;	Items.Lantern.0x50, Helpers.CanFuseGreenPShared5
+	SeededGreen50S1;	Helper;	;	Items.Lantern.0x50, Helpers.CanFuseGreenShared1
+	SeededGreen50S2;	Helper;	;	Items.Lantern.0x50, Helpers.CanFuseGreenShared2
+	SeededGreen50S3;	Helper;	;	Items.Lantern.0x50, Helpers.CanFuseGreenShared3
+	SeededGreen50S4;	Helper;	;	Items.Lantern.0x50, Helpers.CanFuseGreenShared4
+	SeededGreen50S5;	Helper;	;	Items.Lantern.0x50, Helpers.CanFuseGreenShared5
+	SeededGreen50S6;	Helper;	;	Items.Lantern.0x50, Helpers.CanFuseGreenShared6
+	SeededGreen50S7;	Helper;	;	Items.Lantern.0x50, Helpers.CanFuseGreenShared7
+	SeededGreen50S8;	Helper;	;	Items.Lantern.0x50, Helpers.CanFuseGreenShared8
+	SeededGreen50S9;	Helper;	;	Items.Lantern.0x50, Helpers.CanFuseGreenShared9
+	SeededGreen50S10;	Helper;	;	Items.Lantern.0x50, Helpers.CanFuseGreenShared10
+	SeededGreen50S11;	Helper;	;	Items.Lantern.0x50, Helpers.CanFuseGreenShared11
+	SeededGreen50S12;	Helper;	;	Items.Lantern.0x50, Helpers.CanFuseGreenShared12
+	SeededGreen50S13;	Helper;	;	Items.Lantern.0x50, Helpers.CanFuseGreenShared13
+	SeededGreen50S14;	Helper;	;	Items.Lantern.0x50, Helpers.CanFuseGreenShared14
+	SeededGreen50S15;	Helper;	;	Items.Lantern.0x50, Helpers.CanFuseGreenShared15
+	SeededGreen50C;	Helper;	;	Items.Lantern.0x50, Helpers.CanFuseGreenC
+	SeededGreen53;	Helper;	;	Items.Lantern.0x53, Helpers.CanFuseGreenP
+	SeededGreen53P1;	Helper;	;	Items.Lantern.0x53, Helpers.CanFuseGreenPShared1
+	SeededGreen53P2;	Helper;	;	Items.Lantern.0x53, Helpers.CanFuseGreenPShared2
+	SeededGreen53P3;	Helper;	;	Items.Lantern.0x53, Helpers.CanFuseGreenPShared3
+	SeededGreen53P4;	Helper;	;	Items.Lantern.0x53, Helpers.CanFuseGreenPShared4
+	SeededGreen53P5;	Helper;	;	Items.Lantern.0x53, Helpers.CanFuseGreenPShared5
+	SeededGreen53S1;	Helper;	;	Items.Lantern.0x53, Helpers.CanFuseGreenShared1
+	SeededGreen53S2;	Helper;	;	Items.Lantern.0x53, Helpers.CanFuseGreenShared2
+	SeededGreen53S3;	Helper;	;	Items.Lantern.0x53, Helpers.CanFuseGreenShared3
+	SeededGreen53S4;	Helper;	;	Items.Lantern.0x53, Helpers.CanFuseGreenShared4
+	SeededGreen53S5;	Helper;	;	Items.Lantern.0x53, Helpers.CanFuseGreenShared5
+	SeededGreen53S6;	Helper;	;	Items.Lantern.0x53, Helpers.CanFuseGreenShared6
+	SeededGreen53S7;	Helper;	;	Items.Lantern.0x53, Helpers.CanFuseGreenShared7
+	SeededGreen53S8;	Helper;	;	Items.Lantern.0x53, Helpers.CanFuseGreenShared8
+	SeededGreen53S9;	Helper;	;	Items.Lantern.0x53, Helpers.CanFuseGreenShared9
+	SeededGreen53S10;	Helper;	;	Items.Lantern.0x53, Helpers.CanFuseGreenShared10
+	SeededGreen53S11;	Helper;	;	Items.Lantern.0x53, Helpers.CanFuseGreenShared11
+	SeededGreen53S12;	Helper;	;	Items.Lantern.0x53, Helpers.CanFuseGreenShared12
+	SeededGreen53S13;	Helper;	;	Items.Lantern.0x53, Helpers.CanFuseGreenShared13
+	SeededGreen53S14;	Helper;	;	Items.Lantern.0x53, Helpers.CanFuseGreenShared14
+	SeededGreen53S15;	Helper;	;	Items.Lantern.0x53, Helpers.CanFuseGreenShared15
+	SeededGreen53C;	Helper;	;	Items.Lantern.0x53, Helpers.CanFuseGreenC
+	SeededGreen55;	Helper;	;	Items.Lantern.0x55, Helpers.CanFuseGreenP
+	SeededGreen55P1;	Helper;	;	Items.Lantern.0x55, Helpers.CanFuseGreenPShared1
+	SeededGreen55P2;	Helper;	;	Items.Lantern.0x55, Helpers.CanFuseGreenPShared2
+	SeededGreen55P3;	Helper;	;	Items.Lantern.0x55, Helpers.CanFuseGreenPShared3
+	SeededGreen55P4;	Helper;	;	Items.Lantern.0x55, Helpers.CanFuseGreenPShared4
+	SeededGreen55P5;	Helper;	;	Items.Lantern.0x55, Helpers.CanFuseGreenPShared5
+	SeededGreen55S1;	Helper;	;	Items.Lantern.0x55, Helpers.CanFuseGreenShared1
+	SeededGreen55S2;	Helper;	;	Items.Lantern.0x55, Helpers.CanFuseGreenShared2
+	SeededGreen55S3;	Helper;	;	Items.Lantern.0x55, Helpers.CanFuseGreenShared3
+	SeededGreen55S4;	Helper;	;	Items.Lantern.0x55, Helpers.CanFuseGreenShared4
+	SeededGreen55S5;	Helper;	;	Items.Lantern.0x55, Helpers.CanFuseGreenShared5
+	SeededGreen55S6;	Helper;	;	Items.Lantern.0x55, Helpers.CanFuseGreenShared6
+	SeededGreen55S7;	Helper;	;	Items.Lantern.0x55, Helpers.CanFuseGreenShared7
+	SeededGreen55S8;	Helper;	;	Items.Lantern.0x55, Helpers.CanFuseGreenShared8
+	SeededGreen55S9;	Helper;	;	Items.Lantern.0x55, Helpers.CanFuseGreenShared9
+	SeededGreen55S10;	Helper;	;	Items.Lantern.0x55, Helpers.CanFuseGreenShared10
+	SeededGreen55S11;	Helper;	;	Items.Lantern.0x55, Helpers.CanFuseGreenShared11
+	SeededGreen55S12;	Helper;	;	Items.Lantern.0x55, Helpers.CanFuseGreenShared12
+	SeededGreen55S13;	Helper;	;	Items.Lantern.0x55, Helpers.CanFuseGreenShared13
+	SeededGreen55S14;	Helper;	;	Items.Lantern.0x55, Helpers.CanFuseGreenShared14
+	SeededGreen55S15;	Helper;	;	Items.Lantern.0x55, Helpers.CanFuseGreenShared15
+	SeededGreen55C;	Helper;	;	Items.Lantern.0x55, Helpers.CanFuseGreenC
+	SeededGreen56;	Helper;	;	Items.Lantern.0x56, Helpers.CanFuseGreenP
+	SeededGreen56P1;	Helper;	;	Items.Lantern.0x56, Helpers.CanFuseGreenPShared1
+	SeededGreen56P2;	Helper;	;	Items.Lantern.0x56, Helpers.CanFuseGreenPShared2
+	SeededGreen56P3;	Helper;	;	Items.Lantern.0x56, Helpers.CanFuseGreenPShared3
+	SeededGreen56P4;	Helper;	;	Items.Lantern.0x56, Helpers.CanFuseGreenPShared4
+	SeededGreen56P5;	Helper;	;	Items.Lantern.0x56, Helpers.CanFuseGreenPShared5
+	SeededGreen56S1;	Helper;	;	Items.Lantern.0x56, Helpers.CanFuseGreenShared1
+	SeededGreen56S2;	Helper;	;	Items.Lantern.0x56, Helpers.CanFuseGreenShared2
+	SeededGreen56S3;	Helper;	;	Items.Lantern.0x56, Helpers.CanFuseGreenShared3
+	SeededGreen56S4;	Helper;	;	Items.Lantern.0x56, Helpers.CanFuseGreenShared4
+	SeededGreen56S5;	Helper;	;	Items.Lantern.0x56, Helpers.CanFuseGreenShared5
+	SeededGreen56S6;	Helper;	;	Items.Lantern.0x56, Helpers.CanFuseGreenShared6
+	SeededGreen56S7;	Helper;	;	Items.Lantern.0x56, Helpers.CanFuseGreenShared7
+	SeededGreen56S8;	Helper;	;	Items.Lantern.0x56, Helpers.CanFuseGreenShared8
+	SeededGreen56S9;	Helper;	;	Items.Lantern.0x56, Helpers.CanFuseGreenShared9
+	SeededGreen56S10;	Helper;	;	Items.Lantern.0x56, Helpers.CanFuseGreenShared10
+	SeededGreen56S11;	Helper;	;	Items.Lantern.0x56, Helpers.CanFuseGreenShared11
+	SeededGreen56S12;	Helper;	;	Items.Lantern.0x56, Helpers.CanFuseGreenShared12
+	SeededGreen56S13;	Helper;	;	Items.Lantern.0x56, Helpers.CanFuseGreenShared13
+	SeededGreen56S14;	Helper;	;	Items.Lantern.0x56, Helpers.CanFuseGreenShared14
+	SeededGreen56S15;	Helper;	;	Items.Lantern.0x56, Helpers.CanFuseGreenShared15
+	SeededGreen56C;	Helper;	;	Items.Lantern.0x56, Helpers.CanFuseGreenC
+	SeededGreen58;	Helper;	;	Items.Lantern.0x58, Helpers.CanFuseGreenP
+	SeededGreen58P1;	Helper;	;	Items.Lantern.0x58, Helpers.CanFuseGreenPShared1
+	SeededGreen58P2;	Helper;	;	Items.Lantern.0x58, Helpers.CanFuseGreenPShared2
+	SeededGreen58P3;	Helper;	;	Items.Lantern.0x58, Helpers.CanFuseGreenPShared3
+	SeededGreen58P4;	Helper;	;	Items.Lantern.0x58, Helpers.CanFuseGreenPShared4
+	SeededGreen58P5;	Helper;	;	Items.Lantern.0x58, Helpers.CanFuseGreenPShared5
+	SeededGreen58S1;	Helper;	;	Items.Lantern.0x58, Helpers.CanFuseGreenShared1
+	SeededGreen58S2;	Helper;	;	Items.Lantern.0x58, Helpers.CanFuseGreenShared2
+	SeededGreen58S3;	Helper;	;	Items.Lantern.0x58, Helpers.CanFuseGreenShared3
+	SeededGreen58S4;	Helper;	;	Items.Lantern.0x58, Helpers.CanFuseGreenShared4
+	SeededGreen58S5;	Helper;	;	Items.Lantern.0x58, Helpers.CanFuseGreenShared5
+	SeededGreen58S6;	Helper;	;	Items.Lantern.0x58, Helpers.CanFuseGreenShared6
+	SeededGreen58S7;	Helper;	;	Items.Lantern.0x58, Helpers.CanFuseGreenShared7
+	SeededGreen58S8;	Helper;	;	Items.Lantern.0x58, Helpers.CanFuseGreenShared8
+	SeededGreen58S9;	Helper;	;	Items.Lantern.0x58, Helpers.CanFuseGreenShared9
+	SeededGreen58S10;	Helper;	;	Items.Lantern.0x58, Helpers.CanFuseGreenShared10
+	SeededGreen58S11;	Helper;	;	Items.Lantern.0x58, Helpers.CanFuseGreenShared11
+	SeededGreen58S12;	Helper;	;	Items.Lantern.0x58, Helpers.CanFuseGreenShared12
+	SeededGreen58S13;	Helper;	;	Items.Lantern.0x58, Helpers.CanFuseGreenShared13
+	SeededGreen58S14;	Helper;	;	Items.Lantern.0x58, Helpers.CanFuseGreenShared14
+	SeededGreen58S15;	Helper;	;	Items.Lantern.0x58, Helpers.CanFuseGreenShared15
+	SeededGreen58C;	Helper;	;	Items.Lantern.0x58, Helpers.CanFuseGreenC
+	SeededGreen5F;	Helper;	;	Items.Lantern.0x5F, Helpers.CanFuseGreenC
+	SeededGreen5FC1;	Helper;	;	Items.Lantern.0x5F, Helpers.CanFuseGreenCShared1
+	SeededGreen5FC2;	Helper;	;	Items.Lantern.0x5F, Helpers.CanFuseGreenCShared2
+	SeededGreen5FC3;	Helper;	;	Items.Lantern.0x5F, Helpers.CanFuseGreenCShared3
+	SeededGreen5FC4;	Helper;	;	Items.Lantern.0x5F, Helpers.CanFuseGreenCShared4
+	SeededGreen5FC5;	Helper;	;	Items.Lantern.0x5F, Helpers.CanFuseGreenCShared5
+	SeededGreen5FC6;	Helper;	;	Items.Lantern.0x5F, Helpers.CanFuseGreenCShared6
+	SeededGreen5FS1;	Helper;	;	Items.Lantern.0x5F, Helpers.CanFuseGreenShared1
+	SeededGreen5FS2;	Helper;	;	Items.Lantern.0x5F, Helpers.CanFuseGreenShared2
+	SeededGreen5FS3;	Helper;	;	Items.Lantern.0x5F, Helpers.CanFuseGreenShared3
+	SeededGreen5FS4;	Helper;	;	Items.Lantern.0x5F, Helpers.CanFuseGreenShared4
+	SeededGreen5FS5;	Helper;	;	Items.Lantern.0x5F, Helpers.CanFuseGreenShared5
+	SeededGreen5FS6;	Helper;	;	Items.Lantern.0x5F, Helpers.CanFuseGreenShared6
+	SeededGreen5FS7;	Helper;	;	Items.Lantern.0x5F, Helpers.CanFuseGreenShared7
+	SeededGreen5FS8;	Helper;	;	Items.Lantern.0x5F, Helpers.CanFuseGreenShared8
+	SeededGreen5FS9;	Helper;	;	Items.Lantern.0x5F, Helpers.CanFuseGreenShared9
+	SeededGreen5FS10;	Helper;	;	Items.Lantern.0x5F, Helpers.CanFuseGreenShared10
+	SeededGreen5FS11;	Helper;	;	Items.Lantern.0x5F, Helpers.CanFuseGreenShared11
+	SeededGreen5FS12;	Helper;	;	Items.Lantern.0x5F, Helpers.CanFuseGreenShared12
+	SeededGreen5FS13;	Helper;	;	Items.Lantern.0x5F, Helpers.CanFuseGreenShared13
+	SeededGreen5FS14;	Helper;	;	Items.Lantern.0x5F, Helpers.CanFuseGreenShared14
+	SeededGreen5FS15;	Helper;	;	Items.Lantern.0x5F, Helpers.CanFuseGreenShared15
+	SeededGreen60;	Helper;	;	Items.Lantern.0x60, Helpers.CanFuseGreenG
+	SeededGreen60G1;	Helper;	;	Items.Lantern.0x60, Helpers.CanFuseGreenGShared1
+	SeededGreen60G2;	Helper;	;	Items.Lantern.0x60, Helpers.CanFuseGreenGShared2
+	SeededGreen60G3;	Helper;	;	Items.Lantern.0x60, Helpers.CanFuseGreenGShared3
+	SeededGreen60G4;	Helper;	;	Items.Lantern.0x60, Helpers.CanFuseGreenGShared4
+	SeededGreen60G5;	Helper;	;	Items.Lantern.0x60, Helpers.CanFuseGreenGShared5
+	SeededGreen60S1;	Helper;	;	Items.Lantern.0x60, Helpers.CanFuseGreenShared1
+	SeededGreen60S2;	Helper;	;	Items.Lantern.0x60, Helpers.CanFuseGreenShared2
+	SeededGreen60S3;	Helper;	;	Items.Lantern.0x60, Helpers.CanFuseGreenShared3
+	SeededGreen60S4;	Helper;	;	Items.Lantern.0x60, Helpers.CanFuseGreenShared4
+	SeededGreen60S5;	Helper;	;	Items.Lantern.0x60, Helpers.CanFuseGreenShared5
+	SeededGreen60S6;	Helper;	;	Items.Lantern.0x60, Helpers.CanFuseGreenShared6
+	SeededGreen60S7;	Helper;	;	Items.Lantern.0x60, Helpers.CanFuseGreenShared7
+	SeededGreen60S8;	Helper;	;	Items.Lantern.0x60, Helpers.CanFuseGreenShared8
+	SeededGreen60S9;	Helper;	;	Items.Lantern.0x60, Helpers.CanFuseGreenShared9
+	SeededGreen60S10;	Helper;	;	Items.Lantern.0x60, Helpers.CanFuseGreenShared10
+	SeededGreen60S11;	Helper;	;	Items.Lantern.0x60, Helpers.CanFuseGreenShared11
+	SeededGreen60S12;	Helper;	;	Items.Lantern.0x60, Helpers.CanFuseGreenShared12
+	SeededGreen60S13;	Helper;	;	Items.Lantern.0x60, Helpers.CanFuseGreenShared13
+	SeededGreen60S14;	Helper;	;	Items.Lantern.0x60, Helpers.CanFuseGreenShared14
+	SeededGreen60S15;	Helper;	;	Items.Lantern.0x60, Helpers.CanFuseGreenShared15
+	SeededGreen60C;	Helper;	;	Items.Lantern.0x60, Helpers.CanFuseGreenC
 	!ifndef - COMBINED_GREEN_FUSIONS
-		Shared00:SF;   OverworldConstraint; fusionScrap00:Define:FirstByte, 0x0C9844:SecondByte;	;																																																																																																																																																																																																																																													`REDSHARED`
-		Shared01:SF;   OverworldConstraint; fusionScrap01:Define:FirstByte, 0x0C9845:SecondByte;	(|(&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenCShared1), (&Items.Lantern.0x36, Helpers.CanFuseGreenCShared1), (&Items.Lantern.0x37, Helpers.CanFuseGreenCShared1), (&Items.Lantern.0x39, Helpers.CanFuseGreenCShared1), (&Items.Lantern.0x3C, Helpers.CanFuseGreenCShared1), (&Items.Lantern.0x44, Helpers.CanFuseGreenGShared1), (&Items.Lantern.0x46, Helpers.CanFuseGreenGShared1), (&Items.Lantern.0x47, Helpers.CanFuseGreenGShared1), (&Items.Lantern.0x4E, Helpers.CanFuseGreenGShared1), (&Items.Lantern.0x50, Helpers.CanFuseGreenPShared1), (&Items.Lantern.0x53, Helpers.CanFuseGreenPShared1), (&Items.Lantern.0x55, Helpers.CanFuseGreenPShared1), (&Items.Lantern.0x56, Helpers.CanFuseGreenPShared1), (&Items.Lantern.0x58, Helpers.CanFuseGreenPShared1), (&Items.Lantern.0x5F, Helpers.CanFuseGreenCShared1), (&Items.Lantern.0x60, Helpers.CanFuseGreenGShared1)); 		`BLUESHARED`
-		Shared02:SF;   OverworldConstraint; fusionScrap02:Define:FirstByte, 0x0C9846:SecondByte;	(+2, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenCShared2), (&Items.Lantern.0x36, Helpers.CanFuseGreenCShared2), (&Items.Lantern.0x37, Helpers.CanFuseGreenCShared2), (&Items.Lantern.0x39, Helpers.CanFuseGreenCShared2), (&Items.Lantern.0x3C, Helpers.CanFuseGreenCShared2), (&Items.Lantern.0x44, Helpers.CanFuseGreenGShared2), (&Items.Lantern.0x46, Helpers.CanFuseGreenGShared2), (&Items.Lantern.0x47, Helpers.CanFuseGreenGShared2), (&Items.Lantern.0x4E, Helpers.CanFuseGreenGShared2), (&Items.Lantern.0x50, Helpers.CanFuseGreenPShared2), (&Items.Lantern.0x53, Helpers.CanFuseGreenPShared2), (&Items.Lantern.0x55, Helpers.CanFuseGreenPShared2), (&Items.Lantern.0x56, Helpers.CanFuseGreenPShared2), (&Items.Lantern.0x58, Helpers.CanFuseGreenPShared2), (&Items.Lantern.0x5F, Helpers.CanFuseGreenCShared2), (&Items.Lantern.0x60, Helpers.CanFuseGreenGShared2)); 	`GREENSHARED35`
-		Shared03:SF;   OverworldConstraint; fusionScrap03:Define:FirstByte, 0x0C9847:SecondByte;	(+3, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenCShared3), (&Items.Lantern.0x36, Helpers.CanFuseGreenCShared3), (&Items.Lantern.0x37, Helpers.CanFuseGreenCShared3), (&Items.Lantern.0x39, Helpers.CanFuseGreenCShared3), (&Items.Lantern.0x3C, Helpers.CanFuseGreenCShared3), (&Items.Lantern.0x44, Helpers.CanFuseGreenGShared3), (&Items.Lantern.0x46, Helpers.CanFuseGreenGShared3), (&Items.Lantern.0x47, Helpers.CanFuseGreenGShared3), (&Items.Lantern.0x4E, Helpers.CanFuseGreenGShared3), (&Items.Lantern.0x50, Helpers.CanFuseGreenPShared3), (&Items.Lantern.0x53, Helpers.CanFuseGreenPShared3), (&Items.Lantern.0x55, Helpers.CanFuseGreenPShared3), (&Items.Lantern.0x56, Helpers.CanFuseGreenPShared3), (&Items.Lantern.0x58, Helpers.CanFuseGreenPShared3), (&Items.Lantern.0x5F, Helpers.CanFuseGreenCShared3), (&Items.Lantern.0x60, Helpers.CanFuseGreenGShared3)); 	`GREENSHARED36`
-		Shared04:SF;   OverworldConstraint; fusionScrap04:Define:FirstByte, 0x0C9848:SecondByte;	(+4, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenCShared4), (&Items.Lantern.0x36, Helpers.CanFuseGreenCShared4), (&Items.Lantern.0x37, Helpers.CanFuseGreenCShared4), (&Items.Lantern.0x39, Helpers.CanFuseGreenCShared4), (&Items.Lantern.0x3C, Helpers.CanFuseGreenCShared4), (&Items.Lantern.0x44, Helpers.CanFuseGreenGShared4), (&Items.Lantern.0x46, Helpers.CanFuseGreenGShared4), (&Items.Lantern.0x47, Helpers.CanFuseGreenGShared4), (&Items.Lantern.0x4E, Helpers.CanFuseGreenGShared4), (&Items.Lantern.0x50, Helpers.CanFuseGreenPShared4), (&Items.Lantern.0x53, Helpers.CanFuseGreenPShared4), (&Items.Lantern.0x55, Helpers.CanFuseGreenPShared4), (&Items.Lantern.0x56, Helpers.CanFuseGreenPShared4), (&Items.Lantern.0x58, Helpers.CanFuseGreenPShared4), (&Items.Lantern.0x5F, Helpers.CanFuseGreenCShared4), (&Items.Lantern.0x60, Helpers.CanFuseGreenGShared4)); 	`GREENSHARED37`
-		Shared05:SF;   OverworldConstraint; fusionScrap05:Define:FirstByte, 0x0C9849:SecondByte;	(+5, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenCShared5), (&Items.Lantern.0x36, Helpers.CanFuseGreenCShared5), (&Items.Lantern.0x37, Helpers.CanFuseGreenCShared5), (&Items.Lantern.0x39, Helpers.CanFuseGreenCShared5), (&Items.Lantern.0x3C, Helpers.CanFuseGreenCShared5), (&Items.Lantern.0x44, Helpers.CanFuseGreenGShared5), (&Items.Lantern.0x46, Helpers.CanFuseGreenGShared5), (&Items.Lantern.0x47, Helpers.CanFuseGreenGShared5), (&Items.Lantern.0x4E, Helpers.CanFuseGreenGShared5), (&Items.Lantern.0x50, Helpers.CanFuseGreenPShared5), (&Items.Lantern.0x53, Helpers.CanFuseGreenPShared5), (&Items.Lantern.0x55, Helpers.CanFuseGreenPShared5), (&Items.Lantern.0x56, Helpers.CanFuseGreenPShared5), (&Items.Lantern.0x58, Helpers.CanFuseGreenPShared5), (&Items.Lantern.0x5F, Helpers.CanFuseGreenCShared5), (&Items.Lantern.0x60, Helpers.CanFuseGreenGShared5)); 	`GREENSHARED39`
-		Shared06:SF;   OverworldConstraint; fusionScrap06:Define:FirstByte, 0x0C984A:SecondByte;	(+6, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenCShared6), (&Items.Lantern.0x36, Helpers.CanFuseGreenCShared6), (&Items.Lantern.0x37, Helpers.CanFuseGreenCShared6), (&Items.Lantern.0x39, Helpers.CanFuseGreenCShared6), (&Items.Lantern.0x3C, Helpers.CanFuseGreenCShared6), (&Items.Lantern.0x44, Helpers.CanFuseGreenG), (&Items.Lantern.0x46, Helpers.CanFuseGreenG), (&Items.Lantern.0x47, Helpers.CanFuseGreenG), (&Items.Lantern.0x4E, Helpers.CanFuseGreenG), (&Items.Lantern.0x50, Helpers.CanFuseGreenP), (&Items.Lantern.0x53, Helpers.CanFuseGreenP), (&Items.Lantern.0x55, Helpers.CanFuseGreenP), (&Items.Lantern.0x56, Helpers.CanFuseGreenP), (&Items.Lantern.0x58, Helpers.CanFuseGreenP), (&Items.Lantern.0x5F, Helpers.CanFuseGreenCShared6), (&Items.Lantern.0x60, Helpers.CanFuseGreenG)); 																`GREENSHARED3C`
-		Shared07:SF;   OverworldConstraint; fusionScrap07:Define:FirstByte, 0x0C984B:SecondByte;	(+7, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenC), (&Items.Lantern.0x36, Helpers.CanFuseGreenC), (&Items.Lantern.0x37, Helpers.CanFuseGreenC), (&Items.Lantern.0x39, Helpers.CanFuseGreenC), (&Items.Lantern.0x3C, Helpers.CanFuseGreenC), (&Items.Lantern.0x44, Helpers.CanFuseGreenG), (&Items.Lantern.0x46, Helpers.CanFuseGreenG), (&Items.Lantern.0x47, Helpers.CanFuseGreenG), (&Items.Lantern.0x4E, Helpers.CanFuseGreenG), (&Items.Lantern.0x50, Helpers.CanFuseGreenP), (&Items.Lantern.0x53, Helpers.CanFuseGreenP), (&Items.Lantern.0x55, Helpers.CanFuseGreenP), (&Items.Lantern.0x56, Helpers.CanFuseGreenP), (&Items.Lantern.0x58, Helpers.CanFuseGreenP), (&Items.Lantern.0x5F, Helpers.CanFuseGreenC), (&Items.Lantern.0x60, Helpers.CanFuseGreenG)); 																										`GREENSHARED44`
-		Shared08:SF;   OverworldConstraint; fusionScrap08:Define:FirstByte, 0x0C984C:SecondByte;	(+8, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenC), (&Items.Lantern.0x36, Helpers.CanFuseGreenC), (&Items.Lantern.0x37, Helpers.CanFuseGreenC), (&Items.Lantern.0x39, Helpers.CanFuseGreenC), (&Items.Lantern.0x3C, Helpers.CanFuseGreenC), (&Items.Lantern.0x44, Helpers.CanFuseGreenG), (&Items.Lantern.0x46, Helpers.CanFuseGreenG), (&Items.Lantern.0x47, Helpers.CanFuseGreenG), (&Items.Lantern.0x4E, Helpers.CanFuseGreenG), (&Items.Lantern.0x50, Helpers.CanFuseGreenP), (&Items.Lantern.0x53, Helpers.CanFuseGreenP), (&Items.Lantern.0x55, Helpers.CanFuseGreenP), (&Items.Lantern.0x56, Helpers.CanFuseGreenP), (&Items.Lantern.0x58, Helpers.CanFuseGreenP), (&Items.Lantern.0x5F, Helpers.CanFuseGreenC), (&Items.Lantern.0x60, Helpers.CanFuseGreenG)); 																										`GREENSHARED46`
-		Shared09:SF;   OverworldConstraint; fusionScrap09:Define:FirstByte, 0x0C984D:SecondByte;	(+9, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenC), (&Items.Lantern.0x36, Helpers.CanFuseGreenC), (&Items.Lantern.0x37, Helpers.CanFuseGreenC), (&Items.Lantern.0x39, Helpers.CanFuseGreenC), (&Items.Lantern.0x3C, Helpers.CanFuseGreenC), (&Items.Lantern.0x44, Helpers.CanFuseGreenG), (&Items.Lantern.0x46, Helpers.CanFuseGreenG), (&Items.Lantern.0x47, Helpers.CanFuseGreenG), (&Items.Lantern.0x4E, Helpers.CanFuseGreenG), (&Items.Lantern.0x50, Helpers.CanFuseGreenP), (&Items.Lantern.0x53, Helpers.CanFuseGreenP), (&Items.Lantern.0x55, Helpers.CanFuseGreenP), (&Items.Lantern.0x56, Helpers.CanFuseGreenP), (&Items.Lantern.0x58, Helpers.CanFuseGreenP), (&Items.Lantern.0x5F, Helpers.CanFuseGreenC), (&Items.Lantern.0x60, Helpers.CanFuseGreenG)); 																										`GREENSHARED47`
-		Shared0A:SF;   OverworldConstraint; fusionScrap0A:Define:FirstByte, 0x0C984E:SecondByte;	(+10, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenC), (&Items.Lantern.0x36, Helpers.CanFuseGreenC), (&Items.Lantern.0x37, Helpers.CanFuseGreenC), (&Items.Lantern.0x39, Helpers.CanFuseGreenC), (&Items.Lantern.0x3C, Helpers.CanFuseGreenC), (&Items.Lantern.0x44, Helpers.CanFuseGreenG), (&Items.Lantern.0x46, Helpers.CanFuseGreenG), (&Items.Lantern.0x47, Helpers.CanFuseGreenG), (&Items.Lantern.0x4E, Helpers.CanFuseGreenG), (&Items.Lantern.0x50, Helpers.CanFuseGreenP), (&Items.Lantern.0x53, Helpers.CanFuseGreenP), (&Items.Lantern.0x55, Helpers.CanFuseGreenP), (&Items.Lantern.0x56, Helpers.CanFuseGreenP), (&Items.Lantern.0x58, Helpers.CanFuseGreenP), (&Items.Lantern.0x5F, Helpers.CanFuseGreenC), (&Items.Lantern.0x60, Helpers.CanFuseGreenG)); 																										`GREENSHARED4E`
-		Shared0B:SF;   OverworldConstraint; fusionScrap0B:Define:FirstByte, 0x0C984F:SecondByte;	(+11, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenC), (&Items.Lantern.0x36, Helpers.CanFuseGreenC), (&Items.Lantern.0x37, Helpers.CanFuseGreenC), (&Items.Lantern.0x39, Helpers.CanFuseGreenC), (&Items.Lantern.0x3C, Helpers.CanFuseGreenC), (&Items.Lantern.0x44, Helpers.CanFuseGreenG), (&Items.Lantern.0x46, Helpers.CanFuseGreenG), (&Items.Lantern.0x47, Helpers.CanFuseGreenG), (&Items.Lantern.0x4E, Helpers.CanFuseGreenG), (&Items.Lantern.0x50, Helpers.CanFuseGreenP), (&Items.Lantern.0x53, Helpers.CanFuseGreenP), (&Items.Lantern.0x55, Helpers.CanFuseGreenP), (&Items.Lantern.0x56, Helpers.CanFuseGreenP), (&Items.Lantern.0x58, Helpers.CanFuseGreenP), (&Items.Lantern.0x5F, Helpers.CanFuseGreenC), (&Items.Lantern.0x60, Helpers.CanFuseGreenG)); 																										`GREENSHARED50`
-		Shared0C:SF;   OverworldConstraint; fusionScrap0C:Define:FirstByte, 0x0C9850:SecondByte;	(+12, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenC), (&Items.Lantern.0x36, Helpers.CanFuseGreenC), (&Items.Lantern.0x37, Helpers.CanFuseGreenC), (&Items.Lantern.0x39, Helpers.CanFuseGreenC), (&Items.Lantern.0x3C, Helpers.CanFuseGreenC), (&Items.Lantern.0x44, Helpers.CanFuseGreenG), (&Items.Lantern.0x46, Helpers.CanFuseGreenG), (&Items.Lantern.0x47, Helpers.CanFuseGreenG), (&Items.Lantern.0x4E, Helpers.CanFuseGreenG), (&Items.Lantern.0x50, Helpers.CanFuseGreenP), (&Items.Lantern.0x53, Helpers.CanFuseGreenP), (&Items.Lantern.0x55, Helpers.CanFuseGreenP), (&Items.Lantern.0x56, Helpers.CanFuseGreenP), (&Items.Lantern.0x58, Helpers.CanFuseGreenP), (&Items.Lantern.0x5F, Helpers.CanFuseGreenC), (&Items.Lantern.0x60, Helpers.CanFuseGreenG)); 																										`GREENSHARED53`
-		Shared0D:SF;   OverworldConstraint; fusionScrap0D:Define:FirstByte, 0x0C9851:SecondByte;	(+13, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenC), (&Items.Lantern.0x36, Helpers.CanFuseGreenC), (&Items.Lantern.0x37, Helpers.CanFuseGreenC), (&Items.Lantern.0x39, Helpers.CanFuseGreenC), (&Items.Lantern.0x3C, Helpers.CanFuseGreenC), (&Items.Lantern.0x44, Helpers.CanFuseGreenG), (&Items.Lantern.0x46, Helpers.CanFuseGreenG), (&Items.Lantern.0x47, Helpers.CanFuseGreenG), (&Items.Lantern.0x4E, Helpers.CanFuseGreenG), (&Items.Lantern.0x50, Helpers.CanFuseGreenP), (&Items.Lantern.0x53, Helpers.CanFuseGreenP), (&Items.Lantern.0x55, Helpers.CanFuseGreenP), (&Items.Lantern.0x56, Helpers.CanFuseGreenP), (&Items.Lantern.0x58, Helpers.CanFuseGreenP), (&Items.Lantern.0x5F, Helpers.CanFuseGreenC), (&Items.Lantern.0x60, Helpers.CanFuseGreenG)); 																										`GREENSHARED55`
-		Shared0E:SF;   OverworldConstraint; fusionScrap0E:Define:FirstByte, 0x0C9852:SecondByte;	(+14, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenC), (&Items.Lantern.0x36, Helpers.CanFuseGreenC), (&Items.Lantern.0x37, Helpers.CanFuseGreenC), (&Items.Lantern.0x39, Helpers.CanFuseGreenC), (&Items.Lantern.0x3C, Helpers.CanFuseGreenC), (&Items.Lantern.0x44, Helpers.CanFuseGreenG), (&Items.Lantern.0x46, Helpers.CanFuseGreenG), (&Items.Lantern.0x47, Helpers.CanFuseGreenG), (&Items.Lantern.0x4E, Helpers.CanFuseGreenG), (&Items.Lantern.0x50, Helpers.CanFuseGreenP), (&Items.Lantern.0x53, Helpers.CanFuseGreenP), (&Items.Lantern.0x55, Helpers.CanFuseGreenP), (&Items.Lantern.0x56, Helpers.CanFuseGreenP), (&Items.Lantern.0x58, Helpers.CanFuseGreenP), (&Items.Lantern.0x5F, Helpers.CanFuseGreenC), (&Items.Lantern.0x60, Helpers.CanFuseGreenG)); 																										`GREENSHARED56`
-		Shared0F:SF;   OverworldConstraint; fusionScrap0F:Define:FirstByte, 0x0C9853:SecondByte;	(+15, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenC), (&Items.Lantern.0x36, Helpers.CanFuseGreenC), (&Items.Lantern.0x37, Helpers.CanFuseGreenC), (&Items.Lantern.0x39, Helpers.CanFuseGreenC), (&Items.Lantern.0x3C, Helpers.CanFuseGreenC), (&Items.Lantern.0x44, Helpers.CanFuseGreenG), (&Items.Lantern.0x46, Helpers.CanFuseGreenG), (&Items.Lantern.0x47, Helpers.CanFuseGreenG), (&Items.Lantern.0x4E, Helpers.CanFuseGreenG), (&Items.Lantern.0x50, Helpers.CanFuseGreenP), (&Items.Lantern.0x53, Helpers.CanFuseGreenP), (&Items.Lantern.0x55, Helpers.CanFuseGreenP), (&Items.Lantern.0x56, Helpers.CanFuseGreenP), (&Items.Lantern.0x58, Helpers.CanFuseGreenP), (&Items.Lantern.0x5F, Helpers.CanFuseGreenC), (&Items.Lantern.0x60, Helpers.CanFuseGreenG)); 																										`GREENSHARED58`
-		Shared10:SF;   OverworldConstraint; fusionScrap10:Define:FirstByte, 0x0C9854:SecondByte;	(+16, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenC), (&Items.Lantern.0x36, Helpers.CanFuseGreenC), (&Items.Lantern.0x37, Helpers.CanFuseGreenC), (&Items.Lantern.0x39, Helpers.CanFuseGreenC), (&Items.Lantern.0x3C, Helpers.CanFuseGreenC), (&Items.Lantern.0x44, Helpers.CanFuseGreenG), (&Items.Lantern.0x46, Helpers.CanFuseGreenG), (&Items.Lantern.0x47, Helpers.CanFuseGreenG), (&Items.Lantern.0x4E, Helpers.CanFuseGreenG), (&Items.Lantern.0x50, Helpers.CanFuseGreenP), (&Items.Lantern.0x53, Helpers.CanFuseGreenP), (&Items.Lantern.0x55, Helpers.CanFuseGreenP), (&Items.Lantern.0x56, Helpers.CanFuseGreenP), (&Items.Lantern.0x58, Helpers.CanFuseGreenP), (&Items.Lantern.0x5F, Helpers.CanFuseGreenC), (&Items.Lantern.0x60, Helpers.CanFuseGreenG)); 																										`GREENSHARED5F`
-		Shared11:SF;   OverworldConstraint; fusionScrap11:Define:FirstByte, 0x0C9855:SecondByte;	(+17, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenC), (&Items.Lantern.0x36, Helpers.CanFuseGreenC), (&Items.Lantern.0x37, Helpers.CanFuseGreenC), (&Items.Lantern.0x39, Helpers.CanFuseGreenC), (&Items.Lantern.0x3C, Helpers.CanFuseGreenC), (&Items.Lantern.0x44, Helpers.CanFuseGreenG), (&Items.Lantern.0x46, Helpers.CanFuseGreenG), (&Items.Lantern.0x47, Helpers.CanFuseGreenG), (&Items.Lantern.0x4E, Helpers.CanFuseGreenG), (&Items.Lantern.0x50, Helpers.CanFuseGreenP), (&Items.Lantern.0x53, Helpers.CanFuseGreenP), (&Items.Lantern.0x55, Helpers.CanFuseGreenP), (&Items.Lantern.0x56, Helpers.CanFuseGreenP), (&Items.Lantern.0x58, Helpers.CanFuseGreenP), (&Items.Lantern.0x5F, Helpers.CanFuseGreenC), (&Items.Lantern.0x60, Helpers.CanFuseGreenG)); 																										`GREENSHARED60`
+		Shared00:SF;   OverworldConstraint; fusionScrap00:Define:FirstByte, 0x0C9844:SecondByte;	;																																																																																																																																																																																			
+		Shared01:SF;   OverworldConstraint; fusionScrap01:Define:FirstByte, 0x0C9845:SecondByte;	(|Helpers.SeededRed18, Helpers.SeededBlue2D, Helpers.SeededGreen35C1, Helpers.SeededGreen36C1, Helpers.SeededGreen37C1, Helpers.SeededGreen39C1, Helpers.SeededGreen3CC1, Helpers.SeededGreen44G1, Helpers.SeededGreen46G1, Helpers.SeededGreen47G1, Helpers.SeededGreen4EG1, Helpers.SeededGreen50P1, Helpers.SeededGreen53P1, Helpers.SeededGreen55P1, Helpers.SeededGreen56P1, Helpers.SeededGreen58P1, Helpers.SeededGreen5FC1, Helpers.SeededGreen60G1);
+		Shared02:SF;   OverworldConstraint; fusionScrap02:Define:FirstByte, 0x0C9846:SecondByte;	(+2, Helpers.SeededRed18, Helpers.SeededBlue2D, Helpers.SeededGreen35C2, Helpers.SeededGreen36C2, Helpers.SeededGreen37C2, Helpers.SeededGreen39C2, Helpers.SeededGreen3CC2, Helpers.SeededGreen44G2, Helpers.SeededGreen46G2, Helpers.SeededGreen47G2, Helpers.SeededGreen4EG2, Helpers.SeededGreen50P2, Helpers.SeededGreen53P2, Helpers.SeededGreen55P2, Helpers.SeededGreen56P2, Helpers.SeededGreen58P2, Helpers.SeededGreen5FC2, Helpers.SeededGreen60G2);
+		Shared03:SF;   OverworldConstraint; fusionScrap03:Define:FirstByte, 0x0C9847:SecondByte;	(+3, Helpers.SeededRed18, Helpers.SeededBlue2D, Helpers.SeededGreen35C3, Helpers.SeededGreen36C3, Helpers.SeededGreen37C3, Helpers.SeededGreen39C3, Helpers.SeededGreen3CC3, Helpers.SeededGreen44G3, Helpers.SeededGreen46G3, Helpers.SeededGreen47G3, Helpers.SeededGreen4EG3, Helpers.SeededGreen50P3, Helpers.SeededGreen53P3, Helpers.SeededGreen55P3, Helpers.SeededGreen56P3, Helpers.SeededGreen58P3, Helpers.SeededGreen5FC3, Helpers.SeededGreen60G3);
+		Shared04:SF;   OverworldConstraint; fusionScrap04:Define:FirstByte, 0x0C9848:SecondByte;	(+4, Helpers.SeededRed18, Helpers.SeededBlue2D, Helpers.SeededGreen35C4, Helpers.SeededGreen36C4, Helpers.SeededGreen37C4, Helpers.SeededGreen39C4, Helpers.SeededGreen3CC4, Helpers.SeededGreen44G4, Helpers.SeededGreen46G4, Helpers.SeededGreen47G4, Helpers.SeededGreen4EG4, Helpers.SeededGreen50P4, Helpers.SeededGreen53P4, Helpers.SeededGreen55P4, Helpers.SeededGreen56P4, Helpers.SeededGreen58P4, Helpers.SeededGreen5FC4, Helpers.SeededGreen60G4);
+		Shared05:SF;   OverworldConstraint; fusionScrap05:Define:FirstByte, 0x0C9849:SecondByte;	(+5, Helpers.SeededRed18, Helpers.SeededBlue2D, Helpers.SeededGreen35C5, Helpers.SeededGreen36C5, Helpers.SeededGreen37C5, Helpers.SeededGreen39C5, Helpers.SeededGreen3CC5, Helpers.SeededGreen44G5, Helpers.SeededGreen46G5, Helpers.SeededGreen47G5, Helpers.SeededGreen4EG5, Helpers.SeededGreen50P5, Helpers.SeededGreen53P5, Helpers.SeededGreen55P5, Helpers.SeededGreen56P5, Helpers.SeededGreen58P5, Helpers.SeededGreen5FC5, Helpers.SeededGreen60G5);
+		Shared06:SF;   OverworldConstraint; fusionScrap06:Define:FirstByte, 0x0C984A:SecondByte;	(+6, Helpers.SeededRed18, Helpers.SeededBlue2D, Helpers.SeededGreen35C6, Helpers.SeededGreen36C6, Helpers.SeededGreen37C6, Helpers.SeededGreen39C6, Helpers.SeededGreen3CC6, Helpers.SeededGreen44, Helpers.SeededGreen46, Helpers.SeededGreen47, Helpers.SeededGreen4E, Helpers.SeededGreen50, Helpers.SeededGreen53, Helpers.SeededGreen55, Helpers.SeededGreen56, Helpers.SeededGreen58, Helpers.SeededGreen5FC6, Helpers.SeededGreen60);
+		Shared07:SF;   OverworldConstraint; fusionScrap07:Define:FirstByte, 0x0C984B:SecondByte;	(+7, Helpers.SeededRed18, Helpers.SeededBlue2D, Helpers.SeededGreen35, Helpers.SeededGreen36, Helpers.SeededGreen37, Helpers.SeededGreen39, Helpers.SeededGreen3C, Helpers.SeededGreen44, Helpers.SeededGreen46, Helpers.SeededGreen47, Helpers.SeededGreen4E, Helpers.SeededGreen50, Helpers.SeededGreen53, Helpers.SeededGreen55, Helpers.SeededGreen56, Helpers.SeededGreen58, Helpers.SeededGreen5F, Helpers.SeededGreen60);
+		Shared08:SF;   OverworldConstraint; fusionScrap08:Define:FirstByte, 0x0C984C:SecondByte;	(+8, Helpers.SeededRed18, Helpers.SeededBlue2D, Helpers.SeededGreen35, Helpers.SeededGreen36, Helpers.SeededGreen37, Helpers.SeededGreen39, Helpers.SeededGreen3C, Helpers.SeededGreen44, Helpers.SeededGreen46, Helpers.SeededGreen47, Helpers.SeededGreen4E, Helpers.SeededGreen50, Helpers.SeededGreen53, Helpers.SeededGreen55, Helpers.SeededGreen56, Helpers.SeededGreen58, Helpers.SeededGreen5F, Helpers.SeededGreen60);
+		Shared09:SF;   OverworldConstraint; fusionScrap09:Define:FirstByte, 0x0C984D:SecondByte;	(+9, Helpers.SeededRed18, Helpers.SeededBlue2D, Helpers.SeededGreen35, Helpers.SeededGreen36, Helpers.SeededGreen37, Helpers.SeededGreen39, Helpers.SeededGreen3C, Helpers.SeededGreen44, Helpers.SeededGreen46, Helpers.SeededGreen47, Helpers.SeededGreen4E, Helpers.SeededGreen50, Helpers.SeededGreen53, Helpers.SeededGreen55, Helpers.SeededGreen56, Helpers.SeededGreen58, Helpers.SeededGreen5F, Helpers.SeededGreen60);
+		Shared0A:SF;   OverworldConstraint; fusionScrap0A:Define:FirstByte, 0x0C984E:SecondByte;	(+10, Helpers.SeededRed18, Helpers.SeededBlue2D, Helpers.SeededGreen35, Helpers.SeededGreen36, Helpers.SeededGreen37, Helpers.SeededGreen39, Helpers.SeededGreen3C, Helpers.SeededGreen44, Helpers.SeededGreen46, Helpers.SeededGreen47, Helpers.SeededGreen4E, Helpers.SeededGreen50, Helpers.SeededGreen53, Helpers.SeededGreen55, Helpers.SeededGreen56, Helpers.SeededGreen58, Helpers.SeededGreen5F, Helpers.SeededGreen60);
+		Shared0B:SF;   OverworldConstraint; fusionScrap0B:Define:FirstByte, 0x0C984F:SecondByte;	(+11, Helpers.SeededRed18, Helpers.SeededBlue2D, Helpers.SeededGreen35, Helpers.SeededGreen36, Helpers.SeededGreen37, Helpers.SeededGreen39, Helpers.SeededGreen3C, Helpers.SeededGreen44, Helpers.SeededGreen46, Helpers.SeededGreen47, Helpers.SeededGreen4E, Helpers.SeededGreen50, Helpers.SeededGreen53, Helpers.SeededGreen55, Helpers.SeededGreen56, Helpers.SeededGreen58, Helpers.SeededGreen5F, Helpers.SeededGreen60);
+		Shared0C:SF;   OverworldConstraint; fusionScrap0C:Define:FirstByte, 0x0C9850:SecondByte;	(+12, Helpers.SeededRed18, Helpers.SeededBlue2D, Helpers.SeededGreen35, Helpers.SeededGreen36, Helpers.SeededGreen37, Helpers.SeededGreen39, Helpers.SeededGreen3C, Helpers.SeededGreen44, Helpers.SeededGreen46, Helpers.SeededGreen47, Helpers.SeededGreen4E, Helpers.SeededGreen50, Helpers.SeededGreen53, Helpers.SeededGreen55, Helpers.SeededGreen56, Helpers.SeededGreen58, Helpers.SeededGreen5F, Helpers.SeededGreen60);
+		Shared0D:SF;   OverworldConstraint; fusionScrap0D:Define:FirstByte, 0x0C9851:SecondByte;	(+13, Helpers.SeededRed18, Helpers.SeededBlue2D, Helpers.SeededGreen35, Helpers.SeededGreen36, Helpers.SeededGreen37, Helpers.SeededGreen39, Helpers.SeededGreen3C, Helpers.SeededGreen44, Helpers.SeededGreen46, Helpers.SeededGreen47, Helpers.SeededGreen4E, Helpers.SeededGreen50, Helpers.SeededGreen53, Helpers.SeededGreen55, Helpers.SeededGreen56, Helpers.SeededGreen58, Helpers.SeededGreen5F, Helpers.SeededGreen60);
+		Shared0E:SF;   OverworldConstraint; fusionScrap0E:Define:FirstByte, 0x0C9852:SecondByte;	(+14, Helpers.SeededRed18, Helpers.SeededBlue2D, Helpers.SeededGreen35, Helpers.SeededGreen36, Helpers.SeededGreen37, Helpers.SeededGreen39, Helpers.SeededGreen3C, Helpers.SeededGreen44, Helpers.SeededGreen46, Helpers.SeededGreen47, Helpers.SeededGreen4E, Helpers.SeededGreen50, Helpers.SeededGreen53, Helpers.SeededGreen55, Helpers.SeededGreen56, Helpers.SeededGreen58, Helpers.SeededGreen5F, Helpers.SeededGreen60);
+		Shared0F:SF;   OverworldConstraint; fusionScrap0F:Define:FirstByte, 0x0C9853:SecondByte;	(+15, Helpers.SeededRed18, Helpers.SeededBlue2D, Helpers.SeededGreen35, Helpers.SeededGreen36, Helpers.SeededGreen37, Helpers.SeededGreen39, Helpers.SeededGreen3C, Helpers.SeededGreen44, Helpers.SeededGreen46, Helpers.SeededGreen47, Helpers.SeededGreen4E, Helpers.SeededGreen50, Helpers.SeededGreen53, Helpers.SeededGreen55, Helpers.SeededGreen56, Helpers.SeededGreen58, Helpers.SeededGreen5F, Helpers.SeededGreen60);
+		Shared10:SF;   OverworldConstraint; fusionScrap10:Define:FirstByte, 0x0C9854:SecondByte;	(+16, Helpers.SeededRed18, Helpers.SeededBlue2D, Helpers.SeededGreen35, Helpers.SeededGreen36, Helpers.SeededGreen37, Helpers.SeededGreen39, Helpers.SeededGreen3C, Helpers.SeededGreen44, Helpers.SeededGreen46, Helpers.SeededGreen47, Helpers.SeededGreen4E, Helpers.SeededGreen50, Helpers.SeededGreen53, Helpers.SeededGreen55, Helpers.SeededGreen56, Helpers.SeededGreen58, Helpers.SeededGreen5F, Helpers.SeededGreen60);
+		Shared11:SF;   OverworldConstraint; fusionScrap11:Define:FirstByte, 0x0C9855:SecondByte;	(+17, Helpers.SeededRed18, Helpers.SeededBlue2D, Helpers.SeededGreen35, Helpers.SeededGreen36, Helpers.SeededGreen37, Helpers.SeededGreen39, Helpers.SeededGreen3C, Helpers.SeededGreen44, Helpers.SeededGreen46, Helpers.SeededGreen47, Helpers.SeededGreen4E, Helpers.SeededGreen50, Helpers.SeededGreen53, Helpers.SeededGreen55, Helpers.SeededGreen56, Helpers.SeededGreen58, Helpers.SeededGreen5F, Helpers.SeededGreen60);
 	!else
-		Shared00:SF;   OverworldConstraint; fusionScrap00:Define:FirstByte, 0x0C9844:SecondByte;	;																																																																																																																																																																																																																																													`REDSHARED`
-		Shared01:SF;   OverworldConstraint; fusionScrap01:Define:FirstByte, 0x0C9845:SecondByte;	(|(&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenShared1), (&Items.Lantern.0x36, Helpers.CanFuseGreenShared1), (&Items.Lantern.0x37, Helpers.CanFuseGreenShared1), (&Items.Lantern.0x39, Helpers.CanFuseGreenShared1), (&Items.Lantern.0x3C, Helpers.CanFuseGreenShared1), (&Items.Lantern.0x44, Helpers.CanFuseGreenShared1), (&Items.Lantern.0x46, Helpers.CanFuseGreenShared1), (&Items.Lantern.0x47, Helpers.CanFuseGreenShared1), (&Items.Lantern.0x4E, Helpers.CanFuseGreenShared1), (&Items.Lantern.0x50, Helpers.CanFuseGreenShared1), (&Items.Lantern.0x53, Helpers.CanFuseGreenShared1), (&Items.Lantern.0x55, Helpers.CanFuseGreenShared1), (&Items.Lantern.0x56, Helpers.CanFuseGreenShared1), (&Items.Lantern.0x58, Helpers.CanFuseGreenShared1), (&Items.Lantern.0x5F, Helpers.CanFuseGreenShared1), (&Items.Lantern.0x60, Helpers.CanFuseGreenShared1));					`BLUESHARED`
-		Shared02:SF;   OverworldConstraint; fusionScrap02:Define:FirstByte, 0x0C9846:SecondByte;	(+2, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenShared2), (&Items.Lantern.0x36, Helpers.CanFuseGreenShared2), (&Items.Lantern.0x37, Helpers.CanFuseGreenShared2), (&Items.Lantern.0x39, Helpers.CanFuseGreenShared2), (&Items.Lantern.0x3C, Helpers.CanFuseGreenShared2), (&Items.Lantern.0x44, Helpers.CanFuseGreenShared2), (&Items.Lantern.0x46, Helpers.CanFuseGreenShared2), (&Items.Lantern.0x47, Helpers.CanFuseGreenShared2), (&Items.Lantern.0x4E, Helpers.CanFuseGreenShared2), (&Items.Lantern.0x50, Helpers.CanFuseGreenShared2), (&Items.Lantern.0x53, Helpers.CanFuseGreenShared2), (&Items.Lantern.0x55, Helpers.CanFuseGreenShared2), (&Items.Lantern.0x56, Helpers.CanFuseGreenShared2), (&Items.Lantern.0x58, Helpers.CanFuseGreenShared2), (&Items.Lantern.0x5F, Helpers.CanFuseGreenShared2), (&Items.Lantern.0x60, Helpers.CanFuseGreenShared2));					`GREENSHARED35`
-		Shared03:SF;   OverworldConstraint; fusionScrap03:Define:FirstByte, 0x0C9847:SecondByte;	(+3, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenShared3), (&Items.Lantern.0x36, Helpers.CanFuseGreenShared3), (&Items.Lantern.0x37, Helpers.CanFuseGreenShared3), (&Items.Lantern.0x39, Helpers.CanFuseGreenShared3), (&Items.Lantern.0x3C, Helpers.CanFuseGreenShared3), (&Items.Lantern.0x44, Helpers.CanFuseGreenShared3), (&Items.Lantern.0x46, Helpers.CanFuseGreenShared3), (&Items.Lantern.0x47, Helpers.CanFuseGreenShared3), (&Items.Lantern.0x4E, Helpers.CanFuseGreenShared3), (&Items.Lantern.0x50, Helpers.CanFuseGreenShared3), (&Items.Lantern.0x53, Helpers.CanFuseGreenShared3), (&Items.Lantern.0x55, Helpers.CanFuseGreenShared3), (&Items.Lantern.0x56, Helpers.CanFuseGreenShared3), (&Items.Lantern.0x58, Helpers.CanFuseGreenShared3), (&Items.Lantern.0x5F, Helpers.CanFuseGreenShared3), (&Items.Lantern.0x60, Helpers.CanFuseGreenShared3));					`GREENSHARED36`
-		Shared04:SF;   OverworldConstraint; fusionScrap04:Define:FirstByte, 0x0C9848:SecondByte;	(+4, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenShared4), (&Items.Lantern.0x36, Helpers.CanFuseGreenShared4), (&Items.Lantern.0x37, Helpers.CanFuseGreenShared4), (&Items.Lantern.0x39, Helpers.CanFuseGreenShared4), (&Items.Lantern.0x3C, Helpers.CanFuseGreenShared4), (&Items.Lantern.0x44, Helpers.CanFuseGreenShared4), (&Items.Lantern.0x46, Helpers.CanFuseGreenShared4), (&Items.Lantern.0x47, Helpers.CanFuseGreenShared4), (&Items.Lantern.0x4E, Helpers.CanFuseGreenShared4), (&Items.Lantern.0x50, Helpers.CanFuseGreenShared4), (&Items.Lantern.0x53, Helpers.CanFuseGreenShared4), (&Items.Lantern.0x55, Helpers.CanFuseGreenShared4), (&Items.Lantern.0x56, Helpers.CanFuseGreenShared4), (&Items.Lantern.0x58, Helpers.CanFuseGreenShared4), (&Items.Lantern.0x5F, Helpers.CanFuseGreenShared4), (&Items.Lantern.0x60, Helpers.CanFuseGreenShared4));					`GREENSHARED37`
-		Shared05:SF;   OverworldConstraint; fusionScrap05:Define:FirstByte, 0x0C9849:SecondByte;	(+5, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenShared5), (&Items.Lantern.0x36, Helpers.CanFuseGreenShared5), (&Items.Lantern.0x37, Helpers.CanFuseGreenShared5), (&Items.Lantern.0x39, Helpers.CanFuseGreenShared5), (&Items.Lantern.0x3C, Helpers.CanFuseGreenShared5), (&Items.Lantern.0x44, Helpers.CanFuseGreenShared5), (&Items.Lantern.0x46, Helpers.CanFuseGreenShared5), (&Items.Lantern.0x47, Helpers.CanFuseGreenShared5), (&Items.Lantern.0x4E, Helpers.CanFuseGreenShared5), (&Items.Lantern.0x50, Helpers.CanFuseGreenShared5), (&Items.Lantern.0x53, Helpers.CanFuseGreenShared5), (&Items.Lantern.0x55, Helpers.CanFuseGreenShared5), (&Items.Lantern.0x56, Helpers.CanFuseGreenShared5), (&Items.Lantern.0x58, Helpers.CanFuseGreenShared5), (&Items.Lantern.0x5F, Helpers.CanFuseGreenShared5), (&Items.Lantern.0x60, Helpers.CanFuseGreenShared5));					`GREENSHARED39`
-		Shared06:SF;   OverworldConstraint; fusionScrap06:Define:FirstByte, 0x0C984A:SecondByte;	(+6, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenShared6), (&Items.Lantern.0x36, Helpers.CanFuseGreenShared6), (&Items.Lantern.0x37, Helpers.CanFuseGreenShared6), (&Items.Lantern.0x39, Helpers.CanFuseGreenShared6), (&Items.Lantern.0x3C, Helpers.CanFuseGreenShared6), (&Items.Lantern.0x44, Helpers.CanFuseGreenShared6), (&Items.Lantern.0x46, Helpers.CanFuseGreenShared6), (&Items.Lantern.0x47, Helpers.CanFuseGreenShared6), (&Items.Lantern.0x4E, Helpers.CanFuseGreenShared6), (&Items.Lantern.0x50, Helpers.CanFuseGreenShared6), (&Items.Lantern.0x53, Helpers.CanFuseGreenShared6), (&Items.Lantern.0x55, Helpers.CanFuseGreenShared6), (&Items.Lantern.0x56, Helpers.CanFuseGreenShared6), (&Items.Lantern.0x58, Helpers.CanFuseGreenShared6), (&Items.Lantern.0x5F, Helpers.CanFuseGreenShared6), (&Items.Lantern.0x60, Helpers.CanFuseGreenShared6));					`GREENSHARED3C`
-		Shared07:SF;   OverworldConstraint; fusionScrap07:Define:FirstByte, 0x0C984B:SecondByte;	(+7, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenShared7), (&Items.Lantern.0x36, Helpers.CanFuseGreenShared7), (&Items.Lantern.0x37, Helpers.CanFuseGreenShared7), (&Items.Lantern.0x39, Helpers.CanFuseGreenShared7), (&Items.Lantern.0x3C, Helpers.CanFuseGreenShared7), (&Items.Lantern.0x44, Helpers.CanFuseGreenShared7), (&Items.Lantern.0x46, Helpers.CanFuseGreenShared7), (&Items.Lantern.0x47, Helpers.CanFuseGreenShared7), (&Items.Lantern.0x4E, Helpers.CanFuseGreenShared7), (&Items.Lantern.0x50, Helpers.CanFuseGreenShared7), (&Items.Lantern.0x53, Helpers.CanFuseGreenShared7), (&Items.Lantern.0x55, Helpers.CanFuseGreenShared7), (&Items.Lantern.0x56, Helpers.CanFuseGreenShared7), (&Items.Lantern.0x58, Helpers.CanFuseGreenShared7), (&Items.Lantern.0x5F, Helpers.CanFuseGreenShared7), (&Items.Lantern.0x60, Helpers.CanFuseGreenShared7));					`GREENSHARED44`
-		Shared08:SF;   OverworldConstraint; fusionScrap08:Define:FirstByte, 0x0C984C:SecondByte;	(+8, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenShared8), (&Items.Lantern.0x36, Helpers.CanFuseGreenShared8), (&Items.Lantern.0x37, Helpers.CanFuseGreenShared8), (&Items.Lantern.0x39, Helpers.CanFuseGreenShared8), (&Items.Lantern.0x3C, Helpers.CanFuseGreenShared8), (&Items.Lantern.0x44, Helpers.CanFuseGreenShared8), (&Items.Lantern.0x46, Helpers.CanFuseGreenShared8), (&Items.Lantern.0x47, Helpers.CanFuseGreenShared8), (&Items.Lantern.0x4E, Helpers.CanFuseGreenShared8), (&Items.Lantern.0x50, Helpers.CanFuseGreenShared8), (&Items.Lantern.0x53, Helpers.CanFuseGreenShared8), (&Items.Lantern.0x55, Helpers.CanFuseGreenShared8), (&Items.Lantern.0x56, Helpers.CanFuseGreenShared8), (&Items.Lantern.0x58, Helpers.CanFuseGreenShared8), (&Items.Lantern.0x5F, Helpers.CanFuseGreenShared8), (&Items.Lantern.0x60, Helpers.CanFuseGreenShared8));					`GREENSHARED46`
-		Shared09:SF;   OverworldConstraint; fusionScrap09:Define:FirstByte, 0x0C984D:SecondByte;	(+9, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenShared9), (&Items.Lantern.0x36, Helpers.CanFuseGreenShared9), (&Items.Lantern.0x37, Helpers.CanFuseGreenShared9), (&Items.Lantern.0x39, Helpers.CanFuseGreenShared9), (&Items.Lantern.0x3C, Helpers.CanFuseGreenShared9), (&Items.Lantern.0x44, Helpers.CanFuseGreenShared9), (&Items.Lantern.0x46, Helpers.CanFuseGreenShared9), (&Items.Lantern.0x47, Helpers.CanFuseGreenShared9), (&Items.Lantern.0x4E, Helpers.CanFuseGreenShared9), (&Items.Lantern.0x50, Helpers.CanFuseGreenShared9), (&Items.Lantern.0x53, Helpers.CanFuseGreenShared9), (&Items.Lantern.0x55, Helpers.CanFuseGreenShared9), (&Items.Lantern.0x56, Helpers.CanFuseGreenShared9), (&Items.Lantern.0x58, Helpers.CanFuseGreenShared9), (&Items.Lantern.0x5F, Helpers.CanFuseGreenShared9), (&Items.Lantern.0x60, Helpers.CanFuseGreenShared9));					`GREENSHARED47`
-		Shared0A:SF;   OverworldConstraint; fusionScrap0A:Define:FirstByte, 0x0C984E:SecondByte;	(+10, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenShared10), (&Items.Lantern.0x36, Helpers.CanFuseGreenShared10), (&Items.Lantern.0x37, Helpers.CanFuseGreenShared10), (&Items.Lantern.0x39, Helpers.CanFuseGreenShared10), (&Items.Lantern.0x3C, Helpers.CanFuseGreenShared10), (&Items.Lantern.0x44, Helpers.CanFuseGreenShared10), (&Items.Lantern.0x46, Helpers.CanFuseGreenShared10), (&Items.Lantern.0x47, Helpers.CanFuseGreenShared10), (&Items.Lantern.0x4E, Helpers.CanFuseGreenShared10), (&Items.Lantern.0x50, Helpers.CanFuseGreenShared10), (&Items.Lantern.0x53, Helpers.CanFuseGreenShared10), (&Items.Lantern.0x55, Helpers.CanFuseGreenShared10), (&Items.Lantern.0x56, Helpers.CanFuseGreenShared10), (&Items.Lantern.0x58, Helpers.CanFuseGreenShared10), (&Items.Lantern.0x5F, Helpers.CanFuseGreenShared10), (&Items.Lantern.0x60, Helpers.CanFuseGreenShared10));	`GREENSHARED4E`
-		Shared0B:SF;   OverworldConstraint; fusionScrap0B:Define:FirstByte, 0x0C984F:SecondByte;	(+11, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenShared11), (&Items.Lantern.0x36, Helpers.CanFuseGreenShared11), (&Items.Lantern.0x37, Helpers.CanFuseGreenShared11), (&Items.Lantern.0x39, Helpers.CanFuseGreenShared11), (&Items.Lantern.0x3C, Helpers.CanFuseGreenShared11), (&Items.Lantern.0x44, Helpers.CanFuseGreenShared11), (&Items.Lantern.0x46, Helpers.CanFuseGreenShared11), (&Items.Lantern.0x47, Helpers.CanFuseGreenShared11), (&Items.Lantern.0x4E, Helpers.CanFuseGreenShared11), (&Items.Lantern.0x50, Helpers.CanFuseGreenShared11), (&Items.Lantern.0x53, Helpers.CanFuseGreenShared11), (&Items.Lantern.0x55, Helpers.CanFuseGreenShared11), (&Items.Lantern.0x56, Helpers.CanFuseGreenShared11), (&Items.Lantern.0x58, Helpers.CanFuseGreenShared11), (&Items.Lantern.0x5F, Helpers.CanFuseGreenShared11), (&Items.Lantern.0x60, Helpers.CanFuseGreenShared11));	`GREENSHARED50`
-		Shared0C:SF;   OverworldConstraint; fusionScrap0C:Define:FirstByte, 0x0C9850:SecondByte;	(+12, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenShared12), (&Items.Lantern.0x36, Helpers.CanFuseGreenShared12), (&Items.Lantern.0x37, Helpers.CanFuseGreenShared12), (&Items.Lantern.0x39, Helpers.CanFuseGreenShared12), (&Items.Lantern.0x3C, Helpers.CanFuseGreenShared12), (&Items.Lantern.0x44, Helpers.CanFuseGreenShared12), (&Items.Lantern.0x46, Helpers.CanFuseGreenShared12), (&Items.Lantern.0x47, Helpers.CanFuseGreenShared12), (&Items.Lantern.0x4E, Helpers.CanFuseGreenShared12), (&Items.Lantern.0x50, Helpers.CanFuseGreenShared12), (&Items.Lantern.0x53, Helpers.CanFuseGreenShared12), (&Items.Lantern.0x55, Helpers.CanFuseGreenShared12), (&Items.Lantern.0x56, Helpers.CanFuseGreenShared12), (&Items.Lantern.0x58, Helpers.CanFuseGreenShared12), (&Items.Lantern.0x5F, Helpers.CanFuseGreenShared12), (&Items.Lantern.0x60, Helpers.CanFuseGreenShared12));	`GREENSHARED53`
-		Shared0D:SF;   OverworldConstraint; fusionScrap0D:Define:FirstByte, 0x0C9851:SecondByte;	(+13, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenShared13), (&Items.Lantern.0x36, Helpers.CanFuseGreenShared13), (&Items.Lantern.0x37, Helpers.CanFuseGreenShared13), (&Items.Lantern.0x39, Helpers.CanFuseGreenShared13), (&Items.Lantern.0x3C, Helpers.CanFuseGreenShared13), (&Items.Lantern.0x44, Helpers.CanFuseGreenShared13), (&Items.Lantern.0x46, Helpers.CanFuseGreenShared13), (&Items.Lantern.0x47, Helpers.CanFuseGreenShared13), (&Items.Lantern.0x4E, Helpers.CanFuseGreenShared13), (&Items.Lantern.0x50, Helpers.CanFuseGreenShared13), (&Items.Lantern.0x53, Helpers.CanFuseGreenShared13), (&Items.Lantern.0x55, Helpers.CanFuseGreenShared13), (&Items.Lantern.0x56, Helpers.CanFuseGreenShared13), (&Items.Lantern.0x58, Helpers.CanFuseGreenShared13), (&Items.Lantern.0x5F, Helpers.CanFuseGreenShared13), (&Items.Lantern.0x60, Helpers.CanFuseGreenShared13));	`GREENSHARED55`
-		Shared0E:SF;   OverworldConstraint; fusionScrap0E:Define:FirstByte, 0x0C9852:SecondByte;	(+14, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenShared14), (&Items.Lantern.0x36, Helpers.CanFuseGreenShared14), (&Items.Lantern.0x37, Helpers.CanFuseGreenShared14), (&Items.Lantern.0x39, Helpers.CanFuseGreenShared14), (&Items.Lantern.0x3C, Helpers.CanFuseGreenShared14), (&Items.Lantern.0x44, Helpers.CanFuseGreenShared14), (&Items.Lantern.0x46, Helpers.CanFuseGreenShared14), (&Items.Lantern.0x47, Helpers.CanFuseGreenShared14), (&Items.Lantern.0x4E, Helpers.CanFuseGreenShared14), (&Items.Lantern.0x50, Helpers.CanFuseGreenShared14), (&Items.Lantern.0x53, Helpers.CanFuseGreenShared14), (&Items.Lantern.0x55, Helpers.CanFuseGreenShared14), (&Items.Lantern.0x56, Helpers.CanFuseGreenShared14), (&Items.Lantern.0x58, Helpers.CanFuseGreenShared14), (&Items.Lantern.0x5F, Helpers.CanFuseGreenShared14), (&Items.Lantern.0x60, Helpers.CanFuseGreenShared14));	`GREENSHARED56`
-		Shared0F:SF;   OverworldConstraint; fusionScrap0F:Define:FirstByte, 0x0C9853:SecondByte;	(+15, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenShared15), (&Items.Lantern.0x36, Helpers.CanFuseGreenShared15), (&Items.Lantern.0x37, Helpers.CanFuseGreenShared15), (&Items.Lantern.0x39, Helpers.CanFuseGreenShared15), (&Items.Lantern.0x3C, Helpers.CanFuseGreenShared15), (&Items.Lantern.0x44, Helpers.CanFuseGreenShared15), (&Items.Lantern.0x46, Helpers.CanFuseGreenShared15), (&Items.Lantern.0x47, Helpers.CanFuseGreenShared15), (&Items.Lantern.0x4E, Helpers.CanFuseGreenShared15), (&Items.Lantern.0x50, Helpers.CanFuseGreenShared15), (&Items.Lantern.0x53, Helpers.CanFuseGreenShared15), (&Items.Lantern.0x55, Helpers.CanFuseGreenShared15), (&Items.Lantern.0x56, Helpers.CanFuseGreenShared15), (&Items.Lantern.0x58, Helpers.CanFuseGreenShared15), (&Items.Lantern.0x5F, Helpers.CanFuseGreenShared15), (&Items.Lantern.0x60, Helpers.CanFuseGreenShared15));	`GREENSHARED58`
-		Shared10:SF;   OverworldConstraint; fusionScrap10:Define:FirstByte, 0x0C9854:SecondByte;	(+16, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenC), (&Items.Lantern.0x36, Helpers.CanFuseGreenC), (&Items.Lantern.0x37, Helpers.CanFuseGreenC), (&Items.Lantern.0x39, Helpers.CanFuseGreenC), (&Items.Lantern.0x3C, Helpers.CanFuseGreenC), (&Items.Lantern.0x44, Helpers.CanFuseGreenC), (&Items.Lantern.0x46, Helpers.CanFuseGreenC), (&Items.Lantern.0x47, Helpers.CanFuseGreenC), (&Items.Lantern.0x4E, Helpers.CanFuseGreenC), (&Items.Lantern.0x50, Helpers.CanFuseGreenC), (&Items.Lantern.0x53, Helpers.CanFuseGreenC), (&Items.Lantern.0x55, Helpers.CanFuseGreenC), (&Items.Lantern.0x56, Helpers.CanFuseGreenC), (&Items.Lantern.0x58, Helpers.CanFuseGreenC), (&Items.Lantern.0x5F, Helpers.CanFuseGreenC), (&Items.Lantern.0x60, Helpers.CanFuseGreenC));																										`GREENSHARED5F`
-		Shared11:SF;   OverworldConstraint; fusionScrap11:Define:FirstByte, 0x0C9855:SecondByte;	(+17, (&Items.Lantern.0x18, Helpers.CanFuseRedV), (&Items.Lantern.0x2D, Helpers.CanFuseBlueS), (&Items.Lantern.0x35, Helpers.CanFuseGreenC), (&Items.Lantern.0x36, Helpers.CanFuseGreenC), (&Items.Lantern.0x37, Helpers.CanFuseGreenC), (&Items.Lantern.0x39, Helpers.CanFuseGreenC), (&Items.Lantern.0x3C, Helpers.CanFuseGreenC), (&Items.Lantern.0x44, Helpers.CanFuseGreenC), (&Items.Lantern.0x46, Helpers.CanFuseGreenC), (&Items.Lantern.0x47, Helpers.CanFuseGreenC), (&Items.Lantern.0x4E, Helpers.CanFuseGreenC), (&Items.Lantern.0x50, Helpers.CanFuseGreenC), (&Items.Lantern.0x53, Helpers.CanFuseGreenC), (&Items.Lantern.0x55, Helpers.CanFuseGreenC), (&Items.Lantern.0x56, Helpers.CanFuseGreenC), (&Items.Lantern.0x58, Helpers.CanFuseGreenC), (&Items.Lantern.0x5F, Helpers.CanFuseGreenC), (&Items.Lantern.0x60, Helpers.CanFuseGreenC));																										`GREENSHARED60`
+		Shared00:SF;   OverworldConstraint; fusionScrap00:Define:FirstByte, 0x0C9844:SecondByte;	;																																																																																																																																																																																				
+		Shared01:SF;   OverworldConstraint; fusionScrap01:Define:FirstByte, 0x0C9845:SecondByte;	(|Helpers.SeededRed18, Helpers.SeededBlue2D, Helpers.SeededGreen35S1, Helpers.SeededGreen36S1, Helpers.SeededGreen37S1, Helpers.SeededGreen39S1, Helpers.SeededGreen3CS1, Helpers.SeededGreen44S1, Helpers.SeededGreen46G1, Helpers.SeededGreen47S1, Helpers.SeededGreen4ES1, Helpers.SeededGreen50S1, Helpers.SeededGreen53S1, Helpers.SeededGreen55S1, Helpers.SeededGreen56S1, Helpers.SeededGreen58S1, Helpers.SeededGreen5FS1, Helpers.SeededGreen60S1);
+		Shared02:SF;   OverworldConstraint; fusionScrap02:Define:FirstByte, 0x0C9846:SecondByte;	(+2, Helpers.SeededRed18, Helpers.SeededBlue2D, Helpers.SeededGreen35S2, Helpers.SeededGreen36S2, Helpers.SeededGreen37S2, Helpers.SeededGreen39S2, Helpers.SeededGreen3CS2, Helpers.SeededGreen44S2, Helpers.SeededGreen46G2, Helpers.SeededGreen47S2, Helpers.SeededGreen4ES2, Helpers.SeededGreen50S2, Helpers.SeededGreen53S2, Helpers.SeededGreen55S2, Helpers.SeededGreen56S2, Helpers.SeededGreen58S2, Helpers.SeededGreen5FS2, Helpers.SeededGreen60S2);
+		Shared03:SF;   OverworldConstraint; fusionScrap03:Define:FirstByte, 0x0C9847:SecondByte;	(+3, Helpers.SeededRed18, Helpers.SeededBlue2D, Helpers.SeededGreen35S3, Helpers.SeededGreen36S3, Helpers.SeededGreen37S3, Helpers.SeededGreen39S3, Helpers.SeededGreen3CS3, Helpers.SeededGreen44S3, Helpers.SeededGreen46G3, Helpers.SeededGreen47S3, Helpers.SeededGreen4ES3, Helpers.SeededGreen50S3, Helpers.SeededGreen53S3, Helpers.SeededGreen55S3, Helpers.SeededGreen56S3, Helpers.SeededGreen58S3, Helpers.SeededGreen5FS3, Helpers.SeededGreen60S3);
+		Shared04:SF;   OverworldConstraint; fusionScrap04:Define:FirstByte, 0x0C9848:SecondByte;	(+4, Helpers.SeededRed18, Helpers.SeededBlue2D, Helpers.SeededGreen35S4, Helpers.SeededGreen36S4, Helpers.SeededGreen37S4, Helpers.SeededGreen39S4, Helpers.SeededGreen3CS4, Helpers.SeededGreen44S4, Helpers.SeededGreen46G4, Helpers.SeededGreen47S4, Helpers.SeededGreen4ES4, Helpers.SeededGreen50S4, Helpers.SeededGreen53S4, Helpers.SeededGreen55S4, Helpers.SeededGreen56S4, Helpers.SeededGreen58S4, Helpers.SeededGreen5FS4, Helpers.SeededGreen60S4);
+		Shared05:SF;   OverworldConstraint; fusionScrap05:Define:FirstByte, 0x0C9849:SecondByte;	(+5, Helpers.SeededRed18, Helpers.SeededBlue2D, Helpers.SeededGreen35S5, Helpers.SeededGreen36S5, Helpers.SeededGreen37S5, Helpers.SeededGreen39S5, Helpers.SeededGreen3CS5, Helpers.SeededGreen44S5, Helpers.SeededGreen46G5, Helpers.SeededGreen47S5, Helpers.SeededGreen4ES5, Helpers.SeededGreen50S5, Helpers.SeededGreen53S5, Helpers.SeededGreen55S5, Helpers.SeededGreen56S5, Helpers.SeededGreen58S5, Helpers.SeededGreen5FS5, Helpers.SeededGreen60S5);
+		Shared06:SF;   OverworldConstraint; fusionScrap06:Define:FirstByte, 0x0C984A:SecondByte;	(+6, Helpers.SeededRed18, Helpers.SeededBlue2D, Helpers.SeededGreen35S6, Helpers.SeededGreen36S6, Helpers.SeededGreen37S6, Helpers.SeededGreen39S6, Helpers.SeededGreen3CS6, Helpers.SeededGreen44S6, Helpers.SeededGreen46G6, Helpers.SeededGreen47S6, Helpers.SeededGreen4ES6, Helpers.SeededGreen50S6, Helpers.SeededGreen53S6, Helpers.SeededGreen55S6, Helpers.SeededGreen56S6, Helpers.SeededGreen58S6, Helpers.SeededGreen5FS6, Helpers.SeededGreen60S6);
+		Shared07:SF;   OverworldConstraint; fusionScrap07:Define:FirstByte, 0x0C984B:SecondByte;	(+7, Helpers.SeededRed18, Helpers.SeededBlue2D, Helpers.SeededGreen35S7, Helpers.SeededGreen36S7, Helpers.SeededGreen37S7, Helpers.SeededGreen39S7, Helpers.SeededGreen3CS7, Helpers.SeededGreen44S7, Helpers.SeededGreen46G7, Helpers.SeededGreen47S7, Helpers.SeededGreen4ES7, Helpers.SeededGreen50S7, Helpers.SeededGreen53S7, Helpers.SeededGreen55S7, Helpers.SeededGreen56S7, Helpers.SeededGreen58S7, Helpers.SeededGreen5FS7, Helpers.SeededGreen60S7);
+		Shared08:SF;   OverworldConstraint; fusionScrap08:Define:FirstByte, 0x0C984C:SecondByte;	(+8, Helpers.SeededRed18, Helpers.SeededBlue2D, Helpers.SeededGreen35S8, Helpers.SeededGreen36S8, Helpers.SeededGreen37S8, Helpers.SeededGreen39S8, Helpers.SeededGreen3CS8, Helpers.SeededGreen44S8, Helpers.SeededGreen46G8, Helpers.SeededGreen47S8, Helpers.SeededGreen4ES8, Helpers.SeededGreen50S8, Helpers.SeededGreen53S8, Helpers.SeededGreen55S8, Helpers.SeededGreen56S8, Helpers.SeededGreen58S8, Helpers.SeededGreen5FS8, Helpers.SeededGreen60S8);
+		Shared09:SF;   OverworldConstraint; fusionScrap09:Define:FirstByte, 0x0C984D:SecondByte;	(+9, Helpers.SeededRed18, Helpers.SeededBlue2D, Helpers.SeededGreen35S9, Helpers.SeededGreen36S9, Helpers.SeededGreen37S9, Helpers.SeededGreen39S9, Helpers.SeededGreen3CS9, Helpers.SeededGreen44S9, Helpers.SeededGreen46G9, Helpers.SeededGreen47S9, Helpers.SeededGreen4ES9, Helpers.SeededGreen50S9, Helpers.SeededGreen53S9, Helpers.SeededGreen55S9, Helpers.SeededGreen56S9, Helpers.SeededGreen58S9, Helpers.SeededGreen5FS9, Helpers.SeededGreen60S9);
+		Shared0A:SF;   OverworldConstraint; fusionScrap0A:Define:FirstByte, 0x0C984E:SecondByte;	(+10, Helpers.SeededRed18, Helpers.SeededBlue2D, Helpers.SeededGreen35S10, Helpers.SeededGreen36S10, Helpers.SeededGreen37S10, Helpers.SeededGreen39S10, Helpers.SeededGreen3CS10, Helpers.SeededGreen44S10, Helpers.SeededGreen46G10, Helpers.SeededGreen47S10, Helpers.SeededGreen4ES10, Helpers.SeededGreen50S10, Helpers.SeededGreen53S10, Helpers.SeededGreen55S10, Helpers.SeededGreen56S10, Helpers.SeededGreen58S10, Helpers.SeededGreen5FS10, Helpers.SeededGreen60S10);
+		Shared0B:SF;   OverworldConstraint; fusionScrap0B:Define:FirstByte, 0x0C984F:SecondByte;	(+11, Helpers.SeededRed18, Helpers.SeededBlue2D, Helpers.SeededGreen35S11, Helpers.SeededGreen36S11, Helpers.SeededGreen37S11, Helpers.SeededGreen39S11, Helpers.SeededGreen3CS11, Helpers.SeededGreen44S11, Helpers.SeededGreen46G11, Helpers.SeededGreen47S11, Helpers.SeededGreen4ES11, Helpers.SeededGreen50S11, Helpers.SeededGreen53S11, Helpers.SeededGreen55S11, Helpers.SeededGreen56S11, Helpers.SeededGreen58S11, Helpers.SeededGreen5FS11, Helpers.SeededGreen60S11);
+		Shared0C:SF;   OverworldConstraint; fusionScrap0C:Define:FirstByte, 0x0C9850:SecondByte;	(+12, Helpers.SeededRed18, Helpers.SeededBlue2D, Helpers.SeededGreen35S12, Helpers.SeededGreen36S12, Helpers.SeededGreen37S12, Helpers.SeededGreen39S12, Helpers.SeededGreen3CS12, Helpers.SeededGreen44S12, Helpers.SeededGreen46G12, Helpers.SeededGreen47S12, Helpers.SeededGreen4ES12, Helpers.SeededGreen50S12, Helpers.SeededGreen53S12, Helpers.SeededGreen55S12, Helpers.SeededGreen56S12, Helpers.SeededGreen58S12, Helpers.SeededGreen5FS12, Helpers.SeededGreen60S12);
+		Shared0D:SF;   OverworldConstraint; fusionScrap0D:Define:FirstByte, 0x0C9851:SecondByte;	(+13, Helpers.SeededRed18, Helpers.SeededBlue2D, Helpers.SeededGreen35S13, Helpers.SeededGreen36S13, Helpers.SeededGreen37S13, Helpers.SeededGreen39S13, Helpers.SeededGreen3CS13, Helpers.SeededGreen44S13, Helpers.SeededGreen46G13, Helpers.SeededGreen47S13, Helpers.SeededGreen4ES13, Helpers.SeededGreen50S13, Helpers.SeededGreen53S13, Helpers.SeededGreen55S13, Helpers.SeededGreen56S13, Helpers.SeededGreen58S13, Helpers.SeededGreen5FS13, Helpers.SeededGreen60S13);
+		Shared0E:SF;   OverworldConstraint; fusionScrap0E:Define:FirstByte, 0x0C9852:SecondByte;	(+14, Helpers.SeededRed18, Helpers.SeededBlue2D, Helpers.SeededGreen35S14, Helpers.SeededGreen36S14, Helpers.SeededGreen37S14, Helpers.SeededGreen39S14, Helpers.SeededGreen3CS14, Helpers.SeededGreen44S14, Helpers.SeededGreen46G14, Helpers.SeededGreen47S14, Helpers.SeededGreen4ES14, Helpers.SeededGreen50S14, Helpers.SeededGreen53S14, Helpers.SeededGreen55S14, Helpers.SeededGreen56S14, Helpers.SeededGreen58S14, Helpers.SeededGreen5FS14, Helpers.SeededGreen60S14);
+		Shared0F:SF;   OverworldConstraint; fusionScrap0F:Define:FirstByte, 0x0C9853:SecondByte;	(+15, Helpers.SeededRed18, Helpers.SeededBlue2D, Helpers.SeededGreen35S15, Helpers.SeededGreen36S15, Helpers.SeededGreen37S15, Helpers.SeededGreen39S15, Helpers.SeededGreen3CS15, Helpers.SeededGreen44S15, Helpers.SeededGreen46G15, Helpers.SeededGreen47S15, Helpers.SeededGreen4ES15, Helpers.SeededGreen50S15, Helpers.SeededGreen53S15, Helpers.SeededGreen55S15, Helpers.SeededGreen56S15, Helpers.SeededGreen58S15, Helpers.SeededGreen5FS15, Helpers.SeededGreen60S15);
+		Shared10:SF;   OverworldConstraint; fusionScrap10:Define:FirstByte, 0x0C9854:SecondByte;	(+16, Helpers.SeededRed18, Helpers.SeededBlue2D, Helpers.SeededGreen35, Helpers.SeededGreen36, Helpers.SeededGreen37, Helpers.SeededGreen39, Helpers.SeededGreen3C, Helpers.SeededGreen44C, Helpers.SeededGreen46C, Helpers.SeededGreen47C, Helpers.SeededGreen4EC, Helpers.SeededGreen50C, Helpers.SeededGreen53C, Helpers.SeededGreen55C, Helpers.SeededGreen56C, Helpers.SeededGreen58C, Helpers.SeededGreen5F, Helpers.SeededGreen60C);
+		Shared11:SF;   OverworldConstraint; fusionScrap11:Define:FirstByte, 0x0C9855:SecondByte;	(+17, Helpers.SeededRed18, Helpers.SeededBlue2D, Helpers.SeededGreen35, Helpers.SeededGreen36, Helpers.SeededGreen37, Helpers.SeededGreen39, Helpers.SeededGreen3C, Helpers.SeededGreen44C, Helpers.SeededGreen46C, Helpers.SeededGreen47C, Helpers.SeededGreen4EC, Helpers.SeededGreen50C, Helpers.SeededGreen53C, Helpers.SeededGreen55C, Helpers.SeededGreen56C, Helpers.SeededGreen58C, Helpers.SeededGreen5F, Helpers.SeededGreen60C);
 	!endif
 	CanFuseSharedRed;		Helper;;	Items.Lantern.0x18, Helpers.CanFuseRedV
 	CanFuseSharedBlue;	Helper;;	Items.Lantern.0x2D, Helpers.CanFuseBlueS
