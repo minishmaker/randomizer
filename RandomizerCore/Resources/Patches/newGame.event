@@ -19,7 +19,6 @@ POIN fastShell; WORD 0x2002B41 1
 POIN startingFlags; WORD 0x2002C9C 308
 POIN fusionFlags; WORD 0x2002C81 13
 POIN kinstoneBag; WORD 0x2002B4B 1
-POIN disableKinstones; WORD 0x2002B56 1
 #ifndef requirementFigurinesAmmount
 	POIN figurines; WORD 0x2002B0E 18
 #endif
@@ -44,10 +43,15 @@ POIN map; WORD 0x2002A80 3
 	POIN DEBUGSTUFF; WORD 0x2002AE8 7
 	POIN DEBUGWIND; WORD 0x2002A83 1
 #endif
-#ifdef	timedohkoClock
+#ifdef timedohkoClock
 	POIN timedohkoStartingTime; WORD 0x203FFE0 4
 #endif
-POIN shells; WORD 0x2002AFB 1
+#ifdef disableKinstoneDrops
+	POIN disableKinstones; WORD 0x2002B56 1
+#endif
+#ifdef disableShellDrops
+	POIN disableShells; WORD 0x2002AFB 1
+#endif
 WORD 0 0 0 //terminator
 
 ALIGN 4
@@ -147,7 +151,7 @@ fastItems:
 BYTE 0x55 0x55 0x05 0x55 0x55 //remove the messages when picking small stuff for the first time
 
 fastShell:
-BYTE 0x40 //does this even do anything? does it start shell drops? I actually don't know
+BYTE 0x40 //remove the messages when picking shells for the first time
 
 fusionFlags:
 BYTE mC81 mC82 mC83 mC84 mC85 mC86 mC87 mC88 mC89 mC8A mC8B mC8C mC8D
@@ -189,7 +193,7 @@ BYTE 0xFF 0xFF 0x01
 
 #endif
 
-shells:
+disableShells:
 BYTE 1
 
 firerod:

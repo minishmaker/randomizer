@@ -126,7 +126,7 @@
 !flag - World Settings - Setting - Fusions - SEEDED_SHARED - Order Shared Fusions - There are a Pool of 18 Shared Fusions in the Game: 16 Green, 1 Blue and 1 Red. These Fusions are randomly selected by an NPC who offers Shared Fusions when you enter the room they are in.\n\n If this setting is enabled then the seed generates a listed order these NPCs offer the fusions in. This makes different people playing the same seed have the same fusions available which is useful for races. - true
 !flag - World Settings - Setting - Fusions - DEFICKLE - Defickle Fusers - Many NPCs who offer fusions are considered 'Fickle', this means they can randomly decide to NOT offer their fusion.\n\n Enable this to make them ALWAYS offer a fusion. - true
 !dropdown - World Settings - Setting - Fusions - FUSION_SKIPS - Skip Fusion Cutscenes - When doing a Kinstone Fusion you get a cutscene aftewards to show you what the fusion activated, and then a Map indicator spawns. - ALLOW_FUSION_SKIPS - Choose - ALLOW_FUSION_SKIPS - 'Choose': If you hold a button prior to the start of the cutscene, then the cutscene is skipped, otherwise the cutscene plays normally.\n If 'Show Map' is enabled then only the cutscene is skipped, but the map screen is still shown. - Always - INSTANT_SKIP - 'Always': The cutscene is always skipped without player input.\n If 'Show Map' is enabled then it will always show the map screen. - Never - NO_FUSION_SKIP - 'Never': The cutscene is never able to be skipped by the player.
-!flag - World Settings - Setting - Fusions - SHOW_MAP - Show Map - If enabled, it will always show the map screen at the end of a cutscene, even if the cutscene is skipped.
+!flag - World Settings - Setting - Fusions - SHOW_MAP - Always Show Map - If enabled, it will always show the map screen at the end of a cutscene, even if the cutscene is skipped.
 
 !flag - World Settings - Setting - Wind Crests - CREST_CRENEL - Mt Crenel - If enabled, will activate the wind crest in Mt Crenel from the start of the game.
 !flag - World Settings - Setting - Wind Crests - CREST_FALLS - Veil Falls - If enabled, will activate the wind crest in Veil Falls from the start of the game.
@@ -187,10 +187,12 @@
 !dropdown - Other - Setting - Restrictions - DAMAGE_MULTI - Damage Multiplier - Multiply the damage received from enemies. WARNING Do NOT enable with 'Timed OHKO', it will generate the seed but fail to patch the game. - MULTI_1 - 1x - MULTI_1 - - 2x - MULTI_2 - - 3x - MULTI_3 - - 4x - MULTI_4 - 
 !flag - Other - Setting - Extras - INSTANT_TEXT - Instant Text - Holding down a button will quickly skip through text, including choices. - true
 !flag - Other - Setting - Extras - ITEM_HISTORY - Item Name Display - Collecting an item will display text at the bottom left corner of the screen telling you what you just picked up, useful in Keysanity modes where the textbox closes too quickly for you to read which dungeon it came from. - true
-!flag - Other - Setting - Extras - SHY_FAIRIES - Shy Fairies - Faires do not come out of bottles when your health reaches 0.
+!flag - Other - Setting - Extras - SHY_FAIRIES - Shy Fairies - Fairies do not come out of bottles when your health reaches 0.
 !flag - Other - Setting - Extras - HOMEWARP - Homewarp - In the Pause menu there is a 'SLEEP' option on the 'QUEST STATUS' screen, using this will warp Link back to his bed from wherever he is. - true
 !flag - Other - Setting - Extras - OCARINA_SELECT - Ocarina on Select - Allows you to use the Ocarina by pressing the Select button, once obtained.\nWarning: Since this removes the Ezlo interaction, this prevents certain glitches. - true
 !flag - Other - Setting - Extras - GORON_ALT_PRICES - Goron Merchant JP/US prices - If enabled will use the prices found in the JP and US versions.\nThese are the prices from left to right:\nEU 1st set: 200, 100, 50\nEU 2nd set: 300, 200, 100\nEU 3rd set: 400, 300, 200\nEU 4th set: 500, 400, 300\nEU 5th set: 600, 500, 400\nJP any set: 300, 200, 50
+!flag - Other - Setting - Extras - NO_KINSTONE_DROPS - Disable Kinstone Drops - Kinstone Pieces can no longer randomly drop. - true
+!flag - Other - Setting - Extras - NO_SHELL_DROPS - Disable Shell Drops - Mysterious Shells can no longer randomly drop. - true
 !dropdown - Other - Setting - Extras - BOOTS_L - Boots on L - Allows you to use the Pegasus Boots by pressing the L button, once obtained. - BOOTS_L_NORMAL - Disabled - BOOTS_L_OFF - 'Disabled': Boots can only be used when equipped on the A or B button. - Enabled - BOOTS_L_NORMAL - 'Enabled': Boots can also be used with the L button. - Enabled + Minish - BOOTS_L_MINISH - 'Enabled + Minish': Even as a Minish, Boots can be used with the L button.\nWarning: Dashing as a Minish has some unintended effects.
 !dropdown - Other - Setting - Extras - FIREROD - Firerod - The Firerod is a leftover developer testing tool. It lets the user copy and paste tiles, effectively allowing you to walk through walls and most obstacles.\n\n WARNING: It is extremely easy to softlock yourself with this item, it is recommended to enable 'Homewarp' with this item, however some softlocks will completely prevent you from being able to beat the game. - NO_FIREROD - No Firerod - NO_FIREROD - 'No Firerod': Standard - Start With - FIREROD_START - 'Start With': Firerod is in Links Starting Inventory - Shuffled - FIREROD_CHEST - 'Shuffled': Firerod is added to the item pool, it can be randomized to any location.
 
@@ -909,6 +911,14 @@
     !else
     	!eventdefine - neverSkipFusionCutsceneFull			# if defined, fusion cutscenes are just like vanilla
     !endif
+!endif
+
+!ifdef - NO_KINSTONE_DROPS
+	!eventdefine - disableKinstoneDrops
+!endif
+
+!ifdef - NO_SHELL_DROPS
+	!eventdefine - disableShellDrops
 !endif
 
 #replaces keys if they are needed to be removed from the pool
