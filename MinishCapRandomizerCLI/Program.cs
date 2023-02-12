@@ -13,6 +13,7 @@ internal class Program
     private static string? _cachedLogicPath;
     private static string? _cachedPatchPath;
     private static bool _exiting = false;
+    private static bool _strict = false;
 
     private static void Main(string[] args)
     {
@@ -33,7 +34,7 @@ internal class Program
             var command = Console.ReadLine();
             if (string.IsNullOrEmpty(command) || !_commands.ContainsKey(command))
             {
-                Console.WriteLine($"Invalid command entered! {command} is not a valid command!");
+                PrintError($"Invalid command entered! {command} is not a valid command!");
                 continue;
             }
             
@@ -61,6 +62,7 @@ internal class Program
             {"PatchRom", PatchRom},
             {"CreatePatch", CreatePatch},
             {"Exit", Exit},
+            {"Strict", Strict},
         };
     }
     
@@ -82,6 +84,7 @@ GetSettingString    Gets the setting string for your currently selected settings
 PatchRom            Patches a European Minish Cap ROM with a BPS patch
 CreatePatch         Creates a patch from a patched ROM and an unpatched European Minish Cap ROM
 Exit                Exits the program
+Strict              Toggle strict mode (exit after error)
 ");
     }
 
@@ -96,7 +99,7 @@ Exit                Exits the program
         }
         catch
         {
-            Console.WriteLine("Failed to load ROM! Please check your file path and make sure you have read access.");
+            PrintError("Failed to load ROM! Please check your file path and make sure you have read access.");
         }
     }
     
@@ -119,7 +122,7 @@ Exit                Exits the program
                     
                     if (string.IsNullOrEmpty(seedString) || !int.TryParse(seedString, out var seed))
                     {
-                        Console.WriteLine("Invalid seed entered!");
+                        PrintError("Invalid seed entered!");
                         break;
                     }
                     
@@ -127,11 +130,11 @@ Exit                Exits the program
                     Console.WriteLine("Seed set successfully!");
                     break;
                 default:
-                    Console.WriteLine("Invalid input!");
+                    PrintError("Invalid input!");
                     break;
             }
         }
-        else Console.WriteLine("Invalid input!");
+        else PrintError("Invalid input!");
     }
     
     private static void LoadLogic()
@@ -145,7 +148,7 @@ Exit                Exits the program
         }
         catch
         {
-            Console.WriteLine("Failed to load Logic File! Please check your file path and make sure you have read access.");
+            PrintError("Failed to load Logic File! Please check your file path and make sure you have read access.");
         }
     }
     
@@ -197,7 +200,7 @@ Exit                Exits the program
                     }
                     else
                     {
-                        Console.WriteLine("Number ouf of range!");
+                        PrintError("Number ouf of range!");
                     }
                 }
                 else
@@ -211,18 +214,18 @@ Exit                Exits the program
                         }
                         else
                         {
-                            Console.WriteLine($"Unknown Option {input}!");
+                            PrintError($"Unknown Option {input}!");
                         }
                     }
                     else
                     {
-                        Console.WriteLine($"Unknown Option {input}!");
+                        PrintError($"Unknown Option {input}!");
                     }
                 }
             }
             else
             {
-                Console.WriteLine("Invalid Input!");
+                PrintError("Invalid Input!");
             }
             Console.Write("Please enter the number of the setting you would like to change, enter \"Exit\" to stop editing, or enter \"List\" to list all of the options again: ");
             input = Console.ReadLine();
@@ -238,7 +241,7 @@ Exit                Exits the program
         var input = Console.ReadLine();
         if (string.IsNullOrEmpty(input) || !int.TryParse(input, out var i))
         {
-            Console.WriteLine("Invalid Input!");
+            PrintError("Invalid Input!");
             return;
         }
 
@@ -253,7 +256,7 @@ Exit                Exits the program
                 input = Console.ReadLine();
                 if (string.IsNullOrEmpty(input) || !int.TryParse(input, out i) || (i != 1 && i != 2))
                 {
-                    Console.WriteLine("Invalid Input!");
+                    PrintError("Invalid Input!");
                     return;
                 }
                 _shufflerController.SetLoggerVerbosity(i == 1);
@@ -272,7 +275,7 @@ Exit                Exits the program
                 Console.WriteLine(_shufflerController.PublishLogs());
                 break;
             default:
-                Console.WriteLine("Invalid Input!");
+                PrintError("Invalid Input!");
                 return;
         }
     }
@@ -285,7 +288,14 @@ Exit                Exits the program
         
         _shufflerController.LoadLocations(_cachedLogicPath);
         var success = _shufflerController.Randomize(attempts);
-        Console.WriteLine(success ? "Randomization successful!" : "Randomization failed! Please try again!");
+        if(success)
+        {
+            Console.WriteLine("Randomization successful!");
+        }
+        else
+        {
+            PrintError("Randomization failed! " + success.ErrorMessage);
+        }
     }
     
     private static void SaveRom()
@@ -299,7 +309,7 @@ Exit                Exits the program
         }
         catch
         {
-            Console.WriteLine("Failed to save ROM! Please check your file path and make sure you have write access.");
+            PrintError("Failed to save ROM! Please check your file path and make sure you have write access.");
         }
     }
     
@@ -314,7 +324,7 @@ Exit                Exits the program
         }
         catch
         {
-            Console.WriteLine("Failed to save spoiler! Please check your file path and make sure you have write access.");
+            PrintError("Failed to save spoiler! Please check your file path and make sure you have write access.");
         }
     }
 
@@ -329,7 +339,7 @@ Exit                Exits the program
         }
         catch
         {
-            Console.WriteLine("Failed to save patch! Please check your file path and make sure you have write access.");
+            PrintError("Failed to save patch! Please check your file path and make sure you have write access.");
         }
     }
     
@@ -350,9 +360,14 @@ Exit                Exits the program
             
         var result = rom != null && patch != null && _shufflerController.PatchRom(rom, patch);
 
-        Console.WriteLine(!result
-            ? "Failed to patch ROM! Please check your file paths and make sure you have read/write access."
-            : "Rom patched successfully!");
+        if(result)
+        {
+            Console.WriteLine("Rom patched successfully!");
+        }
+        else
+        {
+            PrintError("Failed to patch ROM! Please check your file paths and make sure you have read/write access.");
+        }
     }
 
     private static void CreatePatch()
@@ -365,14 +380,25 @@ Exit                Exits the program
                 
         var result = rom != null && patch != null && _shufflerController.SaveRomPatch(patch, rom);
 
-        Console.WriteLine(!result
-            ? "Failed to save patch! Please check your file paths and make sure you have read/write access."
-            : "Patch saved successfully!");
+        if(result)
+        {
+            Console.WriteLine("Patch saved successfully!");
+        }
+        else
+        {
+            PrintError("Failed to save patch! Please check your file paths and make sure you have read/write access.");
+        }
     }
     
     private static void Exit()
     {
         _exiting = true;
+    }
+
+    private static void Strict()
+    {
+        _strict = !_strict;
+        Console.WriteLine("toggled strict mode " + (_strict ? "on" : "off"));
     }
 
     private static void EditOption(LogicOptionBase option)
@@ -387,7 +413,7 @@ Exit                Exits the program
                 var input = Console.ReadLine();
                 if (string.IsNullOrEmpty(input) || !int.TryParse(input, out var i) || (i != 0 && i != 1 && i != 2))
                 {
-                    Console.WriteLine("Invalid Input!");
+                    PrintError("Invalid Input!");
                     break;
                 }
 
@@ -409,7 +435,7 @@ Exit                Exits the program
                 
                 if (string.IsNullOrEmpty(input) || !int.TryParse(input, out var o) || o < 1 || o > keys.Count)
                 {
-                    Console.WriteLine("Invalid Input!");
+                    PrintError("Invalid Input!");
                     break;
                 }
 
@@ -427,7 +453,7 @@ Exit                Exits the program
                 var input = Console.ReadLine();
                 if (string.IsNullOrEmpty(input) || !int.TryParse(input, out var i) || i is < 1 or > 4)
                 {
-                    Console.WriteLine("Invalid Input!");
+                    PrintError("Invalid Input!");
                     break;
                 }
 
@@ -450,7 +476,7 @@ Exit                Exits the program
                         var argb = Console.ReadLine();
                         if (string.IsNullOrEmpty(argb) || !int.TryParse(argb, out var color))
                         {
-                            Console.WriteLine("Invalid Input!");
+                            PrintError("Invalid Input!");
                             break;
                         }
 
@@ -466,7 +492,7 @@ Exit                Exits the program
                 var input = Console.ReadLine();
                 if (string.IsNullOrEmpty(input) || !int.TryParse(input, out var i) || i is < 0 or > 255)
                 {
-                    Console.WriteLine("Invalid Input!");
+                    PrintError("Invalid Input!");
                     break;
                 }
 
@@ -474,6 +500,15 @@ Exit                Exits the program
                 Console.WriteLine("Number box value set successfully!");
                 break;
             }
+        }
+    }
+
+    private static void PrintError(string msg)
+    {
+        Console.Error.WriteLine(msg);
+        if(_strict)
+        {
+            Environment.Exit(1);
         }
     }
 }
