@@ -4983,7 +4983,7 @@ Hylia_BeanstalkFusion_HP;				`BLUEFUSIONHP`;		0x0F5EDB;														(|(&Helpers
 Hylia_BeanstalkFusion_RightChest;		`BLUEFUSION`;			0x0D-0x01-0x01;													(|(&Helpers.LakeEastMinishFusion, Helpers.AccessTreasureCave), Helpers.Hundo);																					Items.Shells.200
 Hylia_MiddleIslandFusion_DigCaveChest;	`GREENFUSION`;		0x19-0x00-0x00;													(|(&Helpers.MamaFusion, Helpers.AccessLonLon, Items.MoleMitts, Helpers.CapeExtension), Helpers.Hundo);																Items.Rupee50
 
-Droplets_Entrance						`DUNGEONENTRANCE`;	DumToDENT:Define:FirstByte, DumToDENT:Define:SecondByte;				Helpers.AccessDroplets;																																	Items.Entrance.0x04
+Droplets_Entrance						`DUNGEONENTRANCE`;	DumToDENT:Define:FirstByte, DumToDENT:Define:SecondByte;				(|Helpers.AccessDroplets, Helpers.Hundo);																													Items.Entrance.0x04
 
 Hylia_BottomHP;						`HP`;				0x0F324B;														(|(&Helpers.AccessLonLon, Helpers.CapeExtension), Helpers.Hundo);																								Items.PieceOfHeart
 Hylia_Dojo_HP;						`HP`;				0x0D7B03;														(|(&Helpers.AccessLonLon, (|Helpers.CapeExtension, Helpers.LakeShortcut)), Helpers.Hundo);																		Items.PieceOfHeart
@@ -5018,7 +5018,7 @@ MinishWoods_MinishPathFusion_Chest;			`GREENFUSION`;		0x0FE08E;												(|(&H
 MinishVillage_BarrelHouse_Item		`DWS_OUTSIDE`;	Dungeon;				0x0DA283;											(|Helpers.AccessMinishWoods, Helpers.Hundo);												Items.JabberNut
 MinishVillage_HP					`DWS_OUTSIDE`;	`DUNGEONHP`;			0x0DBCC7;											(|Helpers.AccessMinishWoods, Helpers.Hundo);												Items.PieceOfHeart
 
-Deepwood_Entrance									`DUNGEONENTRANCE`;	DumDWSENT:Define:FirstByte, DumDWSENT:Define:SecondByte;	Helpers.AccessDeepwood;																Items.Entrance.0x01
+Deepwood_Entrance									`DUNGEONENTRANCE`;	DumDWSENT:Define:FirstByte, DumDWSENT:Define:SecondByte;	(|Helpers.AccessDeepwood, Helpers.Hundo);												Items.Entrance.0x01
 
 MinishWoods_BombMinish_NPC1		`DWS_OUTSIDE`;	Dungeon;				0x00A00C;											(|Helpers.AccessBelari, Helpers.Hundo);													Items.BombBag
 MinishWoods_BombMinish_NPC2		`DWS_OUTSIDE`;	`REDFUSIONDUNGEON`;	0x00A0A0;											(|(&Helpers.GentariFusion, (|Helpers.AccessBelari, Helpers.Hundo)), Helpers.Hundo);			Items.RemoteBombs
@@ -5140,7 +5140,7 @@ Crenel_Melari_UpperMiddle_RightDig	`COF_OUTSIDE`		`DIG`;				0x0DC903;	 									
 Crenel_Melari_UpperTop_RightDig		`COF_OUTSIDE`		`DIG`;				0x0DC8F3;	 										(|(&Helpers.AccessMelari, Items.MoleMitts), Helpers.Hundo);		Items.Rupee20
 Crenel_Melari_UpperTop_MiddleDig	`COF_OUTSIDE`		`DIG`;				0x0DC8D3;	 										(|(&Helpers.AccessMelari, Items.MoleMitts), Helpers.Hundo);		Items.Rupee20
 Crenel_Melari_UpperTop_LeftDig		`COF_OUTSIDE`;	`DIGKINSTONE`;		0x0DC8E3;	 										(|(&Helpers.AccessMelari, Items.MoleMitts), Helpers.Hundo);		Items.Kinstone.BlueS
-CoF_Entrance										`DUNGEONENTRANCE`;	DumCoFENT:Define:FirstByte, DumCoFENT:Define:SecondByte;	Helpers.AccessCoF;											Items.Entrance.0x02
+CoF_Entrance										`DUNGEONENTRANCE`;	DumCoFENT:Define:FirstByte, DumCoFENT:Define:SecondByte;	(|Helpers.AccessCoF, Helpers.Hundo);							Items.Entrance.0x02
 
 # Swamp
 AccessSwamp;						Helper;				;																	(|Helpers.SwampWindCrest, (&Helpers.AccessWestern, (|Items.PegasusBoots, Items.RocsCape)))
@@ -5193,7 +5193,7 @@ Ruins_ArmosKill_RightChest		`FOW_OUTSIDE`;	`GOLDFUSION`;				0x05-0x05-0x01;					
 Ruins_GoldenOcto				`FOW_OUTSIDE`		`GOLDGREENFUSIONENEMY`;	golden1Item:Define:FirstByte, golden1Sub:Define:SecondByte;	(|(&Helpers.LibrariFusion, Helpers.AccessRuins, Helpers.HasSword), Helpers.Hundo);								Items.Rupee100
 Ruins_NearFoWFusion_Chest		`FOW_OUTSIDE`;	`GOLDREDFUSION`;			0x0FE0AE;												(|(&Helpers.BelariFusion, Helpers.AccessRuins, Helpers.HasSword), Helpers.Hundo);								Items.BombBag
 
-Fortress_Entrance								`DUNGEONENTRANCE`;		DumFoWENT:Define:FirstByte, DumFoWENT:Define:SecondByte;		Helpers.AccessFortress;																					Items.Entrance.0x03
+Fortress_Entrance								`DUNGEONENTRANCE`;		DumFoWENT:Define:FirstByte, DumFoWENT:Define:SecondByte;		(|Helpers.AccessFortress, Helpers.Hundo);																	Items.Entrance.0x03
 
 # Royal Valley
 AccessValley;					Helper;			;			(|Helpers.CanSplit3, Helpers.CanSplit4), (|Helpers.OverworldBlocks, Helpers.CapeExtension);
@@ -5231,7 +5231,7 @@ Valley_GraveyardRightGraveFusion_Chest	`RC_OUTSIDE`;	`BLUEFUSIONDUNGEON`;	0x34-0
 !endif
 AccessCrypt;						Helper;				;													Helpers.AccessValley, Helpers.DarkRooms, Helpers.Graveyard, Helpers.CryptEntrance
 
-Crypt_Entrance					`DUNGEONENTRANCE`;	DumRCENT:Define:FirstByte, DumRCENT:Define:SecondByte;	Helpers.AccessCrypt;																	Items.Entrance.0x05
+Crypt_Entrance					`DUNGEONENTRANCE`;	DumRCENT:Define:FirstByte, DumRCENT:Define:SecondByte;	(|Helpers.AccessCrypt, Helpers.Hundo);													Items.Entrance.0x05
 
 Crypt_Gibdo_LeftItem	`RC_INSIDE`;	Dungeon;				0x0E688B;											(|(&`ENTERRC`, (|Helpers.HasDamageSource, Items.Lantern)), Helpers.Hundo);					Items.Bombs5
 Crypt_Gibdo_RightItem	`RC_INSIDE`;	Dungeon;				0x0E68AB;											(|(&`ENTERRC`, (|Helpers.HasDamageSource, Items.Lantern)), Helpers.Hundo);					Items.SmallKey.0x1E
@@ -5312,7 +5312,7 @@ WindTribe_3F_RightChest	`POW_OUTSIDE`;	`PALACEOUTSIDECHEST`;	0x30-0x02-0x00;				
 WindTribe_4F_LeftChest		`POW_OUTSIDE`;	`PALACEOUTSIDECHEST`;	0x30-0x03-0x00;										(|Helpers.AccessWindTribe, Helpers.Hundo);											Items.Kinstone.RedW
 WindTribe_4F_RightChest	`POW_OUTSIDE`;	`PALACEOUTSIDECHEST`;	0x30-0x03-0x01;										(|Helpers.AccessWindTribe, Helpers.Hundo);											Items.Kinstone.RedE
 
-Palace_Entrance							`DUNGEONENTRANCE`;	DumPoWENT:Define:FirstByte, DumPoWENT:Define:SecondByte;	Helpers.AccessPalace;																Items.Entrance.0x06
+Palace_Entrance							`DUNGEONENTRANCE`;	DumPoWENT:Define:FirstByte, DumPoWENT:Define:SecondByte;	(|Helpers.AccessPalace, Helpers.Hundo);												Items.Entrance.0x06
 
 # Deepwood locations
 
