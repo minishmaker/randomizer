@@ -20,7 +20,6 @@ POIN startingFlags; WORD 0x2002C9C 308
 POIN fusionFlags; WORD 0x2002C81 13
 POIN kinstoneBag; WORD 0x2002B4B 1
 POIN disableKinstones; WORD 0x2002B56 1
-POIN cityCrest; WORD 0x2002A83 1
 #ifndef requirementFigurinesAmmount
 	POIN figurines; WORD 0x2002B0E 18
 #endif
@@ -53,6 +52,14 @@ WORD 0 0 0 //terminator
 
 ALIGN 4
 newGameOrTable:
+POIN crenelCrest; WORD 0x2002A83 1
+POIN fallsCrest; WORD 0x2002A83 1
+POIN cloudCrest; WORD 0x2002A83 1
+POIN townCrest; WORD 0x2002A83 1
+POIN lakeCrest; WORD 0x2002A83 1
+POIN castorCrest; WORD 0x2002A83 1
+POIN southCrest; WORD 0x2002A83 1
+POIN woodsCrest; WORD 0x2002A83 1
 WORD 0 0 0 //terminator
 
 ALIGN 4
@@ -77,8 +84,61 @@ BYTE 0x22 /*area*/ 0x15 /*room*/ 4 /*facing direction*/ 0 /*transition type*/; S
 canOpenMenu:
 BYTE 1
 
-cityCrest:
-BYTE mA83
+crenelCrest:
+#ifdef windCrestCrenel
+	BYTE 0x01
+#else
+	BYTE 0x00
+#endif
+
+fallsCrest:
+#ifdef windCrestFalls
+	BYTE 0x02
+#else
+	BYTE 0x00
+#endif
+
+cloudCrest:
+#ifdef windCrestCloud
+	BYTE 0x04
+#else
+	BYTE 0x00
+#endif
+
+townCrest:
+#ifdef windCrestTown
+	BYTE 0x08
+#else
+	BYTE 0x00
+#endif
+
+lakeCrest:
+#ifdef windCrestLake
+	BYTE 0x10
+#else
+	BYTE 0x00
+#endif
+
+castorCrest:
+#ifdef windCrestCastor
+	BYTE 0x20
+#else
+	BYTE 0x00
+#endif
+
+southCrest:
+#ifdef windCrestSouth
+	BYTE 0x40
+#else
+	BYTE 0x00
+#endif
+
+woodsCrest:
+#ifdef windCrestWoods
+	BYTE 0x80
+#else
+	BYTE 0x00
+#endif
 
 haveMap:
 BYTE 0x40
