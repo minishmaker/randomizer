@@ -4964,7 +4964,7 @@ FallsLower_DigCave_RightChest;			Any;				0x16-0x00-0x02; 														(|(&Helpe
 # Lake Hylia Locations
 AccessSouthLake;						Helper;				;																(|(&Helpers.AccessLonLon, Helpers.CapeExtension), (&Helpers.AccessNorthMinish, Items.MoleMitts))
 AccessTreasureCave;          			Helper;				;               												Helpers.AccessMinishWoods, Items.MoleMitts, Items.RocsCape;
-HasHearts;							Helper;				;																(|Items.PieceOfHeart:28, (&Items.PieceOfHeart:24, Items.HeartContainer), (&Items.PieceOfHeart:20, Items.HeartContainer:2), (&Items.PieceOfHeart:16, Items.HeartContainer:3), (&Items.PieceOfHeart:12, Items.HeartContainer:4), (&Items.PieceOfHeart:8, Items.HeartContainer:5), (&Items.PieceOfHeart:4, Items.HeartContainer:6))
+HasHearts;							Helper;				;																(+28. Items.PieceOfHeart, Items.HeartContainer:4)
 
 Hylia_SunkenHP;						`UNDERWATERHP`;		0x0F323B;														(|(&Helpers.AccessLonLon, Items.Flippers), Helpers.Hundo);																										Items.PieceOfHeart
 Hylia_DogNPC;							Any;					0x094908:FirstByte, 0x09490A:SecondByte;								(|(&Helpers.AccessLonLon, Items.DogFoodBottle), Helpers.Hundo);																								Items.Bottle
@@ -4985,7 +4985,7 @@ Hylia_MiddleIslandFusion_DigCaveChest;	`GREENFUSION`;		0x19-0x00-0x00;										
 
 Droplets_Entrance						`DUNGEONENTRANCE`;	DumToDENT:Define:FirstByte, DumToDENT:Define:SecondByte;				(|Helpers.AccessDroplets, Helpers.Hundo);																													Items.Entrance.0x04
 
-Hylia_BottomHP;						`HP`;				0x0F324B;														(|(&Helpers.AccessLonLon, Helpers.CapeExtension), Helpers.Hundo);																								Items.PieceOfHeart
+Hylia_BottomHP;						`HP`;				0x0F324B;														(|(&Helpers.AccessLonLon, Helpers.CapeExtension), (&Helpers.AccessSouthLake, (|Items.RocsCape, Items.Flippers)), Helpers.Hundo);										Items.PieceOfHeart
 Hylia_Dojo_HP;						`HP`;				0x0D7B03;														(|(&Helpers.AccessLonLon, (|Helpers.CapeExtension, Helpers.LakeShortcut)), Helpers.Hundo);																		Items.PieceOfHeart
 Hylia_Dojo_NPC:dojo;					`DOJOITEM`;			wavebladeDojoItem:Define:FirstByte, wavebladeDojoSub:Define:SecondByte;	(|(&Helpers.AccessLonLon, Helpers.HasHearts, Helpers.HasSword, (|Helpers.CapeExtension, Helpers.LakeShortcut)), Helpers.Hundo);										Items.PerilBeam
 Hylia_CrackFusion_LibrariNPC;			`REDFUSION`;			0x0124EC;														(|(&Helpers.VillageSideMinish3Fusion, Items.Ocarina, (|Items.Flippers,Items.RocsCape)), Helpers.Hundo);																Items.HeartContainer
