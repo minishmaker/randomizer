@@ -131,6 +131,7 @@
 !flag - World Settings - Setting - Wind Crests - CREST_CRENEL - Mt Crenel - If enabled, will activate the wind crest in Mt Crenel from the start of the game.
 !flag - World Settings - Setting - Wind Crests - CREST_FALLS - Veil Falls - If enabled, will activate the wind crest in Veil Falls from the start of the game.
 !flag - World Settings - Setting - Wind Crests - CREST_CLOUD - Cloud Tops - If enabled, will activate the wind crest in Cloud Tops from the start of the game.
+!flag - World Settings - Setting - Wind Crests - CREST_TOWN - Hyrule Town - If enabled, will activate the wind crest in Hyrule Town from the start of the game.\nNote: This is always enabled if Homewarp is disabled.
 !flag - World Settings - Setting - Wind Crests - CREST_SWAMP - Swamp - If enabled, will activate the wind crest in Swamp from the start of the game.
 !flag - World Settings - Setting - Wind Crests - CREST_SHF - Link's House - If enabled, will activate the wind crest near Link's House from the start of the game.
 !flag - World Settings - Setting - Wind Crests - CREST_MINISH - Minish Woods - If enabled, will activate the wind crest in Minish Woods from the start of the game.
@@ -504,6 +505,7 @@
 	!define - CREST_CRENEL
 	!define - CREST_FALLS
 	!define - CREST_CLOUD
+	!define - CREST_TOWN
 	!define - CREST_SWAMP
 	!define - CREST_SHF
 	!define - CREST_MINISH
@@ -522,6 +524,10 @@
 	!undefine - GOLDEN_ENEMY_RED
 !endif
 
+!ifndef - HOMEWARP
+	!define - CREST_TOWN
+!endif
+
 !ifdef - CREST_CRENEL
 	!eventdefine - windCrestCrenel
 !endif
@@ -531,7 +537,9 @@
 !ifdef - CREST_CLOUD
 	!eventdefine - windCrestCloud
 !endif
-!eventdefine - windCrestTown
+!ifdef - CREST_TOWN
+	!eventdefine - windCrestTown
+!endif
 !eventdefine - windCrestLake
 !ifdef - CREST_SWAMP
 	!eventdefine - windCrestCastor
@@ -5279,7 +5287,7 @@ FallsLower_DigCave_RightChest;			Any;				0x16-0x00-0x02; 														(|(&Helpe
 # Lake Hylia Locations
 AccessSouthLake;						Helper;				;																(|(&Helpers.AccessLonLon, Helpers.CapeExtension), (&Helpers.AccessNorthMinish, Items.MoleMitts))
 AccessTreasureCave;          			Helper;				;               												Helpers.AccessMinishWoods, Items.MoleMitts, Items.RocsCape;
-HasHearts;							Helper;				;																(+28. Items.PieceOfHeart, Items.HeartContainer:4)
+HasHearts;							Helper;				;																(+28, Items.PieceOfHeart, Items.HeartContainer:4)
 
 Hylia_SunkenHP;						`UNDERWATERHP`;		0x0F323B;														(|(&Helpers.AccessLonLon, Items.Flippers), Helpers.Hundo);																										Items.PieceOfHeart
 Hylia_DogNPC;							Any;					0x094908:FirstByte, 0x09490A:SecondByte;								(|(&Helpers.AccessLonLon, Items.DogFoodBottle), Helpers.Hundo);																								Items.Bottle
