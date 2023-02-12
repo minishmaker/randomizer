@@ -254,7 +254,7 @@ namespace MinishCapRandomizerUI.UI
 			// 
 			// Randomize
 			// 
-			this.Randomize.Location = new System.Drawing.Point(533, 696);
+			this.Randomize.Location = new System.Drawing.Point(533, 616);
 			this.Randomize.Name = "Randomize";
 			this.Randomize.Size = new System.Drawing.Size(255, 23);
 			this.Randomize.TabIndex = 3;
@@ -716,7 +716,7 @@ namespace MinishCapRandomizerUI.UI
 			this.TabPane.Location = new System.Drawing.Point(12, 27);
 			this.TabPane.Name = "TabPane";
 			this.TabPane.SelectedIndex = 0;
-			this.TabPane.Size = new System.Drawing.Size((int)(Constants.CategoryWidth*3/8*Constants.SpecialScaling + Constants.CategoryWidth*5/8) + 20, 663);
+			this.TabPane.Size = new System.Drawing.Size((int)(Constants.CategoryWidth*3/8*Constants.SpecialScaling + Constants.CategoryWidth*5/8) + 20, 583);
 			this.TabPane.TabIndex = 1;
 			// 
 			// Advanced
@@ -1193,7 +1193,7 @@ namespace MinishCapRandomizerUI.UI
 			this.label16.AutoSize = true;
 			this.label16.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
 			this.label16.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.label16.Location = new System.Drawing.Point(16, 700);
+			this.label16.Location = new System.Drawing.Point(16, 620);
 			this.label16.Name = "label16";
 			this.label16.Size = new System.Drawing.Size(168, 15);
 			this.label16.TabIndex = 26;
@@ -1202,7 +1202,7 @@ namespace MinishCapRandomizerUI.UI
 			// 
 			// RandomizationAttempts
 			// 
-			this.RandomizationAttempts.Location = new System.Drawing.Point((int)(168*Constants.SpecialScaling) + 22, 696);
+			this.RandomizationAttempts.Location = new System.Drawing.Point((int)(168*Constants.SpecialScaling) + 22, 616);
 			this.RandomizationAttempts.Name = "RandomizationAttempts";
 			this.RandomizationAttempts.Size = new System.Drawing.Size(136, 23);
 			this.RandomizationAttempts.TabIndex = 27;
@@ -1213,7 +1213,7 @@ namespace MinishCapRandomizerUI.UI
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size((int)(Constants.CategoryWidth*3/8*Constants.SpecialScaling + Constants.CategoryWidth*5/8) + 44, 731);
+			this.ClientSize = new System.Drawing.Size((int)(Constants.CategoryWidth*3/8*Constants.SpecialScaling + Constants.CategoryWidth*5/8) + 44, 651);
 			this.Controls.Add(this.RandomizationAttempts);
 			this.Controls.Add(this.label16);
 			this.Controls.Add(this.Randomize);
