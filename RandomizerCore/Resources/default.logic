@@ -978,9 +978,9 @@
 	!endif
 !else
 	!ifndef - NO_GOLD_FUSIONS
-			!define - POW_ACCESS
-			!define - UWT_ACCESS
-			!define - FOW_ACCESS
+		!define - POW_ACCESS
+		!define - UWT_ACCESS
+		!define - FOW_ACCESS
 	!else
 		!ifdef - CREST_CLOUD
 			!define - POW_ACCESS
@@ -5298,7 +5298,6 @@ Deepwood_Prize						`DWS_PRIZE`;	DungeonPrize;		0x0DF03B;														(|Helpers
 		!endif
 	!endif
 !endif
-
 AccessCoF;									Helper;			;																		Helpers.AccessMelari;
 
 CoF_1F_SpikeBeetle_BigChest	`COF_INSIDE`;		`DUNGEONCOMPASS`;	0x50-0x15-0x00;															(|(&`ENTERCOF`, (|Helpers.BombWalls, Helpers.Bobombs), Helpers.CoFSpikeBeetle), Helpers.Hundo);																												Items.DungeonMap.0x19
@@ -5331,6 +5330,7 @@ CoF_BossItem					`COF_INSIDE`;		`DUNGEONHP`;		gleerokContainerItem:Define:FirstB
 CoF_Prize					`COF_PRIZE`;		DungeonPrize;		0x0E0F03;																(|Helpers.CompleteCoF, Helpers.Hundo);																																									Items.FireElement
 Crenel_Melari_NPC				`COF_INSIDE`;		Dungeon;			0x00D26E;																(|Helpers.CompleteCoF, Helpers.Hundo);																																									`GREENSWORD`
 
+# Fortress of Winds Locations
 
 !define - FOW_INSIDE - `FOW_OUTSIDE`	:FoWSmall	:FoWBig	:FoWCompass	:Small	:Big	:Compass
 !ifdef - UNREQSUR
@@ -5350,9 +5350,6 @@ Crenel_Melari_NPC				`COF_INSIDE`;		Dungeon;			0x00D26E;																(|Helper
 		!endif
 	!endif
 !endif
-
-# Fortress of Winds Locations
-
 AccessFortress;									Helper;				;																	Helpers.AccessRuins, Helpers.HasSword;
 	
 Fortress_Entrance_1F_LeftChest			`FOW_INSIDE`;	`FORTRESSCHEST`;		0x18-0x00-0x00;														(|(&`ENTERFOW`, Items.MoleMitts), Helpers.Hundo);																												Items.Kinstone.BlueS
@@ -5397,13 +5394,11 @@ Fortress_Prize						`FOW_PRIZE`;	`FORTRESSPRIZE`;		0x09C9E6:FirstByte, 0x09C9E8:
 # Temple of Droplets Locations
 
 !define - TOD_INSIDE - :ToDSmall	:ToDBig	:ToDCompass	:Small	:Big	:Compass
-!define - TOD_PRIZE - :ToDSmall	:ToDBig	:ToDCompass
 !ifdef - NONE
 	!define - TOD_PRIZE - `TOD_INSIDE`
 !else
 	!define - TOD_PRIZE - :ToDSmall	:ToDBig	:ToDCompass
 !endif
-
 AccessDroplets;	Helper;	;	(&Helpers.AccessLonLon, Helpers.CapeExtension)
 
 # This randomizes some dummy items to determine where to place the ToD Big Key, then it adjusts all the logic to allow that key to be placed there without errors
@@ -5475,7 +5470,6 @@ Droplets_Prize								`TOD_PRIZE`;	DungeonPrize;				0x0E40C3;														(|Hel
 # Palace of Winds Locations
 
 !define - POW_INSIDE - `POW_OUTSIDE`	:PoWSmall	:PoWBig	:PoWCompass	:Small	:Big	:Compass
-!define - POW_PRIZE - :PoWSmall	:PoWBig	:PoWCompass :PoWSmallOutside	:PoWBigOutside	:PoWCompassOutside
 !ifdef - UNREQSUR
 	!define - POW_PRIZE - :PoWSmall	:PoWBig	:PoWCompass :PoWSmallOutside	:PoWBigOutside	:PoWCompassOutside
 !else
@@ -5493,7 +5487,6 @@ Droplets_Prize								`TOD_PRIZE`;	DungeonPrize;				0x0E40C3;														(|Hel
 		!endif
 	!endif
 !endif
-
 AccessPalace						;	Helper;			;				Helpers.AccessWindTribe;
 
 # This randomizes some dummy items to determine where to place the PoW Big Key, then it adjusts all the logic to allow that key to be placed there without errors
