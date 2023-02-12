@@ -1254,8 +1254,51 @@
 	Items.Rupee50;		Filler;
 	Items.Rupee100;		Filler;
 	Items.Rupee200;		Filler;
-	Items.Rupee100:23;	Major;
-	Items.Rupee200:11;	Major;
+	!ifndef - MITTSMONEY
+		!ifndef - GORON_ALT_PRICES
+			!ifdef - GORON_1
+				Items.Rupee100:2;		Major;
+				Items.Rupee200:1;		Major;
+			!endif
+			!ifdef - GORON_2
+				Items.Rupee100:4;		Major;
+				Items.Rupee200:3;		Major;
+			!endif
+			!ifdef - GORON_3
+				Items.Rupee100:9;		Major;
+				Items.Rupee200:5;		Major;
+			!endif
+			!ifdef - GORON_4
+				Items.Rupee100:15;	Major;
+				Items.Rupee200:8;		Major;
+			!endif
+			!ifdef - GORON_5
+				Items.Rupee100:22;	Major;
+				Items.Rupee200:12;	Major;
+			!endif
+		!else
+			!ifdef - GORON_1
+				Items.Rupee100:2;		Major;
+				Items.Rupee200:2;		Major;
+			!endif
+			!ifdef - GORON_2
+				Items.Rupee100:6;		Major;
+				Items.Rupee200:3;		Major;
+			!endif
+			!ifdef - GORON_3
+				Items.Rupee100:8;		Major;
+				Items.Rupee200:5;		Major;
+			!endif
+			!ifdef - GORON_4
+				Items.Rupee100:12;	Major;
+				Items.Rupee200:6;		Major;
+			!endif
+			!ifdef - GORON_5
+				Items.Rupee100:14;	Major;
+				Items.Rupee200:8;		Major;
+			!endif
+		!endif
+	!endif
 	Items.Bombs5;			Filler;
 	Items.Arrows5;		Filler;
 	Items.SmallHeart;		Filler;
@@ -2142,21 +2185,21 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 # Trick Requirements, Easy Option 1st then Hard Option 2nd
 # Make trick for CoF entrance bob-ombs
 !ifndef - MITTSMONEY
-ShopSimon;				Helper;;	(|(&Items.Rupee20:2, Items.Rupee50), Items.Rupee20:5, Items.Rupee50:2, Items.Rupee100, Items.Rupee200) #(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200)
-Shop80;					Helper;;	(|(&Items.Rupee100, Items.Rupee50:2), Items.Rupee50:4, Items.Rupee100:2, Items.Rupee200) #(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200)
-Shop300;				Helper;;	(|(&Items.Rupee200:2, Items.Rupee100), (&Items.Rupee200, Items.Rupee100:3), Items.Rupee100:5, Items.Rupee200:3) #(+510, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200)
-Shop600;				Helper;;	(|(&Items.Rupee200:4, Items.Rupee100), (&Items.Rupee200:3, Items.Rupee100:3), (&Items.Rupee200:4, Items.Rupee100:5), (&Items.Rupee200:2, Items.Rupee100:7), (&Items.Rupee200, Items.Rupee100:9), Items.Rupee100:11, Items.Rupee200:6) #(+1110, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200)
-ShopWitch;				Helper;;	(|Items.Rupee50:3, Items.Rupee100, Items.Rupee200) #(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200)
-ShopScrubTrilby;		Helper;;	(|Items.Rupee50:3, Items.Rupee100, Items.Rupee200) #(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200)
-ShopScrubCrenel;		Helper;;	(|Items.Rupee50:3, Items.Rupee100, Items.Rupee200) #(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200)
+ShopSimon;			Helper;;	(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200)
+Shop80;				Helper;;	(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200)
+Shop300;				Helper;;	(+510, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200)
+Shop600;				Helper;;	(+1110, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200)
+ShopWitch;			Helper;;	(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200)
+ShopScrubTrilby;		Helper;;	(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200)
+ShopScrubCrenel;		Helper;;	(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200)
 !else
-ShopSimon;				Helper;;	(|(&Items.Rupee20:2, Items.Rupee50), Items.Rupee20:5, Items.Rupee50:2, Items.Rupee100, Items.Rupee200, Items.MoleMitts)#(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Items.MoleMitts)
-Shop80;					Helper;;	(|(&Items.Rupee100, Items.Rupee50:2), Items.Rupee50:4, Items.Rupee100:2, Items.Rupee200, Items.MoleMitts)#(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Items.MoleMitts)
-Shop300;				Helper;;	(|(&Items.Rupee200:2, Items.Rupee100), (&Items.Rupee200, Items.Rupee100:3), Items.Rupee100:5, Items.Rupee200:3, Items.MoleMitts)#(|(+510, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Items.MoleMitts)
-Shop600;				Helper;;	(|(&Items.Rupee200:4, Items.Rupee100), (&Items.Rupee200:3, Items.Rupee100:3), (&Items.Rupee200:4, Items.Rupee100:5), (&Items.Rupee200:2, Items.Rupee100:7), (&Items.Rupee200, Items.Rupee100:9), Items.Rupee100:11, Items.Rupee200:6, Items.MoleMitts) #(|(+1110, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Items.MoleMitts)
-ShopWitch;				Helper;;	(|Items.Rupee50:3, Items.Rupee100, Items.Rupee200, Items.MoleMitts) #(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Items.MoleMitts)
-ShopScrubTrilby;		Helper;;	(|Items.Rupee50:3, Items.Rupee100, Items.Rupee200, Items.MoleMitts) #(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Items.MoleMitts)
-ShopScrubCrenel;		Helper;;	(|Items.Rupee50:3, Items.Rupee100, Items.Rupee200, Items.MoleMitts) #(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Items.MoleMitts)
+ShopSimon;			Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Items.MoleMitts)
+Shop80;				Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Items.MoleMitts)
+Shop300;				Helper;;	(|(+510, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Items.MoleMitts)
+Shop600;				Helper;;	(|(+1110, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Items.MoleMitts)
+ShopWitch;			Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Items.MoleMitts)
+ShopScrubTrilby;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Items.MoleMitts)
+ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Items.MoleMitts)
 !endif
 !ifndef - GUARDSKIP
 GuardSkip;				Helper;;	Helpers.Inaccessible
