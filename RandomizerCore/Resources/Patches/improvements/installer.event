@@ -18,12 +18,14 @@ ALIGN 4
 ezloPleaseStop:
 #incbin "asm/ezloPleaseStop.dmp"
 
-//instant text
-PUSH; ORG $562AC; SHORT 0x2501; POP
+#ifdef instantText
+	//instant text
+	PUSH; ORG $562AC; SHORT 0x2501; POP
 
-//holding = mashing for text
-PUSH; ORG $566B2; SHORT 0x8801; POP
-PUSH; ORG $56726; SHORT 0x8801; POP
+	//holding = mashing for text
+	PUSH; ORG $566B2; SHORT 0x8801; POP
+	PUSH; ORG $56726; SHORT 0x8801; POP
+#endif
 
 //skip fusion cutscene if A, B or START are held
 #ifdef skipFusionCutsceneSomeForm
@@ -429,11 +431,13 @@ ALIGN 4
 quickwarpText:
 #incbin "asm/quickwarpText.dmp"
 
-//hold button to skip through choices, like regular dialogues
-PUSH; ORG $5655C; jumpToHack(skipChoice); POP
-ALIGN 4
-skipChoice:
-#incbin "asm/skipChoice.dmp"
+#ifdef instantText
+	//hold button to skip through choices, like regular dialogues
+	PUSH; ORG $5655C; jumpToHack(skipChoice); POP
+	ALIGN 4
+	skipChoice:
+	#incbin "asm/skipChoice.dmp"
+#endif
 
 //skip darknut spawning cutscene in dhc
 PUSH; ORG $E672; SHORT 0; POP
