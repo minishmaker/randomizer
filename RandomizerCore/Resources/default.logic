@@ -140,7 +140,7 @@
 !dropdown - Logic Settings - Setting - Logic Rules - GRABBABLE - Grab items from a distance: - Items can be collected from a distance with either Gust Jar, Boomerang, or even a Sword Slash. - NOT_GRABBABLE - Not Allowed - NOT_GRABBABLE - 'Not Allowed': Items cannot be grabbed from a distance - Allowed - GRABBABLE - 'Allowed': Items can be grabbed from a distance, but this will never be required by logic. - Require - GRABBABLE_LOGIC - 'Require': Items can be grabbed from a distance and logic can require doing so.
 
 !dropdown - Logic Settings - Setting - Weapons - BOMBWEAPON - Bombs: - Bombs can damage nearly every enemy, Bombs are never considered for Simon Simulations, and Golden Enemies. - NOBOMB - No - NOBOMB - 'No': Bombs are not considered as Weapons. - Yes - YESBOMB - 'Yes': Bombs are considered as weapons for most regular enemy fights. - Yes + Bosses - BOSSBOMB - 'Yes + Bosses': Bombs are considered as weapons for most enemy fights. Fighting Green/Blu Chu, Madderpillars and Darknuts require only 10 bomb bag. Gleerok, Mazaal and Scissor Beetles require at least 30 bomb bag. Octo and Gyorg cannot be defeated with bombs.
-!dropdown - Logic Settings - Setting - Weapons - BOWWEAPON - Bows: - Bow can damage most enemies, many enemies are very resiliant to damage. Chu Bosses and Darknuts are Immune. - NOBOW - No - NOBOW - 'No': Bows are not considered as Weapons. - Yes - YESBOW - 'Yes': Bows are considered as weapons for most enemy fights. Bows are never considered for Chu Bossfights, Darknuts, Scissor Beetles, Madderpillar, Wizrobes, Simon Simulations, and Golden Enemies.
+!dropdown - Logic Settings - Setting - Weapons - BOWWEAPON - Bows: - Bow can damage most enemies, many enemies are very resiliant to damage. Chu Bosses and Darknuts are Immune. - NOBOW - No - NOBOW - 'No': Bows are not considered as Weapons. - Yes - YESBOW - 'Yes': Bows are considered as weapons for most enemy fights. Bows are never considered for Chu Bossfights, Darknuts, Scissor Beetles, Madderpillar, Wizrobes, Simon Simulations, and Golden Enemies. - Yes + Bosses - BOSSBOW - 'Yes + Bosses': Bows are considered as weapons for most enemy fights, but can also be soley required to defeat Gleerok and Mazaal.
 !dropdown - Logic Settings - Setting - Weapons - GUSTWEAPON - Gust Jar: - Gust Jar can suck up various enemies like Ghini(Ghosts) and Beetles (The things that grab onto link). It can also grab objects and fire them like projectiles to kill enemies, some enemies or parts of enemies can be used as projectiles such as Helmasaurs and Stalfos. - NOGUST - No - NOGUST - 'No': Gust Jar is never considered for killing enemies. - Yes - YESGUST - 'Yes': Gust Jar is considered as weapons for all enemies that get sucked up by it, you are never expected to use objects as projectiles to kill enemies.
 !dropdown - Logic Settings - Setting - Weapons - LAMPWEAPON - Lantern: - The lit Lantern can instantly kill wizrobes by walking through them. - NOLAMP - No - NOLAMP - 'No': Lantern is not considered as a Weapon. - Yes - YESLAMP - 'Yes': Lantern is considered as a weapon for fighting Wizrobes.
 
@@ -2055,14 +2055,14 @@ CanFuseShared;		Helper;; Helpers.Start `ALLREDSHARED` `ALLBLUESHARED` `ALLGREENS
 # Helpers, these let us write shorter expressions we would normally use often
 HasSword;			Helper;; (|Items.SmithSword, Items.GreenSword, Items.RedSword, Items.BlueSword, Items.FourSword, Items.ProgressiveItem.0x00)
 HasWhiteSword;		Helper;; (|Items.GreenSword, Items.RedSword, Items.BlueSword, Items.FourSword, Items.ProgressiveItem.0x00:2)
-HasSpin;			Helper;; (|Items.SpinAttack, Items.ProgressiveItem.0x04)
+HasSpin;				Helper;; (|Items.SpinAttack, Items.ProgressiveItem.0x04)
 CanSplit2;			Helper;; (|Items.ProgressiveItem.0x00:3, Items.RedSword), Helpers.HasSpin
 CanSplit3;			Helper;; (|Items.ProgressiveItem.0x00:4, Items.BlueSword), Helpers.HasSpin
 CanSplit4;			Helper;; (|Items.ProgressiveItem.0x00:5, Items.FourSword), Helpers.HasSpin
 HasBottle;			Helper;; (|Items.Bottle1, Items.Bottle2, Items.Bottle3, Items.Bottle, Items.Bottle.0x20, Items.Bottle.0x21, Items.Bottle.0x22, Items.Bottle.0x23, Items.Bottle.0x24, Items.Bottle.0x25, Items.Bottle.0x26, Items.Bottle.0x27, Items.Bottle.0x28, Items.Bottle.0x29, Items.Bottle.0x2A, Items.Bottle.0x2B, Items.Bottle.0x2C, Items.Bottle.0x2D, Items.Bottle.0x2E, Items.Bottle.0x2F, Items.Bottle.0x30, Items.Bottle.0x31)
 HasBow;				Helper;; (|Items.Bow, Items.LightArrow, Items.ProgressiveItem.0x01)
-HasLightBow;		Helper;; (|Items.ProgressiveItem.0x01:2, Items.LightArrow)
-HasBoomerang;		Helper;; (|Items.Boomerang, Items.MagicBoomerang, Items.ProgressiveItem.0x02)
+HasLightBow;			Helper;; (|Items.ProgressiveItem.0x01:2, Items.LightArrow)
+HasBoomerang;			Helper;; (|Items.Boomerang, Items.MagicBoomerang, Items.ProgressiveItem.0x02)
 HasMagicBoomerang;	Helper;; (|Items.ProgressiveItem.0x02:2, Items.MagicBoomerang)
 HasShield;			Helper;; (|Items.Shield, Items.MirrorShield, Items.ProgressiveItem.0x03)
 !ifdef - HEARTS_20
@@ -2096,7 +2096,13 @@ CanDownThrust;		Helper;; Helpers.HasSword, Items.DownThrust, Items.RocsCape
 !ifdef - NOBOW
 	!define - BOWHELPER -
 !else
-	!define - BOWHELPER - , Helpers.HasBow
+	!ifdef - YESBOW
+		!define - BOWHELPER - , Helpers.HasBow
+		!define - GLEEROKBOW - 
+	!else
+		!define - BOWHELPER - , Helpers.HasBow
+		!define - GLEEROKBOW - , Helpers.HasBow
+	!endif
 !endif
 !ifdef - NOGUST
 	!define - GUSTHELPER - 
@@ -2112,10 +2118,10 @@ HasDamageSource;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER`)
 HasMadderDamage;		Helper;;	(|Helpers.HasSword `CHUBOMBS`)
 HasChuDamage;			Helper;;	(|Helpers.HasSword `CHUBOMBS`)
 HasHelmasaurDamage;	Helper;;	(|Helpers.HasSword `BOMBHELPER` `BOWHELPER` `GUSTHELPER`)
-HasGleerokDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `GLEEROKBOMBS`)
+HasGleerokDamage;		Helper;;	(|Helpers.HasSword `GLEEROKBOW` `GLEEROKBOMBS`)
 HasWizrobeDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `LAMPHELPER`)
 HasDarknutDamage;		Helper;;	(|Helpers.HasSword `CHUBOMBS`)
-HasMazaalDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `GLEEROKBOMBS`)
+HasMazaalDamage;		Helper;;	(|Helpers.HasSword `GLEEROKBOW` `GLEEROKBOMBS`)
 HasScissorDamage;		Helper;;	(|Helpers.HasSword `GLEEROKBOMBS`)
 HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPER`)
 
