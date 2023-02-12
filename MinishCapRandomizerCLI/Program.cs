@@ -35,18 +35,11 @@ internal class Program
             if (string.IsNullOrEmpty(command) || !_commands.ContainsKey(command))
             {
                 Console.WriteLine($"Invalid command entered! {command} is not a valid command!");
-                BlockUntilNewline();
                 continue;
             }
             
             _commands[command].Invoke();
         }
-    }
-
-    private static void BlockUntilNewline()
-    {
-        // Console.WriteLine("Press enter to continue...");
-        // Console.ReadLine();
     }
 
     private static void LoadCommands()
@@ -106,7 +99,6 @@ Exit                Exits the program
         {
             Console.WriteLine("Failed to load ROM! Please check your file path and make sure you have read access.");
         }
-        BlockUntilNewline();
     }
 
     private static void Seed()
@@ -144,8 +136,6 @@ Exit                Exits the program
             }
         }
         else Console.WriteLine("Invalid Input!");
-
-        BlockUntilNewline();
     }
 
     private static void LoadLogic()
@@ -161,7 +151,6 @@ Exit                Exits the program
         {
             Console.WriteLine("Failed to load Logic File! Please check your file path and make sure you have read access.");
         }
-        BlockUntilNewline();
     }
 
     private static void LoadPatch()
@@ -169,7 +158,6 @@ Exit                Exits the program
         Console.Write("Please enter the path to the Patch File you want to use (leave empty to use default patch): ");
         _cachedPatchPath = Console.ReadLine();
         Console.WriteLine("Patch file loaded successfully!");
-        BlockUntilNewline();
     }
 
     private static void LoadSettings()
@@ -178,7 +166,6 @@ Exit                Exits the program
         var input = Console.ReadLine();
         if (!string.IsNullOrEmpty(input)) _shufflerController.LoadSettingsFromSettingString(input);
         Console.WriteLine("Settings loaded successfully!");
-        BlockUntilNewline();
     }
 
     private static void Options()
@@ -229,7 +216,6 @@ Exit                Exits the program
             Console.Write("Please enter the number of the setting you would like to change, enter \"Exit\" to stop editing, or enter \"List\" to list all of the options again: ");
             input = Console.ReadLine();
         }
-        BlockUntilNewline();
     }
 
     private static void Logging()
@@ -242,7 +228,6 @@ Exit                Exits the program
         if (string.IsNullOrEmpty(input) || !int.TryParse(input, out var i))
         {
             Console.WriteLine("Invalid Input!");
-            BlockUntilNewline();
             return;
         }
 
@@ -258,7 +243,6 @@ Exit                Exits the program
                 if (string.IsNullOrEmpty(input) || !int.TryParse(input, out i) || (i != 1 && i != 2))
                 {
                     Console.WriteLine("Invalid Input!");
-                    BlockUntilNewline();
                     return;
                 }
                 _shufflerController.SetLoggerVerbosity(i == 1);
@@ -278,10 +262,8 @@ Exit                Exits the program
                 break;
             default:
                 Console.WriteLine("Invalid Input!");
-                BlockUntilNewline();
                 return;
         }
-        BlockUntilNewline();
     }
 
     private static void Randomize()
@@ -293,7 +275,6 @@ Exit                Exits the program
         _shufflerController.LoadLocations(_cachedLogicPath);
         ShufflerControllerResult result = _shufflerController.Randomize(attempts);
         Console.WriteLine(result ? "Randomization successful!" : "Randomization failed! "+result.ErrorMessage);
-        BlockUntilNewline();
     }
 
     private static void SaveRom()
@@ -309,7 +290,6 @@ Exit                Exits the program
         {
             Console.WriteLine("Failed to save ROM! Please check your file path and make sure you have write access.");
         }
-        BlockUntilNewline();
     }
 
     private static void SaveSpoiler()
@@ -325,7 +305,6 @@ Exit                Exits the program
         {
             Console.WriteLine("Failed to save spoiler! Please check your file path and make sure you have write access.");
         }
-        BlockUntilNewline();
     }
 
     private static void SavePatch()
@@ -341,14 +320,12 @@ Exit                Exits the program
         {
             Console.WriteLine("Failed to save patch! Please check your file path and make sure you have write access.");
         }
-        BlockUntilNewline();
     }
 
     private static void GetSettingString()
     {
         Console.WriteLine("Setting String:");
         Console.WriteLine(_shufflerController.GetSettingsString());
-        BlockUntilNewline();
     }
 
     private static void PatchRom()
@@ -372,8 +349,6 @@ Exit                Exits the program
                 ? "Failed to patch ROM! "+result.ErrorMessage
                 : "ROM patched successfully!");
         }
-
-        BlockUntilNewline();
     }
 
     private static void CreatePatch()
@@ -396,8 +371,6 @@ Exit                Exits the program
                 ? "Failed to save patch! "+result.ErrorMessage
                 : "Patch saved successfully!");
         }
-
-        BlockUntilNewline();
     }
 
     private static void Exit()
@@ -412,7 +385,6 @@ Exit                Exits the program
         }
 
         _exiting = response.Equals("yes", StringComparison.OrdinalIgnoreCase);
-        BlockUntilNewline();
     }
 
     private static string GetOptionValue(LogicOptionBase option)
@@ -455,13 +427,11 @@ Exit                Exits the program
                     {
                         Console.WriteLine("Invalid Input!");
                     }
-                    BlockUntilNewline();
                     break;
                 }
 
                 option.Active = i == 1;
                 Console.WriteLine("Flag set successfully!");
-                BlockUntilNewline();
                 break;
             }
             case LogicDropdown dropdown:
@@ -482,13 +452,11 @@ Exit                Exits the program
                     {
                         Console.WriteLine("Invalid Input!");
                     }
-                    BlockUntilNewline();
                     break;
                 }
 
                 dropdown.Selection = keys[o - 1];
                 Console.WriteLine("Dropdown option set successfully!");
-                BlockUntilNewline();
                 break;
             }
             case LogicColorPicker colorPicker:
@@ -505,7 +473,6 @@ Exit                Exits the program
                     {
                         Console.WriteLine("Invalid Input!");
                     }
-                    BlockUntilNewline();
                     break;
                 }
 
@@ -542,7 +509,6 @@ Exit                Exits the program
                         Console.WriteLine("Color set successfully!");
                         break;
                 }
-                BlockUntilNewline();
                 break;
             }
             case LogicNumberBox box:
@@ -555,13 +521,11 @@ Exit                Exits the program
                     {
                         Console.WriteLine("Invalid Input!");
                     }
-                    BlockUntilNewline();
                     break;
                 }
 
                 box.Value = input;
                 Console.WriteLine("Number box value set successfully!");
-                BlockUntilNewline();
                 break;
             }
         }
