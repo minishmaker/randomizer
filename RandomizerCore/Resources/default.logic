@@ -5144,10 +5144,22 @@ Valley_GraveyardRightFusion_Chest		`RC_OUTSIDE`;	`UWTFUSIONGREEN`;		0x0FE0E6;		(
 Valley_GraveyardRightGraveFusion_Chest	`RC_OUTSIDE`;	`BLUEFUSIONDUNGEON`;	0x34-0x01-0x00;	(|(&Helpers.Dampe1Fusion, Helpers.AccessValley, Helpers.DarkRooms, Helpers.Graveyard), Helpers.Hundo);			Items.Shells.100
 
 !define - RC_INSIDE - `RC_OUTSIDE`	:RCSmall	:Small	:Big	:Compass
-!ifdef - NONE
-	!define - RC_PRIZE - `RC_INSIDE`
-!else
+!ifdef - UNREQSUR
 	!define - RC_PRIZE - :RCSmall :RCSmallOutside
+!else
+	!ifdef - BARRENSUR
+		!define - RC_PRIZE - :RCSmall :RCSmallOutside
+	!else
+		!ifdef - UNREQ
+			!define - RC_PRIZE - :RCSmall
+		!else
+			!ifdef - BARREN
+				!define - RC_PRIZE - :RCSmall
+			!else
+				!define - RC_PRIZE - `RC_INSIDE`
+			!endif
+		!endif
+	!endif
 !endif
 AccessCrypt;						Helper;				;													Helpers.AccessValley, Helpers.DarkRooms, Helpers.Graveyard, Helpers.CryptEntrance
 
