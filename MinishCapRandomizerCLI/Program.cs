@@ -385,7 +385,7 @@ Exit                Exits the program
                 Console.WriteLine("2) Disabled");
                 Console.Write("Enter the number of the option to set the flag to: ");
                 var input = Console.ReadLine();
-                if (string.IsNullOrEmpty(input) || !int.TryParse(input, out var i) || (i != 1 && i != 2))
+                if (string.IsNullOrEmpty(input) || !int.TryParse(input, out var i) || (i != 0 && i != 1 && i != 2))
                 {
                     Console.WriteLine("Invalid Input!");
                     break;
