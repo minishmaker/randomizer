@@ -375,16 +375,7 @@ Exit                Exits the program
 
     private static void Exit()
     {
-        Console.Write("Are you sure you want to exit? (Yes or No): ");
-        var response = Console.ReadLine();
-        while (string.IsNullOrEmpty(response) || (!response.Equals("yes", StringComparison.OrdinalIgnoreCase) && 
-                                                  !response.Equals("no", StringComparison.OrdinalIgnoreCase)))
-        {
-            Console.Write("Invalid input! Please enter Yes or No: ");
-            response = Console.ReadLine();
-        }
-
-        _exiting = response.Equals("yes", StringComparison.OrdinalIgnoreCase);
+        _exiting = true;
     }
 
     private static string GetOptionValue(LogicOptionBase option)
