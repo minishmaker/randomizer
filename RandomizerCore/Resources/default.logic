@@ -523,89 +523,50 @@
 !endif
 
 !ifdef - CREST_CRENEL
-	!ifdef - CREST_FALLS
-		!ifdef - CREST_CLOUD
-			!define - CREST2 - F
-		!else
-			!define - CREST2 - B
-		!endif
-	!else
-		!ifdef - CREST_CLOUD
-			!define - CREST2 - D
-		!else
-			!define - CREST2 - 9
-		!endif
-	!endif
-!else
-	!ifdef - CREST_FALLS
-		!ifdef - CREST_CLOUD
-			!define - CREST2 - E
-		!else
-			!define - CREST2 - A
-		!endif
-	!else
-		!ifdef - CREST_CLOUD
-			!define - CREST2 - C
-		!else
-			!define - CREST2 - 8
-		!endif
-	!endif
+	!eventdefine - windCrestCrenel
 !endif
+!ifdef - CREST_FALLS
+	!eventdefine - windCrestFalls
+!endif
+!ifdef - CREST_CLOUD
+	!eventdefine - windCrestCloud
+!endif
+!eventdefine - windCrestTown
+!eventdefine - windCrestLake
 !ifdef - CREST_SWAMP
-	!ifdef - CREST_SHF
-		!ifdef - CREST_MINISH
-			!define - CREST1 - F
-		!else
-			!define - CREST1 - 7
-		!endif
-	!else
-		!ifdef - CREST_MINISH
-			!define - CREST1 - B
-		!else
-			!define - CREST1 - 3
-		!endif
-	!endif
-!else
-	!ifdef - CREST_SHF
-		!ifdef - CREST_MINISH
-			!define - CREST1 - D
-		!else
-			!define - CREST1 - 5
-		!endif
-	!else
-		!ifdef - CREST_MINISH
-			!define - CREST1 - 9
-		!else
-			!define - CREST1 - 1
-		!endif
-	!endif
+	!eventdefine - windCrestCastor
 !endif
-!eventdefine - mA83 - 0x`CREST1``CREST2`
+!ifdef - CREST_SHF
+	!eventdefine - windCrestSouth
+!endif
+!ifdef - CREST_MINISH
+	!eventdefine - windCrestWoods
+!endif
 
 # This section defines values used by the patcher, this sets if and which fusions should be available
 !ifdef - OPEN_GOLD_FUSIONS
-    !eventdefine - noGoldFusions							# if defined, golden kinstone fusions are not available (except the cloud fusions which is handled below)
-	!eventdefine - mC81 - 0xFE							# sets all the cloud tops fusions, as well as the left and middle swamp fusions (the right swamp and falls fusions share an address with red fusions)
+	!eventdefine - noGoldFusions							# if defined, golden kinstone fusions are not available (except the cloud fusions which is handled below)
+	!eventdefine - mC81 - 0xFE								# sets all the cloud tops fusions, as well as the left and middle swamp fusions (the right swamp and falls fusions share an address with red fusions)
 	!eventdefine - mCA0 - 0x10								# sets the tornado in cloud tops as spawned, shares an address with Graveyard Key stages
 	!eventdefine - mCA7 - 0xD1								# sets the wind tribe state to access higher floors, also sets tingle bros as spawned
 !else
 	!eventdefine - mCA0 - 0x00								# makes the tornado in cloud tops unspawned
 	!eventdefine - mCA7 - 0xD0								# windtribe is default, tingle bros set as spawned
-    !ifdef - NO_GOLD_FUSIONS
-        !eventdefine - noGoldFusions						# if defined, golden kinstone fusions are not available (except the cloud fusions which is handled below)
+	!ifdef - NO_GOLD_FUSIONS
+	!eventdefine - noGoldFusions							# if defined, golden kinstone fusions are not available (except the cloud fusions which is handled below)
 		!eventdefine - mC81 - 0x3E							# marks the cloud tops clouds as having fused so they never offer a fusion, this address doesn't spawn the tornado
-    !else
+	!else
 		!eventdefine - mC81 - 0x00							# sets the golden fusions as not completed
 	!endif
 !endif
 
 !ifdef - OPEN_RED_FUSIONS
-    !eventdefine - noRedFusions		# if defined, red kinstone fusions are not available
+	!eventdefine - noRedFusions			# if defined, red kinstone fusions are not available
 	!eventdefine - mC83 - 0xFF			# sets various red fusions
 	!eventdefine - mC84 - 0xFF			# sets various red fusions
 !else
 	!ifdef - NO_RED_FUSIONS
-		!eventdefine - noRedFusions	# if defined, red kinstone fusions are not available
+		!eventdefine - noRedFusions		# if defined, red kinstone fusions are not available
 		!undefine - GOLDEN_ENEMY_RED	# removes the golden enemy spawned by the red fusion from logic
 	!endif
 	!eventdefine - mC83 - 0x00
@@ -613,19 +574,19 @@
 !endif
 
 !ifdef - OPEN_BLUE_FUSIONS
-    !eventdefine - noBlueFusions
+	!eventdefine - noBlueFusions
 	!eventdefine - mC86 - 0xFF
 	!eventdefine - mCD2 - 0x03
 !else
-    !ifdef - NO_BLUE_FUSIONS
-        !eventdefine - noBlueFusions	# if defined, blue kinstone fusions are not available
+	!ifdef - NO_BLUE_FUSIONS
+		!eventdefine - noBlueFusions	# if defined, blue kinstone fusions are not available
 	!endif
 	!eventdefine - mC86 - 0x00
 	!eventdefine - mCD2 - 0x00
 !endif
 
 !ifdef - OPEN_GREEN_FUSIONS
-    !eventdefine - noGreenFusions
+	!eventdefine - noGreenFusions
 	!eventdefine - mC88 - 0xFF
 	!eventdefine - mC89 - 0xFF
 	!eventdefine - mC8A - 0xFF
@@ -633,8 +594,8 @@
 	!eventdefine - mC8C - 0xFF
 	!eventdefine - mC8D - 0x1F
 !else
-    !ifdef - NO_GREEN_FUSIONS
-        !eventdefine - noGreenFusions                         # if defined, green kinstone fusions are not available
+	!ifdef - NO_GREEN_FUSIONS
+	!eventdefine - noGreenFusions		# if defined, green kinstone fusions are not available
 		!undefine - GOLDEN_ENEMY_GREEN
 	!endif
 	!eventdefine - mC88 - 0x00
