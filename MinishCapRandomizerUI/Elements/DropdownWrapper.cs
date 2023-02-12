@@ -34,7 +34,7 @@ public class DropdownWrapper : WrapperBase, ILogicOptionObserver
             AutoEllipsis = Constants.LabelsAndCheckboxesUseAutoEllipsis,
             AutoSize = false,
             Name = _dropdown.Name,
-            Text = _dropdown.NiceName,
+            Text = _dropdown.NiceName + ":",
             Location = new Point(initialX, initialY),
             Height = (int)(TextHeight*Constants.SpecialScaling),
             Width = (int)(TextWidth*Constants.SpecialScaling),

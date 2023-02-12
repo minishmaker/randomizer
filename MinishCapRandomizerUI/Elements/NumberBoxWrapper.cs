@@ -35,7 +35,7 @@ public class NumberBoxWrapper : WrapperBase, ILogicOptionObserver
             AutoEllipsis = Constants.LabelsAndCheckboxesUseAutoEllipsis,
             AutoSize = false,
             Name = _numberBox.Name,
-            Text = _numberBox.NiceName,
+            Text = _numberBox.NiceName + ":",
             Location = new Point(initialX, initialY),
             Height = (int)(TextHeight*Constants.SpecialScaling),
             Width = (int)(TextWidth*Constants.SpecialScaling),
