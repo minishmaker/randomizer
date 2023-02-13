@@ -249,7 +249,7 @@ public enum ItemType
     Entrance = 0xF0,
     Music = 0xF1,
     ToDKeys = 0xF2,
-    Fusions = 0xF3
+    Fusion = 0xF3
 }
 
 public class Header
