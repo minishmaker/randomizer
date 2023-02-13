@@ -4215,6 +4215,7 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 	CastleDojo;				Helper;;	
 	BombWalls;				Helper;;	
 	LonLonNorthShortcut;		Helper;;	
+	LonLonSecret;				Helper;;
 	GoronCave;				Helper;;	
 	MayorCabin;				Helper;;	
 	LonLonSouthShortcut;		Helper;;	
@@ -4337,6 +4338,7 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 	CastleDojo;				Helper;;	Items.Lantern
 	BombWalls;				Helper;;	Items.BombBag
 	LonLonNorthShortcut;		Helper;;	Helpers.AccessLonLon
+	LonLonSecret;				Helper;;	Items.Lantern
 	GoronCave;				Helper;;	(|Items.Flippers, Items.RocsCape, (&Items.PacciCane, Helpers.LonLonNorthShortcut))
 	MayorCabin;				Helper;;	(|(&Helpers.BonkedTrees, Helpers.CabinSwim), (&Helpers.LakeMinish, Items.Flippers, Helpers.CabinSwim)), Items.PowerBracelets
 	LonLonSouthShortcut;		Helper;;	(|(&Helpers.AccessLonLon, Items.PacciCane), Items.Flippers, Items.RocsCape)
@@ -5281,7 +5283,7 @@ AccessLonLon;						Helper;			;											(|Items.Ocarina, (&Helpers.CanDestroyTr
 LonLon_RanchPot;					`POT`;			0x0F2C9B:FirstByte, 0x0F2C9D:SecondByte;			(|Helpers.CanDestroyTrees, Items.Ocarina);																											Items.LonLonKey
 LonLon_PuddleFusion_BigChest;		`REDFUSION`;		0x32-0x0F-0x00;								(|(&Helpers.MayorFusion, Helpers.AccessLonLon), Helpers.Hundo);																						Items.Wallet
 LonLon_Cave_Chest;				Any;				0x32-0x0C-0x00;								(|(&Helpers.AccessLonLon, (|Helpers.CanSplit2, Helpers.CanSplit3, Helpers.CanSplit4)), Helpers.Hundo);														Items.Rupee50
-LonLon_CaveSecret_Chest;			Any;				0x32-0x0D-0x00;								(|(&Helpers.AccessLonLon, (|Helpers.CanSplit2, Helpers.CanSplit3, Helpers.CanSplit4), Helpers.BombWalls, Items.Lantern), Helpers.Hundo);						Items.Kinstone.BlueS
+LonLon_CaveSecret_Chest;			Any;				0x32-0x0D-0x00;								(|(&Helpers.AccessLonLon, (|Helpers.CanSplit2, Helpers.CanSplit3, Helpers.CanSplit4), Helpers.BombWalls, Helpers.LonLonSecret), Helpers.Hundo);					Items.Kinstone.BlueS
 LonLon_Path_FusionChest;			`GREENFUSION`;	0x0FE086;									(|(&Helpers.Shared50Fusion, Helpers.AccessLonLon, Helpers.BonkedTrees), Helpers.Hundo);																	Items.Kinstone.RedE
 LonLon_Path_HP;					`HP`;			0x0D56EF;									(|(&Helpers.AccessLonLon, Helpers.BonkedTrees), Helpers.Hundo);																						Items.PieceOfHeart
 LonLon_DigSpot					`DIG`;			0x0F6CFF;									(|(&Helpers.AccessLonLon, (|Items.PacciCane, Items.RocsCape), Items.MoleMitts), Helpers.Hundo);															Items.Rupee50
