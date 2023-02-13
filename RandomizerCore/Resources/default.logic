@@ -1179,12 +1179,12 @@
 		!endif
 	!endif
 	!ifdef - Replace_Big_Keys
-		Dummy_DWS_Big:NoSpoiler;	Unshuffled;	DumDWSBig:Define:FirstByte, DumDWSBig:Define:SecondByte;	;	Items.BigKey.0x18
-		Dummy_CoF_Big:NoSpoiler;	Unshuffled;	DumCoFBig:Define:FirstByte, DumCoFBig:Define:SecondByte;	;	Items.BigKey.0x19
-		Dummy_FoW_Big:NoSpoiler;	Unshuffled;	DumFoWBig:Define:FirstByte, DumFoWBig:Define:SecondByte;	;	Items.BigKey.0x1A
-		Dummy_ToD_Big:NoSpoiler;	Unshuffled;	DumToDBig:Define:FirstByte, DumToDBig:Define:SecondByte;	;	Items.BigKey.0x1B
-		Dummy_PoW_Big:NoSpoiler;	Unshuffled;	DumPoWBig:Define:FirstByte, DumPoWBig:Define:SecondByte;	;	Items.BigKey.0x1C
-		Dummy_DHC_Big:NoSpoiler;	Unshuffled;	DumDHCBig:Define:FirstByte, DumDHCBig:Define:SecondByte;	;	Items.BigKey.0x1D
+		Dummy_DWS_Big:NoSpoiler;	Unshuffled;	DumDWSBig:Define:FirstByte, DumDWSBig2:Define:SecondByte;	;	Items.BigKey.0x18
+		Dummy_CoF_Big:NoSpoiler;	Unshuffled;	DumCoFBig:Define:FirstByte, DumCoFBig2:Define:SecondByte;	;	Items.BigKey.0x19
+		Dummy_FoW_Big:NoSpoiler;	Unshuffled;	DumFoWBig:Define:FirstByte, DumFoWBig2:Define:SecondByte;	;	Items.BigKey.0x1A
+		Dummy_ToD_Big:NoSpoiler;	Unshuffled;	DumToDBig:Define:FirstByte, DumToDBig2:Define:SecondByte;	;	Items.BigKey.0x1B
+		Dummy_PoW_Big:NoSpoiler;	Unshuffled;	DumPoWBig:Define:FirstByte, DumPoWBig2:Define:SecondByte;	;	Items.BigKey.0x1C
+		Dummy_DHC_Big:NoSpoiler;	Unshuffled;	DumDHCBig:Define:FirstByte, DumDHCBig2:Define:SecondByte;	;	Items.BigKey.0x1D
 	!else
 		!ifndef - BIG_KEYS_VANILLA
 			Items.BigKey.0x18;	`BIG_KEY`;	`DWS_BIG`
@@ -1202,34 +1202,34 @@
 		!endif
 	!endif
 	!ifdef - Replace_Small_Keys
-		Dummy_DWS_Small_1:NoSpoiler;	Unshuffled;	DumDWSS1:Define:FirstByte, DumDWSS1:Define:SecondByte;	;	Items.SmallKey.0x18
-		Dummy_DWS_Small_2:NoSpoiler;	Unshuffled;	DumDWSS2:Define:FirstByte, DumDWSS2:Define:SecondByte;	;	Items.SmallKey.0x18
-		Dummy_DWS_Small_3:NoSpoiler;	Unshuffled;	DumDWSS3:Define:FirstByte, DumDWSS3:Define:SecondByte;	;	Items.SmallKey.0x18
-		Dummy_DWS_Small_4:NoSpoiler;	Unshuffled;	DumDWSS4:Define:FirstByte, DumDWSS4:Define:SecondByte;	;	Items.SmallKey.0x18
-		Dummy_CoF_Small_1:NoSpoiler;	Unshuffled;	DumCoFS1:Define:FirstByte, DumCoFS1:Define:SecondByte;	;	Items.SmallKey.0x19
-		Dummy_CoF_Small_2:NoSpoiler;	Unshuffled;	DumCoFS2:Define:FirstByte, DumCoFS2:Define:SecondByte;	;	Items.SmallKey.0x19
-		Dummy_FoW_Small_1:NoSpoiler;	Unshuffled;	DumFoWS1:Define:FirstByte, DumFoWS1:Define:SecondByte;	;	Items.SmallKey.0x1A
-		Dummy_FoW_Small_2:NoSpoiler;	Unshuffled;	DumFoWS2:Define:FirstByte, DumFoWS2:Define:SecondByte;	;	Items.SmallKey.0x1A
-		Dummy_FoW_Small_3:NoSpoiler;	Unshuffled;	DumFoWS3:Define:FirstByte, DumFoWS3:Define:SecondByte;	;	Items.SmallKey.0x1A
-		Dummy_FoW_Small_4:NoSpoiler;	Unshuffled;	DumFoWS4:Define:FirstByte, DumFoWS4:Define:SecondByte;	;	Items.SmallKey.0x1A
-		Dummy_ToD_Small_1:NoSpoiler;	Unshuffled;	DumToDS1:Define:FirstByte, DumToDS1:Define:SecondByte;	;	Items.SmallKey.0x1B
-		Dummy_ToD_Small_2:NoSpoiler;	Unshuffled;	DumToDS2:Define:FirstByte, DumToDS2:Define:SecondByte;	;	Items.SmallKey.0x1B
-		Dummy_ToD_Small_3:NoSpoiler;	Unshuffled;	DumToDS3:Define:FirstByte, DumToDS3:Define:SecondByte;	;	Items.SmallKey.0x1B
-		Dummy_ToD_Small_4:NoSpoiler;	Unshuffled;	DumToDS4:Define:FirstByte, DumToDS4:Define:SecondByte;	;	Items.SmallKey.0x1B
-		Dummy_PoW_Small_1:NoSpoiler;	Unshuffled;	DumPoWS1:Define:FirstByte, DumPoWS1:Define:SecondByte;	;	Items.SmallKey.0x1C
-		Dummy_PoW_Small_2:NoSpoiler;	Unshuffled;	DumPoWS2:Define:FirstByte, DumPoWS2:Define:SecondByte;	;	Items.SmallKey.0x1C
-		Dummy_PoW_Small_3:NoSpoiler;	Unshuffled;	DumPoWS3:Define:FirstByte, DumPoWS3:Define:SecondByte;	;	Items.SmallKey.0x1C
-		Dummy_PoW_Small_4:NoSpoiler;	Unshuffled;	DumPoWS4:Define:FirstByte, DumPoWS4:Define:SecondByte;	;	Items.SmallKey.0x1C
-		Dummy_PoW_Small_5:NoSpoiler;	Unshuffled;	DumPoWS5:Define:FirstByte, DumPoWS5:Define:SecondByte;	;	Items.SmallKey.0x1C
-		Dummy_PoW_Small_6:NoSpoiler;	Unshuffled;	DumPoWS6:Define:FirstByte, DumPoWS6:Define:SecondByte;	;	Items.SmallKey.0x1C
-		Dummy_DHC_Small_1:NoSpoiler;	Unshuffled;	DumDHCS1:Define:FirstByte, DumDHCS1:Define:SecondByte;	;	Items.SmallKey.0x1D
-		Dummy_DHC_Small_2:NoSpoiler;	Unshuffled;	DumDHCS2:Define:FirstByte, DumDHCS2:Define:SecondByte;	;	Items.SmallKey.0x1D
-		Dummy_DHC_Small_3:NoSpoiler;	Unshuffled;	DumDHCS3:Define:FirstByte, DumDHCS3:Define:SecondByte;	;	Items.SmallKey.0x1D
-		Dummy_DHC_Small_4:NoSpoiler;	Unshuffled;	DumDHCS4:Define:FirstByte, DumDHCS4:Define:SecondByte;	;	Items.SmallKey.0x1D
-		Dummy_DHC_Small_5:NoSpoiler;	Unshuffled;	DumDHCS5:Define:FirstByte, DumDHCS5:Define:SecondByte;	;	Items.SmallKey.0x1D
-		Dummy_RC_Small_1:NoSpoiler;	Unshuffled;	DumRCS1:Define:FirstByte, DumRCS1:Define:SecondByte;		;	Items.SmallKey.0x1E
-		Dummy_RC_Small_2:NoSpoiler;	Unshuffled;	DumRCS2:Define:FirstByte, DumRCS2:Define:SecondByte;		;	Items.SmallKey.0x1E
-		Dummy_RC_Small_3:NoSpoiler;	Unshuffled;	DumRCS3:Define:FirstByte, DumRCS3:Define:SecondByte;		;	Items.SmallKey.0x1E
+		Dummy_DWS_Small_1:NoSpoiler;	Unshuffled;	DumDWSS1:Define:FirstByte, DumDWSS12:Define:SecondByte;	;	Items.SmallKey.0x18
+		Dummy_DWS_Small_2:NoSpoiler;	Unshuffled;	DumDWSS2:Define:FirstByte, DumDWSS22:Define:SecondByte;	;	Items.SmallKey.0x18
+		Dummy_DWS_Small_3:NoSpoiler;	Unshuffled;	DumDWSS3:Define:FirstByte, DumDWSS32:Define:SecondByte;	;	Items.SmallKey.0x18
+		Dummy_DWS_Small_4:NoSpoiler;	Unshuffled;	DumDWSS4:Define:FirstByte, DumDWSS42:Define:SecondByte;	;	Items.SmallKey.0x18
+		Dummy_CoF_Small_1:NoSpoiler;	Unshuffled;	DumCoFS1:Define:FirstByte, DumCoFS12:Define:SecondByte;	;	Items.SmallKey.0x19
+		Dummy_CoF_Small_2:NoSpoiler;	Unshuffled;	DumCoFS2:Define:FirstByte, DumCoFS22:Define:SecondByte;	;	Items.SmallKey.0x19
+		Dummy_FoW_Small_1:NoSpoiler;	Unshuffled;	DumFoWS1:Define:FirstByte, DumFoWS12:Define:SecondByte;	;	Items.SmallKey.0x1A
+		Dummy_FoW_Small_2:NoSpoiler;	Unshuffled;	DumFoWS2:Define:FirstByte, DumFoWS22:Define:SecondByte;	;	Items.SmallKey.0x1A
+		Dummy_FoW_Small_3:NoSpoiler;	Unshuffled;	DumFoWS3:Define:FirstByte, DumFoWS32:Define:SecondByte;	;	Items.SmallKey.0x1A
+		Dummy_FoW_Small_4:NoSpoiler;	Unshuffled;	DumFoWS4:Define:FirstByte, DumFoWS42:Define:SecondByte;	;	Items.SmallKey.0x1A
+		Dummy_ToD_Small_1:NoSpoiler;	Unshuffled;	DumToDS1:Define:FirstByte, DumToDS12:Define:SecondByte;	;	Items.SmallKey.0x1B
+		Dummy_ToD_Small_2:NoSpoiler;	Unshuffled;	DumToDS2:Define:FirstByte, DumToDS22:Define:SecondByte;	;	Items.SmallKey.0x1B
+		Dummy_ToD_Small_3:NoSpoiler;	Unshuffled;	DumToDS3:Define:FirstByte, DumToDS32:Define:SecondByte;	;	Items.SmallKey.0x1B
+		Dummy_ToD_Small_4:NoSpoiler;	Unshuffled;	DumToDS4:Define:FirstByte, DumToDS42:Define:SecondByte;	;	Items.SmallKey.0x1B
+		Dummy_PoW_Small_1:NoSpoiler;	Unshuffled;	DumPoWS1:Define:FirstByte, DumPoWS12:Define:SecondByte;	;	Items.SmallKey.0x1C
+		Dummy_PoW_Small_2:NoSpoiler;	Unshuffled;	DumPoWS2:Define:FirstByte, DumPoWS22:Define:SecondByte;	;	Items.SmallKey.0x1C
+		Dummy_PoW_Small_3:NoSpoiler;	Unshuffled;	DumPoWS3:Define:FirstByte, DumPoWS32:Define:SecondByte;	;	Items.SmallKey.0x1C
+		Dummy_PoW_Small_4:NoSpoiler;	Unshuffled;	DumPoWS4:Define:FirstByte, DumPoWS42:Define:SecondByte;	;	Items.SmallKey.0x1C
+		Dummy_PoW_Small_5:NoSpoiler;	Unshuffled;	DumPoWS5:Define:FirstByte, DumPoWS52:Define:SecondByte;	;	Items.SmallKey.0x1C
+		Dummy_PoW_Small_6:NoSpoiler;	Unshuffled;	DumPoWS6:Define:FirstByte, DumPoWS62:Define:SecondByte;	;	Items.SmallKey.0x1C
+		Dummy_DHC_Small_1:NoSpoiler;	Unshuffled;	DumDHCS1:Define:FirstByte, DumDHCS12:Define:SecondByte;	;	Items.SmallKey.0x1D
+		Dummy_DHC_Small_2:NoSpoiler;	Unshuffled;	DumDHCS2:Define:FirstByte, DumDHCS22:Define:SecondByte;	;	Items.SmallKey.0x1D
+		Dummy_DHC_Small_3:NoSpoiler;	Unshuffled;	DumDHCS3:Define:FirstByte, DumDHCS32:Define:SecondByte;	;	Items.SmallKey.0x1D
+		Dummy_DHC_Small_4:NoSpoiler;	Unshuffled;	DumDHCS4:Define:FirstByte, DumDHCS42:Define:SecondByte;	;	Items.SmallKey.0x1D
+		Dummy_DHC_Small_5:NoSpoiler;	Unshuffled;	DumDHCS5:Define:FirstByte, DumDHCS52:Define:SecondByte;	;	Items.SmallKey.0x1D
+		Dummy_RC_Small_1:NoSpoiler;	Unshuffled;	DumRCS1:Define:FirstByte, DumRCS12:Define:SecondByte;		;	Items.SmallKey.0x1E
+		Dummy_RC_Small_2:NoSpoiler;	Unshuffled;	DumRCS2:Define:FirstByte, DumRCS22:Define:SecondByte;		;	Items.SmallKey.0x1E
+		Dummy_RC_Small_3:NoSpoiler;	Unshuffled;	DumRCS3:Define:FirstByte, DumRCS32:Define:SecondByte;		;	Items.SmallKey.0x1E
 	!else
 		!ifndef - SMALL_KEYS_VANILLA
 			Items.SmallKey.0x18:4;	`SMALL_KEY`;	`DWS_SMALL`
@@ -5372,7 +5372,7 @@ Hylia_BeanstalkFusion_HP;				`BLUEFUSIONHP`;		0x0F5EDB;														(|(&Helpers
 Hylia_BeanstalkFusion_RightChest;		`BLUEFUSION`;			0x0D-0x01-0x01;													(|(&Helpers.LakeEastMinishFusion, Helpers.AccessTreasureCave), Helpers.Hundo);																					Items.Shells.200
 Hylia_MiddleIslandFusion_DigCaveChest;	`GREENFUSION`;		0x19-0x00-0x00;													(|(&Helpers.MamaFusion, Helpers.AccessLonLon, Items.MoleMitts, Helpers.CapeExtension), Helpers.Hundo);																Items.Rupee50
 
-Droplets_Entrance						`DUNGEONENTRANCE`;	DumToDENT:Define:FirstByte, DumToDENT:Define:SecondByte;				(|Helpers.AccessDroplets, Helpers.Hundo);																													Items.Entrance.0x04
+Droplets_Entrance						`DUNGEONENTRANCE`;	DumToDENT:Define:FirstByte, DumToDENT2:Define:SecondByte;				(|Helpers.AccessDroplets, Helpers.Hundo);																													Items.Entrance.0x04
 
 Hylia_BottomHP;						`HP`;				0x0F324B;														(|(&Helpers.AccessLonLon, Helpers.CapeExtension), (&Helpers.AccessSouthLake, (|Items.RocsCape, Items.Flippers)), Helpers.Hundo);										Items.PieceOfHeart
 Hylia_Dojo_HP;						`HP`;				0x0D7B03;														(|(&Helpers.AccessLonLon, (|Helpers.CapeExtension, Helpers.LakeShortcut)), Helpers.Hundo);																		Items.PieceOfHeart
@@ -5407,7 +5407,7 @@ MinishWoods_MinishPathFusion_Chest;			`GREENFUSION`;		0x0FE08E;												(|(&H
 MinishVillage_BarrelHouse_Item		`DWS_OUTSIDE`;	Dungeon;				0x0DA283;											(|Helpers.AccessMinishWoods, Helpers.Hundo);												Items.JabberNut
 MinishVillage_HP					`DWS_OUTSIDE`;	`DUNGEONHP`;			0x0DBCC7;											(|Helpers.AccessMinishWoods, Helpers.Hundo);												Items.PieceOfHeart
 
-Deepwood_Entrance									`DUNGEONENTRANCE`;	DumDWSENT:Define:FirstByte, DumDWSENT:Define:SecondByte;	(|Helpers.AccessDeepwood, Helpers.Hundo);												Items.Entrance.0x01
+Deepwood_Entrance									`DUNGEONENTRANCE`;	DumDWSENT:Define:FirstByte, DumDWSENT2:Define:SecondByte;	(|Helpers.AccessDeepwood, Helpers.Hundo);												Items.Entrance.0x01
 
 MinishWoods_BombMinish_NPC1		`DWS_OUTSIDE`;	Dungeon;				0x00A00C;											(|Helpers.AccessBelari, Helpers.Hundo);													Items.BombBag
 MinishWoods_BombMinish_NPC2		`DWS_OUTSIDE`;	`REDFUSIONDUNGEON`;	0x00A0A0;											(|(&Helpers.GentariFusion, (|Helpers.AccessBelari, Helpers.Hundo)), Helpers.Hundo);			Items.RemoteBombs
@@ -5529,7 +5529,7 @@ Crenel_Melari_UpperMiddle_RightDig	`COF_OUTSIDE`		`DIG`;				0x0DC903;	 									
 Crenel_Melari_UpperTop_RightDig		`COF_OUTSIDE`		`DIG`;				0x0DC8F3;	 										(|(&Helpers.AccessMelari, Items.MoleMitts), Helpers.Hundo);		Items.Rupee20
 Crenel_Melari_UpperTop_MiddleDig	`COF_OUTSIDE`		`DIG`;				0x0DC8D3;	 										(|(&Helpers.AccessMelari, Items.MoleMitts), Helpers.Hundo);		Items.Rupee20
 Crenel_Melari_UpperTop_LeftDig		`COF_OUTSIDE`;	`DIGKINSTONE`;		0x0DC8E3;	 										(|(&Helpers.AccessMelari, Items.MoleMitts), Helpers.Hundo);		Items.Kinstone.BlueS
-CoF_Entrance										`DUNGEONENTRANCE`;	DumCoFENT:Define:FirstByte, DumCoFENT:Define:SecondByte;	(|Helpers.AccessCoF, Helpers.Hundo);							Items.Entrance.0x02
+CoF_Entrance										`DUNGEONENTRANCE`;	DumCoFENT:Define:FirstByte, DumCoFENT2:Define:SecondByte;	(|Helpers.AccessCoF, Helpers.Hundo);							Items.Entrance.0x02
 
 # Swamp
 AccessSwamp;						Helper;				;																	(|Helpers.SwampWindCrest, (&Helpers.AccessWestern, (|Items.PegasusBoots, Items.RocsCape)))
@@ -5582,7 +5582,7 @@ Ruins_ArmosKill_RightChest		`FOW_OUTSIDE`;	`GOLDFUSION`;				0x05-0x05-0x01;					
 Ruins_GoldenOcto				`FOW_OUTSIDE`		`GOLDGREENFUSIONENEMY`;	golden1Item:Define:FirstByte, golden1Sub:Define:SecondByte;	(|(&Helpers.LibrariFusion, Helpers.AccessRuins, Helpers.HasSword), Helpers.Hundo);								Items.Rupee100
 Ruins_NearFoWFusion_Chest		`FOW_OUTSIDE`;	`GOLDREDFUSION`;			0x0FE0AE;												(|(&Helpers.BelariFusion, Helpers.AccessRuins, Helpers.HasSword), Helpers.Hundo);								Items.BombBag
 
-Fortress_Entrance								`DUNGEONENTRANCE`;		DumFoWENT:Define:FirstByte, DumFoWENT:Define:SecondByte;		(|Helpers.AccessFortress, Helpers.Hundo);																	Items.Entrance.0x03
+Fortress_Entrance								`DUNGEONENTRANCE`;		DumFoWENT:Define:FirstByte, DumFoWENT2:Define:SecondByte;		(|Helpers.AccessFortress, Helpers.Hundo);																	Items.Entrance.0x03
 
 # Royal Valley
 AccessValley;					Helper;			;			(|Helpers.CanSplit3, Helpers.CanSplit4), (|Helpers.OverworldBlocks, Helpers.CapeExtension);
@@ -5620,7 +5620,7 @@ Valley_GraveyardRightGraveFusion_Chest	`RC_OUTSIDE`;	`BLUEFUSIONDUNGEON`;	0x34-0
 !endif
 AccessCrypt;						Helper;				;													Helpers.AccessValley, Helpers.DarkRooms, Helpers.Graveyard, Helpers.CryptEntrance
 
-Crypt_Entrance					`DUNGEONENTRANCE`;	DumRCENT:Define:FirstByte, DumRCENT:Define:SecondByte;	(|Helpers.AccessCrypt, Helpers.Hundo);													Items.Entrance.0x05
+Crypt_Entrance					`DUNGEONENTRANCE`;	DumRCENT:Define:FirstByte, DumRCENT2:Define:SecondByte;	(|Helpers.AccessCrypt, Helpers.Hundo);													Items.Entrance.0x05
 
 Crypt_Gibdo_LeftItem	`RC_INSIDE`;	Dungeon;				0x0E688B;											(|(&`ENTERRC`, (|Helpers.HasDamageSource, Items.Lantern)), Helpers.Hundo);					Items.Bombs5
 Crypt_Gibdo_RightItem	`RC_INSIDE`;	Dungeon;				0x0E68AB;											(|(&`ENTERRC`, (|Helpers.HasDamageSource, Items.Lantern)), Helpers.Hundo);					Items.SmallKey.0x1E
@@ -5701,7 +5701,7 @@ WindTribe_3F_RightChest	`POW_OUTSIDE`;	`PALACEOUTSIDECHEST`;	0x30-0x02-0x00;				
 WindTribe_4F_LeftChest		`POW_OUTSIDE`;	`PALACEOUTSIDECHEST`;	0x30-0x03-0x00;										(|Helpers.AccessWindTribe, Helpers.Hundo);											Items.Kinstone.RedW
 WindTribe_4F_RightChest	`POW_OUTSIDE`;	`PALACEOUTSIDECHEST`;	0x30-0x03-0x01;										(|Helpers.AccessWindTribe, Helpers.Hundo);											Items.Kinstone.RedE
 
-Palace_Entrance							`DUNGEONENTRANCE`;	DumPoWENT:Define:FirstByte, DumPoWENT:Define:SecondByte;	(|Helpers.AccessPalace, Helpers.Hundo);												Items.Entrance.0x06
+Palace_Entrance							`DUNGEONENTRANCE`;	DumPoWENT:Define:FirstByte, DumPoWENT2:Define:SecondByte;	(|Helpers.AccessPalace, Helpers.Hundo);												Items.Entrance.0x06
 
 # Deepwood locations
 
@@ -5874,14 +5874,14 @@ AccessDroplets;	Helper;	;	(&Helpers.AccessLonLon, Helpers.CapeExtension)
 !ifdef - BIG_KEYS_STANDARD
 	Items.ToDKeys.0xa;	DungeonConstraint;	DummyToD
 	Items.ToDKeys.0xb;	DungeonConstraint;	DummyToD
-	DummyToD1	:DummyToD:NoSpoiler;	DungeonConstraint;	DumToD1:Define:FirstByte, DumToD1:Define:SecondByte;		;
-	DummyToD2	:DummyToD:NoSpoiler;	DungeonConstraint;	DumToD2:Define:FirstByte, DumToD2:Define:SecondByte;		Helpers.Inaccessible;
+	DummyToD1	:DummyToD:NoSpoiler;	DungeonConstraint;	DumToD1:Define:FirstByte, DumToD12:Define:SecondByte;		;
+	DummyToD2	:DummyToD:NoSpoiler;	DungeonConstraint;	DumToD2:Define:FirstByte, DumToD22:Define:SecondByte;		Helpers.Inaccessible;
 !else
 	!ifdef - BIG_KEYS_REGION
 		Items.ToDKeys.0xa;	DungeonConstraint;	DummyToD
 		Items.ToDKeys.0xb;	DungeonConstraint;	DummyToD
-		DummyToD1	:DummyToD:NoSpoiler;	DungeonConstraint;	DumToD1:Define:FirstByte, DumToD1:Define:SecondByte;		;
-		DummyToD2	:DummyToD:NoSpoiler;	DungeonConstraint;	DumToD2:Define:FirstByte, DumToD2:Define:SecondByte;		Helpers.Inaccessible;
+		DummyToD1	:DummyToD:NoSpoiler;	DungeonConstraint;	DumToD1:Define:FirstByte, DumToD12:Define:SecondByte;		;
+		DummyToD2	:DummyToD:NoSpoiler;	DungeonConstraint;	DumToD2:Define:FirstByte, DumToD22:Define:SecondByte;		Helpers.Inaccessible;
 	!endif
 !endif
 
