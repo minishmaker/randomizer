@@ -79,6 +79,17 @@ historyTimerDuration:
 #include "c/nobgm.cevent"
 #endif
 
+// wallet sizes
+// change first number to change wallet size (max 65535)
+// do not change second number
+PUSH
+ORG 0xFCAD4
+SHORT 100 0xf060
+SHORT 300 0xf064
+SHORT 500 0xf068
+SHORT 999 0xf06c
+POP
+
 //savetype check
 PUSH; ORG $559FA; SHORT 0; jumpToHack(saveTypeCheck); POP
 ALIGN 4
