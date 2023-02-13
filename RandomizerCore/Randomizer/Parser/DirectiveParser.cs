@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Drawing;
 using System.Text;
 using RandomizerCore.Randomizer.Enumerables;
 using RandomizerCore.Randomizer.Exceptions;
@@ -38,7 +39,7 @@ public class DirectiveParser
 		_defines = new List<LogicDefine>();
 		EventDefines = new List<EventDefine>();
 		LocationTypeOverrides = new Dictionary<Item, LocationType>();
-		Replacements = new Dictionary<Item, ChanceItemSet>();
+		Replacements = new Dictionary<Item, ChanceItemSet>(new ItemComparerIgnorePool());
 		_amountReplacementReferences = new List<ItemAmountSet>();
 		_amountReplacementsTemplate = new Dictionary<Item, List<int>>();
 		_incrementalReplacementReferences = new List<ItemAmountSet>();
@@ -344,7 +345,7 @@ public class DirectiveParser
 
 	public void DuplicateAmountReplacements()
 	{
-		AmountReplacements = new Dictionary<Item, List<ItemAmountSet>>();
+		AmountReplacements = new Dictionary<Item, List<ItemAmountSet>>(new ItemComparerIgnorePool());
 		var referenceClones = new List<ItemAmountSet>();
 		foreach (var reference in _amountReplacementReferences)
 			referenceClones.Add(reference
@@ -361,7 +362,7 @@ public class DirectiveParser
 
 	public void DuplicateIncrementalReplacements()
 	{
-		IncrementalReplacements = new Dictionary<Item, List<ItemAmountSet>>();
+		IncrementalReplacements = new Dictionary<Item, List<ItemAmountSet>>(new ItemComparerIgnorePool());
 		var referenceClones = new List<ItemAmountSet>();
 		foreach (var reference in _incrementalReplacementReferences)
 			referenceClones.Add(reference
@@ -687,4 +688,17 @@ public class DirectiveParser
 		return new LogicNumberBox(directiveParts[4], directiveParts[5], directiveParts[3], 
 			directiveParts[1], defaultValue, maxValue, directiveParts[6], optionType);
 	}
+
+    private class ItemComparerIgnorePool : IEqualityComparer<Item>
+    {
+        public bool Equals(Item x, Item y)
+        {
+            return x.EqualsIgnoreShufflePool(y);
+        }
+
+        public int GetHashCode([DisallowNull] Item obj)
+        {
+            return obj.GetHashCode();
+        }
+    }
 }

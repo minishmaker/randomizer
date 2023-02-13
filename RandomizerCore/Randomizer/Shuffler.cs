@@ -321,7 +321,7 @@ internal class Shuffler
 			{
 				replacement.amount -= 1;
 				var newItem = new Item(replacement.item.Type,
-					(byte)((replacement.item.SubValue + replacement.amount) % 256), replacement.item.Dungeon);
+					(byte)((replacement.item.SubValue + replacement.amount) % 256), replacement.item.Dungeon, false, item.ShufflePool);
 				return newItem;
 			}
 
@@ -343,7 +343,8 @@ internal class Shuffler
 			if (replacement.amount != 0)
 			{
 				replacement.amount -= 1;
-				return replacement.item;
+                var newItem = replacement.item;
+				return new Item(newItem.Type, newItem.SubValue, newItem.Dungeon, false, item.ShufflePool);
 			}
 
 			if (replacement.amount == 0)
@@ -357,7 +358,7 @@ internal class Shuffler
 			}
 		}
 
-		if (_logicParser.SubParser.Replacements.ContainsKey(item))
+        if (_logicParser.SubParser.Replacements.ContainsKey(item))
 		{
 			var chanceSet = _logicParser.SubParser.Replacements[item];
 			var number = _rng.Next(chanceSet.totalChance);
@@ -368,7 +369,8 @@ internal class Shuffler
 				val += chanceSet.randomItems[i].chance;
 				if (number < val)
 				{
-					return chanceSet.randomItems[i].item;
+                    var newItem = chanceSet.randomItems[i].item;
+					return new Item(newItem.Type, newItem.SubValue, newItem.Dungeon, false, item.ShufflePool);
 				}
 			}
 		}
