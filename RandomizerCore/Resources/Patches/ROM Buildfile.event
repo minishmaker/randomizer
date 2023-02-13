@@ -75,6 +75,24 @@ historyTimerDuration:
 
 #include "c/historyNames.cevent"
 
+#include "c/ModHealth.cevent"
+damageMultiplier:
+#ifdef heroMode
+	WORD dmgMulti
+#else
+	WORD 1
+#endif
+CheckOHKO:
+#ifdef ohkoOption
+	#ifdef timedohkoOption
+		POIN timedohkoCheckTime|1
+	#else
+		POIN OHKOTrue
+	#endif
+#else
+	WORD 0
+#endif
+
 #ifdef no_music
 #include "c/nobgm.cevent"
 #endif
