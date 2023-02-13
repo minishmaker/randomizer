@@ -10,14 +10,29 @@ extern u32 (*const CounterGetValue)(void);
 extern const u32 counterMaxValue;
 // END
 
+int pow(int base, int exponent) {
+    int result = 1;
+    for (int i = 0; i < exponent; i++) {
+        result *= base;
+    }
+    return result;
+}
+
+int log(int num, int base) {
+    int result = 0;
+    while (num >= base) {
+        num /= base;
+        result++;
+    }
+    return result;
+}
+
 extern u8 RupeeKeyDigits[];
 
 void RenderDigits(u32 iconVramIndex, u32 count, u32 isTextYellow, u32 digits) {
     int iVar2;
     int iVar3;
     u8* puVar4;
-    u32 digit;
-    register u32 r1 asm("r1");
 
     puVar4 = RupeeKeyDigits;
     if (isTextYellow == 0) {
@@ -25,33 +40,13 @@ void RenderDigits(u32 iconVramIndex, u32 count, u32 isTextYellow, u32 digits) {
     }
     iVar3 = (iconVramIndex & 0x3ff) * 0x20;
     iVar2 = iVar3 + 0x600c000;
-    switch (digits) {
-        case 5:
-            digit = Div(count, 10000);
-            count = r1;
-            DmaCopy32(3, puVar4 + digit * 0x40, iVar2, 0x10 * 4);
-            iVar2 += 0x40;
-            // fallthrough
-        case 4:
-            digit = Div(count, 1000);
-            count = r1;
-            DmaCopy32(3, puVar4 + digit * 0x40, iVar2, 0x10 * 4);
-            iVar2 += 0x40;
-            // fallthrough
-        case 3:
-            digit = Div(count, 100);
-            count = r1;
-            DmaCopy32(3, puVar4 + digit * 0x40, iVar2, 0x10 * 4);
-            iVar2 += 0x40;
-            // fallthrough
-        case 2:
-            digit = Div(count, 10);
-            count = r1;
-            DmaCopy32(3, puVar4 + digit * 0x40, iVar2, 0x10 * 4);
-            iVar2 += 0x40;
+    while (digits > 0) {
+        int p = pow(10, --digits);
+        int digit = count / p;
+        count = count % p;
+        DmaCopy32(3, puVar4 + digit * 0x40, iVar2, 0x10 * 4);
+        iVar2 += 0x40;
     }
-
-    DmaCopy32(3, puVar4 + count * 0x40, iVar2, 0x10 * 4);
 }
 
 extern u16 gPaletteBuffer[];
@@ -66,7 +61,7 @@ void DrawRupees(void) {
     u16* row1;
     u16* row2;
 
-    int digits = gSave.stats.walletType > 1 ? 4 : 3;
+    int digits = log(gWalletSizes[gSave.stats.walletType].size, 10) + 1;
 
     if ((gUnk_0200AF00.unk_1 & 0x40) != 0) {
         if (gUnk_0200AF00.unk_a != 0) {
@@ -182,30 +177,12 @@ void DrawClear(int n, int x, int y) {
     }
 }
 
-int pow(int base, int exponent) {
-    int result = 1;
-    for (int i = 0; i < exponent; i++) {
-        result *= base;
-    }
-    return result;
-}
-
-int log(int num, int base) {
-    int result = 0;
-    while (num >= base) {
-        num /= base;
-        result++;
-    }
-    return result;
-}
-
 void DrawNumber(u32 num, int digits, int x, int y) {
     int i = 0;
     while (digits > 0) {
         int p = pow(10, --digits);
         int digit = num / p;
         num = num % p;
-        digit = digit % 10;
         DrawChar('0' + digit, x + i, y);
         i++;
     }

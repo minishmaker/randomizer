@@ -44,6 +44,37 @@
 #endif
 ORG FreeSpace
 
+// provides C compiler intrinsic functions
+#include "c/intrinsics.event"
+
+#include "c/ui.cevent"
+TimerGetTime:
+#ifdef timedohkoOption
+	POIN timedohkoGetTime|1
+#else
+	WORD 0
+#endif
+counterMaxValue:
+#ifdef requirementFigurinesAmmount
+	WORD requirementFigurinesAmmount
+#else
+	WORD 0
+#endif
+CounterGetValue:
+#ifdef requirementFigurinesAmmount
+	POIN requirementFigurinesCounter
+#else
+	WORD 0
+#endif
+historyTimerDuration:
+#ifdef historyOption
+	WORD historyOption
+#else
+	WORD 0
+#endif
+
+#include "c/historyNames.cevent"
+
 #ifdef no_music
 #include "c/nobgm.cevent"
 #endif
@@ -297,27 +328,6 @@ PUSH; ORG $4F05A; SHORT 0xE002; POP //remove soldiers near lon lon
 	WORD followerID
 #endif
 
-#ifdef timerOption
-	PUSH; ORG $1C4E8; jumpToHack(timerDisplay); POP
-	ALIGN 4
-	timerDisplay:
-	#incbin "asm/timerDisplay.dmp"
-	#ifdef timedohkoOption
-		POIN ohkoDrawTime
-		POIN timedohkoGetTime
-		ALIGN 4
-		ohkoDrawTime:
-		#incbin "asm/drawTime.dmp"
-		POIN ohkoDrawText
-		ALIGN 4
-		ohkoDrawText:
-		#incbin "asm/ohkoDrawText.dmp"
-	#else
-		POIN drawTime
-		WORD 0 //if 0, draw total time, it non-0, draw timer returned by routine called
-	#endif
-#endif
-
 #ifdef ohkoOption
 	PUSH; ORG $522BC; jumpToHack(ohkoCheck); POP
 	ALIGN 4
@@ -327,24 +337,6 @@ PUSH; ORG $4F05A; SHORT 0xE002; POP //remove soldiers near lon lon
 		POIN timedohkoCheckTime
 	#endif
 	WORD 0 //if 0, any damage will kill link, if non-0 this will be used as a pointer to a routine to determine if link will die
-#endif
-
-#ifdef counterOption
-	PUSH; ORG $1C4F0; jumpToHack(counterDisplay); POP
-	ALIGN 4
-	counterDisplay:
-	#incbin "asm/counterDisplay.dmp"
-	POIN drawNumber
-	#ifdef timerOption
-		WORD 1
-	#else
-		WORD 0
-	#endif
-	#ifdef requirementFigurinesAmmount
-		WORD requirementFigurinesAmmount
-		POIN requirementFigurinesCounter
-	#endif
-	WORD 0 0
 #endif
 
 #ifdef noFairy //shy fairies patch (fairies don't come out of bottles automatically)
