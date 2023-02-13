@@ -536,11 +536,14 @@ internal class Shuffler
 		// Put minor and filler items in remaining locations locations, not checking logic
 		nextLocationGroup = locationGroups.Any(group => group.Key == LocationType.Minor) ? locationGroups.First(group => group.Key == LocationType.Minor).ToList() : new List<Location>();
 		unfilledLocations.AddRange(nextLocationGroup);
-		nextLocationGroup = locationGroups.Any(group => group.Key == LocationType.Inaccessible) ? locationGroups.First(group => group.Key == LocationType.Inaccessible).ToList() : new List<Location>();
+        unfilledLocations = unfilledLocations.Distinct().ToList();
+        unfilledLocations.Shuffle(_rng);
+        FastFillLocations(_minorItems.Concat(_fillerItems).ToList(), unfilledLocations);
+        nextLocationGroup = locationGroups.Any(group => group.Key == LocationType.Inaccessible) ? locationGroups.First(group => group.Key == LocationType.Inaccessible).ToList() : new List<Location>();
 		unfilledLocations.AddRange(nextLocationGroup);
 		unfilledLocations = unfilledLocations.Distinct().ToList();
 		unfilledLocations.Shuffle(_rng);
-		FastFillLocations(_minorItems.Concat(_fillerItems).ToList(), unfilledLocations);
+		FastFillLocations(_fillerItems.ToList(), unfilledLocations);
 
         // Get every item that can be logically obtained, to check if the game can be completed
         var finalMajorItems = GetAvailableItems(new List<Item>());
