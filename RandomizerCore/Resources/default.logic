@@ -35,8 +35,9 @@
 #   DungeonConstraint - Used to specify that this item can only be placed on locations of type DungeonConstraint. If there are any items left in this group after all DungeonConstraint locations are filled then randomization will fail.
 #   OverworldConstraint - Used to specify that this item can only be placed on locations of type OverworldConstraint. If there are any items left in this group after all OverworldConstraint locations are filled then randomization will fail.
 #   DungeonPrize - Used to specify that this item can only be placed on locations of type DungeonPrize. If there are any items left in this group after all DungeonPrize locations are filled then randomization will fail.
-#   DungeonMajor - Used to specify that this item can only be placed on locations of type Dungeon, and Any, in that order.
-#   Major - Used to specify that this item can only be placed on locations of type Major, Dungeon, or Any.
+#   DungeonMajor - Used to specify that this item can only be placed on locations of type Dungeon. If there are any items left in this group after all DungeonPrize locations are filled then randomization will fail.
+#   DungeonMinor - Used to specify that this item can only be placed after Dungeon Majors, and can only be placed on locations of type Dungeon. If there are any items left in this group after all DungeonPrize locations are filled then randomization will fail.
+#   Major - Used to specify that this item can only be placed on locations of type Major, Dungeon, and then Any in that order.
 #   Minor - Used to specify that this item can only be placed on locations of type Minor, and Any, in that order.
 #   Filler - Used to specify that this item should be used to fill any unfilled locations after all other items are placed. Items with the Filler type will be randomly chosen for each location left when randomization ends, and items can be chosen multiple times. Increase the number of a specific item in the Filler pool to increase the odds of that item being used.
 #
@@ -726,7 +727,7 @@
 # Sets which dungeon pool keys should get shuffled in
 !define - BIG_KEY - DungeonMajor
 !define - SMALL_KEY - DungeonMajor
-!define - COMPASS - DungeonMajor
+!define - COMPASS - DungeonMinor
 !ifdef - SMALL_KEYS_STANDARD
 	!define - DWS_SMALL - DWSSmall
 	!define - COF_SMALL - CoFSmall

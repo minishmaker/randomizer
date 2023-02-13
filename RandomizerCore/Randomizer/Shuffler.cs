@@ -35,7 +35,8 @@ internal class Shuffler
 	private readonly List<Item> _overworldConstraints;
 	private readonly List<Item> _dungeonPrizes;
 	private readonly List<Item> _dungeonMajorItems;
-	private readonly List<Item> _majorItems;
+    private readonly List<Item> _dungeonMinorItems;
+    private readonly List<Item> _majorItems;
 	private readonly List<Item> _minorItems;
 	private readonly List<Item> _fillerItems;
 	private Random? _rng;
@@ -58,6 +59,7 @@ internal class Shuffler
 		
 		_dungeonPrizes = new List<Item>();
 		_dungeonMajorItems = new List<Item>();
+        _dungeonMinorItems = new List<Item>();
 		_majorItems = new List<Item>();
 		
 		_minorItems = new List<Item>();
@@ -274,7 +276,10 @@ internal class Shuffler
 			case ItemPool.DungeonMajor:
 				_dungeonMajorItems.Add(item);
 				break;
-			case ItemPool.Major:
+            case ItemPool.DungeonMinor:
+                _dungeonMinorItems.Add(item);
+                break;
+            case ItemPool.Major:
 				_majorItems.Add(item);
 				break;
 			case ItemPool.Minor:
@@ -469,7 +474,12 @@ internal class Shuffler
 			allMajorsAndUnshuffled,
 			unfilledLocations));
 
-		unfilledLocations = unfilledLocations.Distinct().ToList();
+        //Shuffle dungeon minors
+        unfilledLocations.AddRange(FillLocationsFrontToBack(_dungeonMinorItems,
+            unfilledLocations,
+            allItems));
+
+        unfilledLocations = unfilledLocations.Distinct().ToList();
 
 		if (useSphereBasedShuffler)
 			FillWithSphereBasedShuffler(locationGroups, ref unfilledLocations);
@@ -523,12 +533,6 @@ internal class Shuffler
 			unfilledLocations));
 		unfilledLocations = unfilledLocations.Distinct().ToList();
 		
-		// Get every item that can be logically obtained, to check if the game can be completed
-		var finalMajorItems = GetAvailableItems(new List<Item>());
-
-		if (!new LocationDependency("BeatVaati").DependencyFulfilled(finalMajorItems, _locations))
-			throw new ShuffleException("Randomization succeeded, but could not beat Vaati!");
-		
 		// Put minor and filler items in remaining locations locations, not checking logic
 		nextLocationGroup = locationGroups.Any(group => group.Key == LocationType.Minor) ? locationGroups.First(group => group.Key == LocationType.Minor).ToList() : new List<Location>();
 		unfilledLocations.AddRange(nextLocationGroup);
@@ -537,9 +541,15 @@ internal class Shuffler
 		unfilledLocations = unfilledLocations.Distinct().ToList();
 		unfilledLocations.Shuffle(_rng);
 		FastFillLocations(_minorItems.Concat(_fillerItems).ToList(), unfilledLocations);
-	}
 
-	private List<Location> FillLocationsSphereBased(List<Item> allShuffledItems, List<Location> preFilledLocations, List<Location> allPlaceableLocations)
+        // Get every item that can be logically obtained, to check if the game can be completed
+        var finalMajorItems = GetAvailableItems(new List<Item>());
+
+        if (!new LocationDependency("BeatVaati").DependencyFulfilled(finalMajorItems, _locations))
+            throw new ShuffleException("Randomization succeeded, but could not beat Vaati!");
+    }
+
+    private List<Location> FillLocationsSphereBased(List<Item> allShuffledItems, List<Location> preFilledLocations, List<Location> allPlaceableLocations)
 	{
 		var spheres = new List<Sphere>();
 
@@ -1557,7 +1567,8 @@ internal class Shuffler
 		
 		_dungeonPrizes.Clear();
 		_dungeonMajorItems.Clear();
-		_majorItems.Clear();
+        _dungeonMinorItems.Clear();
+        _majorItems.Clear();
 		
 		_minorItems.Clear();
 		_fillerItems.Clear();

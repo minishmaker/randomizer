@@ -10,7 +10,7 @@ public enum ItemPool
     DungeonPrize,
     DungeonMajor,
     Major,
-    //DungeonMinor, Deprecated
+    DungeonMinor,
     Minor,
     Filler
 }
