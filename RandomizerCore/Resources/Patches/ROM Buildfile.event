@@ -62,7 +62,7 @@ counterMaxValue:
 #endif
 CounterGetValue:
 #ifdef requirementFigurinesAmmount
-	POIN requirementFigurinesCounter
+	POIN requirementFigurinesCounter|1
 #else
 	WORD 0
 #endif
@@ -74,6 +74,24 @@ historyTimerDuration:
 #endif
 
 #include "c/historyNames.cevent"
+
+#include "c/ModHealth.cevent"
+damageMultiplier:
+#ifdef heroMode
+	WORD dmgMulti
+#else
+	WORD 1
+#endif
+CheckOHKO:
+#ifdef ohkoOption
+	#ifdef timedohkoOption
+		POIN timedohkoCheckTime|1
+	#else
+		POIN OHKOTrue
+	#endif
+#else
+	WORD 0
+#endif
 
 #ifdef no_music
 #include "c/nobgm.cevent"
@@ -328,17 +346,6 @@ PUSH; ORG $4F05A; SHORT 0xE002; POP //remove soldiers near lon lon
 	WORD followerID
 #endif
 
-#ifdef ohkoOption
-	PUSH; ORG $522BC; jumpToHack(ohkoCheck); POP
-	ALIGN 4
-	ohkoCheck:
-	#incbin "asm/ohkoCheck.dmp"
-	#ifdef timedohkoOption
-		POIN timedohkoCheckTime
-	#endif
-	WORD 0 //if 0, any damage will kill link, if non-0 this will be used as a pointer to a routine to determine if link will die
-#endif
-
 #ifdef noFairy //shy fairies patch (fairies don't come out of bottles automatically)
 	PUSH; ORG $7175C; SHORT 0x4289; POP
 #endif
@@ -580,8 +587,3 @@ POP
 //#ifdef pokemon_music
 //#include "sound/sound.event"
 //#endif
-#ifdef heroMode
-#include "c/heroMode.cevent"
-damageMultiplier:
-WORD dmgMulti;
-#endif

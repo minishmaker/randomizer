@@ -2,6 +2,11 @@
 #include "save.h"
 
 extern const s32 damageMultiplier;
+extern int (*const CheckOHKO)(void);
+
+int OHKOTrue(void) {
+    return 1;
+}
 
 s32 ModHealth(s32 delta) {
     s32 newHealth;
@@ -15,9 +20,14 @@ s32 ModHealth(s32 delta) {
     if (newHealth < 0) {
         newHealth = 0;
     }
-    if (stats->maxHealth < newHealth) {
+    if (newHealth > stats->maxHealth) {
         newHealth = stats->maxHealth;
     }
+
+    if (CheckOHKO && CheckOHKO()) {
+        newHealth = 0;
+    }
+
     stats->health = newHealth;
     gPlayerEntity.health = newHealth;
     return newHealth;
