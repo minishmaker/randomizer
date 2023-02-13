@@ -896,21 +896,18 @@
 !endif
 
 !ifdef - ALLOW_FUSION_SKIPS
-	!ifdef - SHOW_MAP
-		!eventdefine - alwaysSkipFusionCutsceneShowMap - 0		# if 0 fusion cutscenes are skipped when the buttons are held, map views are shown
-	!else
-		!eventdefine - alwaysSkipFusionCutsceneFull - 0			# if 0 fusion cutscenes are skipped when the buttons are held
-	!endif
+	!eventdefine - alwaysSkipFusionCutscene - 0					# if 0, fusion cutscenes are skipped when the buttons are held
+!endif
+!ifdef - INSTANT_SKIP
+	!eventdefine - alwaysSkipFusionCutscene - 1					# if non-0, fusion cutscenes are always skipped
+!endif
+!ifdef - NO_FUSION_SKIP
+	!eventdefine - neverSkipFusionCutscene						# if defined, fusion cutscenes are just like vanilla
+!endif
+!ifdef - SHOW_MAP
+	!eventdefine - skipFusionCutsceneShowMap - 1				# if non-0 and fusion cutscenes are skipped, map views are shown
 !else
-	!ifdef - INSTANT_SKIP
-		!ifdef - SHOW_MAP
-			!eventdefine - alwaysSkipFusionCutsceneShowMap - 1	# if non-0 they are always instantly skipped, map views are shown
-		!else
-        	!eventdefine - alwaysSkipFusionCutsceneFull - 1		# if non-0 they are always instantly skipped
-		!endif
-    !else
-    	!eventdefine - neverSkipFusionCutsceneFull			# if defined, fusion cutscenes are just like vanilla
-    !endif
+	!eventdefine - skipFusionCutsceneShowMap - 0				# if 0 and fusion cutscenes are skipped, map views are also skipped
 !endif
 
 !ifdef - NO_KINSTONE_DROPS

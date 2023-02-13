@@ -1,15 +1,8 @@
-#ifndef neverSkipFusionCutsceneFull //define to never skip (cutscene and map view)
-	#define skipFusionCutsceneSomeForm
-	#ifndef alwaysSkipFusionCutsceneFull
-		#define alwaysSkipFusionCutsceneFull 0 //set to non-0 to skip both, set to 0 to skip both on button held
-	#endif
+#ifndef alwaysSkipFusionCutscene
+	#define alwaysSkipFusionCutscene 0
 #endif
-
-#ifndef neverSkipFusionCutsceneShowMap //define to never skip (only cutscene)
-	#define skipFusionCutsceneSomeForm
-	#ifndef alwaysSkipFusionCutsceneShowMap
-		#define alwaysSkipFusionCutsceneShowMap 0 //set to non-0 to skip cutscene, set to 0 to skip cutscene on button held
-	#endif
+#ifndef skipFusionCutsceneShowMap
+	#define skipFusionCutsceneShowMap 0
 #endif
 
 //remove all ezlo stepping triggers
@@ -27,19 +20,14 @@ ezloPleaseStop:
 	PUSH; ORG $56726; SHORT 0x8801; POP
 #endif
 
-//skip fusion cutscene if A, B or START are held
-#ifdef skipFusionCutsceneSomeForm
+//skip fusion cutscene if A, B or START are held (or always)
+#ifndef neverSkipFusionCutscene
 	PUSH; ORG $A35E4; jumpToHack(skipFusionCutscene); POP
 	ALIGN 4
 	skipFusionCutscene:
 	#incbin "asm/skipFusionCutscene.dmp"
-	#ifndef neverSkipFusionCutsceneFull
-		WORD alwaysSkipFusionCutsceneFull //set to non-0 to always skip fusion cutscene and map view
-		WORD 0
-	#else
-		WORD alwaysSkipFusionCutsceneShowMap //set to non-0 to always skip fusion cutscene
-		WORD 1
-	#endif
+	WORD alwaysSkipFusionCutscene //set to non-0 to always skip fusion cutscene
+	WORD skipFusionCutsceneShowMap //set to non-0 to show map after skipped cutscene
 #endif
 
 //skip minish transformation cutscenes automatically
