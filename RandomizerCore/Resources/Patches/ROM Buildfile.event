@@ -1,4 +1,19 @@
 #define jumpToHack(offset) "BYTE 0x00 0x4B 0x18 0x47; POIN (offset|0x1)"
+// function call veneer
+// veneer:
+//   push {r3}
+//   ldr r3, _function
+//   mov ip, r3
+//   pop {r3}
+//   bx ip
+//   nop
+// _function:
+//   .word 0
+#define veneer(offset) "SHORT 0xB408 0x4B02 0x469C 0xBC08 0x4760; ALIGN 4; POIN (offset|0x1)"
+
+#define BLRange(pointer) "(((pointer&0xfffffffe) - (CURRENTOFFSET + 4))>>1)"
+#define BL(pointer) "SHORT (((BLRange(pointer)>>11)&0x7ff)|0xf000) ((BLRange(pointer)&0x7ff)|0xf800)"
+
 #include "extDefinitions.event" //a file reserved for the randomizer to output definitions for the patches
 
 #ifndef seedHashed
@@ -28,21 +43,6 @@
 	#define FreeSpace $EF3340
 #endif
 ORG FreeSpace
-
-#define BLRange(pointer) "((pointer - (CURRENTOFFSET + 4))>>1)"
-#define BL(pointer) "SHORT (((BLRange(pointer)>>11)&0x7ff)|0xf000) ((BLRange(pointer)&0x7ff)|0xf800);"
-
-// function call veneer
-// veneer:
-//   push {r3}
-//   ldr r3, _function
-//   mov ip, r3
-//   pop {r3}
-//   bx ip
-//   nop
-// _function:
-//   .word 0
-#define veneer(offset) "SHORT 0xB408 0x4B02 0x469C 0xBC08 0x4760; ALIGN 4; POIN (offset|0x1)"
 
 #ifdef no_music
 #include "c/nobgm.cevent"
