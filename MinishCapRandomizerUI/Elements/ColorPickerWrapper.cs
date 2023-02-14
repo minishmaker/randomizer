@@ -17,7 +17,7 @@ public class ColorPickerWrapper : WrapperBase, ILogicOptionObserver
     private const int PictureBoxHeight = 23;
     private const int TextAlign = 1;
     private const int ButtonAndPictureBoxAlign = -3;
-    private const string CheckboxText = "Use True Random Color";
+    private const string CheckboxText = "Use Random Color";
     private const string SelectColorText = "Select Custom Color";
     private const string SelectRandomColorText = "Pick Random Color";
     private const string UseDefaultColorText = "Use Default Color";
@@ -106,6 +106,8 @@ public class ColorPickerWrapper : WrapperBase, ILogicOptionObserver
             _selectColorButton.Enabled = !_checkBox.Checked;
             _selectRandomColorButton.Enabled = !_checkBox.Checked;
             _useDefaultColorButton.Enabled = !_checkBox.Checked;
+            if (_checkBox.Checked) _colorPreview.BackColor = Color.Transparent;
+            else _colorPreview.BackColor = _colorPicker.DefinedColor;
         };
 
         return new List<Control>
