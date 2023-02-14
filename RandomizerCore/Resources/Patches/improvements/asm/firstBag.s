@@ -7,15 +7,20 @@ add	r1,#0x68
 
 ldrb	r2,[r4,#10]
 cmp	r2,#0x65
-bne	end
+bne	mark
 ldr	r3,=#0x2002AEE
 ldrb	r2,[r3]
 cmp	r2,#0
-bne	end
+bne	mark
 mov	r2,#1
 strb	r2,[r3]
 sub	r3,#2
 mov	r2,#10
+strb	r2,[r3]
+
+mark:
+ldr	r3,=#0x203F1FE
+mov	r2,#1
 strb	r2,[r3]
 
 end:
