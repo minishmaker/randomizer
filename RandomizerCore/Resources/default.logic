@@ -4288,17 +4288,14 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 	!ifndef - ACCESS_LOCATIONS
 		!ifndef - SMALL_KEYS_ELSE
 			!ifndef - SMALL_KEYS_VANILLA
-				!ifdef - SMALL_KEYS_STANDARD
-					!undefine - DHCBigBlock
-					!define - DHCBigBlock - , (&Items.SmallKey.0x1D:4, Helpers.DHCKing, Locations.DHC_1F_Blade_Chest, Locations.DHC_1F_Throne_BigChest, Helpers.DHCBlackKnight, Helpers.DHCTowerDarknuts, Helpers.HasBow, Helpers.DHCLampPuzzle, Helpers.DHCGhini, Helpers.DHCSwitchPuzzles)
-				!else
-					!define - Sanctuary_Pedestal_Item3 - 
-					!define - Castle_GoldenRope -
-					!define - Castle_RightFountainFusion_HP -
-					!define - Castle_Dojo_HP -
-					!define - Castle_Dojo_NPC -
-					!define - Castle_RightFountainFusion_MinishHoleChest -
-					!define - Castle_LeftFountainFusion_MinishHoleChest -
+				!define - Sanctuary_Pedestal_Item3 - 
+				!define - Castle_GoldenRope -
+				!define - Castle_RightFountainFusion_HP -
+				!define - Castle_Dojo_HP -
+				!define - Castle_Dojo_NPC -
+				!define - Castle_RightFountainFusion_MinishHoleChest -
+				!define - Castle_LeftFountainFusion_MinishHoleChest -
+				!ifndef - SMALL_KEYS_STANDARD
 					!ifdef - PED_ITEMS
 						!undefine - Sanctuary_Pedestal_Item3
 						!define - Sanctuary_Pedestal_Item3 - , Locations.Sanctuary_Pedestal_Item3
@@ -4327,9 +4324,9 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 						!undefine - Castle_Dojo_NPC
 						!define - Castle_Dojo_NPC - , Locations.Castle_Dojo_NPC
 					!endif
-					!undefine - DHCBigBlock
-					!define - DHCBigBlock - , (&Items.SmallKey.0x1D:4, Helpers.DHCKing, Locations.DHC_1F_Blade_Chest, Locations.DHC_1F_Throne_BigChest, Helpers.DHCBlackKnight, Helpers.DHCTowerDarknuts, Helpers.HasBow, Helpers.DHCLampPuzzle, Helpers.DHCGhini, Helpers.DHCSwitchPuzzles `Sanctuary_Pedestal_Item3` `Castle_GoldenRope` `Castle_RightFountainFusion_HP` `Castle_Dojo_HP` `Castle_Dojo_NPC` `Castle_RightFountainFusion_MinishHoleChest` `Castle_LeftFountainFusion_MinishHoleChest`)
 				!endif
+				!undefine - DHCBigBlock
+				!define - DHCBigBlock - , (&Items.SmallKey.0x1D:4, Helpers.DHCKing, Locations.DHC_1F_Blade_Chest, Locations.DHC_1F_Throne_BigChest, Helpers.DHCBlackKnight, Helpers.DHCTowerDarknuts, Helpers.HasBow, Helpers.DHCLampPuzzle, Helpers.DHCGhini, Helpers.DHCSwitchPuzzles `Sanctuary_Pedestal_Item3` `Castle_GoldenRope` `Castle_RightFountainFusion_HP` `Castle_Dojo_HP` `Castle_Dojo_NPC` `Castle_RightFountainFusion_MinishHoleChest` `Castle_LeftFountainFusion_MinishHoleChest`)
 			!endif
 		!endif
 	!endif
