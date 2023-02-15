@@ -59,7 +59,7 @@
 # !eventdefine - (define name) - [value] : will write (define name) to "extDefinitions.event", its value is set to [value] if it exists.
 # !undefine - (define name)              : unsets (define name) and removes its value if it has one.
 #
-# 
+#
 # = Define Logic =
 # !ifdef - (define name)  : will enter if (define name) is set.
 # !ifndef - (define name) : will enter if (define name) is not set.
@@ -72,7 +72,7 @@
 # !dropdown - (window tab) - (setting type) - (setting group) - (define name) - (readable text) - (tooltip text) - (default value) - ~(readable name) - (define name) - (tooltip text)~ : requires sets of "(readable name) - (define name) - (tooltip text)", each set adds a new entry to the dropdown, the (define name) of the setting will be set to the (define name) of the selected entry. (default value) is the value of the (define name) you want as the default value.
 # !numberbox - (window tab) - (setting type) - (setting group) - (define name) - (readable text) - (tooltip text) - (default value) - (min value) - (max value) : a textbox where you can input a number, (define name) will be set to the number that was input, (default value) is the default value to put in the box, (min value) is the minimum supported value, (max value) is the maximum supported value.
 # !color - (window tab) - (setting type) - (setting group) - (define name) - (readable text) - ~ [default color R] - [default color G] - [default color B] ~ : adds a color picker, the default color is white if no hexadecimal [default color R/G/B] is set, (define name) is set if the color is changed, (define name)_X is set to the color in set X starting from 0.
-# 
+#
 # = Parser Commands = 
 # !replace - (item) - (chance set)                     : replaces all occurrences of (item) with a random spread of items in (chance set), (chance set) consists of 1 or more "Items.(type).[subtype]:[dungeon id]:[weight]" entries split up by ,'s and ended with an ; .
 # !replaceamount - (chance set) - (amount) -  (item)   : replaces the first (amount) occurrences of (item) with a  random spread of items in (chance set).
@@ -87,9 +87,9 @@
 #
 # (item),~(item)~           : an AND only on the base level, "Items.x , Items.y" will need both x and y.
 # (| (item), ~(item)~)      : an OR, "(|Items.x, Items.y)" will need either x or y.
-# (& (item), ~(item)~)      : an AND, "(&Items.x, items.y)" will need both x and y.
+# (& (item), ~(item)~)      : an AND, "(&Items.x, Items.y)" will need both x and y.
 # (+(value), ~(itemvalue)~) : a count, "(+50, Items.x:2, Items.y)" x is worth 2, y is worth 1, this needs enough x's and y's to reach the value 50.
-#~(item)			: a NOT item, prevents the item chosen from being placed at this location, can only be used for item locations and not helpers.eg: (| Items.a , (&Items.b, ~Items.c)) 
+#~(item)                    : a NOT item, prevents the item chosen from being placed at this location, can only be used for item locations and not helpers.eg: (| Items.a , (&Items.b, ~Items.c)) 
 
 #Settings options displayed in the rando UI
 
@@ -4066,12 +4066,7 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 	!define - Deepwood2ndDoor - 
 	!define - DeepwoodBasementDoor - 
 	!ifndef - ACCESS_LOCATIONS
-		!ifdef - SMALL_KEYS_ELSE
-			!undefine - Deepwood2ndDoor
-			!undefine - DeepwoodBasementDoor
-			!define - Deepwood2ndDoor - , (&Items.SmallKey.0x18:2, Helpers.Hundo)
-			!define - DeepwoodBasementDoor - `Deepwood2ndDoor`	
-		!else
+		!ifndef - SMALL_KEYS_ELSE
 			!ifdef - SMALL_KEYS_VANILLA
 				!undefine - Deepwood2ndDoor
 				!define - Deepwood2ndDoor - , Items.SmallKey.0x18:2
@@ -4109,16 +4104,7 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 	!define - FoWMiddleDoor - 
 	!define - FoWLastDoor - 
 	!ifndef - ACCESS_LOCATIONS
-		!ifdef - SMALL_KEYS_ELSE
-			!ifndef - SPECIALPOTS 
-				!undefine - FoWRightDoor
-				!undefine - FoWMiddleDoor
-				!define - FoWRightDoor - , (&Items.SmallKey.0x1A, Helpers.Hundo)
-				!define - FoWMiddleDoor - , (&Items.SmallKey.0x1A:2, Helpers.Hundo)
-			!endif
-			!undefine - FoWLastDoor
-			!define - FoWLastDoor - , (&Items.SmallKey.0x1A:3, Helpers.Hundo)
-		!else
+		!ifndef - SMALL_KEYS_ELSE
 			!ifndef - SMALL_KEYS_VANILLA
 				!ifdef - SMALL_KEYS_STANDARD
 					!ifndef - SPECIALPOTS 
@@ -4275,10 +4261,7 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 			!define - PoWFans - , Items.SmallKey.0x1C:2
 			!define - PoWBigChest - , Items.SmallKey.0x1C:3
 		!else
-			!ifdef - SMALL_KEYS_ELSE
-				!define - PoWFans - , (&Items.SmallKey.0x1C:2, Helpers.Hundo)
-				!define - PoWBigChest - , (&Items.SmallKey.0x1C:3, Helpers.Hundo)
-			!else
+			!ifndef - SMALL_KEYS_ELSE
 				!ifdef - SMALL_KEYS_VANILLA
 					!define - PoWFans - , Items.SmallKey.0x1C:2
 					!define - PoWBigChest - , Items.SmallKey.0x1C:3
@@ -4301,7 +4284,56 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 	PoWRedWarpDoor;			Helper;;	Items.SmallKey.0x1C:5
 	PoWLastDoor;				Helper;;	Items.SmallKey.0x1C:6
 	DHC1stDoor;				Helper;;	Items.SmallKey.0x1D
-	DHCBigBlock;				Helper;;	(|Items.SmallKey.0x1D:5, (&Items.SmallKey.0x1D:4, Helpers.Hundo))
+	!define - DHCBigBlock - 
+	!ifndef - ACCESS_LOCATIONS
+		!ifndef - SMALL_KEYS_ELSE
+			!ifndef - SMALL_KEYS_VANILLA
+				!ifdef - SMALL_KEYS_STANDARD
+					!undefine - DHCBigBlock
+					!define - DHCBigBlock - , (&Items.SmallKey.0x1D:4, Helpers.DHCKing, Locations.DHC_1F_Blade_Chest, Locations.DHC_1F_Throne_BigChest, Helpers.DHCBlackKnight, Helpers.DHCTowerDarknuts, Helpers.HasBow, Helpers.DHCLampPuzzle, Helpers.DHCGhini, Helpers.DHCSwitchPuzzles)
+				!else
+					!define - Sanctuary_Pedestal_Item3 - 
+					!define - Castle_GoldenRope -
+					!define - Castle_RightFountainFusion_HP -
+					!define - Castle_Dojo_HP -
+					!define - Castle_Dojo_NPC -
+					!define - Castle_RightFountainFusion_MinishHoleChest -
+					!define - Castle_LeftFountainFusion_MinishHoleChest -
+					!ifdef - PED_ITEMS
+						!undefine - Sanctuary_Pedestal_Item3
+						!define - Sanctuary_Pedestal_Item3 - , Locations.Sanctuary_Pedestal_Item3
+					!endif
+					!ifndef - NO_GREEN_FUSIONS
+						!ifdef - GOLDEN_ENEMY
+							!undefine - Castle_GoldenRope
+							!define - Castle_GoldenRope - , Locations.Castle_GoldenRope
+						!endif
+						!undefine - Castle_LeftFountainFusion_MinishHoleChest
+						!define - Castle_LeftFountainFusion_MinishHoleChest - , Locations.Castle_LeftFountainFusion_MinishHoleChest
+					!endif
+					!ifndef - NO_RED_FUSIONS
+						!ifdef - HEART_RANDO
+							!undefine - Castle_RightFountainFusion_HP
+							!define - Castle_RightFountainFusion_HP - , Locations.Castle_RightFountainFusion_HP
+						!endif
+						!undefine - Castle_RightFountainFusion_MinishHoleChest
+						!define - Castle_RightFountainFusion_MinishHoleChest - , Locations.Castle_RightFountainFusion_MinishHoleChest
+					!endif
+					!ifdef - HEART_RANDO
+						!undefine - Castle_Dojo_HP
+						!define - Castle_Dojo_HP - , Locations.Castle_Dojo_HP
+					!endif
+					!ifdef - DOJOANY
+						!undefine - Castle_Dojo_NPC
+						!define - Castle_Dojo_NPC - , Locations.Castle_Dojo_NPC
+					!endif
+					!undefine - DHCBigBlock
+					!define - DHCBigBlock - , (&Items.SmallKey.0x1D:4, Helpers.DHCKing, Locations.DHC_1F_Blade_Chest, Locations.DHC_1F_Throne_BigChest, Helpers.DHCBlackKnight, Helpers.DHCTowerDarknuts, Helpers.HasBow, Helpers.DHCLampPuzzle, Helpers.DHCGhini, Helpers.DHCSwitchPuzzles `Sanctuary_Pedestal_Item3` `Castle_GoldenRope` `Castle_RightFountainFusion_HP` `Castle_Dojo_HP` `Castle_Dojo_NPC` `Castle_RightFountainFusion_MinishHoleChest` `Castle_LeftFountainFusion_MinishHoleChest`)
+				!endif
+			!endif
+		!endif
+	!endif
+	DHCBigBlock;				Helper;;	(|Items.SmallKey.0x1D:5 `DHCBigBlock`)
 
 	DeepwoodBossDoor;			Helper;;	Items.BigKey.0x18
 	CoFBossDoor;				Helper;;	Items.BigKey.0x19
@@ -4510,7 +4542,7 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 	DeepwoodWeb;				Helper;;	(|Items.GustJar, Items.Lantern)
 	DeepwoodMulldozers;		Helper;;	Helpers.HasDamageSource
 	DeepwoodWarpSwitch;		Helper;;	Helpers.BlowDust
-	DeepwoodBlueWarp;			Helper;;	(|(&Helpers.Deepwood1stDoor, (|Helpers.Deepwood2ndDoor, Items.SmallKey.0x18:2, Items.GustJar)))
+	DeepwoodBlueWarp;			Helper;;	Helpers.Deepwood1stDoor, (|Helpers.Deepwood2ndDoor, Items.SmallKey.0x18:2, Items.GustJar)
 	DeepwoodNWChest;			Helper;;	Helpers.BlowDust
 	DeepwoodWarpChests;		Helper;;	Helpers.BlowDust
 	DeepwoodMadderpillarFight;	Helper;;	Helpers.HasMadderDamage
