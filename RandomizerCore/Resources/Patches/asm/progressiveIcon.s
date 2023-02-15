@@ -178,8 +178,8 @@ beq	drawFour
 drawOne:
 strh	r2, [r0, #0x00]
 strh	r2, [r0, #0x02]
-strh	r1, [r0, #0x04]
-strh	r1, [r0, #0x06]
+strh	r2, [r0, #0x04]
+strh	r2, [r0, #0x06]
 strh	r2, [r0, #0x08]
 strh	r2, [r0, #0x0A]
 @erase the arrow
