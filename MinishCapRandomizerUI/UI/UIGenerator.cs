@@ -5,7 +5,7 @@ namespace MinishCapRandomizerUI.UI;
 
 public static class UIGenerator
 {
-    private static readonly Size TabPaneSize = new Size(772, 635);
+    private static readonly Size TabPaneSize = new Size(772, 535);
 
     public static TabPage BuildSettingsPage(List<WrapperBase> wrappedLogicOptions, string pageName)
     {
