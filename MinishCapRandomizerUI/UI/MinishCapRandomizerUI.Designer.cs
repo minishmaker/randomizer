@@ -728,7 +728,7 @@ namespace MinishCapRandomizerUI.UI
             this.Advanced.Location = new System.Drawing.Point(4, 24);
             this.Advanced.Name = "Advanced";
             this.Advanced.Padding = new System.Windows.Forms.Padding(3);
-            this.Advanced.Size = new System.Drawing.Size(785, 535);
+            this.Advanced.Size = new System.Drawing.Size(787, 535);
             this.Advanced.TabIndex = 3;
             this.Advanced.Text = "Advanced";
             this.Advanced.UseVisualStyleBackColor = true;
@@ -809,13 +809,13 @@ namespace MinishCapRandomizerUI.UI
             // 
             // BrowseCustomPatch
             // 
-            this.BrowseCustomPatch.Enabled = false;
             this.BrowseCustomPatch.Location = new System.Drawing.Point(660, 101);
             this.BrowseCustomPatch.Name = "BrowseCustomPatch";
             this.BrowseCustomPatch.Size = new System.Drawing.Size(90, 23);
             this.BrowseCustomPatch.TabIndex = 20;
             this.BrowseCustomPatch.Text = "Browse";
             this.BrowseCustomPatch.UseVisualStyleBackColor = true;
+            this.BrowseCustomPatch.Click += new System.EventHandler(this.BrowseCustomPatch_Click);
             // 
             // RomBuildfilePath
             // 
@@ -846,16 +846,17 @@ namespace MinishCapRandomizerUI.UI
             this.UseCustomPatch.Text = "Use Custom Patch Files";
             this.UseCustomPatch.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.UseCustomPatch.UseVisualStyleBackColor = true;
+            this.UseCustomPatch.CheckedChanged += new System.EventHandler(this.UseCustomPatch_CheckedChanged);
             // 
             // BrowseCustomLogicFile
             // 
-            this.BrowseCustomLogicFile.Enabled = false;
             this.BrowseCustomLogicFile.Location = new System.Drawing.Point(660, 41);
             this.BrowseCustomLogicFile.Name = "BrowseCustomLogicFile";
             this.BrowseCustomLogicFile.Size = new System.Drawing.Size(90, 23);
             this.BrowseCustomLogicFile.TabIndex = 16;
             this.BrowseCustomLogicFile.Text = "Browse";
             this.BrowseCustomLogicFile.UseVisualStyleBackColor = true;
+            this.BrowseCustomLogicFile.Click += new System.EventHandler(this.BrowseCustomLogicFile_Click);
             // 
             // LogicFilePath
             // 
@@ -875,6 +876,7 @@ namespace MinishCapRandomizerUI.UI
             this.UseCustomLogic.Text = "Use Custom Logic File";
             this.UseCustomLogic.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.UseCustomLogic.UseVisualStyleBackColor = true;
+            this.UseCustomLogic.CheckedChanged += new System.EventHandler(this.UseCustomLogic_CheckedChanged);
             // 
             // label6
             // 
@@ -900,7 +902,7 @@ namespace MinishCapRandomizerUI.UI
             this.SeedOutput.Controls.Add(this.panel1);
             this.SeedOutput.Location = new System.Drawing.Point(4, 24);
             this.SeedOutput.Name = "SeedOutput";
-            this.SeedOutput.Size = new System.Drawing.Size(785, 535);
+            this.SeedOutput.Size = new System.Drawing.Size(787, 535);
             this.SeedOutput.TabIndex = 2;
             this.SeedOutput.Text = "Seed Output";
             this.SeedOutput.UseVisualStyleBackColor = true;
