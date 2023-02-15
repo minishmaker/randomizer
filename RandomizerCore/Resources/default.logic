@@ -99,13 +99,14 @@
 !dropdown - Main Settings - Setting - Dungeon Settings - DUNGEON - NonElement Dungeons - NonElement Dungeons, This setting is disabled when 'Shuffle Elements' is enabled or when 'Dungeons Required' is set to '5' or '6'. - NONE - Standard - NONE - 'Standard': NonElement Dungeons have no special rules. - Unrequired - UNREQ - 'Unrequired': NonElement Dungeons do not have items required to beat the game. - Barren - BARREN - 'Barren': NonElement Dungeons only contain junk items. - Regions Unrequired - UNREQSUR - 'Regions Unrequired': NonElement Dungeons and their Regions do not contain items needed to beat the game. - Regions Barren - BARRENSUR - 'Regions Barren': NonElement Dungeons and their Regions only contain junk items. \n\n DWS Region: 'Minish Village', 'Belari's House', 'Chest near Belari', 'Minish Cave near Belari'.\n CoF Region: 'Melari's Mines', 'Melari's Mines Outside Path', 'Pre Melari Block Puzzle Chest'.\n FOW Region: 'Wind Ruins'.\n TOD Region: 'Nothing'.\n RC Region: 'Graveyard (Not Dampe)'.\n POW Region: If Red Fusions are Removed: 'Wind Tribe', Otherwise: 'Upper Wind Tribe'.
 !flag - Main Settings - Setting - Dungeon Settings - SHUFFLE_ELEMENTS - Shuffle Elements - Shuffle Elements allows the Elements to be shuffled to anywhere in the world, not just as Dungeon Rewards. The Element icons on the map are removed.
 
-!dropdown - Main Settings - Setting - Dark Hyrule Castle Requirements - DHC_SETTING - DHC Opens - Dark Hyrule Castle is the last dungeon in the game, it has the final boss Vaati. - NORMALDHC - After Requirements - NORMALDHC - 'After Requirements': A barrier is placed at the front of the dungeon, This barrier is removed when you visit the sanctuary after completing ALL the requirements. The game ends when you defeat Vaati. - Never Open - NODHC - 'Never Open': A barrier is placed at the front of the dungeon, The game ends when you visit the sanctuary after completing all the requirements. - Always Open - OPENDHC - 'Always Open': There is no barrier at the front of the dungeon, the game ends when you defeat Vaati.
-!dropdown - Main Settings - Setting - Dark Hyrule Castle Requirements - AD_PED - Dungeons Required - The number of dungeons that have to be beaten to activate the Sanctuary. There are 6 dungeons in the game that count:\n Deepwood Shrine\n Cave of Flames\n Fortress of Winds\n Temple of Droplets\n Royal Crypt\n Palace of Winds - AD_PED_0 - 0 - AD_PED_0 - - 1 - AD_PED_1 - - 2 - AD_PED_2 - - 3 - AD_PED_3 - - 4 - AD_PED_4 - - 5 - AD_PED_5 - - 6 - AD_PED_6 -
-!dropdown - Main Settings - Setting - Dark Hyrule Castle Requirements - SWORD_SETTING - Sword Requirement - The level of sword that needs to be collected to activate the Sanctuary - 5SWORD - No Sword - 0SWORD - - Smith Sword - 1SWORD - - Green Sword - 2SWORD - - Red Sword - 3SWORD - - Blue Sword - 4SWORD - - Four Sword - 5SWORD -
-!dropdown - Main Settings - Setting - Dark Hyrule Castle Requirements - ELEMENT_SETTING - Elements Required - The number of Elements that need to be collected to activate the Sanctuary - 4 - 4 - 4 - - 3 - 3 - - 2 - 2 - - 1 - 1 - - 0 - 0ELEMENT -
-!flag - Main Settings - Setting - Dark Hyrule Castle Requirements - FIGURINE_HUNT - Figurine Hunt - Carlov's Figurine pieces have been scattered into the world, collect enough of them to be able to activate the Sanctuary, this is way better than a gacha game!\n Don't forget to visit Carlov's Machine to view the figurines you have collected so far.
-!numberbox - Main Settings - Setting - Dark Hyrule Castle Requirements - FIGURINE_TOTAL - Figurines in world - The total number of Figurines that get added to the item pool, the maximum amount is 136. - 30 - 0 - 136
-!numberbox - Main Settings - Setting - Dark Hyrule Castle Requirements - FIGURINE_COUNT - Figurines required - The number of Figurines required to activate the Sanctuary, do not raise this to higher than the total number of Figurines or you won't be able to beat the game silly. - 20 - 0 - 136
+!dropdown - Main Settings - Setting - Requirements - DHC_SETTING - DHC Opens - Dark Hyrule Castle is the last dungeon in the game, it has the final boss Vaati. - NORMALDHC - After Requirements - NORMALDHC - 'After Requirements': A barrier is placed at the front of the dungeon, This barrier is removed when you visit the sanctuary after completing ALL the requirements. The game ends when you defeat Vaati. - Never Open - NODHC - 'Never Open': A barrier is placed at the front of the dungeon, The game ends when you visit the sanctuary after completing all the requirements. - Always Open - OPENDHC - 'Always Open': There is no barrier at the front of the dungeon, the game ends when you defeat Vaati.
+!dropdown - Main Settings - Setting - Requirements - DHC_BK_SETTING - DHC Big Key - Dark Hyrule Castle Big Key is required to reach the final boss Vaati. - BK_SPAWN - In item pool - BK_POOL - 'In item pool': The Big Key is randomized based on the 'Big Keys' setting - After requirements - BK_SPAWN - 'After Requirements': The Big Key is instantly awarded to the player once they meet the selected requirements.
+!dropdown - Main Settings - Setting - Requirements - AD_PED - Dungeons Required - The number of dungeons that have to be beaten to activate the Sanctuary. There are 6 dungeons in the game that count:\n Deepwood Shrine\n Cave of Flames\n Fortress of Winds\n Temple of Droplets\n Royal Crypt\n Palace of Winds - AD_PED_0 - 0 - AD_PED_0 - - 1 - AD_PED_1 - - 2 - AD_PED_2 - - 3 - AD_PED_3 - - 4 - AD_PED_4 - - 5 - AD_PED_5 - - 6 - AD_PED_6 -
+!dropdown - Main Settings - Setting - Requirements - SWORD_SETTING - Sword Requirement - The level of sword that needs to be collected to activate the Sanctuary - 5SWORD - No Sword - 0SWORD - - Smith Sword - 1SWORD - - Green Sword - 2SWORD - - Red Sword - 3SWORD - - Blue Sword - 4SWORD - - Four Sword - 5SWORD -
+!dropdown - Main Settings - Setting - Requirements - ELEMENT_SETTING - Elements Required - The number of Elements that need to be collected to activate the Sanctuary - 4 - 4 - 4 - - 3 - 3 - - 2 - 2 - - 1 - 1 - - 0 - 0ELEMENT -
+!flag - Main Settings - Setting - Requirements - FIGURINE_HUNT - Figurine Hunt - Carlov's Figurine pieces have been scattered into the world, collect enough of them to be able to activate the Sanctuary, this is way better than a gacha game!\n Don't forget to visit Carlov's Machine to view the figurines you have collected so far.
+!numberbox - Main Settings - Setting - Requirements - FIGURINE_TOTAL - Figurines in world - The total number of Figurines that get added to the item pool, the maximum amount is 136. - 30 - 0 - 136
+!numberbox - Main Settings - Setting - Requirements - FIGURINE_COUNT - Figurines required - The number of Figurines required to activate the Sanctuary, do not raise this to higher than the total number of Figurines or you won't be able to beat the game silly. - 20 - 0 - 136
 
 !dropdown - Main Settings - Setting - Shuffle - DOJO - Dojo Swordmasters -	Dojo Swordmasters have Scrolls as their rewards. - DOJOANY - Vanilla Scrolls - DOJOVANILLA - 'Vanilla Scrolls': Dojo Swordmasters offer their vanilla rewards. - Randomized Scrolls - DOJORANDOM - 'Randomized Scrolls': Scrolls are shuffled between the Dojo Swordmasters. - Any Item - DOJOANY - 'Any Item': Dojo Swordmasters are shuffled into the main pool.
 !dropdown - Main Settings - Setting - Shuffle - CUCCO_SETTING - Cucco Minigame - How many rounds of the Cucco Minigame are playable and have an item. - CUCCO_1 - Nothing - CUCCO_0 - - 1 Round - CUCCO_1 - - 2 Rounds - CUCCO_2 - - 3 Rounds - CUCCO_3 - - 4 Rounds - CUCCO_4 - - 5 Rounds - CUCCO_5 - - 6 Rounds - CUCCO_6 - - 7 Rounds - CUCCO_7 - - 8 Rounds - CUCCO_8 - - 9 Rounds - CUCCO_9 - - 10 Rounds - CUCCO_10 -
@@ -279,6 +280,7 @@
 !define - `GREEN_FUSION_SETTING`
 !define - `FUSION_SKIPS`
 !define - `DHC_SETTING`
+!define - `DHC_BK_SETTING`
 !define - `DUNGEON`
 !define - `AD_PED`
 !define - `PROGRESSIVE`
@@ -924,26 +926,6 @@
 	!eventdefine - disableShellDrops
 !endif
 
-#replaces keys if they are needed to be removed from the pool
-
-!define - DHC_FIG -
-!define - DHC_AD -
-!ifndef - OPENDHC
-	!undefine - PED_ITEMS
-        !ifdef - FIGURINE_HUNT
-            !eventdefine - requirementFigurinesAmmount - `FIGURINE_COUNT`
-			Items.Figurine:`FIGURINE_TOTAL`;	Major;
-            !replaceincrement - Items.Figurine.01 - `FIGURINE_TOTAL` - Items.Figurine
-            !undefine - DHC_FIG
-            !define - DHC_FIG - ,Items.Figurine.*:`FIGURINE_COUNT`
-        !endif
-        !ifndef - AD_PED_0
-            !undefine - DHC_AD
-            !define - DHC_AD - , (+`AD_PED_NUM`, Locations.Deepwood_Prize, Locations.CoF_Prize, Locations.Fortress_Prize, Locations.Droplets_Prize, Locations.Crypt_Prize, Locations.Palace_Prize)
-			!eventdefine - requirementDungeonsAmount - `AD_PED_NUM`
-        !endif
-!endif
-
 !ifdef - TIMEDOHKO
     !eventdefine - timedohkoOption
 !endif
@@ -1203,7 +1185,9 @@
 				Items.BigKey.0x1A;	`BIG_KEY`;	`FOW_BIG`
 			!endif
 			!ifndef - NODHC
-				Items.BigKey.0x1D;	`BIG_KEY`;	`DHC_BIG`
+				!ifdef - BK_POOL
+					Items.BigKey.0x1D;	`BIG_KEY`;	`DHC_BIG`
+				!endif
 			!endif
 		!endif
 	!endif
@@ -1513,7 +1497,9 @@
 			Items.BigKey.0x1C;	Minor;
 		!endif
 		!ifndef - NODHC
-			Items.BigKey.0x1D;	Minor;
+			!ifdef - BK_POOL
+				Items.BigKey.0x1D;	Minor;
+			!endif
 		!endif
 	!endif	
 	!ifdef - SMALL_KEYSANITY
@@ -1549,86 +1535,91 @@
 # Activate Firerod from the start of the game
 
 !define - `SWORD_SETTING`
-!ifdef - 0SWORD
-    !define - SWORDEX
-    !define - SWORDLEVEL - 0
-!else
+!define - SWORDLEVEL - 0
+!define - GOTSWORDS -
+!ifndef - 0SWORD
+	!undefine - GOTSWORDS
+	!undefine - SWORDLEVEL
 	!ifdef - 1SWORD
+		!define - GOTSWORDS - Items.SmithSword
 		!define - SWORDLEVEL - 1
 	!else
 		!ifdef - 2SWORD
+			!define - GOTSWORDS - Items.GreenSword
 			!define - SWORDLEVEL - 2
 		!else
 			!ifdef - 3SWORD
+				!define - GOTSWORDS - Items.RedSword
 				!define - SWORDLEVEL - 3
 			!else
 				!ifdef - 4SWORD
+					!define - GOTSWORDS - Items.BlueSword
 					!define - SWORDLEVEL - 4
 				!else
+					!define - GOTSWORDS - Items.FourSword
 					!define - SWORDLEVEL - 5
 				!endif
 			!endif
 		!endif
 	!endif
+	!eventdefine - requirementSwordTier       - `SWORDLEVEL`
+	!ifdef - YESPROG
+		!define - GOTSWORDS - (+`SWORDLEVEL`, Items.ProgressiveItem.0x00)
+	!endif
 !endif
 
 !define - `ELEMENT_SETTING`
-!ifdef - 0ELEMENT
-    !define - ELEMENTEX
-    !define - ELEMENTAMOUNT - 0
-!else
-    !define - ELEMENTAMOUNT - `ELEMENT_SETTING`
+!define - GOTELEMENTS -
+!ifndef - 0ELEMENT
+	!eventdefine - requirementElementsAmmount - `ELEMENT_SETTING`
+	!undefine - GOTELEMENTS
+	!define - GOTELEMENTS - , (+`ELEMENT_SETTING`, Items.WaterElement, Items.FireElement, Items.WindElement, Items.EarthElement)
 !endif
 
-# Makes sure that only 1 of these settings is active at the same time
-!define - GotSwords -
-!define - GotElements -
-!ifdef - PED_ITEMS
+!define - DHC_FIG -
+!ifdef - FIGURINE_HUNT
+	!eventdefine - requirementFigurinesAmmount - `FIGURINE_COUNT`
+	Items.Figurine:`FIGURINE_TOTAL`;	Major;
+	!replaceincrement - Items.Figurine.01 - `FIGURINE_TOTAL` - Items.Figurine
+	!undefine - DHC_FIG
+	!define - DHC_FIG - ,Items.Figurine.*:`FIGURINE_COUNT`
+!endif
+
+!define - DHC_AD -
+!ifndef - AD_PED_0
+	!undefine - DHC_AD
+	!define - DHC_AD - , (+`AD_PED_NUM`, Locations.Deepwood_Prize, Locations.CoF_Prize, Locations.Fortress_Prize, Locations.Droplets_Prize, Locations.Crypt_Prize, Locations.Palace_Prize)
+	!eventdefine - requirementDungeonsAmount - `AD_PED_NUM`
+!endif
+
+GOTSWORDS; 	Helper; ; `GOTSWORDS`
+!ifdef - BK_SPAWN
+	!define - DHCBK - Items.Rupee5
+	!define - ALLREQUIREMENTS - Unshuffled
+	!eventdefine - requirementPrize
+!else
+	!define - DHCBK - Items.BigKey.0x1D
+	!define - ALLREQUIREMENTS - Inaccessible
+!endif
+
+All_Requirements_Met;	`ALLREQUIREMENTS`;	requirementPrizeItem:Define:FirstByte, requirementPrizeSub:Define:SecondByte;	Helpers.GOTSWORDS `GOTELEMENTS` `DHC_FIG` `DHC_AD`; Items.BigKey.0x1D
+
+!ifdef - OPENDHC
+	AccessDHC; 	Helper;;
     !eventdefine - openDHC
+!else
+	AccessDHC; 	Helper;;	Helpers.GOTSWORDS `GOTELEMENTS` `DHC_FIG` `DHC_AD`
+	!undefine - PED_ITEMS
+	!ifdef - NODHC
+		!eventdefine - noDHC
+	!endif
+!endif
+!ifdef - PED_ITEMS
     !eventdefine - pedestalItems
 	!define - PED - Dungeon
 !else
 	!define - PED - Inaccessible
-    !ifdef - OPENDHC
-        !eventdefine - openDHC
-    !else
-		!eventdefine - requirementSwordTier       - `SWORDLEVEL`
-		!eventdefine - requirementElementsAmmount - `ELEMENTAMOUNT`
-        !ifdef - NODHC
-            !eventdefine - noDHC
-        !endif
-        !ifndef - SWORDEX
-			!undefine - GotSwords
-			!ifdef - NOPROG
-				!ifdef - 1SWORD
-					!define - GotSwords - Items.SmithSword
-				!else
-					!ifdef - 2SWORD
-						!define - GotSwords - Items.GreenSword
-					!else
-						!ifdef - 3SWORD
-							!define - GotSwords - Items.RedSword
-						!else
-							!ifdef - 4SWORD
-								!define - GotSwords - Items.BlueSword
-							!else
-								!define - GotSwords - Items.FourSword
-							!endif
-						!endif
-					!endif
-				!endif
-			!else
-				!define - GotSwords - (+`SWORDLEVEL`, Items.ProgressiveItem.0x00)
-			!endif
-        !endif
-        !ifndef - ELEMENTEX
-			!undefine - GotElements
-            !define - GotElements - , (+`ELEMENTAMOUNT`, Items.WaterElement, Items.FireElement, Items.WindElement, Items.EarthElement)
-        !endif
-	!endif
 !endif
-GotSwords; 	Helper; ; `GotSwords`
-CompletePed; Helper; ; Helpers.GotSwords `GotElements` `DHC_FIG` `DHC_AD`
 
 # Music randomization values (kinda hard to read, unfortunately)
 !ifdef - MUSIC_RANDO
@@ -6084,7 +6075,6 @@ Sanctuary_Pedestal_Item2	`DHC_OUTSIDE`;  `PED`;   pedestalSpot2Item:Define:First
 Sanctuary_Pedestal_Item3	`DHC_OUTSIDE`;  `PED`;   pedestalSpot3Item:Define:FirstByte, pedestalSpot3Sub:Define:SecondByte; (+4, Items.WaterElement, Items.FireElement, Items.WindElement, Items.EarthElement);   `FOURSWORD`
 
 # Dark Hyrule Castle
-AccessDHC	;	Helper;	;	Helpers.CompletePed;
 
 !define - DHC_INSIDE - `DHC_OUTSIDE`	:DHCSmall	:DHCBig	:DHCCompass	:Small	:Big	:Compass
 
@@ -6099,7 +6089,7 @@ DHC_3F_NorthWest_Chest		`DHC_INSIDE`;	`DHCSMALL`;	0x88-0x01-0x00;	(|(&Helpers.Ac
 DHC_3F_NorthEast_Chest		`DHC_INSIDE`;	`DHCSMALL`;	0x88-0x02-0x00;	(|(&Helpers.AccessDHC, Helpers.DHCBlackKnight, Helpers.DHCTowerDarknuts, Helpers.DHCLampPuzzle, Helpers.DHCGhini), Helpers.Hundo);	Items.SmallKey.0x1D
 DHC_3F_SouthWest_Chest		`DHC_INSIDE`;	`DHCSMALL`;	0x88-0x03-0x00;	(|(&Helpers.AccessDHC, Helpers.DHCBlackKnight, Helpers.DHCTowerDarknuts, Helpers.DHCGhini), Helpers.Hundo);						Items.SmallKey.0x1D
 DHC_3F_SouthEast_Chest		`DHC_INSIDE`;	`DHCSMALL`;	0x88-0x04-0x00;	(|(&Helpers.AccessDHC, Helpers.DHCBlackKnight, Helpers.DHCTowerDarknuts, Helpers.DHCSwitchPuzzles), Helpers.Hundo);				Items.SmallKey.0x1D
-DHC_2F_BlueWarp_BigChest	`DHC_INSIDE`;	`DHCBIG`;	0x88-0x09-0x00;	(|(&Helpers.AccessDHC, Helpers.DHCBlackKnight, Helpers.DHCBigBlock, Helpers.CanSplit4), Helpers.Hundo);							Items.BigKey.0x1D
+DHC_2F_BlueWarp_BigChest	`DHC_INSIDE`;	`DHCBIG`;	0x88-0x09-0x00;	(|(&Helpers.AccessDHC, Helpers.DHCBlackKnight, Helpers.DHCBigBlock, Helpers.CanSplit4), Helpers.Hundo);							`DHCBK`
 
 !ifdef - NODHC
 	BeatVaati;	Helper;	;	Helpers.AccessDHC
