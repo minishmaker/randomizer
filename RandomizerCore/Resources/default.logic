@@ -4596,6 +4596,18 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 
 # This whole section is a mess and wants refactoring
 
+!ifndef - NODHC
+	!define - DHCKING - Dungeon
+	!define - DHCCOMPASS - `DUNGEONCOMPASS`
+	!define - DHCSMALL - `DUNGEONSMALL`
+	!define - DHCBIG - `DUNGEONBIG`
+!else
+	!define - DHCKING - Inaccessible
+	!define - DHCCOMPASS - Inaccessible
+	!define - DHCSMALL - Inaccessible
+	!define - DHCBIG - Inaccessible
+!endif
+
 !ifndef - NO_GOLD_FUSIONS
 	!ifdef - SMALL_KEYS_VANILLA
 		!define - GOLDFUSIONSMALL - Unshuffled
@@ -6076,18 +6088,18 @@ AccessDHC	;	Helper;	;	Helpers.CompletePed;
 
 !define - DHC_INSIDE - `DHC_OUTSIDE`	:DHCSmall	:DHCBig	:DHCCompass	:Small	:Big	:Compass
 
-DHC_B2_King				`DHC_INSIDE`;	Dungeon;			0x00E46A;		(|(&Helpers.AccessDHC, Helpers.DHCKing), Helpers.Hundo);																	Items.Rupee1 #used to be a small key but a door got removed
-DHC_B1_BigChest			`DHC_INSIDE`;	`DUNGEONCOMPASS`;	0x88-0x37-0x00;	(|Helpers.AccessDHC, Helpers.Hundo);																					Items.DungeonMap.0x1D
-DHC_1F_Blade_Chest		`DHC_INSIDE`;	`DUNGEONSMALL`;	0x88-0x27-0x00;	(|(&Helpers.AccessDHC, Helpers.DHCFirstCanon, Helpers.DHCBladePuzzle), Helpers.Hundo);										Items.SmallKey.0x1D
-DHC_1F_Throne_BigChest		`DHC_INSIDE`;	`DUNGEONCOMPASS`;	0x88-0x20-0x00;	(|(&Helpers.AccessDHC, Helpers.DHC1stDoor, Helpers.DHC2ndCanon, Helpers.BombWalls, Helpers.DHCThrone), Helpers.Hundo);			Items.Compass.0x1D
+DHC_B2_King				`DHC_INSIDE`;	`DHCKING`;	0x00E46A;		(|(&Helpers.AccessDHC, Helpers.DHCKing), Helpers.Hundo);																	Items.Rupee1 #used to be a small key but a door got removed
+DHC_B1_BigChest			`DHC_INSIDE`;	`DHCCOMPASS`;	0x88-0x37-0x00;	(|Helpers.AccessDHC, Helpers.Hundo);																					Items.DungeonMap.0x1D
+DHC_1F_Blade_Chest		`DHC_INSIDE`;	`DHCSMALL`;	0x88-0x27-0x00;	(|(&Helpers.AccessDHC, Helpers.DHCFirstCanon, Helpers.DHCBladePuzzle), Helpers.Hundo);										Items.SmallKey.0x1D
+DHC_1F_Throne_BigChest		`DHC_INSIDE`;	`DHCCOMPASS`;	0x88-0x20-0x00;	(|(&Helpers.AccessDHC, Helpers.DHC1stDoor, Helpers.DHC2ndCanon, Helpers.BombWalls, Helpers.DHCThrone), Helpers.Hundo);			Items.Compass.0x1D
 
 DHCBlackKnight;						Helper;;							(|Helpers.DHCBlueWarp, (&Helpers.DHCRedWarp, Helpers.DHCGrateRoom, Helpers.OverworldBlocks, Helpers.DHCBlackKnightFight), (&Helpers.DHC1stDoor, Helpers.DHC2ndCanon, Helpers.BombWalls, Helpers.DHCThrone, Helpers.CanSplit4, Helpers.DHCOutsideSwitch, Helpers.DHCSwitchPuzzles, Helpers.DHCChainSoldiers, Helpers.DHCGrateRoom, Helpers.OverworldBlocks, Helpers.DHCBlackKnightFight))
 
-DHC_3F_NorthWest_Chest		`DHC_INSIDE`;	`DUNGEONSMALL`;	0x88-0x01-0x00;	(|(&Helpers.AccessDHC, Helpers.DHCBlackKnight, Helpers.DHCTowerDarknuts, Helpers.HasBow), Helpers.Hundo);						Items.SmallKey.0x1D
-DHC_3F_NorthEast_Chest		`DHC_INSIDE`;	`DUNGEONSMALL`;	0x88-0x02-0x00;	(|(&Helpers.AccessDHC, Helpers.DHCBlackKnight, Helpers.DHCTowerDarknuts, Helpers.DHCLampPuzzle, Helpers.DHCGhini), Helpers.Hundo);	Items.SmallKey.0x1D
-DHC_3F_SouthWest_Chest		`DHC_INSIDE`;	`DUNGEONSMALL`;	0x88-0x03-0x00;	(|(&Helpers.AccessDHC, Helpers.DHCBlackKnight, Helpers.DHCTowerDarknuts, Helpers.DHCGhini), Helpers.Hundo);						Items.SmallKey.0x1D
-DHC_3F_SouthEast_Chest		`DHC_INSIDE`;	`DUNGEONSMALL`;	0x88-0x04-0x00;	(|(&Helpers.AccessDHC, Helpers.DHCBlackKnight, Helpers.DHCTowerDarknuts, Helpers.DHCSwitchPuzzles), Helpers.Hundo);				Items.SmallKey.0x1D
-DHC_2F_BlueWarp_BigChest	`DHC_INSIDE`;	`DUNGEONBIG`;		0x88-0x09-0x00;	(|(&Helpers.AccessDHC, Helpers.DHCBlackKnight, Helpers.DHCBigBlock, Helpers.CanSplit4), Helpers.Hundo);							Items.BigKey.0x1D
+DHC_3F_NorthWest_Chest		`DHC_INSIDE`;	`DHCSMALL`;	0x88-0x01-0x00;	(|(&Helpers.AccessDHC, Helpers.DHCBlackKnight, Helpers.DHCTowerDarknuts, Helpers.HasBow), Helpers.Hundo);						Items.SmallKey.0x1D
+DHC_3F_NorthEast_Chest		`DHC_INSIDE`;	`DHCSMALL`;	0x88-0x02-0x00;	(|(&Helpers.AccessDHC, Helpers.DHCBlackKnight, Helpers.DHCTowerDarknuts, Helpers.DHCLampPuzzle, Helpers.DHCGhini), Helpers.Hundo);	Items.SmallKey.0x1D
+DHC_3F_SouthWest_Chest		`DHC_INSIDE`;	`DHCSMALL`;	0x88-0x03-0x00;	(|(&Helpers.AccessDHC, Helpers.DHCBlackKnight, Helpers.DHCTowerDarknuts, Helpers.DHCGhini), Helpers.Hundo);						Items.SmallKey.0x1D
+DHC_3F_SouthEast_Chest		`DHC_INSIDE`;	`DHCSMALL`;	0x88-0x04-0x00;	(|(&Helpers.AccessDHC, Helpers.DHCBlackKnight, Helpers.DHCTowerDarknuts, Helpers.DHCSwitchPuzzles), Helpers.Hundo);				Items.SmallKey.0x1D
+DHC_2F_BlueWarp_BigChest	`DHC_INSIDE`;	`DHCBIG`;	0x88-0x09-0x00;	(|(&Helpers.AccessDHC, Helpers.DHCBlackKnight, Helpers.DHCBigBlock, Helpers.CanSplit4), Helpers.Hundo);							Items.BigKey.0x1D
 
 !ifdef - NODHC
 	BeatVaati;	Helper;	;	Helpers.AccessDHC
