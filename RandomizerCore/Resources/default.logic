@@ -4596,18 +4596,6 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 
 # This whole section is a mess and wants refactoring
 
-!ifndef - NODHC
-	!define - DHCKING - Dungeon
-	!define - DHCCOMPASS - `DUNGEONCOMPASS`
-	!define - DHCSMALL - `DUNGEONSMALL`
-	!define - DHCBIG - `DUNGEONBIG`
-!else
-	!define - DHCKING - Inaccessible
-	!define - DHCCOMPASS - Inaccessible
-	!define - DHCSMALL - Inaccessible
-	!define - DHCBIG - Inaccessible
-!endif
-
 !ifndef - NO_GOLD_FUSIONS
 	!ifdef - SMALL_KEYS_VANILLA
 		!define - GOLDFUSIONSMALL - Unshuffled
@@ -4734,6 +4722,18 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 	!define - DUNGEONCOMPASS - Unshuffled
 !else
 	!define - DUNGEONCOMPASS - Dungeon
+!endif
+
+!ifndef - NODHC
+	!define - DHCKING - Dungeon
+	!define - DHCCOMPASS - `DUNGEONCOMPASS`
+	!define - DHCSMALL - `DUNGEONSMALL`
+	!define - DHCBIG - `DUNGEONBIG`
+!else
+	!define - DHCKING - Inaccessible
+	!define - DHCCOMPASS - Inaccessible
+	!define - DHCSMALL - Inaccessible
+	!define - DHCBIG - Inaccessible
 !endif
 
 !ifdef - DOJOVANILLA
