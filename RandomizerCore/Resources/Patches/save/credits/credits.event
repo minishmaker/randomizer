@@ -392,11 +392,11 @@ credits1:
 BYTE 0x0A
 BYTE 2 0x01; String("Programming"); BYTE 2 0 0x0A
 String("Berylliosis     Ibot"); BYTE 0x0A
-String("Henny         Dreamie"); BYTE 0x0A
+String("Henny        Dreamie"); BYTE 0x0A
 BYTE 0x0A
 BYTE 2 0x02; String("Logic"); BYTE 2 0 0x0A
 String("wjg      Berylliosis"); BYTE 0x0A
-String("Myth          Catobat"); BYTE 0x0A
+String("Myth197     Catobat"); BYTE 0x0A
 String("Deoxis"); BYTE 0
 
 
@@ -404,27 +404,27 @@ credits2:
 BYTE 0x0A
 BYTE 2 0x03; String("Patches and Assembly"); BYTE 2 0 0x0A
 String("Leonarth     Catobat"); BYTE 0x0A
-String("Henny        Dreamie"); BYTE 0x0A
+String("Henny          Dreamie"); BYTE 0x0A
 BYTE 0x0A
 BYTE 2 0x01; String("Tracker Package"); BYTE 2 0 0x0A
 String("Ibot      Cubesolver"); BYTE 0x0A
-String("Deoxis           Aero"); BYTE 0x0A
-String("Myth   CandyCrystal"); BYTE 0
+String("Deoxis        Myth197"); BYTE 0x0A
+String("Aero   CandyCrystal"); BYTE 0
 
 credits3:
 BYTE 0x0A
 BYTE 2 0x11; String("Team MinishMaker"); BYTE 2 0 0x0A
-String("Mikesky          ppltoast"); BYTE 0x0A
-String("ToadsWoot             wjg"); BYTE 0x0A
-String("Berylliosis      Leonarth"); BYTE 0x0A
+String("Mikesky           ppltoast"); BYTE 0x0A
+String("ToadsWoot              wjg"); BYTE 0x0A
+String("Berylliosis       Leonarth"); BYTE 0x0A
 String("UselessHobo   Cubesolver"); BYTE 0x0A
-String("Ibot             Straylite"); BYTE 0x0A
-String("Myth                 Henny"); BYTE 0x0A
+String("Ibot               Straylite"); BYTE 0x0A
+String("Myth197               Henny"); BYTE 0x0A
 String("Dreamie            Catobat"); BYTE 0
 
 credits4:
 BYTE 2 0x1A; String("Additional Contributors"); BYTE 2 0 0x0A
-String("Rylux             TreZc0"); BYTE 0x0A
+String("Rylux                TreZc0"); BYTE 0x0A
 String("vortexofdoom     wolfman"); BYTE 0x0A
 String("Maro"); BYTE 0x0A
 BYTE 2 0x12; String("Special Thanks"); BYTE 2 0 0x0A
