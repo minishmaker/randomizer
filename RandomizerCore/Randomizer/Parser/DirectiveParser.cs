@@ -671,7 +671,7 @@ public class DirectiveParser
 
 	private LogicOptionBase ParseNumberboxDirective(string[] directiveParts)
 	{
-		if (directiveParts.Length != 9)
+		if (directiveParts.Length != 10)
 			throw new ParserException("Numberbox does not have the right number of parameters!");
 
 		var optionType = GetOptionType(directiveParts[2]);
@@ -682,11 +682,17 @@ public class DirectiveParser
 		if (!byte.TryParse(directiveParts[7], out var defaultValue))
 			throw new ParserException($"Numberbox has invalid default value {directiveParts[7]}!");
 		
-        if (!byte.TryParse(directiveParts[8], out var maxValue))
-            throw new ParserException($"Numberbox has invalid maximum value {directiveParts[8]}!");
+        if (!byte.TryParse(directiveParts[8], out var minValue))
+            throw new ParserException($"Numberbox has invalid minimum value {directiveParts[8]}!");
+		
+        if (!byte.TryParse(directiveParts[9], out var maxValue))
+            throw new ParserException($"Numberbox has invalid maximum value {directiveParts[9]}!");
+		
+        if (minValue > defaultValue || maxValue < defaultValue)
+            throw new ParserException("Numberbox has default value outside allowed range!");
 
 		return new LogicNumberBox(directiveParts[4], directiveParts[5], directiveParts[3], 
-			directiveParts[1], defaultValue, maxValue, directiveParts[6], optionType);
+			directiveParts[1], defaultValue, minValue, maxValue, directiveParts[6], optionType);
 	}
 
     private class ItemComparerIgnorePool : IEqualityComparer<Item>

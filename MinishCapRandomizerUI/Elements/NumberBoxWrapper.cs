@@ -78,7 +78,12 @@ public class NumberBoxWrapper : WrapperBase, ILogicOptionObserver
                 if (val > _numberBox.MaxValue)
                     _numberBox.Value = _textBox.Text = _numberBox.MaxValue.ToString();
                 else
-                    _numberBox.Value = val.ToString();
+                {
+                    if (val < _numberBox.MinValue)
+                        _numberBox.Value = _textBox.Text = _numberBox.MinValue.ToString();
+                    else
+                        _numberBox.Value = val.ToString();
+                }
             }
             else
                 _textBox.Text = _numberBox.Value;
