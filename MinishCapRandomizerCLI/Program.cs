@@ -545,9 +545,9 @@ Strict              Toggle strict mode (exit after error)
             }
             case LogicNumberBox box:
             {
-                Console.Write($"Please enter a number from 0 to 255 for {box.NiceName}: ");
+                Console.Write($"Please enter a number from {box.MinValue} to {box.MaxValue} for {box.NiceName}: ");
                 var input = Console.ReadLine();
-                if (string.IsNullOrEmpty(input) || !int.TryParse(input, out var i) || i is < 0 or > 255)
+                if (string.IsNullOrEmpty(input) || !int.TryParse(input, out var i) || i < box.MinValue || i > box.MaxValue)
                 {
                     if (!input.Equals("exit", StringComparison.OrdinalIgnoreCase))
                     {
