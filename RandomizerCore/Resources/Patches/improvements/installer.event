@@ -653,6 +653,12 @@ ORG $1711E
 BYTE lowHealthBeep
 POP
 
+//guard moves when entering town from behind him
+PUSH; ORG $4DBA8; jumpToHack(loadTown); POP
+ALIGN 4
+loadTown:
+#incbin "asm/loadTown.dmp"
+
 #include "glitchless.event"
 #include "dungeon.event"
 #include "fairy.event"
