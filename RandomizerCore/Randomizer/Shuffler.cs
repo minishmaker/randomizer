@@ -78,6 +78,9 @@ internal class Shuffler
 		
 		if (Rom.Instance == null)
 			throw new ShufflerConfigurationException("No ROM loaded! You must load a ROM before randomization.");
+
+        if (!RomCrcValid(Rom.Instance))
+			throw new ShufflerConfigurationException("ROM does not match the expected CRC for the logic file!");
 		
 		if (Seed < 0)
 			throw new ShufflerConfigurationException($"Supplied Seed is invalid! Seeds must be a number from 0 to {int.MaxValue}");
