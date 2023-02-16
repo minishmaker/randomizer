@@ -659,6 +659,12 @@ ALIGN 4
 loadTown:
 #incbin "asm/loadTown.dmp"
 
+//bell doesn't require screen transition after obtaining cape
+PUSH
+ORG $4DD7E
+SHORT 0x46C0
+POP
+
 #include "glitchless.event"
 #include "dungeon.event"
 #include "fairy.event"
