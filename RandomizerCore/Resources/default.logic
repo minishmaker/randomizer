@@ -572,11 +572,13 @@
 	!eventdefine - mC81 - 0xFE								# sets all the cloud tops fusions, as well as the left and middle swamp fusions (the right swamp and falls fusions share an address with red fusions)
 	!eventdefine - mCA0 - 0x10								# sets the tornado in cloud tops as spawned, shares an address with Graveyard Key stages
 	!eventdefine - mCA7 - 0xD1								# sets the wind tribe state to access higher floors, also sets tingle bros as spawned
+	!eventdefine - mCBF - 0x40								# visually destroys the stone block at the Castor Wilds statues
 !else
 	!eventdefine - mCA0 - 0x00								# makes the tornado in cloud tops unspawned
 	!eventdefine - mCA7 - 0xD0								# windtribe is default, tingle bros set as spawned
+	!eventdefine - mCBF - 0x00								# stone block at the Castor Wilds statues not destroyed
 	!ifdef - NO_GOLD_FUSIONS
-	!eventdefine - noGoldFusions							# if defined, golden kinstone fusions are not available (except the cloud fusions which is handled below)
+		!eventdefine - noGoldFusions						# if defined, golden kinstone fusions are not available (except the cloud fusions which is handled below)
 		!eventdefine - mC81 - 0x3E							# marks the cloud tops clouds as having fused so they never offer a fusion, this address doesn't spawn the tornado
 	!else
 		!eventdefine - mC81 - 0x00							# sets the golden fusions as not completed
