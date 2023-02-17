@@ -2531,7 +2531,7 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 		MinishSouthHP;		Helper;;	Helpers.AccessMinishWoods
 		CrenelWaterCaveHP;	Helper;;	(|Items.BombBag, Items.RocsCape, Items.Flippers)
 		LeftGraveHP;			Helper;;	(|Helpers.CanSplit3, Helpers.CanSplit4)
-		FallsHP;				Helper;;	(|(&Helpers.OverworldBlocks, Helpers.CapeExtension), (&Helpers.AccessFalls, Items.GripRing, (|Items.Flippers, (&Items.RocsCape, Helpers.DarkRooms))))
+		FallsHP;				Helper;;	(|(&Helpers.OverworldBlocks, Helpers.CapeExtension), (&Helpers.AccessFalls, Items.GripRing, (|Items.Flippers, (&Helpers.CapeExtension, Helpers.DarkRooms))))
 		DeepwoodMadderHP;		Helper;;	Helpers.DeepwoodBlueWarp, Helpers.DeepwoodMadderpillarDoor, Helpers.DeepwoodWeb
 		CoFRupees;			Helper;;	(|Helpers.BombWalls, Helpers.Bobombs), Helpers.CoFSpikeBeetle
 		FoWLeftRupee;			Helper;;	Helpers.FoWEyeSwitch, Helpers.FoWStalfosFight
