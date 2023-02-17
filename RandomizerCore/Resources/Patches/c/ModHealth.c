@@ -24,7 +24,7 @@ s32 ModHealth(s32 delta) {
         newHealth = stats->maxHealth;
     }
 
-    if (CheckOHKO && CheckOHKO()) {
+    if (CheckOHKO && (newHealth <= stats->health) && CheckOHKO()) {
         newHealth = 0;
     }
 
