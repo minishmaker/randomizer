@@ -1,5 +1,6 @@
 .equ timer, drawNumber+4
-.equ target, timer+4
+.equ history, timer+4
+.equ target, history+4
 .equ counter, target+4
 .thumb
 and	r0,r1
@@ -70,12 +71,27 @@ strh	r1,[r0]
 
 end:
 pop	{r0-r7}
+cmp	r0,#0
+beq	end2
+
+end1:
+mov	r0,#0
 ldr	r3,=#0x801C4F9
+bx	r3
+
+end2:
+@item history code must handle this, if enabled
+ldr	r0,history
+cmp	r0,#0
+bne	end1
+
+ldr	r3,=#0x801C535
 bx	r3
 .align
 .ltorg
 drawNumber:
 @POIN drawNumber
 @WORD timer
+@WORD history
 @WORD target
 @POIN counter

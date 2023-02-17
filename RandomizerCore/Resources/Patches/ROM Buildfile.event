@@ -340,11 +340,17 @@ PUSH; ORG $4F05A; SHORT 0xE002; POP //remove soldiers near lon lon
 	#else
 		WORD 0
 	#endif
+	#ifdef historyOption
+		WORD 1
+	#else
+		WORD 0
+	#endif
 	#ifdef requirementFigurinesAmmount
 		WORD requirementFigurinesAmmount
 		POIN requirementFigurinesCounter
+	#else
+		WORD 0 0
 	#endif
-	WORD 0 0
 #endif
 
 #ifdef noFairy //shy fairies patch (fairies don't come out of bottles automatically)
