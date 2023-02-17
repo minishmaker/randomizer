@@ -2575,7 +2575,7 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 	MinishNorthHP;		Helper;;	(|Helpers.AccessNorthMinish, Items.GustJar, Helpers.HasBoomerang)
 	MinishSouthHP;		Helper;;	(|Helpers.AccessMinishWoods, (&Helpers.AccessBelari, Items.GustJar))
 	CrenelWaterCaveHP;	Helper;;	(|Items.BombBag, Items.RocsCape, Items.Flippers, Items.GustJar, Helpers.HasBoomerang)
-	LeftGraveHP;			Helper;;	(|Helpers.HasSword, Items.GustJar, Helpers.MagicBoomerang)
+	LeftGraveHP;			Helper;;	(|Helpers.HasSword, Items.GustJar, Helpers.HasMagicBoomerang)
 	FallsHP;				Helper;;	(|(&Helpers.OverworldBlocks, (|Helpers.CapeExtension, Items.GustJar, Helpers.HasMagicBoomerang)), (&Helpers.AccessFalls, Items.GripRing, (|Items.Flippers, (&Helpers.DarkRooms, (|Helpers.CapeExtension, Items.GustJar, Helpers.HasMagicBoomerang)))))
 	DeepwoodMadderHP;		Helper;;	(|(&Helpers.DeepwoodBlueWarp, Helpers.DeepwoodMadderpillarDoor, Helpers.DeepwoodWeb), (&Items.GustJar, (|Helpers.Deepwood1stDoor, Helpers.DeepwoodBlueWarp)))
 	CoFRupees;			Helper;;	(|(&(|Helpers.BombWalls, Helpers.Bobombs), Helpers.CoFSpikeBeetle), Items.GustJar)
