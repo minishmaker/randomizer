@@ -86,7 +86,7 @@ pausefreedom:
 
 //adding some stuff that's missing from vanilla eur
 //missing lon lon tornado
-PUSH; ORG $F7188; POIN lonlontornado; POP
+PUSH; ORG $F6E60; BYTE 0x0F; ORG $F7188; POIN lonlontornado; POP
 ALIGN 4
 lonlontornado:
 BYTE 0x5E 0 0 1; SHORT 0x188 0x078 0 0 0 0xFFFF
