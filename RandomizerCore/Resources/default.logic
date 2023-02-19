@@ -1573,14 +1573,14 @@
 !define - `ELEMENT_SETTING`
 !define - GOTELEMENTS -
 !ifndef - 0ELEMENT
-	!eventdefine - requirementElementsAmmount - `ELEMENT_SETTING`
+	!eventdefine - requirementElementsAmount - `ELEMENT_SETTING`
 	!undefine - GOTELEMENTS
 	!define - GOTELEMENTS - , (+`ELEMENT_SETTING`, Items.WaterElement, Items.FireElement, Items.WindElement, Items.EarthElement)
 !endif
 
 !define - DHC_FIG -
 !ifdef - FIGURINE_HUNT
-	!eventdefine - requirementFigurinesAmmount - `FIGURINE_COUNT`
+	!eventdefine - requirementFigurinesAmount - `FIGURINE_COUNT`
 	Items.Figurine:`FIGURINE_TOTAL`;	Major;
 	!replaceincrement - Items.Figurine.01 - `FIGURINE_TOTAL` - Items.Figurine
 	!undefine - DHC_FIG

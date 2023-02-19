@@ -345,8 +345,8 @@ PUSH; ORG $4F05A; SHORT 0xE002; POP //remove soldiers near lon lon
 	#else
 		WORD 0
 	#endif
-	#ifdef requirementFigurinesAmmount
-		WORD requirementFigurinesAmmount
+	#ifdef requirementFigurinesAmount
+		WORD requirementFigurinesAmount
 		POIN requirementFigurinesCounter
 	#else
 		WORD 0 0

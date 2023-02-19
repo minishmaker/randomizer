@@ -184,7 +184,7 @@ BYTE 0x46 //flippers
 BYTE 0x64 //wallet
 BYTE 0x65 //bomb bag
 BYTE 0x66 //quiver
-#ifdef requirementFigurinesAmmount
+#ifdef requirementFigurinesAmount
 	BYTE 0x67 //figurine
 #endif
 BYTE 0 //terminator
