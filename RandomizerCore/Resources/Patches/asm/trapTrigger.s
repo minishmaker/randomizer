@@ -22,6 +22,11 @@ ldr	r0,requirementPrize
 cmp	r0,#0
 beq	checkTrap
 
+ldr	r0,=#0x300400B
+ldrb	r1,[r0]
+cmp 	r1,#0
+bne	checkTrap
+
 ldr	r0,=#0x203F1FE
 ldrb	r1,[r0]
 cmp 	r1,#0
