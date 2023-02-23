@@ -1,13 +1,15 @@
-﻿namespace RandomizerCore.Controllers.Models
+﻿namespace RandomizerCore.Controllers.Models;
+
+public class ShufflerControllerResult
 {
-	public class ShufflerControllerResult
-	{
-		public bool WasSuccessful { get; set; }
+    public bool WasSuccessful { get; set; }
 
-		public Exception? Error { get; set; }
+    public Exception? Error { get; set; }
 
-		public string? ErrorMessage { get; set; }
+    public string? ErrorMessage { get; set; }
 
-		public static implicit operator bool(ShufflerControllerResult result) => result.WasSuccessful;
-	}
+    public static implicit operator bool(ShufflerControllerResult result)
+    {
+        return result.WasSuccessful;
+    }
 }

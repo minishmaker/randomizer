@@ -153,7 +153,7 @@ public class ColorPickerWrapper : WrapperBase, ILogicOptionObserver
         };
 
         if (colorPicker.ShowDialog() != DialogResult.OK) return;
-        _colorPicker.DefinedColor = new GBAColor(colorPicker.Color).ToColor();
+        _colorPicker.DefinedColor = new GbaColor(colorPicker.Color).ToColor();
         UpdateColorPreview();
     }
 

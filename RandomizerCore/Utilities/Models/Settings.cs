@@ -4,6 +4,7 @@ namespace RandomizerCore.Utilities.Models;
 
 public class Settings
 {
+    public static int CurrentSettingsVersion = 2;
     public Dictionary<byte, List<byte>> Flags { get; set; }
     public Dictionary<byte, List<byte>> Dropdowns { get; set; }
     public Dictionary<byte, List<byte>> NumberBoxes { get; set; }
@@ -11,8 +12,6 @@ public class Settings
 
     public int SettingsVersion { get; set; }
     public uint SettingHash { get; set; }
-
-    public static int CurrentSettingsVersion = 2;
 
     public static Settings ParseSettingsFromSettingString(string settingString)
     {
@@ -35,13 +34,13 @@ public class Settings
         const byte dropdownIndexMask = 0x7F;
         const byte numberBoxValueMask = 0xFF;
         const ushort colorPickerValueMask = 0x7FFF;
-        
+
         var offset = 1;
-        
+
         var settings = new Settings
         {
             SettingsVersion = 2,
-            SettingHash = settingsBytes.ByteArrayToUintLE(offset),
+            SettingHash = settingsBytes.ByteArrayToUintLe(offset)
         };
 
         offset += 4;
@@ -51,7 +50,7 @@ public class Settings
         var numberBoxes = new Dictionary<byte, List<byte>>();
         var colorPickers = new Dictionary<byte, List<ushort>>();
 
-        var length = settingsBytes.ByteArrayToUshortLE(offset);
+        var length = settingsBytes.ByteArrayToUshortLe(offset);
 
         offset += 2;
 

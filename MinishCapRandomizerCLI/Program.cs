@@ -1,6 +1,5 @@
 ﻿using System.Drawing;
 using RandomizerCore.Controllers;
-using RandomizerCore.Controllers.Models;
 using RandomizerCore.Randomizer.Logic.Options;
 
 namespace MinishCapRandomizerCLI;
@@ -9,12 +8,13 @@ internal class Program
 {
     //Not Null
     private static Dictionary<string, Action> _commands;
+
     //Not Null
     private static ShufflerController _shufflerController;
     private static string? _cachedLogicPath;
     private static string? _cachedPatchPath;
-    private static bool _exiting = false;
-    private static bool _strict = false;
+    private static bool _exiting;
+    private static bool _strict;
 
     private static void Main(string[] args)
     {
@@ -38,7 +38,7 @@ internal class Program
                 PrintError($"Invalid command entered! {command} is not a valid command!");
                 continue;
             }
-            
+
             _commands[command].Invoke();
         }
     }
@@ -47,23 +47,23 @@ internal class Program
     {
         _commands = new Dictionary<string, Action>
         {
-            {"Help", PrintCommands},
-            {"LoadRom", LoadRom},
-            {"ChangeSeed", Seed},
-            {"LoadLogic", LoadLogic},
-            {"LoadPatch", LoadPatch},
-            {"LoadSettings", LoadSettings},
-            {"Options", Options},
-            {"Logging", Logging},
-            {"Randomize", Randomize},
-            {"SaveRom", SaveRom},
-            {"SaveSpoiler", SaveSpoiler},
-            {"SavePatch", SavePatch},
-            {"GetSettingString", GetSettingString},
-            {"PatchRom", PatchRom},
-            {"CreatePatch", CreatePatch},
-            {"Exit", Exit},
-            {"Strict", Strict},
+            { "Help", PrintCommands },
+            { "LoadRom", LoadRom },
+            { "ChangeSeed", Seed },
+            { "LoadLogic", LoadLogic },
+            { "LoadPatch", LoadPatch },
+            { "LoadSettings", LoadSettings },
+            { "Options", Options },
+            { "Logging", Logging },
+            { "Randomize", Randomize },
+            { "SaveRom", SaveRom },
+            { "SaveSpoiler", SaveSpoiler },
+            { "SavePatch", SavePatch },
+            { "GetSettingString", GetSettingString },
+            { "PatchRom", PatchRom },
+            { "CreatePatch", CreatePatch },
+            { "Exit", Exit },
+            { "Strict", Strict }
         };
     }
 
@@ -109,7 +109,6 @@ Strict              Toggle strict mode (exit after error)
         Console.Write("Would you like a random seed or a set seed? (R or S): ");
         var input = Console.ReadLine();
         if (!string.IsNullOrEmpty(input))
-        {
             switch (input.ToLowerInvariant())
             {
                 case "r":
@@ -120,24 +119,20 @@ Strict              Toggle strict mode (exit after error)
                 case "s":
                     Console.Write("Please enter the seed you want to use: ");
                     var seedString = Console.ReadLine();
-                    
+
                     if (string.IsNullOrEmpty(seedString) || !int.TryParse(seedString, out var seed))
                     {
                         PrintError("Invalid seed entered!");
                         break;
                     }
-                    
+
                     _shufflerController.SetRandomizationSeed(seed);
                     Console.WriteLine("Seed set successfully!");
                     break;
                 default:
-                    if (!input.Equals("exit", StringComparison.OrdinalIgnoreCase))
-                    {
-                        PrintError("Invalid Input!");
-                    }
+                    if (!input.Equals("exit", StringComparison.OrdinalIgnoreCase)) PrintError("Invalid Input!");
                     break;
             }
-        }
         else PrintError("Invalid Input!");
     }
 
@@ -157,7 +152,7 @@ Strict              Toggle strict mode (exit after error)
     }
 
     private static void LoadPatch()
-    {        
+    {
         Console.Write("Please enter the path to the Patch File you want to use (leave empty to use default patch): ");
         _cachedPatchPath = Console.ReadLine();
         Console.WriteLine("Patch file loaded successfully!");
@@ -175,51 +170,46 @@ Strict              Toggle strict mode (exit after error)
     {
         Console.WriteLine("Options for current logic file:");
         var options = _shufflerController.GetLogicOptions();
-        for (var i = 0; i < options.Count; )
+        for (var i = 0; i < options.Count;)
         {
             var option = options[i];
-            Console.WriteLine($"{++i}) Type: {option.GetOptionUIType()}, Option Name: {option.NiceName}, Setting Type: {option.Type}, Value: {GetOptionValue(option)}");
+            Console.WriteLine(
+                $"{++i}) Type: {option.GetOptionUiType()}, Option Name: {option.NiceName}, Setting Type: {option.Type}, Value: {GetOptionValue(option)}");
         }
 
-        Console.Write("Please enter the number of the setting you would like to change, enter \"Exit\" to stop editing, or enter \"List\" to list all of the options again: ");
+        Console.Write(
+            "Please enter the number of the setting you would like to change, enter \"Exit\" to stop editing, or enter \"List\" to list all of the options again: ");
         var input = Console.ReadLine();
-        
+
         while (string.IsNullOrEmpty(input) || !input.Equals("exit", StringComparison.OrdinalIgnoreCase))
         {
             if (!string.IsNullOrEmpty(input))
             {
                 if (input.Equals("list", StringComparison.OrdinalIgnoreCase))
                 {
-                    for (var i = 0; i < options.Count; )
+                    for (var i = 0; i < options.Count;)
                     {
                         var option = options[i];
-                        Console.WriteLine($"{++i}) Type: {option.GetOptionUIType()}, Option Name: {option.NiceName}, Setting Type: {option.Type}, Value: {GetOptionValue(option)}");
+                        Console.WriteLine(
+                            $"{++i}) Type: {option.GetOptionUiType()}, Option Name: {option.NiceName}, Setting Type: {option.Type}, Value: {GetOptionValue(option)}");
                     }
                 }
                 else if (int.TryParse(input, out var num))
                 {
                     if (--num >= 0 && num < options.Count)
-                    {
                         EditOption(options[num]);
-                    }
                     else
-                    {
                         PrintError("Number ouf of range!");
-                    }
                 }
                 else
                 {
-                    if (options.Exists(option => String.Equals(option.Name, input)))
+                    if (options.Exists(option => string.Equals(option.Name, input)))
                     {
-                        var option = options.Find(option => String.Equals(option.Name, input));
+                        var option = options.Find(option => string.Equals(option.Name, input));
                         if (option != null)
-                        {
                             EditOption(option);
-                        }
                         else
-                        {
                             PrintError($"Unknown Option {input}!");
-                        }
                     }
                     else
                     {
@@ -231,7 +221,9 @@ Strict              Toggle strict mode (exit after error)
             {
                 PrintError("Invalid Input!");
             }
-            Console.Write("Please enter the number of the setting you would like to change, enter \"Exit\" to stop editing, or enter \"List\" to list all of the options again: ");
+
+            Console.Write(
+                "Please enter the number of the setting you would like to change, enter \"Exit\" to stop editing, or enter \"List\" to list all of the options again: ");
             input = Console.ReadLine();
         }
     }
@@ -253,7 +245,8 @@ Strict              Toggle strict mode (exit after error)
         {
             case 1:
             {
-                Console.WriteLine("Note: One logger transaction has many logs: info logs, warning logs, error logs, and exception logs");
+                Console.WriteLine(
+                    "Note: One logger transaction has many logs: info logs, warning logs, error logs, and exception logs");
                 Console.WriteLine("1) Publish all logger transactions");
                 Console.WriteLine("2) Publish only transactions that contain errors or warnings");
                 Console.Write("Enter the number for your desired verbosity: ");
@@ -263,6 +256,7 @@ Strict              Toggle strict mode (exit after error)
                     PrintError("Invalid Input!");
                     return;
                 }
+
                 _shufflerController.SetLoggerVerbosity(i == 1);
                 Console.WriteLine("Logger updated successfully!");
                 break;
@@ -286,29 +280,29 @@ Strict              Toggle strict mode (exit after error)
 
     private static void Randomize()
     {
-        Console.Write("How many times would you like the randomizer to attempt to generate a new seed if randomization fails? ");
+        Console.Write(
+            "How many times would you like the randomizer to attempt to generate a new seed if randomization fails? ");
         var attemptsStr = Console.ReadLine();
-        if (!string.IsNullOrEmpty(attemptsStr) || !int.TryParse(attemptsStr, out var attempts) || attempts <= 0) attempts = 1;
+        if (!string.IsNullOrEmpty(attemptsStr) || !int.TryParse(attemptsStr, out var attempts) ||
+            attempts <= 0) attempts = 1;
 
         _shufflerController.LoadLocations(_cachedLogicPath);
         var success = _shufflerController.Randomize(attempts);
-        if(success)
-        {
+        if (success)
             Console.WriteLine("Randomization successful!");
-        }
         else
-        {
             PrintError("Randomization failed! " + success.ErrorMessage);
-        }
     }
 
     private static void SaveRom()
-    {        
+    {
         Console.Write("Please enter the path to save the ROM (blank for default): ");
         try
         {
             var input = Console.ReadLine();
-            _shufflerController.SaveAndPatchRom(string.IsNullOrEmpty(input) ? $"{Directory.GetCurrentDirectory()}{Path.DirectorySeparatorChar}MinishRandomizer-ROM.gba" : input);
+            _shufflerController.SaveAndPatchRom(string.IsNullOrEmpty(input)
+                ? $"{Directory.GetCurrentDirectory()}{Path.DirectorySeparatorChar}MinishRandomizer-ROM.gba"
+                : input);
             Console.WriteLine("Rom saved successfully!");
         }
         catch
@@ -318,12 +312,14 @@ Strict              Toggle strict mode (exit after error)
     }
 
     private static void SaveSpoiler()
-    {        
+    {
         Console.Write("Please enter the path to save the spoiler (blank for default): ");
         try
         {
             var input = Console.ReadLine();
-            _shufflerController.SaveSpoiler(string.IsNullOrEmpty(input) ? $"{Directory.GetCurrentDirectory()}{Path.DirectorySeparatorChar}MinishRandomizer-Spoiler.txt" : input);
+            _shufflerController.SaveSpoiler(string.IsNullOrEmpty(input)
+                ? $"{Directory.GetCurrentDirectory()}{Path.DirectorySeparatorChar}MinishRandomizer-Spoiler.txt"
+                : input);
             Console.WriteLine("Spoiler saved successfully!");
         }
         catch
@@ -338,7 +334,10 @@ Strict              Toggle strict mode (exit after error)
         try
         {
             var input = Console.ReadLine();
-            _shufflerController.CreatePatch(string.IsNullOrEmpty(input) ? $"{Directory.GetCurrentDirectory()}{Path.DirectorySeparatorChar}MinishRandomizer-Patch.bps" : input, _cachedPatchPath);
+            _shufflerController.CreatePatch(
+                string.IsNullOrEmpty(input)
+                    ? $"{Directory.GetCurrentDirectory()}{Path.DirectorySeparatorChar}MinishRandomizer-Patch.bps"
+                    : input, _cachedPatchPath);
             Console.WriteLine("Patch saved successfully!");
         }
         catch
@@ -355,29 +354,27 @@ Strict              Toggle strict mode (exit after error)
 
     private static void PatchRom()
     {
-
         Console.Write("Please enter the path of the rom patch: ");
         var patch = Console.ReadLine();
-        
+
         Console.Write("Please enter the path to save the ROM to: ");
         var rom = Console.ReadLine();
 
         if (rom == null || patch == null)
         {
-            Console.WriteLine("Failed to save patch! Please check your file paths and make sure you have read/write access.");
+            Console.WriteLine(
+                "Failed to save patch! Please check your file paths and make sure you have read/write access.");
         }
         else
         {
             var result = _shufflerController.SaveRomPatch(patch, rom);
 
-            if(result)
-            {
+            if (result)
                 Console.WriteLine("Rom patched successfully!");
-            }
             else
-            {
-                PrintError("Failed to patch ROM! Please check your file paths and make sure you have read/write access. "+result.ErrorMessage);
-            }
+                PrintError(
+                    "Failed to patch ROM! Please check your file paths and make sure you have read/write access. " +
+                    result.ErrorMessage);
         }
     }
 
@@ -385,29 +382,28 @@ Strict              Toggle strict mode (exit after error)
     {
         Console.Write("Please enter the path of the patched rom: ");
         var rom = Console.ReadLine();
-            
+
         Console.Write("Please enter the path to save the patch to: ");
         var patch = Console.ReadLine();
 
         if (rom == null || patch == null)
         {
-            Console.WriteLine("Failed to save patch! Please check your file paths and make sure you have read/write access.");
+            Console.WriteLine(
+                "Failed to save patch! Please check your file paths and make sure you have read/write access.");
         }
         else
         {
             var result = _shufflerController.SaveRomPatch(patch, rom);
 
-            if(result)
-            {
+            if (result)
                 Console.WriteLine("Patch saved successfully!");
-            }
             else
-            {
-                PrintError("Failed to save patch! Please check your file paths and make sure you have read/write access. "+result.ErrorMessage);
-            }
+                PrintError(
+                    "Failed to save patch! Please check your file paths and make sure you have read/write access. " +
+                    result.ErrorMessage);
         }
     }
-    
+
     private static void Exit()
     {
         _exiting = true;
@@ -429,7 +425,7 @@ Strict              Toggle strict mode (exit after error)
             }
             case LogicDropdown dropdown:
             {
-                return dropdown.Selection.ToString();
+                return dropdown.Selection;
             }
             case LogicColorPicker colorPicker:
             {
@@ -440,6 +436,7 @@ Strict              Toggle strict mode (exit after error)
                 return box.Value;
             }
         }
+
         return "";
     }
 
@@ -455,10 +452,7 @@ Strict              Toggle strict mode (exit after error)
                 var input = Console.ReadLine();
                 if (string.IsNullOrEmpty(input) || !int.TryParse(input, out var i) || (i != 0 && i != 1 && i != 2))
                 {
-                    if (!input.Equals("exit", StringComparison.OrdinalIgnoreCase))
-                    {
-                        PrintError("Invalid Input!");
-                    }
+                    if (!input.Equals("exit", StringComparison.OrdinalIgnoreCase)) PrintError("Invalid Input!");
                     break;
                 }
 
@@ -469,21 +463,18 @@ Strict              Toggle strict mode (exit after error)
             case LogicDropdown dropdown:
             {
                 var keys = dropdown.Selections.Keys.ToList();
-                for (var i = 0; i < keys.Count; )
+                for (var i = 0; i < keys.Count;)
                 {
                     var selection = keys[i];
                     Console.WriteLine($"{++i}) {selection}");
                 }
-                
+
                 Console.Write("Enter the number of the option you want for the dropdown: ");
                 var input = Console.ReadLine();
-                
+
                 if (string.IsNullOrEmpty(input) || !int.TryParse(input, out var o) || o < 1 || o > keys.Count)
                 {
-                    if (!input.Equals("exit", StringComparison.OrdinalIgnoreCase))
-                    {
-                        PrintError("Invalid Input!");
-                    }
+                    if (!input.Equals("exit", StringComparison.OrdinalIgnoreCase)) PrintError("Invalid Input!");
                     break;
                 }
 
@@ -501,10 +492,7 @@ Strict              Toggle strict mode (exit after error)
                 var input = Console.ReadLine();
                 if (string.IsNullOrEmpty(input) || !int.TryParse(input, out var i) || i is < 1 or > 4)
                 {
-                    if (!input.Equals("exit", StringComparison.OrdinalIgnoreCase))
-                    {
-                        PrintError("Invalid Input!");
-                    }
+                    if (!input.Equals("exit", StringComparison.OrdinalIgnoreCase)) PrintError("Invalid Input!");
                     break;
                 }
 
@@ -529,10 +517,7 @@ Strict              Toggle strict mode (exit after error)
                         var argb = Console.ReadLine();
                         if (string.IsNullOrEmpty(argb) || !int.TryParse(argb, out var color))
                         {
-                            if (!argb.Equals("exit", StringComparison.OrdinalIgnoreCase))
-                            {
-                                PrintError("Invalid Input!");
-                            }
+                            if (!argb.Equals("exit", StringComparison.OrdinalIgnoreCase)) PrintError("Invalid Input!");
                             break;
                         }
 
@@ -541,18 +526,17 @@ Strict              Toggle strict mode (exit after error)
                         Console.WriteLine("Color set successfully!");
                         break;
                 }
+
                 break;
             }
             case LogicNumberBox box:
             {
                 Console.Write($"Please enter a number from {box.MinValue} to {box.MaxValue} for {box.NiceName}: ");
                 var input = Console.ReadLine();
-                if (string.IsNullOrEmpty(input) || !int.TryParse(input, out var i) || i < box.MinValue || i > box.MaxValue)
+                if (string.IsNullOrEmpty(input) || !int.TryParse(input, out var i) || i < box.MinValue ||
+                    i > box.MaxValue)
                 {
-                    if (!input.Equals("exit", StringComparison.OrdinalIgnoreCase))
-                    {
-                        PrintError("Invalid Input!");
-                    }
+                    if (!input.Equals("exit", StringComparison.OrdinalIgnoreCase)) PrintError("Invalid Input!");
                     break;
                 }
 
@@ -566,9 +550,6 @@ Strict              Toggle strict mode (exit after error)
     private static void PrintError(string msg)
     {
         Console.Error.WriteLine(msg);
-        if(_strict)
-        {
-            Environment.Exit(1);
-        }
+        if (_strict) Environment.Exit(1);
     }
 }

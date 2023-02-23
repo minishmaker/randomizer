@@ -2,47 +2,48 @@
 
 public class Reader
 {
+    // ReSharper disable once InconsistentNaming
     private readonly BinaryReader _reader;
-    private readonly Stream _stream;
+    private readonly Stream Stream;
 
     public Reader(Stream stream)
     {
-        _stream = stream;
+        Stream = stream;
         _reader = new BinaryReader(stream);
     }
 
-    public long Position => _stream.Position;
+    public long Position => Stream.Position;
 
     public void SetPosition(long pos)
     {
-        _stream.Position = pos;
+        Stream.Position = pos;
     }
 
     public byte PeekByte()
     {
-        var tempPos = _stream.Position;
+        var tempPos = Stream.Position;
         var b = ReadByte();
-        _stream.Position = tempPos;
+        Stream.Position = tempPos;
         return b;
     }
 
     public byte PeekByte(long pos)
     {
-        _stream.Position = pos;
+        Stream.Position = pos;
         return PeekByte();
     }
 
     public byte[] PeekBytes(int num)
     {
-        var tempPos = _stream.Position;
+        var tempPos = Stream.Position;
         var b = ReadBytes(num);
-        _stream.Position = tempPos;
+        Stream.Position = tempPos;
         return b;
     }
 
     public byte[] PeekBytes(int num, long pos)
     {
-        _stream.Position = pos;
+        Stream.Position = pos;
         return PeekBytes(num);
     }
 
@@ -53,7 +54,7 @@ public class Reader
 
     public byte ReadByte(long pos)
     {
-        _stream.Position = pos;
+        Stream.Position = pos;
         return ReadByte();
     }
 
@@ -64,7 +65,7 @@ public class Reader
 
     public byte[] ReadBytes(int num, long pos)
     {
-        _stream.Position = pos;
+        Stream.Position = pos;
         return ReadBytes(num);
     }
 
@@ -75,7 +76,7 @@ public class Reader
 
     public ushort ReadUInt16(long pos)
     {
-        _stream.Position = pos;
+        Stream.Position = pos;
         return _reader.ReadUInt16();
     }
 
@@ -86,7 +87,7 @@ public class Reader
 
     public short ReadInt16(long pos)
     {
-        _stream.Position = pos;
+        Stream.Position = pos;
         return _reader.ReadInt16();
     }
 
@@ -97,7 +98,7 @@ public class Reader
 
     public uint ReadUInt32(long pos)
     {
-        _stream.Position = pos;
+        Stream.Position = pos;
         return _reader.ReadUInt32();
     }
 
@@ -108,7 +109,7 @@ public class Reader
 
     public int ReadInt(long pos)
     {
-        _stream.Position = pos;
+        Stream.Position = pos;
         return _reader.ReadInt32();
     }
 
@@ -119,7 +120,7 @@ public class Reader
 
     public int ReadAddr(long pos)
     {
-        _stream.Position = pos;
+        Stream.Position = pos;
         return ReadAddr();
     }
 }

@@ -1,7 +1,7 @@
 ﻿using RandomizerCore.Core;
 using RandomizerCore.Randomizer.Enumerables;
 using RandomizerCore.Randomizer.Exceptions;
-using RandomizerCore.Randomizer.Logic;
+using RandomizerCore.Randomizer.Logic.Dependency;
 using RandomizerCore.Utilities.Util;
 
 namespace RandomizerCore.Randomizer.Models;
@@ -14,6 +14,7 @@ public readonly struct Item
     public readonly byte SubValue;
     public readonly string Dungeon;
     public readonly bool UseAny;
+    private readonly List<DependencyBase> Dependencies;
 
     public Item(string data, string commandScope = "", ItemPool shufflePool = ItemPool.Unshuffled)
     {
@@ -51,9 +52,12 @@ public readonly struct Item
             Kinstone = KinstoneType.UnTyped;
 
         ShufflePool = shufflePool;
+
+        Dependencies = new List<DependencyBase>();
     }
 
-    public Item(ItemType type, byte subValue, string dungeon = "", bool useAny = false, ItemPool shufflePool = ItemPool.Unshuffled)
+    public Item(ItemType type, byte subValue, string dungeon = "", bool useAny = false,
+        ItemPool shufflePool = ItemPool.Unshuffled)
     {
         Type = type;
         SubValue = subValue;
@@ -66,19 +70,33 @@ public readonly struct Item
         Dungeon = dungeon;
 
         ShufflePool = shufflePool;
+
+        Dependencies = new List<DependencyBase>();
     }
 
     public override bool Equals(object? obj)
     {
         if (obj == null || GetType() != obj.GetType()) return false;
         var asItem = (Item)obj;
-        return asItem.Type == Type && (asItem.SubValue == SubValue || asItem.UseAny || UseAny) && asItem.ShufflePool == ShufflePool;
+        return asItem.Type == Type && (asItem.SubValue == SubValue || asItem.UseAny || UseAny) &&
+               asItem.ShufflePool == ShufflePool;
     }
 
     public bool EqualsIgnoreShufflePool(Item? item)
     {
         if (item == null) return false;
         return item.Value.Type == Type && (item.Value.SubValue == SubValue || item.Value.UseAny || UseAny);
+    }
+
+    public void AddParentDependency(DependencyBase dependency)
+    {
+        Dependencies.Add(dependency);
+    }
+
+    public void NotifyParentDependencies(bool isPlaced)
+    {
+        foreach (var dependency in Dependencies)
+            dependency.UpdateDependencyResult(isPlaced);
     }
 
     public override int GetHashCode()

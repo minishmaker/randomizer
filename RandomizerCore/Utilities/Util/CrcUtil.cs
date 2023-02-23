@@ -2,7 +2,6 @@
 
 public static class CrcUtil
 {
-    
     /// <summary>
     ///     Find the crc32 of a byte array, adapted from https://www.romhacking.net/patch/crc32
     /// </summary>
@@ -26,12 +25,12 @@ public static class CrcUtil
 
         return outputCrc ^ 0xFFFFFFFF;
     }
-    
+
     public static uint Crc32(this byte[] data)
     {
         return Crc32(data, data.Length);
     }
-    
+
     public static byte Crc8(this byte[] bytes)
     {
         var table = new byte[256];

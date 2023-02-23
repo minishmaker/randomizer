@@ -3,10 +3,9 @@ using RandomizerCore.Utilities.Models;
 
 namespace RandomizerCore.Utilities.Util;
 
-public static class BPSPatcher
+public static class BpsPatcher
 {
-    
-    public enum BPSOperandType
+    public enum BpsOperandType
     {
         SourceRead = 0,
         TargetRead = 1,
@@ -23,7 +22,7 @@ public static class BPSPatcher
         return newBytes;
     }
 
-    public static BigInteger ReadVLN(byte[] bytes, ref int offset)
+    public static BigInteger ReadVln(byte[] bytes, ref int offset)
     {
         var data = new BigInteger(0);
         var shift = 1;
@@ -40,7 +39,7 @@ public static class BPSPatcher
         return data;
     }
 
-    public static void WriteVLN(BigInteger data, ref List<byte> outputBytes)
+    public static void WriteVln(BigInteger data, ref List<byte> outputBytes)
     {
         while (true)
         {
@@ -51,7 +50,7 @@ public static class BPSPatcher
                 outputBytes.Add((byte)(0x80 | b));
                 break;
             }
-            
+
             outputBytes.Add((byte)b);
             --data;
         }
@@ -70,17 +69,16 @@ public static class BPSPatcher
         var targetRelativeOffset = 0;
 
         foreach (var action in patch.ExportActions)
-        {
             switch (action.OperandType)
             {
-                case BPSOperandType.SourceRead:
+                case BpsOperandType.SourceRead:
                     newRom.AddRange(ReadBytes(sourceRom, action.ActionLength, ref offset));
                     break;
-                case BPSOperandType.TargetRead:
+                case BpsOperandType.TargetRead:
                     newRom.AddRange(action.Bytes);
                     offset += action.ActionLength;
                     break;
-                case BPSOperandType.SourceCopy:
+                case BpsOperandType.SourceCopy:
                 {
                     sourceRelativeOffset += action.RelativeOffset;
                     var length = action.ActionLength;
@@ -92,7 +90,7 @@ public static class BPSPatcher
 
                     break;
                 }
-                case BPSOperandType.TargetCopy:
+                case BpsOperandType.TargetCopy:
                 {
                     targetRelativeOffset += action.RelativeOffset;
                     var length = action.ActionLength;
@@ -107,7 +105,6 @@ public static class BPSPatcher
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-        }
 
         var newRomBytes = newRom.ToArray();
         if (CrcUtil.Crc32(newRomBytes, newRomBytes.Length) != patch.PatchedChecksum)
@@ -115,7 +112,7 @@ public static class BPSPatcher
 
         return newRomBytes;
     }
-    
+
     public static PatchFile GeneratePatch(byte[] sourceRom, byte[] patchedRom, string? filename = null)
     {
         var patch = new Patch
@@ -123,11 +120,11 @@ public static class BPSPatcher
             SourceSize = sourceRom.Length,
             PatchedSize = patchedRom.Length,
             SourceChecksum = CrcUtil.Crc32(sourceRom, sourceRom.Length),
-            PatchedChecksum = CrcUtil.Crc32(patchedRom, patchedRom.Length),
+            PatchedChecksum = CrcUtil.Crc32(patchedRom, patchedRom.Length)
         };
 
         //This uses linear patching by default instead of delta due to ease of implementation, we can change to delta if we want
-        var exporterActions = new List<BPSExportAction>();
+        var exporterActions = new List<BpsExportAction>();
 
         var relativeOffset = 0;
         var outputOffset = 0;
@@ -139,7 +136,7 @@ public static class BPSPatcher
 
             for (var i = 0; outputOffset + i < Math.Min(sourceRom.Length, patchedRom.Length); ++i)
             {
-                if(sourceRom[outputOffset + i] != patchedRom[outputOffset + i]) break;
+                if (sourceRom[outputOffset + i] != patchedRom[outputOffset + i]) break;
                 ++sourceLength;
             }
 
@@ -157,11 +154,11 @@ public static class BPSPatcher
                 ReadFlush(ref readLength, ref outputOffset, exporterActions, patchedRom);
 
                 var relOffset = outputOffset - 1 - relativeOffset;
-                exporterActions.Add(new BPSExportAction
+                exporterActions.Add(new BpsExportAction
                 {
-                    OperandType = BPSOperandType.TargetCopy,
+                    OperandType = BpsOperandType.TargetCopy,
                     RelativeOffset = relOffset,
-                    ActionLength = relLength,
+                    ActionLength = relLength
                 });
                 outputOffset += relLength;
                 relativeOffset = outputOffset - 1;
@@ -169,10 +166,10 @@ public static class BPSPatcher
             else if (sourceLength >= 4)
             {
                 ReadFlush(ref readLength, ref outputOffset, exporterActions, patchedRom);
-                exporterActions.Add(new BPSExportAction
+                exporterActions.Add(new BpsExportAction
                 {
-                    OperandType = BPSOperandType.SourceRead,
-                    ActionLength = sourceLength,
+                    OperandType = BpsOperandType.SourceRead,
+                    ActionLength = sourceLength
                 });
                 outputOffset += sourceLength;
             }
@@ -182,7 +179,7 @@ public static class BPSPatcher
                 ++outputOffset;
             }
         }
-        
+
         ReadFlush(ref readLength, ref outputOffset, exporterActions, patchedRom);
 
         patch.ExportActions = exporterActions;
@@ -200,15 +197,16 @@ public static class BPSPatcher
         return patchFile;
     }
 
-    private static void ReadFlush(ref int readLength, ref int outputOffset, List<BPSExportAction> exporterActions, byte[] patchedRom)
+    private static void ReadFlush(ref int readLength, ref int outputOffset, List<BpsExportAction> exporterActions,
+        byte[] patchedRom)
     {
         if (readLength != 0)
         {
-            var action = new BPSExportAction
+            var action = new BpsExportAction
             {
-                OperandType = BPSOperandType.TargetRead,
+                OperandType = BpsOperandType.TargetRead,
                 Bytes = new List<byte>(),
-                ActionLength = readLength,
+                ActionLength = readLength
             };
             exporterActions.Add(action);
             var offset = outputOffset - readLength;
@@ -220,6 +218,4 @@ public static class BPSPatcher
             }
         }
     }
-    
-
 }

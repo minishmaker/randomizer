@@ -2,13 +2,13 @@
 
 namespace RandomizerCore.Utilities.Models;
 
-public class BPSExportAction
+public class BpsExportAction
 {
-    public BPSPatcher.BPSOperandType OperandType { get; set; }
-    
+    public BpsPatcher.BpsOperandType OperandType { get; set; }
+
     public int ActionLength { get; set; }
-    
+
     public int RelativeOffset { get; set; }
-    
+
     public List<byte> Bytes { get; set; }
 }

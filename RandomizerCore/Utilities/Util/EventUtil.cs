@@ -1,5 +1,4 @@
-﻿using System.Text;
-using ColorzCore;
+﻿using ColorzCore;
 using ColorzCore.IO;
 using ColorzCore.Parser;
 using RandomizerCore.Utilities.Models;

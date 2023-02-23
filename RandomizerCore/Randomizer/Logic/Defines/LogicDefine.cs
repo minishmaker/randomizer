@@ -5,7 +5,7 @@ namespace RandomizerCore.Randomizer.Logic.Defines;
 
 public class LogicDefine
 {
-    private readonly Regex? _expression;
+    private readonly Regex? Expression;
     public string Name;
     public string Replacement;
 
@@ -18,18 +18,18 @@ public class LogicDefine
     {
         Name = name;
         Replacement = replacement;
-        _expression = new Regex($"`{Name}`");
+        Expression = new Regex($"`{Name}`");
         Logger.Instance.LogInfo($"Define Expression: {name}");
     }
 
     public bool CanReplace(string input)
     {
-        Logger.Instance.LogInfo($"Can replace: {_expression != null}");
-        return _expression != null && _expression.IsMatch(input);
+        Logger.Instance.LogInfo($"Can replace: {Expression != null}");
+        return Expression != null && Expression.IsMatch(input);
     }
 
     public string Replace(string input)
     {
-        return _expression.Replace(input, Replacement);
+        return Expression.Replace(input, Replacement);
     }
 }

@@ -2,17 +2,17 @@
 
 public class ItemAmountSet
 {
-    public int amount;
-    public Item item;
+    public int Amount;
+    public Item Item;
 
     public ItemAmountSet(Item item, int amount)
     {
-        this.item = item;
-        this.amount = amount;
+        this.Item = item;
+        this.Amount = amount;
     }
 
     public ItemAmountSet Clone()
     {
-        return new ItemAmountSet(item, amount);
+        return new ItemAmountSet(Item, Amount);
     }
 }
