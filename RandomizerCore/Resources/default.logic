@@ -140,7 +140,7 @@
 
 !flag - Logic Settings - Setting - Logic Rules - NO_LOGIC - No Logic - Items can go anywhere without regard to logic.\n LIKELY RESULTS IN UNBEATABLE SEEDS!
 !dropdown - Logic Settings - Setting - Logic Rules - ACCESSIBILITY - Reachable - Determines which items and locations are guaranteed to be reachable. - ACCESS_INVENTORY - All Locations - ACCESS_LOCATIONS - 'All Locations': All enabled locations are reachable. - All NonKeys - ACCESS_INVENTORY - 'All NonKeys': Like 'All Locations', except keys can lock themselves. - Always the Goal - ACCESS_BEATABLE - 'Always the Goal': Only the goal is guaranteed to be reachable. Some locations and items may be inaccessible. If DHC setting is set to 'Never Open' then the goal is the pedestal requirements, otherwise the goal is Defeat Vaati.
-!dropdown - Logic Settings - Setting - Logic Rules - GRABBABLE - Grab items from a distance - Items can be collected from a distance with either Gust Jar, Boomerang, or even a Sword Slash. - GRABBABLE - Not Allowed - NOT_GRABBABLE - 'Not Allowed': Items cannot be grabbed from a distance. - Allowed - GRABBABLE - 'Allowed': Items can be grabbed from a distance, but this will never be required by logic. - Require - GRABBABLE_LOGIC - 'Require': Items can be grabbed from a distance and logic can require grabbing them when they are obviously grabbable. - Require Hard - GRABBABLE_HARD - 'Require Hard': Items can be grabbed from a distance, and logic can require some very difficult Boomerang throws to be able to collect these items. Many of these involve throwing the Boomerang in an arc behind or to the side of the items before making Link run in the opposite direction to get the Boomerang to grab the item on the return journey to Link.
+!dropdown - Logic Settings - Setting - Logic Rules - GRABBABLE - Grab items from a distance - Items can be collected from a distance with either Gust Jar, Boomerang, or even a Sword Slash. - GRABBABLE - Not Allowed - NOT_GRABBABLE - 'Not Allowed': Items cannot be grabbed from a distance. - Allowed - GRABBABLE - 'Allowed': Items can be grabbed from a distance, but this will never be required by logic. - Require - GRABBABLE_LOGIC - 'Require': Items can be grabbed from a distance and logic can require grabbing them when they are obviously grabbable. - Require Hard - GRABBABLE_HARD - 'Require Hard': Items can be grabbed from a distance, and logic can require some very difficult Boomerang throws to be able to collect these items.\n Many of these involve throwing the Boomerang in an arc behind or to the side of the items before making Link run in the opposite direction to get the Boomerang to grab the item on the return journey to Link.
 
 !dropdown - Logic Settings - Setting - Weapons - BOMBWEAPON - Bombs - Bombs can damage nearly every enemy, Bombs are never considered for Simon Simulations, and Golden Enemies. - NOBOMB - No - NOBOMB - 'No': Bombs are not considered as Weapons. - Yes - YESBOMB - 'Yes': Bombs are considered as weapons for most regular enemy fights. - Yes + Bosses - BOSSBOMB - 'Yes + Bosses': Bombs are considered as weapons for most enemy fights. Fighting Green/Blu Chu, Madderpillars and Darknuts require only 10 bomb bag. Gleerok, Mazaal and Scissor Beetles require at least 30 bomb bag. Octo and Gyorg cannot be defeated with bombs.
 !dropdown - Logic Settings - Setting - Weapons - BOWWEAPON - Bows - Bow can damage most enemies, many enemies are very resiliant to damage. Chu Bosses and Darknuts are Immune. - NOBOW - No - NOBOW - 'No': Bows are not considered as Weapons. - Yes - YESBOW - 'Yes': Bows are considered as weapons for most enemy fights. Bows are never considered for Chu Bossfights, Darknuts, Scissor Beetles, Madderpillar, Wizrobes, Simon Simulations, and Golden Enemies. - Yes + Bosses - BOSSBOW - 'Yes + Bosses': Bows are considered as weapons for most enemy fights, but can also be solely required to defeat Gleerok and Mazaal.
@@ -5323,7 +5323,7 @@ SouthField_MinishSize_WaterHole_HP;	`HP`;				0x0DB55F;		(|(&Items.Flippers, Help
 SouthField_Tingle_NPC;				Any;					0x016966;		(|(&Items.PacciCane, Items.TingleTrophy, Helpers.AccessEasternHills), Helpers.Hundo);											Items.TingleTrophy
 
 # Town
-Town_CafeLady_NPC;				Any;					0x00EDDA;															;																																													Items.Kinstone.RedW
+Town_CafeLady_NPC;				Any;					0x00EDDA;															;																																													Items.Kinstone.RedE
 Town_Shop_80Item;					Any;					walletShopItem:Define:FirstByte, walletShopSub:Define:SecondByte;			(|Helpers.Shop80, Helpers.Hundo);																																						Items.Wallet
 Town_Shop_300Item;				Any;					boomerangShopItem:Define:FirstByte, boomerangShopSub:Define:SecondByte;		(|(&Items.Wallet, Helpers.Shop300), Helpers.Hundo);																																		`BOOMERANG`
 Town_Shop_600Item;				Any;					quiverShopItem:Define:FirstByte, quiverShopSub:Define:SecondByte;			(|(&Items.Wallet:3, Helpers.Shop600), Helpers.Hundo);																																		Items.LargeQuiver
@@ -5331,22 +5331,22 @@ Town_Shop_BehindCounterItem;		Any;					dogShopItem:Define:FirstByte, dogShopSub:
 Town_Shop_AtticChest;				Any;					0x2E-0x01-0x01;														(|Helpers.TownDog, Helpers.Hundo);																																						Items.Shells.10
 Town_Bakery_AtticChest;			Any;					0x2E-0x03-0x00;														(|Helpers.TownDog, Helpers.Hundo);																																						Items.Rupee100
 Town_Inn_BackdoorHP;				`HP`;				0x0D66D7;															(|Helpers.TownDog, Helpers.Hundo);																																						Items.PieceOfHeart
-Town_Inn_LedgeChest;				Any;					0x02-0x00-0x06;														(|Helpers.InnLedge, Helpers.Hundo);																																						Items.Kinstone.RedW
+Town_Inn_LedgeChest;				Any;					0x02-0x00-0x06;														(|Helpers.InnLedge, Helpers.Hundo);																																						Items.Kinstone.RedV
 Town_Inn_Pot;						`POT`;				0x0D663B:FirstByte, 0x0D663D:SecondByte;									;																																													Items.Kinstone.RedE
 Town_Well_RightChest;				Any;					0x41-0x00-0x04;														;																																													Items.Kinstone.RedE
-Town_GoronMerchant_1_Left;			`GORONSET1`;			goron1LeftItem:Define:FirstByte,	goron1LeftSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet, 	`GORONLEFT1`	), Helpers.Hundo);																												Items.Kinstone.RedW
+Town_GoronMerchant_1_Left;			`GORONSET1`;			goron1LeftItem:Define:FirstByte,	goron1LeftSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet, 	`GORONLEFT1`	), Helpers.Hundo);																												Items.Kinstone.RedV
 Town_GoronMerchant_1_Middle;		`GORONSET1`;			goron1MiddleItem:Define:FirstByte,	goron1MiddleSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion,				`GORONMID1`	), Helpers.Hundo);																												Items.Kinstone.BlueL
 Town_GoronMerchant_1_Right;		`GORONSET1`;			goron1RightItem:Define:FirstByte,	goron1RightSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion,				`GORONRIGHT1`	), Helpers.Hundo);																												Items.Kinstone.GreenP
-Town_GoronMerchant_2_Left;			`GORONSET2`;			goron2LeftItem:Define:FirstByte,	goron2LeftSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet,	`GORONLEFT2`	), Helpers.Hundo);																												Items.Kinstone.RedV
+Town_GoronMerchant_2_Left;			`GORONSET2`;			goron2LeftItem:Define:FirstByte,	goron2LeftSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet,	`GORONLEFT2`	), Helpers.Hundo);																												Items.Kinstone.RedW
 Town_GoronMerchant_2_Middle;		`GORONSET2`;			goron2MiddleItem:Define:FirstByte,	goron2MiddleSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet,	`GORONMID2`	), Helpers.Hundo);																												Items.Kinstone.BlueS
 Town_GoronMerchant_2_Right;		`GORONSET2`;			goron2RightItem:Define:FirstByte,	goron2RightSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet,	`GORONRIGHT2`	), Helpers.Hundo);																												Items.Kinstone.GreenC
 Town_GoronMerchant_3_Left;			`GORONSET3`;			goron3LeftItem:Define:FirstByte,	goron3LeftSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet	`GORONLEFT3`	), Helpers.Hundo);																												Items.Kinstone.RedE
 Town_GoronMerchant_3_Middle;		`GORONSET3`;			goron3MiddleItem:Define:FirstByte,	goron3MiddleSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet,	`GORONMID3`	), Helpers.Hundo);																												Items.Kinstone.BlueL
 Town_GoronMerchant_3_Right;		`GORONSET3`;			goron3RightItem:Define:FirstByte,	goron3RightSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet,	`GORONRIGHT3`	), Helpers.Hundo);																												Items.Kinstone.GreenG
-Town_GoronMerchant_4_Left;			`GORONSET4`;			goron4LeftItem:Define:FirstByte,	goron4LeftSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet	`GORONLEFT4`	), Helpers.Hundo);																												Items.Kinstone.RedW
+Town_GoronMerchant_4_Left;			`GORONSET4`;			goron4LeftItem:Define:FirstByte,	goron4LeftSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet	`GORONLEFT4`	), Helpers.Hundo);																												Items.Kinstone.RedV
 Town_GoronMerchant_4_Middle;		`GORONSET4`;			goron4MiddleItem:Define:FirstByte,	goron4MiddleSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet	`GORONMID4`	), Helpers.Hundo);																												Items.Kinstone.BlueS
 Town_GoronMerchant_4_Right;		`GORONSET4`;			goron4RightItem:Define:FirstByte,	goron4RightSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet	`GORONRIGHT4`	), Helpers.Hundo);																												Items.Kinstone.GreenP
-Town_GoronMerchant_5_Left;			`GORONSET5`;			goron5LeftItem:Define:FirstByte,	goron5LeftSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet	`GORONLEFT5`	), Helpers.Hundo);																												Items.Kinstone.RedV
+Town_GoronMerchant_5_Left;			`GORONSET5`;			goron5LeftItem:Define:FirstByte,	goron5LeftSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet	`GORONLEFT5`	), Helpers.Hundo);																												Items.Kinstone.RedW
 Town_GoronMerchant_5_Middle;		`GORONSET5`;			goron5MiddleItem:Define:FirstByte,	goron5MiddleSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet	`GORONMID5`	), Helpers.Hundo);																												Items.Kinstone.BlueL
 Town_GoronMerchant_5_Right;		`GORONSET5`;			goron5RightItem:Define:FirstByte,	goron5RightSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet	`GORONRIGHT5`	), Helpers.Hundo);																												Items.Kinstone.GreenC
 Town_Dojo_NPC1:dojo;				`DOJOITEM`;			swiftblade1DojoItem:Define:FirstByte, swiftblade1DojoSub:Define:SecondByte;	(|Helpers.HasSword, Helpers.Hundo);																																						Items.SpinAttack
@@ -5354,14 +5354,14 @@ Town_Dojo_NPC2:dojo;				`DOJOITEM`;			swiftblade2DojoItem:Define:FirstByte, swif
 Town_Dojo_NPC3:dojo;				`DOJOITEM`;			swiftblade3DojoItem:Define:FirstByte, swiftblade3DojoSub:Define:SecondByte;	(|(&Helpers.HasSword, Items.PegasusBoots), Helpers.Hundo);																																	Items.DashAttack
 Town_Dojo_NPC4:dojo;				`DOJOITEM`;			swiftblade4DojoItem:Define:FirstByte, swiftblade4DojoSub:Define:SecondByte;	(|(&Helpers.HasSword, Items.RocsCape), Helpers.Hundo);																																	Items.DownThrust
 Town_Well_TopChest;				Any;					0x41-0x00-0x00;														(|Items.BombBag, Helpers.Hundo);																																						Items.Rupee100
-Town_School_Roof_Chest;			Any;					0x02-0x00-0x07;														(|Items.PacciCane, Helpers.Hundo);																																						Items.Kinstone.RedV
-Town_School_PathFusion_Chest;		`GREENFUSION`;		0x0FE076;															(|(&Helpers.Shared36Fusion, Items.PacciCane), Helpers.Hundo);																																Items.Kinstone.RedV
-Town_School_Path_LeftChest;		Any;					0x11-0x02-0x00;														(|(&Items.PacciCane, Helpers.CanSplit4), Helpers.Hundo);																																	Items.Kinstone.RedW
+Town_School_Roof_Chest;			Any;					0x02-0x00-0x07;														(|Items.PacciCane, Helpers.Hundo);																																						Items.Kinstone.RedW
+Town_School_PathFusion_Chest;		`GREENFUSION`;		0x0FE076;															(|(&Helpers.Shared36Fusion, Items.PacciCane), Helpers.Hundo);																																Items.Kinstone.RedW
+Town_School_Path_LeftChest;		Any;					0x11-0x02-0x00;														(|(&Items.PacciCane, Helpers.CanSplit4), Helpers.Hundo);																																	Items.Kinstone.RedV
 Town_School_Path_MiddleChest;		Any;					0x11-0x02-0x01;														(|(&Items.PacciCane, Helpers.CanSplit4), Helpers.Hundo);																																	Items.Kinstone.RedE
-Town_School_Path_RightChest;		Any;					0x11-0x02-0x02;														(|(&Items.PacciCane, Helpers.CanSplit4), Helpers.Hundo);																																	Items.Kinstone.RedW
+Town_School_Path_RightChest;		Any;					0x11-0x02-0x02;														(|(&Items.PacciCane, Helpers.CanSplit4), Helpers.Hundo);																																	Items.Kinstone.RedV
 Town_School_Path_HP;				`HP`;				0x0D5557;															(|Helpers.SchoolHP, Helpers.Hundo);																																						Items.PieceOfHeart
-Town_Digging_TopChest;				Any;					0x0F-0x00-0x00;														(|Items.MoleMitts, Helpers.Hundo);																																						Items.Kinstone.RedV
-Town_Digging_RightChest;			Any;					0x0F-0x00-0x01;														(|Items.MoleMitts, Helpers.Hundo);																																						Items.Kinstone.RedW
+Town_Digging_TopChest;				Any;					0x0F-0x00-0x00;														(|Items.MoleMitts, Helpers.Hundo);																																						Items.Kinstone.RedW
+Town_Digging_RightChest;			Any;					0x0F-0x00-0x01;														(|Items.MoleMitts, Helpers.Hundo);																																						Items.Kinstone.RedV
 Town_Digging_LeftChest;			Any;					0x0F-0x00-0x02;														(|Items.MoleMitts, Helpers.Hundo);																																						Items.Kinstone.RedE
 Town_Well_LeftChest;				Any;					0x41-0x00-0x01;														(|Helpers.WellPillar, Items.MoleMitts, Helpers.Hundo);																																	Items.Rupee100
 Town_Bell_HP;						`HP`;				0x05D602:FirstByte, 0x5D604:SecondByte;									(|Items.RocsCape, Helpers.Hundo);																																						Items.PieceOfHeart
@@ -5398,8 +5398,8 @@ Town_UnderLibrary_Underwater		`WATER`;				0x0EF79B;															(|(&Helpers.Li
 # North Field
 NorthField_DigSpot					`DIG`;			0x0F720F;															(|Items.MoleMitts, Helpers.Hundo);											Items.Rupee50
 NorthField_HP;						`HP`;			0x0F864B;															(|Helpers.OverworldBlocks, Helpers.CapeExtension, Helpers.Hundo);				Items.PieceOfHeart
-NorthField_TreeFusion_TopLeftChest;		`GREENFUSION`;	0x32-0x00-0x00;														(|Helpers.Tingle1Fusion,  Helpers.Hundo);									Items.Kinstone.RedV
-NorthField_TreeFusion_TopRightChest;	`GREENFUSION`;	0x32-0x00-0x01;														(|Helpers.AnkleFusion, Helpers.Hundo);										Items.Kinstone.RedW
+NorthField_TreeFusion_TopLeftChest;		`GREENFUSION`;	0x32-0x00-0x00;														(|Helpers.Tingle1Fusion,  Helpers.Hundo);									Items.Kinstone.RedW
+NorthField_TreeFusion_TopRightChest;	`GREENFUSION`;	0x32-0x00-0x01;														(|Helpers.AnkleFusion, Helpers.Hundo);										Items.Kinstone.RedV
 NorthField_TreeFusion_BottomLeftChest;	`GREENFUSION`;	0x32-0x00-0x02;														(|Helpers.KnuckleFusion, Helpers.Hundo);										Items.Kinstone.RedE
 NorthField_TreeFusion_BottomRightChest;	`GREENFUSION`;	0x32-0x00-0x03;														(|Helpers.DavidJr1Fusion, Helpers.Hundo);									Items.Shells.200
 NorthField_TreeFusion_CenterBigChest;	`GREENFUSION`;	0x32-0x00-0x04;														(|Helpers.NorthFieldLadder, Helpers.Hundo);									`MAGICBOOMERANG`
@@ -5444,7 +5444,7 @@ LonLon_CaveSecret_Chest;			Any;				0x32-0x0D-0x00;								(|(&Helpers.AccessLonL
 LonLon_Path_FusionChest;			`GREENFUSION`;	0x0FE086;									(|(&Helpers.Shared50Fusion, Helpers.AccessLonLon, Helpers.BonkedTrees), Helpers.Hundo);																	Items.Kinstone.RedE
 LonLon_Path_HP;					`HP`;			0x0D56EF;									(|(&Helpers.AccessLonLon, Helpers.BonkedTrees), Helpers.Hundo);																						Items.PieceOfHeart
 LonLon_DigSpot					`DIG`;			0x0F6CFF;									(|(&Helpers.AccessLonLon, (|Items.PacciCane, Items.RocsCape), Items.MoleMitts), Helpers.Hundo);															Items.Rupee50
-LonLon_NorthMinishCrack_Chest;		Any;				0x27-0x00-0x00;								(|(&Helpers.AccessLonLon, (|Items.PacciCane, Items.RocsCape)), Helpers.Hundo);																			Items.Kinstone.RedW
+LonLon_NorthMinishCrack_Chest;		Any;				0x27-0x00-0x00;								(|(&Helpers.AccessLonLon, (|Items.PacciCane, Items.RocsCape)), Helpers.Hundo);																			Items.Kinstone.RedV
 LonLon_GoronCaveFusion_SmallChest;	`BLUEFUSION`;		0x2F-0x01-0x00;								(|(&Helpers.4WallFusions, Helpers.GoronCave, (|Helpers.CanDestroyTrees, Items.Ocarina)), Helpers.Hundo);													Items.Rupee200
 LonLon_GoronCaveFusion_BigChest;	`BLUEFUSION`;		0x2F-0x01-0x01;								(|(&Helpers.6WallFusions, Helpers.GoronCave, (|Helpers.CanDestroyTrees, Items.Ocarina)), Helpers.Hundo);													Items.Bottle
 
@@ -5471,8 +5471,8 @@ Hylia_CapeCave_TopRight;				Any;					0x19-0x01-0x00;													(|Helpers.Acces
 Hylia_CapeCave_BottomLeft;				Any;					0x19-0x01-0x02;													(|Helpers.AccessTreasureCave, Helpers.Hundo);																												Items.Shells.50
 Hylia_CapeCave_TopLeft;				Any;					0x19-0x01-0x03;													(|Helpers.AccessTreasureCave, Helpers.Hundo);																												Items.Kinstone.BlueL
 Hylia_CapeCave_TopMiddle;				Any;					0x19-0x01-0x04;													(|Helpers.AccessTreasureCave, Helpers.Hundo);																												Items.Kinstone.RedE
-Hylia_CapeCave_Right;					Any;					0x19-0x01-0x05;													(|Helpers.AccessTreasureCave, Helpers.Hundo);																												Items.Kinstone.RedW
-Hylia_CapeCave_BottomRight;			Any;					0x19-0x01-0x06;													(|Helpers.AccessTreasureCave, Helpers.Hundo);																												Items.Kinstone.RedV
+Hylia_CapeCave_Right;					Any;					0x19-0x01-0x05;													(|Helpers.AccessTreasureCave, Helpers.Hundo);																												Items.Kinstone.RedV
+Hylia_CapeCave_BottomRight;			Any;					0x19-0x01-0x06;													(|Helpers.AccessTreasureCave, Helpers.Hundo);																												Items.Kinstone.RedW
 Hylia_CapeCave_BottomMiddle;			Any;					0x19-0x01-0x07;													(|Helpers.AccessTreasureCave, Helpers.Hundo);																												Items.Kinstone.BlueS
 Hylia_CapeCave_LonLonHP;				`HP`;				0x0F6CEF;														(|Helpers.AccessTreasureCave, Helpers.Hundo);																												Items.PieceOfHeart
 Hylia_BeanstalkFusion_LeftChest;		`BLUEFUSION`;			0x0D-0x01-0x00;													(|(&Helpers.LakeEastMinishFusion, Helpers.AccessTreasureCave), Helpers.Hundo);																					Items.Rupee200
@@ -5486,7 +5486,7 @@ Hylia_BottomHP;						`HP`;				0x0F324B;														(|Helpers.LakeSouthHP, Help
 Hylia_Dojo_HP;						`HP`;				0x0D7B03;														(|(&Helpers.AccessLonLon, (|Helpers.CapeExtension, Helpers.LakeShortcut)), Helpers.Hundo);																		Items.PieceOfHeart
 Hylia_Dojo_NPC:dojo;					`DOJOITEM`;			wavebladeDojoItem:Define:FirstByte, wavebladeDojoSub:Define:SecondByte;	(|(&Helpers.AccessLonLon, Helpers.HasHearts, Helpers.HasSword, (|Helpers.CapeExtension, Helpers.LakeShortcut)), Helpers.Hundo);										Items.PerilBeam
 Hylia_CrackFusion_LibrariNPC;			`REDFUSION`;			0x0124EC;														(|(&Helpers.VillageSideMinish3Fusion, Items.Ocarina, (|Items.Flippers,Items.RocsCape)), Helpers.Hundo);																Items.HeartContainer
-Hylia_NorthMinishHole_Chest;			Any;					0x35-0x07-0x00;													(|(&Helpers.AccessSouthLake, (|Helpers.BonkedTrees, Helpers.LakeMinish), Items.Flippers), Helpers.Hundo);															Items.Kinstone.RedV
+Hylia_NorthMinishHole_Chest;			Any;					0x35-0x07-0x00;													(|(&Helpers.AccessSouthLake, (|Helpers.BonkedTrees, Helpers.LakeMinish), Items.Flippers), Helpers.Hundo);															Items.Kinstone.RedW
 Hylia_SouthMinishHole_Chest;			Any;					0x35-0x05-0x00;													(|(&Helpers.AccessSouthLake, (|Helpers.BonkedTrees, Helpers.LakeMinish), Items.Flippers), Helpers.Hundo);															Items.Kinstone.RedE
 Hylia_CabinPathFusion_Chest;			`GREENFUSION`;		0x0FE09E;														(|(&Helpers.FifiFusion, Helpers.AccessSouthLake, (|(&Helpers.BonkedTrees, Helpers.CabinSwim), (&Helpers.LakeMinish, Items.Flippers, Helpers.CabinSwim))), Helpers.Hundo);	Items.Kinstone.BlueL
 Hylia_MayorCabin_Item;					Any;					blueBookItem:Define:FirstByte, blueBookSub:Define:SecondByte;			(|(&Helpers.AccessSouthLake, Helpers.MayorCabin), Helpers.Hundo);																								Items.BlueBook
@@ -5504,7 +5504,7 @@ MinishWoods_TopHP;						`HP`;				0x0F4347;       											(|Helpers.MinishNort
 MinishWoods_WestFusion_Chest;				`GREENFUSION`;		0x0FE0CE;												(|(&Helpers.Shared47Fusion, Helpers.AccessMinishWoods), Helpers.Hundo);					Items.Rupee200
 MinishWoods_LikeLikeDiggingCave_LeftChest;	Any;					0x0C-0x00-0x01; 											(|(&Helpers.AccessMinishWoods, Items.MoleMitts, Helpers.LikeLike), Helpers.Hundo);		Items.Rupee50
 MinishWoods_LikeLikeDiggingCave_RightChest;	Any;					0x0C-0x00-0x02; 											(|(&Helpers.AccessMinishWoods, Items.MoleMitts, Helpers.LikeLike), Helpers.Hundo);		Items.Kinstone.BlueS
-MinishWoods_EastFusion_Chest;				`GREENFUSION`;		0x0FE0B6;												(|(&Helpers.Shared46Fusion, Helpers.AccessMinishWoods), Helpers.Hundo);					Items.Kinstone.RedV
+MinishWoods_EastFusion_Chest;				`GREENFUSION`;		0x0FE0B6;												(|(&Helpers.Shared46Fusion, Helpers.AccessMinishWoods), Helpers.Hundo);					Items.Kinstone.RedW
 MinishWoods_SouthFusion_Chest;				`GREENFUSION`;		0x0FE0C6;												(|(&Helpers.Shared39Fusion, Helpers.AccessMinishWoods), Helpers.Hundo);					Items.Kinstone.RedE
 MinishWoods_BottomHP;						`HP`;				0x0F4357;       											(|Helpers.MinishSouthHP, Helpers.Hundo);												Items.PieceOfHeart
 MinishWoods_CrackFusion_Chest;				`GREENFUSION`;		0x27-0x08-0x00;											(|(&Helpers.Shared4EFusion, Helpers.AccessMinishWoods), Helpers.Hundo);					Items.Kinstone.BlueL
@@ -5529,11 +5529,11 @@ MinishWoods_FlipperHole_HP			`DWS_OUTSIDE`;	`DUNGEONHP`;			0x0DB8BF;											(
 AccessTrilby;						Helper;			;															(|Helpers.WesternShortcut, Items.Flippers, Items.RocsCape, (&Helpers.HasSword, Helpers.HasSpin), Helpers.GuardSkip, (&Helpers.CrenelWindCrest, (|Helpers.UpperBean, Items.GripRing)))
 AccessWestern;					Helper;			;															(|Helpers.WesternShortcut, (&Helpers.AccessTrilby, (|(|Helpers.CanSplit2, Helpers.CanSplit3, Helpers.CanSplit4), Helpers.TrilbyShortcut)), (&Helpers.SwampWindCrest, (|Helpers.HasBow, Items.PegasusBoots, Items.RocsCape)))
 
-Trilby_MiddleFusion_Chest;			`GREENFUSION`;	0x0FE0EE;													(|(&Helpers.TinaFusion, Helpers.AccessTrilby), Helpers.Hundo);													Items.Kinstone.RedV
-Trilby_TopFusion_Chest;			`GREENFUSION`;	0x0FE0BE;													(|(&Helpers.Smith2Fusion, Helpers.AccessTrilby), Helpers.Hundo);												Items.Kinstone.RedW
+Trilby_MiddleFusion_Chest;			`GREENFUSION`;	0x0FE0EE;													(|(&Helpers.TinaFusion, Helpers.AccessTrilby), Helpers.Hundo);													Items.Kinstone.RedW
+Trilby_TopFusion_Chest;			`GREENFUSION`;	0x0FE0BE;													(|(&Helpers.Smith2Fusion, Helpers.AccessTrilby), Helpers.Hundo);												Items.Kinstone.RedV
 Trilby_DigCave_LeftChest;			Any;				0x13-0x03-0x00;                       						(|(&Helpers.AccessTrilby, Items.MoleMitts), Helpers.Hundo);													Items.Kinstone.BlueL
 Trilby_DigCave_RightChest;			Any;				0x13-0x03-0x02;                       						(|(&Helpers.AccessTrilby, Items.MoleMitts), Helpers.Hundo);													Items.Kinstone.BlueS
-Trilby_DigCave_WaterFusion_Chest;	`BLUEFUSION`;		0x13-0x03-0x01;												(|(&Helpers.CandyFusion, Helpers.AccessTrilby, Items.MoleMitts, (|Items.RocsCape,Items.Flippers)), Helpers.Hundo);	Items.Kinstone.RedW
+Trilby_DigCave_WaterFusion_Chest;	`BLUEFUSION`;		0x13-0x03-0x01;												(|(&Helpers.CandyFusion, Helpers.AccessTrilby, Items.MoleMitts, (|Items.RocsCape,Items.Flippers)), Helpers.Hundo);	Items.Kinstone.RedV
 Trilby_Scrub_NPC;					Any;				bottleScrubItem:Define:FirstByte, bottleScrubSub:Define:SecondByte;	(|(&Helpers.AccessTrilby, Helpers.BombWalls, Helpers.Scrubs, Helpers.ShopScrubTrilby), Helpers.Hundo);        		Items.Bottle
 
 Trilby_BombCave_Chest;			Any;					0x32-0x07-0x00;                       						(|(&Helpers.AccessWestern, Helpers.BombWalls), Helpers.Hundo);				Items.Kinstone.RedE
@@ -5567,7 +5567,7 @@ WesternWoods_BottomDig1			`GREENFUSIONDIG`;			0x0F782F;												(|(&Helpers.C
 WesternWoods_BottomDig2			`GREENFUSIONDIG`;			0x0F783F;												(|(&Helpers.CastleMinishFusion, Helpers.AccessWestern, Items.MoleMitts), Helpers.Hundo);	Items.Rupee200
 WesternWoods_GoldenOcto			`BLUEGREENFUSIONENEMY`;	golden9Item:Define:FirstByte, golden9Sub:Define:SecondByte;	(|(&Helpers.MinishScrub1Fusion, Helpers.AccessWestern, Helpers.HasSword), Helpers.Hundo);	Items.Rupee100
 
-WesternWoods_BeanstalkFusion_Chest;		`BLUEFUSION`;			0x0D-0x04-0x00;	(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);	Items.Kinstone.RedW
+WesternWoods_BeanstalkFusion_Chest;		`BLUEFUSION`;			0x0D-0x04-0x00;	(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);	Items.Kinstone.RedV
 WesternWoods_BeanstalkFusion_Item1		`BLUEFUSIONRUPEE`;	0x0F6143;		(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee20
 WesternWoods_BeanstalkFusion_Item2		`BLUEFUSIONRUPEE`;	0x0F6153;		(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee20
 WesternWoods_BeanstalkFusion_Item3		`BLUEFUSIONRUPEE`;	0x0F6163;		(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee20
@@ -5598,7 +5598,7 @@ CrenelBase_WaterCave_LeftChest;		Any;					0x26-0x08-0x00;													(|(&Helper
 CrenelBase_WaterCave_RightChest;	Any;					0x26-0x08-0x01;													(|(&Helpers.AccessTrilby, Helpers.LowerBean, Helpers.BombWalls, (|Items.BombBag, Items.RocsCape)), (&Helpers.CrenelWindCrest, (|Helpers.UpperBean, (&Items.GripRing, (|Helpers.BombWalls, Items.RocsCape))), Helpers.BombWalls, (|Items.BombBag, Items.RocsCape)), Helpers.Hundo);									Items.Kinstone.BlueS
 CrenelBase_WaterCave_HP;			`HP`;				0x0FB32B;														(|(&Helpers.AccessTrilby, Helpers.LowerBean, Helpers.BombWalls, Helpers.CrenelWaterCaveHP), (&Helpers.CrenelWindCrest, (|Helpers.UpperBean, (&Items.GripRing, (|Helpers.BombWalls, Items.RocsCape))), Helpers.BombWalls, Helpers.CrenelWaterCaveHP), Helpers.Hundo);												Items.PieceOfHeart
 CrenelBase_MinishVineHole_Chest;	Any;					0x35-0x00-0x00;													(|(&Helpers.AccessTrilby, Helpers.LowerBean, (|Helpers.BombWalls, Items.RocsCape), Helpers.CrenelDust), (&Helpers.CrenelWindCrest, (|Helpers.UpperBean, (&Items.GripRing, (|Helpers.BombWalls, Items.RocsCape))), Helpers.CrenelDust), Helpers.Hundo);															Items.Kinstone.BlueL
-CrenelBase_MinishCrack_Chest;		Any;					0x27-0x03-0x00;													(|(&Helpers.AccessTrilby, Helpers.LowerBean, (|Helpers.BombWalls, Items.RocsCape), Helpers.CrenelDust), (&Helpers.CrenelWindCrest, (|Helpers.UpperBean, (&Items.GripRing, (|Helpers.BombWalls, Items.RocsCape))), Helpers.CrenelDust), Helpers.Hundo);															Items.Kinstone.RedW
+CrenelBase_MinishCrack_Chest;		Any;					0x27-0x03-0x00;													(|(&Helpers.AccessTrilby, Helpers.LowerBean, (|Helpers.BombWalls, Items.RocsCape), Helpers.CrenelDust), (&Helpers.CrenelWindCrest, (|Helpers.UpperBean, (&Items.GripRing, (|Helpers.BombWalls, Items.RocsCape))), Helpers.CrenelDust), Helpers.Hundo);															Items.Kinstone.RedV
 
 Crenel_VineTop_GoldenTektite		`GREENFUSIONENEMY`;	golden2Item:Define:FirstByte, golden2Sub:Define:SecondByte; 			(|(&Helpers.MinesMinishKitchenFusion,Helpers.AccessCrenel, Helpers.HasSword), Helpers.Hundo);																						Items.Rupee100
 Crenel_BridgeCave_Chest;			Any;					0x26-0x07-0x00;													(|(&Helpers.AccessCrenel, Helpers.BombWalls), Helpers.Hundo);																													Items.Kinstone.BlueL
@@ -5630,7 +5630,7 @@ AccessMelari;										Helper;				;													(|Helpers.CrenelWindCrest, (&Hel
 Crenel_UpperBlock_Chest			`COF_OUTSIDE`;	Dungeon;				0x26-0x03-0x00;										(|Helpers.AccessMelari, Helpers.Hundo);							Items.Kinstone.BlueS
 Crenel_MinesPathFusion_Chest		`COF_OUTSIDE`;	`GREENFUSION`;		0x0FE096;											(|(&Helpers.DavidJr2Fusion, Helpers.AccessMelari), Helpers.Hundo);	Items.Shells.200
 Crenel_Melari_LowerMiddle_Dig		`COF_OUTSIDE`;	`DIGKINSTONE`;		0x0DC8C3;	 										(|(&Helpers.AccessMelari, Items.MoleMitts), Helpers.Hundo);		Items.Kinstone.BlueL
-Crenel_Melari_VeryBottom_Dig		`COF_OUTSIDE`;	`DIGKINSTONE`;		0x0DC933;	 										(|(&Helpers.AccessMelari, Items.MoleMitts), Helpers.Hundo);		Items.Kinstone.RedV
+Crenel_Melari_VeryBottom_Dig		`COF_OUTSIDE`;	`DIGKINSTONE`;		0x0DC933;	 										(|(&Helpers.AccessMelari, Items.MoleMitts), Helpers.Hundo);		Items.Kinstone.RedW
 Crenel_Melari_UpperMiddle_LeftDig	`COF_OUTSIDE`		`DIG`;				0x0DC923;	 										(|(&Helpers.AccessMelari, Items.MoleMitts), Helpers.Hundo);		Items.Rupee20
 Crenel_Melari_UpperMiddle_MiddleDig	`COF_OUTSIDE`;	`DIGKINSTONE`;		0x0DC913;	 										(|(&Helpers.AccessMelari, Items.MoleMitts), Helpers.Hundo);		Items.Kinstone.GreenG
 Crenel_Melari_UpperMiddle_RightDig	`COF_OUTSIDE`		`DIG`;				0x0DC903;	 										(|(&Helpers.AccessMelari, Items.MoleMitts), Helpers.Hundo);		Items.Rupee20
@@ -5656,9 +5656,9 @@ Swamp_NearWaterfall_CaveHP;		`HP`;				0x0D9907;															(|(&Helpers.Access
 Swamp_WaterfallFusion_DojoNPC:dojo;	`DOJOITEMRED`;		scarbladeDojoItem:Define:FirstByte, scarbladeDojoSub:Define:SecondByte;		(|(&Helpers.GreybladeFusion, Helpers.AccessSwamp, Helpers.SwampNorthShortcut, Items.Flippers), Helpers.Hundo);																													Items.FastSpin
 Swamp_NorthCave_Chest;				Any;					0x2A-0x01-0x00;														(|(&Helpers.AccessSwamp, Helpers.SwampNorthShortcut), Helpers.Hundo);																																						Items.Kinstone.GoldenSwamp
 Swamp_DiggingCave_LeftChest;		Any;					0x17-0x00-0x00;														(|(&Helpers.AccessSwamp, Items.MoleMitts), Helpers.Hundo);																																									Items.Shells.50
-Swamp_DiggingCave_RightChest;		Any;					0x17-0x00-0x01;														(|(&Helpers.AccessSwamp, Items.MoleMitts), Helpers.Hundo);																																									Items.Kinstone.RedV
-Swamp_Underwater_Top;				`WATERKINSTONE`;		0x0D9347;															(|(&Helpers.AccessSwamp, Items.Flippers), Helpers.Hundo);																																									Items.Kinstone.RedV
-Swamp_Underwater_Middle;			`WATERKINSTONE`;		0x0D9357;															(|(&Helpers.AccessSwamp, Items.Flippers), Helpers.Hundo);																																									Items.Kinstone.RedW
+Swamp_DiggingCave_RightChest;		Any;					0x17-0x00-0x01;														(|(&Helpers.AccessSwamp, Items.MoleMitts), Helpers.Hundo);																																									Items.Kinstone.RedW
+Swamp_Underwater_Top;				`WATERKINSTONE`;		0x0D9347;															(|(&Helpers.AccessSwamp, Items.Flippers), Helpers.Hundo);																																									Items.Kinstone.RedW
+Swamp_Underwater_Middle;			`WATERKINSTONE`;		0x0D9357;															(|(&Helpers.AccessSwamp, Items.Flippers), Helpers.Hundo);																																									Items.Kinstone.RedV
 Swamp_Underwater_Bottom;			`WATERKINSTONE`;		0x0D9367;															(|(&Helpers.AccessSwamp, Items.Flippers), Helpers.Hundo);																																									Items.Kinstone.RedE
 Swamp_SouthCave_Chest;				Any;					0x2A-0x00-0x00;														(|(&Helpers.AccessSwamp, Helpers.SwampShortcut, Helpers.SwampSouthShortcut), Helpers.Hundo);																																	Items.Kinstone.GoldenSwamp
 Swamp_Dojo_HP;					`HP`;				0x0D78CB;															(|(&Helpers.AccessSwamp, (|Items.RocsCape, Helpers.HasBow, (&Items.PegasusBoots, Items.Flippers))), (&Helpers.SwampWindCrest, Items.PegasusBoots), Helpers.Hundo);																	Items.PieceOfHeart
@@ -5666,10 +5666,10 @@ Swamp_Dojo_NPC:dojo;				`DOJOITEM`;			swiftbladeIDojoItem:Define:FirstByte, swif
 
 Swamp_MinishFusion_NorthCrack_Chest;	`GREENFUSION`;		0x27-0x09-0x00;	(|(&Helpers.TFZ1Fusion, Helpers.AccessSwamp, (|Items.PegasusBoots, Items.RocsCape, Helpers.HasBow)), Helpers.Hundo);											Items.Kinstone.BlueS
 Swamp_Minish_Mulldozer_BigChest;		Any;					0x27-0x06-0x00;	(|(&Helpers.AccessSwamp, (|Items.PegasusBoots, Items.RocsCape, Helpers.HasBow), (|Items.Flippers, Items.GustJar), Helpers.HasDamageSource), Helpers.Hundo);		`BOW`
-Swamp_MinishFusion_NorthWestCrack_Chest;	`BLUEGREENFUSION`;	0x27-0x0D-0x00;	(|(&Helpers.MinishScrub2Fusion, Helpers.AccessSwamp, (|Items.PegasusBoots, Items.RocsCape, Helpers.HasBow), (|Items.Flippers, Items.GustJar)), Helpers.Hundo);	Items.Kinstone.RedV
-Swamp_MinishFusion_WestCrack_Chest;		`GREENFUSION`;		0x27-0x0A-0x00;	(|(&Helpers.TFZ2Fusion, Helpers.AccessSwamp, (|Items.PegasusBoots, Items.RocsCape, Helpers.HasBow)), Helpers.Hundo);											Items.Kinstone.RedV
-Swamp_MinishFusion_VineCrack_Chest;		`GREENFUSION`;		0x27-0x0B-0x00;	(|(&Helpers.TFZ2Fusion, Helpers.TFZ3Fusion, Helpers.AccessSwamp, (|Items.PegasusBoots, Items.RocsCape, Helpers.HasBow)), Helpers.Hundo);						Items.Kinstone.RedW
-Swamp_MinishFusion_WaterHole_Chest;		`GREENFUSION`;		0x35-0x01-0x00;	(|(&Helpers.TFZ2Fusion, Helpers.AccessSwamp, (|Items.PegasusBoots, Items.RocsCape, Helpers.HasBow), Items.Flippers), Helpers.Hundo);							Items.Kinstone.RedW
+Swamp_MinishFusion_NorthWestCrack_Chest;	`BLUEGREENFUSION`;	0x27-0x0D-0x00;	(|(&Helpers.MinishScrub2Fusion, Helpers.AccessSwamp, (|Items.PegasusBoots, Items.RocsCape, Helpers.HasBow), (|Items.Flippers, Items.GustJar)), Helpers.Hundo);	Items.Kinstone.RedW
+Swamp_MinishFusion_WestCrack_Chest;		`GREENFUSION`;		0x27-0x0A-0x00;	(|(&Helpers.TFZ2Fusion, Helpers.AccessSwamp, (|Items.PegasusBoots, Items.RocsCape, Helpers.HasBow)), Helpers.Hundo);											Items.Kinstone.RedW
+Swamp_MinishFusion_VineCrack_Chest;		`GREENFUSION`;		0x27-0x0B-0x00;	(|(&Helpers.TFZ2Fusion, Helpers.TFZ3Fusion, Helpers.AccessSwamp, (|Items.PegasusBoots, Items.RocsCape, Helpers.HasBow)), Helpers.Hundo);						Items.Kinstone.RedV
+Swamp_MinishFusion_WaterHole_Chest;		`GREENFUSION`;		0x35-0x01-0x00;	(|(&Helpers.TFZ2Fusion, Helpers.AccessSwamp, (|Items.PegasusBoots, Items.RocsCape, Helpers.HasBow), Items.Flippers), Helpers.Hundo);							Items.Kinstone.RedV
 Swamp_MinishFusion_WaterHole_HP;		`GREENFUSIONHP`;		0x0DB3F7;		(|(&Helpers.TFZ2Fusion, Helpers.AccessSwamp, (|Items.PegasusBoots, Items.RocsCape, Helpers.HasBow), Items.Flippers), Helpers.Hundo);							Items.PieceOfHeart
 
 
@@ -5705,7 +5705,7 @@ Valley_DampeNPC;				Any;				0x0096B6;	(|(&Helpers.AccessValley, Helpers.DarkRoom
 Valley_GraveyardButterflyFusion_Item	`RC_OUTSIDE`;	`REDFUSIONDUNGEON`;	0x0FE14F;		(|(&Helpers.Nayru2Fusion,Helpers.AccessValley, Helpers.DarkRooms, Helpers.Graveyard), Helpers.Hundo);			Items.SwimButterfly
 Valley_GraveyardLeftFusion_Chest		`RC_OUTSIDE`;	`UWTFUSIONGREEN`;		0x0FE0DE;		(|(&Helpers.Siroc1Fusion, Helpers.AccessValley, Helpers.DarkRooms, Helpers.Graveyard), Helpers.Hundo);			Items.Kinstone.RedE
 Valley_GraveyardLeftGrave_HP			`RC_OUTSIDE`;	`DUNGEONHP`;			0x0D8AE7;		(|(&Helpers.AccessValley, Helpers.DarkRooms, Helpers.Graveyard, Helpers.LeftGraveHP), Helpers.Hundo);			Items.PieceOfHeart
-Valley_GraveyardRightFusion_Chest		`RC_OUTSIDE`;	`UWTFUSIONGREEN`;		0x0FE0E6;		(|(&Helpers.Siroc2Fusion, Helpers.AccessValley, Helpers.DarkRooms, Helpers.Graveyard), Helpers.Hundo);			Items.Kinstone.RedW
+Valley_GraveyardRightFusion_Chest		`RC_OUTSIDE`;	`UWTFUSIONGREEN`;		0x0FE0E6;		(|(&Helpers.Siroc2Fusion, Helpers.AccessValley, Helpers.DarkRooms, Helpers.Graveyard), Helpers.Hundo);			Items.Kinstone.RedV
 Valley_GraveyardRightGraveFusion_Chest	`RC_OUTSIDE`;	`BLUEFUSIONDUNGEON`;	0x34-0x01-0x00;	(|(&Helpers.Dampe1Fusion, Helpers.AccessValley, Helpers.DarkRooms, Helpers.Graveyard), Helpers.Hundo);			Items.Shells.100
 
 !define - RC_INSIDE - `RC_OUTSIDE`	:RCSmall	:Small	:Big	:Compass
@@ -5774,7 +5774,7 @@ Falls_TopCave_Chest;					`FALLSCHEST`;		0x33-0x00-0x00;											(|Helpers.Acce
 AccessClouds;					Helper;				;				(|(&Helpers.AccessFalls, Items.GripRing), Helpers.AccessWindTribe)
 
 Clouds_FreeChest;				`FALLSCHEST`;			0x08-0x01-0x00;	(|Helpers.AccessClouds, Helpers.Hundo);														Items.Kinstone.GoldenCloudTops
-Clouds_NorthEast_DigSpot;		`FALLSDIGKINSTONE`;	0x0DCB5B;		(|(&Helpers.AccessClouds, Items.MoleMitts), Helpers.Hundo);									Items.Kinstone.RedW
+Clouds_NorthEast_DigSpot;		`FALLSDIGKINSTONE`;	0x0DCB5B;		(|(&Helpers.AccessClouds, Items.MoleMitts), Helpers.Hundo);									Items.Kinstone.RedV
 Clouds_North_Kill;			`FALLSCHEST`;			0x0DCEDF;		(|(&Helpers.AccessClouds, (|Items.RocsCape, Items.MoleMitts), Helpers.CloudsKill), Helpers.Hundo);	Items.Kinstone.GoldenCloudTops
 Clouds_NorthWest_LeftChest;	`FALLSCHEST`;			0x08-0x01-0x03;	(|(&Helpers.AccessClouds, Items.MoleMitts), Helpers.Hundo);									Items.Shells.50
 Clouds_NorthWest_RightChest;	`FALLSCHEST`;			0x08-0x01-0x04;	(|(&Helpers.AccessClouds, Items.MoleMitts), Helpers.Hundo);									Items.Shells.50
@@ -5786,7 +5786,7 @@ Clouds_South_MiddleChest;		`FALLSCHEST`;			0x08-0x01-0x01;	(|(&Helpers.AccessClo
 Clouds_South_MiddleDigSpot;	`FALLSDIGKINSTONE`;	0x0DCB6B;		(|(&Helpers.AccessClouds, Items.MoleMitts), Helpers.Hundo);									Items.Kinstone.BlueL
 Clouds_South_Kill;			`FALLSCHEST`;			0x0DCEEF;		(|(&Helpers.AccessClouds, (|Items.RocsCape, Items.MoleMitts), Helpers.CloudsKill), Helpers.Hundo);	Items.Kinstone.GoldenCloudTops
 Clouds_South_RightChest;		`FALLSCHEST`;			0x08-0x01-0x06;	(|(&Helpers.AccessClouds, (|Items.RocsCape, Items.MoleMitts)), Helpers.Hundo);					Items.Shells.50
-Clouds_South_RightDigSpot;		`FALLSDIGKINSTONE`;	0x0DCB9B;		(|(&Helpers.AccessClouds, Items.MoleMitts), Helpers.Hundo);									Items.Kinstone.RedV
+Clouds_South_RightDigSpot;		`FALLSDIGKINSTONE`;	0x0DCB9B;		(|(&Helpers.AccessClouds, Items.MoleMitts), Helpers.Hundo);									Items.Kinstone.RedW
 Clouds_SouthEast_BottomDigSpot;	`FALLSDIGKINSTONE`;	0x0DCBAB;		(|(&Helpers.AccessClouds, Items.MoleMitts), Helpers.Hundo);									Items.Kinstone.BlueS
 Clouds_SouthEast_TopDigSpot;   `FALLSDIGKINSTONE`;	0x0DCB7B;		(|(&Helpers.AccessClouds, Items.MoleMitts), Helpers.Hundo);									Items.Kinstone.GreenG
 
@@ -5805,8 +5805,8 @@ WindTribe_2F_Gregal_NPC1	`POW_F_OUTSIDE`;	`WTFUSION`;			0x014C5C;											(|(&
 WindTribe_2F_Gregal_NPC2	`POW_OUTSIDE`;	`PALACEOUTSIDECHEST`;	0x014CBC;											(|(&Helpers.Gregal, Helpers.AccessWindTribe), Helpers.Hundo);							`LIGHTARROW`
 WindTribe_3F_LeftChest		`POW_OUTSIDE`;	`PALACEOUTSIDECHEST`;	0x30-0x02-0x02;										(|Helpers.AccessWindTribe, Helpers.Hundo);											Items.Kinstone.BlueL
 WindTribe_3F_CenterChest	`POW_OUTSIDE`;	`PALACEOUTSIDECHEST`;	0x30-0x02-0x01;										(|Helpers.AccessWindTribe, Helpers.Hundo);											Items.Kinstone.BlueS
-WindTribe_3F_RightChest	`POW_OUTSIDE`;	`PALACEOUTSIDECHEST`;	0x30-0x02-0x00;										(|Helpers.AccessWindTribe, Helpers.Hundo);											Items.Kinstone.RedV
-WindTribe_4F_LeftChest		`POW_OUTSIDE`;	`PALACEOUTSIDECHEST`;	0x30-0x03-0x00;										(|Helpers.AccessWindTribe, Helpers.Hundo);											Items.Kinstone.RedW
+WindTribe_3F_RightChest	`POW_OUTSIDE`;	`PALACEOUTSIDECHEST`;	0x30-0x02-0x00;										(|Helpers.AccessWindTribe, Helpers.Hundo);											Items.Kinstone.RedW
+WindTribe_4F_LeftChest		`POW_OUTSIDE`;	`PALACEOUTSIDECHEST`;	0x30-0x03-0x00;										(|Helpers.AccessWindTribe, Helpers.Hundo);											Items.Kinstone.RedV
 WindTribe_4F_RightChest	`POW_OUTSIDE`;	`PALACEOUTSIDECHEST`;	0x30-0x03-0x01;										(|Helpers.AccessWindTribe, Helpers.Hundo);											Items.Kinstone.RedE
 
 Palace_Entrance							`DUNGEONENTRANCE`;	DumPoWENT:Define:FirstByte, DumPoWENT2:Define:SecondByte;	(|Helpers.AccessPalace, Helpers.Hundo);												Items.Entrance.0x06
@@ -5940,7 +5940,7 @@ Fortress_Left_2F_Item4					`FOW_INSIDE`	`FORTRESSRUPEE`;		0x0F3F67;													
 Fortress_Left_2F_Item5					`FOW_INSIDE`	`FORTRESSRUPEE`;		0x0F3F77;															(|(&`ENTERFOW`, Helpers.FoWLeftRupee), Helpers.Hundo);																										Items.Rupee1
 Fortress_Left_2F_Item6					`FOW_INSIDE`	`FORTRESSRUPEE`;		0x0F3F87;															(|(&`ENTERFOW`, Helpers.FoWEyeSwitch, Helpers.FoWStalfosFight), Helpers.Hundo);																					Items.Rupee5
 Fortress_Left_2F_Item7					`FOW_INSIDE`	`FORTRESSRUPEE`;		0x0F3F97;															(|(&`ENTERFOW`, Helpers.FoWEyeSwitch, Helpers.FoWStalfosFight), Helpers.Hundo);																					Items.Rupee5
-Fortress_Left_3F_SwitchChest			`FOW_INSIDE`;	`FORTRESSCHEST`;		0x18-0x02-0x00;														(|(&`ENTERFOW`, Helpers.FoWEyeSwitch, Helpers.FoWStalfosFight, Helpers.FoWDigSwitch), Helpers.Hundo);																Items.Kinstone.RedW
+Fortress_Left_3F_SwitchChest			`FOW_INSIDE`;	`FORTRESSCHEST`;		0x18-0x02-0x00;														(|(&`ENTERFOW`, Helpers.FoWEyeSwitch, Helpers.FoWStalfosFight, Helpers.FoWDigSwitch), Helpers.Hundo);																Items.Kinstone.RedV
 Fortress_Left_3F_Eyegore_BigChest		`FOW_INSIDE`;	`FORTRESSCOMPASS`;	0x58-0x00-0x00;														(|(&`ENTERFOW`, Helpers.FoWEyeSwitch, Helpers.FoWStalfosFight, Helpers.FoWCloneSwitch), Helpers.Hundo);																Items.DungeonMap.0x1A
 Fortress_Left_3F_ItemDrop				`FOW_INSIDE`;	`FORTRESSSMALL`;		fowLeftItem:Define:FirstByte,fowLeftSub:Define:SecondByte;					(|(&`ENTERFOW`, Helpers.FoWLeftDrop), Helpers.Hundo);																											Items.SmallKey.0x1A
 
@@ -5950,7 +5950,7 @@ Fortress_Middle_2F_StatueChest			`FOW_INSIDE`;	`FORTRESSCHEST`;		0x18-0x01-0x01;
 Fortress_Right_2F_LeftChest			`FOW_INSIDE`;	`FORTRESSCHEST`;		0x58-0x1D-0x00;														(|`ENTERFOW`, Helpers.Hundo);																																Items.Kinstone.BlueL
 Fortress_Right_2F_RightChest			`FOW_INSIDE`;	`FORTRESSCHEST`;		0x58-0x1D-0x01;														(|`ENTERFOW`, Helpers.Hundo);																																Items.Kinstone.BlueS
 Fortress_Right_2F_DigChest				`FOW_INSIDE`;	`FORTRESSCHEST`;		0x18-0x01-0x02;														(|(&`ENTERFOW`, Items.MoleMitts), Helpers.Hundo);																												Items.Kinstone.RedE
-Fortress_Right_3F_DigChest				`FOW_INSIDE`;	`FORTRESSCHEST`;		0x18-0x02-0x01;														(|(&`ENTERFOW`, Items.MoleMitts), Helpers.Hundo);																												Items.Kinstone.RedV
+Fortress_Right_3F_DigChest				`FOW_INSIDE`;	`FORTRESSCHEST`;		0x18-0x02-0x01;														(|(&`ENTERFOW`, Items.MoleMitts), Helpers.Hundo);																												Items.Kinstone.RedW
 Fortress_Right_3F_ItemDrop				`FOW_INSIDE`;	`FORTRESSSMALL`;		fowRightItem:Define:FirstByte,fowRightSub:Define:SecondByte;				(|(&`ENTERFOW`, Helpers.FoWRightDrop), Helpers.Hundo);																										Items.SmallKey.0x1A
 Fortress_Entrance_1F_RightHP			`FOW_INSIDE`;	`FORTRESSHP`;			0x0E2DD7;															(|(&`ENTERFOW`, Helpers.FoWHP), Helpers.Hundo);																												Items.PieceOfHeart
 
@@ -6031,8 +6031,8 @@ Droplets_RightPath_B1_BluChu_BigChest			`TOD_INSIDE`;	Dungeon;					0x60-0x10-0x0
 Droplets_RightPath_B2_FrozenChest				`TOD_INSIDE`;	Dungeon;					0x60-0x32-0x00;													(|(&`ENTERTOD`, Items.Lantern, (|Helpers.ToDMainRoom, (&Helpers.ToD2ndRupeePath, Helpers.ToDDarkMazeReverse, Helpers.ToDScissorBeetles, Helpers.ToDRightIce))), Helpers.Hundo);																							Items.Rupee100
 Droplets_RightPath_B2_DarkMaze_BottomChest		`TOD_INSIDE`;	Dungeon;					0x60-0x2B-0x03;													(|(&`ENTERTOD`, (|(&Helpers.ToDMainRoom, Helpers.ToDRightIceBlock, Helpers.ToDRightIce, Helpers.ToDScissorBeetles, Helpers.DarkRooms, Helpers.ToDDarkMaze), (&Helpers.ToD2ndRupeePath, Helpers.ToDDarkMazeReverse))), Helpers.Hundo);											Items.Kinstone.RedE
 Droplets_RightPath_B2_Mulldozers_ItemDrop		`TOD_INSIDE`;	`DUNGEONSMALL`;			0x0E55CB;														(|(&`ENTERTOD`, Helpers.BombWalls, Helpers.ToDMulldozer, (|(&Helpers.ToDMainRoom, Helpers.ToDRightIceBlock, Helpers.ToDRightIce, Helpers.ToDScissorBeetles, Helpers.DarkRooms, Helpers.ToDDarkMaze), (&Helpers.ToD2ndRupeePath, Helpers.ToDDarkMazeReverse))), Helpers.Hundo);	Items.SmallKey.0x1B
-Droplets_RightPath_B2_DarkMaze_TopRightChest		`TOD_INSIDE`;	Dungeon;					0x60-0x2B-0x01;													(|(&`ENTERTOD`, (|(&Helpers.ToDMainRoom, Helpers.ToDRightIceBlock, Helpers.ToDRightIce, Helpers.ToDScissorBeetles, Helpers.DarkRooms, Helpers.ToDDarkMaze), (&Helpers.ToD2ndRupeePath, Helpers.ToDDarkMazeReverse))), Helpers.Hundo);											Items.Kinstone.RedV
-Droplets_RightPath_B2_DarkMaze_TopLeftChest		`TOD_INSIDE`;	Dungeon;					0x60-0x2B-0x02;													(|(&`ENTERTOD`, (|(&Helpers.ToDMainRoom, Helpers.ToDRightIceBlock, Helpers.ToDRightIce, Helpers.ToDScissorBeetles, Helpers.DarkRooms, Helpers.ToDDarkMaze), (&Helpers.ToD2ndRupeePath, Helpers.ToDDarkMazeReverse))), Helpers.Hundo);											Items.Kinstone.RedW
+Droplets_RightPath_B2_DarkMaze_TopRightChest		`TOD_INSIDE`;	Dungeon;					0x60-0x2B-0x01;													(|(&`ENTERTOD`, (|(&Helpers.ToDMainRoom, Helpers.ToDRightIceBlock, Helpers.ToDRightIce, Helpers.ToDScissorBeetles, Helpers.DarkRooms, Helpers.ToDDarkMaze), (&Helpers.ToD2ndRupeePath, Helpers.ToDDarkMazeReverse))), Helpers.Hundo);											Items.Kinstone.RedW
+Droplets_RightPath_B2_DarkMaze_TopLeftChest		`TOD_INSIDE`;	Dungeon;					0x60-0x2B-0x02;													(|(&`ENTERTOD`, (|(&Helpers.ToDMainRoom, Helpers.ToDRightIceBlock, Helpers.ToDRightIce, Helpers.ToDScissorBeetles, Helpers.DarkRooms, Helpers.ToDDarkMaze), (&Helpers.ToD2ndRupeePath, Helpers.ToDDarkMazeReverse))), Helpers.Hundo);											Items.Kinstone.RedV
 Droplets_RightPath_B2_UnderpassItem1			`TOD_INSIDE`	`DUNGEONRUPEE`;			0x0E483F;														(|(&`ENTERTOD`, Helpers.ToDRightRupees), Helpers.Hundo);	Items.Rupee1
 Droplets_RightPath_B2_UnderpassItem2			`TOD_INSIDE`	`DUNGEONRUPEE`;			0x0E484F;														(|(&`ENTERTOD`, Helpers.ToDRightRupees), Helpers.Hundo);	Items.Rupee1
 Droplets_RightPath_B2_UnderpassItem3			`TOD_INSIDE`	`DUNGEONRUPEE`;			0x0E485F;														(|(&`ENTERTOD`, Helpers.ToD2ndRupeePath), Helpers.Hundo);	Items.Rupee1
@@ -6087,13 +6087,13 @@ PoW2ndHalf;												Helper;			;																	`ENTERPOW`, Items.RocsCape, (
 Palace_2ndHalf_1F_DarkRoom_BigChest				`POW_INSIDE`;	`PALACECOMPASS`;	0x70-0x32-0x00;														(|(&`ENTERPOW`, (|Helpers.PoW2ndHalf, Helpers.PoWBlueWarp, (&Helpers.PoWRedWarp, Helpers.OverworldBlocks)), Helpers.DarkRooms), Helpers.Hundo);																																												Items.Compass.0x1C
 Palace_2ndHalf_1F_DarkRoom_SmallChest			`POW_INSIDE`;	`PALACESMALL`;	0x70-0x32-0x01;														(|(&`ENTERPOW`, (|Helpers.PoW2ndHalf, Helpers.PoWBlueWarp, (&Helpers.PoWRedWarp, Helpers.OverworldBlocks)), Helpers.DarkRooms), Helpers.Hundo);																																												Items.SmallKey.0x1C
 Palace_2ndHalf_2F_ManyRollers_Chest				`POW_INSIDE`;	`PALACESMALL`;	0x70-0x2B-0x00;														(|(&`ENTERPOW`, (|(&Helpers.DarkRooms, (|Helpers.PoW2ndHalf, Helpers.PoWBlueWarp)), (&Helpers.PoWRedWarp, Helpers.OverworldBlocks)), Helpers.PoWPeahatRoom, Helpers.PoWRollerRoom), Helpers.Hundo);																																Items.SmallKey.0x1C
-Palace_2ndHalf_2F_TwinWizrobes_Chest			`POW_INSIDE`;	`PALACECHEST`;	0x70-0x29-0x00;														(|(&`ENTERPOW`, (|(&Helpers.DarkRooms, (|(&Helpers.PoW2ndHalf1stDoor, Items.RocsCape), Helpers.PoWShortcuts), (|Helpers.PoW2ndHalf, Helpers.PoWBlueWarp)), (&Helpers.PoWRedWarp, Helpers.OverworldBlocks)), Helpers.PoWDoubleWiz), Helpers.Hundo);																						Items.Kinstone.RedW
+Palace_2ndHalf_2F_TwinWizrobes_Chest			`POW_INSIDE`;	`PALACECHEST`;	0x70-0x29-0x00;														(|(&`ENTERPOW`, (|(&Helpers.DarkRooms, (|(&Helpers.PoW2ndHalf1stDoor, Items.RocsCape), Helpers.PoWShortcuts), (|Helpers.PoW2ndHalf, Helpers.PoWBlueWarp)), (&Helpers.PoWRedWarp, Helpers.OverworldBlocks)), Helpers.PoWDoubleWiz), Helpers.Hundo);																						Items.Kinstone.RedV
 Palace_2ndHalf_3F_FireWizrobes_BigChest			`POW_INSIDE`;	`PALACECOMPASS`;	0x70-0x1C-0x00;														(|(&`ENTERPOW`, (|(&Helpers.DarkRooms, (|(&Helpers.PoW2ndHalf1stDoor, Items.RocsCape), Helpers.PoWShortcuts), (|Helpers.PoW2ndHalf, Helpers.PoWBlueWarp)), (&Helpers.PoWRedWarp, Helpers.OverworldBlocks)), Helpers.PoWTribleWiz), Helpers.Hundo);																						Items.DungeonMap.0x1C
 Palace_2ndHalf_4F_HP							`POW_INSIDE`;	`PALACEHP`;		0x0E77A7;															(|(&`ENTERPOW`, Items.RocsCape, Helpers.PoWHP), Helpers.Hundo);																																																													Items.PieceOfHeart
 Palace_2ndHalf_4F_SwitchHit_Chest				`POW_INSIDE`;	`PALACECHEST`;	0x70-0x15-0x00;														(|(&`ENTERPOW`, (|(&Helpers.DarkRooms, (|(&Helpers.PoW2ndHalf1stDoor, Items.RocsCape), Helpers.PoWShortcuts), Helpers.PoWHandRoom, Items.RocsCape, Helpers.PoWSwitch,(|Helpers.PoW2ndHalf, Helpers.PoWBlueWarp)), (&Helpers.PoWRedWarp, Helpers.OverworldBlocks, Helpers.PoWSwitch, (|Items.RocsCape, Helpers.PoWHandRoom)))), Helpers.Hundo);	Items.Rupee200
 Palace_2ndHalf_5F_Bombarossa_Chest				`POW_INSIDE`;	`PALACESMALL`;	0x70-0x03-0x00;														(|(&`ENTERPOW`, (|(&Helpers.DarkRooms, (|(&Helpers.PoW2ndHalf1stDoor, Items.RocsCape), Helpers.PoWShortcuts), Helpers.PoWHandRoom, Items.RocsCape, (|Helpers.PoW2ndHalf, Helpers.PoWBlueWarp)), Helpers.PoWRedWarp), Helpers.PoWRedWarpDoor, Helpers.BombWalls, Helpers.OverworldBlocks), Helpers.Hundo);									Items.SmallKey.0x1C
 Palace_2ndHalf_4F_BlockMaze_Chest				`POW_INSIDE`;	`PALACECHEST`;	0x70-0x10-0x00;														(|(&`ENTERPOW`, (|(&Helpers.DarkRooms, (|(&Helpers.PoW2ndHalf1stDoor, Items.RocsCape), Helpers.PoWShortcuts), Helpers.PoWHandRoom, Items.RocsCape, (|Helpers.PoW2ndHalf, Helpers.PoWBlueWarp)), Helpers.PoWRedWarp), Helpers.PoWRedWarpDoor, Helpers.BombWalls, Helpers.OverworldBlocks, Helpers.PoWLastDoor), Helpers.Hundo);					Items.Kinstone.BlueS
-Palace_2ndHalf_5F_RightSide_Chest				`POW_INSIDE`;	`PALACECHEST`;	0x70-0x04-0x00;														(|(&`ENTERPOW`, (|(&Helpers.DarkRooms, (|(&Helpers.PoW2ndHalf1stDoor, Items.RocsCape), Helpers.PoWShortcuts), Helpers.PoWHandRoom, Items.RocsCape, (|Helpers.PoW2ndHalf, Helpers.PoWBlueWarp)), Helpers.PoWRedWarp), Helpers.PoWRedWarpDoor, Helpers.BombWalls, Helpers.OverworldBlocks, Helpers.PoWLastDoor, Items.RocsCape), Helpers.Hundo);	Items.Kinstone.RedV
+Palace_2ndHalf_5F_RightSide_Chest				`POW_INSIDE`;	`PALACECHEST`;	0x70-0x04-0x00;														(|(&`ENTERPOW`, (|(&Helpers.DarkRooms, (|(&Helpers.PoW2ndHalf1stDoor, Items.RocsCape), Helpers.PoWShortcuts), Helpers.PoWHandRoom, Items.RocsCape, (|Helpers.PoW2ndHalf, Helpers.PoWBlueWarp)), Helpers.PoWRedWarp), Helpers.PoWRedWarpDoor, Helpers.BombWalls, Helpers.OverworldBlocks, Helpers.PoWLastDoor, Items.RocsCape), Helpers.Hundo);	Items.Kinstone.RedW
 
 CompletePalace;											Helper;			;																	`ENTERPOW`, (|(&Helpers.DarkRooms, (|(&Helpers.PoW2ndHalf1stDoor, Items.RocsCape), Helpers.PoWShortcuts), Helpers.PoWHandRoom, Items.RocsCape, (|Helpers.PoW2ndHalf, Helpers.PoWBlueWarp)), Helpers.PoWRedWarp), Helpers.PoWRedWarpDoor, Helpers.BombWalls, Helpers.OverworldBlocks, Helpers.PoWLastDoor, Items.RocsCape, Helpers.PoWBossDoor, (|Helpers.CanDownThrust, (|Helpers.CanSplit2, Helpers.CanSplit3, Helpers.CanSplit4));
 
