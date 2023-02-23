@@ -102,7 +102,7 @@ public class Parser
                     {
                         case "Locations":
                         case "Helpers":
-                            var existingDep = dependencies.FirstOrDefault(dep => dep.GetType() == typeof(LocationDependency) && ((LocationDependency)dep).LocationName == dependencyParts[1]);
+                            var existingDep = Dependencies.FirstOrDefault(dep => dep.GetType() == typeof(LocationDependency) && ((LocationDependency)dep).LocationName == dependencyParts[1]);
                             if (existingDep != null)
                                 dependencies.Add(existingDep);
                             else

@@ -247,7 +247,8 @@ internal class Shuffler
         {
             locationStrings = File.ReadAllLines(logicFile);
         }
-
+        
+        var time = DateTime.Now;
         var locationAndItems = LogicParser.ParseLocationsAndItems(locationStrings, Rng);
 
         LogicParser.SubParser.DuplicateAmountReplacements();
@@ -266,6 +267,11 @@ internal class Shuffler
             countDep.ExpandRequiredDependencies(collectedLocations, collectedItems);
         foreach (var itemDep in distinctDeps.Where(dep => dep.GetType() == typeof(NotItemDependency)))
             itemDep.ExpandRequiredDependencies(collectedLocations, collectedItems);
+
+        var diff = DateTime.Now - time;
+        Logger.Instance.BeginLogTransaction();
+        Logger.Instance.LogInfo($"Timing Benchmark - Parsing logic file took {diff.Seconds}.{diff.Milliseconds} seconds!");
+        Logger.Instance.SaveLogTransaction(true);
     }
 
     public Item AddItem(Item item)
@@ -452,6 +458,7 @@ internal class Shuffler
     /// </summary>
     public void RandomizeLocations(bool useSphereBasedShuffler = false)
     {
+        var time = DateTime.Now;
         var locationGroups = Locations.GroupBy(location => location.Type).ToList();
         //We now do randomization in phases, following the ordering of items in <code>LocationType</code>
         //Make it so randomized music doesn't affect randomization
@@ -523,6 +530,11 @@ internal class Shuffler
         else
             FillWithUniformShuffler(locationGroups, ref unfilledLocations);
 
+        var diff = DateTime.Now - time;
+        Logger.Instance.BeginLogTransaction();
+        Logger.Instance.LogInfo($"Timing Benchmark - Shuffling with seed {Seed} and settings {MinifiedSettings.GenerateSettingsString(GetSortedSettings(), GetLogicOptionsCrc32())} took {diff.Seconds}.{diff.Milliseconds} seconds!");
+        Logger.Instance.SaveLogTransaction(true);
+        
         Randomized = true;
     }
 
@@ -1727,6 +1739,8 @@ internal class Shuffler
 
     public void ClearLogic()
     {
+        DependencyBase.BeatVaatiDependency = null;
+        Location.ShufflerConstraints.Clear();
         Locations.Clear();
 
         Music.Clear();
