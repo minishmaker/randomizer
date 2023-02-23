@@ -823,8 +823,16 @@ internal class Shuffler
 				items.Insert(itemIndex, item);
 				if (errorIndexes.Count == items.Count)
 				{
-					// The filler broke
-					throw new ShuffleException($"Could not place {item.Type}! Subvalue: {StringUtil.AsStringHex2(item.SubValue)}, Dungeon: {item.Dungeon}");
+                    // The filler broke
+                    if (item.ShufflePool == ItemPool.DungeonMinor)
+                    {
+                        while (items.Count > 0)
+                        {
+                            items.RemoveAt(0);
+                        }
+                        continue;
+                    }
+                    throw new ShuffleException($"Could not place {item.Type}! Subvalue: {StringUtil.AsStringHex2(item.SubValue)}, Dungeon: {item.Dungeon}");
 				}
 
 				continue;
