@@ -3,23 +3,76 @@ using RandomizerCore.Randomizer.Models;
 
 namespace RandomizerCore.Randomizer.Logic.Dependency;
 
-
 public class LocationDependency : DependencyBase
 {
-    internal readonly string _requiredLocationName;
+    internal readonly string LocationName;
+    private List<DependencyBase> LocationDependencies;
 
-    public LocationDependency(string locationName)
+    public LocationDependency(string locationName) : base(true)
     {
-        _requiredLocationName = locationName;
+        if (locationName == "BeatVaati") 
+            BeatVaatiDependency = this;
+
+        LocationName = locationName;
+        LocationDependencies = new List<DependencyBase>();
     }
 
-    public override bool DependencyFulfilled(List<Item> availableItems, List<Location.Location> locations, Item? itemToPlace = null)
+    public override bool DependencyFulfilled(Item? itemToPlace = null)
     {
-        foreach (var location in locations)
-            if (location.Name == _requiredLocationName)
-                return location.IsAccessible(availableItems, locations, itemToPlace);
+        if (AlreadyEvaluated) return false;
         
-        throw new ShuffleException(
-            $"Could not find location {_requiredLocationName}. You may have an invalid logic file!");
+        AlreadyEvaluated = true;
+
+        try
+        {
+            return SupportsCaching ? Result : LocationDependencies.All(dependency => dependency.DependencyFulfilled(itemToPlace));
+        }
+        finally
+        {
+            AlreadyEvaluated = false;
+        }
+    }
+
+    public override void UpdateDependencyResult(bool newResult)
+    {
+        if (!SupportsCaching || AlreadyEvaluated) return;
+
+        AlreadyEvaluated = true;
+
+        Result = newResult && LocationDependencies.All(child => child.Result);
+
+        foreach (var parent in Parents)
+            parent.UpdateDependencyResult(Result);
+
+        AlreadyEvaluated = false;
+    }
+
+    public override void AddDependencyTargetToDependency(object target)
+    {
+        //Does nothing
+    }
+
+    public override void ExpandRequiredDependencies(List<Location.Location> locations, List<Item> items)
+    {
+        var location = locations.FirstOrDefault(location => location.Name == LocationName);
+
+        if (location == null) throw new ParserException($"Location of name {LocationName} could not be found!");
+
+        location.RelatedDependencies.Add(this);
+        LocationDependencies = location.Dependencies;
+
+        if (LocationDependencies.Count == 0) 
+        { 
+            Result = true;
+
+            foreach (var parent in Parents)
+                parent.UpdateDependencyResult(Result);
+        }
+
+        foreach (var dependency in LocationDependencies)
+        {
+            dependency.AddParentDependencyToThisDependency(this);
+            if (!dependency.SupportsCaching) SupportsCaching = false;
+        }
     }
 }
