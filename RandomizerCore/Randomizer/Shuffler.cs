@@ -243,12 +243,18 @@ internal class Shuffler
 			locationStrings = File.ReadAllLines(logicFile);
 		}
 
+        var time = DateTime.Now;
 		var locationAndItems = _logicParser.ParseLocationsAndItems(locationStrings, _rng);
 
 		_logicParser.SubParser.DuplicateAmountReplacements();
 		_logicParser.SubParser.DuplicateIncrementalReplacements();
 		locationAndItems.locations.ForEach(AddLocation);
 		locationAndItems.items.ForEach(AddItem);
+        
+        var diff = DateTime.Now - time;
+        Logger.Instance.BeginLogTransaction();
+        Logger.Instance.LogInfo($"Timing Benchmark - Parsing logic file took {diff.Seconds}.{diff.Milliseconds} seconds!");
+        Logger.Instance.SaveLogTransaction(true);
 	}
 
 	public void AddItem(Item item)
@@ -430,7 +436,8 @@ internal class Shuffler
 	///     Shuffles all locations, ensuring the game is beatable within the logic and all Major/Nice items are reachable.
 	/// </summary>
 	public void RandomizeLocations(bool useSphereBasedShuffler = false)
-	{
+    {
+        var time = DateTime.Now;
 		var locationGroups = _locations.GroupBy(location => location.Type).ToList();
 		//We now do randomization in phases, following the ordering of items in <code>LocationType</code>
 		//Make it so randomized music doesn't affect randomization
@@ -488,7 +495,12 @@ internal class Shuffler
 			FillWithSphereBasedShuffler(locationGroups, ref unfilledLocations);
 		else
 			FillWithUniformShuffler(locationGroups, ref unfilledLocations);
-
+        
+        var diff = DateTime.Now - time;
+        Logger.Instance.BeginLogTransaction();
+        Logger.Instance.LogInfo($"Timing Benchmark - Shuffling with seed {Seed} and settings {MinifiedSettings.GenerateSettingsString(GetSortedSettings(), GetLogicOptionsCrc32())} took {diff.Seconds}.{diff.Milliseconds} seconds!");
+        Logger.Instance.SaveLogTransaction(true);
+        
 		_randomized = true;
 	}
 
@@ -1571,6 +1583,7 @@ internal class Shuffler
 	public void ClearLogic()
 	{
 		_locations.Clear();
+        Location.ShufflerConstraints.Clear();
 		
 		_music.Clear();
 		_unshuffledItems.Clear();
