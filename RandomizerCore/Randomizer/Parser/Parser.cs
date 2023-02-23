@@ -114,8 +114,18 @@ public class Parser
                             break;
                         case "Items":
                             var item = new Item(sequence, " Parse");
-                            var itemDependency = new ItemDependency(item, count);
-                            dependencies.Add(itemDependency);
+                            
+                            var existingItemDep = Dependencies.FirstOrDefault(dep =>
+                                dep.GetType() == typeof(ItemDependency) && ((ItemDependency)dep).Count == count &&
+                                ((ItemDependency)dep).RequiredItem.Equals(item));
+                            
+                            if (existingItemDep != null)
+                                dependencies.Add(existingItemDep);
+                            else
+                            {
+                                var itemDependency = new ItemDependency(item, count);
+                                dependencies.Add(itemDependency);
+                            }
 
                             break;
                         default:

@@ -5,8 +5,8 @@ namespace RandomizerCore.Randomizer.Logic.Dependency;
 public class ItemDependency : DependencyBase
 {
     private readonly List<Item> ChildItems;
-    private readonly int Count;
-    private readonly Item RequiredItem;
+    internal readonly int Count;
+    internal readonly Item RequiredItem;
 
     public ItemDependency(Item item, int count = 1) : base(true)
     {
