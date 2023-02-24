@@ -483,8 +483,14 @@ internal class Shuffler
         nextLocationGroup.Shuffle(Rng);
         FastFillLocations(DungeonEntrances, nextLocationGroup);
 
+        //Add all unfilled items to the available pool
+        nextLocationGroup = locationGroups.Any(group => group.Key == LocationType.Unshuffled)
+            ? locationGroups.First(group => group.Key == LocationType.Unshuffled).ToList()
+            : new List<Location>();
+        FilledLocations.AddRange(nextLocationGroup);
+
         //Grab all items that we need to beat the seed
-        var allItems = MajorItems.Concat(DungeonMajorItems).Concat(UnshuffledItems).ToList();
+        var allItems = MajorItems.Concat(DungeonMajorItems).ToList();
 
         //Like entrances, constraints shouldn't check logic when placing
         //Shuffle constraints
@@ -506,16 +512,13 @@ internal class Shuffler
             : new List<Location>();
         var unfilledLocations = FillLocationsFrontToBack(DungeonPrizes, nextLocationGroup, allItems);
 
-        //For dungeon majors, assume we have all majors and unshuffled items
-        var allMajorsAndUnshuffled = MajorItems.Concat(UnshuffledItems).ToList();
-
         //Shuffle dungeon majors
         nextLocationGroup = locationGroups.Any(group => group.Key == LocationType.Dungeon)
             ? locationGroups.First(group => group.Key == LocationType.Dungeon).ToList()
             : new List<Location>();
         unfilledLocations.AddRange(FillLocationsFrontToBack(DungeonMajorItems,
             nextLocationGroup,
-            allMajorsAndUnshuffled,
+            MajorItems,
             unfilledLocations));
 
         //Shuffle dungeon minors
@@ -608,12 +611,14 @@ internal class Shuffler
         FastFillLocations(FillerItems.ToList(), unfilledLocations);
 
         // Get every item that can be logically obtained, to check if the game can be completed
-        var finalMajorItems = GetAvailableItems(new List<Item>());
+        //var finalMajorItems = GetAvailableItems(new List<Item>());
+        var finalFilledLocations = UpdateObtainedItemsFromPlacedLocations();
 
         if (!DependencyBase.BeatVaatiDependency!.DependencyFulfilled())
             throw new ShuffleException("Randomization succeeded, but could not beat Vaati!");
         
-        finalMajorItems.ForEach(item => item.NotifyParentDependencies(false));
+        finalFilledLocations.ForEach(location => location.Contents!.Value.NotifyParentDependencies(false));
+        FilledLocations.AddRange(finalFilledLocations);
     }
 
     private List<Location> FillLocationsSphereBased(List<Item> allShuffledItems, List<Location> preFilledLocations,
@@ -632,7 +637,7 @@ internal class Shuffler
         var shuffledLocationsThisSphere = locationsAvailableThisSphere
             .Where(location => location.Type is not LocationType.Unshuffled).ToList();
 
-        var maxRetries = allShuffledItems.Count;
+        var maxRetries = 10000; //Constant amount to make sure we really try to gen a seed before giving up
 
         var sphere = new Sphere
         {
@@ -649,14 +654,12 @@ internal class Shuffler
 
         while (!canBeatVaati)
         {
-            if (totalPermutations++ > 50000)
+            if (totalPermutations++ > 200000)
                 throw new ShuffleException(
                     "Could not find a viable seed with Hendrus Shuffler after 50,000 permutations! Please let the dev team know what settings and seed you are using!");
 
             shuffledLocationsThisSphere.Shuffle(Rng);
 
-            var availableMajorItems = allShuffledItems
-                .Where(item => item.ShufflePool is ItemPool.Major or ItemPool.DungeonMajor).ToList();
             var placedItemsThisSphere = new List<Item>();
 
             var forLoopRetryCount = 0;
@@ -706,6 +709,9 @@ internal class Shuffler
 
                 ++i;
             }
+            
+            placedItemsThisSphere.ForEach(item => item.NotifyParentDependencies(true));
+            preFilledItemsPlacedThisSphere.ForEach(item => item.NotifyParentDependencies(true));
 
             var locationsAvailableNextSphere =
                 allPlaceableLocations.Where(location => location.IsAccessible()).ToList();
@@ -713,6 +719,13 @@ internal class Shuffler
             if (locationsAvailableNextSphere.Count == 0 && preFilledLocationsPlacedThisSphere.Count == 0)
             {
                 retryCount++;
+
+                preFilledLocations.AddRange(preFilledLocationsPlacedThisSphere);
+                allShuffledItems.AddRange(placedItemsThisSphere);
+                
+                placedItemsThisSphere.ForEach(item => item.NotifyParentDependencies(false));
+                preFilledItemsPlacedThisSphere.ForEach(item => item.NotifyParentDependencies(false));
+                
                 if (retryCount > maxRetries)
                 {
                     if (sphereNumber == 0)
@@ -721,20 +734,25 @@ internal class Shuffler
                     sphereNumber--;
 
                     allPlaceableLocations.AddRange(locationsAvailableThisSphere);
-                    allShuffledItems.AddRange(placedItemsThisSphere);
 
                     var lastSphere = spheres[sphereNumber];
                     allShuffledItems.AddRange(lastSphere.Items);
 
                     foreach (var item in lastSphere.Items)
+                    {
                         obtainedItems.Remove(item);
+                        item.NotifyParentDependencies(false);
+                    }
 
                     foreach (var item in lastSphere.PreFilledItemsAddedThisSphere)
+                    {
                         obtainedItems.Remove(item);
+                        item.NotifyParentDependencies(false);
+                    }
 
                     preFilledLocations.AddRange(lastSphere.PreFilledLocationsAddedThisSphere);
 
-                    while (lastSphere.TotalShuffledLocations == 0)
+                    while (lastSphere.TotalShuffledLocations == 0 || lastSphere.CurrentAttemptCount > lastSphere.MaxRetryCount)
                     {
                         spheres.Remove(lastSphere);
                         sphereNumber--;
@@ -746,10 +764,16 @@ internal class Shuffler
                         allShuffledItems.AddRange(lastSphere.Items);
 
                         foreach (var item in lastSphere.Items)
+                        {
                             obtainedItems.Remove(item);
+                            item.NotifyParentDependencies(false);
+                        }
 
                         foreach (var item in lastSphere.PreFilledItemsAddedThisSphere)
+                        {
                             obtainedItems.Remove(item);
+                            item.NotifyParentDependencies(false);
+                        }
 
                         preFilledLocations.AddRange(lastSphere.PreFilledLocationsAddedThisSphere);
                     }
@@ -766,8 +790,6 @@ internal class Shuffler
                         SphereNumber = sphereNumber
                     };
 
-                    placedItemsThisSphere = new List<Item>();
-
                     maxRetries = lastSphere.MaxRetryCount;
                     retryCount = lastSphere.CurrentAttemptCount + 1;
                     spheres.Remove(lastSphere);
@@ -776,12 +798,7 @@ internal class Shuffler
 
                 shuffledLocationsThisSphere = locationsAvailableThisSphere
                     .Where(location => location.Type is not LocationType.Unshuffled).ToList();
-
-                preFilledLocations.AddRange(preFilledLocationsPlacedThisSphere);
-
-                allShuffledItems.AddRange(placedItemsThisSphere);
-                placedItemsThisSphere = new List<Item>();
-
+                
                 continue;
             }
 
@@ -834,12 +851,13 @@ internal class Shuffler
         }
 
         allPlaceableLocations.AddRange(locationsAvailableThisSphere);
+        obtainedItems.ForEach(item => item.NotifyParentDependencies(false));
         return allPlaceableLocations;
     }
 
     /// <summary>
     ///     Fills in locations from front to back and makes sure they are accessible, meant to be used for dungeon items or for
-    ///     linear progression seeds
+    ///     linear progression seeds. Adding an item to the pool does not invalidate the available items
     /// </summary>
     /// <param name="items">The items to fill with</param>
     /// <param name="locations">The locations to be filled</param>
@@ -854,8 +872,7 @@ internal class Shuffler
 
         if (assumedItems == null) assumedItems = new List<Item>();
 
-        foreach (var item in assumedItems)
-            item.NotifyParentDependencies(true);
+        assumedItems.ForEach(item => item.NotifyParentDependencies(true));
 
         var errorIndexes = new List<int>();
         for (; items.Count > 0;)
@@ -915,8 +932,7 @@ internal class Shuffler
             errorIndexes.Clear();
         }
 
-        foreach (var item in assumedItems)
-            item.NotifyParentDependencies(false);
+        assumedItems.ForEach(item => item.NotifyParentDependencies(false));
         
         FilledLocations.AddRange(filledLocations);
         filledLocations.ForEach(location => location.Contents!.Value.NotifyParentDependencies(false));
@@ -925,7 +941,7 @@ internal class Shuffler
     }
 
     /// <summary>
-    ///     Uniformly fills items in locations, checking to make sure the items are logically available.
+    ///     Uniformly fills items in locations, checking to make sure the items are logically available. Adding an item to the pool invalidates items that were previously available
     /// </summary>
     /// <param name="items">The items to fill with</param>
     /// <param name="locations">The locations to be filled</param>
@@ -940,8 +956,7 @@ internal class Shuffler
 
         if (assumedItems == null) assumedItems = new List<Item>();
 
-        foreach (var item in assumedItems)
-            item.NotifyParentDependencies(true);
+        assumedItems.ForEach(item => item.NotifyParentDependencies(true));
 
         foreach (var item in items)
             item.NotifyParentDependencies(true);
@@ -960,6 +975,9 @@ internal class Shuffler
             // Take item out of pool
             items.RemoveAt(itemIndex);
             item.NotifyParentDependencies(false);
+
+            if (item.Type is ItemType.GustJar)
+                Console.WriteLine("Break");
             
             var tempFilledLocations = UpdateObtainedItemsFromPlacedLocations();
 
@@ -1006,8 +1024,7 @@ internal class Shuffler
             errorIndexes.Clear();
         }
 
-        foreach (var item in assumedItems)
-            item.NotifyParentDependencies(false);
+        assumedItems.ForEach(item => item.NotifyParentDependencies(false));
         
         FilledLocations.AddRange(filledLocations);
         filledLocations.ForEach(location => location.Contents!.Value.NotifyParentDependencies(false));
@@ -1082,15 +1099,23 @@ internal class Shuffler
 
     private List<Location> UpdateObtainedItemsFromPlacedLocations()
     {
+        var allAvailableLocations = new List<Location>();
         var availableLocations = FilledLocations.Where(location => location.IsAccessible()).ToList();
 
-        foreach (var location in availableLocations)
+        while (availableLocations.Count > 0)
         {
-            FilledLocations.Remove(location);
-            location.Contents!.Value.NotifyParentDependencies(true);
+            allAvailableLocations.AddRange(availableLocations);
+
+            foreach (var location in availableLocations)
+            {
+                FilledLocations.Remove(location);
+                location.Contents!.Value.NotifyParentDependencies(true);
+            }
+
+            availableLocations = FilledLocations.Where(location => location.IsAccessible()).ToList();
         }
 
-        return availableLocations;
+        return allAvailableLocations;
     }
     
     /// <summary>
@@ -1228,10 +1253,7 @@ internal class Shuffler
             {
                 Filled: true,
                 Type: not LocationType.Helper and not LocationType.Untyped and not LocationType.Inaccessible
-            });
-
-        var hackToFilterOutLanternGarbage = filledLocations.Where(location =>
-            location.Contents!.Value.Type != ItemType.Lantern || location.Contents!.Value.SubValue == 0).ToList();
+            }).ToList();
 
         var availableItems = new List<Item>();
 
@@ -1241,12 +1263,13 @@ internal class Shuffler
         do
         {
             var accessibleLocations =
-                hackToFilterOutLanternGarbage.Where(location => location.IsAccessible()).ToList();
+                filledLocations.Where(location => location.IsAccessible()).ToList();
             previousSize = accessibleLocations.Count;
 
-            hackToFilterOutLanternGarbage.RemoveAll(location => accessibleLocations.Contains(location));
+            filledLocations.RemoveAll(location => accessibleLocations.Contains(location));
 
             var newItems = Location.GetItems(accessibleLocations);
+            newItems.ForEach(item => item.NotifyParentDependencies(true));
             availableItems.AddRange(newItems);
 
             foreach (var location in accessibleLocations)
@@ -1262,6 +1285,8 @@ internal class Shuffler
             sphereCounter++;
             spoilerBuilder.AppendLine();
         } while (previousSize > 0);
+        
+        availableItems.ForEach(item => item.NotifyParentDependencies(false));
     }
 
     private void AddActualPlaythroughSpoiler(StringBuilder builder)
@@ -1275,10 +1300,7 @@ internal class Shuffler
             {
                 Filled: true,
                 Type: not LocationType.Helper and not LocationType.Untyped and not LocationType.Inaccessible
-            });
-
-        var hackToFilterOutLanternGarbage = filledLocations.Where(location =>
-            location.Contents!.Value.Type != ItemType.Lantern || location.Contents!.Value.SubValue == 0).ToList();
+            }).ToList();
 
         var availableItems = new List<Item>();
 
@@ -1300,12 +1322,13 @@ internal class Shuffler
             }
 
             var accessibleLocations =
-                hackToFilterOutLanternGarbage.Where(location => location.IsAccessible()).ToList();
+                filledLocations.Where(location => location.IsAccessible()).ToList();
             previousSize = accessibleLocations.Count;
 
-            hackToFilterOutLanternGarbage.RemoveAll(location => accessibleLocations.Contains(location));
+            filledLocations.RemoveAll(location => accessibleLocations.Contains(location));
 
             var newItems = Location.GetItems(accessibleLocations);
+            newItems.ForEach(item => item.NotifyParentDependencies(true));
             availableItems.AddRange(newItems);
 
             var majorLocations = accessibleLocations.Where(location =>
@@ -1329,6 +1352,8 @@ internal class Shuffler
             sphereCounter++;
             builder.AppendLine();
         } while (previousSize > 0);
+        
+        availableItems.ForEach(item => item.NotifyParentDependencies(false));
     }
 
     private void AppendSubvalue(StringBuilder spoilerBuilder, Location location)

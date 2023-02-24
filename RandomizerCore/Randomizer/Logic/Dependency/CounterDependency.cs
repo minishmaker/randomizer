@@ -6,6 +6,7 @@ public class CounterDependency : DependencyBase
 {
     public Dictionary<DependencyBase, int> DependencySet;
     public int RequiredCount;
+    private int LastAttemptCount;
 
     public CounterDependency(Dictionary<DependencyBase, int> dependencySet, int reqValue) : base(true)
     {
@@ -39,6 +40,8 @@ public class CounterDependency : DependencyBase
             }
 
         Result = counter >= RequiredCount;
+
+        LastAttemptCount = counter;
 
         foreach (var parent in Parents)
             parent.UpdateDependencyResult(Result);

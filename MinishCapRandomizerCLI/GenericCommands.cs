@@ -39,8 +39,9 @@ internal static class GenericCommands
             {
                 case "r":
                     var rand = new Random();
-                    ShufflerController.SetRandomizationSeed(rand.Next());
-                    Console.WriteLine("Seed set successfully!");
+                    var rSeed = rand.Next();
+                    ShufflerController.SetRandomizationSeed(rSeed);
+                    Console.WriteLine($"Seed {rSeed} set successfully!");
                     break;
                 case "s":
                     Console.Write("Please enter the seed you want to use: ");
