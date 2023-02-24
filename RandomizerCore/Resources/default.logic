@@ -4670,9 +4670,9 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 	ToDDarkMaze;				Helper;;	Items.Lantern
 	ToDRightPath;				Helper;;	Helpers.ToDRightIceBlock, Helpers.ToDRightIce, Helpers.DarkRooms, Helpers.ToDScissorBeetles, Helpers.ToDDarkMaze, Helpers.ToDDarkDoor
 	!ifdef - Replace_Small_Keys
-		ToDDarkMazeDoorReverse;	Helper;;	Helpers.DarkRooms
+		ToDDarkMazeDoor;	Helper;;	Helpers.DarkRooms
 	!else
-		ToDDarkMazeDoorReverse;	Helper;;	Helpers.Inaccessible
+		ToDDarkMazeDoor;	Helper;;	Helpers.Inaccessible
 	!endif
 	ToDDarkMazeReverse;		Helper;;	Helpers.Inaccessible
 	ToDEitherPath;			Helper;;	Helpers.ToDEitherDoor, Items.Flippers, Helpers.ToDLeftPillars, Helpers.ToDRightIceBlock, Helpers.ToDRightIce, Helpers.DarkRooms, Helpers.ToDScissorBeetles, Helpers.ToDDarkMaze, Items.RocsCape
