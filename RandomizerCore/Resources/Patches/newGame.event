@@ -11,59 +11,75 @@ POIN ($7C480+10)|1
 ALIGN 4
 newGameTable:
 //WORD source destination ammountofbytes
-POIN spawnPoint; WORD 0x2002AC8 8
-POIN canOpenMenu; WORD 0x2002B32 1
-POIN haveMap; WORD 0x2002B43 1
-POIN fastItems; WORD 0x2002B46 5
-POIN fastShell; WORD 0x2002B41 1
-POIN startingFlags; WORD 0x2002C9C 308
-POIN fusionFlags; WORD 0x2002C81 13
-POIN kinstoneBag; WORD 0x2002B4B 1
-#ifndef requirementFigurinesAmmount
-	POIN figurines; WORD 0x2002B0E 18
+POIN elements;		WORD 0x2002A60 1
+POIN map;			WORD 0x2002A80 3
+POIN spawnPoint;	WORD 0x2002AC8 8
+POIN worldmap;		WORD 0x2002ADC 4
+POIN canOpenMenu;	WORD 0x2002B32 1
+POIN fastShell;		WORD 0x2002B41 1
+POIN haveMap;		WORD 0x2002B43 1
+POIN fastItems;		WORD 0x2002B46 5
+POIN kinstoneBag;	WORD 0x2002B4B 1
+POIN fusionFlags;	WORD 0x2002C81 13
+POIN startingFlags;	WORD 0x2002C9C 308
+#ifndef requirementFigurinesAmount
+	POIN figurines;		WORD 0x2002B0E 18
 #endif
-POIN worldmap; WORD 0x2002ADC 4
-POIN elements; WORD 0x2002A60 1
-POIN map; WORD 0x2002A80 3
 #ifdef openWorld
-	POIN visit; WORD 0x2002AA0 4
-	POIN grave; WORD 0x2002B41 1
-	POIN warps; WORD 0x2002EBD 6
+	POIN visit;			WORD 0x2002AA0 4
+	POIN grave;			WORD 0x2002B41 1
+	POIN warps;			WORD 0x2002EBD 6
 #endif
 #ifdef compasskeasy
-	POIN compass; WORD 0x2002EAD 6
+	POIN compass;		WORD 0x2002EAD 6
 #endif
 #ifdef enable_firerod_start
-	POIN firerod; WORD 0x2002B37 1
-	POIN firerodOnA; WORD 0x2002AF4 1
+	POIN firerod;		WORD 0x2002B37 1
+	POIN firerodOnA;	WORD 0x2002AF4 1
 #endif
 #ifdef DEBUG
-	POIN DEBUGITEMS; WORD 0x2002B32 7
-	POIN DEBUGUPGRADES; WORD 0x2002B3F 7
-	POIN DEBUGSTUFF; WORD 0x2002AE8 7
-	POIN DEBUGWIND; WORD 0x2002A83 1
+	POIN DEBUGITEMS;	WORD 0x2002B32 7
+	POIN DEBUGUPGRADES;	WORD 0x2002B3F 7
+	POIN DEBUGSTUFF;	WORD 0x2002AE8 7
+	POIN DEBUGWIND;		WORD 0x2002A83 1
 #endif
 #ifdef timedohkoClock
-	POIN timedohkoStartingTime; WORD 0x203FFE0 4
+	POIN timedohkoStartingTime;	WORD 0x203FFE0 4
 #endif
 #ifdef disableKinstoneDrops
-	POIN disableKinstones; WORD 0x2002B56 1
+	POIN disableKinstones;		WORD 0x2002B56 1
 #endif
 #ifdef disableShellDrops
-	POIN disableShells; WORD 0x2002AFB 1
+	POIN disableShells;			WORD 0x2002AFB 1
 #endif
 WORD 0 0 0 //terminator
 
 ALIGN 4
 newGameOrTable:
-POIN crenelCrest; WORD 0x2002A83 1
-POIN fallsCrest; WORD 0x2002A83 1
-POIN cloudCrest; WORD 0x2002A83 1
-POIN townCrest; WORD 0x2002A83 1
-POIN lakeCrest; WORD 0x2002A83 1
-POIN castorCrest; WORD 0x2002A83 1
-POIN southCrest; WORD 0x2002A83 1
-POIN woodsCrest; WORD 0x2002A83 1
+POIN windCrestCrenel;	WORD 0x2002A83 1
+POIN windCrestFalls;	WORD 0x2002A83 1
+POIN windCrestCloud;	WORD 0x2002A83 1
+POIN windCrestTown;		WORD 0x2002A83 1
+POIN windCrestLake;		WORD 0x2002A83 1
+POIN windCrestSwamp;	WORD 0x2002A83 1
+POIN windCrestSouth;	WORD 0x2002A83 1
+POIN windCrestMinish;	WORD 0x2002A83 1
+POIN redPortalDWS;			WORD 0x2002EBD 1
+POIN redPortalSwitchDWS;	WORD 0x2002D43 1
+POIN bluePortalCOF;			WORD 0x2002EBE 1
+POIN bluePortalSwitchCOF;	WORD 0x2002D5B 1
+POIN redPortalCOF;			WORD 0x2002EBE 1
+POIN redPortalSwitchCOF;	WORD 0x2002D5A 1
+POIN bluePortalFOW;			WORD 0x2002EBF 1
+POIN redPortalFOW;			WORD 0x2002EBF 1
+POIN bluePortalTOD;			WORD 0x2002EC0 1
+POIN redPortalTOD;			WORD 0x2002EC0 1
+POIN redPortalSwitchTOD;	WORD 0x2002D92 1
+POIN bluePortalPOW;			WORD 0x2002EC1 1
+POIN redPortalPOW;			WORD 0x2002EC1 1
+POIN redPortalSwitchPOW;	WORD 0x2002DAC 1
+POIN bluePortalDHC;			WORD 0x2002EC2 1
+POIN redPortalDHC;			WORD 0x2002EC2 1
 WORD 0 0 0 //terminator
 
 ALIGN 4
@@ -88,57 +104,57 @@ BYTE 0x22 /*area*/ 0x15 /*room*/ 4 /*facing direction*/ 0 /*transition type*/; S
 canOpenMenu:
 BYTE 1
 
-crenelCrest:
-#ifdef windCrestCrenel
+windCrestCrenel:
+#ifdef crenelCrest
 	BYTE 0x01
 #else
 	BYTE 0x00
 #endif
 
-fallsCrest:
-#ifdef windCrestFalls
+windCrestFalls:
+#ifdef fallsCrest
 	BYTE 0x02
 #else
 	BYTE 0x00
 #endif
 
-cloudCrest:
-#ifdef windCrestCloud
+windCrestCloud:
+#ifdef cloudCrest
 	BYTE 0x04
 #else
 	BYTE 0x00
 #endif
 
-townCrest:
-#ifdef windCrestTown
+windCrestTown:
+#ifdef townCrest
 	BYTE 0x08
 #else
 	BYTE 0x00
 #endif
 
-lakeCrest:
-#ifdef windCrestLake
+windCrestLake:
+#ifdef lakeCrest
 	BYTE 0x10
 #else
 	BYTE 0x00
 #endif
 
-castorCrest:
-#ifdef windCrestCastor
+windCrestSwamp:
+#ifdef swampCrest
 	BYTE 0x20
 #else
 	BYTE 0x00
 #endif
 
-southCrest:
-#ifdef windCrestSouth
+windCrestSouth:
+#ifdef southCrest
 	BYTE 0x40
 #else
 	BYTE 0x00
 #endif
 
-woodsCrest:
-#ifdef windCrestWoods
+windCrestMinish:
+#ifdef minishCrest
 	BYTE 0x80
 #else
 	BYTE 0x00
@@ -201,6 +217,148 @@ BYTE 0x10
 
 firerodOnA:
 BYTE 0x16
+
+//Key doors/blocks
+secondKeyBlockCrypt:
+#ifdef cryptSecondKeyBlock
+	BYTE 0x80
+#else
+	BYTE 0x00
+#endif
+firstKeyBlockCrypt:
+#ifdef cryptFirstKeyBlock
+	BYTE 0x01
+#else
+	BYTE 0x00
+#endif
+lockedDoorCrypt:
+#ifdef cryptLockedDoor
+	BYTE 0x08
+#else
+	BYTE 0x00
+#endif
+madderpillarDoorDWS:
+#ifdef dwsMadderpillarDoor
+	BYTE 0x40
+#else
+	BYTE 0x00
+#endif
+barrelEastLockedDoorDWS:
+#ifdef dwsBarrelEastLockedDoor
+	BYTE 0x04
+#else
+	BYTE 0x00
+#endif
+
+#ifdef dwsBluePortal
+	bluePortalDWS:
+	BYTE 0x01
+	bluePortalSwitchDWS:
+	BYTE 0x20
+#else
+	bluePortalDWS:
+	BYTE 0x00
+	bluePortalSwitchDWS:
+	BYTE 0x00
+#endif
+#ifdef dwsRedPortal
+	redPortalDWS:
+	BYTE 0x02
+	redPortalSwitchDWS:
+	BYTE 0x40
+#else
+	redPortalDWS:
+	BYTE 0x00
+	redPortalSwitchDWS:
+	BYTE 0x00
+#endif
+#ifdef cofBluePortal
+	bluePortalCOF:
+	BYTE 0x01
+	bluePortalSwitchCOF:
+	BYTE 0x08
+#else
+	bluePortalCOF:
+	BYTE 0x00
+	bluePortalSwitchCOF:
+	BYTE 0x00
+#endif
+#ifdef cofRedPortal
+	redPortalCOF:
+	BYTE 0x02
+	redPortalSwitchCOF:
+	BYTE 0x20
+#else
+	redPortalCOF:
+	BYTE 0x00
+	redPortalSwitchCOF:
+	BYTE 0x00
+#endif
+#ifdef fowBluePortal
+	bluePortalFOW:
+	BYTE 0x01
+#else
+	bluePortalFOW:
+	BYTE 0x00
+#endif
+#ifdef fowRedPortal
+	redPortalFOW:
+	BYTE 0x02
+	redPortalSwitchFOW:
+	BYTE 0x20
+#else
+	redPortalFOW:
+	BYTE 0x00
+	redPortalSwitchFOW:
+	BYTE 0x00
+#endif
+#ifdef todBluePortal
+	bluePortalTOD:
+	BYTE 0x01
+#else
+	bluePortalTOD:
+	BYTE 0x00
+#endif
+#ifdef todRedPortal
+	redPortalTOD:
+	BYTE 0x02
+	redPortalSwitchTOD:
+	BYTE 0x01
+#else
+	redPortalTOD:
+	BYTE 0x00
+	redPortalSwitchTOD:
+	BYTE 0x00
+#endif
+bluePortalPOW:
+#ifdef powBluePortal
+	BYTE 0x01
+#else
+	BYTE 0x00
+#endif
+#ifdef powRedPortal
+	redPortalPOW:
+	BYTE 0x02
+	redPortalSwitchPOW:
+	BYTE 0x40
+#else
+	redPortalPOW:
+	BYTE 0x00
+	redPortalSwitchPOW:
+	BYTE 0x00
+#endif
+bluePortalDHC:
+#ifdef dhcBluePortal
+	BYTE 0x01
+#else
+	BYTE 0x00
+#endif
+redPortalDHC:
+#ifdef dhcRedPortal
+	BYTE 0x02
+#else
+	BYTE 0x00
+#endif
 
 // Set flags for Cucco Minigame
 #ifndef cuccoSkippedLevels
