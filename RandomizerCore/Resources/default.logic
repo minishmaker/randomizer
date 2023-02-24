@@ -4545,9 +4545,9 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 	OverworldBlocks;			Helper;;	Items.BombBag
 	CastleDojo;				Helper;;	Items.Lantern
 	BombWalls;				Helper;;	Items.BombBag
-	LonLonNorthShortcut;		Helper;;	Helpers.AccessLonLon
+	LonLonNorthShortcut;		Helper;;	Helpers.Inaccessible
 	LonLonSecret;				Helper;;	Items.Lantern
-	GoronCave;				Helper;;	(|Items.Flippers, Items.RocsCape, (&Items.PacciCane, Helpers.LonLonNorthShortcut))
+	GoronCave;				Helper;;	(|Items.Flippers, Items.RocsCape, (&Items.PacciCane, Helpers.AccessLonLon))
 	MayorCabin;				Helper;;	(|(&Helpers.BonkedTrees, Helpers.CabinSwim), (&Helpers.LakeMinish, Items.Flippers, Helpers.CabinSwim)), Items.PowerBracelets
 	LonLonSouthShortcut;		Helper;;	(|(&Helpers.AccessLonLon, Items.PacciCane), Items.Flippers, Items.RocsCape)
 	LakeShortcut;				Helper;;	Helpers.CapeExtension
