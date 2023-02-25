@@ -730,7 +730,7 @@
 	!ifdef - OPEN_GREEN_FUSIONS
 		!eventdefine - mC87 - 0xFF
 	!else
-		!eventdefine - mC87 - 0x07
+		!eventdefine - mC87 - 0x0F
 	!endif
 !else
 	!ifdef - OPEN_GREEN_FUSIONS
