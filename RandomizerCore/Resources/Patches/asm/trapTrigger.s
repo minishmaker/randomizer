@@ -36,12 +36,12 @@ mov	r1,#0
 strb	r1,[r0]
 
 @check if we already got the item
-ldr	r0,=#0x2002B38
+ldr	r0,=#0x2002C9E
 ldrb	r1,[r0]
-mov	r2,#0x80
+mov	r2,#0x40
 and	r2,r1
 cmp	r2,#0
-bne	checkTrapLate
+bne	checkTrap
 
 @check if requirements are met
 ldr	r4,requirementTable
@@ -58,9 +58,9 @@ b	loop
 
 getItem:
 @set the flag
-ldr	r0,=#0x2002B38
+ldr	r0,=#0x2002C9E
 ldrb	r1,[r0]
-mov	r2,#0x80
+mov	r2,#0x40
 orr	r1,r2
 strb	r1,[r0]
 
@@ -77,12 +77,11 @@ checkTrap:
 @check if a trap was collected
 ldr	r0,=#0x2002B38
 ldrb	r1,[r0]
-checkTrapLate:
-mov	r2,#0x40
+mov	r2,#0xC0
 and	r2,r1
 cmp	r2,#0
 beq	end
-mov	r2,#0xBF
+mov	r2,#0x3F
 and	r1,r2
 strb	r1,[r0]
 

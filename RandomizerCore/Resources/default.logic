@@ -1667,6 +1667,7 @@ GOTSWORDS; 	Helper; ; `GOTSWORDS`
 	!define - DHCBK - Items.BigKey.0x1D
 	!ifdef - REQUIREMENT_ITEM_RANDOM
 		!define - ALLREQUIREMENTS - Any
+		!eventdefine - requirementPrize
 	!else
 		!define - ALLREQUIREMENTS - Inaccessible
 	!endif
