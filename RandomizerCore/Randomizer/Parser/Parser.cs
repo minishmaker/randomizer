@@ -17,7 +17,10 @@ public class Parser
     public Parser()
     {
         SubParser = new DirectiveParser();
+        Dependencies = new List<DependencyBase>();
     }
+
+    internal List<DependencyBase> Dependencies { get; private set; }
 
     /// <summary>
     ///     Get a list of the dependencies contained within a given logic string. Compound dependencies call this recursively
@@ -27,8 +30,6 @@ public class Parser
     public List<DependencyBase> GetDependencies(string logic)
     {
         var dependencies = new List<DependencyBase>();
-
-
         var subLogic = SplitDependencies(logic);
 
         foreach (var sequence in subLogic)
@@ -51,13 +52,6 @@ public class Parser
                     break;
                 case '~':
                     var trimmedLine = sequence.Substring(1);
-                    // if (parts.Length < 3)
-                    //     throw new ParserException("Item in not dependency has the wrong number of parts!");
-                    // if (!Enum.TryParse(parts[1], out ItemType type))
-                    //     throw new ParserException("Could not parse item in not dependency!");
-                    // if (!byte.TryParse(parts[2], out var subValue))
-                    //     throw new ParserException("Could not parse item in not dependency!");
-                    
                     dependencies.Add(new NotItemDependency(new Item(trimmedLine, " Parse")));
                     break;
                 case '+':
@@ -93,16 +87,14 @@ public class Parser
                     var splitSequence = sequence.Split(':');
                     var requirement = splitSequence[0];
                     var dependencyParts = requirement.Split('.');
-                    
+
                     // var dungeon = "";
                     var count = 1;
 
                     if (splitSequence.Length >= 2 && dependencyParts[0] == "Items")
-                    {
                         // dungeon = splitSequence[1];
                         if (!StringUtil.ParseString(splitSequence[1], out count))
                             throw new ParserException($"Invalid amount on\"{sequence}\"!");
-                    }
 
                     if (dependencyParts.Length < 2) throw new ParserException($"Invalid logic \"{logic}\"!");
 
@@ -110,13 +102,30 @@ public class Parser
                     {
                         case "Locations":
                         case "Helpers":
-                            var locationDependency = new LocationDependency(dependencyParts[1]);
-                            dependencies.Add(locationDependency);
+                            var existingDep = Dependencies.FirstOrDefault(dep => dep.GetType() == typeof(LocationDependency) && ((LocationDependency)dep).LocationName == dependencyParts[1]);
+                            if (existingDep != null)
+                                dependencies.Add(existingDep);
+                            else
+                            {
+                                var locationDependency = new LocationDependency(dependencyParts[1]);
+                                dependencies.Add(locationDependency);
+                            }
+
                             break;
                         case "Items":
                             var item = new Item(sequence, " Parse");
-                            var itemDependency = new ItemDependency(item, count);
-                            dependencies.Add(itemDependency);
+                            
+                            var existingItemDep = Dependencies.FirstOrDefault(dep =>
+                                dep.GetType() == typeof(ItemDependency) && ((ItemDependency)dep).Count == count &&
+                                ((ItemDependency)dep).RequiredItem.Equals(item));
+                            
+                            if (existingItemDep != null)
+                                dependencies.Add(existingItemDep);
+                            else
+                            {
+                                var itemDependency = new ItemDependency(item, count);
+                                dependencies.Add(itemDependency);
+                            }
 
                             break;
                         default:
@@ -126,6 +135,8 @@ public class Parser
                     break;
             }
         }
+
+        Dependencies.AddRange(dependencies);
 
         return dependencies;
     }
@@ -200,7 +211,7 @@ public class Parser
 
         if (!Enum.TryParse(subParts[1], out ItemType replacementType))
             throw new ParserException("Item has invalid item type!");
-        
+
         byte subType = 0;
         if (subParts.Length >= 3)
             if (!StringUtil.ParseString(subParts[2], out subType))
@@ -215,17 +226,14 @@ public class Parser
         var items = new List<Item>();
 
         var dungeon = "";
-        
+
         if (itemShufflePool is ItemPool.DungeonMajor && allItemParts.Length < 3)
             throw new ParserException("Dungeon item is missing dungeon name!");
-        
+
         if (allItemParts.Length >= 3)
             dungeon = allItemParts[2];
 
-        while (amount-- > 0)
-        {
-            items.Add(new Item(replacementType, subType, dungeon, shufflePool: itemShufflePool));
-        }
+        while (amount-- > 0) items.Add(new Item(replacementType, subType, dungeon, shufflePool: itemShufflePool));
 
         return items;
     }
@@ -293,8 +301,8 @@ public class Parser
         if (type == LocationType.Unshuffled)
         {
             if (!(locationParts.Length >= 5) || locationParts[4].Length == 0)
-                throw new ParserException($"Unshuffled location missing an item to place there!");
-            
+                throw new ParserException("Unshuffled location missing an item to place there!");
+
             var itemParts = locationParts[4].Split(':');
             var subParts = itemParts[0].Split('.');
 
@@ -319,7 +327,8 @@ public class Parser
 
         var hideInSpoiler = dungeons.Any(_ => _.Contains("NoSpoiler", StringComparison.OrdinalIgnoreCase));
 
-        var location = new Location(type, name, dungeons.Where(_ => !_.Contains("NoSpoiler", StringComparison.OrdinalIgnoreCase)).ToList(),
+        var location = new Location(type, name,
+            dungeons.Where(_ => !_.Contains("NoSpoiler", StringComparison.OrdinalIgnoreCase)).ToList(),
             addresses, defines, dependencies, itemOverride, hideInSpoiler);
 
         return location;
@@ -377,19 +386,15 @@ public class Parser
 
         int addressValue;
 
-        if ((addressType & AddressType.GroundItem) == AddressType.GroundItem)
-        {
-            throw new NotImplementedException();
-        }
+        if ((addressType & AddressType.GroundItem) == AddressType.GroundItem) throw new NotImplementedException();
 
         // Look chest address up in table
-        var areaTableAddr = Rom.Instance.reader.ReadAddr(Rom.Instance.Headers.AreaMetadataBase + (area << 2));
-        var roomTableAddr = Rom.Instance.reader.ReadAddr(areaTableAddr + (room << 2));
-        var chestTableAddr = Rom.Instance.reader.ReadAddr(roomTableAddr + 0x0C);
+        var areaTableAddr = Rom.Instance.Reader.ReadAddr(Rom.Instance.Headers.AreaMetadataBase + (area << 2));
+        var roomTableAddr = Rom.Instance.Reader.ReadAddr(areaTableAddr + (room << 2));
+        var chestTableAddr = Rom.Instance.Reader.ReadAddr(roomTableAddr + 0x0C);
 
         // Chests are 8 bytes long, and the item is stored 2 bytes in
         addressValue = chestTableAddr + chest * 8 + 0x02;
-
 
         return new LocationAddress(addressType, addressValue);
     }
@@ -397,6 +402,7 @@ public class Parser
     public (List<Location> locations, List<Item> items) ParseLocationsAndItems(string[] lines, Random rng)
     {
         Logger.Instance.BeginLogTransaction();
+        Dependencies = new List<DependencyBase>();
         var locations = new List<Location>();
         var items = new List<Item>();
         for (var index = 0; index < lines.Length; ++index)
@@ -425,7 +431,7 @@ public class Parser
                     {
                         // Parse the string as a directive, ignoring preparsed directives
                         if (!SubParser.ParseOnLoad(trimmedLine))
-                                SubParser.ParseDirective(trimmedLine);
+                            SubParser.ParseDirective(trimmedLine);
                     }
                     else
                     {
@@ -446,7 +452,6 @@ public class Parser
                             locations.Add(newLocation);
                         }
                     }
-
                 }
                 else
                 {
@@ -464,6 +469,13 @@ public class Parser
                     $"Error at line \"{index + 1}\", directive \"{line}\": {e.Message}");
             }
         }
+
+        if (!locations.Any(location => location.Name == "BeatVaati"))
+            throw new ParserException(
+                "Could not find location BeatVaati! The logic file is invalid and cannot be parsed.");
+
+        DependencyBase.BeatVaatiDependency = new LocationDependency("BeatVaati");
+        Dependencies.Add(DependencyBase.BeatVaatiDependency);
 
         return (locations, items);
     }

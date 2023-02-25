@@ -2,14 +2,14 @@
 
 public struct ChanceItemSet
 {
-    public List<ChanceItem> randomItems;
-    public int totalChance;
+    public List<ChanceItem> RandomItems;
+    public int TotalChance;
 
     public ChanceItemSet(List<ChanceItem> randomItems)
     {
-        this.randomItems = randomItems;
-        totalChance = 0;
+        this.RandomItems = randomItems;
+        TotalChance = 0;
 
-        foreach (var randomItem in randomItems) totalChance += randomItem.chance;
+        foreach (var randomItem in randomItems) TotalChance += randomItem.Chance;
     }
 }

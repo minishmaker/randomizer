@@ -39,8 +39,9 @@ internal static class GenericCommands
             {
                 case "r":
                     var rand = new Random();
-                    ShufflerController.SetRandomizationSeed(rand.Next());
-                    Console.WriteLine("Seed set successfully!");
+                    var rSeed = rand.Next();
+                    ShufflerController.SetRandomizationSeed(rSeed);
+                    Console.WriteLine($"Seed {rSeed} set successfully!");
                     break;
                 case "s":
                     Console.Write("Please enter the seed you want to use: ");
@@ -104,7 +105,7 @@ internal static class GenericCommands
         for (var i = 0; i < options.Count; )
         {
             var option = options[i];
-            Console.WriteLine($"{++i}) Type: {option.GetOptionUIType()}, Option Name: {option.NiceName}, Setting Type: {option.Type}, Value: {GetOptionValue(option)}");
+            Console.WriteLine($"{++i}) Type: {option.GetOptionUiType()}, Option Name: {option.NiceName}, Setting Type: {option.Type}, Value: {GetOptionValue(option)}");
         }
 
         Console.Write("Please enter the number of the setting you would like to change, enter \"Exit\" to stop editing, or enter \"List\" to list all of the options again: ");
@@ -119,7 +120,7 @@ internal static class GenericCommands
                     for (var i = 0; i < options.Count; )
                     {
                         var option = options[i];
-                        Console.WriteLine($"{++i}) Type: {option.GetOptionUIType()}, Option Name: {option.NiceName}, Setting Type: {option.Type}, Value: {GetOptionValue(option)}");
+                        Console.WriteLine($"{++i}) Type: {option.GetOptionUiType()}, Option Name: {option.NiceName}, Setting Type: {option.Type}, Value: {GetOptionValue(option)}");
                     }
                 }
                 else if (int.TryParse(input, out var num))

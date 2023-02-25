@@ -17,32 +17,32 @@ namespace RandomizerCore.Randomizer.Logic.Imports;
  */
 public static class LogicImports
 {
-    public static Dictionary<string, Func<Location.Location, Item, List<Item>, List<Location.Location>, bool>> FunctionValues = new()
-    {
+    public static readonly Dictionary<string, Func<Location.Location, Item, List<Location.Location>, bool>>
+        FunctionValues = new()
         {
-            "NON_ELEMENT_DUNGEONS_BARREN",
-            NonElementDungeonsBarrenImport
-        },
-        {
-            "NON_ELEMENT_DUNGEONS_NOT_REQUIRED",
-            NonElementDungeonsNotRequiredImport
-        },
-        {
-            "VERIFY_LOCATION_IS_ACCESSIBLE",
-            VerifyLocationIsAccessibleImport
-        },
-    };
+            {
+                "NON_ELEMENT_DUNGEONS_BARREN",
+                NonElementDungeonsBarrenImport
+            },
+            {
+                "NON_ELEMENT_DUNGEONS_NOT_REQUIRED",
+                NonElementDungeonsNotRequiredImport
+            },
+            {
+                "VERIFY_LOCATION_IS_ACCESSIBLE",
+                VerifyLocationIsAccessibleImport
+            }
+        };
 
-    private static bool VerifyLocationIsAccessibleImport(Location.Location self, Item itemToPlace, List<Item> availableItems, List<Location.Location> allLocations)
+    private static bool VerifyLocationIsAccessibleImport(Location.Location self, Item itemToPlace, List<Location.Location> allLocations)
     {
-        return self.IsAccessible(availableItems, allLocations, itemToPlace);
+        return self.IsAccessible(itemToPlace);
     }
 
-    private static bool NonElementDungeonsBarrenImport(Location.Location self, Item itemToPlace, List<Item> availableItems, List<Location.Location> allLocations)
+    private static bool NonElementDungeonsBarrenImport(Location.Location self, Item itemToPlace, List<Location.Location> allLocations)
     {
-        const string beatVaatiDefineName = "BeatVaati";
-
-        if (itemToPlace.ShufflePool is not ItemPool.Major and not ItemPool.DungeonMajor || self.Dungeons.Count == 0) return true;
+        if (itemToPlace.ShufflePool is not ItemPool.Major and not ItemPool.DungeonMajor ||
+            self.Dungeons.Count == 0) return true;
 
         var prizeDungeonForItem = allLocations.Where(location => location.Type == LocationType.DungeonPrize)
             .FirstOrDefault(prize => prize.Dungeons.Any(dungeon => self.Dungeons.Any(dun => dun == dungeon)));
@@ -52,32 +52,32 @@ public static class LogicImports
         var accessible = prizeDungeonForItem.Contents is
         {
             Type: ItemType.EarthElement or ItemType.FireElement or ItemType.WaterElement or ItemType.WindElement
-        } || (itemToPlace.ShufflePool is ItemPool.DungeonMajor && new LocationDependency(beatVaatiDefineName).DependencyFulfilled(availableItems, allLocations));
-
-        if (!accessible && !self.Dependencies.Any(dep => dep is LocationDependency && ((LocationDependency)dep)._requiredLocationName == beatVaatiDefineName))
-            self.Dependencies.Add(new LocationDependency(beatVaatiDefineName));
-
+        } || (itemToPlace.ShufflePool is ItemPool.DungeonMajor && DependencyBase.BeatVaatiDependency!.DependencyFulfilled());
+        
+        if (!accessible && self.Dependencies.All(dep => dep != DependencyBase.BeatVaatiDependency!))
+            self.Dependencies.Add(DependencyBase.BeatVaatiDependency!);
+        
         return accessible;
     }
-    
-    private static bool NonElementDungeonsNotRequiredImport(Location.Location self, Item itemToPlace, List<Item> availableItems, List<Location.Location> allLocations)
+
+    private static bool NonElementDungeonsNotRequiredImport(Location.Location self, Item itemToPlace, List<Location.Location> allLocations)
     {
-        const string beatVaatiDefineName = "BeatVaati";
-        if (itemToPlace.ShufflePool is not ItemPool.Major and not ItemPool.DungeonMajor || self.Dungeons.Count == 0) return true;
+        if (itemToPlace.ShufflePool is not ItemPool.Major and not ItemPool.DungeonMajor ||
+            self.Dungeons.Count == 0) return true;
 
         var prizeDungeonForItem = allLocations.Where(location => location.Type == LocationType.DungeonPrize)
             .FirstOrDefault(prize => prize.Dungeons.Any(dungeon => self.Dungeons.Any(dun => dun == dungeon)));
 
         if (prizeDungeonForItem == null) return true;
-        
+
         var accessible = prizeDungeonForItem.Contents is
         {
             Type: ItemType.EarthElement or ItemType.FireElement or ItemType.WaterElement or ItemType.WindElement
-        } || new LocationDependency(beatVaatiDefineName).DependencyFulfilled(availableItems, allLocations);
-
-        if (!accessible && !self.Dependencies.Any(dep => dep is LocationDependency && ((LocationDependency)dep)._requiredLocationName == beatVaatiDefineName))
-            self.Dependencies.Add(new LocationDependency(beatVaatiDefineName));
-
+        } || DependencyBase.BeatVaatiDependency!.DependencyFulfilled();
+        
+        if (!accessible && self.Dependencies.All(dep => dep == DependencyBase.BeatVaatiDependency!))
+            self.Dependencies.Add(DependencyBase.BeatVaatiDependency!);
+        
         return accessible;
     }
 }

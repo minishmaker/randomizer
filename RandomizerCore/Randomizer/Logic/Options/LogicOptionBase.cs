@@ -1,28 +1,20 @@
-﻿using RandomizerCore.Randomizer.Enumerables;
+﻿using System.Text;
+using RandomizerCore.Randomizer.Enumerables;
 using RandomizerCore.Randomizer.Logic.Defines;
-using System.Text;
 
 namespace RandomizerCore.Randomizer.Logic.Options;
 
 public abstract class LogicOptionBase
 {
-    public string Name { get; set; }
-    public string NiceName { get; set; }
-    public bool Active { get; set; }
-    public LogicOptionType Type { get; set; }
-    public string SettingGroup { get; set; }
-    public string SettingPage { get; set; }
-    public string DescriptionText { get; set; }
+    private readonly List<ILogicOptionObserver> Observers;
 
-    private List<ILogicOptionObserver> _observers;
-    
     protected LogicOptionBase(
-        string name, 
-        string niceName, 
-        bool active, 
-        string settingGroup, 
-        string settingPage, 
-        string descriptionText, 
+        string name,
+        string niceName,
+        bool active,
+        string settingGroup,
+        string settingPage,
+        string descriptionText,
         LogicOptionType type = LogicOptionType.Untyped)
     {
         Name = name;
@@ -33,23 +25,28 @@ public abstract class LogicOptionBase
         SettingPage = settingPage;
         var tempText = descriptionText.Trim();
         var builder = new StringBuilder();
-        foreach (var s in tempText.Split("\\n"))
-        {
-            builder.AppendLine(s);
-        }
+        foreach (var s in tempText.Split("\\n")) builder.AppendLine(s);
         DescriptionText = builder.ToString();
-        _observers = new List<ILogicOptionObserver>();
+        Observers = new List<ILogicOptionObserver>();
     }
+
+    public string Name { get; set; }
+    public string NiceName { get; set; }
+    public bool Active { get; set; }
+    public LogicOptionType Type { get; set; }
+    public string SettingGroup { get; set; }
+    public string SettingPage { get; set; }
+    public string DescriptionText { get; set; }
 
     public void NotifyObservers()
     {
-        foreach (var observer in _observers)
-        {
-            observer.NotifyObserver();
-        }
+        foreach (var observer in Observers) observer.NotifyObserver();
     }
 
-    public void RegisterObserver(ILogicOptionObserver observer) => _observers.Add(observer);
+    public void RegisterObserver(ILogicOptionObserver observer)
+    {
+        Observers.Add(observer);
+    }
 
     public abstract List<LogicDefine> GetLogicDefines();
 
@@ -57,5 +54,5 @@ public abstract class LogicOptionBase
 
     public abstract byte GetHashByte();
 
-    public abstract string GetOptionUIType();
+    public abstract string GetOptionUiType();
 }

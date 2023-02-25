@@ -2,7 +2,7 @@
 
 namespace RandomizerCore.Utilities.Models;
 
-public struct GBAColor
+public struct GbaColor
 {
     public int R;
     public int G;
@@ -12,7 +12,7 @@ public struct GBAColor
         // Each component needs to be shifted to the proper place in the short
         (short)((B << 10) | (G << 5) | (R << 0));
 
-    public GBAColor(Color initializerColor)
+    public GbaColor(Color initializerColor)
     {
         if (initializerColor == Color.Empty) initializerColor = Color.FromArgb(0, 0, 0);
 
@@ -22,7 +22,7 @@ public struct GBAColor
         B = (initializerColor.B & 0xF8) >> 3;
     }
 
-    public GBAColor(int r, int g, int b)
+    public GbaColor(int r, int g, int b)
     {
         R = r & 0x1F;
         G = g & 0x1F;

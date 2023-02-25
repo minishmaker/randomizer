@@ -47,25 +47,34 @@ public static class CommandFileParser
                 case "GetSettingString":
                     GenericCommands.GetSettingString();
                     break;
+                case "Rem":
+                    Console.WriteLine($"Commented out line {input}");
+                    break;
                 case "BulkGenerateSeeds":
                     if (!int.TryParse(inputs[1], out var numberOfSeedToGen))
                         throw new Exception("Provided value of bulk generated seeds is not a number!");
 
                     var num = 0;
+                    var failures = 0;
                     while (num++ < numberOfSeedToGen)
                     {
                         GenericCommands.Seed("R");
                         var result = GenericCommands.Randomize("1");
-                        if (!result) --num;
+                        if (!result)
+                        {
+                            --num;
+                            ++failures;
+                        }
                         else
                             Console.WriteLine($"Generated seed {num}");
                     }
+                    Console.WriteLine($"Total failure rate: {(double)failures/num}%");
                     break;
                 case "Exit":
                     exited = true;
                     break;
                 default:
-                    Console.WriteLine("Warning: Invalid command or whitespace line detected! Parsing will continue.");
+                    Console.WriteLine($"Warning: Invalid command or whitespace line {input} detected! Parsing will continue.");
                     break;
             }
         

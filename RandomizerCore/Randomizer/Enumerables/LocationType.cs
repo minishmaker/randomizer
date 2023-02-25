@@ -10,10 +10,12 @@ public enum LocationType
     DungeonConstraint,
     OverworldConstraint,
     DungeonPrize,
+
     //DungeonMajor, Deprecated
     Major,
     Dungeon,
     Any,
+
     //DungeonMinor, Deprecated
     Minor,
     Nice,

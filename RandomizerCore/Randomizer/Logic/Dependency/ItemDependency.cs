@@ -4,29 +4,60 @@ namespace RandomizerCore.Randomizer.Logic.Dependency;
 
 public class ItemDependency : DependencyBase
 {
-    private readonly int _count;
-    private readonly Item _requiredItem;
+    private readonly List<Item> ChildItems;
+    internal readonly int Count;
+    internal readonly Item RequiredItem;
 
-    public ItemDependency(Item item, int count = 1)
+    public ItemDependency(Item item, int count = 1) : base(true)
     {
-        _requiredItem = item;
-        _count = count;
+        RequiredItem = item;
+        Count = count;
+        ObtainedTargetItemCounter = 0;
+        ChildItems = new List<Item>();
     }
 
-    public override bool DependencyFulfilled(List<Item> availableItems, List<Location.Location> locations, Item? itemToPlace = null)
+    internal int ObtainedTargetItemCounter { get; private set; }
+
+    public override bool DependencyFulfilled(Item? itemToPlace = null)
     {
-        var counter = 0;
-        foreach (var item in availableItems)
-            if (item.Type == _requiredItem.Type &&
-                (item.SubValue == _requiredItem.SubValue || item.UseAny || _requiredItem.UseAny) &&
-                (_requiredItem.Dungeon == "" || _requiredItem.Dungeon == item.Dungeon))
+        return Result;
+    }
+
+    public override void UpdateDependencyResult(bool newResult)
+    {
+        if (AlreadyEvaluated) return;
+
+        AlreadyEvaluated = true;
+        
+        ObtainedTargetItemCounter += newResult ? 1 : -1;
+
+        Result = ObtainedTargetItemCounter >= Count;
+
+        foreach (var parent in Parents)
+            parent.UpdateDependencyResult(Result);
+
+        AlreadyEvaluated = false;
+    }
+
+    public override void AddDependencyTargetToDependency(object target)
+    {
+        if (target.GetType() != typeof(Item)) return;
+
+        var i = (Item)target;
+
+        i.AddParentDependency(this);
+        ChildItems.Add(i);
+    }
+
+    public override void ExpandRequiredDependencies(List<Location.Location> locations, List<Item> items)
+    {
+        foreach (var item in items)
+            if (item.Type == RequiredItem.Type &&
+                (item.SubValue == RequiredItem.SubValue || item.UseAny || RequiredItem.UseAny) &&
+                (RequiredItem.Dungeon == "" || RequiredItem.Dungeon == item.Dungeon))
             {
-                counter++;
-                if (counter >= _count) return true;
+                item.AddParentDependency(this);
+                ChildItems.Add(item);
             }
-
-        //Console.WriteLine($"Missing {RequiredItem.Type}");
-
-        return false;
     }
 }

@@ -4,19 +4,59 @@ namespace RandomizerCore.Randomizer.Logic.Dependency;
 
 public class AndDependency : DependencyBase
 {
-    public List<DependencyBase> AndList;
+    private readonly List<DependencyBase> ChildDependencies;
 
-    public AndDependency(List<DependencyBase> dependencyList)
+    public AndDependency(List<DependencyBase> dependencyList) : base(true)
     {
-        AndList = dependencyList;
+        ChildDependencies = dependencyList;
+
+        foreach (var child in ChildDependencies)
+            child.AddParentDependencyToThisDependency(this);
     }
 
-    public override bool DependencyFulfilled(List<Item> availableItems, List<Location.Location> locations, Item? itemToPlace = null)
+    public override bool DependencyFulfilled(Item? itemToPlace = null)
     {
-        foreach (var dependency in AndList)
-            if (!dependency.DependencyFulfilled(availableItems, locations, itemToPlace))
-                return false;
+        if (AlreadyEvaluated) return false;
         
-        return true;
+        AlreadyEvaluated = true;
+            
+        try
+        {
+            return SupportsCaching ? Result : ChildDependencies.All(dependency => dependency.DependencyFulfilled(itemToPlace));
+        }
+        finally
+        {
+            AlreadyEvaluated = false;
+        }
+    }
+
+    public override void UpdateDependencyResult(bool newResult)
+    {
+        if (!SupportsCaching || AlreadyEvaluated) return;
+
+        AlreadyEvaluated = true;
+        
+        Result = newResult && ChildDependencies.All(child => child.Result);
+
+        foreach (var parent in Parents)
+            parent.UpdateDependencyResult(Result);
+
+        AlreadyEvaluated = false;
+    }
+
+    public override void AddDependencyTargetToDependency(object target)
+    {
+        if (target.GetType() != typeof(DependencyBase) && target.GetType().BaseType != typeof(DependencyBase)) return;
+
+        var dep = (DependencyBase)target;
+
+        dep.AddParentDependencyToThisDependency(this);
+        ChildDependencies.Add(dep);
+        UpdateDependencyResult(dep.Result);
+    }
+
+    public override void ExpandRequiredDependencies(List<Location.Location> locations, List<Item> items)
+    {
+        //does nothing
     }
 }

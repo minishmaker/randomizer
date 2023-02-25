@@ -2,17 +2,18 @@ namespace RandomizerCore.Utilities.IO;
 
 public class Writer
 {
-    private readonly Stream _stream;
+    private readonly Stream Stream;
 
+    // ReSharper disable once InconsistentNaming
     private readonly BinaryWriter _writer;
 
     public Writer(Stream stream)
     {
-        _stream = stream;
+        Stream = stream;
         _writer = new BinaryWriter(stream);
     }
 
-    public long Position => _stream.Position;
+    public long Position => Stream.Position;
 
     ~Writer()
     {
@@ -26,7 +27,7 @@ public class Writer
 
     public void SetPosition(long pos)
     {
-        _stream.Position = pos;
+        Stream.Position = pos;
     }
 
     public void WriteByte(byte byteToWrite)
@@ -36,7 +37,7 @@ public class Writer
 
     public void WriteByte(byte byteToWrite, long pos)
     {
-        _stream.Position = pos;
+        Stream.Position = pos;
         WriteByte(byteToWrite);
     }
 
@@ -47,7 +48,7 @@ public class Writer
 
     public void WriteBytes(byte[] bytesToWrite, long pos)
     {
-        _stream.Position = pos;
+        Stream.Position = pos;
         WriteBytes(bytesToWrite);
     }
 
@@ -58,7 +59,7 @@ public class Writer
 
     public void WriteUInt16(ushort uint16, long pos)
     {
-        _stream.Position = pos;
+        Stream.Position = pos;
         WriteUInt16(uint16);
     }
 
@@ -69,7 +70,7 @@ public class Writer
 
     public void WriteInt16(short int16, long pos)
     {
-        _stream.Position = pos;
+        Stream.Position = pos;
         WriteInt16(int16);
     }
 
@@ -80,7 +81,7 @@ public class Writer
 
     public void WriteUInt32(uint uint32, long pos)
     {
-        _stream.Position = pos;
+        Stream.Position = pos;
         WriteUInt32(uint32);
     }
 
@@ -91,7 +92,7 @@ public class Writer
 
     public void WriteInt(int int32, long pos)
     {
-        _stream.Position = pos;
+        Stream.Position = pos;
         WriteInt(int32);
     }
 
@@ -102,7 +103,7 @@ public class Writer
 
     public void WriteAddr(int addr, long pos)
     {
-        _stream.Position = pos;
+        Stream.Position = pos;
         WriteAddr(addr);
     }
 }
