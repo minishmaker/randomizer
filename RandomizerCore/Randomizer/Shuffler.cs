@@ -975,9 +975,6 @@ internal class Shuffler
             // Take item out of pool
             items.RemoveAt(itemIndex);
             item.NotifyParentDependencies(false);
-
-            if (item.Type is ItemType.GustJar)
-                Console.WriteLine("Break");
             
             var tempFilledLocations = UpdateObtainedItemsFromPlacedLocations();
 
