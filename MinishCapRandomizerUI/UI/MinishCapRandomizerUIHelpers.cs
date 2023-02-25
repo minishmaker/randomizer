@@ -238,6 +238,7 @@ Generating seeds with this shuffler may freeze the randomizer application for ma
 				UseCustomLogic.Checked = _configuration.UseCustomLogic;
 				LogicFilePath.Text = _configuration.CustomLogicFilepath;
 			}
+		    BrowseCustomLogicFile.Enabled = UseCustomLogic.Checked;
 
 			if (!string.IsNullOrEmpty(_configuration.RomPath))
 			{
@@ -250,6 +251,7 @@ Generating seeds with this shuffler may freeze the randomizer application for ma
 
 			UseCustomPatch.Checked = _configuration.UseCustomPatch;
 			RomBuildfilePath.Text = _configuration.CustomPatchFilepath;
+		    BrowseCustomPatch.Enabled = UseCustomPatch.Checked;
 
 			logAllTransactionsToolStripMenuItem.Checked = _configuration.UseVerboseLogger;
 			_shufflerController.SetLoggerVerbosity(_configuration.UseVerboseLogger);
