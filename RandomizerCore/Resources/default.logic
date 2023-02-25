@@ -100,7 +100,7 @@
 !flag - Main Settings - Setting - Dungeon Settings - SHUFFLE_ELEMENTS - Shuffle Elements - Shuffle Elements allows the Elements to be shuffled to anywhere in the world, not just as Dungeon Rewards. The Element icons on the map are removed.
 
 !dropdown - Main Settings - Setting - Requirements - DHC_SETTING - Dark Hyrule Castle Opens - Dark Hyrule Castle is the last dungeon in the game, it has the final boss Vaati. - NORMALDHC - After Requirements - NORMALDHC - 'After Requirements': A barrier is placed at the front of the dungeon, This barrier is removed when you visit the sanctuary after completing ALL the requirements. The game ends when you defeat Vaati. - Never Open - NODHC - 'Never Open': A barrier is placed at the front of the dungeon, The game ends when you visit the sanctuary after completing all the requirements. - Always Open - OPENDHC - 'Always Open': There is no barrier at the front of the dungeon, the game ends when you defeat Vaati.
-!dropdown - Main Settings - Setting - Requirements - DHC_BK_SETTING - DHC Big Key - Dark Hyrule Castle Big Key is required to reach the final boss Vaati. - BK_SPAWN - In item pool - BK_POOL - 'In item pool': The Big Key is randomized based on the 'Big Keys' setting - After requirements - BK_SPAWN - 'After Requirements': The Big Key is instantly awarded to the player once they meet the selected requirements.
+!dropdown - Main Settings - Setting - Requirements - REQUIREMENT_ITEM - Requirement Reward - An item that the player receives once they meet the selected requirements. - REQUIREMENT_ITEM_NONE - Disabled - REQUIREMENT_ITEM_NONE - 'Disabled': No extra item is awarded for requriement completion. - DHC Big Key - REQUIREMENT_ITEM_DHC_BK - 'DHC Big Key': The DHC Big Key is instantly awarded to the player once they meet the selected requirements. - Random Item - REQUIREMENT_ITEM_RANDOM - 'Random Item': An item from the random item pool is instantly awarded to the player once they meet the selected requirements.
 !dropdown - Main Settings - Setting - Requirements - AD_PED - Dungeons Required - The number of dungeons that have to be beaten to activate the Sanctuary. There are 6 dungeons in the game that count:\n Deepwood Shrine\n Cave of Flames\n Fortress of Winds\n Temple of Droplets\n Royal Crypt\n Palace of Winds - AD_PED_0 - 0 - AD_PED_0 - - 1 - AD_PED_1 - - 2 - AD_PED_2 - - 3 - AD_PED_3 - - 4 - AD_PED_4 - - 5 - AD_PED_5 - - 6 - AD_PED_6 -
 !dropdown - Main Settings - Setting - Requirements - SWORD_SETTING - Sword Requirement - The level of sword that needs to be collected to activate the Sanctuary - 5SWORD - No Sword - 0SWORD - - Smith Sword - 1SWORD - - Green Sword - 2SWORD - - Red Sword - 3SWORD - - Blue Sword - 4SWORD - - Four Sword - 5SWORD -
 !dropdown - Main Settings - Setting - Requirements - ELEMENT_SETTING - Elements Required - The number of Elements that need to be collected to activate the Sanctuary - 4 - 4 - 4 - - 3 - 3 - - 2 - 2 - - 1 - 1 - - 0 - 0ELEMENT -
@@ -293,7 +293,7 @@
 !define - `GREEN_FUSION_SETTING`
 !define - `FUSION_SKIPS`
 !define - `DHC_SETTING`
-!define - `DHC_BK_SETTING`
+!define - `REQUIREMENT_ITEM`
 !define - `DUNGEON`
 !define - `AD_PED`
 !define - `PROGRESSIVE`
@@ -1249,7 +1249,7 @@
 				Items.BigKey.0x1A;	`BIG_KEY`;	`FOW_BIG`
 			!endif
 			!ifndef - NODHC
-				!ifdef - BK_POOL
+				!ifndef - REQUIREMENT_ITEM_DHC_BK
 					Items.BigKey.0x1D;	`BIG_KEY`;	`DHC_BIG`
 				!endif
 			!endif
@@ -1561,7 +1561,7 @@
 			Items.BigKey.0x1C;	Minor;
 		!endif
 		!ifndef - NODHC
-			!ifdef - BK_POOL
+			!ifndef - REQUIREMENT_ITEM_DHC_BK
 				Items.BigKey.0x1D;	Minor;
 			!endif
 		!endif
@@ -1657,16 +1657,22 @@
 !endif
 
 GOTSWORDS; 	Helper; ; `GOTSWORDS`
-!ifdef - BK_SPAWN
+!ifdef - REQUIREMENT_ITEM_DHC_BK
+	!define - REQREWARD - Items.BigKey.0x1D
 	!define - DHCBK - Items.Rupee5
 	!define - ALLREQUIREMENTS - Unshuffled
 	!eventdefine - requirementPrize
 !else
+	!define - REQREWARD - Items.Rupee5
 	!define - DHCBK - Items.BigKey.0x1D
-	!define - ALLREQUIREMENTS - Inaccessible
+	!ifdef - REQUIREMENT_ITEM_RANDOM
+		!define - ALLREQUIREMENTS - Any
+	!else
+		!define - ALLREQUIREMENTS - Inaccessible
+	!endif
 !endif
 
-All_Requirements_Met;	`ALLREQUIREMENTS`;	requirementPrizeItem:Define:FirstByte, requirementPrizeSub:Define:SecondByte;	Helpers.GOTSWORDS `GOTELEMENTS` `DHC_FIG` `DHC_AD`; Items.BigKey.0x1D
+All_Requirements_Met;	`ALLREQUIREMENTS`;	requirementPrizeItem:Define:FirstByte, requirementPrizeSub:Define:SecondByte;	Helpers.GOTSWORDS `GOTELEMENTS` `DHC_FIG` `DHC_AD`; `REQREWARD`
 
 !ifdef - OPENDHC
 	AccessDHC; 	Helper;;
@@ -4471,6 +4477,7 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 	CoFNoBlueWarp;			Helper;;	Helpers.Inaccessible
 	CoFBlueWarp;				Helper;;	
 	CoFChuFight;				Helper;;	
+	CoFBasementAccess;		Helper;; 
 	CoFRedWarp;				Helper;;	
 	FoWWizrobes;				Helper;;	
 	FoWEyeSwitch;				Helper;;	
@@ -4511,6 +4518,7 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 	PoWPotPuzzle;				Helper;;	
 	PoWNoWarps;				Helper;;	Helpers.Inaccessible
 	PoWDarknut;				Helper;;	
+	PoW2ndHalf;				Helper;;	
 	PoWBlueWarp;				Helper;;	
 	PoWPeahatRoom;			Helper;;	
 	PoWShortcuts;				Helper;;	
