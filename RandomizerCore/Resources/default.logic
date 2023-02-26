@@ -757,38 +757,6 @@
 	!eventdefine - compasskeasy
 !endif
 
-# Simplifies if keys are shuffled elsewhere
-!ifdef - Replace_Small_Keys
-	!define - SMALL_KEYS_ELSE
-!else
-	!ifdef - SMALL_KEYSANITY
-		!define - SMALL_KEYS_ELSE
-	!else
-		!ifdef - SMALL_KEYS_DUNGEON
-			!define - SMALL_KEYS_ELSE
-		!else
-			!ifdef - SMALL_KEYS_REGDUN
-				!define - SMALL_KEYS_ELSE
-			!endif
-		!endif
-	!endif
-!endif
-!ifdef - Replace_Big_Keys
-	!define - BIG_KEYS_ELSE
-!else
-	!ifdef - BIG_KEYSANITY
-		!define - BIG_KEYS_ELSE
-	!else
-		!ifdef - BIG_KEYS_DUNGEON
-			!define - BIG_KEYS_ELSE
-		!else
-			!ifdef - BIG_KEYS_REGDUN
-				!define - BIG_KEYS_ELSE
-			!endif
-		!endif
-	!endif
-!endif
-
 # Sets which dungeon pool keys should get shuffled in
 !define - BIG_KEY - DungeonMajor
 !define - SMALL_KEY - DungeonMajor
@@ -802,43 +770,54 @@
 	!define - DHC_SMALL - DHCSmall
 	!define - RC_SMALL - RCSmall
 !else
-	!ifdef - SMALL_KEYS_REGION
-		!define - DWS_SMALL - DWSSmallOutside
-		!define - COF_SMALL - CoFSmallOutside
-		!define - FOW_SMALL - FoWSmallOutside
-		!define - TOD_SMALL - ToDSmall
-		!define - POW_SMALL - PoWSmallOutside
-		!define - DHC_SMALL - DHCSmallOutside
-		!define - RC_SMALL - RCSmallOutside
+	!ifdef - SMALL_KEYS_VANILLA
+		!define - DWS_SMALL - DWSSmallV
+		!define - COF_SMALL - CoFSmallV
+		!define - FOW_SMALL - FoWSmallV
+		!define - TOD_SMALL - ToDSmallV
+		!define - POW_SMALL - PoWSmallV
+		!define - DHC_SMALL - DHCSmallV
+		!define - RC_SMALL - RCSmallV
 	!else
-		!ifdef - SMALL_KEYS_DUNGEON
-			!define - DWS_SMALL - Small
-			!define - COF_SMALL - Small
-			!define - FOW_SMALL - Small
-			!define - TOD_SMALL - Small
-			!define - POW_SMALL - Small
-			!define - DHC_SMALL - Small
-			!define - RC_SMALL - Small
+		!define - SMALL_KEYS_ELSE	# Simplifies if keys are shuffled outside their dungeon
+		!ifdef - SMALL_KEYS_REGION
+			!define - DWS_SMALL - DWSSmallOutside
+			!define - COF_SMALL - CoFSmallOutside
+			!define - FOW_SMALL - FoWSmallOutside
+			!define - TOD_SMALL - ToDSmall
+			!define - POW_SMALL - PoWSmallOutside
+			!define - DHC_SMALL - DHCSmallOutside
+			!define - RC_SMALL - RCSmallOutside
 		!else
-			!ifdef - SMALL_KEYS_REGDUN
-				!define - DWS_SMALL - SmallOutside
-				!define - COF_SMALL - SmallOutside
-				!define - FOW_SMALL - SmallOutside
-				!define - TOD_SMALL - SmallOutside
-				!define - POW_SMALL - SmallOutside
-				!define - DHC_SMALL - SmallOutside
-				!define - RC_SMALL - SmallOutside
+			!ifdef - SMALL_KEYS_DUNGEON
+				!define - DWS_SMALL - Small
+				!define - COF_SMALL - Small
+				!define - FOW_SMALL - Small
+				!define - TOD_SMALL - Small
+				!define - POW_SMALL - Small
+				!define - DHC_SMALL - Small
+				!define - RC_SMALL - Small
 			!else
-				!ifdef - SMALL_KEYSANITY
-					!undefine - SMALL_KEY
-					!define - SMALL_KEY - Major
-					!define - DWS_SMALL - 
-					!define - COF_SMALL - 
-					!define - FOW_SMALL - 
-					!define - TOD_SMALL - 
-					!define - POW_SMALL - 
-					!define - DHC_SMALL - 
-					!define - RC_SMALL - 
+				!ifdef - SMALL_KEYS_REGDUN
+					!define - DWS_SMALL - SmallOutside
+					!define - COF_SMALL - SmallOutside
+					!define - FOW_SMALL - SmallOutside
+					!define - TOD_SMALL - SmallOutside
+					!define - POW_SMALL - SmallOutside
+					!define - DHC_SMALL - SmallOutside
+					!define - RC_SMALL - SmallOutside
+				!else
+					!ifdef - SMALL_KEYSANITY
+						!undefine - SMALL_KEY
+						!define - SMALL_KEY - Major
+						!define - DWS_SMALL - 
+						!define - COF_SMALL - 
+						!define - FOW_SMALL - 
+						!define - TOD_SMALL - 
+						!define - POW_SMALL - 
+						!define - DHC_SMALL - 
+						!define - RC_SMALL - 
+					!endif
 				!endif
 			!endif
 		!endif
@@ -852,39 +831,49 @@
 	!define - POW_BIG - PoWBig
 	!define - DHC_BIG - DHCBig
 !else
-	!ifdef - BIG_KEYS_REGION
-		!define - DWS_BIG - DWSBigOutside
-		!define - COF_BIG - CoFBigOutside
-		!define - FOW_BIG - FoWBigOutside
-		!define - TOD_BIG - ToDBig
-		!define - POW_BIG - PoWBigOutside
-		!define - DHC_BIG - DHCBigOutside
+	!ifdef - BIG_KEYS_VANILLA
+		!define - DWS_BIG - DWSBigV
+		!define - COF_BIG - CoFBigV
+		!define - FOW_BIG - FoWBigV
+		!define - TOD_BIG - ToDBigV
+		!define - POW_BIG - PoWBigV
+		!define - DHC_BIG - DHCBigV
 	!else
-		!ifdef - BIG_KEYS_DUNGEON
-			!define - DWS_BIG - Big
-			!define - COF_BIG - Big
-			!define - FOW_BIG - Big
-			!define - TOD_BIG - Big
-			!define - POW_BIG - Big
-			!define - DHC_BIG - Big
+		!define - BIG_KEYS_ELSE	# Simplifies if keys are shuffled outside their dungeon
+		!ifdef - BIG_KEYS_REGION
+			!define - DWS_BIG - DWSBigOutside
+			!define - COF_BIG - CoFBigOutside
+			!define - FOW_BIG - FoWBigOutside
+			!define - TOD_BIG - ToDBig
+			!define - POW_BIG - PoWBigOutside
+			!define - DHC_BIG - DHCBigOutside
 		!else
-			!ifdef - BIG_KEYS_REGDUN
-				!define - DWS_BIG - BigOutside
-				!define - COF_BIG - BigOutside
-				!define - FOW_BIG - BigOutside
-				!define - TOD_BIG - BigOutside
-				!define - POW_BIG - BigOutside
-				!define - DHC_BIG - BigOutside
+			!ifdef - BIG_KEYS_DUNGEON
+				!define - DWS_BIG - Big
+				!define - COF_BIG - Big
+				!define - FOW_BIG - Big
+				!define - TOD_BIG - Big
+				!define - POW_BIG - Big
+				!define - DHC_BIG - Big
 			!else
-				!ifdef - BIG_KEYSANITY
-					!undefine - BIG_KEY
-					!define - BIG_KEY - Major
-					!define - DWS_BIG - 
-					!define - COF_BIG - 
-					!define - FOW_BIG - 
-					!define - TOD_BIG - 
-					!define - POW_BIG - 
-					!define - DHC_BIG - 
+				!ifdef - BIG_KEYS_REGDUN
+					!define - DWS_BIG - BigOutside
+					!define - COF_BIG - BigOutside
+					!define - FOW_BIG - BigOutside
+					!define - TOD_BIG - BigOutside
+					!define - POW_BIG - BigOutside
+					!define - DHC_BIG - BigOutside
+				!else
+					!ifdef - BIG_KEYSANITY
+						!undefine - BIG_KEY
+						!define - BIG_KEY - Major
+						!define - DWS_BIG - 
+						!define - COF_BIG - 
+						!define - FOW_BIG - 
+						!define - TOD_BIG - 
+						!define - POW_BIG - 
+						!define - DHC_BIG - 
+					!endif
 				!endif
 			!endif
 		!endif
@@ -1232,20 +1221,18 @@
 		Dummy_PoW_Big:NoSpoiler;	Unshuffled;	DumPoWBig:Define:FirstByte, DumPoWBig2:Define:SecondByte;	;	Items.BigKey.0x1C
 		Dummy_DHC_Big:NoSpoiler;	Unshuffled;	DumDHCBig:Define:FirstByte, DumDHCBig2:Define:SecondByte;	;	Items.BigKey.0x1D
 	!else
-		!ifndef - BIG_KEYS_VANILLA
-			Items.BigKey.0x18;	`BIG_KEY`;	`DWS_BIG`
-			Items.BigKey.0x19;	`BIG_KEY`;	`COF_BIG`
-			Items.BigKey.0x1B;	`BIG_KEY`;	`TOD_BIG`
-			!ifdef - POW_ACCESS
-				Items.BigKey.0x1C;	`BIG_KEY`;	`POW_BIG`
-			!endif
-			!ifdef - FOW_ACCESS
-				Items.BigKey.0x1A;	`BIG_KEY`;	`FOW_BIG`
-			!endif
-			!ifndef - NODHC
-				!ifndef - REQUIREMENT_ITEM_DHC_BK
-					Items.BigKey.0x1D;	`BIG_KEY`;	`DHC_BIG`
-				!endif
+		Items.BigKey.0x18;	`BIG_KEY`;	`DWS_BIG`
+		Items.BigKey.0x19;	`BIG_KEY`;	`COF_BIG`
+		Items.BigKey.0x1B;	`BIG_KEY`;	`TOD_BIG`
+		!ifdef - POW_ACCESS
+			Items.BigKey.0x1C;	`BIG_KEY`;	`POW_BIG`
+		!endif
+		!ifdef - FOW_ACCESS
+			Items.BigKey.0x1A;	`BIG_KEY`;	`FOW_BIG`
+		!endif
+		!ifndef - NODHC
+			!ifndef - REQUIREMENT_ITEM_DHC_BK
+				Items.BigKey.0x1D;	`BIG_KEY`;	`DHC_BIG`
 			!endif
 		!endif
 	!endif
@@ -1279,20 +1266,18 @@
 		Dummy_RC_Small_2:NoSpoiler;	Unshuffled;	DumRCS2:Define:FirstByte, DumRCS22:Define:SecondByte;		;	Items.SmallKey.0x1E
 		Dummy_RC_Small_3:NoSpoiler;	Unshuffled;	DumRCS3:Define:FirstByte, DumRCS32:Define:SecondByte;		;	Items.SmallKey.0x1E
 	!else
-		!ifndef - SMALL_KEYS_VANILLA
-			Items.SmallKey.0x18:4;	`SMALL_KEY`;	`DWS_SMALL`
-			Items.SmallKey.0x19:2;	`SMALL_KEY`;	`COF_SMALL`
-			Items.SmallKey.0x1B:4;	`SMALL_KEY`;	`TOD_SMALL`
-			Items.SmallKey.0x1E:3;	`SMALL_KEY`;	`RC_SMALL`
-			!ifdef - POW_ACCESS
-				Items.SmallKey.0x1C:6;	`SMALL_KEY`;	`POW_SMALL`
-			!endif
-			!ifdef - FOW_ACCESS
-				Items.SmallKey.0x1A:4;	`SMALL_KEY`;	`FOW_SMALL`
-			!endif
-			!ifndef - NODHC
-				Items.SmallKey.0x1D:5;	`SMALL_KEY`;	`DHC_SMALL`
-			!endif
+		Items.SmallKey.0x18:4;	`SMALL_KEY`;	`DWS_SMALL`
+		Items.SmallKey.0x19:2;	`SMALL_KEY`;	`COF_SMALL`
+		Items.SmallKey.0x1B:4;	`SMALL_KEY`;	`TOD_SMALL`
+		Items.SmallKey.0x1E:3;	`SMALL_KEY`;	`RC_SMALL`
+		!ifdef - POW_ACCESS
+			Items.SmallKey.0x1C:6;	`SMALL_KEY`;	`POW_SMALL`
+		!endif
+		!ifdef - FOW_ACCESS
+			Items.SmallKey.0x1A:4;	`SMALL_KEY`;	`FOW_SMALL`
+		!endif
+		!ifndef - NODHC
+			Items.SmallKey.0x1D:5;	`SMALL_KEY`;	`DHC_SMALL`
 		!endif
 	!endif
 	Items.Rupee1;			Filler;
@@ -4705,7 +4690,7 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 		ToDRedWarp;				Helper;;	Helpers.Inaccessible
 	!endif
 	ToDMadderpillars;			Helper;;	Helpers.HasMadderDamage
-	ToDEastSwitch;			Helper;;	Helpers.ToDMainRoom, (|Helpers.ToDLeftPath, (&Helpers.ToDRightPath, Items.RocsCape), Helpers.ToDEitherPath), Helpers.CanSplit2
+	ToDEastSwitch;			Helper;;	Helpers.CanSplit2, (|Helpers.ToDBlueWarp, (&Helpers.ToDMainRoom, (|Helpers.ToDLeftPath, (&Helpers.ToDRightPath, Items.RocsCape), Helpers.ToDEitherPath)))
 	ToDWestSwitch;			Helper;;	Helpers.BombWalls, Helpers.ToDWeb, Helpers.ToDMadderpillars, Helpers.CanSplit2, (|Helpers.ToDRedWarp, (&Helpers.ToD2ndRupeePath, Helpers.ToDRightIce, Helpers.CapeExtension))
 	ToDMulldozer;				Helper;;	Helpers.HasDamageSource
 	AccessOcto;				Helper;;	Helpers.ToDMainRoom, Helpers.ToDEastSwitch, Helpers.ToDWestSwitch
@@ -4794,16 +4779,8 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 !ifdef - POW_ACCESS
 	!define - PALACECHEST - Dungeon
 	!define - PALACEPRIZE - DungeonPrize
-	!ifdef - SMALL_KEYS_VANILLA
-		!define - PALACESMALL - Unshuffled
-	!else
-		!define - PALACESMALL - Dungeon
-	!endif
-	!ifdef - BIG_KEYS_VANILLA
-		!define - PALACEBIG - Unshuffled
-	!else
-		!define - PALACEBIG - Dungeon
-	!endif
+	!define - PALACESMALL - Dungeon
+	!define - PALACEBIG - Dungeon
 	!ifdef - COMPASS_VANILLA
 		!define - PALACECOMPASS - Unshuffled
 	!else
@@ -4832,16 +4809,8 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 !ifdef - FOW_ACCESS
 	!define - FORTRESSCHEST - Dungeon
 	!define - FORTRESSPRIZE - DungeonPrize
-	!ifdef - SMALL_KEYS_VANILLA
-		!define - FORTRESSSMALL - Unshuffled
-	!else
-		!define - FORTRESSSMALL - Dungeon
-	!endif
-	!ifdef - BIG_KEYS_VANILLA
-		!define - FORTRESSBIG - Unshuffled
-	!else
-		!define - FORTRESSBIG - Dungeon
-	!endif
+	!define - FORTRESSSMALL - Dungeon
+	!define - FORTRESSBIG - Dungeon
 	!ifdef - COMPASS_VANILLA
 		!define - FORTRESSCOMPASS - Unshuffled
 	!else
@@ -4873,24 +4842,6 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 	!define - FORTRESSPOT - Inaccessible
 !endif
 
-!ifdef - SMALL_KEYS_VANILLA
-	!define - DUNGEONSMALL - Unshuffled
-	!define - DUNGEONSMALLUNDERWATER - Unshuffled
-!else
-	!define - DUNGEONSMALL - Dungeon
-	!ifdef - UNDERWATER
-		!define - DUNGEONSMALLUNDERWATER - Dungeon
-	!else
-		!define - DUNGEONSMALLUNDERWATER - Inaccessible
-	!endif
-!endif
-
-!ifdef - BIG_KEYS_VANILLA
-	!define - DUNGEONBIG - Unshuffled
-!else
-	!define - DUNGEONBIG - Dungeon
-!endif
-
 !ifdef - COMPASS_VANILLA
 	!define - DUNGEONCOMPASS - Unshuffled
 !else
@@ -4900,8 +4851,8 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 !ifndef - NODHC
 	!define - DHCKING - Dungeon
 	!define - DHCCOMPASS - `DUNGEONCOMPASS`
-	!define - DHCSMALL - `DUNGEONSMALL`
-	!define - DHCBIG - `DUNGEONBIG`
+	!define - DHCSMALL - Dungeon
+	!define - DHCBIG - Dungeon
 !else
 	!define - DHCKING - Inaccessible
 	!define - DHCCOMPASS - Inaccessible
@@ -5197,10 +5148,16 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 	!define - WATER - ; Any
 	!define - WATERKINSTONE - Any
 	!define - DUNGEONUNDERWATER - ; Dungeon
+	!define - DUNGEONSMALLUNDERWATER - Dungeon
 !else
 	!define - WATER - :NoSpoiler;	Unshuffled
 	!define - WATERKINSTONE - Inaccessible
 	!define - DUNGEONUNDERWATER - :NoSpoiler;	Unshuffled
+	!ifdef - SMALL_KEYS_VANILLA
+		!define - DUNGEONSMALLUNDERWATER - Dungeon
+	!else
+		!define - DUNGEONSMALLUNDERWATER - Inaccessible
+	!endif
 !endif
 
 !ifdef - CUCCO_0
@@ -5860,6 +5817,7 @@ Valley_GraveyardRightFusion_Chest		`RC_OUTSIDE`;	`UWTFUSIONGREEN`;		0x0FE0E6;		(
 Valley_GraveyardRightGraveFusion_Chest	`RC_OUTSIDE`;	`BLUEFUSIONDUNGEON`;	0x34-0x01-0x00;	(|(&Helpers.Dampe1Fusion, Helpers.AccessValley, Helpers.DarkRooms, Helpers.Graveyard), Helpers.Hundo);			Items.Shells.100
 
 !define - RC_INSIDE - `RC_OUTSIDE`	:RCSmall	:Small	:Big	:Compass
+!define - RC_INSIDE_SK - `RC_INSIDE`	:RCSmallV
 !ifdef - UNREQSUR
 	!define - RC_PRIZE - :RCSmall :RCSmallOutside
 !else
@@ -5881,11 +5839,11 @@ AccessCrypt;						Helper;				;													Helpers.AccessValley, Helpers.DarkRoo
 
 Crypt_Entrance					`DUNGEONENTRANCE`;	DumRCENT:Define:FirstByte, DumRCENT2:Define:SecondByte;	(|Helpers.AccessCrypt, Helpers.Hundo);													Items.Entrance.0x05
 
-Crypt_Gibdo_LeftItem	`RC_INSIDE`;	Dungeon;				0x0E688B;											(|(&`ENTERRC`, (|Helpers.HasDamageSource, Items.Lantern)), Helpers.Hundo);					Items.Bombs5
-Crypt_Gibdo_RightItem	`RC_INSIDE`;	Dungeon;				0x0E68AB;											(|(&`ENTERRC`, (|Helpers.HasDamageSource, Items.Lantern)), Helpers.Hundo);					Items.SmallKey.0x1E
-Crypt_LeftItem		`RC_INSIDE`;	Dungeon;				0x0E6357;											(|(&`ENTERRC`, Helpers.CryptDoor, Helpers.CanSplit3), Helpers.Hundo);						Items.SmallKey.0x1E
-Crypt_RightItem		`RC_INSIDE`;	Dungeon;				0x0E63A7;											(|(&`ENTERRC`, Helpers.CryptDoor, Helpers.CanSplit3), Helpers.Hundo);						Items.SmallKey.0x1E
-Crypt_Prize			`RC_PRIZE`;	DungeonPrize;			0x00DA5A;											(|(&`ENTERRC`, Helpers.CryptDoor, Helpers.CryptBlocks, Helpers.CryptPuzzle), Helpers.Hundo);	Items.Kinstone.GoldenFalls
+Crypt_Gibdo_LeftItem	`RC_INSIDE`;		Dungeon;			0x0E688B;											(|(&`ENTERRC`, (|Helpers.HasDamageSource, Items.Lantern)), Helpers.Hundo);					Items.Bombs5
+Crypt_Gibdo_RightItem	`RC_INSIDE_SK`;	Dungeon;			0x0E68AB;											(|(&`ENTERRC`, (|Helpers.HasDamageSource, Items.Lantern)), Helpers.Hundo);					Items.SmallKey.0x1E
+Crypt_LeftItem		`RC_INSIDE_SK`;	Dungeon;			0x0E6357;											(|(&`ENTERRC`, Helpers.CryptDoor, Helpers.CanSplit3), Helpers.Hundo);						Items.SmallKey.0x1E
+Crypt_RightItem		`RC_INSIDE_SK`;	Dungeon;			0x0E63A7;											(|(&`ENTERRC`, Helpers.CryptDoor, Helpers.CanSplit3), Helpers.Hundo);						Items.SmallKey.0x1E
+Crypt_Prize			`RC_PRIZE`;		DungeonPrize;		0x00DA5A;											(|(&`ENTERRC`, Helpers.CryptDoor, Helpers.CryptBlocks, Helpers.CryptPuzzle), Helpers.Hundo);	Items.Kinstone.GoldenFalls
 #Secret Chest reachable with Firerod
 
 # Veil Falls
@@ -5965,6 +5923,8 @@ Palace_Entrance							`DUNGEONENTRANCE`;	DumPoWENT:Define:FirstByte, DumPoWENT2:
 # Deepwood locations
 
 !define - DWS_INSIDE - `DWS_OUTSIDE`	:DWSSmall	:DWSBig	:DWSCompass	:Small	:Big	:Compass
+!define - DWS_INSIDE_SK - `DWS_INSIDE`	:DWSSmallV
+!define - DWS_INSIDE_BK - `DWS_INSIDE`	:DWSBigV
 !ifdef - UNREQSUR
 	!define - DWS_PRIZE - :DWSSmall	:DWSBig	:DWSCompass	:DWSSmallOutside	:DWSBigOutside	:DWSCompassOutside
 !else
@@ -5984,31 +5944,33 @@ Palace_Entrance							`DUNGEONENTRANCE`;	DumPoWENT:Define:FirstByte, DumPoWENT2:
 !endif
 AccessDeepwood;									Helper;			;																Helpers.AccessMinishWoods, Helpers.Festari;
 
-Deepwood_2F_Chest						`DWS_INSIDE`;	Dungeon;			0x48-0x17-0x01;													(|(&`ENTERDWS`, Helpers.DeepwoodWeb), Helpers.Hundo);																											Items.Rupee20
-Deepwood_1F_SlugTorches_Chest			`DWS_INSIDE`;	`DUNGEONSMALL`;	0x48-0x10-0x01;													(|`ENTERDWS`, Helpers.Hundo);																																Items.SmallKey.0x18
-Deepwood_1F_BarrelRoom_Chest			`DWS_INSIDE`;	Dungeon;			0x48-0x06-0x01;													(|(&`ENTERDWS`, (|Helpers.Deepwood1stDoor, Helpers.DeepwoodPreMadderpillar), Helpers.BlowDust), Helpers.Hundo);														Items.Shells.10
-Deepwood_1F_West_BigChest				`DWS_INSIDE`;	`DUNGEONCOMPASS`;	0x48-0x05-0x01;													(|(&`ENTERDWS`, (|Helpers.Deepwood1stDoor, Helpers.DeepwoodPreMadderpillar)), Helpers.Hundo);																		Items.Compass.0x18
-Deepwood_1F_West_StatuePuzzle_Chest		`DWS_INSIDE`;	`DUNGEONSMALL`;	0x48-0x04-0x01;													(|(&`ENTERDWS`, (|Helpers.Deepwood1stDoor, Helpers.DeepwoodPreMadderpillar)), Helpers.Hundo);																		Items.SmallKey.0x18
-Deepwood_1F_East_MulldozerFight_Item	`DWS_INSIDE`;	`DUNGEONSMALL`;	0x0DE51B;														(|(&`ENTERDWS`, (|Helpers.Deepwood1stDoor, Helpers.DeepwoodPreMadderpillar), Helpers.Deepwood2ndDoor, Helpers.DeepwoodMulldozers), Helpers.Hundo);						Items.SmallKey.0x18
-Deepwood_1F_NorthEast_Chest			`DWS_INSIDE`;	Dungeon;			0x48-0x02-0x01;													(|(&`ENTERDWS`, Helpers.DeepwoodPreMadderpillar, Helpers.DeepwoodNWChest), Helpers.Hundo);																		Items.Shells.20
-Deepwood_B1_SwitchRoom_BigChest			`DWS_INSIDE`;	`DUNGEONCOMPASS`;	0x48-0x12-0x02;													(|(&`ENTERDWS`, Helpers.DeepwoodPreMadderpillar), Helpers.Hundo);																								Items.DungeonMap.0x18
-Deepwood_B1_SwitchRoom_Chest			`DWS_INSIDE`;	`DUNGEONSMALL`;	0x48-0x12-0x01;													(|(&`ENTERDWS`, (|(&Helpers.DeepwoodPreMadderpillar, Items.RocsCape), (&Helpers.Deepwood1stDoor, Items.GustJar))), Helpers.Hundo);										Items.SmallKey.0x18
-Deepwood_1F_BlueWarp_HP				`DWS_INSIDE`;	`DUNGEONHP`;		0x0DDE03;														(|(&`ENTERDWS`, Helpers.DeepwoodPreMadderpillar, Helpers.DeepwoodWarpSwitch), Helpers.Hundo);																		Items.PieceOfHeart
-Deepwood_1F_BlueWarp_LeftChest			`DWS_INSIDE`;	Dungeon;			0x48-0x01-0x01;													(|(&`ENTERDWS`, Helpers.DeepwoodPreMadderpillar, Helpers.DeepwoodWarpChests), Helpers.Hundo);																		Items.Shells.10
-Deepwood_1F_BlueWarp_RightChest			`DWS_INSIDE`;	Dungeon;			0x48-0x01-0x02;													(|(&`ENTERDWS`, Helpers.DeepwoodPreMadderpillar, Helpers.DeepwoodWarpChests), Helpers.Hundo);																		Items.Shells.10
-Deepwood_1F_Madderpillar_BigChest		`DWS_INSIDE`;	Dungeon;			0x48-0x00-0x01;													(|(&`ENTERDWS`, Helpers.DeepwoodPreMadderpillar, Helpers.DeepwoodMadderpillarDoor, Helpers.DeepwoodMadderpillarFight), Helpers.Hundo);									Items.GustJar
-Deepwood_1F_Madderpillar_HP			`DWS_INSIDE`;	`DUNGEONHP`;		0x0DE1F7;														(|(&`ENTERDWS`, Helpers.DeepwoodMadderHP), Helpers.Hundo);																										Items.PieceOfHeart
-Deepwood_B1_West_BigChest				`DWS_INSIDE`;	`DUNGEONBIG`;		0x48-0x11-0x01;													(|(&`ENTERDWS`, (|Helpers.DeepwoodRedWarp, (&(|Helpers.Deepwood1stDoor, Helpers.DeepwoodPreMadderpillar), Items.GustJar, Helpers.DeepwoodBasementDoor))), Helpers.Hundo);	Items.BigKey.0x18
+Deepwood_2F_Chest						`DWS_INSIDE`;		Dungeon;			0x48-0x17-0x01;													(|(&`ENTERDWS`, Helpers.DeepwoodWeb), Helpers.Hundo);																											Items.Rupee20
+Deepwood_1F_SlugTorches_Chest			`DWS_INSIDE_SK`;	Dungeon;			0x48-0x10-0x01;													(|`ENTERDWS`, Helpers.Hundo);																																Items.SmallKey.0x18
+Deepwood_1F_BarrelRoom_Chest			`DWS_INSIDE`;		Dungeon;			0x48-0x06-0x01;													(|(&`ENTERDWS`, (|Helpers.Deepwood1stDoor, Helpers.DeepwoodPreMadderpillar), Helpers.BlowDust), Helpers.Hundo);														Items.Shells.10
+Deepwood_1F_West_BigChest				`DWS_INSIDE`;		`DUNGEONCOMPASS`;	0x48-0x05-0x01;													(|(&`ENTERDWS`, (|Helpers.Deepwood1stDoor, Helpers.DeepwoodPreMadderpillar)), Helpers.Hundo);																		Items.Compass.0x18
+Deepwood_1F_West_StatuePuzzle_Chest		`DWS_INSIDE_SK`;	Dungeon;			0x48-0x04-0x01;													(|(&`ENTERDWS`, (|Helpers.Deepwood1stDoor, Helpers.DeepwoodPreMadderpillar)), Helpers.Hundo);																		Items.SmallKey.0x18
+Deepwood_1F_East_MulldozerFight_Item	`DWS_INSIDE_SK`;	Dungeon;			0x0DE51B;														(|(&`ENTERDWS`, (|Helpers.Deepwood1stDoor, Helpers.DeepwoodPreMadderpillar), Helpers.Deepwood2ndDoor, Helpers.DeepwoodMulldozers), Helpers.Hundo);						Items.SmallKey.0x18
+Deepwood_1F_NorthEast_Chest			`DWS_INSIDE`;		Dungeon;			0x48-0x02-0x01;													(|(&`ENTERDWS`, Helpers.DeepwoodPreMadderpillar, Helpers.DeepwoodNWChest), Helpers.Hundo);																		Items.Shells.20
+Deepwood_B1_SwitchRoom_BigChest			`DWS_INSIDE`;		`DUNGEONCOMPASS`;	0x48-0x12-0x02;													(|(&`ENTERDWS`, Helpers.DeepwoodPreMadderpillar), Helpers.Hundo);																								Items.DungeonMap.0x18
+Deepwood_B1_SwitchRoom_Chest			`DWS_INSIDE_SK`;	Dungeon;			0x48-0x12-0x01;													(|(&`ENTERDWS`, (|(&Helpers.DeepwoodPreMadderpillar, Items.RocsCape), (&Helpers.Deepwood1stDoor, Items.GustJar))), Helpers.Hundo);										Items.SmallKey.0x18
+Deepwood_1F_BlueWarp_HP				`DWS_INSIDE`;		`DUNGEONHP`;		0x0DDE03;														(|(&`ENTERDWS`, Helpers.DeepwoodPreMadderpillar, Helpers.DeepwoodWarpSwitch), Helpers.Hundo);																		Items.PieceOfHeart
+Deepwood_1F_BlueWarp_LeftChest			`DWS_INSIDE`;		Dungeon;			0x48-0x01-0x01;													(|(&`ENTERDWS`, Helpers.DeepwoodPreMadderpillar, Helpers.DeepwoodWarpChests), Helpers.Hundo);																		Items.Shells.10
+Deepwood_1F_BlueWarp_RightChest			`DWS_INSIDE`;		Dungeon;			0x48-0x01-0x02;													(|(&`ENTERDWS`, Helpers.DeepwoodPreMadderpillar, Helpers.DeepwoodWarpChests), Helpers.Hundo);																		Items.Shells.10
+Deepwood_1F_Madderpillar_BigChest		`DWS_INSIDE`;		Dungeon;			0x48-0x00-0x01;													(|(&`ENTERDWS`, Helpers.DeepwoodPreMadderpillar, Helpers.DeepwoodMadderpillarDoor, Helpers.DeepwoodMadderpillarFight), Helpers.Hundo);									Items.GustJar
+Deepwood_1F_Madderpillar_HP			`DWS_INSIDE`;		`DUNGEONHP`;		0x0DE1F7;														(|(&`ENTERDWS`, Helpers.DeepwoodMadderHP), Helpers.Hundo);																										Items.PieceOfHeart
+Deepwood_B1_West_BigChest				`DWS_INSIDE_BK`;	Dungeon;			0x48-0x11-0x01;													(|(&`ENTERDWS`, (|Helpers.DeepwoodRedWarp, (&(|Helpers.Deepwood1stDoor, Helpers.DeepwoodPreMadderpillar), Items.GustJar, Helpers.DeepwoodBasementDoor))), Helpers.Hundo);	Items.BigKey.0x18
 
-CompleteDeepwood;									Helper;			;																`ENTERDWS`, Items.GustJar, Helpers.HasChuDamage, Helpers.DeepwoodBossDoor;
+CompleteDeepwood;										Helper;			;																`ENTERDWS`, Items.GustJar, Helpers.HasChuDamage, Helpers.DeepwoodBossDoor;
 
-Deepwood_BossItem						`DWS_INSIDE`;	`DUNGEONHP`;		chuContainerItem:Define:FirstByte, chuContainerSub:Define:SecondByte;	(|Helpers.CompleteDeepwood, Helpers.Hundo);																												Items.HeartContainer
-Deepwood_Prize						`DWS_PRIZE`;	DungeonPrize;		0x0DF03B;														(|Helpers.CompleteDeepwood, Helpers.Hundo);																												Items.EarthElement
+Deepwood_BossItem						`DWS_INSIDE`;		`DUNGEONHP`;		chuContainerItem:Define:FirstByte, chuContainerSub:Define:SecondByte;	(|Helpers.CompleteDeepwood, Helpers.Hundo);																												Items.HeartContainer
+Deepwood_Prize						`DWS_PRIZE`;		DungeonPrize;		0x0DF03B;														(|Helpers.CompleteDeepwood, Helpers.Hundo);																												Items.EarthElement
 
 
 # Cave of Flames locations
 
 !define - COF_INSIDE - `COF_OUTSIDE`	:CoFSmall	:CoFBig	:CoFCompass	:Small	:Big	:Compass
+!define - COF_INSIDE_SK - `COF_INSIDE`	:CoFSmallV
+!define - COF_INSIDE_BK - `COF_INSIDE`	:CoFBigV
 !ifdef - UNREQSUR
 	!define - COF_PRIZE - :CoFSmall	:CoFBig	:CoFCompass	:CoFSmallOutside	:CoFBigOutside	:CoFCompassOutside
 !else
@@ -6038,8 +6000,8 @@ CoF_1F_Item5					`COF_INSIDE`		`DUNGEONRUPEE`;	0x0DFB2B;																(|(&`ENT
 CoF_B1_HazyRoom_BigChest		`COF_INSIDE`;		`DUNGEONCOMPASS`;	0x50-0x09-0x01;															(|(&`ENTERCOF`, (|Helpers.BombWalls, Helpers.Bobombs), Helpers.CoFSpikeBeetle, Helpers.CoFHelmasaur), Helpers.Hundo);																							Items.Compass.0x19
 CoF_B1_HazyRoom_SmallChest		`COF_INSIDE`;		Dungeon;			0x50-0x09-0x00;															(|(&`ENTERCOF`, (|Helpers.BombWalls, Helpers.Bobombs), Helpers.CoFSpikeBeetle, Helpers.CoFHelmasaur), Helpers.Hundo);																							Items.Kinstone.BlueL
 CoF_B1_Rollobite_Chest			`COF_INSIDE`;		Dungeon;			0x50-0x08-0x01;															(|(&`ENTERCOF`, (|Helpers.BombWalls, Helpers.Bobombs), Helpers.CoFSpikeBeetle, Helpers.CoFHelmasaur, (|Helpers.HasSword, Items.GustJar, Items.PacciCane, Helpers.HasBoomerang, Items.BombBag)), Helpers.Hundo);			Items.Rupee50
-CoF_B1_Rollobite_PillarChest	`COF_INSIDE`;		`DUNGEONSMALL`;	0x50-0x08-0x00;															(|(&`ENTERCOF`, (|Helpers.BombWalls, Helpers.Bobombs), Helpers.CoFSpikeBeetle, Helpers.CoFHelmasaur, (|Helpers.HasSword, Items.GustJar, Items.PacciCane, Helpers.HasBoomerang, Items.BombBag)), Helpers.Hundo);			Items.SmallKey.0x19
-CoF_B1_SpikeyChus_PillarChest	`COF_INSIDE`;		`DUNGEONSMALL`;	0x50-0x01-0x01;															(|(&`ENTERCOF`, Items.PacciCane, (|Helpers.CoFBlueWarp, (&(|Helpers.BombWalls, Helpers.Bobombs), Helpers.CoFSpikeBeetle, Helpers.CoF1stDoor, Helpers.HasSword))), Helpers.Hundo);										Items.SmallKey.0x19
+CoF_B1_Rollobite_PillarChest	`COF_INSIDE_SK`;	Dungeon;			0x50-0x08-0x00;															(|(&`ENTERCOF`, (|Helpers.BombWalls, Helpers.Bobombs), Helpers.CoFSpikeBeetle, Helpers.CoFHelmasaur, (|Helpers.HasSword, Items.GustJar, Items.PacciCane, Helpers.HasBoomerang, Items.BombBag)), Helpers.Hundo);			Items.SmallKey.0x19
+CoF_B1_SpikeyChus_PillarChest	`COF_INSIDE_SK`;	Dungeon;			0x50-0x01-0x01;															(|(&`ENTERCOF`, Items.PacciCane, (|Helpers.CoFBlueWarp, (&(|Helpers.BombWalls, Helpers.Bobombs), Helpers.CoFSpikeBeetle, Helpers.CoF1stDoor, Helpers.HasSword))), Helpers.Hundo);										Items.SmallKey.0x19
 CoF_B1_HP					`COF_INSIDE`;		`DUNGEONHP`;		0x0DFC9F;																(|(&`ENTERCOF`, Helpers.BombWalls, (|(&Helpers.CoFBlueWarp, Items.PacciCane), (&(|Helpers.BombWalls, Helpers.Bobombs), Helpers.CoFSpikeBeetle, Helpers.CoF1stDoor, Helpers.HasSword))), Helpers.Hundo);					Items.PieceOfHeart
 CoF_B1_SpikeyChus_BigChest		`COF_INSIDE`;		Dungeon;			0x50-0x01-0x02;															(|(&`ENTERCOF`, (|(&Helpers.CoFBlueWarp, (|Items.PacciCane, Items.RocsCape), Helpers.CoFChuFight), (&(|Helpers.BombWalls, Helpers.Bobombs), Helpers.CoFSpikeBeetle, Helpers.CoF1stDoor, Helpers.HasSword))), Helpers.Hundo);	Items.PacciCane
 
@@ -6048,7 +6010,7 @@ CoF_B2_PreLava_SouthChest		`COF_INSIDE`;		Dungeon;			0x50-0x10-0x01;												
 CoF_B2_LavaRoom_BladeChest		`COF_INSIDE`;		Dungeon;			0x50-0x14-0x00;															(|(&`ENTERCOF`, Helpers.CoFBasementAccess, (|Items.PacciCane, Items.RocsCape)), Helpers.Hundo);																												Items.Kinstone.GreenG
 CoF_B2_LavaRoom_RightChest		`COF_INSIDE`;		Dungeon;			0x50-0x17-0x01;															(|(&`ENTERCOF`, Helpers.CoFBasementAccess, (|Items.PacciCane, Items.RocsCape)), Helpers.Hundo);																												Items.Rupee100
 CoF_B2_LavaRoom_LeftChest		`COF_INSIDE`;		Dungeon;			0x50-0x17-0x00;															(|(&`ENTERCOF`, Helpers.CoFBasementAccess, (|Items.PacciCane, Items.RocsCape)), Helpers.Hundo);																												Items.Kinstone.GreenP
-CoF_B2_LavaRoom_BigChest		`COF_INSIDE`;		`DUNGEONBIG`;		0x50-0x17-0x02;															(|(&`ENTERCOF`, Helpers.CoFBasementAccess, (|Items.PacciCane, Items.RocsCape)), Helpers.Hundo);																												Items.BigKey.0x19
+CoF_B2_LavaRoom_BigChest		`COF_INSIDE_BK`;	Dungeon;			0x50-0x17-0x02;															(|(&`ENTERCOF`, Helpers.CoFBasementAccess, (|Items.PacciCane, Items.RocsCape)), Helpers.Hundo);																												Items.BigKey.0x19
 
 CompleteCoF;									Helper;			;																		`ENTERCOF`, Helpers.CoFBasementAccess, Helpers.CoFBossDoor, Items.PacciCane, Helpers.HasGleerokDamage;
 
@@ -6059,6 +6021,8 @@ Crenel_Melari_NPC				`COF_INSIDE`;		Dungeon;			0x00D26E;																(|Helper
 # Fortress of Winds Locations
 
 !define - FOW_INSIDE - `FOW_OUTSIDE`	:FoWSmall	:FoWBig	:FoWCompass	:Small	:Big	:Compass
+!define - FOW_INSIDE_SK - `FOW_INSIDE`	:FoWSmallV
+!define - FOW_INSIDE_BK - `FOW_INSIDE`	:FoWBigV
 !ifdef - UNREQSUR
 	!define - FOW_PRIZE - :FoWSmall	:FoWBig	:FoWCompass	:FoWSmallOutside	:FoWBigOutside	:FoWCompassOutside
 !else
@@ -6078,48 +6042,50 @@ Crenel_Melari_NPC				`COF_INSIDE`;		Dungeon;			0x00D26E;																(|Helper
 !endif
 AccessFortress;									Helper;				;																	Helpers.AccessRuins, Helpers.HasSword;
 	
-Fortress_Entrance_1F_LeftChest			`FOW_INSIDE`;	`FORTRESSCHEST`;		0x18-0x00-0x00;														(|(&`ENTERFOW`, Items.MoleMitts), Helpers.Hundo);																												Items.Kinstone.BlueS
-Fortress_Entrance_1F_LeftWizrobeChest	`FOW_INSIDE`;	`FORTRESSCHEST`;		0x58-0x23-0x00;														(|(&`ENTERFOW`, Items.MoleMitts, Helpers.FoWWizrobes), Helpers.Hundo);																							Items.Shells.80
-Fortress_Entrance_1F_RightItem			`FOW_INSIDE`	`FORTRESSRUPEE`;		0x0F3E67;															(|(&`ENTERFOW`, Helpers.FoWEntranceRupee), Helpers.Hundo);																										Items.Rupee50
-Fortress_Left_2F_DigChest				`FOW_INSIDE`;	`FORTRESSCHEST`;		0x18-0x01-0x00;														(|(&`ENTERFOW`, Helpers.FoWEyeSwitch, Helpers.FoWStalfosFight, Items.MoleMitts), Helpers.Hundo);																	Items.Kinstone.RedE
-Fortress_Left_2F_Item1					`FOW_INSIDE`	`FORTRESSRUPEE`;		0x0F3F37;															(|(&`ENTERFOW`, Helpers.FoWEyeSwitch, Helpers.FoWStalfosFight), Helpers.Hundo);																					Items.Rupee1
-Fortress_Left_2F_Item2					`FOW_INSIDE`	`FORTRESSRUPEE`;		0x0F3F47;															(|(&`ENTERFOW`, Helpers.FoWEyeSwitch, Helpers.FoWStalfosFight), Helpers.Hundo);																					Items.Rupee1
-Fortress_Left_2F_Item3					`FOW_INSIDE`	`FORTRESSRUPEE`;		0x0F3F57;															(|(&`ENTERFOW`, Helpers.FoWEyeSwitch, Helpers.FoWStalfosFight), Helpers.Hundo);																					Items.Rupee1
-Fortress_Left_2F_Item4					`FOW_INSIDE`	`FORTRESSRUPEE`;		0x0F3F67;															(|(&`ENTERFOW`, Helpers.FoWEyeSwitch, Helpers.FoWStalfosFight), Helpers.Hundo);																					Items.Rupee1
-Fortress_Left_2F_Item5					`FOW_INSIDE`	`FORTRESSRUPEE`;		0x0F3F77;															(|(&`ENTERFOW`, Helpers.FoWLeftRupee), Helpers.Hundo);																										Items.Rupee1
-Fortress_Left_2F_Item6					`FOW_INSIDE`	`FORTRESSRUPEE`;		0x0F3F87;															(|(&`ENTERFOW`, Helpers.FoWEyeSwitch, Helpers.FoWStalfosFight), Helpers.Hundo);																					Items.Rupee5
-Fortress_Left_2F_Item7					`FOW_INSIDE`	`FORTRESSRUPEE`;		0x0F3F97;															(|(&`ENTERFOW`, Helpers.FoWEyeSwitch, Helpers.FoWStalfosFight), Helpers.Hundo);																					Items.Rupee5
-Fortress_Left_3F_SwitchChest			`FOW_INSIDE`;	`FORTRESSCHEST`;		0x18-0x02-0x00;														(|(&`ENTERFOW`, Helpers.FoWEyeSwitch, Helpers.FoWStalfosFight, Helpers.FoWDigSwitch), Helpers.Hundo);																Items.Kinstone.RedV
-Fortress_Left_3F_Eyegore_BigChest		`FOW_INSIDE`;	`FORTRESSCOMPASS`;	0x58-0x00-0x00;														(|(&`ENTERFOW`, Helpers.FoWEyeSwitch, Helpers.FoWStalfosFight, Helpers.FoWCloneSwitch), Helpers.Hundo);																Items.DungeonMap.0x1A
-Fortress_Left_3F_ItemDrop				`FOW_INSIDE`;	`FORTRESSSMALL`;		fowLeftItem:Define:FirstByte,fowLeftSub:Define:SecondByte;					(|(&`ENTERFOW`, Helpers.FoWLeftDrop), Helpers.Hundo);																											Items.SmallKey.0x1A
+Fortress_Entrance_1F_LeftChest			`FOW_INSIDE`;		`FORTRESSCHEST`;		0x18-0x00-0x00;														(|(&`ENTERFOW`, Items.MoleMitts), Helpers.Hundo);																												Items.Kinstone.BlueS
+Fortress_Entrance_1F_LeftWizrobeChest	`FOW_INSIDE`;		`FORTRESSCHEST`;		0x58-0x23-0x00;														(|(&`ENTERFOW`, Items.MoleMitts, Helpers.FoWWizrobes), Helpers.Hundo);																							Items.Shells.80
+Fortress_Entrance_1F_RightItem			`FOW_INSIDE`		`FORTRESSRUPEE`;		0x0F3E67;															(|(&`ENTERFOW`, Helpers.FoWEntranceRupee), Helpers.Hundo);																										Items.Rupee50
+Fortress_Left_2F_DigChest				`FOW_INSIDE`;		`FORTRESSCHEST`;		0x18-0x01-0x00;														(|(&`ENTERFOW`, Helpers.FoWEyeSwitch, Helpers.FoWStalfosFight, Items.MoleMitts), Helpers.Hundo);																	Items.Kinstone.RedE
+Fortress_Left_2F_Item1					`FOW_INSIDE`		`FORTRESSRUPEE`;		0x0F3F37;															(|(&`ENTERFOW`, Helpers.FoWEyeSwitch, Helpers.FoWStalfosFight), Helpers.Hundo);																					Items.Rupee1
+Fortress_Left_2F_Item2					`FOW_INSIDE`		`FORTRESSRUPEE`;		0x0F3F47;															(|(&`ENTERFOW`, Helpers.FoWEyeSwitch, Helpers.FoWStalfosFight), Helpers.Hundo);																					Items.Rupee1
+Fortress_Left_2F_Item3					`FOW_INSIDE`		`FORTRESSRUPEE`;		0x0F3F57;															(|(&`ENTERFOW`, Helpers.FoWEyeSwitch, Helpers.FoWStalfosFight), Helpers.Hundo);																					Items.Rupee1
+Fortress_Left_2F_Item4					`FOW_INSIDE`		`FORTRESSRUPEE`;		0x0F3F67;															(|(&`ENTERFOW`, Helpers.FoWEyeSwitch, Helpers.FoWStalfosFight), Helpers.Hundo);																					Items.Rupee1
+Fortress_Left_2F_Item5					`FOW_INSIDE`		`FORTRESSRUPEE`;		0x0F3F77;															(|(&`ENTERFOW`, Helpers.FoWLeftRupee), Helpers.Hundo);																										Items.Rupee1
+Fortress_Left_2F_Item6					`FOW_INSIDE`		`FORTRESSRUPEE`;		0x0F3F87;															(|(&`ENTERFOW`, Helpers.FoWEyeSwitch, Helpers.FoWStalfosFight), Helpers.Hundo);																					Items.Rupee5
+Fortress_Left_2F_Item7					`FOW_INSIDE`		`FORTRESSRUPEE`;		0x0F3F97;															(|(&`ENTERFOW`, Helpers.FoWEyeSwitch, Helpers.FoWStalfosFight), Helpers.Hundo);																					Items.Rupee5
+Fortress_Left_3F_SwitchChest			`FOW_INSIDE`;		`FORTRESSCHEST`;		0x18-0x02-0x00;														(|(&`ENTERFOW`, Helpers.FoWEyeSwitch, Helpers.FoWStalfosFight, Helpers.FoWDigSwitch), Helpers.Hundo);																Items.Kinstone.RedV
+Fortress_Left_3F_Eyegore_BigChest		`FOW_INSIDE`;		`FORTRESSCOMPASS`;	0x58-0x00-0x00;														(|(&`ENTERFOW`, Helpers.FoWEyeSwitch, Helpers.FoWStalfosFight, Helpers.FoWCloneSwitch), Helpers.Hundo);																Items.DungeonMap.0x1A
+Fortress_Left_3F_ItemDrop				`FOW_INSIDE_SK`;	`FORTRESSSMALL`;		fowLeftItem:Define:FirstByte,fowLeftSub:Define:SecondByte;					(|(&`ENTERFOW`, Helpers.FoWLeftDrop), Helpers.Hundo);																											Items.SmallKey.0x1A
 
-Fortress_Middle_2F_BigChest			`FOW_INSIDE`;	`FORTRESSCOMPASS`;	0x58-0x19-0x00;														(|(&`ENTERFOW`, (|Helpers.FoWEyegores, (&Helpers.FoWBlueWarp, Helpers.FoWDarknut))), Helpers.Hundo);																Items.Compass.0x1A
-Fortress_Middle_2F_StatueChest			`FOW_INSIDE`;	`FORTRESSCHEST`;		0x18-0x01-0x01;														(|(&`ENTERFOW`, Items.MoleMitts), Helpers.Hundo);																												Items.Kinstone.BlueL
+Fortress_Middle_2F_BigChest			`FOW_INSIDE`;		`FORTRESSCOMPASS`;	0x58-0x19-0x00;														(|(&`ENTERFOW`, (|Helpers.FoWEyegores, (&Helpers.FoWBlueWarp, Helpers.FoWDarknut))), Helpers.Hundo);																Items.Compass.0x1A
+Fortress_Middle_2F_StatueChest			`FOW_INSIDE`;		`FORTRESSCHEST`;		0x18-0x01-0x01;														(|(&`ENTERFOW`, Items.MoleMitts), Helpers.Hundo);																												Items.Kinstone.BlueL
 
-Fortress_Right_2F_LeftChest			`FOW_INSIDE`;	`FORTRESSCHEST`;		0x58-0x1D-0x00;														(|`ENTERFOW`, Helpers.Hundo);																																Items.Kinstone.BlueL
-Fortress_Right_2F_RightChest			`FOW_INSIDE`;	`FORTRESSCHEST`;		0x58-0x1D-0x01;														(|`ENTERFOW`, Helpers.Hundo);																																Items.Kinstone.BlueS
-Fortress_Right_2F_DigChest				`FOW_INSIDE`;	`FORTRESSCHEST`;		0x18-0x01-0x02;														(|(&`ENTERFOW`, Items.MoleMitts), Helpers.Hundo);																												Items.Kinstone.RedE
-Fortress_Right_3F_DigChest				`FOW_INSIDE`;	`FORTRESSCHEST`;		0x18-0x02-0x01;														(|(&`ENTERFOW`, Items.MoleMitts), Helpers.Hundo);																												Items.Kinstone.RedW
-Fortress_Right_3F_ItemDrop				`FOW_INSIDE`;	`FORTRESSSMALL`;		fowRightItem:Define:FirstByte,fowRightSub:Define:SecondByte;				(|(&`ENTERFOW`, Helpers.FoWRightDrop), Helpers.Hundo);																										Items.SmallKey.0x1A
-Fortress_Entrance_1F_RightHP			`FOW_INSIDE`;	`FORTRESSHP`;			0x0E2DD7;															(|(&`ENTERFOW`, Helpers.FoWHP), Helpers.Hundo);																												Items.PieceOfHeart
+Fortress_Right_2F_LeftChest			`FOW_INSIDE`;		`FORTRESSCHEST`;		0x58-0x1D-0x00;														(|`ENTERFOW`, Helpers.Hundo);																																Items.Kinstone.BlueL
+Fortress_Right_2F_RightChest			`FOW_INSIDE`;		`FORTRESSCHEST`;		0x58-0x1D-0x01;														(|`ENTERFOW`, Helpers.Hundo);																																Items.Kinstone.BlueS
+Fortress_Right_2F_DigChest				`FOW_INSIDE`;		`FORTRESSCHEST`;		0x18-0x01-0x02;														(|(&`ENTERFOW`, Items.MoleMitts), Helpers.Hundo);																												Items.Kinstone.RedE
+Fortress_Right_3F_DigChest				`FOW_INSIDE`;		`FORTRESSCHEST`;		0x18-0x02-0x01;														(|(&`ENTERFOW`, Items.MoleMitts), Helpers.Hundo);																												Items.Kinstone.RedW
+Fortress_Right_3F_ItemDrop				`FOW_INSIDE_SK`;	`FORTRESSSMALL`;		fowRightItem:Define:FirstByte,fowRightSub:Define:SecondByte;				(|(&`ENTERFOW`, Helpers.FoWRightDrop), Helpers.Hundo);																										Items.SmallKey.0x1A
+Fortress_Entrance_1F_RightHP			`FOW_INSIDE`;		`FORTRESSHP`;			0x0E2DD7;															(|(&`ENTERFOW`, Helpers.FoWHP), Helpers.Hundo);																												Items.PieceOfHeart
 
-Fortress_BackLeft_BigChest				`FOW_INSIDE`;	`FORTRESSCHEST`;		0x18-0x03-0x00;														(|(&`ENTERFOW`, (|(&Helpers.FoWBlueWarp, Helpers.FoWDarknut), (&Helpers.FoWEyegores, Helpers.FoWLeftDoor, Helpers.FoWDarknut)), Helpers.BombWalls), Helpers.Hundo);							Items.MoleMitts
-Fortress_BackLeft_SmallChest			`FOW_INSIDE`;	`FORTRESSCHEST`;		0x18-0x03-0x01;														(|(&`ENTERFOW`, (|(&Helpers.FoWBlueWarp, Helpers.FoWDarknut), (&Helpers.FoWEyegores, Helpers.FoWLeftDoor, Helpers.FoWDarknut)), Helpers.BombWalls, Items.MoleMitts), Helpers.Hundo);			Items.Rupee100
+Fortress_BackLeft_BigChest				`FOW_INSIDE`;		`FORTRESSCHEST`;		0x18-0x03-0x00;														(|(&`ENTERFOW`, (|(&Helpers.FoWBlueWarp, Helpers.FoWDarknut), (&Helpers.FoWEyegores, Helpers.FoWLeftDoor, Helpers.FoWDarknut)), Helpers.BombWalls), Helpers.Hundo);							Items.MoleMitts
+Fortress_BackLeft_SmallChest			`FOW_INSIDE`;		`FORTRESSCHEST`;		0x18-0x03-0x01;														(|(&`ENTERFOW`, (|(&Helpers.FoWBlueWarp, Helpers.FoWDarknut), (&Helpers.FoWEyegores, Helpers.FoWLeftDoor, Helpers.FoWDarknut)), Helpers.BombWalls, Items.MoleMitts), Helpers.Hundo);			Items.Rupee100
 
-Fortress_BackRight_Statue_ItemDrop		`FOW_INSIDE`;	`FORTRESSSMALL`;		0x0E1E8B;															(|(&`ENTERFOW`, (|(&Helpers.FoWBlueWarp, Helpers.FoWDarknut), Helpers.FoWEyegores), Helpers.FoWRightDoor, Helpers.FoWStatueCloneSwitch), Helpers.Hundo);										Items.SmallKey.0x1A
-Fortress_BackRight_Minish_ItemDrop		`FOW_INSIDE`;	`FORTRESSSMALL`;		0x0F424F;															(|(&`ENTERFOW`, (|(&Helpers.FoWBlueWarp, Helpers.FoWDarknut), Helpers.FoWEyegores), Helpers.FoWRightDoor, Helpers.HasDamageSource, Helpers.FoWMiddleDoor, Items.MoleMitts), Helpers.Hundo);		Items.SmallKey.0x1A
-Fortress_BackRight_DigRoom_TopPot		`FOW_INSIDE`;	`FORTRESSPOT`;		0x0F3FC7:FirstByte, 0x0F3FC9:SecondByte;									(|(&`ENTERFOW`, (|(&Helpers.FoWBlueWarp, Helpers.FoWDarknut), Helpers.FoWEyegores), Helpers.FoWRightDoor, Helpers.FoWMiddleDoor, Items.MoleMitts), Helpers.Hundo);							Items.Rupee50
-Fortress_BackRight_DigRoom_BottomPot	`FOW_INSIDE`;	`FORTRESSPOT`;		0x0F3FD7:FirstByte, 0x0F3FD9:SecondByte;									(|(&`ENTERFOW`, (|(&Helpers.FoWBlueWarp, Helpers.FoWDarknut), Helpers.FoWEyegores), Helpers.FoWRightDoor, Helpers.FoWMiddleDoor, Items.MoleMitts), (&`ENTERFOW`, Helpers.FoWPot), Helpers.Hundo);	Items.Shells
-Fortress_BackRight_BigChest			`FOW_INSIDE`;	`FORTRESSBIG`;		0x58-0x1B-0x00;														(|(&`ENTERFOW`, (|(&Helpers.FoWBlueWarp, Helpers.FoWDarknut), Helpers.FoWEyegores), Helpers.FoWRightDoor, Helpers.FoWMiddleDoor, Items.MoleMitts, Helpers.FoWLastDoor), Helpers.Hundo);			Items.BigKey.0x1A
+Fortress_BackRight_Statue_ItemDrop		`FOW_INSIDE_SK`;	`FORTRESSSMALL`;		0x0E1E8B;															(|(&`ENTERFOW`, (|(&Helpers.FoWBlueWarp, Helpers.FoWDarknut), Helpers.FoWEyegores), Helpers.FoWRightDoor, Helpers.FoWStatueCloneSwitch), Helpers.Hundo);										Items.SmallKey.0x1A
+Fortress_BackRight_Minish_ItemDrop		`FOW_INSIDE_SK`;	`FORTRESSSMALL`;		0x0F424F;															(|(&`ENTERFOW`, (|(&Helpers.FoWBlueWarp, Helpers.FoWDarknut), Helpers.FoWEyegores), Helpers.FoWRightDoor, Helpers.HasDamageSource, Helpers.FoWMiddleDoor, Items.MoleMitts), Helpers.Hundo);		Items.SmallKey.0x1A
+Fortress_BackRight_DigRoom_TopPot		`FOW_INSIDE`;		`FORTRESSPOT`;		0x0F3FC7:FirstByte, 0x0F3FC9:SecondByte;									(|(&`ENTERFOW`, (|(&Helpers.FoWBlueWarp, Helpers.FoWDarknut), Helpers.FoWEyegores), Helpers.FoWRightDoor, Helpers.FoWMiddleDoor, Items.MoleMitts), Helpers.Hundo);							Items.Rupee50
+Fortress_BackRight_DigRoom_BottomPot	`FOW_INSIDE`;		`FORTRESSPOT`;		0x0F3FD7:FirstByte, 0x0F3FD9:SecondByte;									(|(&`ENTERFOW`, (|(&Helpers.FoWBlueWarp, Helpers.FoWDarknut), Helpers.FoWEyegores), Helpers.FoWRightDoor, Helpers.FoWMiddleDoor, Items.MoleMitts), (&`ENTERFOW`, Helpers.FoWPot), Helpers.Hundo);	Items.Shells
+Fortress_BackRight_BigChest			`FOW_INSIDE_BK`;	`FORTRESSBIG`;		0x58-0x1B-0x00;														(|(&`ENTERFOW`, (|(&Helpers.FoWBlueWarp, Helpers.FoWDarknut), Helpers.FoWEyegores), Helpers.FoWRightDoor, Helpers.FoWMiddleDoor, Items.MoleMitts, Helpers.FoWLastDoor), Helpers.Hundo);			Items.BigKey.0x1A
 	
-CompleteFortress;									Helper;				;																	`ENTERFOW`, Items.MoleMitts, Helpers.FoWBossDoor, Helpers.HasMazaalDamage, Helpers.HasBow;
+CompleteFortress;										Helper;				;																	`ENTERFOW`, Items.MoleMitts, Helpers.FoWBossDoor, Helpers.HasMazaalDamage, Helpers.HasBow;
 
-Fortress_BossItem						`FOW_INSIDE`;	`FORTRESSHP`;			mazaalContainerItem:Define:FirstByte, mazaalContainerSub:Define:SecondByte;	(|Helpers.CompleteFortress, Helpers.Hundo);																													Items.HeartContainer
-Fortress_Prize						`FOW_PRIZE`;	`FORTRESSPRIZE`;		0x09C9E6:FirstByte, 0x09C9E8:SecondByte;									(|Helpers.CompleteFortress, Helpers.Hundo);																													Items.Ocarina
+Fortress_BossItem						`FOW_INSIDE`;		`FORTRESSHP`;			mazaalContainerItem:Define:FirstByte, mazaalContainerSub:Define:SecondByte;	(|Helpers.CompleteFortress, Helpers.Hundo);																													Items.HeartContainer
+Fortress_Prize						`FOW_PRIZE`;		`FORTRESSPRIZE`;		0x09C9E6:FirstByte, 0x09C9E8:SecondByte;									(|Helpers.CompleteFortress, Helpers.Hundo);																													Items.Ocarina
 
 # Temple of Droplets Locations
 
 !define - TOD_INSIDE - :ToDSmall	:ToDBig	:ToDCompass	:Small	:Big	:Compass
+!define - TOD_INSIDE_SK - `TOD_INSIDE`	:ToDSmallV
+!define - TOD_INSIDE_BK - `TOD_INSIDE`	:ToDBigV
 !ifdef - NONE
 	!define - TOD_PRIZE - `TOD_INSIDE`
 !else
@@ -6143,50 +6109,50 @@ AccessDroplets;	Helper;	;	Helpers.AccessLonLon, Helpers.CapeExtension
 !endif
 
 # ToD entrance logic looks really weird, we have the right block split into 2. One location get the keys shuffled to and writes it to game memory, this is hidden from the spoiler log as the logic is very unintuitive but works. The other is purely visual and always shows the correct key and the intuitive logic it should have.
-Droplets_Entrance_B2_EastIceblock				`TOD_INSIDE`;	`DUNGEONSMALL`;			0x098C1A:FirstByte, 0x098C1C:SecondByte;								(|(&`ENTERTOD`, Helpers.ToDRightBlock), Helpers.Hundo);	Items.SmallKey.0x1B
-Droplets_Entrance_B2_WestIceblock				`TOD_INSIDE`;	`DUNGEONBIG`;				0x098C3C:FirstByte, 0x098C3E:SecondByte;								(|(&`ENTERTOD`, Helpers.ToDLeftBlock), Helpers.Hundo);	Items.BigKey.0x1B
+Droplets_Entrance_B2_EastIceblock				`TOD_INSIDE_SK`;	Dungeon;					0x098C1A:FirstByte, 0x098C1C:SecondByte;								(|(&`ENTERTOD`, Helpers.ToDRightBlock), Helpers.Hundo);	Items.SmallKey.0x1B
+Droplets_Entrance_B2_WestIceblock				`TOD_INSIDE_BK`;	Dungeon;					0x098C3C:FirstByte, 0x098C3E:SecondByte;								(|(&`ENTERTOD`, Helpers.ToDLeftBlock), Helpers.Hundo);	Items.BigKey.0x1B
 
-Droplets_LeftPath_B1_UnderpassItem1				`TOD_INSIDE`	`DUNGEONRUPEE`;			0x0E3F8B;														(|(&`ENTERTOD`, Helpers.ToDMainRoom), Helpers.Hundo);		Items.Rupee1
-Droplets_LeftPath_B1_UnderpassItem2				`TOD_INSIDE`	`DUNGEONRUPEE`;			0x0E3F9B;														(|(&`ENTERTOD`, Helpers.ToDMainRoom), Helpers.Hundo);		Items.Rupee1
-Droplets_LeftPath_B1_UnderpassItem3				`TOD_INSIDE`	`DUNGEONRUPEE`;			0x0E3FAB;														(|(&`ENTERTOD`, Helpers.ToDMainRoom), Helpers.Hundo);		Items.Rupee1
-Droplets_LeftPath_B1_UnderpassItem4				`TOD_INSIDE`	`DUNGEONRUPEE`;			0x0E3FBB;														(|(&`ENTERTOD`, Helpers.ToDMainRoom), Helpers.Hundo);		Items.Rupee1
-Droplets_LeftPath_B1_UnderpassItem5				`TOD_INSIDE`	`DUNGEONRUPEE`;			0x0E3FCB;														(|(&`ENTERTOD`, Helpers.ToDMainRoom), Helpers.Hundo);		Items.Rupee1
-Droplets_LeftPath_B1_Waterfall_BigChest			`TOD_INSIDE`;	`DUNGEONCOMPASS`;			0x60-0x0D-0x00;													(|(&`ENTERTOD`, Helpers.ToDMainRoom), Helpers.Hundo);		Items.DungeonMap.0x1B
+Droplets_LeftPath_B1_UnderpassItem1				`TOD_INSIDE`		`DUNGEONRUPEE`;			0x0E3F8B;														(|(&`ENTERTOD`, Helpers.ToDMainRoom), Helpers.Hundo);		Items.Rupee1
+Droplets_LeftPath_B1_UnderpassItem2				`TOD_INSIDE`		`DUNGEONRUPEE`;			0x0E3F9B;														(|(&`ENTERTOD`, Helpers.ToDMainRoom), Helpers.Hundo);		Items.Rupee1
+Droplets_LeftPath_B1_UnderpassItem3				`TOD_INSIDE`		`DUNGEONRUPEE`;			0x0E3FAB;														(|(&`ENTERTOD`, Helpers.ToDMainRoom), Helpers.Hundo);		Items.Rupee1
+Droplets_LeftPath_B1_UnderpassItem4				`TOD_INSIDE`		`DUNGEONRUPEE`;			0x0E3FBB;														(|(&`ENTERTOD`, Helpers.ToDMainRoom), Helpers.Hundo);		Items.Rupee1
+Droplets_LeftPath_B1_UnderpassItem5				`TOD_INSIDE`		`DUNGEONRUPEE`;			0x0E3FCB;														(|(&`ENTERTOD`, Helpers.ToDMainRoom), Helpers.Hundo);		Items.Rupee1
+Droplets_LeftPath_B1_Waterfall_BigChest			`TOD_INSIDE`;		`DUNGEONCOMPASS`;			0x60-0x0D-0x00;													(|(&`ENTERTOD`, Helpers.ToDMainRoom), Helpers.Hundo);		Items.DungeonMap.0x1B
 
-Droplets_LeftPath_B1_Waterfall_Underwater1		`TOD_INSIDE`	`DUNGEONUNDERWATER`;		0x0E3593;														(|(&`ENTERTOD`, Helpers.ToDMainRoom, Items.Flippers), Helpers.Hundo);																				Items.Rupee5
-Droplets_LeftPath_B1_Waterfall_Underwater2		`TOD_INSIDE`	`DUNGEONUNDERWATER`;		0x0E35A3;														(|(&`ENTERTOD`, Helpers.ToDMainRoom, Items.Flippers), Helpers.Hundo);																				Items.Rupee5
-Droplets_LeftPath_B1_Waterfall_Underwater3		`TOD_INSIDE`	`DUNGEONUNDERWATER`;		0x0E35B3;														(|(&`ENTERTOD`, Helpers.ToDMainRoom, Items.Flippers), Helpers.Hundo);																				Items.Rupee5
-Droplets_LeftPath_B1_Waterfall_Underwater4		`TOD_INSIDE`	`DUNGEONUNDERWATER`;		0x0E35C3;														(|(&`ENTERTOD`, Helpers.ToDMainRoom, Items.Flippers), Helpers.Hundo);																				Items.Rupee5
-Droplets_LeftPath_B1_Waterfall_Underwater5		`TOD_INSIDE`	`DUNGEONUNDERWATER`;		0x0E35D3;														(|(&`ENTERTOD`, Helpers.ToDMainRoom, Items.Flippers), Helpers.Hundo);																				Items.Rupee5
-Droplets_LeftPath_B1_Waterfall_Underwater6		`TOD_INSIDE`	`DUNGEONUNDERWATER`;		0x0E35E3;														(|(&`ENTERTOD`, Helpers.ToDMainRoom, Items.Flippers), Helpers.Hundo);																				Items.Rupee5
-Droplets_LeftPath_B2_Waterfall_Underwater1		`TOD_INSIDE`	`DUNGEONUNDERWATER`;		0x0E58DF;														(|(&`ENTERTOD`, Items.Flippers, (|(&Helpers.ToDMainRoom, Helpers.ToDLeftMushroomSwitch), (&Helpers.ToDLilypadEnd, Helpers.ToDLeftReverse))), Helpers.Hundo);	Items.Rupee5
-Droplets_LeftPath_B2_Waterfall_Underwater2		`TOD_INSIDE`	`DUNGEONUNDERWATER`;		0x0E58EF;														(|(&`ENTERTOD`, Items.Flippers, (|(&Helpers.ToDMainRoom, Helpers.ToDLeftMushroomSwitch), (&Helpers.ToDLilypadEnd, Helpers.ToDLeftReverse))), Helpers.Hundo);	Items.Rupee5
-Droplets_LeftPath_B2_Waterfall_Underwater3		`TOD_INSIDE`	`DUNGEONUNDERWATER`;		0x0E58FF;														(|(&`ENTERTOD`, Items.Flippers, (|(&Helpers.ToDMainRoom, Helpers.ToDLeftMushroomSwitch), (&Helpers.ToDLilypadEnd, Helpers.ToDLeftReverse))), Helpers.Hundo);	Items.Rupee5
-Droplets_LeftPath_B2_Waterfall_Underwater4		`TOD_INSIDE`	`DUNGEONUNDERWATER`;		0x0E590F;														(|(&`ENTERTOD`, Items.Flippers, (|(&Helpers.ToDMainRoom, Helpers.ToDLeftMushroomSwitch), (&Helpers.ToDLilypadEnd, Helpers.ToDLeftReverse))), Helpers.Hundo);	Items.Rupee5
-Droplets_LeftPath_B2_Waterfall_Underwater5		`TOD_INSIDE`	`DUNGEONUNDERWATER`;		0x0E591F;														(|(&`ENTERTOD`, Items.Flippers, (|(&Helpers.ToDMainRoom, Helpers.ToDLeftMushroomSwitch), (&Helpers.ToDLilypadEnd, Helpers.ToDLeftReverse))), Helpers.Hundo);	Items.Rupee5
-Droplets_LeftPath_B2_Waterfall_Underwater6		`TOD_INSIDE`	`DUNGEONUNDERWATER`;		0x0E592F;														(|(&`ENTERTOD`, Items.Flippers, (|(&Helpers.ToDMainRoom, Helpers.ToDLeftMushroomSwitch), (&Helpers.ToDLilypadEnd, Helpers.ToDLeftReverse))), Helpers.Hundo);	Items.Rupee5
+Droplets_LeftPath_B1_Waterfall_Underwater1		`TOD_INSIDE`		`DUNGEONUNDERWATER`;		0x0E3593;														(|(&`ENTERTOD`, Helpers.ToDMainRoom, Items.Flippers), Helpers.Hundo);																				Items.Rupee5
+Droplets_LeftPath_B1_Waterfall_Underwater2		`TOD_INSIDE`		`DUNGEONUNDERWATER`;		0x0E35A3;														(|(&`ENTERTOD`, Helpers.ToDMainRoom, Items.Flippers), Helpers.Hundo);																				Items.Rupee5
+Droplets_LeftPath_B1_Waterfall_Underwater3		`TOD_INSIDE`		`DUNGEONUNDERWATER`;		0x0E35B3;														(|(&`ENTERTOD`, Helpers.ToDMainRoom, Items.Flippers), Helpers.Hundo);																				Items.Rupee5
+Droplets_LeftPath_B1_Waterfall_Underwater4		`TOD_INSIDE`		`DUNGEONUNDERWATER`;		0x0E35C3;														(|(&`ENTERTOD`, Helpers.ToDMainRoom, Items.Flippers), Helpers.Hundo);																				Items.Rupee5
+Droplets_LeftPath_B1_Waterfall_Underwater5		`TOD_INSIDE`		`DUNGEONUNDERWATER`;		0x0E35D3;														(|(&`ENTERTOD`, Helpers.ToDMainRoom, Items.Flippers), Helpers.Hundo);																				Items.Rupee5
+Droplets_LeftPath_B1_Waterfall_Underwater6		`TOD_INSIDE`		`DUNGEONUNDERWATER`;		0x0E35E3;														(|(&`ENTERTOD`, Helpers.ToDMainRoom, Items.Flippers), Helpers.Hundo);																				Items.Rupee5
+Droplets_LeftPath_B2_Waterfall_Underwater1		`TOD_INSIDE`		`DUNGEONUNDERWATER`;		0x0E58DF;														(|(&`ENTERTOD`, Items.Flippers, (|(&Helpers.ToDMainRoom, Helpers.ToDLeftMushroomSwitch), (&Helpers.ToDLilypadEnd, Helpers.ToDLeftReverse))), Helpers.Hundo);	Items.Rupee5
+Droplets_LeftPath_B2_Waterfall_Underwater2		`TOD_INSIDE`		`DUNGEONUNDERWATER`;		0x0E58EF;														(|(&`ENTERTOD`, Items.Flippers, (|(&Helpers.ToDMainRoom, Helpers.ToDLeftMushroomSwitch), (&Helpers.ToDLilypadEnd, Helpers.ToDLeftReverse))), Helpers.Hundo);	Items.Rupee5
+Droplets_LeftPath_B2_Waterfall_Underwater3		`TOD_INSIDE`		`DUNGEONUNDERWATER`;		0x0E58FF;														(|(&`ENTERTOD`, Items.Flippers, (|(&Helpers.ToDMainRoom, Helpers.ToDLeftMushroomSwitch), (&Helpers.ToDLilypadEnd, Helpers.ToDLeftReverse))), Helpers.Hundo);	Items.Rupee5
+Droplets_LeftPath_B2_Waterfall_Underwater4		`TOD_INSIDE`		`DUNGEONUNDERWATER`;		0x0E590F;														(|(&`ENTERTOD`, Items.Flippers, (|(&Helpers.ToDMainRoom, Helpers.ToDLeftMushroomSwitch), (&Helpers.ToDLilypadEnd, Helpers.ToDLeftReverse))), Helpers.Hundo);	Items.Rupee5
+Droplets_LeftPath_B2_Waterfall_Underwater5		`TOD_INSIDE`		`DUNGEONUNDERWATER`;		0x0E591F;														(|(&`ENTERTOD`, Items.Flippers, (|(&Helpers.ToDMainRoom, Helpers.ToDLeftMushroomSwitch), (&Helpers.ToDLilypadEnd, Helpers.ToDLeftReverse))), Helpers.Hundo);	Items.Rupee5
+Droplets_LeftPath_B2_Waterfall_Underwater6		`TOD_INSIDE`		`DUNGEONUNDERWATER`;		0x0E592F;														(|(&`ENTERTOD`, Items.Flippers, (|(&Helpers.ToDMainRoom, Helpers.ToDLeftMushroomSwitch), (&Helpers.ToDLilypadEnd, Helpers.ToDLeftReverse))), Helpers.Hundo);	Items.Rupee5
 
-Droplets_LeftPath_B2_Underwater_Pot				`TOD_INSIDE`;	`DUNGEONSMALLUNDERWATER`;	0x0E5BC7;														(|(&`ENTERTOD`, Items.Flippers, (|(&Helpers.ToDMainRoom, Helpers.ToDLeftPillars), Helpers.ToDLilypadEnd)), Helpers.Hundo);																								Items.SmallKey.0x1B
-Droplets_LeftPath_B2_IceMadderpillar_BigChest	`TOD_INSIDE`;	`DUNGEONCOMPASS`;			0x60-0x32-0x01;													(|(&`ENTERTOD`, Items.GustJar, Helpers.ToDMadderpillars, (|Helpers.ToDLilypadEnd, (&Helpers.ToDMainRoom, Helpers.ToDBasementLilySpawn))), Helpers.Hundo);																	Items.Compass.0x1B
-Droplets_LeftPath_B2_IcePlain_FrozenChest		`TOD_INSIDE`;	Dungeon;					0x60-0x28-0x00;													(|(&`ENTERTOD`, Items.Lantern, (|(&Helpers.ToDMainRoom, Items.Flippers, Helpers.ToDWestDoor, Helpers.ToDLeftPillars), (&Helpers.ToDLilypadEnd, (|Items.GustJar, Items.Flippers, Items.RocsCape)))), Helpers.Hundo);					Items.Shells.100
-Droplets_LeftPath_B2_IcePlain_Chest				`TOD_INSIDE`;	Dungeon;					0x60-0x28-0x01;													(|(&`ENTERTOD`, (|(&Helpers.ToDMainRoom, Items.Flippers, Helpers.ToDWestDoor, Helpers.ToDLeftMushroomSwitch, Helpers.ToDLeftPillars), (&Helpers.ToDLilypadEnd, (|Items.GustJar, Items.Flippers, Items.RocsCape)))), Helpers.Hundo);	Items.Rupee50
-Droplets_LeftPath_B2_LilypadCorner_FrozenChest	`TOD_INSIDE`;	Dungeon;					0x60-0x2D-0x00;													(|(&`ENTERTOD`, Items.GustJar, Items.Lantern, (|(&Helpers.ToDMainRoom, Helpers.ToDBasementLilySpawn), Helpers.ToDLilypadEnd)), Helpers.Hundo);																				Items.Kinstone.RedE
+Droplets_LeftPath_B2_Underwater_Pot				`TOD_INSIDE_SK`;	`DUNGEONSMALLUNDERWATER`;	0x0E5BC7;														(|(&`ENTERTOD`, Items.Flippers, (|(&Helpers.ToDMainRoom, Helpers.ToDLeftPillars), Helpers.ToDLilypadEnd)), Helpers.Hundo);																								Items.SmallKey.0x1B
+Droplets_LeftPath_B2_IceMadderpillar_BigChest	`TOD_INSIDE`;		`DUNGEONCOMPASS`;			0x60-0x32-0x01;													(|(&`ENTERTOD`, Items.GustJar, Helpers.ToDMadderpillars, (|Helpers.ToDLilypadEnd, (&Helpers.ToDMainRoom, Helpers.ToDBasementLilySpawn))), Helpers.Hundo);																	Items.Compass.0x1B
+Droplets_LeftPath_B2_IcePlain_FrozenChest		`TOD_INSIDE`;		Dungeon;					0x60-0x28-0x00;													(|(&`ENTERTOD`, Items.Lantern, (|(&Helpers.ToDMainRoom, Items.Flippers, Helpers.ToDWestDoor, Helpers.ToDLeftPillars), (&Helpers.ToDLilypadEnd, (|Items.GustJar, Items.Flippers, Items.RocsCape)))), Helpers.Hundo);					Items.Shells.100
+Droplets_LeftPath_B2_IcePlain_Chest				`TOD_INSIDE`;		Dungeon;					0x60-0x28-0x01;													(|(&`ENTERTOD`, (|(&Helpers.ToDMainRoom, Items.Flippers, Helpers.ToDWestDoor, Helpers.ToDLeftMushroomSwitch, Helpers.ToDLeftPillars), (&Helpers.ToDLilypadEnd, (|Items.GustJar, Items.Flippers, Items.RocsCape)))), Helpers.Hundo);	Items.Rupee50
+Droplets_LeftPath_B2_LilypadCorner_FrozenChest	`TOD_INSIDE`;		Dungeon;					0x60-0x2D-0x00;													(|(&`ENTERTOD`, Items.GustJar, Items.Lantern, (|(&Helpers.ToDMainRoom, Helpers.ToDBasementLilySpawn), Helpers.ToDLilypadEnd)), Helpers.Hundo);																				Items.Kinstone.RedE
 
-Droplets_RightPath_B1_1stChest					`TOD_INSIDE`;	Dungeon;					0x60-0x09-0x00;													(|(&`ENTERTOD`, (|(&Helpers.ToDMainRoom, Helpers.ToDRightIceBlock), (&Helpers.ToD2ndRupeePath, Helpers.ToDDarkMazeReverse, Helpers.ToDScissorBeetles, Helpers.ToDRightIce))), Helpers.Hundo);																				Items.Kinstone.BlueL
-Droplets_RightPath_B1_2ndChest					`TOD_INSIDE`;	Dungeon;					0x60-0x0A-0x00;													(|(&`ENTERTOD`, (|(&Helpers.ToDMainRoom, Helpers.ToDRightIceBlock), (&Helpers.ToD2ndRupeePath, Helpers.ToDDarkMazeReverse, Helpers.ToDScissorBeetles, Helpers.ToDRightIce))), Helpers.Hundo);																				Items.Kinstone.BlueS
-Droplets_RightPath_B1_Pot						`TOD_INSIDE`;	`POT`;					0x0E3A73:FirstByte, 0x0E3A75:SecondByte;								(|(&`ENTERTOD`, (|(&Helpers.ToDMainRoom, Helpers.ToDRightIceBlock), (&Helpers.ToD2ndRupeePath, Helpers.ToDDarkMazeReverse, Helpers.ToDScissorBeetles, Helpers.ToDRightIce))), Helpers.Hundo);																				Items.Kinstone.GreenC
-Droplets_RightPath_B3_FrozenChest				`TOD_INSIDE`;	`DUNGEONSMALL`;			0x60-0x11-0x00;													(|(&`ENTERTOD`, (|(&Helpers.ToDMainRoom, Helpers.ToDRightIceBlock), (&Helpers.ToD2ndRupeePath, Helpers.ToDDarkMazeReverse, Helpers.ToDScissorBeetles, Helpers.ToDRightIce))), Helpers.Hundo);																				Items.SmallKey.0x1B
-Droplets_RightPath_B1_BluChu_BigChest			`TOD_INSIDE`;	Dungeon;					0x60-0x10-0x01;													(|(&`ENTERTOD`, (|(&Helpers.ToDMainRoom, Helpers.ToDRightIceBlock), (&Helpers.ToD2ndRupeePath, Helpers.ToDDarkMazeReverse, Helpers.ToDScissorBeetles, Helpers.ToDRightIce)), Helpers.ToDChuDoor, Helpers.HasChuDamage, Items.GustJar), Helpers.Hundo);								Items.Lantern
-Droplets_RightPath_B2_FrozenChest				`TOD_INSIDE`;	Dungeon;					0x60-0x32-0x00;													(|(&`ENTERTOD`, Items.Lantern, (|Helpers.ToDMainRoom, (&Helpers.ToD2ndRupeePath, Helpers.ToDDarkMazeReverse, Helpers.ToDScissorBeetles, Helpers.ToDRightIce))), Helpers.Hundo);																								Items.Rupee100
-Droplets_RightPath_B2_DarkMaze_BottomChest		`TOD_INSIDE`;	Dungeon;					0x60-0x2B-0x03;													(|(&`ENTERTOD`, (|(&Helpers.ToDMainRoom, Helpers.ToDRightIceBlock, Helpers.ToDRightIce, Helpers.ToDScissorBeetles, Helpers.DarkRooms, Helpers.ToDDarkMaze), (&Helpers.ToD2ndRupeePath, Helpers.ToDDarkMazeReverse))), Helpers.Hundo);												Items.Kinstone.RedE
-Droplets_RightPath_B2_Mulldozers_ItemDrop		`TOD_INSIDE`;	`DUNGEONSMALL`;			0x0E55CB;														(|(&`ENTERTOD`, Helpers.BombWalls, Helpers.ToDMulldozer, (|(&Helpers.ToDMainRoom, Helpers.ToDRightIceBlock, Helpers.ToDRightIce, Helpers.ToDScissorBeetles, Helpers.DarkRooms, Helpers.ToDDarkMaze), (&Helpers.ToD2ndRupeePath, Helpers.ToDDarkMazeReverse))), Helpers.Hundo);		Items.SmallKey.0x1B
-Droplets_RightPath_B2_DarkMaze_TopRightChest		`TOD_INSIDE`;	Dungeon;					0x60-0x2B-0x01;													(|(&`ENTERTOD`, (|(&Helpers.ToDMainRoom, Helpers.ToDRightIceBlock, Helpers.ToDRightIce, Helpers.ToDScissorBeetles, Helpers.DarkRooms, Helpers.ToDDarkMaze), (&Helpers.ToD2ndRupeePath, Helpers.ToDDarkMazeReverse))), Helpers.Hundo);												Items.Kinstone.RedW
-Droplets_RightPath_B2_DarkMaze_TopLeftChest		`TOD_INSIDE`;	Dungeon;					0x60-0x2B-0x02;													(|(&`ENTERTOD`, (|(&Helpers.ToDMainRoom, Helpers.ToDRightIceBlock, Helpers.ToDRightIce, Helpers.ToDScissorBeetles, Helpers.DarkRooms, Helpers.ToDDarkMaze), (&Helpers.ToD2ndRupeePath, (|Helpers.ToDDarkMazeReverse, (&Helpers.ToDDarkMazeDoor, Items.Lantern))))), Helpers.Hundo);	Items.Kinstone.RedV
-Droplets_RightPath_B2_UnderpassItem1			`TOD_INSIDE`	`DUNGEONRUPEE`;			0x0E483F;														(|(&`ENTERTOD`, Helpers.ToDRightRupees), Helpers.Hundo);	Items.Rupee1
-Droplets_RightPath_B2_UnderpassItem2			`TOD_INSIDE`	`DUNGEONRUPEE`;			0x0E484F;														(|(&`ENTERTOD`, Helpers.ToDRightRupees), Helpers.Hundo);	Items.Rupee1
-Droplets_RightPath_B2_UnderpassItem3			`TOD_INSIDE`	`DUNGEONRUPEE`;			0x0E485F;														(|(&`ENTERTOD`, Helpers.ToD2ndRupeePath), Helpers.Hundo);	Items.Rupee1
-Droplets_RightPath_B2_UnderpassItem4			`TOD_INSIDE`	`DUNGEONRUPEE`;			0x0E486F;														(|(&`ENTERTOD`, Helpers.ToD2ndRupeePath), Helpers.Hundo);	Items.Rupee1
-Droplets_RightPath_B2_UnderpassItem5			`TOD_INSIDE`	`DUNGEONRUPEE`;			0x0E487F;														(|(&`ENTERTOD`, Helpers.ToD2ndRupeePath), Helpers.Hundo);	Items.Rupee1
+Droplets_RightPath_B1_1stChest					`TOD_INSIDE`;		Dungeon;					0x60-0x09-0x00;													(|(&`ENTERTOD`, (|(&Helpers.ToDMainRoom, Helpers.ToDRightIceBlock), (&Helpers.ToD2ndRupeePath, Helpers.ToDDarkMazeReverse, Helpers.ToDScissorBeetles, Helpers.ToDRightIce))), Helpers.Hundo);																				Items.Kinstone.BlueL
+Droplets_RightPath_B1_2ndChest					`TOD_INSIDE`;		Dungeon;					0x60-0x0A-0x00;													(|(&`ENTERTOD`, (|(&Helpers.ToDMainRoom, Helpers.ToDRightIceBlock), (&Helpers.ToD2ndRupeePath, Helpers.ToDDarkMazeReverse, Helpers.ToDScissorBeetles, Helpers.ToDRightIce))), Helpers.Hundo);																				Items.Kinstone.BlueS
+Droplets_RightPath_B1_Pot						`TOD_INSIDE`;		`POT`;					0x0E3A73:FirstByte, 0x0E3A75:SecondByte;								(|(&`ENTERTOD`, (|(&Helpers.ToDMainRoom, Helpers.ToDRightIceBlock), (&Helpers.ToD2ndRupeePath, Helpers.ToDDarkMazeReverse, Helpers.ToDScissorBeetles, Helpers.ToDRightIce))), Helpers.Hundo);																				Items.Kinstone.GreenC
+Droplets_RightPath_B3_FrozenChest				`TOD_INSIDE_SK`;	Dungeon;					0x60-0x11-0x00;													(|(&`ENTERTOD`, (|(&Helpers.ToDMainRoom, Helpers.ToDRightIceBlock), (&Helpers.ToD2ndRupeePath, Helpers.ToDDarkMazeReverse, Helpers.ToDScissorBeetles, Helpers.ToDRightIce))), Helpers.Hundo);																				Items.SmallKey.0x1B
+Droplets_RightPath_B1_BluChu_BigChest			`TOD_INSIDE`;		Dungeon;					0x60-0x10-0x01;													(|(&`ENTERTOD`, (|(&Helpers.ToDMainRoom, Helpers.ToDRightIceBlock), (&Helpers.ToD2ndRupeePath, Helpers.ToDDarkMazeReverse, Helpers.ToDScissorBeetles, Helpers.ToDRightIce)), Helpers.ToDChuDoor, Helpers.HasChuDamage, Items.GustJar), Helpers.Hundo);								Items.Lantern
+Droplets_RightPath_B2_FrozenChest				`TOD_INSIDE`;		Dungeon;					0x60-0x32-0x00;													(|(&`ENTERTOD`, Items.Lantern, (|Helpers.ToDMainRoom, (&Helpers.ToD2ndRupeePath, Helpers.ToDDarkMazeReverse, Helpers.ToDScissorBeetles, Helpers.ToDRightIce))), Helpers.Hundo);																								Items.Rupee100
+Droplets_RightPath_B2_DarkMaze_BottomChest		`TOD_INSIDE`;		Dungeon;					0x60-0x2B-0x03;													(|(&`ENTERTOD`, (|(&Helpers.ToDMainRoom, Helpers.ToDRightIceBlock, Helpers.ToDRightIce, Helpers.ToDScissorBeetles, Helpers.DarkRooms, Helpers.ToDDarkMaze), (&Helpers.ToD2ndRupeePath, Helpers.ToDDarkMazeReverse))), Helpers.Hundo);												Items.Kinstone.RedE
+Droplets_RightPath_B2_Mulldozers_ItemDrop		`TOD_INSIDE_SK`;	Dungeon;					0x0E55CB;														(|(&`ENTERTOD`, Helpers.BombWalls, Helpers.ToDMulldozer, (|(&Helpers.ToDMainRoom, Helpers.ToDRightIceBlock, Helpers.ToDRightIce, Helpers.ToDScissorBeetles, Helpers.DarkRooms, Helpers.ToDDarkMaze), (&Helpers.ToD2ndRupeePath, Helpers.ToDDarkMazeReverse))), Helpers.Hundo);		Items.SmallKey.0x1B
+Droplets_RightPath_B2_DarkMaze_TopRightChest		`TOD_INSIDE`;		Dungeon;					0x60-0x2B-0x01;													(|(&`ENTERTOD`, (|(&Helpers.ToDMainRoom, Helpers.ToDRightIceBlock, Helpers.ToDRightIce, Helpers.ToDScissorBeetles, Helpers.DarkRooms, Helpers.ToDDarkMaze), (&Helpers.ToD2ndRupeePath, Helpers.ToDDarkMazeReverse))), Helpers.Hundo);												Items.Kinstone.RedW
+Droplets_RightPath_B2_DarkMaze_TopLeftChest		`TOD_INSIDE`;		Dungeon;					0x60-0x2B-0x02;													(|(&`ENTERTOD`, (|(&Helpers.ToDMainRoom, Helpers.ToDRightIceBlock, Helpers.ToDRightIce, Helpers.ToDScissorBeetles, Helpers.DarkRooms, Helpers.ToDDarkMaze), (&Helpers.ToD2ndRupeePath, (|Helpers.ToDDarkMazeReverse, (&Helpers.ToDDarkMazeDoor, Items.Lantern))))), Helpers.Hundo);	Items.Kinstone.RedV
+Droplets_RightPath_B2_UnderpassItem1			`TOD_INSIDE`		`DUNGEONRUPEE`;			0x0E483F;														(|(&`ENTERTOD`, Helpers.ToDRightRupees), Helpers.Hundo);	Items.Rupee1
+Droplets_RightPath_B2_UnderpassItem2			`TOD_INSIDE`		`DUNGEONRUPEE`;			0x0E484F;														(|(&`ENTERTOD`, Helpers.ToDRightRupees), Helpers.Hundo);	Items.Rupee1
+Droplets_RightPath_B2_UnderpassItem3			`TOD_INSIDE`		`DUNGEONRUPEE`;			0x0E485F;														(|(&`ENTERTOD`, Helpers.ToD2ndRupeePath), Helpers.Hundo);	Items.Rupee1
+Droplets_RightPath_B2_UnderpassItem4			`TOD_INSIDE`		`DUNGEONRUPEE`;			0x0E486F;														(|(&`ENTERTOD`, Helpers.ToD2ndRupeePath), Helpers.Hundo);	Items.Rupee1
+Droplets_RightPath_B2_UnderpassItem5			`TOD_INSIDE`		`DUNGEONRUPEE`;			0x0E487F;														(|(&`ENTERTOD`, Helpers.ToD2ndRupeePath), Helpers.Hundo);	Items.Rupee1
 
 CompleteDroplets;											Helper;					;																`ENTERTOD`, Helpers.AccessOcto, Items.Lantern, (|Helpers.HasSword, Helpers.HasShield);
 
@@ -6196,6 +6162,8 @@ Droplets_Prize								`TOD_PRIZE`;	DungeonPrize;				0x0E40C3;														(|Hel
 # Palace of Winds Locations
 
 !define - POW_INSIDE - `POW_OUTSIDE`	:PoWSmall	:PoWBig	:PoWCompass	:Small	:Big	:Compass
+!define - POW_INSIDE_SK - `POW_INSIDE`	:PoWSmallV
+!define - POW_INSIDE_BK - `POW_INSIDE`	:PoWBigV
 !ifdef - UNREQSUR
 	!define - POW_PRIZE - :PoWSmall	:PoWBig	:PoWCompass :PoWSmallOutside	:PoWBigOutside	:PoWCompassOutside
 !else
@@ -6217,30 +6185,30 @@ AccessPalace						;	Helper;			;				Helpers.AccessWindTribe;
 
 # This randomizes some dummy items to determine where to place the PoW Big Key, then it adjusts all the logic to allow that key to be placed there without errors
 
-Palace_1stHalf_1F_GrateChest					`POW_INSIDE`;	`PALACECHEST`;	0x70-0x2D-0x00;														(|(&`ENTERPOW`, Items.RocsCape, (|Helpers.CanSplit3, Helpers.CanSplit4)), Helpers.Hundo);											Items.Kinstone.RedE
-Palace_1stHalf_1F_Wizrobe_BigChest				`POW_INSIDE`;	`PALACECHEST`;	0x70-0x2C-0x00;														(|(&`ENTERPOW`, (|Items.RocsCape, Items.BombBag, Helpers.HasMagicBoomerang), (|Helpers.CanSplit3, Helpers.CanSplit4)), Helpers.Hundo);	Items.RocsCape
-Palace_1stHalf_2F_Item1						`POW_INSIDE`	`PALACERUPEE`;	0x0E8B1F;															(|(&`ENTERPOW`, Items.RocsCape, (|Helpers.CanSplit3, Helpers.CanSplit4), Helpers.PoWRupees), Helpers.Hundo);						Items.Rupee1
-Palace_1stHalf_2F_Item2						`POW_INSIDE`	`PALACERUPEE`;	0x0E8B2F;															(|(&`ENTERPOW`, Items.RocsCape, (|Helpers.CanSplit3, Helpers.CanSplit4), Helpers.PoWRupees), Helpers.Hundo);						Items.Rupee1
-Palace_1stHalf_2F_Item3						`POW_INSIDE`	`PALACERUPEE`;	0x0E8B3F;															(|(&`ENTERPOW`, Items.RocsCape, (|Helpers.CanSplit3, Helpers.CanSplit4), Helpers.PoWRupees), Helpers.Hundo);						Items.Rupee1
-Palace_1stHalf_2F_Item4						`POW_INSIDE`	`PALACERUPEE`;	0x0E8B4F;															(|(&`ENTERPOW`, Items.RocsCape, (|Helpers.CanSplit3, Helpers.CanSplit4), Helpers.PoWRupees), Helpers.Hundo);						Items.Rupee1
-Palace_1stHalf_2F_Item5						`POW_INSIDE`	`PALACERUPEE`;	0x0E8B5F;															(|(&`ENTERPOW`, Items.RocsCape, (|Helpers.CanSplit3, Helpers.CanSplit4), Helpers.PoWRupees), Helpers.Hundo);						Items.Rupee1
+Palace_1stHalf_1F_GrateChest					`POW_INSIDE`;		`PALACECHEST`;	0x70-0x2D-0x00;														(|(&`ENTERPOW`, Items.RocsCape, (|Helpers.CanSplit3, Helpers.CanSplit4)), Helpers.Hundo);											Items.Kinstone.RedE
+Palace_1stHalf_1F_Wizrobe_BigChest				`POW_INSIDE`;		`PALACECHEST`;	0x70-0x2C-0x00;														(|(&`ENTERPOW`, (|Items.RocsCape, Items.BombBag, Helpers.HasMagicBoomerang), (|Helpers.CanSplit3, Helpers.CanSplit4)), Helpers.Hundo);	Items.RocsCape
+Palace_1stHalf_2F_Item1						`POW_INSIDE`		`PALACERUPEE`;	0x0E8B1F;															(|(&`ENTERPOW`, Items.RocsCape, (|Helpers.CanSplit3, Helpers.CanSplit4), Helpers.PoWRupees), Helpers.Hundo);						Items.Rupee1
+Palace_1stHalf_2F_Item2						`POW_INSIDE`		`PALACERUPEE`;	0x0E8B2F;															(|(&`ENTERPOW`, Items.RocsCape, (|Helpers.CanSplit3, Helpers.CanSplit4), Helpers.PoWRupees), Helpers.Hundo);						Items.Rupee1
+Palace_1stHalf_2F_Item3						`POW_INSIDE`		`PALACERUPEE`;	0x0E8B3F;															(|(&`ENTERPOW`, Items.RocsCape, (|Helpers.CanSplit3, Helpers.CanSplit4), Helpers.PoWRupees), Helpers.Hundo);						Items.Rupee1
+Palace_1stHalf_2F_Item4						`POW_INSIDE`		`PALACERUPEE`;	0x0E8B4F;															(|(&`ENTERPOW`, Items.RocsCape, (|Helpers.CanSplit3, Helpers.CanSplit4), Helpers.PoWRupees), Helpers.Hundo);						Items.Rupee1
+Palace_1stHalf_2F_Item5						`POW_INSIDE`		`PALACERUPEE`;	0x0E8B5F;															(|(&`ENTERPOW`, Items.RocsCape, (|Helpers.CanSplit3, Helpers.CanSplit4), Helpers.PoWRupees), Helpers.Hundo);						Items.Rupee1
 
-Palace_1stHalf_3F_PotPuzzle_ItemDrop			`POW_INSIDE`;	`PALACESMALL`;	0x0E896F;															(|(&`ENTERPOW`, Helpers.PoWDrop), Helpers.Hundo);																				Items.SmallKey.0x1C
-Palace_1stHalf_4F_BowMoblins_Chest				`POW_INSIDE`;	`PALACECHEST`;	0x70-0x0F-0x00;														(|(&`ENTERPOW`, Items.RocsCape, (|Helpers.CanSplit3, Helpers.CanSplit4), Helpers.PoWJump, Helpers.PoWPostKeyDoor), Helpers.Hundo);		Items.Kinstone.BlueL
-Palace_1stHalf_5F_BallAndChainSoldiers_ItemDrop	`POW_INSIDE`;	`PALACESMALL`;	0x0E719F;															(|(&`ENTERPOW`, Items.RocsCape, (|Helpers.CanSplit3, Helpers.CanSplit4), Helpers.PoWJump, Helpers.PoWPostKeyDoor), Helpers.Hundo);		Items.SmallKey.0x1C
-Palace_1stHalf_5F_FanLoop_Chest					`POW_INSIDE`;	`PALACESMALL`;	0x70-0x07-0x00;														(|(&`ENTERPOW`, Items.RocsCape, (|Helpers.CanSplit3, Helpers.CanSplit4), Helpers.PoWJump, Helpers.PoWFans), Helpers.Hundo);			Items.SmallKey.0x1C
-Palace_1stHalf_5F_BigChest						`POW_INSIDE`;	`PALACEBIG`;		0x70-0x01-0x00;														(|(&`ENTERPOW`, Items.RocsCape, (|Helpers.CanSplit3, Helpers.CanSplit4), Helpers.PoWJump, Helpers.PoWBigChest), Helpers.Hundo);		Items.BigKey.0x1C
+Palace_1stHalf_3F_PotPuzzle_ItemDrop			`POW_INSIDE_SK`;	`PALACESMALL`;	0x0E896F;															(|(&`ENTERPOW`, Helpers.PoWDrop), Helpers.Hundo);																				Items.SmallKey.0x1C
+Palace_1stHalf_4F_BowMoblins_Chest				`POW_INSIDE`;		`PALACECHEST`;	0x70-0x0F-0x00;														(|(&`ENTERPOW`, Items.RocsCape, (|Helpers.CanSplit3, Helpers.CanSplit4), Helpers.PoWJump, Helpers.PoWPostKeyDoor), Helpers.Hundo);		Items.Kinstone.BlueL
+Palace_1stHalf_5F_BallAndChainSoldiers_ItemDrop	`POW_INSIDE_SK`;	`PALACESMALL`;	0x0E719F;															(|(&`ENTERPOW`, Items.RocsCape, (|Helpers.CanSplit3, Helpers.CanSplit4), Helpers.PoWJump, Helpers.PoWPostKeyDoor), Helpers.Hundo);		Items.SmallKey.0x1C
+Palace_1stHalf_5F_FanLoop_Chest					`POW_INSIDE_SK`;	`PALACESMALL`;	0x70-0x07-0x00;														(|(&`ENTERPOW`, Items.RocsCape, (|Helpers.CanSplit3, Helpers.CanSplit4), Helpers.PoWJump, Helpers.PoWFans), Helpers.Hundo);			Items.SmallKey.0x1C
+Palace_1stHalf_5F_BigChest						`POW_INSIDE_BK`;	`PALACEBIG`;		0x70-0x01-0x00;														(|(&`ENTERPOW`, Items.RocsCape, (|Helpers.CanSplit3, Helpers.CanSplit4), Helpers.PoWJump, Helpers.PoWBigChest), Helpers.Hundo);		Items.BigKey.0x1C
 
-Palace_2ndHalf_1F_DarkRoom_BigChest				`POW_INSIDE`;	`PALACECOMPASS`;	0x70-0x32-0x00;														(|(&`ENTERPOW`, (|Helpers.PoW2ndHalf, (&Helpers.PoWRedWarp, Helpers.OverworldBlocks)), Helpers.DarkRooms), Helpers.Hundo);																																											Items.Compass.0x1C
-Palace_2ndHalf_1F_DarkRoom_SmallChest			`POW_INSIDE`;	`PALACESMALL`;	0x70-0x32-0x01;														(|(&`ENTERPOW`, (|Helpers.PoW2ndHalf, (&Helpers.PoWRedWarp, Helpers.OverworldBlocks)), Helpers.DarkRooms), Helpers.Hundo);																																											Items.SmallKey.0x1C
-Palace_2ndHalf_2F_ManyRollers_Chest				`POW_INSIDE`;	`PALACESMALL`;	0x70-0x2B-0x00;														(|(&`ENTERPOW`, (|(&Helpers.DarkRooms, Helpers.PoW2ndHalf), (&Helpers.PoWRedWarp, Helpers.OverworldBlocks)), Helpers.PoWPeahatRoom, Helpers.PoWRollerRoom), Helpers.Hundo);																																Items.SmallKey.0x1C
-Palace_2ndHalf_2F_TwinWizrobes_Chest			`POW_INSIDE`;	`PALACECHEST`;	0x70-0x29-0x00;														(|(&`ENTERPOW`, (|(&Helpers.DarkRooms, (|(&Helpers.PoW2ndHalf1stDoor, Items.RocsCape), Helpers.PoWShortcuts), Helpers.PoW2ndHalf), (&Helpers.PoWRedWarp, Helpers.OverworldBlocks)), Helpers.PoWDoubleWiz), Helpers.Hundo);																						Items.Kinstone.RedV
-Palace_2ndHalf_3F_FireWizrobes_BigChest			`POW_INSIDE`;	`PALACECOMPASS`;	0x70-0x1C-0x00;														(|(&`ENTERPOW`, (|(&Helpers.DarkRooms, (|(&Helpers.PoW2ndHalf1stDoor, Items.RocsCape), Helpers.PoWShortcuts), Helpers.PoW2ndHalf), (&Helpers.PoWRedWarp, Helpers.OverworldBlocks)), Helpers.PoWTribleWiz), Helpers.Hundo);																						Items.DungeonMap.0x1C
-Palace_2ndHalf_4F_HP							`POW_INSIDE`;	`PALACEHP`;		0x0E77A7;															(|(&`ENTERPOW`, Items.RocsCape, Helpers.PoWHP), Helpers.Hundo);																																																								Items.PieceOfHeart
-Palace_2ndHalf_4F_SwitchHit_Chest				`POW_INSIDE`;	`PALACECHEST`;	0x70-0x15-0x00;														(|(&`ENTERPOW`, (|(&Helpers.DarkRooms, (|(&Helpers.PoW2ndHalf1stDoor, Items.RocsCape), Helpers.PoWShortcuts), Helpers.PoWHandRoom, Items.RocsCape, Helpers.PoWSwitch, Helpers.PoW2ndHalf), (&Helpers.PoWRedWarp, Helpers.OverworldBlocks, Helpers.PoWSwitch, (|Items.RocsCape, Helpers.PoWHandRoom)))), Helpers.Hundo);	Items.Rupee200
-Palace_2ndHalf_5F_Bombarossa_Chest				`POW_INSIDE`;	`PALACESMALL`;	0x70-0x03-0x00;														(|(&`ENTERPOW`, (|(&Helpers.DarkRooms, (|(&Helpers.PoW2ndHalf1stDoor, Items.RocsCape), Helpers.PoWShortcuts), Helpers.PoWHandRoom, Items.RocsCape, Helpers.PoW2ndHalf), Helpers.PoWRedWarp), Helpers.PoWRedWarpDoor, Helpers.BombWalls, Helpers.OverworldBlocks), Helpers.Hundo);										Items.SmallKey.0x1C
-Palace_2ndHalf_4F_BlockMaze_Chest				`POW_INSIDE`;	`PALACECHEST`;	0x70-0x10-0x00;														(|(&`ENTERPOW`, (|(&Helpers.DarkRooms, (|(&Helpers.PoW2ndHalf1stDoor, Items.RocsCape), Helpers.PoWShortcuts), Helpers.PoWHandRoom, Items.RocsCape, Helpers.PoW2ndHalf), Helpers.PoWRedWarp), Helpers.PoWRedWarpDoor, Helpers.BombWalls, Helpers.OverworldBlocks, Helpers.PoWLastDoor), Helpers.Hundo);					Items.Kinstone.BlueS
-Palace_2ndHalf_5F_RightSide_Chest				`POW_INSIDE`;	`PALACECHEST`;	0x70-0x04-0x00;														(|(&`ENTERPOW`, (|(&Helpers.DarkRooms, (|(&Helpers.PoW2ndHalf1stDoor, Items.RocsCape), Helpers.PoWShortcuts), Helpers.PoWHandRoom, Items.RocsCape, Helpers.PoW2ndHalf), Helpers.PoWRedWarp), Helpers.PoWRedWarpDoor, Helpers.BombWalls, Helpers.OverworldBlocks, Helpers.PoWLastDoor, Items.RocsCape), Helpers.Hundo);		Items.Kinstone.Red
+Palace_2ndHalf_1F_DarkRoom_BigChest				`POW_INSIDE`;		`PALACECOMPASS`;	0x70-0x32-0x00;														(|(&`ENTERPOW`, (|Helpers.PoW2ndHalf, (&Helpers.PoWRedWarp, Helpers.OverworldBlocks)), Helpers.DarkRooms), Helpers.Hundo);																																											Items.Compass.0x1C
+Palace_2ndHalf_1F_DarkRoom_SmallChest			`POW_INSIDE_SK`;	`PALACESMALL`;	0x70-0x32-0x01;														(|(&`ENTERPOW`, (|Helpers.PoW2ndHalf, (&Helpers.PoWRedWarp, Helpers.OverworldBlocks)), Helpers.DarkRooms), Helpers.Hundo);																																											Items.SmallKey.0x1C
+Palace_2ndHalf_2F_ManyRollers_Chest				`POW_INSIDE_SK`;	`PALACESMALL`;	0x70-0x2B-0x00;														(|(&`ENTERPOW`, (|(&Helpers.DarkRooms, Helpers.PoW2ndHalf), (&Helpers.PoWRedWarp, Helpers.OverworldBlocks)), Helpers.PoWPeahatRoom, Helpers.PoWRollerRoom), Helpers.Hundo);																																Items.SmallKey.0x1C
+Palace_2ndHalf_2F_TwinWizrobes_Chest			`POW_INSIDE`;		`PALACECHEST`;	0x70-0x29-0x00;														(|(&`ENTERPOW`, (|(&Helpers.DarkRooms, (|(&Helpers.PoW2ndHalf1stDoor, Items.RocsCape), Helpers.PoWShortcuts), Helpers.PoW2ndHalf), (&Helpers.PoWRedWarp, Helpers.OverworldBlocks)), Helpers.PoWDoubleWiz), Helpers.Hundo);																						Items.Kinstone.RedV
+Palace_2ndHalf_3F_FireWizrobes_BigChest			`POW_INSIDE`;		`PALACECOMPASS`;	0x70-0x1C-0x00;														(|(&`ENTERPOW`, (|(&Helpers.DarkRooms, (|(&Helpers.PoW2ndHalf1stDoor, Items.RocsCape), Helpers.PoWShortcuts), Helpers.PoW2ndHalf), (&Helpers.PoWRedWarp, Helpers.OverworldBlocks)), Helpers.PoWTribleWiz), Helpers.Hundo);																						Items.DungeonMap.0x1C
+Palace_2ndHalf_4F_HP							`POW_INSIDE`;		`PALACEHP`;		0x0E77A7;															(|(&`ENTERPOW`, Items.RocsCape, Helpers.PoWHP), Helpers.Hundo);																																																								Items.PieceOfHeart
+Palace_2ndHalf_4F_SwitchHit_Chest				`POW_INSIDE`;		`PALACECHEST`;	0x70-0x15-0x00;														(|(&`ENTERPOW`, (|(&Helpers.DarkRooms, (|(&Helpers.PoW2ndHalf1stDoor, Items.RocsCape), Helpers.PoWShortcuts), Helpers.PoWHandRoom, Items.RocsCape, Helpers.PoWSwitch, Helpers.PoW2ndHalf), (&Helpers.PoWRedWarp, Helpers.OverworldBlocks, Helpers.PoWSwitch, (|Items.RocsCape, Helpers.PoWHandRoom)))), Helpers.Hundo);	Items.Rupee200
+Palace_2ndHalf_5F_Bombarossa_Chest				`POW_INSIDE_SK`;	`PALACESMALL`;	0x70-0x03-0x00;														(|(&`ENTERPOW`, (|(&Helpers.DarkRooms, (|(&Helpers.PoW2ndHalf1stDoor, Items.RocsCape), Helpers.PoWShortcuts), Helpers.PoWHandRoom, Items.RocsCape, Helpers.PoW2ndHalf), Helpers.PoWRedWarp), Helpers.PoWRedWarpDoor, Helpers.BombWalls, Helpers.OverworldBlocks), Helpers.Hundo);										Items.SmallKey.0x1C
+Palace_2ndHalf_4F_BlockMaze_Chest				`POW_INSIDE`;		`PALACECHEST`;	0x70-0x10-0x00;														(|(&`ENTERPOW`, (|(&Helpers.DarkRooms, (|(&Helpers.PoW2ndHalf1stDoor, Items.RocsCape), Helpers.PoWShortcuts), Helpers.PoWHandRoom, Items.RocsCape, Helpers.PoW2ndHalf), Helpers.PoWRedWarp), Helpers.PoWRedWarpDoor, Helpers.BombWalls, Helpers.OverworldBlocks, Helpers.PoWLastDoor), Helpers.Hundo);					Items.Kinstone.BlueS
+Palace_2ndHalf_5F_RightSide_Chest				`POW_INSIDE`;		`PALACECHEST`;	0x70-0x04-0x00;														(|(&`ENTERPOW`, (|(&Helpers.DarkRooms, (|(&Helpers.PoW2ndHalf1stDoor, Items.RocsCape), Helpers.PoWShortcuts), Helpers.PoWHandRoom, Items.RocsCape, Helpers.PoW2ndHalf), Helpers.PoWRedWarp), Helpers.PoWRedWarpDoor, Helpers.BombWalls, Helpers.OverworldBlocks, Helpers.PoWLastDoor, Items.RocsCape), Helpers.Hundo);		Items.Kinstone.Red
 
 CompletePalace;											Helper;			;																	`ENTERPOW`, (|(&Helpers.DarkRooms, (|(&Helpers.PoW2ndHalf1stDoor, Items.RocsCape), Helpers.PoWShortcuts), Helpers.PoWHandRoom, Items.RocsCape, (|Helpers.PoW2ndHalf, Helpers.PoWBlueWarp)), Helpers.PoWRedWarp), Helpers.PoWRedWarpDoor, Helpers.BombWalls, Helpers.OverworldBlocks, Helpers.PoWLastDoor, Items.RocsCape, Helpers.PoWBossDoor, (|Helpers.CanDownThrust, (|Helpers.CanSplit2, Helpers.CanSplit3, Helpers.CanSplit4));
 
@@ -6255,19 +6223,21 @@ Sanctuary_Pedestal_Item3	`DHC_OUTSIDE`;  `PED`;   pedestalSpot3Item:Define:First
 # Dark Hyrule Castle
 
 !define - DHC_INSIDE - `DHC_OUTSIDE`	:DHCSmall	:DHCBig	:DHCCompass	:Small	:Big	:Compass
+!define - DHC_INSIDE_SK - `DHC_INSIDE` :DHCSmallV
+!define - DHC_INSIDE_BK - `DHC_INSIDE` :DHCBigV
 
-DHC_B2_King				`DHC_INSIDE`;	`DHCKING`;	0x00E46A;		(|(&Helpers.AccessDHC, Helpers.DHCKing), Helpers.Hundo);																	Items.Rupee1 #used to be a small key but a door got removed
-DHC_B1_BigChest			`DHC_INSIDE`;	`DHCCOMPASS`;	0x88-0x37-0x00;	(|Helpers.AccessDHC, Helpers.Hundo);																					Items.DungeonMap.0x1D
-DHC_1F_Blade_Chest		`DHC_INSIDE`;	`DHCSMALL`;	0x88-0x27-0x00;	(|(&Helpers.AccessDHC, Helpers.DHCFirstCanon, Helpers.DHCBladePuzzle), Helpers.Hundo);										Items.SmallKey.0x1D
-DHC_1F_Throne_BigChest		`DHC_INSIDE`;	`DHCCOMPASS`;	0x88-0x20-0x00;	(|(&Helpers.AccessDHC, Helpers.DHC1stDoor, Helpers.DHC2ndCanon, Helpers.BombWalls, Helpers.DHCThrone), Helpers.Hundo);			Items.Compass.0x1D
+DHC_B2_King				`DHC_INSIDE`;		`DHCKING`;	0x00E46A;		(|(&Helpers.AccessDHC, Helpers.DHCKing), Helpers.Hundo);																	Items.Rupee1 #used to be a small key but a door got removed
+DHC_B1_BigChest			`DHC_INSIDE`;		`DHCCOMPASS`;	0x88-0x37-0x00;	(|Helpers.AccessDHC, Helpers.Hundo);																					Items.DungeonMap.0x1D
+DHC_1F_Blade_Chest		`DHC_INSIDE_SK`;	`DHCSMALL`;	0x88-0x27-0x00;	(|(&Helpers.AccessDHC, Helpers.DHCFirstCanon, Helpers.DHCBladePuzzle), Helpers.Hundo);										Items.SmallKey.0x1D
+DHC_1F_Throne_BigChest		`DHC_INSIDE`;		`DHCCOMPASS`;	0x88-0x20-0x00;	(|(&Helpers.AccessDHC, Helpers.DHC1stDoor, Helpers.DHC2ndCanon, Helpers.BombWalls, Helpers.DHCThrone), Helpers.Hundo);			Items.Compass.0x1D
 
 DHCBlackKnight;						Helper;;							Helpers.DHCBlackKnightFight, (|Helpers.DHCBlueWarp, (&Helpers.DHCRedWarp, Helpers.DHCChainSoldiers, Helpers.DHCGrateRoom, Helpers.OverworldBlocks), (&Helpers.DHC1stDoor, Helpers.DHC2ndCanon, Helpers.BombWalls, Helpers.DHCThrone, Helpers.CanSplit4, Helpers.DHCOutsideSwitch, Helpers.DHCSwitchPuzzles, Helpers.DHCChainSoldiers, Helpers.DHCGrateRoom, Helpers.OverworldBlocks))
 
-DHC_3F_NorthWest_Chest		`DHC_INSIDE`;	`DHCSMALL`;	0x88-0x01-0x00;	(|(&Helpers.AccessDHC, Helpers.DHCBlackKnight, Helpers.DHCTowerDarknuts, Helpers.HasBow), Helpers.Hundo);						Items.SmallKey.0x1D
-DHC_3F_NorthEast_Chest		`DHC_INSIDE`;	`DHCSMALL`;	0x88-0x02-0x00;	(|(&Helpers.AccessDHC, Helpers.DHCBlackKnight, Helpers.DHCTowerDarknuts, Helpers.DHCLampPuzzle, Helpers.DHCGhini), Helpers.Hundo);	Items.SmallKey.0x1D
-DHC_3F_SouthWest_Chest		`DHC_INSIDE`;	`DHCSMALL`;	0x88-0x03-0x00;	(|(&Helpers.AccessDHC, Helpers.DHCBlackKnight, Helpers.DHCTowerDarknuts, Helpers.DHCGhini), Helpers.Hundo);						Items.SmallKey.0x1D
-DHC_3F_SouthEast_Chest		`DHC_INSIDE`;	`DHCSMALL`;	0x88-0x04-0x00;	(|(&Helpers.AccessDHC, Helpers.DHCBlackKnight, Helpers.DHCTowerDarknuts, Helpers.DHCSwitchPuzzles), Helpers.Hundo);				Items.SmallKey.0x1D
-DHC_2F_BlueWarp_BigChest	`DHC_INSIDE`;	`DHCBIG`;	0x88-0x09-0x00;	(|(&Helpers.AccessDHC, Helpers.DHCBlackKnight, Helpers.DHCBigBlock, Helpers.CanSplit4), Helpers.Hundo);							`DHCBK`
+DHC_3F_NorthWest_Chest		`DHC_INSIDE_SK`;	`DHCSMALL`;	0x88-0x01-0x00;	(|(&Helpers.AccessDHC, Helpers.DHCBlackKnight, Helpers.DHCTowerDarknuts, Helpers.HasBow), Helpers.Hundo);						Items.SmallKey.0x1D
+DHC_3F_NorthEast_Chest		`DHC_INSIDE_SK`;	`DHCSMALL`;	0x88-0x02-0x00;	(|(&Helpers.AccessDHC, Helpers.DHCBlackKnight, Helpers.DHCTowerDarknuts, Helpers.DHCLampPuzzle, Helpers.DHCGhini), Helpers.Hundo);	Items.SmallKey.0x1D
+DHC_3F_SouthWest_Chest		`DHC_INSIDE_SK`;	`DHCSMALL`;	0x88-0x03-0x00;	(|(&Helpers.AccessDHC, Helpers.DHCBlackKnight, Helpers.DHCTowerDarknuts, Helpers.DHCGhini), Helpers.Hundo);						Items.SmallKey.0x1D
+DHC_3F_SouthEast_Chest		`DHC_INSIDE_SK`;	`DHCSMALL`;	0x88-0x04-0x00;	(|(&Helpers.AccessDHC, Helpers.DHCBlackKnight, Helpers.DHCTowerDarknuts, Helpers.DHCSwitchPuzzles), Helpers.Hundo);				Items.SmallKey.0x1D
+DHC_2F_BlueWarp_BigChest	`DHC_INSIDE_BK`;	`DHCBIG`;	0x88-0x09-0x00;	(|(&Helpers.AccessDHC, Helpers.DHCBlackKnight, Helpers.DHCBigBlock, Helpers.CanSplit4), Helpers.Hundo);							`DHCBK`
 
 !ifdef - NODHC
 	BeatVaati;	Helper;	;	Helpers.AccessDHC
