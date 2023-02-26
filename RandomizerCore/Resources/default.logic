@@ -1976,14 +1976,24 @@ All_Requirements_Met;	`ALLREQUIREMENTS`;	requirementPrizeItem:Define:FirstByte, 
 	Items.Fusion.`GREENSHARED58`;	OverworldConstraint;	SF
 	Items.Fusion.`GREENSHARED5F`;	OverworldConstraint;	SF
 	Items.Fusion.`GREENSHARED60`;	OverworldConstraint;	SF
-	CanFuseSharedRed;		Helper;	;	Items.Fusion.0x18, Helpers.CanFuseRedV
-	CanFuseSharedBlue;		Helper;	;	Items.Fusion.0x2D, Helpers.CanFuseBlueS
-	CanFuseShared35;	Helper;	;	Items.Fusion.0x35, Helpers.CanFuseGreenC
-	CanFuseShared36;	Helper;	;	Items.Fusion.0x36, Helpers.CanFuseGreenC
-	CanFuseShared37;	Helper;	;	Items.Fusion.0x37, Helpers.CanFuseGreenC
-	CanFuseShared39;	Helper;	;	Items.Fusion.0x39, Helpers.CanFuseGreenC
-	CanFuseShared3C;	Helper;	;	Items.Fusion.0x3C, Helpers.CanFuseGreenC
-	CanFuseShared5F;	Helper;	;	Items.Fusion.0x5F, Helpers.CanFuseGreenC
+	CanFuseSharedRed;		Helper;;	Items.Fusion.0x18, Helpers.CanFuseRedV
+	CanFuseSharedBlue;	Helper;;	Items.Fusion.0x2D, Helpers.CanFuseBlueS
+	CanFuseShared35;		Helper;;	Items.Fusion.0x35, Helpers.CanFuseGreenC
+	CanFuseShared36;		Helper;;	Items.Fusion.0x36, Helpers.CanFuseGreenC
+	CanFuseShared37;		Helper;;	Items.Fusion.0x37, Helpers.CanFuseGreenC
+	CanFuseShared39;		Helper;;	Items.Fusion.0x39, Helpers.CanFuseGreenC
+	CanFuseShared3C;		Helper;;	Items.Fusion.0x3C, Helpers.CanFuseGreenC
+	CanFuseShared5F;		Helper;;	Items.Fusion.0x5F, Helpers.CanFuseGreenC
+	CanFuseShared44;		Helper;;	Items.Fusion.0x44, Helpers.CanFuseGreenG
+	CanFuseShared46;		Helper;;	Items.Fusion.0x46, Helpers.CanFuseGreenG
+	CanFuseShared47;		Helper;;	Items.Fusion.0x47, Helpers.CanFuseGreenG
+	CanFuseShared4E;		Helper;;	Items.Fusion.0x4E, Helpers.CanFuseGreenG
+	CanFuseShared50;		Helper;;	Items.Fusion.0x50, Helpers.CanFuseGreenP
+	CanFuseShared53;		Helper;;	Items.Fusion.0x53, Helpers.CanFuseGreenP
+	CanFuseShared55;		Helper;;	Items.Fusion.0x55, Helpers.CanFuseGreenP
+	CanFuseShared56;		Helper;;	Items.Fusion.0x56, Helpers.CanFuseGreenP
+	CanFuseShared58;		Helper;;	Items.Fusion.0x58, Helpers.CanFuseGreenP
+	CanFuseShared60;		Helper;;	Items.Fusion.0x60, Helpers.CanFuseGreenG
 	!ifndef - COMBINED_GREEN_FUSIONS
 		SeededGreen35C1;	Helper;	;	Items.Fusion.0x35, Helpers.CanFuseGreenCShared1
 		SeededGreen35C2;	Helper;	;	Items.Fusion.0x35, Helpers.CanFuseGreenCShared2
@@ -2015,55 +2025,46 @@ All_Requirements_Met;	`ALLREQUIREMENTS`;	requirementPrizeItem:Define:FirstByte, 
 		SeededGreen3CC4;	Helper;	;	Items.Fusion.0x3C, Helpers.CanFuseGreenCShared4
 		SeededGreen3CC5;	Helper;	;	Items.Fusion.0x3C, Helpers.CanFuseGreenCShared5
 		SeededGreen3CC6;	Helper;	;	Items.Fusion.0x3C, Helpers.CanFuseGreenCShared6
-		CanFuseShared44;	Helper;	;	Items.Fusion.0x44, Helpers.CanFuseGreenG
 		SeededGreen44G1;	Helper;	;	Items.Fusion.0x44, Helpers.CanFuseGreenGShared1
 		SeededGreen44G2;	Helper;	;	Items.Fusion.0x44, Helpers.CanFuseGreenGShared2
 		SeededGreen44G3;	Helper;	;	Items.Fusion.0x44, Helpers.CanFuseGreenGShared3
 		SeededGreen44G4;	Helper;	;	Items.Fusion.0x44, Helpers.CanFuseGreenGShared4
 		SeededGreen44G5;	Helper;	;	Items.Fusion.0x44, Helpers.CanFuseGreenGShared5
-		CanFuseShared46;	Helper;	;	Items.Fusion.0x46, Helpers.CanFuseGreenG
 		SeededGreen46G1;	Helper;	;	Items.Fusion.0x46, Helpers.CanFuseGreenGShared1
 		SeededGreen46G2;	Helper;	;	Items.Fusion.0x46, Helpers.CanFuseGreenGShared2
 		SeededGreen46G3;	Helper;	;	Items.Fusion.0x46, Helpers.CanFuseGreenGShared3
 		SeededGreen46G4;	Helper;	;	Items.Fusion.0x46, Helpers.CanFuseGreenGShared4
 		SeededGreen46G5;	Helper;	;	Items.Fusion.0x46, Helpers.CanFuseGreenGShared5
-		CanFuseShared47;	Helper;	;	Items.Fusion.0x47, Helpers.CanFuseGreenG
 		SeededGreen47G1;	Helper;	;	Items.Fusion.0x47, Helpers.CanFuseGreenGShared1
 		SeededGreen47G2;	Helper;	;	Items.Fusion.0x47, Helpers.CanFuseGreenGShared2
 		SeededGreen47G3;	Helper;	;	Items.Fusion.0x47, Helpers.CanFuseGreenGShared3
 		SeededGreen47G4;	Helper;	;	Items.Fusion.0x47, Helpers.CanFuseGreenGShared4
 		SeededGreen47G5;	Helper;	;	Items.Fusion.0x47, Helpers.CanFuseGreenGShared5
-		CanFuseShared4E;	Helper;	;	Items.Fusion.0x4E, Helpers.CanFuseGreenG
 		SeededGreen4EG1;	Helper;	;	Items.Fusion.0x4E, Helpers.CanFuseGreenGShared1
 		SeededGreen4EG2;	Helper;	;	Items.Fusion.0x4E, Helpers.CanFuseGreenGShared2
 		SeededGreen4EG3;	Helper;	;	Items.Fusion.0x4E, Helpers.CanFuseGreenGShared3
 		SeededGreen4EG4;	Helper;	;	Items.Fusion.0x4E, Helpers.CanFuseGreenGShared4
 		SeededGreen4EG5;	Helper;	;	Items.Fusion.0x4E, Helpers.CanFuseGreenGShared5
-		CanFuseShared50;	Helper;	;	Items.Fusion.0x50, Helpers.CanFuseGreenP
 		SeededGreen50P1;	Helper;	;	Items.Fusion.0x50, Helpers.CanFuseGreenPShared1
 		SeededGreen50P2;	Helper;	;	Items.Fusion.0x50, Helpers.CanFuseGreenPShared2
 		SeededGreen50P3;	Helper;	;	Items.Fusion.0x50, Helpers.CanFuseGreenPShared3
 		SeededGreen50P4;	Helper;	;	Items.Fusion.0x50, Helpers.CanFuseGreenPShared4
 		SeededGreen50P5;	Helper;	;	Items.Fusion.0x50, Helpers.CanFuseGreenPShared5
-		CanFuseShared53;	Helper;	;	Items.Fusion.0x53, Helpers.CanFuseGreenP
 		SeededGreen53P1;	Helper;	;	Items.Fusion.0x53, Helpers.CanFuseGreenPShared1
 		SeededGreen53P2;	Helper;	;	Items.Fusion.0x53, Helpers.CanFuseGreenPShared2
 		SeededGreen53P3;	Helper;	;	Items.Fusion.0x53, Helpers.CanFuseGreenPShared3
 		SeededGreen53P4;	Helper;	;	Items.Fusion.0x53, Helpers.CanFuseGreenPShared4
 		SeededGreen53P5;	Helper;	;	Items.Fusion.0x53, Helpers.CanFuseGreenPShared5
-		CanFuseShared55;	Helper;	;	Items.Fusion.0x55, Helpers.CanFuseGreenP
 		SeededGreen55P1;	Helper;	;	Items.Fusion.0x55, Helpers.CanFuseGreenPShared1
 		SeededGreen55P2;	Helper;	;	Items.Fusion.0x55, Helpers.CanFuseGreenPShared2
 		SeededGreen55P3;	Helper;	;	Items.Fusion.0x55, Helpers.CanFuseGreenPShared3
 		SeededGreen55P4;	Helper;	;	Items.Fusion.0x55, Helpers.CanFuseGreenPShared4
 		SeededGreen55P5;	Helper;	;	Items.Fusion.0x55, Helpers.CanFuseGreenPShared5
-		CanFuseShared56;	Helper;	;	Items.Fusion.0x56, Helpers.CanFuseGreenP
 		SeededGreen56P1;	Helper;	;	Items.Fusion.0x56, Helpers.CanFuseGreenPShared1
 		SeededGreen56P2;	Helper;	;	Items.Fusion.0x56, Helpers.CanFuseGreenPShared2
 		SeededGreen56P3;	Helper;	;	Items.Fusion.0x56, Helpers.CanFuseGreenPShared3
 		SeededGreen56P4;	Helper;	;	Items.Fusion.0x56, Helpers.CanFuseGreenPShared4
 		SeededGreen56P5;	Helper;	;	Items.Fusion.0x56, Helpers.CanFuseGreenPShared5
-		CanFuseShared58;	Helper;	;	Items.Fusion.0x58, Helpers.CanFuseGreenP
 		SeededGreen58P1;	Helper;	;	Items.Fusion.0x58, Helpers.CanFuseGreenPShared1
 		SeededGreen58P2;	Helper;	;	Items.Fusion.0x58, Helpers.CanFuseGreenPShared2
 		SeededGreen58P3;	Helper;	;	Items.Fusion.0x58, Helpers.CanFuseGreenPShared3
@@ -2075,7 +2076,6 @@ All_Requirements_Met;	`ALLREQUIREMENTS`;	requirementPrizeItem:Define:FirstByte, 
 		SeededGreen5FC4;	Helper;	;	Items.Fusion.0x5F, Helpers.CanFuseGreenCShared4
 		SeededGreen5FC5;	Helper;	;	Items.Fusion.0x5F, Helpers.CanFuseGreenCShared5
 		SeededGreen5FC6;	Helper;	;	Items.Fusion.0x5F, Helpers.CanFuseGreenCShared6
-		CanFuseShared60;	Helper;	;	Items.Fusion.0x60, Helpers.CanFuseGreenG
 		SeededGreen60G1;	Helper;	;	Items.Fusion.0x60, Helpers.CanFuseGreenGShared1
 		SeededGreen60G2;	Helper;	;	Items.Fusion.0x60, Helpers.CanFuseGreenGShared2
 		SeededGreen60G3;	Helper;	;	Items.Fusion.0x60, Helpers.CanFuseGreenGShared3
