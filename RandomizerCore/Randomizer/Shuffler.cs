@@ -261,10 +261,10 @@ internal class Shuffler
 
         foreach (var itemDep in distinctDeps.Where(dep => dep.GetType() == typeof(ItemDependency)))
             itemDep.ExpandRequiredDependencies(collectedLocations, collectedItems);
-        foreach (var locDep in distinctDeps.Where(dep => dep.GetType() == typeof(LocationDependency)))
-            locDep.ExpandRequiredDependencies(collectedLocations, collectedItems);
         foreach (var countDep in distinctDeps.Where(dep => dep.GetType() == typeof(CounterDependency)))
             countDep.ExpandRequiredDependencies(collectedLocations, collectedItems);
+        foreach (var locDep in distinctDeps.Where(dep => dep.GetType() == typeof(LocationDependency)))
+            locDep.ExpandRequiredDependencies(collectedLocations, collectedItems);
         foreach (var itemDep in distinctDeps.Where(dep => dep.GetType() == typeof(NotItemDependency)))
             itemDep.ExpandRequiredDependencies(collectedLocations, collectedItems);
 

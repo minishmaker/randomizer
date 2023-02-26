@@ -62,16 +62,17 @@ public class LocationDependency : DependencyBase
         LocationDependencies = location.Dependencies;
 
         if (LocationDependencies.Count == 0) 
-        { 
             Result = true;
+        else
+            Result = LocationDependencies.All(dep => dep.DependencyFulfilled());
 
-            foreach (var parent in Parents)
-                parent.UpdateDependencyResult(Result);
-        }
+        foreach (var parent in Parents)
+            parent.UpdateDependencyResult(Result);
 
         foreach (var dependency in LocationDependencies)
         {
             dependency.AddParentDependencyToThisDependency(this);
+
             if (!dependency.SupportsCaching) SupportsCaching = false;
         }
     }
