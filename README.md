@@ -45,11 +45,17 @@ All the following settings have Tooltips that fully explain their function:
 	- Barren: No Major items can be found in these dungeons at all.
 	- Regions Unrequired: Includes Dungeon Regions
 	- Regions Barren: Includes Dungeon Regions
-- "Reqiured Number of Dungeons" added to requirements for Dark Hyrule Castle.
+- New Option: Requirement Reward: Enable a new item location, the item of which is given to the player once they meet the selected requirements (elements, sword, dungeons and figurines).
+	- Disabled
+	- DHC Big Key
+	- Random Item
+- "Required Number of Dungeons" added to requirements for Dark Hyrule Castle.
 - New Option: Dojo Swordmasters: (Previously always set to 'Any Item')
 	- Vanilla Scrolls
 	- Randomized Scrolls
 	- Any Item
+- New Option: Cucco Minigame: Select the number of playable rounds from 0 to 10 (previously always 1).
+- New Option: Goron Merchant: Select the number of randomized sets of 3 items each from 0 to 5 (previously always 0).
 - New Option: Heart Pieces and Containers are randomized. (Previously always on, now a togglable setting)
 - Obscure Spots is split into three different settings: 
 	- Special Pots
@@ -68,8 +74,19 @@ All the following settings have Tooltips that fully explain their function:
 - Fusion Cutscene Setting Fixes.
 	- New Option: Always show the map after fusing.
 - New Options: Wind Crests active from the start:
-	- Mt Crenel, Veil Falls, Cloud Tops, Swamp, Link's House and Minish Woods can all be independently toggled.
+	- Mt Crenel, Veil Falls, Cloud Tops, Hyrule Town, Swamp, Link's House and Minish Woods can all be independently toggled.
+- New Options: Dungeon Warps active from the start:
+	- The 12 blue and red dungeon warps can all be independently toggled.
 
+- New Option: Location Reachability: Determines which items and locations are guaranteed to be reachable. There are 3 options:
+	- All Locations
+	- All NonKeys
+	- Always the Goal
+- New Option: Visible items are collectable from a distance:
+	- Not Allowed
+	- Allowed
+	- Require
+	- Require Hard
 - New Option: No Logic
 - New Option: Weapons considered by logic
 	- Bombs, Bows, Gust Jar and Lantern get their own independent dropdown selectors.
@@ -85,18 +102,21 @@ All the following settings have Tooltips that fully explain their function:
 - New Option: Fun Junk items
 - New Option: Random Bottle contents.
 - New Option: Maximum Health.
-- New Option: Hero Mode.
 - New Option: Damage Multiplier.
+- New Option: Instant Text.
 - New Option: Item Text Display added.
+- New Option: Shy Fairies.
 - New Option: Homewarp on Sleep option.
-- New Option: Use boots while Minish sized.
-- New Option: Visible items are collectable from a distance.
+- New Option: Use boots on L, possible even while Minish sized.
 - New Option: Select button to use Ocarina.
+- New Option: Goron Merchant uses JP/US prices instead of EU.
+- New Option: Disable Kinstone Drops.
+- New Option: Disable Shell Drops.
 - New Option: Firerod dev tool.
 
 - Music Options: Vanilla, Shuffled, Disabled.
+- New Cosmetic Option: Low Health Beep.
 
-- Items can now lock themselves, however seeds will always be beatable.
 - Text speed on newly created files preset to `FAST`
 - Spoiler Log restructure with better names, a more logical order, and a new `Playthrough` section.
 - Version number is displayed on the File Select screen.
@@ -164,7 +184,7 @@ The commands supported by command files are as follows, with (option) used to de
 This program takes The Legend of Zelda: The Minish Cap and randomizes the location of items to provide a replayable experience. Logic is used to dictate where items are placed in order to create a completable playthrough, without the need of glitches or fear of being unable to progress.
 The randomizer guarantees that a glitchless path through the game is possible, however this path might not be obvious and it is up to the player to figure out where they need to go. Under Default/Beginner settings nothing will be too complicated, but by adding more settings you will have to search more thoroughly for items and use those items in more creative/unintuitive ways.
 The game has 7 Dungeons, Dark Hyrule Castle is the final dungeon and will normally be the end of your quest, and 6 other dungeons in the world (yes we count Royal Crypt as a dungeon). Most settings will have 4 Elements shuffled between the 6 Dungeons of the game which must be collected to gain acces to Dark Hyrule Castle, Check your map at any point to see where they reside. You can press `SELECT` when selecting a map quadrant to zoom into the dungeon view and vice versa.
-This game is originally completely linear, a lot of work has been put in to open up the world and allow playthroughs in a multitude of different paths. Many 'Quality of Life' changes have been made to aid the player: 
+This game is originally completely linear, a lot of work has been put in to open up the world and allow playthroughs in a multitude of different paths. Many 'Quality of Life' changes have been made to aid the player, some of which can be toggled on or off in the settings: 
 - Cutscenes and Textbox Triggers (especially those pesky ones where Ezlo tells you the solution to a puzzle) have been removed.
 - Text advances at an incredible speed while simply holding any button.
 - Recently collected items are displayed at the bottom left corner of the screen.
