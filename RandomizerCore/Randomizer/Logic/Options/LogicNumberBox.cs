@@ -29,6 +29,11 @@ public class LogicNumberBox : LogicOptionBase
     public byte MaxValue { get; }
     public byte DefaultValue { get; }
 
+    public override void Reset()
+    {
+        Value = $"{DefaultValue}";
+    }
+
     public override List<LogicDefine> GetLogicDefines()
     {
         var defineList = new List<LogicDefine>(3);

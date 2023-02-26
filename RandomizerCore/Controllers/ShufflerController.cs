@@ -22,6 +22,7 @@ public class ShufflerController
 {    
     private readonly Shuffler _shuffler;
     private string? _cachedLogicFile;
+	private string? CachedYAMLFile;
 
 #if DEBUG
     public string AppName => "Minish Cap Randomizer Debug Build";
@@ -196,13 +197,14 @@ public class ShufflerController
         }
     }
 
-    public ShufflerControllerResult LoadLocations(string? filename = null)
+    public ShufflerControllerResult LoadLocations(string? logicFile = null, string? yamlFile = null)
     {
         try
         {
             _shuffler.ValidateState();
-            _shuffler.LoadLocations(filename);
-            _cachedLogicFile = filename;
+            _shuffler.LoadLocations(logicFile, yamlFile);
+            _cachedLogicFile = logicFile;
+            CachedYAMLFile = yamlFile;
             return new ShufflerControllerResult { WasSuccessful = true };
         }
         catch (Exception e)
@@ -242,7 +244,7 @@ public class ShufflerController
                     Logger.Instance.LogException(e);
                     capturedExceptions.Add(e);
                     attempts++;
-                    LoadLocations(_cachedLogicFile);
+                    LoadLocations(_cachedLogicFile, CachedYAMLFile);
                     _shuffler.SetSeed(new SquaresRandomNumberGenerator().Next());
                     Logger.Instance.SaveLogTransaction();
                 }
@@ -468,5 +470,37 @@ public class ShufflerController
         {
             Logger.Instance.SaveLogTransaction();
         }
+    }
+
+	public ShufflerControllerResult ExportYAML(string filepath, bool mystery)
+	{
+        string? name = null;
+        var index = filepath.LastIndexOf(Path.DirectorySeparatorChar);
+        if (index != -1)
+        {
+            name = filepath.Substring(index + 1);
+            index = name.LastIndexOf(".");
+            if(index != -1)
+                name = name.Substring(0, index);
+        }
+        try
+        {
+			File.WriteAllText(filepath, Mystery.CreateYAML(name, null, GetLogicOptions(), mystery));
+			return new ShufflerControllerResult { WasSuccessful = true };
+        }
+        catch (Exception e)
+        {
+            Logger.Instance.LogException(e);
+			return new ShufflerControllerResult
+			{
+				WasSuccessful = false,
+				Error = e,
+                ErrorMessage = e.Message,
+			};
+        }
+		finally
+		{
+			Logger.Instance.SaveLogTransaction();
+		}
     }
 }

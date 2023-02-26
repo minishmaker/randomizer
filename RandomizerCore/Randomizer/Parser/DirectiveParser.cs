@@ -381,10 +381,10 @@ public class DirectiveParser
         LocationTypeOverrides.Clear();
     }
 
-    public void AddOptions()
-    {
-        foreach (var option in Options) _defines.AddRange(option.GetLogicDefines());
-    }
+	public void AddOptions(List<LogicOptionBase>? options = null)
+	{
+		foreach (var option in options ?? Options) _defines.AddRange(option.GetLogicDefines());
+	}
 
     public string ReplaceDefines(string locationString)
     {

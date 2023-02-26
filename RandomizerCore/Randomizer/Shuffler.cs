@@ -21,6 +21,8 @@ namespace RandomizerCore.Randomizer;
 
 internal class Shuffler
 {
+	private string? YamlPath;
+
     //Item lists are sorted in the order they are processed
     private readonly List<Item> _dungeonConstraints;
     private readonly List<Item> _dungeonEntrances;
@@ -221,13 +223,18 @@ internal class Shuffler
     ///     Reads the list of locations from a file, or the default logic if none is specified
     /// </summary>
     /// <param name="logicFile">The file to read locations from</param>
-    public void LoadLocations(string? logicFile = null)
+    /// <param name="yamlFile">The YAML file to read options from</param>
+    public void LoadLocations(string? logicFile = null, string? yamlFile = null)
     {
         // Change the logic file path to match
+        YamlPath = yamlFile;
         _logicPath = logicFile;
 
         // Reset everything to allow rerandomization
         ClearLogic();
+
+		// Set option defines
+		_logicParser.SubParser.AddOptions(string.IsNullOrEmpty(yamlFile) ? null : Mystery.ParseYAML(File.ReadAllText(yamlFile), GetOptions(), new Random(Seed)));
 
         string[] locationStrings;
 

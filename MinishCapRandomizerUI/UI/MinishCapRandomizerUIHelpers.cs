@@ -282,6 +282,10 @@ Generating seeds with this shuffler may freeze the randomizer application for ma
 			RomBuildfilePath.Text = _configuration.CustomPatchFilepath;
 		    BrowseCustomPatch.Enabled = UseCustomPatch.Checked;
 
+			UseCustomYAML.Checked = _configuration.UseCustomYAML;
+			YAMLPath.Text = _configuration.CustomYAMLFilepath;
+		    BrowseCustomYAML.Enabled = UseCustomYAML.Checked;
+
 			logAllTransactionsToolStripMenuItem.Checked = _configuration.UseVerboseLogger;
 			_shufflerController.SetLoggerVerbosity(_configuration.UseVerboseLogger);
 
