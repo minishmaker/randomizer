@@ -61,10 +61,7 @@ public class LocationDependency : DependencyBase
         location.RelatedDependencies.Add(this);
         LocationDependencies = location.Dependencies;
 
-        if (LocationDependencies.Count == 0) 
-            Result = true;
-        else
-            Result = LocationDependencies.All(dep => dep.DependencyFulfilled());
+        Result = LocationDependencies.All(dep => dep.DependencyFulfilled());
 
         foreach (var parent in Parents)
             parent.UpdateDependencyResult(Result);
