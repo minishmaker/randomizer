@@ -81,7 +81,7 @@ All the following settings have Tooltips that fully explain their function:
 - New Option: Location Reachability: Determines which items and locations are guaranteed to be reachable. There are 3 options:
 	- All Locations
 	- All NonKeys
-	- Always the Goal
+	- Only the Goal
 - New Option: Visible items are collectable from a distance:
 	- Not Allowed
 	- Allowed
