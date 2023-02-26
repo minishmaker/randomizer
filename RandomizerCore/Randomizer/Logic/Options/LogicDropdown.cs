@@ -20,12 +20,19 @@ public class LogicDropdown : LogicOptionBase
         base(name, niceName, true, settingGroup, settingPage, descriptionText, type)
     {
         Selections = selections;
+        DefaultSelection = defaultSelection;
         Selection = selections.Keys.ToList()[
             selections.Values.ToList()
-                .IndexOf(defaultSelection)]; //Not sure if this works, it should but needs to be tested
+                .IndexOf(defaultSelection)];
+    }
+
+    public override void Reset()
+    {
+        Selection = Selections.Keys.ToList()[Selections.Values.ToList().IndexOf(DefaultSelection)];
     }
 
     public string Selection { get; set; }
+    public string DefaultSelection { get; }
     public Dictionary<string, string> Selections { get; }
 
     public override List<LogicDefine> GetLogicDefines()

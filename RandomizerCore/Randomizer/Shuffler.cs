@@ -31,6 +31,7 @@ internal class Shuffler
     private readonly Parser.Parser LogicParser;
     private readonly List<Item> MajorItems;
     private readonly List<Item> MinorItems;
+	private string? YamlPath;
 
     //Item lists are sorted in the order they are processed
     private readonly List<Item> Music;
@@ -220,13 +221,18 @@ internal class Shuffler
     ///     Reads the list of locations from a file, or the default logic if none is specified
     /// </summary>
     /// <param name="logicFile">The file to read locations from</param>
-    public void LoadLocations(string? logicFile = null)
+    /// <param name="yamlFile">The YAML file to read options from</param>
+    public void LoadLocations(string? logicFile = null, string? yamlFile = null)
     {
         // Change the logic file path to match
         LogicPath = logicFile;
+        YamlPath = yamlFile;
 
         // Reset everything to allow rerandomization
         ClearLogic();
+
+		// Set option defines
+		LogicParser.SubParser.AddOptions(string.IsNullOrEmpty(yamlFile) ? null : Mystery.ParseYAML(File.ReadAllText(yamlFile), GetOptions(), new Random(Seed)));
 
         string[] locationStrings;
 
@@ -1835,6 +1841,5 @@ internal class Shuffler
         LogicParser.SubParser.ClearReplacements();
         LogicParser.SubParser.ClearAmountReplacements();
         LogicParser.SubParser.ClearDefines();
-        LogicParser.SubParser.AddOptions();
     }
 }

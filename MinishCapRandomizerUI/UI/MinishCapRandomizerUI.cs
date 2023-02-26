@@ -1,6 +1,7 @@
 using MinishCapRandomizerUI.UI.Config;
 using Newtonsoft.Json;
 using RandomizerCore.Controllers;
+using RandomizerCore.Randomizer;
 
 namespace MinishCapRandomizerUI.UI;
 
@@ -85,6 +86,15 @@ public sealed partial class MinishCapRandomizerUI : Form
 		});
 	}
 
+	private void BrowseCustomYAML_Click(object sender, EventArgs e)
+	{
+		DisplayOpenDialog("YAML Files|*.yaml;*.yml|All Files|*.*", "Select YAML File", DialogResult.OK, filepath =>
+		{
+			YAMLPath.Text = filepath;
+			_configuration.CustomYAMLFilepath = filepath;
+		});
+	}
+
 	private void UseCustomLogic_CheckedChanged(object sender, EventArgs e)
 	{
 		BrowseCustomLogicFile.Enabled = UseCustomLogic.Checked;
@@ -111,6 +121,12 @@ public sealed partial class MinishCapRandomizerUI : Form
 		_configuration.UseCustomPatch = UseCustomPatch.Checked;
 	}
 
+	private void UseCustomYAML_CheckedChanged(object sender, EventArgs e)
+	{
+		BrowseCustomYAML.Enabled = UseCustomYAML.Checked;
+		_configuration.UseCustomYAML = UseCustomYAML.Checked;
+	}
+
 	private void Randomize_Click(object sender, EventArgs e)
 	{
 		if (!int.TryParse(Seed.Text, out var seed))
@@ -125,13 +141,14 @@ public sealed partial class MinishCapRandomizerUI : Form
 
 		_configuration.MaximumRandomizationRetryCount = retryAttempts;
 		_shufflerController.SetRandomizationSeed(seed);
-		_shufflerController.LoadLocations(UseCustomLogic.Checked ? LogicFilePath.Text : "");
+		_shufflerController.LoadLocations(UseCustomLogic.Checked ? LogicFilePath.Text : "", UseCustomYAML.Checked ? YAMLPath.Text : "");
 		var result = _shufflerController.Randomize(retryAttempts, UseSphereBasedShuffler.Checked);
-		if (result.WasSuccessful)
+		if (result)
 		{
 			_randomizedRomCreated = result.WasSuccessful;
 
 			DisplayAndUpdateSeedInfoPage();
+            // TODO: If YAML is used, store settings somewhere so we can generate a settings string for the spoiler (should be hidden in seed output tab)
 		}
 		else
 			DisplayConditionalAlertFromShufflerResult(result, "You shouldn't be seeing this, but if you are it means something weird happened. Please report to the dev team.", "You Shouldn't See This", "Failed to generate ROM!", "Failed to Generate ROM");
@@ -296,9 +313,18 @@ public sealed partial class MinishCapRandomizerUI : Form
 		DisplaySaveDialog("Logic Files|*.logic|Text Files|*.txt", "Choose where to save logic file", "default.logic", DialogResult.OK, (filename) => DisplayConditionalAlertFromShufflerResult(_shufflerController.ExportDefaultLogic(filename), "Logic file saved successfully!", "Saved Logic File", "Failed to save logic file!", "Failed to Save"));
 	}
 
+	private void savePresetYAMLMenuItem_Click(object sender, EventArgs e)
+	{
+		DisplaySaveDialog("YAML Files|*.yaml;*.yml|All Files|*.*", "Choose where to save Preset YAML file", "Preset.yaml", DialogResult.OK, (filepath) => DisplayConditionalAlertFromShufflerResult(_shufflerController.ExportYAML(filepath, false), "Preset YAML file saved successfully!", "Saved YAML File", "Failed to save Preset YAML file!", "Failed to Save"));
+	}
+
+	private void saveMysteryYAMLMenuItem_Click(object sender, EventArgs e)
+	{
+		DisplaySaveDialog("YAML Files|*.yaml;*.yml|All Files|*.*", "Choose where to save Mystery YAML file", "Mystery.yaml", DialogResult.OK, (filepath) => DisplayConditionalAlertFromShufflerResult(_shufflerController.ExportYAML(filepath, true), "Mystery YAML file saved successfully!", "Saved YAML File", "Failed to save Mystery YAML file!", "Failed to Save"));
+	}
+
 	private void setLoggerOutputPathToolStripMenuItem_Click(object sender, EventArgs e)
 	{
-
 		DisplaySaveDialog("Log Files|*.json", "Choose where to save logs to", "log.json", DialogResult.OK, (filename) =>
 		{
 			_shufflerController.SetLogOutputPath(filename);

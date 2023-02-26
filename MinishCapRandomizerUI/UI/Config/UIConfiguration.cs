@@ -22,5 +22,9 @@
 		public bool UseCustomPatch { get; set; }
 
 		public string CustomPatchFilepath { get; set; } = "";
+
+		public bool UseCustomYAML { get; set; }
+
+		public string CustomYAMLFilepath { get; set; } = "";
 	}
 }

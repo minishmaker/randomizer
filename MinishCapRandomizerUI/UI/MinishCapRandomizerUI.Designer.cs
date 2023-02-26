@@ -34,6 +34,8 @@ namespace MinishCapRandomizerUI.UI
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.logicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportDefaultLogicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.savePresetYAMLMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveMysteryYAMLMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loggingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setLoggerOutputPathToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.useLoggerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -96,6 +98,10 @@ namespace MinishCapRandomizerUI.UI
             this.label19 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.BrowseCustomYAML = new System.Windows.Forms.Button();
+            this.YAMLPath = new System.Windows.Forms.TextBox();
+            this.label27 = new System.Windows.Forms.Label();
+            this.UseCustomYAML = new System.Windows.Forms.CheckBox();
             this.BrowseCustomPatch = new System.Windows.Forms.Button();
             this.RomBuildfilePath = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -163,7 +169,7 @@ namespace MinishCapRandomizerUI.UI
             // logicToolStripMenuItem
             // 
             this.logicToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.exportDefaultLogicToolStripMenuItem});
+            this.exportDefaultLogicToolStripMenuItem, this.savePresetYAMLMenuItem, this.saveMysteryYAMLMenuItem});
             this.logicToolStripMenuItem.Name = "logicToolStripMenuItem";
             this.logicToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.logicToolStripMenuItem.Text = "Logic";
@@ -174,6 +180,14 @@ namespace MinishCapRandomizerUI.UI
             this.exportDefaultLogicToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.exportDefaultLogicToolStripMenuItem.Text = "Export Default Logic";
             this.exportDefaultLogicToolStripMenuItem.Click += new System.EventHandler(this.exportDefaultLogicToolStripMenuItem_Click);
+            this.savePresetYAMLMenuItem.Name = "savePresetYAMLMenuItem";
+            this.savePresetYAMLMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.savePresetYAMLMenuItem.Text = "Save options as Preset YAML";
+            this.savePresetYAMLMenuItem.Click += new System.EventHandler(this.savePresetYAMLMenuItem_Click);
+            this.saveMysteryYAMLMenuItem.Name = "saveMysteryYAMLMenuItem";
+            this.saveMysteryYAMLMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.saveMysteryYAMLMenuItem.Text = "Save Mystery YAML template";
+            this.saveMysteryYAMLMenuItem.Click += new System.EventHandler(this.saveMysteryYAMLMenuItem_Click);
             // 
             // loggingToolStripMenuItem
             // 
@@ -738,7 +752,7 @@ namespace MinishCapRandomizerUI.UI
             this.label25.AutoSize = true;
             this.label25.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label25.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label25.Location = new System.Drawing.Point(17, 217);
+            this.label25.Location = new System.Drawing.Point(17, 277);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(123, 15);
             this.label25.TabIndex = 20;
@@ -749,7 +763,7 @@ namespace MinishCapRandomizerUI.UI
             // 
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel4.Controls.Add(this.UseSphereBasedShuffler);
-            this.panel4.Location = new System.Drawing.Point(6, 225);
+            this.panel4.Location = new System.Drawing.Point(6, 285);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(760, 50);
             this.panel4.TabIndex = 19;
@@ -788,12 +802,16 @@ namespace MinishCapRandomizerUI.UI
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(148, 15);
             this.label5.TabIndex = 17;
-            this.label5.Text = "Custom Logic and Patches";
+            this.label5.Text = "Custom Logic, Patches and YAML File";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel6
             // 
             this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel6.Controls.Add(this.BrowseCustomYAML);
+            this.panel6.Controls.Add(this.YAMLPath);
+            this.panel6.Controls.Add(this.label27);
+            this.panel6.Controls.Add(this.UseCustomYAML);
             this.panel6.Controls.Add(this.BrowseCustomPatch);
             this.panel6.Controls.Add(this.RomBuildfilePath);
             this.panel6.Controls.Add(this.label7);
@@ -804,8 +822,49 @@ namespace MinishCapRandomizerUI.UI
             this.panel6.Controls.Add(this.label6);
             this.panel6.Location = new System.Drawing.Point(6, 65);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(760, 140);
+            this.panel6.Size = new System.Drawing.Size(760, 200);
             this.panel6.TabIndex = 16;
+            // 
+            // BrowseCustomYAML
+            // 
+            this.BrowseCustomYAML.Location = new System.Drawing.Point(660, 161);
+            this.BrowseCustomYAML.Name = "BrowseCustomYAML";
+            this.BrowseCustomYAML.Size = new System.Drawing.Size(90, 23);
+            this.BrowseCustomYAML.TabIndex = 20;
+            this.BrowseCustomYAML.Text = "Browse";
+            this.BrowseCustomYAML.UseVisualStyleBackColor = true;
+            this.BrowseCustomYAML.Click += new System.EventHandler(this.BrowseCustomYAML_Click);
+            // 
+            // YAMLPath
+            // 
+            this.YAMLPath.Enabled = false;
+            this.YAMLPath.Location = new System.Drawing.Point(153, 162);
+            this.YAMLPath.Name = "YAMLPath";
+            this.YAMLPath.Size = new System.Drawing.Size(501, 23);
+            this.YAMLPath.TabIndex = 21;
+            // 
+            // label27
+            // 
+            this.label27.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label27.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label27.Location = new System.Drawing.Point(10, 165);
+            this.label27.Name = "label7";
+            this.label27.Size = new System.Drawing.Size(133, 15);
+            this.label27.TabIndex = 22;
+            this.label27.Text = "YAML File Path:";
+            this.label27.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // UseCustomYAML
+            // 
+            this.UseCustomYAML.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.UseCustomYAML.Location = new System.Drawing.Point(10, 135);
+            this.UseCustomYAML.Name = "UseCustomYAML";
+            this.UseCustomYAML.Size = new System.Drawing.Size(160, 19);
+            this.UseCustomYAML.TabIndex = 19;
+            this.UseCustomYAML.Text = "Use Custom YAML File";
+            this.UseCustomYAML.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.UseCustomYAML.UseVisualStyleBackColor = true;
+            this.UseCustomYAML.CheckedChanged += new System.EventHandler(this.UseCustomYAML_CheckedChanged);
             // 
             // BrowseCustomPatch
             // 
@@ -1258,6 +1317,8 @@ namespace MinishCapRandomizerUI.UI
         private OpenFileDialog openFileDialog1;
         private ColorDialog colorDialog1;
         private ToolStripMenuItem exportDefaultLogicToolStripMenuItem;
+        private ToolStripMenuItem savePresetYAMLMenuItem;
+        private ToolStripMenuItem saveMysteryYAMLMenuItem;
         private ToolStripMenuItem loggingToolStripMenuItem;
         private ToolStripMenuItem setLoggerOutputPathToolStripMenuItem;
         private ToolStripMenuItem useLoggerToolStripMenuItem;
@@ -1345,6 +1406,10 @@ namespace MinishCapRandomizerUI.UI
 		private TextBox RomBuildfilePath;
 		private Label label7;
 		private CheckBox UseCustomPatch;
+		private Button BrowseCustomYAML;
+		private TextBox YAMLPath;
+		private Label label27;
+		private CheckBox UseCustomYAML;
 		private Button BrowseCustomLogicFile;
 		private TextBox LogicFilePath;
 		private CheckBox UseCustomLogic;
