@@ -460,16 +460,6 @@ internal class Shuffler
     {
         var time = DateTime.Now;
         var locationGroups = Locations.GroupBy(location => location.Type).ToList();
-
-        //Location dependencies without children need to notify parents about being true
-        foreach(var loc in Locations)
-        {
-            if(loc.Dependencies.Count == 0)
-            {
-                loc.RelatedDependencies.ForEach(dep => dep.UpdateDependencyResult(true));
-            }
-        }
-
         //We now do randomization in phases, following the ordering of items in <code>LocationType</code>
         //Make it so randomized music doesn't affect randomization
         var temp = Rng;
