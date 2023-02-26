@@ -428,12 +428,6 @@
 	!eventdefine - noFairy
 !endif
 
-!ifdef - MITTSMONEY
-	MittsMoney;	Helper;;	Items.MoleMitts
-!else
-	MittsMoney;	Helper;;	Helpers.Inaccessible
-!endif
-
 !ifndef - GORON_ALT_PRICES
 	!define - GORONLEFT1 	-		(|(+4,  Items.Rupee100, Items.Rupee200:2), Helpers.MittsMoney)
 	!define - GORONMID1 	-		(|(+2,  Items.Rupee100, Items.Rupee200:2), Helpers.MittsMoney)
@@ -1628,7 +1622,8 @@
 	!endif
 	!eventdefine - requirementSwordTier       - `SWORDLEVEL`
 	!ifdef - YESPROG
-		!define - GOTSWORDS - (+`SWORDLEVEL`, Items.ProgressiveItem.0x00)
+		!undefine - GOTSWORDS
+		!define - GOTSWORDS - Items.ProgressiveItem.0x00:`SWORDLEVEL`
 	!endif
 !endif
 
@@ -1656,7 +1651,7 @@
 	!eventdefine - requirementDungeonsAmount - `AD_PED_NUM`
 !endif
 
-GOTSWORDS; 	Helper; ; `GOTSWORDS`
+GotSwords; 	Helper; ; `GOTSWORDS`
 !ifdef - REQUIREMENT_ITEM_DHC_BK
 	!define - REQREWARD - Items.BigKey.0x1D
 	!define - DHCBK - Items.Rupee5
@@ -1673,13 +1668,13 @@ GOTSWORDS; 	Helper; ; `GOTSWORDS`
 	!endif
 !endif
 
-All_Requirements_Met;	`ALLREQUIREMENTS`;	requirementPrizeItem:Define:FirstByte, requirementPrizeSub:Define:SecondByte;	Helpers.GOTSWORDS `GOTELEMENTS` `DHC_FIG` `DHC_AD`; `REQREWARD`
+All_Requirements_Met;	`ALLREQUIREMENTS`;	requirementPrizeItem:Define:FirstByte, requirementPrizeSub:Define:SecondByte;	Helpers.GotSwords `GOTELEMENTS` `DHC_FIG` `DHC_AD`; `REQREWARD`
 
 !ifdef - OPENDHC
 	AccessDHC; 	Helper;;
     !eventdefine - openDHC
 !else
-	AccessDHC; 	Helper;;	Helpers.GOTSWORDS `GOTELEMENTS` `DHC_FIG` `DHC_AD`
+	AccessDHC; 	Helper;;	Helpers.GotSwords `GOTELEMENTS` `DHC_FIG` `DHC_AD`
 	!undefine - PED_ITEMS
 	!ifdef - NODHC
 		!eventdefine - noDHC
@@ -2660,6 +2655,7 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 	PoWHP;				Helper;;	(|(&Helpers.DarkRooms, (|(&Helpers.PoW2ndHalf1stDoor, Items.RocsCape), Helpers.PoWShortcuts), Helpers.PoWHandRoom, (|Helpers.PoW2ndHalf, Helpers.PoWBlueWarp)), (&Helpers.PoWRedWarp, Helpers.OverworldBlocks), (&(|Helpers.CanSplit3, Helpers.CanSplit4), Helpers.PoWJump, Helpers.PoWPostKeyDoor, (|Items.GustJar, Helpers.HasBoomerang)))
 !endif
 !ifndef - MITTSMONEY
+MittsMoney;			Helper;;	Helpers.Inaccessible
 ShopSimon;			Helper;;	(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200)
 Shop80;				Helper;;	(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200)
 Shop300;				Helper;;	(+510, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200)
@@ -2668,6 +2664,7 @@ ShopWitch;			Helper;;	(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Ite
 ShopScrubTrilby;		Helper;;	(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200)
 ShopScrubCrenel;		Helper;;	(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200)
 !else
+MittsMoney;			Helper;;	Items.MoleMitts
 ShopSimon;			Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Items.MoleMitts)
 Shop80;				Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Items.MoleMitts)
 Shop300;				Helper;;	(|(+510, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Items.MoleMitts)
