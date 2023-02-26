@@ -1362,6 +1362,10 @@ internal class Shuffler
             spoilerBuilder.AppendLine($"\t\tKinstone Type: {location.Contents.Value.Kinstone}");
         else if (location.Contents.Value.Type is ItemType.ProgressiveItem)
             spoilerBuilder.AppendLine($"\t\tItem: {GetProgressiveItemName(location.Contents.Value.SubValue)}");
+        else if (location.Contents.Value.Type is ItemType.Bottle)
+            spoilerBuilder.AppendLine($"\t\tItem: {GetBottleName(location.Contents.Value.SubValue)}");
+        else if (location.Contents.Value.Type is ItemType.Trap)
+            spoilerBuilder.AppendLine($"\t\tItem: {GetTrapName(location.Contents.Value.SubValue)}");
         else if (location.Contents.Value.ShufflePool is ItemPool.DungeonEntrance)
             spoilerBuilder.AppendLine($"\t\tDungeon: {GetEntranceNameFromSubvalue(location.Contents.Value.SubValue)}");
         else if (location.Contents.Value.ShufflePool is ItemPool.DungeonMajor ||
@@ -1387,6 +1391,50 @@ internal class Shuffler
             ProgressiveItemType.Boomerang => "Progressive Boomerang",
             ProgressiveItemType.Shield => "Progressive Shield",
             ProgressiveItemType.SpinAttack => "Progressive Scroll",
+            _ => $"{subvalue}"
+        };
+    }
+
+    private string GetBottleName(int subvalue)
+    {
+        return (BottleType)subvalue switch
+        {
+            BottleType.BottleEmpty => "Empty Contents",
+            BottleType.BottleButter => "Hylian Butter",
+            BottleType.BottleMilk => "Full Milk",
+            BottleType.BottleHalfMilk => "Half Milk",
+            BottleType.BottleRedPotion => "Red Potion",
+            BottleType.BottleBluePotion => "Blue Potion",
+            BottleType.BottleWater => "Water",
+            BottleType.BottleMineralWater => "Mineral Water",
+            BottleType.BottleFairy => "Fairy",
+            BottleType.BottlePicolyteRed => "Red Picolyte",
+            BottleType.BottlePicolyteOrange => "Orange Picolyte",
+            BottleType.BottlePicolyteYellow => "Yellow Picolyte",
+            BottleType.BottlePiclolyteGreen => "Green Picolyte",
+            BottleType.BottlePicolyteBlue => "Blue Picolyte",
+            BottleType.BottlePicolyteWhite => "White Picolyte",
+            BottleType.BottleCharmNayru => "Nayru Charm",
+            BottleType.BottleCharmFarore => "Farore Charm",
+            BottleType.BottleCharmDin => "Din Charm",
+            _ => $"{subvalue}"
+        };
+    }
+
+    private string GetTrapName(int subvalue)
+    {
+        return (TrapType)subvalue switch
+        {
+            TrapType.Ice => "Ice",
+            TrapType.Fire => "Fire",
+            TrapType.Zap => "Electric",
+            TrapType.Explosion => "Explosion",
+            TrapType.MoneyDrain => "Money Drain",
+            TrapType.Stink => "Stink",
+            TrapType.Rope => "Rope",
+            TrapType.Keese => "Keese",
+            TrapType.LikeLike => "LikeLike",
+            TrapType.Curse => "Curse",
             _ => $"{subvalue}"
         };
     }

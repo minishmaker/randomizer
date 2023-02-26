@@ -94,6 +94,42 @@ public enum ProgressiveItemType
     SpinAttack = 0x4
 }
 
+public enum BottleType
+{
+    BottleEmpty = 0x20,
+    BottleButter = 0x21,
+    BottleMilk = 0x22,
+    BottleHalfMilk = 0x23,
+    BottleRedPotion = 0x24,
+    BottleBluePotion = 0x25,
+    BottleWater = 0x26,
+    BottleMineralWater = 0x27,
+    BottleFairy = 0x28,
+    BottlePicolyteRed = 0x29,
+    BottlePicolyteOrange = 0x2A,
+    BottlePicolyteYellow = 0x2B,
+    BottlePiclolyteGreen = 0x2C,
+    BottlePicolyteBlue = 0x2D,
+    BottlePicolyteWhite = 0x2E,
+    BottleCharmNayru = 0x2F,
+    BottleCharmFarore = 0x30,
+    BottleCharmDin = 0x31,
+}
+
+public enum TrapType
+{
+	Ice = 0x00,
+	Fire = 0x01,
+	Zap = 0x02,
+	Explosion = 0x03,
+	MoneyDrain = 0x04,
+	Stink = 0x05,
+	Rope = 0x06,
+	Keese = 0x07,
+	LikeLike = 0x08,
+	Curse = 0x09
+}
+
 public enum KinstoneType
 {
     UnTyped,
