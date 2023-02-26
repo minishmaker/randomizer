@@ -18,6 +18,13 @@ Over the last 1.5 years we have been testing and privately implementing ideas th
 
 #### What is new in 0.7?
 
+For just the changes between the individual recent alpha release and more details:
+- [0.7.0 alpha-rev3 changelog](https://docs.google.com/document/d/e/2PACX-1vQDn6mkV-_287o-Zjhei87shQsl885P03d283LHlvpOySgNolOfIKdec-paY6k9hUbiZ-IYTcXbo1LB/pub)
+- [0.7.0 alpha-rev2 changelog](https://docs.google.com/document/d/e/2PACX-1vQMxbygcsiiiANsenMDNLc_L1I-81M-qLYFo5Wapk6HsXzKHQ55_TMbgwFKu6DeSbXoOHRlDwauljik/pub)
+- [0.7.0 alpha-rev1 changelog](https://docs.google.com/document/d/e/2PACX-1vSqAyicqgeJkUuUbMjL0wFJHbs-TURr4dafB1yn-O_oASplko2q1P-AbSPY1VKMw6VL6ROq6cEqtuaX/pub)
+
+For all the changes since version 0.6.2:
+
 UI overhaul:
 - More Tabs and Grouped settings, much cleaner and user friendly design.
 - File addresses are saved so you don't have to reselect your ROM each time you start the program.
