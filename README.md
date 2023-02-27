@@ -137,7 +137,7 @@ The commands supported by command files are as follows, with (option) used to de
 * SaveSpoiler (Output Path) - Saves the spoiler log for the randomized seed from a call to Randomize. If no seed is available this will fail. Writes the spoiler to the output path.
 * GetSettingString - Gets the setting string for the currently selected settings and prints it to the console.
 * Rem - when at the beginning of a line this comments out that line which makes it ignored by the command parser. The line is printed to the console.
-* BulkGenerateSeeds (Number of seeds) - Generates the specified number of seeds in bulk and says the failure rate when it is done. This should only be used for testing purposes, as the seeds cannot be saved.
+* BulkGenerateSeeds (Number of seeds) (true | false) - Generates the specified number of seeds in bulk and says the failure rate when it is done. If the second parameter is passed true, then it will pick random settings after every successful generation (additionally, after 10 consecutive failures on the same settings, new settings will be chosen). If false, then it will use whatever settings are loaded when bulk generate is called. This should only be used for testing purposes, as the seeds cannot be saved.
 * Exit - Exits the CLI. This should always be at the end of the command file. If it is not, it will still exit, but it will print a warning about how no call to Exit was found. Using Exit is good as it prevents unwanted commands from running.
 
 ## Version History

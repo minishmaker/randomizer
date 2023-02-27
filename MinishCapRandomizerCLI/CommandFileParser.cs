@@ -1,4 +1,7 @@
-﻿namespace MinishCapRandomizerCLI;
+﻿using System.Text;
+using RandomizerCore.Randomizer.Logic.Options;
+
+namespace MinishCapRandomizerCLI;
 
 public static class CommandFileParser
 {
@@ -6,6 +9,7 @@ public static class CommandFileParser
     {
         var file = new StreamReader(new FileStream(filename, FileMode.Open));
         var exited = false;
+        var logBuilder = new StringBuilder();
         while (!file.EndOfStream && !exited)
         {
             var input = file.ReadLine();
@@ -53,22 +57,40 @@ public static class CommandFileParser
                 case "BulkGenerateSeeds":
                     if (!int.TryParse(inputs[1], out var numberOfSeedToGen))
                         throw new Exception("Provided value of bulk generated seeds is not a number!");
+                    
+                    if (!bool.TryParse(inputs[2], out var shuffleSettingsEachAttempt))
+                        throw new Exception("2nd parameter must be true or false!");
 
                     var num = 0;
                     var failures = 0;
+                    var consecutiveFailures = 0;
+                    var lastRunFailure = false;
                     while (num++ < numberOfSeedToGen)
                     {
                         GenericCommands.Seed("R");
+                        
+                        if (shuffleSettingsEachAttempt && !lastRunFailure) ShuffleAllOptions();
+                        
                         var result = GenericCommands.Randomize("1");
                         if (!result)
                         {
                             --num;
                             ++failures;
+                            lastRunFailure = true;
+                            if (++consecutiveFailures < 10) continue;
+                            
+                            logBuilder.AppendLine($"Failed to generate with settings {GenericCommands.ShufflerController.GetSettingsString()}");
+                            lastRunFailure = false;
+                            consecutiveFailures = 0;
                         }
                         else
-                            Console.WriteLine($"Generated seed {num}");
+                        {
+                            logBuilder.AppendLine($"Generated seed {num}");
+                            consecutiveFailures = 0;
+                            lastRunFailure = false;
+                        }
                     }
-                    Console.WriteLine($"Total failure rate: {(double)failures/num}%");
+                    logBuilder.AppendLine($"Total failure rate: {(double)failures/num}%");
                     break;
                 case "Exit":
                     exited = true;
@@ -77,12 +99,37 @@ public static class CommandFileParser
                     Console.WriteLine($"Warning: Invalid command or whitespace line {input} detected! Parsing will continue.");
                     break;
             }
-        
+            File.WriteAllText($"{Directory.GetCurrentDirectory()}/CLIBulkGenOutput.txt", logBuilder.ToString());
         }
 
         if (!exited)
         {
             Console.WriteLine("Warning: End of command file reached but no call to Exit was read! This will exit as expected, but all command files should include an exit call at the end in the event this changes going forward.");
+        }
+    }
+
+    private static void ShuffleAllOptions()
+    {
+        var options = GenericCommands.ShufflerController.GetLogicOptions();
+
+        var rand = new Random();
+
+        foreach (var option in options)
+        {
+            switch (option)
+            {
+                case LogicFlag lf:
+                    lf.Active = rand.Next() % 2 == 0;
+                    break;
+                case LogicDropdown ld:
+                    ld.Selection = ld.Selections.Keys.ToList()[rand.Next() % ld.Selections.Keys.Count];
+                    break;
+                // case LogicNumberBox lnb:
+                //     lnb.Value = $"{rand.Next(lnb.MinValue, lnb.MaxValue + 1)}";
+                //     break;
+                default:
+                    break;
+            }
         }
     }
 }
