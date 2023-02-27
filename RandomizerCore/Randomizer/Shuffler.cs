@@ -476,6 +476,8 @@ internal class Shuffler
 
         FilledLocations = new List<Location>();
 
+        var majorsAndEntrances = MajorItems.Concat(DungeonEntrances).ToList();
+
         //Shuffle dungeon entrances
         nextLocationGroup = locationGroups.Any(group => group.Key == LocationType.DungeonEntrance)
             ? locationGroups.First(group => group.Key == LocationType.DungeonEntrance).ToList()
@@ -490,7 +492,7 @@ internal class Shuffler
         FilledLocations.AddRange(nextLocationGroup);
 
         //Grab all items that we need to beat the seed
-        var allItems = MajorItems.Concat(DungeonMajorItems).ToList();
+        var allItems = MajorItems.Concat(DungeonMajorItems).Concat(DungeonEntrances).ToList();
 
         //Like entrances, constraints shouldn't check logic when placing
         //Shuffle constraints
@@ -518,7 +520,7 @@ internal class Shuffler
             : new List<Location>();
         unfilledLocations.AddRange(FillLocationsFrontToBack(DungeonMajorItems,
             nextLocationGroup,
-            MajorItems,
+            majorsAndEntrances,
             unfilledLocations));
 
         //Shuffle dungeon minors
