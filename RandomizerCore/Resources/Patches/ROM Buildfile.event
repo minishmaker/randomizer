@@ -386,6 +386,11 @@ WORD 0 0 0 0 0 0 0 0
 ORG $31EB51; BYTE 0xF6
 POP
 
+PUSH //figurines don't give a free Blue S Kinstone
+ORG $53D0C
+SHORT 0xE082
+POP
+
 // randomizable bottle contents (uses sub id)
 // if sub id is 0, pretend like it's 0x20 (empty bottle)
 PUSH
