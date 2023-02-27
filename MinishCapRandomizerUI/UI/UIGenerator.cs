@@ -5,7 +5,7 @@ namespace MinishCapRandomizerUI.UI;
 
 public static class UIGenerator
 {
-    private static readonly Size TabPaneSize = new Size(772, 635);
+    private static readonly Size TabPaneSize = new Size(772, 535);
 
     public static TabPage BuildSettingsPage(List<WrapperBase> wrappedLogicOptions, string pageName)
     {
@@ -47,7 +47,7 @@ public static class UIGenerator
             var pane = new Panel
             {
                 Name = group.Key,
-                Width = Constants.CategoryWidth,
+                Width = (int)(Constants.CategoryWidth*Constants.SpecialScaling),
                 Height = height,
                 AutoScroll = false,
                 Location = new Point(Constants.DefaultStartingPaneX, totalPaneHeight),
@@ -61,6 +61,7 @@ public static class UIGenerator
                 Name = $"{group.Key}_label",
                 Location = new Point(Constants.CategoryLabelAlignX, totalPaneHeight + Constants.CategoryLabelAlignY),
                 Text = group.Key,
+                UseMnemonic = Constants.UseMnemonic,
             };
 
             var currentElementXLocation = Constants.FirstElementInRowX;

@@ -1,5 +1,6 @@
 .equ	returnTrue, returnFalse+4
-.equ	glitchless, returnTrue+4
+.equ	bootsOnL, returnTrue+4
+.equ	ocarinaOnSelect, bootsOnL+4
 .thumb
 push	{lr}
 ldr	r2,=#0x2002AE8
@@ -10,6 +11,11 @@ push	{r5-r6}
 @check if we are checking for the boots
 cmp	r3,#0x15
 bne	noBoots
+
+@check if boots on L
+ldr	r5,bootsOnL
+cmp	r5,#0
+beq	noBoots
 
 @check if the L button is pressed
 ldr	r5,=#0x3004010
@@ -33,10 +39,10 @@ and	r6,r5
 cmp	r6,#0
 bne	shortcut
 
-@check if glitchless
+@check if ocarina on Select
 noBoots:
-ldr	r5, glitchless
-cmp	r5, #0
+ldr	r5,ocarinaOnSelect
+cmp	r5,#0
 beq	end
 
 @check if we are checking for the ocarina
@@ -87,4 +93,5 @@ pop	{r3}
 returnFalse:
 @POIN returnFalse
 @POIN returnTrue
-@WORD glitchless
+@WORD bootsOnL
+@WORD ocarinaOnSelect

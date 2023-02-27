@@ -5,8 +5,15 @@ namespace RandomizerCore.Utilities.Logging;
 
 internal class Logger
 {
-    private Log? _transaction;
     private static Logger? _instance;
+    // ReSharper disable once InconsistentNaming
+    private Log? _transaction;
+
+    private Logger()
+    {
+        Transactions = new List<Log>();
+        OutputFilePath = $"{Directory.GetCurrentDirectory()}/log.json";
+    }
 
     public static Logger Instance => _instance ??= new Logger();
 
@@ -15,17 +22,14 @@ internal class Logger
     public bool UseVerboseLogger { get; set; } = false;
     public string OutputFilePath { get; set; }
 
-    private Logger()
-    {
-        Transactions = new List<Log>();
-        OutputFilePath = $"{Directory.GetCurrentDirectory()}/log.json";
-    }
     public void Flush()
     {
         Transactions = new List<Log>();
-        LogInfo($"Minish Cap Randomizer Core Version {ShufflerController.VersionIdentifier} {ShufflerController.RevisionIdentifier} initialized!");
+        LogInfo(
+            $"Minish Cap Randomizer Core Version {ShufflerController.VersionIdentifier} {ShufflerController.RevisionIdentifier} initialized!");
         SaveLogTransaction(true);
     }
+
     public void LogInfo(string message)
     {
         Transaction.PushLog(message, LogType.Info);

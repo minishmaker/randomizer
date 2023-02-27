@@ -10,14 +10,14 @@ public class ColorPickerWrapper : WrapperBase, ILogicOptionObserver
     private const int CheckboxWidth = 155;
     private const int CheckboxHeight = 19;
     private const int TextWidth = 85;
-    private const int TextHeight = 15;
+    private const int TextHeight = 19;
     private const int ButtonWidth = 130;
     private const int ButtonHeight = 23;
     private const int PictureBoxWidth = 60;
     private const int PictureBoxHeight = 23;
     private const int TextAlign = 1;
     private const int ButtonAndPictureBoxAlign = -3;
-    private const string CheckboxText = "Use True Random Color";
+    private const string CheckboxText = "Use Random Color";
     private const string SelectColorText = "Select Custom Color";
     private const string SelectRandomColorText = "Pick Random Color";
     private const string UseDefaultColorText = "Use Default Color";
@@ -58,13 +58,13 @@ public class ColorPickerWrapper : WrapperBase, ILogicOptionObserver
             Checked = false,
             Name = "Checkbox",
             Location = new Point(initialX, initialY),
-            Height = CheckboxHeight,
-            Width = CheckboxWidth,
+            Height = (int)(CheckboxHeight*Constants.SpecialScaling),
+            Width = (int)(CheckboxWidth*Constants.SpecialScaling),
             Text = CheckboxText,
             UseMnemonic = Constants.UseMnemonic,
         };
 
-        var nextElementX = initialX + CheckboxWidth + Constants.WidthMargin;
+        var nextElementX = initialX + (int)((CheckboxWidth + Constants.WidthMargin)*Constants.SpecialScaling);
 
         _selectColorButton = BuildButton((sender, args) => SelectColor(), 
             "SelectColorButton", SelectColorText, ref nextElementX, initialY + ButtonAndPictureBoxAlign); 
@@ -81,21 +81,21 @@ public class ColorPickerWrapper : WrapperBase, ILogicOptionObserver
             AutoSize = false,
             Name = "ColorPreviewLabel",
             Location = new Point(nextElementX, initialY + TextAlign),
-            Height = TextHeight,
-            Width = TextWidth,
+            Height = (int)(TextHeight*Constants.SpecialScaling),
+            Width = (int)(TextWidth*Constants.SpecialScaling),
             Text = ColorPreviewText,
             UseMnemonic = Constants.UseMnemonic,
         };
         
-        nextElementX += TextWidth + Constants.WidthMargin;
+        nextElementX += (int)((TextWidth + Constants.WidthMargin)*Constants.SpecialScaling);
 
         _colorPreview = new PictureBox
         {
             AutoSize = false,
             Name = "ColorPreview",
             Location = new Point(nextElementX, initialY + ButtonAndPictureBoxAlign),
-            Height = PictureBoxHeight,
-            Width = PictureBoxWidth,
+            Height = (int)(PictureBoxHeight*Constants.SpecialScaling),
+            Width = (int)(PictureBoxWidth*Constants.SpecialScaling),
             BackColor = _colorPicker.DefinedColor,
             BorderStyle = Constants.CategoryBorderStyle,
         };
@@ -106,6 +106,8 @@ public class ColorPickerWrapper : WrapperBase, ILogicOptionObserver
             _selectColorButton.Enabled = !_checkBox.Checked;
             _selectRandomColorButton.Enabled = !_checkBox.Checked;
             _useDefaultColorButton.Enabled = !_checkBox.Checked;
+            if (_checkBox.Checked) _colorPreview.BackColor = Color.Transparent;
+            else _colorPreview.BackColor = _colorPicker.DefinedColor;
         };
 
         return new List<Control>
@@ -128,8 +130,8 @@ public class ColorPickerWrapper : WrapperBase, ILogicOptionObserver
             Enabled = true,
             Name = name,
             Location = new Point(xPosition, yPosition),
-            Height = ButtonHeight,
-            Width = ButtonWidth,
+            Height = (int)(ButtonHeight*Constants.SpecialScaling),
+            Width = (int)(ButtonWidth*Constants.SpecialScaling),
             Text = text,
             BackColor = Constants.DefaultButtonBackgroundColor,
             UseMnemonic = Constants.UseMnemonic,
@@ -137,7 +139,7 @@ public class ColorPickerWrapper : WrapperBase, ILogicOptionObserver
 
         button.Click += onClickEvent;
         
-        xPosition += ButtonWidth + Constants.WidthMargin;
+        xPosition += (int)((ButtonWidth + Constants.WidthMargin)*Constants.SpecialScaling);
 
         return button;
     }
@@ -151,7 +153,7 @@ public class ColorPickerWrapper : WrapperBase, ILogicOptionObserver
         };
 
         if (colorPicker.ShowDialog() != DialogResult.OK) return;
-        _colorPicker.DefinedColor = new GBAColor(colorPicker.Color).ToColor();
+        _colorPicker.DefinedColor = new GbaColor(colorPicker.Color).ToColor();
         UpdateColorPreview();
     }
 

@@ -2,18 +2,18 @@
 
 public class Log
 {
-    public List<string> Logs { get; private set; }
-    
-    public List<ExceptionDetails> ExceptionLogs { get; private set; }
-    
-    public bool HasWarningOrError { get; private set; }
-
     public Log()
     {
         Logs = new List<string>();
         ExceptionLogs = new List<ExceptionDetails>();
         HasWarningOrError = false;
     }
+
+    public List<string> Logs { get; }
+
+    public List<ExceptionDetails> ExceptionLogs { get; }
+
+    public bool HasWarningOrError { get; private set; }
 
     public void PushLog(string log, LogType logType)
     {

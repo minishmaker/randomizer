@@ -6,23 +6,28 @@ namespace RandomizerCore.Randomizer.Logic.Options;
 
 public class LogicNumberBox : LogicOptionBase
 {
-    public bool isSelf = false;
-    public string placeholder = "";
-    public string Value = "";
-    public int DefaultValue { get; }
-
     public LogicNumberBox(
-        string name, 
-        string niceName, 
-        string settingGroup, 
-        string settingPage, 
-        int defaultValue, 
+        string name,
+        string niceName,
+        string settingGroup,
+        string settingPage,
+        byte defaultValue,
+        byte minimumValue,
+        byte maximumValue,
         string descriptionText,
         LogicOptionType type) :
         base(name, niceName, true, settingGroup, settingPage, descriptionText, type)
     {
-        Value = $"{defaultValue}";
+        MinValue = minimumValue;
+        MaxValue = maximumValue;
+        DefaultValue = defaultValue;
+        Value = $"{DefaultValue}";
     }
+
+    public string Value { get; set; }
+    public byte MinValue { get; }
+    public byte MaxValue { get; }
+    public byte DefaultValue { get; }
 
     public override List<LogicDefine> GetLogicDefines()
     {
@@ -52,7 +57,7 @@ public class LogicNumberBox : LogicOptionBase
         return "A number between 0 and 255";
     }
 
-    public override string GetOptionUIType()
+    public override string GetOptionUiType()
     {
         return "Number Box";
     }

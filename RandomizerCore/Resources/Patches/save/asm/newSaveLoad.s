@@ -18,6 +18,9 @@ ldr	r0,=#0x2000088
 ldrb	r0,[r0]
 cmp	r0,#0xFF
 beq	end
+@check if homewarp
+cmp	r0,#0x3C
+beq	end
 @load the save
 ldr	r0,=#0x2000004
 ldr	r1,=#0x203FB00

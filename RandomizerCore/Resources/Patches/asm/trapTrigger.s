@@ -1,4 +1,8 @@
 .equ getRNG, trapTable+4
+.equ requirementPrize, getRNG+4
+.equ requirementTable, requirementPrize+4
+.equ requirementPrizeItem, requirementTable+4
+.equ requirementPrizeSub, requirementPrizeItem+4
 .thumb
 ldr	r3,[r7,#0x30]
 mov	r0,#0x32
@@ -13,6 +17,63 @@ ldr	r0,[r0]
 cmp	r0,#0
 bne	end
 
+@check if we should run requirement checks
+ldr	r0,requirementPrize
+cmp	r0,#0
+beq	checkTrap
+
+ldr	r0,=#0x300400B
+ldrb	r1,[r0]
+cmp 	r1,#0
+bne	checkTrap
+
+ldr	r0,=#0x203F1FE
+ldrb	r1,[r0]
+cmp 	r1,#0
+beq	checkTrap
+
+mov	r1,#0
+strb	r1,[r0]
+
+@check if we already got the item
+ldr	r0,=#0x2002C9E
+ldrb	r1,[r0]
+mov	r2,#0x40
+and	r2,r1
+cmp	r2,#0
+bne	checkTrap
+
+@check if requirements are met
+ldr	r4,requirementTable
+loop:
+ldr	r0,[r4]
+cmp	r0,#0
+beq	getItem
+mov	lr,r0
+.short	0xF800
+cmp	r0,#0
+beq	checkTrap
+add	r4,#4
+b	loop
+
+getItem:
+@set the flag
+ldr	r0,=#0x2002C9E
+ldrb	r1,[r0]
+mov	r2,#0x40
+orr	r1,r2
+strb	r1,[r0]
+
+@spawn the item
+ldr	r0,requirementPrizeItem
+ldr	r1,requirementPrizeSub
+mov	r2,#0
+ldr	r3,=#0x80A73F8 @CreateItemEntity
+mov	lr,r3
+.short	0xF800
+b	end
+
+checkTrap:
 @check if a trap was collected
 ldr	r0,=#0x2002B38
 ldrb	r1,[r0]
@@ -86,3 +147,7 @@ b	end
 trapTable:
 @POIN trapTable
 @POIN getRNG
+@WORD requirementPrize
+@POIN requirementTable
+@WORD requirementPrizeItem
+@WORD requirementPrizeSub

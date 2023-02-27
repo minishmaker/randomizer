@@ -2,13 +2,11 @@
 push	{lr}
 ldr	r0,tier
 cmp	r0,#0
-bne	np1
-mov	r0,#1
-np1:
+beq	true
 cmp	r0,#5
-blo	np2
+blo	notFourSword
 mov	r0,#6
-np2:
+notFourSword:
 ldr	r3,=#0x807C4A8
 mov	lr,r3
 .short	0xF800

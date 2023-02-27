@@ -7,12 +7,12 @@ public class DropdownWrapper : WrapperBase, ILogicOptionObserver
 {
     private const int DefaultBottomMargin = 15;
     private const int TextWidth = 225;
-    private const int TextHeight = 15;
+    private const int TextHeight = 19;
     private const int DropdownWidth = 130;
     private const int DropdownHeight = 23;
     private const int DropdownAlign = -2;
     private new static readonly int ElementWidth = TextWidth + DropdownWidth + Constants.WidthMargin;
-    private new const int ElementHeight = TextHeight + DefaultBottomMargin;
+    private new const int ElementHeight = DropdownHeight + DefaultBottomMargin - 8;
 
     private Label? _label;
     private ComboBox? _comboBox;
@@ -34,10 +34,10 @@ public class DropdownWrapper : WrapperBase, ILogicOptionObserver
             AutoEllipsis = Constants.LabelsAndCheckboxesUseAutoEllipsis,
             AutoSize = false,
             Name = _dropdown.Name,
-            Text = _dropdown.NiceName,
+            Text = _dropdown.NiceName + ":",
             Location = new Point(initialX, initialY),
-            Height = TextHeight,
-            Width = TextWidth,
+            Height = (int)(TextHeight*Constants.SpecialScaling),
+            Width = (int)(TextWidth*Constants.SpecialScaling),
             TextAlign = ContentAlignment.MiddleRight,
             UseMnemonic = Constants.UseMnemonic,
         };
@@ -47,12 +47,24 @@ public class DropdownWrapper : WrapperBase, ILogicOptionObserver
             AutoSize = false,
             Name = _dropdown.Name,
             Text = _dropdown.NiceName,
-            Location = new Point(initialX + TextWidth + Constants.WidthMargin, initialY + DropdownAlign),
-            Height = DropdownHeight,
-            Width = DropdownWidth,
-            SelectedText = _dropdown.Selection,
-            DataSource = _dropdown.Selections.Keys.ToList(),
+            Location = new Point(initialX + (int)((TextWidth + Constants.WidthMargin)*Constants.SpecialScaling), initialY + DropdownAlign),
+            Height = (int)(DropdownHeight*Constants.SpecialScaling),
+            Width = (int)(DropdownWidth*Constants.SpecialScaling),
         };
+
+        var selectedDefaultItem = false;
+        foreach (var key in _dropdown.Selections.Keys) 
+        {
+            _comboBox.Items.Add(key);
+            if (!selectedDefaultItem && key == _dropdown.Selection) 
+            {
+                _comboBox.SelectedItem = _dropdown.Selection; 
+                selectedDefaultItem = true;
+            }
+        }
+
+        if (!selectedDefaultItem)
+            _comboBox.SelectedItem = _comboBox.Items[0];
 
         if (!string.IsNullOrEmpty(_dropdown.DescriptionText))
         {
@@ -67,12 +79,12 @@ public class DropdownWrapper : WrapperBase, ILogicOptionObserver
 
         _comboBox.SelectedIndexChanged += (object sender, EventArgs e) =>
         {
-            _dropdown.Selection = (string)_comboBox.SelectedValue;
+            _dropdown.Selection = (string)_comboBox.SelectedItem;
         };
         
         _comboBox.SelectedValueChanged += (object sender, EventArgs e) =>
         {
-            _dropdown.Selection = (string)_comboBox.SelectedValue;
+            _dropdown.Selection = (string)_comboBox.SelectedItem;
         };
         
         _comboBox.KeyPress += (object sender, KeyPressEventArgs e) =>

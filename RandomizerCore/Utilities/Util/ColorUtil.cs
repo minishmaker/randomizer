@@ -113,8 +113,9 @@ public static class ColorUtil
             fMid = hue * (fMax - fMin) + fMin;
         else
             fMid = fMin - hue * (fMax - fMin);
-        
-        Logger.Instance.LogInfo($"Color: Saturation: {saturation}, Brightness: {brightness}, fMax: {fMax}, fMin: {fMin}, fMid: {fMid}");
+
+        Logger.Instance.LogInfo(
+            $"Color: Saturation: {saturation}, Brightness: {brightness}, fMax: {fMax}, fMin: {fMin}, fMid: {fMid}");
 
         iMax = Convert.ToInt32(fMax * 255);
         iMid = Convert.ToInt32(fMid * 255);
@@ -145,18 +146,20 @@ public static class ColorUtil
         var newSaturation = newColor.GetHslSaturation() - (baseColor.GetHslSaturation() - change.GetHslSaturation());
         var newValue = newColor.GetHslLightness() - (baseColor.GetHslLightness() - change.GetHslLightness());
 
-        Logger.Instance.LogInfo($"Adjust Hue - Hue 1: {newColor.GetHue()}, Saturation 1: {newColor.GetHsbSaturation()}, Brightness 1: {newColor.GetHsbValue()}, Red 1: {newColor.R}, Green 1: {newColor.G}, Blue 1: {newColor.B}");
+        Logger.Instance.LogInfo(
+            $"Adjust Hue - Hue 1: {newColor.GetHue()}, Saturation 1: {newColor.GetHsbSaturation()}, Brightness 1: {newColor.GetHsbValue()}, Red 1: {newColor.R}, Green 1: {newColor.G}, Blue 1: {newColor.B}");
 
         newHue %= 360f;
         if (newHue < 0f) newHue += 360f;
-        
-        Logger.Instance.LogInfo($"Adjust Hue - Hue 2: {newHue}, Saturation 2: {newSaturation}, Brightness 2: {newValue}");
+
+        Logger.Instance.LogInfo(
+            $"Adjust Hue - Hue 2: {newHue}, Saturation 2: {newSaturation}, Brightness 2: {newValue}");
 
         newSaturation = Math.Max(0, Math.Min(1, newSaturation));
         newValue = Math.Max(0, Math.Min(1, newValue));
 
         var outColor = FromAhsb(255, newHue, newSaturation, newValue);
-        
+
         Logger.Instance.LogInfo($"Adjust Hue - Red 2: {outColor.R}, Green 2: {outColor.G}, Blue 2: {outColor.B}");
 
         return outColor;

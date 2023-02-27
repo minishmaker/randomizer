@@ -4,17 +4,31 @@ namespace RandomizerCore.Randomizer.Logic.Dependency;
 
 public class NotItemDependency : DependencyBase
 {
-    private readonly Item _excludedItem;
+    private readonly Item ExcludedItem;
 
-    public NotItemDependency(Item item)
+    public NotItemDependency(Item item) : base(false)
     {
-        _excludedItem = item;
+        ExcludedItem = item;
     }
 
-    public override bool DependencyFulfilled(List<Item> availableItems, List<Location.Location> locations, Item? itemToPlace = null)
+    public override bool DependencyFulfilled(Item? itemToPlace = null)
     {
-        return !_excludedItem.EqualsIgnoreShufflePool(itemToPlace);
+        Result = !ExcludedItem.EqualsIgnoreShufflePool(itemToPlace);
+        return Result;
+    }
 
-        //Console.WriteLine($"Missing {RequiredItem.Type}");
+    public override void UpdateDependencyResult(bool newResult)
+    {
+        //does nothing
+    }
+
+    public override void AddDependencyTargetToDependency(object target)
+    {
+        //does nothing
+    }
+
+    public override void ExpandRequiredDependencies(List<Location.Location> locations, List<Item> items)
+    {
+        RemoveCachingSupportFromParents();
     }
 }

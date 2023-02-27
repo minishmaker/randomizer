@@ -8,22 +8,25 @@ namespace RandomizerCore.Randomizer.Logic.Options;
 
 public class LogicDropdown : LogicOptionBase
 {
-    public string Selection;
-    public Dictionary<string, string> Selections;
-
     public LogicDropdown(
-        string name, 
-        string niceName, 
-        string settingGroup, 
-        string settingPage, 
+        string name,
+        string niceName,
+        string settingGroup,
+        string settingPage,
         string descriptionText,
+        string defaultSelection,
         LogicOptionType type,
         Dictionary<string, string> selections) :
         base(name, niceName, true, settingGroup, settingPage, descriptionText, type)
     {
         Selections = selections;
-        Selection = selections.Keys.First();
+        Selection = selections.Keys.ToList()[
+            selections.Values.ToList()
+                .IndexOf(defaultSelection)]; //Not sure if this works, it should but needs to be tested
     }
+
+    public string Selection { get; set; }
+    public Dictionary<string, string> Selections { get; }
 
     public override List<LogicDefine> GetLogicDefines()
     {
@@ -50,14 +53,12 @@ public class LogicDropdown : LogicOptionBase
     {
         var builder = new StringBuilder();
         foreach (var selection in Selections)
-        {
             builder.Append("{Key: ").Append(selection.Key).Append(" Value: ").Append(selection.Value).Append("}, ");
-        }
 
         return builder.ToString();
     }
 
-    public override string GetOptionUIType()
+    public override string GetOptionUiType()
     {
         return "Dropdown";
     }

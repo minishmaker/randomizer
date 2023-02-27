@@ -1,15 +1,8 @@
-#ifndef neverSkipFusionCutsceneFull //define to never skip (cutscene and map view)
-	#define skipFusionCutsceneSomeForm
-	#ifndef alwaysSkipFusionCutsceneFull
-		#define alwaysSkipFusionCutsceneFull 0 //set to non-0 to skip both, set to 0 to skip both on button held
-	#endif
+#ifndef alwaysSkipFusionCutscene
+	#define alwaysSkipFusionCutscene 0
 #endif
-
-#ifndef neverSkipFusionCutsceneShowMap //define to never skip (only cutscene)
-	#define skipFusionCutsceneSomeForm
-	#ifndef alwaysSkipFusionCutsceneShowMap
-		#define alwaysSkipFusionCutsceneShowMap 0 //set to non-0 to skip cutscene, set to 0 to skip cutscene on button held
-	#endif
+#ifndef skipFusionCutsceneShowMap
+	#define skipFusionCutsceneShowMap 0
 #endif
 
 //remove all ezlo stepping triggers
@@ -18,32 +11,29 @@ ALIGN 4
 ezloPleaseStop:
 #incbin "asm/ezloPleaseStop.dmp"
 
-//instant text
-PUSH; ORG $562AC; SHORT 0x2501; POP
+#ifdef instantText
+	//instant text
+	PUSH; ORG $562AC; SHORT 0x2501; POP
 
-//holding = mashing for text
-PUSH; ORG $566B2; SHORT 0x8801; POP
-PUSH; ORG $56726; SHORT 0x8801; POP
+	//holding = mashing for text
+	PUSH; ORG $566B2; SHORT 0x8801; POP
+	PUSH; ORG $56726; SHORT 0x8801; POP
+#endif
 
-//skip fusion cutscene if A, B or START are held
-#ifdef skipFusionCutsceneSomeForm
+//skip fusion cutscene if A, B or START are held (or always)
+#ifndef neverSkipFusionCutscene
 	PUSH; ORG $A35E4; jumpToHack(skipFusionCutscene); POP
 	ALIGN 4
 	skipFusionCutscene:
 	#incbin "asm/skipFusionCutscene.dmp"
-	#ifndef neverSkipFusionCutsceneFull
-		WORD alwaysSkipFusionCutsceneFull //set to non-0 to always skip fusion cutscene and map view
-		WORD 0
-	#else
-		WORD alwaysSkipFusionCutsceneShowMap //set to non-0 to always skip fusion cutscene
-		WORD 1
-	#endif
+	WORD alwaysSkipFusionCutscene //set to non-0 to always skip fusion cutscene
+	WORD skipFusionCutsceneShowMap //set to non-0 to show map after skipped cutscene
 #endif
 
 //skip minish transformation cutscenes automatically
 PUSH; ORG $70DFA; SHORT 0; POP
 
-#ifdef glitchless
+#ifdef ocarinaOnSelect
 	//can't talk to ezlo with Select
 	PUSH; ORG $5270A; SHORT 0x4280; POP
 #endif
@@ -57,7 +47,12 @@ pegasusShortcut1:
 POIN ($772AC+0x08)|1 //return offset if false
 POIN ($772AC+0x2C)|1 //return offset if true
 POIN $778C4 //something about buttons
-#ifdef glitchless
+#ifdef bootsOnL
+	WORD 1
+#else
+	WORD 0
+#endif
+#ifdef ocarinaOnSelect
 	WORD 1
 #else
 	WORD 0
@@ -68,7 +63,12 @@ pegasusShortcut2:
 #incbin "asm/pegasusShortcut2.dmp"
 POIN ($77950+0x08)|1 //return offset if false
 POIN ($77950+0x26)|1 //return offset if true
-#ifdef glitchless
+#ifdef bootsOnL
+	WORD 1
+#else
+	WORD 0
+#endif
+#ifdef ocarinaOnSelect
 	WORD 1
 #else
 	WORD 0
@@ -86,7 +86,7 @@ pausefreedom:
 
 //adding some stuff that's missing from vanilla eur
 //missing lon lon tornado
-PUSH; ORG $F7188; POIN lonlontornado; POP
+PUSH; ORG $F6E60; BYTE 0x0F; ORG $F7188; POIN lonlontornado; POP
 ALIGN 4
 lonlontornado:
 BYTE 0x5E 0 0 1; SHORT 0x188 0x078 0 0 0 0xFFFF
@@ -185,11 +185,24 @@ ALIGN 4
 spinSoldier:
 #incbin "asm/spinSoldier.dmp"
 
-//boomerang can no longer grab golden kinstones
-PUSH; ORG $80A18; jumpToHack(boomerangFix); POP
-ALIGN 4
-boomerangFix:
-#incbin "asm/boomerangFix.dmp"
+#ifndef itemsCanCollectItems
+	//boomerang, gust jar and sword can no longer grab golden (or any) kinstones
+	PUSH; ORG $80A18; jumpToHack(boomerangFix); POP
+	ALIGN 4
+	boomerangFix:
+	#incbin "asm/boomerangFix.dmp"
+	#ifdef fastKinstones
+		WORD 0x6D
+	#else
+		WORD 0x75
+	#endif
+#else
+	//boomerang, gust jar and sword can grab any item
+	PUSH
+	ORG $80A14
+	BYTE 0x17
+	POP
+#endif
 
 //sword techniques are unlocked instantly
 PUSH; ORG $83618; jumpToHack(scrollFix); POP
@@ -406,11 +419,13 @@ ALIGN 4
 quickwarpText:
 #incbin "asm/quickwarpText.dmp"
 
-//hold button to skip through choices, like regular dialogues
-PUSH; ORG $5655C; jumpToHack(skipChoice); POP
-ALIGN 4
-skipChoice:
-#incbin "asm/skipChoice.dmp"
+#ifdef instantText
+	//hold button to skip through choices, like regular dialogues
+	PUSH; ORG $5655C; jumpToHack(skipChoice); POP
+	ALIGN 4
+	skipChoice:
+	#incbin "asm/skipChoice.dmp"
+#endif
 
 //skip darknut spawning cutscene in dhc
 PUSH; ORG $E672; SHORT 0; POP
@@ -450,7 +465,7 @@ ORG $7ACC0; SHORT 0x201E
 POP
 
 //cucco game ends instantly if you won
-PUSH; ORG $A0B26; SHORT 0xB408; jumpToHack(cuccoWin); POP
+PUSH; ORG $A0B90; jumpToHack(cuccoWin); POP
 ALIGN 4
 cuccoWin:
 #incbin "asm/cuccoWin.dmp"
@@ -470,6 +485,7 @@ WORD bottleScrubItem
 WORD bottleScrubSub
 WORD gripScrubItem
 WORD gripScrubSub
+WORD goronMerchantCustomSets
 POIN getTextOffset
 POIN shootbutterflyCredits
 POIN digbutterflyCredits
@@ -483,6 +499,7 @@ POIN redclockCredits
 POIN figurineCredits
 POIN trapGetIcon
 POIN extraText
+POIN kinstoneText
 POIN progressiveTraps
 
 //skip big chu cutscenes
@@ -613,6 +630,40 @@ cafe:
 	//BYTE 0x47 0x4E 0x50 0x53 0x55 0x56 0x58 0x5F 0x60
 	POP
 #endif
+
+//allow 0xF2 placeholders in shared fusion list
+PUSH; ORG $1EA88; jumpToHack(sharedFusionPlaceholders); POP
+ALIGN 4
+sharedFusionPlaceholders:
+#incbin "asm/sharedFusionPlaceholders.dmp"
+
+//selecting "No" in ocarina menu doesn't close the menu
+PUSH
+ORG $A65D8
+SHORT 0x2001 //mov r0,#1
+SHORT 0xE004 //b #0x080A65E6
+POP
+
+//every how many frames the low health beep plays
+#ifndef lowHealthBeep
+	#define lowHealthBeep "90"
+#endif
+PUSH
+ORG $1711E
+BYTE lowHealthBeep
+POP
+
+//guard moves when entering town from behind him
+PUSH; ORG $4DBA8; jumpToHack(loadTown); POP
+ALIGN 4
+loadTown:
+#incbin "asm/loadTown.dmp"
+
+//bell doesn't require screen transition after obtaining cape
+PUSH
+ORG $4DD7E
+SHORT 0x46C0
+POP
 
 #include "glitchless.event"
 #include "dungeon.event"

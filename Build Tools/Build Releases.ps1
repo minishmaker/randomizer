@@ -14,4 +14,4 @@ dotnet publish .\MinishCapRandomizerCLI.csproj -c Release -o $outputPath\CLI\lin
 dotnet publish .\MinishCapRandomizerCLI.csproj -c Release -o $outputPath\CLI\linux-arm\ -r linux-arm
 cd '..\Build Tools\' 
 Write-Host "Done Building!" -foregroundcolor Green
-Pause
+pause

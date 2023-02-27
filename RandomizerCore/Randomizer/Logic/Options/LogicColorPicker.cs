@@ -8,17 +8,11 @@ namespace RandomizerCore.Randomizer.Logic.Options;
 
 public class LogicColorPicker : LogicOptionBase
 {
-    public Color BaseColor { get; set; }
-    public Color DefinedColor { get; set; }
-    public List<Color> InitialColors { get; set; }
-
-    public bool UseRandomColor { get; set; }
-    
     public LogicColorPicker(
-        string name, 
-        string niceName, 
-        string settingGroup, 
-        string settingPage, 
+        string name,
+        string niceName,
+        string settingGroup,
+        string settingPage,
         string descriptionText,
         LogicOptionType type,
         Color startingColor) :
@@ -34,10 +28,10 @@ public class LogicColorPicker : LogicOptionBase
     }
 
     public LogicColorPicker(
-        string name, 
-        string niceName, 
-        string settingGroup, 
-        string settingPage, 
+        string name,
+        string niceName,
+        string settingGroup,
+        string settingPage,
         string descriptionText,
         LogicOptionType type,
         List<Color> colors) :
@@ -47,6 +41,12 @@ public class LogicColorPicker : LogicOptionBase
         DefinedColor = colors[0];
         InitialColors = colors;
     }
+
+    public Color BaseColor { get; set; }
+    public Color DefinedColor { get; set; }
+    public List<Color> InitialColors { get; set; }
+
+    public bool UseRandomColor { get; set; }
 
     public void PickRandomColor()
     {
@@ -61,15 +61,12 @@ public class LogicColorPicker : LogicOptionBase
         // Only true if a color has been selected
         if (!Active) return defineList;
 
-        if (UseRandomColor)
-        {
-            PickRandomColor();
-        }
+        if (UseRandomColor) PickRandomColor();
 
         defineList.Add(new LogicDefine(Name));
 
         defineList.AddRange(InitialColors
-            .Select(color => new GBAColor(ColorUtil.AdjustHue(color, BaseColor, DefinedColor)))
+            .Select(color => new GbaColor(ColorUtil.AdjustHue(color, BaseColor, DefinedColor)))
             .Select((newColor, i) => new LogicDefine(Name + "_" + i, StringUtil.AsStringHex4(newColor.CombinedValue))));
 
         return defineList;
@@ -86,7 +83,7 @@ public class LogicColorPicker : LogicOptionBase
         return "A color code in ARGB format";
     }
 
-    public override string GetOptionUIType()
+    public override string GetOptionUiType()
     {
         return "Color Picker";
     }

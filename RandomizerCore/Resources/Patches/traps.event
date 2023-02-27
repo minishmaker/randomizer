@@ -1,3 +1,10 @@
+#ifndef requirementPrizeItem
+	#define requirementPrizeItem "0x52"
+#endif
+#ifndef requirementPrizeSub
+	#define requirementPrizeSub "0x1D"
+#endif
+
 //when item 0x1B is collected, save the trap type for it to trigger when link regains control
 PUSH; ORG $A744A; SHORT 0; jumpToHack(trapSet); POP
 ALIGN 4
@@ -5,12 +12,21 @@ trapSet:
 #incbin "asm/trapSet.dmp"
 
 //when links regains control, trigger the trap
+//also handles requirement prize item
 PUSH; ORG $804DA; SHORT 0; jumpToHack(trapTrigger); POP
 ALIGN 4
 trapTrigger:
 #incbin "asm/trapTrigger.dmp"
 POIN trapTable
 POIN getRNG
+#ifdef requirementPrize
+	WORD 1
+#else
+	WORD 0
+#endif
+POIN requirementTable
+WORD requirementPrizeItem
+WORD requirementPrizeSub
 
 ALIGN 4
 trapTable: //pointers to routines for each trap, based on subID of the 0x1B item
@@ -168,7 +184,7 @@ BYTE 0x46 //flippers
 BYTE 0x64 //wallet
 BYTE 0x65 //bomb bag
 BYTE 0x66 //quiver
-#ifdef requirementFigurinesAmmount
+#ifdef requirementFigurinesAmount
 	BYTE 0x67 //figurine
 #endif
 BYTE 0 //terminator

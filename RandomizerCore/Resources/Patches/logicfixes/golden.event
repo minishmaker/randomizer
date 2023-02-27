@@ -53,7 +53,7 @@
 	#define golden9Sub "0x00"
 #endif
 
-//make the item spawning routine "return" the offset of the object in r2
+//make the item spawning routine "return" the offset of the object in r1
 PUSH
 ORG $543EA
 SHORT 0x1C01 //mov r1, r0

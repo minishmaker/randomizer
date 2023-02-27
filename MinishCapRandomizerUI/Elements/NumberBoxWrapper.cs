@@ -7,15 +7,15 @@ public class NumberBoxWrapper : WrapperBase, ILogicOptionObserver
 {
     private const int DefaultBottomMargin = 15;
     private const int TextWidth = 225;
-    private const int TextHeight = 15;
+    private const int TextHeight = 19;
     private const int NumberBoxWidth = 130;
     private const int NumberBoxHeight = 23;
     private const int NumberBoxAlign = -2;
     private new static readonly int ElementWidth = TextWidth + NumberBoxWidth + Constants.WidthMargin;
-    private new const int ElementHeight = TextHeight + DefaultBottomMargin;
+    private new const int ElementHeight = NumberBoxHeight + DefaultBottomMargin - 8;
     
     private Label? _label;
-    private TextBox? _textBox;
+    private NumericUpDown? _upDownBox;
     private LogicNumberBox _numberBox;
 
     public NumberBoxWrapper(LogicNumberBox numberBox) : base(ElementWidth, ElementHeight, numberBox.SettingGroup, numberBox.SettingPage)
@@ -27,30 +27,32 @@ public class NumberBoxWrapper : WrapperBase, ILogicOptionObserver
     public override List<Control> GetControls(int initialX, int initialY)
     {
         
-        if (_label != null && _textBox != null)
-            return new List<Control> { _label, _textBox };
+        if (_label != null && _upDownBox != null)
+            return new List<Control> { _label, _upDownBox };
 
         _label = new Label
         {
             AutoEllipsis = Constants.LabelsAndCheckboxesUseAutoEllipsis,
             AutoSize = false,
             Name = _numberBox.Name,
-            Text = _numberBox.NiceName,
+            Text = _numberBox.NiceName + ":",
             Location = new Point(initialX, initialY),
-            Height = TextHeight,
-            Width = TextWidth,
+            Height = (int)(TextHeight*Constants.SpecialScaling),
+            Width = (int)(TextWidth*Constants.SpecialScaling),
             TextAlign = ContentAlignment.MiddleRight,
             UseMnemonic = Constants.UseMnemonic,
         };
 
-        _textBox = new TextBox
+        _upDownBox = new NumericUpDown
         {
             AutoSize = false,
             Name = _numberBox.Name,
             Text = _numberBox.Value,
-            Location = new Point(initialX + TextWidth + Constants.WidthMargin, initialY + NumberBoxAlign),
-            Height = NumberBoxHeight,
-            Width = NumberBoxWidth,
+            Minimum = _numberBox.MinValue,
+            Maximum = _numberBox.MaxValue,
+            Location = new Point(initialX + (int)((TextWidth + Constants.WidthMargin)*Constants.SpecialScaling), initialY + NumberBoxAlign),
+            Height = (int)(NumberBoxHeight*Constants.SpecialScaling),
+            Width = (int)(NumberBoxWidth*Constants.SpecialScaling),
         };        
         
         if (!string.IsNullOrEmpty(_numberBox.DescriptionText))
@@ -62,25 +64,38 @@ public class NumberBoxWrapper : WrapperBase, ILogicOptionObserver
             tip.ReshowDelay = Constants.TooltipRepeatDelayMs;
             tip.ShowAlways = true;
             tip.SetToolTip(_label, _numberBox.DescriptionText);
-            tip.SetToolTip(_textBox, _numberBox.DescriptionText);
+            tip.SetToolTip(_upDownBox, _numberBox.DescriptionText);
         }
 
-        _textBox.TextChanged += (object sender, EventArgs e) =>
+        _upDownBox.TextChanged += (object sender, EventArgs e) =>
         {
-            if (_textBox.Text.Length == 0)
-                _textBox.Text = $"{_numberBox.DefaultValue}";
+            if (_upDownBox.Text.Length == 0)
+            {
+                _numberBox.Value = _upDownBox.Text = _numberBox.DefaultValue.ToString();
+                return;
+            }
 
-            if (byte.TryParse(_textBox.Text, out var val))
-                _numberBox.Value = val.ToString();
+            if (byte.TryParse(_upDownBox.Text, out var val))
+            {
+                if (val > _numberBox.MaxValue)
+                    _numberBox.Value = _upDownBox.Text = _numberBox.MaxValue.ToString();
+                else
+                {
+                    if (val < _numberBox.MinValue)
+                        _numberBox.Value = _upDownBox.Text = _numberBox.MinValue.ToString();
+                    else
+                        _numberBox.Value = val.ToString();
+                }
+            }
             else
-                _textBox.Text = _numberBox.Value;
+                _upDownBox.Text = _numberBox.Value;
         };
 
-        return new List<Control> { _label, _textBox };
+        return new List<Control> { _label, _upDownBox };
     }
 
 	public void NotifyObserver()
 	{
-        _textBox.Text = _numberBox.Value.ToString();
+        _upDownBox.Text = _numberBox.Value.ToString();
 	}
 }

@@ -6,13 +6,13 @@ namespace RandomizerCore.Randomizer.Logic.Options;
 public class LogicFlag : LogicOptionBase
 {
     public LogicFlag(
-        string name, 
-        string niceName, 
-        bool active, 
-        string settingGroup, 
-        string settingPage, 
+        string name,
+        string niceName,
+        bool active,
+        string settingGroup,
+        string settingPage,
         string descriptionText,
-        LogicOptionType type) : 
+        LogicOptionType type) :
         base(name, niceName, active, settingGroup, settingPage, descriptionText, type)
     {
     }
@@ -37,7 +37,7 @@ public class LogicFlag : LogicOptionBase
         return "True or False";
     }
 
-    public override string GetOptionUIType()
+    public override string GetOptionUiType()
     {
         return "Flag";
     }

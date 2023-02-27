@@ -2,12 +2,12 @@
 
 public struct ChanceItem
 {
-    public Item item;
-    public int chance;
+    public Item Item;
+    public int Chance;
 
     public ChanceItem(Item item, int chance)
     {
-        this.item = item;
-        this.chance = chance;
+        this.Item = item;
+        this.Chance = chance;
     }
 }

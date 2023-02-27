@@ -26,6 +26,8 @@ public static class Constants
 
     public static int DefaultStartingPaneY => 15;
 
+    public static double SpecialScaling = 1; //Some controls use this as a scaling factor, set during UI building based on DPI
+
     public static bool UseMnemonic => false; //This is used so that way escape characters like & are used literally
     
     public const int TotalColorPickersPerRow = 1;

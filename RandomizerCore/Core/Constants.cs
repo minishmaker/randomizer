@@ -2,9 +2,9 @@ namespace RandomizerCore.Core;
 
 public enum RegionVersion
 {
-    EU,
-    JP,
-    US,
+    Eu,
+    Jp,
+    Us,
     None
 }
 
@@ -16,19 +16,19 @@ public struct HeaderData
     public int AreaMetadataBase;
 
     //added for now, change names to whatever you want
-    public int tileOffset;
-    public int paletteSetTableLoc;
-    public int chunk0TableLoc;
-    public int area1Chunk0TableLoc;
-    public int chunk1TableLoc;
-    public int chunk2TableLoc;
-    public int swapBase;
-    public int paletteChangeBase;
-    public int area1SwapBase;
-    public int globalTileSetTableLoc;
-    public int gfxSourceBase;
-    public int globalMetaTileSetTableLoc;
-    public int globalTileDataTableLoc;
+    public int TileOffset;
+    public int PaletteSetTableLoc;
+    public int Chunk0TableLoc;
+    public int Area1Chunk0TableLoc;
+    public int Chunk1TableLoc;
+    public int Chunk2TableLoc;
+    public int SwapBase;
+    public int PaletteChangeBase;
+    public int Area1SwapBase;
+    public int GlobalTileSetTableLoc;
+    public int GfxSourceBase;
+    public int GlobalMetaTileSetTableLoc;
+    public int GlobalTileDataTableLoc;
 
     public HeaderData(int map, int area, int tileOffset, int paletteSetTableLoc, int c0TableLoc, int a1C0TableLoc,
         int c1TableLoc, int c2TableLoc, int swapBase, int paletteChangeBase, int area1SwapBase,
@@ -36,20 +36,20 @@ public struct HeaderData
     {
         MapHeaderBase = map;
         AreaMetadataBase = area;
-        this.tileOffset = tileOffset;
-        this.paletteSetTableLoc = paletteSetTableLoc;
-        chunk0TableLoc =
+        this.TileOffset = tileOffset;
+        this.PaletteSetTableLoc = paletteSetTableLoc;
+        Chunk0TableLoc =
             c0TableLoc; //looks like each next chunkTable is a 0x16 further (eu and us), not adding because of possible jp
-        area1Chunk0TableLoc = a1C0TableLoc;
-        chunk1TableLoc = c1TableLoc; //c0+ 0x16
-        chunk2TableLoc = c2TableLoc; //c0+ 0x32
-        this.swapBase = swapBase;
-        this.paletteChangeBase = paletteChangeBase;
-        this.area1SwapBase = area1SwapBase; //above -0x140?
-        this.globalTileSetTableLoc = globalTileSetTableLoc;
-        this.gfxSourceBase = gfxSourceBase;
-        this.globalMetaTileSetTableLoc = globalMetaTileSetTableLoc;
-        this.globalTileDataTableLoc = globalTileDataTableLoc;
+        Area1Chunk0TableLoc = a1C0TableLoc;
+        Chunk1TableLoc = c1TableLoc; //c0+ 0x16
+        Chunk2TableLoc = c2TableLoc; //c0+ 0x32
+        this.SwapBase = swapBase;
+        this.PaletteChangeBase = paletteChangeBase;
+        this.Area1SwapBase = area1SwapBase; //above -0x140?
+        this.GlobalTileSetTableLoc = globalTileSetTableLoc;
+        this.GfxSourceBase = gfxSourceBase;
+        this.GlobalMetaTileSetTableLoc = globalMetaTileSetTableLoc;
+        this.GlobalTileDataTableLoc = globalTileDataTableLoc;
     }
 }
 
@@ -65,33 +65,69 @@ public enum TileEntityType
 
 public enum DungeonEntranceType
 {
-    DWS = 0x01,
+    Dws = 0x01,
     CoF = 0x02,
     FoW = 0x03,
     ToD = 0x04,
     Crypt = 0x05,
-    PoW = 0x06,
+    PoW = 0x06
 }
 
 public enum DungeonType
 {
     Dojo = 00,
-    DWS = 24,
+    Dws = 24,
     CoF = 25,
     FoW = 26,
     ToD = 27,
     PoW = 28,
-    DHC = 29,
-    Crypt = 30,
+    Dhc = 29,
+    Crypt = 30
 }
 
 public enum ProgressiveItemType
 {
-	Sword = 0x0,
-	Bow = 0x1,
-	Boomerang = 0x2,
-	Shield = 0x3,
-	SpinAttack = 0x4,
+    Sword = 0x0,
+    Bow = 0x1,
+    Boomerang = 0x2,
+    Shield = 0x3,
+    SpinAttack = 0x4
+}
+
+public enum BottleType
+{
+    BottleEmpty = 0x20,
+    BottleButter = 0x21,
+    BottleMilk = 0x22,
+    BottleHalfMilk = 0x23,
+    BottleRedPotion = 0x24,
+    BottleBluePotion = 0x25,
+    BottleWater = 0x26,
+    BottleMineralWater = 0x27,
+    BottleFairy = 0x28,
+    BottlePicolyteRed = 0x29,
+    BottlePicolyteOrange = 0x2A,
+    BottlePicolyteYellow = 0x2B,
+    BottlePiclolyteGreen = 0x2C,
+    BottlePicolyteBlue = 0x2D,
+    BottlePicolyteWhite = 0x2E,
+    BottleCharmNayru = 0x2F,
+    BottleCharmFarore = 0x30,
+    BottleCharmDin = 0x31,
+}
+
+public enum TrapType
+{
+	Ice = 0x00,
+	Fire = 0x01,
+	Zap = 0x02,
+	Explosion = 0x03,
+	MoneyDrain = 0x04,
+	Stink = 0x05,
+	Rope = 0x06,
+	Keese = 0x07,
+	LikeLike = 0x08,
+	Curse = 0x09
 }
 
 public enum KinstoneType
@@ -128,9 +164,9 @@ public enum ItemType
     GreenSword = 0x02,
     RedSword = 0x03,
     BlueSword = 0x04,
-    
+
     ProgressiveItem = 0x05,
-    
+
     FourSword = 0x06,
     Bombs = 0x07,
     RemoteBombs = 0x08,
@@ -217,7 +253,7 @@ public enum ItemType
     Rupee200 = 0x59,
 
     JabberNut = 0x5B,
-    Kinstone = 0x5C, //Kinstone
+    Kinstone = 0x5C, //KinstoneX
     Bombs5 = 0x5D,
     Arrows5 = 0x5E,
     SmallHeart = 0x5F,
@@ -243,16 +279,18 @@ public enum ItemType
     FastSpin = 0x73,
     FastSplit = 0x74,
     LongSpin = 0x75,
-    
 
 
     Entrance = 0xF0,
+    Music = 0xF1,
+    ToDKeys = 0xF2,
+    Fusion = 0xF3
 }
 
 public class Header
 {
     // Will fill out when relevant, only need EU for now
-    private readonly HeaderData[] _headerTable =
+    private readonly HeaderData[] HeaderTable =
     {
         //             MAP     , ENTITY?,	TILEOFFSET	PALETTESET	CHUNK0		CHUNK0AREA1	CHUNK1		CHUNK2		SWAP		PALETTECHANGE	AREA1SWAP	TILESET		GFXSOURCE	METATILE	TILEDATA
         new(0x11D95C, 0x0D4828, 0x5A23D0, 0xFED88, 0x107AEC, 0x1077AC, 0x107B02, 0x107B18, 0x107B5C, 0x107940, 0x107800,
@@ -264,6 +302,6 @@ public class Header
 
     public HeaderData GetHeaderAddresses(RegionVersion region)
     {
-        return _headerTable[(int)region];
+        return HeaderTable[(int)region];
     }
 }
