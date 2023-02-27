@@ -492,7 +492,8 @@ internal class Shuffler
         FilledLocations.AddRange(nextLocationGroup);
 
         //Grab all items that we need to beat the seed
-        var allItems = MajorItems.Concat(DungeonMajorItems).Concat(DungeonEntrances).ToList();
+        var allItems = MajorItems.Concat(DungeonMajorItems).ToList();
+        var allItemsAndEntrances = MajorItems.Concat(DungeonMajorItems).Concat(DungeonEntrances).ToList();
 
         //Like entrances, constraints shouldn't check logic when placing
         //Shuffle constraints
@@ -526,7 +527,7 @@ internal class Shuffler
         //Shuffle dungeon minors
         unfilledLocations.AddRange(FillLocationsFrontToBack(DungeonMinorItems,
             unfilledLocations,
-            allItems));
+            allItemsAndEntrances));
 
         unfilledLocations = unfilledLocations.Distinct().ToList();
 
