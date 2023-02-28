@@ -736,6 +736,45 @@
 !endif
 
 # Keasy removes keys from the pool and unlocks all key doors
+
+!ifdef - SMALL_KEASY
+	!eventdefine - cryptSecondKeyBlock
+	!eventdefine - cryptFirstKeyBlock
+	!eventdefine - cryptLockedDoor
+	!eventdefine - dwsMadderpillarDoor
+	!eventdefine - dwsBarrelEastLockedDoor
+	!eventdefine - dwsSlugRoomLockedDoor
+	!eventdefine - dwsBasementLockedDoor
+	!eventdefine - cofBlueWarpLockedDoor
+	!eventdefine - cofMinecartLockedDoor
+	!eventdefine - fowFinalLockedDoor
+	!eventdefine - fowStatueLockedDoor
+	!eventdefine - fowRightLockedDoor
+	!eventdefine - fowLeftLockedDoor
+	!eventdefine - todEntranceLockedDoor
+	!eventdefine - todLilypadLockedDoor
+	!eventdefine - todBlueChuLockedDoor
+	!eventdefine - todDarkRoomLockedDoor
+	#!eventdefine - 
+	#!eventdefine - 
+	#!eventdefine - 
+	#!eventdefine - 
+	#!eventdefine - 
+	#!eventdefine - 
+	#!eventdefine - 
+	#!eventdefine - 
+	#!eventdefine - 
+	#!eventdefine - 
+	#!eventdefine - 
+!endif
+!ifdef - BIG_KEASY
+	!eventdefine - dwsBigDoor
+	!eventdefine - cofBigDoor
+	!eventdefine - fowBigDoor
+	!eventdefine - todBigDoor
+	#!eventdefine - powBigDoor
+	#!eventdefine - dhcBigDoor
+!endif
 !ifdef - SMALL_KEASY
 	!ifdef - BIG_KEASY
 		!define - Replace_Big_Keys - 
