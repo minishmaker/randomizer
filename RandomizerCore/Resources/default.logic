@@ -914,7 +914,7 @@
 			!else
 				!ifdef - COMPASS_KEYSANITY
 					!undefine - COMPASS
-					!define - COMPASS - Major
+					!define - COMPASS - Minor
 					!define - DWS_COMPASS - 
 					!define - COF_COMPASS - 
 					!define - FOW_COMPASS - 
@@ -1142,9 +1142,6 @@
 	Items.DogFoodBottle;	Major;
 	!ifdef - OPENWORLD
 		!ifdef - MEME
-			Items.Kinstone.GoldenCloudTops:5;	Minor;
-			Items.Kinstone.GoldenSwamp:3;		Minor;
-			Items.Kinstone.GoldenFalls;		Minor;
 			Items.LonLonKey;		Minor;
 			Items.GraveyardKey;	Minor;
 			Items.PowerBracelets;	Minor;
@@ -1192,7 +1189,22 @@
 			Items.PerilBeam;		Major;
 		!endif
 	!endif
-	!ifndef - Replace_Compass
+	!ifdef - Replace_Compass
+		!ifdef - MEME
+			Items.DungeonMap.0x18;	Minor;
+			Items.DungeonMap.0x19;	Minor;
+			Items.DungeonMap.0x1A;	Minor;
+			Items.DungeonMap.0x1B;	Minor;
+			Items.DungeonMap.0x1C;	Minor;
+			Items.DungeonMap.0x1D;	Minor;
+			Items.Compass.0x18;	Minor;
+			Items.Compass.0x19;	Minor;
+			Items.Compass.0x1A;	Minor;
+			Items.Compass.0x1B;	Minor;
+			Items.Compass.0x1C;	Minor;
+			Items.Compass.0x1D;	Minor;
+		!endif
+	!else
 		!ifndef - COMPASS_VANILLA
 			Items.DungeonMap.0x18;	`COMPASS`;	`DWS_COMPASS`
 			Items.DungeonMap.0x19;	`COMPASS`;	`COF_COMPASS`
@@ -1203,14 +1215,29 @@
 			!ifdef - POW_ACCESS
 				Items.DungeonMap.0x1C;	`COMPASS`;	`POW_COMPASS`
 				Items.Compass.0x1C;	`COMPASS`;	`POW_COMPASS`
+			!else
+				!ifdef - MEME
+					Items.DungeonMap.0x1C;	`COMPASS`;	`POW_COMPASS`
+					Items.Compass.0x1C;	`COMPASS`;	`POW_COMPASS`
+				!endif
 			!endif
 			!ifdef - FOW_ACCESS
 				Items.DungeonMap.0x1A;	`COMPASS`;	`FOW_COMPASS`
 				Items.Compass.0x1A;	`COMPASS`;	`FOW_COMPASS`
+			!else
+				!ifdef - MEME
+					Items.DungeonMap.0x1A;	`COMPASS`;	`FOW_COMPASS`
+					Items.Compass.0x1A;	`COMPASS`;	`FOW_COMPASS`
+				!endif
 			!endif
 			!ifndef - NODHC
 				Items.DungeonMap.0x1D;	`COMPASS`;	`DHC_COMPASS`
 				Items.Compass.0x1D;	`COMPASS`;	`DHC_COMPASS`
+			!else
+				!ifdef - MEME
+					Items.DungeonMap.0x1D;	`COMPASS`;	`DHC_COMPASS`
+					Items.Compass.0x1D;	`COMPASS`;	`DHC_COMPASS`
+				!endif
 			!endif
 		!endif
 	!endif
@@ -1221,6 +1248,16 @@
 		Dummy_ToD_Big:NoSpoiler;	Unshuffled;	DumToDBig:Define:FirstByte, DumToDBig2:Define:SecondByte;	;	Items.BigKey.0x1B
 		Dummy_PoW_Big:NoSpoiler;	Unshuffled;	DumPoWBig:Define:FirstByte, DumPoWBig2:Define:SecondByte;	;	Items.BigKey.0x1C
 		Dummy_DHC_Big:NoSpoiler;	Unshuffled;	DumDHCBig:Define:FirstByte, DumDHCBig2:Define:SecondByte;	;	Items.BigKey.0x1D
+		!ifdef - MEME
+			Items.BigKey.0x18;	Minor;
+			Items.BigKey.0x19;	Minor;
+			Items.BigKey.0x1A;	Minor;
+			Items.BigKey.0x1B;	Minor;
+			Items.BigKey.0x1C;	Minor;
+			!ifndef - REQUIREMENT_ITEM_DHC_BK
+				Items.BigKey.0x1D;	Minor;
+			!endif
+		!endif
 	!else
 		Items.BigKey.0x18;	`BIG_KEY`;	`DWS_BIG`
 		Items.BigKey.0x19;	`BIG_KEY`;	`COF_BIG`
@@ -1266,6 +1303,15 @@
 		Dummy_RC_Small_1:NoSpoiler;	Unshuffled;	DumRCS1:Define:FirstByte, DumRCS12:Define:SecondByte;		;	Items.SmallKey.0x1E
 		Dummy_RC_Small_2:NoSpoiler;	Unshuffled;	DumRCS2:Define:FirstByte, DumRCS22:Define:SecondByte;		;	Items.SmallKey.0x1E
 		Dummy_RC_Small_3:NoSpoiler;	Unshuffled;	DumRCS3:Define:FirstByte, DumRCS32:Define:SecondByte;		;	Items.SmallKey.0x1E
+		!ifdef - MEME
+			Items.SmallKey.0x18:4;	Minor;
+			Items.SmallKey.0x19:2;	Minor;
+			Items.SmallKey.0x1A:4;	Minor;
+			Items.SmallKey.0x1B:4;	Minor;
+			Items.SmallKey.0x1E:3;	Minor;
+			Items.SmallKey.0x1C:6;	Minor;
+			Items.SmallKey.0x1D:5;	Minor;
+		!endif
 	!else
 		Items.SmallKey.0x18:4;	`SMALL_KEY`;	`DWS_SMALL`
 		Items.SmallKey.0x19:2;	`SMALL_KEY`;	`COF_SMALL`
@@ -2764,12 +2810,22 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 
 # All Fusion Helpers
 !ifdef - NO_GOLD_FUSIONS
+	!ifdef - MEME
+		Items.Kinstone.GoldenCloudTops:5;	Minor;
+		Items.Kinstone.GoldenSwamp:3;		Minor;
+		Items.Kinstone.GoldenFalls;		Minor;
+	!endif
 	CloudFusions;				Helper;;	Helpers.Inaccessible																												#CloudTopsTornado
 	FallsFusion;				Helper;;	Helpers.Inaccessible																												#FallsDoor
 	RuinsFusion;				Helper;;	Helpers.Inaccessible																												#SwampBlock
 	CompletedGolds;			Helper;;	Helpers.Inaccessible
 !else
 	!ifdef - OPEN_GOLD_FUSIONS
+		!ifdef - MEME
+			Items.Kinstone.GoldenCloudTops:5;	Minor;
+			Items.Kinstone.GoldenSwamp:3;		Minor;
+			Items.Kinstone.GoldenFalls;		Minor;
+		!endif
 		CloudFusions;				Helper;;																																#CloudTopsTornado
 		FallsFusion;				Helper;;																																#FallsDoor
 		RuinsFusion;				Helper;;																																#SwampBlock
@@ -2812,6 +2868,11 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 	!endif
 !endif
 !ifdef - NO_RED_FUSIONS
+	!ifdef - MEME
+		Items.Kinstone.RedW;	Filler;
+		Items.Kinstone.RedV;	Filler;
+		Items.Kinstone.RedE;	Filler;
+	!endif
 	CanFuseRedV;				Helper;; 
 	BelariFusion;				Helper;;	Helpers.Inaccessible																												#RuinsEndChest			0A
 	BremorFusion;				Helper;;	Helpers.Inaccessible																												#USELESSHouse				0B
@@ -2839,6 +2900,11 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 	PercyFusion;				Helper;;	Helpers.Inaccessible																												#PercyHouse				21
 !else
 	!ifdef - OPEN_RED_FUSIONS
+		!ifdef - MEME
+			Items.Kinstone.RedW;	Filler;
+			Items.Kinstone.RedV;	Filler;
+			Items.Kinstone.RedE;	Filler;
+		!endif
 		CanFuseRedV;				Helper;; 
 		BelariFusion;				Helper;;																																#RuinsEndChest			0A
 		BremorFusion;				Helper;;																																#USELESSHouse				0B
@@ -3016,6 +3082,10 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 	4Walls; Helper;;	(+4, Helpers.AccessMinishWoods, Helpers.LonLonDigCave, Locations.WitchDiggingCave_Chest, Locations.Trilby_DigCave_RightChest, Locations.Crenel_DigCave_HP, Locations.Hylia_CapeCave_BottomLeft)
 	6Walls;	Helper;;	(&Helpers.AccessMinishWoods, Items.MoleMitts, Locations.WitchDiggingCave_Chest, Locations.Trilby_DigCave_RightChest, Locations.Crenel_DigCave_HP, Locations.Hylia_CapeCave_BottomLeft)
 !ifdef - NO_BLUE_FUSIONS
+	!ifdef - MEME
+		Items.Kinstone.BlueL;	Filler;
+		Items.Kinstone.BlueS;	Filler;
+	!endif
 	CanFuseBlueS;    		Helper;;	
 	CandyFusion;			Helper;;	Helpers.Inaccessible																													#TrilbyPlatform			22
 	LakeEastMinishFusion;	Helper;;	Helpers.Inaccessible																													#LakeBeanstalk			23
@@ -3033,6 +3103,10 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 	GoronLeftFusion;		Helper;;	Helpers.Inaccessible																													#GoronMerchant			33
 !else
 	!ifdef - OPEN_BLUE_FUSIONS
+		!ifdef - MEME
+			Items.Kinstone.BlueL;	Filler;
+			Items.Kinstone.BlueS;	Filler;
+		!endif
 		CanFuseBlueS;    		Helper;; 
 		CandyFusion;			Helper;;																																	#TrilbyPlatform			22
 		LakeEastMinishFusion;	Helper;;																																	#LakeBeanstalk			23
@@ -3088,6 +3162,11 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 	!endif
 !endif
 !ifdef - NO_GREEN_FUSIONS
+	!ifdef - MEME
+		Items.Kinstone.GreenC;	Filler;
+		Items.Kinstone.GreenG;	Filler;
+		Items.Kinstone.GreenP;	Filler;
+	!endif
 	CanFuseGreenC;   			Helper;; 
 	CanFuseGreenG;   			Helper;; 
 	CanFuseGreenP;   			Helper;; 
@@ -3173,6 +3252,11 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 	NHFMinishFusion;			Helper;;	Helpers.Inaccessible																												#RuinsPillarChest		64
 !else
 	!ifdef - OPEN_GREEN_FUSIONS
+		!ifdef - MEME
+			Items.Kinstone.GreenC;	Filler;
+			Items.Kinstone.GreenG;	Filler;
+			Items.Kinstone.GreenP;	Filler;
+		!endif
 		CanFuseGreenC;   			Helper;; 
 		CanFuseGreenG;   			Helper;; 
 		CanFuseGreenP;   			Helper;; 
