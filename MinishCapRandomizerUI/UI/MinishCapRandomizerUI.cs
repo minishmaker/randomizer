@@ -148,7 +148,6 @@ public sealed partial class MinishCapRandomizerUI : Form
 			_randomizedRomCreated = result.WasSuccessful;
 
 			DisplayAndUpdateSeedInfoPage();
-            // TODO: If YAML is used, store settings somewhere so we can generate a settings string for the spoiler (should be hidden in seed output tab)
 		}
 		else
 			DisplayConditionalAlertFromShufflerResult(result, "You shouldn't be seeing this, but if you are it means something weird happened. Please report to the dev team.", "You Shouldn't See This", "Failed to generate ROM!", "Failed to Generate ROM");

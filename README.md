@@ -175,6 +175,7 @@ The commands supported by command files are as follows, with (option) used to de
 * ChangeSeed (R | S) [Seed] - If R is selected it will pick a random seed and ignore the seed parameter, if S is selected then seed is required and is used as the seed for randomization.
 * LoadLogic [PathToLogicFile] - If a path is specified it will load that logic file and update options. If no path is specified it will load the default logic file.
 * LoadPatch [PathToROMBuildfile] - If a path is specified it will load those patches. If no path is specified it will load the default patches.
+* LoadYAML [PathToYAMLFile] - If a path is specified it will load that YAML file to use as a Preset or Mystery weights. If no path is specified seed generation will use the loaded options instead.
 * LoadSettings (Setting String) - Loads the settings provided by the setting string into the randomizer.
 * Logging (1 | 2 | 3) [1 | 2 | PathToSaveLogs] - Sets one of the logging properties. Passing 1 as the first parameter sets the verbosity, in which case the second parameter needs to be either 1 (verbose) or 2 (only errors). Passing 2 as the first parameter sets the output file path, in which case the second parameter needs to be the path where you want to save the logs to. Passing 3 as the first parameter will publish the logs to the current output path, and does not take a second parameter.
 * Randomize (RetryCount) - Generates a seed. RetryCount is the maximum number of times we should attempt to generate a seed in the case of failure.
@@ -182,6 +183,7 @@ The commands supported by command files are as follows, with (option) used to de
 * SavePatch (Output Path) - Saves a patch for the randomized seed from a call to Randomize. If no seed is available this will fail. Writes the patch to the output path.
 * SaveSpoiler (Output Path) - Saves the spoiler log for the randomized seed from a call to Randomize. If no seed is available this will fail. Writes the spoiler to the output path.
 * GetSettingString - Gets the setting string for the currently selected settings and prints it to the console.
+* GetFinalSettingString - Gets the setting string for the settings used for the randomized seed from a call to Randomize and prints it to the console. If no seed is available this will fail.
 * Rem - when at the beginning of a line this comments out that line which makes it ignored by the command parser. The line is printed to the console.
 * BulkGenerateSeeds (Number of seeds) - Generates the specified number of seeds in bulk and says the failure rate when it is done. This should only be used for testing purposes, as the seeds cannot be saved.
 * Exit - Exits the CLI. This should always be at the end of the command file. If it is not, it will still exit, but it will print a warning about how no call to Exit was found. Using Exit is good as it prevents unwanted commands from running.

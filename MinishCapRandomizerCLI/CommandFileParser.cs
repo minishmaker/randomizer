@@ -26,6 +26,9 @@ public static class CommandFileParser
                 case "LoadPatch":
                     GenericCommands.LoadPatch(inputs.Length > 1 ? inputs[1] : "");
                     break;
+                case "LoadYAML":
+                    GenericCommands.LoadYAML(inputs.Length > 1 ? inputs[1] : "");
+                    break;
                 case "LoadSettings":
                     GenericCommands.LoadSettings(inputs[1]);
                     break;
@@ -46,6 +49,9 @@ public static class CommandFileParser
                     break;
                 case "GetSettingString":
                     GenericCommands.GetSelectedSettingString();
+                    break;
+                case "GetFinalSettingString":
+                    GenericCommands.GetFinalSettingString();
                     break;
                 case "Rem":
                     Console.WriteLine($"Commented out line {input}");
