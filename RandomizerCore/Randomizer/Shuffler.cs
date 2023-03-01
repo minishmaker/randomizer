@@ -140,7 +140,7 @@ internal class Shuffler
         Logger.Instance.LogInfo($"Randomization seed set to {seed}");
     }
 
-    public bool IsUsingYAML() => string.IsNullOrEmpty(YamlPath);
+    public bool IsUsingYAML() => !string.IsNullOrEmpty(YamlPath);
 
     public string GetYAMLName() => YamlName;
 
@@ -210,8 +210,10 @@ internal class Shuffler
         }
         else
         {
-            Options = Mystery.ParseYAML(File.ReadAllText(yamlFile), GetSelectedOptions(), new Random(Seed));
-            //Get name and description
+            var result = Mystery.ParseYAML(File.ReadAllText(yamlFile), GetSelectedOptions(), new Random(Seed));
+            Options = result.Options;
+            YamlName = result.Name;
+            YamlDescription = result.Description;
         }
 
         // Reset everything to allow rerandomization

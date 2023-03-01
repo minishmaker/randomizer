@@ -65,6 +65,12 @@ public class ShufflerController
             : "Log output failed! Please check your file path and make sure you have write access.";
     }
 
+    public bool IsUsingYAML() => Shuffler.IsUsingYAML();
+
+    public string GetYAMLName() => Shuffler.GetYAMLName();
+
+    public string GetYAMLDescription() => Shuffler.GetYAMLDescription();
+
     public ShufflerControllerResult LoadSettingsFromSettingString(string settingString)
     {
         try
