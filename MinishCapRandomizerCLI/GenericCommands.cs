@@ -101,7 +101,7 @@ internal static class GenericCommands
     internal static void Options()
     {
         Console.WriteLine("Options for current logic file:");
-        var options = ShufflerController.GetLogicOptions();
+        var options = ShufflerController.GetSelectedOptions();
         for (var i = 0; i < options.Count; )
         {
             var option = options[i];
@@ -274,10 +274,16 @@ internal static class GenericCommands
         }
     }
 
-    internal static void GetSettingString()
+    internal static void GetSelectedSettingString()
     {
-        Console.WriteLine("Setting String:");
-        Console.WriteLine(ShufflerController.GetSettingsString());
+        Console.WriteLine("Setting String for selected settings:");
+        Console.WriteLine(ShufflerController.GetSelectedSettingsString());
+    }
+
+    internal static void GetFinalSettingString()
+    {
+        Console.WriteLine("Setting String for settings used for seed generation:");
+        Console.WriteLine(ShufflerController.GetFinalSettingsString());
     }
 
     internal static void PatchRom()

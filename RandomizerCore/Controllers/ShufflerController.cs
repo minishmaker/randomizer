@@ -36,7 +36,7 @@ public class ShufflerController
     internal static string RevisionIdentifier => "alpha-rev3";
 
     public string SeedFilename =>
-        $"Minish Randomizer-{Shuffler.Seed}-{Shuffler.Version}-{Shuffler.GetOptionsIdentifier()}";
+        $"Minish Randomizer-{Shuffler.Seed}-{Shuffler.Version}-{(Shuffler.IsUsingYAML() ? Shuffler.GetYAMLName() : Shuffler.GetSelectedOptions().GetIdentifier())}";
 
     public int FinalSeed => Shuffler.Seed;
 
@@ -69,8 +69,8 @@ public class ShufflerController
     {
         try
         {
-            MinifiedSettings.GenerateSettingsFromBase64String(settingString, Shuffler.GetSortedSettings(),
-                Shuffler.GetLogicOptionsCrc32());
+            MinifiedSettings.GenerateSettingsFromBase64String(settingString, Shuffler.GetSelectedOptions().OnlyLogic().GetSorted(),
+                Shuffler.GetSelectedOptions().OnlyLogic().GetCrc32());
 
             return new ShufflerControllerResult { WasSuccessful = true };
         }
@@ -91,8 +91,8 @@ public class ShufflerController
     {
         try
         {
-            MinifiedSettings.GenerateSettingsFromBase64String(settingString, Shuffler.GetSortedCosmetics(),
-                Shuffler.GetCosmeticOptionsCrc32());
+            MinifiedSettings.GenerateSettingsFromBase64String(settingString, Shuffler.GetSelectedOptions().OnlyCosmetic().GetSorted(),
+                Shuffler.GetSelectedOptions().OnlyCosmetic().GetCrc32());
 
             return new ShufflerControllerResult { WasSuccessful = true };
         }
@@ -109,15 +109,28 @@ public class ShufflerController
         }
     }
 
-    public string GetSettingsString()
+    public string GetSelectedSettingsString()
     {
-        return MinifiedSettings.GenerateSettingsString(Shuffler.GetSortedSettings(), Shuffler.GetLogicOptionsCrc32());
+        return MinifiedSettings.GenerateSettingsString(Shuffler.GetSelectedOptions().OnlyLogic().GetSorted(),
+            Shuffler.GetSelectedOptions().OnlyLogic().GetCrc32());
     }
 
-    public string GetCosmeticsString()
+    public string GetSelectedCosmeticsString()
     {
-        return MinifiedSettings.GenerateSettingsString(Shuffler.GetSortedCosmetics(),
-            Shuffler.GetCosmeticOptionsCrc32());
+        return MinifiedSettings.GenerateSettingsString(Shuffler.GetSelectedOptions().OnlyCosmetic().GetSorted(),
+            Shuffler.GetSelectedOptions().OnlyCosmetic().GetCrc32());
+    }
+
+    public string GetFinalSettingsString()
+    {
+        return MinifiedSettings.GenerateSettingsString(Shuffler.GetFinalOptions().OnlyLogic().GetSorted(),
+            Shuffler.GetFinalOptions().OnlyLogic().GetCrc32());
+    }
+
+    public string GetFinalCosmeticsString()
+    {
+        return MinifiedSettings.GenerateSettingsString(Shuffler.GetFinalOptions().OnlyCosmetic().GetSorted(),
+            Shuffler.GetFinalOptions().OnlyCosmetic().GetCrc32());
     }
 
     public ShufflerControllerResult LoadRom(string filename)
@@ -143,16 +156,6 @@ public class ShufflerController
         }
     }
 
-    public uint GetSettingsChecksum()
-    {
-        return Shuffler.GetLogicOptionsCrc32();
-    }
-
-    public uint GetCosmeticsChecksum()
-    {
-        return Shuffler.GetCosmeticOptionsCrc32();
-    }
-
     public void FlushLogger()
     {
         Logger.Instance.Flush();
@@ -163,9 +166,14 @@ public class ShufflerController
         Shuffler.SetSeed(seed);
     }
 
-    public List<LogicOptionBase> GetLogicOptions()
+    public OptionList GetSelectedOptions()
     {
-        return Shuffler.GetOptions();
+        return Shuffler.GetSelectedOptions();
+    }
+
+    public OptionList GetFinalOptions()
+    {
+        return Shuffler.GetFinalOptions();
     }
 
     public ShufflerControllerResult LoadLogicFile(string? filename = null)
@@ -460,7 +468,7 @@ public class ShufflerController
         }
         try
         {
-			File.WriteAllText(filepath, Mystery.CreateYAML(name, null, GetLogicOptions(), mystery));
+			File.WriteAllText(filepath, Mystery.CreateYAML(name, null, GetSelectedOptions(), mystery));
 			return new ShufflerControllerResult { WasSuccessful = true };
         }
         catch (Exception e)

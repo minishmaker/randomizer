@@ -100,9 +100,9 @@ internal static class Mystery
         return line + new string(' ', Math.Max(0, padding-line.Length)) + "# " + comment + Environment.NewLine;
     }
 
-    public static List<LogicOptionBase> ParseYAML(string file, List<LogicOptionBase> baseOptions, Random random)
+    public static OptionList ParseYAML(string file, List<LogicOptionBase> baseOptions, Random random)
     {
-        List<LogicOptionBase> newOptions = new List<LogicOptionBase>(baseOptions.Count);
+        OptionList newOptions = new OptionList(baseOptions.Count);
         var optionMap = new Dictionary<string, LogicOptionBase>(baseOptions.Count);
         foreach (var setting in baseOptions)
         {

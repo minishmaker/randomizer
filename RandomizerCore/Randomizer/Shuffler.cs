@@ -27,11 +27,14 @@ internal class Shuffler
     private readonly List<Item> DungeonPrizes;
     private readonly List<Item> FillerItems;
 
+    private OptionList Options;
+    private string YamlName;
+    private string YamlDescription;
+
     private readonly List<Location> Locations;
     private readonly Parser.Parser LogicParser;
     private readonly List<Item> MajorItems;
     private readonly List<Item> MinorItems;
-	private string? YamlPath;
 
     //Item lists are sorted in the order they are processed
     private readonly List<Item> Music;
@@ -41,6 +44,7 @@ internal class Shuffler
     private List<Location> FilledLocations;
     public readonly string Version;
     private string? LogicPath;
+	private string? YamlPath;
     private bool Randomized;
     private Random? Rng;
 
@@ -136,48 +140,20 @@ internal class Shuffler
         Logger.Instance.LogInfo($"Randomization seed set to {seed}");
     }
 
-    public List<LogicOptionBase> GetSortedSettings()
+    public bool IsUsingYAML() => string.IsNullOrEmpty(YamlPath);
+
+    public string GetYAMLName() => YamlName;
+
+    public string GetYAMLDescription() => YamlDescription;
+
+    public OptionList GetSelectedOptions()
     {
-        return LogicParser.SubParser.GetSortedSettings();
+        return new OptionList(LogicParser.SubParser.Options);
     }
 
-    public List<LogicOptionBase> GetSortedCosmetics()
+    public OptionList GetFinalOptions()
     {
-        return LogicParser.SubParser.GetSortedCosmetics();
-    }
-
-    public uint GetLogicOptionsCrc32()
-    {
-        return LogicParser.SubParser.GetLogicOptionsCrc32();
-    }
-
-    public uint GetCosmeticOptionsCrc32()
-    {
-        return LogicParser.SubParser.GetCosmeticOptionsCrc32();
-    }
-
-    public List<LogicOptionBase> GetOptions()
-    {
-        return LogicParser.SubParser.Options;
-    }
-
-    public uint GetSettingHash()
-    {
-        var settingBytes = LogicParser.SubParser.GetSettingBytes();
-
-        return settingBytes.Length > 0 ? settingBytes.Crc32() : 0;
-    }
-
-    public uint GetCosmeticsHash()
-    {
-        var cosmeticBytes = LogicParser.SubParser.GetCosmeticBytes();
-
-        return cosmeticBytes.Length > 0 ? cosmeticBytes.Crc32() : 0;
-    }
-
-    public string GetOptionsIdentifier()
-    {
-        return StringUtil.AsStringHex8((int)GetSettingHash()) + "-" + StringUtil.AsStringHex8((int)GetCosmeticsHash());
+        return Options;
     }
 
     /// <summary>
@@ -228,11 +204,21 @@ internal class Shuffler
         LogicPath = logicFile;
         YamlPath = yamlFile;
 
+        if (string.IsNullOrEmpty(yamlFile))
+        {
+            Options = new OptionList(GetSelectedOptions());
+        }
+        else
+        {
+            Options = Mystery.ParseYAML(File.ReadAllText(yamlFile), GetSelectedOptions(), new Random(Seed));
+            //Get name and description
+        }
+
         // Reset everything to allow rerandomization
         ClearLogic();
 
 		// Set option defines
-		LogicParser.SubParser.AddOptions(string.IsNullOrEmpty(yamlFile) ? null : Mystery.ParseYAML(File.ReadAllText(yamlFile), GetOptions(), new Random(Seed)));
+		LogicParser.SubParser.AddOptions(Options);
 
         string[] locationStrings;
 
@@ -541,7 +527,8 @@ internal class Shuffler
 
         var diff = DateTime.Now - time;
         Logger.Instance.BeginLogTransaction();
-        Logger.Instance.LogInfo($"Timing Benchmark - Shuffling with seed {Seed} and settings {MinifiedSettings.GenerateSettingsString(GetSortedSettings(), GetLogicOptionsCrc32())} took {diff.Seconds}.{diff.Milliseconds} seconds!");
+        var logicSettings = GetFinalOptions().OnlyLogic();
+        Logger.Instance.LogInfo($"Timing Benchmark - Shuffling with seed {Seed} and settings {MinifiedSettings.GenerateSettingsString(logicSettings.GetSorted(), logicSettings.GetCrc32())} took {diff.Seconds}.{diff.Milliseconds} seconds!");
         Logger.Instance.SaveLogTransaction(true);
         
         Randomized = true;
@@ -1192,8 +1179,9 @@ internal class Shuffler
         spoilerBuilder.AppendLine($"Seed: {Seed}");
         spoilerBuilder.AppendLine(
             $"Version: {ShufflerController.VersionIdentifier} {ShufflerController.RevisionIdentifier}");
+        var logicSettings = GetFinalOptions().OnlyLogic();
         spoilerBuilder.AppendLine(
-            $"Settings String: {MinifiedSettings.GenerateSettingsString(GetSortedSettings(), GetLogicOptionsCrc32())}");
+            $"Settings String: {MinifiedSettings.GenerateSettingsString(logicSettings.GetSorted(), logicSettings.GetCrc32())}");
 
         spoilerBuilder.AppendLine();
         AppendLocationSpoiler(spoilerBuilder);
@@ -1490,7 +1478,7 @@ internal class Shuffler
         seedValues[3] = (byte)((Seed >> 24) & 0xFF);
 
         eventBuilder.AppendLine("#define seedHashed 0x" + StringUtil.AsStringHex8((int)CrcUtil.Crc32(seedValues, 4)));
-        eventBuilder.AppendLine("#define settingHash 0x" + StringUtil.AsStringHex8((int)GetSettingHash()));
+        eventBuilder.AppendLine("#define settingHash 0x" + StringUtil.AsStringHex8((int)GetFinalOptions().OnlyLogic().GetHash()));
 
         return eventBuilder.ToString();
     }

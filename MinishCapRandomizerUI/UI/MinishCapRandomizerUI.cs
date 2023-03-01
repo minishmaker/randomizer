@@ -283,7 +283,7 @@ public sealed partial class MinishCapRandomizerUI : Form
 
 	private void GenerateSettings_Click(object sender, EventArgs e)
 	{
-		SettingString.Text = _shufflerController.GetSettingsString();
+		SettingString.Text = _shufflerController.GetSelectedSettingsString();
 	}
 
 	private void ResetDefaultSettings_Click(object sender, EventArgs e)
@@ -299,7 +299,7 @@ public sealed partial class MinishCapRandomizerUI : Form
 
 	private void GenerateCosmetics_Click(object sender, EventArgs e)
 	{
-		CosmeticsString.Text = _shufflerController.GetCosmeticsString();
+		CosmeticsString.Text = _shufflerController.GetSelectedCosmeticsString();
 	}
 
 	private void ResetDefaultCosmetics_Click(object sender, EventArgs e)
@@ -354,7 +354,7 @@ public sealed partial class MinishCapRandomizerUI : Form
 
 	private void LoadSettingPreset_Click(object sender, EventArgs e)
 	{
-		var logicChecksum = _shufflerController.GetSettingsChecksum();
+		var logicChecksum = _shufflerController.GetSelectedOptions().OnlyLogic().GetCrc32();
 		if (!_settingPresets.SettingsPresets.TryGetValue(logicChecksum, out var presets)) {
 			DisplayAlert("Could not find any presets for the current logic file! Please try a different logic file.", "Failed to Load Preset", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			return;
@@ -374,11 +374,11 @@ public sealed partial class MinishCapRandomizerUI : Form
 	{
 		ShowInputDialog("Enter Setting Preset Name", "Enter the name you would like to use for the setting preset.\nNote:  Preset names are case sensitive and two presets cannot have the same name!", (name =>
 		{
-			var logicChecksum = _shufflerController.GetSettingsChecksum();
+		    var logicChecksum = _shufflerController.GetSelectedOptions().OnlyLogic().GetCrc32();
 			var preset = new Preset
 			{
 				PresetName = name,
-				PresetString = _shufflerController.GetSettingsString(),
+				PresetString = _shufflerController.GetSelectedSettingsString(),
 			};
 
 			if (!_settingPresets.SettingsPresets.TryGetValue(logicChecksum, out var presets))
@@ -417,7 +417,7 @@ public sealed partial class MinishCapRandomizerUI : Form
 		DisplayAlert($"Are you sure you wish to delete preset {SettingPresets.SelectedItem}? This action cannot be undone!", "Delete Preset", MessageBoxButtons.YesNo, MessageBoxIcon.Question, DialogResult.Yes,
 			() =>
 			{
-				var logicChecksum = _shufflerController.GetSettingsChecksum();
+		        var logicChecksum = _shufflerController.GetSelectedOptions().OnlyLogic().GetCrc32();
 
 				if (!_settingPresets.SettingsPresets.TryGetValue(logicChecksum, out var presets))
 				{
@@ -449,7 +449,7 @@ public sealed partial class MinishCapRandomizerUI : Form
 
 	private void LoadCosmeticPreset_Click(object sender, EventArgs e)
 	{
-		var logicChecksum = _shufflerController.GetCosmeticsChecksum();
+		var logicChecksum = _shufflerController.GetSelectedOptions().OnlyCosmetic().GetCrc32();
 		if (!_settingPresets.CosmeticsPresets.TryGetValue(logicChecksum, out var presets))
 		{
 			DisplayAlert("Could not find any presets for the current logic file! Please try a different logic file.", "Failed to Load Preset", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -470,11 +470,11 @@ public sealed partial class MinishCapRandomizerUI : Form
 	{
 		ShowInputDialog("Enter Cosmetic Preset Name", "Enter the name you would like to use for the cosmetics preset.\nNote: Preset names are case sensitive and two presets cannot have the same name!", (name =>
 		{
-			var logicChecksum = _shufflerController.GetCosmeticsChecksum();
+		    var logicChecksum = _shufflerController.GetSelectedOptions().OnlyCosmetic().GetCrc32();
 			var preset = new Preset
 			{
 				PresetName = name,
-				PresetString = _shufflerController.GetCosmeticsString(),
+				PresetString = _shufflerController.GetSelectedCosmeticsString(),
 			};
 
 			if (!_settingPresets.CosmeticsPresets.TryGetValue(logicChecksum, out var presets))
@@ -513,7 +513,7 @@ public sealed partial class MinishCapRandomizerUI : Form
 		DisplayAlert($"Are you sure you wish to delete preset {CosmeticsPresets.SelectedItem}? This action cannot be undone!", "Delete Preset", MessageBoxButtons.YesNo, MessageBoxIcon.Question, DialogResult.Yes,
 			() =>
 			{
-				var logicChecksum = _shufflerController.GetCosmeticsChecksum();
+		        var logicChecksum = _shufflerController.GetSelectedOptions().OnlyCosmetic().GetCrc32();
 
 				if (!_settingPresets.CosmeticsPresets.TryGetValue(logicChecksum, out var presets))
 				{
