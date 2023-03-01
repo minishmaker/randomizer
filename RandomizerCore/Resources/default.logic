@@ -514,9 +514,6 @@
 
 # Open World removes any key/fusion settings and defines things in patches to open the world
 !ifdef - OPENWORLD
-	!undefine - `SMALL_KEYS_SETTING`
-	!undefine - `BIG_KEYS_SETTING`
-	!undefine - `COMPASS_SETTING`
 	!undefine - `GOLD_FUSION_SETTING`
 	!undefine - `RED_FUSION_SETTING`
 	!undefine - `BLUE_FUSION_SETTING`
@@ -544,11 +541,7 @@
 	!define - POW_REDWARP
 	!define - DHC_BLUEWARP
 	!define - DHC_REDWARP
-	!define - Replace_Small_Keys - 
-	!define - Replace_Big_Keys - 
-	!define - Replace_Compass -
 	!eventdefine - openWorld					# if defines, opens all the permanent flags in dungeons and overworld (puzzles/shortcuts/etc...)
-	!eventdefine - compasskeasy
 !endif
 
 !define - GOLDEN_ENEMY_GREEN
@@ -738,6 +731,7 @@
 # Keasy removes keys from the pool and unlocks all key doors
 
 !ifdef - SMALL_KEASY
+	!define - Replace_Small_Keys - 
 	!eventdefine - cryptSecondKeyBlock
 	!eventdefine - cryptFirstKeyBlock
 	!eventdefine - cryptLockedDoor
@@ -755,43 +749,28 @@
 	!eventdefine - todLilypadLockedDoor
 	!eventdefine - todBlueChuLockedDoor
 	!eventdefine - todDarkRoomLockedDoor
-	#!eventdefine - 
-	#!eventdefine - 
-	#!eventdefine - 
-	#!eventdefine - 
-	#!eventdefine - 
-	#!eventdefine - 
-	#!eventdefine - 
-	#!eventdefine - 
-	#!eventdefine - 
-	#!eventdefine - 
-	#!eventdefine - 
+	!eventdefine - powFan2LockedDoor
+	!eventdefine - powFan1LockedDoor
+	!eventdefine - powLastLockedDoor
+	!eventdefine - powRedWarpLockedDoor
+	!eventdefine - powFirstLockedDoor
+	!eventdefine - powPeahatLockedDoor
+	!eventdefine - dhcLockedDoor
+	!eventdefine - dhcTopKeyBlock
+	!eventdefine - dhcTopMiddleKeyBlock
+	!eventdefine - dhcBottomMiddleKeyBlock
+	!eventdefine - dhcBottomKeyBlock
 !endif
 !ifdef - BIG_KEASY
+	!define - Replace_Big_Keys - 
 	!eventdefine - dwsBigDoor
 	!eventdefine - cofBigDoor
 	!eventdefine - fowBigDoor
 	!eventdefine - todBigDoor
-	#!eventdefine - powBigDoor
-	#!eventdefine - dhcBigDoor
+	!eventdefine - powFinalBigDoor
+	!eventdefine - pow1stBigDoor
+	!eventdefine - dhcBigDoor
 !endif
-!ifdef - SMALL_KEASY
-	!ifdef - BIG_KEASY
-		!define - Replace_Big_Keys - 
-		!eventdefine - smallbigkeasy
-	!else
-		!eventdefine - smallkeasy
-	!endif
-		!define - Replace_Small_Keys - 
-!else
-	!ifdef - BIG_KEASY
-		!define - Replace_Big_Keys - 
-		!eventdefine - bigkeasy
-	!else
-		!eventdefine - nokeasy
-	!endif
-!endif
-
 !ifdef - COMPASS_KEASY
 	!define - Replace_Compass - 
 	!eventdefine - compasskeasy
