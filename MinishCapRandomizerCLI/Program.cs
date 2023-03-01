@@ -56,6 +56,7 @@ internal class Program
             {"ChangeSeed", Seed},
             {"LoadLogic", LoadLogic},
             {"LoadPatch", LoadPatch},
+            {"LoadYAML", LoadYAML},
             {"LoadSettings", LoadSettings},
             {"Options", Options},
             {"Logging", Logging},
@@ -64,6 +65,7 @@ internal class Program
             {"SaveSpoiler", SaveSpoiler},
             {"SavePatch", SavePatch},
             {"GetSettingString", GetSettingString},
+            {"GetFinalSettingString", GetFinalSettingString},
             {"PatchRom", PatchRom},
             {"CreatePatch", CreatePatch},
             {"Exit", Exit},
@@ -74,22 +76,24 @@ internal class Program
     private static void PrintCommands()
     {
         Console.WriteLine(@"Available Commands, note that commands are case-sensitive!
-LoadRom             Load a European Minish Cap ROM
-ChangeSeed          Change randomization seed
-LoadLogic           Load custom logic file
-LoadPatch           Load custom patch file
-LoadSettings        Load a setting string
-Options             Display options, allows editing of option values
-Logging             Allows you to change logger settings
-Randomize           Generates a randomized ROM
-SaveRom             Saves and patches the ROM, requires Randomize to have been called
-SaveSpoiler         Saves the spoiler log, requires Randomize to have been called
-SavePatch           Saves a BPS patch for the randomized ROM, requires Randomize to have been called
-GetSettingString    Gets the setting string for your currently selected settings
-PatchRom            Patches a European Minish Cap ROM with a BPS patch
-CreatePatch         Creates a patch from a patched ROM and an unpatched European Minish Cap ROM
-Exit                Exits the program
-Strict              Toggle strict mode (exit after error)
+LoadRom                 Load a European Minish Cap ROM
+ChangeSeed              Change randomization seed
+LoadLogic               Load custom logic file
+LoadPatch               Load custom patch file
+LoadYAML                Load YAML file to use as a Preset or Mystery weights
+LoadSettings            Load a setting string
+Options                 Display options, allows editing of option values
+Logging                 Allows you to change logger settings
+Randomize               Generates a randomized ROM
+SaveRom                 Saves and patches the ROM, requires Randomize to have been called
+SaveSpoiler             Saves the spoiler log, requires Randomize to have been called
+SavePatch               Saves a BPS patch for the randomized ROM, requires Randomize to have been called
+GetSettingString        Gets the setting string for your currently selected settings
+GetFinalSettingString   Gets the setting string for the settings used for the randomized ROM, requires Randomize to have been called
+PatchRom                Patches a European Minish Cap ROM with a BPS patch
+CreatePatch             Creates a patch from a patched ROM and an unpatched European Minish Cap ROM
+Exit                    Exits the program
+Strict                  Toggle strict mode (exit after error)
 ");
     }
 
@@ -111,6 +115,11 @@ Strict              Toggle strict mode (exit after error)
     private static void LoadPatch()
     {
         GenericCommands.LoadPatch();
+    }
+
+    private static void LoadYAML()
+    {
+        GenericCommands.LoadYAML();
     }
 
     private static void LoadSettings()
@@ -151,6 +160,11 @@ Strict              Toggle strict mode (exit after error)
     private static void GetSettingString()
     {
         GenericCommands.GetSelectedSettingString();
+    }
+
+    private static void GetFinalSettingString()
+    {
+        GenericCommands.GetFinalSettingString();
     }
 
     private static void PatchRom()
