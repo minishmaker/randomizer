@@ -514,21 +514,6 @@
 
 # Open World removes any key/fusion settings and defines things in patches to open the world
 !ifdef - OPENWORLD
-	!undefine - `GOLD_FUSION_SETTING`
-	!undefine - `RED_FUSION_SETTING`
-	!undefine - `BLUE_FUSION_SETTING`
-	!undefine - `GREEN_FUSION_SETTING`
-	!define - OPEN_GOLD_FUSIONS
-	!define - OPEN_RED_FUSIONS
-	!define - OPEN_BLUE_FUSIONS
-	!define - OPEN_GREEN_FUSIONS
-	!define - CRENEL_CREST
-	!define - FALLS_CREST
-	!define - CLOUD_CREST
-	!define - TOWN_CREST
-	!define - SWAMP_CREST
-	!define - SHF_CREST
-	!define - MINISH_CREST
 	!eventdefine - openWorld					# if defines, opens all the permanent flags in dungeons and overworld (puzzles/shortcuts/etc...)
 !endif
 
@@ -608,11 +593,10 @@
 !ifdef - OPEN_GOLD_FUSIONS
 	!eventdefine - noGoldFusions							# if defined, golden kinstone fusions are not available (except the cloud fusions which is handled below)
 	!eventdefine - mC81 - 0xFE								# sets all the cloud tops fusions, as well as the left and middle swamp fusions (the right swamp and falls fusions share an address with red fusions)
-	!eventdefine - mCA0 - 0x10								# sets the tornado in cloud tops as spawned, shares an address with Graveyard Key stages
+	!eventdefine - goldTornado								# sets the tornado in cloud tops as spawned, shares an address with Graveyard Key stages
 	!eventdefine - mCA7 - 0xD1								# sets the wind tribe state to access higher floors, also sets tingle bros as spawned
 	!eventdefine - mCBF - 0x40								# visually destroys the stone block at the Castor Wilds statues
 !else
-	!eventdefine - mCA0 - 0x00								# makes the tornado in cloud tops unspawned
 	!eventdefine - mCA7 - 0xD0								# windtribe is default, tingle bros set as spawned
 	!eventdefine - mCBF - 0x00								# stone block at the Castor Wilds statues not destroyed
 	!ifdef - NO_GOLD_FUSIONS
