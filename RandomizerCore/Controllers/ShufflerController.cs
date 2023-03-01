@@ -37,7 +37,7 @@ public class ShufflerController
     public static string RevisionIdentifier => "Pre-release";
 
     public string SeedFilename =>
-        $"Minish Randomizer-{_shuffler.Seed:X}-{_shuffler.Version}-{_shuffler.IsUsingYAML() ? _shuffler.GetYAMLName() : _shuffler.GetSelectedOptions().GetIdentifier()}";
+        $"Minish Randomizer-{_shuffler.Seed:X}-{_shuffler.Version}-{(_shuffler.IsUsingYAML() ? _shuffler.GetYAMLName() : _shuffler.GetSelectedOptions().GetIdentifier())}";
 
     public ulong FinalSeed => _shuffler.Seed;
 
@@ -65,6 +65,12 @@ public class ShufflerController
             ? $"Success! Published logs to {Logger.Instance.OutputFilePath}"
             : "Log output failed! Please check your file path and make sure you have write access.";
     }
+
+    public bool IsUsingYAML() => _shuffler.IsUsingYAML();
+
+    public string GetYAMLName() => _shuffler.GetYAMLName();
+
+    public string GetYAMLDescription() => _shuffler.GetYAMLDescription();
 
     public string GetEventWrites()
     {

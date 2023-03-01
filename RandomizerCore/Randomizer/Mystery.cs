@@ -100,7 +100,7 @@ internal static class Mystery
         return line + new string(' ', Math.Max(0, padding-line.Length)) + "# " + comment + Environment.NewLine;
     }
 
-    public static OptionList ParseYAML(string file, List<LogicOptionBase> baseOptions, Random random)
+    public static YAMLResult ParseYAML(string file, List<LogicOptionBase> baseOptions, Random random)
     {
         OptionList newOptions = new OptionList(baseOptions.Count);
         var optionMap = new Dictionary<string, LogicOptionBase>(baseOptions.Count);
@@ -109,15 +109,15 @@ internal static class Mystery
             var option = (LogicOptionBase) setting.Clone();
             option.Reset();
             newOptions.Add(option);
-            optionMap.Add(option.Name,option);
+            optionMap.Add(option.Name, option);
         }
         var deserializer = new DeserializerBuilder().WithNamingConvention(CamelCaseNamingConvention.Instance).Build();
         var weights = deserializer.Deserialize<MysteryWeights>(file);
         HandleWeights(weights, optionMap, random);
-        return newOptions;
+        return new YAMLResult(newOptions, weights.Name ?? "(No name set)", weights.Description ?? "(No description set)");
     }
 
-    private static void HandleWeights(MysteryWeights weights, Dictionary<string,LogicOptionBase> optionMap, Random random)
+    private static void HandleWeights(MysteryWeights weights, Dictionary<string, LogicOptionBase> optionMap, Random random)
     {
         if (weights.Settings != null)
         {
