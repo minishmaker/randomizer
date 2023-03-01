@@ -49,7 +49,7 @@ public static class CommandFileParser
                     GenericCommands.SavePatch(inputs[1]);
                     break;
                 case "GetSettingString":
-                    GenericCommands.GetSettingString();
+                    GenericCommands.GetSelectedSettingString();
                     break;
                 case "Rem":
                     Console.WriteLine($"Commented out line {input}");

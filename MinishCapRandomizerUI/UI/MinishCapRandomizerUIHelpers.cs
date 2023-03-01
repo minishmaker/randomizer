@@ -157,7 +157,7 @@ Generating seeds with this shuffler may freeze the randomizer application for ma
 					_settingPresets = new SettingPresets();
 				}
 
-				var checksum = _shufflerController.GetSettingsChecksum();
+		        var checksum = _shufflerController.GetSelectedOptions().OnlyLogic().GetCrc32();
 
 				if (_settingPresets.SettingsPresets.TryGetValue(checksum, out var settingsPresets) && settingsPresets.Any())
 				{
@@ -165,7 +165,7 @@ Generating seeds with this shuffler may freeze the randomizer application for ma
 					SettingPresets.SelectedIndex = 0;
 				};
 
-				checksum = _shufflerController.GetCosmeticsChecksum();
+				checksum = _shufflerController.GetSelectedOptions().OnlyCosmetic().GetCrc32();
 
 				if (_settingPresets.CosmeticsPresets.TryGetValue(checksum, out var cosmeticsPresets) && cosmeticsPresets.Any())
 				{
@@ -295,8 +295,8 @@ Generating seeds with this shuffler may freeze the randomizer application for ma
 			RandomizationAttempts.Text = $"{_configuration.MaximumRandomizationRetryCount}";
 			UseSphereBasedShuffler.Checked = _configuration.UseHendrusShuffler;
 
-			_defaultSettings = _shufflerController.GetSettingsString();
-			_defaultCosmetics = _shufflerController.GetCosmeticsString();
+			_defaultSettings = _shufflerController.GetSelectedSettingsString();
+			_defaultCosmetics = _shufflerController.GetSelectedCosmeticsString();
 
 			_shufflerController.SetRandomizationSeed(seed);
 
@@ -313,7 +313,7 @@ Generating seeds with this shuffler may freeze the randomizer application for ma
 			if (_randomizedRomCreated)
 				TabPane.TabPages.Add(SeedOutput);
 
-			var options = _shufflerController.GetLogicOptions();
+			var options = _shufflerController.GetSelectedOptions();
 			var wrappedOptions = WrappedLogicOptionFactory.BuildGenericWrappedLogicOptions(options);
 			var pages = wrappedOptions.GroupBy(option => option.Page);
 
@@ -331,14 +331,14 @@ Generating seeds with this shuffler may freeze the randomizer application for ma
 			InputSeedLabel.Text = Seed.Text;
 			OutputSeedLabel.Text = @$"{_shufflerController.FinalSeed:X}";
 
-			var settingsString = _shufflerController.GetSettingsString();
-			var cosmeticsString = _shufflerController.GetCosmeticsString();
+			var settingsString = _shufflerController.GetSelectedSettingsString();//Not taking Mystery into account yet
+			var cosmeticsString = _shufflerController.GetSelectedCosmeticsString();
 
-			SettingNameLabel.Text = _settingPresets.SettingsPresets.TryGetValue(_shufflerController.GetSettingsChecksum(), out var settingsPresets) &&
+			SettingNameLabel.Text = _settingPresets.SettingsPresets.TryGetValue(_shufflerController.GetSelectedOptions().OnlyLogic().GetCrc32(), out var settingsPresets) &&
 				settingsPresets.Any(preset => preset.PresetString == settingsString) ?
 					settingsPresets.First(preset => preset.PresetString == settingsString).PresetName :
 					"Custom";
-			CosmeticNameLabel.Text = _settingPresets.CosmeticsPresets.TryGetValue(_shufflerController.GetCosmeticsChecksum(), out var cosmeticsPresets) &&
+			CosmeticNameLabel.Text = _settingPresets.CosmeticsPresets.TryGetValue(_shufflerController.GetSelectedOptions().OnlyCosmetic().GetCrc32(), out var cosmeticsPresets) &&
 				cosmeticsPresets.Any(preset => preset.PresetString == cosmeticsString) ?
 					cosmeticsPresets.First(preset => preset.PresetString == cosmeticsString).PresetName :
 					"Custom"; ;

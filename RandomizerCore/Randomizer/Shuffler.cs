@@ -21,7 +21,10 @@ namespace RandomizerCore.Randomizer;
 
 internal class Shuffler
 {
-	private string? YamlPath;
+    private OptionList Options;
+    private string YamlName;
+    private string YamlDescription;
+    private string? YamlPath;
 
     //Item lists are sorted in the order they are processed
     private readonly List<Item> _dungeonConstraints;
@@ -138,16 +141,22 @@ internal class Shuffler
         Logger.Instance.LogInfo($"Randomization seed set to {seed:X}");
     }
 
+    public bool IsUsingYAML() => string.IsNullOrEmpty(YamlPath);
+
+    public string GetYAMLDescription() => YamlDescription;
+
+    public string GetYAMLName() => YamlName;
+    
     public List<LogicOptionBase> GetSortedSettings()
     {
         return _logicParser.SubParser.GetSortedSettings();
     }
-
+    
     public List<LogicOptionBase> GetSortedCosmetics()
     {
         return _logicParser.SubParser.GetSortedCosmetics();
     }
-
+    
     public uint GetLogicOptionsCrc32()
     {
         return _logicParser.SubParser.GetLogicOptionsCrc32();
@@ -158,9 +167,19 @@ internal class Shuffler
         return _logicParser.SubParser.GetCosmeticOptionsCrc32();
     }
 
+    public OptionList GetSelectedOptions()
+    {
+        return new OptionList(_logicParser.SubParser.Options);
+    }
+    
     public List<LogicOptionBase> GetOptions()
     {
         return _logicParser.SubParser.Options;
+    }
+
+    public OptionList GetFinalOptions()
+    {
+        return Options;
     }
 
     public uint GetSettingHash()
@@ -230,11 +249,21 @@ internal class Shuffler
         YamlPath = yamlFile;
         _logicPath = logicFile;
 
+        if (string.IsNullOrEmpty(yamlFile))
+        {
+            Options = new OptionList(GetSelectedOptions());
+        }
+        else
+        {
+            Options = Mystery.ParseYAML(File.ReadAllText(yamlFile), GetSelectedOptions(), new Random(Seed));
+            //Get name and description
+        }
+
         // Reset everything to allow rerandomization
         ClearLogic();
 
 		// Set option defines
-		_logicParser.SubParser.AddOptions(string.IsNullOrEmpty(yamlFile) ? null : Mystery.ParseYAML(File.ReadAllText(yamlFile), GetOptions(), new Random(Seed)));
+		_logicParser.SubParser.AddOptions(Options);
 
         string[] locationStrings;
 
@@ -546,7 +575,8 @@ internal class Shuffler
 
         var diff = DateTime.Now - time;
         Logger.Instance.BeginLogTransaction();
-        Logger.Instance.LogInfo($"Timing Benchmark - Shuffling with seed {Seed:X} and settings {MinifiedSettings.GenerateSettingsString(GetSortedSettings(), GetLogicOptionsCrc32())} took {diff.Seconds}.{diff.Milliseconds} seconds!");
+        var logicSettings = GetFinalOptions().OnlyLogic();
+        Logger.Instance.LogInfo($"Timing Benchmark - Shuffling with seed {Seed:X} and settings {MinifiedSettings.GenerateSettingsString(logicSettings.GetSorted(), logicSettings.GetCrc32())} took {diff.Seconds}.{diff.Milliseconds} seconds!");
         Logger.Instance.SaveLogTransaction(true);
         
         _randomized = true;
@@ -1197,8 +1227,9 @@ internal class Shuffler
         spoilerBuilder.AppendLine($"Seed: {Seed:X}");
         spoilerBuilder.AppendLine(
             $"Version: {ShufflerController.VersionIdentifier} {ShufflerController.RevisionIdentifier}");
+        var logicSettings = GetFinalOptions().OnlyLogic();
         spoilerBuilder.AppendLine(
-            $"Settings String: {MinifiedSettings.GenerateSettingsString(GetSortedSettings(), GetLogicOptionsCrc32())}");
+            $"Settings String: {MinifiedSettings.GenerateSettingsString(logicSettings.GetSorted(), logicSettings.GetCrc32())}");
 
         spoilerBuilder.AppendLine();
         AppendLocationSpoiler(spoilerBuilder);
@@ -1496,7 +1527,7 @@ internal class Shuffler
         var crc = (int)CrcUtil.Crc32(seedValues, 8);
 
         eventBuilder.AppendLine("#define seedHashed 0x" + StringUtil.AsStringHex8(crc));
-        eventBuilder.AppendLine("#define settingHash 0x" + StringUtil.AsStringHex8((int)GetSettingHash()));
+        eventBuilder.AppendLine("#define settingHash 0x" + StringUtil.AsStringHex8((int)GetFinalOptions().OnlyLogic().GetHash()));
 
         return eventBuilder.ToString();
     }

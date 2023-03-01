@@ -37,7 +37,7 @@ public class ShufflerController
     public static string RevisionIdentifier => "Pre-release";
 
     public string SeedFilename =>
-        $"Minish Randomizer-{_shuffler.Seed:X}-{_shuffler.Version}-{_shuffler.GetOptionsIdentifier()}";
+        $"Minish Randomizer-{_shuffler.Seed:X}-{_shuffler.Version}-{_shuffler.IsUsingYAML() ? _shuffler.GetYAMLName() : _shuffler.GetSelectedOptions().GetIdentifier()}";
 
     public ulong FinalSeed => _shuffler.Seed;
 
@@ -75,8 +75,8 @@ public class ShufflerController
     {
         try
         {
-            MinifiedSettings.GenerateSettingsFromBase64String(settingString, _shuffler.GetSortedSettings(),
-                _shuffler.GetLogicOptionsCrc32());
+            MinifiedSettings.GenerateSettingsFromBase64String(settingString, _shuffler.GetSelectedOptions().OnlyLogic().GetSorted(),
+                _shuffler.GetSelectedOptions().OnlyLogic().GetCrc32());
 
             return new ShufflerControllerResult { WasSuccessful = true };
         }
@@ -97,8 +97,8 @@ public class ShufflerController
     {
         try
         {
-            MinifiedSettings.GenerateSettingsFromBase64String(settingString, _shuffler.GetSortedCosmetics(),
-                _shuffler.GetCosmeticOptionsCrc32());
+            MinifiedSettings.GenerateSettingsFromBase64String(settingString, _shuffler.GetSelectedOptions().OnlyCosmetic().GetSorted(),
+                _shuffler.GetSelectedOptions().OnlyCosmetic().GetCrc32());
 
             return new ShufflerControllerResult { WasSuccessful = true };
         }
@@ -115,15 +115,28 @@ public class ShufflerController
         }
     }
 
-    public string GetSettingsString()
+    public string GetSelectedSettingsString()
     {
-        return MinifiedSettings.GenerateSettingsString(_shuffler.GetSortedSettings(), _shuffler.GetLogicOptionsCrc32());
+        return MinifiedSettings.GenerateSettingsString(_shuffler.GetSelectedOptions().OnlyLogic().GetSorted(),
+            _shuffler.GetSelectedOptions().OnlyLogic().GetCrc32());
     }
 
-    public string GetCosmeticsString()
+    public string GetSelectedCosmeticsString()
     {
-        return MinifiedSettings.GenerateSettingsString(_shuffler.GetSortedCosmetics(),
-            _shuffler.GetCosmeticOptionsCrc32());
+        return MinifiedSettings.GenerateSettingsString(_shuffler.GetSelectedOptions().OnlyCosmetic().GetSorted(),
+            _shuffler.GetSelectedOptions().OnlyCosmetic().GetCrc32());
+    }
+
+    public string GetFinalSettingsString()
+    {
+        return MinifiedSettings.GenerateSettingsString(_shuffler.GetFinalOptions().OnlyLogic().GetSorted(),
+            _shuffler.GetFinalOptions().OnlyLogic().GetCrc32());
+    }
+
+    public string GetFinalCosmeticsString()
+    {
+        return MinifiedSettings.GenerateSettingsString(_shuffler.GetFinalOptions().OnlyCosmetic().GetSorted(),
+            _shuffler.GetFinalOptions().OnlyCosmetic().GetCrc32());
     }
 
     public ShufflerControllerResult LoadRom(string filename)
@@ -169,9 +182,14 @@ public class ShufflerController
         _shuffler.SetSeed(seed);
     }
 
-    public List<LogicOptionBase> GetLogicOptions()
+    public OptionList GetSelectedOptions()
     {
-        return _shuffler.GetOptions();
+        return _shuffler.GetSelectedOptions();
+    }
+
+    public OptionList GetFinalOptions()
+    {
+        return _shuffler.GetFinalOptions();
     }
 
     public ShufflerControllerResult LoadLogicFile(string? filename = null)
@@ -485,7 +503,7 @@ public class ShufflerController
         }
         try
         {
-			File.WriteAllText(filepath, Mystery.CreateYAML(name, null, GetLogicOptions(), mystery));
+			File.WriteAllText(filepath, Mystery.CreateYAML(name, null, GetSelectedOptions(), mystery));
 			return new ShufflerControllerResult { WasSuccessful = true };
         }
         catch (Exception e)

@@ -150,7 +150,7 @@ Strict              Toggle strict mode (exit after error)
 
     private static void GetSettingString()
     {
-        GenericCommands.GetSettingString();
+        GenericCommands.GetSelectedSettingString();
     }
 
     private static void PatchRom()
