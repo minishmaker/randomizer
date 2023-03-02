@@ -530,26 +530,40 @@
 !endif
 
 !ifdef - CRENEL_CREST
-	!eventdefine - crenelCrest
+	!eventdefine - crenelCrest - 0x01
+!else
+	!eventdefine - crenelCrest - 0x00
 !endif
 !ifdef - FALLS_CREST
-	!eventdefine - fallsCrest
+	!eventdefine - fallsCrest - 0x02
+!else
+	!eventdefine - fallsCrest - 0x00
 !endif
 !ifdef - CLOUD_CREST
-	!eventdefine - cloudCrest
+	!eventdefine - cloudCrest - 0x04
+!else
+	!eventdefine - cloudCrest - 0x00
 !endif
 !ifdef - TOWN_CREST
-	!eventdefine - townCrest
+	!eventdefine - townCrest - 0x08
+!else
+	!eventdefine - townCrest - 0x00
 !endif
-!eventdefine - lakeCrest
+!eventdefine - lakeCrest - 0x10 #gets forced in game anyway, can't overide
 !ifdef - SWAMP_CREST
-	!eventdefine - swampCrest
+	!eventdefine - swampCrest - 0x20
+!else
+	!eventdefine - swampCrest - 0x00
 !endif
 !ifdef - SHF_CREST
-	!eventdefine - southCrest
+	!eventdefine - southCrest - 0x40
+!else
+	!eventdefine - southCrest - 0x00
 !endif
 !ifdef - MINISH_CREST
-	!eventdefine - minishCrest
+	!eventdefine - minishCrest - 0x80
+!else
+	!eventdefine - minishCrest - 0x00
 !endif
 
 !ifdef - DWS_BLUEWARP
@@ -596,6 +610,8 @@
 	!eventdefine - goldTornado								# sets the tornado in cloud tops as spawned, shares an address with Graveyard Key stages
 	!eventdefine - mCA7 - 0xD1								# sets the wind tribe state to access higher floors, also sets tingle bros as spawned
 	!eventdefine - mCBF - 0x40								# visually destroys the stone block at the Castor Wilds statues
+	!eventdefine - goldWindTribe							# sets the wind tribe state to access higher floors, also sets tingle bros as spawned
+	!eventdefine - goldSwampBlock							# visually destroys the stone block at the Castor Wilds statues
 !else
 	!eventdefine - mCA7 - 0xD0								# windtribe is default, tingle bros set as spawned
 	!eventdefine - mCBF - 0x00								# stone block at the Castor Wilds statues not destroyed
@@ -608,13 +624,15 @@
 !endif
 
 !ifdef - OPEN_RED_FUSIONS
-	!eventdefine - noRedFusions			# if defined, red kinstone fusions are not available
+	!eventdefine - noRedFusions		# if defined, red kinstone fusions are not available
 	!eventdefine - mC83 - 0xFF			# sets various red fusions
 	!eventdefine - mC84 - 0xFF			# sets various red fusions
+	!eventdefine - redCrenelBeanstalk
+	!eventdefine - redRuinsBeanstalk
 !else
 	!ifdef - NO_RED_FUSIONS
 		!eventdefine - noRedFusions		# if defined, red kinstone fusions are not available
-		!undefine - GOLDEN_ENEMY_RED	# removes the golden enemy spawned by the red fusion from logic
+		!undefine - GOLDEN_ENEMY_RED		# removes the golden enemy spawned by the red fusion from logic
 	!endif
 	!eventdefine - mC83 - 0x00
 	!eventdefine - mC84 - 0x00
@@ -624,6 +642,9 @@
 	!eventdefine - noBlueFusions
 	!eventdefine - mC86 - 0xFF
 	!eventdefine - mCD2 - 0x03
+	!eventdefine - blueHyliaBeanstalk
+	!eventdefine - blueHillsBeanstalk
+	!eventdefine - blueWoodsBeanstalk
 !else
 	!ifdef - NO_BLUE_FUSIONS
 		!eventdefine - noBlueFusions	# if defined, blue kinstone fusions are not available

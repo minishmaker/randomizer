@@ -13,6 +13,7 @@ newGameTable:
 //WORD source destination ammountofbytes
 POIN elements;		WORD 0x2002A60 1
 POIN map;			WORD 0x2002A80 3
+POIN windCrest;		WORD 0x2002A83 1
 POIN spawnPoint;	WORD 0x2002AC8 8
 POIN worldmap;		WORD 0x2002ADC 4
 POIN canOpenMenu;	WORD 0x2002B32 1
@@ -42,48 +43,47 @@ POIN startingFlags;	WORD 0x2002C9C 308
 	POIN DEBUGSTUFF;	WORD 0x2002AE8 7
 	POIN DEBUGWIND;		WORD 0x2002A83 1
 #endif
-#ifdef timedohkoClock
-	POIN timedohkoStartingTime;	WORD 0x203FFE0 4
-#endif
 #ifdef disableKinstoneDrops
 	POIN disableKinstones;		WORD 0x2002B56 1
 #endif
 #ifdef disableShellDrops
 	POIN disableShells;			WORD 0x2002AFB 1
 #endif
+#ifdef timedohkoClock
+	POIN timedohkoStartingTime;	WORD 0x203FFE0 4
+#endif
 WORD 0 0 0 //terminator
 
 ALIGN 4
 newGameOrTable:
-#ifdef crenelCrest
-	POIN windCrestCrenel;	WORD 0x2002A83 1
-#endif
-#ifdef fallsCrest
-	POIN windCrestFalls;	WORD 0x2002A83 1
-#endif
-#ifdef cloudCrest
-	POIN windCrestCloud;	WORD 0x2002A83 1
-#endif
-#ifdef townCrest
-	POIN windCrestTown;		WORD 0x2002A83 1
-#endif
-#ifdef lakeCrest
-	POIN windCrestLake;		WORD 0x2002A83 1
-#endif
-#ifdef swampCrest
-	POIN windCrestSwamp;	WORD 0x2002A83 1
-#endif
-#ifdef southCrest
-	POIN windCrestSouth;	WORD 0x2002A83 1
-#endif
-#ifdef minishCrest
-	POIN windCrestMinish;	WORD 0x2002A83 1
-#endif
 
+	POIN cuccoGame;		WORD 0x2002CA5 1
+	
 #ifdef goldTornado
-	POIN tornadoGold;	WORD 0x2002CA0 1
+	POIN tornadoGold;			WORD 0x2002CA0 1
 #endif
-
+#ifdef goldWindTribe
+	POIN windTribeGold;			WORD 0x2002CA7 1
+#endif
+#ifdef goldSwampBlock
+	POIN swampBlockGold;		WORD 0x2002CBF 1
+#endif
+#ifdef redCrenelBeanstalk
+	POIN crenelBeanstalkRed;	WORD 0x2002CD1 1
+#endif
+#ifdef redRuinsBeanstalk
+	POIN ruinsBeanstalkRed;		WORD 0x2002CD1 1
+#endif
+#ifdef blueHyliaBeanstalk
+	POIN hyliaBeanstalkBlue;	WORD 0x2002CD1 1
+#endif
+#ifdef blueHillsBeanstalk
+	POIN hillsBeanstalkBlue;	WORD 0x2002CD2 1
+#endif
+#ifdef blueWoodsBeanstalk
+	POIN woodsBeanstalkBlue;	WORD 0x2002CD2 1
+#endif
+//POIN gibdosCrypt;	WORD 0x2002CFF 1 // 0x02
 #ifdef cryptSecondKeyBlock
 	POIN secondKeyBlockCrypt;	WORD 0x2002D00 1
 #endif
@@ -93,6 +93,7 @@ newGameOrTable:
 #ifdef cryptLockedDoor
 	POIN lockedDoorCrypt;		WORD 0x2002D12 1
 #endif
+//
 #ifdef dwsMadderpillarDoor
 	POIN madderpillarDoorDWS;		WORD 0x2002D3F 1
 #endif
@@ -235,6 +236,7 @@ newGameOrTable:
 #ifdef dhcRedPortal
 	POIN redPortalDHC;			WORD 0x2002EC2 1
 #endif
+
 WORD 0 0 0 //terminator
 
 ALIGN 4
@@ -259,29 +261,8 @@ BYTE 0x22 /*area*/ 0x15 /*room*/ 4 /*facing direction*/ 0 /*transition type*/; S
 canOpenMenu:
 BYTE 1
 
-windCrestCrenel:
-BYTE 0x01
-
-windCrestFalls:
-BYTE 0x02
-
-windCrestCloud:
-BYTE 0x04
-
-windCrestTown:
-BYTE 0x08
-	
-windCrestLake:
-BYTE 0x10
-
-windCrestSwamp:
-BYTE 0x20
-
-windCrestSouth:
-BYTE 0x40
-
-windCrestMinish:
-BYTE 0x80
+windCrest:
+BYTE (crenelCrest | fallsCrest | cloudCrest | townCrest | lakeCrest | swampCrest | southCrest | minishCrest)
 	
 haveMap:
 BYTE 0x40
@@ -335,6 +316,27 @@ BYTE 0x16
 //Other Fusion flags
 tornadoGold:
 BYTE 0x10
+
+windTribeGold:
+BYTE 0x01
+
+swampBlockGold:
+BYTE 0x40
+
+crenelBeanstalkRed:
+BYTE 0x20
+
+ruinsBeanstalkRed:
+BYTE 0x80
+
+hyliaBeanstalkBlue:
+BYTE 0x40
+
+hillsBeanstalkBlue:
+BYTE 0x01
+
+woodsBeanstalkBlue:
+BYTE 0x02
 
 //Key doors/blocks
 secondKeyBlockCrypt:
