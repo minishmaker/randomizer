@@ -632,13 +632,9 @@
 	!eventdefine - noGoldFusions							# if defined, golden kinstone fusions are not available (except the cloud fusions which is handled below)
 	!eventdefine - mC81 - 0xFE								# sets all the cloud tops fusions, as well as the left and middle swamp fusions (the right swamp and falls fusions share an address with red fusions)
 	!eventdefine - goldTornado								# sets the tornado in cloud tops as spawned, shares an address with Graveyard Key stages
-	!eventdefine - mCA7 - 0xD1								# sets the wind tribe state to access higher floors, also sets tingle bros as spawned
-	!eventdefine - mCBF - 0x40								# visually destroys the stone block at the Castor Wilds statues
 	!eventdefine - goldWindTribe							# sets the wind tribe state to access higher floors, also sets tingle bros as spawned
 	!eventdefine - goldSwampBlock							# visually destroys the stone block at the Castor Wilds statues
 !else
-	!eventdefine - mCA7 - 0xD0								# windtribe is default, tingle bros set as spawned
-	!eventdefine - mCBF - 0x00								# stone block at the Castor Wilds statues not destroyed
 	!ifdef - NO_GOLD_FUSIONS
 		!eventdefine - noGoldFusions						# if defined, golden kinstone fusions are not available (except the cloud fusions which is handled below)
 		!eventdefine - mC81 - 0x3E							# marks the cloud tops clouds as having fused so they never offer a fusion, this address doesn't spawn the tornado
@@ -665,7 +661,6 @@
 !ifdef - OPEN_BLUE_FUSIONS
 	!eventdefine - noBlueFusions
 	!eventdefine - mC86 - 0xFF
-	!eventdefine - mCD2 - 0x03
 	!eventdefine - blueHyliaBeanstalk
 	!eventdefine - blueHillsBeanstalk
 	!eventdefine - blueWoodsBeanstalk
@@ -674,7 +669,6 @@
 		!eventdefine - noBlueFusions	# if defined, blue kinstone fusions are not available
 	!endif
 	!eventdefine - mC86 - 0x00
-	!eventdefine - mCD2 - 0x00
 !endif
 
 !ifdef - OPEN_GREEN_FUSIONS
@@ -716,18 +710,14 @@
 !ifdef - OPEN_RED_FUSIONS
 	!ifdef - OPEN_BLUE_FUSIONS
 		!eventdefine - mC85 - 0xFF
-		!eventdefine - mCD1 - 0xE0
 	!else
 		!eventdefine - mC85 - 0x03
-		!eventdefine - mCD1 - 0xA0
 	!endif
 !else
 	!ifdef - OPEN_BLUE_FUSIONS
 		!eventdefine - mC85 - 0xFC
-		!eventdefine - mCD1 - 0x40
 	!else
 		!eventdefine - mC85 - 0x00
-		!eventdefine - mCD1 - 0x00
 	!endif
 !endif
 
@@ -5281,7 +5271,6 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 !endif
 
 !ifdef - CUCCO_0
-    !eventdefine - cuccoSkippedLevels - 9
     !eventdefine - cuccoHeartPieceFlag - 1
 	!define - CUCCO1 - Inaccessible
 	!define - CUCCO2 - Inaccessible
@@ -5299,7 +5288,6 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 	!endif
 !endif
 !ifdef - CUCCO_1
-    !eventdefine - cuccoSkippedLevels - 9
 	!define - CUCCO1 - Inaccessible
 	!define - CUCCO2 - Inaccessible
 	!define - CUCCO3 - Inaccessible
