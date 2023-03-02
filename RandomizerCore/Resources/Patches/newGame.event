@@ -23,6 +23,7 @@ POIN fastItems;		WORD 0x2002B46 5
 POIN kinstoneBag;	WORD 0x2002B4B 1
 POIN fusionFlags;	WORD 0x2002C81 13
 POIN startingFlags;	WORD 0x2002C9C 308
+POIN dungeonPortal;	WORD 0x2002EBD 6
 #ifndef requirementFigurinesAmount
 	POIN figurines;		WORD 0x2002B0E 18
 #endif
@@ -191,50 +192,20 @@ newGameOrTable:
 	POIN bigDoorDHC;					WORD 0x2002DBE 1
 #endif
 
-#ifdef dwsBluePortal
-	POIN bluePortalDWS;			WORD 0x2002EBD 1
-	POIN bluePortalSwitchDWS;	WORD 0x2002D3F 1
-	POIN bluePortalSwitch2DWS;	WORD 0x2002D46 1
-#endif
-#ifdef dwsRedPortal
-	POIN redPortalDWS;			WORD 0x2002EBD 1
-	POIN redPortalSwitchDWS;	WORD 0x2002D43 1
-#endif
-#ifdef cofBluePortal
-	POIN bluePortalCOF;			WORD 0x2002EBE 1
-	POIN bluePortalSwitchCOF;	WORD 0x2002D5B 1
-	POIN bluePortalSwitch2COF;	WORD 0x2002D56 1
-#endif
-#ifdef cofRedPortal
-	POIN redPortalCOF;			WORD 0x2002EBE 1
-	POIN redPortalSwitchCOF;	WORD 0x2002D5A 1
-#endif
-#ifdef fowBluePortal
-	POIN bluePortalFOW;			WORD 0x2002EBF 1
-#endif
-#ifdef fowRedPortal
-	POIN redPortalFOW;			WORD 0x2002EBF 1
-	POIN redPortalSwitchFOW;	WORD 0x2002D70 1
-#endif
-#ifdef todBluePortal
-	POIN bluePortalTOD;			WORD 0x2002EC0 1
-#endif
-#ifdef todRedPortal
-	POIN redPortalTOD;			WORD 0x2002EC0 1
-	POIN redPortalSwitchTOD;	WORD 0x2002D92 1
-#endif
-#ifdef powBluePortal
-	POIN bluePortalPOW;			WORD 0x2002EC1 1
-#endif
-#ifdef powRedPortal
-	POIN redPortalPOW;			WORD 0x2002EC1 1
-	POIN redPortalSwitchPOW;	WORD 0x2002DAC 1
-#endif
-#ifdef dhcBluePortal
-	POIN bluePortalDHC;			WORD 0x2002EC2 1
-#endif
-#ifdef dhcRedPortal
-	POIN redPortalDHC;			WORD 0x2002EC2 1
+POIN bluePortalSwitchDWS;	WORD 0x2002D3F 1
+POIN redPortalSwitchDWS;	WORD 0x2002D43 1
+POIN bluePortalSwitch2DWS;	WORD 0x2002D46 1
+POIN bluePortalSwitch2COF;	WORD 0x2002D56 1
+POIN bluePortalSwitchCOF;	WORD 0x2002D5B 1
+POIN redPortalSwitchCOF;	WORD 0x2002D5A 1
+POIN redPortalSwitchFOW;	WORD 0x2002D70 1
+POIN redPortalSwitchTOD;	WORD 0x2002D92 1
+POIN redPortalSwitch2POW;	WORD 0x2002DA5 1
+POIN redPortalSwitchPOW;	WORD 0x2002DAC 1
+POIN dhcRemovedDoor;	WORD 0x2002DC1 1
+
+#ifdef openWorld
+	POIN worldOpen;	WORD 0x2002C9C 308
 #endif
 
 WORD 0 0 0 //terminator
@@ -445,68 +416,39 @@ bigDoorDHC:
 BYTE 0x20
 
 //Dungeon Portals
-bluePortalDWS:
-BYTE 0x01
 
 bluePortalSwitchDWS:
-BYTE 0x20
+BYTE (dwsBluePortal << 5)
 
 bluePortalSwitch2DWS:
-BYTE 0x10
-
-redPortalDWS:
-BYTE 0x02
+BYTE (dwsBluePortal << 4)
 
 redPortalSwitchDWS:
-BYTE 0x40
-
-bluePortalCOF:
-BYTE 0x01
+BYTE (dwsRedPortal << 5)
 
 bluePortalSwitchCOF:
-BYTE 0x08
+BYTE (cofBluePortal << 3)
 
 bluePortalSwitch2COF:
-BYTE 0x20
-
-redPortalCOF:
-BYTE 0x02
+BYTE (cofBluePortal << 5)
 
 redPortalSwitchCOF:
-BYTE 0x20
-
-bluePortalFOW:
-BYTE 0x01
-
-redPortalFOW:
-BYTE 0x02
+BYTE (cofRedPortal << 4)
 
 redPortalSwitchFOW:
-BYTE 0x20
-
-bluePortalTOD:
-BYTE 0x01
-
-redPortalTOD:
-BYTE 0x02
+BYTE (fowRedPortal << 4)
 
 redPortalSwitchTOD:
-BYTE 0x01
-
-bluePortalPOW:
-BYTE 0x01
-
-redPortalPOW:
-BYTE 0x02
+BYTE (todRedPortal >> 1)
 
 redPortalSwitchPOW:
-BYTE 0x40
+BYTE (powRedPortal << 5)
 
-bluePortalDHC:
-BYTE 0x01
+redPortalSwitch2POW:
+BYTE ( (powRedPortal << 5) | (powRedPortal << 4) )
 
-redPortalDHC:
-BYTE 0x02
+dungeonPortal:
+BYTE (dwsBluePortal | dwsRedPortal) (cofBluePortal | cofRedPortal) (fowBluePortal | fowRedPortal) (todBluePortal | todRedPortal) (powBluePortal | powRedPortal) (dhcBluePortal | dhcRedPortal) 
 
 // Set flags for Cucco Minigame
 #ifndef cuccoSkippedLevels

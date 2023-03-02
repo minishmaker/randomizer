@@ -567,40 +567,64 @@
 !endif
 
 !ifdef - DWS_BLUEWARP
-	!eventdefine - dwsBluePortal
+	!eventdefine - dwsBluePortal - 0x01
+!else
+	!eventdefine - dwsBluePortal - 0x00
 !endif
 !ifdef - DWS_REDWARP
-	!eventdefine - dwsRedPortal
+	!eventdefine - dwsRedPortal - 0x02
+!else
+	!eventdefine - dwsRedPortal - 0x00
 !endif
 !ifdef - COF_BLUEWARP
-	!eventdefine - cofBluePortal
+	!eventdefine - cofBluePortal - 0x01
+!else
+	!eventdefine - cofBluePortal - 0x00
 !endif
 !ifdef - COF_REDWARP
-	!eventdefine - cofRedPortal
+	!eventdefine - cofRedPortal - 0x02
+!else
+	!eventdefine - cofRedPortal - 0x00
 !endif
 !ifdef - FOW_BLUEWARP
-	!eventdefine - fowBluePortal
+	!eventdefine - fowBluePortal - 0x01
+!else
+	!eventdefine - fowBluePortal - 0x00
 !endif
 !ifdef - FOW_REDWARP
-	!eventdefine - fowRedPortal
+	!eventdefine - fowRedPortal - 0x02
+!else
+	!eventdefine - fowRedPortal - 0x00
 !endif
 !ifdef - TOD_BLUEWARP
-	!eventdefine - todBluePortal
+	!eventdefine - todBluePortal - 0x01
+!else
+	!eventdefine - todBluePortal - 0x00
 !endif
 !ifdef - TOD_REDWARP
-	!eventdefine - todRedPortal
+	!eventdefine - todRedPortal - 0x02
+!else
+	!eventdefine - todRedPortal - 0x00
 !endif
 !ifdef - POW_BLUEWARP
-	!eventdefine - powBluePortal
+	!eventdefine - powBluePortal - 0x01
+!else
+	!eventdefine - powBluePortal - 0x00
 !endif
 !ifdef - POW_REDWARP
-	!eventdefine - powRedPortal
+	!eventdefine - powRedPortal - 0x02
+!else
+	!eventdefine - powRedPortal - 0x00
 !endif
 !ifdef - DHC_BLUEWARP
-	!eventdefine - dhcBluePortal
+	!eventdefine - dhcBluePortal - 0x01
+!else
+	!eventdefine - dhcBluePortal - 0x00
 !endif
 !ifdef - DHC_REDWARP
-	!eventdefine - dhcRedPortal
+	!eventdefine - dhcRedPortal - 0x02
+!else
+	!eventdefine - dhcRedPortal - 0x00
 !endif
 
 # This section defines values used by the patcher, this sets if and which fusions should be available
