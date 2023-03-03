@@ -116,17 +116,22 @@ public class ShufflerController
         }
     }
 
-    public ShufflerControllerResult LoadSettingsFromYAML(string filepath, bool logicSettings)
+    public ShufflerControllerResult LoadSettingsFromYAML(string filepath, bool logicSettings, bool cosmeticSettings)
     {
         try
         {
             var currentOptions = Shuffler.GetSelectedOptions();
-            var result = Mystery.ParseYAML(File.ReadAllText(filepath), logicSettings ? currentOptions.OnlyLogic() : currentOptions.OnlyCosmetic(), new Random());
+            var affectedOptions = currentOptions;
+            if (!cosmeticSettings)
+                affectedOptions = affectedOptions.OnlyLogic();
+            if (!logicSettings)
+                affectedOptions = affectedOptions.OnlyCosmetic();
+            var result = Mystery.ParseYAML(File.ReadAllText(filepath), affectedOptions, new Random());
             var j = 0;
 
             for (var i = 0; i < currentOptions.Count; i++)
             {
-                if (currentOptions[i].Type == (logicSettings ? LogicOptionType.Setting : LogicOptionType.Cosmetic))
+                if (currentOptions[i].Type == LogicOptionType.Setting ? logicSettings : cosmeticSettings)
                 {
                     if (currentOptions[i].Name != result.Options[j].Name)
                         throw new Exception($"You shouldn't be seeing this, but if you are it means applying the options loaded from a YAML failed. Please report to the dev team. {currentOptions[i].Name} != {result.Options[j].Name}");

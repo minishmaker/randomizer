@@ -175,7 +175,8 @@ The commands supported by command files are as follows, with (option) used to de
 * ChangeSeed (R | S) [Seed] - If R is selected it will pick a random seed and ignore the seed parameter, if S is selected then seed is required and is used as the seed for randomization.
 * LoadLogic [PathToLogicFile] - If a path is specified it will load that logic file and update options. If no path is specified it will load the default logic file.
 * LoadPatch [PathToROMBuildfile] - If a path is specified it will load those patches. If no path is specified it will load the default patches.
-* LoadYAML [PathToYAMLFile] - If a path is specified it will load that YAML file to use as a Preset or Mystery weights. If no path is specified seed generation will use the loaded options instead.
+* UseYAML [PathToYAMLFile] - If a path is specified it will load that YAML file to use as a Preset or Mystery weights. If no path is specified seed generation will use the loaded options instead.
+* LoadYAML (PathToYAMLFile) (1 | 2 | 3) - Loads a YAML file to use as a Preset. This overwrites the currently loaded options.
 * LoadSettings (Setting String) - Loads the settings provided by the setting string into the randomizer.
 * Logging (1 | 2 | 3) [1 | 2 | PathToSaveLogs] - Sets one of the logging properties. Passing 1 as the first parameter sets the verbosity, in which case the second parameter needs to be either 1 (verbose) or 2 (only errors). Passing 2 as the first parameter sets the output file path, in which case the second parameter needs to be the path where you want to save the logs to. Passing 3 as the first parameter will publish the logs to the current output path, and does not take a second parameter.
 * Randomize (RetryCount) - Generates a seed. RetryCount is the maximum number of times we should attempt to generate a seed in the case of failure.
