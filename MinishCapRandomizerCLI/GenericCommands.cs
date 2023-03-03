@@ -456,7 +456,8 @@ internal static class GenericCommands
                 Console.WriteLine("1) Use Vanilla Color");
                 Console.WriteLine("2) Use Default Color");
                 Console.WriteLine("3) Use Random Color");
-                Console.WriteLine("4) Enter ARGB Color Code");
+                Console.WriteLine("4) Pick Random Color");
+                Console.WriteLine("5) Enter ARGB Color Code");
                 Console.Write("Enter the number of the option you want for the color picker: ");
                 var input = Console.ReadLine();
                 if (string.IsNullOrEmpty(input) || !int.TryParse(input, out var i) || i is < 1 or > 4)
@@ -472,19 +473,28 @@ internal static class GenericCommands
                 {
                     case 1:
                         colorPicker.Active = false;
+                        colorPicker.UseRandomColor = false;
                         Console.WriteLine("Color set successfully!");
                         break;
                     case 2:
                         colorPicker.Active = true;
+                        colorPicker.UseRandomColor = false;
                         colorPicker.DefinedColor = colorPicker.BaseColor;
                         Console.WriteLine("Color set successfully!");
                         break;
                     case 3:
                         colorPicker.Active = true;
+                        colorPicker.UseRandomColor = true;
                         colorPicker.PickRandomColor();
                         Console.WriteLine("Color set successfully!");
                         break;
                     case 4:
+                        colorPicker.Active = true;
+                        colorPicker.UseRandomColor = false;
+                        colorPicker.PickRandomColor();
+                        Console.WriteLine("Color set successfully!");
+                        break;
+                    case 5:
                         Console.Write("Please enter the ARGB color string you wish to use: ");
                         var argb = Console.ReadLine();
                         if (string.IsNullOrEmpty(argb) || !int.TryParse(argb, out var color))
@@ -497,6 +507,7 @@ internal static class GenericCommands
                         }
 
                         colorPicker.Active = true;
+                        colorPicker.UseRandomColor = false;
                         colorPicker.DefinedColor = Color.FromArgb(color);
                         Console.WriteLine("Color set successfully!");
                         break;
