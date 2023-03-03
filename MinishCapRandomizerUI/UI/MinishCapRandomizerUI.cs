@@ -434,17 +434,17 @@ public sealed partial class MinishCapRandomizerUI : Form
 	{
         var presets = _settingPresets.CosmeticsPresets;
 
-		if (!presets.Any(preset => preset == (string)SettingPresets.SelectedItem))
+		if (!presets.Any(preset => preset == (string)CosmeticsPresets.SelectedItem))
 		{
 			DisplayAlert("No preset matching the specified name could be found! Make sure you select a valid preset.", "Failed to Load Preset", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			return;
 		}
 
-        var result = _shufflerController.LoadSettingsFromYAML(presetPath + "Cosmetics" + Path.DirectorySeparatorChar + SettingPresets.SelectedItem + ".yaml", false, true);
+        var result = _shufflerController.LoadSettingsFromYAML(presetPath + "Cosmetics" + Path.DirectorySeparatorChar + CosmeticsPresets.SelectedItem + ".yaml", false, true);
 
         if (result)
         {
-            _recentCosmeticsPreset = (string)SettingPresets.SelectedItem;
+            _recentCosmeticsPreset = (string)CosmeticsPresets.SelectedItem;
             _recentCosmeticsPresetHash = _shufflerController.GetSelectedOptions().OnlyCosmetic().GetHash();
         }
 
@@ -495,8 +495,8 @@ public sealed partial class MinishCapRandomizerUI : Form
 
 				try
 				{
-					presets.Remove(presets.First(preset => preset == (string)SettingPresets.SelectedItem));
-                    File.Delete(presetPath + "Cosmetics" + Path.DirectorySeparatorChar + SettingPresets.SelectedItem + ".yaml");
+					presets.Remove(presets.First(preset => preset == (string)CosmeticsPresets.SelectedItem));
+                    File.Delete(presetPath + "Cosmetics" + Path.DirectorySeparatorChar + CosmeticsPresets.SelectedItem + ".yaml");
 
 					RemoveItemFromPresetsBox(CosmeticsPresets, (string)CosmeticsPresets.SelectedItem);
 					DisplayAlert("Preset deleted successfully!", "Preset deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
