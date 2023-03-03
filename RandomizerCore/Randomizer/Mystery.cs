@@ -229,7 +229,7 @@ internal static class Mystery
                             {
                                 colorPicker.Active = true;
                                 colorPicker.UseRandomColor = false;
-                                colorPicker.DefinedColor = Color.FromArgb(r, b, g);
+                                colorPicker.DefinedColor = Color.FromArgb(r, g, b);
                             }
                             else
                                 throw new Exception("Invalid value for Color option");
