@@ -38,8 +38,6 @@ public abstract class LogicOptionBase : ICloneable
     public string SettingPage { get; set; }
     public string DescriptionText { get; set; }
 
-    public abstract void Reset();
-
     public void NotifyObservers()
     {
         foreach (var observer in Observers) observer.NotifyObserver();
@@ -48,6 +46,13 @@ public abstract class LogicOptionBase : ICloneable
     public void RegisterObserver(ILogicOptionObserver observer)
     {
         Observers.Add(observer);
+    }
+
+    public abstract void Reset();
+
+    public virtual void CopyValueFrom(LogicOptionBase option)
+    {
+        Active = option.Active;
     }
 
     public abstract List<LogicDefine> GetLogicDefines();

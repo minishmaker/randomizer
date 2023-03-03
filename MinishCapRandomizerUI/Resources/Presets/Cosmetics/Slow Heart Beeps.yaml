@@ -1,0 +1,21 @@
+name: "Slow Heart Beeps"
+description: "(No description set)"
+settings:
+  ## Cosmetics:
+  #  Music & Sound Effects:
+  MUSIC_SETTING: VANILLA_MUSIC                    # Music
+  HEALTH_BEEP: 200                                # Low Health Beep
+  #  Text:
+  RANDOM_LANGUAGE: off                            # Randomize language
+  #  Hearts:
+  RAINBOW_HEARTS: off                             # Rainbow Hearts
+  HEART_COLOR: 248 80 16                          # Heart Color
+  #  Tunic:
+  TUNIC_COLOR: 16 248 8                           # Tunic Color
+  #  Split Bar:
+  SPLIT_COLOR: 72 248 24                          # Split Bar Color
+  #  Follower:
+  FOLLOWER_SETTING: NOFOLLOWER                    # Follower
+  #  Don't do this:
+  FUZZY_SETTING: NOFUZZ                           # Nausia rating
+subweights: {}

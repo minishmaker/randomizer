@@ -31,6 +31,12 @@ public class LogicDropdown : LogicOptionBase
         Selection = Selections.Keys.ToList()[Selections.Values.ToList().IndexOf(DefaultSelection)];
     }
 
+    public override void CopyValueFrom(LogicOptionBase option)
+    {
+        base.CopyValueFrom(option);
+        Selection = ((LogicDropdown)option).Selection;
+    }
+
     public string Selection { get; set; }
     public string DefaultSelection { get; }
     public Dictionary<string, string> Selections { get; }

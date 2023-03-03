@@ -143,33 +143,23 @@ Generating seeds with this shuffler may freeze the randomizer application for ma
         {
             try
             {
-                var presets = File.ReadAllText($"{Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory)}/SettingPresets.json");
-                _settingPresets = JsonConvert.DeserializeObject<SettingPresets>(presets)!;
+                _settingPresets = new SettingPresets();
 
-                if (_settingPresets == null)
-                {
-                    _settingPresets = new SettingPresets();
-                }
+                var files = Directory.GetFiles(presetPath + "Settings").Where(file => file.EndsWith(".yaml", true, null));
+                _settingPresets.SettingsPresets = files.Select(file => file.Substring(file.LastIndexOf(Path.DirectorySeparatorChar) + 1)).Select(file => file.Substring(0, file.LastIndexOf("."))).ToList();
 
-                var checksum = _shufflerController.GetSelectedOptions().OnlyLogic().GetCrc32();
+                SettingPresets.Items.AddRange(_settingPresets.SettingsPresets.ToArray());
+                SettingPresets.SelectedIndex = 0;
 
-                if (_settingPresets.SettingsPresets.TryGetValue(checksum, out var settingsPresets) && settingsPresets.Any())
-                {
-                    SettingPresets.Items.AddRange(settingsPresets.Select(preset => preset.PresetName).ToArray());
-                    SettingPresets.SelectedIndex = 0;
-                };
+                files = Directory.GetFiles(presetPath + "Cosmetics").Where(file => file.EndsWith(".yaml", true, null));
+                _settingPresets.CosmeticsPresets = files.Select(file => file.Substring(file.LastIndexOf(Path.DirectorySeparatorChar) + 1)).Select(file => file.Substring(0, file.LastIndexOf("."))).ToList();
 
-                checksum = _shufflerController.GetSelectedOptions().OnlyCosmetic().GetCrc32();
-
-                if (_settingPresets.CosmeticsPresets.TryGetValue(checksum, out var cosmeticsPresets) && cosmeticsPresets.Any())
-                {
-                    CosmeticsPresets.Items.AddRange(cosmeticsPresets.Select(preset => preset.PresetName).ToArray());
-                    CosmeticsPresets.SelectedIndex = 0;
-                }
+                CosmeticsPresets.Items.AddRange(_settingPresets.CosmeticsPresets.ToArray());
+                CosmeticsPresets.SelectedIndex = 0;
             }
             catch
             {
-                DisplayAlert("Could not load settings presets. The file may have been moved or deleted.", "Could Not Load Settings Presets", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                DisplayAlert("Could not load settings presets. The preset directories may have been moved or deleted.", "Could Not Load Settings Presets", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 _settingPresets = new SettingPresets();
             }
         }
@@ -224,6 +214,9 @@ Generating seeds with this shuffler may freeze the randomizer application for ma
         private void InitializeUi()
         {
             TabPane.TabPages.Remove(SeedOutput);
+            General.AutoScroll = true;
+            Advanced.AutoScroll = true;
+            SeedOutput.AutoScroll = true;
             var seed = new Random().Next();
             Seed.Text = $@"{seed}";
 
@@ -301,21 +294,17 @@ Generating seeds with this shuffler may freeze the randomizer application for ma
             var settingsString = _shufflerController.GetFinalSettingsString();
             var cosmeticsString = _shufflerController.GetFinalCosmeticsString();
 
-            if( _shufflerController.IsUsingYAML())
+            if (_shufflerController.IsUsingYAML())
             {
                 SettingNameLabel.Text = _shufflerController.GetYAMLName();
                 CosmeticNameLabel.Text = _shufflerController.GetYAMLName();
             }
             else
             {
-                SettingNameLabel.Text = _settingPresets.SettingsPresets.TryGetValue(_shufflerController.GetFinalOptions().OnlyLogic().GetCrc32(), out var settingsPresets) &&
-                    settingsPresets.Any(preset => preset.PresetString == settingsString) ?
-                        settingsPresets.First(preset => preset.PresetString == settingsString).PresetName :
-                        "Custom";
-                CosmeticNameLabel.Text = _settingPresets.CosmeticsPresets.TryGetValue(_shufflerController.GetFinalOptions().OnlyCosmetic().GetCrc32(), out var cosmeticsPresets) &&
-                    cosmeticsPresets.Any(preset => preset.PresetString == cosmeticsString) ?
-                        cosmeticsPresets.First(preset => preset.PresetString == cosmeticsString).PresetName :
-                        "Custom";
+                SettingNameLabel.Text = _recentSettingsPreset != null &&
+                    _shufflerController.GetFinalOptions().OnlyLogic().GetHash() == _recentSettingsPresetHash ? _recentSettingsPreset : "Custom";
+                CosmeticNameLabel.Text = _recentCosmeticsPreset != null &&
+                    _shufflerController.GetFinalOptions().OnlyCosmetic().GetHash() == _recentCosmeticsPresetHash ? _recentCosmeticsPreset : "Custom";
             }
 
             SettingHashLabel.Text = settingsString;

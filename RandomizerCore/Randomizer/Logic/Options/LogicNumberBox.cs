@@ -34,6 +34,12 @@ public class LogicNumberBox : LogicOptionBase
         Value = $"{DefaultValue}";
     }
 
+    public override void CopyValueFrom(LogicOptionBase option)
+    {
+        base.CopyValueFrom(option);
+        Value = ((LogicNumberBox)option).Value;
+    }
+
     public override List<LogicDefine> GetLogicDefines()
     {
         var defineList = new List<LogicDefine>(3);
