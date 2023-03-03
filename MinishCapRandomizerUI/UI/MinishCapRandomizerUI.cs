@@ -362,7 +362,7 @@ public sealed partial class MinishCapRandomizerUI : Form
 			return;
 		}
 
-        var result = _shufflerController.LoadSettingsFromYAML(presetPath + "Settings" + Path.DirectorySeparatorChar + SettingPresets.SelectedItem + ".yaml", true);
+        var result = _shufflerController.LoadSettingsFromYAML(presetPath + "Settings" + Path.DirectorySeparatorChar + SettingPresets.SelectedItem + ".yaml", true, false);
 
         if (result)
         {
@@ -440,7 +440,7 @@ public sealed partial class MinishCapRandomizerUI : Form
 			return;
 		}
 
-        var result = _shufflerController.LoadSettingsFromYAML(presetPath + "Cosmetics" + Path.DirectorySeparatorChar + SettingPresets.SelectedItem + ".yaml", false);
+        var result = _shufflerController.LoadSettingsFromYAML(presetPath + "Cosmetics" + Path.DirectorySeparatorChar + SettingPresets.SelectedItem + ".yaml", false, true);
 
         if (result)
         {

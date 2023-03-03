@@ -47,7 +47,6 @@ This game is originally completely linear, a lot of work has been put in to open
 - The Pegasus Boots can be used by just holding `L` and the Ocarina used by pressing `SELECT`.
 - Quickwarp, found on the SAVE menu, it will warp you to the last area entrance you used to save a lot of backtracking.
 - Remember that Figurine Gatcha Game? Yeah we removed it, just talk to Carlov for the reward right away.
-- Cosmetics!!! Change link's tunic colour, heart colour, and even have a faithful follower companion for your journey.
 
 ## Getting Stuck
 

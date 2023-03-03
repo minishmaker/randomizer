@@ -56,6 +56,7 @@ internal class Program
             {"ChangeSeed", Seed},
             {"LoadLogic", LoadLogic},
             {"LoadPatch", LoadPatch},
+            {"UseYAML", UseYAML},
             {"LoadYAML", LoadYAML},
             {"LoadSettings", LoadSettings},
             {"Options", Options},
@@ -80,8 +81,9 @@ LoadRom                 Load a European Minish Cap ROM
 ChangeSeed              Change randomization seed
 LoadLogic               Load custom logic file
 LoadPatch               Load custom patch file
-LoadYAML                Load YAML file to use as a Preset or Mystery weights
-LoadSettings            Load a setting string
+LoadYAML                Load YAML file to use as a Preset, replaces the selected options
+UseYAML                 Use YAML file to use as a Preset or Mystery weights, instead of using the selected options
+LoadSettings            Load a setting string, replaces the selected options
 Options                 Display options, allows editing of option values
 Logging                 Allows you to change logger settings
 Randomize               Generates a randomized ROM
@@ -115,6 +117,11 @@ Strict                  Toggle strict mode (exit after error)
     private static void LoadPatch()
     {
         GenericCommands.LoadPatch();
+    }
+
+    private static void UseYAML()
+    {
+        GenericCommands.UseYAML();
     }
 
     private static void LoadYAML()

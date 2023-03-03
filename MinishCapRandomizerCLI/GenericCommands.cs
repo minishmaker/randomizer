@@ -86,17 +86,41 @@ internal static class GenericCommands
     }
 
     internal static void LoadPatch(string? patchFile = null)
-    {        
+    {
         Console.Write("Please enter the path to the Patch File you want to use (leave empty to use default patch): ");
         _cachedPatchPath = patchFile ?? Console.ReadLine();
         Console.WriteLine("Patch file loaded successfully!");
     }
 
-    internal static void LoadYAML(string? yamlFile = null)
-    {        
+    internal static void UseYAML(string? yamlFile = null)
+    {
         Console.Write("Please enter the path to the YAML File you want to use (leave empty to use selected settings instead of YAML): ");
         _cachedYAMLPath = yamlFile ?? Console.ReadLine();
         Console.WriteLine("YAML file loaded successfully!");
+    }
+
+    internal static void LoadYAML(string? yamlFile = null, string? optionTypes = null)
+    {
+        Console.Write("Please enter the path to the YAML File to load options from: ");
+        var filepath = yamlFile ?? Console.ReadLine();
+        if (string.IsNullOrEmpty(filepath))
+        {
+            Console.WriteLine("Invalid Input!");
+            return;
+        }
+        Console.WriteLine("0) Nothing");
+        Console.WriteLine("1) Only Logic Settings");
+        Console.WriteLine("2) Only Cosmetic Setting");
+        Console.WriteLine("3) All Settings");
+        Console.Write("Enter the number corresponding to the setting type(s) you want to load: ");
+        var input = optionTypes ?? Console.ReadLine();
+        if (string.IsNullOrEmpty(input) || !uint.TryParse(input, out var number) || number > 3)
+        {
+            Console.WriteLine("Invalid Input!");
+            return;
+        }
+        ShufflerController.LoadSettingsFromYAML(filepath, number % 2 == 1, number >= 2);
+        Console.WriteLine("Settings loaded successfully!");
     }
 
     internal static void LoadSettings(string? settings = null)
