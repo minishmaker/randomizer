@@ -2,8 +2,8 @@
 {
 	public class SettingPresets
 	{
-		public Dictionary<uint, List<Preset>> SettingsPresets { get; set; } = new Dictionary<uint, List<Preset>>();
+		public List<string> SettingsPresets { get; set; } = new List<string>();
 
-		public Dictionary<uint, List<Preset>> CosmeticsPresets { get; set; } = new Dictionary<uint, List<Preset>>();
+		public List<string> CosmeticsPresets { get; set; } = new List<string>();
 	}
 }

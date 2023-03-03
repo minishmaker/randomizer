@@ -18,6 +18,12 @@ public sealed partial class MinishCapRandomizerUI : Form
 	private SettingPresets _settingPresets;
 	private string _defaultSettings;
 	private string _defaultCosmetics;
+    private string? _recentSettingsPreset = null;
+    private string? _recentCosmeticsPreset = null;
+    private uint _recentSettingsPresetHash;
+    private uint _recentCosmeticsPresetHash;
+
+    private readonly string presetPath = Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory) + Path.DirectorySeparatorChar + "Presets" + Path.DirectorySeparatorChar;
 
 #pragma warning disable CS8618
 	public MinishCapRandomizerUI()
@@ -348,56 +354,46 @@ public sealed partial class MinishCapRandomizerUI : Form
 
 	private void LoadSettingPreset_Click(object sender, EventArgs e)
 	{
-		var logicChecksum = _shufflerController.GetSelectedOptions().OnlyLogic().GetCrc32();
-		if (!_settingPresets.SettingsPresets.TryGetValue(logicChecksum, out var presets)) {
-			DisplayAlert("Could not find any presets for the current logic file! Please try a different logic file.", "Failed to Load Preset", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			return;
-		}
+        var presets = _settingPresets.SettingsPresets;
 
-		if (!presets.Any(preset => preset.PresetName == (string)SettingPresets.SelectedItem))
+		if (!presets.Any(preset => preset == (string)SettingPresets.SelectedItem))
 		{
 			DisplayAlert("No preset matching the specified name could be found! Make sure you select a valid preset.", "Failed to Load Preset", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			return;
 		}
 
-		DisplayConditionalAlertFromShufflerResult(_shufflerController.LoadSettingsFromSettingString(presets.First(preset => preset.PresetName == (string)SettingPresets.SelectedItem).PresetString), 
-			"Settings loaded successfully!", "Settings Loaded", "Failed to load Settings string!", "Failed to Load Settings");
+        var result = _shufflerController.LoadSettingsFromYAML(presetPath + "Settings" + Path.DirectorySeparatorChar + SettingPresets.SelectedItem + ".yaml", true);
+
+        if (result)
+        {
+            _recentSettingsPreset = (string)SettingPresets.SelectedItem;
+            _recentSettingsPresetHash = _shufflerController.GetSelectedOptions().OnlyLogic().GetHash();
+        }
+
+		DisplayConditionalAlertFromShufflerResult(result,
+			"Settings loaded successfully!", "Settings Loaded", "Failed to load Settings preset!", "Failed to Load Settings");
 	}
 
 	private void SaveSettingPreset_Click(object sender, EventArgs e)
 	{
 		ShowInputDialog("Enter Setting Preset Name", "Enter the name you would like to use for the setting preset.\nNote:  Preset names are case sensitive and two presets cannot have the same name!", (name =>
 		{
-		    var logicChecksum = _shufflerController.GetSelectedOptions().OnlyLogic().GetCrc32();
-			var preset = new Preset
-			{
-				PresetName = name,
-				PresetString = _shufflerController.GetSelectedSettingsString(),
-			};
+            var presets = _settingPresets.SettingsPresets;
 
-			if (!_settingPresets.SettingsPresets.TryGetValue(logicChecksum, out var presets))
-			{
-				presets = new List<Preset> { preset };
+            if (presets.Any(preset => preset == name))
+            {
+                DisplayAlert("A setting preset with the specified name already exists!", "Failed to Save Preset", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-				_settingPresets.SettingsPresets.Add(logicChecksum, presets);
-			} 
-			else
-			{
-				if (presets.Any(preset => preset.PresetName == name))
-				{
-					DisplayAlert("A setting preset with the specified name already exists!", "Failed to Save Preset", MessageBoxButtons.OK, MessageBoxIcon.Error);
-					return;
-				}
-
-				presets.Add(preset);
-			}
+            presets.Add(name);
 
 			try
 			{
-				var presetsAsJson = JsonConvert.SerializeObject(_settingPresets, Formatting.Indented);
-				File.WriteAllText($"{Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory)}/SettingPresets.json", presetsAsJson);
+                _shufflerController.SaveSettingsAsYAML(presetPath + "Settings" + Path.DirectorySeparatorChar + name + ".yaml",
+                    name, _shufflerController.GetSelectedOptions().OnlyLogic());
 				DisplayAlert("Preset saved successfully!", "Preset Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
-				AddItemToPresetsBox(SettingPresets, preset.PresetName);
+				AddItemToPresetsBox(SettingPresets, name);
 			}
 			catch
 			{
@@ -411,15 +407,9 @@ public sealed partial class MinishCapRandomizerUI : Form
 		DisplayAlert($"Are you sure you wish to delete preset {SettingPresets.SelectedItem}? This action cannot be undone!", "Delete Preset", MessageBoxButtons.YesNo, MessageBoxIcon.Question, DialogResult.Yes,
 			() =>
 			{
-		        var logicChecksum = _shufflerController.GetSelectedOptions().OnlyLogic().GetCrc32();
+                var presets = _settingPresets.SettingsPresets;
 
-				if (!_settingPresets.SettingsPresets.TryGetValue(logicChecksum, out var presets))
-				{
-					DisplayAlert("Could not find any presets for the current logic file! Please try a different logic file.", "Failed to Delete Preset", MessageBoxButtons.OK, MessageBoxIcon.Error);
-					return;
-				}
-
-				if (!presets.Any(preset => preset.PresetName == (string)SettingPresets.SelectedItem))
+				if (!presets.Any(preset => preset == (string)SettingPresets.SelectedItem))
 				{
 					DisplayAlert("No preset matching the specified name could be found! Make sure you select a valid preset before deleting.", "Failed to Delete Preset", MessageBoxButtons.OK, MessageBoxIcon.Error);
 					return;
@@ -427,9 +417,8 @@ public sealed partial class MinishCapRandomizerUI : Form
 
 				try
 				{
-					presets.Remove(presets.First(preset => preset.PresetName == (string)SettingPresets.SelectedItem));
-					var presetsAsJson = JsonConvert.SerializeObject(_settingPresets, Formatting.Indented);
-					File.WriteAllText($"{Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory)}/SettingPresets.json", presetsAsJson);
+					presets.Remove(presets.First(preset => preset == (string)SettingPresets.SelectedItem));
+                    File.Delete(presetPath + "Settings" + Path.DirectorySeparatorChar + SettingPresets.SelectedItem + ".yaml");
 
 					RemoveItemFromPresetsBox(SettingPresets, (string)SettingPresets.SelectedItem);
 					DisplayAlert("Preset deleted successfully!", "Preset deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -443,56 +432,45 @@ public sealed partial class MinishCapRandomizerUI : Form
 
 	private void LoadCosmeticPreset_Click(object sender, EventArgs e)
 	{
-		var logicChecksum = _shufflerController.GetSelectedOptions().OnlyCosmetic().GetCrc32();
-		if (!_settingPresets.CosmeticsPresets.TryGetValue(logicChecksum, out var presets))
-		{
-			DisplayAlert("Could not find any presets for the current logic file! Please try a different logic file.", "Failed to Load Preset", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			return;
-		}
+        var presets = _settingPresets.CosmeticsPresets;
 
-		if (!presets.Any(preset => preset.PresetName == (string)CosmeticsPresets.SelectedItem))
+		if (!presets.Any(preset => preset == (string)SettingPresets.SelectedItem))
 		{
 			DisplayAlert("No preset matching the specified name could be found! Make sure you select a valid preset.", "Failed to Load Preset", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			return;
 		}
 
-		DisplayConditionalAlertFromShufflerResult(_shufflerController.LoadCosmeticsFromCosmeticsString(presets.First(preset => preset.PresetName == (string)CosmeticsPresets.SelectedItem).PresetString),
-			"Cosmetics loaded successfully!", "Cosmetics Loaded", "Failed to load cosmetics string!", "Failed to Load Cosmetics");
+        var result = _shufflerController.LoadSettingsFromYAML(presetPath + "Cosmetics" + Path.DirectorySeparatorChar + SettingPresets.SelectedItem + ".yaml", false);
+
+        if (result)
+        {
+            _recentCosmeticsPreset = (string)SettingPresets.SelectedItem;
+            _recentCosmeticsPresetHash = _shufflerController.GetSelectedOptions().OnlyCosmetic().GetHash();
+        }
+
+		DisplayConditionalAlertFromShufflerResult(result,
+			"Cosmetics loaded successfully!", "Cosmetics Loaded", "Failed to load cosmetics preset!", "Failed to Load Cosmetics");
 	}
 
 	private void SaveCosmeticPreset_Click(object sender, EventArgs e)
 	{
 		ShowInputDialog("Enter Cosmetic Preset Name", "Enter the name you would like to use for the cosmetics preset.\nNote: Preset names are case sensitive and two presets cannot have the same name!", (name =>
 		{
-		    var logicChecksum = _shufflerController.GetSelectedOptions().OnlyCosmetic().GetCrc32();
-			var preset = new Preset
-			{
-				PresetName = name,
-				PresetString = _shufflerController.GetSelectedCosmeticsString(),
-			};
+            var presets = _settingPresets.CosmeticsPresets;
 
-			if (!_settingPresets.CosmeticsPresets.TryGetValue(logicChecksum, out var presets))
-			{
-				presets = new List<Preset> { preset };
+            if (presets.Any(preset => preset == name))
+            {
+                DisplayAlert("A cosmetic preset with the specified name already exists!", "Failed to Save Preset", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-				_settingPresets.CosmeticsPresets.Add(logicChecksum, presets);
-			}
-			else
-			{
-				if (presets.Any(preset => preset.PresetName == name))
-				{
-					DisplayAlert("A cosmetic preset with the specified name already exists!", "Failed to Save Preset", MessageBoxButtons.OK, MessageBoxIcon.Error);
-					return;
-				}
-
-				presets.Add(preset);
-			}
+            presets.Add(name);
 
 			try
 			{
-				var presetsAsJson = JsonConvert.SerializeObject(_settingPresets, Formatting.Indented);
-				File.WriteAllText($"{Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory)}/SettingPresets.json", presetsAsJson);
-				AddItemToPresetsBox(CosmeticsPresets, preset.PresetName);
+                _shufflerController.SaveSettingsAsYAML(presetPath + "Cosmetics" + Path.DirectorySeparatorChar + name + ".yaml",
+                    name, _shufflerController.GetSelectedOptions().OnlyCosmetic());
+				AddItemToPresetsBox(CosmeticsPresets, name);
 				DisplayAlert("Preset saved successfully!", "Preset Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
 			}
 			catch
@@ -507,15 +485,9 @@ public sealed partial class MinishCapRandomizerUI : Form
 		DisplayAlert($"Are you sure you wish to delete preset {CosmeticsPresets.SelectedItem}? This action cannot be undone!", "Delete Preset", MessageBoxButtons.YesNo, MessageBoxIcon.Question, DialogResult.Yes,
 			() =>
 			{
-		        var logicChecksum = _shufflerController.GetSelectedOptions().OnlyCosmetic().GetCrc32();
+                var presets = _settingPresets.CosmeticsPresets;
 
-				if (!_settingPresets.CosmeticsPresets.TryGetValue(logicChecksum, out var presets))
-				{
-					DisplayAlert("Could not find any presets for the current logic file! Please try a different logic file.", "Failed to Delete Preset", MessageBoxButtons.OK, MessageBoxIcon.Error);
-					return;
-				}
-
-				if (!presets.Any(preset => preset.PresetName == (string)CosmeticsPresets.SelectedItem))
+				if (!presets.Any(preset => preset == (string)CosmeticsPresets.SelectedItem))
 				{
 					DisplayAlert("No preset matching the specified name could be found! Make sure you select a valid preset before deleting.", "Failed to Delete Preset", MessageBoxButtons.OK, MessageBoxIcon.Error);
 					return;
@@ -523,9 +495,8 @@ public sealed partial class MinishCapRandomizerUI : Form
 
 				try
 				{
-					presets.Remove(presets.First(preset => preset.PresetName == (string)CosmeticsPresets.SelectedItem));
-					var presetsAsJson = JsonConvert.SerializeObject(_settingPresets, Formatting.Indented);
-					File.WriteAllText($"{Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory)}/SettingPresets.json", presetsAsJson);
+					presets.Remove(presets.First(preset => preset == (string)SettingPresets.SelectedItem));
+                    File.Delete(presetPath + "Cosmetics" + Path.DirectorySeparatorChar + SettingPresets.SelectedItem + ".yaml");
 
 					RemoveItemFromPresetsBox(CosmeticsPresets, (string)CosmeticsPresets.SelectedItem);
 					DisplayAlert("Preset deleted successfully!", "Preset deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);

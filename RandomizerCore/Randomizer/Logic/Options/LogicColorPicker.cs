@@ -51,6 +51,14 @@ public class LogicColorPicker : LogicOptionBase
         DefinedColor = BaseColor;
     }
 
+    public override void CopyValueFrom(LogicOptionBase option)
+    {
+        base.CopyValueFrom(option);
+        var colorPicker = (LogicColorPicker)option;
+        UseRandomColor = colorPicker.UseRandomColor;
+        DefinedColor = colorPicker.DefinedColor;
+    }
+
     public Color BaseColor { get; set; }
     public Color DefinedColor { get; set; }
     public List<Color> InitialColors { get; set; }

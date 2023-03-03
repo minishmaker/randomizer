@@ -3,6 +3,7 @@ using RandomizerCore.Controllers.Models;
 using RandomizerCore.Core;
 using RandomizerCore.Random;
 using RandomizerCore.Randomizer;
+using RandomizerCore.Randomizer.Enumerables;
 using RandomizerCore.Randomizer.Exceptions;
 using RandomizerCore.Randomizer.Logic.Options;
 using RandomizerCore.Utilities.Logging;
@@ -105,6 +106,61 @@ public class ShufflerController
         {
             MinifiedSettings.GenerateSettingsFromBase64String(settingString, _shuffler.GetSelectedOptions().OnlyCosmetic().GetSorted(),
                 _shuffler.GetSelectedOptions().OnlyCosmetic().GetCrc32());
+
+            return new ShufflerControllerResult { WasSuccessful = true };
+        }
+        catch (Exception e)
+        {
+            Logger.Instance.LogException(e);
+            Logger.Instance.SaveLogTransaction();
+            return new ShufflerControllerResult
+            {
+                WasSuccessful = false,
+                Error = e,
+                ErrorMessage = e.Message
+            };
+        }
+    }
+
+    public ShufflerControllerResult LoadSettingsFromYAML(string filepath, bool logicSettings)
+    {
+        try
+        {
+            var currentOptions = Shuffler.GetSelectedOptions();
+            var result = Mystery.ParseYAML(File.ReadAllText(filepath), logicSettings ? currentOptions.OnlyLogic() : currentOptions.OnlyCosmetic(), new Random());
+            var j = 0;
+
+            for (var i = 0; i < currentOptions.Count; i++)
+            {
+                if (currentOptions[i].Type == (logicSettings ? LogicOptionType.Setting : LogicOptionType.Cosmetic))
+                {
+                    if (currentOptions[i].Name != result.Options[j].Name)
+                        throw new Exception($"You shouldn't be seeing this, but if you are it means applying the options loaded from a YAML failed. Please report to the dev team. {currentOptions[i].Name} != {result.Options[j].Name}");
+                    currentOptions[i].CopyValueFrom(result.Options[j++]);
+                    currentOptions[i].NotifyObservers();
+                }
+            }
+
+            return new ShufflerControllerResult { WasSuccessful = true };
+        }
+        catch (Exception e)
+        {
+            Logger.Instance.LogException(e);
+            Logger.Instance.SaveLogTransaction();
+            return new ShufflerControllerResult
+            {
+                WasSuccessful = false,
+                Error = e,
+                ErrorMessage = e.Message
+            };
+        }
+    }
+
+    public ShufflerControllerResult SaveSettingsAsYAML(string filepath, string name, List<LogicOptionBase> options)
+    {
+        try
+        {
+            File.WriteAllText(filepath, Mystery.CreateYAML(name, null, options, false));
 
             return new ShufflerControllerResult { WasSuccessful = true };
         }

@@ -14,7 +14,7 @@ internal static class Mystery
     {
         var content = "";
         content += "name: \"" + (string.IsNullOrEmpty(name) ? "(No name set)" : name) + "\"" + Environment.NewLine;
-        content += "description: \"" + (string.IsNullOrEmpty(description) ? "(No description set)" : name) + "\"" + Environment.NewLine;
+        content += "description: \"" + (string.IsNullOrEmpty(description) ? "(No description set)" : description) + "\"" + Environment.NewLine;
         content += "settings:" + Environment.NewLine;
         var pages = logicOptions.GroupBy(option => option.SettingPage);
         foreach (var page in pages)

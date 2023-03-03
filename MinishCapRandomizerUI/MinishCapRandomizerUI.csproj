@@ -59,23 +59,25 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Octokit" Version="5.1.0" />
+        <PackageReference Include="Octokit" Version="5.1.0" />
     </ItemGroup>
-	
-	<Target Name="SetSourceRevisionId" BeforeTargets="InitializeSourceControlInformation">
-		<Exec Command="git describe --tag --abbrev=0" ConsoleToMSBuild="True" IgnoreExitCode="False">
-			<Output PropertyName="SourceRevisionId" TaskParameter="ConsoleOutput" />
-		</Exec>
-	</Target>
 
-	<Target Name="PostBuildDebug" Condition="'$(Configuration)' == 'Debug'" AfterTargets="PostBuildEvent">
-        <Exec Command="xcopy &quot;$(ProjectDir)..\RandomizerCore\Resources\Patches\&quot; &quot;$(TargetDir)Patches\&quot; /y /d /s" />
-        <Exec Command="xcopy &quot;$(ProjectDir)..\Vendor\Language Raws\&quot; &quot;$(TargetDir)Language Raws\&quot; /y /d /s" />
+    <Target Name="SetSourceRevisionId" BeforeTargets="InitializeSourceControlInformation">
+        <Exec Command="git describe --tag --abbrev=0" ConsoleToMSBuild="True" IgnoreExitCode="False">
+            <Output PropertyName="SourceRevisionId" TaskParameter="ConsoleOutput" />
+        </Exec>
+    </Target>
+
+    <Target Name="PostBuildDebug" Condition="'$(Configuration)' == 'Debug'" AfterTargets="PostBuildEvent">
+        <Exec Command="xcopy &quot;$(ProjectDir)..\RandomizerCore\Resources\Patches\&quot; &quot;$(TargetDir)Patches\&quot; /y /d /s"/>
+        <Exec Command="xcopy &quot;$(ProjectDir)..\Vendor\Language Raws\&quot; &quot;$(TargetDir)Language Raws\&quot; /y /d /s"/>
+        <Exec Command="xcopy &quot;$(ProjectDir).\Resources\Presets\&quot; &quot;$(TargetDir)Presets\&quot; /y /d /s"/>
     </Target>
 
     <Target Name="PostBuildRelease" Condition="'$(Configuration)' == 'Release'" AfterTargets="PostBuildEvent">
-        <Exec Command="xcopy &quot;$(ProjectDir)..\RandomizerCore\Resources\Patches\&quot; &quot;$(PublishDir)Patches\&quot; /y /d /s" />
-        <Exec Command="xcopy &quot;$(ProjectDir)..\Vendor\Language Raws\&quot; &quot;$(PublishDir)Language Raws\&quot; /y /d /s" />
+        <Exec Command="xcopy &quot;$(ProjectDir)..\RandomizerCore\Resources\Patches\&quot; &quot;$(PublishDir)Patches\&quot; /y /d /s"/>
+        <Exec Command="xcopy &quot;$(ProjectDir)..\Vendor\Language Raws\&quot; &quot;$(PublishDir)Language Raws\&quot; /y /d /s"/>
+        <Exec Command="xcopy &quot;$(ProjectDir).\Resources\Presets\&quot; &quot;$(PublishDir)Presets\&quot; /y /d /s"/>
     </Target>
 
 </Project>
