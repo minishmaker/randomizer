@@ -389,14 +389,15 @@ public sealed partial class MinishCapRandomizerUI : Form
                 return;
             }
 
-            presets.Add(name);
-
 			try
 			{
                 _shufflerController.SaveSettingsAsYAML(presetPath + "Settings" + Path.DirectorySeparatorChar + name + ".yaml",
                     name, _shufflerController.GetSelectedOptions().OnlyLogic());
-				DisplayAlert("Preset saved successfully!", "Preset Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                presets.Add(name);
 				AddItemToPresetsBox(SettingPresets, name);
+                _recentSettingsPreset = name;
+                _recentSettingsPresetHash = _shufflerController.GetSelectedOptions().OnlyLogic().GetHash();
+				DisplayAlert("Preset saved successfully!", "Preset Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
 			}
 			catch
 			{
@@ -467,13 +468,14 @@ public sealed partial class MinishCapRandomizerUI : Form
                 return;
             }
 
-            presets.Add(name);
-
 			try
 			{
                 _shufflerController.SaveSettingsAsYAML(presetPath + "Cosmetics" + Path.DirectorySeparatorChar + name + ".yaml",
                     name, _shufflerController.GetSelectedOptions().OnlyCosmetic());
+                presets.Add(name);
 				AddItemToPresetsBox(CosmeticsPresets, name);
+                _recentCosmeticsPreset = name;
+                _recentCosmeticsPresetHash = _shufflerController.GetSelectedOptions().OnlyCosmetic().GetHash();
 				DisplayAlert("Preset saved successfully!", "Preset Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
 			}
 			catch
