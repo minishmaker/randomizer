@@ -79,10 +79,9 @@ internal static class Mystery
                             {
                                 content += PadComment(indent + option.Name + ":", option.NiceName, commentOffset);
                                 content += indent + indent + box.MinValue + ": 1" + Environment.NewLine;
-                                if (box.DefaultValue != box.MinValue)
-                                    content += indent + indent + box.DefaultValue + ": 1" + Environment.NewLine;
-                                if (box.DefaultValue != box.MaxValue)
-                                    content += indent + indent + box.MaxValue + ": 1" + Environment.NewLine;
+                                content += indent + indent + box.DefaultValue + ": 1" + Environment.NewLine;
+                                content += indent + indent + box.MaxValue + ": 1" + Environment.NewLine;
+                                content += indent + indent + box.MinValue + " " + box.MaxValue + " 1: 1" + Environment.NewLine;
                             }
                             else
                                 content += PadComment(indent + option.Name + ": " + box.Value, option.NiceName, commentOffset);
@@ -127,7 +126,7 @@ internal static class Mystery
                 {
                     if (setting.Value is string)
                     {
-                        SetOptionValue(optionMap[(string) setting.Key], (string) setting.Value);
+                        SetOptionValue(optionMap[(string) setting.Key], (string) setting.Value, random);
                     }
                     else
                         if (setting.Value is Dictionary<object, object>)
@@ -142,7 +141,7 @@ internal static class Mystery
                                 val += chances[i];
                                 if (number < val)
                                 {
-                                    SetOptionValue(optionMap[(string) setting.Key], (string) choices[i]);
+                                    SetOptionValue(optionMap[(string) setting.Key], (string) choices[i], random);
                                     break;
                                 }
                             }
@@ -181,7 +180,7 @@ internal static class Mystery
         }
     }
 
-    private static void SetOptionValue(LogicOptionBase option, string value)
+    private static void SetOptionValue(LogicOptionBase option, string value, Random random)
     {
         switch (option)
         {
@@ -192,13 +191,13 @@ internal static class Mystery
                     if (string.Equals(value, "off", StringComparison.OrdinalIgnoreCase) || string.Equals(value, "false", StringComparison.OrdinalIgnoreCase) || value == "0")
                         option.Active = false;
                     else
-                        throw new Exception("Invalid value for Flag option");
+                        throw new Exception($"Invalid value \"{value}\" for Flag option \"{option.Name}\"");
                 break;
             case LogicDropdown dropdown:
                 if (dropdown.Selections.ContainsValue(value))
                     dropdown.Selection = dropdown.Selections.Keys.ToList()[dropdown.Selections.Values.ToList().IndexOf(value)];
                 else
-                    throw new Exception("Invalid value for Dropdown option");
+                    throw new Exception($"Invalid value \"{value}\" for Dropdown option \"{option.Name}\"");
                 break;
             case LogicColorPicker colorPicker:
                 if (string.Equals(value, "vanilla", StringComparison.OrdinalIgnoreCase))
@@ -232,7 +231,7 @@ internal static class Mystery
                                 colorPicker.DefinedColor = Color.FromArgb(r, g, b);
                             }
                             else
-                                throw new Exception("Invalid value for Color option");
+                                throw new Exception($"Invalid value \"{value}\" for Color option \"{option.Name}\"");
                         }
                     }
                 break;
@@ -240,7 +239,21 @@ internal static class Mystery
                 if (int.TryParse(value, out var i) && i >= box.MinValue && i <= box.MaxValue)
                     box.Value = i.ToString();
                 else
-                    throw new Exception("Invalid value for Number option");
+                {
+                    var split = value.Split(" ");
+                    if (split.Length >= 2 && int.TryParse(split[0], out var min) && int.TryParse(split[1], out var max) && min >= box.MinValue && max <= box.MaxValue)
+                    {
+                        var step = 1;
+                        if (split.Length >= 3)
+                            int.TryParse(split[2], out step);
+                        if (step <= 0)
+                            throw new Exception($"Invalid value \"{value}\" for Number option \"{option.Name}\"");
+                        var val = min + random.Next((max - min) / step + 1) * step;
+                        box.Value = val.ToString();
+                    }
+                    else
+                        throw new Exception($"Invalid value \"{value}\" for Number option \"{option.Name}\"");
+                }
                 break;
         }
     }
