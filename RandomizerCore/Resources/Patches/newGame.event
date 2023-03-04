@@ -57,12 +57,10 @@ WORD 0 0 0 //terminator
 
 ALIGN 4
 newGameOrTable:
-
-	POIN cuccoGame;		WORD 0x2002CA5 1
-	
 #ifdef goldTornado
 	POIN tornadoGold;			WORD 0x2002CA0 1
 #endif
+POIN cuccoGame;		WORD 0x2002CA5 1
 #ifdef goldWindTribe
 	POIN windTribeGold;			WORD 0x2002CA7 1
 #endif
@@ -94,7 +92,6 @@ newGameOrTable:
 #ifdef cryptLockedDoor
 	POIN lockedDoorCrypt;		WORD 0x2002D12 1
 #endif
-//
 #ifdef dwsMadderpillarDoor
 	POIN madderpillarDoorDWS;		WORD 0x2002D3F 1
 #endif
