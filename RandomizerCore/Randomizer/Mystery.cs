@@ -79,8 +79,10 @@ internal static class Mystery
                             {
                                 content += PadComment(indent + option.Name + ":", option.NiceName, commentOffset);
                                 content += indent + indent + box.MinValue + ": 1" + Environment.NewLine;
-                                content += indent + indent + box.DefaultValue + ": 1" + Environment.NewLine;
-                                content += indent + indent + box.MaxValue + ": 1" + Environment.NewLine;
+                                if (box.DefaultValue != box.MinValue)
+                                    content += indent + indent + box.DefaultValue + ": 1" + Environment.NewLine;
+                                if (box.DefaultValue != box.MaxValue)
+                                    content += indent + indent + box.MaxValue + ": 1" + Environment.NewLine;
                                 content += indent + indent + box.MinValue + " " + box.MaxValue + " 1: 1" + Environment.NewLine;
                             }
                             else
