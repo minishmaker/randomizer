@@ -627,6 +627,18 @@
 	!eventdefine - dhcRedPortal - 0x00
 !endif
 
+# Sets the flags for items collected from certain locations if they are unshuffled, only for locations that originally had a kinstone
+!ifndef - SPECIALPOTS
+	!eventdefine - specialPots
+	!eventdefine - kinstonePots
+!endif
+!ifndef - DIGGING
+	!eventdefine - kinstoneDig
+!endif
+!ifndef - UNDERWATER
+	!eventdefine - kinstoneWater
+!endif
+
 # This section defines values used by the patcher, this sets if and which fusions should be available
 !ifdef - OPEN_GOLD_FUSIONS
 	!eventdefine - noGoldFusions							# if defined, golden kinstone fusions are not available (except the cloud fusions which is handled below)
@@ -664,6 +676,7 @@
 	!eventdefine - blueHyliaBeanstalk
 	!eventdefine - blueHillsBeanstalk
 	!eventdefine - blueWoodsBeanstalk
+	!eventdefine - blueGinaGrave
 !else
 	!ifdef - NO_BLUE_FUSIONS
 		!eventdefine - noBlueFusions	# if defined, blue kinstone fusions are not available

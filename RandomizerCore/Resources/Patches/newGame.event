@@ -57,6 +57,21 @@ WORD 0 0 0 //terminator
 
 ALIGN 4
 newGameOrTable:
+#ifdef kinstonePots
+	POIN potHearth;		WORD 0x2002CE0 1
+	POIN potToD;		WORD 0x2002D8B 1
+#endif
+#ifdef specialPots
+	POIN potLonLon;		WORD 0x2002CE5 1
+	POIN potsFoW;		WORD 0x2002D06 1
+#endif
+#ifdef kinstoneDig
+	POIN cloudsDig;		WORD 0x2002CD8 2
+	POIN melariDig;		WORD 0x2002CF3 2
+#endif
+#ifdef kinstoneWater;
+	POIN swampUnderwater;	WORD 0x2002CC0 1
+#endif
 #ifdef goldTornado
 	POIN tornadoGold;			WORD 0x2002CA0 1
 #endif
@@ -284,6 +299,27 @@ BYTE 0x10
 firerodOnA:
 BYTE 0x16
 
+potHearth:
+BYTE 0x80
+
+potLonLon:
+BYTE 0x20
+
+potsFoW:
+BYTE 0x18
+
+potToD:
+BYTE 0x02
+
+cloudsDig:
+BYTE 0xFC 0x01
+
+melariDig:
+BYTE 0x4A 0x01
+
+swampUnderwater:
+BYTE 0x1C
+
 //Other Fusion flags
 tornadoGold:
 BYTE 0x10
@@ -293,6 +329,9 @@ BYTE 0x01
 
 swampBlockGold:
 BYTE 0x40
+
+ginaGraveBlue:
+BYTE 0x20
 
 crenelBeanstalkRed:
 BYTE 0x20
