@@ -251,6 +251,7 @@ WORD customRNG
 #include "hash.event"
 #include "traps.event"
 #include "removeFusions.event"
+#include "goalHint.event"
 #include "c/textSpeed.cevent"
 
 #ifdef heartLimited // extra hearts do not grant extra hp
