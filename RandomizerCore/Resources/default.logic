@@ -484,28 +484,32 @@
 !ifdef - AD_PED_5
 	!ifdef - NO_GOLD_FUSIONS
 		!ifdef - CLOUD_CREST
+			!undefine - `DUNGEON`
+			!define - NONE
 			!define - AD_PED_NUM - 5
 		!else
 			!define - AD_PED_NUM - 4
 		!endif
 	!else
+		!undefine - `DUNGEON`
+		!define - NONE
 		!define - AD_PED_NUM - 5
 	!endif
-	!undefine - `DUNGEON`
-	!define - NONE
 !endif
 !ifdef - AD_PED_6
 	!ifdef - NO_GOLD_FUSIONS
 		!ifdef - CLOUD_CREST
+			!undefine - `DUNGEON`
+			!define - NONE
 			!define - AD_PED_NUM - 5
 		!else
 			!define - AD_PED_NUM - 4
 		!endif
 	!else
+		!undefine - `DUNGEON`
+		!define - NONE
 		!define - AD_PED_NUM - 6
 	!endif
-	!undefine - `DUNGEON`
-	!define - NONE
 !endif
 
 # Shuffle Elements removes the "Prize" dungeon and changes all the elements to regular "Major" items to be globally shuffled
@@ -513,6 +517,7 @@
     !eventdefine - globalElements - 1   # if defined, does not draw elements on map (during full shuffle)
 	!eventdefine - elementTraps
 	!undefine - `DUNGEON`
+	!define - NONE
 !else
 	!ifdef - UNREQ
 		!import - NON_ELEMENT_DUNGEONS_NOT_REQUIRED
@@ -1835,7 +1840,7 @@
 !define - DHC_AD -
 !ifndef - AD_PED_0
 	!undefine - DHC_AD
-	!define - DHC_AD - , (+`AD_PED_NUM`, Locations.Deepwood_Prize, Locations.CoF_Prize, Locations.Fortress_Prize, Locations.Droplets_Prize, Locations.Crypt_Prize, Locations.Palace_Prize)
+	!define - DHC_AD - , (+`AD_PED_NUM`, Helpers.CompleteDeepwood, Helpers.CompleteCoF, Helpers.CompleteFortress, Helpers.CompleteDroplets, Helpers.CompleteCrypt, Helpers.CompletePalace)
 	!eventdefine - requirementDungeonsAmount - `AD_PED_NUM`
 !endif
 
@@ -6035,6 +6040,8 @@ Valley_GraveyardRightGraveFusion_Chest	`RC_OUTSIDE`;	`BLUEFUSIONDUNGEON`;	0x34-0
 	!endif
 !endif
 AccessCrypt;						Helper;				;													Helpers.AccessValley, Helpers.DarkRooms, Helpers.Graveyard, Helpers.CryptEntrance
+CompleteCrypt;					Helper;				;													`ENTERRC`, Helpers.CryptDoor, Helpers.CryptBlocks, Helpers.CryptPuzzle
+
 
 Crypt_Entrance					`DUNGEONENTRANCE`;	DumRCENT:Define:FirstByte, DumRCENT2:Define:SecondByte;	(|Helpers.AccessCrypt, Helpers.Hundo);													Items.Entrance.0x05
 
@@ -6042,7 +6049,7 @@ Crypt_Gibdo_LeftItem	`RC_INSIDE`;		Dungeon;			0x0E688B;											(|(&`ENTERRC`,
 Crypt_Gibdo_RightItem	`RC_INSIDE_SK`;	Dungeon;			0x0E68AB;											(|(&`ENTERRC`, (|Helpers.HasDamageSource, Items.Lantern)), Helpers.Hundo);					Items.SmallKey.0x1E
 Crypt_LeftItem		`RC_INSIDE_SK`;	Dungeon;			0x0E6357;											(|(&`ENTERRC`, Helpers.CryptDoor, Helpers.CanSplit3), Helpers.Hundo);						Items.SmallKey.0x1E
 Crypt_RightItem		`RC_INSIDE_SK`;	Dungeon;			0x0E63A7;											(|(&`ENTERRC`, Helpers.CryptDoor, Helpers.CanSplit3), Helpers.Hundo);						Items.SmallKey.0x1E
-Crypt_Prize			`RC_PRIZE`;		DungeonPrize;		0x00DA5A;											(|(&`ENTERRC`, Helpers.CryptDoor, Helpers.CryptBlocks, Helpers.CryptPuzzle), Helpers.Hundo);	Items.Kinstone.GoldenFalls
+Crypt_Prize			`RC_PRIZE`;		DungeonPrize;		0x00DA5A;											(|Helpers.CompleteCrypt, Helpers.Hundo);													Items.Kinstone.GoldenFalls
 #Secret Chest reachable with Firerod
 
 # Veil Falls
