@@ -101,7 +101,7 @@
 
 !dropdown - Main Settings - Setting - Requirements - DHC_SETTING - Dark Hyrule Castle Opens - Dark Hyrule Castle is the last dungeon in the game, it has the final boss Vaati. - OPENDHC - Never Open - NODHC - 'Never Open': A barrier is placed at the front of the dungeon, The game ends when you visit the sanctuary after completing all the requirements. - After Requirements - NORMALDHC - 'After Requirements': A barrier is placed at the front of the dungeon, This barrier is removed when you visit the sanctuary after completing ALL the requirements. The game ends when you defeat Vaati. - Always Open - OPENDHC - 'Always Open': There is no barrier at the front of the dungeon, the game ends when you defeat Vaati.
 !dropdown - Main Settings - Setting - Requirements - REQUIREMENT_ITEM - Requirement Reward - An item that the player receives once they meet the selected requirements. - REQUIREMENT_ITEM_DHC_BK - Disabled - REQUIREMENT_ITEM_NONE - 'Disabled': No extra item is awarded for requriement completion. - DHC Big Key - REQUIREMENT_ITEM_DHC_BK - 'DHC Big Key': The DHC Big Key is instantly awarded to the player once they meet the selected requirements. - Random Item - REQUIREMENT_ITEM_RANDOM - 'Random Item': An item from the random item pool is instantly awarded to the player once they meet the selected requirements.
-!dropdown - Main Settings - Setting - Requirements - AD_PED - Dungeons Required - The number of dungeons that have to be beaten to activate the Sanctuary. There are 6 dungeons in the game that count:\n Deepwood Shrine\n Cave of Flames\n Fortress of Winds\n Temple of Droplets\n Royal Crypt\n Palace of Winds - AD_PED_0 - 0 - AD_PED_0 - - 1 - AD_PED_1 - - 2 - AD_PED_2 - - 3 - AD_PED_3 - - 4 - AD_PED_4 - - 5 - AD_PED_5 - - 6 - AD_PED_6 -
+!dropdown - Main Settings - Setting - Requirements - AD_PED - Dungeons Required - The number of dungeons that have to be beaten to activate the Sanctuary. \nIf you select a number of dungeons higher that what are available given the other settings chosen, then this will be lowered to the total number of accessible dungeons. \nThere are 6 dungeons in the game that count:\n Deepwood Shrine\n Cave of Flames\n Fortress of Winds\n Temple of Droplets\n Royal Crypt\n Palace of Winds - AD_PED_0 - 0 - AD_PED_0 - - 1 - AD_PED_1 - - 2 - AD_PED_2 - - 3 - AD_PED_3 - - 4 - AD_PED_4 - - 5 - AD_PED_5 - - 6 - AD_PED_6 -
 !dropdown - Main Settings - Setting - Requirements - SWORD_SETTING - Sword Requirement - The level of sword that needs to be collected to activate the Sanctuary - 5SWORD - No Sword - 0SWORD - - Smith Sword - 1SWORD - - Green Sword - 2SWORD - - Red Sword - 3SWORD - - Blue Sword - 4SWORD - - Four Sword - 5SWORD -
 !dropdown - Main Settings - Setting - Requirements - ELEMENT_SETTING - Elements Required - The number of Elements that need to be collected to activate the Sanctuary - 4 - 0 - 0ELEMENT - - 1 - 1 - - 2 - 2 - - 3 - 3 - - 4 - 4 -
 !flag - Main Settings - Setting - Requirements - FIGURINE_HUNT - Figurine Hunt - Carlov's Figurine pieces have been scattered into the world, collect enough of them to be able to activate the Sanctuary, this is way better than a gacha game!\n Don't forget to visit Carlov's Machine to view the figurines you have collected so far.
@@ -482,12 +482,28 @@
 	!define - AD_PED_NUM - 4
 !endif
 !ifdef - AD_PED_5
-	!define - AD_PED_NUM - 5
+	!ifdef - NO_GOLD_FUSIONS
+		!ifdef - CLOUD_CREST
+			!define - AD_PED_NUM - 5
+		!else
+			!define - AD_PED_NUM - 4
+		!endif
+	!else
+		!define - AD_PED_NUM - 5
+	!endif
 	!undefine - `DUNGEON`
 	!define - NONE
 !endif
 !ifdef - AD_PED_6
-	!define - AD_PED_NUM - 6
+	!ifdef - NO_GOLD_FUSIONS
+		!ifdef - CLOUD_CREST
+			!define - AD_PED_NUM - 5
+		!else
+			!define - AD_PED_NUM - 4
+		!endif
+	!else
+		!define - AD_PED_NUM - 6
+	!endif
 	!undefine - `DUNGEON`
 	!define - NONE
 !endif
@@ -878,7 +894,6 @@
 		!define - POW_BIG - PoWBigV
 		!define - DHC_BIG - DHCBigV
 	!else
-		!define - BIG_KEYS_ELSE	# Simplifies if keys are shuffled outside their dungeon
 		!ifdef - BIG_KEYS_REGION
 			!define - DWS_BIG - DWSBigOutside
 			!define - COF_BIG - CoFBigOutside
@@ -887,6 +902,7 @@
 			!define - POW_BIG - PoWBigOutside
 			!define - DHC_BIG - DHCBigOutside
 		!else
+			!define - BIG_KEYS_ELSE	# Simplifies if keys are shuffled outside their dungeon
 			!ifdef - BIG_KEYS_DUNGEON
 				!define - DWS_BIG - Big
 				!define - COF_BIG - Big
@@ -1254,27 +1270,45 @@
 				Items.DungeonMap.0x1C;	`COMPASS`;	`POW_COMPASS`
 				Items.Compass.0x1C;	`COMPASS`;	`POW_COMPASS`
 			!else
-				!ifdef - MEME
-					Items.DungeonMap.0x1C;	`COMPASS`;	`POW_COMPASS`
-					Items.Compass.0x1C;	`COMPASS`;	`POW_COMPASS`
+				!ifndef - COMPASS_VANILLA
+					!ifndef - COMPASS_REGION
+						!ifndef - COMPASS_STANDARD
+							!ifdef - MEME
+								Items.DungeonMap.0x1C;	`COMPASS`;	`POW_COMPASS`
+								Items.Compass.0x1C;	`COMPASS`;	`POW_COMPASS`
+							!endif
+						!endif
+					!endif
 				!endif
 			!endif
 			!ifdef - FOW_ACCESS
 				Items.DungeonMap.0x1A;	`COMPASS`;	`FOW_COMPASS`
 				Items.Compass.0x1A;	`COMPASS`;	`FOW_COMPASS`
 			!else
-				!ifdef - MEME
-					Items.DungeonMap.0x1A;	`COMPASS`;	`FOW_COMPASS`
-					Items.Compass.0x1A;	`COMPASS`;	`FOW_COMPASS`
+				!ifndef - COMPASS_VANILLA
+					!ifndef - COMPASS_REGION
+						!ifndef - COMPASS_STANDARD
+							!ifdef - MEME
+								Items.DungeonMap.0x1A;	`COMPASS`;	`FOW_COMPASS`
+								Items.Compass.0x1A;	`COMPASS`;	`FOW_COMPASS`
+							!endif
+						!endif
+					!endif
 				!endif
 			!endif
 			!ifndef - NODHC
 				Items.DungeonMap.0x1D;	`COMPASS`;	`DHC_COMPASS`
 				Items.Compass.0x1D;	`COMPASS`;	`DHC_COMPASS`
 			!else
-				!ifdef - MEME
-					Items.DungeonMap.0x1D;	`COMPASS`;	`DHC_COMPASS`
-					Items.Compass.0x1D;	`COMPASS`;	`DHC_COMPASS`
+				!ifndef - COMPASS_VANILLA
+					!ifndef - COMPASS_REGION
+						!ifndef - COMPASS_STANDARD
+							!ifdef - MEME
+								Items.DungeonMap.0x1D;	`COMPASS`;	`DHC_COMPASS`
+								Items.Compass.0x1D;	`COMPASS`;	`DHC_COMPASS`
+							!endif
+						!endif
+					!endif
 				!endif
 			!endif
 		!endif
@@ -1302,13 +1336,43 @@
 		Items.BigKey.0x1B;	`BIG_KEY`;	`TOD_BIG`
 		!ifdef - POW_ACCESS
 			Items.BigKey.0x1C;	`BIG_KEY`;	`POW_BIG`
+		!else
+			!ifndef - BIG_KEYS_VANILLA
+				!ifndef - BIG_KEYS_REGION
+					!ifndef - BIG_KEYS_STANDARD
+						!ifdef - MEME
+							Items.BigKey.0x1C;	`BIG_KEY`;	`POW_BIG`
+						!endif
+					!endif
+				!endif
+			!endif
 		!endif
 		!ifdef - FOW_ACCESS
 			Items.BigKey.0x1A;	`BIG_KEY`;	`FOW_BIG`
+		!else
+			!ifndef - BIG_KEYS_VANILLA
+				!ifndef - BIG_KEYS_REGION
+					!ifndef - BIG_KEYS_STANDARD
+						!ifdef - MEME
+							Items.BigKey.0x1A;	`BIG_KEY`;	`FOW_BIG`
+						!endif
+					!endif
+				!endif
+			!endif
 		!endif
 		!ifndef - NODHC
 			!ifndef - REQUIREMENT_ITEM_DHC_BK
 				Items.BigKey.0x1D;	`BIG_KEY`;	`DHC_BIG`
+			!endif
+		!else
+			!ifndef - BIG_KEYS_VANILLA
+				!ifndef - BIG_KEYS_REGION
+					!ifndef - BIG_KEYS_STANDARD
+						!ifdef - MEME
+							Items.BigKey.0x1A;	`BIG_KEY`;	`FOW_BIG`
+						!endif
+					!endif
+				!endif
 			!endif
 		!endif
 	!endif
@@ -1357,12 +1421,42 @@
 		Items.SmallKey.0x1E:3;	`SMALL_KEY`;	`RC_SMALL`
 		!ifdef - POW_ACCESS
 			Items.SmallKey.0x1C:6;	`SMALL_KEY`;	`POW_SMALL`
+		!else
+			!ifndef - SMALL_KEYS_VANILLA
+				!ifndef - SMALL_KEYS_REGION
+					!ifndef - SMALL_KEYS_STANDARD
+						!ifdef - MEME
+							Items.SmallKey.0x1C:6;	`SMALL_KEY`;	`POW_SMALL`
+						!endif
+					!endif
+				!endif
+			!endif
 		!endif
 		!ifdef - FOW_ACCESS
 			Items.SmallKey.0x1A:4;	`SMALL_KEY`;	`FOW_SMALL`
+		!else
+			!ifndef - SMALL_KEYS_VANILLA
+				!ifndef - SMALL_KEYS_REGION
+					!ifndef - SMALL_KEYS_STANDARD
+						!ifdef - MEME
+							Items.SmallKey.0x1A:4;	`SMALL_KEY`;	`FOW_SMALL`
+						!endif
+					!endif
+				!endif
+			!endif
 		!endif
 		!ifndef - NODHC
 			Items.SmallKey.0x1D:5;	`SMALL_KEY`;	`DHC_SMALL`
+		!else
+			!ifndef - SMALL_KEYS_VANILLA
+				!ifndef - SMALL_KEYS_REGION
+					!ifndef - SMALL_KEYS_STANDARD
+						!ifdef - MEME
+							Items.SmallKey.0x1D:5;	`SMALL_KEY`;	`DHC_SMALL`
+						!endif
+					!endif
+				!endif
+			!endif
 		!endif
 	!endif
 	Items.Rupee1;			Filler;
@@ -1477,7 +1571,11 @@
 		Items.PieceOfHeart:24;	Major;
 	!endif
 	!ifdef - DOJORANDOM
-		Items.Rupee5:4;		DungeonMinor;	dojo
+		!ifdef - NO_RED_FUSIONS
+			Items.Rupee5;			DungeonMinor;	dojo
+		!else
+			Items.Rupee5:4;		DungeonMinor;	dojo
+		!endif
 	!endif
 !endif
 !ifdef - ITEM_POOL_NORMAL
@@ -1488,14 +1586,19 @@
 		!ifndef - DOJOVANILLA
 			!ifdef - DOJORANDOM
 				Items.GreatSpin;				DungeonMajor;	dojo
-				Items.FastSpin;					DungeonMajor;	dojo
+				Items.FastSpin;				DungeonMajor;	dojo
 				Items.FastSplit;				DungeonMajor;	dojo
-				Items.LongSpin;					DungeonMajor;	dojo
+				Items.LongSpin;				DungeonMajor;	dojo
+				!ifdef - NO_RED_FUSIONS
+					FakeDojo1:dojo:NoSpoiler;		Dungeon;	FakeDojo11:Define:FirstByte, FakeDojo12:Define:SecondByte;	Helpers.BeatVaati;
+					FakeDojo2:dojo:NoSpoiler;		Dungeon;	FakeDojo21:Define:FirstByte, FakeDojo22:Define:SecondByte;	Helpers.BeatVaati;
+					FakeDojo3:dojo:NoSpoiler;		Dungeon;	FakeDojo31:Define:FirstByte, FakeDojo32:Define:SecondByte;	Helpers.BeatVaati;
+				!endif
 			!else
 				Items.GreatSpin;				Major;
-				Items.FastSpin;					Major;
+				Items.FastSpin;				Major;
 				Items.FastSplit;				Major;
-				Items.LongSpin;					Major;
+				Items.LongSpin;				Major;
 			!endif
 		!endif
 	!else
@@ -1504,6 +1607,11 @@
 		!ifndef - DOJOVANILLA
 			!ifdef - DOJORANDOM
 				Items.ProgressiveItem.0x04:4;	DungeonMajor;	dojo	#Scroll
+				!ifdef - NO_RED_FUSIONS
+					FakeDojo1:dojo:NoSpoiler;		Dungeon;	FakeDojo11:Define:FirstByte, FakeDojo12:Define:SecondByte;	Helpers.BeatVaati;
+					FakeDojo2:dojo:NoSpoiler;		Dungeon;	FakeDojo21:Define:FirstByte, FakeDojo22:Define:SecondByte;	Helpers.BeatVaati;
+					FakeDojo3:dojo:NoSpoiler;		Dungeon;	FakeDojo31:Define:FirstByte, FakeDojo32:Define:SecondByte;	Helpers.BeatVaati;
+				!endif
 			!else
 				Items.ProgressiveItem.0x04:4;	Major;	#Scroll
 			!endif
@@ -1556,6 +1664,11 @@
 				Items.FastSpin;				DungeonMajor;	dojo
 				Items.FastSplit;				DungeonMajor;	dojo
 				Items.LongSpin;				DungeonMajor;	dojo
+				!ifdef - NO_RED_FUSIONS
+					FakeDojo1:dojo:NoSpoiler;		Dungeon;	FakeDojo11:Define:FirstByte, FakeDojo12:Define:SecondByte;	Helpers.BeatVaati;
+					FakeDojo2:dojo:NoSpoiler;		Dungeon;	FakeDojo21:Define:FirstByte, FakeDojo22:Define:SecondByte;	Helpers.BeatVaati;
+					FakeDojo3:dojo:NoSpoiler;		Dungeon;	FakeDojo31:Define:FirstByte, FakeDojo32:Define:SecondByte;	Helpers.BeatVaati;
+				!endif
 			!else
 				Items.SpinAttack:2;			Minor;
 				Items.GreatSpin;				Major;
@@ -1572,6 +1685,11 @@
 		!ifndef - DOJOVANILLA
 			!ifdef - DOJORANDOM
 				Items.ProgressiveItem.0x04:4;	DungeonMajor;	dojo	#Scroll
+				!ifdef - NO_RED_FUSIONS
+					FakeDojo1:dojo:NoSpoiler;		Dungeon;	FakeDojo11:Define:FirstByte, FakeDojo12:Define:SecondByte;	Helpers.BeatVaati;
+					FakeDojo2:dojo:NoSpoiler;		Dungeon;	FakeDojo21:Define:FirstByte, FakeDojo22:Define:SecondByte;	Helpers.BeatVaati;
+					FakeDojo3:dojo:NoSpoiler;		Dungeon;	FakeDojo31:Define:FirstByte, FakeDojo32:Define:SecondByte;	Helpers.BeatVaati;
+				!endif
 			!else
 				Items.ProgressiveItem.0x04:6;	Major;	#Scroll
 			!endif
@@ -4577,7 +4695,6 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 	Gregal;					Helper;;	
 	DeepwoodWeb;				Helper;;	
 	DeepwoodMulldozers;		Helper;;	
-	DeepwoodPreMadderpillar;	Helper;;	
 	DeepwoodNWChest;			Helper;;	
 	DeepwoodWarpChests;		Helper;;	
 	DeepwoodMadderpillarWeb;	Helper;;	
@@ -4586,7 +4703,6 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 	CoFHelmasaur;				Helper;;	
 	CoFChuFight;				Helper;;	
 	CoFChuFightBackDoor;		Helper;; Items.RocsCape
-	CoFBasementAccess;		Helper;; 
 	FoWWizrobes;				Helper;;	
 	FoWEyeSwitch;				Helper;;	
 	FoWStalfosFight;			Helper;;	
@@ -4604,24 +4720,17 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 	ToDLeftPillars;			Helper;;	
 	ToDLeftReverse;			Helper;;	
 	ToDLeftIceRoom;			Helper;;	(|Items.RocsCape, Items.GustJar)
-	ToDLeftPath;				Helper;;	Items.Flippers, Helpers.ToDWestDoor, Helpers.ToDLeftMushroomSwitch, Helpers.ToDLeftPillars, Helpers.ToDLeftIceRoom
-	ToDLilypadEnd;			Helper;;	
 	ToDDarkMazeReverse;		Helper;;	Helpers.DarkRooms
 	ToDRightIceBlock;			Helper;;	
 	ToDRightIce;				Helper;;	
 	ToDScissorBeetles;		Helper;;	
 	ToDDarkMaze;				Helper;;	
-	ToDRightPath;				Helper;;	
-	ToDEitherPath;			Helper;;	
-	ToD2ndRupeePath;			Helper;;	(|(&Helpers.ToDMainRoom, (|(&Helpers.ToDLeftPath, Items.RocsCape), Helpers.ToDRightPath)), (&Helpers.ToDBlueWarp, Items.RocsCape, Helpers.DarkRooms))
 	ToDMadderpillars;			Helper;;	
 	ToDEastSwitch;			Helper;;	
 	ToDWestSwitch;			Helper;;	
 	ToDMulldozer;				Helper;;	
-	AccessOcto;				Helper;;	`ENTERTOD`, Helpers.ToDMainRoom
 	PoWPotPuzzle;				Helper;;	
 	PoWDarknut;				Helper;;	
-	PoW2ndHalf;				Helper;;	
 	PoWPeahatRoom;			Helper;;	
 	PoWShortcuts;				Helper;;	
 	PoWDoubleWiz;				Helper;;	
@@ -4686,7 +4795,6 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 	Gregal;					Helper;;	Items.GustJar
 	DeepwoodWeb;				Helper;;	(|Items.GustJar, Items.Lantern)
 	DeepwoodMulldozers;		Helper;;	Helpers.HasDamageSource
-	DeepwoodPreMadderpillar;	Helper;;	(|Helpers.DeepwoodBlueWarp, (&Helpers.Deepwood1stDoor, (|Helpers.Deepwood2ndDoor, Items.SmallKey.0x18:2, Items.GustJar)))
 	DeepwoodNWChest;			Helper;;	Helpers.BlowDust
 	DeepwoodWarpChests;		Helper;;	Helpers.BlowDust
 	DeepwoodMadderpillarFight;	Helper;;	Helpers.HasMadderDamage
@@ -4695,7 +4803,6 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 	CoFHelmasaur;				Helper;;	Helpers.HasHelmasaurDamage
 	CoFChuFight;				Helper;;	Helpers.HasDamageSource
 	CoFChuFightBackDoor;		Helper;; Helpers.Inaccessible
-	CoFBasementAccess;		Helper;; (|Helpers.CoFRedWarp, (&(|Helpers.CoFBlueWarp, (&(|Helpers.BombWalls, Helpers.Bobombs), Helpers.CoFSpikeBeetle, Helpers.CoF1stDoor, Helpers.HasSword)), Helpers.CoF2ndDoor, Items.PacciCane, Helpers.HasSword));
 	FoWWizrobes;				Helper;;	Helpers.HasWizrobeDamage
 	FoWEyeSwitch;				Helper;;	Helpers.HasBow
 	FoWStalfosFight;			Helper;;	Helpers.HasDamageSource
@@ -4707,30 +4814,22 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 	FoWRightDrop;				Helper;;	Helpers.FoWCloneSwitch
 	FoWDarknut;				Helper;;	Helpers.HasDarknutDamage
 	ToDWeb;					Helper;;	Items.Lantern
-	ToDMainRoom;				Helper;;	(|Helpers.ToDBigDoor, (&Helpers.ToDBlueWarp, Helpers.ToDScissorBeetles), (&Helpers.ToDRedWarp, Helpers.BombWalls, Helpers.ToDWeb, Helpers.ToDMadderpillars))
 	ToDLeftMushroomSwitch;		Helper;;	(|Items.GustJar, Items.RocsCape)
 	ToDBasementLilySpawn;		Helper;;	Items.Flippers, Helpers.ToDWestDoor, Items.GustJar
 	ToDLeftPillars;			Helper;;	Items.GustJar
 	ToDLeftReverse;			Helper;;	Helpers.Inaccessible
 	ToDLeftIceRoom;			Helper;;	(|(&Items.GustJar, Helpers.ToDBasementLilySpawn), Items.RocsCape)
-	ToDLeftPath;				Helper;;	Items.Flippers, Helpers.ToDWestDoor, Helpers.ToDLeftMushroomSwitch, Helpers.ToDLeftPillars, Helpers.ToDLeftIceRoom
-	ToDLilypadEnd;			Helper;;	(|(&Helpers.ToDBlueWarp, Helpers.ToDScissorBeetles), (&Helpers.ToDMainRoom, (|Helpers.ToDLeftPath, (&Helpers.ToDRightPath, Items.RocsCape), Helpers.ToDEitherPath)))
 	ToDDarkMazeReverse;		Helper;;	Helpers.Inaccessible
 	ToDRightIceBlock;			Helper;;	(|Helpers.ToDEastSwitch, Items.Lantern)
 	ToDRightIce;				Helper;;	Items.Lantern
 	ToDScissorBeetles;		Helper;;	Helpers.HasScissorDamage
 	ToDDarkMaze;				Helper;;	Items.Lantern
-	ToDRightPath;				Helper;;	Helpers.ToDRightIceBlock, Helpers.ToDRightIce, Helpers.DarkRooms, Helpers.ToDScissorBeetles, Helpers.ToDDarkMaze, Helpers.ToDDarkDoor
-	ToDEitherPath;			Helper;;	Helpers.ToDEitherDoor, Items.Flippers, Helpers.ToDLeftPillars, Helpers.ToDRightIceBlock, Helpers.ToDRightIce, Helpers.DarkRooms, Helpers.ToDScissorBeetles, Helpers.ToDDarkMaze, Items.RocsCape
-	ToD2ndRupeePath;			Helper;;	(|(&Helpers.ToDMainRoom, (|(&Helpers.ToDLeftPath, Items.RocsCape), Helpers.ToDRightPath, Helpers.ToDEitherPath)), (&Helpers.ToDBlueWarp, Helpers.ToDScissorBeetles, Items.RocsCape, Helpers.DarkRooms))
 	ToDMadderpillars;			Helper;;	Helpers.HasMadderDamage
 	ToDEastSwitch;			Helper;;	Helpers.CanSplit2, (|Helpers.ToDBlueWarp, (&Helpers.ToDMainRoom, (|Helpers.ToDLeftPath, (&Helpers.ToDRightPath, Items.RocsCape), Helpers.ToDEitherPath)))
 	ToDWestSwitch;			Helper;;	Helpers.BombWalls, Helpers.ToDWeb, Helpers.ToDMadderpillars, Helpers.CanSplit2, (|Helpers.ToDRedWarp, (&Helpers.ToD2ndRupeePath, Helpers.ToDRightIce, Helpers.CapeExtension))
 	ToDMulldozer;				Helper;;	Helpers.HasDamageSource
-	AccessOcto;				Helper;;	Helpers.ToDMainRoom, Helpers.ToDEastSwitch, Helpers.ToDWestSwitch
 	PoWPotPuzzle;				Helper;;	(|(&Items.PowerBracelets, (|Items.GustJar, Items.BombBag, Helpers.HasBow, Helpers.HasBeam, Helpers.HasBoomerang)), Helpers.PoWPotPuzzleOOL)
 	PoWDarknut;				Helper;;	Helpers.HasDarknutDamage
-	PoW2ndHalf;				Helper;;	(|(&Helpers.PoWBlueWarp, Helpers.PoWDarknut), (&Items.RocsCape, (|Helpers.CanSplit3, Helpers.CanSplit4), Helpers.PoWJump, Helpers.PoW1stDoor, Helpers.PoWBossDoor))
 	PoWPeahatRoom;			Helper;;	(|Helpers.CanSplit2, Helpers.CanSplit3, Helpers.CanSplit4, (&Helpers.HasSword, Items.BombBag))
 	PoWShortcuts;				Helper;;	Helpers.Inaccessible
 	PoWDoubleWiz;				Helper;;	Helpers.HasWizrobeDamage
@@ -4751,6 +4850,16 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 	DHCLampPuzzle;			Helper;;	Items.Lantern
 	DHCGhini;				Helper;;	Helpers.HasGhiniDamage
 !endif
+DeepwoodPreMadderpillar;	Helper;;	(|Helpers.DeepwoodBlueWarp, (&Helpers.Deepwood1stDoor, (|Helpers.Deepwood2ndDoor, Items.SmallKey.0x18:2, Items.GustJar)))
+CoFBasementAccess;		Helper;;	(|Helpers.CoFRedWarp, (&(|Helpers.CoFBlueWarp, (&(|Helpers.BombWalls, Helpers.Bobombs), Helpers.CoFSpikeBeetle, Helpers.CoF1stDoor, Helpers.HasSword)), Helpers.CoF2ndDoor, Items.PacciCane, Helpers.HasSword));
+ToDMainRoom;				Helper;;	(|Helpers.ToDBigDoor, (&Helpers.ToDBlueWarp, Helpers.ToDScissorBeetles), (&Helpers.ToDRedWarp, Helpers.BombWalls, Helpers.ToDWeb, Helpers.ToDMadderpillars))
+ToDLeftPath;				Helper;;	Items.Flippers, Helpers.ToDWestDoor, Helpers.ToDLeftMushroomSwitch, Helpers.ToDLeftPillars, Helpers.ToDLeftIceRoom
+ToDLilypadEnd;			Helper;;	(|(&Helpers.ToDBlueWarp, Helpers.ToDScissorBeetles), (&Helpers.ToDMainRoom, (|Helpers.ToDLeftPath, (&Helpers.ToDRightPath, Items.RocsCape), Helpers.ToDEitherPath)))
+ToDRightPath;				Helper;;	Helpers.ToDRightIceBlock, Helpers.ToDRightIce, Helpers.DarkRooms, Helpers.ToDScissorBeetles, Helpers.ToDDarkMaze, Helpers.ToDDarkDoor
+ToDEitherPath;			Helper;;	Helpers.ToDEitherDoor, Items.Flippers, Helpers.ToDLeftPillars, Helpers.ToDRightIceBlock, Helpers.ToDRightIce, Helpers.DarkRooms, Helpers.ToDScissorBeetles, Helpers.ToDDarkMaze, Items.RocsCape
+ToD2ndRupeePath;			Helper;;	(|(&Helpers.ToDMainRoom, (|(&Helpers.ToDLeftPath, Items.RocsCape), Helpers.ToDRightPath, Helpers.ToDEitherPath)), (&Helpers.ToDBlueWarp, Helpers.ToDScissorBeetles, Items.RocsCape, Helpers.DarkRooms))
+AccessOcto;				Helper;;	Helpers.ToDMainRoom, Helpers.ToDEastSwitch, Helpers.ToDWestSwitch
+PoW2ndHalf;				Helper;;	(|(&Helpers.PoWBlueWarp, Helpers.PoWDarknut), (&Items.RocsCape, (|Helpers.CanSplit3, Helpers.CanSplit4), Helpers.PoWJump, Helpers.PoW1stDoor, Helpers.PoWBossDoor))
 !ifdef - CRENEL_CREST
 	CrenelWindCrest;			Helper;;	Items.Ocarina
 !else
@@ -6013,8 +6122,16 @@ Palace_Entrance							`DUNGEONENTRANCE`;	DumPoWENT:Define:FirstByte, DumPoWENT2:
 # Deepwood locations
 
 !define - DWS_INSIDE - `DWS_OUTSIDE`	:DWSSmall	:DWSBig	:DWSCompass	:Small	:Big	:Compass
-!define - DWS_INSIDE_SK - `DWS_INSIDE`	:DWSSmallV
-!define - DWS_INSIDE_BK - `DWS_INSIDE`	:DWSBigV
+!ifdef - SMALL_KEYS_VANILLA
+	!define - DWS_INSIDE_SK - :DWSSmallV
+!else
+	!define - DWS_INSIDE_SK - `DWS_INSIDE`
+!endif
+!ifdef - BIG_KEYS_VANILLA
+	!define - DWS_INSIDE_BK - :DWSBigV
+!else
+	!define - DWS_INSIDE_BK - `DWS_INSIDE`
+!endif
 !ifdef - UNREQSUR
 	!define - DWS_PRIZE - :DWSSmall	:DWSBig	:DWSCompass	:DWSSmallOutside	:DWSBigOutside	:DWSCompassOutside
 !else
@@ -6059,8 +6176,16 @@ Deepwood_Prize						`DWS_PRIZE`;		DungeonPrize;		0x0DF03B;														(|Helper
 # Cave of Flames locations
 
 !define - COF_INSIDE - `COF_OUTSIDE`	:CoFSmall	:CoFBig	:CoFCompass	:Small	:Big	:Compass
-!define - COF_INSIDE_SK - `COF_INSIDE`	:CoFSmallV
-!define - COF_INSIDE_BK - `COF_INSIDE`	:CoFBigV
+!ifdef - SMALL_KEYS_VANILLA
+	!define - COF_INSIDE_SK - :CoFSmallV
+!else
+	!define - COF_INSIDE_SK - `COF_INSIDE`
+!endif
+!ifdef - BIG_KEYS_VANILLA
+	!define - COF_INSIDE_BK - :CoFBigV
+!else
+	!define - COF_INSIDE_BK - `COF_INSIDE`
+!endif
 !ifdef - UNREQSUR
 	!define - COF_PRIZE - :CoFSmall	:CoFBig	:CoFCompass	:CoFSmallOutside	:CoFBigOutside	:CoFCompassOutside
 !else
@@ -6111,8 +6236,16 @@ Crenel_Melari_NPC				`COF_INSIDE`;		Dungeon;			0x00D26E;																(|Helper
 # Fortress of Winds Locations
 
 !define - FOW_INSIDE - `FOW_OUTSIDE`	:FoWSmall	:FoWBig	:FoWCompass	:Small	:Big	:Compass
-!define - FOW_INSIDE_SK - `FOW_INSIDE`	:FoWSmallV
-!define - FOW_INSIDE_BK - `FOW_INSIDE`	:FoWBigV
+!ifdef - SMALL_KEYS_VANILLA
+	!define - FOW_INSIDE_SK - :FoWSmallV
+!else
+	!define - FOW_INSIDE_SK - `FOW_INSIDE`
+!endif
+!ifdef - BIG_KEYS_VANILLA
+	!define - FOW_INSIDE_BK - :FoWBigV
+!else
+	!define - FOW_INSIDE_BK - `FOW_INSIDE`
+!endif
 !ifdef - UNREQSUR
 	!define - FOW_PRIZE - :FoWSmall	:FoWBig	:FoWCompass	:FoWSmallOutside	:FoWBigOutside	:FoWCompassOutside
 !else
@@ -6174,8 +6307,16 @@ Fortress_Prize						`FOW_PRIZE`;		`FORTRESSPRIZE`;		0x09C9E6:FirstByte, 0x09C9E8
 # Temple of Droplets Locations
 
 !define - TOD_INSIDE - :ToDSmall	:ToDBig	:ToDCompass	:Small	:Big	:Compass
-!define - TOD_INSIDE_SK - `TOD_INSIDE`	:ToDSmallV
-!define - TOD_INSIDE_BK - `TOD_INSIDE`	:ToDBigV
+!ifdef - SMALL_KEYS_VANILLA
+	!define - TOD_INSIDE_SK - :ToDSmallV
+!else
+	!define - TOD_INSIDE_SK - `TOD_INSIDE`
+!endif
+!ifdef - BIG_KEYS_VANILLA
+	!define - TOD_INSIDE_BK - :ToDBigV
+!else
+	!define - TOD_INSIDE_BK - `TOD_INSIDE`
+!endif
 !ifdef - NONE
 	!define - TOD_PRIZE - `TOD_INSIDE`
 !else
@@ -6252,8 +6393,16 @@ Droplets_Prize								`TOD_PRIZE`;	DungeonPrize;				0x0E40C3;														(|Hel
 # Palace of Winds Locations
 
 !define - POW_INSIDE - `POW_OUTSIDE`	:PoWSmall	:PoWBig	:PoWCompass	:Small	:Big	:Compass
-!define - POW_INSIDE_SK - `POW_INSIDE`	:PoWSmallV
-!define - POW_INSIDE_BK - `POW_INSIDE`	:PoWBigV
+!ifdef - SMALL_KEYS_VANILLA
+	!define - POW_INSIDE_SK - :PoWSmallV
+!else
+	!define - POW_INSIDE_SK - `POW_INSIDE`
+!endif
+!ifdef - BIG_KEYS_VANILLA
+	!define - POW_INSIDE_BK - :PoWBigV
+!else
+	!define - POW_INSIDE_BK - `POW_INSIDE`
+!endif
 !ifdef - UNREQSUR
 	!define - POW_PRIZE - :PoWSmall	:PoWBig	:PoWCompass :PoWSmallOutside	:PoWBigOutside	:PoWCompassOutside
 !else
@@ -6313,8 +6462,16 @@ Sanctuary_Pedestal_Item3	`DHC_OUTSIDE`;  `PED`;   pedestalSpot3Item:Define:First
 # Dark Hyrule Castle
 
 !define - DHC_INSIDE - `DHC_OUTSIDE`	:DHCSmall	:DHCBig	:DHCCompass	:Small	:Big	:Compass
-!define - DHC_INSIDE_SK - `DHC_INSIDE` :DHCSmallV
-!define - DHC_INSIDE_BK - `DHC_INSIDE` :DHCBigV
+!ifdef - SMALL_KEYS_VANILLA
+	!define - DHC_INSIDE_SK - :DHCSmallV
+!else
+	!define - DHC_INSIDE_SK - `DHC_INSIDE`
+!endif
+!ifdef - BIG_KEYS_VANILLA
+	!define - DHC_INSIDE_BK - :DHCBigV
+!else
+	!define - DHC_INSIDE_BK - `DHC_INSIDE`
+!endif
 
 DHC_B2_King				`DHC_INSIDE`;		`DHCKING`;	0x00E46A;		(|(&Helpers.AccessDHC, Helpers.DHCKing), Helpers.Hundo);																	Items.Rupee1 #used to be a small key but a door got removed
 DHC_B1_BigChest			`DHC_INSIDE`;		`DHCCOMPASS`;	0x88-0x37-0x00;	(|Helpers.AccessDHC, Helpers.Hundo);																					Items.DungeonMap.0x1D
