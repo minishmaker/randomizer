@@ -1452,7 +1452,8 @@ internal class Shuffler
             DungeonEntranceType.ToD => "Temple of Droplets",
             DungeonEntranceType.Crypt => "Royal Crypt",
             DungeonEntranceType.PoW => "Palace of Winds",
-            DungeonEntranceType.DHC => "Dark Hyrule Castle",
+            DungeonEntranceType.DHCMain => "Dark Hyrule Castle",
+            DungeonEntranceType.DHCSide => "Dark Hyrule Castle",
             _ => $"{subvalue}"
         };
     }
@@ -1625,13 +1626,14 @@ internal class Shuffler
     {
         return locationName switch
         {
-            "Deepwood_Entrance" => (0xB27A, 0x0D7D0AC8),
+            "Deepwood_Entrance" => (0xB27A, 0x0D6C0AC0),
             "CoF_Entrance" => (0x3B1B, 0x01E80178),
             "Fortress_Entrance" => (0x4B77, 0x03780A78),
             "Droplets_Entrance" => (0xB54B, 0x0DB80638),
             "Crypt_Entrance" => (0x5A15, 0x04DC0148),
             "Palace_Entrance" => (0xB51B, 0x0D8800E8),
-            "DHC_Entrance" => (0xB51B, 0x0D8800E8),
+            "DHC_Main_Entrance" => (0x7812, 0x07C800F8),
+            "DHC_Side_Entrance" => (0x6D14, 0x06400118),
         };
     }
 
@@ -1680,7 +1682,8 @@ internal class Shuffler
         const uint powExit = 0x1082A1;
         const uint powGreenWarp = 0xE6A14;
 
-        const uint dhcExit = 0x139426; //DHC has no green warp :)
+        const uint dhcMainExit = 0x139426; //DHC has no green warp :)
+        const uint dhcSideExit = 0x137F52; //DHC has no green warp :)
 
         if (!location.Contents.HasValue || location.Contents.Value.ShufflePool is not ItemPool.DungeonEntrance) return;
 
@@ -1767,7 +1770,7 @@ internal class Shuffler
                 holeWarpAddress = powExit;
                 greenWarpAddress = powGreenWarp;
                 break;
-            case DungeonEntranceType.DHC:
+            case DungeonEntranceType.DHCMain:
                 entranceX = 0x198;
                 entranceY = 0x1F0;
                 entranceLayerOrHeight = 0x1;
@@ -1775,7 +1778,17 @@ internal class Shuffler
                 targetRoom = 0x00;
                 entranceAnimation = 0x0;
                 facingDirection = 0x0;
-                exitAddress = dhcExit;
+                exitAddress = dhcMainExit;
+                break;
+            case DungeonEntranceType.DHCSide:
+                entranceX = 0x68;
+                entranceY = 0x1A8;
+                entranceLayerOrHeight = 0x1;
+                targetArea = 0x43;
+                targetRoom = 0x00;
+                entranceAnimation = 0x0;
+                facingDirection = 0x0;
+                exitAddress = dhcSideExit;
                 break;
             default:
                 return;
@@ -1803,8 +1816,11 @@ internal class Shuffler
             case "Palace_Entrance":
                 transition = TransitionFactory.BuildTransitionFromDungeonEntranceType(DungeonEntranceType.PoW);
                 break;
-            case "DHC_Entrance":
-                transition = TransitionFactory.BuildTransitionFromDungeonEntranceType(DungeonEntranceType.DHC);
+            case "DHC_Main_Entrance":
+                transition = TransitionFactory.BuildTransitionFromDungeonEntranceType(DungeonEntranceType.DHCMain);
+                break;
+            case "DHC_Side_Entrance":
+                transition = TransitionFactory.BuildTransitionFromDungeonEntranceType(DungeonEntranceType.DHCSide);
                 break;
             default:
                 return;
