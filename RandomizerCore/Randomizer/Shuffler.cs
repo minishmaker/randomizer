@@ -1318,7 +1318,7 @@ internal class Shuffler
             {
                 builder.AppendLine($"Sphere {sphereCounter}: {{").AppendLine("\tBeat Vaati").AppendLine("}")
                     .AppendLine();
-                return;
+                break;
             }
 
             var accessibleLocations =
@@ -1452,6 +1452,7 @@ internal class Shuffler
             DungeonEntranceType.ToD => "Temple of Droplets",
             DungeonEntranceType.Crypt => "Royal Crypt",
             DungeonEntranceType.PoW => "Palace of Winds",
+            DungeonEntranceType.DHC => "Dark Hyrule Castle",
             _ => $"{subvalue}"
         };
     }
@@ -1629,7 +1630,8 @@ internal class Shuffler
             "Fortress_Entrance" => (0x4B77, 0x03780A78),
             "Droplets_Entrance" => (0xB54B, 0x0DB80638),
             "Crypt_Entrance" => (0x5A15, 0x04DC0148),
-            "Palace_Entrance" => (0xB51B, 0x0D8800E8)
+            "Palace_Entrance" => (0xB51B, 0x0D8800E8),
+            "DHC_Entrance" => (0xB51B, 0x0D8800E8),
         };
     }
 
@@ -1677,6 +1679,8 @@ internal class Shuffler
 
         const uint powExit = 0x1082A1;
         const uint powGreenWarp = 0xE6A14;
+
+        const uint dhcExit = 0x139426; //DHC has no green warp :)
 
         if (!location.Contents.HasValue || location.Contents.Value.ShufflePool is not ItemPool.DungeonEntrance) return;
 
@@ -1763,6 +1767,16 @@ internal class Shuffler
                 holeWarpAddress = powExit;
                 greenWarpAddress = powGreenWarp;
                 break;
+            case DungeonEntranceType.DHC:
+                entranceX = 0x198;
+                entranceY = 0x1F0;
+                entranceLayerOrHeight = 0x1;
+                targetArea = 0x88;
+                targetRoom = 0x00;
+                entranceAnimation = 0x0;
+                facingDirection = 0x0;
+                exitAddress = dhcExit;
+                break;
             default:
                 return;
         }
@@ -1788,6 +1802,9 @@ internal class Shuffler
                 break;
             case "Palace_Entrance":
                 transition = TransitionFactory.BuildTransitionFromDungeonEntranceType(DungeonEntranceType.PoW);
+                break;
+            case "DHC_Entrance":
+                transition = TransitionFactory.BuildTransitionFromDungeonEntranceType(DungeonEntranceType.DHC);
                 break;
             default:
                 return;

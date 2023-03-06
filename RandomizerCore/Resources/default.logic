@@ -1100,6 +1100,8 @@
 !endif
 
 #Entrances
+
+!define - ENTERDHC - Helpers.AccessDHC
 !ifdef - ENTRANCES_VANILLA
 	!define - DUNGEONENTRANCE - :NoSpoiler;	Unshuffled
 	!define - ENTERDWS - Helpers.AccessDeepwood
@@ -1116,6 +1118,11 @@
 	!define - ENTERTOD - Items.Entrance.0x04
 	!define - ENTERRC - Items.Entrance.0x05
 	!define - ENTERPOW - Items.Entrance.0x06
+	!ifdef - OPENDHC
+		!undefine - ENTERDHC
+		!define - ENTERDHC - Items.Entrance.0x07
+		Items.Entrance.0x07;	DungeonEntrance;
+	!endif
 	Items.Entrance.0x01;	DungeonEntrance;
 	Items.Entrance.0x02;	DungeonEntrance;
 	Items.Entrance.0x03;	DungeonEntrance;
@@ -5728,12 +5735,14 @@ Castle_Moat_RightChest;				Any;				0x07-0x00-0x02;														(|Items.Flippers
 	!define - DHC_DOJO - `DHC_OUTSIDE`
 !endif
 
-Castle_GoldenRope							`DHC_OUTSIDE`		`GREENFUSIONENEMY`;	golden5Item:Define:FirstByte, golden5Sub:Define:SecondByte;			(|(&Helpers.Shared3CFusion, Helpers.HasSword), Helpers.Hundo);		Items.Rupee100
-Castle_RightFountainFusion_HP				`DHC_OUTSIDE`;	`REDFUSIONDUNGEONHP`;	0x0D9C2B;														(|Helpers.Shared18Fusion, Helpers.Hundo);						Items.PieceOfHeart
-Castle_Dojo_HP							`DHC_OUTSIDE`;	`DUNGEONHP`;			0x0D79BB;														;															Items.PieceOfHeart
-Castle_Dojo_NPC							`DHC_DOJO`;		`DOJOITEM`;			grimbladeDojoItem:Define:FirstByte, grimbladeDojoSub:Define:SecondByte;	(|(&Helpers.CastleDojo, Helpers.HasSword), Helpers.Hundo);			Items.SwordBeam
-Castle_RightFountainFusion_MinishHoleChest	`DHC_OUTSIDE`;	`REDFUSIONDUNGEON`;	0x36-0x00-0x00;													(|(&Helpers.Shared18Fusion, Helpers.BonkedTrees), Helpers.Hundo);	Items.Shells.50
-Castle_LeftFountainFusion_MinishHoleChest	`DHC_OUTSIDE`;	`GREENFUSIONDUNGEON`;	0x36-0x01-0x00;													(|(&Helpers.Shared35Fusion, Helpers.BonkedTrees), Helpers.Hundo);	Items.Shells.50
+Castle_GoldenRope							`DHC_OUTSIDE`			`GREENFUSIONENEMY`;	golden5Item:Define:FirstByte, golden5Sub:Define:SecondByte;			(|(&Helpers.Shared3CFusion, Helpers.HasSword), Helpers.Hundo);		Items.Rupee100
+Castle_RightFountainFusion_HP				`DHC_OUTSIDE`;		`REDFUSIONDUNGEONHP`;	0x0D9C2B;														(|Helpers.Shared18Fusion, Helpers.Hundo);						Items.PieceOfHeart
+Castle_Dojo_HP							`DHC_OUTSIDE`;		`DUNGEONHP`;			0x0D79BB;														;															Items.PieceOfHeart
+Castle_Dojo_NPC							`DHC_DOJO`;			`DOJOITEM`;			grimbladeDojoItem:Define:FirstByte, grimbladeDojoSub:Define:SecondByte;	(|(&Helpers.CastleDojo, Helpers.HasSword), Helpers.Hundo);			Items.SwordBeam
+Castle_RightFountainFusion_MinishHoleChest	`DHC_OUTSIDE`;		`REDFUSIONDUNGEON`;	0x36-0x00-0x00;													(|(&Helpers.Shared18Fusion, Helpers.BonkedTrees), Helpers.Hundo);	Items.Shells.50
+Castle_LeftFountainFusion_MinishHoleChest	`DHC_OUTSIDE`;		`GREENFUSIONDUNGEON`;	0x36-0x01-0x00;													(|(&Helpers.Shared35Fusion, Helpers.BonkedTrees), Helpers.Hundo);	Items.Shells.50
+
+DHC_Entrance													`DUNGEONENTRANCE`;	DumDHCENT:Define:FirstByte, DumDHCENT2:Define:SecondByte;				Helpers.AccessDHC;											Items.Entrance.0x07
 
 # Eastern Hills and LonLonRanch
 AccessEasternHills;				Helper;				;														(|Helpers.CanDestroyTrees, Helpers.SHFWindCrest, (&Helpers.OverworldBlocks, Helpers.AccessMinishWoods))
@@ -6021,7 +6030,11 @@ Valley_GraveyardRightFusion_Chest		`RC_OUTSIDE`;	`UWTFUSIONGREEN`;		0x0FE0E6;		(
 Valley_GraveyardRightGraveFusion_Chest	`RC_OUTSIDE`;	`BLUEFUSIONDUNGEON`;	0x34-0x01-0x00;	(|(&Helpers.Dampe1Fusion, Helpers.AccessValley, Helpers.DarkRooms, Helpers.Graveyard), Helpers.Hundo);			Items.Shells.100
 
 !define - RC_INSIDE - `RC_OUTSIDE`	:RCSmall	:Small	:Big	:Compass
-!define - RC_INSIDE_SK - `RC_INSIDE`	:RCSmallV
+!ifdef - SMALL_KEYS_VANILLA
+	!define - RC_INSIDE_SK - :RCSmallV
+!else
+	!define - RC_INSIDE_SK - `RC_INSIDE`
+!endif
 !ifdef - UNREQSUR
 	!define - RC_PRIZE - :RCSmall :RCSmallOutside
 !else
@@ -6480,23 +6493,23 @@ Sanctuary_Pedestal_Item3	`DHC_OUTSIDE`;  `PED`;   pedestalSpot3Item:Define:First
 	!define - DHC_INSIDE_BK - `DHC_INSIDE`
 !endif
 
-DHC_B2_King				`DHC_INSIDE`;		`DHCKING`;	0x00E46A;		(|(&Helpers.AccessDHC, Helpers.DHCKing), Helpers.Hundo);																	Items.Rupee1 #used to be a small key but a door got removed
-DHC_B1_BigChest			`DHC_INSIDE`;		`DHCCOMPASS`;	0x88-0x37-0x00;	(|Helpers.AccessDHC, Helpers.Hundo);																					Items.DungeonMap.0x1D
-DHC_1F_Blade_Chest		`DHC_INSIDE_SK`;	`DHCSMALL`;	0x88-0x27-0x00;	(|(&Helpers.AccessDHC, Helpers.DHCFirstCanon, Helpers.DHCBladePuzzle), Helpers.Hundo);										Items.SmallKey.0x1D
-DHC_1F_Throne_BigChest		`DHC_INSIDE`;		`DHCCOMPASS`;	0x88-0x20-0x00;	(|(&Helpers.AccessDHC, Helpers.DHC1stDoor, Helpers.DHC2ndCanon, Helpers.BombWalls, Helpers.DHCThrone), Helpers.Hundo);			Items.Compass.0x1D
+DHC_B2_King				`DHC_INSIDE`;		`DHCKING`;	0x00E46A;		(|(&`ENTERDHC`, Helpers.DHCKing), Helpers.Hundo);																	Items.Rupee1 #used to be a small key but a door got removed
+DHC_B1_BigChest			`DHC_INSIDE`;		`DHCCOMPASS`;	0x88-0x37-0x00;	(|`ENTERDHC`, Helpers.Hundo);																					Items.DungeonMap.0x1D
+DHC_1F_Blade_Chest		`DHC_INSIDE_SK`;	`DHCSMALL`;	0x88-0x27-0x00;	(|(&`ENTERDHC`, Helpers.DHCFirstCanon, Helpers.DHCBladePuzzle), Helpers.Hundo);										Items.SmallKey.0x1D
+DHC_1F_Throne_BigChest		`DHC_INSIDE`;		`DHCCOMPASS`;	0x88-0x20-0x00;	(|(&`ENTERDHC`, Helpers.DHC1stDoor, Helpers.DHC2ndCanon, Helpers.BombWalls, Helpers.DHCThrone), Helpers.Hundo);			Items.Compass.0x1D
 
 DHCBlackKnight;						Helper;;							Helpers.DHCBlackKnightFight, (|Helpers.DHCBlueWarp, (&Helpers.DHCRedWarp, Helpers.DHCChainSoldiers, Helpers.DHCGrateRoom, Helpers.OverworldBlocks), (&Helpers.DHC1stDoor, Helpers.DHC2ndCanon, Helpers.BombWalls, Helpers.DHCThrone, Helpers.CanSplit4, Helpers.DHCOutsideSwitch, Helpers.DHCSwitchPuzzles, Helpers.DHCChainSoldiers, Helpers.DHCGrateRoom, Helpers.OverworldBlocks))
 
-DHC_3F_NorthWest_Chest		`DHC_INSIDE_SK`;	`DHCSMALL`;	0x88-0x01-0x00;	(|(&Helpers.AccessDHC, Helpers.DHCBlackKnight, Helpers.DHCTowerDarknuts, Helpers.HasBow), Helpers.Hundo);						Items.SmallKey.0x1D
-DHC_3F_NorthEast_Chest		`DHC_INSIDE_SK`;	`DHCSMALL`;	0x88-0x02-0x00;	(|(&Helpers.AccessDHC, Helpers.DHCBlackKnight, Helpers.DHCTowerDarknuts, Helpers.DHCLampPuzzle, Helpers.DHCGhini), Helpers.Hundo);	Items.SmallKey.0x1D
-DHC_3F_SouthWest_Chest		`DHC_INSIDE_SK`;	`DHCSMALL`;	0x88-0x03-0x00;	(|(&Helpers.AccessDHC, Helpers.DHCBlackKnight, Helpers.DHCTowerDarknuts, Helpers.DHCGhini), Helpers.Hundo);						Items.SmallKey.0x1D
-DHC_3F_SouthEast_Chest		`DHC_INSIDE_SK`;	`DHCSMALL`;	0x88-0x04-0x00;	(|(&Helpers.AccessDHC, Helpers.DHCBlackKnight, Helpers.DHCTowerDarknuts, Helpers.DHCSwitchPuzzles), Helpers.Hundo);				Items.SmallKey.0x1D
-DHC_2F_BlueWarp_BigChest	`DHC_INSIDE_BK`;	`DHCBIG`;	0x88-0x09-0x00;	(|(&Helpers.AccessDHC, Helpers.DHCBlackKnight, Helpers.DHCBigBlock, Helpers.CanSplit4), Helpers.Hundo);							`DHCBK`
+DHC_3F_NorthWest_Chest		`DHC_INSIDE_SK`;	`DHCSMALL`;	0x88-0x01-0x00;	(|(&`ENTERDHC`, Helpers.DHCBlackKnight, Helpers.DHCTowerDarknuts, Helpers.HasBow), Helpers.Hundo);						Items.SmallKey.0x1D
+DHC_3F_NorthEast_Chest		`DHC_INSIDE_SK`;	`DHCSMALL`;	0x88-0x02-0x00;	(|(&`ENTERDHC`, Helpers.DHCBlackKnight, Helpers.DHCTowerDarknuts, Helpers.DHCLampPuzzle, Helpers.DHCGhini), Helpers.Hundo);	Items.SmallKey.0x1D
+DHC_3F_SouthWest_Chest		`DHC_INSIDE_SK`;	`DHCSMALL`;	0x88-0x03-0x00;	(|(&`ENTERDHC`, Helpers.DHCBlackKnight, Helpers.DHCTowerDarknuts, Helpers.DHCGhini), Helpers.Hundo);						Items.SmallKey.0x1D
+DHC_3F_SouthEast_Chest		`DHC_INSIDE_SK`;	`DHCSMALL`;	0x88-0x04-0x00;	(|(&`ENTERDHC`, Helpers.DHCBlackKnight, Helpers.DHCTowerDarknuts, Helpers.DHCSwitchPuzzles), Helpers.Hundo);				Items.SmallKey.0x1D
+DHC_2F_BlueWarp_BigChest	`DHC_INSIDE_BK`;	`DHCBIG`;	0x88-0x09-0x00;	(|(&`ENTERDHC`, Helpers.DHCBlackKnight, Helpers.DHCBigBlock, Helpers.CanSplit4), Helpers.Hundo);							`DHCBK`
 
 !ifdef - NODHC
-	BeatVaati;	Helper;	;	Helpers.AccessDHC
+	BeatVaati;	Helper;	;	`ENTERDHC`
 !else
-	BeatVaati;	Helper;	;	Helpers.AccessDHC, (|(&Helpers.DHC1stDoor, Helpers.BombWalls), Helpers.DHCRedWarp, (&Helpers.DHCBlueWarp, (|Helpers.OverworldBlocks, Items.RocsCape))), Helpers.DHCBossDoor, Helpers.CanSplit4, Helpers.HasBow, Items.GustJar, Items.PacciCane, Helpers.DarkRooms
+	BeatVaati;	Helper;	;	`ENTERDHC`, (|(&Helpers.DHC1stDoor, Helpers.BombWalls), Helpers.DHCRedWarp, (&Helpers.DHCBlueWarp, (|Helpers.OverworldBlocks, Items.RocsCape))), Helpers.DHCBossDoor, Helpers.CanSplit4, Helpers.HasBow, Items.GustJar, Items.PacciCane, Helpers.DarkRooms
 !endif
 
 # Unrandomized locations

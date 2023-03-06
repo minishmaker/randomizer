@@ -15,6 +15,7 @@ internal static class TransitionFactory
     private const uint TodEntrance = 0x13A24A;
     private const uint CryptEntrance = 0x1346F2;
     private const uint PowEntrance = 0x13A4B6;
+    private const uint DhcEntrance = 0x13460E;
 
     //Dungeon exits and green warps
     private const uint DwsExit = 0x138172;
@@ -37,6 +38,7 @@ internal static class TransitionFactory
 
     private const uint PowExit = 0x1082A1;
     private const uint PowGreenWarp = 0xE6A14;
+
 
     public static ITransition BuildTransitionFromDungeonEntranceType(DungeonEntranceType destinationEntrance)
     {
@@ -129,6 +131,20 @@ internal static class TransitionFactory
                 ElementGetExitX = 0x78,
                 ElementGetExitY = 0x78,
                 EntranceType = DungeonEntranceType.PoW
+            },
+            DungeonEntranceType.DHC => new Transition
+            {
+                ExitX = 0x1F8,
+                ExitY = 0x38,
+                EntranceArea = 0x07,
+                EntranceRoom = 0x00,
+                Height = 0x1,
+                FacingDirection = 0x4,
+                TransitionType = 0x0,
+                EntranceAddress1 = DhcEntrance,
+                GreenWarpExitCoordinate = 0x00DF,
+                ElementGetExitX = 0x1F8,
+                ElementGetExitY = 0x38
             },
             _ => throw new ShuffleException("Inavlid dungeon entrance type parsed!")
         };
