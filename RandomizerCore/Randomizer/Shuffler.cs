@@ -414,7 +414,7 @@ internal class Shuffler
         return null;
     }
 
-    public void ApplyPatch(string romLocation, string? patchFile = null)
+    public int ApplyPatch(string romLocation, string? patchFile = null)
     {
         if (string.IsNullOrEmpty(patchFile))
         {
@@ -430,10 +430,10 @@ internal class Shuffler
 
         Program.CustomOutputStream = null;
 
-        Program.Main(args);
+        return Program.Main(args);
     }
 
-    public void ApplyPatch(Stream patchedRom, string? patchFile = null)
+    public int ApplyPatch(Stream patchedRom, string? patchFile = null)
     {
         if (string.IsNullOrEmpty(patchFile))
         {
@@ -449,7 +449,7 @@ internal class Shuffler
 
         Program.CustomOutputStream = patchedRom;
 
-        Program.Main(args);
+        return Program.Main(args);
     }
 
 

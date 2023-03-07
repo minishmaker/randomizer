@@ -270,7 +270,9 @@ public class ShufflerController
             Shuffler.ValidateState(true);
             var romBytes = Shuffler.GetRandomizedRom();
             File.WriteAllBytes(filename, romBytes);
-            Shuffler.ApplyPatch(filename, patchFile);
+            int exitCode = Shuffler.ApplyPatch(filename, patchFile);
+            if (exitCode != 0)
+                throw new Exception("Errors occured when saving the rom");
             return new ShufflerControllerResult { WasSuccessful = true };
         }
         catch (Exception e)
@@ -296,7 +298,9 @@ public class ShufflerController
             Shuffler.ValidateState(true);
             var romBytes = Shuffler.GetRandomizedRom();
             var stream = new MemoryStream(romBytes);
-            Shuffler.ApplyPatch(stream, patchFile);
+            int exitCode = Shuffler.ApplyPatch(stream, patchFile);
+            if (exitCode != 0)
+                throw new Exception("Errors occured when saving the rom");
             var patch = BpsPatcher.GeneratePatch(Rom.Instance!.RomData, romBytes, patchFilename);
             File.WriteAllBytes(patchFilename, patch.Content);
             return new ShufflerControllerResult { WasSuccessful = true };
