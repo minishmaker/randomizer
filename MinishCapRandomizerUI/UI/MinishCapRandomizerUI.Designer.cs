@@ -175,20 +175,26 @@ namespace MinishCapRandomizerUI.UI
 			// 
 			this.logicToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.exportDefaultLogicToolStripMenuItem, this.savePresetYAMLMenuItem, this.saveMysteryYAMLMenuItem});
-			this.logicToolStripMenuItem.Name = "logicToolStripMenuItem";
-			this.logicToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
-			this.logicToolStripMenuItem.Text = "Logic";
-			// 
-			// exportDefaultLogicToolStripMenuItem
-			// 
-			this.exportDefaultLogicToolStripMenuItem.Name = "exportDefaultLogicToolStripMenuItem";
-			this.exportDefaultLogicToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
-			this.exportDefaultLogicToolStripMenuItem.Text = "Export Default Logic";
-			this.exportDefaultLogicToolStripMenuItem.Click += new System.EventHandler(this.exportDefaultLogicToolStripMenuItem_Click);
+            this.logicToolStripMenuItem.Name = "logicToolStripMenuItem";
+            this.logicToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            this.logicToolStripMenuItem.Text = "Logic";
+            // 
+            // exportDefaultLogicToolStripMenuItem
+            // 
+            this.exportDefaultLogicToolStripMenuItem.Name = "exportDefaultLogicToolStripMenuItem";
+            this.exportDefaultLogicToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.exportDefaultLogicToolStripMenuItem.Text = "Export Default Logic";
+            this.exportDefaultLogicToolStripMenuItem.Click += new System.EventHandler(this.exportDefaultLogicToolStripMenuItem_Click);
+            // 
+            // savePresetYAMLMenuItem
+            //
             this.savePresetYAMLMenuItem.Name = "savePresetYAMLMenuItem";
             this.savePresetYAMLMenuItem.Size = new System.Drawing.Size(181, 22);
-            this.savePresetYAMLMenuItem.Text = "Save options as Preset YAML";
+            this.savePresetYAMLMenuItem.Text = "Save all options as Preset YAML";
             this.savePresetYAMLMenuItem.Click += new System.EventHandler(this.savePresetYAMLMenuItem_Click);
+            // 
+            // saveMysteryYAMLMenuItem
+            // 
             this.saveMysteryYAMLMenuItem.Name = "saveMysteryYAMLMenuItem";
             this.saveMysteryYAMLMenuItem.Size = new System.Drawing.Size(181, 22);
             this.saveMysteryYAMLMenuItem.Text = "Save Mystery YAML template";
