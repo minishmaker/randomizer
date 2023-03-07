@@ -152,6 +152,9 @@
 !flag - World Settings - Setting - Dungeon Warps - DHC_BLUEWARP - DHC Blue - If enabled, will activate the Dark Hyrule Castle Blue Warp from the start of the game.
 !flag - World Settings - Setting - Dungeon Warps - DHC_REDWARP - DHC Red - If enabled, will activate the Dark Hyrule Castle Red Warp from the start of the game.
 
+!flag - World Settings - Setting - Other - OPEN_WIND_TRIBE - Wind Tribe Tower - If enabled, will advance the Wind Tribe Tower state from the start of the game so the stairs to the higher floors can be used.
+!flag - World Settings - Setting - Other - OPEN_TINGLE - Tingle Brothers - If enabled, will spawn Tingle's brothers Knuckle, Ankle and David Jr. from the start of the game.
+
 !flag - Logic Settings - Setting - Logic Rules - NO_LOGIC - No Logic - Items can go anywhere without regard to logic.\n LIKELY RESULTS IN UNBEATABLE SEEDS!
 !dropdown - Logic Settings - Setting - Logic Rules - ACCESSIBILITY - Reachable - Determines which items and locations are guaranteed to be reachable. - ACCESS_INVENTORY - All Locations - ACCESS_LOCATIONS - 'All Locations': All enabled locations are reachable. - All NonKeys - ACCESS_INVENTORY - 'All NonKeys': Like 'All Locations', except keys can lock themselves. - Only the Goal - ACCESS_BEATABLE - 'Only the Goal': Only the goal is guaranteed to be reachable. Some locations and items may be inaccessible. If DHC setting is set to 'Never Open' then the goal is the pedestal requirements, otherwise the goal is Defeat Vaati.
 !dropdown - Logic Settings - Setting - Logic Rules - GRABBABLE - Grab items from a distance - Items can be collected from a distance with either Gust Jar, Boomerang, or even a Sword Slash. - GRABBABLE - Not Allowed - NOT_GRABBABLE - 'Not Allowed': Items cannot be grabbed from a distance. - Allowed - GRABBABLE - 'Allowed': Items can be grabbed from a distance, but this will never be required by logic. - Require - GRABBABLE_LOGIC - 'Require': Items can be grabbed from a distance and logic can require grabbing them when they are obviously grabbable. - Require Hard - GRABBABLE_HARD - 'Require Hard': Items can be grabbed from a distance, and logic can require some very difficult Boomerang throws to be able to collect these items.\n Many of these involve throwing the Boomerang in an arc behind or to the side of the items before making Link run in the opposite direction to get the Boomerang to grab the item on the return journey to Link.
@@ -663,12 +666,19 @@
 	!eventdefine - kinstoneWater
 !endif
 
+# Sets miscellaneous flags
+!ifdef - OPEN_WIND_TRIBE
+	!eventdefine - openWindTribe							# sets the wind tribe state to access higher floors
+!endif
+!ifdef - OPEN_TINGLE
+	!eventdefine - openTingleBrothers						# spawns Tingle's brothers without having to talk to him first
+!endif
+
 # This section defines values used by the patcher, this sets if and which fusions should be available
 !ifdef - OPEN_GOLD_FUSIONS
 	!eventdefine - noGoldFusions							# if defined, golden kinstone fusions are not available (except the cloud fusions which is handled below)
 	!eventdefine - mC81 - 0xFE								# sets all the cloud tops fusions, as well as the left and middle swamp fusions (the right swamp and falls fusions share an address with red fusions)
 	!eventdefine - goldTornado								# sets the tornado in cloud tops as spawned, shares an address with Graveyard Key stages
-	!eventdefine - goldWindTribe							# sets the wind tribe state to access higher floors, also sets tingle bros as spawned
 	!eventdefine - goldSwampBlock							# visually destroys the stone block at the Castor Wilds statues
 !else
 	!ifdef - NO_GOLD_FUSIONS
@@ -3094,6 +3104,18 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 	PoWRollerRoom;		Helper;;		
 !endif
 
+!ifdef - OPEN_WIND_TRIBE
+	OpenWindTribe;			Helper;;
+!else
+	OpenWindTribe;			Helper;;	Helpers.Inaccessible
+!endif
+
+!ifdef - OPEN_TINGLE
+	TingleBrothers;			Helper;;
+!else
+	TingleBrothers;			Helper;;	Items.PacciCane, Helpers.AccessEasternHills
+!endif
+
 # All Fusion Helpers
 !ifdef - NO_GOLD_FUSIONS
 	!ifdef - MEME
@@ -3104,7 +3126,6 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 	CloudFusions;				Helper;;	Helpers.Inaccessible																												#CloudTopsTornado
 	FallsFusion;				Helper;;	Helpers.Inaccessible																												#FallsDoor
 	RuinsFusion;				Helper;;	Helpers.Inaccessible																												#SwampBlock
-	CompletedGolds;			Helper;;	Helpers.Inaccessible
 !else
 	!ifdef - OPEN_GOLD_FUSIONS
 		!ifdef - MEME
@@ -3115,7 +3136,6 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 		CloudFusions;				Helper;;																																#CloudTopsTornado
 		FallsFusion;				Helper;;																																#FallsDoor
 		RuinsFusion;				Helper;;																																#SwampBlock
-		CompletedGolds;			Helper;;
 	!else
 		!ifndef - COMBINED_GOLD_FUSIONS
 			!ifdef - ITEM_POOL_PLENTIFUL
@@ -3150,7 +3170,6 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 		CloudFusions;				Helper;;	Helpers.CanFuseGoldTornado, (|Items.RocsCape, Items.MoleMitts)																		#CloudTopsTornado
 		FallsFusion;				Helper;;	Helpers.CanFuseGoldCrown																										#FallsDoor
 		RuinsFusion;				Helper;;	Helpers.CanFuseGoldTotem																										#SwampBlock
-		CompletedGolds;			Helper;;	Helpers.Inaccessible
 	!endif
 !endif
 !ifdef - NO_RED_FUSIONS
@@ -4439,7 +4458,7 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 		MinishScrub1Fusion;		Helper;;	Helpers.CanFuseGreenScrub, Helpers.AccessMinishWoods, Helpers.SwampScrubFusion, Helpers.Scrubs										#WesternOcto			3D
 		TFZ3Fusion;				Helper;;	Helpers.CanFuseGreenC, Helpers.TFZ2Fusion																						#SwampSouthLily		3E
 		TrilbyMinishFusion;		Helper;;	Helpers.CanFuseGreenC, Locations.Trilby_DigCave_RightChest																			#TrilbyPuddle			3F
-		AnkleFusion;				Helper;;	Helpers.CanFuseGreenC, Items.PacciCane, Helpers.AccessEasternHills, Locations.LonLon_Cave_Chest										#NHFTopRightTree		40
+		AnkleFusion;				Helper;;	Helpers.CanFuseGreenC, Helpers.TingleBrothers, Locations.LonLon_Cave_Chest															#NHFTopRightTree		40
 		!ifdef - NO_BLUE_FUSIONS
 			Dampe2Fusion;				Helper;;	Helpers.CanFuseGreenC, Locations.Valley_DampeNPC																					#RuinsCrack			41
 			Gina1Fusion;				Helper;;	Helpers.Inaccessible																											#TownWaterfall		42
@@ -4457,7 +4476,7 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 		HaileyFusion;				Helper;;	Helpers.CanFuseGreenG, Helpers.AccessClouds																						#FallsTektite			4A
 		TFZ1Fusion;				Helper;;	Helpers.CanFuseGreenTFZ1, (|Helpers.Fountain, Locations.MinishVillage_HP, Helpers.Library) 											#SwampNorthLily		4B
 		CastleMinishFusion;		Helper;;	Helpers.CanFuseGreenG, Helpers.BonkedTrees																						#WesternTreeFallSouth	4C
-		KnuckleFusion;			Helper;;	Helpers.CanFuseGreenG, Items.PacciCane, Helpers.AccessEasternHills, Locations.Trilby_DigCave_RightChest								#NHFBottomLeftTree	4D
+		KnuckleFusion;			Helper;;	Helpers.CanFuseGreenG, Helpers.TingleBrothers, Locations.Trilby_DigCave_RightChest													#NHFBottomLeftTree	4D
 		Shared4EFusion;			Helper;;	Helpers.CanFuseShared4E																										#MWCrack				4E		
 		MinesMinishNWFusion;		Helper;;	Helpers.CanFuseGreenP, Helpers.AccessMelari																						#SpringPathChest		4F
 		Shared50Fusion;			Helper;;	Helpers.CanFuseShared50																										#LLRPathChest			50
@@ -4474,7 +4493,7 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 		TFZ2Fusion;				Helper;;	Helpers.CanFuseGreenTFZ2, Helpers.TFZ1Fusion																						#SwampWestLily		57
 		Shared58Fusion;			Helper;;	Helpers.CanFuseShared58																										#SHFPuddle			58
 		Tingle1Fusion;			Helper;;	Helpers.CanFuseGreenP, Items.PacciCane, Helpers.AccessEasternHills																	#NHFTopLeftTree		59
-		DavidJr1Fusion;			Helper;;	Helpers.CanFuseGreenDavid, Items.PacciCane, Helpers.AccessEasternHills, Helpers.AccessLonLon											#NHFBottomRightTree	5A
+		DavidJr1Fusion;			Helper;;	Helpers.CanFuseGreenDavid, Helpers.TingleBrothers, Helpers.AccessLonLon															#NHFBottomRightTree	5A
 		MinishScrub2Fusion;		Helper;;	Helpers.CanFuseGreenP, Helpers.MinishScrub1Fusion																					#SwampTopLeftCrack	5B
 		Siroc1Fusion;				Helper;;	Helpers.CanFuseGreenSiroc, Helpers.AccessWindTribe																				#GraveyardLeftChest	5C
 		Siroc2Fusion;				Helper;;	Helpers.CanFuseGreenG, Helpers.Siroc1Fusion																						#GraveyardRightChest	5D
@@ -6208,7 +6227,7 @@ Crypt_Prize			`RC_PRIZE`;		`DUNGEONPRIZE`;		0x00DA5A;											(|Helpers.Comple
 #Secret Chest reachable with Firerod
 
 # Veil Falls
-AccessFalls;							Helper;			;														(|(&Helpers.OverworldBlocks, Helpers.FallsFusion, Helpers.DarkRooms, Items.GripRing), Helpers.FallsWindCrest, (&Items.GripRing, (|Helpers.CloudWindCrest, (&Helpers.StrangerFusion, Helpers.CompletedGolds))));
+AccessFalls;							Helper;			;														(|(&Helpers.OverworldBlocks, Helpers.FallsFusion, Helpers.DarkRooms, Items.GripRing), Helpers.FallsWindCrest, (&Items.GripRing, (|Helpers.CloudWindCrest, (&Helpers.StrangerFusion, Helpers.OpenWindTribe))));
 
 Falls_Entrance_HP;					`HP`;			0x0F87C3;												(|Helpers.FallsHP, Helpers.Hundo);																								Items.PieceOfHeart
 Falls_WaterDigCaveFusion_HP;			`REDFUSIONHP`;	0x0F3DD7;												(|(&Helpers.VillageSideMinish2Fusion, (|(&Helpers.OverworldBlocks, Helpers.CapeExtension), (&Helpers.AccessFalls, Items.GripRing, (|Items.Flippers, (&Items.RocsCape, Helpers.DarkRooms)))), Items.MoleMitts),  Helpers.Hundo);	Items.PieceOfHeart
@@ -6241,7 +6260,7 @@ Falls_TopCave_BombWall_Chest;			`FALLSCHEST`;		0x33-0x02-0x00;											(|(&Hel
 Falls_TopCave_Chest;					`FALLSCHEST`;		0x33-0x00-0x00;											(|Helpers.AccessFalls, Helpers.Hundo);											Items.Rupee100
 
 # Cloud Tops
-AccessClouds;					Helper;				;				(|(&Helpers.AccessFalls, Items.GripRing), Helpers.CloudWindCrest, (&Helpers.StrangerFusion, Helpers.CompletedGolds))
+AccessClouds;					Helper;				;				(|(&Helpers.AccessFalls, Items.GripRing), Helpers.CloudWindCrest, (&Helpers.StrangerFusion, Helpers.OpenWindTribe))
 
 Clouds_FreeChest;				`FALLSCHEST`;			0x08-0x01-0x00;	(|Helpers.AccessClouds, Helpers.Hundo);														Items.Kinstone.GoldenCloudTops
 Clouds_NorthEast_DigSpot;		`FALLSDIGKINSTONE`;	0x0DCB5B;		(|(&Helpers.AccessClouds, Items.MoleMitts), Helpers.Hundo);									Items.Kinstone.RedV
@@ -6266,7 +6285,7 @@ Clouds_SouthEast_TopDigSpot;   `FALLSDIGKINSTONE`;	0x0DCB7B;		(|(&Helpers.Access
 !else
 	!define - POW_F_OUTSIDE - 
 !endif
-AccessWindTribe;							Helper;				;													(|(&Helpers.StrangerFusion, Helpers.CompletedGolds), (&Helpers.AccessClouds, Helpers.CloudFusions),  Helpers.CloudWindCrest)
+AccessWindTribe;							Helper;				;													(|(&Helpers.StrangerFusion, Helpers.OpenWindTribe), (&Helpers.AccessClouds, Helpers.CloudFusions), Helpers.CloudWindCrest)
 
 WindTribe_1F_LeftChest		`POW_F_OUTSIDE`;	`WTFUSION`;			0x30-0x00-0x00;										(|Helpers.StrangerFusion, Helpers.AccessWindTribe, Helpers.Hundo);						Items.Kinstone.GreenC
 WindTribe_1F_RightChest	`POW_F_OUTSIDE`;	`WTFUSION`;			0x30-0x00-0x01;										(|Helpers.StrangerFusion, Helpers.AccessWindTribe, Helpers.Hundo);						Items.Kinstone.GreenG
