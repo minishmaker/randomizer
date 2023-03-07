@@ -97,11 +97,11 @@
 !dropdown - Main Settings - Setting - Dungeon Settings - COMPASS_SETTING - Compasses - Compasses - COMPASS_STANDARD - Start With - COMPASS_KEASY - 'Start With': Compasses are given to you from the start. - Vanilla - COMPASS_VANILLA - 'Vanilla': Compasses are in the same places they appear in the vanilla game. - Own Dungeon - COMPASS_STANDARD - 'Own Dungeon': Compasses are randomized to locations in the dungeon they are used in. - Own Region - COMPASS_REGION - 'Own Region': Compasses are randomized inside and in the vicinity of their own dungeon. - Any Dungeon - COMPASS_DUNGEON - 'Any Dungeon': Compasses are randomized inside all dungeons. - Any Region - COMPASS_REGDUN - 'Any Region': Compasses are randomized inside and in the vicinity of all dungeons. - Anywhere (Keysanity) - COMPASS_KEYSANITY - 'Anywhere': Compasses are randomized to any location in the world.\n\n DWS Region: 'Minish Village', 'Belari's House', 'Chest near Belari', 'Minish Cave near Belari'.\n CoF Region: 'Melari's Mines', 'Melari's Mines Outside Path', 'Pre Melari Block Puzzle Chest'.\n FOW Region: 'Wind Ruins'.\n TOD Region: 'Nothing'.\n RC Region: 'Graveyard (Not Dampe)'.\n POW Region: If Red Fusions are Removed: 'Wind Tribe', Otherwise: 'Upper Wind Tribe'.\n DHC Region: 'Castle Gardens (Not Moat)', If Pedestal Items is enabled: 'Sanctuary Pedestal'.
 !dropdown - Main Settings - Setting - Dungeon Settings - SMALL_KEYS_SETTING - Small Keys - Small Keys - SMALL_KEYS_STANDARD - Removed (Keasy) - SMALL_KEASY - 'Removed': Small keys are removed, All small locked doors are open from the start. - Vanilla - SMALL_KEYS_VANILLA - 'Vanilla': Small keys are in the same places they appear in the vanilla game. - Own Dungeon - SMALL_KEYS_STANDARD - 'Own Dungeon': Small keys are randomized to locations in the dungeon they are used in. - Own Region - SMALL_KEYS_REGION - 'Own Region': Small keys are randomized inside and in the vicinity of their own dungeon. - Any Dungeon - SMALL_KEYS_DUNGEON - 'Any Dungeon': Small keys are randomized inside all dungeons. - Any Region - SMALL_KEYS_REGDUN - 'Any Region': Small keys are randomized inside and in the vicinity of all dungeons. - Anywhere (Keysanity) - SMALL_KEYSANITY - 'Anywhere': Small keys are randomized to any location in the world, expect to return to dungeons multiple times.\n\n DWS Region: 'Minish Village', 'Belari's House', 'Chest near Belari', 'Minish Cave near Belari'.\n CoF Region: 'Melari's Mines', 'Melari's Mines Outside Path', 'Pre Melari Block Puzzle Chest'.\n FOW Region: 'Wind Ruins'.\n TOD Region: 'Nothing'.\n RC Region: 'Graveyard (Not Dampe)'.\n POW Region: If Red Fusions are Removed: 'Wind Tribe', Otherwise: 'Upper Wind Tribe'.\n DHC Region: 'Castle Gardens (Not Moat)', If Pedestal Items is enabled: 'Sanctuary Pedestal'.
 !dropdown - Main Settings - Setting - Dungeon Settings - BIG_KEYS_SETTING - Big Keys - Big Keys - BIG_KEYS_STANDARD - Removed (Keasy) - BIG_KEASY - 'Removed': Big keys are removed, All locked Boss doors are open from the start. - Vanilla - BIG_KEYS_VANILLA - 'Vanilla': Big keys are in the same places they appear in the vanilla game. - Own Dungeon - BIG_KEYS_STANDARD - 'Own Dungeon': Big keys are randomized to locations in the dungeon they are used in. - Own Region - BIG_KEYS_REGION - 'Own Region': Big keys are randomized inside and in the vicinity of their own dungeon. - Any Dungeon - BIG_KEYS_DUNGEON - 'Any Dungeon': Big keys are randomized inside all dungeons. - Any Region - BIG_KEYS_REGDUN - 'Any Region': Big keys are randomized inside and in the vicinity of all dungeons. - Anywhere (Keysanity) - BIG_KEYSANITY  - 'Anywhere': Big keys are randomized to any location in the world, expect to return to dungeons multiple times.\n\n DWS Region: 'Minish Village', 'Belari's House', 'Chest near Belari', 'Minish Cave near Belari'.\n CoF Region: 'Melari's Mines', 'Melari's Mines Outside Path', 'Pre Melari Block Puzzle Chest'.\n FOW Region: 'Wind Ruins'.\n TOD Region: 'Nothing'.\n RC Region: 'Graveyard (Not Dampe)'.\n POW Region: If Red Fusions are Removed: 'Wind Tribe', Otherwise: 'Upper Wind Tribe'.\n DHC Region: 'Castle Gardens (Not Moat)', If Pedestal Items is enabled: 'Sanctuary Pedestal'.
-!dropdown - Main Settings - Setting - Dungeon Settings - DUNGEON - NonElement Dungeons - NonElement Dungeons, This setting is disabled when 'Shuffle Elements' is enabled or when 'Dungeons Required' is set to '5' or '6'. - NONE - Standard - NONE - 'Standard': NonElement Dungeons have no special rules. - Unrequired - UNREQ - 'Unrequired': NonElement Dungeons do not have items required to beat the game. - Barren - BARREN - 'Barren': NonElement Dungeons only contain junk items. - Regions Unrequired - UNREQSUR - 'Regions Unrequired': NonElement Dungeons and their Regions do not contain items needed to beat the game. - Regions Barren - BARRENSUR - 'Regions Barren': NonElement Dungeons and their Regions only contain junk items. \n\n DWS Region: 'Minish Village', 'Belari's House', 'Chest near Belari', 'Minish Cave near Belari'.\n CoF Region: 'Melari's Mines', 'Melari's Mines Outside Path', 'Pre Melari Block Puzzle Chest'.\n FOW Region: 'Wind Ruins'.\n TOD Region: 'Nothing'.\n RC Region: 'Graveyard (Not Dampe)'.\n POW Region: If Red Fusions are Removed: 'Wind Tribe', Otherwise: 'Upper Wind Tribe'.
-!flag - Main Settings - Setting - Dungeon Settings - SHUFFLE_ELEMENTS - Shuffle Elements - Shuffle Elements allows the Elements to be shuffled to anywhere in the world, not just as Dungeon Rewards. The Element icons on the map are removed.
+!dropdown - Main Settings - Setting - Dungeon Settings - SHUFFLE_ELEMENTS - Shuffle Elements - Shuffle Elements - SHUFFLE_ELEMENTS_OFF - Vanilla - SHUFFLE_ELEMENTS_VANILLA - 'Vanilla': The Elements are found in their vanilla locations. Only works if the other settings chosen make it possible to reach all the dungeons with Elements. - Dungeon Rewards - SHUFFLE_ELEMENTS_OFF - 'Dungeon Rewards': Elements are shuffled among the 6 Dungeon Rewards. - Anywhere - SHUFFLE_ELEMENTS_ON - 'Anywhere': Elements are shuffled anywhere in the world. The Element icons on the map are removed.
+!dropdown - Main Settings - Setting - Dungeon Settings - DUNGEON - NonElement Dungeons - NonElement Dungeons, This setting is disabled when 'Shuffle Elements' is set to 'Anywhere' or when 'Dungeons Required' is set to '5' or '6'. - NONE - Standard - NONE - 'Standard': NonElement Dungeons have no special rules. - Unrequired - UNREQ - 'Unrequired': NonElement Dungeons do not have items required to beat the game. - Barren - BARREN - 'Barren': NonElement Dungeons only contain junk items. - Regions Unrequired - UNREQSUR - 'Regions Unrequired': NonElement Dungeons and their Regions do not contain items needed to beat the game. - Regions Barren - BARRENSUR - 'Regions Barren': NonElement Dungeons and their Regions only contain junk items. \n\n DWS Region: 'Minish Village', 'Belari's House', 'Chest near Belari', 'Minish Cave near Belari'.\n CoF Region: 'Melari's Mines', 'Melari's Mines Outside Path', 'Pre Melari Block Puzzle Chest'.\n FOW Region: 'Wind Ruins'.\n TOD Region: 'Nothing'.\n RC Region: 'Graveyard (Not Dampe)'.\n POW Region: If Red Fusions are Removed: 'Wind Tribe', Otherwise: 'Upper Wind Tribe'.
 
 !dropdown - Main Settings - Setting - Requirements - DHC_SETTING - Dark Hyrule Castle Opens - Dark Hyrule Castle is the last dungeon in the game, it has the final boss Vaati. - OPENDHC - Never Open - NODHC - 'Never Open': A barrier is placed at the front of the dungeon, The game ends when you visit the sanctuary after completing all the requirements. - After Requirements - NORMALDHC - 'After Requirements': A barrier is placed at the front of the dungeon, This barrier is removed when you visit the sanctuary after completing ALL the requirements. The game ends when you defeat Vaati. - Always Open - OPENDHC - 'Always Open': There is no barrier at the front of the dungeon, the game ends when you defeat Vaati.
-!dropdown - Main Settings - Setting - Requirements - REQUIREMENT_ITEM - Requirement Reward - An item that the player receives once they meet the selected requirements. - REQUIREMENT_ITEM_DHC_BK - Disabled - REQUIREMENT_ITEM_NONE - 'Disabled': No extra item is awarded for requriement completion. - DHC Big Key - REQUIREMENT_ITEM_DHC_BK - 'DHC Big Key': The DHC Big Key is instantly awarded to the player once they meet the selected requirements. Overrides whatever the general Big Key setting is. - Random Item - REQUIREMENT_ITEM_RANDOM - 'Random Item': An item from the random item pool is instantly awarded to the player once they meet the selected requirements.
+!dropdown - Main Settings - Setting - Requirements - REQUIREMENT_ITEM - Requirement Reward - An item that the player receives once they meet the selected requirements. - REQUIREMENT_ITEM_DHC_BK - Disabled - REQUIREMENT_ITEM_NONE - 'Disabled': No extra item is awarded for requirement completion. - DHC Big Key - REQUIREMENT_ITEM_DHC_BK - 'DHC Big Key': The DHC Big Key is instantly awarded to the player once they meet the selected requirements. Overrides whatever the general Big Key setting is. - Random Item - REQUIREMENT_ITEM_RANDOM - 'Random Item': An item from the random item pool is instantly awarded to the player once they meet the selected requirements.
 !dropdown - Main Settings - Setting - Requirements - AD_PED - Dungeons Required - The number of dungeons that have to be beaten to activate the Sanctuary. \nIf you select a number of dungeons higher that what are available given the other settings chosen, then this will be lowered to the total number of accessible dungeons. \nThere are 6 dungeons in the game that count:\n Deepwood Shrine\n Cave of Flames\n Fortress of Winds\n Temple of Droplets\n Royal Crypt\n Palace of Winds - AD_PED_0 - 0 - AD_PED_0 - - 1 - AD_PED_1 - - 2 - AD_PED_2 - - 3 - AD_PED_3 - - 4 - AD_PED_4 - - 5 - AD_PED_5 - - 6 - AD_PED_6 -
 !dropdown - Main Settings - Setting - Requirements - SWORD_SETTING - Sword Requirement - The level of sword that needs to be collected to activate the Sanctuary - 5SWORD - No Sword - 0SWORD - - Smith Sword - 1SWORD - - Green Sword - 2SWORD - - Red Sword - 3SWORD - - Blue Sword - 4SWORD - - Four Sword - 5SWORD -
 !dropdown - Main Settings - Setting - Requirements - ELEMENT_SETTING - Elements Required - The number of Elements that need to be collected to activate the Sanctuary - 4 - 0 - 0ELEMENT - - 1 - 1 - - 2 - 2 - - 3 - 3 - - 4 - 4 -
@@ -290,6 +290,7 @@
 !define - `COMPASS_SETTING`
 !define - `SMALL_KEYS_SETTING`
 !define - `BIG_KEYS_SETTING`
+!define - `SHUFFLE_ELEMENTS`
 !define - `GOLD_FUSION_SETTING`
 !define - `RED_FUSION_SETTING`
 !define - `BLUE_FUSION_SETTING`
@@ -515,7 +516,7 @@
 !endif
 
 # Shuffle Elements removes the "Prize" dungeon and changes all the elements to regular "Major" items to be globally shuffled
-!ifdef - SHUFFLE_ELEMENTS
+!ifdef - SHUFFLE_ELEMENTS_ON
     !eventdefine - globalElements - 1   # if defined, does not draw elements on map (during full shuffle)
 	!eventdefine - elementTraps
 	!undefine - `DUNGEON`
@@ -1154,6 +1155,16 @@
 	!define - GORON_CAVE
 !endif
 
+# Vanilla Elements only allowed when the respective dungeons are accessible (even if entrances are shuffled)
+!ifdef - SHUFFLE_ELEMENTS_VANILLA
+	!ifdef - NO_GOLD_FUSIONS
+		!ifndef - CLOUD_CREST
+			!undefine - SHUFFLE_ELEMENTS_VANILLA
+			!define - SHUFFLE_ELEMENTS_OFF
+		!endif
+	!endif
+!endif
+
 #Entrances
 
 !ifdef - ENTRANCES_VANILLA
@@ -1288,16 +1299,18 @@
 	Items.BlueBook;		Major;
 	Items.TingleTrophy;	Major;
 	Items.CarlovMedal;	Major;
-	!ifdef - SHUFFLE_ELEMENTS
-		Items.EarthElement;		Major;
-		Items.FireElement;		Major;
-		Items.WaterElement;		Major;
-		Items.WindElement;		Major;
-	!else
-		Items.EarthElement;		DungeonPrize;
-		Items.FireElement;		DungeonPrize;
-		Items.WaterElement;		DungeonPrize;
-		Items.WindElement;		DungeonPrize;
+	!ifndef - SHUFFLE_ELEMENTS_VANILLA
+		!ifdef - SHUFFLE_ELEMENTS_ON
+			Items.EarthElement;		Major;
+			Items.FireElement;		Major;
+			Items.WaterElement;		Major;
+			Items.WindElement;		Major;
+		!else
+			Items.EarthElement;		DungeonPrize;
+			Items.FireElement;		DungeonPrize;
+			Items.WaterElement;		DungeonPrize;
+			Items.WindElement;		DungeonPrize;
+		!endif
 	!endif
 	Items.GripRing;		Major;
 	Items.Flippers;		Major;
@@ -1841,7 +1854,7 @@
 	!endif
 	Items.Bottle:3;		Minor;
 	Items.GraveyardKey;	Minor;
-	!ifdef - SHUFFLE_ELEMENTS
+	!ifdef - SHUFFLE_ELEMENTS_ON
 		Items.EarthElement;	Minor;
 		Items.FireElement;	Minor;
 		Items.WaterElement;	Minor;
@@ -5094,9 +5107,15 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 
 # This whole section is a mess and wants refactoring
 
+!ifndef - SHUFFLE_ELEMENTS_VANILLA
+	!define - DUNGEONPRIZE - DungeonPrize
+!else
+	!define - DUNGEONPRIZE - Unshuffled
+!endif
+
 !ifdef - POW_ACCESS
 	!define - PALACECHEST - Dungeon
-	!define - PALACEPRIZE - DungeonPrize
+	!define - PALACEPRIZE - `DUNGEONPRIZE`
 	!define - PALACESMALL - Dungeon
 	!define - PALACEBIG - Dungeon
 	!ifdef - MAP_VANILLA
@@ -5132,7 +5151,7 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 
 !ifdef - FOW_ACCESS
 	!define - FORTRESSCHEST - Dungeon
-	!define - FORTRESSPRIZE - DungeonPrize
+	!define - FORTRESSPRIZE - `DUNGEONPRIZE`
 	!define - FORTRESSSMALL - Dungeon
 	!define - FORTRESSBIG - Dungeon
 	!ifdef - MAP_VANILLA
@@ -5220,10 +5239,8 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 	!define - GOLDGREENFUSIONENEMY - ; Inaccessible
 	!define - GOLDFUSIONHP - Inaccessible
 	!define - GOLDFUSIONRUPEE - ;	Inaccessible
-	!define - GOLDFUSIONPRIZE - Inaccessible
 !else
 	!define - GOLDFUSION - Dungeon
-	!define - GOLDFUSIONPRIZE - DungeonPrize
 	!ifdef - NO_RED_FUSIONS
 		!define - GOLDREDFUSION - Inaccessible
 	!else
@@ -6187,7 +6204,7 @@ Crypt_Gibdo_LeftItem	`RC_INSIDE`;		Dungeon;			0x0E688B;											(|(&`ENTERRC`,
 Crypt_Gibdo_RightItem	`RC_INSIDE_SK`;	Dungeon;			0x0E68AB;											(|(&`ENTERRC`, (|Helpers.HasDamageSource, Items.Lantern)), Helpers.Hundo);					Items.SmallKey.0x1E
 Crypt_LeftItem		`RC_INSIDE_SK`;	Dungeon;			0x0E6357;											(|(&`ENTERRC`, Helpers.CryptDoor, Helpers.CanSplit3), Helpers.Hundo);						Items.SmallKey.0x1E
 Crypt_RightItem		`RC_INSIDE_SK`;	Dungeon;			0x0E63A7;											(|(&`ENTERRC`, Helpers.CryptDoor, Helpers.CanSplit3), Helpers.Hundo);						Items.SmallKey.0x1E
-Crypt_Prize			`RC_PRIZE`;		DungeonPrize;		0x00DA5A;											(|Helpers.CompleteCrypt, Helpers.Hundo);													Items.Kinstone.GoldenFalls
+Crypt_Prize			`RC_PRIZE`;		`DUNGEONPRIZE`;		0x00DA5A;											(|Helpers.CompleteCrypt, Helpers.Hundo);													Items.Kinstone.GoldenFalls
 #Secret Chest reachable with Firerod
 
 # Veil Falls
@@ -6315,7 +6332,7 @@ Deepwood_B1_West_BigChest				`DWS_INSIDE_BK`;	Dungeon;			0x48-0x11-0x01;								
 CompleteDeepwood;										Helper;			;																`ENTERDWS`, Items.GustJar, Helpers.HasChuDamage, Helpers.DeepwoodBossDoor;
 
 Deepwood_BossItem						`DWS_INSIDE`;		`DUNGEONHP`;		chuContainerItem:Define:FirstByte, chuContainerSub:Define:SecondByte;	(|Helpers.CompleteDeepwood, Helpers.Hundo);																												Items.HeartContainer
-Deepwood_Prize						`DWS_PRIZE`;		DungeonPrize;		0x0DF03B;														(|Helpers.CompleteDeepwood, Helpers.Hundo);																												Items.EarthElement
+Deepwood_Prize						`DWS_PRIZE`;		`DUNGEONPRIZE`;		0x0DF03B;														(|Helpers.CompleteDeepwood, Helpers.Hundo);																												Items.EarthElement
 
 
 # Cave of Flames locations
@@ -6375,7 +6392,7 @@ CoF_B2_LavaRoom_BigChest		`COF_INSIDE_BK`;	Dungeon;			0x50-0x17-0x02;											
 CompleteCoF;									Helper;			;																		`ENTERCOF`, Helpers.CoFBasementAccess, Helpers.CoFBossDoor, Items.PacciCane, Helpers.HasGleerokDamage;
 
 CoF_BossItem					`COF_INSIDE`;		`DUNGEONHP`;		gleerokContainerItem:Define:FirstByte, gleerokContainerSub:Define:SecondByte;	(|Helpers.CompleteCoF, Helpers.Hundo);																																												Items.HeartContainer
-CoF_Prize					`COF_PRIZE`;		DungeonPrize;		0x0E0F03;																(|Helpers.CompleteCoF, Helpers.Hundo);																																												Items.FireElement
+CoF_Prize					`COF_PRIZE`;		`DUNGEONPRIZE`;		0x0E0F03;																(|Helpers.CompleteCoF, Helpers.Hundo);																																												Items.FireElement
 Crenel_Melari_NPC				`COF_INSIDE`;		Dungeon;			0x00D26E;																(|Helpers.CompleteCoF, Helpers.Hundo);																																												`GREENSWORD`
 
 # Fortress of Winds Locations
@@ -6533,7 +6550,7 @@ Droplets_RightPath_B2_UnderpassItem5			`TOD_INSIDE`		`DUNGEONRUPEE`;			0x0E487F;
 CompleteDroplets;											Helper;					;																`ENTERTOD`, Helpers.AccessOcto, Items.Lantern, (|Helpers.HasSword, Helpers.HasShield);
 
 Droplets_BossItem								`TOD_INSIDE`;	`DUNGEONHP`;				octoContainerItem:Define:FirstByte, octoContainerSub:Define:SecondByte;	(|Helpers.CompleteDroplets, Helpers.Hundo);		Items.HeartContainer
-Droplets_Prize								`TOD_PRIZE`;	DungeonPrize;				0x0E40C3;														(|Helpers.CompleteDroplets, Helpers.Hundo);		Items.WaterElement
+Droplets_Prize								`TOD_PRIZE`;	`DUNGEONPRIZE`;				0x0E40C3;														(|Helpers.CompleteDroplets, Helpers.Hundo);		Items.WaterElement
 
 # Palace of Winds Locations
 
