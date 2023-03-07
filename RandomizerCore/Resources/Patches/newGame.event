@@ -31,9 +31,6 @@ POIN dungeonPortal;	WORD 0x2002EBD 6
 	POIN visit;			WORD 0x2002AA0 4
 	POIN grave;			WORD 0x2002B41 1
 #endif
-#ifdef compasskeasy
-	POIN compass;		WORD 0x2002EAD 6
-#endif
 #ifdef enable_firerod_start
 	POIN firerod;		WORD 0x2002B37 1
 	POIN firerodOnA;	WORD 0x2002AF4 1
@@ -206,6 +203,12 @@ POIN cuccoGame;		WORD 0x2002CA5 1
 #ifdef dhcBigDoor
 	POIN bigDoorDHC;					WORD 0x2002DBE 1
 #endif
+#ifdef mapkeasy
+	POIN dungeonmap;	WORD 0x2002EAD 6
+#endif
+#ifdef compasskeasy
+	POIN compass;		WORD 0x2002EAD 6
+#endif
 
 POIN bluePortalSwitchDWS;	WORD 0x2002D3F 1
 POIN redPortalSwitchDWS;	WORD 0x2002D43 1
@@ -287,8 +290,11 @@ BYTE 0xFE 0xFF 0x7F 0x7F
 grave:
 BYTE 0x02
 
+dungeonmap:
+BYTE 0x01 0x01 0x01 0x01 0x01 0x01
+
 compass:
-BYTE 0x03 0x03 0x03 0x03 0x03 0x03
+BYTE 0x02 0x02 0x02 0x02 0x02 0x02
 
 disableShells:
 BYTE 1

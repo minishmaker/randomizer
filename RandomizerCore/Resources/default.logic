@@ -93,8 +93,9 @@
 
 #Settings options displayed in the rando UI
 
+!dropdown - Main Settings - Setting - Dungeon Settings - MAP_SETTING - Dungeon Maps - Dungeon Maps - MAP_STANDARD - Start With - MAP_KEASY - 'Start With': Maps are given to you from the start. - Vanilla - MAP_VANILLA - 'Vanilla': Maps are in the same places they appear in the vanilla game. - Own Dungeon - MAP_STANDARD - 'Own Dungeon': Maps are randomized to locations in the dungeon they are used in. - Own Region - MAP_REGION - 'Own Region': Maps are randomized inside and in the vicinity of their own dungeon. - Any Dungeon - MAP_DUNGEON - 'Any Dungeon': Maps are randomized inside all dungeons. - Any Region - MAP_REGDUN - 'Any Region': Maps are randomized inside and in the vicinity of all dungeons. - Anywhere (Keysanity) - MAP_KEYSANITY - 'Anywhere': Maps are randomized to any location in the world.\n\n DWS Region: 'Minish Village', 'Belari's House', 'Chest near Belari', 'Minish Cave near Belari'.\n CoF Region: 'Melari's Mines', 'Melari's Mines Outside Path', 'Pre Melari Block Puzzle Chest'.\n FOW Region: 'Wind Ruins'.\n TOD Region: 'Nothing'.\n RC Region: 'Graveyard (Not Dampe)'.\n POW Region: If Red Fusions are Removed: 'Wind Tribe', Otherwise: 'Upper Wind Tribe'.\n DHC Region: 'Castle Gardens (Not Moat)', If Pedestal Items is enabled: 'Sanctuary Pedestal'.
+!dropdown - Main Settings - Setting - Dungeon Settings - COMPASS_SETTING - Compasses - Compasses - COMPASS_STANDARD - Start With - COMPASS_KEASY - 'Start With': Compasses are given to you from the start. - Vanilla - COMPASS_VANILLA - 'Vanilla': Compasses are in the same places they appear in the vanilla game. - Own Dungeon - COMPASS_STANDARD - 'Own Dungeon': Compasses are randomized to locations in the dungeon they are used in. - Own Region - COMPASS_REGION - 'Own Region': Compasses are randomized inside and in the vicinity of their own dungeon. - Any Dungeon - COMPASS_DUNGEON - 'Any Dungeon': Compasses are randomized inside all dungeons. - Any Region - COMPASS_REGDUN - 'Any Region': Compasses are randomized inside and in the vicinity of all dungeons. - Anywhere (Keysanity) - COMPASS_KEYSANITY - 'Anywhere': Compasses are randomized to any location in the world.\n\n DWS Region: 'Minish Village', 'Belari's House', 'Chest near Belari', 'Minish Cave near Belari'.\n CoF Region: 'Melari's Mines', 'Melari's Mines Outside Path', 'Pre Melari Block Puzzle Chest'.\n FOW Region: 'Wind Ruins'.\n TOD Region: 'Nothing'.\n RC Region: 'Graveyard (Not Dampe)'.\n POW Region: If Red Fusions are Removed: 'Wind Tribe', Otherwise: 'Upper Wind Tribe'.\n DHC Region: 'Castle Gardens (Not Moat)', If Pedestal Items is enabled: 'Sanctuary Pedestal'.
 !dropdown - Main Settings - Setting - Dungeon Settings - SMALL_KEYS_SETTING - Small Keys - Small Keys - SMALL_KEYS_STANDARD - Removed (Keasy) - SMALL_KEASY - 'Removed': Small keys are removed, All small locked doors are open from the start. - Vanilla - SMALL_KEYS_VANILLA - 'Vanilla': Small keys are in the same places they appear in the vanilla game. - Own Dungeon - SMALL_KEYS_STANDARD - 'Own Dungeon': Small keys are randomized to locations in the dungeon they are used in. - Own Region - SMALL_KEYS_REGION - 'Own Region': Small keys are randomized inside and in the vicinity of their own dungeon. - Any Dungeon - SMALL_KEYS_DUNGEON - 'Any Dungeon': Small keys are randomized inside all dungeons. - Any Region - SMALL_KEYS_REGDUN - 'Any Region': Small keys are randomized inside and in the vicinity of all dungeons. - Anywhere (Keysanity) - SMALL_KEYSANITY - 'Anywhere': Small keys are randomized to any location in the world, expect to return to dungeons multiple times.\n\n DWS Region: 'Minish Village', 'Belari's House', 'Chest near Belari', 'Minish Cave near Belari'.\n CoF Region: 'Melari's Mines', 'Melari's Mines Outside Path', 'Pre Melari Block Puzzle Chest'.\n FOW Region: 'Wind Ruins'.\n TOD Region: 'Nothing'.\n RC Region: 'Graveyard (Not Dampe)'.\n POW Region: If Red Fusions are Removed: 'Wind Tribe', Otherwise: 'Upper Wind Tribe'.\n DHC Region: 'Castle Gardens (Not Moat)', If Pedestal Items is enabled: 'Sanctuary Pedestal'.
-!dropdown - Main Settings - Setting - Dungeon Settings - COMPASS_SETTING - Maps & Compasses - Maps & Compasses  - COMPASS_STANDARD - Start With - COMPASS_KEASY - 'Start With': Maps & Compasses are given to you from the start. - Vanilla - COMPASS_VANILLA - 'Vanilla': Maps & Compasses are in the same places they appear in the vanilla game. - Own Dungeon - COMPASS_STANDARD - 'Own Dungeon': Maps & Compasses are randomized to locations in the dungeon they are used in. - Own Region - COMPASS_REGION - 'Own Region': Maps & Compasses are randomized inside and in the vicinity of their own dungeon. - Any Dungeon - COMPASS_DUNGEON - 'Any Dungeon': Maps & Compasses are randomized inside all dungeons. - Any Region - COMPASS_REGDUN - 'Any Region': Maps & Compasses are randomized inside and in the vicinity of all dungeons. - Anywhere (Keysanity) - COMPASS_KEYSANITY - 'Anywhere': Maps & Compasses are randomized to any location in the world.\n\n DWS Region: 'Minish Village', 'Belari's House', 'Chest near Belari', 'Minish Cave near Belari'.\n CoF Region: 'Melari's Mines', 'Melari's Mines Outside Path', 'Pre Melari Block Puzzle Chest'.\n FOW Region: 'Wind Ruins'.\n TOD Region: 'Nothing'.\n RC Region: 'Graveyard (Not Dampe)'.\n POW Region: If Red Fusions are Removed: 'Wind Tribe', Otherwise: 'Upper Wind Tribe'.\n DHC Region: 'Castle Gardens (Not Moat)', If Pedestal Items is enabled: 'Sanctuary Pedestal'.
 !dropdown - Main Settings - Setting - Dungeon Settings - BIG_KEYS_SETTING - Big Keys - Big Keys - BIG_KEYS_STANDARD - Removed (Keasy) - BIG_KEASY - 'Removed': Big keys are removed, All locked Boss doors are open from the start. - Vanilla - BIG_KEYS_VANILLA - 'Vanilla': Big keys are in the same places they appear in the vanilla game. - Own Dungeon - BIG_KEYS_STANDARD - 'Own Dungeon': Big keys are randomized to locations in the dungeon they are used in. - Own Region - BIG_KEYS_REGION - 'Own Region': Big keys are randomized inside and in the vicinity of their own dungeon. - Any Dungeon - BIG_KEYS_DUNGEON - 'Any Dungeon': Big keys are randomized inside all dungeons. - Any Region - BIG_KEYS_REGDUN - 'Any Region': Big keys are randomized inside and in the vicinity of all dungeons. - Anywhere (Keysanity) - BIG_KEYSANITY  - 'Anywhere': Big keys are randomized to any location in the world, expect to return to dungeons multiple times.\n\n DWS Region: 'Minish Village', 'Belari's House', 'Chest near Belari', 'Minish Cave near Belari'.\n CoF Region: 'Melari's Mines', 'Melari's Mines Outside Path', 'Pre Melari Block Puzzle Chest'.\n FOW Region: 'Wind Ruins'.\n TOD Region: 'Nothing'.\n RC Region: 'Graveyard (Not Dampe)'.\n POW Region: If Red Fusions are Removed: 'Wind Tribe', Otherwise: 'Upper Wind Tribe'.\n DHC Region: 'Castle Gardens (Not Moat)', If Pedestal Items is enabled: 'Sanctuary Pedestal'.
 !dropdown - Main Settings - Setting - Dungeon Settings - DUNGEON - NonElement Dungeons - NonElement Dungeons, This setting is disabled when 'Shuffle Elements' is enabled or when 'Dungeons Required' is set to '5' or '6'. - NONE - Standard - NONE - 'Standard': NonElement Dungeons have no special rules. - Unrequired - UNREQ - 'Unrequired': NonElement Dungeons do not have items required to beat the game. - Barren - BARREN - 'Barren': NonElement Dungeons only contain junk items. - Regions Unrequired - UNREQSUR - 'Regions Unrequired': NonElement Dungeons and their Regions do not contain items needed to beat the game. - Regions Barren - BARRENSUR - 'Regions Barren': NonElement Dungeons and their Regions only contain junk items. \n\n DWS Region: 'Minish Village', 'Belari's House', 'Chest near Belari', 'Minish Cave near Belari'.\n CoF Region: 'Melari's Mines', 'Melari's Mines Outside Path', 'Pre Melari Block Puzzle Chest'.\n FOW Region: 'Wind Ruins'.\n TOD Region: 'Nothing'.\n RC Region: 'Graveyard (Not Dampe)'.\n POW Region: If Red Fusions are Removed: 'Wind Tribe', Otherwise: 'Upper Wind Tribe'.
 !flag - Main Settings - Setting - Dungeon Settings - SHUFFLE_ELEMENTS - Shuffle Elements - Shuffle Elements allows the Elements to be shuffled to anywhere in the world, not just as Dungeon Rewards. The Element icons on the map are removed.
@@ -285,9 +286,10 @@
 !endif
 
 #Setting defines
+!define - `MAP_SETTING`
+!define - `COMPASS_SETTING`
 !define - `SMALL_KEYS_SETTING`
 !define - `BIG_KEYS_SETTING`
-!define - `COMPASS_SETTING`
 !define - `GOLD_FUSION_SETTING`
 !define - `RED_FUSION_SETTING`
 !define - `BLUE_FUSION_SETTING`
@@ -814,14 +816,19 @@
 		!eventdefine - dhcBigDoor
 	!endif
 !endif
+!ifdef - MAP_KEASY
+	!define - Replace_Map - 
+	!eventdefine - mapkeasy
+!endif
 !ifdef - COMPASS_KEASY
 	!define - Replace_Compass - 
 	!eventdefine - compasskeasy
 !endif
 
 # Sets which dungeon pool keys should get shuffled in
-!define - BIG_KEY - DungeonMajor
 !define - SMALL_KEY - DungeonMajor
+!define - BIG_KEY - DungeonMajor
+!define - MAP - DungeonMinor
 !define - COMPASS - DungeonMinor
 !ifdef - SMALL_KEYS_STANDARD
 	!define - DWS_SMALL - DWSSmall
@@ -936,6 +943,52 @@
 						!define - POW_BIG - 
 						!define - DHC_BIG - 
 					!endif
+				!endif
+			!endif
+		!endif
+	!endif
+!endif
+!ifdef - MAP_STANDARD
+	!define - DWS_MAP - DWSMap
+	!define - COF_MAP - CoFMap
+	!define - FOW_MAP - FoWMap
+	!define - TOD_MAP - ToDMap
+	!define - POW_MAP - PoWMap
+	!define - DHC_MAP - DHCMap
+!else
+	!ifdef - MAP_REGION
+		!define - DWS_MAP - DWSMapOutside
+		!define - COF_MAP - CoFMapOutside
+		!define - FOW_MAP - FoWMapOutside
+		!define - TOD_MAP - ToDMap
+		!define - POW_MAP - PoWMapOutside
+		!define - DHC_MAP - DHCMapOutside
+	!else
+		!ifdef - MAP_DUNGEON
+			!define - DWS_MAP - Map
+			!define - COF_MAP - Map
+			!define - FOW_MAP - Map
+			!define - TOD_MAP - Map
+			!define - POW_MAP - Map
+			!define - DHC_MAP - Map
+		!else
+			!ifdef - MAP_REGDUN
+				!define - DWS_MAP - MapOutside
+				!define - COF_MAP - MapOutside
+				!define - FOW_MAP - MapOutside
+				!define - TOD_MAP - MapOutside
+				!define - POW_MAP - MapOutside
+				!define - DHC_MAP - MapOutside
+			!else
+				!ifdef - MAP_KEYSANITY
+					!undefine - MAP
+					!define - MAP - Minor
+					!define - DWS_MAP - 
+					!define - COF_MAP - 
+					!define - FOW_MAP - 
+					!define - TOD_MAP - 
+					!define - POW_MAP - 
+					!define - DHC_MAP - 
 				!endif
 			!endif
 		!endif
@@ -1265,7 +1318,7 @@
 			Items.PerilBeam;		Major;
 		!endif
 	!endif
-	!ifdef - Replace_Compass
+	!ifdef - Replace_Map
 		!ifdef - MEME
 			Items.DungeonMap.0x18;	Minor;
 			Items.DungeonMap.0x19;	Minor;
@@ -1273,6 +1326,55 @@
 			Items.DungeonMap.0x1B;	Minor;
 			Items.DungeonMap.0x1C;	Minor;
 			Items.DungeonMap.0x1D;	Minor;
+		!endif
+	!else
+		!ifndef - MAP_VANILLA
+			Items.DungeonMap.0x18;	`MAP`;	`DWS_MAP`
+			Items.DungeonMap.0x19;	`MAP`;	`COF_MAP`
+			Items.DungeonMap.0x1B;	`MAP`;	`TOD_MAP`
+			!ifdef - POW_ACCESS
+				Items.DungeonMap.0x1C;	`MAP`;	`POW_MAP`
+			!else
+				!ifndef - MAP_VANILLA
+					!ifndef - MAP_REGION
+						!ifndef - MAP_STANDARD
+							!ifdef - MEME
+								Items.DungeonMap.0x1C;	`MAP`;	`POW_MAP`
+							!endif
+						!endif
+					!endif
+				!endif
+			!endif
+			!ifdef - FOW_ACCESS
+				Items.DungeonMap.0x1A;	`MAP`;	`FOW_MAP`
+			!else
+				!ifndef - MAP_VANILLA
+					!ifndef - MAP_REGION
+						!ifndef - MAP_STANDARD
+							!ifdef - MEME
+								Items.DungeonMap.0x1A;	`MAP`;	`FOW_MAP`
+							!endif
+						!endif
+					!endif
+				!endif
+			!endif
+			!ifndef - NODHC
+				Items.DungeonMap.0x1D;	`MAP`;	`DHC_MAP`
+			!else
+				!ifndef - MAP_VANILLA
+					!ifndef - MAP_REGION
+						!ifndef - MAP_STANDARD
+							!ifdef - MEME
+								Items.DungeonMap.0x1D;	`MAP`;	`DHC_MAP`
+							!endif
+						!endif
+					!endif
+				!endif
+			!endif
+		!endif
+	!endif
+	!ifdef - Replace_Compass
+		!ifdef - MEME
 			Items.Compass.0x18;	Minor;
 			Items.Compass.0x19;	Minor;
 			Items.Compass.0x1A;	Minor;
@@ -1282,21 +1384,16 @@
 		!endif
 	!else
 		!ifndef - COMPASS_VANILLA
-			Items.DungeonMap.0x18;	`COMPASS`;	`DWS_COMPASS`
-			Items.DungeonMap.0x19;	`COMPASS`;	`COF_COMPASS`
-			Items.DungeonMap.0x1B;	`COMPASS`;	`TOD_COMPASS`
 			Items.Compass.0x18;	`COMPASS`;	`DWS_COMPASS`
 			Items.Compass.0x19;	`COMPASS`;	`COF_COMPASS`
 			Items.Compass.0x1B;	`COMPASS`;	`TOD_COMPASS`
 			!ifdef - POW_ACCESS
-				Items.DungeonMap.0x1C;	`COMPASS`;	`POW_COMPASS`
 				Items.Compass.0x1C;	`COMPASS`;	`POW_COMPASS`
 			!else
 				!ifndef - COMPASS_VANILLA
 					!ifndef - COMPASS_REGION
 						!ifndef - COMPASS_STANDARD
 							!ifdef - MEME
-								Items.DungeonMap.0x1C;	`COMPASS`;	`POW_COMPASS`
 								Items.Compass.0x1C;	`COMPASS`;	`POW_COMPASS`
 							!endif
 						!endif
@@ -1304,14 +1401,12 @@
 				!endif
 			!endif
 			!ifdef - FOW_ACCESS
-				Items.DungeonMap.0x1A;	`COMPASS`;	`FOW_COMPASS`
 				Items.Compass.0x1A;	`COMPASS`;	`FOW_COMPASS`
 			!else
 				!ifndef - COMPASS_VANILLA
 					!ifndef - COMPASS_REGION
 						!ifndef - COMPASS_STANDARD
 							!ifdef - MEME
-								Items.DungeonMap.0x1A;	`COMPASS`;	`FOW_COMPASS`
 								Items.Compass.0x1A;	`COMPASS`;	`FOW_COMPASS`
 							!endif
 						!endif
@@ -1319,14 +1414,12 @@
 				!endif
 			!endif
 			!ifndef - NODHC
-				Items.DungeonMap.0x1D;	`COMPASS`;	`DHC_COMPASS`
 				Items.Compass.0x1D;	`COMPASS`;	`DHC_COMPASS`
 			!else
 				!ifndef - COMPASS_VANILLA
 					!ifndef - COMPASS_REGION
 						!ifndef - COMPASS_STANDARD
 							!ifdef - MEME
-								Items.DungeonMap.0x1D;	`COMPASS`;	`DHC_COMPASS`
 								Items.Compass.0x1D;	`COMPASS`;	`DHC_COMPASS`
 							!endif
 						!endif
@@ -5006,6 +5099,11 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 	!define - PALACEPRIZE - DungeonPrize
 	!define - PALACESMALL - Dungeon
 	!define - PALACEBIG - Dungeon
+	!ifdef - MAP_VANILLA
+		!define - PALACEMAP - Unshuffled
+	!else
+		!define - PALACEMAP - Dungeon
+	!endif
 	!ifdef - COMPASS_VANILLA
 		!define - PALACECOMPASS - Unshuffled
 	!else
@@ -5026,6 +5124,7 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 	!define - PALACEPRIZE - Inaccessible
 	!define - PALACESMALL - Inaccessible
 	!define - PALACEBIG - Inaccessible
+	!define - PALACEMAP - Inaccessible
 	!define - PALACECOMPASS - Inaccessible
 	!define - PALACEHP - Inaccessible
 	!define - PALACERUPEE - ;	Inaccessible
@@ -5036,6 +5135,11 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 	!define - FORTRESSPRIZE - DungeonPrize
 	!define - FORTRESSSMALL - Dungeon
 	!define - FORTRESSBIG - Dungeon
+	!ifdef - MAP_VANILLA
+		!define - FORTRESSMAP - Unshuffled
+	!else
+		!define - FORTRESSMAP - Dungeon
+	!endif
 	!ifdef - COMPASS_VANILLA
 		!define - FORTRESSCOMPASS - Unshuffled
 	!else
@@ -5061,12 +5165,18 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 	!define - FORTRESSPRIZE - Inaccessible
 	!define - FORTRESSSMALL - Inaccessible
 	!define - FORTRESSBIG - Inaccessible
+	!define - FORTRESSMAP - Inaccessible
 	!define - FORTRESSCOMPASS - Inaccessible
 	!define - FORTRESSHP - Inaccessible
 	!define - FORTRESSRUPEE - ;	Inaccessible
 	!define - FORTRESSPOT - Inaccessible
 !endif
 
+!ifdef - MAP_VANILLA
+	!define - DUNGEONMAP - Unshuffled
+!else
+	!define - DUNGEONMAP - Dungeon
+!endif
 !ifdef - COMPASS_VANILLA
 	!define - DUNGEONCOMPASS - Unshuffled
 !else
@@ -5075,11 +5185,13 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 
 !ifndef - NODHC
 	!define - DHCKING - Dungeon
+	!define - DHCMAP - `DUNGEONMAP`
 	!define - DHCCOMPASS - `DUNGEONCOMPASS`
 	!define - DHCSMALL - Dungeon
 	!define - DHCBIG - Dungeon
 !else
 	!define - DHCKING - Inaccessible
+	!define - DHCMAP - Inaccessible
 	!define - DHCCOMPASS - Inaccessible
 	!define - DHCSMALL - Inaccessible
 	!define - DHCBIG - Inaccessible
@@ -5740,7 +5852,7 @@ NorthField_WaterfallFusion_DojoNPC:dojo;	`DOJOITEMRED`;	greatbladeDojoItem:Defin
 Castle_Moat_LeftChest;					Any;				0x07-0x00-0x01;														(|Items.Flippers, Helpers.Hundo);	Items.Shells.100
 Castle_Moat_RightChest;				Any;				0x07-0x00-0x02;														(|Items.Flippers, Helpers.Hundo);	Items.Rupee200
 
-!define - DHC_OUTSIDE - :DHCSmallOutside	:DHCBigOutside	:DHCCompassOutside	:SmallOutside	:BigOutside	:CompassOutside
+!define - DHC_OUTSIDE - :DHCSmallOutside	:DHCBigOutside	:DHCMapOutside	:DHCCompassOutside	:SmallOutside	:BigOutside	:MapOutside	:CompassOutside
 !ifdef - DOJORANDOM
 	!define - DHC_DOJO - :dojo
 !else
@@ -5844,7 +5956,7 @@ MinishWoods_BottomHP;						`HP`;				0x0F4357;       											(|Helpers.MinishS
 MinishWoods_CrackFusion_Chest;				`GREENFUSION`;		0x27-0x08-0x00;											(|(&Helpers.Shared4EFusion, Helpers.AccessMinishWoods), Helpers.Hundo);					Items.Kinstone.BlueL
 MinishWoods_MinishPathFusion_Chest;			`GREENFUSION`;		0x0FE08E;												(|(&Helpers.Shared37Fusion, Helpers.AccessMinishWoods), Helpers.Hundo);					Items.Rupee200
 
-!define - DWS_OUTSIDE - :DWSSmallOutside	:DWSBigOutside	:DWSCompassOutside	:SmallOutside	:BigOutside	:CompassOutside
+!define - DWS_OUTSIDE - :DWSSmallOutside	:DWSBigOutside	:DWSMapOutside	:DWSCompassOutside	:SmallOutside	:BigOutside	:MapOutside	:CompassOutside
 
 MinishVillage_BarrelHouse_Item		`DWS_OUTSIDE`;	Dungeon;				0x0DA283;											(|Helpers.AccessMinishWoods, Helpers.Hundo);												Items.JabberNut
 MinishVillage_HP					`DWS_OUTSIDE`;	`DUNGEONHP`;			0x0DBCC7;											(|Helpers.AccessMinishWoods, Helpers.Hundo);												Items.PieceOfHeart
@@ -5957,7 +6069,7 @@ Crenel_BeanstalkFusion_Item7		`REDFUSIONRUPEE`;		0x0F5E0B;														(|(&Help
 Crenel_BeanstalkFusion_Item8		`REDFUSIONRUPEE`;		0x0F5E1B;														(|(&Helpers.MelariFusion, Helpers.AccessCrenel, Items.GripRing), Helpers.Hundo);																									Items.Rupee20
 Crenel_RainPathFusion_Chest;		`GREENFUSION`;		0x0FE066;														(|(&Helpers.MinesMinishBedroomFusion, Helpers.AccessCrenel, Items.GripRing), Helpers.Hundo);																						Items.Kinstone.BlueL
 
-!define - COF_OUTSIDE - :CoFSmallOutside	:CoFBigOutside	:CoFCompassOutside	:SmallOutside	:BigOutside	:CompassOutside
+!define - COF_OUTSIDE - :CoFSmallOutside	:CoFBigOutside	:CoFMapOutside	:CoFCompassOutside	:SmallOutside	:BigOutside	:MapOutside	:CompassOutside
 
 AccessMelari;										Helper;				;													(|Helpers.CrenelWindCrest, (&Helpers.AccessCrenel, (|(&Items.PacciCane, (|Items.GripRing, Helpers.CrenelMushroom)), (&Items.GripRing, (|Items.RocsCape, Helpers.LightArrowBreak, Items.GustJar), Helpers.CrenelSwitch))))
 
@@ -6008,7 +6120,7 @@ Swamp_MinishFusion_WaterHole_HP;		`GREENFUSIONHP`;		0x0DB3F7;		(|(&Helpers.TFZ2F
 
 
 # Wind Ruins
-!define - FOW_OUTSIDE - :FoWSmallOutside	:FoWBigOutside	:FoWCompassOutside	:SmallOutside	:BigOutside	:CompassOutside
+!define - FOW_OUTSIDE - :FoWSmallOutside	:FoWBigOutside	:FoWMapOutside	:FoWCompassOutside	:SmallOutside	:BigOutside	:MapOutside	:CompassOutside
 
 AccessRuins;									Helper;					;														Helpers.RuinsFusion, Helpers.AccessSwamp, (|Items.RocsCape, (&Items.PegasusBoots, (|Items.Flippers, Helpers.HasBow, Helpers.SwampShortcut, Helpers.SwampWindCrest)));
 
@@ -6034,7 +6146,7 @@ Valley_GreatFairy_NPC;			Any;				0x00B722;	(|(&Helpers.AccessValley, Helpers.Bom
 Valley_LostWoods_Chest;		Any;				0x0D8A86;	(|(&Helpers.AccessValley, Helpers.DarkRooms), Helpers.Hundo);								Items.Shells.200
 Valley_DampeNPC;				Any;				0x0096B6;	(|(&Helpers.AccessValley, Helpers.DarkRooms), Helpers.Hundo);								Items.GraveyardKey
 
-!define - RC_OUTSIDE - :RCSmallOutside	:SmallOutside	:BigOutside	:CompassOutside
+!define - RC_OUTSIDE - :RCSmallOutside	:SmallOutside	:BigOutside	:MapOutside	:CompassOutside
 
 Valley_GraveyardButterflyFusion_Item	`RC_OUTSIDE`;	`REDFUSIONDUNGEON`;	0x0FE14F;		(|(&Helpers.Nayru2Fusion,Helpers.AccessValley, Helpers.DarkRooms, Helpers.Graveyard), Helpers.Hundo);			Items.SwimButterfly
 Valley_GraveyardLeftFusion_Chest		`RC_OUTSIDE`;	`UWTFUSIONGREEN`;		0x0FE0DE;		(|(&Helpers.Siroc1Fusion, Helpers.AccessValley, Helpers.DarkRooms, Helpers.Graveyard), Helpers.Hundo);			Items.Kinstone.RedE
@@ -6042,7 +6154,7 @@ Valley_GraveyardLeftGrave_HP			`RC_OUTSIDE`;	`DUNGEONHP`;			0x0D8AE7;		(|(&Helpe
 Valley_GraveyardRightFusion_Chest		`RC_OUTSIDE`;	`UWTFUSIONGREEN`;		0x0FE0E6;		(|(&Helpers.Siroc2Fusion, Helpers.AccessValley, Helpers.DarkRooms, Helpers.Graveyard), Helpers.Hundo);			Items.Kinstone.RedV
 Valley_GraveyardRightGraveFusion_Chest	`RC_OUTSIDE`;	`BLUEFUSIONDUNGEON`;	0x34-0x01-0x00;	(|(&Helpers.Dampe1Fusion, Helpers.AccessValley, Helpers.DarkRooms, Helpers.Graveyard), Helpers.Hundo);			Items.Shells.100
 
-!define - RC_INSIDE - `RC_OUTSIDE`	:RCSmall	:Small	:Big	:Compass
+!define - RC_INSIDE - `RC_OUTSIDE`	:RCSmall	:Small	:Big	:Map	:Compass
 !ifdef - SMALL_KEYS_VANILLA
 	!define - RC_INSIDE_SK - :RCSmallV
 !else
@@ -6131,7 +6243,7 @@ Clouds_South_RightDigSpot;		`FALLSDIGKINSTONE`;	0x0DCB9B;		(|(&Helpers.AccessClo
 Clouds_SouthEast_BottomDigSpot;	`FALLSDIGKINSTONE`;	0x0DCBAB;		(|(&Helpers.AccessClouds, Items.MoleMitts), Helpers.Hundo);									Items.Kinstone.BlueS
 Clouds_SouthEast_TopDigSpot;   `FALLSDIGKINSTONE`;	0x0DCB7B;		(|(&Helpers.AccessClouds, Items.MoleMitts), Helpers.Hundo);									Items.Kinstone.GreenG
 
-!define - POW_OUTSIDE - :PoWSmallOutside	:PoWBigOutside	:PoWCompassOutside	:SmallOutside	:BigOutside	:CompassOutside
+!define - POW_OUTSIDE - :PoWSmallOutside	:PoWBigOutside	:PoWMapOutside	:PoWCompassOutside	:SmallOutside	:BigOutside	:MapOutside	:CompassOutside
 !ifdef - NO_RED_FUSIONS
 	!define - POW_F_OUTSIDE - `POW_OUTSIDE`
 !else
@@ -6154,7 +6266,7 @@ Palace_Entrance							`DUNGEONENTRANCE`;	DumPoWENT:Define:FirstByte, DumPoWENT2:
 
 # Deepwood locations
 
-!define - DWS_INSIDE - `DWS_OUTSIDE`	:DWSSmall	:DWSBig	:DWSCompass	:Small	:Big	:Compass
+!define - DWS_INSIDE - `DWS_OUTSIDE`	:DWSSmall	:DWSBig	:DWSMap	:DWSCompass	:Small	:Big	:Map	:Compass
 !ifdef - SMALL_KEYS_VANILLA
 	!define - DWS_INSIDE_SK - :DWSSmallV
 !else
@@ -6166,16 +6278,16 @@ Palace_Entrance							`DUNGEONENTRANCE`;	DumPoWENT:Define:FirstByte, DumPoWENT2:
 	!define - DWS_INSIDE_BK - `DWS_INSIDE`
 !endif
 !ifdef - UNREQSUR
-	!define - DWS_PRIZE - :DWSSmall	:DWSBig	:DWSCompass	:DWSSmallOutside	:DWSBigOutside	:DWSCompassOutside
+	!define - DWS_PRIZE - :DWSSmall	:DWSBig	:DWSMap	:DWSCompass	:DWSSmallOutside	:DWSBigOutside	:DWSMapOutside	:DWSCompassOutside
 !else
 	!ifdef - BARRENSUR
-		!define - DWS_PRIZE - :DWSSmall	:DWSBig	:DWSCompass	:DWSSmallOutside	:DWSBigOutside	:DWSCompassOutside
+		!define - DWS_PRIZE - :DWSSmall	:DWSBig	:DWSMap	:DWSCompass	:DWSSmallOutside	:DWSBigOutside	:DWSMapOutside	:DWSCompassOutside
 	!else
 		!ifdef - UNREQ
-			!define - DWS_PRIZE - :DWSSmall	:DWSBig	:DWSCompass
+			!define - DWS_PRIZE - :DWSSmall	:DWSBig	:DWSMap	:DWSCompass
 		!else
 			!ifdef - BARREN
-				!define - DWS_PRIZE - :DWSSmall	:DWSBig	:DWSCompass
+				!define - DWS_PRIZE - :DWSSmall	:DWSBig	:DWSMap	:DWSCompass
 			!else
 				!define - DWS_PRIZE - `DWS_INSIDE`
 			!endif
@@ -6191,7 +6303,7 @@ Deepwood_1F_West_BigChest				`DWS_INSIDE`;		`DUNGEONCOMPASS`;	0x48-0x05-0x01;			
 Deepwood_1F_West_StatuePuzzle_Chest		`DWS_INSIDE_SK`;	Dungeon;			0x48-0x04-0x01;													(|(&`ENTERDWS`, (|Helpers.Deepwood1stDoor, Helpers.DeepwoodPreMadderpillar)), Helpers.Hundo);																		Items.SmallKey.0x18
 Deepwood_1F_East_MulldozerFight_Item	`DWS_INSIDE_SK`;	Dungeon;			0x0DE51B;														(|(&`ENTERDWS`, (|Helpers.Deepwood1stDoor, Helpers.DeepwoodPreMadderpillar), Helpers.Deepwood2ndDoor, Helpers.DeepwoodMulldozers), Helpers.Hundo);						Items.SmallKey.0x18
 Deepwood_1F_NorthEast_Chest			`DWS_INSIDE`;		Dungeon;			0x48-0x02-0x01;													(|(&`ENTERDWS`, Helpers.DeepwoodPreMadderpillar, Helpers.DeepwoodNWChest), Helpers.Hundo);																		Items.Shells.20
-Deepwood_B1_SwitchRoom_BigChest			`DWS_INSIDE`;		`DUNGEONCOMPASS`;	0x48-0x12-0x02;													(|(&`ENTERDWS`, Helpers.DeepwoodPreMadderpillar), Helpers.Hundo);																								Items.DungeonMap.0x18
+Deepwood_B1_SwitchRoom_BigChest			`DWS_INSIDE`;		`DUNGEONMAP`;	0x48-0x12-0x02;													(|(&`ENTERDWS`, Helpers.DeepwoodPreMadderpillar), Helpers.Hundo);																								Items.DungeonMap.0x18
 Deepwood_B1_SwitchRoom_Chest			`DWS_INSIDE_SK`;	Dungeon;			0x48-0x12-0x01;													(|(&`ENTERDWS`, (|(&Helpers.DeepwoodPreMadderpillar, Items.RocsCape), (&Helpers.Deepwood1stDoor, Items.GustJar))), Helpers.Hundo);										Items.SmallKey.0x18
 Deepwood_1F_BlueWarp_HP				`DWS_INSIDE`;		`DUNGEONHP`;		0x0DDE03;														(|(&`ENTERDWS`, Helpers.DeepwoodPreMadderpillar, Helpers.DeepwoodWarpSwitch), Helpers.Hundo);																		Items.PieceOfHeart
 Deepwood_1F_BlueWarp_LeftChest			`DWS_INSIDE`;		Dungeon;			0x48-0x01-0x01;													(|(&`ENTERDWS`, Helpers.DeepwoodPreMadderpillar, Helpers.DeepwoodWarpChests), Helpers.Hundo);																		Items.Shells.10
@@ -6208,7 +6320,7 @@ Deepwood_Prize						`DWS_PRIZE`;		DungeonPrize;		0x0DF03B;														(|Helper
 
 # Cave of Flames locations
 
-!define - COF_INSIDE - `COF_OUTSIDE`	:CoFSmall	:CoFBig	:CoFCompass	:Small	:Big	:Compass
+!define - COF_INSIDE - `COF_OUTSIDE`	:CoFSmall	:CoFBig	:CoFMap	:CoFCompass	:Small	:Big	:Map	:Compass
 !ifdef - SMALL_KEYS_VANILLA
 	!define - COF_INSIDE_SK - :CoFSmallV
 !else
@@ -6220,16 +6332,16 @@ Deepwood_Prize						`DWS_PRIZE`;		DungeonPrize;		0x0DF03B;														(|Helper
 	!define - COF_INSIDE_BK - `COF_INSIDE`
 !endif
 !ifdef - UNREQSUR
-	!define - COF_PRIZE - :CoFSmall	:CoFBig	:CoFCompass	:CoFSmallOutside	:CoFBigOutside	:CoFCompassOutside
+	!define - COF_PRIZE - :CoFSmall	:CoFBig	:CoFMap	:CoFCompass	:CoFSmallOutside	:CoFBigOutside	:CoFMapOutside	:CoFCompassOutside
 !else
 	!ifdef - BARRENSUR
-		!define - COF_PRIZE - :CoFSmall	:CoFBig	:CoFCompass	:CoFSmallOutside	:CoFBigOutside	:CoFCompassOutside
+		!define - COF_PRIZE - :CoFSmall	:CoFBig	:CoFMap	:CoFCompass	:CoFSmallOutside	:CoFBigOutside	:CoFMapOutside	:CoFCompassOutside
 	!else
 		!ifdef - UNREQ
-			!define - COF_PRIZE - :CoFSmall	:CoFBig	:CoFCompass
+			!define - COF_PRIZE - :CoFSmall	:CoFBig	:CoFMap	:CoFCompass
 		!else
 			!ifdef - BARREN
-				!define - COF_PRIZE - :CoFSmall	:CoFBig	:CoFCompass
+				!define - COF_PRIZE - :CoFSmall	:CoFBig	:CoFMap	:CoFCompass
 			!else
 				!define - COF_PRIZE - `COF_INSIDE`
 			!endif
@@ -6238,7 +6350,7 @@ Deepwood_Prize						`DWS_PRIZE`;		DungeonPrize;		0x0DF03B;														(|Helper
 !endif
 AccessCoF;									Helper;			;																		Helpers.AccessMelari;
 
-CoF_1F_SpikeBeetle_BigChest	`COF_INSIDE`;		`DUNGEONCOMPASS`;	0x50-0x15-0x00;															(|(&`ENTERCOF`, (|Helpers.BombWalls, Helpers.Bobombs), Helpers.CoFSpikeBeetle), Helpers.Hundo);																															Items.DungeonMap.0x19
+CoF_1F_SpikeBeetle_BigChest	`COF_INSIDE`;		`DUNGEONMAP`;	0x50-0x15-0x00;															(|(&`ENTERCOF`, (|Helpers.BombWalls, Helpers.Bobombs), Helpers.CoFSpikeBeetle), Helpers.Hundo);																															Items.DungeonMap.0x19
 CoF_1F_Item1					`COF_INSIDE`		`DUNGEONRUPEE`;	0x0DFAEB;																(|(&`ENTERCOF`, Helpers.CoFRupees), Helpers.Hundo);																																									Items.Rupee1
 CoF_1F_Item2					`COF_INSIDE` 		`DUNGEONRUPEE`;	0x0DFAFB;																(|(&`ENTERCOF`, Helpers.CoFRupees), Helpers.Hundo);																																									Items.Rupee1
 CoF_1F_Item3					`COF_INSIDE` 		`DUNGEONRUPEE`;	0x0DFB0B;																(|(&`ENTERCOF`, Helpers.CoFRupees), Helpers.Hundo);																																									Items.Rupee1
@@ -6268,7 +6380,7 @@ Crenel_Melari_NPC				`COF_INSIDE`;		Dungeon;			0x00D26E;																(|Helper
 
 # Fortress of Winds Locations
 
-!define - FOW_INSIDE - `FOW_OUTSIDE`	:FoWSmall	:FoWBig	:FoWCompass	:Small	:Big	:Compass
+!define - FOW_INSIDE - `FOW_OUTSIDE`	:FoWSmall	:FoWBig	:FoWMap	:FoWCompass	:Small	:Big	:Map	:Compass
 !ifdef - SMALL_KEYS_VANILLA
 	!define - FOW_INSIDE_SK - :FoWSmallV
 !else
@@ -6280,16 +6392,16 @@ Crenel_Melari_NPC				`COF_INSIDE`;		Dungeon;			0x00D26E;																(|Helper
 	!define - FOW_INSIDE_BK - `FOW_INSIDE`
 !endif
 !ifdef - UNREQSUR
-	!define - FOW_PRIZE - :FoWSmall	:FoWBig	:FoWCompass	:FoWSmallOutside	:FoWBigOutside	:FoWCompassOutside
+	!define - FOW_PRIZE - :FoWSmall	:FoWBig	:FoWMap	:FoWCompass	:FoWSmallOutside	:FoWBigOutside	:FoWMapOutside	:FoWCompassOutside
 !else
 	!ifdef - BARRENSUR
-		!define - FOW_PRIZE - :FoWSmall	:FoWBig	:FoWCompass	:FoWSmallOutside	:FoWBigOutside	:FoWCompassOutside
+		!define - FOW_PRIZE - :FoWSmall	:FoWBig	:FoWMap	:FoWCompass	:FoWSmallOutside	:FoWBigOutside	:FoWMapOutside	:FoWCompassOutside
 	!else
 		!ifdef - UNREQ
-			!define - FOW_PRIZE - :FoWSmall	:FoWBig	:FoWCompass
+			!define - FOW_PRIZE - :FoWSmall	:FoWBig	:FoWMap	:FoWCompass
 		!else
 			!ifdef - BARREN
-				!define - FOW_PRIZE - :FoWSmall	:FoWBig	:FoWCompass
+				!define - FOW_PRIZE - :FoWSmall	:FoWBig	:FoWMap	:FoWCompass
 			!else
 				!define - FOW_PRIZE - `FOW_INSIDE`
 			!endif
@@ -6310,7 +6422,7 @@ Fortress_Left_2F_Item5					`FOW_INSIDE`		`FORTRESSRUPEE`;		0x0F3F77;												
 Fortress_Left_2F_Item6					`FOW_INSIDE`		`FORTRESSRUPEE`;		0x0F3F87;															(|(&`ENTERFOW`, Helpers.FoWEyeSwitch, Helpers.FoWStalfosFight), Helpers.Hundo);																										Items.Rupee5
 Fortress_Left_2F_Item7					`FOW_INSIDE`		`FORTRESSRUPEE`;		0x0F3F97;															(|(&`ENTERFOW`, Helpers.FoWEyeSwitch, Helpers.FoWStalfosFight), Helpers.Hundo);																										Items.Rupee5
 Fortress_Left_3F_SwitchChest			`FOW_INSIDE`;		`FORTRESSCHEST`;		0x18-0x02-0x00;														(|(&`ENTERFOW`, Helpers.FoWEyeSwitch, Helpers.FoWStalfosFight, Helpers.FoWDigSwitch), Helpers.Hundo);																					Items.Kinstone.RedV
-Fortress_Left_3F_Eyegore_BigChest		`FOW_INSIDE`;		`FORTRESSCOMPASS`;	0x58-0x00-0x00;														(|(&`ENTERFOW`, Helpers.FoWEyeSwitch, Helpers.FoWStalfosFight, Helpers.FoWCloneSwitch), Helpers.Hundo);																					Items.DungeonMap.0x1A
+Fortress_Left_3F_Eyegore_BigChest		`FOW_INSIDE`;		`FORTRESSMAP`;	0x58-0x00-0x00;														(|(&`ENTERFOW`, Helpers.FoWEyeSwitch, Helpers.FoWStalfosFight, Helpers.FoWCloneSwitch), Helpers.Hundo);																					Items.DungeonMap.0x1A
 Fortress_Left_3F_ItemDrop				`FOW_INSIDE_SK`;	`FORTRESSSMALL`;		fowLeftItem:Define:FirstByte,fowLeftSub:Define:SecondByte;					(|(&`ENTERFOW`, Helpers.FoWLeftDrop), Helpers.Hundo);																																Items.SmallKey.0x1A
 					
 Fortress_Middle_2F_BigChest			`FOW_INSIDE`;		`FORTRESSCOMPASS`;	0x58-0x19-0x00;														(|(&`ENTERFOW`, (|Helpers.FoWEyegores, (&Helpers.FoWBlueWarp, Helpers.FoWDarknut))), Helpers.Hundo);																					Items.Compass.0x1A
@@ -6339,7 +6451,7 @@ Fortress_Prize						`FOW_PRIZE`;		`FORTRESSPRIZE`;		0x09C9E6:FirstByte, 0x09C9E8
 
 # Temple of Droplets Locations
 
-!define - TOD_INSIDE - :ToDSmall	:ToDBig	:ToDCompass	:Small	:Big	:Compass
+!define - TOD_INSIDE - :ToDSmall	:ToDBig	:ToDMap	:ToDCompass	:Small	:Big	:Map	:Compass
 !ifdef - SMALL_KEYS_VANILLA
 	!define - TOD_INSIDE_SK - :ToDSmallV
 !else
@@ -6353,7 +6465,7 @@ Fortress_Prize						`FOW_PRIZE`;		`FORTRESSPRIZE`;		0x09C9E6:FirstByte, 0x09C9E8
 !ifdef - NONE
 	!define - TOD_PRIZE - `TOD_INSIDE`
 !else
-	!define - TOD_PRIZE - :ToDSmall	:ToDBig	:ToDCompass
+	!define - TOD_PRIZE - :ToDSmall	:ToDBig	:ToDMap	:ToDCompass
 !endif
 AccessDroplets;	Helper;	;	Helpers.AccessLonLon, Helpers.CapeExtension
 
@@ -6381,7 +6493,7 @@ Droplets_LeftPath_B1_UnderpassItem2				`TOD_INSIDE`		`DUNGEONRUPEE`;			0x0E3F9B;
 Droplets_LeftPath_B1_UnderpassItem3				`TOD_INSIDE`		`DUNGEONRUPEE`;			0x0E3FAB;													(|(&`ENTERTOD`, Helpers.ToDMainRoom), Helpers.Hundo);		Items.Rupee1
 Droplets_LeftPath_B1_UnderpassItem4				`TOD_INSIDE`		`DUNGEONRUPEE`;			0x0E3FBB;													(|(&`ENTERTOD`, Helpers.ToDMainRoom), Helpers.Hundo);		Items.Rupee1
 Droplets_LeftPath_B1_UnderpassItem5				`TOD_INSIDE`		`DUNGEONRUPEE`;			0x0E3FCB;													(|(&`ENTERTOD`, Helpers.ToDMainRoom), Helpers.Hundo);		Items.Rupee1
-Droplets_LeftPath_B1_Waterfall_BigChest			`TOD_INSIDE`;		`DUNGEONCOMPASS`;			0x60-0x0D-0x00;												(|(&`ENTERTOD`, Helpers.ToDMainRoom), Helpers.Hundo);		Items.DungeonMap.0x1B
+Droplets_LeftPath_B1_Waterfall_BigChest			`TOD_INSIDE`;		`DUNGEONMAP`;			0x60-0x0D-0x00;												(|(&`ENTERTOD`, Helpers.ToDMainRoom), Helpers.Hundo);		Items.DungeonMap.0x1B
 
 Droplets_LeftPath_B1_Waterfall_Underwater1		`TOD_INSIDE`		`DUNGEONUNDERWATER`;		0x0E3593;													(|(&`ENTERTOD`, Helpers.ToDMainRoom, Items.Flippers), Helpers.Hundo);																				Items.Rupee5
 Droplets_LeftPath_B1_Waterfall_Underwater2		`TOD_INSIDE`		`DUNGEONUNDERWATER`;		0x0E35A3;													(|(&`ENTERTOD`, Helpers.ToDMainRoom, Items.Flippers), Helpers.Hundo);																				Items.Rupee5
@@ -6425,7 +6537,7 @@ Droplets_Prize								`TOD_PRIZE`;	DungeonPrize;				0x0E40C3;														(|Hel
 
 # Palace of Winds Locations
 
-!define - POW_INSIDE - `POW_OUTSIDE`	:PoWSmall	:PoWBig	:PoWCompass	:Small	:Big	:Compass
+!define - POW_INSIDE - `POW_OUTSIDE`	:PoWSmall	:PoWBig	:PoWMap	:PoWCompass	:Small	:Big	:Map	:Compass
 !ifdef - SMALL_KEYS_VANILLA
 	!define - POW_INSIDE_SK - :PoWSmallV
 !else
@@ -6437,16 +6549,16 @@ Droplets_Prize								`TOD_PRIZE`;	DungeonPrize;				0x0E40C3;														(|Hel
 	!define - POW_INSIDE_BK - `POW_INSIDE`
 !endif
 !ifdef - UNREQSUR
-	!define - POW_PRIZE - :PoWSmall	:PoWBig	:PoWCompass :PoWSmallOutside	:PoWBigOutside	:PoWCompassOutside
+	!define - POW_PRIZE - :PoWSmall	:PoWBig	:PoWMap	:PoWCompass :PoWSmallOutside	:PoWBigOutside	:PoWMapOutside	:PoWCompassOutside
 !else
 	!ifdef - BARRENSUR
-		!define - POW_PRIZE - :PoWSmall	:PoWBig	:PoWCompass :PoWSmallOutside	:PoWBigOutside	:PoWCompassOutside
+		!define - POW_PRIZE - :PoWSmall	:PoWBig	:PoWMap	:PoWCompass :PoWSmallOutside	:PoWBigOutside	:PoWMapOutside	:PoWCompassOutside
 	!else
 		!ifdef - UNREQ
-			!define - POW_PRIZE - :PoWSmall	:PoWBig	:PoWCompass
+			!define - POW_PRIZE - :PoWSmall	:PoWBig	:PoWMap	:PoWCompass
 		!else
 			!ifdef - BARREN
-				!define - POW_PRIZE - :PoWSmall	:PoWBig	:PoWCompass
+				!define - POW_PRIZE - :PoWSmall	:PoWBig	:PoWMap	:PoWCompass
 			!else
 				!define - POW_PRIZE - `POW_INSIDE`
 			!endif
@@ -6475,7 +6587,7 @@ Palace_2ndHalf_1F_DarkRoom_BigChest				`POW_INSIDE`;		`PALACECOMPASS`;	0x70-0x32
 Palace_2ndHalf_1F_DarkRoom_SmallChest			`POW_INSIDE_SK`;	`PALACESMALL`;	0x70-0x32-0x01;													(|(&`ENTERPOW`, (|Helpers.PoW2ndHalf, (&Helpers.PoWRedWarp, Helpers.OverworldBlocks)), Helpers.DarkRooms), Helpers.Hundo);																																											Items.SmallKey.0x1C
 Palace_2ndHalf_2F_ManyRollers_Chest				`POW_INSIDE_SK`;	`PALACESMALL`;	0x70-0x2B-0x00;													(|(&`ENTERPOW`, (|(&Helpers.DarkRooms, Helpers.PoW2ndHalf), (&Helpers.PoWRedWarp, Helpers.OverworldBlocks)), Helpers.PoWPeahatRoom, Helpers.PoWRollerRoom), Helpers.Hundo);																																Items.SmallKey.0x1C
 Palace_2ndHalf_2F_TwinWizrobes_Chest			`POW_INSIDE`;		`PALACECHEST`;	0x70-0x29-0x00;													(|(&`ENTERPOW`, (|(&Helpers.DarkRooms, (|(&Helpers.PoW2ndHalf1stDoor, Items.RocsCape), Helpers.PoWShortcuts), Helpers.PoW2ndHalf), (&Helpers.PoWRedWarp, Helpers.OverworldBlocks)), Helpers.PoWDoubleWiz), Helpers.Hundo);																						Items.Kinstone.RedV
-Palace_2ndHalf_3F_FireWizrobes_BigChest			`POW_INSIDE`;		`PALACECOMPASS`;	0x70-0x1C-0x00;													(|(&`ENTERPOW`, (|(&Helpers.DarkRooms, (|(&Helpers.PoW2ndHalf1stDoor, Items.RocsCape), Helpers.PoWShortcuts), Helpers.PoW2ndHalf), (&Helpers.PoWRedWarp, Helpers.OverworldBlocks)), Helpers.PoWTribleWiz), Helpers.Hundo);																						Items.DungeonMap.0x1C
+Palace_2ndHalf_3F_FireWizrobes_BigChest			`POW_INSIDE`;		`PALACEMAP`;	0x70-0x1C-0x00;													(|(&`ENTERPOW`, (|(&Helpers.DarkRooms, (|(&Helpers.PoW2ndHalf1stDoor, Items.RocsCape), Helpers.PoWShortcuts), Helpers.PoW2ndHalf), (&Helpers.PoWRedWarp, Helpers.OverworldBlocks)), Helpers.PoWTribleWiz), Helpers.Hundo);																						Items.DungeonMap.0x1C
 Palace_2ndHalf_4F_HP							`POW_INSIDE`;		`PALACEHP`;		0x0E77A7;														(|(&`ENTERPOW`, Items.RocsCape, Helpers.PoWHP), Helpers.Hundo);																																																								Items.PieceOfHeart
 Palace_2ndHalf_4F_SwitchHit_Chest				`POW_INSIDE`;		`PALACECHEST`;	0x70-0x15-0x00;													(|(&`ENTERPOW`, (|(&Helpers.DarkRooms, (|(&Helpers.PoW2ndHalf1stDoor, Items.RocsCape), Helpers.PoWShortcuts), Helpers.PoWHandRoom, Items.RocsCape, Helpers.PoWSwitch, Helpers.PoW2ndHalf), (&Helpers.PoWRedWarp, Helpers.OverworldBlocks, Helpers.PoWSwitch, (|Items.RocsCape, Helpers.PoWHandRoom)))), Helpers.Hundo);	Items.Rupee200
 Palace_2ndHalf_5F_Bombarossa_Chest				`POW_INSIDE_SK`;	`PALACESMALL`;	0x70-0x03-0x00;													(|(&`ENTERPOW`, (|(&Helpers.DarkRooms, (|(&Helpers.PoW2ndHalf1stDoor, Items.RocsCape), Helpers.PoWShortcuts), Helpers.PoWHandRoom, Items.RocsCape, Helpers.PoW2ndHalf), Helpers.PoWRedWarp), Helpers.PoWRedWarpDoor, Helpers.BombWalls, Helpers.OverworldBlocks), Helpers.Hundo);										Items.SmallKey.0x1C
@@ -6494,7 +6606,7 @@ Sanctuary_Pedestal_Item3	`DHC_OUTSIDE`;  `PED`;   pedestalSpot3Item:Define:First
 
 # Dark Hyrule Castle
 
-!define - DHC_INSIDE - `DHC_OUTSIDE`	:DHCSmall	:DHCBig	:DHCCompass	:Small	:Big	:Compass
+!define - DHC_INSIDE - `DHC_OUTSIDE`	:DHCSmall	:DHCBig	:DHCMap	:DHCCompass	:Small	:Big	:Map	:Compass
 !ifdef - SMALL_KEYS_VANILLA
 	!define - DHC_INSIDE_SK - :DHCSmallV
 !else
@@ -6507,7 +6619,7 @@ Sanctuary_Pedestal_Item3	`DHC_OUTSIDE`;  `PED`;   pedestalSpot3Item:Define:First
 !endif
 
 DHC_B2_King				`DHC_INSIDE`;		`DHCKING`;	0x00E46A;		(|(&`ENTERDHC`, Helpers.DHCKing), Helpers.Hundo);																	Items.Rupee1 #used to be a small key but a door got removed
-DHC_B1_BigChest			`DHC_INSIDE`;		`DHCCOMPASS`;	0x88-0x37-0x00;	(|`ENTERDHC`, Helpers.Hundo);																					Items.DungeonMap.0x1D
+DHC_B1_BigChest			`DHC_INSIDE`;		`DHCMAP`;	0x88-0x37-0x00;	(|`ENTERDHC`, Helpers.Hundo);																					Items.DungeonMap.0x1D
 DHC_1F_Blade_Chest		`DHC_INSIDE_SK`;	`DHCSMALL`;	0x88-0x27-0x00;	(|(&`ENTERDHC`, Helpers.DHCFirstCanon, Helpers.DHCBladePuzzle), Helpers.Hundo);										Items.SmallKey.0x1D
 DHC_1F_Throne_BigChest		`DHC_INSIDE`;		`DHCCOMPASS`;	0x88-0x20-0x00;	(|(&`ENTERDHC`, Helpers.DHC1stDoor, Helpers.DHC2ndCanon, Helpers.BombWalls, Helpers.DHCThrone), Helpers.Hundo);			Items.Compass.0x1D
 
