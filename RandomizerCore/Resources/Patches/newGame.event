@@ -19,6 +19,7 @@ POIN canOpenMenu;	WORD 0x2002B32 1
 POIN fastShell;		WORD 0x2002B41 1
 POIN haveMap;		WORD 0x2002B43 1
 POIN fastItems;		WORD 0x2002B46 5
+POIN fastBombArrow;	WORD 0x2002B4D 1
 POIN kinstoneBag;	WORD 0x2002B4B 1
 POIN fusionFlags;	WORD 0x2002C81 13
 POIN startingFlags;	WORD 0x2002C9C 308
@@ -165,6 +166,9 @@ BYTE 0x40
 
 fastItems:
 BYTE 0x55 0x55 0x05 0x55 0x55 //remove the messages when picking small stuff for the first time
+
+fastBombArrow:
+BYTE 0x55 //remove the messages when picking 10 or 30 bombs or arrows for the first time
 
 fastShell:
 BYTE 0x40 //remove the messages when picking shells for the first time

@@ -365,6 +365,14 @@ escapeWalls:
 	#incbin "asm/fastKinstone.dmp"
 #endif
 
+//10 or 30 bombs or arrows have no popups
+PUSH
+ORG $FCE5B; BYTE 0x00
+ORG $FCE63; BYTE 0x00
+ORG $FCE6B; BYTE 0x00
+ORG $FCE73; BYTE 0x00
+POP
+
 //normal kinstones don't get added to the bag in nofusions
 #ifdef noFusions
 	PUSH; ORG $1E778; SHORT 0x2C00 0xD025 0x2C6D; POP
