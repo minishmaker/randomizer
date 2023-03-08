@@ -23,7 +23,9 @@ public class ShufflerController
 {    
     private readonly Shuffler _shuffler;
     private string? _cachedLogicFile;
-	private string? CachedYAMLFile;
+	private string? CachedYAMLFileLogic;
+	private string? CachedYAMLFileCosmetics;
+    private bool CachedUseGlobalYAML;
 
 #if DEBUG
     public string AppName => "Minish Cap Randomizer Debug Build";
@@ -38,7 +40,7 @@ public class ShufflerController
     public static string RevisionIdentifier => "Pre-release";
 
     public string SeedFilename =>
-        $"Minish Randomizer-{_shuffler.Seed:X}-{_shuffler.Version}-{(_shuffler.IsUsingYAML() ? _shuffler.GetYAMLName() : _shuffler.GetSelectedOptions().GetIdentifier())}";
+            _shuffler.IsGlobalYAMLMode() ? $"Minish Randomizer-{_shuffler.Seed:X}-{_shuffler.Version}-{(_shuffler.IsUsingLogicYAML() ? _shuffler.GetLogicYAMLName() : _shuffler.GetSelectedOptions().GetIdentifier(true))}" : $"Minish Randomizer-{_shuffler.Seed}-{_shuffler.Version}-{(_shuffler.IsUsingLogicYAML() ? _shuffler.GetLogicYAMLName() : _shuffler.GetSelectedOptions().OnlyLogic().GetIdentifier(false))}-{(_shuffler.IsUsingCosmeticsYAML() ? _shuffler.GetCosmeticsYAMLName() : _shuffler.GetSelectedOptions().OnlyCosmetic().GetIdentifier(false))}";
 
     public ulong FinalSeed => _shuffler.Seed;
 
@@ -67,11 +69,19 @@ public class ShufflerController
             : "Log output failed! Please check your file path and make sure you have write access.";
     }
 
-    public bool IsUsingYAML() => _shuffler.IsUsingYAML();
+    public bool IsUsingLogicYAML() => _shuffler.IsUsingLogicYAML();
 
-    public string GetYAMLName() => _shuffler.GetYAMLName();
+    public bool IsUsingCosmeticsYAML() => _shuffler.IsUsingCosmeticsYAML();
 
-    public string GetYAMLDescription() => _shuffler.GetYAMLDescription();
+    public bool IsGlobalYAMLMode() => _shuffler.IsGlobalYAMLMode();
+
+    public string GetLogicYAMLName() => _shuffler.GetLogicYAMLName();
+
+    public string GetCosmeticsYAMLName() => _shuffler.GetCosmeticsYAMLName();
+
+    public string GetLogicYAMLDescription() => _shuffler.GetLogicYAMLDescription();
+
+    public string GetCosmeticsYAMLDescription() => _shuffler.GetCosmeticsYAMLDescription();
 
     public string GetEventWrites()
     {
@@ -126,7 +136,7 @@ public class ShufflerController
     {
         try
         {
-            var currentOptions = Shuffler.GetSelectedOptions();
+            var currentOptions = _shuffler.GetSelectedOptions();
             var affectedOptions = currentOptions;
             if (!cosmeticSettings)
                 affectedOptions = affectedOptions.OnlyLogic();
@@ -282,14 +292,16 @@ public class ShufflerController
         }
     }
 
-    public ShufflerControllerResult LoadLocations(string? logicFile = null, string? yamlFile = null)
+    public ShufflerControllerResult LoadLocations(string? logicFile = null, string? yamlFileLogic = null, string? yamlFileCosmetics = null, bool useGlobalYAML = false)
     {
         try
         {
             _shuffler.ValidateState();
-            _shuffler.LoadLocations(logicFile, yamlFile);
+            _shuffler.LoadLocations(logicFile, yamlFileLogic, yamlFileCosmetics, useGlobalYAML);
             _cachedLogicFile = logicFile;
-            CachedYAMLFile = yamlFile;
+            CachedYAMLFileLogic = yamlFileLogic;
+            CachedYAMLFileCosmetics = useGlobalYAML ? yamlFileLogic : yamlFileCosmetics;
+            CachedUseGlobalYAML = useGlobalYAML;
             return new ShufflerControllerResult { WasSuccessful = true };
         }
         catch (Exception e)
@@ -329,7 +341,7 @@ public class ShufflerController
                     Logger.Instance.LogException(e);
                     capturedExceptions.Add(e);
                     attempts++;
-                    LoadLocations(_cachedLogicFile, CachedYAMLFile);
+                    LoadLocations(_cachedLogicFile, CachedYAMLFileLogic, CachedYAMLFileCosmetics, CachedUseGlobalYAML);
                     _shuffler.SetSeed(new SquaresRandomNumberGenerator().Next());
                     Logger.Instance.SaveLogTransaction();
                 }

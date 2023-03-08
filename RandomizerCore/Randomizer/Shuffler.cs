@@ -22,9 +22,10 @@ namespace RandomizerCore.Randomizer;
 internal class Shuffler
 {
     private OptionList Options;
-    private string YamlName;
-    private string YamlDescription;
-    private string? YamlPath;
+    private string YamlNameLogic;
+    private string YamlNameCosmetics;
+    private string YamlDescriptionLogic;
+    private string YamlDescriptionCosmetics;
 
     //Item lists are sorted in the order they are processed
     private readonly List<Item> _dungeonConstraints;
@@ -46,6 +47,9 @@ internal class Shuffler
     private List<Location> _filledLocations;
     public readonly string Version;
     private string? _logicPath;
+    private string? YamlPathLogic;
+    private string? YamlPathCosmetics;
+    private bool YamlUseGlobal;
     private bool _randomized;
     private SquaresRandomNumberGenerator? _rng;
 
@@ -90,10 +94,6 @@ internal class Shuffler
 
         if (!RomCrcValid(Rom.Instance))
             throw new ShufflerConfigurationException("ROM does not match the expected CRC for the logic file!");
-
-        if (Seed < 0)
-            throw new ShufflerConfigurationException(
-                $"Supplied Seed is invalid! Seeds must be a number from 0 to {int.MaxValue}");
 
         if (checkIfRandomized && !_randomized)
             throw new ShufflerConfigurationException(
@@ -141,11 +141,17 @@ internal class Shuffler
         Logger.Instance.LogInfo($"Randomization seed set to {seed:X}");
     }
 
-    public bool IsUsingYAML() => !string.IsNullOrEmpty(YamlPath);
+    public bool IsUsingLogicYAML() => !string.IsNullOrEmpty(YamlPathLogic);
+
+    public bool IsUsingCosmeticsYAML() => !string.IsNullOrEmpty(YamlPathCosmetics);
+
+    public bool IsGlobalYAMLMode() => YamlUseGlobal;
+
+    public string GetLogicYAMLName() => YamlNameLogic;
+
+    public string GetCosmeticsYAMLName() => YamlNameCosmetics;
 
     public string GetYAMLDescription() => YamlDescription;
-
-    public string GetYAMLName() => YamlName;
     
     public List<LogicOptionBase> GetSortedSettings()
     {
@@ -242,23 +248,63 @@ internal class Shuffler
     ///     Reads the list of locations from a file, or the default logic if none is specified
     /// </summary>
     /// <param name="logicFile">The file to read locations from</param>
-    /// <param name="yamlFile">The YAML file to read options from</param>
-    public void LoadLocations(string? logicFile = null, string? yamlFile = null)
+    /// <param name="yamlFileLogic">The YAML file to read logic or all options from</param>
+    /// <param name="yamlFileCosmetics">The YAML file to read cosmetic options from, ignored if "useGlobalYAML" is true</param>
+    /// <param name="useGlobalYAML">Whether a single YAML file (if provided) is used for all setting types</param>
+    public void LoadLocations(string? logicFile = null, string? yamlFileLogic = null, string? yamlFileCosmetics = null, bool useGlobalYAML = false)
     {
         // Change the logic file path to match
-        YamlPath = yamlFile;
         _logicPath = logicFile;
+        YamlPathLogic = yamlFileLogic;
+        YamlPathCosmetics = useGlobalYAML ? yamlFileLogic : yamlFileCosmetics;
+        YamlUseGlobal = useGlobalYAML;
 
-        if (string.IsNullOrEmpty(yamlFile))
+        if (string.IsNullOrEmpty(yamlFileLogic))
         {
-            Options = new OptionList(GetSelectedOptions());
+            if (string.IsNullOrEmpty(yamlFileCosmetics) || useGlobalYAML)
+            {
+                Options = new OptionList(GetSelectedOptions());
+            }
+            else
+            {
+                Options = new OptionList(GetSelectedOptions()).OnlyLogic();
+                var result = Mystery.ParseYAML(File.ReadAllText(yamlFileCosmetics), GetSelectedOptions(), new Random(Seed));
+                Options.AddRange(result.Options.OnlyCosmetic());
+                YamlNameCosmetics = result.Name;
+                YamlDescriptionCosmetics = result.Description;
+            }
         }
         else
         {
-            var result = Mystery.ParseYAML(File.ReadAllText(yamlFile), GetSelectedOptions(), new Random(Seed));
-            Options = result.Options;
-            YamlName = result.Name;
-            YamlDescription = result.Description;
+            if (useGlobalYAML)
+            {
+                var result = Mystery.ParseYAML(File.ReadAllText(yamlFileLogic), GetSelectedOptions(), new Random(Seed));
+                Options = result.Options;
+                YamlNameLogic = YamlNameCosmetics = result.Name;
+                YamlDescriptionLogic = YamlDescriptionCosmetics = result.Description;
+            }
+            else
+            {
+                if (string.IsNullOrEmpty(yamlFileCosmetics))
+                {
+                    Options = new OptionList(GetSelectedOptions()).OnlyCosmetic();
+                    var result = Mystery.ParseYAML(File.ReadAllText(yamlFileLogic), GetSelectedOptions(), new Random(Seed));
+                    Options.AddRange(result.Options.OnlyLogic());
+                    YamlNameLogic = result.Name;
+                    YamlDescriptionLogic = result.Description;
+                }
+                else
+                {
+                    var result = Mystery.ParseYAML(File.ReadAllText(yamlFileLogic), GetSelectedOptions(), new Random(Seed));
+                    Options = result.Options.OnlyLogic();
+                    YamlNameLogic = result.Name;
+                    YamlDescriptionLogic = result.Description;
+                    result = Mystery.ParseYAML(File.ReadAllText(yamlFileCosmetics), GetSelectedOptions(), new Random(Seed));
+                    Options.AddRange(result.Options.OnlyCosmetic());
+                    YamlNameCosmetics = result.Name;
+                    YamlDescriptionCosmetics = result.Description;
+                }
+            }
         }
 
         // Reset everything to allow rerandomization

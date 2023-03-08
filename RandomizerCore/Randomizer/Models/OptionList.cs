@@ -60,8 +60,9 @@ public class OptionList : List<LogicOptionBase>
         return settingBytes.Length > 0 ? settingBytes.Crc32() : 0;
     }
 
-    public string GetIdentifier()
+    public string GetIdentifier(bool splitOptionTypes = true)
     {
-        return StringUtil.AsStringHex8((int)OnlyLogic().GetHash()) + "-" + StringUtil.AsStringHex8((int)OnlyCosmetic().GetHash());
+        return splitOptionTypes ? StringUtil.AsStringHex8((int)OnlyLogic().GetHash()) + "-" +
+            StringUtil.AsStringHex8((int)OnlyCosmetic().GetHash()) : StringUtil.AsStringHex8((int)GetHash());
     }
 }

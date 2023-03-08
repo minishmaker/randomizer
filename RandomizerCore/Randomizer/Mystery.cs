@@ -1,4 +1,5 @@
 using System.Drawing;
+using RandomizerCore.Randomizer.Exceptions;
 using RandomizerCore.Randomizer.Logic.Options;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
@@ -193,13 +194,13 @@ internal static class Mystery
                     if (string.Equals(value, "off", StringComparison.OrdinalIgnoreCase) || string.Equals(value, "false", StringComparison.OrdinalIgnoreCase) || value == "0")
                         option.Active = false;
                     else
-                        throw new Exception($"Invalid value \"{value}\" for Flag option \"{option.Name}\"");
+                        throw new ParserException($"Invalid value \"{value}\" for Flag option \"{option.Name}\"");
                 break;
             case LogicDropdown dropdown:
                 if (dropdown.Selections.ContainsValue(value))
                     dropdown.Selection = dropdown.Selections.Keys.ToList()[dropdown.Selections.Values.ToList().IndexOf(value)];
                 else
-                    throw new Exception($"Invalid value \"{value}\" for Dropdown option \"{option.Name}\"");
+                    throw new ParserException($"Invalid value \"{value}\" for Dropdown option \"{option.Name}\"");
                 break;
             case LogicColorPicker colorPicker:
                 if (string.Equals(value, "vanilla", StringComparison.OrdinalIgnoreCase))
@@ -233,7 +234,7 @@ internal static class Mystery
                                 colorPicker.DefinedColor = Color.FromArgb(r, g, b);
                             }
                             else
-                                throw new Exception($"Invalid value \"{value}\" for Color option \"{option.Name}\"");
+                                throw new ParserException($"Invalid value \"{value}\" for Color option \"{option.Name}\"");
                         }
                     }
                 break;
@@ -249,12 +250,12 @@ internal static class Mystery
                         if (split.Length >= 3)
                             int.TryParse(split[2], out step);
                         if (step <= 0)
-                            throw new Exception($"Invalid value \"{value}\" for Number option \"{option.Name}\"");
+                            throw new ParserException($"Invalid value \"{value}\" for Number option \"{option.Name}\"");
                         var val = min + random.Next((max - min) / step + 1) * step;
                         box.Value = val.ToString();
                     }
                     else
-                        throw new Exception($"Invalid value \"{value}\" for Number option \"{option.Name}\"");
+                        throw new ParserException($"Invalid value \"{value}\" for Number option \"{option.Name}\"");
                 }
                 break;
         }
