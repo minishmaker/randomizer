@@ -69,17 +69,17 @@ String("make sure to use sram"); BYTE 0
 badSave3:
 String("minishmaker.com"); BYTE 0x2F; String("discord"); BYTE 0
 badEmu1:
-String("this emulator is inaccurate!"); BYTE 0
+String("this emulator does not"); BYTE 0
 badEmu2:
-String("please, consider switching"); BYTE 0
+String("support the randomizer!"); BYTE 0
 badEmu3:
-String("mgba.io"); BYTE 0x2F; String("downloads.html"); BYTE 0
+String("please download mgba"); BYTE 0
 badEmu4:
-String("press any button to play"); BYTE 0
+String("or use the mgba core in"); BYTE 0
 badEmu5:
-String("(pedestal will always"); BYTE 0
+String("bizhawk or retroarch"); BYTE 0
 badEmu6:
-String("crash on vba and vbam)"); BYTE 0
+String("mgba.io"); BYTE 0x2F; String("downloads.html"); BYTE 0
 
 #ifdef TEST
 	PUSH
