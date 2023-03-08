@@ -145,7 +145,7 @@ public sealed partial class MinishCapRandomizerUI : Form
 
 		_configuration.MaximumRandomizationRetryCount = retryAttempts;
 		_shufflerController.SetRandomizationSeed(seed);
-		_shufflerController.LoadLocations(UseCustomLogic.Checked ? LogicFilePath.Text : "", UseCustomYAML.Checked ? YAMLPath.Text : "");
+		_shufflerController.LoadLocations(UseCustomLogic.Checked ? LogicFilePath.Text : "", UseCustomYAML.Checked ? YAMLPath.Text : "", "", true);
 		var result = _shufflerController.Randomize(retryAttempts, UseSphereBasedShuffler.Checked);
 		if (result)
 		{

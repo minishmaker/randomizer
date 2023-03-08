@@ -12,7 +12,9 @@ internal static class GenericCommands
 #pragma warning restore CS8618
     private static string? _cachedLogicPath;
     private static string? _cachedPatchPath;
-    private static string? _cachedYAMLPath;
+    private static string? _cachedYAMLPathLogic;
+    private static string? _cachedYAMLPathCosmetics;
+    private static bool _cachedUseGlobalYAML = false;
     private static bool _strict = false;
     
     internal static void LoadRom(string? path = null)
@@ -93,7 +95,9 @@ internal static class GenericCommands
     internal static void UseYAML(string? yamlFile = null)
     {
         Console.Write("Please enter the path to the YAML File you want to use (leave empty to use selected settings instead of YAML): ");
-        _cachedYAMLPath = yamlFile ?? Console.ReadLine();
+        _cachedYAMLPathLogic = yamlFile ?? Console.ReadLine();
+        _cachedYAMLPathCosmetics = _cachedYAMLPathLogic;
+        _cachedUseGlobalYAML = true;
         Console.WriteLine("YAML file loaded successfully!");
     }
 
@@ -249,7 +253,7 @@ internal static class GenericCommands
         var attemptsStr = randomizationAttempts ?? Console.ReadLine();
         if (!string.IsNullOrEmpty(attemptsStr) || !int.TryParse(attemptsStr, out var attempts) || attempts <= 0) attempts = 1;
 
-        ShufflerController.LoadLocations(_cachedLogicPath, _cachedYAMLPath);
+        ShufflerController.LoadLocations(_cachedLogicPath, _cachedYAMLPathLogic, _cachedYAMLPathCosmetics, _cachedUseGlobalYAML);
         var result = ShufflerController.Randomize(attempts);
         if (result.WasSuccessful)
         {

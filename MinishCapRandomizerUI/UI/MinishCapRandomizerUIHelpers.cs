@@ -294,10 +294,10 @@ Generating seeds with this shuffler may freeze the randomizer application for ma
             var settingsString = _shufflerController.GetFinalSettingsString();
             var cosmeticsString = _shufflerController.GetFinalCosmeticsString();
 
-            if (_shufflerController.IsUsingYAML())
+            if (_shufflerController.IsUsingLogicYAML())
             {
-                SettingNameLabel.Text = _shufflerController.GetYAMLName();
-                CosmeticNameLabel.Text = _shufflerController.GetYAMLName();
+                SettingNameLabel.Text = _shufflerController.GetLogicYAMLName();
+                CosmeticNameLabel.Text = _shufflerController.GetLogicYAMLName();
             }
             else
             {
@@ -308,9 +308,9 @@ Generating seeds with this shuffler may freeze the randomizer application for ma
             }
 
             SettingHashLabel.Text = settingsString;
-            SettingHashLabel.Visible = !_shufflerController.IsUsingYAML();
+            SettingHashLabel.Visible = !_shufflerController.IsUsingLogicYAML();
             CosmeticStringLabel.Text = cosmeticsString;
-            CosmeticStringLabel.Visible = !_shufflerController.IsUsingYAML();
+            CosmeticStringLabel.Visible = !_shufflerController.IsUsingLogicYAML();
 
             TabPane.SelectedTab = SeedOutput;
         }

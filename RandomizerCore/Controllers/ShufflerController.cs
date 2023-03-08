@@ -22,7 +22,9 @@ public class ShufflerController
 {
     private readonly Shuffler Shuffler;
     private string? CachedLogicFile;
-	private string? CachedYAMLFile;
+	private string? CachedYAMLFileLogic;
+	private string? CachedYAMLFileCosmetics;
+    private bool CachedUseGlobalYAML;
 
 #if DEBUG
     public string AppName => "Minish Cap Randomizer Debug Build";
@@ -36,8 +38,16 @@ public class ShufflerController
     internal static string VersionIdentifier => "v0.7.0";
     internal static string RevisionIdentifier => "alpha-rev3";
 
-    public string SeedFilename =>
-        $"Minish Randomizer-{Shuffler.Seed}-{Shuffler.Version}-{(Shuffler.IsUsingYAML() ? Shuffler.GetYAMLName() : Shuffler.GetSelectedOptions().GetIdentifier())}";
+    public string SeedFilename
+    {
+        get
+        {
+            if (Shuffler.IsGlobalYAMLMode())
+                return $"Minish Randomizer-{Shuffler.Seed}-{Shuffler.Version}-{(Shuffler.IsUsingLogicYAML() ? Shuffler.GetLogicYAMLName() : Shuffler.GetSelectedOptions().GetIdentifier(true))}";
+            else
+                return $"Minish Randomizer-{Shuffler.Seed}-{Shuffler.Version}-{(Shuffler.IsUsingLogicYAML() ? Shuffler.GetLogicYAMLName() : Shuffler.GetSelectedOptions().OnlyLogic().GetIdentifier(false))}-{(Shuffler.IsUsingCosmeticsYAML() ? Shuffler.GetCosmeticsYAMLName() : Shuffler.GetSelectedOptions().OnlyCosmetic().GetIdentifier(false))}";
+        }
+    }
 
     public int FinalSeed => Shuffler.Seed;
 
@@ -66,11 +76,19 @@ public class ShufflerController
             : "Log output failed! Please check your file path and make sure you have write access.";
     }
 
-    public bool IsUsingYAML() => Shuffler.IsUsingYAML();
+    public bool IsUsingLogicYAML() => Shuffler.IsUsingLogicYAML();
 
-    public string GetYAMLName() => Shuffler.GetYAMLName();
+    public bool IsUsingCosmeticsYAML() => Shuffler.IsUsingCosmeticsYAML();
 
-    public string GetYAMLDescription() => Shuffler.GetYAMLDescription();
+    public bool IsGlobalYAMLMode() => Shuffler.IsGlobalYAMLMode();
+
+    public string GetLogicYAMLName() => Shuffler.GetLogicYAMLName();
+
+    public string GetCosmeticsYAMLName() => Shuffler.GetCosmeticsYAMLName();
+
+    public string GetLogicYAMLDescription() => Shuffler.GetLogicYAMLDescription();
+
+    public string GetCosmeticsYAMLDescription() => Shuffler.GetCosmeticsYAMLDescription();
 
     public ShufflerControllerResult LoadSettingsFromSettingString(string settingString)
     {
@@ -266,14 +284,16 @@ public class ShufflerController
         }
     }
 
-    public ShufflerControllerResult LoadLocations(string? logicFile = null, string? yamlFile = null)
+    public ShufflerControllerResult LoadLocations(string? logicFile = null, string? yamlFileLogic = null, string? yamlFileCosmetics = null, bool useGlobalYAML = false)
     {
         try
         {
             Shuffler.ValidateState();
-            Shuffler.LoadLocations(logicFile, yamlFile);
+            Shuffler.LoadLocations(logicFile, yamlFileLogic, yamlFileCosmetics, useGlobalYAML);
             CachedLogicFile = logicFile;
-            CachedYAMLFile = yamlFile;
+            CachedYAMLFileLogic = yamlFileLogic;
+            CachedYAMLFileCosmetics = useGlobalYAML ? yamlFileLogic : yamlFileCosmetics;
+            CachedUseGlobalYAML = useGlobalYAML;
             return new ShufflerControllerResult { WasSuccessful = true };
         }
         catch (Exception e)
@@ -313,7 +333,7 @@ public class ShufflerController
                     Logger.Instance.LogException(e);
                     capturedExceptions.Add(e);
                     attempts++;
-                    LoadLocations(CachedLogicFile, CachedYAMLFile);
+                    LoadLocations(CachedLogicFile, CachedYAMLFileLogic, CachedYAMLFileCosmetics, CachedUseGlobalYAML);
                     Shuffler.SetSeed(new Random(Shuffler.Seed).Next());
                     Logger.Instance.SaveLogTransaction();
                 }
