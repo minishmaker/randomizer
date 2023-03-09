@@ -94,13 +94,35 @@ internal static class GenericCommands
         Console.WriteLine("Patch file loaded successfully!");
     }
 
-    internal static void UseYAML(string? yamlFile = null)
+    internal static void UseYAML(string? globalYAMLMode = null, string? yamlFileLogic = null, string? yamlFileCosmetics = null)
     {
-        Console.Write("Please enter the path to the YAML File you want to use (leave empty to use selected settings instead of YAML): ");
-        _cachedYAMLPathLogic = yamlFile ?? Console.ReadLine();
-        _cachedYAMLPathCosmetics = _cachedYAMLPathLogic;
-        _cachedUseGlobalYAML = true;
-        Console.WriteLine("YAML file loaded successfully!");
+        Console.WriteLine("Do you want to use a single YAML file (if any) for all options or should Logic and Cosmetic options be handled separately?");
+        Console.WriteLine("1) All settings handled the same way");
+        Console.WriteLine("2) Separate Logic and Cosmetic settings");
+        Console.Write("Enter the number corresponding to the mode you want to use: ");
+        var input = globalYAMLMode ?? Console.ReadLine();
+        if (string.IsNullOrEmpty(input) || !int.TryParse(input, out var number) || number < 1 || number > 2)
+        {
+            Console.WriteLine("Invalid Input!");
+            return;
+        }
+        _cachedUseGlobalYAML = number == 1;
+        if (_cachedUseGlobalYAML)
+        {
+            Console.Write("Please enter the path to the YAML File you want to use (leave empty to use selected settings instead of YAML): ");
+            _cachedYAMLPathLogic = yamlFileLogic ?? Console.ReadLine();
+            _cachedYAMLPathCosmetics = _cachedYAMLPathLogic;
+            Console.WriteLine(string.IsNullOrEmpty(_cachedYAMLPathLogic) ? "Using selected settings instead of YAML!" : "YAML file loaded successfully!");
+        }
+        else
+        {
+            Console.Write("Please enter the path to the YAML File you want to use for Logic Options (leave empty to use selected settings instead of YAML): ");
+            _cachedYAMLPathLogic = yamlFileLogic ?? Console.ReadLine();
+            Console.WriteLine(string.IsNullOrEmpty(_cachedYAMLPathLogic) ? "Using selected settings instead of YAML!" : "YAML file loaded successfully!");
+            Console.Write("Please enter the path to the YAML File you want to use for Cosmetic Options (leave empty to use selected settings instead of YAML): ");
+            _cachedYAMLPathCosmetics = yamlFileCosmetics ?? Console.ReadLine();
+            Console.WriteLine(string.IsNullOrEmpty(_cachedYAMLPathCosmetics) ? "Using selected settings instead of YAML!" : "YAML file loaded successfully!");
+        }
     }
 
     internal static void LoadYAML(string? yamlFile = null, string? optionTypes = null)
