@@ -58,6 +58,7 @@ internal static class Mystery
                                 content += indent + indent + "default: 1" + Environment.NewLine;
                                 content += indent + indent + "random: 1" + Environment.NewLine;
                                 content += indent + indent + color.R + " " + color.G + " " + color.B + ": 1" + Environment.NewLine;
+                                content += indent + indent + '"' + ColorTranslator.ToHtml(color) + "\": 1" + Environment.NewLine;
                             }
                             else
                             {
@@ -226,15 +227,24 @@ internal static class Mystery
                         }
                         else
                         {
-                            var colorValues = value.Split(" ");
-                            if (colorValues.Length == 3 && int.TryParse(colorValues[0], out int r) && int.TryParse(colorValues[1], out int g) && int.TryParse(colorValues[2], out int b))
+                            if (value.StartsWith("#"))
                             {
                                 colorPicker.Active = true;
                                 colorPicker.UseRandomColor = false;
-                                colorPicker.DefinedColor = Color.FromArgb(r, g, b);
+                                colorPicker.DefinedColor = ColorTranslator.FromHtml(value);
                             }
                             else
-                                throw new ParserException($"Invalid value \"{value}\" for Color option \"{option.Name}\"");
+                            {
+                                var colorValues = value.Split(" ");
+                                if (colorValues.Length == 3 && int.TryParse(colorValues[0], out int r) && int.TryParse(colorValues[1], out int g) && int.TryParse(colorValues[2], out int b))
+                                {
+                                    colorPicker.Active = true;
+                                    colorPicker.UseRandomColor = false;
+                                    colorPicker.DefinedColor = Color.FromArgb(r, g, b);
+                                }
+                                else
+                                    throw new ParserException($"Invalid value \"{value}\" for Color option \"{option.Name}\"");
+                            }
                         }
                     }
                 break;
