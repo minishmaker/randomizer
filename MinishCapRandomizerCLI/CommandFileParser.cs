@@ -27,10 +27,10 @@ public static class CommandFileParser
                     GenericCommands.LoadPatch(inputs.Length > 1 ? inputs[1] : "");
                     break;
                 case "UseYAML":
-                    GenericCommands.UseYAML(inputs.Length > 1 ? inputs[1] : "");
+                    GenericCommands.UseYAML(inputs.Length > 1 ? inputs[1] : null, inputs.Length > 2 ? inputs[2] : null, inputs.Length > 3 ? inputs[3] : null);
                     break;
                 case "LoadYAML":
-                    GenericCommands.LoadYAML(inputs[1], inputs[2]);
+                    GenericCommands.LoadYAML(inputs.Length > 1 ? inputs[1] : null, inputs.Length > 2 ? inputs[2] : null);
                     break;
                 case "LoadSettings":
                     GenericCommands.LoadSettings(inputs[1]);
