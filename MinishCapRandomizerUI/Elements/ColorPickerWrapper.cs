@@ -7,21 +7,25 @@ namespace MinishCapRandomizerUI.Elements;
 public class ColorPickerWrapper : WrapperBase, ILogicOptionObserver
 {
     private const int DefaultBottomMargin = 11; 
-    private const int CheckboxWidth = 155;
+    private const int CheckboxWidth = 130;
     private const int CheckboxHeight = 19;
-    private const int TextWidth = 85;
+    private const int TextWidth = 60;
     private const int TextHeight = 19;
-    private const int ButtonWidth = 130;
+    private const int ButtonWidth = 100;
     private const int ButtonHeight = 23;
     private const int PictureBoxWidth = 60;
     private const int PictureBoxHeight = 23;
     private const int TextAlign = 1;
     private const int ButtonAndPictureBoxAlign = -3;
     private const string CheckboxText = "Use Random Color";
-    private const string SelectColorText = "Select Custom Color";
-    private const string SelectRandomColorText = "Pick Random Color";
-    private const string UseDefaultColorText = "Use Default Color";
-    private const string ColorPreviewText = "Color Preview:";
+    private const string CheckboxToolTip = "If enabled, a random color will be selected on seed generation";
+    private const string SelectColorText = "Select Color";
+    private const string SelectColorToolTip = "Opens the custom color picker";
+    private const string SelectRandomColorText = "Pick Random";
+    private const string SelectRandomColorToolTip = "A random color is selected now and shown in the preview";
+    private const string UseDefaultColorText = "Use Default";
+    private const string UseDefaultColorToolTip = "Resets the selected color back to its default";
+    private const string ColorPreviewText = "Preview:";
 
     private new static readonly int ElementWidth = CheckboxWidth + TextWidth + PictureBoxWidth + 3 * ButtonWidth + 5 * Constants.WidthMargin; // one row
     private new const int ElementHeight = CheckboxHeight + DefaultBottomMargin;
@@ -33,6 +37,7 @@ public class ColorPickerWrapper : WrapperBase, ILogicOptionObserver
     private Label? _label;
     private PictureBox? _colorPreview;
     private LogicColorPicker _colorPicker;
+    private ToolTip tip;
 
     public ColorPickerWrapper(LogicColorPicker colorPicker) : base(ElementWidth, ElementHeight, colorPicker.SettingGroup, colorPicker.SettingPage)
     {
@@ -51,6 +56,13 @@ public class ColorPickerWrapper : WrapperBase, ILogicOptionObserver
             };
         }
 
+        tip = new ToolTip();
+        tip.UseFading = true;
+        tip.AutoPopDelay = Constants.TooltipDisplayLengthMs;
+        tip.InitialDelay = Constants.TooltipInitialShowDelayMs;
+        tip.ReshowDelay = Constants.TooltipRepeatDelayMs;
+        tip.ShowAlways = true;
+
         _checkBox = new CheckBox
         {
             AutoEllipsis = Constants.LabelsAndCheckboxesUseAutoEllipsis,
@@ -66,14 +78,14 @@ public class ColorPickerWrapper : WrapperBase, ILogicOptionObserver
 
         var nextElementX = initialX + (int)((CheckboxWidth + Constants.WidthMargin)*Constants.SpecialScaling);
 
-        _selectColorButton = BuildButton((sender, args) => SelectColor(), 
-            "SelectColorButton", SelectColorText, ref nextElementX, initialY + ButtonAndPictureBoxAlign); 
+        _selectColorButton = BuildButton((sender, args) => SelectColor(), "SelectColorButton", 
+            SelectColorText, SelectColorToolTip, ref nextElementX, initialY + ButtonAndPictureBoxAlign); 
 
-        _selectRandomColorButton = BuildButton((sender, args) => SelectRandomColor(), 
-            "RandomColorButton", SelectRandomColorText, ref nextElementX, initialY + ButtonAndPictureBoxAlign);
+        _selectRandomColorButton = BuildButton((sender, args) => SelectRandomColor(), "RandomColorButton", 
+            SelectRandomColorText, SelectRandomColorToolTip, ref nextElementX, initialY + ButtonAndPictureBoxAlign);
 
-        _useDefaultColorButton = BuildButton((sender, args) => SelectDefaultColor(), 
-            "DefaultColorButton", UseDefaultColorText, ref nextElementX, initialY + ButtonAndPictureBoxAlign);
+        _useDefaultColorButton = BuildButton((sender, args) => SelectDefaultColor(), "DefaultColorButton", 
+            UseDefaultColorText, UseDefaultColorToolTip, ref nextElementX, initialY + ButtonAndPictureBoxAlign);
         
         _label = new Label
         {
@@ -110,6 +122,8 @@ public class ColorPickerWrapper : WrapperBase, ILogicOptionObserver
             else _colorPreview.BackColor = _colorPicker.DefinedColor;
         };
 
+        tip.SetToolTip(_checkBox, CheckboxToolTip);
+
         return new List<Control>
         {
             _checkBox, _selectColorButton, _selectRandomColorButton, _useDefaultColorButton, _label, _colorPreview
@@ -120,12 +134,12 @@ public class ColorPickerWrapper : WrapperBase, ILogicOptionObserver
         EventHandler onClickEvent, 
         string name, 
         string text, 
+        string toolTipText, 
         ref int xPosition, 
         int yPosition)
     {
         var button = new Button
         {
-            AutoEllipsis = Constants.LabelsAndCheckboxesUseAutoEllipsis,
             AutoSize = false,
             Enabled = true,
             Name = name,
@@ -136,6 +150,8 @@ public class ColorPickerWrapper : WrapperBase, ILogicOptionObserver
             BackColor = Constants.DefaultButtonBackgroundColor,
             UseMnemonic = Constants.UseMnemonic,
         };
+
+        tip.SetToolTip(button, toolTipText);
 
         button.Click += onClickEvent;
         
