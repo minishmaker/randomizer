@@ -1,3 +1,4 @@
+using System.Text.RegularExpressions;
 using MinishCapRandomizerUI.UI.Config;
 using RandomizerCore.Controllers;
 
@@ -379,11 +380,19 @@ public sealed partial class MinishCapRandomizerUI : Form
 
 	private void SaveSettingPreset_Click(object sender, EventArgs e)
 	{
-		ShowInputDialog("Enter Setting Preset Name", "Enter the name you would like to use for the setting preset.\nNote:  Preset names are case sensitive and two presets cannot have the same name!", (name =>
+		ShowInputDialog("Enter Setting Preset Name", "Enter the name you would like to use for the setting preset.\nNote: Preset names cannot contain <>:\"/\\|?* and two presets cannot have the same name, even ignoring case!", (name =>
 		{
+            name = name.Trim();
+
             var presets = _settingPresets.SettingsPresets;
 
-            if (presets.Any(preset => preset == name))
+            if (!IsValidPresetName(name))
+            {
+                DisplayAlert("Preset name not valid!", "Failed to Save Preset", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (presets.Any(preset => preset.ToLower() == name.ToLower()))
             {
                 DisplayAlert("A setting preset with the specified name already exists!", "Failed to Save Preset", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -458,11 +467,19 @@ public sealed partial class MinishCapRandomizerUI : Form
 
 	private void SaveCosmeticPreset_Click(object sender, EventArgs e)
 	{
-		ShowInputDialog("Enter Cosmetic Preset Name", "Enter the name you would like to use for the cosmetics preset.\nNote: Preset names are case sensitive and two presets cannot have the same name!", (name =>
+		ShowInputDialog("Enter Cosmetic Preset Name", "Enter the name you would like to use for the cosmetics preset.\nNote: Preset names cannot contain <>:\"/\\|?* and two presets cannot have the same name, even ignoring case!", (name =>
 		{
+            name = name.Trim();
+
             var presets = _settingPresets.CosmeticsPresets;
 
-            if (presets.Any(preset => preset == name))
+            if (!IsValidPresetName(name))
+            {
+                DisplayAlert("Preset name not valid!", "Failed to Save Preset", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (presets.Any(preset => preset.ToLower() == name.ToLower()))
             {
                 DisplayAlert("A cosmetic preset with the specified name already exists!", "Failed to Save Preset", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -537,4 +554,13 @@ public sealed partial class MinishCapRandomizerUI : Form
 			}
 		}
 	}
+
+    // Can't catch all cases, but at least ensures it doesn't contain illegal characters for files on any operating system
+    private static bool IsValidPresetName(string? name)
+    {
+        if (string.IsNullOrEmpty(name) || name != name.Trim())
+            return false;
+        var match = Regex.Match(name, "[\\x00-\\x1F<>:\"/\\|?*]");
+        return !match.Success;
+    }
 }
