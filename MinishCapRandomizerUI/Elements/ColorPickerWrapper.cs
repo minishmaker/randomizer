@@ -6,11 +6,13 @@ namespace MinishCapRandomizerUI.Elements;
 
 public class ColorPickerWrapper : WrapperBase, ILogicOptionObserver
 {
-    private const int DefaultBottomMargin = 11; 
-    private const int CheckboxWidth = 130;
+    private const int DefaultBottomMargin = 11;
+    private const int NameTextWidth = 125;
+    private const int NameTextHeight = 19;
+    private const int CheckboxWidth = 125;
     private const int CheckboxHeight = 19;
-    private const int TextWidth = 60;
-    private const int TextHeight = 19;
+    private const int PreviewTextWidth = 55;
+    private const int PreviewTextHeight = 19;
     private const int ButtonWidth = 100;
     private const int ButtonHeight = 23;
     private const int PictureBoxWidth = 60;
@@ -27,14 +29,15 @@ public class ColorPickerWrapper : WrapperBase, ILogicOptionObserver
     private const string UseDefaultColorToolTip = "Resets the selected color back to its default";
     private const string ColorPreviewText = "Preview:";
 
-    private new static readonly int ElementWidth = CheckboxWidth + TextWidth + PictureBoxWidth + 3 * ButtonWidth + 5 * Constants.WidthMargin; // one row
+    private new static readonly int ElementWidth = CheckboxWidth + NameTextWidth + PreviewTextWidth + PictureBoxWidth + 3 * ButtonWidth + 7 * Constants.WidthMargin; // one row
     private new const int ElementHeight = CheckboxHeight + DefaultBottomMargin;
 
+    private Label? _nameLabel;
     private CheckBox? _checkBox;
     private Button? _selectColorButton;
     private Button? _selectRandomColorButton;
     private Button? _useDefaultColorButton;
-    private Label? _label;
+    private Label? _previewLabel;
     private PictureBox? _colorPreview;
     private LogicColorPicker _colorPicker;
     private ToolTip tip;
@@ -47,12 +50,12 @@ public class ColorPickerWrapper : WrapperBase, ILogicOptionObserver
 
     public override List<Control> GetControls(int initialX, int initialY)
     {
-        if (_checkBox != null && _selectColorButton != null && _selectRandomColorButton != null &&
-            _useDefaultColorButton != null && _label != null && _colorPreview != null)
+        if (_nameLabel != null && _checkBox != null && _selectColorButton != null && _selectRandomColorButton != null &&
+            _useDefaultColorButton != null && _previewLabel != null && _colorPreview != null)
         {
             return new List<Control>
             {
-                _checkBox, _selectColorButton, _selectRandomColorButton, _useDefaultColorButton, _label, _colorPreview
+                _nameLabel, _checkBox, _selectColorButton, _selectRandomColorButton, _useDefaultColorButton, _previewLabel, _colorPreview
             };
         }
 
@@ -63,20 +66,37 @@ public class ColorPickerWrapper : WrapperBase, ILogicOptionObserver
         tip.ReshowDelay = Constants.TooltipRepeatDelayMs;
         tip.ShowAlways = true;
 
+        _nameLabel = new Label
+        {
+            AutoEllipsis = Constants.LabelsAndCheckboxesUseAutoEllipsis,
+            AutoSize = false,
+            Name = _colorPicker.Name,
+            Text = _colorPicker.NiceName + ":",
+            Location = new Point(initialX, initialY),
+            Height = (int)(NameTextHeight*Constants.SpecialScaling),
+            Width = (int)(NameTextWidth*Constants.SpecialScaling),
+            TextAlign = ContentAlignment.MiddleRight,
+            UseMnemonic = Constants.UseMnemonic,
+        };
+
+        tip.SetToolTip(_nameLabel, _colorPicker.DescriptionText);
+
+        var nextElementX = initialX + (int)((NameTextWidth + Constants.WidthMargin*2)*Constants.SpecialScaling);
+
         _checkBox = new CheckBox
         {
             AutoEllipsis = Constants.LabelsAndCheckboxesUseAutoEllipsis,
             AutoSize = false,
             Checked = false,
             Name = "Checkbox",
-            Location = new Point(initialX, initialY),
+            Location = new Point(nextElementX, initialY),
             Height = (int)(CheckboxHeight*Constants.SpecialScaling),
             Width = (int)(CheckboxWidth*Constants.SpecialScaling),
             Text = CheckboxText,
             UseMnemonic = Constants.UseMnemonic,
         };
 
-        var nextElementX = initialX + (int)((CheckboxWidth + Constants.WidthMargin)*Constants.SpecialScaling);
+        nextElementX += (int)((CheckboxWidth + Constants.WidthMargin)*Constants.SpecialScaling);
 
         _selectColorButton = BuildButton((sender, args) => SelectColor(), "SelectColorButton", 
             SelectColorText, SelectColorToolTip, ref nextElementX, initialY + ButtonAndPictureBoxAlign); 
@@ -87,19 +107,19 @@ public class ColorPickerWrapper : WrapperBase, ILogicOptionObserver
         _useDefaultColorButton = BuildButton((sender, args) => SelectDefaultColor(), "DefaultColorButton", 
             UseDefaultColorText, UseDefaultColorToolTip, ref nextElementX, initialY + ButtonAndPictureBoxAlign);
         
-        _label = new Label
+        _previewLabel = new Label
         {
             AutoEllipsis = Constants.LabelsAndCheckboxesUseAutoEllipsis,
             AutoSize = false,
             Name = "ColorPreviewLabel",
             Location = new Point(nextElementX, initialY + TextAlign),
-            Height = (int)(TextHeight*Constants.SpecialScaling),
-            Width = (int)(TextWidth*Constants.SpecialScaling),
+            Height = (int)(PreviewTextHeight*Constants.SpecialScaling),
+            Width = (int)(PreviewTextWidth*Constants.SpecialScaling),
             Text = ColorPreviewText,
             UseMnemonic = Constants.UseMnemonic,
         };
         
-        nextElementX += (int)((TextWidth + Constants.WidthMargin)*Constants.SpecialScaling);
+        nextElementX += (int)((PreviewTextWidth + Constants.WidthMargin)*Constants.SpecialScaling);
 
         _colorPreview = new PictureBox
         {
@@ -126,7 +146,7 @@ public class ColorPickerWrapper : WrapperBase, ILogicOptionObserver
 
         return new List<Control>
         {
-            _checkBox, _selectColorButton, _selectRandomColorButton, _useDefaultColorButton, _label, _colorPreview
+            _nameLabel, _checkBox, _selectColorButton, _selectRandomColorButton, _useDefaultColorButton, _previewLabel, _colorPreview
         };
     }
 
