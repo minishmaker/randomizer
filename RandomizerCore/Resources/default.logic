@@ -628,6 +628,7 @@
 	!eventdefine - fowRedPortal - 0x00
 !endif
 !ifdef - TOD_BLUEWARP
+	
 	!eventdefine - todBluePortal - 0x01
 !else
 	!eventdefine - todBluePortal - 0x00
@@ -668,6 +669,12 @@
 !endif
 !ifndef - UNDERWATER
 	!eventdefine - kinstoneWater
+	!ifdef - HEART_RANDO
+		!eventdefine - lakeHPWater
+	!endif
+	!ifndef - SMALL_KEYS_VANILLA
+		!eventdefine - todKeyWater
+	!endif
 !endif
 
 # This section defines values used by the patcher, this sets if and which fusions should be available
