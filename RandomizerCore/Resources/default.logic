@@ -3022,7 +3022,7 @@ DHCBladePuzzleShuffle;	Helper;;	Helpers.CanSplit4
 !else
 DHCBladePuzzleShuffle;	Helper;;	(|Helpers.CanSplit2, Helpers.CanSplit3, Helpers.CanSplit4)
 !endif
-!ifdef - DHCSWITCHES
+!ifndef - DHCSWITCHES
 DHCSwitchHit;			Helper;;	Helpers.CanSplit4
 !else
 DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
