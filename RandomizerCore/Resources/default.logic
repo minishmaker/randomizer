@@ -4526,97 +4526,102 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 	FoWRightDoor;				Helper;;	(|Items.SmallKey.0x1A:2 `FoWRightDoor`)
 	FoWMiddleDoor;			Helper;;	(|Items.SmallKey.0x1A:3 `FoWMiddleDoor`)
 	FoWLastDoor;				Helper;;	(|Items.SmallKey.0x1A:4 `FoWLastDoor`)
-	!define - ToDRightBlock - `ENTERTOD`
-	!define - ToDLeftBlock - Items.SmallKey.0x1B:4
-	!define - ToDBigDoor - Items.BigKey.0x1B
+	!define - ToDRightBlock - 
+	!define - ToDLeftBlock - 
+	!define - ToDBigDoor - 
 	!define - ToDChuDoor - 
-	!ifdef - ACCESS_LOCATIONS
-		!ifdef - SMALL_KEYS_ELSE
+	!ifdef - TOD_BLUEWARP
+		!define - TOD_BIGDOOR_SKIP
+	!else
+		!ifdef - TOD_REDWARP
+			!define - TOD_BIGDOOR_SKIP
+		!endif
+	!endif
+	!ifndef - TOD_BIGDOOR_SKIP
+		!ifdef - ACCESS_LOCATIONS
 			!ifndef - BIG_KEYS_ELSE
-				!ifdef - BIG_KEYS_VANILLA
-					!undefine - ToDLeftBlock
-					!define - ToDLeftBlock - Items.SmallKey.0x1B
-				!else
-					!undefine - ToDRightBlock
-					!undefine - ToDLeftBlock
-					!undefine - ToDBigDoor
-					!define - ToDRightBlock - (&Items.ToDKeys.0xb, ~Items.BigKey.0x1B), (&Items.ToDKeys.0xa, ~Items.SmallKey.0x1B, ~Items.DungeonMap.0x1B, ~Items.Compass.0x1B)
-					!define - ToDLeftBlock - (|(&Items.ToDKeys.0xb, Items.SmallKey.0x1B, ~Items.SmallKey.0x1B, ~Items.DungeonMap.0x1B, ~Items.Compass.0x1B), (&Items.ToDKeys.0xa, Items.BigKey.0x1B, Items.SmallKey.0x1B:4))
-					!define - ToDBigDoor - (|(&Items.SmallKey.0x1B, Items.BigKey.0x1B, Items.ToDKeys.0xb), (&Items.BigKey.0x1B, Items.ToDKeys.0xa))
-				!endif
-			!endif
-		!else
-			!ifdef - SMALL_KEYS_VANILLA
-				!ifndef - BIG_KEYS_ELSE
-					!undefine - ToDLeftBlock
-					!define - ToDLeftBlock - Items.SmallKey.0x1B
-				!endif
-			!else
-				!ifndef - BIG_KEYS_ELSE
+				!ifdef - SMALL_KEYS_ELSE
 					!ifdef - BIG_KEYS_VANILLA
 						!undefine - ToDLeftBlock
-						!define - ToDLeftBlock - Items.SmallKey.0x1B
+						!define - ToDLeftBlock - , Items.SmallKey.0x1B
 					!else
 						!undefine - ToDRightBlock
 						!undefine - ToDLeftBlock
 						!undefine - ToDBigDoor
-						!define - ToDRightBlock - (&Items.ToDKeys.0xb, ~Items.BigKey.0x1B, ~Items.DungeonMap.0x1B, ~Items.Compass.0x1B), (&Items.ToDKeys.0xa, ~Items.SmallKey.0x1B, ~Items.DungeonMap.0x1B, ~Items.Compass.0x1B)
-						!define - ToDLeftBlock - (|(&Items.ToDKeys.0xb, Items.SmallKey.0x1B, ~Items.SmallKey.0x1B, ~Items.DungeonMap.0x1B, ~Items.Compass.0x1B), (&Items.ToDKeys.0xa, Items.BigKey.0x1B, Items.SmallKey.0x1B:4))
-						!define - ToDBigDoor - (|(&Items.SmallKey.0x1B, Items.BigKey.0x1B, Items.ToDKeys.0xb), (&Items.BigKey.0x1B, Items.ToDKeys.0xa))
+						!define - ToDRightBlock - (&Items.ToDKeys.0xb, ~Items.BigKey.0x1B), (&Items.ToDKeys.0xa, ~Items.SmallKey.0x1B, ~Items.DungeonMap.0x1B, ~Items.Compass.0x1B)
+						!define - ToDLeftBlock - , (&Items.ToDKeys.0xb, Items.SmallKey.0x1B, ~Items.SmallKey.0x1B, ~Items.DungeonMap.0x1B, ~Items.Compass.0x1B), (&Items.ToDKeys.0xa, Items.BigKey.0x1B, Items.SmallKey.0x1B:4)
+						!define - ToDBigDoor - , (&Items.SmallKey.0x1B, Items.BigKey.0x1B, Items.ToDKeys.0xb), (&Items.BigKey.0x1B, Items.ToDKeys.0xa))
+					!endif
+				!else
+					!ifdef - SMALL_KEYS_VANILLA
+						!undefine - ToDLeftBlock
+						!define - ToDLeftBlock - , Items.SmallKey.0x1B
+					!else
+						!ifdef - BIG_KEYS_VANILLA
+							!undefine - ToDLeftBlock
+							!define - ToDLeftBlock - , Items.SmallKey.0x1B
+						!else
+							!undefine - ToDRightBlock
+							!undefine - ToDLeftBlock
+							!undefine - ToDBigDoor
+							!define - ToDRightBlock - (&Items.ToDKeys.0xb, ~Items.BigKey.0x1B, ~Items.DungeonMap.0x1B, ~Items.Compass.0x1B), (&Items.ToDKeys.0xa, ~Items.SmallKey.0x1B, ~Items.DungeonMap.0x1B, ~Items.Compass.0x1B)
+							!define - ToDLeftBlock - , (&Items.ToDKeys.0xb, Items.SmallKey.0x1B, ~Items.SmallKey.0x1B, ~Items.DungeonMap.0x1B, ~Items.Compass.0x1B), (&Items.ToDKeys.0xa, Items.BigKey.0x1B, Items.SmallKey.0x1B:4)
+							!define - ToDBigDoor - , (&Items.SmallKey.0x1B, Items.BigKey.0x1B, Items.ToDKeys.0xb), (&Items.BigKey.0x1B, Items.ToDKeys.0xa)
+						!endif
 					!endif
 				!endif
 			!endif
-		!endif
-	!else
-		!ifdef - SMALL_KEYS_ELSE
-			!ifndef - BIG_KEYS_ELSE
-				!ifdef - BIG_KEYS_VANILLA
-					!undefine - ToDLeftBlock
-					!define - ToDLeftBlock - Items.SmallKey.0x1B
-				!else
-					!undefine - ToDRightBlock
-					!undefine - ToDLeftBlock
-					!undefine - ToDBigDoor
-					!define - ToDRightBlock - (&Items.ToDKeys.0xb, ~Items.BigKey.0x1B), (&Items.ToDKeys.0xa, ~Items.SmallKey.0x1B, ~Items.DungeonMap.0x1B, ~Items.Compass.0x1B)
-					!define - ToDLeftBlock - (|(&Items.ToDKeys.0xb, Items.SmallKey.0x1B, ~Items.SmallKey.0x1B, ~Items.DungeonMap.0x1B, ~Items.Compass.0x1B), (&Items.ToDKeys.0xa, Items.BigKey.0x1B, (|Items.SmallKey.0x1B:4, (&Items.SmallKey.0x1B:3, Helpers.CompleteDroplets, Helpers.ToDLeftPath, Helpers.ToDRightPath))))
-					!define - ToDBigDoor - (|(&Items.SmallKey.0x1B, Items.BigKey.0x1B, Items.ToDKeys.0xb), (&Items.BigKey.0x1B, Items.ToDKeys.0xa))
-				!endif
-			!endif
 		!else
-			!ifdef - SMALL_KEYS_VANILLA
+			!ifdef - SMALL_KEYS_ELSE
 				!ifndef - BIG_KEYS_ELSE
-					!undefine - ToDLeftBlock
-					!define - ToDLeftBlock - Items.SmallKey.0x1B
-				!endif
-			!else
-				!ifdef - BIG_KEYS_ELSE
-					!undefine - ToDLeftBlock
-					!define - ToDLeftBlock - (|Items.SmallKey.0x1B:4, (&Items.SmallKey.0x1B:2, Helpers.CompleteDroplets, Helpers.ToDLeftPath, Helpers.ToDRightPath))	
-					!undefine - ToDChuDoor
-					!define - ToDChuDoor - , (&Items.SmallKey.0x1B:2, Helpers.CompleteDroplets, Helpers.ToDLeftPath, Helpers.ToDRightPath)				
-				!else
 					!ifdef - BIG_KEYS_VANILLA
 						!undefine - ToDLeftBlock
-						!define - ToDLeftBlock - Items.SmallKey.0x1B
-						!undefine - ToDChuDoor
-						!define - ToDChuDoor - , (&Items.SmallKey.0x1B:3, Helpers.CompleteDroplets, Helpers.ToDLeftPath, Helpers.ToDRightPath)
+						!define - ToDLeftBlock - , Items.SmallKey.0x1B
 					!else
 						!undefine - ToDRightBlock
 						!undefine - ToDLeftBlock
 						!undefine - ToDBigDoor
+						!define - ToDRightBlock - (&Items.ToDKeys.0xb, ~Items.BigKey.0x1B), (&Items.ToDKeys.0xa, ~Items.SmallKey.0x1B, ~Items.DungeonMap.0x1B, ~Items.Compass.0x1B)
+						!define - ToDLeftBlock - , (&Items.ToDKeys.0xb, Items.SmallKey.0x1B, ~Items.SmallKey.0x1B, ~Items.DungeonMap.0x1B, ~Items.Compass.0x1B), (&Items.ToDKeys.0xa, Items.BigKey.0x1B, (|Items.SmallKey.0x1B:4, (&Items.SmallKey.0x1B:3, Helpers.CompleteDroplets, Helpers.ToDLeftPath, Helpers.ToDRightPath)))
+						!define - ToDBigDoor - , (&Items.SmallKey.0x1B, Items.BigKey.0x1B, Items.ToDKeys.0xb), (&Items.BigKey.0x1B, Items.ToDKeys.0xa)
+					!endif
+				!endif
+			!else
+				!ifdef - SMALL_KEYS_VANILLA
+					!ifndef - BIG_KEYS_ELSE
+						!undefine - ToDLeftBlock
+						!define - ToDLeftBlock - , Items.SmallKey.0x1B
+					!endif
+				!else
+					!ifdef - BIG_KEYS_ELSE
+						!undefine - ToDLeftBlock
+						!define - ToDLeftBlock - , (&Items.SmallKey.0x1B:2, Helpers.CompleteDroplets, Helpers.ToDLeftPath, Helpers.ToDRightPath)
 						!undefine - ToDChuDoor
-						!define - ToDRightBlock - (&Items.ToDKeys.0xb, ~Items.BigKey.0x1B, ~Items.DungeonMap.0x1B, ~Items.Compass.0x1B), (&Items.ToDKeys.0xa, ~Items.SmallKey.0x1B, ~Items.DungeonMap.0x1B, ~Items.Compass.0x1B)
-						!define - ToDLeftBlock - (|(&Items.ToDKeys.0xb, Items.SmallKey.0x1B, ~Items.SmallKey.0x1B, ~Items.DungeonMap.0x1B, ~Items.Compass.0x1B), (&Items.ToDKeys.0xa, Items.BigKey.0x1B, (|Items.SmallKey.0x1B:4, (&Items.SmallKey.0x1B:3, Helpers.CompleteDroplets, Helpers.ToDLeftPath, Helpers.ToDRightPath))))
-						!define - ToDBigDoor - (|(&Items.SmallKey.0x1B, Items.BigKey.0x1B, Items.ToDKeys.0xb), (&Items.BigKey.0x1B, Items.ToDKeys.0xa))
-						!define - ToDChuDoor - , (&Items.SmallKey.0x1B:3, Helpers.CompleteDroplets, Helpers.ToDLeftPath, Helpers.ToDRightPath, Items.ToDKeys.0xb), (&Items.SmallKey.0x1B:2, Helpers.CompleteDroplets, Helpers.ToDLeftPath, Helpers.ToDRightPath, Items.ToDKeys.0xa)
+						!define - ToDChuDoor - , (&Items.SmallKey.0x1B:2, Helpers.CompleteDroplets, Helpers.ToDLeftPath, Helpers.ToDRightPath)				
+					!else
+						!ifdef - BIG_KEYS_VANILLA
+							!undefine - ToDLeftBlock
+							!define - ToDLeftBlock - , Items.SmallKey.0x1B
+							!undefine - ToDChuDoor
+							!define - ToDChuDoor - , (&Items.SmallKey.0x1B:3, Helpers.CompleteDroplets, Helpers.ToDLeftPath, Helpers.ToDRightPath)
+						!else
+							!undefine - ToDRightBlock
+							!undefine - ToDLeftBlock
+							!undefine - ToDBigDoor
+							!undefine - ToDChuDoor
+							!define - ToDRightBlock - (&Items.ToDKeys.0xb, ~Items.BigKey.0x1B, ~Items.DungeonMap.0x1B, ~Items.Compass.0x1B), (&Items.ToDKeys.0xa, ~Items.SmallKey.0x1B, ~Items.DungeonMap.0x1B, ~Items.Compass.0x1B)
+							!define - ToDLeftBlock - , (&Items.ToDKeys.0xb, Items.SmallKey.0x1B, ~Items.SmallKey.0x1B, ~Items.DungeonMap.0x1B, ~Items.Compass.0x1B), (&Items.ToDKeys.0xa, Items.BigKey.0x1B, (|Items.SmallKey.0x1B:4, (&Items.SmallKey.0x1B:3, Helpers.CompleteDroplets, Helpers.ToDLeftPath, Helpers.ToDRightPath)))
+							!define - ToDBigDoor - , (&Items.SmallKey.0x1B, Items.BigKey.0x1B, Items.ToDKeys.0xb), (&Items.BigKey.0x1B, Items.ToDKeys.0xa)
+							!define - ToDChuDoor - , (&Items.SmallKey.0x1B:3, Helpers.CompleteDroplets, Helpers.ToDLeftPath, Helpers.ToDRightPath, Items.ToDKeys.0xb), (&Items.SmallKey.0x1B:2, Helpers.CompleteDroplets, Helpers.ToDLeftPath, Helpers.ToDRightPath, Items.ToDKeys.0xa)
+						!endif
 					!endif
 				!endif
 			!endif
 		!endif
 	!endif
-	ToDRightBlock;			Helper;;	(|Helpers.ToDBlueWarp, Helpers.ToDRedWarp, `ToDRightBlock`)
-	ToDLeftBlock;				Helper;;	(|(&Items.SmallKey.0x1B:4, (|Helpers.ToDBlueWarp, Helpers.ToDRedWarp)), `ToDLeftBlock`)
-	ToDBigDoor;				Helper;;	(|(&Items.BigKey.0x1B, (|Helpers.ToDBlueWarp, Helpers.ToDRedWarp)), `ToDBigDoor`)
+	ToDRightBlock;			Helper;;	`ToDRightBlock`
+	ToDLeftBlock;				Helper;;	(|Items.SmallKey.0x1B:4 `ToDLeftBlock`)
+	ToDBigDoor;				Helper;;	(|Items.BigKey.0x1B `ToDBigDoor`)
 	ToDWestDoor;				Helper;;	Items.SmallKey.0x1B:4
 	ToDDarkDoor;				Helper;;	Items.SmallKey.0x1B:4
 	ToDEitherDoor;			Helper;;	Items.SmallKey.0x1B:3
@@ -4785,7 +4790,6 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 	FoWRightDrop;				Helper;;	
 	FoWDarknut;				Helper;;	
 	ToDWeb;					Helper;;	
-	ToDMainRoom;				Helper;;	Helpers.ToDBigDoor
 	ToDLeftMushroomSwitch;		Helper;;	
 	ToDBasementLilySpawn;		Helper;;	Items.Flippers, Helpers.ToDLeftMushroomSwitch
 	ToDLeftPillars;			Helper;;	
@@ -6553,14 +6557,14 @@ Sanctuary_Pedestal_Item3	`DHC_OUTSIDE`;  `PED`;   pedestalSpot3Item:Define:First
 	!define - DHC_INSIDE_BK - `DHC_INSIDE`
 !endif
 
-DHC_B2_King				`DHC_INSIDE`;		`DHCKING`;	0x00E46A;		(|(&`ENTERDHC`, Helpers.DHCKing), Helpers.Hundo);																	Items.Rupee1 #used to be a small key but a door got removed
-DHC_B1_BigChest			`DHC_INSIDE`;		`DHCCOMPASS`;	0x88-0x37-0x00;	(|`ENTERDHC`, Helpers.Hundo);																					Items.DungeonMap.0x1D
-DHC_1F_Blade_Chest		`DHC_INSIDE_SK`;	`DHCSMALL`;	0x88-0x27-0x00;	(|(&`ENTERDHC`, Helpers.DHCFirstCanon, Helpers.DHCBladePuzzle), Helpers.Hundo);										Items.SmallKey.0x1D
-DHC_1F_Throne_BigChest		`DHC_INSIDE`;		`DHCCOMPASS`;	0x88-0x20-0x00;	(|(&`ENTERDHC`, Helpers.DHC1stDoor, Helpers.DHC2ndCanon, Helpers.BombWalls, Helpers.DHCThrone), Helpers.Hundo);			Items.Compass.0x1D
+DHC_B2_King				`DHC_INSIDE`;		`DHCKING`;	0x00E46A;		(|(&`ENTERDHC`, Helpers.DHCKing), Helpers.Hundo);																		Items.Rupee1 #used to be a small key but a door got removed
+DHC_B1_BigChest			`DHC_INSIDE`;		`DHCCOMPASS`;	0x88-0x37-0x00;	(|`ENTERDHC`, Helpers.Hundo);																						Items.DungeonMap.0x1D
+DHC_1F_Blade_Chest		`DHC_INSIDE_SK`;	`DHCSMALL`;	0x88-0x27-0x00;	(|(&`ENTERDHC`, Helpers.DHCFirstCanon, Helpers.DHCBladePuzzle), Helpers.Hundo);											Items.SmallKey.0x1D
+DHC_1F_Throne_BigChest		`DHC_INSIDE`;		`DHCCOMPASS`;	0x88-0x20-0x00;	(|(&`ENTERDHC`, Helpers.DHC1stDoor, Helpers.DHC2ndCanon, Helpers.BombWalls, Helpers.DHCThrone), Helpers.Hundo);				Items.Compass.0x1D
 
 DHCBlackKnight;						Helper;;							Helpers.DHCBlackKnightFight, (|Helpers.DHCBlueWarp, (&Helpers.DHCRedWarp, Helpers.DHCChainSoldiers, Helpers.DHCGrateRoom, Helpers.OverworldBlocks), (&Helpers.DHC1stDoor, Helpers.DHC2ndCanon, Helpers.BombWalls, Helpers.DHCThrone, Helpers.CanSplit4, Helpers.DHCOutsideSwitch, Helpers.DHCSwitchPuzzles, Helpers.DHCChainSoldiers, Helpers.DHCGrateRoom, Helpers.OverworldBlocks))
 
-DHC_3F_NorthWest_Chest		`DHC_INSIDE_SK`;	`DHCSMALL`;	0x88-0x01-0x00;	(|(&`ENTERDHC`, Helpers.DHCBlackKnight, Helpers.DHCTowerDarknuts, Helpers.HasBow), Helpers.Hundo);						Items.SmallKey.0x1D
+DHC_3F_NorthWest_Chest		`DHC_INSIDE_SK`;	`DHCSMALL`;	0x88-0x01-0x00;	(|(&`ENTERDHC`, Helpers.DHCBlackKnight, Helpers.DHCTowerDarknuts, Helpers.HasBow), Helpers.Hundo);							Items.SmallKey.0x1D
 DHC_3F_NorthEast_Chest		`DHC_INSIDE_SK`;	`DHCSMALL`;	0x88-0x02-0x00;	(|(&`ENTERDHC`, Helpers.DHCBlackKnight, Helpers.DHCTowerDarknuts, Helpers.DHCLampPuzzle, Helpers.DHCGhini), Helpers.Hundo);	Items.SmallKey.0x1D
 DHC_3F_SouthWest_Chest		`DHC_INSIDE_SK`;	`DHCSMALL`;	0x88-0x03-0x00;	(|(&`ENTERDHC`, Helpers.DHCBlackKnight, Helpers.DHCTowerDarknuts, Helpers.DHCGhini), Helpers.Hundo);						Items.SmallKey.0x1D
 DHC_3F_SouthEast_Chest		`DHC_INSIDE_SK`;	`DHCSMALL`;	0x88-0x04-0x00;	(|(&`ENTERDHC`, Helpers.DHCBlackKnight, Helpers.DHCTowerDarknuts, Helpers.DHCSwitchPuzzles), Helpers.Hundo);				Items.SmallKey.0x1D
