@@ -5137,11 +5137,11 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 	!define - DOJOITEMRED - Unshuffled
 !else
 	!define - DOJOITEM - Dungeon
-	!ifdef - DOJORANDOM
-		!define - DOJOITEMRED - Dungeon
+	!ifdef - NO_RED_FUSIONS
+		!define - DOJOITEMRED - Inaccessible
 	!else
-		!ifdef - NO_RED_FUSIONS
-			!define - DOJOITEMRED - Inaccessible
+		!ifdef - DOJORANDOM
+			!define - DOJOITEMRED - Dungeon
 		!else
 			!define - DOJOITEMRED - Any
 		!endif
