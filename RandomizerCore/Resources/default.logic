@@ -108,7 +108,7 @@
 !numberbox - Main Settings - Setting - Requirements - FIGURINE_TOTAL - Figurines in world - The total number of Figurines that get added to the item pool, the maximum amount is 136. - 30 - 0 - 136
 !numberbox - Main Settings - Setting - Requirements - FIGURINE_COUNT - Figurines required - The number of Figurines required to activate the Sanctuary, do not raise this to higher than the total number of Figurines or you won't be able to beat the game silly. - 20 - 0 - 136
 
-!dropdown - Main Settings - Setting - Shuffle - DOJO - Dojo Swordmasters -	Dojo Swordmasters have Scrolls as their rewards. - DOJOANY - Vanilla Scrolls - DOJOVANILLA - 'Vanilla Scrolls': Dojo Swordmasters offer their vanilla rewards. - Randomized Scrolls - DOJORANDOM - 'Randomized Scrolls': Scrolls are shuffled between the Dojo Swordmasters. - Any Item - DOJOANY - 'Any Item': Dojo Swordmasters are shuffled into the main pool.
+!dropdown - Main Settings - Setting - Shuffle - DOJO - Dojo Swordmasters -	Dojo Swordmasters have Scrolls as their rewards. - DOJOANY - Vanilla Scrolls - DOJOVANILLA - 'Vanilla Scrolls': Dojo Swordmasters offer their vanilla rewards, this overrides Progressive Scrolls. - Randomized Scrolls - DOJORANDOM - 'Randomized Scrolls': Scrolls are shuffled between the Dojo Swordmasters. - Any Item - DOJOANY - 'Any Item': Dojo Swordmasters are shuffled into the main pool.
 !dropdown - Main Settings - Setting - Shuffle - CUCCO_SETTING - Cucco Minigame - How many rounds of the Cucco Minigame are playable and have an item. - CUCCO_1 - Nothing - CUCCO_0 - - 1 Round - CUCCO_1 - - 2 Rounds - CUCCO_2 - - 3 Rounds - CUCCO_3 - - 4 Rounds - CUCCO_4 - - 5 Rounds - CUCCO_5 - - 6 Rounds - CUCCO_6 - - 7 Rounds - CUCCO_7 - - 8 Rounds - CUCCO_8 - - 9 Rounds - CUCCO_9 - - 10 Rounds - CUCCO_10 -
 !dropdown - Main Settings - Setting - Shuffle - GORON_SETTING - Goron Merchant - How many sets of Goron Merchant items are included in the random item pool.\nEach set consists of 3 items, and all 3 must be bought to advance to the next set.\nThere are 5 sets in total.\nThe remaining sets will be filled with junk items. - GORON_0 - Nothing - GORON_0 - - 1 Set - GORON_1 - - 2 Sets - GORON_2 - - 3 Sets - GORON_3 - - 4 Sets - GORON_4 - - 5 Sets - GORON_5 -
 !flag - Main Settings - Setting - Shuffle - HEART_RANDO - Heart Pieces and Containers - If enabled will shuffle Heart Pieces and Heart Containers into the pool, otherwise Heart Pieces and Containers will always be found in their vanilla location. This makes any items randomized to Heart Piece locations visible prior to collecting them. - true
@@ -195,7 +195,13 @@
 !flag - Item Pool - Setting - Add to Pool - MEME - Fun Junk - Add some items to the item pool to replace junk, these items are completely useless.
 !dropdown - Item Pool - Setting - Add to Pool - FIREROD - Firerod - The Firerod is a leftover developer testing tool. It lets the user copy and paste tiles, effectively allowing you to walk through walls and most obstacles.\n\n WARNING: It is extremely easy to softlock yourself with this item, it is recommended to enable 'Homewarp' with this item, however some softlocks will completely prevent you from being able to beat the game. - NO_FIREROD - No Firerod - NO_FIREROD - 'No Firerod': Standard - Shuffled - FIREROD_CHEST - 'Shuffled': Firerod is added to the item pool, it can be randomized to any location. - Start With - FIREROD_START - 'Start With': Firerod is in Links Starting Inventory 
 !flag - Item Pool - Setting - Modify Pool - RANDOM_BOTTLE_CONTENT - Random Bottle Contents - Randomizes the contents of the bottles that are shuffled in the pool, these contents are never considered by logic. - true
-!dropdown - Item Pool - Setting - Modify Pool - PROGRESSIVE - Items are Progressive - Some item upgrades are treated as completely independent items by the game. - YESPROG - No - NOPROG - 'No': Unique copies of each item will be found in the seed\n\n 5 different swords:\n Smith Sword\n Green Sword\n Red Sword\ Blue Sword\n Four Sword\n\n 2 Bows:\n Bow\n Light Arrows\n\n 2 Boomerangs:\n Boomerang\n Magic Boomerang\n\n 2 Shields:\n Shield\n Mirror Shield\n\n 5 Scrolls:\n Spin Attack\n Fast Spin\n Fast Split\n Greatspin\n Long Spin - Yes - YESPROG - 'Yes': These items are replaced with a generic "Progressive" form that upgrades your item to the next level. 
+!dropdown - Item Pool - Setting - Modify Pool - PROGRESSIVE_SWORD - Swords are Progressive - Option for the Swords to be found in any order or always progress in the intended order. - YES_SWORD_PROG - No - NO_SWORD_PROG - 'No': Each Sword is treated as its own item and can be collected in any order. To create a specific amount of clones you must have the sword that corresponds to that amount of clones.\n ie: If you only find the Four Sword, you can make exaclty 4 clones, but not 2 or 3.\n There are 5 Swords in total:\n Smith Sword\n Green Sword\n Red Sword (Allows making 2 Clones)\ Blue Sword (Allows making 3 Clones)\n Four Sword (Allows making 4 Clones) - Yes - YES_SWORD_PROG - 'Yes': The different Swords are replaced with a generic "Progressive" Sword that upgrades your Sword to the next level.\n ie: The first sword you get is the Smith sword, the next sword you get will upgrade it to the Green Sword.
+!dropdown - Item Pool - Setting - Modify Pool - PROGRESSIVE_BOW - Bows are Progressive - Option for the Bows to be found in any order or always progress in the intended order. - YES_BOW_PROG - No - NO_BOW_PROG - 'No': The Bow and the Light Arrows are 2 different items and can be found in any order. - Yes - YES_BOW_PROG - 'Yes': The different Bows are replaced with a generic "Progressive" Bow that upgrades your Bow to the next level.\n ie: The first Bow you get is the Regular Bow, the next Bow you get will upgrade it to the Light Arrows.
+!dropdown - Item Pool - Setting - Modify Pool - PROGRESSIVE_BOOM - Boomerangs are Progressive - Option for the Boomerangs to be found in any order or always progress in the intended order. - YES_BOOM_PROG - No - NO_BOOM_PROG - 'No': The Boomerang and the Magic Boomerang are 2 different items and can be found in any order. - Yes - YES_BOOM_PROG - 'Yes': The different Boomerangs are replaced with a generic "Progressive" Boomerang that upgrades your Boomerang to the next level.\n ie: The first Boomerang you get is the Regular Boomerang, the next Boomerang you get will upgrade it to the Magic Boomerang.
+!dropdown - Item Pool - Setting - Modify Pool - PROGRESSIVE_SHIELD - Shields are Progressive - Option for the Shields to be found in any order or always progress in the intended order. - YES_SHIELD_PROG - No - NO_SHIELD_PROG - 'No': The Shield and the Mirror Shield are 2 different items and can be found in any order. - Yes - YES_SHIELD_PROG - 'Yes': The different Shields are replaced with a generic "Progressive" Shield that upgrades your Shield to the next level.\n ie: The first Shield you get is the Regular Shield, the next Shield you get will upgrade it to the Mirror Shield.
+!dropdown - Item Pool - Setting - Modify Pool - PROGRESSIVE_SCROLL - Spin Scrolls are Progressive - Option for the Scrolls to be found in any order or always progress in the intended order. - YES_SCROLL_PROG - No - NO_SCROLL_PROG - 'No': Each Spin Scroll is treated as its own item and can be collected in any order. - Yes - YES_SCROLL_PROG - 'Yes': The different Spin Scrolls are replaced with a generic "Progressive" Spin Scroll that give you the next Spin upgrade in the list, the order you get scrolls in is always: \nSpin Scroll \nFast Spin \nFast Split \nGreatSpin \nLongSpin
+
+#!dropdown - Item Pool - Setting - Modify Pool - PROGRESSIVE - Items are Progressive - Some item upgrades are treated as completely independent items by the game. - YESPROG - No - NOPROG - 'No': Unique copies of each item will be found in the seed\n\n 5 different swords:\n Smith Sword\n Green Sword\n Red Sword\ Blue Sword\n Four Sword\n\n 2 Bows:\n Bow\n Light Arrows\n\n 2 Boomerangs:\n Boomerang\n Magic Boomerang\n\n 2 Shields:\n Shield\n Mirror Shield\n\n 5 Scrolls:\n Spin Attack\n Fast Spin\n Fast Split\n Greatspin\n Long Spin - Yes - YESPROG - 'Yes': These items are replaced with a generic "Progressive" form that upgrades your item to the next level. 
 
 !flag - Gameplay - Setting - Difficulty - GLITCHLESS - Prevent Speedrun Glitches - Attempts were made to patch the glitches used by speedrunners to reach areas before intended, these attempts failed but we still keep this setting around.\n It is not recommended to enable this setting as it instead causes many bugs in regular gameplay
 !flag - Gameplay - Setting - Difficulty - TIMEDOHKO - Timed OHKO - A 10 minute timer starts when you start your save file, collect timers to increase time on this timer. When the timer hits 00:00 you enter OHKO mode, one hit will kill you.\n Blue Timers increase the time by 2 Mintues\n Green Timers increase the time by 4 minutes\n Red timers reduce the timer to 00:00\n WARNING: Do not enable this with 'Damage Multiplier' above x1, it will generate the seed but fail to patch the game.
@@ -297,7 +303,11 @@
 !define - `REQUIREMENT_ITEM`
 !define - `DUNGEON`
 !define - `AD_PED`
-!define - `PROGRESSIVE`
+!define - `PROGRESSIVE_SWORD`
+!define - `PROGRESSIVE_BOW`
+!define - `PROGRESSIVE_BOOM`
+!define - `PROGRESSIVE_SHIELD`
+!define - `PROGRESSIVE_SCROLL`
 !define - `DOJO`
 !define - `CUCCO_SETTING`
 !define - `GORON_SETTING`
@@ -1141,62 +1151,78 @@
 	Items.Entrance.0x06;	DungeonEntrance;
 !endif
 
+!ifdef - DOJOVANILLA
+	!undefine - `PROGRESSIVE_SCROLL`
+	!define - NO_SCROLL_PROG
+!endif
+
 #Item Pool settings
 !define - `ITEM_POOL`
-!ifdef - NOPROG
-	!eventdefine - arbitraryItems
+!ifdef - NO_SWORD_PROG
+	!eventdefine - arbitrarySwords
 	!define - SMITHSWORD - Items.SmithSword
 	!define - GREENSWORD - Items.GreenSword
 	!define - REDSWORD - Items.RedSword
 	!define - BLUESWORD - Items.BlueSword
 	!define - FOURSWORD - Items.FourSword
-	!define - BOW - Items.Bow
-	!define - LIGHTARROW - Items.LightArrow
-	!define - BOOMERANG - Items.Boomerang
-	!define - MAGICBOOMERANG - Items.MagicBoomerang
-	!define - SHIELD - Items.Shield
-	!define - MIRROR - Items.MirrorShield
+	Items.SmithSword;		Major;
+	Items.GreenSword;		Major;
+	Items.RedSword;		Major;
+	Items.BlueSword;		Major;
+	Items.FourSword;		Major;
 !else
 	!define - SMITHSWORD - Items.ProgressiveItem.0x00
 	!define - GREENSWORD - Items.ProgressiveItem.0x00
 	!define - REDSWORD - Items.ProgressiveItem.0x00
 	!define - BLUESWORD - Items.ProgressiveItem.0x00
 	!define - FOURSWORD - Items.ProgressiveItem.0x00
-	!define - BOW - Items.ProgressiveItem.0x01
-	!define - LIGHTARROW - Items.ProgressiveItem.0x01
-	!define - BOOMERANG - Items.ProgressiveItem.0x02
-	!define - MAGICBOOMERANG - Items.ProgressiveItem.0x02
-	!define - SHIELD - Items.ProgressiveItem.0x03
-	!define - MIRROR - Items.ProgressiveItem.0x03
+	Items.ProgressiveItem.0x00:5;	Major;	#Sword
 !endif
-!ifdef - NOPROG
-	Items.SmithSword;		Major;
-	Items.GreenSword;		Major;
-	Items.RedSword;		Major;
-	Items.BlueSword;		Major;
-	Items.FourSword;		Major;
+!ifdef - NO_BOW_PROG
+	!eventdefine - arbitraryBows
+	!define - BOW - Items.Bow
+	!define - LIGHTARROW - Items.LightArrow
 	Items.Bow;			Major;
 	Items.LightArrow;		Major;
+!else
+	!define - BOW - Items.ProgressiveItem.0x01
+	!define - LIGHTARROW - Items.ProgressiveItem.0x01
+	Items.ProgressiveItem.0x01:2;	Major;	#Bow
+!endif
+!ifdef - NO_BOOM_PROG
+	!eventdefine - arbitraryBoomerangs
+	!define - BOOMERANG - Items.Boomerang
+	!define - MAGICBOOMERANG - Items.MagicBoomerang
 	Items.Boomerang;		Major;
+!else
+	!define - BOOMERANG - Items.ProgressiveItem.0x02
+	!define - MAGICBOOMERANG - Items.ProgressiveItem.0x02
+	Items.ProgressiveItem.0x02;	Major;	#Boomerang
+!endif
+!ifdef - NO_SHIELD_PROG
+	!eventdefine - arbitraryShields
+	!define - SHIELD - Items.Shield
+	!define - MIRROR - Items.MirrorShield
 	Items.Shield;			Major;
-	!ifndef - DOJOVANILLA
-		!ifdef - DOJORANDOM
-			Items.SpinAttack;		DungeonMajor;	dojo
-		!else
-			Items.SpinAttack;		Major;
-		!endif
+!else
+	!define - SHIELD - Items.ProgressiveItem.0x03
+	!define - MIRROR - Items.ProgressiveItem.0x03
+	Items.ProgressiveItem.0x03;	Major;	#Shield
+!endif
+!ifdef - NO_SCROLL_PROG
+	!eventdefine - arbitraryScrolls
+	!ifdef - DOJORANDOM
+		Items.SpinAttack;		DungeonMajor;	dojo
+	!endif
+	!ifdef - DOJOANY
+		Items.SpinAttack;		Major;
 	!endif
 !else
-	Items.ProgressiveItem.0x00:5;	Major;	#Sword
-	Items.ProgressiveItem.0x01:2;	Major;	#Bow
-	Items.ProgressiveItem.0x02;	Major;	#Boomerang
-	Items.ProgressiveItem.0x03;	Major;	#Shield
-	!ifndef - DOJOVANILLA
-		!ifdef - DOJORANDOM
-			Items.ProgressiveItem.0x04;	DungeonMajor;	dojo	#Scroll
-		!else
-			Items.ProgressiveItem.0x04;	Major;	#Scroll
-		!endif
+	!ifdef - DOJORANDOM
+		Items.ProgressiveItem.0x04;	DungeonMajor;	dojo	#Scroll
+	!endif
+	!ifdef - DOJOANY
+		Items.ProgressiveItem.0x04;	Major;	#Scroll
 	!endif
 !endif
 	Items.Lantern;		Major;
@@ -1549,7 +1575,7 @@
 	Items.Arrows10;		Filler;
 	Items.Arrows30;		Filler;
 !ifdef - ITEM_POOL_RIP
-	!ifdef - NOPROG
+	!ifdef - NO_BOOM_PROG
 		!ifdef - VANILLA_RED_FUSIONS
 			Items.MagicBoomerang;		Major;
 		!else
@@ -1604,41 +1630,45 @@
 !endif
 !ifdef - ITEM_POOL_NORMAL
 	Items.RemoteBombs;		Minor;
-	!ifdef - NOPROG
+	!ifdef - NO_BOOM_PROG
 		Items.MagicBoomerang;			Major;
-		Items.MirrorShield;				Major;
-		!ifndef - DOJOVANILLA
-			!ifdef - DOJORANDOM
-				Items.GreatSpin;				DungeonMajor;	dojo
-				Items.FastSpin;				DungeonMajor;	dojo
-				Items.FastSplit;				DungeonMajor;	dojo
-				Items.LongSpin;				DungeonMajor;	dojo
-				!ifdef - NO_RED_FUSIONS
-					FakeDojo1:dojo:NoSpoiler;		Dungeon;	FakeDojo11:Define:FirstByte, FakeDojo12:Define:SecondByte;	Helpers.BeatVaati;
-					FakeDojo2:dojo:NoSpoiler;		Dungeon;	FakeDojo21:Define:FirstByte, FakeDojo22:Define:SecondByte;	Helpers.BeatVaati;
-					FakeDojo3:dojo:NoSpoiler;		Dungeon;	FakeDojo31:Define:FirstByte, FakeDojo32:Define:SecondByte;	Helpers.BeatVaati;
-				!endif
-			!else
-				Items.GreatSpin;				Major;
-				Items.FastSpin;				Major;
-				Items.FastSplit;				Major;
-				Items.LongSpin;				Major;
-			!endif
-		!endif
 	!else
 		Items.ProgressiveItem.0x02;		Major;	#Boomerang
+	!endif
+	!ifdef - NO_SHIELD_PROG
+		Items.MirrorShield;				Major;
+	!else
 		Items.ProgressiveItem.0x03;		Minor;	#Shield
-		!ifndef - DOJOVANILLA
-			!ifdef - DOJORANDOM
-				Items.ProgressiveItem.0x04:4;	DungeonMajor;	dojo	#Scroll
-				!ifdef - NO_RED_FUSIONS
-					FakeDojo1:dojo:NoSpoiler;		Dungeon;	FakeDojo11:Define:FirstByte, FakeDojo12:Define:SecondByte;	Helpers.BeatVaati;
-					FakeDojo2:dojo:NoSpoiler;		Dungeon;	FakeDojo21:Define:FirstByte, FakeDojo22:Define:SecondByte;	Helpers.BeatVaati;
-					FakeDojo3:dojo:NoSpoiler;		Dungeon;	FakeDojo31:Define:FirstByte, FakeDojo32:Define:SecondByte;	Helpers.BeatVaati;
-				!endif
-			!else
-				Items.ProgressiveItem.0x04:4;	Major;	#Scroll
+	!endif
+	!ifdef - NO_SCROLL_PROG
+		!ifdef - DOJORANDOM
+			Items.GreatSpin;				DungeonMajor;	dojo
+			Items.FastSpin;				DungeonMinor;	dojo
+			Items.FastSplit;				DungeonMinor;	dojo
+			Items.LongSpin;				DungeonMinor;	dojo
+			!ifdef - NO_RED_FUSIONS
+				FakeDojo1:dojo:NoSpoiler;		Dungeon;	FakeDojo11:Define:FirstByte, FakeDojo12:Define:SecondByte;	Helpers.BeatVaati;
+				FakeDojo2:dojo:NoSpoiler;		Dungeon;	FakeDojo21:Define:FirstByte, FakeDojo22:Define:SecondByte;	Helpers.BeatVaati;
+				FakeDojo3:dojo:NoSpoiler;		Dungeon;	FakeDojo31:Define:FirstByte, FakeDojo32:Define:SecondByte;	Helpers.BeatVaati;
 			!endif
+		!endif
+		!ifdef - DOJOANY
+			Items.GreatSpin;				Major;
+			Items.FastSpin;				Major;
+			Items.FastSplit;				Major;
+			Items.LongSpin;				Major;
+		!endif
+	!else
+		!ifdef - DOJORANDOM
+			Items.ProgressiveItem.0x04:4;	DungeonMajor;	dojo	#Scroll
+			!ifdef - NO_RED_FUSIONS
+				FakeDojo1:dojo:NoSpoiler;		Dungeon;	FakeDojo11:Define:FirstByte, FakeDojo12:Define:SecondByte;	Helpers.BeatVaati;
+				FakeDojo2:dojo:NoSpoiler;		Dungeon;	FakeDojo21:Define:FirstByte, FakeDojo22:Define:SecondByte;	Helpers.BeatVaati;
+				FakeDojo3:dojo:NoSpoiler;		Dungeon;	FakeDojo31:Define:FirstByte, FakeDojo32:Define:SecondByte;	Helpers.BeatVaati;
+			!endif
+		!endif
+		!ifdef - DOJOANY
+			Items.ProgressiveItem.0x04:4;	Major;	#Scroll
 		!endif
 	!endif
 	!ifdef - FIREROD_CHEST
@@ -1673,50 +1703,60 @@
 	Items.SwimButterfly;		Minor;
 !endif
 !ifdef - ITEM_POOL_PLENTIFUL
-	!ifdef - NOPROG
+	!ifdef - NO_SWORD_PROG
 		Items.SmithSword;				Minor;
 		Items.GreenSword;				Minor;
 		Items.RedSword;				Minor;
 		Items.BlueSword;				Minor;
 		Items.FourSword;				Minor;
-		Items.Bow;					Minor;
-		Items.MagicBoomerang;			Major;
-		Items.MirrorShield;			Major;
-		!ifndef - DOJOVANILLA
-			!ifdef - DOJORANDOM
-				Items.GreatSpin;				DungeonMajor;	dojo
-				Items.FastSpin;				DungeonMajor;	dojo
-				Items.FastSplit;				DungeonMajor;	dojo
-				Items.LongSpin;				DungeonMajor;	dojo
-				!ifdef - NO_RED_FUSIONS
-					FakeDojo1:dojo:NoSpoiler;		Dungeon;	FakeDojo11:Define:FirstByte, FakeDojo12:Define:SecondByte;	Helpers.BeatVaati;
-					FakeDojo2:dojo:NoSpoiler;		Dungeon;	FakeDojo21:Define:FirstByte, FakeDojo22:Define:SecondByte;	Helpers.BeatVaati;
-					FakeDojo3:dojo:NoSpoiler;		Dungeon;	FakeDojo31:Define:FirstByte, FakeDojo32:Define:SecondByte;	Helpers.BeatVaati;
-				!endif
-			!else
-				Items.SpinAttack:2;			Minor;
-				Items.GreatSpin;				Major;
-				Items.FastSpin;				Major;
-				Items.FastSplit;				Major;
-				Items.LongSpin;				Major;
-			!endif
-		!endif
 	!else
 		Items.ProgressiveItem.0x00:2;	Minor;	#Sword
+	!endif
+	!ifdef - NO_BOW_PROG
+		Items.Bow;					Minor;
+	!else
 		Items.ProgressiveItem.0x01;	Minor;	#Bow
+	!endif
+	!ifdef - NO_BOOM_PROG
+		Items.MagicBoomerang;			Major;
+	!else
 		Items.ProgressiveItem.0x02;	Major;	#Boomerang
+	!endif
+	!ifdef - NO_SHIELD_PROG
+		Items.MirrorShield;			Major;
+	!else
 		Items.ProgressiveItem.0x03;	Minor;	#Shield
-		!ifndef - DOJOVANILLA
-			!ifdef - DOJORANDOM
-				Items.ProgressiveItem.0x04:4;	DungeonMajor;	dojo	#Scroll
-				!ifdef - NO_RED_FUSIONS
-					FakeDojo1:dojo:NoSpoiler;		Dungeon;	FakeDojo11:Define:FirstByte, FakeDojo12:Define:SecondByte;	Helpers.BeatVaati;
-					FakeDojo2:dojo:NoSpoiler;		Dungeon;	FakeDojo21:Define:FirstByte, FakeDojo22:Define:SecondByte;	Helpers.BeatVaati;
-					FakeDojo3:dojo:NoSpoiler;		Dungeon;	FakeDojo31:Define:FirstByte, FakeDojo32:Define:SecondByte;	Helpers.BeatVaati;
-				!endif
-			!else
-				Items.ProgressiveItem.0x04:6;	Major;	#Scroll
+	!endif
+	!ifdef - NO_SCROLL_PROG
+		!ifdef - DOJORANDOM
+			Items.GreatSpin;				DungeonMajor;	dojo
+			Items.FastSpin;				DungeonMinor;	dojo
+			Items.FastSplit;				DungeonMinor;	dojo
+			Items.LongSpin;				DungeonMinor;	dojo
+			!ifdef - NO_RED_FUSIONS
+				FakeDojo1:dojo:NoSpoiler;		Dungeon;	FakeDojo11:Define:FirstByte, FakeDojo12:Define:SecondByte;	Helpers.BeatVaati;
+				FakeDojo2:dojo:NoSpoiler;		Dungeon;	FakeDojo21:Define:FirstByte, FakeDojo22:Define:SecondByte;	Helpers.BeatVaati;
+				FakeDojo3:dojo:NoSpoiler;		Dungeon;	FakeDojo31:Define:FirstByte, FakeDojo32:Define:SecondByte;	Helpers.BeatVaati;
 			!endif
+		!endif
+		!ifdef - DOJOANY
+			Items.SpinAttack:2;			Minor;
+			Items.GreatSpin;				Major;
+			Items.FastSpin;				Major;
+			Items.FastSplit;				Major;
+			Items.LongSpin;				Major;
+		!endif
+	!else
+		!ifdef - DOJORANDOM
+			Items.ProgressiveItem.0x04:4;	DungeonMajor;	dojo	#Scroll
+			!ifdef - NO_RED_FUSIONS
+				FakeDojo1:dojo:NoSpoiler;		Dungeon;	FakeDojo11:Define:FirstByte, FakeDojo12:Define:SecondByte;	Helpers.BeatVaati;
+				FakeDojo2:dojo:NoSpoiler;		Dungeon;	FakeDojo21:Define:FirstByte, FakeDojo22:Define:SecondByte;	Helpers.BeatVaati;
+				FakeDojo3:dojo:NoSpoiler;		Dungeon;	FakeDojo31:Define:FirstByte, FakeDojo32:Define:SecondByte;	Helpers.BeatVaati;
+			!endif
+		!endif
+		!ifdef - DOJOANY
+			Items.ProgressiveItem.0x04:6;	Major;	#Scroll
 		!endif
 	!endif
 	Items.RemoteBombs;	Minor;
@@ -1833,7 +1873,7 @@
 		!endif
 	!endif
 	!eventdefine - requirementSwordTier       - `SWORDLEVEL`
-	!ifdef - YESPROG
+	!ifdef - YES_SWORD_PROG
 		!undefine - GOTSWORDS
 		!define - GOTSWORDS - Items.ProgressiveItem.0x00:`SWORDLEVEL`
 	!endif
@@ -5977,7 +6017,7 @@ CoF_Entrance										`DUNGEONENTRANCE`;	DumCoFENT:Define:FirstByte, DumCoFENT2:
 AccessSwamp;						Helper;				;																	(|Helpers.SwampWindCrest, (&Helpers.AccessWestern, (|Items.PegasusBoots, Items.RocsCape)))
 #NonSpinScrolls;					Helper;				;																	Items.RockBreaker, Items.DashAttack, Items.DownThrust, Items.RollAttack, Items.SwordBeam, Items.PerilBeam
 #SpinScrolls;						Helper;				;																	Items.SpinAttack, Items.GreatSpin, Items.FastSpin, Items.FastSplit, Items.LongSpin
-!ifdef - NOPROG
+!ifdef - NO_SCROLL_PROG
 	GotScrolls;						Helper;				;																	(+7, Items.SpinAttack, Items.GreatSpin, Items.FastSpin, Items.FastSplit, Items.LongSpin, Items.RockBreaker, Items.DashAttack, Items.DownThrust, Items.RollAttack, Items.SwordBeam, Items.PerilBeam);
 !else
 	GotScrolls;						Helper;				;																	(|(&Items.RockBreaker, Items.DashAttack, Items.DownThrust, Items.RollAttack, Items.SwordBeam, Items.PerilBeam, Items.ProgressiveItem.0x04), (&Items.ProgressiveItem.0x04:2, (+5, Items.RockBreaker, Items.DashAttack, Items.DownThrust, Items.RollAttack, Items.SwordBeam, Items.PerilBeam)), (&Items.ProgressiveItem.0x04:3, (+4, Items.RockBreaker, Items.DashAttack, Items.DownThrust, Items.RollAttack, Items.SwordBeam, Items.PerilBeam)), (&Items.ProgressiveItem.0x04:4, (+3, Items.RockBreaker, Items.DashAttack, Items.DownThrust, Items.RollAttack, Items.SwordBeam, Items.PerilBeam)), (&Items.ProgressiveItem.0x04:5, (+2, Items.RockBreaker, Items.DashAttack, Items.DownThrust, Items.RollAttack, Items.SwordBeam, Items.PerilBeam)));
