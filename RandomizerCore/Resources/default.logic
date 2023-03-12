@@ -6255,7 +6255,7 @@ Deepwood_Prize						`DWS_PRIZE`;		DungeonPrize;		0x0DF03B;														(|Helper
 
 # Cave of Flames locations
 
-!define - COF_INSIDE - `COF_OUTSIDE`	:CoFSmall	:CoFBig	:CoFCompass	:Small	:Big	:Compass
+!define - COF_INSIDE - `COF_OUTSIDE`	:CoF	:CoFSmall	:CoFBig	:CoFCompass	:Small	:Big	:Compass
 !ifdef - SMALL_KEYS_VANILLA
 	!define - COF_INSIDE_SK - :CoFSmallV
 !else
@@ -6267,16 +6267,16 @@ Deepwood_Prize						`DWS_PRIZE`;		DungeonPrize;		0x0DF03B;														(|Helper
 	!define - COF_INSIDE_BK - `COF_INSIDE`
 !endif
 !ifdef - UNREQSUR
-	!define - COF_PRIZE - :CoFSmall	:CoFBig	:CoFCompass	:CoFSmallOutside	:CoFBigOutside	:CoFCompassOutside
+	!define - COF_PRIZE - :CoF		:CoFSmall	:CoFBig	:CoFCompass	:CoFSmallOutside	:CoFBigOutside	:CoFCompassOutside
 !else
 	!ifdef - BARRENSUR
-		!define - COF_PRIZE - :CoFSmall	:CoFBig	:CoFCompass	:CoFSmallOutside	:CoFBigOutside	:CoFCompassOutside
+		!define - COF_PRIZE - :CoF		:CoFSmall	:CoFBig	:CoFCompass	:CoFSmallOutside	:CoFBigOutside	:CoFCompassOutside
 	!else
 		!ifdef - UNREQ
-			!define - COF_PRIZE - :CoFSmall	:CoFBig	:CoFCompass
+			!define - COF_PRIZE - :CoF		:CoFSmall	:CoFBig	:CoFCompass
 		!else
 			!ifdef - BARREN
-				!define - COF_PRIZE - :CoFSmall	:CoFBig	:CoFCompass
+				!define - COF_PRIZE - :CoF		:CoFSmall	:CoFBig	:CoFCompass
 			!else
 				!define - COF_PRIZE - `COF_INSIDE`
 			!endif
@@ -6311,7 +6311,7 @@ CompleteCoF;									Helper;			;																		`ENTERCOF`, Helpers.CoFBasemen
 
 CoF_BossItem					`COF_INSIDE`;		`DUNGEONHP`;		gleerokContainerItem:Define:FirstByte, gleerokContainerSub:Define:SecondByte;	(|Helpers.CompleteCoF, Helpers.Hundo);																																												Items.HeartContainer
 CoF_Prize					`COF_PRIZE`;		DungeonPrize;		0x0E0F03;																(|Helpers.CompleteCoF, Helpers.Hundo);																																												Items.FireElement
-Crenel_Melari_NPC				`COF_INSIDE`;		Dungeon;			0x00D26E;																(|Helpers.CompleteCoF, Helpers.Hundo);																																												`GREENSWORD`
+Crenel_Melari_NPC		:CoF		`COF_OUTSIDE`;	Dungeon;			0x00D26E;																(|Helpers.CompleteCoF, Helpers.Hundo);																																												`GREENSWORD`
 
 # Fortress of Winds Locations
 
