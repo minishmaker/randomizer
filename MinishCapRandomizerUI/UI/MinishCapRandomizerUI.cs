@@ -395,20 +395,21 @@ public sealed partial class MinishCapRandomizerUI : Form
                 return;
             }
 
-			try
-			{
-                _shufflerController.SaveSettingsAsYAML(presetPath + "Settings" + Path.DirectorySeparatorChar + name + ".yaml",
-                    name, _shufflerController.GetSelectedOptions().OnlyLogic());
+            var result = _shufflerController.SaveSettingsAsYAML(presetPath + "Settings" + Path.DirectorySeparatorChar + name + ".yaml",
+                name, _shufflerController.GetSelectedOptions().OnlyLogic());
+
+            if (result)
+            {
                 presets.Add(name);
-				AddItemToPresetsBox(SettingPresets, name);
+                AddItemToPresetsBox(SettingPresets, name);
                 _recentSettingsPreset = name;
                 _recentSettingsPresetHash = _shufflerController.GetSelectedOptions().OnlyLogic().GetHash();
-				DisplayAlert("Preset saved successfully!", "Preset Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
-			}
-			catch
-			{
-				DisplayAlert("An error occured while trying to save the preset!", "Failed to Save Preset", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
+                DisplayAlert("Preset saved successfully!", "Preset Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                DisplayAlert("An error occured while trying to save the preset!", "Failed to Save Preset", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 		}));
 	}
 
@@ -482,20 +483,21 @@ public sealed partial class MinishCapRandomizerUI : Form
                 return;
             }
 
-			try
-			{
-                _shufflerController.SaveSettingsAsYAML(presetPath + "Cosmetics" + Path.DirectorySeparatorChar + name + ".yaml",
-                    name, _shufflerController.GetSelectedOptions().OnlyCosmetic());
+            var result = _shufflerController.SaveSettingsAsYAML(presetPath + "Cosmetics" + Path.DirectorySeparatorChar + name + ".yaml",
+                name, _shufflerController.GetSelectedOptions().OnlyCosmetic());
+
+            if (result)
+            {
                 presets.Add(name);
-				AddItemToPresetsBox(CosmeticsPresets, name);
+                AddItemToPresetsBox(CosmeticsPresets, name);
                 _recentCosmeticsPreset = name;
                 _recentCosmeticsPresetHash = _shufflerController.GetSelectedOptions().OnlyCosmetic().GetHash();
-				DisplayAlert("Preset saved successfully!", "Preset Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
-			}
-			catch
-			{
-				DisplayAlert("An error occured while trying to save the preset!", "Failed to Save Preset", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
+                DisplayAlert("Preset saved successfully!", "Preset Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                DisplayAlert("An error occured while trying to save the preset!", "Failed to Save Preset", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 		}));
 	}
 
@@ -582,7 +584,7 @@ public sealed partial class MinishCapRandomizerUI : Form
     {
         if (string.IsNullOrEmpty(name) || name != name.Trim())
             return false;
-        var match = Regex.Match(name, "[\\x00-\\x1F<>:\"/\\|?*]");
+        var match = Regex.Match(name, "[\\x00-\\x1F<>:\"/\\\\|?*]");
         return !match.Success;
     }
 }
