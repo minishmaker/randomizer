@@ -9,7 +9,6 @@ using RandomizerCore.Randomizer.Exceptions;
 using RandomizerCore.Randomizer.Helpers;
 using RandomizerCore.Randomizer.Logic.Dependency;
 using RandomizerCore.Randomizer.Logic.Location;
-using RandomizerCore.Randomizer.Logic.Options;
 using RandomizerCore.Randomizer.Models;
 using RandomizerCore.Utilities.Extensions;
 using RandomizerCore.Utilities.IO;
@@ -1575,7 +1574,9 @@ internal class Shuffler
         var crc = (int)CrcUtil.Crc32(seedValues, 8);
 
         eventBuilder.AppendLine("#define seedHashed 0x" + StringUtil.AsStringHex8(crc));
-        eventBuilder.AppendLine("#define settingHash 0x" + StringUtil.AsStringHex8((int)GetFinalOptions().OnlyLogic().GetHash()));
+        if (string.IsNullOrEmpty(YamlPathLogic))
+            eventBuilder.AppendLine("#define settingHash 0x" + StringUtil.AsStringHex8((int)GetFinalOptions().OnlyLogic().GetHash()));
+        eventBuilder.AppendLine("#define seedHashed 0x" + StringUtil.AsStringHex8(crc));
 
         return eventBuilder.ToString();
     }
