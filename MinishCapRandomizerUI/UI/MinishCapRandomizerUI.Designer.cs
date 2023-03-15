@@ -808,7 +808,7 @@ namespace MinishCapRandomizerUI.UI
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(148, 15);
             this.label5.TabIndex = 17;
-            this.label5.Text = "Custom Logic, Patches and YAML File";
+            this.label5.Text = "Custom Logic, Patches and Global YAML File";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel6
@@ -867,7 +867,7 @@ namespace MinishCapRandomizerUI.UI
             this.UseCustomYAML.Name = "UseCustomYAML";
             this.UseCustomYAML.Size = new System.Drawing.Size(160, 19);
             this.UseCustomYAML.TabIndex = 19;
-            this.UseCustomYAML.Text = "Use Custom YAML File";
+            this.UseCustomYAML.Text = "Use Global YAML File";
             this.UseCustomYAML.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.UseCustomYAML.UseVisualStyleBackColor = true;
             this.UseCustomYAML.CheckedChanged += new System.EventHandler(this.UseCustomYAML_CheckedChanged);

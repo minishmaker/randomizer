@@ -38,17 +38,6 @@ public class ShufflerController
     internal static string VersionIdentifier => "v0.7.0";
     internal static string RevisionIdentifier => "alpha-rev3";
 
-    public string SeedFilename
-    {
-        get
-        {
-            if (Shuffler.IsGlobalYAMLMode())
-                return $"Minish Randomizer-{Shuffler.Seed}-{Shuffler.Version}-{(Shuffler.IsUsingLogicYAML() ? Shuffler.GetLogicYAMLName() : Shuffler.GetSelectedOptions().GetIdentifier(true))}";
-            else
-                return $"Minish Randomizer-{Shuffler.Seed}-{Shuffler.Version}-{(Shuffler.IsUsingLogicYAML() ? Shuffler.GetLogicYAMLName() : Shuffler.GetSelectedOptions().OnlyLogic().GetIdentifier(false))}-{(Shuffler.IsUsingCosmeticsYAML() ? Shuffler.GetCosmeticsYAMLName() : Shuffler.GetSelectedOptions().OnlyCosmetic().GetIdentifier(false))}";
-        }
-    }
-
     public int FinalSeed => Shuffler.Seed;
 
     public ShufflerController()
@@ -89,6 +78,16 @@ public class ShufflerController
     public string GetLogicYAMLDescription() => Shuffler.GetLogicYAMLDescription();
 
     public string GetCosmeticsYAMLDescription() => Shuffler.GetCosmeticsYAMLDescription();
+
+    public string GetSeedFilename(string? overrideSelectedLogic = null, string? overrideSelectedCosmetics = null)
+    {
+        if (Shuffler.IsGlobalYAMLMode() && Shuffler.IsUsingLogicYAML())
+            return $"Minish Randomizer-{Shuffler.Seed}-{Shuffler.Version}-{Shuffler.GetLogicYAMLName()}";
+        else
+            return $"Minish Randomizer-{Shuffler.Seed}-{Shuffler.Version}-" +
+                $"{(Shuffler.IsUsingLogicYAML() ? Shuffler.GetLogicYAMLName() : (overrideSelectedLogic ?? "Custom"))}-" +
+                $"{(Shuffler.IsUsingCosmeticsYAML() ? Shuffler.GetCosmeticsYAMLName() : (overrideSelectedCosmetics ?? "Custom"))}";
+    }
 
     public ShufflerControllerResult LoadSettingsFromSettingString(string settingString)
     {
