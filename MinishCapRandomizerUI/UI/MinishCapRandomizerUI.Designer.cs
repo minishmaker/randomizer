@@ -817,22 +817,22 @@ namespace MinishCapRandomizerUI.UI
 			this.label19.Text = "This page contains advanced settings and experimental features for the randomizer" +
     ". Unless you are experienced with the randomizer we recommend not modifying thes" +
     "e settings.";
-			// 
-			// label5
-			// 
-			this.label5.AutoSize = true;
-			this.label5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-			this.label5.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.label5.Location = new System.Drawing.Point(17, 57);
-			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(148, 15);
-			this.label5.TabIndex = 17;
-            this.label5.Text = "Custom Logic, Patches and YAML File";
-			this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-			// 
-			// panel6
-			// 
-			this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label5.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label5.Location = new System.Drawing.Point(17, 57);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(148, 15);
+            this.label5.TabIndex = 17;
+            this.label5.Text = "Custom Logic, Patches and Global YAML File";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel6
+            // 
+            this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel6.Controls.Add(this.BrowseCustomYAML);
             this.panel6.Controls.Add(this.YAMLPath);
             this.panel6.Controls.Add(this.label27);
@@ -886,7 +886,7 @@ namespace MinishCapRandomizerUI.UI
             this.UseCustomYAML.Name = "UseCustomYAML";
             this.UseCustomYAML.Size = new System.Drawing.Size(160, 19);
             this.UseCustomYAML.TabIndex = 19;
-            this.UseCustomYAML.Text = "Use Custom YAML File";
+            this.UseCustomYAML.Text = "Use Global YAML File";
             this.UseCustomYAML.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.UseCustomYAML.UseVisualStyleBackColor = true;
             this.UseCustomYAML.CheckedChanged += new System.EventHandler(this.UseCustomYAML_CheckedChanged);

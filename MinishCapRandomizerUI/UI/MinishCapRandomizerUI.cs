@@ -171,21 +171,21 @@ public sealed partial class MinishCapRandomizerUI : Form
 	private void SaveSpoiler_Click(object sender, EventArgs e)
 	{
 		DisplaySaveDialog(@"Text File|*.txt|All Files|*.*", @"Save Spoiler Log", 
-			$"{_shufflerController.SeedFilename}-Spoiler.txt", DialogResult.OK, filename =>
+			$"{GetSeedFilename()}-Spoiler.txt", DialogResult.OK, filename =>
 				DisplayConditionalAlertFromShufflerResult(_shufflerController.SaveSpoiler(filename), "Spoiler Saved Successfully!", "Spoiler Saved", "Failed to save spoiler!", "Spoiler Save Failed"));
 	}
 
 	private void SavePatch_Click(object sender, EventArgs e)
 	{
 		DisplaySaveDialog(@"BPS Patch|*.bps|All Files|*.*", @"Save Patch", 
-			$"{_shufflerController.SeedFilename}-Patch.bps", DialogResult.OK, filename =>
+			$"{GetSeedFilename()}-Patch.bps", DialogResult.OK, filename =>
 				DisplayConditionalAlertFromShufflerResult(_shufflerController.CreatePatch(filename, UseCustomPatch.Checked ? RomBuildfilePath.Text : ""), "Patch Saved Successfully!", "Patch Saved", "Failed to save patch!", "Patch Save Failed"));
 	}
 
 	private void SaveRom_Click(object sender, EventArgs e)
 	{
 		DisplaySaveDialog(@"GBA ROM|*.gba|All Files|*.*", @"Save ROM", 
-			$"{_shufflerController.SeedFilename}-ROM.gba", DialogResult.OK, filename => 
+			$"{GetSeedFilename()}-ROM.gba", DialogResult.OK, filename => 
 				DisplayConditionalAlertFromShufflerResult(_shufflerController.SaveAndPatchRom(filename, UseCustomPatch.Checked ? RomBuildfilePath.Text : ""), "ROM Saved Successfully!", "ROM Saved", "Failed to save ROM!", "ROM Save Failed"));
 	}
 

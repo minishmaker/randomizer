@@ -325,22 +325,25 @@ Generating seeds with this shuffler may freeze the randomizer application for ma
             var cosmeticsString = _shufflerController.GetFinalCosmeticsString();
 
             if (_shufflerController.IsUsingLogicYAML())
-            {
                 SettingNameLabel.Text = _shufflerController.GetLogicYAMLName();
-                CosmeticNameLabel.Text = _shufflerController.GetLogicYAMLName();
-            }
             else
             {
                 SettingNameLabel.Text = _recentSettingsPreset != null &&
-                    _shufflerController.GetFinalOptions().OnlyLogic().GetHash() == _recentSettingsPresetHash ? _recentSettingsPreset : "Custom";
+                    _shufflerController.GetSelectedOptions().OnlyLogic().GetHash() == _recentSettingsPresetHash ? _recentSettingsPreset : "Custom";
+            }
+
+            if (_shufflerController.IsUsingCosmeticsYAML())
+                CosmeticNameLabel.Text = _shufflerController.GetCosmeticsYAMLName();
+            else
+            {
                 CosmeticNameLabel.Text = _recentCosmeticsPreset != null &&
-                    _shufflerController.GetFinalOptions().OnlyCosmetic().GetHash() == _recentCosmeticsPresetHash ? _recentCosmeticsPreset : "Custom";
+                    _shufflerController.GetSelectedOptions().OnlyCosmetic().GetHash() == _recentCosmeticsPresetHash ? _recentCosmeticsPreset : "Custom";
             }
 
             SettingHashLabel.Text = settingsString;
             SettingHashLabel.Visible = !_shufflerController.IsUsingLogicYAML();
             CosmeticStringLabel.Text = cosmeticsString;
-            CosmeticStringLabel.Visible = !_shufflerController.IsUsingLogicYAML();
+            CosmeticStringLabel.Visible = !_shufflerController.IsUsingCosmeticsYAML();
             
             DisplaySeedHash();
 
@@ -419,6 +422,14 @@ Generating seeds with this shuffler may freeze the randomizer application for ma
             baseImage.SetPixel(x, y, targetColor);
             baseImage.SetPixel(x + 1, y, targetColor);
             baseImage.SetPixel(x + 2, y, targetColor);
+        }
+
+        private string GetSeedFilename()
+        {
+            return _shufflerController.GetSeedFilename(!_shufflerController.IsUsingLogicYAML() && _recentSettingsPreset != null &&
+                _shufflerController.GetSelectedOptions().OnlyLogic().GetHash() == _recentSettingsPresetHash ? _recentSettingsPreset : "Custom",
+                !_shufflerController.IsUsingCosmeticsYAML() && _recentCosmeticsPreset != null &&
+                _shufflerController.GetSelectedOptions().OnlyCosmetic().GetHash() == _recentCosmeticsPresetHash ? _recentCosmeticsPreset : "Custom");
         }
     }
 }

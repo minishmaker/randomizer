@@ -88,6 +88,16 @@ public class ShufflerController
         return _shuffler.GetEventWrites();
     }
 
+    public string GetSeedFilename(string? overrideSelectedLogic = null, string? overrideSelectedCosmetics = null)
+    {
+        if (_shuffler.IsGlobalYAMLMode() && _shuffler.IsUsingLogicYAML())
+            return $"Minish Randomizer-{_shuffler.Seed}-{_shuffler.Version}-{_shuffler.GetLogicYAMLName()}";
+        else
+            return $"Minish Randomizer-{_shuffler.Seed}-{_shuffler.Version}-" +
+                $"{(_shuffler.IsUsingLogicYAML() ? _shuffler.GetLogicYAMLName() : (overrideSelectedLogic ?? "Custom"))}-" +
+                $"{(_shuffler.IsUsingCosmeticsYAML() ? _shuffler.GetCosmeticsYAMLName() : (overrideSelectedCosmetics ?? "Custom"))}";
+    }
+
     public ShufflerControllerResult LoadSettingsFromSettingString(string settingString)
     {
         try
