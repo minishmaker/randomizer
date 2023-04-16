@@ -66,8 +66,14 @@ newGameOrTable:
 	POIN cloudsDig;		WORD 0x2002CD8 2
 	POIN melariDig;		WORD 0x2002CF3 2
 #endif
-#ifdef kinstoneWater;
+#ifdef kinstoneWater
 	POIN swampUnderwater;	WORD 0x2002CC0 1
+#endif
+#ifdef lakeHPWater
+	POIN lakeUnderwater;	WORD 0x2002CBD 1
+#endif
+#ifdef todKeyWater
+	POIN todUnderwater;		WORD 0x2002D93 1
 #endif
 #ifdef goldTornado
 	POIN tornadoGold;			WORD 0x2002CA0 1
@@ -329,14 +335,21 @@ BYTE 0x4A 0x01
 swampUnderwater:
 BYTE 0x1C
 
+lakeUnderwater:
+BYTE 0x02
+
+todUnderwater:
+BYTE 0x04
+
+
+//Other Fusion flags
+tornadoGold:
+BYTE 0x10
+
 windTribeOpen:
 BYTE 0x01
 
 tingleBrothersOpen:
-BYTE 0x10
-
-//Other Fusion flags
-tornadoGold:
 BYTE 0x10
 
 swampBlockGold:

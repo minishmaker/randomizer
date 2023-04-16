@@ -1,21 +1,3 @@
-#ifdef arbitraryItems
-	#ifndef arbitrarySwords
-		#define arbitrarySwords
-	#endif
-	#ifndef arbitraryBows
-		#define arbitraryBows
-	#endif
-	#ifndef arbitraryBoomerangs
-		#define arbitraryBoomerangs
-	#endif
-	#ifndef arbitraryShields
-		#define arbitraryShields
-	#endif
-	#ifndef arbitraryScrolls
-		#define arbitraryScrolls
-	#endif
-#endif
-
 #ifndef progressiveScroll1
 	#define progressiveScroll1 0x48
 #endif

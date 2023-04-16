@@ -159,7 +159,7 @@ internal static class TransitionFactory
                 TransitionType = 0x0,
                 EntranceAddress1 = DhcSideEntrance1,
                 EntranceAddress2 = DhcSideEntrance2,
-                GreenWarpExitCoordinate = 0x00DE,
+                GreenWarpExitCoordinate = 0x0146,
                 ElementGetExitX = 0x68,
                 ElementGetExitY = 0x58
             },
