@@ -5,6 +5,19 @@
 	#define skipFusionCutsceneShowMap 0
 #endif
 
+#ifndef kinstoneMultiplierGold
+	#define kinstoneMultiplierGold 1
+#endif
+#ifndef kinstoneMultiplierRed
+	#define kinstoneMultiplierRed 1
+#endif
+#ifndef kinstoneMultiplierBlue
+	#define kinstoneMultiplierBlue 1
+#endif
+#ifndef kinstoneMultiplierGreen
+	#define kinstoneMultiplierGreen 1
+#endif
+
 //remove all ezlo stepping triggers
 PUSH; ORG $4AB14; jumpToHack(ezloPleaseStop); POP
 ALIGN 4
@@ -373,10 +386,31 @@ ORG $FCE6B; BYTE 0x00
 ORG $FCE73; BYTE 0x00
 POP
 
-//normal kinstones don't get added to the bag in nofusions
-#ifdef noFusions
-	PUSH; ORG $1E778; SHORT 0x2C00 0xD025 0x2C6D; POP
-#endif
+//kinstone multipliers (how many are added to the bag when collected)
+//value 0 means kinstones don't get added to the bag (used with removed or open fusions)
+PUSH; ORG $1E7AC; jumpToHack(kinstoneBagMultiplier); POP
+ALIGN 4
+kinstoneBagMultiplier:
+#incbin "asm/kinstoneBagMultiplier.dmp"
+POIN kinstoneBagMultiplierTable
+kinstoneBagMultiplierTable:
+BYTE kinstoneMultiplierGold
+BYTE kinstoneMultiplierGold
+BYTE kinstoneMultiplierGold
+BYTE kinstoneMultiplierGold
+BYTE kinstoneMultiplierGold
+BYTE kinstoneMultiplierGold
+BYTE kinstoneMultiplierGold
+BYTE kinstoneMultiplierGold
+BYTE kinstoneMultiplierGold
+BYTE kinstoneMultiplierRed
+BYTE kinstoneMultiplierRed
+BYTE kinstoneMultiplierRed
+BYTE kinstoneMultiplierBlue
+BYTE kinstoneMultiplierBlue
+BYTE kinstoneMultiplierGreen
+BYTE kinstoneMultiplierGreen
+BYTE kinstoneMultiplierGreen
 
 //elements at cloud tops are only drawn if looking at the top layer
 PUSH; ORG $A611C; jumpToHack(cloudsElements); POP
