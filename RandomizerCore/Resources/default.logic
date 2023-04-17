@@ -1163,9 +1163,6 @@
     !eventdefine - enable_firerod_start - 1
 !endif
 
-!ifndef - NO_RED_FUSIONS
-	!define - TRIBE_PORTAL
-!endif
 !ifdef - FALLS_CREST
 	!define - FALLS_ACCESS
 !else
@@ -1205,7 +1202,7 @@
 	!ifndef - NO_GOLD_FUSIONS
 		!define - TRIBE_ACCESS
 	!else
-		!ifdef - TRIBE_PORTAL
+		!ifndef - NO_RED_FUSIONS
 			!define - TRIBE_ACCESS
 		!endif
 	!endif
@@ -1218,11 +1215,9 @@
 
 # Vanilla Elements only allowed when the respective dungeons are accessible (even if entrances are shuffled)
 !ifdef - SHUFFLE_ELEMENTS_VANILLA
-	!ifdef - NO_GOLD_FUSIONS
-		!ifndef - CLOUD_CREST
-			!undefine - SHUFFLE_ELEMENTS_VANILLA
-			!define - SHUFFLE_ELEMENTS_OFF
-		!endif
+	!ifndef - UWT_ACCESS
+		!undefine - SHUFFLE_ELEMENTS_VANILLA
+		!define - SHUFFLE_ELEMENTS_OFF
 	!endif
 !endif
 
@@ -5219,115 +5214,13 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 
 # This whole section is a mess and wants refactoring
 
+# Dungeon items
 !ifndef - SHUFFLE_ELEMENTS_VANILLA
 	!define - DUNGEONPRIZE - DungeonPrize
 !else
 	!define - DUNGEONPRIZE - Unshuffled
 !endif
-
-!ifdef - POW_ACCESS
-	!define - PALACECHEST - Dungeon
-	!define - PALACEPRIZE - `DUNGEONPRIZE`
-	!define - PALACESMALL - Dungeon
-	!define - PALACEBIG - Dungeon
-	!ifdef - MAP_VANILLA
-		!define - PALACEMAP - Unshuffled
-	!else
-		!define - PALACEMAP - Dungeon
-	!endif
-	!ifdef - COMPASS_VANILLA
-		!define - PALACECOMPASS - Unshuffled
-	!else
-		!define - PALACECOMPASS - Dungeon
-	!endif
-	!ifdef - HEART_RANDO
-		!define - PALACEHP - Dungeon
-	!else
-		!define - PALACEHP - Unshuffled
-	!endif
-	!ifdef - RUPEEMANIA
-		!define - PALACERUPEE - ;	Dungeon
-	!else
-		!define - PALACERUPEE - :NoSpoiler; Unshuffled
-	!endif
-!else
-	!define - PALACECHEST - Inaccessible
-	!define - PALACEPRIZE - Inaccessible
-	!define - PALACESMALL - Inaccessible
-	!define - PALACEBIG - Inaccessible
-	!define - PALACEMAP - Inaccessible
-	!define - PALACECOMPASS - Inaccessible
-	!define - PALACEHP - Inaccessible
-	!define - PALACERUPEE - ;	Inaccessible
-!endif
-
-!ifdef - FOW_ACCESS
-	!define - FORTRESSCHEST - Dungeon
-	!define - FORTRESSPRIZE - `DUNGEONPRIZE`
-	!define - FORTRESSSMALL - Dungeon
-	!define - FORTRESSBIG - Dungeon
-	!ifdef - MAP_VANILLA
-		!define - FORTRESSMAP - Unshuffled
-	!else
-		!define - FORTRESSMAP - Dungeon
-	!endif
-	!ifdef - COMPASS_VANILLA
-		!define - FORTRESSCOMPASS - Unshuffled
-	!else
-		!define - FORTRESSCOMPASS - Dungeon
-	!endif
-	!ifdef - HEART_RANDO
-		!define - FORTRESSHP - Dungeon
-	!else
-		!define - FORTRESSHP - Unshuffled
-	!endif
-	!ifdef - RUPEEMANIA
-		!define - FORTRESSRUPEE - ;	Dungeon
-	!else
-		!define - FORTRESSRUPEE - :NoSpoiler; Unshuffled
-	!endif
-	!ifdef - SPECIALPOTS
-		!define - FORTRESSPOT - Dungeon
-	!else
-		!define - FORTRESSPOT - Inaccessible
-	!endif
-!else
-	!define - FORTRESSCHEST - Inaccessible
-	!define - FORTRESSPRIZE - Inaccessible
-	!define - FORTRESSSMALL - Inaccessible
-	!define - FORTRESSBIG - Inaccessible
-	!define - FORTRESSMAP - Inaccessible
-	!define - FORTRESSCOMPASS - Inaccessible
-	!define - FORTRESSHP - Inaccessible
-	!define - FORTRESSRUPEE - ;	Inaccessible
-	!define - FORTRESSPOT - Inaccessible
-!endif
-
-!ifdef - MAP_VANILLA
-	!define - DUNGEONMAP - Unshuffled
-!else
-	!define - DUNGEONMAP - Dungeon
-!endif
-!ifdef - COMPASS_VANILLA
-	!define - DUNGEONCOMPASS - Unshuffled
-!else
-	!define - DUNGEONCOMPASS - Dungeon
-!endif
-
-!ifndef - NODHC
-	!define - DHCKING - Dungeon
-	!define - DHCMAP - `DUNGEONMAP`
-	!define - DHCCOMPASS - `DUNGEONCOMPASS`
-	!define - DHCSMALL - Dungeon
-	!define - DHCBIG - Dungeon
-!else
-	!define - DHCKING - Inaccessible
-	!define - DHCMAP - Inaccessible
-	!define - DHCCOMPASS - Inaccessible
-	!define - DHCSMALL - Inaccessible
-	!define - DHCBIG - Inaccessible
-!endif
-
+# Dojos
 !ifdef - DOJOVANILLA
 	!define - DOJOITEM - Unshuffled
 	!define - DOJOITEMRED - Unshuffled
@@ -5343,247 +5236,15 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 		!endif
 	!endif
 !endif
-
-!ifdef - NO_GOLD_FUSIONS
-	!define - GOLDFUSION - Inaccessible
-	!define - GOLDREDFUSION - Inaccessible
-	!define - GOLDGREENFUSION - Inaccessible
-	!define - GOLDGREENFUSIONENEMY - ; Inaccessible
-	!define - GOLDFUSIONHP - Inaccessible
-	!define - GOLDFUSIONRUPEE - ;	Inaccessible
-!else
-	!define - GOLDFUSION - Dungeon
-	!ifdef - NO_RED_FUSIONS
-		!define - GOLDREDFUSION - Inaccessible
-	!else
-		!define - GOLDREDFUSION - Dungeon
-	!endif
-	!ifdef - NO_GREEN_FUSIONS
-		!define - GOLDGREENFUSION - Inaccessible
-	!else
-		!define - GOLDGREENFUSION - Dungeon
-	!endif
-	!ifdef - GOLDEN_ENEMY_GREEN
-		!define - GOLDGREENFUSIONENEMY - ; Dungeon
-	!else
-		!define - GOLDGREENFUSIONENEMY - :NoSpoiler; Unshuffled
-	!endif
-	!ifdef - HEART_RANDO
-		!define - GOLDFUSIONHP - Dungeon
-	!else
-		!define - GOLDFUSIONHP - Unshuffled
-	!endif
-	!ifdef - RUPEEMANIA
-		!define - GOLDFUSIONRUPEE - ;	Dungeon
-	!else
-		!define - GOLDFUSIONRUPEE - :NoSpoiler;	Unshuffled
-	!endif
-!endif
-
-!ifdef - FALLS_ACCESS
-	!define - FALLSCHEST - Any
-	!ifdef - NO_GREEN_FUSIONS
-		!define - FALLSGREEN - Inaccessible
-	!else
-		!define - FALLSGREEN - Dungeon
-	!endif
-	!ifdef - GOLDEN_ENEMY_GREEN
-		!define - FALLSENEMY - ; Any
-	!else
-		!define - FALLSENEMY - :NoSpoiler; Unshuffled
-	!endif
-	!ifdef - HEART_RANDO
-		!ifdef - NO_RED_FUSIONS
-			!define - FALLSHP - Inaccessible
-		!else
-			!define - FALLSHP - Any
-		!endif
-	!else
-		!ifdef - NO_RED_FUSIONS
-			!define - FALLSHP - Inaccessible
-		!else
-			!define - FALLSHP - Unshuffled
-		!endif
-	!endif
-	!ifdef - RUPEEMANIA
-		!define - FALLSRUPEE - ;	Any
-	!else
-		!define - FALLSRUPEE - :NoSpoiler;	Unshuffled
-	!endif
-	!ifdef - UNDERWATER
-		!define - FALLSWATER - ;	Any
-	!else
-		!define - FALLSWATER - :NoSpoiler;	Unshuffled
-	!endif
-	!ifdef - DIGGING
-		!define - FALLSDIG - ;	Any
-		!define - FALLSDIGKINSTONE - Any
-	!else
-		!define - FALLSDIG - :NoSpoiler;	Unshuffled
-		!define - FALLSDIGKINSTONE - Inaccessible
-	!endif
-!else
-	!define - FALLSCHEST - Inaccessible
-	!define - FALLSGREEN - Inaccessible
-	!define - FALLSHP - Inaccessible
-	!define - FALLSENEMY - ;	Inaccessible
-	!define - FALLSRUPEE - ;	Inaccessible
-	!define - FALLSWATER - ;	Inaccessible
-	!define - FALLSDIG - ; Inaccessible
-		!define - FALLSDIGKINSTONE - Inaccessible
-!endif
-
-!ifdef - NO_RED_FUSIONS
-	!define - REDFUSION - Inaccessible
-	!define - REDFUSIONDUNGEON - Inaccessible
-	!define - REDFUSIONRUPEE - ;	Inaccessible
-	!define - REDFUSIONENEMY - ;	Inaccessible
-!else
-	!define - REDFUSION - Any
-	!define - REDFUSIONDUNGEON - Dungeon
-	!ifdef - RUPEEMANIA
-		!define - REDFUSIONRUPEE - ;	Any
-	!else
-		!define - REDFUSIONRUPEE - :NoSpoiler;	Unshuffled
-	!endif
-	!ifdef - GOLDEN_ENEMY
-		!define - REDFUSIONENEMY - ;	Any
-	!else
-		!define - REDFUSIONENEMY - :NoSpoiler;	Unshuffled
-	!endif
-!endif
-
-!ifdef - NO_BLUE_FUSIONS
-	!define - BLUEFUSION - Inaccessible
-	!define - BLUEFUSIONRUPEE - ; Inaccessible
-	!define - BLUEFUSIONDUNGEON - Inaccessible
-	!ifdef - OPEN_GREEN_FUSIONS
-		!define - BLUEGREENFUSION - Any
-	!else
-		!define - BLUEGREENFUSION - Inaccessible
-	!endif
-!else
-	!define - BLUEFUSION - Any
-	!define - BLUEFUSIONDUNGEON - Dungeon
-	!ifdef - NO_GREEN_FUSIONS
-		!define - BLUEGREENFUSION - Inaccessible
-	!else
-		!define - BLUEGREENFUSION - Any
-	!endif
-	!ifdef - RUPEEMANIA
-		!define - BLUEFUSIONRUPEE - ; Any
-	!else
-		!define - BLUEFUSIONRUPEE - :NoSpoiler; Unshuffled
-	!endif
-!endif
-	
-!ifdef - NO_GREEN_FUSIONS
-	!define - GREENFUSION - Inaccessible
-	!define - GREENFUSIONDUNGEON - Inaccessible
-	!define - GREENFUSIONRUPEE - ; Inaccessible
-	!define - GREENFUSIONENEMY - ;	Inaccessible
-	!define - GREENFUSIONDIG - ; Inaccessible
-!else
-	!define - GREENFUSION - Any
-	!define - GREENFUSIONDUNGEON - Dungeon
-	!ifdef - RUPEEMANIA
-		!define - GREENFUSIONRUPEE - ;	Any
-	!else
-		!define - GREENFUSIONRUPEE - :NoSpoiler;	Unshuffled
-	!endif
-	!ifdef - GOLDEN_ENEMY
-		!define - GREENFUSIONENEMY - ;	Dungeon
-	!else
-		!define - GREENFUSIONENEMY - :NoSpoiler;	Unshuffled
-	!endif
-	!ifdef - DIGGING
-		!define - GREENFUSIONDIG - ; Any
-	!else
-		!define - GREENFUSIONDIG - :NoSpoiler; Unshuffled
-	!endif
-!endif
-
-!ifdef - TRIBE_ACCESS
-	!define - WTFUSION - Dungeon
-!else
-	!define - WTFUSION - Inaccessible
-!endif
-
-!ifdef - UWT_ACCESS
-	!define - PALACEOUTSIDECHEST - Dungeon
-!else
-	!define - PALACEOUTSIDECHEST - Inaccessible
-!endif
-
-!ifdef - OPEN_GREEN_FUSIONS
-	!define - WTFUSIONGREEN - Any
-	!define - UWTFUSIONGREEN - Dungeon
-!else
-	!ifdef - NO_GREEN_FUSIONS
-		!define - WTFUSIONGREEN - Inaccessible
-		!define - UWTFUSIONGREEN - Inaccessible
-	!else
-		!define - WTFUSIONGREEN - `WTFUSION`
-		!define - UWTFUSIONGREEN - `PALACEOUTSIDECHEST`
-	!endif
-!endif
-
-!ifdef - GOLDEN_ENEMY
-	!define - BLUEGREENFUSIONENEMY - ;`BLUEGREENFUSION`
-	!define - WTFUSIONGREENENEMY - ;`WTFUSIONGREEN`
-!else
-	!define - BLUEGREENFUSIONENEMY - :NoSpoiler;	Unshuffled
-	!define - WTFUSIONGREENENEMY - :NoSpoiler;	Unshuffled
-!endif
-
+# HP Toggle
 !ifdef - HEART_RANDO
 	!define - HP - Any
 	!define - DUNGEONHP - Dungeon
-	!ifdef - UNDERWATER
-		!define - UNDERWATERHP - Any
-	!else
-		!define - UNDERWATERHP - Inaccessible
-	!endif
-	!ifdef - NO_RED_FUSIONS
-		!define - REDFUSIONHP - Inaccessible
-		!define - REDFUSIONDUNGEONHP - Inaccessible
-	!else
-		!define - REDFUSIONHP - Any
-		!define - REDFUSIONDUNGEONHP - Dungeon
-	!endif
-	!ifdef - NO_BLUE_FUSIONS
-		!define - BLUEFUSIONHP - Inaccessible
-	!else
-		!define - BLUEFUSIONHP - Any
-	!endif
-	!ifdef - NO_GREEN_FUSIONS
-		!define - GREENFUSIONHP - Inaccessible
-	!else
-		!define - GREENFUSIONHP - Any
-	!endif
 !else
 	!define - HP - Unshuffled
 	!define - DUNGEONHP - Unshuffled
-	!define - UNDERWATERHP - Unshuffled
-	!ifdef - NO_RED_FUSIONS
-		!define - REDFUSIONHP - Inaccessible
-		!define - REDFUSIONDUNGEONHP - Inaccessible
-	!else
-		!define - REDFUSIONHP - Unshuffled
-		!define - REDFUSIONDUNGEONHP - Unshuffled
-	!endif
-	!ifdef - NO_BLUE_FUSIONS
-		!define - BLUEFUSIONHP - Inaccessible
-	!else
-		!define - BLUEFUSIONHP - Unshuffled
-	!endif
-	!ifdef - NO_GREEN_FUSIONS
-		!define - GREENFUSIONHP - Inaccessible
-	!else
-		!define - GREENFUSIONHP - Unshuffled
-	!endif
 !endif
-
+# Rupee Toggle
 !ifdef - RUPEEMANIA
 	!define - RUPEE - ;	Any
 	!define - DUNGEONRUPEE - ;	Dungeon
@@ -5591,30 +5252,29 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 	!define - RUPEE - :NoSpoiler;	Unshuffled
 	!define - DUNGEONRUPEE - :NoSpoiler;	Unshuffled
 !endif
-
+# Pot Toggle
 !ifdef - SPECIALPOTS
-	!define - POT - Dungeon
-	!define - GOLDFUSIONPOT - `GOLDFUSION`
+	!define - POT - Any
+	!define - DUNGEONPOT - Dungeon
 !else
 	!define - POT - Inaccessible
-	!define - GOLDFUSIONPOT - Inaccessible
+	!define - DUNGEONPOT - Inaccessible
 !endif
-
+# Dig Toggle
 !ifdef - DIGGING
 	!define - DIG - ; Any
 	!define - DIGKINSTONE - Any
-	!define - WTFUSIONGREENDIG - ;`WTFUSIONGREEN`
 !else
 	!define - DIG - :NoSpoiler; Unshuffled
 	!define - DIGKINSTONE - Inaccessible
-	!define - WTFUSIONGREENDIG - :NoSpoiler; Unshuffled
 !endif
-
+# Underwater Toggle
 !ifdef - UNDERWATER
 	!define - WATER - ; Any
 	!define - WATERKINSTONE - Any
 	!define - DUNGEONUNDERWATER - ; Dungeon
 	!define - DUNGEONSMALLUNDERWATER - Dungeon
+	!define - WATERHP - `HP`
 !else
 	!define - WATER - :NoSpoiler;	Unshuffled
 	!define - WATERKINSTONE - Inaccessible
@@ -5623,6 +5283,177 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 		!define - DUNGEONSMALLUNDERWATER - Dungeon
 	!else
 		!define - DUNGEONSMALLUNDERWATER - Inaccessible
+	!endif
+	!define - WATERHP - Inaccessible
+!endif
+# Golden Enemies Toggle
+!ifdef - GOLDEN_ENEMY
+	!define - ENEMY - ;	Dungeon
+!else
+	!define - ENEMY - :NoSpoiler;	Unshuffled
+!endif
+# Green Fusions
+!ifdef - NO_GREEN_FUSIONS
+	!define - GREENFUSION - Inaccessible
+	!define - GREENFUSIONDUNGEON - Inaccessible
+	!define - GREENFUSIONHP - Inaccessible
+	!define - GREENFUSIONRUPEE - ; Inaccessible
+	!define - GREENFUSIONDIG - ; Inaccessible
+	!define - GREENFUSIONENEMY - ;	Inaccessible
+!else
+	!define - GREENFUSION - Any
+	!define - GREENFUSIONDUNGEON - Dungeon
+	!define - GREENFUSIONHP - `HP`
+	!define - GREENFUSIONRUPEE - `RUPEE`
+	!define - GREENFUSIONDIG - `DIG`
+	!define - GREENFUSIONENEMY - `ENEMY`
+!endif
+# Blue Fusions
+!ifdef - NO_BLUE_FUSIONS
+	!define - BLUEFUSION - Inaccessible
+	!define - BLUEFUSIONDUNGEON - Inaccessible
+	!define - BLUEFUSIONHP - Inaccessible
+	!define - BLUEFUSIONRUPEE - ; Inaccessible
+	!ifdef - OPEN_GREEN_FUSIONS
+		!define - BLUEGREENFUSION - Any
+		!define - BLUEGREENFUSIONENEMY - `ENEMY`
+	!else
+		!define - BLUEGREENFUSION - Inaccessible
+		!define - BLUEGREENFUSIONENEMY - ;	Inaccessible
+	!endif
+!else
+	!define - BLUEFUSION - Any
+	!define - BLUEFUSIONDUNGEON - Dungeon
+	!define - BLUEFUSIONHP - `HP`
+	!define - BLUEFUSIONRUPEE - `RUPEE`
+	!define - BLUEGREENFUSION - `GREENFUSION`
+	!define - BLUEGREENFUSIONENEMY - `GREENFUSIONENEMY`
+!endif
+# Red Fusions
+!ifdef - NO_RED_FUSIONS
+	!define - REDFUSION - Inaccessible
+	!define - REDFUSIONDUNGEON - Inaccessible
+	!define - REDFUSIONHP - Inaccessible
+	!define - REDFUSIONDUNGEONHP - Inaccessible
+	!define - REDFUSIONRUPEE - ;	Inaccessible
+	!define - REDFUSIONENEMY - ;	Inaccessible
+!else
+	!define - REDFUSION - Any
+	!define - REDFUSIONDUNGEON - Dungeon
+	!define - REDFUSIONHP - `HP`
+	!define - REDFUSIONDUNGEONHP - `DUNGEONHP`
+	!define - REDFUSIONRUPEE - `RUPEE`
+	!define - REDFUSIONENEMY - `ENEMY`
+!endif
+# Wind Ruins Access
+!ifdef - NO_GOLD_FUSIONS
+	!define - GOLDFUSION - Inaccessible
+	!define - GOLDFUSIONHP - Inaccessible
+	!define - GOLDFUSIONPOT - Inaccessible
+	!define - GOLDGREENFUSION - Inaccessible
+	!define - GOLDGREENFUSIONENEMY - ;	Inaccessible
+	!define - GOLDREDFUSION - Inaccessible
+!else
+	!define - GOLDFUSION - Dungeon
+	!define - GOLDFUSIONHP - `DUNGEONHP`
+	!define - GOLDFUSIONPOT - `DUNGEONPOT`
+	!define - GOLDGREENFUSION - `GREENFUSIONDUNGEON`
+	!define - GOLDGREENFUSIONENEMY - `GREENFUSIONENEMY`
+	!define - GOLDREDFUSION - `REDFUSIONDUNGEON`
+!endif
+# Veil Falls Access
+!ifdef - FALLS_ACCESS
+	!define - FALLSCHEST - Any
+	!define - FALLSRUPEE - `RUPEE`
+	!define - FALLSDIG - `DIG`
+	!define - FALLSDIGKINSTONE - `DIGKINSTONE`
+	!define - FALLSWATER - `WATER`
+	!define - FALLSGREEN - `GREENFUSIONDUNGEON`
+	!define - FALLSENEMY - `GREENFUSIONENEMY`
+	!define - FALLSHP - `REDFUSIONHP`
+!else
+	!define - FALLSCHEST - Inaccessible
+	!define - FALLSRUPEE - ;	Inaccessible
+	!define - FALLSDIG - ; Inaccessible
+	!define - FALLSDIGKINSTONE - Inaccessible
+	!define - FALLSWATER - ;	Inaccessible
+	!define - FALLSGREEN - Inaccessible
+	!define - FALLSENEMY - ;	Inaccessible
+	!define - FALLSHP - Inaccessible
+!endif
+# Lower Wind Tribe Access
+!ifdef - TRIBE_ACCESS
+	!define - WTFUSION - Dungeon
+	!define - WTFUSIONDIG - `DIG`
+	!define - WTFUSIONENEMY - `ENEMY`
+!else
+	!define - WTFUSION - Inaccessible
+	!define - WTFUSIONDIG - ;	Inaccessible
+	!define - WTFUSIONENEMY - ; Inaccessible
+!endif
+# Upper Wind Tribe Access
+!ifdef - UWT_ACCESS
+	!define - PALACEOUTSIDECHEST - Dungeon
+!else
+	!define - PALACEOUTSIDECHEST - Inaccessible
+!endif
+# Fusions from Wind Tribe
+!ifdef - OPEN_GREEN_FUSIONS
+	!define - WTFUSIONGREEN - Any
+	!define - WTFUSIONGREENDIG - `DIG`
+	!define - WTFUSIONGREENENEMY - `ENEMY`
+	!define - UWTFUSIONGREEN - Dungeon
+!else
+	!ifdef - NO_GREEN_FUSIONS
+		!define - WTFUSIONGREEN - Inaccessible
+		!define - WTFUSIONGREENDIG - ;	Inaccessible
+		!define - WTFUSIONGREENENEMY - ;	Inaccessible
+		!define - UWTFUSIONGREEN - Inaccessible
+	!else
+		!define - WTFUSIONGREEN - `WTFUSION`
+		!define - WTFUSIONGREENDIG - `WTFUSIONDIG`
+		!define - WTFUSIONGREENENEMY - `WTFUSIONENEMY`
+		!define - UWTFUSIONGREEN - `PALACEOUTSIDECHEST`
+	!endif
+!endif
+# Fortress of Winds
+!ifdef - FOW_ACCESS
+	!define - FORTRESSCHEST - Dungeon
+	!define - FORTRESSPRIZE - DungeonPrize
+	!define - FORTRESSHP - `DUNGEONHP`
+	!define - FORTRESSRUPEE - `DUNGEONRUPEE`
+	!define - FORTRESSPOT - `DUNGEONPOT`
+!else
+	!define - FORTRESSCHEST - Inaccessible
+	!define - FORTRESSPRIZE - Inaccessible
+	!define - FORTRESSHP - Inaccessible
+	!define - FORTRESSRUPEE - ;	Inaccessible
+	!define - FORTRESSPOT - Inaccessible
+!endif
+# Palace of Winds
+!ifdef - POW_ACCESS
+	!define - PALACECHEST - Dungeon
+	!define - PALACEPRIZE - `DUNGEONPRIZE`
+	!define - PALACEHP - `DUNGEONHP`
+	!define - PALACERUPEE - `DUNGEONRUPEE`
+!else
+	!define - PALACECHEST - Inaccessible
+	!define - PALACEPRIZE - Inaccessible
+	!define - PALACEHP - Inaccessible
+	!define - PALACERUPEE - ;	Inaccessible
+!endif
+# Dark Hyrule Castle
+!ifndef - NODHC
+	!define - DHCCHEST - Dungeon
+!else
+	!define - DHCCHEST - Inaccessible
+!endif
+!else
+!endif
+!else
+!endif
+!else
+	!else
 	!endif
 !endif
 
