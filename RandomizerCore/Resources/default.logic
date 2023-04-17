@@ -1000,39 +1000,48 @@
 	!define - POW_MAP - PoWMap
 	!define - DHC_MAP - DHCMap
 !else
-	!ifdef - MAP_REGION
-		!define - DWS_MAP - DWSMapOutside
-		!define - COF_MAP - CoFMapOutside
-		!define - FOW_MAP - FoWMapOutside
-		!define - TOD_MAP - ToDMap
-		!define - POW_MAP - PoWMapOutside
-		!define - DHC_MAP - DHCMapOutside
+	!ifdef - MAP_VANILLA
+		!define - DWS_MAP - DWSMapV
+		!define - COF_MAP - CoFMapV
+		!define - FOW_MAP - FoWMapV
+		!define - TOD_MAP - ToDMapV
+		!define - POW_MAP - PoWMapV
+		!define - DHC_MAP - DHCMapV
 	!else
-		!ifdef - MAP_DUNGEON
-			!define - DWS_MAP - Map
-			!define - COF_MAP - Map
-			!define - FOW_MAP - Map
-			!define - TOD_MAP - Map
-			!define - POW_MAP - Map
-			!define - DHC_MAP - Map
+		!ifdef - MAP_REGION
+			!define - DWS_MAP - DWSMapOutside
+			!define - COF_MAP - CoFMapOutside
+			!define - FOW_MAP - FoWMapOutside
+			!define - TOD_MAP - ToDMap
+			!define - POW_MAP - PoWMapOutside
+			!define - DHC_MAP - DHCMapOutside
 		!else
-			!ifdef - MAP_REGDUN
-				!define - DWS_MAP - MapOutside
-				!define - COF_MAP - MapOutside
-				!define - FOW_MAP - MapOutside
-				!define - TOD_MAP - MapOutside
-				!define - POW_MAP - MapOutside
-				!define - DHC_MAP - MapOutside
+			!ifdef - MAP_DUNGEON
+				!define - DWS_MAP - Map
+				!define - COF_MAP - Map
+				!define - FOW_MAP - Map
+				!define - TOD_MAP - Map
+				!define - POW_MAP - Map
+				!define - DHC_MAP - Map
 			!else
-				!ifdef - MAP_KEYSANITY
-					!undefine - MAP
-					!define - MAP - Minor
-					!define - DWS_MAP - 
-					!define - COF_MAP - 
-					!define - FOW_MAP - 
-					!define - TOD_MAP - 
-					!define - POW_MAP - 
-					!define - DHC_MAP - 
+				!ifdef - MAP_REGDUN
+					!define - DWS_MAP - MapOutside
+					!define - COF_MAP - MapOutside
+					!define - FOW_MAP - MapOutside
+					!define - TOD_MAP - MapOutside
+					!define - POW_MAP - MapOutside
+					!define - DHC_MAP - MapOutside
+				!else
+					!ifdef - MAP_KEYSANITY
+						!undefine - MAP
+						!define - MAP - Minor
+						!define - DWS_MAP - 
+						!define - COF_MAP - 
+						!define - FOW_MAP - 
+						!define - TOD_MAP - 
+						!define - POW_MAP - 
+						!define - DHC_MAP - 
+					!endif
 				!endif
 			!endif
 		!endif
@@ -1046,39 +1055,48 @@
 	!define - POW_COMPASS - PoWCompass
 	!define - DHC_COMPASS - DHCCompass
 !else
-	!ifdef - COMPASS_REGION
-		!define - DWS_COMPASS - DWSCompassOutside
-		!define - COF_COMPASS - CoFCompassOutside
-		!define - FOW_COMPASS - FoWCompassOutside
-		!define - TOD_COMPASS - ToDCompass
-		!define - POW_COMPASS - PoWCompassOutside
-		!define - DHC_COMPASS - DHCCompassOutside
+	!ifdef - COMPASS_VANILLA
+		!define - DWS_COMPASS - DWSCompassV
+		!define - COF_COMPASS - CoFCompassV
+		!define - FOW_COMPASS - FoWCompassV
+		!define - TOD_COMPASS - ToDCompassV
+		!define - POW_COMPASS - PoWCompassV
+		!define - DHC_COMPASS - DHCCompassV
 	!else
-		!ifdef - COMPASS_DUNGEON
-			!define - DWS_COMPASS - Compass
-			!define - COF_COMPASS - Compass
-			!define - FOW_COMPASS - Compass
-			!define - TOD_COMPASS - Compass
-			!define - POW_COMPASS - Compass
-			!define - DHC_COMPASS - Compass
+		!ifdef - COMPASS_REGION
+			!define - DWS_COMPASS - DWSCompassOutside
+			!define - COF_COMPASS - CoFCompassOutside
+			!define - FOW_COMPASS - FoWCompassOutside
+			!define - TOD_COMPASS - ToDCompass
+			!define - POW_COMPASS - PoWCompassOutside
+			!define - DHC_COMPASS - DHCCompassOutside
 		!else
-			!ifdef - COMPASS_REGDUN
-				!define - DWS_COMPASS - CompassOutside
-				!define - COF_COMPASS - CompassOutside
-				!define - FOW_COMPASS - CompassOutside
-				!define - TOD_COMPASS - CompassOutside
-				!define - POW_COMPASS - CompassOutside
-				!define - DHC_COMPASS - CompassOutside
+			!ifdef - COMPASS_DUNGEON
+				!define - DWS_COMPASS - Compass
+				!define - COF_COMPASS - Compass
+				!define - FOW_COMPASS - Compass
+				!define - TOD_COMPASS - Compass
+				!define - POW_COMPASS - Compass
+				!define - DHC_COMPASS - Compass
 			!else
-				!ifdef - COMPASS_KEYSANITY
-					!undefine - COMPASS
-					!define - COMPASS - Minor
-					!define - DWS_COMPASS - 
-					!define - COF_COMPASS - 
-					!define - FOW_COMPASS - 
-					!define - TOD_COMPASS - 
-					!define - POW_COMPASS - 
-					!define - DHC_COMPASS - 
+				!ifdef - COMPASS_REGDUN
+					!define - DWS_COMPASS - CompassOutside
+					!define - COF_COMPASS - CompassOutside
+					!define - FOW_COMPASS - CompassOutside
+					!define - TOD_COMPASS - CompassOutside
+					!define - POW_COMPASS - CompassOutside
+					!define - DHC_COMPASS - CompassOutside
+				!else
+					!ifdef - COMPASS_KEYSANITY
+						!undefine - COMPASS
+						!define - COMPASS - Minor
+						!define - DWS_COMPASS - 
+						!define - COF_COMPASS - 
+						!define - FOW_COMPASS - 
+						!define - TOD_COMPASS - 
+						!define - POW_COMPASS - 
+						!define - DHC_COMPASS - 
+					!endif
 				!endif
 			!endif
 		!endif
@@ -1400,45 +1418,43 @@
 			Items.DungeonMap.0x1D;	Minor;
 		!endif
 	!else
-		!ifndef - MAP_VANILLA
-			Items.DungeonMap.0x18;	`MAP`;	`DWS_MAP`
-			Items.DungeonMap.0x19;	`MAP`;	`COF_MAP`
-			Items.DungeonMap.0x1B;	`MAP`;	`TOD_MAP`
-			!ifdef - POW_ACCESS
-				Items.DungeonMap.0x1C;	`MAP`;	`POW_MAP`
-			!else
-				!ifndef - MAP_VANILLA
-					!ifndef - MAP_REGION
-						!ifndef - MAP_STANDARD
-							!ifdef - MEME
-								Items.DungeonMap.0x1C;	`MAP`;	`POW_MAP`
-							!endif
+		Items.DungeonMap.0x18;	`MAP`;	`DWS_MAP`
+		Items.DungeonMap.0x19;	`MAP`;	`COF_MAP`
+		Items.DungeonMap.0x1B;	`MAP`;	`TOD_MAP`
+		!ifdef - POW_ACCESS
+			Items.DungeonMap.0x1C;	`MAP`;	`POW_MAP`
+		!else
+			!ifndef - MAP_VANILLA
+				!ifndef - MAP_REGION
+					!ifndef - MAP_STANDARD
+						!ifdef - MEME
+							Items.DungeonMap.0x1C;	`MAP`;	`POW_MAP`
 						!endif
 					!endif
 				!endif
 			!endif
-			!ifdef - FOW_ACCESS
-				Items.DungeonMap.0x1A;	`MAP`;	`FOW_MAP`
-			!else
-				!ifndef - MAP_VANILLA
-					!ifndef - MAP_REGION
-						!ifndef - MAP_STANDARD
-							!ifdef - MEME
-								Items.DungeonMap.0x1A;	`MAP`;	`FOW_MAP`
-							!endif
+		!endif
+		!ifdef - FOW_ACCESS
+			Items.DungeonMap.0x1A;	`MAP`;	`FOW_MAP`
+		!else
+			!ifndef - MAP_VANILLA
+				!ifndef - MAP_REGION
+					!ifndef - MAP_STANDARD
+						!ifdef - MEME
+							Items.DungeonMap.0x1A;	`MAP`;	`FOW_MAP`
 						!endif
 					!endif
 				!endif
 			!endif
-			!ifndef - NODHC
-				Items.DungeonMap.0x1D;	`MAP`;	`DHC_MAP`
-			!else
-				!ifndef - MAP_VANILLA
-					!ifndef - MAP_REGION
-						!ifndef - MAP_STANDARD
-							!ifdef - MEME
-								Items.DungeonMap.0x1D;	`MAP`;	`DHC_MAP`
-							!endif
+		!endif
+		!ifndef - NODHC
+			Items.DungeonMap.0x1D;	`MAP`;	`DHC_MAP`
+		!else
+			!ifndef - MAP_VANILLA
+				!ifndef - MAP_REGION
+					!ifndef - MAP_STANDARD
+						!ifdef - MEME
+							Items.DungeonMap.0x1D;	`MAP`;	`DHC_MAP`
 						!endif
 					!endif
 				!endif
@@ -1455,45 +1471,43 @@
 			Items.Compass.0x1D;	Minor;
 		!endif
 	!else
-		!ifndef - COMPASS_VANILLA
-			Items.Compass.0x18;	`COMPASS`;	`DWS_COMPASS`
-			Items.Compass.0x19;	`COMPASS`;	`COF_COMPASS`
-			Items.Compass.0x1B;	`COMPASS`;	`TOD_COMPASS`
-			!ifdef - POW_ACCESS
-				Items.Compass.0x1C;	`COMPASS`;	`POW_COMPASS`
-			!else
-				!ifndef - COMPASS_VANILLA
-					!ifndef - COMPASS_REGION
-						!ifndef - COMPASS_STANDARD
-							!ifdef - MEME
-								Items.Compass.0x1C;	`COMPASS`;	`POW_COMPASS`
-							!endif
+		Items.Compass.0x18;	`COMPASS`;	`DWS_COMPASS`
+		Items.Compass.0x19;	`COMPASS`;	`COF_COMPASS`
+		Items.Compass.0x1B;	`COMPASS`;	`TOD_COMPASS`
+		!ifdef - POW_ACCESS
+			Items.Compass.0x1C;	`COMPASS`;	`POW_COMPASS`
+		!else
+			!ifndef - COMPASS_VANILLA
+				!ifndef - COMPASS_REGION
+					!ifndef - COMPASS_STANDARD
+						!ifdef - MEME
+							Items.Compass.0x1C;	`COMPASS`;	`POW_COMPASS`
 						!endif
 					!endif
 				!endif
 			!endif
-			!ifdef - FOW_ACCESS
-				Items.Compass.0x1A;	`COMPASS`;	`FOW_COMPASS`
-			!else
-				!ifndef - COMPASS_VANILLA
-					!ifndef - COMPASS_REGION
-						!ifndef - COMPASS_STANDARD
-							!ifdef - MEME
-								Items.Compass.0x1A;	`COMPASS`;	`FOW_COMPASS`
-							!endif
+		!endif
+		!ifdef - FOW_ACCESS
+			Items.Compass.0x1A;	`COMPASS`;	`FOW_COMPASS`
+		!else
+			!ifndef - COMPASS_VANILLA
+				!ifndef - COMPASS_REGION
+					!ifndef - COMPASS_STANDARD
+						!ifdef - MEME
+							Items.Compass.0x1A;	`COMPASS`;	`FOW_COMPASS`
 						!endif
 					!endif
 				!endif
 			!endif
-			!ifndef - NODHC
-				Items.Compass.0x1D;	`COMPASS`;	`DHC_COMPASS`
-			!else
-				!ifndef - COMPASS_VANILLA
-					!ifndef - COMPASS_REGION
-						!ifndef - COMPASS_STANDARD
-							!ifdef - MEME
-								Items.Compass.0x1D;	`COMPASS`;	`DHC_COMPASS`
-							!endif
+		!endif
+		!ifndef - NODHC
+			Items.Compass.0x1D;	`COMPASS`;	`DHC_COMPASS`
+		!else
+			!ifndef - COMPASS_VANILLA
+				!ifndef - COMPASS_REGION
+					!ifndef - COMPASS_STANDARD
+						!ifdef - MEME
+							Items.Compass.0x1D;	`COMPASS`;	`DHC_COMPASS`
 						!endif
 					!endif
 				!endif
