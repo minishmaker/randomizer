@@ -5944,7 +5944,7 @@ Castle_RightFountainFusion_MinishHoleChest	`DHC_OUTSIDE`;		`REDFUSIONDUNGEON`;		
 Castle_LeftFountainFusion_MinishHoleChest	`DHC_OUTSIDE`;		`GREENFUSIONDUNGEON`;			0x36-0x01-0x00;													(|(&Helpers.Shared35Fusion, Helpers.BonkedTrees), Helpers.Hundo);	Items.Shells.50
 
 DHC_Main_Entrance												`DHC_MAIN_DUNGEONENTRANCE`;	DumDHCENT11:Define:FirstByte, DumDHCENT12:Define:SecondByte;			Helpers.AccessDHC;											Items.Entrance.0x07
-DHC_Side_Entrance												`DHC_SIDE_DUNGEONENTRANCE`;	DumDHCENT21:Define:FirstByte, DumDHCENT22:Define:SecondByte;			Helpers.AccessDHC;											Items.Entrance.0x08
+DHC_Side_Entrance												`DHC_SIDE_DUNGEONENTRANCE`;	DumDHCENT21:Define:FirstByte, DumDHCENT22:Define:SecondByte;			;											Items.Entrance.0x08
 
 # Eastern Hills and LonLonRanch
 AccessEasternHills;				Helper;				;														(|Helpers.CanDestroyTrees, Helpers.SHFWindCrest, (&Helpers.OverworldBlocks, Helpers.AccessMinishWoods))
@@ -6532,7 +6532,7 @@ DHC_3F_SouthEast_Chest		`DHC_INSIDE_SK`;	`DHCCHEST`;	0x88-0x04-0x00;	(|(&`ENTERD
 DHC_2F_BlueWarp_BigChest	`DHC_INSIDE_BK`;	`DHCCHEST`;	0x88-0x09-0x00;	(|(&`ENTERDHC`, Helpers.DHCBlackKnight, Helpers.DHCBigBlock, Helpers.CanSplit4), Helpers.Hundo);							`DHCBK`
 
 !ifdef - NODHC
-	BeatVaati;	Helper;	;	`ENTERDHC`
+	BeatVaati;	Helper;	;	`ENTERDHC`, Helpers.AccessDHC
 !else
 	BeatVaati;	Helper;	;	`ENTERDHC`, (|(&Helpers.DHC1stDoor, Helpers.BombWalls), Helpers.DHCRedWarp, (&Helpers.DHCBlueWarp, (|Helpers.OverworldBlocks, Items.RocsCape))), Helpers.DHCBossDoor, Helpers.CanSplit4, Helpers.HasBow, Items.GustJar, Items.PacciCane, Helpers.DarkRooms
 !endif
