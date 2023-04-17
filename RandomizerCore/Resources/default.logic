@@ -3072,118 +3072,118 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 	PoWHP;				Helper;;	(|(&Helpers.DarkRooms, (|(&Helpers.PoW2ndHalf1stDoor, Items.RocsCape), Helpers.PoWShortcuts), Helpers.PoWHandRoom, (|Helpers.PoW2ndHalf, Helpers.PoWBlueWarp)), (&Helpers.PoWRedWarp, Helpers.OverworldBlocks), (&(|Helpers.CanSplit3, Helpers.CanSplit4), Helpers.PoWJump, Helpers.PoW1stDoor, (|Items.GustJar, Helpers.HasBoomerang)))
 !endif
 !ifndef - MITTSMONEY
-MittsMoney;			Helper;;	Helpers.Inaccessible
-ShopSimon;			Helper;;	(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200)
-Shop80;				Helper;;	(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200)
-Shop300;				Helper;;	(+510, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200)
-Shop600;				Helper;;	(+1110, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200)
-ShopWitch;			Helper;;	(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200)
-ShopScrubTrilby;		Helper;;	(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200)
-ShopScrubCrenel;		Helper;;	(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200)
+	MittsMoney;			Helper;;	Helpers.Inaccessible
+	ShopSimon;			Helper;;	(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200)
+	Shop80;				Helper;;	(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200)
+	Shop300;				Helper;;	(+510, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200)
+	Shop600;				Helper;;	(+1110, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200)
+	ShopWitch;			Helper;;	(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200)
+	ShopScrubTrilby;		Helper;;	(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200)
+	ShopScrubCrenel;		Helper;;	(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200)
 !else
-MittsMoney;			Helper;;	Items.MoleMitts
-ShopSimon;			Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Items.MoleMitts)
-Shop80;				Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Items.MoleMitts)
-Shop300;				Helper;;	(|(+510, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Items.MoleMitts)
-Shop600;				Helper;;	(|(+1110, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Items.MoleMitts)
-ShopWitch;			Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Items.MoleMitts)
-ShopScrubTrilby;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Items.MoleMitts)
-ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Items.MoleMitts)
+	MittsMoney;			Helper;;	Items.MoleMitts
+	ShopSimon;			Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Items.MoleMitts)
+	Shop80;				Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Items.MoleMitts)
+	Shop300;				Helper;;	(|(+510, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Items.MoleMitts)
+	Shop600;				Helper;;	(|(+1110, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Items.MoleMitts)
+	ShopWitch;			Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Items.MoleMitts)
+	ShopScrubTrilby;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Items.MoleMitts)
+	ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Items.MoleMitts)
 !endif
 !ifndef - GUARDSKIP
-GuardSkip;				Helper;;	Helpers.Inaccessible
+	GuardSkip;				Helper;;	Helpers.Inaccessible
 !else
-GuardSkip;				Helper;;	Items.PegasusBoots
+	GuardSkip;				Helper;;	Items.PegasusBoots
 !endif
 !ifndef - LIKELIKE
-LikeLike;				Helper;;	Helpers.HasSword
+	LikeLike;				Helper;;	Helpers.HasSword
 !else
-LikeLike;				Helper;;	
+	LikeLike;				Helper;;	
 !endif
 !ifndef - BLOWDUST
-BlowDust;				Helper;;	Items.GustJar
+	BlowDust;				Helper;;	Items.GustJar
 !else
-BlowDust;				Helper;;	(|Items.BombBag, Items.GustJar)
+	BlowDust;				Helper;;	(|Items.BombBag, Items.GustJar)
 !endif
 !ifndef - MUSHROOM
-CrenelMushroom;		Helper;;	Items.BombBag
+	CrenelMushroom;		Helper;;	Items.BombBag
 !else
-CrenelMushroom;		Helper;;	(|Items.BombBag, Items.GustJar)
+	CrenelMushroom;		Helper;;	(|Items.BombBag, Items.GustJar)
 !endif
 !ifndef - ARROWBREAK
-LightArrowBreak;		Helper;;	Helpers.Inaccessible
+	LightArrowBreak;		Helper;;	Helpers.Inaccessible
 !else
-LightArrowBreak;		Helper;;	Helpers.HasLightBow
+	LightArrowBreak;		Helper;;	Helpers.HasLightBow
 !endif
 !ifndef - BOBOMBS
-Bobombs;				Helper;;	Helpers.Inaccessible
+	Bobombs;				Helper;;	Helpers.Inaccessible
 !else
-Bobombs;				Helper;;	(|Helpers.HasSword, Items.GustJar, Items.BombBag)
+	Bobombs;				Helper;;	(|Helpers.HasSword, Items.GustJar, Items.BombBag)
 !endif
 !ifndef - CRENELBEAM
-CrenelBeam;			Helper;;	Helpers.Inaccessible
+	CrenelBeam;			Helper;;	Helpers.Inaccessible
 !else
-CrenelBeam;			Helper;;	Helpers.HasBeam
+	CrenelBeam;			Helper;;	Helpers.HasBeam
 !endif
 !ifndef - DTBEETLE
-DownThrustBeetle;		Helper;;	Helpers.Inaccessible
+	DownThrustBeetle;		Helper;;	Helpers.Inaccessible
 !else
-DownThrustBeetle;		Helper;;	Helpers.CanDownThrust
+	DownThrustBeetle;		Helper;;	Helpers.CanDownThrust
 !endif
 !ifndef - EXTENDCAPE
-CapeExtension;			Helper;;	Items.Flippers
+	CapeExtension;			Helper;;	Items.Flippers
 !else
-CapeExtension;			Helper;;	(|Items.Flippers, Items.RocsCape)
+	CapeExtension;			Helper;;	(|Items.Flippers, Items.RocsCape)
 !endif
 !ifndef - DARKROOMS
-DarkRooms;				Helper;;	Items.Lantern
+	DarkRooms;				Helper;;	Items.Lantern
 !else
-DarkRooms;				Helper;;	
+	DarkRooms;				Helper;;	
 !endif
 !ifndef - LAKEMINISH
-LakeMinish;			Helper;;	Helpers.Inaccessible
+	LakeMinish;			Helper;;	Helpers.Inaccessible
 !else
-LakeMinish;			Helper;;	Items.Ocarina, Helpers.VillageSideMinish3Fusion
+	LakeMinish;			Helper;;	Items.Ocarina, Helpers.VillageSideMinish3Fusion
 !endif
 !ifndef - CABINSWIM
-CabinSwim;				Helper;;	Items.GustJar
+	CabinSwim;				Helper;;	Items.GustJar
 !else
-CabinSwim;				Helper;;	(|Items.Flippers, Items.GustJar)
+	CabinSwim;				Helper;;	(|Items.Flippers, Items.GustJar)
 !endif
 !ifndef - CLOUDSKILL
-CloudsKill;			Helper;;	Helpers.HasDamageSource	
+	CloudsKill;			Helper;;	Helpers.HasDamageSource	
 !else
-CloudsKill;			Helper;;	
+	CloudsKill;			Helper;;	
 !endif
 !ifndef - FOWPOT
-FoWPot;				Helper;;	Helpers.Inaccessible
+	FoWPot;				Helper;;	Helpers.Inaccessible
 !else
-FoWPot;				Helper;;	Items.GustJar
+	FoWPot;				Helper;;	Items.GustJar
 !endif
 !ifndef - POWJUMP
-PoWJump;				Helper;;	Items.PacciCane
+	PoWJump;				Helper;;	Items.PacciCane
 !else
-PoWJump;				Helper;;	
+	PoWJump;				Helper;;	
 !endif
 !ifndef - POWPOTOOL
-PoWPotPuzzleOOL;		Helper;;	Helpers.Inaccessible
+	PoWPotPuzzleOOL;		Helper;;	Helpers.Inaccessible
 !else
-PoWPotPuzzleOOL;		Helper;;	(|Helpers.HasSword, Helpers.HasBoomerang, Items.BombBag, Helpers.HasBow), (|(&Helpers.DarkRooms, (|(&Helpers.PoW2ndHalf1stDoor, Items.RocsCape), Helpers.PoWShortcuts), (|Helpers.PoW2ndHalf, Helpers.PoWBlueWarp)), (&Helpers.PoWRedWarp, Helpers.OverworldBlocks))
+	PoWPotPuzzleOOL;		Helper;;	(|Helpers.HasSword, Helpers.HasBoomerang, Items.BombBag, Helpers.HasBow), (|(&Helpers.DarkRooms, (|(&Helpers.PoW2ndHalf1stDoor, Items.RocsCape), Helpers.PoWShortcuts), (|Helpers.PoW2ndHalf, Helpers.PoWBlueWarp)), (&Helpers.PoWRedWarp, Helpers.OverworldBlocks))
 !endif
 !ifndef - DHCCANON
-DHCCanonHit;			Helper;;	Helpers.CanSplit4
+	DHCCanonHit;			Helper;;	Helpers.CanSplit4
 !else
-DHCCanonHit;			Helper;;	Items.BombBag, Helpers.HasSword
+	DHCCanonHit;			Helper;;	Items.BombBag, Helpers.HasSword
 !endif
 !ifndef - DHCJOSTLE
-DHCBladePuzzleShuffle;	Helper;;	Helpers.CanSplit4
+	DHCBladePuzzleShuffle;	Helper;;	Helpers.CanSplit4
 !else
-DHCBladePuzzleShuffle;	Helper;;	(|Helpers.CanSplit2, Helpers.CanSplit3, Helpers.CanSplit4)
+	DHCBladePuzzleShuffle;	Helper;;	(|Helpers.CanSplit2, Helpers.CanSplit3, Helpers.CanSplit4)
 !endif
 !ifndef - DHCSWITCHES
-DHCSwitchHit;			Helper;;	Helpers.CanSplit4
+	DHCSwitchHit;			Helper;;	Helpers.CanSplit4
 !else
-DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
+	DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 !endif
 
 # OHKO trick
@@ -4715,7 +4715,7 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 						!undefine - ToDRightBlock
 						!undefine - ToDLeftBlock
 						!undefine - ToDBigDoor
-						!define - ToDRightBlock - (&Items.ToDKeys.0xb, ~Items.BigKey.0x1B), (&Items.ToDKeys.0xa, ~Items.SmallKey.0x1B, ~Items.DungeonMap.0x1B, ~Items.Compass.0x1B)
+						!define - ToDRightBlock - (|(&Items.ToDKeys.0xb, ~Items.BigKey.0x1B), (&Items.ToDKeys.0xa, ~Items.SmallKey.0x1B, ~Items.DungeonMap.0x1B, ~Items.Compass.0x1B))
 						!define - ToDLeftBlock - , (&Items.ToDKeys.0xb, Items.SmallKey.0x1B, ~Items.SmallKey.0x1B, ~Items.DungeonMap.0x1B, ~Items.Compass.0x1B), (&Items.ToDKeys.0xa, Items.BigKey.0x1B, Items.SmallKey.0x1B:4)
 						!define - ToDBigDoor - , (&Items.SmallKey.0x1B, Items.BigKey.0x1B, Items.ToDKeys.0xb), (&Items.BigKey.0x1B, Items.ToDKeys.0xa))
 					!endif
@@ -4731,7 +4731,7 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 							!undefine - ToDRightBlock
 							!undefine - ToDLeftBlock
 							!undefine - ToDBigDoor
-							!define - ToDRightBlock - (&Items.ToDKeys.0xb, ~Items.BigKey.0x1B, ~Items.DungeonMap.0x1B, ~Items.Compass.0x1B), (&Items.ToDKeys.0xa, ~Items.SmallKey.0x1B, ~Items.DungeonMap.0x1B, ~Items.Compass.0x1B)
+							!define - ToDRightBlock - (|(&Items.ToDKeys.0xb, ~Items.BigKey.0x1B, ~Items.DungeonMap.0x1B, ~Items.Compass.0x1B), (&Items.ToDKeys.0xa, ~Items.SmallKey.0x1B, ~Items.DungeonMap.0x1B, ~Items.Compass.0x1B))
 							!define - ToDLeftBlock - , (&Items.ToDKeys.0xb, Items.SmallKey.0x1B, ~Items.SmallKey.0x1B, ~Items.DungeonMap.0x1B, ~Items.Compass.0x1B), (&Items.ToDKeys.0xa, Items.BigKey.0x1B, Items.SmallKey.0x1B:4)
 							!define - ToDBigDoor - , (&Items.SmallKey.0x1B, Items.BigKey.0x1B, Items.ToDKeys.0xb), (&Items.BigKey.0x1B, Items.ToDKeys.0xa)
 						!endif
@@ -4748,7 +4748,7 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 						!undefine - ToDRightBlock
 						!undefine - ToDLeftBlock
 						!undefine - ToDBigDoor
-						!define - ToDRightBlock - (&Items.ToDKeys.0xb, ~Items.BigKey.0x1B), (&Items.ToDKeys.0xa, ~Items.SmallKey.0x1B, ~Items.DungeonMap.0x1B, ~Items.Compass.0x1B)
+						!define - ToDRightBlock - (|(&Items.ToDKeys.0xb, ~Items.BigKey.0x1B), (&Items.ToDKeys.0xa, ~Items.SmallKey.0x1B, ~Items.DungeonMap.0x1B, ~Items.Compass.0x1B))
 						!define - ToDLeftBlock - , (&Items.ToDKeys.0xb, Items.SmallKey.0x1B, ~Items.SmallKey.0x1B, ~Items.DungeonMap.0x1B, ~Items.Compass.0x1B), (&Items.ToDKeys.0xa, Items.BigKey.0x1B, (|Items.SmallKey.0x1B:4, (&Items.SmallKey.0x1B:3, Helpers.CompleteDroplets, Helpers.ToDLeftPath, Helpers.ToDRightPath)))
 						!define - ToDBigDoor - , (&Items.SmallKey.0x1B, Items.BigKey.0x1B, Items.ToDKeys.0xb), (&Items.BigKey.0x1B, Items.ToDKeys.0xa)
 					!endif
@@ -4776,7 +4776,7 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 							!undefine - ToDLeftBlock
 							!undefine - ToDBigDoor
 							!undefine - ToDChuDoor
-							!define - ToDRightBlock - (&Items.ToDKeys.0xb, ~Items.BigKey.0x1B, ~Items.DungeonMap.0x1B, ~Items.Compass.0x1B), (&Items.ToDKeys.0xa, ~Items.SmallKey.0x1B, ~Items.DungeonMap.0x1B, ~Items.Compass.0x1B)
+							!define - ToDRightBlock - (|(&Items.ToDKeys.0xb, ~Items.BigKey.0x1B, ~Items.DungeonMap.0x1B, ~Items.Compass.0x1B), (&Items.ToDKeys.0xa, ~Items.SmallKey.0x1B, ~Items.DungeonMap.0x1B, ~Items.Compass.0x1B))
 							!define - ToDLeftBlock - , (&Items.ToDKeys.0xb, Items.SmallKey.0x1B, ~Items.SmallKey.0x1B, ~Items.DungeonMap.0x1B, ~Items.Compass.0x1B), (&Items.ToDKeys.0xa, Items.BigKey.0x1B, (|Items.SmallKey.0x1B:4, (&Items.SmallKey.0x1B:3, Helpers.CompleteDroplets, Helpers.ToDLeftPath, Helpers.ToDRightPath)))
 							!define - ToDBigDoor - , (&Items.SmallKey.0x1B, Items.BigKey.0x1B, Items.ToDKeys.0xb), (&Items.BigKey.0x1B, Items.ToDKeys.0xa)
 							!define - ToDChuDoor - , (&Items.SmallKey.0x1B:3, Helpers.CompleteDroplets, Helpers.ToDLeftPath, Helpers.ToDRightPath, Items.ToDKeys.0xb), (&Items.SmallKey.0x1B:2, Helpers.CompleteDroplets, Helpers.ToDLeftPath, Helpers.ToDRightPath, Items.ToDKeys.0xa)
