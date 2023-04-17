@@ -5448,15 +5448,136 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 !else
 	!define - DHCCHEST - Inaccessible
 !endif
+# Dungeon Item Shuffle Rules
+!define - DWS_OUTSIDE - 	:DWSSmallOutside	:DWSBigOutside	:DWSMapOutside	:DWSCompassOutside	:SmallOutside	:BigOutside	:MapOutside	:CompassOutside
+!define - COF_OUTSIDE - 	:CoFSmallOutside	:CoFBigOutside	:CoFMapOutside	:CoFCompassOutside	:SmallOutside	:BigOutside	:MapOutside	:CompassOutside
+!define - FOW_OUTSIDE - 	:FoWSmallOutside	:FoWBigOutside	:FoWMapOutside	:FoWCompassOutside	:SmallOutside	:BigOutside	:MapOutside	:CompassOutside
+!define - POW_OUTSIDE -	:PoWSmallOutside	:PoWBigOutside	:PoWMapOutside	:PoWCompassOutside	:SmallOutside	:BigOutside	:MapOutside	:CompassOutside
+!define - DHC_OUTSIDE -	:DHCSmallOutside	:DHCBigOutside	:DHCMapOutside	:DHCCompassOutside	:SmallOutside	:BigOutside	:MapOutside	:CompassOutside
+!define - RC_OUTSIDE -	:RCSmallOutside														:SmallOutside	:BigOutside	:MapOutside	:CompassOutside
+!define - DWS_INSIDE - `DWS_OUTSIDE`	:DWSSmall	:DWSBig	:DWSMap	:DWSCompass	:Small	:Big	:Map	:Compass
+!define - COF_INSIDE - `COF_OUTSIDE`	:CoFSmall	:CoFBig	:CoFMap	:CoFCompass	:Small	:Big	:Map	:Compass	:CoF
+!define - FOW_INSIDE - `FOW_OUTSIDE`	:FoWSmall	:FoWBig	:FoWMap	:FoWCompass	:Small	:Big	:Map	:Compass
+!define - TOD_INSIDE - 				:ToDSmall	:ToDBig	:ToDMap	:ToDCompass	:Small	:Big	:Map	:Compass
+!define - POW_INSIDE - `POW_OUTSIDE`	:PoWSmall	:PoWBig	:PoWMap	:PoWCompass	:Small	:Big	:Map	:Compass
+!define - DHC_INSIDE - `DHC_OUTSIDE`	:DHCSmall	:DHCBig	:DHCMap	:DHCCompass	:Small	:Big	:Map	:Compass
+!define - RC_INSIDE - `RC_OUTSIDE`		:RCSmall									:Small	:Big	:Map	:Compass
+!ifndef - NO_RED_FUSIONS
+	!define - POW_F_OUTSIDE - 
 !else
+	!define - POW_F_OUTSIDE - `POW_OUTSIDE`
 !endif
+!ifdef - DOJORANDOM
+	!define - DHC_DOJO - :dojo
 !else
+	!define - DHC_DOJO - `DHC_OUTSIDE`
 !endif
+!ifdef - SMALL_KEYS_VANILLA
+	!define - DWS_INSIDE_SK - :DWSSmallV
+	!define - COF_INSIDE_SK - :CoFSmallV
+	!define - FOW_INSIDE_SK - :FoWSmallV
+	!define - TOD_INSIDE_SK - :ToDSmallV
+	!define - POW_INSIDE_SK - :PoWSmallV
+	!define - DHC_INSIDE_SK - :DHCSmallV
+	!define - RC_INSIDE_SK - :RCSmallV
 !else
+	!define - DWS_INSIDE_SK - `DWS_INSIDE`
+	!define - COF_INSIDE_SK - `COF_INSIDE`
+	!define - FOW_INSIDE_SK - `FOW_INSIDE`
+	!define - TOD_INSIDE_SK - `TOD_INSIDE`
+	!define - POW_INSIDE_SK - `POW_INSIDE`
+	!define - DHC_INSIDE_SK - `DHC_INSIDE`
+	!define - RC_INSIDE_SK - `RC_INSIDE`
+!endif
+!ifdef - BIG_KEYS_VANILLA
+	!define - DWS_INSIDE_BK - :DWSBigV
+	!define - COF_INSIDE_BK - :CoFBigV
+	!define - FOW_INSIDE_BK - :FoWBigV
+	!define - TOD_INSIDE_BK - :ToDBigV
+	!define - POW_INSIDE_BK - :PoWBigV
+	!define - DHC_INSIDE_BK - :DHCBigV
+!else
+	!define - DWS_INSIDE_BK - `DWS_INSIDE`
+	!define - COF_INSIDE_BK - `COF_INSIDE`
+	!define - FOW_INSIDE_BK - `FOW_INSIDE`
+	!define - TOD_INSIDE_BK - `TOD_INSIDE`
+	!define - POW_INSIDE_BK - `POW_INSIDE`
+	!define - DHC_INSIDE_BK - `DHC_INSIDE`
+!endif
+!ifdef - MAP_VANILLA
+	!define - DWS_INSIDE_MAP - :DWSMapV
+	!define - COF_INSIDE_MAP - :CoFMapV
+	!define - FOW_INSIDE_MAP - :FoWMapV
+	!define - TOD_INSIDE_MAP - :ToDMapV
+	!define - POW_INSIDE_MAP - :PoWMapV
+	!define - DHC_INSIDE_MAP - :DHCMapV
+!else
+	!define - DWS_INSIDE_MAP - `DWS_INSIDE`
+	!define - COF_INSIDE_MAP - `COF_INSIDE`
+	!define - FOW_INSIDE_MAP - `FOW_INSIDE`
+	!define - TOD_INSIDE_MAP - `TOD_INSIDE`
+	!define - POW_INSIDE_MAP - `POW_INSIDE`
+	!define - DHC_INSIDE_MAP - `DHC_INSIDE`
+!endif
+!ifdef - COMPASS_VANILLA
+	!define - DWS_INSIDE_COM - :DWSCompassV
+	!define - COF_INSIDE_COM - :CoFCompassV
+	!define - FOW_INSIDE_COM - :FoWCompassV
+	!define - TOD_INSIDE_COM - :ToDCompassV
+	!define - POW_INSIDE_COM - :PoWCompassV
+	!define - DHC_INSIDE_COM - :DHCCompassV
+!else
+	!define - DWS_INSIDE_COM - `DWS_INSIDE`
+	!define - COF_INSIDE_COM - `COF_INSIDE`
+	!define - FOW_INSIDE_COM - `FOW_INSIDE`
+	!define - TOD_INSIDE_COM - `TOD_INSIDE`
+	!define - POW_INSIDE_COM - `POW_INSIDE`
+	!define - DHC_INSIDE_COM - `DHC_INSIDE`
+!endif
+!ifdef - UNREQSUR
+	!define - DWS_PRIZE - :DWSSmall	:DWSBig	:DWSMap	:DWSCompass	:DWSSmallOutside	:DWSBigOutside	:DWSMapOutside	:DWSCompassOutside
+	!define - COF_PRIZE - :CoFSmall	:CoFBig	:CoFMap	:CoFCompass	:CoFSmallOutside	:CoFBigOutside	:CoFMapOutside	:CoFCompassOutside	:CoF	
+	!define - FOW_PRIZE - :FoWSmall	:FoWBig	:FoWMap	:FoWCompass	:FoWSmallOutside	:FoWBigOutside	:FoWMapOutside	:FoWCompassOutside
+	!define - TOD_PRIZE - :ToDSmall	:ToDBig	:ToDMap	:ToDCompass
+	!define - POW_PRIZE - :PoWSmall	:PoWBig	:PoWMap	:PoWCompass	:PoWSmallOutside	:PoWBigOutside	:PoWMapOutside	:PoWCompassOutside
+	!define - RC_PRIZE - 	:RCSmall									:RCSmallOutside
+!else
+	!ifdef - BARRENSUR
+		!define - DWS_PRIZE - :DWSSmall	:DWSBig	:DWSMap	:DWSCompass	:DWSSmallOutside	:DWSBigOutside	:DWSMapOutside	:DWSCompassOutside
+		!define - COF_PRIZE - :CoFSmall	:CoFBig	:CoFMap	:CoFCompass	:CoFSmallOutside	:CoFBigOutside	:CoFMapOutside	:CoFCompassOutside	:CoF	
+		!define - FOW_PRIZE - :FoWSmall	:FoWBig	:FoWMap	:FoWCompass	:FoWSmallOutside	:FoWBigOutside	:FoWMapOutside	:FoWCompassOutside
+		!define - TOD_PRIZE - :ToDSmall	:ToDBig	:ToDMap	:ToDCompass
+		!define - POW_PRIZE - :PoWSmall	:PoWBig	:PoWMap	:PoWCompass	:PoWSmallOutside	:PoWBigOutside	:PoWMapOutside	:PoWCompassOutside
+		!define - RC_PRIZE - 	:RCSmall 								:RCSmallOutside
 	!else
+		!ifdef - UNREQ
+			!define - DWS_PRIZE - :DWSSmall	:DWSBig	:DWSMap	:DWSCompass
+			!define - COF_PRIZE - :CoFSmall	:CoFBig	:CoFMap	:CoFCompass	:CoF
+			!define - FOW_PRIZE - :FoWSmall	:FoWBig	:FoWMap	:FoWCompass
+			!define - TOD_PRIZE - :ToDSmall	:ToDBig	:ToDMap	:ToDCompass
+			!define - POW_PRIZE - :PoWSmall	:PoWBig	:PoWMap	:PoWCompass
+			!define - RC_PRIZE - 	:RCSmall
+		!else
+			!ifdef - BARREN
+				!define - DWS_PRIZE - :DWSSmall	:DWSBig	:DWSMap	:DWSCompass
+				!define - COF_PRIZE - :CoFSmall	:CoFBig	:CoFMap	:CoFCompass	:CoF
+				!define - FOW_PRIZE - :FoWSmall	:FoWBig	:FoWMap	:FoWCompass
+				!define - TOD_PRIZE - :ToDSmall	:ToDBig	:ToDMap	:ToDCompass
+				!define - POW_PRIZE - :PoWSmall	:PoWBig	:PoWMap	:PoWCompass
+				!define - RC_PRIZE - 	:RCSmall
+			!else
+				!define - DWS_PRIZE - `DWS_INSIDE`
+				!define - COF_PRIZE - `COF_INSIDE`
+				!define - FOW_PRIZE - `FOW_INSIDE`
+				!define - TOD_PRIZE - `TOD_INSIDE`
+				!define - POW_PRIZE - `POW_INSIDE`
+				!define - RC_PRIZE - 	`RC_INSIDE`
+			!endif
+		!endif
 	!endif
 !endif
 
+#Cucco game
 !ifdef - CUCCO_0
     !eventdefine - cuccoHeartPieceFlag - 1
 	!define - CUCCO1 - Inaccessible
@@ -5643,6 +5764,7 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 		!define - CUCCO10 - Unshuffled
 	!endif
 !endif
+#Goron Merchant
 !ifdef - NO_BLUE_FUSIONS
 	!eventdefine - goronMerchantCustomSets - 0
 	!define - GORONSET1 - Inaccessible
@@ -5700,6 +5822,8 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 		!define - GORONSET5 - Any
 	!endif
 !endif
+#End of the mess, Location defines below here
+
 # South Field
 
 Smith_House_Chest;				Any;					0x22-0x11-0x00;	;																													Items.Rupee20
@@ -5812,13 +5936,6 @@ NorthField_WaterfallFusion_DojoNPC:dojo;	`DOJOITEMRED`;	greatbladeDojoItem:Defin
 Castle_Moat_LeftChest;					Any;				0x07-0x00-0x01;														(|Items.Flippers, Helpers.Hundo);	Items.Shells.100
 Castle_Moat_RightChest;				Any;				0x07-0x00-0x02;														(|Items.Flippers, Helpers.Hundo);	Items.Rupee200
 
-!define - DHC_OUTSIDE - :DHCSmallOutside	:DHCBigOutside	:DHCMapOutside	:DHCCompassOutside	:SmallOutside	:BigOutside	:MapOutside	:CompassOutside
-!ifdef - DOJORANDOM
-	!define - DHC_DOJO - :dojo
-!else
-	!define - DHC_DOJO - `DHC_OUTSIDE`
-!endif
-
 Castle_GoldenRope							`DHC_OUTSIDE`			`GREENFUSIONENEMY`;			golden5Item:Define:FirstByte, golden5Sub:Define:SecondByte;			(|(&Helpers.Shared3CFusion, Helpers.HasSword), Helpers.Hundo);		Items.Rupee100
 Castle_RightFountainFusion_HP				`DHC_OUTSIDE`;		`REDFUSIONDUNGEONHP`;			0x0D9C2B;														(|Helpers.Shared18Fusion, Helpers.Hundo);						Items.PieceOfHeart
 Castle_Dojo_HP							`DHC_OUTSIDE`;		`DUNGEONHP`;					0x0D79BB;														;															Items.PieceOfHeart
@@ -5865,13 +5982,12 @@ FallsLower_DigCave_LeftChest;			Any;				0x16-0x00-0x01; 														(|(&Helper
 FallsLower_DigCave_RightChest;			Any;				0x16-0x00-0x02; 														(|(&Helpers.AccessMinishWoods, Items.PacciCane, (|Items.RocsCape, Items.Flippers), Items.MoleMitts), Helpers.Hundo);			Items.Rupee50
 
 # Lake Hylia Locations
-AccessSouthLake;						Helper;				;																(|(&Helpers.AccessLonLon, Helpers.CapeExtension), (&Helpers.AccessNorthMinish, Items.MoleMitts))
-AccessTreasureCave;          			Helper;				;               												Helpers.AccessMinishWoods, Items.MoleMitts, Items.RocsCape;
-HasHearts;							Helper;				;																(+28, Items.PieceOfHeart, Items.HeartContainer:4)
-
 Hylia_SunkenHP;						`UNDERWATERHP`;		0x0F323B;														(|(&Helpers.AccessLonLon, Items.Flippers), Helpers.Hundo);																										Items.PieceOfHeart
 Hylia_DogNPC;							Any;					0x094908:FirstByte, 0x09490A:SecondByte;								(|(&Helpers.AccessLonLon, Items.DogFoodBottle), Helpers.Hundo);																								Items.Bottle
 Hylia_SmallIsland_HP;					`HP`;				0x0F322B;														(|(&Helpers.AccessLonLon, Helpers.LakeIslandHP), Helpers.Hundo);																								Items.PieceOfHeart
+
+AccessTreasureCave;          			Helper;				;               												Helpers.AccessMinishWoods, Items.MoleMitts, Items.RocsCape
+
 Hylia_CapeCave_TopRight;				Any;					0x19-0x01-0x00;													(|Helpers.AccessTreasureCave, Helpers.Hundo);																												Items.Shells.50
 #TreasureCave1;						Minor;				0x19-0x01-0x01;													(|Helpers.AccessTreasureCave, Helpers.Hundo);																												HyliaCapeCaveOOB  (51,41) map is 26 high
 Hylia_CapeCave_BottomLeft;				Any;					0x19-0x01-0x02;													(|Helpers.AccessTreasureCave, Helpers.Hundo);																												Items.Shells.50
@@ -5886,7 +6002,12 @@ Hylia_BeanstalkFusion_HP;				`BLUEFUSIONHP`;		0x0F5EDB;														(|(&Helpers
 Hylia_BeanstalkFusion_RightChest;		`BLUEFUSION`;			0x0D-0x01-0x01;													(|(&Helpers.LakeEastMinishFusion, Helpers.AccessTreasureCave), Helpers.Hundo);																					Items.Shells.200
 Hylia_MiddleIslandFusion_DigCaveChest;	`GREENFUSION`;		0x19-0x00-0x00;													(|(&Helpers.MamaFusion, Helpers.AccessLonLon, Items.MoleMitts, Helpers.CapeExtension), Helpers.Hundo);																Items.Rupee50
 
+AccessDroplets;						Helper;				;																Helpers.AccessLonLon, Helpers.CapeExtension
+
 Droplets_Entrance						`DUNGEONENTRANCE`;	DumToDENT:Define:FirstByte, DumToDENT2:Define:SecondByte;				(|Helpers.AccessDroplets, Helpers.Hundo);																													Items.Entrance.0x04
+
+AccessSouthLake;						Helper;				;																(|(&Helpers.AccessLonLon, Helpers.CapeExtension), (&Helpers.AccessNorthMinish, Items.MoleMitts))
+HasHearts;							Helper;				;																(+28, Items.PieceOfHeart, Items.HeartContainer:4)
 
 Hylia_BottomHP;						`HP`;				0x0F324B;														(|Helpers.LakeSouthHP, Helpers.Hundo);																														Items.PieceOfHeart
 Hylia_Dojo_HP;						`HP`;				0x0D7B03;														(|(&Helpers.AccessLonLon, (|Helpers.CapeExtension, Helpers.LakeShortcut)), Helpers.Hundo);																		Items.PieceOfHeart
@@ -5898,15 +6019,16 @@ Hylia_CabinPathFusion_Chest;			`GREENFUSION`;		0x0FE09E;														(|(&Helper
 Hylia_MayorCabin_Item;					Any;					blueBookItem:Define:FirstByte, blueBookSub:Define:SecondByte;			(|(&Helpers.AccessSouthLake, Helpers.MayorCabin), Helpers.Hundo);																								Items.BlueBook
 
 # Minish Woods
-AccessMinishWoods;						Helper;				;														(|Helpers.CanDestroyTrees, Items.Ocarina);
 AccessNorthMinish;						Helper;				;														Helpers.AccessMinishWoods, (|Items.Flippers, Items.RocsCape, Helpers.LonLonSouthShortcut, (&Helpers.AccessLonLon, Items.PacciCane));
-AccessBelari;								Helper;				;														(|(&Helpers.AccessMinishWoods, (|Helpers.OverworldBlocks, Helpers.CompleteDeepwood)), Helpers.MinishWindCrest);
 
 MinishWoods_GoldenOcto						`GREENFUSIONENEMY`;	golden8Item:Define:FirstByte, golden8Sub:Define:SecondByte;	(|(&Helpers.Shared56Fusion, Helpers.AccessNorthMinish, Helpers.HasSword), Helpers.Hundo);	Items.Rupee100
 MinishWoods_WitchHut_Item;					Any;					0x0F94D7;       											(|(&Helpers.AccessNorthMinish, Helpers.ShopWitch), Helpers.Hundo);						Items.WakeUpMushroom
 WitchDiggingCave_Chest;					Any;					0x0C-0x00-0x00;											(|(&Helpers.AccessNorthMinish, Items.MoleMitts), Helpers.Hundo);						Items.Kinstone.BlueL
 MinishWoods_NorthFusion_Chest;				`GREENFUSION`;		0x0FE07E;												(|(&Helpers.Shared44Fusion, Helpers.AccessNorthMinish), Helpers.Hundo);					Items.Kinstone.BlueS
 MinishWoods_TopHP;						`HP`;				0x0F4347;       											(|Helpers.MinishNorthHP, Helpers.Hundo);												Items.PieceOfHeart
+
+AccessMinishWoods;						Helper;				;														(|Helpers.CanDestroyTrees, Items.Ocarina);
+
 MinishWoods_WestFusion_Chest;				`GREENFUSION`;		0x0FE0CE;												(|(&Helpers.Shared47Fusion, Helpers.AccessMinishWoods), Helpers.Hundo);					Items.Rupee200
 MinishWoods_LikeLikeDiggingCave_LeftChest;	Any;					0x0C-0x00-0x01; 											(|(&Helpers.AccessMinishWoods, Items.MoleMitts, Helpers.LikeLike), Helpers.Hundo);		Items.Rupee50
 MinishWoods_LikeLikeDiggingCave_RightChest;	Any;					0x0C-0x00-0x02; 											(|(&Helpers.AccessMinishWoods, Items.MoleMitts, Helpers.LikeLike), Helpers.Hundo);		Items.Kinstone.BlueS
@@ -5916,12 +6038,14 @@ MinishWoods_BottomHP;						`HP`;				0x0F4357;       											(|Helpers.MinishS
 MinishWoods_CrackFusion_Chest;				`GREENFUSION`;		0x27-0x08-0x00;											(|(&Helpers.Shared4EFusion, Helpers.AccessMinishWoods), Helpers.Hundo);					Items.Kinstone.BlueL
 MinishWoods_MinishPathFusion_Chest;			`GREENFUSION`;		0x0FE08E;												(|(&Helpers.Shared37Fusion, Helpers.AccessMinishWoods), Helpers.Hundo);					Items.Rupee200
 
-!define - DWS_OUTSIDE - :DWSSmallOutside	:DWSBigOutside	:DWSMapOutside	:DWSCompassOutside	:SmallOutside	:BigOutside	:MapOutside	:CompassOutside
-
 MinishVillage_BarrelHouse_Item		`DWS_OUTSIDE`;	Dungeon;				0x0DA283;											(|Helpers.AccessMinishWoods, Helpers.Hundo);												Items.JabberNut
 MinishVillage_HP					`DWS_OUTSIDE`;	`DUNGEONHP`;			0x0DBCC7;											(|Helpers.AccessMinishWoods, Helpers.Hundo);												Items.PieceOfHeart
 
+AccessDeepwood;									Helper;				;													Helpers.AccessMinishWoods, Helpers.Festari
+
 Deepwood_Entrance									`DUNGEONENTRANCE`;	DumDWSENT:Define:FirstByte, DumDWSENT2:Define:SecondByte;	(|Helpers.AccessDeepwood, Helpers.Hundo);												Items.Entrance.0x01
+
+AccessBelari;										Helper;				;													(|(&Helpers.AccessMinishWoods, (|Helpers.OverworldBlocks, Helpers.CompleteDeepwood)), Helpers.MinishWindCrest)
 
 MinishWoods_BombMinish_NPC1		`DWS_OUTSIDE`;	Dungeon;				0x00A00C;											(|Helpers.AccessBelari, Helpers.Hundo);													Items.BombBag
 MinishWoods_BombMinish_NPC2		`DWS_OUTSIDE`;	`REDFUSIONDUNGEON`;	0x00A0A0;											(|(&Helpers.GentariFusion, (|Helpers.AccessBelari, Helpers.Hundo)), Helpers.Hundo);			Items.RemoteBombs
@@ -6029,8 +6153,6 @@ Crenel_BeanstalkFusion_Item7		`REDFUSIONRUPEE`;		0x0F5E0B;														(|(&Help
 Crenel_BeanstalkFusion_Item8		`REDFUSIONRUPEE`;		0x0F5E1B;														(|(&Helpers.MelariFusion, Helpers.AccessCrenel, Items.GripRing), Helpers.Hundo);																									Items.Rupee20
 Crenel_RainPathFusion_Chest;		`GREENFUSION`;		0x0FE066;														(|(&Helpers.MinesMinishBedroomFusion, Helpers.AccessCrenel, Items.GripRing), Helpers.Hundo);																						Items.Kinstone.BlueL
 
-!define - COF_OUTSIDE - :CoFSmallOutside	:CoFBigOutside	:CoFMapOutside	:CoFCompassOutside	:SmallOutside	:BigOutside	:MapOutside	:CompassOutside
-
 AccessMelari;										Helper;				;													(|Helpers.CrenelWindCrest, (&Helpers.AccessCrenel, (|(&Items.PacciCane, (|Items.GripRing, Helpers.CrenelMushroom)), (&Items.GripRing, (|Items.RocsCape, Helpers.LightArrowBreak, Items.GustJar), Helpers.CrenelSwitch))))
 
 Crenel_UpperBlock_Chest			`COF_OUTSIDE`;	Dungeon;				0x26-0x03-0x00;										(|Helpers.AccessMelari, Helpers.Hundo);							Items.Kinstone.BlueS
@@ -6043,6 +6165,9 @@ Crenel_Melari_UpperMiddle_RightDig	`COF_OUTSIDE`		`DIG`;				0x0DC903;	 									
 Crenel_Melari_UpperTop_RightDig		`COF_OUTSIDE`		`DIG`;				0x0DC8F3;	 										(|(&Helpers.AccessMelari, Items.MoleMitts), Helpers.Hundo);		Items.Rupee20
 Crenel_Melari_UpperTop_MiddleDig	`COF_OUTSIDE`		`DIG`;				0x0DC8D3;	 										(|(&Helpers.AccessMelari, Items.MoleMitts), Helpers.Hundo);		Items.Rupee20
 Crenel_Melari_UpperTop_LeftDig		`COF_OUTSIDE`;	`DIGKINSTONE`;		0x0DC8E3;	 										(|(&Helpers.AccessMelari, Items.MoleMitts), Helpers.Hundo);		Items.Kinstone.BlueS
+
+AccessCoF;										Helper;				;													Helpers.AccessMelari
+
 CoF_Entrance										`DUNGEONENTRANCE`;	DumCoFENT:Define:FirstByte, DumCoFENT2:Define:SecondByte;	(|Helpers.AccessCoF, Helpers.Hundo);							Items.Entrance.0x02
 
 # Swamp
@@ -6080,8 +6205,6 @@ Swamp_MinishFusion_WaterHole_HP;		`GREENFUSIONHP`;		0x0DB3F7;		(|(&Helpers.TFZ2F
 
 
 # Wind Ruins
-!define - FOW_OUTSIDE - :FoWSmallOutside	:FoWBigOutside	:FoWMapOutside	:FoWCompassOutside	:SmallOutside	:BigOutside	:MapOutside	:CompassOutside
-
 AccessRuins;									Helper;					;														Helpers.RuinsFusion, Helpers.AccessSwamp, (|Items.RocsCape, (&Items.PegasusBoots, (|Items.Flippers, Helpers.HasBow, Helpers.SwampShortcut, Helpers.SwampWindCrest)));
 
 Ruins_ButterflyFusion_Item		`FOW_OUTSIDE`;	`GOLDREDFUSION`;			0x0FE12F;												(|(&Helpers.Din2Fusion, Helpers.AccessRuins), Helpers.Hundo);													Items.ArrowButterfly
@@ -6096,6 +6219,8 @@ Ruins_ArmosKill_RightChest		`FOW_OUTSIDE`;	`GOLDFUSION`;				0x05-0x05-0x01;					
 Ruins_GoldenOcto				`FOW_OUTSIDE`		`GOLDGREENFUSIONENEMY`;	golden1Item:Define:FirstByte, golden1Sub:Define:SecondByte;	(|(&Helpers.LibrariFusion, Helpers.AccessRuins, Helpers.HasSword), Helpers.Hundo);								Items.Rupee100
 Ruins_NearFoWFusion_Chest		`FOW_OUTSIDE`;	`GOLDREDFUSION`;			0x0FE0AE;												(|(&Helpers.BelariFusion, Helpers.AccessRuins, Helpers.HasSword), Helpers.Hundo);								Items.BombBag
 
+AccessFortress;								Helper;					;														Helpers.AccessRuins, Helpers.HasSword;
+
 Fortress_Entrance								`DUNGEONENTRANCE`;		DumFoWENT:Define:FirstByte, DumFoWENT2:Define:SecondByte;		(|Helpers.AccessFortress, Helpers.Hundo);																	Items.Entrance.0x03
 
 # Royal Valley
@@ -6106,37 +6231,12 @@ Valley_GreatFairy_NPC;			Any;				0x00B722;	(|(&Helpers.AccessValley, Helpers.Bom
 Valley_LostWoods_Chest;		Any;				0x0D8A86;	(|(&Helpers.AccessValley, Helpers.DarkRooms), Helpers.Hundo);								Items.Shells.200
 Valley_DampeNPC;				Any;				0x0096B6;	(|(&Helpers.AccessValley, Helpers.DarkRooms), Helpers.Hundo);								Items.GraveyardKey
 
-!define - RC_OUTSIDE - :RCSmallOutside	:SmallOutside	:BigOutside	:MapOutside	:CompassOutside
-
 Valley_GraveyardButterflyFusion_Item	`RC_OUTSIDE`;	`REDFUSIONDUNGEON`;	0x0FE14F;		(|(&Helpers.Nayru2Fusion,Helpers.AccessValley, Helpers.DarkRooms, Helpers.Graveyard), Helpers.Hundo);			Items.SwimButterfly
 Valley_GraveyardLeftFusion_Chest		`RC_OUTSIDE`;	`UWTFUSIONGREEN`;		0x0FE0DE;		(|(&Helpers.Siroc1Fusion, Helpers.AccessValley, Helpers.DarkRooms, Helpers.Graveyard), Helpers.Hundo);			Items.Kinstone.RedE
 Valley_GraveyardLeftGrave_HP			`RC_OUTSIDE`;	`DUNGEONHP`;			0x0D8AE7;		(|(&Helpers.AccessValley, Helpers.DarkRooms, Helpers.Graveyard, Helpers.LeftGraveHP), Helpers.Hundo);			Items.PieceOfHeart
 Valley_GraveyardRightFusion_Chest		`RC_OUTSIDE`;	`UWTFUSIONGREEN`;		0x0FE0E6;		(|(&Helpers.Siroc2Fusion, Helpers.AccessValley, Helpers.DarkRooms, Helpers.Graveyard), Helpers.Hundo);			Items.Kinstone.RedV
 Valley_GraveyardRightGraveFusion_Chest	`RC_OUTSIDE`;	`BLUEFUSIONDUNGEON`;	0x34-0x01-0x00;	(|(&Helpers.Dampe1Fusion, Helpers.AccessValley, Helpers.DarkRooms, Helpers.Graveyard), Helpers.Hundo);			Items.Shells.100
 
-!define - RC_INSIDE - `RC_OUTSIDE`	:RCSmall	:Small	:Big	:Map	:Compass
-!ifdef - SMALL_KEYS_VANILLA
-	!define - RC_INSIDE_SK - :RCSmallV
-!else
-	!define - RC_INSIDE_SK - `RC_INSIDE`
-!endif
-!ifdef - UNREQSUR
-	!define - RC_PRIZE - :RCSmall :RCSmallOutside
-!else
-	!ifdef - BARRENSUR
-		!define - RC_PRIZE - :RCSmall :RCSmallOutside
-	!else
-		!ifdef - UNREQ
-			!define - RC_PRIZE - :RCSmall
-		!else
-			!ifdef - BARREN
-				!define - RC_PRIZE - :RCSmall
-			!else
-				!define - RC_PRIZE - `RC_INSIDE`
-			!endif
-		!endif
-	!endif
-!endif
 AccessCrypt;						Helper;				;													Helpers.AccessValley, Helpers.DarkRooms, Helpers.Graveyard, Helpers.CryptEntrance
 CompleteCrypt;					Helper;				;													`ENTERRC`, Helpers.CryptDoor, Helpers.CryptBlocks, Helpers.CryptPuzzle
 
@@ -6147,7 +6247,7 @@ Crypt_Gibdo_LeftItem	`RC_INSIDE`;		Dungeon;			0x0E688B;											(|(&`ENTERRC`,
 Crypt_Gibdo_RightItem	`RC_INSIDE_SK`;	Dungeon;			0x0E68AB;											(|(&`ENTERRC`, (|Helpers.HasDamageSource, Items.Lantern)), Helpers.Hundo);					Items.SmallKey.0x1E
 Crypt_LeftItem		`RC_INSIDE_SK`;	Dungeon;			0x0E6357;											(|(&`ENTERRC`, Helpers.CryptDoor, Helpers.CanSplit3), Helpers.Hundo);						Items.SmallKey.0x1E
 Crypt_RightItem		`RC_INSIDE_SK`;	Dungeon;			0x0E63A7;											(|(&`ENTERRC`, Helpers.CryptDoor, Helpers.CanSplit3), Helpers.Hundo);						Items.SmallKey.0x1E
-Crypt_Prize			`RC_PRIZE`;		`DUNGEONPRIZE`;		0x00DA5A;											(|Helpers.CompleteCrypt, Helpers.Hundo);													Items.Kinstone.GoldenFalls
+Crypt_Prize			`RC_PRIZE`;		`DUNGEONPRIZE`;	0x00DA5A;											(|Helpers.CompleteCrypt, Helpers.Hundo);													Items.Kinstone.GoldenFalls
 #Secret Chest reachable with Firerod
 
 # Veil Falls
@@ -6203,12 +6303,6 @@ Clouds_South_RightDigSpot;		`FALLSDIGKINSTONE`;	0x0DCB9B;		(|(&Helpers.AccessClo
 Clouds_SouthEast_BottomDigSpot;	`FALLSDIGKINSTONE`;	0x0DCBAB;		(|(&Helpers.AccessClouds, Items.MoleMitts), Helpers.Hundo);									Items.Kinstone.BlueS
 Clouds_SouthEast_TopDigSpot;   `FALLSDIGKINSTONE`;	0x0DCB7B;		(|(&Helpers.AccessClouds, Items.MoleMitts), Helpers.Hundo);									Items.Kinstone.GreenG
 
-!define - POW_OUTSIDE - :PoWSmallOutside	:PoWBigOutside	:PoWMapOutside	:PoWCompassOutside	:SmallOutside	:BigOutside	:MapOutside	:CompassOutside
-!ifdef - NO_RED_FUSIONS
-	!define - POW_F_OUTSIDE - `POW_OUTSIDE`
-!else
-	!define - POW_F_OUTSIDE - 
-!endif
 AccessWindTribe;							Helper;				;													(|(&Helpers.StrangerFusion, Helpers.OpenWindTribe), (&Helpers.AccessClouds, Helpers.CloudFusions), Helpers.CloudWindCrest)
 
 WindTribe_1F_LeftChest		`POW_F_OUTSIDE`;	`WTFUSION`;			0x30-0x00-0x00;										(|Helpers.StrangerFusion, Helpers.AccessWindTribe, Helpers.Hundo);						Items.Kinstone.GreenC
@@ -6222,40 +6316,11 @@ WindTribe_3F_RightChest	`POW_OUTSIDE`;	`PALACEOUTSIDECHEST`;	0x30-0x02-0x00;				
 WindTribe_4F_LeftChest		`POW_OUTSIDE`;	`PALACEOUTSIDECHEST`;	0x30-0x03-0x00;										(|Helpers.AccessWindTribe, Helpers.Hundo);											Items.Kinstone.RedV
 WindTribe_4F_RightChest	`POW_OUTSIDE`;	`PALACEOUTSIDECHEST`;	0x30-0x03-0x01;										(|Helpers.AccessWindTribe, Helpers.Hundo);											Items.Kinstone.RedE
 
+AccessPalace;													Helper;	;											Helpers.AccessWindTribe;
+
 Palace_Entrance							`DUNGEONENTRANCE`;	DumPoWENT:Define:FirstByte, DumPoWENT2:Define:SecondByte;	(|Helpers.AccessPalace, Helpers.Hundo);												Items.Entrance.0x06
 
 # Deepwood locations
-
-!define - DWS_INSIDE - `DWS_OUTSIDE`	:DWSSmall	:DWSBig	:DWSMap	:DWSCompass	:Small	:Big	:Map	:Compass
-!ifdef - SMALL_KEYS_VANILLA
-	!define - DWS_INSIDE_SK - :DWSSmallV
-!else
-	!define - DWS_INSIDE_SK - `DWS_INSIDE`
-!endif
-!ifdef - BIG_KEYS_VANILLA
-	!define - DWS_INSIDE_BK - :DWSBigV
-!else
-	!define - DWS_INSIDE_BK - `DWS_INSIDE`
-!endif
-!ifdef - UNREQSUR
-	!define - DWS_PRIZE - :DWSSmall	:DWSBig	:DWSMap	:DWSCompass	:DWSSmallOutside	:DWSBigOutside	:DWSMapOutside	:DWSCompassOutside
-!else
-	!ifdef - BARRENSUR
-		!define - DWS_PRIZE - :DWSSmall	:DWSBig	:DWSMap	:DWSCompass	:DWSSmallOutside	:DWSBigOutside	:DWSMapOutside	:DWSCompassOutside
-	!else
-		!ifdef - UNREQ
-			!define - DWS_PRIZE - :DWSSmall	:DWSBig	:DWSMap	:DWSCompass
-		!else
-			!ifdef - BARREN
-				!define - DWS_PRIZE - :DWSSmall	:DWSBig	:DWSMap	:DWSCompass
-			!else
-				!define - DWS_PRIZE - `DWS_INSIDE`
-			!endif
-		!endif
-	!endif
-!endif
-AccessDeepwood;									Helper;			;																Helpers.AccessMinishWoods, Helpers.Festari;
-
 Deepwood_2F_Chest						`DWS_INSIDE`;		Dungeon;			0x48-0x17-0x01;													(|(&`ENTERDWS`, Helpers.DeepwoodWeb), Helpers.Hundo);																											Items.Rupee20
 Deepwood_1F_SlugTorches_Chest			`DWS_INSIDE_SK`;	Dungeon;			0x48-0x10-0x01;													(|`ENTERDWS`, Helpers.Hundo);																																Items.SmallKey.0x18
 Deepwood_1F_BarrelRoom_Chest			`DWS_INSIDE`;		Dungeon;			0x48-0x06-0x01;													(|(&`ENTERDWS`, (|Helpers.Deepwood1stDoor, Helpers.DeepwoodPreMadderpillar), Helpers.BlowDust), Helpers.Hundo);														Items.Shells.10
@@ -6275,42 +6340,11 @@ Deepwood_B1_West_BigChest				`DWS_INSIDE_BK`;	Dungeon;			0x48-0x11-0x01;								
 CompleteDeepwood;										Helper;			;																`ENTERDWS`, Items.GustJar, Helpers.HasChuDamage, Helpers.DeepwoodBossDoor;
 
 Deepwood_BossItem						`DWS_INSIDE`;		`DUNGEONHP`;		chuContainerItem:Define:FirstByte, chuContainerSub:Define:SecondByte;	(|Helpers.CompleteDeepwood, Helpers.Hundo);																												Items.HeartContainer
-Deepwood_Prize						`DWS_PRIZE`;		`DUNGEONPRIZE`;		0x0DF03B;														(|Helpers.CompleteDeepwood, Helpers.Hundo);																												Items.EarthElement
+Deepwood_Prize						`DWS_PRIZE`;		`DUNGEONPRIZE`;	0x0DF03B;														(|Helpers.CompleteDeepwood, Helpers.Hundo);																												Items.EarthElement
 
 
 # Cave of Flames locations
-
-!define - COF_INSIDE - `COF_OUTSIDE`	:CoF	:CoFSmall	:CoFBig	:CoFCompass	:Small	:Big	:Compass
-!ifdef - SMALL_KEYS_VANILLA
-	!define - COF_INSIDE_SK - :CoFSmallV
-!else
-	!define - COF_INSIDE_SK - `COF_INSIDE`
-!endif
-!ifdef - BIG_KEYS_VANILLA
-	!define - COF_INSIDE_BK - :CoFBigV
-!else
-	!define - COF_INSIDE_BK - `COF_INSIDE`
-!endif
-!ifdef - UNREQSUR
-	!define - COF_PRIZE - :CoF		:CoFSmall	:CoFBig	:CoFCompass	:CoFSmallOutside	:CoFBigOutside	:CoFCompassOutside
-!else
-	!ifdef - BARRENSUR
-		!define - COF_PRIZE - :CoF		:CoFSmall	:CoFBig	:CoFCompass	:CoFSmallOutside	:CoFBigOutside	:CoFCompassOutside
-	!else
-		!ifdef - UNREQ
-			!define - COF_PRIZE - :CoF		:CoFSmall	:CoFBig	:CoFCompass
-		!else
-			!ifdef - BARREN
-				!define - COF_PRIZE - :CoF		:CoFSmall	:CoFBig	:CoFCompass
-			!else
-				!define - COF_PRIZE - `COF_INSIDE`
-			!endif
-		!endif
-	!endif
-!endif
-AccessCoF;									Helper;			;																		Helpers.AccessMelari;
-
-CoF_1F_SpikeBeetle_BigChest	`COF_INSIDE`;		`DUNGEONMAP`;	0x50-0x15-0x00;															(|(&`ENTERCOF`, (|Helpers.BombWalls, Helpers.Bobombs), Helpers.CoFSpikeBeetle), Helpers.Hundo);																															Items.DungeonMap.0x19
+CoF_1F_SpikeBeetle_BigChest	`COF_INSIDE_MAP`;	Dungeon;			0x50-0x15-0x00;															(|(&`ENTERCOF`, (|Helpers.BombWalls, Helpers.Bobombs), Helpers.CoFSpikeBeetle), Helpers.Hundo);																															Items.DungeonMap.0x19
 CoF_1F_Item1					`COF_INSIDE`		`DUNGEONRUPEE`;	0x0DFAEB;																(|(&`ENTERCOF`, Helpers.CoFRupees), Helpers.Hundo);																																									Items.Rupee1
 CoF_1F_Item2					`COF_INSIDE` 		`DUNGEONRUPEE`;	0x0DFAFB;																(|(&`ENTERCOF`, Helpers.CoFRupees), Helpers.Hundo);																																									Items.Rupee1
 CoF_1F_Item3					`COF_INSIDE` 		`DUNGEONRUPEE`;	0x0DFB0B;																(|(&`ENTERCOF`, Helpers.CoFRupees), Helpers.Hundo);																																									Items.Rupee1
@@ -6335,41 +6369,10 @@ CoF_B2_LavaRoom_BigChest		`COF_INSIDE_BK`;	Dungeon;			0x50-0x17-0x02;											
 CompleteCoF;									Helper;			;																		`ENTERCOF`, Helpers.CoFBasementAccess, Helpers.CoFBossDoor, Items.PacciCane, Helpers.HasGleerokDamage;
 
 CoF_BossItem					`COF_INSIDE`;		`DUNGEONHP`;		gleerokContainerItem:Define:FirstByte, gleerokContainerSub:Define:SecondByte;	(|Helpers.CompleteCoF, Helpers.Hundo);																																												Items.HeartContainer
-CoF_Prize					`COF_PRIZE`;		`DUNGEONPRIZE`;		0x0E0F03;																(|Helpers.CompleteCoF, Helpers.Hundo);																																												Items.FireElement
+CoF_Prize					`COF_PRIZE`;		`DUNGEONPRIZE`;	0x0E0F03;																(|Helpers.CompleteCoF, Helpers.Hundo);																																												Items.FireElement
 Crenel_Melari_NPC		:CoF		`COF_OUTSIDE`;	Dungeon;			0x00D26E;																(|Helpers.CompleteCoF, Helpers.Hundo);																																												`GREENSWORD`
 
 # Fortress of Winds Locations
-
-!define - FOW_INSIDE - `FOW_OUTSIDE`	:FoWSmall	:FoWBig	:FoWMap	:FoWCompass	:Small	:Big	:Map	:Compass
-!ifdef - SMALL_KEYS_VANILLA
-	!define - FOW_INSIDE_SK - :FoWSmallV
-!else
-	!define - FOW_INSIDE_SK - `FOW_INSIDE`
-!endif
-!ifdef - BIG_KEYS_VANILLA
-	!define - FOW_INSIDE_BK - :FoWBigV
-!else
-	!define - FOW_INSIDE_BK - `FOW_INSIDE`
-!endif
-!ifdef - UNREQSUR
-	!define - FOW_PRIZE - :FoWSmall	:FoWBig	:FoWMap	:FoWCompass	:FoWSmallOutside	:FoWBigOutside	:FoWMapOutside	:FoWCompassOutside
-!else
-	!ifdef - BARRENSUR
-		!define - FOW_PRIZE - :FoWSmall	:FoWBig	:FoWMap	:FoWCompass	:FoWSmallOutside	:FoWBigOutside	:FoWMapOutside	:FoWCompassOutside
-	!else
-		!ifdef - UNREQ
-			!define - FOW_PRIZE - :FoWSmall	:FoWBig	:FoWMap	:FoWCompass
-		!else
-			!ifdef - BARREN
-				!define - FOW_PRIZE - :FoWSmall	:FoWBig	:FoWMap	:FoWCompass
-			!else
-				!define - FOW_PRIZE - `FOW_INSIDE`
-			!endif
-		!endif
-	!endif
-!endif
-AccessFortress;									Helper;				;																		Helpers.AccessRuins, Helpers.HasSword;
-	
 Fortress_Entrance_1F_LeftChest			`FOW_INSIDE`;		`FORTRESSCHEST`;		0x18-0x00-0x00;														(|(&`ENTERFOW`, Items.MoleMitts), Helpers.Hundo);																																	Items.Kinstone.BlueS
 Fortress_Entrance_1F_LeftWizrobeChest	`FOW_INSIDE`;		`FORTRESSCHEST`;		0x58-0x23-0x00;														(|(&`ENTERFOW`, Items.MoleMitts, Helpers.FoWWizrobes), Helpers.Hundo);																												Items.Shells.80
 Fortress_Entrance_1F_RightItem			`FOW_INSIDE`		`FORTRESSRUPEE`;		0x0F3E67;															(|(&`ENTERFOW`, Helpers.FoWEntranceRupee), Helpers.Hundo);																															Items.Rupee50
@@ -6411,24 +6414,6 @@ Fortress_Prize						`FOW_PRIZE`;		`FORTRESSPRIZE`;		0x09C9E6:FirstByte, 0x09C9E8
 
 # Temple of Droplets Locations
 
-!define - TOD_INSIDE - :ToDSmall	:ToDBig	:ToDMap	:ToDCompass	:Small	:Big	:Map	:Compass
-!ifdef - SMALL_KEYS_VANILLA
-	!define - TOD_INSIDE_SK - :ToDSmallV
-!else
-	!define - TOD_INSIDE_SK - `TOD_INSIDE`
-!endif
-!ifdef - BIG_KEYS_VANILLA
-	!define - TOD_INSIDE_BK - :ToDBigV
-!else
-	!define - TOD_INSIDE_BK - `TOD_INSIDE`
-!endif
-!ifdef - NONE
-	!define - TOD_PRIZE - `TOD_INSIDE`
-!else
-	!define - TOD_PRIZE - :ToDSmall	:ToDBig	:ToDMap	:ToDCompass
-!endif
-AccessDroplets;	Helper;	;	Helpers.AccessLonLon, Helpers.CapeExtension
-
 # This randomizes some dummy items to determine where to place the ToD Big Key, then it adjusts all the logic to allow that key to be placed there without errors
 !ifdef - BIG_KEYS_STANDARD
 	Items.ToDKeys.0xa;	DungeonConstraint;	DummyToD
@@ -6444,7 +6429,6 @@ AccessDroplets;	Helper;	;	Helpers.AccessLonLon, Helpers.CapeExtension
 	!endif
 !endif
 
-# ToD entrance logic looks really weird, we have the right block split into 2. One location get the keys shuffled to and writes it to game memory, this is hidden from the spoiler log as the logic is very unintuitive but works. The other is purely visual and always shows the correct key and the intuitive logic it should have.
 Droplets_Entrance_B2_EastIceblock				`TOD_INSIDE_SK`;	Dungeon;					0x098C1A:FirstByte, 0x098C1C:SecondByte;							(|(&`ENTERTOD`, Helpers.ToDRightBlock), Helpers.Hundo);	Items.SmallKey.0x1B
 Droplets_Entrance_B2_WestIceblock				`TOD_INSIDE_BK`;	Dungeon;					0x098C3C:FirstByte, 0x098C3E:SecondByte;							(|(&`ENTERTOD`, Helpers.ToDLeftBlock), Helpers.Hundo);	Items.BigKey.0x1B
 
@@ -6493,41 +6477,9 @@ Droplets_RightPath_B2_UnderpassItem5			`TOD_INSIDE`		`DUNGEONRUPEE`;			0x0E487F;
 CompleteDroplets;											Helper;					;																`ENTERTOD`, Helpers.AccessOcto, Items.Lantern, (|Helpers.HasSword, Helpers.HasShield);
 
 Droplets_BossItem								`TOD_INSIDE`;	`DUNGEONHP`;				octoContainerItem:Define:FirstByte, octoContainerSub:Define:SecondByte;	(|Helpers.CompleteDroplets, Helpers.Hundo);		Items.HeartContainer
-Droplets_Prize								`TOD_PRIZE`;	`DUNGEONPRIZE`;				0x0E40C3;														(|Helpers.CompleteDroplets, Helpers.Hundo);		Items.WaterElement
+Droplets_Prize								`TOD_PRIZE`;	`DUNGEONPRIZE`;			0x0E40C3;														(|Helpers.CompleteDroplets, Helpers.Hundo);		Items.WaterElement
 
 # Palace of Winds Locations
-
-!define - POW_INSIDE - `POW_OUTSIDE`	:PoWSmall	:PoWBig	:PoWMap	:PoWCompass	:Small	:Big	:Map	:Compass
-!ifdef - SMALL_KEYS_VANILLA
-	!define - POW_INSIDE_SK - :PoWSmallV
-!else
-	!define - POW_INSIDE_SK - `POW_INSIDE`
-!endif
-!ifdef - BIG_KEYS_VANILLA
-	!define - POW_INSIDE_BK - :PoWBigV
-!else
-	!define - POW_INSIDE_BK - `POW_INSIDE`
-!endif
-!ifdef - UNREQSUR
-	!define - POW_PRIZE - :PoWSmall	:PoWBig	:PoWMap	:PoWCompass :PoWSmallOutside	:PoWBigOutside	:PoWMapOutside	:PoWCompassOutside
-!else
-	!ifdef - BARRENSUR
-		!define - POW_PRIZE - :PoWSmall	:PoWBig	:PoWMap	:PoWCompass :PoWSmallOutside	:PoWBigOutside	:PoWMapOutside	:PoWCompassOutside
-	!else
-		!ifdef - UNREQ
-			!define - POW_PRIZE - :PoWSmall	:PoWBig	:PoWMap	:PoWCompass
-		!else
-			!ifdef - BARREN
-				!define - POW_PRIZE - :PoWSmall	:PoWBig	:PoWMap	:PoWCompass
-			!else
-				!define - POW_PRIZE - `POW_INSIDE`
-			!endif
-		!endif
-	!endif
-!endif
-AccessPalace						;	Helper;			;				Helpers.AccessWindTribe;
-
-# This randomizes some dummy items to determine where to place the PoW Big Key, then it adjusts all the logic to allow that key to be placed there without errors
 
 Palace_1stHalf_1F_GrateChest					`POW_INSIDE`;		`PALACECHEST`;	0x70-0x2D-0x00;													(|(&`ENTERPOW`, Items.RocsCape, (|Helpers.CanSplit3, Helpers.CanSplit4)), Helpers.Hundo);											Items.Kinstone.RedE
 Palace_1stHalf_1F_Wizrobe_BigChest				`POW_INSIDE`;		`PALACECHEST`;	0x70-0x2C-0x00;													(|(&`ENTERPOW`, (|Items.RocsCape, Items.BombBag, Helpers.HasMagicBoomerang), (|Helpers.CanSplit3, Helpers.CanSplit4)), Helpers.Hundo);	Items.RocsCape
@@ -6566,22 +6518,10 @@ Sanctuary_Pedestal_Item3	`DHC_OUTSIDE`;  `PED`;   pedestalSpot3Item:Define:First
 
 # Dark Hyrule Castle
 
-!define - DHC_INSIDE - `DHC_OUTSIDE`	:DHCSmall	:DHCBig	:DHCMap	:DHCCompass	:Small	:Big	:Map	:Compass
-!ifdef - SMALL_KEYS_VANILLA
-	!define - DHC_INSIDE_SK - :DHCSmallV
-!else
-	!define - DHC_INSIDE_SK - `DHC_INSIDE`
-!endif
-!ifdef - BIG_KEYS_VANILLA
-	!define - DHC_INSIDE_BK - :DHCBigV
-!else
-	!define - DHC_INSIDE_BK - `DHC_INSIDE`
-!endif
-
-DHC_B2_King				`DHC_INSIDE`;		`DHCKING`;	0x00E46A;		(|(&`ENTERDHC`, Helpers.DHCKing), Helpers.Hundo);																		Items.Rupee1 #used to be a small key but a door got removed
-DHC_B1_BigChest			`DHC_INSIDE`;		`DHCCOMPASS`;	0x88-0x37-0x00;	(|`ENTERDHC`, Helpers.Hundo);																						Items.DungeonMap.0x1D
-DHC_1F_Blade_Chest		`DHC_INSIDE_SK`;	`DHCSMALL`;	0x88-0x27-0x00;	(|(&`ENTERDHC`, Helpers.DHCFirstCanon, Helpers.DHCBladePuzzle), Helpers.Hundo);											Items.SmallKey.0x1D
-DHC_1F_Throne_BigChest		`DHC_INSIDE`;		`DHCCOMPASS`;	0x88-0x20-0x00;	(|(&`ENTERDHC`, Helpers.DHC1stDoor, Helpers.DHC2ndCanon, Helpers.BombWalls, Helpers.DHCThrone), Helpers.Hundo);				Items.Compass.0x1D
+DHC_B2_King				`DHC_INSIDE`;		`DHCCHEST`;	0x00E46A;		(|(&`ENTERDHC`, Helpers.DHCKing), Helpers.Hundo);																		Items.Rupee1 #used to be a small key but a door got removed
+DHC_B1_BigChest			`DHC_INSIDE_MAP`;	`DHCCHEST`;	0x88-0x37-0x00;	(|`ENTERDHC`, Helpers.Hundo);																						Items.DungeonMap.0x1D
+DHC_1F_Blade_Chest		`DHC_INSIDE_SK`;	`DHCCHEST`;	0x88-0x27-0x00;	(|(&`ENTERDHC`, Helpers.DHCFirstCanon, Helpers.DHCBladePuzzle), Helpers.Hundo);											Items.SmallKey.0x1D
+DHC_1F_Throne_BigChest		`DHC_INSIDE_COM`;	`DHCCHEST`;	0x88-0x20-0x00;	(|(&`ENTERDHC`, Helpers.DHC1stDoor, Helpers.DHC2ndCanon, Helpers.BombWalls, Helpers.DHCThrone), Helpers.Hundo);				Items.Compass.0x1D
 
 DHCBlackKnight;						Helper;;							Helpers.DHCBlackKnightFight, (|Helpers.DHCBlueWarp, (&Helpers.DHCRedWarp, Helpers.DHCChainSoldiers, Helpers.DHCGrateRoom, Helpers.OverworldBlocks), (&Helpers.DHC1stDoor, Helpers.DHC2ndCanon, Helpers.BombWalls, Helpers.DHCThrone, Helpers.CanSplit4, Helpers.DHCOutsideSwitch, Helpers.DHCSwitchPuzzles, Helpers.DHCChainSoldiers, Helpers.DHCGrateRoom, Helpers.OverworldBlocks))
 
