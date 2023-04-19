@@ -196,6 +196,16 @@
 !dropdown - Item Pool - Setting - Add to Pool - FIREROD - Firerod - The Firerod is a leftover developer testing tool. It lets the user copy and paste tiles, effectively allowing you to walk through walls and most obstacles.\n\n WARNING: It is extremely easy to softlock yourself with this item, it is recommended to enable 'Homewarp' with this item, however some softlocks will completely prevent you from being able to beat the game. - NO_FIREROD - No Firerod - NO_FIREROD - 'No Firerod': Standard - Shuffled - FIREROD_CHEST - 'Shuffled': Firerod is added to the item pool, it can be randomized to any location. - Start With - FIREROD_START - 'Start With': Firerod is in Links Starting Inventory 
 !flag - Item Pool - Setting - Modify Pool - RANDOM_BOTTLE_CONTENT - Random Bottle Contents - Randomizes the contents of the bottles that are shuffled in the pool, these contents are never considered by logic. - true
 !dropdown - Item Pool - Setting - Modify Pool - PROGRESSIVE - Items are Progressive - Some item upgrades are treated as completely independent items by the game. - YESPROG - No - NOPROG - 'No': Unique copies of each item will be found in the seed\n\n 5 different swords:\n Smith Sword\n Green Sword\n Red Sword\ Blue Sword\n Four Sword\n\n 2 Bows:\n Bow\n Light Arrows\n\n 2 Boomerangs:\n Boomerang\n Magic Boomerang\n\n 2 Shields:\n Shield\n Mirror Shield\n\n 5 Scrolls:\n Spin Attack\n Fast Spin\n Fast Split\n Greatspin\n Long Spin - Yes - YESPROG - 'Yes': These items are replaced with a generic "Progressive" form that upgrades your item to the next level. 
+!dropdown - Item Pool - Setting - Kinstone Packs - GOLD1MULTIPLIER - Cloud Tops Kinstone pack size - Each time you pick up a kinstone you will get this many added to your bag.\nThis kinstone is the gold combined kinstone if enabled. - 1 - 1 - 1 - - 2 - 2 - - 3 - 3 - - 4 - 4 - - 5 - 5 - - 6 - 6 - - 9 - 9 - Total fusions are 5 in vanilla and 9 in combined.
+!dropdown - Item Pool - Setting - Kinstone Packs - GOLD2MULTIPLIER - Swamp Kinstone pack size - When collecting kinstones, you will get this many added to your bag. - 1 - 1 - 1 - - 2 - 2 - - 3 - 3 - Kinstone not shuffled when combined enabled.
+!dropdown - Item Pool - Setting - Kinstone Packs - REDWMULTIPLIER - Red W Kinstone pack size - When collecting kinstones, you will get this many added to your bag.\nThis kinstone is the red combined kinstone when that setting is enabled. - 1 - 1 - 1 - - 2 - 2 - - 3 - 3 - - 4 - 4 - - 5 - 5 - - 9 - 9 - - 12 - 12 - - Max - REDWMAX - 'Max': places one kinstone pack in the pool that will give you exactly enough kinstones of this shape to complete every reachable fusion in the seed.
+!dropdown - Item Pool - Setting - Kinstone Packs - REDVMULTIPLIER - Red V Kinstone pack size - When collecting kinstones, you will get this many added to your bag.\nThis kinstone is not shuffled when the combined setting is enabled. - 1 - 1 - 1 - - 2 - 2 - - 3 - 3 - - 4 - 4 - - 5 - 5 - - Max - REDVMAX - 'Max': places one kinstone pack in the pool that will give you exactly enough kinstones of this shape to complete every reachable fusion in the seed.
+!dropdown - Item Pool - Setting - Kinstone Packs - REDEMULTIPLIER - Red E Kinstone pack size - When collecting kinstones, you will get this many added to your bag.\nThis kinstone is not shuffled when the combined setting is enabled. - 1 - 1 - 1 - - 2 - 2 - - 3 - 3 - - 4 - 4 - - 5 - 5 - - Max - REDEMAX - 'Max': places one kinstone pack in the pool that will give you exactly enough kinstones of this shape to complete every reachable fusion in the seed.
+!dropdown - Item Pool - Setting - Kinstone Packs - BLUELMULTIPLIER - Blue L Kinstone pack size - When collecting kinstones, you will get this many added to your bag.\nThis kinstone is the blue combined kinstone when that setting is enabled. - 1 - 1 - 1 - - 2 - 2 - - 3 - 3 - - 4 - 4 - - 5 - 5 - - 9 - 9 - - Max - BLUELMAX - 'Max': places one kinstone pack in the pool that will give you exactly enough kinstones of this shape to complete every reachable fusion in the seed.
+!dropdown - Item Pool - Setting - Kinstone Packs - BLUESMULTIPLIER - Blue S Kinstone pack size - When collecting kinstones, you will get this many added to your bag.\nThis kinstone is not shuffled when the combined setting is enabled. - 1 - 1 - 1 - - 2 - 2 - - 3 - 3 - - 4 - 4 - - 5 - 5 - - Max - BLUESMAX - 'Max': places one kinstone pack in the pool that will give you exactly enough kinstones of this shape to complete every reachable fusion in the seed.
+!dropdown - Item Pool - Setting - Kinstone Packs - GREENCMULTIPLIER - Green C Kinstone pack size - When collecting kinstones, you will get this many added to your bag.\nThis kinstone is the green combined kinstone when that setting is enabled. - 1 - 1 - 1 - - 2 - 2 - - 3 - 3 - - 4 - 4 - - 5 - 5 - - 10 - 10 - - 20 - 20 - - Max - GREENCMAX - 'Max': places one kinstone pack in the pool that will give you exactly enough kinstones of this shape to complete every reachable fusion in the seed.
+!dropdown - Item Pool - Setting - Kinstone Packs - GREENGMULTIPLIER - Green G Kinstone pack size - When collecting kinstones, you will get this many added to your bag.\nThis kinstone is not shuffled when the combined setting is enabled. - 1 - 1 - 1 - - 2 - 2 - - 3 - 3 - - 4 - 4 - - 5 - 5 - - 8 - 8 - - Max - GREENGMAX - 'Max': places one kinstone pack in the pool that will give you exactly enough kinstones of this shape to complete every reachable fusion in the seed.
+!dropdown - Item Pool - Setting - Kinstone Packs - GREENPMULTIPLIER - Green P Kinstone pack size - When collecting kinstones, you will get this many added to your bag.\nThis kinstone is not shuffled when the combined setting is enabled. - 1 - 1 - 1 - - 2 - 2 - - 3 - 3 - - 4 - 4 - - 5 - 5 - - 8 - 8 - - Max - GREENPMAX - 'Max': places one kinstone pack in the pool that will give you exactly enough kinstones of this shape to complete every reachable fusion in the seed.
 
 !flag - Gameplay - Setting - Difficulty - GLITCHLESS - Prevent Speedrun Glitches - Attempts were made to patch the glitches used by speedrunners to reach areas before intended, these attempts failed but we still keep this setting around.\n It is not recommended to enable this setting as it instead causes many bugs in regular gameplay
 !flag - Gameplay - Setting - Difficulty - TIMEDOHKO - Timed OHKO - A 10 minute timer starts when you start your save file, collect timers to increase time on this timer. When the timer hits 00:00 you enter OHKO mode, one hit will kill you.\n Blue Timers increase the time by 2 Mintues\n Green Timers increase the time by 4 minutes\n Red timers reduce the timer to 00:00\n WARNING: Do not enable this with 'Damage Multiplier' above x1, it will generate the seed but fail to patch the game.
@@ -644,12 +654,15 @@
 		!eventdefine - kinstoneMultiplierGoldFalls - 0		# golden falls kinstones don't get added to the kinstone bag
 		!eventdefine - mC81 - 0x3E							# marks the cloud tops clouds as having fused so they never offer a fusion, this address doesn't spawn the tornado
 	!else
-		!eventdefine - mC81 - 0x00							# sets the golden fusions as not completed
+		!eventdefine - mC81 - 0x00									# sets the golden fusions as not completed
+		!eventdefine - kinstoneMultiplierGoldCloud - `GOLD1MULTIPLIER`	# golden cloud kinstones come in packs of this amount
+		!eventdefine - kinstoneMultiplierGoldSwamp - `GOLD2MULTIPLIER`	# golden swamp kinstones come in packs of this amount
+		!eventdefine - kinstoneMultiplierGoldFalls - 1				# only one golden falls kinstones is ever used
 	!endif
 !endif
 
 !ifdef - OPEN_RED_FUSIONS
-	!eventdefine - noRedFusions								# if defined, red kinstone fusions are not available
+	!eventdefine - noRedFusions							# if defined, red kinstone fusions are not available
 	!eventdefine - kinstoneMultiplierRedW - 0				# red W kinstones don't get added to the kinstone bag
 	!eventdefine - kinstoneMultiplierRedV - 0				# red V kinstones don't get added to the kinstone bag
 	!eventdefine - kinstoneMultiplierRedE - 0				# red E kinstones don't get added to the kinstone bag
@@ -657,11 +670,24 @@
 	!eventdefine - mC84 - 0xFF								# sets various red fusions
 !else
 	!ifdef - NO_RED_FUSIONS
-		!eventdefine - noRedFusions							# if defined, red kinstone fusions are not available
+		!eventdefine - noRedFusions						# if defined, red kinstone fusions are not available
 		!eventdefine - kinstoneMultiplierRedW - 0			# red W kinstones don't get added to the kinstone bag
 		!eventdefine - kinstoneMultiplierRedV - 0			# red V kinstones don't get added to the kinstone bag
 		!eventdefine - kinstoneMultiplierRedE - 0			# red E kinstones don't get added to the kinstone bag
 		!undefine - GOLDEN_ENEMY_RED						# removes the golden enemy spawned by the red fusion from logic
+	!else
+		!define - `REDWMULTIPLIER`
+		!define - `REDVMULTIPLIER`
+		!define - `REDEMULTIPLIER`
+		!ifndef - REDWMAX
+			!eventdefine - kinstoneMultiplierRedW - `REDWMULTIPLIER`	# red W kinstones come in packs of this amount
+		!endif
+		!ifndef - REDVMAX
+			!eventdefine - kinstoneMultiplierRedV - `REDVMULTIPLIER`	# red V kinstones come in packs of this amount
+		!endif
+		!ifndef - REDEMAX
+			!eventdefine - kinstoneMultiplierRedE - `REDEMULTIPLIER`	# red E kinstones come in packs of this amount
+		!endif
 	!endif
 	!eventdefine - mC83 - 0x00
 	!eventdefine - mC84 - 0x00
@@ -678,6 +704,15 @@
 		!eventdefine - noBlueFusions						# if defined, blue kinstone fusions are not available
 		!eventdefine - kinstoneMultiplierBlueL - 0			# blue L kinstones don't get added to the kinstone bag
 		!eventdefine - kinstoneMultiplierBlueS - 0			# blue S kinstones don't get added to the kinstone bag
+	!else
+		!define - `BLUELMULTIPLIER`
+		!define - `BLUESMULTIPLIER`
+		!ifndef - BLUELMAX
+			!eventdefine - kinstoneMultiplierBlueL - `BLUELMULTIPLIER`	# blue L kinstones come in packs of this amount
+		!endif
+		!ifndef - BLUESMAX
+			!eventdefine - kinstoneMultiplierBlueS - `BLUESMULTIPLIER`	# blue S kinstones come in packs of this amount
+		!endif
 	!endif
 	!eventdefine - mC86 - 0x00
 	!eventdefine - mCD2 - 0x00
@@ -701,6 +736,19 @@
 		!eventdefine - kinstoneMultiplierGreenG - 0			# green G kinstones don't get added to the kinstone bag
 		!eventdefine - kinstoneMultiplierGreenP - 0			# green P kinstones don't get added to the kinstone bag
 		!undefine - GOLDEN_ENEMY_GREEN
+	!else
+		!define - `GREENCMULTIPLIER`
+		!define - `GREENGMULTIPLIER`
+		!define - `GREENPMULTIPLIER`
+		!ifndef - GREENCMAX
+			!eventdefine - kinstoneMultiplierGreenC - `GREENCMULTIPLIER`	# green C kinstones come in packs of this amount
+		!endif
+		!ifndef - GREENGMAX
+			!eventdefine - kinstoneMultiplierGreenG - `GREENGMULTIPLIER`	# green G kinstones come in packs of this amount
+		!endif
+		!ifndef - GREENPMAX
+			!eventdefine - kinstoneMultiplierGreenP - `GREENPMULTIPLIER`	# green P kinstones come in packs of this amount
+		!endif
 	!endif
 	!eventdefine - mC88 - 0x00
 	!eventdefine - mC89 - 0x00
@@ -2804,26 +2852,26 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 				Items.Kinstone.GoldenSwamp:2;		Minor;
 			!endif
 			Items.Kinstone.GoldenFalls;			Major;
-			Items.Kinstone.GoldenCloudTops:5;	Major;
-			Items.Kinstone.GoldenSwamp:3;		Major;
-			CanFuseGoldTornado;  Helper;; Items.Kinstone.GoldenCloudTops:5
-			CanFuseGoldTotem;    Helper;; Items.Kinstone.GoldenSwamp:3
+			Items.Kinstone.GoldenCloudTops:5;		Major;
+			Items.Kinstone.GoldenSwamp:3;			Major;
+			CanFuseGoldTornado;  Helper;; (+5, Items.Kinstone.GoldenCloudTops:`GOLD1MULTIPLIER`)
+			CanFuseGoldTotem;    Helper;; (+3, Items.Kinstone.GoldenSwamp:`GOLD2MULTIPLIER`)
 			CanFuseGoldCrown;    Helper;; Items.Kinstone.GoldenFalls
 		!else
 			!ifdef - ITEM_POOL_PLENTIFUL
 				Items.Kinstone.GoldenCloudTops:5;	Minor;
 			!endif
 			!eventdefine - combineKinstonesGold
-			Items.Kinstone.GoldenCloudTops:9;	Major;
-			CanFuseGoldTornado;  Helper;; Items.Kinstone.GoldenCloudTops:9
-			CanFuseGoldTotem;    Helper;; Items.Kinstone.GoldenCloudTops:9			
+			Items.Kinstone.GoldenCloudTops:9;		Major;
+			CanFuseGoldTornado;  Helper;; (+9, Items.Kinstone.GoldenCloudTops:`GOLD1MULTIPLIER`)
+			CanFuseGoldTotem;    Helper;; (+9, Items.Kinstone.GoldenCloudTops:`GOLD1MULTIPLIER`)			
 			!ifdef - CLOUD_CREST
-				CanFuseGoldCrown;    Helper;; Items.Kinstone.GoldenCloudTops:9
+				CanFuseGoldCrown;    Helper;; (+9, Items.Kinstone.GoldenCloudTops:`GOLD1MULTIPLIER`)
 			!else
 				!ifdef - FALLS_CREST
-					CanFuseGoldCrown;    Helper;; Items.Kinstone.GoldenCloudTops:9
+					CanFuseGoldCrown;    Helper;; (+9, Items.Kinstone.GoldenCloudTops:`GOLD1MULTIPLIER`)
 				!else
-					CanFuseGoldCrown;    Helper;; Items.Kinstone.GoldenCloudTops:4
+					CanFuseGoldCrown;    Helper;; (+4, Items.Kinstone.GoldenCloudTops:`GOLD1MULTIPLIER`)
 				!endif
 			!endif
 		!endif
@@ -2889,119 +2937,133 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 	!else				
 		!ifndef - COMBINED_RED_FUSIONS
 			!ifdef - GORON_CAVE
-				Items.Kinstone.RedW:9;	Major;
-				CanFuseRedW;			Helper;; Items.Kinstone.RedW:9
+				!define - REDWTOTAL - 9
 			!else
-				Items.Kinstone.RedW:8;	Major;
-				CanFuseRedW;			Helper;; Items.Kinstone.RedW:8
+				!define - REDWTOTAL - 8
 			!endif
 			!ifdef - FALLS_ACCESS
-				Items.Kinstone.RedV:7;	Major;
-				CanFuseRedV;			Helper;; Items.Kinstone.RedV:7
-				CanFuseRedMinish0;	Helper;; Items.Kinstone.RedV:7
+				!define - REDVTOTAL - 7
 			!else
-				Items.Kinstone.RedV:6;	Major;
-				CanFuseRedV;			Helper;; Items.Kinstone.RedV:6
-				CanFuseRedMinish0;	Helper;; Items.Kinstone.RedV:6
+				!define - REDVTOTAL - 6
 			!endif
 			!ifndef - NO_GOLD_FUSIONS
-				Items.Kinstone.RedE:8;	Major;
-				CanFuseRedE;			Helper;; Items.Kinstone.RedE:8
-				CanFuseRedDin;		Helper;; Items.Kinstone.RedE:7
-				CanFuseRedMinish;		Helper;; Items.Kinstone.RedE:8
+				!define - REDETOTAL - 8
+				!define - REDETOTAL1 - 7
 			!else
-				Items.Kinstone.RedE:7;	Major;
-				CanFuseRedE;			Helper;; Items.Kinstone.RedE:7
-				CanFuseRedDin;		Helper;; Items.Kinstone.RedE:6
-				CanFuseRedMinish;		Helper;; Items.Kinstone.RedE:7
+				!define - REDETOTAL - 7
+				!define - REDETOTAL1 - 6
 			!endif
 			!ifdef - ITEM_POOL_PLENTIFUL
 				Items.Kinstone.RedW:2;	Minor;
 				Items.Kinstone.RedV:2;	Minor;
 				Items.Kinstone.RedE:2;	Minor;
 			!endif
+			!ifdef - REDWMAX
+				!eventdefine - kinstoneMultiplierRedW - `REDWTOTAL`
+				!undefine - REDWMULTIPLIER
+				!undefine - REDWTOTAL
+				!define - REDWMULTIPLIER - 10
+				!define - REDWTOTAL - 1
+			!endif
+			!ifdef - REDVMAX
+				!eventdefine - kinstoneMultiplierRedV - `REDVTOTAL`
+				!undefine - REDVMULTIPLIER
+				!undefine - REDVTOTAL
+				!define - REDVMULTIPLIER - 10
+				!define - REDVTOTAL - 1
+			!endif
+			!ifdef - REDEMAX
+				!eventdefine - kinstoneMultiplierRedE - `REDETOTAL`
+				!undefine - REDEMULTIPLIER
+				!undefine - REDETOTAL
+				!define - REDEMULTIPLIER - 10
+				!define - REDETOTAL - 1
+			!endif
+			Items.Kinstone.RedW:`REDWTOTAL`;	Major;
+			Items.Kinstone.RedV:`REDVTOTAL`;	Major;
+			Items.Kinstone.RedE:`REDETOTAL`;	Major;
+			CanFuseRedW;			Helper;; (+`REDWTOTAL`, Items.Kinstone.RedW:`REDWMULTIPLIER`)
+			CanFuseRedV;			Helper;; (+`REDVTOTAL`, Items.Kinstone.RedV:`REDVMULTIPLIER`)
+			CanFuseRedMinish0;	Helper;; (+`REDVTOTAL`, Items.Kinstone.RedV:`REDVMULTIPLIER`)
+			CanFuseRedE;			Helper;; (+`REDETOTAL`, Items.Kinstone.RedE:`REDEMULTIPLIER`)
+			CanFuseRedDin;		Helper;; (+`REDETOTAL1`, Items.Kinstone.RedE:`REDEMULTIPLIER`)
+			CanFuseRedMinish;		Helper;; (+`REDETOTAL`, Items.Kinstone.RedE:`REDEMULTIPLIER`)
 		!else
 			!ifndef - NO_GOLD_FUSIONS
 				!ifdef - GORON_CAVE
 					!ifdef - FALLS_ACCESS
-						Items.Kinstone.RedW:24;	Major;
-						CanFuseRedW;			Helper;; Items.Kinstone.RedW:24
-						CanFuseRedV;			Helper;; Items.Kinstone.RedW:24
-						CanFuseRedMinish0;	Helper;; Items.Kinstone.RedW:22
-						CanFuseRedE;			Helper;; Items.Kinstone.RedW:24
-						CanFuseRedDin;		Helper;; Items.Kinstone.RedW:20
-						CanFuseRedMinish;		Helper;; Items.Kinstone.RedW:23
+						!define - REDWTOTAL - 24
+						!define - REDWTOTAL1 - 23
+						!define - REDWTOTAL2 - 22
+						!define - REDWTOTAL3 - 20
 					!else
-						Items.Kinstone.RedW:23;	Major;
-						CanFuseRedW;			Helper;; Items.Kinstone.RedW:23
-						CanFuseRedV;			Helper;; Items.Kinstone.RedW:23
-						CanFuseRedMinish0;	Helper;; Items.Kinstone.RedW:21
-						CanFuseRedE;			Helper;; Items.Kinstone.RedW:23
-						CanFuseRedDin;		Helper;; Items.Kinstone.RedW:19
-						CanFuseRedMinish;		Helper;; Items.Kinstone.RedW:22
+						!define - REDWTOTAL - 23
+						!define - REDWTOTAL1 - 22
+						!define - REDWTOTAL2 - 21
+						!define - REDWTOTAL3 - 19
 					!endif
 				!else
 					!ifdef - FALLS_ACCESS
-						Items.Kinstone.RedW:23;	Major;
-						CanFuseRedW;			Helper;; Items.Kinstone.RedW:23
-						CanFuseRedV;			Helper;; Items.Kinstone.RedW:23
-						CanFuseRedMinish0;	Helper;; Items.Kinstone.RedW:21
-						CanFuseRedE;			Helper;; Items.Kinstone.RedW:23
-						CanFuseRedDin;		Helper;; Items.Kinstone.RedW:19
-						CanFuseRedMinish;		Helper;; Items.Kinstone.RedW:22
+						!define - REDWTOTAL - 23
+						!define - REDWTOTAL1 - 22
+						!define - REDWTOTAL2 - 21
+						!define - REDWTOTAL3 - 19
 					!else
-						Items.Kinstone.RedW:22;	Major;
-						CanFuseRedW;			Helper;; Items.Kinstone.RedW:22
-						CanFuseRedV;			Helper;; Items.Kinstone.RedW:22
-						CanFuseRedMinish0;	Helper;; Items.Kinstone.RedW:20
-						CanFuseRedE;			Helper;; Items.Kinstone.RedW:22
-						CanFuseRedDin;		Helper;; Items.Kinstone.RedW:18
-						CanFuseRedMinish;		Helper;; Items.Kinstone.RedW:21
+						!define - REDWTOTAL - 22
+						!define - REDWTOTAL1 - 21
+						!define - REDWTOTAL2 - 20
+						!define - REDWTOTAL3 - 18
 					!endif
 				!endif
 			!else
 				!ifdef - GORON_CAVE
 					!ifdef - FALLS_ACCESS
-						Items.Kinstone.RedW:23;	Major;
-						CanFuseRedW;			Helper;; Items.Kinstone.RedW:23
-						CanFuseRedV;			Helper;; Items.Kinstone.RedW:23
-						CanFuseRedMinish0;	Helper;; Items.Kinstone.RedW:21
-						CanFuseRedE;			Helper;; Items.Kinstone.RedW:23
-						CanFuseRedDin;		Helper;; Items.Kinstone.RedW:19
-						CanFuseRedMinish;		Helper;; Items.Kinstone.RedW:22
+						!define - REDWTOTAL - 23
+						!define - REDWTOTAL1 - 22
+						!define - REDWTOTAL2 - 21
+						!define - REDWTOTAL3 - 19
 					!else
-						Items.Kinstone.RedW:22;	Major;
-						CanFuseRedW;			Helper;; Items.Kinstone.RedW:22
-						CanFuseRedV;			Helper;; Items.Kinstone.RedW:22
-						CanFuseRedMinish0;	Helper;; Items.Kinstone.RedW:20
-						CanFuseRedE;			Helper;; Items.Kinstone.RedW:22
-						CanFuseRedDin;		Helper;; Items.Kinstone.RedW:18
-						CanFuseRedMinish;		Helper;; Items.Kinstone.RedW:21
+						!define - REDWTOTAL - 22
+						!define - REDWTOTAL1 - 21
+						!define - REDWTOTAL2 - 20
+						!define - REDWTOTAL3 - 18
 					!endif
 				!else
 					!ifdef - FALLS_ACCESS
-						Items.Kinstone.RedW:22;	Major;
-						CanFuseRedW;			Helper;; Items.Kinstone.RedW:22
-						CanFuseRedV;			Helper;; Items.Kinstone.RedW:22
-						CanFuseRedMinish0;	Helper;; Items.Kinstone.RedW:20
-						CanFuseRedE;			Helper;; Items.Kinstone.RedW:22
-						CanFuseRedDin;		Helper;; Items.Kinstone.RedW:18
-						CanFuseRedMinish;		Helper;; Items.Kinstone.RedW:21
+						!define - REDWTOTAL - 22
+						!define - REDWTOTAL1 - 21
+						!define - REDWTOTAL2 - 20
+						!define - REDWTOTAL3 - 18
 					!else
-						Items.Kinstone.RedW:21;	Major;
-						CanFuseRedW;			Helper;; Items.Kinstone.RedW:21
-						CanFuseRedV;			Helper;; Items.Kinstone.RedW:21
-						CanFuseRedMinish0;	Helper;; Items.Kinstone.RedW:19
-						CanFuseRedE;			Helper;; Items.Kinstone.RedW:21
-						CanFuseRedDin;		Helper;; Items.Kinstone.RedW:17
-						CanFuseRedMinish;		Helper;; Items.Kinstone.RedW:20
+						!define - REDWTOTAL - 21
+						!define - REDWTOTAL1 - 20
+						!define - REDWTOTAL2 - 19
+						!define - REDWTOTAL3 - 17
 					!endif
 				!endif
 			!endif
 			!ifdef - ITEM_POOL_PLENTIFUL
-				Items.Kinstone.RedW:6;	Minor
+				!ifdef - REDWMAX
+					Items.Kinstone.RedW:2;	Minor
+				!else
+					Items.Kinstone.RedW:6;	Minor
+				!endif
+			!endif
+			!ifdef - REDWMAX
+				!eventdefine - kinstoneMultiplierRedW - `REDWTOTAL`
+				!undefine - REDWMULTIPLIER
+				!undefine - REDWTOTAL
+				!define - REDWMULTIPLIER - 10
+				!define - REDWTOTAL - 1
 			!endif
 			!eventdefine - combineKinstonesRed
+			Items.Kinstone.RedW:`REDWTOTAL`;	Major;
+			CanFuseRedW;			Helper;;	(+`REDWTOTAL`, Items.Kinstone.RedW:`REDWMULTIPLIER`)
+			CanFuseRedV;			Helper;;	(+`REDWTOTAL`, Items.Kinstone.RedW:`REDWMULTIPLIER`)
+			CanFuseRedMinish0;	Helper;;	(+`REDWTOTAL2`, Items.Kinstone.RedW:`REDWMULTIPLIER`)
+			CanFuseRedE;			Helper;; (+`REDWTOTAL`, Items.Kinstone.RedW:`REDWMULTIPLIER`)
+			CanFuseRedDin;		Helper;; (+`REDWTOTAL3`, Items.Kinstone.RedW:`REDWMULTIPLIER`)
+			CanFuseRedMinish;		Helper;; (+`REDWTOTAL1`, Items.Kinstone.RedW:`REDWMULTIPLIER`)
 		!endif
 		BelariFusion;				Helper;;	Helpers.CanFuseRedW, Locations.MinishWoods_BombMinish_NPC2																			#RuinsEndChest			0A
 		BremorFusion;				Helper;;	Helpers.CanFuseRedW, Helpers.DinNayruFaroreFusion																					#USELESSHouse				0B
@@ -3072,23 +3134,47 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 		GoronLeftFusion;		Helper;;																																	#GoronMerchant			33
 	!else
 		!ifndef - COMBINED_BLUE_FUSIONS
-			Items.Kinstone.BlueL:9;	Major;
-			Items.Kinstone.BlueS:9;	Major;
-			CanFuseBlueL;    		Helper;; Items.Kinstone.BlueL:9
-			CanFuseBlueS;    		Helper;; Items.Kinstone.BlueS:9
-			CanFuseBlue4Wall;		Helper;; Items.Kinstone.BlueL:8, Items.Kinstone.BlueS:8
-			CanFuseBlueGhost;		Helper;; Items.Kinstone.BlueS:9
+			!ifdef - BLUELMAX
+				!undefine - BLUELMULTIPLIER
+				!define - BLUELMULTIPLIER - 10
+				!define - BLUELTOTAL - 1
+				!eventdefine - kinstoneMultiplierBlueL - 9
+			!else
+				!define - BLUELTOTAL - 9
+			!endif
+			!ifdef - BLUESMAX
+				!undefine - BLUESMULTIPLIER
+				!define - BLUESMULTIPLIER - 10
+				!define - BLUESTOTAL - 1
+				!eventdefine - kinstoneMultiplierBlueS - 9
+			!else
+				!define - BLUESTOTAL - 9
+			!endif
+			Items.Kinstone.BlueL:`BLUELTOTAL`;	Major;
+			Items.Kinstone.BlueS:`BLUESTOTAL`;	Major;
+			CanFuseBlueL;    		Helper;; (+9, Items.Kinstone.BlueL:`BLUELMULTIPLIER`)
+			CanFuseBlueS;    		Helper;; (+9, Items.Kinstone.BlueS:`BLUESMULTIPLIER`)
+			CanFuseBlue4Wall;		Helper;; (+8, Items.Kinstone.BlueL:`BLUELMULTIPLIER`), (+8, Items.Kinstone.BlueS:`BLUESMULTIPLIER`)
+			CanFuseBlueGhost;		Helper;; (+9, Items.Kinstone.BlueS:`BLUESMULTIPLIER`)
 			!ifdef - ITEM_POOL_PLENTIFUL
 				Items.Kinstone.BlueL:2;	Minor;
 				Items.Kinstone.BlueS:2;	Minor;
 			!endif
 		!else
+			!ifdef - BLUELMAX
+				!undefine - BLUELMULTIPLIER
+				!define - BLUELMULTIPLIER - 20
+				!define - BLUELTOTAL - 1
+				!eventdefine - kinstoneMultiplierBlueL - 18
+			!else
+				!define - BLUELTOTAL - 18
+			!endif
 			!eventdefine - combineKinstonesBlue
-			Items.Kinstone.BlueL:18;	Major;
-			CanFuseBlueL;			Helper;; Items.Kinstone.BlueL:18
-			CanFuseBlueS;			Helper;; Items.Kinstone.BlueL:18
-			CanFuseBlue4Wall;		Helper;; Items.Kinstone.BlueL:16
-			CanFuseBlueGhost;		Helper;; Items.Kinstone.BlueL:17
+			Items.Kinstone.BlueL:`BLUELTOTAL`;	Major;
+			CanFuseBlueL;			Helper;; (+18, Items.Kinstone.BlueL:`BLUELMULTIPLIER`)
+			CanFuseBlueS;			Helper;; (+18, Items.Kinstone.BlueL:`BLUELMULTIPLIER`)
+			CanFuseBlue4Wall;		Helper;; (+16, Items.Kinstone.BlueL:`BLUELMULTIPLIER`)
+			CanFuseBlueGhost;		Helper;; (+17, Items.Kinstone.BlueL:`BLUELMULTIPLIER`)
 			!ifdef - ITEM_POOL_PLENTIFUL
 				Items.Kinstone.BlueL:4;	Minor;
 			!endif
@@ -3284,210 +3370,210 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 				!ifdef - MINISH_TREE
 					!ifdef - UWT_ACCESS
 						Items.Kinstone.GreenC:17;	Major;
-						CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:17
-						CanFuseGreenScrub;	Helper;; Items.Kinstone.GreenC:17
-						CanFuseGreenGina;		Helper;; Items.Kinstone.GreenC:16
-						CanFuseGreenSiroc;	Helper;; Items.Kinstone.GreenC:17
-						CanFuseGreenCShared1;	Helper;; Items.Kinstone.GreenC:11
-						CanFuseGreenCShared2;	Helper;; Items.Kinstone.GreenC:12
-						CanFuseGreenCShared3;	Helper;; Items.Kinstone.GreenC:13
-						CanFuseGreenCShared4;	Helper;; Items.Kinstone.GreenC:14
-						CanFuseGreenCShared5;	Helper;; Items.Kinstone.GreenC:15
-						CanFuseGreenCShared6;	Helper;; Items.Kinstone.GreenC:16
+						CanFuseGreenC;   		Helper;; (+17, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenScrub;	Helper;; (+17, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenGina;		Helper;; (+16, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenSiroc;	Helper;; (+17, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenCShared1;	Helper;; (+11, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenCShared2;	Helper;; (+12, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenCShared3;	Helper;; (+13, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenCShared4;	Helper;; (+14, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenCShared5;	Helper;; (+15, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenCShared6;	Helper;; (+16, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 					!else
 						Items.Kinstone.GreenC:16;	Major;
-						CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:16
-						CanFuseGreenScrub;	Helper;; Items.Kinstone.GreenC:16
-						CanFuseGreenGina;		Helper;; Items.Kinstone.GreenC:15
+						CanFuseGreenC;   		Helper;; (+16, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenScrub;	Helper;; (+16, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenGina;		Helper;; (+15, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 						CanFuseGreenSiroc;	Helper;; Helpers.Inaccessible
-						CanFuseGreenCShared1;	Helper;; Items.Kinstone.GreenC:10
-						CanFuseGreenCShared2;	Helper;; Items.Kinstone.GreenC:11
-						CanFuseGreenCShared3;	Helper;; Items.Kinstone.GreenC:12
-						CanFuseGreenCShared4;	Helper;; Items.Kinstone.GreenC:13
-						CanFuseGreenCShared5;	Helper;; Items.Kinstone.GreenC:14
-						CanFuseGreenCShared6;	Helper;; Items.Kinstone.GreenC:15
+						CanFuseGreenCShared1;	Helper;; (+10, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenCShared2;	Helper;; (+11, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenCShared3;	Helper;; (+12, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenCShared4;	Helper;; (+13, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenCShared5;	Helper;; (+14, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenCShared6;	Helper;; (+15, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 					!endif
 				!else
 					!ifdef - UWT_ACCESS
 						Items.Kinstone.GreenC:16;	Major;
-						CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:16
+						CanFuseGreenC;   		Helper;; (+16, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 						CanFuseGreenScrub;	Helper;; Helpers.Inaccessible
-						CanFuseGreenGina;		Helper;; Items.Kinstone.GreenC:15
-						CanFuseGreenSiroc;	Helper;; Items.Kinstone.GreenC:16
-						CanFuseGreenCShared1;	Helper;; Items.Kinstone.GreenC:10
-						CanFuseGreenCShared2;	Helper;; Items.Kinstone.GreenC:11
-						CanFuseGreenCShared3;	Helper;; Items.Kinstone.GreenC:12
-						CanFuseGreenCShared4;	Helper;; Items.Kinstone.GreenC:13
-						CanFuseGreenCShared5;	Helper;; Items.Kinstone.GreenC:14
-						CanFuseGreenCShared6;	Helper;; Items.Kinstone.GreenC:15
+						CanFuseGreenGina;		Helper;; (+15, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenSiroc;	Helper;; (+16, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenCShared1;	Helper;; (+10, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenCShared2;	Helper;; (+11, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenCShared3;	Helper;; (+12, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenCShared4;	Helper;; (+13, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenCShared5;	Helper;; (+14, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenCShared6;	Helper;; (+15, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 					!else
 						Items.Kinstone.GreenC:15;	Major;
-						CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:15
+						CanFuseGreenC;   		Helper;; (+15, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 						CanFuseGreenScrub;	Helper;; Helpers.Inaccessible
-						CanFuseGreenGina;		Helper;; Items.Kinstone.GreenC:14
+						CanFuseGreenGina;		Helper;; (+14, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 						CanFuseGreenSiroc;	Helper;; Helpers.Inaccessible
-						CanFuseGreenCShared1;	Helper;; Items.Kinstone.GreenC:9
-						CanFuseGreenCShared2;	Helper;; Items.Kinstone.GreenC:10
-						CanFuseGreenCShared3;	Helper;; Items.Kinstone.GreenC:11
-						CanFuseGreenCShared4;	Helper;; Items.Kinstone.GreenC:12
-						CanFuseGreenCShared5;	Helper;; Items.Kinstone.GreenC:13
-						CanFuseGreenCShared6;	Helper;; Items.Kinstone.GreenC:14
+						CanFuseGreenCShared1;	Helper;; (+9, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenCShared2;	Helper;; (+10, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenCShared3;	Helper;; (+11, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenCShared4;	Helper;; (+12, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenCShared5;	Helper;; (+13, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenCShared6;	Helper;; (+14, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 					!endif
 				!endif
 			!else
 				!ifdef - MINISH_TREE
 					!ifdef - UWT_ACCESS
 						Items.Kinstone.GreenC:15;	Major;
-						CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:15
-						CanFuseGreenScrub;	Helper;; Items.Kinstone.GreenC:15
+						CanFuseGreenC;   		Helper;; (+15, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenScrub;	Helper;; (+15, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 						CanFuseGreenGina;		Helper;; Helpers.Inaccessible
-						CanFuseGreenSiroc;	Helper;; Items.Kinstone.GreenC:15
-						CanFuseGreenCShared1;	Helper;; Items.Kinstone.GreenC:9
-						CanFuseGreenCShared2;	Helper;; Items.Kinstone.GreenC:10
-						CanFuseGreenCShared3;	Helper;; Items.Kinstone.GreenC:11
-						CanFuseGreenCShared4;	Helper;; Items.Kinstone.GreenC:12
-						CanFuseGreenCShared5;	Helper;; Items.Kinstone.GreenC:13
-						CanFuseGreenCShared6;	Helper;; Items.Kinstone.GreenC:14
+						CanFuseGreenSiroc;	Helper;; (+15, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenCShared1;	Helper;; (+9, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenCShared2;	Helper;; (+10, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenCShared3;	Helper;; (+11, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenCShared4;	Helper;; (+12, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenCShared5;	Helper;; (+13, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenCShared6;	Helper;; (+14, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 					!else
 						Items.Kinstone.GreenC:14;	Major;
-						CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:14
-						CanFuseGreenScrub;	Helper;; Items.Kinstone.GreenC:14
+						CanFuseGreenC;   		Helper;; (+14, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenScrub;	Helper;; (+14, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 						CanFuseGreenGina;		Helper;; Helpers.Inaccessible
 						CanFuseGreenSiroc;	Helper;; Helpers.Inaccessible
-						CanFuseGreenCShared1;	Helper;; Items.Kinstone.GreenC:8
-						CanFuseGreenCShared2;	Helper;; Items.Kinstone.GreenC:9
-						CanFuseGreenCShared3;	Helper;; Items.Kinstone.GreenC:10
-						CanFuseGreenCShared4;	Helper;; Items.Kinstone.GreenC:11
-						CanFuseGreenCShared5;	Helper;; Items.Kinstone.GreenC:12
-						CanFuseGreenCShared6;	Helper;; Items.Kinstone.GreenC:13
+						CanFuseGreenCShared1;	Helper;; (+8, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenCShared2;	Helper;; (+9, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenCShared3;	Helper;; (+10, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenCShared4;	Helper;; (+11, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenCShared5;	Helper;; (+12, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenCShared6;	Helper;; (+13, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 					!endif
 				!else
 					!ifdef - UWT_ACCESS
 						Items.Kinstone.GreenC:14;	Major;
-						CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:14
+						CanFuseGreenC;   		Helper;; (+14, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 						CanFuseGreenScrub;	Helper;; Helpers.Inaccessible
 						CanFuseGreenGina;		Helper;; Helpers.Inaccessible
-						CanFuseGreenSiroc;	Helper;; Items.Kinstone.GreenC:14
-						CanFuseGreenCShared1;	Helper;; Items.Kinstone.GreenC:8
-						CanFuseGreenCShared2;	Helper;; Items.Kinstone.GreenC:9
-						CanFuseGreenCShared3;	Helper;; Items.Kinstone.GreenC:10
-						CanFuseGreenCShared4;	Helper;; Items.Kinstone.GreenC:11
-						CanFuseGreenCShared5;	Helper;; Items.Kinstone.GreenC:12
-						CanFuseGreenCShared6;	Helper;; Items.Kinstone.GreenC:13
+						CanFuseGreenSiroc;	Helper;; (+14, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenCShared1;	Helper;; (+8, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenCShared2;	Helper;; (+9, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenCShared3;	Helper;; (+10, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenCShared4;	Helper;; (+11, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenCShared5;	Helper;; (+12, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenCShared6;	Helper;; (+13, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 					!else
 						Items.Kinstone.GreenC:13;	Major;
-						CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:13
+						CanFuseGreenC;   		Helper;; (+13, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 						CanFuseGreenScrub;	Helper;; Helpers.Inaccessible
 						CanFuseGreenGina;		Helper;; Helpers.Inaccessible
 						CanFuseGreenSiroc;	Helper;; Helpers.Inaccessible
-						CanFuseGreenCShared1;	Helper;; Items.Kinstone.GreenC:7
-						CanFuseGreenCShared2;	Helper;; Items.Kinstone.GreenC:8
-						CanFuseGreenCShared3;	Helper;; Items.Kinstone.GreenC:9
-						CanFuseGreenCShared4;	Helper;; Items.Kinstone.GreenC:10
-						CanFuseGreenCShared5;	Helper;; Items.Kinstone.GreenC:11
-						CanFuseGreenCShared6;	Helper;; Items.Kinstone.GreenC:12
+						CanFuseGreenCShared1;	Helper;; (+7, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenCShared2;	Helper;; (+8, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenCShared3;	Helper;; (+9, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenCShared4;	Helper;; (+10, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenCShared5;	Helper;; (+11, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenCShared6;	Helper;; (+12, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 					!endif
 				!endif
 			!endif
 			!ifdef - TRIBE_ACCESS
 				!ifdef - MINISH_TREE
 					Items.Kinstone.GreenP:16;	Major;
-					CanFuseGreenP;   		Helper;; Items.Kinstone.GreenP:16
-					CanFuseGreenTFZ2;		Helper;; Items.Kinstone.GreenP:16
-					CanFuseGreenDavid;	Helper;; Items.Kinstone.GreenP:16
-					CanFuseGreenPShared1;	Helper;; Items.Kinstone.GreenP:11
-					CanFuseGreenPShared2;	Helper;; Items.Kinstone.GreenP:12
-					CanFuseGreenPShared3;	Helper;; Items.Kinstone.GreenP:13
-					CanFuseGreenPShared4;	Helper;; Items.Kinstone.GreenP:14
-					CanFuseGreenPShared5;	Helper;; Items.Kinstone.GreenP:15
+					CanFuseGreenP;   		Helper;; (+16, Items.Kinstone.GreenP:`GREENPMULTIPLIER`)
+					CanFuseGreenTFZ2;		Helper;; (+16, Items.Kinstone.GreenP:`GREENPMULTIPLIER`)
+					CanFuseGreenDavid;	Helper;; (+16, Items.Kinstone.GreenP:`GREENPMULTIPLIER`)
+					CanFuseGreenPShared1;	Helper;; (+11, Items.Kinstone.GreenP:`GREENPMULTIPLIER`)
+					CanFuseGreenPShared2;	Helper;; (+12, Items.Kinstone.GreenP:`GREENPMULTIPLIER`)
+					CanFuseGreenPShared3;	Helper;; (+13, Items.Kinstone.GreenP:`GREENPMULTIPLIER`)
+					CanFuseGreenPShared4;	Helper;; (+14, Items.Kinstone.GreenP:`GREENPMULTIPLIER`)
+					CanFuseGreenPShared5;	Helper;; (+15, Items.Kinstone.GreenP:`GREENPMULTIPLIER`)
 				!else
 					Items.Kinstone.GreenP:15;	Major;
-					CanFuseGreenP;   		Helper;; Items.Kinstone.GreenP:15
-					CanFuseGreenTFZ2;		Helper;; Items.Kinstone.GreenP:15
-					CanFuseGreenDavid;	Helper;; Items.Kinstone.GreenP:15
-					CanFuseGreenPShared1;	Helper;; Items.Kinstone.GreenP:10
-					CanFuseGreenPShared2;	Helper;; Items.Kinstone.GreenP:11
-					CanFuseGreenPShared3;	Helper;; Items.Kinstone.GreenP:12
-					CanFuseGreenPShared4;	Helper;; Items.Kinstone.GreenP:13
-					CanFuseGreenPShared5;	Helper;; Items.Kinstone.GreenP:14
+					CanFuseGreenP;   		Helper;; (+15, Items.Kinstone.GreenP:`GREENPMULTIPLIER`)
+					CanFuseGreenTFZ2;		Helper;; (+15, Items.Kinstone.GreenP:`GREENPMULTIPLIER`)
+					CanFuseGreenDavid;	Helper;; (+15, Items.Kinstone.GreenP:`GREENPMULTIPLIER`)
+					CanFuseGreenPShared1;	Helper;; (+10, Items.Kinstone.GreenP:`GREENPMULTIPLIER`)
+					CanFuseGreenPShared2;	Helper;; (+11, Items.Kinstone.GreenP:`GREENPMULTIPLIER`)
+					CanFuseGreenPShared3;	Helper;; (+12, Items.Kinstone.GreenP:`GREENPMULTIPLIER`)
+					CanFuseGreenPShared4;	Helper;; (+13, Items.Kinstone.GreenP:`GREENPMULTIPLIER`)
+					CanFuseGreenPShared5;	Helper;; (+14, Items.Kinstone.GreenP:`GREENPMULTIPLIER`)
 				!endif
 			!else
 				!ifdef - MINISH_TREE
 					Items.Kinstone.GreenP:15;	Major;
-					CanFuseGreenP;   		Helper;; Items.Kinstone.GreenP:15
-					CanFuseGreenTFZ2;		Helper;; Items.Kinstone.GreenP:15
-					CanFuseGreenDavid;	Helper;; Items.Kinstone.GreenP:15
-					CanFuseGreenPShared1;	Helper;; Items.Kinstone.GreenP:10
-					CanFuseGreenPShared2;	Helper;; Items.Kinstone.GreenP:11
-					CanFuseGreenPShared3;	Helper;; Items.Kinstone.GreenP:12
-					CanFuseGreenPShared4;	Helper;; Items.Kinstone.GreenP:13
-					CanFuseGreenPShared5;	Helper;; Items.Kinstone.GreenP:14
+					CanFuseGreenP;   		Helper;; (+15, Items.Kinstone.GreenP:`GREENPMULTIPLIER`)
+					CanFuseGreenTFZ2;		Helper;; (+15, Items.Kinstone.GreenP:`GREENPMULTIPLIER`)
+					CanFuseGreenDavid;	Helper;; (+15, Items.Kinstone.GreenP:`GREENPMULTIPLIER`)
+					CanFuseGreenPShared1;	Helper;; (+10, Items.Kinstone.GreenP:`GREENPMULTIPLIER`)
+					CanFuseGreenPShared2;	Helper;; (+11, Items.Kinstone.GreenP:`GREENPMULTIPLIER`)
+					CanFuseGreenPShared3;	Helper;; (+12, Items.Kinstone.GreenP:`GREENPMULTIPLIER`)
+					CanFuseGreenPShared4;	Helper;; (+13, Items.Kinstone.GreenP:`GREENPMULTIPLIER`)
+					CanFuseGreenPShared5;	Helper;; (+14, Items.Kinstone.GreenP:`GREENPMULTIPLIER`)
 				!else
 					Items.Kinstone.GreenP:14;	Major;
-					CanFuseGreenP;   		Helper;; Items.Kinstone.GreenP:14
-					CanFuseGreenTFZ2;		Helper;; Items.Kinstone.GreenP:14
-					CanFuseGreenDavid;	Helper;; Items.Kinstone.GreenP:14
-					CanFuseGreenPShared1;	Helper;; Items.Kinstone.GreenP:9
-					CanFuseGreenPShared2;	Helper;; Items.Kinstone.GreenP:10
-					CanFuseGreenPShared3;	Helper;; Items.Kinstone.GreenP:11
-					CanFuseGreenPShared4;	Helper;; Items.Kinstone.GreenP:12
-					CanFuseGreenPShared5;	Helper;; Items.Kinstone.GreenP:13
+					CanFuseGreenP;   		Helper;; (+14, Items.Kinstone.GreenP:`GREENPMULTIPLIER`)
+					CanFuseGreenTFZ2;		Helper;; (+14, Items.Kinstone.GreenP:`GREENPMULTIPLIER`)
+					CanFuseGreenDavid;	Helper;; (+14, Items.Kinstone.GreenP:`GREENPMULTIPLIER`)
+					CanFuseGreenPShared1;	Helper;; (+9, Items.Kinstone.GreenP:`GREENPMULTIPLIER`)
+					CanFuseGreenPShared2;	Helper;; (+10, Items.Kinstone.GreenP:`GREENPMULTIPLIER`)
+					CanFuseGreenPShared3;	Helper;; (+11, Items.Kinstone.GreenP:`GREENPMULTIPLIER`)
+					CanFuseGreenPShared4;	Helper;; (+12, Items.Kinstone.GreenP:`GREENPMULTIPLIER`)
+					CanFuseGreenPShared5;	Helper;; (+13, Items.Kinstone.GreenP:`GREENPMULTIPLIER`)
 				!endif
 			!endif
 			!ifdef - UWT_ACCESS
 				Items.Kinstone.GreenG:16;	Major;
-				CanFuseGreenG;   		Helper;; Items.Kinstone.GreenG:16
-				CanFuseGreenFlurris;	Helper;; Items.Kinstone.GreenG:15
-				CanFuseGreenTFZ1;		Helper;; Items.Kinstone.GreenG:16
-				CanFuseGreenGShared1;	Helper;; Items.Kinstone.GreenG:11
-				CanFuseGreenGShared2;	Helper;; Items.Kinstone.GreenG:12
-				CanFuseGreenGShared3;	Helper;; Items.Kinstone.GreenG:13
-				CanFuseGreenGShared4;	Helper;; Items.Kinstone.GreenG:14
-				CanFuseGreenGShared5;	Helper;; Items.Kinstone.GreenG:15
+				CanFuseGreenG;   		Helper;; (+16, Items.Kinstone.GreenG:`GREENGMULTIPLIER`)
+				CanFuseGreenFlurris;	Helper;; (+15, Items.Kinstone.GreenG:`GREENGMULTIPLIER`)
+				CanFuseGreenTFZ1;		Helper;; (+16, Items.Kinstone.GreenG:`GREENGMULTIPLIER`)
+				CanFuseGreenGShared1;	Helper;; (+11, Items.Kinstone.GreenG:`GREENGMULTIPLIER`)
+				CanFuseGreenGShared2;	Helper;; (+12, Items.Kinstone.GreenG:`GREENGMULTIPLIER`)
+				CanFuseGreenGShared3;	Helper;; (+13, Items.Kinstone.GreenG:`GREENGMULTIPLIER`)
+				CanFuseGreenGShared4;	Helper;; (+14, Items.Kinstone.GreenG:`GREENGMULTIPLIER`)
+				CanFuseGreenGShared5;	Helper;; (+15, Items.Kinstone.GreenG:`GREENGMULTIPLIER`)
 			!else
 				!ifdef - TRIBE_ACCESS
 					!ifdef - FALLS_ACCESS
 						Items.Kinstone.GreenG:15;	Major;
-						CanFuseGreenG;   		Helper;; Items.Kinstone.GreenG:15
-						CanFuseGreenFlurris;	Helper;; Items.Kinstone.GreenG:14
-						CanFuseGreenTFZ1;		Helper;; Items.Kinstone.GreenG:15
-						CanFuseGreenGShared1;	Helper;; Items.Kinstone.GreenG:10
-						CanFuseGreenGShared2;	Helper;; Items.Kinstone.GreenG:11
-						CanFuseGreenGShared3;	Helper;; Items.Kinstone.GreenG:12
-						CanFuseGreenGShared4;	Helper;; Items.Kinstone.GreenG:13
-						CanFuseGreenGShared5;	Helper;; Items.Kinstone.GreenG:14						
+						CanFuseGreenG;   		Helper;; (+15, Items.Kinstone.GreenG:`GREENGMULTIPLIER`)
+						CanFuseGreenFlurris;	Helper;; (+14, Items.Kinstone.GreenG:`GREENGMULTIPLIER`)
+						CanFuseGreenTFZ1;		Helper;; (+15, Items.Kinstone.GreenG:`GREENGMULTIPLIER`)
+						CanFuseGreenGShared1;	Helper;; (+10, Items.Kinstone.GreenG:`GREENGMULTIPLIER`)
+						CanFuseGreenGShared2;	Helper;; (+11, Items.Kinstone.GreenG:`GREENGMULTIPLIER`)
+						CanFuseGreenGShared3;	Helper;; (+12, Items.Kinstone.GreenG:`GREENGMULTIPLIER`)
+						CanFuseGreenGShared4;	Helper;; (+13, Items.Kinstone.GreenG:`GREENGMULTIPLIER`)
+						CanFuseGreenGShared5;	Helper;; (+14, Items.Kinstone.GreenG:`GREENGMULTIPLIER`)						
 					!else
 						Items.Kinstone.GreenG:14;	Major;
-						CanFuseGreenG;   		Helper;; Items.Kinstone.GreenG:14
-						CanFuseGreenFlurris;	Helper;; Items.Kinstone.GreenG:13
-						CanFuseGreenTFZ1;		Helper;; Items.Kinstone.GreenG:14
-						CanFuseGreenGShared1;	Helper;; Items.Kinstone.GreenG:9
-						CanFuseGreenGShared2;	Helper;; Items.Kinstone.GreenG:10
-						CanFuseGreenGShared3;	Helper;; Items.Kinstone.GreenG:11
-						CanFuseGreenGShared4;	Helper;; Items.Kinstone.GreenG:12
-						CanFuseGreenGShared5;	Helper;; Items.Kinstone.GreenG:13
+						CanFuseGreenG;   		Helper;; (+14, Items.Kinstone.GreenG:`GREENGMULTIPLIER`)
+						CanFuseGreenFlurris;	Helper;; (+13, Items.Kinstone.GreenG:`GREENGMULTIPLIER`)
+						CanFuseGreenTFZ1;		Helper;; (+14, Items.Kinstone.GreenG:`GREENGMULTIPLIER`)
+						CanFuseGreenGShared1;	Helper;; (+9, Items.Kinstone.GreenG:`GREENGMULTIPLIER`)
+						CanFuseGreenGShared2;	Helper;; (+10, Items.Kinstone.GreenG:`GREENGMULTIPLIER`)
+						CanFuseGreenGShared3;	Helper;; (+11, Items.Kinstone.GreenG:`GREENGMULTIPLIER`)
+						CanFuseGreenGShared4;	Helper;; (+12, Items.Kinstone.GreenG:`GREENGMULTIPLIER`)
+						CanFuseGreenGShared5;	Helper;; (+13, Items.Kinstone.GreenG:`GREENGMULTIPLIER`)
 					!endif
 				!else
 					!ifdef - FALLS_ACCESS
 						Items.Kinstone.GreenG:13;	Major;
-						CanFuseGreenG;   		Helper;; Items.Kinstone.GreenG:13
+						CanFuseGreenG;   		Helper;; (+13, Items.Kinstone.GreenG:`GREENGMULTIPLIER`)
 						CanFuseGreenFlurris;	Helper;; Helpers.Inaccessible
-						CanFuseGreenTFZ1;		Helper;; Items.Kinstone.GreenG:13
-						CanFuseGreenGShared1;	Helper;; Items.Kinstone.GreenG:8
-						CanFuseGreenGShared2;	Helper;; Items.Kinstone.GreenG:9
-						CanFuseGreenGShared3;	Helper;; Items.Kinstone.GreenG:10
-						CanFuseGreenGShared4;	Helper;; Items.Kinstone.GreenG:11
-						CanFuseGreenGShared5;	Helper;; Items.Kinstone.GreenG:12
+						CanFuseGreenTFZ1;		Helper;; (+13, Items.Kinstone.GreenG:`GREENGMULTIPLIER`)
+						CanFuseGreenGShared1;	Helper;; (+8, Items.Kinstone.GreenG:`GREENGMULTIPLIER`)
+						CanFuseGreenGShared2;	Helper;; (+9, Items.Kinstone.GreenG:`GREENGMULTIPLIER`)
+						CanFuseGreenGShared3;	Helper;; (+10, Items.Kinstone.GreenG:`GREENGMULTIPLIER`)
+						CanFuseGreenGShared4;	Helper;; (+11, Items.Kinstone.GreenG:`GREENGMULTIPLIER`)
+						CanFuseGreenGShared5;	Helper;; (+12, Items.Kinstone.GreenG:`GREENGMULTIPLIER`)
 					!else
 						Items.Kinstone.GreenG:12;	Major;
-						CanFuseGreenG;   		Helper;; Items.Kinstone.GreenG:12
+						CanFuseGreenG;   		Helper;; (+12, Items.Kinstone.GreenG:`GREENGMULTIPLIER`)
 						CanFuseGreenFlurris;	Helper;; Helpers.Inaccessible
-						CanFuseGreenTFZ1;		Helper;; Items.Kinstone.GreenG:12
-						CanFuseGreenGShared1;	Helper;; Items.Kinstone.GreenG:7
-						CanFuseGreenGShared2;	Helper;; Items.Kinstone.GreenG:8
-						CanFuseGreenGShared3;	Helper;; Items.Kinstone.GreenG:9
-						CanFuseGreenGShared4;	Helper;; Items.Kinstone.GreenG:10
-						CanFuseGreenGShared5;	Helper;; Items.Kinstone.GreenG:11
+						CanFuseGreenTFZ1;		Helper;; (+12, Items.Kinstone.GreenG:`GREENGMULTIPLIER`)
+						CanFuseGreenGShared1;	Helper;; (+7, Items.Kinstone.GreenG:`GREENGMULTIPLIER`)
+						CanFuseGreenGShared2;	Helper;; (+8, Items.Kinstone.GreenG:`GREENGMULTIPLIER`)
+						CanFuseGreenGShared3;	Helper;; (+9, Items.Kinstone.GreenG:`GREENGMULTIPLIER`)
+						CanFuseGreenGShared4;	Helper;; (+10, Items.Kinstone.GreenG:`GREENGMULTIPLIER`)
+						CanFuseGreenGShared5;	Helper;; (+11, Items.Kinstone.GreenG:`GREENGMULTIPLIER`)
 					!endif
 				!endif
 			!endif
@@ -3501,114 +3587,114 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 				!ifdef - RIGHT_GRAVE
 					!ifdef - MINISH_TREE
 						Items.Kinstone.GreenC:49;	Major;
-						CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:49
-						CanFuseGreenScrub;	Helper;; Items.Kinstone.GreenC:48
-						CanFuseGreenGina;		Helper;; Items.Kinstone.GreenC:48
-						CanFuseGreenSiroc;	Helper;; Items.Kinstone.GreenC:48
-						CanFuseGreenG;   		Helper;; Items.Kinstone.GreenC:49
-						CanFuseGreenFlurris;	Helper;; Items.Kinstone.GreenC:48
-						CanFuseGreenTFZ1;		Helper;; Items.Kinstone.GreenC:47
-						CanFuseGreenP;   		Helper;; Items.Kinstone.GreenC:49
-						CanFuseGreenTFZ2;		Helper;; Items.Kinstone.GreenC:48
-						CanFuseGreenDavid;	Helper;; Items.Kinstone.GreenC:48
-						CanFuseGreenShared15;	Helper;; Items.Kinstone.GreenC:49
-						CanFuseGreenShared14;	Helper;; Items.Kinstone.GreenC:48
-						CanFuseGreenShared13;	Helper;; Items.Kinstone.GreenC:47
-						CanFuseGreenShared12;	Helper;; Items.Kinstone.GreenC:46
-						CanFuseGreenShared11;	Helper;; Items.Kinstone.GreenC:45
-						CanFuseGreenShared10;	Helper;; Items.Kinstone.GreenC:44
-						CanFuseGreenShared9;	Helper;; Items.Kinstone.GreenC:43
-						CanFuseGreenShared8;	Helper;; Items.Kinstone.GreenC:42
-						CanFuseGreenShared7;	Helper;; Items.Kinstone.GreenC:41
-						CanFuseGreenShared6;	Helper;; Items.Kinstone.GreenC:40
-						CanFuseGreenShared5;	Helper;; Items.Kinstone.GreenC:39
-						CanFuseGreenShared4;	Helper;; Items.Kinstone.GreenC:38
-						CanFuseGreenShared3;	Helper;; Items.Kinstone.GreenC:37
-						CanFuseGreenShared2;	Helper;; Items.Kinstone.GreenC:36
-						CanFuseGreenShared1;	Helper;; Items.Kinstone.GreenC:35
+						CanFuseGreenC;   		Helper;; (+49, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenScrub;	Helper;; (+48, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenGina;		Helper;; (+48, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenSiroc;	Helper;; (+48, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenG;   		Helper;; (+49, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenFlurris;	Helper;; (+48, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenTFZ1;		Helper;; (+47, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenP;   		Helper;; (+49, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenTFZ2;		Helper;; (+48, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenDavid;	Helper;; (+48, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenShared15;	Helper;; (+49, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenShared14;	Helper;; (+48, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenShared13;	Helper;; (+47, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenShared12;	Helper;; (+46, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenShared11;	Helper;; (+45, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenShared10;	Helper;; (+44, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenShared9;	Helper;; (+43, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenShared8;	Helper;; (+42, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenShared7;	Helper;; (+41, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenShared6;	Helper;; (+40, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenShared5;	Helper;; (+39, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenShared4;	Helper;; (+38, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenShared3;	Helper;; (+37, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenShared2;	Helper;; (+36, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenShared1;	Helper;; (+35, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 					!else
 						Items.Kinstone.GreenC:47;	Major;
-						CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:47
+						CanFuseGreenC;   		Helper;; (+47, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 						CanFuseGreenScrub;	Helper;; Helpers.Inaccessible
-						CanFuseGreenGina;		Helper;; Items.Kinstone.GreenC:46
-						CanFuseGreenSiroc;	Helper;; Items.Kinstone.GreenC:46
-						CanFuseGreenG;   		Helper;; Items.Kinstone.GreenC:47
-						CanFuseGreenFlurris;	Helper;; Items.Kinstone.GreenC:46
-						CanFuseGreenTFZ1;		Helper;; Items.Kinstone.GreenC:45
-						CanFuseGreenP;   		Helper;; Items.Kinstone.GreenC:47
-						CanFuseGreenTFZ2;		Helper;; Items.Kinstone.GreenC:46
-						CanFuseGreenDavid;	Helper;; Items.Kinstone.GreenC:46
-						CanFuseGreenShared15;	Helper;; Items.Kinstone.GreenC:47
-						CanFuseGreenShared14;	Helper;; Items.Kinstone.GreenC:46
-						CanFuseGreenShared13;	Helper;; Items.Kinstone.GreenC:45
-						CanFuseGreenShared12;	Helper;; Items.Kinstone.GreenC:44
-						CanFuseGreenShared11;	Helper;; Items.Kinstone.GreenC:43
-						CanFuseGreenShared10;	Helper;; Items.Kinstone.GreenC:42
-						CanFuseGreenShared9;	Helper;; Items.Kinstone.GreenC:41
-						CanFuseGreenShared8;	Helper;; Items.Kinstone.GreenC:40
-						CanFuseGreenShared7;	Helper;; Items.Kinstone.GreenC:39
-						CanFuseGreenShared6;	Helper;; Items.Kinstone.GreenC:38
-						CanFuseGreenShared5;	Helper;; Items.Kinstone.GreenC:37
-						CanFuseGreenShared4;	Helper;; Items.Kinstone.GreenC:36
-						CanFuseGreenShared3;	Helper;; Items.Kinstone.GreenC:35
-						CanFuseGreenShared2;	Helper;; Items.Kinstone.GreenC:34
-						CanFuseGreenShared1;	Helper;; Items.Kinstone.GreenC:33
+						CanFuseGreenGina;		Helper;; (+46, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenSiroc;	Helper;; (+46, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenG;   		Helper;; (+47, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenFlurris;	Helper;; (+46, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenTFZ1;		Helper;; (+45, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenP;   		Helper;; (+47, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenTFZ2;		Helper;; (+46, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenDavid;	Helper;; (+46, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenShared15;	Helper;; (+47, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenShared14;	Helper;; (+46, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenShared13;	Helper;; (+45, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenShared12;	Helper;; (+44, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenShared11;	Helper;; (+43, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenShared10;	Helper;; (+42, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenShared9;	Helper;; (+41, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenShared8;	Helper;; (+40, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenShared7;	Helper;; (+39, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenShared6;	Helper;; (+38, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenShared5;	Helper;; (+37, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenShared4;	Helper;; (+36, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenShared3;	Helper;; (+35, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenShared2;	Helper;; (+34, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenShared1;	Helper;; (+33, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 					!endif
 				!else
 					!ifdef - MINISH_TREE
 						Items.Kinstone.GreenC:47;	Major;
-						CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:47
-						CanFuseGreenScrub;	Helper;; Items.Kinstone.GreenC:46
+						CanFuseGreenC;   		Helper;; (+47, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenScrub;	Helper;; (+46, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 						CanFuseGreenGina;		Helper;; Helpers.Inaccessible
-						CanFuseGreenSiroc;	Helper;; Items.Kinstone.GreenC:46
-						CanFuseGreenG;   		Helper;; Items.Kinstone.GreenC:47
-						CanFuseGreenFlurris;	Helper;; Items.Kinstone.GreenC:46
-						CanFuseGreenTFZ1;		Helper;; Items.Kinstone.GreenC:45
-						CanFuseGreenP;   		Helper;; Items.Kinstone.GreenC:47
-						CanFuseGreenTFZ2;		Helper;; Items.Kinstone.GreenC:46
-						CanFuseGreenDavid;	Helper;; Items.Kinstone.GreenC:46
-						CanFuseGreenShared15;	Helper;; Items.Kinstone.GreenC:47
-						CanFuseGreenShared14;	Helper;; Items.Kinstone.GreenC:46
-						CanFuseGreenShared13;	Helper;; Items.Kinstone.GreenC:45
-						CanFuseGreenShared12;	Helper;; Items.Kinstone.GreenC:44
-						CanFuseGreenShared11;	Helper;; Items.Kinstone.GreenC:43
-						CanFuseGreenShared10;	Helper;; Items.Kinstone.GreenC:42
-						CanFuseGreenShared9;	Helper;; Items.Kinstone.GreenC:41
-						CanFuseGreenShared8;	Helper;; Items.Kinstone.GreenC:40
-						CanFuseGreenShared7;	Helper;; Items.Kinstone.GreenC:39
-						CanFuseGreenShared6;	Helper;; Items.Kinstone.GreenC:38
-						CanFuseGreenShared5;	Helper;; Items.Kinstone.GreenC:37
-						CanFuseGreenShared4;	Helper;; Items.Kinstone.GreenC:36
-						CanFuseGreenShared3;	Helper;; Items.Kinstone.GreenC:35
-						CanFuseGreenShared2;	Helper;; Items.Kinstone.GreenC:34
-						CanFuseGreenShared1;	Helper;; Items.Kinstone.GreenC:33
+						CanFuseGreenSiroc;	Helper;; (+46, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenG;   		Helper;; (+47, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenFlurris;	Helper;; (+46, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenTFZ1;		Helper;; (+45, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenP;   		Helper;; (+47, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenTFZ2;		Helper;; (+46, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenDavid;	Helper;; (+46, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenShared15;	Helper;; (+47, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenShared14;	Helper;; (+46, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenShared13;	Helper;; (+45, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenShared12;	Helper;; (+44, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenShared11;	Helper;; (+43, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenShared10;	Helper;; (+42, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenShared9;	Helper;; (+41, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenShared8;	Helper;; (+40, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenShared7;	Helper;; (+39, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenShared6;	Helper;; (+38, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenShared5;	Helper;; (+37, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenShared4;	Helper;; (+36, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenShared3;	Helper;; (+35, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenShared2;	Helper;; (+34, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenShared1;	Helper;; (+33, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 					!else
 						Items.Kinstone.GreenC:45;	Major;
-						CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:45
+						CanFuseGreenC;   		Helper;; (+45, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 						CanFuseGreenScrub;	Helper;; Helpers.Inaccessible
 						CanFuseGreenGina;		Helper;; Helpers.Inaccessible
-						CanFuseGreenSiroc;	Helper;; Items.Kinstone.GreenC:44
-						CanFuseGreenG;   		Helper;; Items.Kinstone.GreenC:45
-						CanFuseGreenFlurris;	Helper;; Items.Kinstone.GreenC:44
-						CanFuseGreenTFZ1;		Helper;; Items.Kinstone.GreenC:43
-						CanFuseGreenP;   		Helper;; Items.Kinstone.GreenC:45
-						CanFuseGreenTFZ2;		Helper;; Items.Kinstone.GreenC:44
-						CanFuseGreenDavid;	Helper;; Items.Kinstone.GreenC:44
-						CanFuseGreenShared15;	Helper;; Items.Kinstone.GreenC:45
-						CanFuseGreenShared14;	Helper;; Items.Kinstone.GreenC:44
-						CanFuseGreenShared13;	Helper;; Items.Kinstone.GreenC:43
-						CanFuseGreenShared12;	Helper;; Items.Kinstone.GreenC:42
-						CanFuseGreenShared11;	Helper;; Items.Kinstone.GreenC:41
-						CanFuseGreenShared10;	Helper;; Items.Kinstone.GreenC:40
-						CanFuseGreenShared9;	Helper;; Items.Kinstone.GreenC:39
-						CanFuseGreenShared8;	Helper;; Items.Kinstone.GreenC:38
-						CanFuseGreenShared7;	Helper;; Items.Kinstone.GreenC:37
-						CanFuseGreenShared6;	Helper;; Items.Kinstone.GreenC:36
-						CanFuseGreenShared5;	Helper;; Items.Kinstone.GreenC:35
-						CanFuseGreenShared4;	Helper;; Items.Kinstone.GreenC:34
-						CanFuseGreenShared3;	Helper;; Items.Kinstone.GreenC:33
-						CanFuseGreenShared2;	Helper;; Items.Kinstone.GreenC:32
-						CanFuseGreenShared1;	Helper;; Items.Kinstone.GreenC:31
+						CanFuseGreenSiroc;	Helper;; (+44, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenG;   		Helper;; (+45, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenFlurris;	Helper;; (+44, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenTFZ1;		Helper;; (+43, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenP;   		Helper;; (+45, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenTFZ2;		Helper;; (+44, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenDavid;	Helper;; (+44, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenShared15;	Helper;; (+45, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenShared14;	Helper;; (+44, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenShared13;	Helper;; (+43, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenShared12;	Helper;; (+42, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenShared11;	Helper;; (+41, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenShared10;	Helper;; (+40, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenShared9;	Helper;; (+39, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenShared8;	Helper;; (+38, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenShared7;	Helper;; (+37, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenShared6;	Helper;; (+36, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenShared5;	Helper;; (+35, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenShared4;	Helper;; (+34, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenShared3;	Helper;; (+33, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenShared2;	Helper;; (+32, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+						CanFuseGreenShared1;	Helper;; (+31, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 					!endif
 				!endif
 			!else
@@ -3617,228 +3703,228 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 						!ifdef - MINISH_TREE
 							!ifdef - FALLS_ACCESS
 								Items.Kinstone.GreenC:47;	Major;
-								CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:47
-								CanFuseGreenScrub;	Helper;; Items.Kinstone.GreenC:46
-								CanFuseGreenGina;		Helper;; Items.Kinstone.GreenC:46
+								CanFuseGreenC;   		Helper;; (+47, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenScrub;	Helper;; (+46, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenGina;		Helper;; (+46, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 								CanFuseGreenSiroc;	Helper;; Helpers.Inaccessible
-								CanFuseGreenG;   		Helper;; Items.Kinstone.GreenC:47
-								CanFuseGreenFlurris;	Helper;; Items.Kinstone.GreenC:46
-								CanFuseGreenTFZ1;		Helper;; Items.Kinstone.GreenC:45
-								CanFuseGreenP;   		Helper;; Items.Kinstone.GreenC:47
-								CanFuseGreenTFZ2;		Helper;; Items.Kinstone.GreenC:46
-								CanFuseGreenDavid;	Helper;; Items.Kinstone.GreenC:46
-								CanFuseGreenShared15;	Helper;; Items.Kinstone.GreenC:47
-								CanFuseGreenShared14;	Helper;; Items.Kinstone.GreenC:46
-								CanFuseGreenShared13;	Helper;; Items.Kinstone.GreenC:45
-								CanFuseGreenShared12;	Helper;; Items.Kinstone.GreenC:44
-								CanFuseGreenShared11;	Helper;; Items.Kinstone.GreenC:43
-								CanFuseGreenShared10;	Helper;; Items.Kinstone.GreenC:42
-								CanFuseGreenShared9;	Helper;; Items.Kinstone.GreenC:41
-								CanFuseGreenShared8;	Helper;; Items.Kinstone.GreenC:40
-								CanFuseGreenShared7;	Helper;; Items.Kinstone.GreenC:39
-								CanFuseGreenShared6;	Helper;; Items.Kinstone.GreenC:38
-								CanFuseGreenShared5;	Helper;; Items.Kinstone.GreenC:37
-								CanFuseGreenShared4;	Helper;; Items.Kinstone.GreenC:36
-								CanFuseGreenShared3;	Helper;; Items.Kinstone.GreenC:35
-								CanFuseGreenShared2;	Helper;; Items.Kinstone.GreenC:34
-								CanFuseGreenShared1;	Helper;; Items.Kinstone.GreenC:33
+								CanFuseGreenG;   		Helper;; (+47, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenFlurris;	Helper;; (+46, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenTFZ1;		Helper;; (+45, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenP;   		Helper;; (+47, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenTFZ2;		Helper;; (+46, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenDavid;	Helper;; (+46, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared15;	Helper;; (+47, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared14;	Helper;; (+46, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared13;	Helper;; (+45, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared12;	Helper;; (+44, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared11;	Helper;; (+43, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared10;	Helper;; (+42, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared9;	Helper;; (+41, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared8;	Helper;; (+40, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared7;	Helper;; (+39, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared6;	Helper;; (+38, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared5;	Helper;; (+37, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared4;	Helper;; (+36, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared3;	Helper;; (+35, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared2;	Helper;; (+34, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared1;	Helper;; (+33, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 							!else
 								Items.Kinstone.GreenC:46;	Major;
-								CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:46
-								CanFuseGreenScrub;	Helper;; Items.Kinstone.GreenC:45
-								CanFuseGreenGina;		Helper;; Items.Kinstone.GreenC:45
+								CanFuseGreenC;   		Helper;; (+46, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenScrub;	Helper;; (+45, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenGina;		Helper;; (+45, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 								CanFuseGreenSiroc;	Helper;; Helpers.Inaccessible
-								CanFuseGreenG;   		Helper;; Items.Kinstone.GreenC:46
-								CanFuseGreenFlurris;	Helper;; Items.Kinstone.GreenC:45
-								CanFuseGreenTFZ1;		Helper;; Items.Kinstone.GreenC:44
-								CanFuseGreenP;   		Helper;; Items.Kinstone.GreenC:46
-								CanFuseGreenTFZ2;		Helper;; Items.Kinstone.GreenC:45
-								CanFuseGreenDavid;	Helper;; Items.Kinstone.GreenC:45
-								CanFuseGreenShared15;	Helper;; Items.Kinstone.GreenC:46
-								CanFuseGreenShared14;	Helper;; Items.Kinstone.GreenC:45
-								CanFuseGreenShared13;	Helper;; Items.Kinstone.GreenC:44
-								CanFuseGreenShared12;	Helper;; Items.Kinstone.GreenC:43
-								CanFuseGreenShared11;	Helper;; Items.Kinstone.GreenC:42
-								CanFuseGreenShared10;	Helper;; Items.Kinstone.GreenC:41
-								CanFuseGreenShared9;	Helper;; Items.Kinstone.GreenC:40
-								CanFuseGreenShared8;	Helper;; Items.Kinstone.GreenC:39
-								CanFuseGreenShared7;	Helper;; Items.Kinstone.GreenC:38
-								CanFuseGreenShared6;	Helper;; Items.Kinstone.GreenC:37
-								CanFuseGreenShared5;	Helper;; Items.Kinstone.GreenC:36
-								CanFuseGreenShared4;	Helper;; Items.Kinstone.GreenC:35
-								CanFuseGreenShared3;	Helper;; Items.Kinstone.GreenC:34
-								CanFuseGreenShared2;	Helper;; Items.Kinstone.GreenC:33
-								CanFuseGreenShared1;	Helper;; Items.Kinstone.GreenC:32
+								CanFuseGreenG;   		Helper;; (+46, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenFlurris;	Helper;; (+45, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenTFZ1;		Helper;; (+44, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenP;   		Helper;; (+46, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenTFZ2;		Helper;; (+45, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenDavid;	Helper;; (+45, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared15;	Helper;; (+46, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared14;	Helper;; (+45, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared13;	Helper;; (+44, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared12;	Helper;; (+43, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared11;	Helper;; (+42, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared10;	Helper;; (+41, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared9;	Helper;; (+40, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared8;	Helper;; (+39, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared7;	Helper;; (+38, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared6;	Helper;; (+37, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared5;	Helper;; (+36, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared4;	Helper;; (+35, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared3;	Helper;; (+34, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared2;	Helper;; (+33, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared1;	Helper;; (+32, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 							!endif
 						!else
 							!ifdef - FALLS_ACCESS
 								Items.Kinstone.GreenC:45;	Major;
-								CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:45
+								CanFuseGreenC;   		Helper;; (+45, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 								CanFuseGreenScrub;	Helper;; Helpers.Inaccessible
-								CanFuseGreenGina;		Helper;; Items.Kinstone.GreenC:44
+								CanFuseGreenGina;		Helper;; (+44, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 								CanFuseGreenSiroc;	Helper;; Helpers.Inaccessible
-								CanFuseGreenG;   		Helper;; Items.Kinstone.GreenC:45
-								CanFuseGreenFlurris;	Helper;; Items.Kinstone.GreenC:44
-								CanFuseGreenTFZ1;		Helper;; Items.Kinstone.GreenC:43
-								CanFuseGreenP;   		Helper;; Items.Kinstone.GreenC:45
-								CanFuseGreenTFZ2;		Helper;; Items.Kinstone.GreenC:44
-								CanFuseGreenDavid;	Helper;; Items.Kinstone.GreenC:44
-								CanFuseGreenShared15;	Helper;; Items.Kinstone.GreenC:45
-								CanFuseGreenShared14;	Helper;; Items.Kinstone.GreenC:44
-								CanFuseGreenShared13;	Helper;; Items.Kinstone.GreenC:43
-								CanFuseGreenShared12;	Helper;; Items.Kinstone.GreenC:42
-								CanFuseGreenShared11;	Helper;; Items.Kinstone.GreenC:41
-								CanFuseGreenShared10;	Helper;; Items.Kinstone.GreenC:40
-								CanFuseGreenShared9;	Helper;; Items.Kinstone.GreenC:39
-								CanFuseGreenShared8;	Helper;; Items.Kinstone.GreenC:38
-								CanFuseGreenShared7;	Helper;; Items.Kinstone.GreenC:37
-								CanFuseGreenShared6;	Helper;; Items.Kinstone.GreenC:36
-								CanFuseGreenShared5;	Helper;; Items.Kinstone.GreenC:35
-								CanFuseGreenShared4;	Helper;; Items.Kinstone.GreenC:34
-								CanFuseGreenShared3;	Helper;; Items.Kinstone.GreenC:33
-								CanFuseGreenShared2;	Helper;; Items.Kinstone.GreenC:32
-								CanFuseGreenShared1;	Helper;; Items.Kinstone.GreenC:31
+								CanFuseGreenG;   		Helper;; (+45, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenFlurris;	Helper;; (+44, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenTFZ1;		Helper;; (+43, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenP;   		Helper;; (+45, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenTFZ2;		Helper;; (+44, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenDavid;	Helper;; (+44, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared15;	Helper;; (+45, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared14;	Helper;; (+44, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared13;	Helper;; (+43, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared12;	Helper;; (+42, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared11;	Helper;; (+41, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared10;	Helper;; (+40, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared9;	Helper;; (+39, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared8;	Helper;; (+38, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared7;	Helper;; (+37, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared6;	Helper;; (+36, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared5;	Helper;; (+35, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared4;	Helper;; (+34, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared3;	Helper;; (+33, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared2;	Helper;; (+32, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared1;	Helper;; (+31, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 							!else
 								Items.Kinstone.GreenC:44;	Major;
-								CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:44
+								CanFuseGreenC;   		Helper;; (+44, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 								CanFuseGreenScrub;	Helper;; Helpers.Inaccessible
-								CanFuseGreenGina;		Helper;; Items.Kinstone.GreenC:43
+								CanFuseGreenGina;		Helper;; (+43, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 								CanFuseGreenSiroc;	Helper;; Helpers.Inaccessible
-								CanFuseGreenG;   		Helper;; Items.Kinstone.GreenC:44
-								CanFuseGreenFlurris;	Helper;; Items.Kinstone.GreenC:43
-								CanFuseGreenTFZ1;		Helper;; Items.Kinstone.GreenC:42
-								CanFuseGreenP;   		Helper;; Items.Kinstone.GreenC:44
-								CanFuseGreenTFZ2;		Helper;; Items.Kinstone.GreenC:43
-								CanFuseGreenDavid;	Helper;; Items.Kinstone.GreenC:43
-								CanFuseGreenShared15;	Helper;; Items.Kinstone.GreenC:44
-								CanFuseGreenShared14;	Helper;; Items.Kinstone.GreenC:43
-								CanFuseGreenShared13;	Helper;; Items.Kinstone.GreenC:42
-								CanFuseGreenShared12;	Helper;; Items.Kinstone.GreenC:41
-								CanFuseGreenShared11;	Helper;; Items.Kinstone.GreenC:40
-								CanFuseGreenShared10;	Helper;; Items.Kinstone.GreenC:39
-								CanFuseGreenShared9;	Helper;; Items.Kinstone.GreenC:38
-								CanFuseGreenShared8;	Helper;; Items.Kinstone.GreenC:37
-								CanFuseGreenShared7;	Helper;; Items.Kinstone.GreenC:36
-								CanFuseGreenShared6;	Helper;; Items.Kinstone.GreenC:35
-								CanFuseGreenShared5;	Helper;; Items.Kinstone.GreenC:34
-								CanFuseGreenShared4;	Helper;; Items.Kinstone.GreenC:33
-								CanFuseGreenShared3;	Helper;; Items.Kinstone.GreenC:32
-								CanFuseGreenShared2;	Helper;; Items.Kinstone.GreenC:31
-								CanFuseGreenShared1;	Helper;; Items.Kinstone.GreenC:30
+								CanFuseGreenG;   		Helper;; (+44, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenFlurris;	Helper;; (+43, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenTFZ1;		Helper;; (+42, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenP;   		Helper;; (+44, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenTFZ2;		Helper;; (+43, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenDavid;	Helper;; (+43, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared15;	Helper;; (+44, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared14;	Helper;; (+43, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared13;	Helper;; (+42, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared12;	Helper;; (+41, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared11;	Helper;; (+40, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared10;	Helper;; (+39, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared9;	Helper;; (+38, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared8;	Helper;; (+37, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared7;	Helper;; (+36, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared6;	Helper;; (+35, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared5;	Helper;; (+34, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared4;	Helper;; (+33, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared3;	Helper;; (+32, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared2;	Helper;; (+31, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared1;	Helper;; (+30, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 							!endif
 						!endif
 					!else
 						!ifdef - MINISH_TREE
 							!ifdef - FALLS_ACCESS
 								Items.Kinstone.GreenC:45;	Major;
-								CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:45
-								CanFuseGreenScrub;	Helper;; Items.Kinstone.GreenC:44
+								CanFuseGreenC;   		Helper;; (+45, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenScrub;	Helper;; (+44, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 								CanFuseGreenGina;		Helper;; Helpers.Inaccessible
 								CanFuseGreenSiroc;	Helper;; Helpers.Inaccessible
-								CanFuseGreenG;   		Helper;; Items.Kinstone.GreenC:45
-								CanFuseGreenFlurris;	Helper;; Items.Kinstone.GreenC:44
-								CanFuseGreenTFZ1;		Helper;; Items.Kinstone.GreenC:43
-								CanFuseGreenP;   		Helper;; Items.Kinstone.GreenC:45
-								CanFuseGreenTFZ2;		Helper;; Items.Kinstone.GreenC:44
-								CanFuseGreenDavid;	Helper;; Items.Kinstone.GreenC:44
-								CanFuseGreenShared15;	Helper;; Items.Kinstone.GreenC:45
-								CanFuseGreenShared14;	Helper;; Items.Kinstone.GreenC:44
-								CanFuseGreenShared13;	Helper;; Items.Kinstone.GreenC:43
-								CanFuseGreenShared12;	Helper;; Items.Kinstone.GreenC:42
-								CanFuseGreenShared11;	Helper;; Items.Kinstone.GreenC:41
-								CanFuseGreenShared10;	Helper;; Items.Kinstone.GreenC:40
-								CanFuseGreenShared9;	Helper;; Items.Kinstone.GreenC:39
-								CanFuseGreenShared8;	Helper;; Items.Kinstone.GreenC:38
-								CanFuseGreenShared7;	Helper;; Items.Kinstone.GreenC:37
-								CanFuseGreenShared6;	Helper;; Items.Kinstone.GreenC:36
-								CanFuseGreenShared5;	Helper;; Items.Kinstone.GreenC:35
-								CanFuseGreenShared4;	Helper;; Items.Kinstone.GreenC:34
-								CanFuseGreenShared3;	Helper;; Items.Kinstone.GreenC:33
-								CanFuseGreenShared2;	Helper;; Items.Kinstone.GreenC:32
-								CanFuseGreenShared1;	Helper;; Items.Kinstone.GreenC:31
+								CanFuseGreenG;   		Helper;; (+45, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenFlurris;	Helper;; (+44, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenTFZ1;		Helper;; (+43, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenP;   		Helper;; (+45, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenTFZ2;		Helper;; (+44, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenDavid;	Helper;; (+44, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared15;	Helper;; (+45, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared14;	Helper;; (+44, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared13;	Helper;; (+43, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared12;	Helper;; (+42, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared11;	Helper;; (+41, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared10;	Helper;; (+40, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared9;	Helper;; (+39, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared8;	Helper;; (+38, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared7;	Helper;; (+37, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared6;	Helper;; (+36, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared5;	Helper;; (+35, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared4;	Helper;; (+34, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared3;	Helper;; (+33, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared2;	Helper;; (+32, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared1;	Helper;; (+31, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 							!else
 								Items.Kinstone.GreenC:44;	Major;
-								CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:44
-								CanFuseGreenScrub;	Helper;; Items.Kinstone.GreenC:43
+								CanFuseGreenC;   		Helper;; (+44, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenScrub;	Helper;; (+43, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 								CanFuseGreenGina;		Helper;; Helpers.Inaccessible
 								CanFuseGreenSiroc;	Helper;; Helpers.Inaccessible
-								CanFuseGreenG;   		Helper;; Items.Kinstone.GreenC:44
-								CanFuseGreenFlurris;	Helper;; Items.Kinstone.GreenC:43
-								CanFuseGreenTFZ1;		Helper;; Items.Kinstone.GreenC:42
-								CanFuseGreenP;   		Helper;; Items.Kinstone.GreenC:44
-								CanFuseGreenTFZ2;		Helper;; Items.Kinstone.GreenC:43
-								CanFuseGreenDavid;	Helper;; Items.Kinstone.GreenC:43
-								CanFuseGreenShared15;	Helper;; Items.Kinstone.GreenC:44
-								CanFuseGreenShared14;	Helper;; Items.Kinstone.GreenC:43
-								CanFuseGreenShared13;	Helper;; Items.Kinstone.GreenC:42
-								CanFuseGreenShared12;	Helper;; Items.Kinstone.GreenC:41
-								CanFuseGreenShared11;	Helper;; Items.Kinstone.GreenC:40
-								CanFuseGreenShared10;	Helper;; Items.Kinstone.GreenC:39
-								CanFuseGreenShared9;	Helper;; Items.Kinstone.GreenC:38
-								CanFuseGreenShared8;	Helper;; Items.Kinstone.GreenC:37
-								CanFuseGreenShared7;	Helper;; Items.Kinstone.GreenC:36
-								CanFuseGreenShared6;	Helper;; Items.Kinstone.GreenC:35
-								CanFuseGreenShared5;	Helper;; Items.Kinstone.GreenC:34
-								CanFuseGreenShared4;	Helper;; Items.Kinstone.GreenC:33
-								CanFuseGreenShared3;	Helper;; Items.Kinstone.GreenC:32
-								CanFuseGreenShared2;	Helper;; Items.Kinstone.GreenC:31
-								CanFuseGreenShared1;	Helper;; Items.Kinstone.GreenC:30
+								CanFuseGreenG;   		Helper;; (+44, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenFlurris;	Helper;; (+43, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenTFZ1;		Helper;; (+42, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenP;   		Helper;; (+44, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenTFZ2;		Helper;; (+43, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenDavid;	Helper;; (+43, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared15;	Helper;; (+44, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared14;	Helper;; (+43, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared13;	Helper;; (+42, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared12;	Helper;; (+41, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared11;	Helper;; (+40, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared10;	Helper;; (+39, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared9;	Helper;; (+38, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared8;	Helper;; (+37, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared7;	Helper;; (+36, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared6;	Helper;; (+35, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared5;	Helper;; (+34, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared4;	Helper;; (+33, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared3;	Helper;; (+32, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared2;	Helper;; (+31, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared1;	Helper;; (+30, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 							!endif
 						!else
 							!ifdef - FALLS_ACCESS
 								Items.Kinstone.GreenC:43;	Major;
-								CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:43
+								CanFuseGreenC;   		Helper;; (+43, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 								CanFuseGreenScrub;	Helper;; Helpers.Inaccessible
 								CanFuseGreenGina;		Helper;; Helpers.Inaccessible
 								CanFuseGreenSiroc;	Helper;; Helpers.Inaccessible
-								CanFuseGreenG;   		Helper;; Items.Kinstone.GreenC:43
-								CanFuseGreenFlurris;	Helper;; Items.Kinstone.GreenC:42
-								CanFuseGreenTFZ1;		Helper;; Items.Kinstone.GreenC:41
-								CanFuseGreenP;   		Helper;; Items.Kinstone.GreenC:43
-								CanFuseGreenTFZ2;		Helper;; Items.Kinstone.GreenC:42
-								CanFuseGreenDavid;	Helper;; Items.Kinstone.GreenC:42
-								CanFuseGreenShared15;	Helper;; Items.Kinstone.GreenC:43
-								CanFuseGreenShared14;	Helper;; Items.Kinstone.GreenC:42
-								CanFuseGreenShared13;	Helper;; Items.Kinstone.GreenC:41
-								CanFuseGreenShared12;	Helper;; Items.Kinstone.GreenC:40
-								CanFuseGreenShared11;	Helper;; Items.Kinstone.GreenC:39
-								CanFuseGreenShared10;	Helper;; Items.Kinstone.GreenC:38
-								CanFuseGreenShared9;	Helper;; Items.Kinstone.GreenC:37
-								CanFuseGreenShared8;	Helper;; Items.Kinstone.GreenC:36
-								CanFuseGreenShared7;	Helper;; Items.Kinstone.GreenC:35
-								CanFuseGreenShared6;	Helper;; Items.Kinstone.GreenC:34
-								CanFuseGreenShared5;	Helper;; Items.Kinstone.GreenC:33
-								CanFuseGreenShared4;	Helper;; Items.Kinstone.GreenC:32
-								CanFuseGreenShared3;	Helper;; Items.Kinstone.GreenC:31
-								CanFuseGreenShared2;	Helper;; Items.Kinstone.GreenC:30
-								CanFuseGreenShared1;	Helper;; Items.Kinstone.GreenC:29
+								CanFuseGreenG;   		Helper;; (+43, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenFlurris;	Helper;; (+42, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenTFZ1;		Helper;; (+41, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenP;   		Helper;; (+43, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenTFZ2;		Helper;; (+42, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenDavid;	Helper;; (+42, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared15;	Helper;; (+43, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared14;	Helper;; (+42, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared13;	Helper;; (+41, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared12;	Helper;; (+40, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared11;	Helper;; (+39, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared10;	Helper;; (+38, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared9;	Helper;; (+37, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared8;	Helper;; (+36, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared7;	Helper;; (+35, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared6;	Helper;; (+34, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared5;	Helper;; (+33, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared4;	Helper;; (+32, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared3;	Helper;; (+31, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared2;	Helper;; (+30, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared1;	Helper;; (+29, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 							!else
 								Items.Kinstone.GreenC:42;	Major;
-								CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:42
+								CanFuseGreenC;   		Helper;; (+42, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 								CanFuseGreenScrub;	Helper;; Helpers.Inaccessible
 								CanFuseGreenGina;		Helper;; Helpers.Inaccessible
 								CanFuseGreenSiroc;	Helper;; Helpers.Inaccessible
-								CanFuseGreenG;   		Helper;; Items.Kinstone.GreenC:42
-								CanFuseGreenFlurris;	Helper;; Items.Kinstone.GreenC:41
-								CanFuseGreenTFZ1;		Helper;; Items.Kinstone.GreenC:40
-								CanFuseGreenP;   		Helper;; Items.Kinstone.GreenC:42
-								CanFuseGreenTFZ2;		Helper;; Items.Kinstone.GreenC:41
-								CanFuseGreenDavid;	Helper;; Items.Kinstone.GreenC:41
-								CanFuseGreenShared15;	Helper;; Items.Kinstone.GreenC:42
-								CanFuseGreenShared14;	Helper;; Items.Kinstone.GreenC:41
-								CanFuseGreenShared13;	Helper;; Items.Kinstone.GreenC:40
-								CanFuseGreenShared12;	Helper;; Items.Kinstone.GreenC:39
-								CanFuseGreenShared11;	Helper;; Items.Kinstone.GreenC:38
-								CanFuseGreenShared10;	Helper;; Items.Kinstone.GreenC:37
-								CanFuseGreenShared9;	Helper;; Items.Kinstone.GreenC:36
-								CanFuseGreenShared8;	Helper;; Items.Kinstone.GreenC:35
-								CanFuseGreenShared7;	Helper;; Items.Kinstone.GreenC:34
-								CanFuseGreenShared6;	Helper;; Items.Kinstone.GreenC:33
-								CanFuseGreenShared5;	Helper;; Items.Kinstone.GreenC:32
-								CanFuseGreenShared4;	Helper;; Items.Kinstone.GreenC:31
-								CanFuseGreenShared3;	Helper;; Items.Kinstone.GreenC:30
-								CanFuseGreenShared2;	Helper;; Items.Kinstone.GreenC:29
-								CanFuseGreenShared1;	Helper;; Items.Kinstone.GreenC:28
+								CanFuseGreenG;   		Helper;; (+42, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenFlurris;	Helper;; (+41, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenTFZ1;		Helper;; (+40, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenP;   		Helper;; (+42, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenTFZ2;		Helper;; (+41, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenDavid;	Helper;; (+41, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared15;	Helper;; (+42, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared14;	Helper;; (+41, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared13;	Helper;; (+40, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared12;	Helper;; (+39, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared11;	Helper;; (+38, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared10;	Helper;; (+37, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared9;	Helper;; (+36, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared8;	Helper;; (+35, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared7;	Helper;; (+34, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared6;	Helper;; (+33, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared5;	Helper;; (+32, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared4;	Helper;; (+31, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared3;	Helper;; (+30, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared2;	Helper;; (+29, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared1;	Helper;; (+28, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 							!endif
 						!endif
 					!endif
@@ -3847,228 +3933,228 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 						!ifdef - MINISH_TREE
 							!ifdef - FALLS_ACCESS
 								Items.Kinstone.GreenC:44;	Major;
-								CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:44
-								CanFuseGreenScrub;	Helper;; Items.Kinstone.GreenC:43
-								CanFuseGreenGina;		Helper;; Items.Kinstone.GreenC:43
+								CanFuseGreenC;   		Helper;; (+44, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenScrub;	Helper;; (+43, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenGina;		Helper;; (+43, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 								CanFuseGreenSiroc;	Helper;; Helpers.Inaccessible
-								CanFuseGreenG;   		Helper;; Items.Kinstone.GreenC:44
+								CanFuseGreenG;   		Helper;; (+44, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 								CanFuseGreenFlurris;	Helper;; Helpers.Inaccessible
-								CanFuseGreenTFZ1;		Helper;; Items.Kinstone.GreenC:42
-								CanFuseGreenP;   		Helper;; Items.Kinstone.GreenC:44
-								CanFuseGreenTFZ2;		Helper;; Items.Kinstone.GreenC:43
-								CanFuseGreenDavid;	Helper;; Items.Kinstone.GreenC:43
-								CanFuseGreenShared15;	Helper;; Items.Kinstone.GreenC:44
-								CanFuseGreenShared14;	Helper;; Items.Kinstone.GreenC:43
-								CanFuseGreenShared13;	Helper;; Items.Kinstone.GreenC:42
-								CanFuseGreenShared12;	Helper;; Items.Kinstone.GreenC:41
-								CanFuseGreenShared11;	Helper;; Items.Kinstone.GreenC:40
-								CanFuseGreenShared10;	Helper;; Items.Kinstone.GreenC:39
-								CanFuseGreenShared9;	Helper;; Items.Kinstone.GreenC:38
-								CanFuseGreenShared8;	Helper;; Items.Kinstone.GreenC:37
-								CanFuseGreenShared7;	Helper;; Items.Kinstone.GreenC:36
-								CanFuseGreenShared6;	Helper;; Items.Kinstone.GreenC:35
-								CanFuseGreenShared5;	Helper;; Items.Kinstone.GreenC:34
-								CanFuseGreenShared4;	Helper;; Items.Kinstone.GreenC:33
-								CanFuseGreenShared3;	Helper;; Items.Kinstone.GreenC:32
-								CanFuseGreenShared2;	Helper;; Items.Kinstone.GreenC:31
-								CanFuseGreenShared1;	Helper;; Items.Kinstone.GreenC:30
+								CanFuseGreenTFZ1;		Helper;; (+42, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenP;   		Helper;; (+44, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenTFZ2;		Helper;; (+43, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenDavid;	Helper;; (+43, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared15;	Helper;; (+44, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared14;	Helper;; (+43, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared13;	Helper;; (+42, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared12;	Helper;; (+41, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared11;	Helper;; (+40, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared10;	Helper;; (+39, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared9;	Helper;; (+38, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared8;	Helper;; (+37, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared7;	Helper;; (+36, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared6;	Helper;; (+35, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared5;	Helper;; (+34, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared4;	Helper;; (+33, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared3;	Helper;; (+32, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared2;	Helper;; (+31, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared1;	Helper;; (+30, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 							!else
 								Items.Kinstone.GreenC:43;	Major;
-								CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:43
-								CanFuseGreenScrub;	Helper;; Items.Kinstone.GreenC:43
-								CanFuseGreenGina;		Helper;; Items.Kinstone.GreenC:43
+								CanFuseGreenC;   		Helper;; (+43, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenScrub;	Helper;; (+43, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenGina;		Helper;; (+43, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 								CanFuseGreenSiroc;	Helper;; Helpers.Inaccessible
-								CanFuseGreenG;   		Helper;; Items.Kinstone.GreenC:43
+								CanFuseGreenG;   		Helper;; (+43, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 								CanFuseGreenFlurris;	Helper;; Helpers.Inaccessible
-								CanFuseGreenTFZ1;		Helper;; Items.Kinstone.GreenC:41
-								CanFuseGreenP;   		Helper;; Items.Kinstone.GreenC:43
-								CanFuseGreenTFZ2;		Helper;; Items.Kinstone.GreenC:42
-								CanFuseGreenDavid;	Helper;; Items.Kinstone.GreenC:42
-								CanFuseGreenShared15;	Helper;; Items.Kinstone.GreenC:43
-								CanFuseGreenShared14;	Helper;; Items.Kinstone.GreenC:42
-								CanFuseGreenShared13;	Helper;; Items.Kinstone.GreenC:41
-								CanFuseGreenShared12;	Helper;; Items.Kinstone.GreenC:40
-								CanFuseGreenShared11;	Helper;; Items.Kinstone.GreenC:39
-								CanFuseGreenShared10;	Helper;; Items.Kinstone.GreenC:38
-								CanFuseGreenShared9;	Helper;; Items.Kinstone.GreenC:37
-								CanFuseGreenShared8;	Helper;; Items.Kinstone.GreenC:36
-								CanFuseGreenShared7;	Helper;; Items.Kinstone.GreenC:35
-								CanFuseGreenShared6;	Helper;; Items.Kinstone.GreenC:34
-								CanFuseGreenShared5;	Helper;; Items.Kinstone.GreenC:33
-								CanFuseGreenShared4;	Helper;; Items.Kinstone.GreenC:32
-								CanFuseGreenShared3;	Helper;; Items.Kinstone.GreenC:31
-								CanFuseGreenShared2;	Helper;; Items.Kinstone.GreenC:30
-								CanFuseGreenShared1;	Helper;; Items.Kinstone.GreenC:29
+								CanFuseGreenTFZ1;		Helper;; (+41, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenP;   		Helper;; (+43, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenTFZ2;		Helper;; (+42, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenDavid;	Helper;; (+42, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared15;	Helper;; (+43, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared14;	Helper;; (+42, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared13;	Helper;; (+41, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared12;	Helper;; (+40, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared11;	Helper;; (+39, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared10;	Helper;; (+38, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared9;	Helper;; (+37, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared8;	Helper;; (+36, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared7;	Helper;; (+35, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared6;	Helper;; (+34, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared5;	Helper;; (+33, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared4;	Helper;; (+32, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared3;	Helper;; (+31, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared2;	Helper;; (+30, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared1;	Helper;; (+29, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 							!endif
 						!else
 							!ifdef - FALLS_ACCESS
 								Items.Kinstone.GreenC:42;	Major;
-								CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:42
+								CanFuseGreenC;   		Helper;; (+42, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 								CanFuseGreenScrub;	Helper;; Helpers.Inaccessible
-								CanFuseGreenGina;		Helper;; Items.Kinstone.GreenC:41
+								CanFuseGreenGina;		Helper;; (+41, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 								CanFuseGreenSiroc;	Helper;; Helpers.Inaccessible
-								CanFuseGreenG;   		Helper;; Items.Kinstone.GreenC:42
+								CanFuseGreenG;   		Helper;; (+42, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 								CanFuseGreenFlurris;	Helper;; Helpers.Inaccessible
-								CanFuseGreenTFZ1;		Helper;; Items.Kinstone.GreenC:40
-								CanFuseGreenP;   		Helper;; Items.Kinstone.GreenC:42
-								CanFuseGreenTFZ2;		Helper;; Items.Kinstone.GreenC:41
-								CanFuseGreenDavid;	Helper;; Items.Kinstone.GreenC:41
-								CanFuseGreenShared15;	Helper;; Items.Kinstone.GreenC:42
-								CanFuseGreenShared14;	Helper;; Items.Kinstone.GreenC:41
-								CanFuseGreenShared13;	Helper;; Items.Kinstone.GreenC:40
-								CanFuseGreenShared12;	Helper;; Items.Kinstone.GreenC:39
-								CanFuseGreenShared11;	Helper;; Items.Kinstone.GreenC:38
-								CanFuseGreenShared10;	Helper;; Items.Kinstone.GreenC:37
-								CanFuseGreenShared9;	Helper;; Items.Kinstone.GreenC:36
-								CanFuseGreenShared8;	Helper;; Items.Kinstone.GreenC:35
-								CanFuseGreenShared7;	Helper;; Items.Kinstone.GreenC:34
-								CanFuseGreenShared6;	Helper;; Items.Kinstone.GreenC:33
-								CanFuseGreenShared5;	Helper;; Items.Kinstone.GreenC:32
-								CanFuseGreenShared4;	Helper;; Items.Kinstone.GreenC:31
-								CanFuseGreenShared3;	Helper;; Items.Kinstone.GreenC:30
-								CanFuseGreenShared2;	Helper;; Items.Kinstone.GreenC:29
-								CanFuseGreenShared1;	Helper;; Items.Kinstone.GreenC:28
+								CanFuseGreenTFZ1;		Helper;; (+40, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenP;   		Helper;; (+42, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenTFZ2;		Helper;; (+41, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenDavid;	Helper;; (+41, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared15;	Helper;; (+42, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared14;	Helper;; (+41, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared13;	Helper;; (+40, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared12;	Helper;; (+39, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared11;	Helper;; (+38, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared10;	Helper;; (+37, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared9;	Helper;; (+36, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared8;	Helper;; (+35, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared7;	Helper;; (+34, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared6;	Helper;; (+33, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared5;	Helper;; (+32, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared4;	Helper;; (+31, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared3;	Helper;; (+30, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared2;	Helper;; (+29, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared1;	Helper;; (+28, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 							!else
 								Items.Kinstone.GreenC:41;	Major;
-								CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:41
+								CanFuseGreenC;   		Helper;; (+41, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 								CanFuseGreenScrub;	Helper;; Helpers.Inaccessible
-								CanFuseGreenGina;		Helper;; Items.Kinstone.GreenC:40
+								CanFuseGreenGina;		Helper;; (+40, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 								CanFuseGreenSiroc;	Helper;; Helpers.Inaccessible
-								CanFuseGreenG;   		Helper;; Items.Kinstone.GreenC:41
+								CanFuseGreenG;   		Helper;; (+41, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 								CanFuseGreenFlurris;	Helper;; Helpers.Inaccessible
-								CanFuseGreenTFZ1;		Helper;; Items.Kinstone.GreenC:39
-								CanFuseGreenP;   		Helper;; Items.Kinstone.GreenC:41
-								CanFuseGreenTFZ2;		Helper;; Items.Kinstone.GreenC:40
-								CanFuseGreenDavid;	Helper;; Items.Kinstone.GreenC:40
-								CanFuseGreenShared15;	Helper;; Items.Kinstone.GreenC:41
-								CanFuseGreenShared14;	Helper;; Items.Kinstone.GreenC:40
-								CanFuseGreenShared13;	Helper;; Items.Kinstone.GreenC:39
-								CanFuseGreenShared12;	Helper;; Items.Kinstone.GreenC:38
-								CanFuseGreenShared11;	Helper;; Items.Kinstone.GreenC:37
-								CanFuseGreenShared10;	Helper;; Items.Kinstone.GreenC:36
-								CanFuseGreenShared9;	Helper;; Items.Kinstone.GreenC:35
-								CanFuseGreenShared8;	Helper;; Items.Kinstone.GreenC:34
-								CanFuseGreenShared7;	Helper;; Items.Kinstone.GreenC:33
-								CanFuseGreenShared6;	Helper;; Items.Kinstone.GreenC:32
-								CanFuseGreenShared5;	Helper;; Items.Kinstone.GreenC:31
-								CanFuseGreenShared4;	Helper;; Items.Kinstone.GreenC:30
-								CanFuseGreenShared3;	Helper;; Items.Kinstone.GreenC:29
-								CanFuseGreenShared2;	Helper;; Items.Kinstone.GreenC:28
-								CanFuseGreenShared1;	Helper;; Items.Kinstone.GreenC:27
+								CanFuseGreenTFZ1;		Helper;; (+39, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenP;   		Helper;; (+41, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenTFZ2;		Helper;; (+40, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenDavid;	Helper;; (+40, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared15;	Helper;; (+41, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared14;	Helper;; (+40, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared13;	Helper;; (+39, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared12;	Helper;; (+38, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared11;	Helper;; (+37, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared10;	Helper;; (+36, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared9;	Helper;; (+35, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared8;	Helper;; (+34, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared7;	Helper;; (+33, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared6;	Helper;; (+32, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared5;	Helper;; (+31, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared4;	Helper;; (+30, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared3;	Helper;; (+29, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared2;	Helper;; (+28, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared1;	Helper;; (+27, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 							!endif
 						!endif
 					!else
 						!ifdef - MINISH_TREE
 							!ifdef - FALLS_ACCESS
 								Items.Kinstone.GreenC:42;	Major;
-								CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:42
-								CanFuseGreenScrub;	Helper;; Items.Kinstone.GreenC:41
+								CanFuseGreenC;   		Helper;; (+42, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenScrub;	Helper;; (+41, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 								CanFuseGreenGina;		Helper;; Helpers.Inaccessible
 								CanFuseGreenSiroc;	Helper;; Helpers.Inaccessible
-								CanFuseGreenG;   		Helper;; Items.Kinstone.GreenC:42
+								CanFuseGreenG;   		Helper;; (+42, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 								CanFuseGreenFlurris;	Helper;; Helpers.Inaccessible
-								CanFuseGreenTFZ1;		Helper;; Items.Kinstone.GreenC:40
-								CanFuseGreenP;   		Helper;; Items.Kinstone.GreenC:42
-								CanFuseGreenTFZ2;		Helper;; Items.Kinstone.GreenC:41
-								CanFuseGreenDavid;	Helper;; Items.Kinstone.GreenC:41
-								CanFuseGreenShared15;	Helper;; Items.Kinstone.GreenC:42
-								CanFuseGreenShared14;	Helper;; Items.Kinstone.GreenC:41
-								CanFuseGreenShared13;	Helper;; Items.Kinstone.GreenC:40
-								CanFuseGreenShared12;	Helper;; Items.Kinstone.GreenC:39
-								CanFuseGreenShared11;	Helper;; Items.Kinstone.GreenC:38
-								CanFuseGreenShared10;	Helper;; Items.Kinstone.GreenC:37
-								CanFuseGreenShared9;	Helper;; Items.Kinstone.GreenC:36
-								CanFuseGreenShared8;	Helper;; Items.Kinstone.GreenC:35
-								CanFuseGreenShared7;	Helper;; Items.Kinstone.GreenC:34
-								CanFuseGreenShared6;	Helper;; Items.Kinstone.GreenC:33
-								CanFuseGreenShared5;	Helper;; Items.Kinstone.GreenC:32
-								CanFuseGreenShared4;	Helper;; Items.Kinstone.GreenC:31
-								CanFuseGreenShared3;	Helper;; Items.Kinstone.GreenC:30
-								CanFuseGreenShared2;	Helper;; Items.Kinstone.GreenC:29
-								CanFuseGreenShared1;	Helper;; Items.Kinstone.GreenC:28
+								CanFuseGreenTFZ1;		Helper;; (+40, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenP;   		Helper;; (+42, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenTFZ2;		Helper;; (+41, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenDavid;	Helper;; (+41, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared15;	Helper;; (+42, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared14;	Helper;; (+41, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared13;	Helper;; (+40, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared12;	Helper;; (+39, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared11;	Helper;; (+38, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared10;	Helper;; (+37, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared9;	Helper;; (+36, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared8;	Helper;; (+35, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared7;	Helper;; (+34, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared6;	Helper;; (+33, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared5;	Helper;; (+32, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared4;	Helper;; (+31, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared3;	Helper;; (+30, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared2;	Helper;; (+29, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared1;	Helper;; (+28, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 							!else
 								Items.Kinstone.GreenC:41;	Major;
-								CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:41
-								CanFuseGreenScrub;	Helper;; Items.Kinstone.GreenC:40
+								CanFuseGreenC;   		Helper;; (+41, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenScrub;	Helper;; (+40, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 								CanFuseGreenGina;		Helper;; Helpers.Inaccessible
 								CanFuseGreenSiroc;	Helper;; Helpers.Inaccessible
-								CanFuseGreenG;   		Helper;; Items.Kinstone.GreenC:41
+								CanFuseGreenG;   		Helper;; (+41, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 								CanFuseGreenFlurris;	Helper;; Helpers.Inaccessible
-								CanFuseGreenTFZ1;		Helper;; Items.Kinstone.GreenC:39
-								CanFuseGreenP;   		Helper;; Items.Kinstone.GreenC:41
-								CanFuseGreenTFZ2;		Helper;; Items.Kinstone.GreenC:40
-								CanFuseGreenDavid;	Helper;; Items.Kinstone.GreenC:40
-								CanFuseGreenShared15;	Helper;; Items.Kinstone.GreenC:41
-								CanFuseGreenShared14;	Helper;; Items.Kinstone.GreenC:40
-								CanFuseGreenShared13;	Helper;; Items.Kinstone.GreenC:39
-								CanFuseGreenShared12;	Helper;; Items.Kinstone.GreenC:38
-								CanFuseGreenShared11;	Helper;; Items.Kinstone.GreenC:37
-								CanFuseGreenShared10;	Helper;; Items.Kinstone.GreenC:36
-								CanFuseGreenShared9;	Helper;; Items.Kinstone.GreenC:35
-								CanFuseGreenShared8;	Helper;; Items.Kinstone.GreenC:34
-								CanFuseGreenShared7;	Helper;; Items.Kinstone.GreenC:33
-								CanFuseGreenShared6;	Helper;; Items.Kinstone.GreenC:32
-								CanFuseGreenShared5;	Helper;; Items.Kinstone.GreenC:31
-								CanFuseGreenShared4;	Helper;; Items.Kinstone.GreenC:30
-								CanFuseGreenShared3;	Helper;; Items.Kinstone.GreenC:29
-								CanFuseGreenShared2;	Helper;; Items.Kinstone.GreenC:28
-								CanFuseGreenShared1;	Helper;; Items.Kinstone.GreenC:27
+								CanFuseGreenTFZ1;		Helper;; (+39, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenP;   		Helper;; (+41, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenTFZ2;		Helper;; (+40, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenDavid;	Helper;; (+40, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared15;	Helper;; (+41, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared14;	Helper;; (+40, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared13;	Helper;; (+39, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared12;	Helper;; (+38, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared11;	Helper;; (+37, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared10;	Helper;; (+36, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared9;	Helper;; (+35, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared8;	Helper;; (+34, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared7;	Helper;; (+33, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared6;	Helper;; (+32, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared5;	Helper;; (+31, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared4;	Helper;; (+30, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared3;	Helper;; (+29, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared2;	Helper;; (+28, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared1;	Helper;; (+27, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 							!endif
 						!else
 							!ifdef - FALLS_ACCESS
 								Items.Kinstone.GreenC:40;	Major;
-								CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:40
+								CanFuseGreenC;   		Helper;; (+40, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 								CanFuseGreenScrub;	Helper;; Helpers.Inaccessible
 								CanFuseGreenGina;		Helper;; Helpers.Inaccessible
 								CanFuseGreenSiroc;	Helper;; Helpers.Inaccessible
-								CanFuseGreenG;   		Helper;; Items.Kinstone.GreenC:40
+								CanFuseGreenG;   		Helper;; (+40, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 								CanFuseGreenFlurris;	Helper;; Helpers.Inaccessible
-								CanFuseGreenTFZ1;		Helper;; Items.Kinstone.GreenC:38
-								CanFuseGreenP;   		Helper;; Items.Kinstone.GreenC:40
-								CanFuseGreenTFZ2;		Helper;; Items.Kinstone.GreenC:39
-								CanFuseGreenDavid;	Helper;; Items.Kinstone.GreenC:39
-								CanFuseGreenShared15;	Helper;; Items.Kinstone.GreenC:40
-								CanFuseGreenShared14;	Helper;; Items.Kinstone.GreenC:39
-								CanFuseGreenShared13;	Helper;; Items.Kinstone.GreenC:38
-								CanFuseGreenShared12;	Helper;; Items.Kinstone.GreenC:37
-								CanFuseGreenShared11;	Helper;; Items.Kinstone.GreenC:36
-								CanFuseGreenShared10;	Helper;; Items.Kinstone.GreenC:35
-								CanFuseGreenShared9;	Helper;; Items.Kinstone.GreenC:34
-								CanFuseGreenShared8;	Helper;; Items.Kinstone.GreenC:33
-								CanFuseGreenShared7;	Helper;; Items.Kinstone.GreenC:32
-								CanFuseGreenShared6;	Helper;; Items.Kinstone.GreenC:31
-								CanFuseGreenShared5;	Helper;; Items.Kinstone.GreenC:30
-								CanFuseGreenShared4;	Helper;; Items.Kinstone.GreenC:29
-								CanFuseGreenShared3;	Helper;; Items.Kinstone.GreenC:28
-								CanFuseGreenShared2;	Helper;; Items.Kinstone.GreenC:27
-								CanFuseGreenShared1;	Helper;; Items.Kinstone.GreenC:26
+								CanFuseGreenTFZ1;		Helper;; (+38, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenP;   		Helper;; (+40, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenTFZ2;		Helper;; (+39, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenDavid;	Helper;; (+39, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared15;	Helper;; (+40, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared14;	Helper;; (+39, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared13;	Helper;; (+38, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared12;	Helper;; (+37, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared11;	Helper;; (+36, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared10;	Helper;; (+35, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared9;	Helper;; (+34, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared8;	Helper;; (+33, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared7;	Helper;; (+32, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared6;	Helper;; (+31, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared5;	Helper;; (+30, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared4;	Helper;; (+29, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared3;	Helper;; (+28, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared2;	Helper;; (+27, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared1;	Helper;; (+26, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 							!else
 								Items.Kinstone.GreenC:39;	Major;
-								CanFuseGreenC;   		Helper;; Items.Kinstone.GreenC:39
+								CanFuseGreenC;   		Helper;; (+39, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 								CanFuseGreenScrub;	Helper;; Helpers.Inaccessible
 								CanFuseGreenGina;		Helper;; Helpers.Inaccessible
 								CanFuseGreenSiroc;	Helper;; Helpers.Inaccessible
-								CanFuseGreenG;   		Helper;; Items.Kinstone.GreenC:39
+								CanFuseGreenG;   		Helper;; (+39, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 								CanFuseGreenFlurris;	Helper;; Helpers.Inaccessible
-								CanFuseGreenTFZ1;		Helper;; Items.Kinstone.GreenC:37
-								CanFuseGreenP;   		Helper;; Items.Kinstone.GreenC:39
-								CanFuseGreenTFZ2;		Helper;; Items.Kinstone.GreenC:38
-								CanFuseGreenDavid;	Helper;; Items.Kinstone.GreenC:38
-								CanFuseGreenShared15;	Helper;; Items.Kinstone.GreenC:39
-								CanFuseGreenShared14;	Helper;; Items.Kinstone.GreenC:38
-								CanFuseGreenShared13;	Helper;; Items.Kinstone.GreenC:37
-								CanFuseGreenShared12;	Helper;; Items.Kinstone.GreenC:36
-								CanFuseGreenShared11;	Helper;; Items.Kinstone.GreenC:35
-								CanFuseGreenShared10;	Helper;; Items.Kinstone.GreenC:34
-								CanFuseGreenShared9;	Helper;; Items.Kinstone.GreenC:33
-								CanFuseGreenShared8;	Helper;; Items.Kinstone.GreenC:32
-								CanFuseGreenShared7;	Helper;; Items.Kinstone.GreenC:31
-								CanFuseGreenShared6;	Helper;; Items.Kinstone.GreenC:30
-								CanFuseGreenShared5;	Helper;; Items.Kinstone.GreenC:29
-								CanFuseGreenShared4;	Helper;; Items.Kinstone.GreenC:28
-								CanFuseGreenShared3;	Helper;; Items.Kinstone.GreenC:27
-								CanFuseGreenShared2;	Helper;; Items.Kinstone.GreenC:26
-								CanFuseGreenShared1;	Helper;; Items.Kinstone.GreenC:25
+								CanFuseGreenTFZ1;		Helper;; (+37, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenP;   		Helper;; (+39, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenTFZ2;		Helper;; (+38, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenDavid;	Helper;; (+38, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared15;	Helper;; (+39, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared14;	Helper;; (+38, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared13;	Helper;; (+37, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared12;	Helper;; (+36, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared11;	Helper;; (+35, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared10;	Helper;; (+34, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared9;	Helper;; (+33, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared8;	Helper;; (+32, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared7;	Helper;; (+31, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared6;	Helper;; (+30, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared5;	Helper;; (+29, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared4;	Helper;; (+28, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared3;	Helper;; (+27, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared2;	Helper;; (+26, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+								CanFuseGreenShared1;	Helper;; (+25, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 							!endif
 						!endif
 					!endif
