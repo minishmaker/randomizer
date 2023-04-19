@@ -5,17 +5,38 @@
 	#define skipFusionCutsceneShowMap 0
 #endif
 
-#ifndef kinstoneMultiplierGold
-	#define kinstoneMultiplierGold 1
+#ifndef kinstoneMultiplierGoldCloud
+	#define kinstoneMultiplierGoldCloud 1
 #endif
-#ifndef kinstoneMultiplierRed
-	#define kinstoneMultiplierRed 1
+#ifndef kinstoneMultiplierGoldSwamp
+	#define kinstoneMultiplierGoldSwamp 1
 #endif
-#ifndef kinstoneMultiplierBlue
-	#define kinstoneMultiplierBlue 1
+#ifndef kinstoneMultiplierGoldFalls
+	#define kinstoneMultiplierGoldFalls 1
 #endif
-#ifndef kinstoneMultiplierGreen
-	#define kinstoneMultiplierGreen 1
+#ifndef kinstoneMultiplierRedW
+	#define kinstoneMultiplierRedW 1
+#endif
+#ifndef kinstoneMultiplierRedV
+	#define kinstoneMultiplierRedV 1
+#endif
+#ifndef kinstoneMultiplierRedE
+	#define kinstoneMultiplierRedE 1
+#endif
+#ifndef kinstoneMultiplierBlueL
+	#define kinstoneMultiplierBlueL 1
+#endif
+#ifndef kinstoneMultiplierBlueS
+	#define kinstoneMultiplierBlueS 1
+#endif
+#ifndef kinstoneMultiplierGreenC
+	#define kinstoneMultiplierGreenC 1
+#endif
+#ifndef kinstoneMultiplierGreenG
+	#define kinstoneMultiplierGreenG 1
+#endif
+#ifndef kinstoneMultiplierGreenP
+	#define kinstoneMultiplierGreenP 1
 #endif
 
 //remove all ezlo stepping triggers
@@ -394,23 +415,23 @@ kinstoneBagMultiplier:
 #incbin "asm/kinstoneBagMultiplier.dmp"
 POIN kinstoneBagMultiplierTable
 kinstoneBagMultiplierTable:
-BYTE kinstoneMultiplierGold
-BYTE kinstoneMultiplierGold
-BYTE kinstoneMultiplierGold
-BYTE kinstoneMultiplierGold
-BYTE kinstoneMultiplierGold
-BYTE kinstoneMultiplierGold
-BYTE kinstoneMultiplierGold
-BYTE kinstoneMultiplierGold
-BYTE kinstoneMultiplierGold
-BYTE kinstoneMultiplierRed
-BYTE kinstoneMultiplierRed
-BYTE kinstoneMultiplierRed
-BYTE kinstoneMultiplierBlue
-BYTE kinstoneMultiplierBlue
-BYTE kinstoneMultiplierGreen
-BYTE kinstoneMultiplierGreen
-BYTE kinstoneMultiplierGreen
+BYTE kinstoneMultiplierGoldCloud
+BYTE kinstoneMultiplierGoldCloud
+BYTE kinstoneMultiplierGoldCloud
+BYTE kinstoneMultiplierGoldCloud
+BYTE kinstoneMultiplierGoldCloud
+BYTE kinstoneMultiplierGoldSwamp
+BYTE kinstoneMultiplierGoldSwamp
+BYTE kinstoneMultiplierGoldSwamp
+BYTE kinstoneMultiplierGoldFalls
+BYTE kinstoneMultiplierRedW
+BYTE kinstoneMultiplierRedV
+BYTE kinstoneMultiplierRedE
+BYTE kinstoneMultiplierBlueL
+BYTE kinstoneMultiplierBlueS
+BYTE kinstoneMultiplierGreenC
+BYTE kinstoneMultiplierGreenG
+BYTE kinstoneMultiplierGreenP
 
 //elements at cloud tops are only drawn if looking at the top layer
 PUSH; ORG $A611C; jumpToHack(cloudsElements); POP

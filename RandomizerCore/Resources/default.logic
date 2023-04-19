@@ -626,7 +626,9 @@
 # This section defines values used by the patcher, this sets if and which fusions should be available
 !ifdef - OPEN_GOLD_FUSIONS
 	!eventdefine - noGoldFusions							# if defined, golden kinstone fusions are not available (except the cloud fusions which is handled below)
-	!eventdefine - kinstoneMultiplierGold - 0				# golden kinstones don't get added to the kinstone bag
+	!eventdefine - kinstoneMultiplierGoldCloud - 0			# golden cloud kinstones don't get added to the kinstone bag
+	!eventdefine - kinstoneMultiplierGoldSwamp - 0			# golden swamp kinstones don't get added to the kinstone bag
+	!eventdefine - kinstoneMultiplierGoldFalls - 0			# golden falls kinstones don't get added to the kinstone bag
 	!eventdefine - mC81 - 0xFE								# sets all the cloud tops fusions, as well as the left and middle swamp fusions (the right swamp and falls fusions share an address with red fusions)
 	!eventdefine - mCA0 - 0x10								# sets the tornado in cloud tops as spawned, shares an address with Graveyard Key stages
 	!eventdefine - mCA7 - 0xD1								# sets the wind tribe state to access higher floors, also sets tingle bros as spawned
@@ -637,7 +639,9 @@
 	!eventdefine - mCBF - 0x00								# stone block at the Castor Wilds statues not destroyed
 	!ifdef - NO_GOLD_FUSIONS
 		!eventdefine - noGoldFusions						# if defined, golden kinstone fusions are not available (except the cloud fusions which is handled below)
-		!eventdefine - kinstoneMultiplierGold - 0			# golden kinstones don't get added to the kinstone bag
+		!eventdefine - kinstoneMultiplierGoldCloud - 0		# golden cloud kinstones don't get added to the kinstone bag
+		!eventdefine - kinstoneMultiplierGoldSwamp - 0		# golden swamp kinstones don't get added to the kinstone bag
+		!eventdefine - kinstoneMultiplierGoldFalls - 0		# golden falls kinstones don't get added to the kinstone bag
 		!eventdefine - mC81 - 0x3E							# marks the cloud tops clouds as having fused so they never offer a fusion, this address doesn't spawn the tornado
 	!else
 		!eventdefine - mC81 - 0x00							# sets the golden fusions as not completed
@@ -646,13 +650,17 @@
 
 !ifdef - OPEN_RED_FUSIONS
 	!eventdefine - noRedFusions								# if defined, red kinstone fusions are not available
-	!eventdefine - kinstoneMultiplierRed - 0				# red kinstones don't get added to the kinstone bag
+	!eventdefine - kinstoneMultiplierRedW - 0				# red W kinstones don't get added to the kinstone bag
+	!eventdefine - kinstoneMultiplierRedV - 0				# red V kinstones don't get added to the kinstone bag
+	!eventdefine - kinstoneMultiplierRedE - 0				# red E kinstones don't get added to the kinstone bag
 	!eventdefine - mC83 - 0xFF								# sets various red fusions
 	!eventdefine - mC84 - 0xFF								# sets various red fusions
 !else
 	!ifdef - NO_RED_FUSIONS
 		!eventdefine - noRedFusions							# if defined, red kinstone fusions are not available
-		!eventdefine - kinstoneMultiplierRed - 0			# red kinstones don't get added to the kinstone bag
+		!eventdefine - kinstoneMultiplierRedW - 0			# red W kinstones don't get added to the kinstone bag
+		!eventdefine - kinstoneMultiplierRedV - 0			# red V kinstones don't get added to the kinstone bag
+		!eventdefine - kinstoneMultiplierRedE - 0			# red E kinstones don't get added to the kinstone bag
 		!undefine - GOLDEN_ENEMY_RED						# removes the golden enemy spawned by the red fusion from logic
 	!endif
 	!eventdefine - mC83 - 0x00
@@ -661,13 +669,15 @@
 
 !ifdef - OPEN_BLUE_FUSIONS
 	!eventdefine - noBlueFusions							# if defined, blue kinstone fusions are not available
-	!eventdefine - kinstoneMultiplierBlue - 0				# blue kinstones don't get added to the kinstone bag
+	!eventdefine - kinstoneMultiplierBlueL - 0				# blue L kinstones don't get added to the kinstone bag
+	!eventdefine - kinstoneMultiplierBlueS - 0				# blue S kinstones don't get added to the kinstone bag
 	!eventdefine - mC86 - 0xFF
 	!eventdefine - mCD2 - 0x03
 !else
 	!ifdef - NO_BLUE_FUSIONS
 		!eventdefine - noBlueFusions						# if defined, blue kinstone fusions are not available
-		!eventdefine - kinstoneMultiplierBlue - 0			# blue kinstones don't get added to the kinstone bag
+		!eventdefine - kinstoneMultiplierBlueL - 0			# blue L kinstones don't get added to the kinstone bag
+		!eventdefine - kinstoneMultiplierBlueS - 0			# blue S kinstones don't get added to the kinstone bag
 	!endif
 	!eventdefine - mC86 - 0x00
 	!eventdefine - mCD2 - 0x00
@@ -675,7 +685,9 @@
 
 !ifdef - OPEN_GREEN_FUSIONS
 	!eventdefine - noGreenFusions							# if defined, green kinstone fusions are not available
-	!eventdefine - kinstoneMultiplierGreen - 0				# green kinstones don't get added to the kinstone bag
+	!eventdefine - kinstoneMultiplierGreenC - 0				# green C kinstones don't get added to the kinstone bag
+	!eventdefine - kinstoneMultiplierGreenG - 0				# green G kinstones don't get added to the kinstone bag
+	!eventdefine - kinstoneMultiplierGreenP - 0				# green P kinstones don't get added to the kinstone bag
 	!eventdefine - mC88 - 0xFF
 	!eventdefine - mC89 - 0xFF
 	!eventdefine - mC8A - 0xFF
@@ -685,7 +697,9 @@
 !else
 	!ifdef - NO_GREEN_FUSIONS
 		!eventdefine - noGreenFusions						# if defined, green kinstone fusions are not available
-		!eventdefine - kinstoneMultiplierGreen - 0			# green kinstones don't get added to the kinstone bag
+		!eventdefine - kinstoneMultiplierGreenC - 0			# green C kinstones don't get added to the kinstone bag
+		!eventdefine - kinstoneMultiplierGreenG - 0			# green G kinstones don't get added to the kinstone bag
+		!eventdefine - kinstoneMultiplierGreenP - 0			# green P kinstones don't get added to the kinstone bag
 		!undefine - GOLDEN_ENEMY_GREEN
 	!endif
 	!eventdefine - mC88 - 0x00
