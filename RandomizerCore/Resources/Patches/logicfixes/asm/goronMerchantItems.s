@@ -1,4 +1,5 @@
 .equ shopData, customSets+4
+.equ disableKinstoneDrops, shopData+4
 .thumb
 push	{r2}
 @ put set index (0-4) in r2
@@ -27,6 +28,10 @@ result:
 ldr	r1,customSets
 cmp	r1,r2
 bhi	custom
+@ check if we should use vanilla behavior or skip the item
+ldr	r1,disableKinstoneDrops
+cmp	r1,#0
+bne	skip
 
 vanilla:
 mov	r1,#0x5C
@@ -51,8 +56,14 @@ mov	lr,r3
 ldr	r3,=#0x805D1C1
 bx	r3
 
+skip:
+pop	{r3}
+ldr	r3,=#0x805D1FD
+bx	r3
+
 .align
 .ltorg
 customSets:
 @WORD goronMerchantCustomSets
 @POIN goronMerchantData
+@WORD disableKinstoneDrops
