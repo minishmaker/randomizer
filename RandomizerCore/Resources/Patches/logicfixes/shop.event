@@ -191,6 +191,11 @@ goronMerchantItems:
 #incbin "asm/goronMerchantItems.dmp"
 WORD goronMerchantCustomSets
 POIN goronMerchantData
+#ifdef disableKinstoneDrops
+	WORD 1
+#else
+	WORD 0
+#endif
 
 //Goron Merchant uses Link's position instead of subtype to determine price
 PUSH; ORG $69134; jumpToHack(goronMerchantPrice); POP
