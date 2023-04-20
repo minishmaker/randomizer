@@ -218,8 +218,8 @@
 !flag - Gameplay - Setting - Improvements - HOMEWARP - Homewarp - In the Pause menu there is a 'SLEEP' option on the 'QUEST STATUS' screen, using this will warp Link back to his bed from wherever he is. - true
 !flag - Gameplay - Setting - Improvements - OCARINA_SELECT - Ocarina on Select - Allows you to use the Ocarina by pressing the Select button, once obtained.\nWarning: Since this removes the Ezlo interaction, this prevents certain glitches. - true
 !flag - Gameplay - Setting - Extras - GORON_ALT_PRICES - Goron Merchant JP/US prices - If enabled will use the prices found in the JP and US versions.\nThese are the prices from left to right:\nEU 1st set: 200, 100, 50\nEU 2nd set: 300, 200, 100\nEU 3rd set: 400, 300, 200\nEU 4th set: 500, 400, 300\nEU 5th set: 600, 500, 400\nJP any set: 300, 200, 50
-!flag - Gameplay - Setting - Extras - NO_KINSTONE_DROPS - Disable Kinstone Drops - Kinstone Pieces can no longer randomly drop. - true
-!flag - Gameplay - Setting - Extras - NO_SHELL_DROPS - Disable Shell Drops - Mysterious Shells can no longer randomly drop. - true
+!flag - Gameplay - Setting - Extras - NO_KINSTONE_DROPS - Disable Kinstone Drops - Kinstone Pieces can no longer randomly drop.\nThey can also not be obtained through any other means than items in the random item pool. - true
+!flag - Gameplay - Setting - Extras - NO_SHELL_DROPS - Disable Shell Drops - Mysterious Shells can no longer randomly drop.\nThey can also not be obtained from beating Simon's Simulations multiple times. - true
 !dropdown - Gameplay - Setting - Improvements - BOOTS_L - Boots on L - Allows you to use the Pegasus Boots by pressing the L button, once obtained. - BOOTS_L_NORMAL - Disabled - BOOTS_L_OFF - 'Disabled': Boots can only be used when equipped on the A or B button. - Enabled - BOOTS_L_NORMAL - 'Enabled': Boots can also be used with the L button. - Enabled + Minish - BOOTS_L_MINISH - 'Enabled + Minish': Even as a Minish, Boots can be used with the L button.\nWarning: Dashing as a Minish has some unintended effects.
 
 # Cosmetic settings
