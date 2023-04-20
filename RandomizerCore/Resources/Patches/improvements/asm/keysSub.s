@@ -5,6 +5,13 @@ cmp	r7,#0
 beq	vanilla
 mov	r1,r7
 sub	r1,#0x17
+
+cmp	r4,#1
+bne	new
+ldr	r0,multiplierTable
+ldrb	r0,[r0,r1]
+mov	r4,r0
+
 b	new
 vanilla:
 ldr	r0,=#0x2033A90
@@ -16,3 +23,7 @@ ldrb	r0,[r1]
 add	r0,r4
 ldr	r3,=#0x805232D
 bx	r3
+
+.align
+.ltorg
+multiplierTable:
