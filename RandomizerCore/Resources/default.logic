@@ -2862,7 +2862,7 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 				Items.Kinstone.GoldenCloudTops;		Major;
 				!undefine - GOLD1MULTIPLIER
 				!define - GOLD1MULTIPLIER - 5
-				!define - kinstoneMultiplierGoldCloud - 5
+				!eventdefine - kinstoneMultiplierGoldCloud - 5
 			!else
 				Items.Kinstone.GoldenCloudTops:5;	Major;
 			!endif
@@ -2870,7 +2870,7 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 				Items.Kinstone.GoldenSwamp;		Major;
 				!undefine - GOLD2MULTIPLIER
 				!define - GOLD2MULTIPLIER - 3
-				!define - kinstoneMultiplierGoldSwamp - 3
+				!eventdefine - kinstoneMultiplierGoldSwamp - 3
 			!else
 				Items.Kinstone.GoldenSwamp:3;		Major;
 			!endif
@@ -2890,7 +2890,7 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 				Items.Kinstone.GoldenCloudTops;			Major;
 				!undefine - GOLD1MULTIPLIER
 				!define - GOLD1MULTIPLIER - 10
-				!define - kinstoneMultiplierGoldCloud - 9
+				!eventdefine - kinstoneMultiplierGoldCloud - 9
 			!else
 				Items.Kinstone.GoldenCloudTops:9;		Major;
 			!endif
