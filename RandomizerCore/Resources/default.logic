@@ -206,6 +206,13 @@
 !dropdown - Item Pool - Setting - Kinstone Packs - GREENCMULTIPLIER - Green C Kinstone pack size - When collecting kinstones, you will get this many added to your bag.\nThis kinstone is the green combined kinstone when that setting is enabled.\n\n'Max': places one kinstone pack in the pool that will give you exactly enough kinstones of this shape to complete every reachable fusion in the seed. - 1 - 1 - 1 - - 2 - 2 - - 3 - 3 - - 4 - 4 - - 5 - 5 - - 10 - 10 - - 20 - 20 - - Max - GREENCMAX -
 !dropdown - Item Pool - Setting - Kinstone Packs - GREENGMULTIPLIER - Green G Kinstone pack size - When collecting kinstones, you will get this many added to your bag.\nThis kinstone is not shuffled when the combined setting is enabled.\n\n'Max': places one kinstone pack in the pool that will give you exactly enough kinstones of this shape to complete every reachable fusion in the seed. - 1 - 1 - 1 - - 2 - 2 - - 3 - 3 - - 4 - 4 - - 5 - 5 - - 8 - 8 - - Max - GREENGMAX -
 !dropdown - Item Pool - Setting - Kinstone Packs - GREENPMULTIPLIER - Green P Kinstone pack size - When collecting kinstones, you will get this many added to your bag.\nThis kinstone is not shuffled when the combined setting is enabled.\n\n'Max': places one kinstone pack in the pool that will give you exactly enough kinstones of this shape to complete every reachable fusion in the seed. - 1 - 1 - 1 - - 2 - 2 - - 3 - 3 - - 4 - 4 - - 5 - 5 - - 8 - 8 - - Max - GREENPMAX -
+!dropdown - Item Pool - Setting - Key Chains - KEYDWSMULTIPLIER - Deepwood Shrine Keychain size - When collecting keys, you will get this many added to your total. - DWS1KEY - 1 - DWS1KEY - - 2 - DWS2KEY - - 3 - DWS3KEY - - 4 - DWS4KEY -
+!dropdown - Item Pool - Setting - Key Chains - KEYCOFMULTIPLIER - Cave of Flames Keychain size - When collecting keys, you will get this many added to your total. - COF1KEY - 1 - COF1KEY - - 2 - COF2KEY -
+!dropdown - Item Pool - Setting - Key Chains - KEYFOWMULTIPLIER - Fortress of Winds Keychain size - When collecting keys, you will get this many added to your total. - FOW1KEY - 1 - FOW1KEY - - 2 - FOW2KEY - - 3 - FOW3KEY - - 4 - FOW4KEY -
+!dropdown - Item Pool - Setting - Key Chains - KEYTODMULTIPLIER - Temple of Droplets Keychain size - When collecting keys, you will get this many added to your total. - TOD1KEY - 1 - TOD1KEY - - 2 - TOD2KEY - - 3 - TOD3KEY - - 4 - TOD4KEY -
+!dropdown - Item Pool - Setting - Key Chains - KEYRCMULTIPLIER - Royal Crypt Keychain size - When collecting keys, you will get this many added to your total. - RC1KEY - 1 - RC1KEY - - 2 - RC2KEY - - 3 - RC3KEY -
+!dropdown - Item Pool - Setting - Key Chains - KEYPOWMULTIPLIER - Palace of Winds Keychain size - When collecting keys, you will get this many added to your total. - POW1KEY - 1 - POW1KEY - - 2 - POW2KEY - - 3 - POW3KEY - - 4 - POW4KEY - - 5 - POW5KEY - - 6 - POW6KEY -
+!dropdown - Item Pool - Setting - Key Chains - KEYDHCMULTIPLIER - Dark Hyrule Castle Keychain size - When collecting keys, you will get this many added to your total. - DHC1KEY - 1 - DHC1KEY - - 2 - DHC2KEY - - 3 - DHC3KEY - - 4 - DHC4KEY - - 5 - DHC5KEY -
 
 !flag - Gameplay - Setting - Difficulty - GLITCHLESS - Prevent Speedrun Glitches - Attempts were made to patch the glitches used by speedrunners to reach areas before intended, these attempts failed but we still keep this setting around.\n It is not recommended to enable this setting as it instead causes many bugs in regular gameplay
 !flag - Gameplay - Setting - Difficulty - TIMEDOHKO - Timed OHKO - A 10 minute timer starts when you start your save file, collect timers to increase time on this timer. When the timer hits 00:00 you enter OHKO mode, one hit will kill you.\n Blue Timers increase the time by 2 Mintues\n Green Timers increase the time by 4 minutes\n Red timers reduce the timer to 00:00\n WARNING: Do not enable this with 'Damage Multiplier' above x1, it will generate the seed but fail to patch the game.
@@ -315,6 +322,13 @@
 !define - `ACCESSIBILITY`
 !define - `BOOTS_L`
 !define - `GRABBABLE`
+!define - `KEYDWSMULTIPLIER`
+!define - `KEYCOFMULTIPLIER`
+!define - `KEYFOWMULTIPLIER`
+!define - `KEYTODMULTIPLIER`
+!define - `KEYRCMULTIPLIER`
+!define - `KEYPOWMULTIPLIER`
+!define - `KEYDHCMULTIPLIER`
 
 # Logic setting defines
 !define - `MITTSMONEY`
@@ -813,13 +827,27 @@
 
 # Keasy removes keys from the pool and unlocks all key doors
 !ifdef - SMALL_KEASY
+	!undefine - `KEYDWSMULTIPLIER`
+	!undefine - `KEYCOFMULTIPLIER`
+	!undefine - `KEYFOWMULTIPLIER`
+	!undefine - `KEYTODMULTIPLIER`
+	!undefine - `KEYRCMULTIPLIER`
+	!undefine - `KEYPOWMULTIPLIER`
+	!undefine - `KEYDHCMULTIPLIER`
+	!define - Replace_Small_Keys - 
+	!define - DWS4KEY
+	!define - COF2KEY
+	!define - FOW4KEY
+	!define - TOD4KEY
+	!define - RC3KEY
+	!define - POW6KEY
+	!define - DHC5KEY
 	!ifdef - BIG_KEASY
 		!define - Replace_Big_Keys - 
 		!eventdefine - smallbigkeasy
 	!else
 		!eventdefine - smallkeasy
 	!endif
-		!define - Replace_Small_Keys - 
 !else
 	!ifdef - BIG_KEASY
 		!define - Replace_Big_Keys - 
@@ -1314,47 +1342,86 @@
 		!endif
 	!endif
 	!ifdef - Replace_Small_Keys
-		Dummy_DWS_Small_1:NoSpoiler;	Unshuffled;	DumDWSS1:Define:FirstByte, DumDWSS12:Define:SecondByte;	;	Items.SmallKey.0x18
-		Dummy_DWS_Small_2:NoSpoiler;	Unshuffled;	DumDWSS2:Define:FirstByte, DumDWSS22:Define:SecondByte;	;	Items.SmallKey.0x18
-		Dummy_DWS_Small_3:NoSpoiler;	Unshuffled;	DumDWSS3:Define:FirstByte, DumDWSS32:Define:SecondByte;	;	Items.SmallKey.0x18
-		Dummy_DWS_Small_4:NoSpoiler;	Unshuffled;	DumDWSS4:Define:FirstByte, DumDWSS42:Define:SecondByte;	;	Items.SmallKey.0x18
-		Dummy_CoF_Small_1:NoSpoiler;	Unshuffled;	DumCoFS1:Define:FirstByte, DumCoFS12:Define:SecondByte;	;	Items.SmallKey.0x19
-		Dummy_CoF_Small_2:NoSpoiler;	Unshuffled;	DumCoFS2:Define:FirstByte, DumCoFS22:Define:SecondByte;	;	Items.SmallKey.0x19
-		Dummy_FoW_Small_1:NoSpoiler;	Unshuffled;	DumFoWS1:Define:FirstByte, DumFoWS12:Define:SecondByte;	;	Items.SmallKey.0x1A
-		Dummy_FoW_Small_2:NoSpoiler;	Unshuffled;	DumFoWS2:Define:FirstByte, DumFoWS22:Define:SecondByte;	;	Items.SmallKey.0x1A
-		Dummy_FoW_Small_3:NoSpoiler;	Unshuffled;	DumFoWS3:Define:FirstByte, DumFoWS32:Define:SecondByte;	;	Items.SmallKey.0x1A
-		Dummy_FoW_Small_4:NoSpoiler;	Unshuffled;	DumFoWS4:Define:FirstByte, DumFoWS42:Define:SecondByte;	;	Items.SmallKey.0x1A
-		Dummy_ToD_Small_1:NoSpoiler;	Unshuffled;	DumToDS1:Define:FirstByte, DumToDS12:Define:SecondByte;	;	Items.SmallKey.0x1B
-		Dummy_ToD_Small_2:NoSpoiler;	Unshuffled;	DumToDS2:Define:FirstByte, DumToDS22:Define:SecondByte;	;	Items.SmallKey.0x1B
-		Dummy_ToD_Small_3:NoSpoiler;	Unshuffled;	DumToDS3:Define:FirstByte, DumToDS32:Define:SecondByte;	;	Items.SmallKey.0x1B
-		Dummy_ToD_Small_4:NoSpoiler;	Unshuffled;	DumToDS4:Define:FirstByte, DumToDS42:Define:SecondByte;	;	Items.SmallKey.0x1B
-		Dummy_PoW_Small_1:NoSpoiler;	Unshuffled;	DumPoWS1:Define:FirstByte, DumPoWS12:Define:SecondByte;	;	Items.SmallKey.0x1C
-		Dummy_PoW_Small_2:NoSpoiler;	Unshuffled;	DumPoWS2:Define:FirstByte, DumPoWS22:Define:SecondByte;	;	Items.SmallKey.0x1C
-		Dummy_PoW_Small_3:NoSpoiler;	Unshuffled;	DumPoWS3:Define:FirstByte, DumPoWS32:Define:SecondByte;	;	Items.SmallKey.0x1C
-		Dummy_PoW_Small_4:NoSpoiler;	Unshuffled;	DumPoWS4:Define:FirstByte, DumPoWS42:Define:SecondByte;	;	Items.SmallKey.0x1C
-		Dummy_PoW_Small_5:NoSpoiler;	Unshuffled;	DumPoWS5:Define:FirstByte, DumPoWS52:Define:SecondByte;	;	Items.SmallKey.0x1C
-		Dummy_PoW_Small_6:NoSpoiler;	Unshuffled;	DumPoWS6:Define:FirstByte, DumPoWS62:Define:SecondByte;	;	Items.SmallKey.0x1C
-		Dummy_DHC_Small_1:NoSpoiler;	Unshuffled;	DumDHCS1:Define:FirstByte, DumDHCS12:Define:SecondByte;	;	Items.SmallKey.0x1D
-		Dummy_DHC_Small_2:NoSpoiler;	Unshuffled;	DumDHCS2:Define:FirstByte, DumDHCS22:Define:SecondByte;	;	Items.SmallKey.0x1D
-		Dummy_DHC_Small_3:NoSpoiler;	Unshuffled;	DumDHCS3:Define:FirstByte, DumDHCS32:Define:SecondByte;	;	Items.SmallKey.0x1D
-		Dummy_DHC_Small_4:NoSpoiler;	Unshuffled;	DumDHCS4:Define:FirstByte, DumDHCS42:Define:SecondByte;	;	Items.SmallKey.0x1D
-		Dummy_DHC_Small_5:NoSpoiler;	Unshuffled;	DumDHCS5:Define:FirstByte, DumDHCS52:Define:SecondByte;	;	Items.SmallKey.0x1D
-		Dummy_RC_Small_1:NoSpoiler;	Unshuffled;	DumRCS1:Define:FirstByte, DumRCS12:Define:SecondByte;		;	Items.SmallKey.0x1E
-		Dummy_RC_Small_2:NoSpoiler;	Unshuffled;	DumRCS2:Define:FirstByte, DumRCS22:Define:SecondByte;		;	Items.SmallKey.0x1E
-		Dummy_RC_Small_3:NoSpoiler;	Unshuffled;	DumRCS3:Define:FirstByte, DumRCS32:Define:SecondByte;		;	Items.SmallKey.0x1E
+		Dummy_DWS_Small:NoSpoiler;	Unshuffled;	DumDWSS1:Define:FirstByte, DumDWSS12:Define:SecondByte;	;	Items.SmallKey.0x18
+		Dummy_CoF_Small:NoSpoiler;	Unshuffled;	DumCoFS1:Define:FirstByte, DumCoFS12:Define:SecondByte;	;	Items.SmallKey.0x19
+		Dummy_FoW_Small:NoSpoiler;	Unshuffled;	DumFoWS1:Define:FirstByte, DumFoWS12:Define:SecondByte;	;	Items.SmallKey.0x1A
+		Dummy_ToD_Small:NoSpoiler;	Unshuffled;	DumToDS1:Define:FirstByte, DumToDS12:Define:SecondByte;	;	Items.SmallKey.0x1B
+		Dummy_PoW_Small:NoSpoiler;	Unshuffled;	DumPoWS1:Define:FirstByte, DumPoWS12:Define:SecondByte;	;	Items.SmallKey.0x1C
+		Dummy_DHC_Small:NoSpoiler;	Unshuffled;	DumDHCS1:Define:FirstByte, DumDHCS12:Define:SecondByte;	;	Items.SmallKey.0x1D
+		Dummy_RC_Small:NoSpoiler;	Unshuffled;	DumRCS1:Define:FirstByte, DumRCS12:Define:SecondByte;		;	Items.SmallKey.0x1E
 	!else
-		Items.SmallKey.0x18:4;	`SMALL_KEY`;	`DWS_SMALL`
-		Items.SmallKey.0x19:2;	`SMALL_KEY`;	`COF_SMALL`
-		Items.SmallKey.0x1B:4;	`SMALL_KEY`;	`TOD_SMALL`
-		Items.SmallKey.0x1E:3;	`SMALL_KEY`;	`RC_SMALL`
+		!ifdef - DWS1KEY
+			Items.SmallKey.0x18:4;	`SMALL_KEY`;	`DWS_SMALL`
+		!else
+			!ifndef - DWS4KEY
+				Items.SmallKey.0x18:2;	`SMALL_KEY`;	`DWS_SMALL`
+			!else
+				Items.SmallKey.0x18;	`SMALL_KEY`;	`DWS_SMALL`
+			!endif
+		!endif
+		!ifdef - COF1KEY
+			Items.SmallKey.0x19:2;	`SMALL_KEY`;	`COF_SMALL`
+		!else
+			Items.SmallKey.0x19;	`SMALL_KEY`;	`COF_SMALL`
+		!endif
+		!ifdef - TOD1KEY
+			Items.SmallKey.0x1B:4;	`SMALL_KEY`;	`TOD_SMALL`
+		!else
+			!ifndef - TOD4KEY
+				Items.SmallKey.0x1B:2;	`SMALL_KEY`;	`TOD_SMALL`
+			!else
+				Items.SmallKey.0x1B;	`SMALL_KEY`;	`TOD_SMALL`
+			!endif
+		!endif
+		!ifdef - RC1KEY
+			Items.SmallKey.0x1E:3;	`SMALL_KEY`;	`RC_SMALL`
+		!else
+			!ifdef - RC2KEY
+				Items.SmallKey.0x1E:2;	`SMALL_KEY`;	`RC_SMALL`
+			!else
+				Items.SmallKey.0x1E;	`SMALL_KEY`;	`RC_SMALL`
+			!endif
+		!endif
 		!ifdef - POW_ACCESS
-			Items.SmallKey.0x1C:6;	`SMALL_KEY`;	`POW_SMALL`
+			!ifdef - POW1KEY
+				Items.SmallKey.0x1C:6;	`SMALL_KEY`;	`POW_SMALL`
+			!else
+				!ifdef - POW2KEY
+					Items.SmallKey.0x1C:3;	`SMALL_KEY`;	`POW_SMALL`
+				!else
+					!ifndef - POW6KEY
+						Items.SmallKey.0x1C:2;	`SMALL_KEY`;	`POW_SMALL`
+					!else
+						Items.SmallKey.0x1C;	`SMALL_KEY`;	`POW_SMALL`
+					!endif
+				!endif
+			!endif
 		!endif
 		!ifdef - FOW_ACCESS
-			Items.SmallKey.0x1A:4;	`SMALL_KEY`;	`FOW_SMALL`
+			!ifdef - FOW1KEY
+				Items.SmallKey.0x1A:4;	`SMALL_KEY`;	`FOW_SMALL`
+			!else
+				!ifndef - FOW4KEY
+					Items.SmallKey.0x1A:2;	`SMALL_KEY`;	`FOW_SMALL`
+				!else
+					Items.SmallKey.0x1A;	`SMALL_KEY`;	`FOW_SMALL`
+				!endif
+			!endif
 		!endif
 		!ifndef - NODHC
-			Items.SmallKey.0x1D:5;	`SMALL_KEY`;	`DHC_SMALL`
+			!ifdef - DHC1KEY
+				Items.SmallKey.0x1D:5;	`SMALL_KEY`;	`DHC_SMALL`
+			!else
+				!ifdef - DHC2KEY
+					Items.SmallKey.0x1D:3;	`SMALL_KEY`;	`DHC_SMALL`
+				!else
+					!ifndef - DHC5KEY
+						Items.SmallKey.0x1D:2;	`SMALL_KEY`;	`DHC_SMALL`
+					!else
+						Items.SmallKey.0x1D;	`SMALL_KEY`;	`DHC_SMALL`
+					!endif
+				!endif
+			!endif
 		!endif
 	!endif
 	Items.Rupee1;			Filler;
@@ -1473,26 +1540,26 @@
 	!endif
 !endif
 !ifdef - ITEM_POOL_NORMAL
-	Items.RemoteBombs;		Minor;
+	Items.RemoteBombs;						Minor;
 	!ifdef - NOPROG
-		Items.MagicBoomerang;			Major;
-		Items.MirrorShield;				Major;
+		Items.MagicBoomerang;					Major;
+		Items.MirrorShield;					Major;
 		!ifndef - DOJOVANILLA
 			!ifdef - DOJORANDOM
 				Items.GreatSpin;				DungeonMajor;	dojo
-				Items.FastSpin;					DungeonMajor;	dojo
+				Items.FastSpin;				DungeonMajor;	dojo
 				Items.FastSplit;				DungeonMajor;	dojo
-				Items.LongSpin;					DungeonMajor;	dojo
+				Items.LongSpin;				DungeonMajor;	dojo
 			!else
 				Items.GreatSpin;				Major;
-				Items.FastSpin;					Major;
+				Items.FastSpin;				Major;
 				Items.FastSplit;				Major;
-				Items.LongSpin;					Major;
+				Items.LongSpin;				Major;
 			!endif
 		!endif
 	!else
-		Items.ProgressiveItem.0x02;		Major;	#Boomerang
-		Items.ProgressiveItem.0x03;		Minor;	#Shield
+		Items.ProgressiveItem.0x02;			Major;	#Boomerang
+		Items.ProgressiveItem.0x03;			Minor;	#Shield
 		!ifndef - DOJOVANILLA
 			!ifdef - DOJORANDOM
 				Items.ProgressiveItem.0x04:4;	DungeonMajor;	dojo	#Scroll
@@ -1521,16 +1588,16 @@
 		Items.Trap.0x08:2;		Minor;
 		Items.Trap.0x09:2;		Minor;
 	!endif
-	Items.Bottle:3;			Minor;
+	Items.Bottle:3;				Minor;
 	!ifdef - HEART_RANDO
 		Items.HeartContainer:6;	Major;
 		Items.PieceOfHeart:40;		Minor;
 	!endif
-	Items.BombBag:3;			Minor;
-	Items.LargeQuiver:3;		Minor;
-	Items.ArrowButterfly;		Minor;
-	Items.DigButterfly;		Minor;
-	Items.SwimButterfly;		Minor;
+	Items.BombBag:3;				Minor;
+	Items.LargeQuiver:3;			Minor;
+	Items.ArrowButterfly;			Minor;
+	Items.DigButterfly;			Minor;
+	Items.SwimButterfly;			Minor;
 !endif
 !ifdef - ITEM_POOL_PLENTIFUL
 	!ifdef - NOPROG
@@ -1569,17 +1636,17 @@
 			!endif
 		!endif
 	!endif
-	Items.RemoteBombs;	Minor;
-	Items.Lantern:2;		Minor;
-	Items.GustJar:2;		Minor;
-	Items.PacciCane:2;	Minor;
-	Items.MoleMitts;		Minor;
-	Items.RocsCape:2;		Minor;
-	Items.PegasusBoots;	Minor;
+	Items.RemoteBombs;		Minor;
+	Items.Lantern:2;			Minor;
+	Items.GustJar:2;			Minor;
+	Items.PacciCane:2;		Minor;
+	Items.MoleMitts;			Minor;
+	Items.RocsCape:2;			Minor;
+	Items.PegasusBoots;		Minor;
 	!ifdef - FIREROD_CHEST
 		Items.Firerod:2;		Minor;
 	!endif
-	Items.Ocarina:2;		Minor;
+	Items.Ocarina:2;			Minor;
 	!ifdef - TIMEDOHKO
 		Items.GreenClock:15;	Minor;
 		Items.BlueClock:15;	Minor;
@@ -1596,16 +1663,16 @@
 		Items.Trap.0x08:2;	Minor;
 		Items.Trap.0x09:2;	Minor;
 	!endif
-	Items.Bottle:3;		Minor;
-	Items.GraveyardKey;	Minor;
+	Items.Bottle:3;			Minor;
+	Items.GraveyardKey;		Minor;
 	!ifdef - SHUFFLE_ELEMENTS
 		Items.EarthElement;	Minor;
 		Items.FireElement;	Minor;
 		Items.WaterElement;	Minor;
 		Items.WindElement;	Minor;
 	!endif
-	Items.GripRing;		Minor;
-	Items.Flippers:2;		Minor;
+	Items.GripRing;			Minor;
+	Items.Flippers:2;			Minor;
 	!ifdef - BIG_KEYSANITY
 		Items.BigKey.0x18;	Minor;	
 		Items.BigKey.0x19;	Minor;
@@ -4100,19 +4167,35 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 	VillageSideMinish0Fusion;	Helper;;	Helpers.CanFuseShared, Items.Flippers
 	
 # Key Doors Logic, checks the Key Settings to determine what number of keys are needed to pass through certain doors
-
+!ifdef - DWS1KEY
+	!eventdefine - keyMultiplierDWS - 1
+	!define - DWSKEYAMOUNT - 1
+!else
+	!ifdef - DWS2KEY
+		!eventdefine - keyMultiplierDWS - 2
+		!define - DWSKEYAMOUNT - 2
+	!else
+		!ifdef - DWS3KEY
+			!eventdefine - keyMultiplierDWS - 3
+			!define - DWSKEYAMOUNT - 3
+		!else
+			!eventdefine - keyMultiplierDWS - 4
+			!define - DWSKEYAMOUNT - 4
+		!endif
+	!endif
+!endif
 	!define - Deepwood2ndDoor - 
 	!define - DeepwoodBasementDoor - 
 	!ifndef - ACCESS_LOCATIONS
 		!ifndef - SMALL_KEYS_ELSE
 			!ifdef - SMALL_KEYS_VANILLA
 				!undefine - Deepwood2ndDoor
-				!define - Deepwood2ndDoor - , Items.SmallKey.0x18:2
+				!define - Deepwood2ndDoor - , (+2, Items.SmallKey.0x18:`DWSKEYAMOUNT`)
 			!else
 				!ifdef - SMALL_KEYS_STANDARD
 					!undefine - Deepwood2ndDoor
 					!undefine - DeepwoodBasementDoor
-					!define - Deepwood2ndDoor - , (&Items.SmallKey.0x18:2, Helpers.CompleteDeepwood, Helpers.DeepwoodMadderpillarDoor, Helpers.DeepwoodMadderpillarFight)
+					!define - Deepwood2ndDoor - , (&(+2, Items.SmallKey.0x18:`DWSKEYAMOUNT`), Helpers.CompleteDeepwood, Helpers.DeepwoodMadderpillarDoor, Helpers.DeepwoodMadderpillarFight)
 					!define - DeepwoodBasementDoor - `Deepwood2ndDoor`
 				!else
 					!define - MinishWoods_BombMinish_NPC2 - 
@@ -4127,18 +4210,42 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 					!endif
 					!undefine - Deepwood2ndDoor
 					!undefine - DeepwoodBasementDoor
-					!define - Deepwood2ndDoor - , (&Items.SmallKey.0x18:2, Helpers.CompleteDeepwood, Helpers.DeepwoodMadderpillarDoor, Helpers.DeepwoodMadderpillarFight, Helpers.AccessBelari, Items.Flippers `MinishWoods_BombMinish_NPC2` `MinishWoods_PostVillageFusion_Chest`)
+					!define - Deepwood2ndDoor - , (&(+2, Items.SmallKey.0x18:`DWSKEYAMOUNT`), Helpers.CompleteDeepwood, Helpers.DeepwoodMadderpillarDoor, Helpers.DeepwoodMadderpillarFight, Helpers.AccessBelari, Items.Flippers `MinishWoods_BombMinish_NPC2` `MinishWoods_PostVillageFusion_Chest`)
 					!define - DeepwoodBasementDoor - `Deepwood2ndDoor`
 				!endif
 			!endif
 		!endif
 	!endif
 	Deepwood1stDoor;			Helper;;	Items.SmallKey.0x18
-	Deepwood2ndDoor;			Helper;;	(|Items.SmallKey.0x18:4 `Deepwood2ndDoor`)
-	DeepwoodMadderpillarDoor;	Helper;;	(|Helpers.DeepwoodMadderpillarWeb, Items.SmallKey.0x18:4)
-	DeepwoodBasementDoor;		Helper;;	(|Items.SmallKey.0x18:4 `DeepwoodBasementDoor`)
-	CoF1stDoor;				Helper;;	(|Items.SmallKey.0x19:2, (&Helpers.CoFNoBlueWarp, Items.SmallKey.0x19))
-	CoF2ndDoor;				Helper;;	Items.SmallKey.0x19:2
+	Deepwood2ndDoor;			Helper;;	(|(+4, Items.SmallKey.0x18:`DWSKEYAMOUNT`) `Deepwood2ndDoor`)
+	DeepwoodMadderpillarDoor;	Helper;;	(|Helpers.DeepwoodMadderpillarWeb, (+4, Items.SmallKey.0x18:`DWSKEYAMOUNT`))
+	DeepwoodBasementDoor;		Helper;;	(|(+4, Items.SmallKey.0x18:`DWSKEYAMOUNT`) `DeepwoodBasementDoor`)
+!ifdef - COF1KEY
+	!eventdefine - keyMultiplierCOF - 1
+	!define - COFKEYAMOUNT - 1
+!else
+	!eventdefine - keyMultiplierCOF - 2
+	!define - COFKEYAMOUNT - 2
+!endif
+	CoF1stDoor;				Helper;;	(|(+2, Items.SmallKey.0x19:`COFKEYAMOUNT`), (&Helpers.CoFNoBlueWarp, Items.SmallKey.0x19))
+	CoF2ndDoor;				Helper;;	(+2, Items.SmallKey.0x19:`COFKEYAMOUNT`)
+!ifdef - FOW1KEY
+	!eventdefine - keyMultiplierFOW - 1
+	!define - FOWKEYAMOUNT - 1
+!else
+	!ifdef - FOW2KEY
+		!eventdefine - keyMultiplierFOW - 2
+		!define - FOWKEYAMOUNT - 2
+	!else
+		!ifdef - FOW3KEY
+			!eventdefine - keyMultiplierFOW - 3
+			!define - FOWKEYAMOUNT - 3
+		!else
+			!eventdefine - keyMultiplierFOW - 4
+			!define - FOWKEYAMOUNT - 4
+		!endif
+	!endif
+!endif
 	!define - FoWRightDoor - 
 	!define - FoWMiddleDoor - 
 	!define - FoWLastDoor - 
@@ -4150,10 +4257,10 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 						!undefine - FoWRightDoor
 						!undefine - FoWMiddleDoor
 						!define - FoWRightDoor - , (&Items.SmallKey.0x1A, Helpers.CompleteFortress, (|Helpers.CanSplit2, Helpers.CanSplit3))
-						!define - FoWMiddleDoor - , (&Items.SmallKey.0x1A:2, Helpers.CompleteFortress, (|Helpers.CanSplit2, Helpers.CanSplit3))
+						!define - FoWMiddleDoor - , (&(+2, Items.SmallKey.0x1A:`FOWKEYAMOUNT`), Helpers.CompleteFortress, (|Helpers.CanSplit2, Helpers.CanSplit3))
 					!endif
 					!undefine - FoWLastDoor
-					!define - FoWLastDoor - , (&Items.SmallKey.0x1A:3, Helpers.CompleteFortress, (|Helpers.CanSplit2, Helpers.CanSplit3))
+					!define - FoWLastDoor - , (&(+3, Items.SmallKey.0x1A:`FOWKEYAMOUNT`), Helpers.CompleteFortress, (|Helpers.CanSplit2, Helpers.CanSplit3))
 				!else
 					!define - Ruins_ButterflyFusion_Item - 
 					!define - Ruins_BeanStalkFusion_BigChest -
@@ -4183,20 +4290,37 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 						!undefine - FoWRightDoor
 						!undefine - FoWMiddleDoor
 						!define - FoWRightDoor - , (&Items.SmallKey.0x1A, Helpers.CompleteFortress, Helpers.BombWalls, (|Helpers.CanSplit2, Helpers.CanSplit3) `Ruins_ButterflyFusion_Item` `Ruins_BeanStalkFusion_BigChest` `Ruins_NearFoWFusion_Chest` `Ruins_PillarsFusion_Chest` `Ruins_CrackFusion_Chest` `Ruins_GoldenOcto`)
-						!define - FoWMiddleDoor - , (&Items.SmallKey.0x1A:2, Helpers.CompleteFortress, Helpers.BombWalls, (|Helpers.CanSplit2, Helpers.CanSplit3) `Ruins_ButterflyFusion_Item` `Ruins_BeanStalkFusion_BigChest` `Ruins_NearFoWFusion_Chest` `Ruins_PillarsFusion_Chest` `Ruins_CrackFusion_Chest` `Ruins_GoldenOcto`)
+						!define - FoWMiddleDoor - , (&(+2, Items.SmallKey.0x1A:`FOWKEYAMOUNT`), Helpers.CompleteFortress, Helpers.BombWalls, (|Helpers.CanSplit2, Helpers.CanSplit3) `Ruins_ButterflyFusion_Item` `Ruins_BeanStalkFusion_BigChest` `Ruins_NearFoWFusion_Chest` `Ruins_PillarsFusion_Chest` `Ruins_CrackFusion_Chest` `Ruins_GoldenOcto`)
 					!endif
 					!undefine - FoWLastDoor
-					!define - FoWLastDoor - , (&Items.SmallKey.0x1A:3, Helpers.CompleteFortress, Helpers.BombWalls, (|Helpers.CanSplit2, Helpers.CanSplit3) `Ruins_ButterflyFusion_Item` `Ruins_BeanStalkFusion_BigChest` `Ruins_NearFoWFusion_Chest` `Ruins_PillarsFusion_Chest` `Ruins_CrackFusion_Chest` `Ruins_GoldenOcto`)
+					!define - FoWLastDoor - , (&(+3, Items.SmallKey.0x1A:`FOWKEYAMOUNT`), Helpers.CompleteFortress, Helpers.BombWalls, (|Helpers.CanSplit2, Helpers.CanSplit3) `Ruins_ButterflyFusion_Item` `Ruins_BeanStalkFusion_BigChest` `Ruins_NearFoWFusion_Chest` `Ruins_PillarsFusion_Chest` `Ruins_CrackFusion_Chest` `Ruins_GoldenOcto`)
 				!endif
 			!endif
 		!endif
 	!endif
-	FoWLeftDoor;				Helper;;	Items.SmallKey.0x1A:4
-	FoWRightDoor;				Helper;;	(|Items.SmallKey.0x1A:2 `FoWRightDoor`)
-	FoWMiddleDoor;			Helper;;	(|Items.SmallKey.0x1A:3 `FoWMiddleDoor`)
-	FoWLastDoor;				Helper;;	(|Items.SmallKey.0x1A:4 `FoWLastDoor`)
+	FoWLeftDoor;				Helper;;	(+4, Items.SmallKey.0x1A:`FOWKEYAMOUNT`)
+	FoWRightDoor;				Helper;;	(|(+2, Items.SmallKey.0x1A:`FOWKEYAMOUNT`) `FoWRightDoor`)
+	FoWMiddleDoor;			Helper;;	(|(+3, Items.SmallKey.0x1A:`FOWKEYAMOUNT`) `FoWMiddleDoor`)
+	FoWLastDoor;				Helper;;	(|(+4, Items.SmallKey.0x1A:`FOWKEYAMOUNT`) `FoWLastDoor`)
+!ifdef - TOD1KEY
+	!eventdefine - keyMultiplierTOD - 1
+	!define - TODKEYAMOUNT - 1
+!else
+	!ifdef - TOD2KEY
+		!eventdefine - keyMultiplierTOD - 2
+		!define - TODKEYAMOUNT - 2
+	!else
+		!ifdef - TOD3KEY
+			!eventdefine - keyMultiplierTOD - 3
+			!define - TODKEYAMOUNT - 3
+		!else
+			!eventdefine - keyMultiplierTOD - 4
+			!define - TODKEYAMOUNT - 4
+		!endif
+	!endif
+!endif
 	!define - ToDRightBlock - `ENTERTOD`
-	!define - ToDLeftBlock - Items.SmallKey.0x1B:4
+	!define - ToDLeftBlock - (+4, Items.SmallKey.0x1B:`TODKEYAMOUNT`)
 	!define - ToDBigDoor - Items.BigKey.0x1B
 	!define - ToDChuDoor - 
 	!ifdef - ACCESS_LOCATIONS
@@ -4210,7 +4334,7 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 					!undefine - ToDLeftBlock
 					!undefine - ToDBigDoor
 					!define - ToDRightBlock - (&Items.ToDKeys.0xb, ~Items.BigKey.0x1B), (&Items.ToDKeys.0xa, ~Items.SmallKey.0x1B, ~Items.DungeonMap.0x1B, ~Items.Compass.0x1B)
-					!define - ToDLeftBlock - (|(&Items.ToDKeys.0xb, Items.SmallKey.0x1B, ~Items.SmallKey.0x1B, ~Items.DungeonMap.0x1B, ~Items.Compass.0x1B), (&Items.ToDKeys.0xa, Items.BigKey.0x1B, Items.SmallKey.0x1B:4))
+					!define - ToDLeftBlock - (|(&Items.ToDKeys.0xb, Items.SmallKey.0x1B, ~Items.SmallKey.0x1B, ~Items.DungeonMap.0x1B, ~Items.Compass.0x1B), (&Items.ToDKeys.0xa, Items.BigKey.0x1B, (+4, Items.SmallKey.0x1B:`TODKEYAMOUNT`)))
 					!define - ToDBigDoor - (|(&Items.SmallKey.0x1B, Items.BigKey.0x1B, Items.ToDKeys.0xb), (&Items.BigKey.0x1B, Items.ToDKeys.0xa))
 				!endif
 			!endif
@@ -4230,7 +4354,7 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 						!undefine - ToDLeftBlock
 						!undefine - ToDBigDoor
 						!define - ToDRightBlock - (&Items.ToDKeys.0xb, ~Items.BigKey.0x1B, ~Items.DungeonMap.0x1B, ~Items.Compass.0x1B), (&Items.ToDKeys.0xa, ~Items.SmallKey.0x1B, ~Items.DungeonMap.0x1B, ~Items.Compass.0x1B)
-						!define - ToDLeftBlock - (|(&Items.ToDKeys.0xb, Items.SmallKey.0x1B, ~Items.SmallKey.0x1B, ~Items.DungeonMap.0x1B, ~Items.Compass.0x1B), (&Items.ToDKeys.0xa, Items.BigKey.0x1B, Items.SmallKey.0x1B:4))
+						!define - ToDLeftBlock - (|(&Items.ToDKeys.0xb, Items.SmallKey.0x1B, ~Items.SmallKey.0x1B, ~Items.DungeonMap.0x1B, ~Items.Compass.0x1B), (&Items.ToDKeys.0xa, Items.BigKey.0x1B, (+4, Items.SmallKey.0x1B:`TODKEYAMOUNT`)))
 						!define - ToDBigDoor - (|(&Items.SmallKey.0x1B, Items.BigKey.0x1B, Items.ToDKeys.0xb), (&Items.BigKey.0x1B, Items.ToDKeys.0xa))
 					!endif
 				!endif
@@ -4247,7 +4371,7 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 					!undefine - ToDLeftBlock
 					!undefine - ToDBigDoor
 					!define - ToDRightBlock - (&Items.ToDKeys.0xb, ~Items.BigKey.0x1B), (&Items.ToDKeys.0xa, ~Items.SmallKey.0x1B, ~Items.DungeonMap.0x1B, ~Items.Compass.0x1B)
-					!define - ToDLeftBlock - (|(&Items.ToDKeys.0xb, Items.SmallKey.0x1B, ~Items.SmallKey.0x1B, ~Items.DungeonMap.0x1B, ~Items.Compass.0x1B), (&Items.ToDKeys.0xa, Items.BigKey.0x1B, (|Items.SmallKey.0x1B:4, (&Items.SmallKey.0x1B:3, Helpers.CompleteDroplets, Helpers.ToDLeftPath, Helpers.ToDRightPath))))
+					!define - ToDLeftBlock - (|(&Items.ToDKeys.0xb, Items.SmallKey.0x1B, ~Items.SmallKey.0x1B, ~Items.DungeonMap.0x1B, ~Items.Compass.0x1B), (&Items.ToDKeys.0xa, Items.BigKey.0x1B, (|(+4, Items.SmallKey.0x1B:`TODKEYAMOUNT`), (&(+3, Items.SmallKey.0x1B:`TODKEYAMOUNT`), Helpers.CompleteDroplets, Helpers.ToDLeftPath, Helpers.ToDRightPath))))
 					!define - ToDBigDoor - (|(&Items.SmallKey.0x1B, Items.BigKey.0x1B, Items.ToDKeys.0xb), (&Items.BigKey.0x1B, Items.ToDKeys.0xa))
 				!endif
 			!endif
@@ -4260,69 +4384,130 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 			!else
 				!ifdef - BIG_KEYS_ELSE
 					!undefine - ToDLeftBlock
-					!define - ToDLeftBlock - (|Items.SmallKey.0x1B:4, (&Items.SmallKey.0x1B:2, Helpers.CompleteDroplets, Helpers.ToDLeftPath, Helpers.ToDRightPath))	
+					!define - ToDLeftBlock - (|(+4, Items.SmallKey.0x1B:`TODKEYAMOUNT`), (&(+2, Items.SmallKey.0x1B:`TODKEYAMOUNT`), Helpers.CompleteDroplets, Helpers.ToDLeftPath, Helpers.ToDRightPath))	
 					!undefine - ToDChuDoor
-					!define - ToDChuDoor - , (&Items.SmallKey.0x1B:2, Helpers.CompleteDroplets, Helpers.ToDLeftPath, Helpers.ToDRightPath)				
+					!define - ToDChuDoor - , (&(+2, Items.SmallKey.0x1B:`TODKEYAMOUNT`), Helpers.CompleteDroplets, Helpers.ToDLeftPath, Helpers.ToDRightPath)				
 				!else
 					!ifdef - BIG_KEYS_VANILLA
 						!undefine - ToDLeftBlock
 						!define - ToDLeftBlock - Items.SmallKey.0x1B
 						!undefine - ToDChuDoor
-						!define - ToDChuDoor - , (&Items.SmallKey.0x1B:3, Helpers.CompleteDroplets, Helpers.ToDLeftPath, Helpers.ToDRightPath)
+						!define - ToDChuDoor - , (&(+3, Items.SmallKey.0x1B:`TODKEYAMOUNT`), Helpers.CompleteDroplets, Helpers.ToDLeftPath, Helpers.ToDRightPath)
 					!else
 						!undefine - ToDRightBlock
 						!undefine - ToDLeftBlock
 						!undefine - ToDBigDoor
 						!undefine - ToDChuDoor
 						!define - ToDRightBlock - (&Items.ToDKeys.0xb, ~Items.BigKey.0x1B, ~Items.DungeonMap.0x1B, ~Items.Compass.0x1B), (&Items.ToDKeys.0xa, ~Items.SmallKey.0x1B, ~Items.DungeonMap.0x1B, ~Items.Compass.0x1B)
-						!define - ToDLeftBlock - (|(&Items.ToDKeys.0xb, Items.SmallKey.0x1B, ~Items.SmallKey.0x1B, ~Items.DungeonMap.0x1B, ~Items.Compass.0x1B), (&Items.ToDKeys.0xa, Items.BigKey.0x1B, (|Items.SmallKey.0x1B:4, (&Items.SmallKey.0x1B:3, Helpers.CompleteDroplets, Helpers.ToDLeftPath, Helpers.ToDRightPath))))
+						!define - ToDLeftBlock - (|(&Items.ToDKeys.0xb, Items.SmallKey.0x1B, ~Items.SmallKey.0x1B, ~Items.DungeonMap.0x1B, ~Items.Compass.0x1B), (&Items.ToDKeys.0xa, Items.BigKey.0x1B, (|(+4, Items.SmallKey.0x1B:`TODKEYAMOUNT`), (&(+3, Items.SmallKey.0x1B:`TODKEYAMOUNT`), Helpers.CompleteDroplets, Helpers.ToDLeftPath, Helpers.ToDRightPath))))
 						!define - ToDBigDoor - (|(&Items.SmallKey.0x1B, Items.BigKey.0x1B, Items.ToDKeys.0xb), (&Items.BigKey.0x1B, Items.ToDKeys.0xa))
-						!define - ToDChuDoor - , (&Items.SmallKey.0x1B:3, Helpers.CompleteDroplets, Helpers.ToDLeftPath, Helpers.ToDRightPath, Items.ToDKeys.0xb), (&Items.SmallKey.0x1B:2, Helpers.CompleteDroplets, Helpers.ToDLeftPath, Helpers.ToDRightPath, Items.ToDKeys.0xa)
+						!define - ToDChuDoor - , (&(+3, Items.SmallKey.0x1B:`TODKEYAMOUNT`), Helpers.CompleteDroplets, Helpers.ToDLeftPath, Helpers.ToDRightPath, Items.ToDKeys.0xb), (&(+2, Items.SmallKey.0x1B:`TODKEYAMOUNT`), Helpers.CompleteDroplets, Helpers.ToDLeftPath, Helpers.ToDRightPath, Items.ToDKeys.0xa)
 					!endif
 				!endif
 			!endif
 		!endif
 	!endif
 	ToDRightBlock;			Helper;;	(|Helpers.ToDBlueWarp, Helpers.ToDRedWarp, `ToDRightBlock`)
-	ToDLeftBlock;				Helper;;	(|(&Items.SmallKey.0x1B:4, (|Helpers.ToDBlueWarp, Helpers.ToDRedWarp)), `ToDLeftBlock`)
+	ToDLeftBlock;				Helper;;	(|(&(+4, Items.SmallKey.0x1B:`TODKEYAMOUNT`), (|Helpers.ToDBlueWarp, Helpers.ToDRedWarp)), `ToDLeftBlock`)
 	ToDBigDoor;				Helper;;	(|(&Items.BigKey.0x1B, (|Helpers.ToDBlueWarp, Helpers.ToDRedWarp)), `ToDBigDoor`)
-	ToDWestDoor;				Helper;;	Items.SmallKey.0x1B:4
-	ToDDarkDoor;				Helper;;	Items.SmallKey.0x1B:4
-	ToDEitherDoor;			Helper;;	Items.SmallKey.0x1B:3
-	ToDChuDoor;				Helper;;	(|Items.SmallKey.0x1B:4 `ToDChuDoor`)
+	ToDWestDoor;				Helper;;	(+4, Items.SmallKey.0x1B:`TODKEYAMOUNT`)
+	ToDDarkDoor;				Helper;;	(+4, Items.SmallKey.0x1B:`TODKEYAMOUNT`)
+	ToDEitherDoor;			Helper;;	(+3, Items.SmallKey.0x1B:`TODKEYAMOUNT`)
+	ToDChuDoor;				Helper;;	(|(+4, Items.SmallKey.0x1B:`TODKEYAMOUNT`) `ToDChuDoor`)
+!ifdef - RC1KEY
+	!eventdefine - keyMultiplierRC - 1
+	!define - RCKEYAMOUNT - 1
+!else
+	!ifdef - RC2KEY
+		!eventdefine - keyMultiplierRC - 2
+		!define - RCKEYAMOUNT - 2
+	!else
+		!eventdefine - keyMultiplierRC - 3
+		!define - RCKEYAMOUNT - 3
+	!endif
+!endif
 	CryptDoor;				Helper;;	Items.SmallKey.0x1E
-	CryptBlocks;				Helper;; Items.SmallKey.0x1E:3
+	CryptBlocks;				Helper;; (+3, Items.SmallKey.0x1E:`RCKEYAMOUNT`)
+!ifdef - POW1KEY
+	!eventdefine - keyMultiplierPOW - 1
+	!define - POWKEYAMOUNT - 1
+!else
+	!ifdef - POW2KEY
+		!eventdefine - keyMultiplierPOW - 2
+		!define - POWKEYAMOUNT - 2
+	!else
+		!ifdef - POW3KEY
+			!eventdefine - keyMultiplierPOW - 3
+			!define - POWKEYAMOUNT - 3
+		!else
+			!ifdef - POW4KEY
+				!eventdefine - keyMultiplierPOW - 4
+				!define - POWKEYAMOUNT - 4
+			!else
+				!ifdef - POW5KEY
+					!eventdefine - keyMultiplierPOW - 5
+					!define - POWKEYAMOUNT - 5
+				!else
+					!eventdefine - keyMultiplierPOW - 6
+					!define - POWKEYAMOUNT - 6
+				!endif
+			!endif
+		!endif
+	!endif
+!endif
 	PoWPostKeyDoor;			Helper;;	Helpers.PoW1stDoor
 	!define - PoWFans -
 	!define - PoWBigChest - 
 	!ifndef - ACCESS_LOCATIONS
 		!ifdef - BIG_KEYS_VANILLA
-			!define - PoWFans - , Items.SmallKey.0x1C:2
-			!define - PoWBigChest - , Items.SmallKey.0x1C:3
+			!define - PoWFans - , (+2, Items.SmallKey.0x1C:`POWKEYAMOUNT`)
+			!define - PoWBigChest - , (+3, Items.SmallKey.0x1C:`POWKEYAMOUNT`)
 		!else
 			!ifndef - SMALL_KEYS_ELSE
 				!ifdef - SMALL_KEYS_VANILLA
-					!define - PoWFans - , Items.SmallKey.0x1C:2
-					!define - PoWBigChest - , Items.SmallKey.0x1C:3
+					!define - PoWFans - , (+2, Items.SmallKey.0x1C:`POWKEYAMOUNT`)
+					!define - PoWBigChest - , (+3, Items.SmallKey.0x1C:`POWKEYAMOUNT`)
 				!else
 					!ifdef - SMALL_KEYS_STANDARD
-						!define - PoWFans - , (&Items.SmallKey.0x1C:2, (|Helpers.CanSplit3, Helpers.CanSplit4), Items.RocsCape, Helpers.PoWDrop, (|Items.BombBag, Helpers.HasBow, Helpers.HasBeam, Helpers.HasBoomerang), Helpers.DarkRooms, Helpers.BombWalls, Helpers.OverworldBlocks)
-						!define - PoWBigChest - , (&Items.SmallKey.0x1C:3, (|Helpers.CanSplit3, Helpers.CanSplit4), Items.RocsCape, Helpers.PoWDrop, (|Items.BombBag, Helpers.HasBow, Helpers.HasBeam, Helpers.HasBoomerang), Helpers.DarkRooms, Helpers.BombWalls, Helpers.OverworldBlocks)
+						!define - PoWFans - , (&(+2, Items.SmallKey.0x1C:`POWKEYAMOUNT`), (|Helpers.CanSplit3, Helpers.CanSplit4), Items.RocsCape, Helpers.PoWDrop, (|Items.BombBag, Helpers.HasBow, Helpers.HasBeam, Helpers.HasBoomerang), Helpers.DarkRooms, Helpers.BombWalls, Helpers.OverworldBlocks)
+						!define - PoWBigChest - , (&(+3, Items.SmallKey.0x1C:`POWKEYAMOUNT`), (|Helpers.CanSplit3, Helpers.CanSplit4), Items.RocsCape, Helpers.PoWDrop, (|Items.BombBag, Helpers.HasBow, Helpers.HasBeam, Helpers.HasBoomerang), Helpers.DarkRooms, Helpers.BombWalls, Helpers.OverworldBlocks)
 					!else
-						!define - PoWFans - , (&Items.SmallKey.0x1C:2, (|Helpers.CanSplit3, Helpers.CanSplit4), Items.RocsCape, Helpers.PoWDrop, (|Items.BombBag, Helpers.HasBow, Helpers.HasBeam, Helpers.HasBoomerang), Helpers.DarkRooms, Helpers.BombWalls, Helpers.OverworldBlocks, Items.GustJar)
-						!define - PoWBigChest - , (&Items.SmallKey.0x1C:3, (|Helpers.CanSplit3, Helpers.CanSplit4), Items.RocsCape, Helpers.PoWDrop, (|Items.BombBag, Helpers.HasBow, Helpers.HasBeam, Helpers.HasBoomerang), Helpers.DarkRooms, Helpers.BombWalls, Helpers.OverworldBlocks, Items.GustJar)
+						!define - PoWFans - , (&(+2, Items.SmallKey.0x1C:`POWKEYAMOUNT`), (|Helpers.CanSplit3, Helpers.CanSplit4), Items.RocsCape, Helpers.PoWDrop, (|Items.BombBag, Helpers.HasBow, Helpers.HasBeam, Helpers.HasBoomerang), Helpers.DarkRooms, Helpers.BombWalls, Helpers.OverworldBlocks, Items.GustJar)
+						!define - PoWBigChest - , (&(+3, Items.SmallKey.0x1C:`POWKEYAMOUNT`), (|Helpers.CanSplit3, Helpers.CanSplit4), Items.RocsCape, Helpers.PoWDrop, (|Items.BombBag, Helpers.HasBow, Helpers.HasBeam, Helpers.HasBoomerang), Helpers.DarkRooms, Helpers.BombWalls, Helpers.OverworldBlocks, Items.GustJar)
 					!endif
 				!endif
 			!endif
 		!endif
 	!endif
-	PoWFans;					Helper;;	(|Items.SmallKey.0x1C:5 `PoWFans`)
-	PoWBigChest;				Helper;;	(|Items.SmallKey.0x1C:6 `PoWBigChest`)
-	PoW1stDoor;				Helper;;	(|(&Items.SmallKey.0x1C, Helpers.PoWNoWarps), Items.SmallKey.0x1C:4)
-	PoW2ndHalf1stDoor;		Helper;;	(|Items.SmallKey.0x1C:6, (&(|Helpers.PoWBlueWarp, Helpers.PoWNoWarps), Items.SmallKey.0x1C:4))
-	PoWRedWarpDoor;			Helper;;	Items.SmallKey.0x1C:5
-	PoWLastDoor;				Helper;;	Items.SmallKey.0x1C:6
-	DHC1stDoor;				Helper;;	(|Items.SmallKey.0x1D:5, (&Helpers.DHCNoWarps, Items.SmallKey.0x1D))
+	PoWFans;					Helper;;	(|(+5, Items.SmallKey.0x1C:`POWKEYAMOUNT`) `PoWFans`)
+	PoWBigChest;				Helper;;	(|(+6, Items.SmallKey.0x1C:`POWKEYAMOUNT`) `PoWBigChest`)
+	PoW1stDoor;				Helper;;	(|(&Items.SmallKey.0x1C, Helpers.PoWNoWarps), (+4, Items.SmallKey.0x1C:`POWKEYAMOUNT`))
+	PoW2ndHalf1stDoor;		Helper;;	(|(+6, Items.SmallKey.0x1C:`POWKEYAMOUNT`), (&(|Helpers.PoWBlueWarp, Helpers.PoWNoWarps), (+4, Items.SmallKey.0x1C:`POWKEYAMOUNT`)))
+	PoWRedWarpDoor;			Helper;;	(+5, Items.SmallKey.0x1C:`POWKEYAMOUNT`)
+	PoWLastDoor;				Helper;;	(+6, Items.SmallKey.0x1C:`POWKEYAMOUNT`)
+!ifdef - DHC1KEY
+	!eventdefine - keyMultiplierDHC - 1
+	!define - DHCKEYAMOUNT - 1
+!else
+	!ifdef - DHC2KEY
+		!eventdefine - keyMultiplierDHC - 2
+		!define - DHCKEYAMOUNT - 2
+	!else
+		!ifdef - DHC3KEY
+			!eventdefine - keyMultiplierDHC - 3
+			!define - DHCKEYAMOUNT - 3
+		!else
+			!ifdef - DHC4KEY
+				!eventdefine - keyMultiplierDHC - 4
+				!define - DHCKEYAMOUNT - 4
+			!else
+				!eventdefine - keyMultiplierDHC - 5
+				!define - DHCKEYAMOUNT - 5
+			!endif
+		!endif
+	!endif
+!endif
+	DHC1stDoor;				Helper;;	(|(+5, Items.SmallKey.0x1D:`DHCKEYAMOUNT`), (&Helpers.DHCNoWarps, Items.SmallKey.0x1D))
 	!define - DHCBigBlock - 
 	!ifndef - ACCESS_LOCATIONS
 		!ifndef - SMALL_KEYS_ELSE
@@ -4365,11 +4550,11 @@ DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
 					!endif
 				!endif
 				!undefine - DHCBigBlock
-				!define - DHCBigBlock - , (&Items.SmallKey.0x1D:4, Helpers.DHCKing, Locations.DHC_1F_Blade_Chest, Locations.DHC_1F_Throne_BigChest, Helpers.DHCBlackKnight, Helpers.DHCTowerDarknuts, Helpers.HasBow, Helpers.DHCLampPuzzle, Helpers.DHCGhini, Helpers.DHCSwitchPuzzles `Sanctuary_Pedestal_Item3` `Castle_GoldenRope` `Castle_RightFountainFusion_HP` `Castle_Dojo_HP` `Castle_Dojo_NPC` `Castle_RightFountainFusion_MinishHoleChest` `Castle_LeftFountainFusion_MinishHoleChest`)
+				!define - DHCBigBlock - , (&(+4, Items.SmallKey.0x1D:`DHCKEYAMOUNT`), Helpers.DHCKing, Locations.DHC_1F_Blade_Chest, Locations.DHC_1F_Throne_BigChest, Helpers.DHCBlackKnight, Helpers.DHCTowerDarknuts, Helpers.HasBow, Helpers.DHCLampPuzzle, Helpers.DHCGhini, Helpers.DHCSwitchPuzzles `Sanctuary_Pedestal_Item3` `Castle_GoldenRope` `Castle_RightFountainFusion_HP` `Castle_Dojo_HP` `Castle_Dojo_NPC` `Castle_RightFountainFusion_MinishHoleChest` `Castle_LeftFountainFusion_MinishHoleChest`)
 			!endif
 		!endif
 	!endif
-	DHCBigBlock;				Helper;;	(|Items.SmallKey.0x1D:5 `DHCBigBlock`)
+	DHCBigBlock;				Helper;;	(|(+5, Items.SmallKey.0x1D:`DHCKEYAMOUNT`) `DHCBigBlock`)
 
 	DeepwoodBossDoor;			Helper;;	Items.BigKey.0x18
 	CoFBossDoor;				Helper;;	Items.BigKey.0x19
