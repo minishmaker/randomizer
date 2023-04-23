@@ -1461,6 +1461,7 @@ internal class Shuffler
         return (DungeonType)subvalue switch
         {
             DungeonType.Dojo => "Dojo",
+            DungeonType.Universal => "Universal",
             DungeonType.Dws => "Deepwood Shrine",
             DungeonType.CoF => "Cave of Flames",
             DungeonType.FoW => "Fortress of Winds",
