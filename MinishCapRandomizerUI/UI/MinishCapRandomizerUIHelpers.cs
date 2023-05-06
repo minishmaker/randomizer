@@ -3,6 +3,7 @@ using MinishCapRandomizerUI.Elements;
 using MinishCapRandomizerUI.UI.Config;
 using Newtonsoft.Json;
 using RandomizerCore.Controllers.Models;
+using RandomizerCore.Random;
 using RandomizerCore.Randomizer.Exceptions;
 
 namespace MinishCapRandomizerUI.UI
@@ -224,8 +225,8 @@ Generating seeds with this shuffler may freeze the randomizer application for ma
 		private void InitializeUi()
 		{
 			TabPane.TabPages.Remove(SeedOutput);
-			var seed = new Random().Next();
-			Seed.Text = $@"{seed}";
+			var seed = new SquaresRandomNumberGenerator().Next();
+			Seed.Text = $@"{seed:X}";
 
 			var result = _shufflerController.LoadLogicFile(_configuration.UseCustomLogic ? _configuration.CustomLogicFilepath : "");
 			if (!result.WasSuccessful)
@@ -292,7 +293,7 @@ Generating seeds with this shuffler may freeze the randomizer application for ma
 				TabPane.TabPages.Insert(2, SeedOutput);
 
 			InputSeedLabel.Text = Seed.Text;
-			OutputSeedLabel.Text = @$"{_shufflerController.FinalSeed}";
+			OutputSeedLabel.Text = @$"{_shufflerController.FinalSeed:X}";
 
 			var settingsString = _shufflerController.GetSettingsString();
 			var cosmeticsString = _shufflerController.GetCosmeticsString();

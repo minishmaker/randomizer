@@ -1,6 +1,8 @@
+using System.Globalization;
 using MinishCapRandomizerUI.UI.Config;
 using Newtonsoft.Json;
 using RandomizerCore.Controllers;
+using RandomizerCore.Random;
 
 namespace MinishCapRandomizerUI.UI;
 
@@ -50,8 +52,8 @@ public sealed partial class MinishCapRandomizerUI : Form
 
 	private void RandomSeed_Click(object sender, EventArgs e)
 	{
-		var seed = new Random().Next();
-		Seed.Text = @$"{seed}";
+		var seed = new SquaresRandomNumberGenerator().Next();
+		Seed.Text = @$"{seed:X}";
 		_shufflerController.SetRandomizationSeed(seed);
 	}
 
@@ -113,7 +115,7 @@ public sealed partial class MinishCapRandomizerUI : Form
 
 	private void Randomize_Click(object sender, EventArgs e)
 	{
-		if (!int.TryParse(Seed.Text, out var seed))
+		if (!ulong.TryParse(Seed.Text, NumberStyles.HexNumber, default, out var seed))
 		{
 			DisplayAlert(@"Invalid Seed Provided!", @"Invalid Seed", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			return;
