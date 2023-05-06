@@ -11,7 +11,7 @@ public static class Helpers
         var githubData = DownloadUrlAsString();
         var releases = JsonConvert.DeserializeObject<List<Release>>(githubData);
         var tag = Assembly.GetExecutingAssembly().GetCustomAttributesData().First(x => x.AttributeType.Name == "AssemblyInformationalVersionAttribute").ConstructorArguments.First().ToString();
-        tag = tag[(tag.IndexOf('+') + 2)..^1];
+        tag = tag[(tag.IndexOf('+') + 1)..^1];
         if (releases!.First().Tag_Name == tag) return;
         
         Console.WriteLine(@$"
