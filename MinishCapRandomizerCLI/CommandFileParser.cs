@@ -63,21 +63,30 @@ public static class CommandFileParser
                     if (!int.TryParse(inputs[1], out var numberOfSeedToGen))
                         throw new Exception("Provided value of bulk generated seeds is not a number!");
 
-                    var num = 0;
+                    var successes = 0;
                     var failures = 0;
-                    while (num++ < numberOfSeedToGen)
+                    var consecutiveFailures = 0;
+                    var totalSeeds = 0;
+                    var lastRunFailure = false;
+                    while (successes++ < numberOfSeedToGen)
                     {
+                        totalSeeds++;
+
                         GenericCommands.Seed("R");
                         var result = GenericCommands.Randomize("1");
                         if (!result)
                         {
-                            --num;
+                            --successes;
                             ++failures;
                         }
                         else
-                            Console.WriteLine($"Generated seed {num}");
+                        {
+                            logBuilder.AppendLine($"Generated seed {successes}");
+                            consecutiveFailures = 0;
+                            lastRunFailure = false;
+                        }
                     }
-                    Console.WriteLine($"Total failure rate: {(double)failures/num}%");
+                    logBuilder.AppendLine($"Total Success Rate: {(--successes/(double)totalSeeds) * 100}%");
                     break;
                 case "Exit":
                     exited = true;
