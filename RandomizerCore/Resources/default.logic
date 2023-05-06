@@ -263,10 +263,6 @@
 
 !define - `MUSIC_SETTING`
 
-!ifdef - POKEEMERALD_MUSIC
-    !eventdefine - pokemon_music
-!endif
-
 !ifdef - NO_MUSIC
 	!eventdefine - no_music
 	!undefine - MUSIC_RANDO
