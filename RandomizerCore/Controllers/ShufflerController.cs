@@ -33,10 +33,10 @@ public class ShufflerController
     public string RevName => RevisionIdentifier;
 
     internal static string VersionIdentifier => "v0.7.0";
-    internal static string RevisionIdentifier => "alpha-rev4";
+    internal static string RevisionIdentifier => "beta-rev1";
 
     public string SeedFilename =>
-        $"Minish Randomizer-{_shuffler.Seed}-{_shuffler.Version}-{_shuffler.GetOptionsIdentifier()}";
+        $"Minish Randomizer-{_shuffler.Seed:X}-{_shuffler.Version}-{_shuffler.GetOptionsIdentifier()}";
 
     public ulong FinalSeed => _shuffler.Seed;
 

@@ -133,7 +133,7 @@ internal class Shuffler
     {
         Seed = seed;
         _rng = new SquaresRandomNumberGenerator();
-        Logger.Instance.LogInfo($"Randomization seed set to {seed}");
+        Logger.Instance.LogInfo($"Randomization seed set to {seed:X}");
     }
 
     public List<LogicOptionBase> GetSortedSettings()
@@ -539,7 +539,7 @@ internal class Shuffler
 
         var diff = DateTime.Now - time;
         Logger.Instance.BeginLogTransaction();
-        Logger.Instance.LogInfo($"Timing Benchmark - Shuffling with seed {Seed} and settings {MinifiedSettings.GenerateSettingsString(GetSortedSettings(), GetLogicOptionsCrc32())} took {diff.Seconds}.{diff.Milliseconds} seconds!");
+        Logger.Instance.LogInfo($"Timing Benchmark - Shuffling with seed {Seed:X} and settings {MinifiedSettings.GenerateSettingsString(GetSortedSettings(), GetLogicOptionsCrc32())} took {diff.Seconds}.{diff.Milliseconds} seconds!");
         Logger.Instance.SaveLogTransaction(true);
         
         _randomized = true;
@@ -1187,7 +1187,7 @@ internal class Shuffler
     {
         var spoilerBuilder = new StringBuilder();
         spoilerBuilder.AppendLine("Spoiler for Minish Cap Randomizer");
-        spoilerBuilder.AppendLine($"Seed: {Seed}");
+        spoilerBuilder.AppendLine($"Seed: {Seed:X}");
         spoilerBuilder.AppendLine(
             $"Version: {ShufflerController.VersionIdentifier} {ShufflerController.RevisionIdentifier}");
         spoilerBuilder.AppendLine(
