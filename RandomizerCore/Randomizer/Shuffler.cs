@@ -1308,11 +1308,6 @@ internal class Shuffler
         int previousSize;
         var sphereCounter = 1;
 
-        var majorDungeonItems = _locations
-            .Where(_ => _.Contents.HasValue &&
-                        _.Contents!.Value.ShufflePool is ItemPool.Major or ItemPool.DungeonMajor
-                            or ItemPool.DungeonPrize).Select(_ => _.Contents!.Value).Distinct().ToList();
-
         do
         {
             if (DependencyBase.BeatVaatiDependency!.DependencyFulfilled())
@@ -1332,9 +1327,7 @@ internal class Shuffler
             newItems.ForEach(item => item.NotifyParentDependencies(true));
             availableItems.AddRange(newItems);
 
-            var majorLocations = accessibleLocations.Where(location =>
-                majorDungeonItems.Any(item => location.Contents!.Value.Equals(item)) ||
-                location.Contents!.Value.Type is ItemType.BombBag).ToList();
+            var majorLocations = accessibleLocations.Where(location => MajorItems.IsMajorItem(location.Contents!.Value.Type)).ToList();
 
             builder.AppendLine($"Sphere {sphereCounter}: {{");
 
@@ -1677,8 +1670,7 @@ internal class Shuffler
         const uint todGreenWarp = 0xE40F4; //Normally warps back into the dungeon, we change it to go outside
 
         const uint cryptExit = 0x138EAA;
-        const uint
-            cryptElementWarp = 0x13A2AE; //Crypt doesn't have a green warp, just a warp after getting the item from King
+        const uint cryptElementWarp = 0x13A2AE; //Crypt doesn't have a green warp, just a warp after getting the item from King
 
         const uint powExit = 0x1082A1;
         const uint powGreenWarp = 0xE6A14;
@@ -1701,7 +1693,7 @@ internal class Shuffler
         var greenWarpAddress = 0u;
         var elementWarpAddress = 0u;
         var holeWarpAddress = 0u;
-
+        
         switch ((DungeonEntranceType)location.Contents.Value.SubValue)
         {
             case DungeonEntranceType.Dws:
