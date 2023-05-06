@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using RandomizerCore.Controllers.Models;
 using RandomizerCore.Core;
+using RandomizerCore.Random;
 using RandomizerCore.Randomizer;
 using RandomizerCore.Randomizer.Exceptions;
 using RandomizerCore.Randomizer.Logic.Options;
@@ -18,9 +19,9 @@ namespace RandomizerCore.Controllers;
  * Insertion point for the Shuffler
  */
 public class ShufflerController
-{
-    private readonly Shuffler Shuffler;
-    private string? CachedLogicFile;
+{    
+    private readonly Shuffler _shuffler;
+    private string? _cachedLogicFile;
 
 #if DEBUG
     public string AppName => "Minish Cap Randomizer Debug Build";
@@ -32,16 +33,16 @@ public class ShufflerController
     public string RevName => RevisionIdentifier;
 
     internal static string VersionIdentifier => "v0.7.0";
-    internal static string RevisionIdentifier => "alpha-rev3-hotfix";
+    internal static string RevisionIdentifier => "alpha-rev4";
 
     public string SeedFilename =>
-        $"Minish Randomizer-{Shuffler.Seed}-{Shuffler.Version}-{Shuffler.GetOptionsIdentifier()}";
+        $"Minish Randomizer-{_shuffler.Seed}-{_shuffler.Version}-{_shuffler.GetOptionsIdentifier()}";
 
-    public int FinalSeed => Shuffler.Seed;
+    public ulong FinalSeed => _shuffler.Seed;
 
     public ShufflerController()
     {
-        Shuffler = new Shuffler();
+        _shuffler = new Shuffler();
         Logger.Instance.LogInfo($"Minish Cap Randomizer Core Version {VersionName} {RevName} initialized!");
         Logger.Instance.SaveLogTransaction(true);
     }
@@ -68,8 +69,8 @@ public class ShufflerController
     {
         try
         {
-            MinifiedSettings.GenerateSettingsFromBase64String(settingString, Shuffler.GetSortedSettings(),
-                Shuffler.GetLogicOptionsCrc32());
+            MinifiedSettings.GenerateSettingsFromBase64String(settingString, _shuffler.GetSortedSettings(),
+                _shuffler.GetLogicOptionsCrc32());
 
             return new ShufflerControllerResult { WasSuccessful = true };
         }
@@ -90,8 +91,8 @@ public class ShufflerController
     {
         try
         {
-            MinifiedSettings.GenerateSettingsFromBase64String(settingString, Shuffler.GetSortedCosmetics(),
-                Shuffler.GetCosmeticOptionsCrc32());
+            MinifiedSettings.GenerateSettingsFromBase64String(settingString, _shuffler.GetSortedCosmetics(),
+                _shuffler.GetCosmeticOptionsCrc32());
 
             return new ShufflerControllerResult { WasSuccessful = true };
         }
@@ -110,13 +111,13 @@ public class ShufflerController
 
     public string GetSettingsString()
     {
-        return MinifiedSettings.GenerateSettingsString(Shuffler.GetSortedSettings(), Shuffler.GetLogicOptionsCrc32());
+        return MinifiedSettings.GenerateSettingsString(_shuffler.GetSortedSettings(), _shuffler.GetLogicOptionsCrc32());
     }
 
     public string GetCosmeticsString()
     {
-        return MinifiedSettings.GenerateSettingsString(Shuffler.GetSortedCosmetics(),
-            Shuffler.GetCosmeticOptionsCrc32());
+        return MinifiedSettings.GenerateSettingsString(_shuffler.GetSortedCosmetics(),
+            _shuffler.GetCosmeticOptionsCrc32());
     }
 
     public ShufflerControllerResult LoadRom(string filename)
@@ -144,12 +145,12 @@ public class ShufflerController
 
     public uint GetSettingsChecksum()
     {
-        return Shuffler.GetLogicOptionsCrc32();
+        return _shuffler.GetLogicOptionsCrc32();
     }
 
     public uint GetCosmeticsChecksum()
     {
-        return Shuffler.GetCosmeticOptionsCrc32();
+        return _shuffler.GetCosmeticOptionsCrc32();
     }
 
     public void FlushLogger()
@@ -157,21 +158,21 @@ public class ShufflerController
         Logger.Instance.Flush();
     }
 
-    public void SetRandomizationSeed(int seed)
+    public void SetRandomizationSeed(ulong seed)
     {
-        Shuffler.SetSeed(seed);
+        _shuffler.SetSeed(seed);
     }
 
     public List<LogicOptionBase> GetLogicOptions()
     {
-        return Shuffler.GetOptions();
+        return _shuffler.GetOptions();
     }
 
     public ShufflerControllerResult LoadLogicFile(string? filename = null)
     {
         try
         {
-            Shuffler.LoadOptions(filename);
+            _shuffler.LoadOptions(filename);
             return new ShufflerControllerResult { WasSuccessful = true };
         }
         catch (Exception e)
@@ -194,9 +195,9 @@ public class ShufflerController
     {
         try
         {
-            Shuffler.ValidateState();
-            Shuffler.LoadLocations(filename);
-            CachedLogicFile = filename;
+            _shuffler.ValidateState();
+            _shuffler.LoadLocations(filename);
+            _cachedLogicFile = filename;
             return new ShufflerControllerResult { WasSuccessful = true };
         }
         catch (Exception e)
@@ -219,7 +220,7 @@ public class ShufflerController
     {
         try
         {
-            Shuffler.ValidateState();
+            _shuffler.ValidateState();
 
             var attempts = 1;
             if (retries <= 0) retries = 1;
@@ -228,7 +229,7 @@ public class ShufflerController
             while (attempts <= retries && !successfulGeneration)
                 try
                 {
-                    Shuffler.RandomizeLocations(useSphereBasedShuffler);
+                    _shuffler.RandomizeLocations(useSphereBasedShuffler);
                     successfulGeneration = true;
                 }
                 catch (Exception e)
@@ -236,8 +237,8 @@ public class ShufflerController
                     Logger.Instance.LogException(e);
                     capturedExceptions.Add(e);
                     attempts++;
-                    LoadLocations(CachedLogicFile);
-                    Shuffler.SetSeed(new Random(Shuffler.Seed).Next());
+                    LoadLocations(_cachedLogicFile);
+                    _shuffler.SetSeed(new SquaresRandomNumberGenerator().Next());
                     Logger.Instance.SaveLogTransaction();
                 }
 
@@ -267,10 +268,10 @@ public class ShufflerController
     {
         try
         {
-            Shuffler.ValidateState(true);
-            var romBytes = Shuffler.GetRandomizedRom();
+            _shuffler.ValidateState(true);
+            var romBytes = _shuffler.GetRandomizedRom();
             File.WriteAllBytes(filename, romBytes);
-            int exitCode = Shuffler.ApplyPatch(filename, patchFile);
+            int exitCode = _shuffler.ApplyPatch(filename, patchFile);
             if (exitCode != 0)
                 throw new Exception("Errors occured when saving the rom");
             return new ShufflerControllerResult { WasSuccessful = true };
@@ -295,10 +296,10 @@ public class ShufflerController
     {
         try
         {
-            Shuffler.ValidateState(true);
-            var romBytes = Shuffler.GetRandomizedRom();
+            _shuffler.ValidateState(true);
+            var romBytes = _shuffler.GetRandomizedRom();
             var stream = new MemoryStream(romBytes);
-            int exitCode = Shuffler.ApplyPatch(stream, patchFile);
+            int exitCode = _shuffler.ApplyPatch(stream, patchFile);
             if (exitCode != 0)
                 throw new Exception("Errors occured when saving the rom");
             var patch = BpsPatcher.GeneratePatch(Rom.Instance!.RomData, romBytes, patchFilename);
@@ -403,8 +404,8 @@ public class ShufflerController
     {
         try
         {
-            Shuffler.ValidateState(true);
-            var spoiler = Shuffler.GetSpoiler();
+            _shuffler.ValidateState(true);
+            var spoiler = _shuffler.GetSpoiler();
             File.WriteAllText(filename, spoiler);
             return new ShufflerControllerResult { WasSuccessful = true };
         }

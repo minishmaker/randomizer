@@ -15,35 +15,35 @@ namespace RandomizerCore.Randomizer.Parser;
 
 public class DirectiveParser
 {
-    private readonly List<ItemAmountSet> AmountReplacementReferences;
-    private readonly Dictionary<Item, List<int>> AmountReplacementsTemplate;
-    private readonly List<LogicDefine> Defines;
-    private readonly List<ItemAmountSet> IncrementalReplacementReferences;
-    private readonly Dictionary<Item, List<int>> IncrementalReplacementsTemplate;
-    private int IfCounter;
+    private readonly List<ItemAmountSet> _amountReplacementReferences;
+    private readonly Dictionary<Item, List<int>> _amountReplacementsTemplate;
+    private readonly List<LogicDefine> _defines;
+    private readonly List<ItemAmountSet> _incrementalReplacementReferences;
+    private readonly Dictionary<Item, List<int>> _incrementalReplacementsTemplate;
+    private int _ifCounter;
     public Dictionary<Item, List<ItemAmountSet>> AmountReplacements; //dont want to modify the original
 
-    public List<EventDefine> EventDefines;
+    public readonly List<EventDefine> EventDefines;
     public Dictionary<Item, List<ItemAmountSet>> IncrementalReplacements;
-    public Dictionary<Item, LocationType> LocationTypeOverrides;
+    public readonly Dictionary<Item, LocationType> LocationTypeOverrides;
     public string? LogicName;
     public string? LogicVersion;
-    public List<LogicOptionBase> Options;
-    public Dictionary<Item, ChanceItemSet> Replacements;
+    public readonly List<LogicOptionBase> Options;
+    public readonly Dictionary<Item, ChanceItemSet> Replacements;
     public uint? RomCrc;
 
     public DirectiveParser()
     {
         Options = new List<LogicOptionBase>();
-        Defines = new List<LogicDefine>();
+        _defines = new List<LogicDefine>();
         EventDefines = new List<EventDefine>();
         LocationTypeOverrides = new Dictionary<Item, LocationType>();
         Replacements = new Dictionary<Item, ChanceItemSet>(new ItemComparerIgnorePool());
-        AmountReplacementReferences = new List<ItemAmountSet>();
-        AmountReplacementsTemplate = new Dictionary<Item, List<int>>();
-        IncrementalReplacementReferences = new List<ItemAmountSet>();
-        IncrementalReplacementsTemplate = new Dictionary<Item, List<int>>();
-        IfCounter = 0;
+        _amountReplacementReferences = new List<ItemAmountSet>();
+        _amountReplacementsTemplate = new Dictionary<Item, List<int>>();
+        _incrementalReplacementReferences = new List<ItemAmountSet>();
+        _incrementalReplacementsTemplate = new Dictionary<Item, List<int>>();
+        _ifCounter = 0;
     }
 
     private string[] SplitDirective(string line)
@@ -174,19 +174,19 @@ public class DirectiveParser
         switch (directiveParts[0])
         {
             case "!ifdef":
-                if (ShouldIgnoreLines() || !IsDefined(directiveParts[1])) IfCounter++;
+                if (ShouldIgnoreLines() || !IsDefined(directiveParts[1])) _ifCounter++;
                 return;
             case "!ifndef":
-                if (ShouldIgnoreLines() || IsDefined(directiveParts[1])) IfCounter++;
+                if (ShouldIgnoreLines() || IsDefined(directiveParts[1])) _ifCounter++;
                 return;
             case "!else":
                 if (ShouldIgnoreLines())
                 {
-                    if (IfCounter <= 1) IfCounter--;
+                    if (_ifCounter <= 1) _ifCounter--;
                 }
                 else
                 {
-                    IfCounter++;
+                    _ifCounter++;
                 }
 
                 return;
@@ -218,14 +218,14 @@ public class DirectiveParser
                 }
                 return;*/
             case "!endif":
-                if (IfCounter > 0) IfCounter--;
+                if (_ifCounter > 0) _ifCounter--;
                 return;
         }
     }
 
     private bool IsDefined(string defineText)
     {
-        foreach (var define in Defines)
+        foreach (var define in _defines)
             if (define.Name == defineText)
                 return true;
 
@@ -234,28 +234,28 @@ public class DirectiveParser
 
     public void ClearDefines()
     {
-        Defines.Clear();
+        _defines.Clear();
         EventDefines.Clear();
     }
 
     public void AddDefine(LogicDefine define)
     {
-        foreach (var predefined in Defines)
+        foreach (var predefined in _defines)
             if (define.Name == predefined.Name)
             {
                 predefined.Replacement = define.Replacement;
                 return;
             }
 
-        Defines.Add(define);
+        _defines.Add(define);
     }
 
     public void RemoveDefine(LogicDefine define)
     {
-        foreach (var predefined in Defines)
+        foreach (var predefined in _defines)
             if (define.Name == predefined.Name)
             {
-                Defines.Remove(predefined);
+                _defines.Remove(predefined);
                 return;
             }
     }
@@ -334,25 +334,25 @@ public class DirectiveParser
 
     public void ClearIncrementalReplacements()
     {
-        IncrementalReplacementsTemplate.Clear();
+        _incrementalReplacementsTemplate.Clear();
     }
 
     public void ClearAmountReplacements()
     {
-        AmountReplacementsTemplate.Clear();
+        _amountReplacementsTemplate.Clear();
     }
 
     public void DuplicateAmountReplacements()
     {
         AmountReplacements = new Dictionary<Item, List<ItemAmountSet>>(new ItemComparerIgnorePool());
         var referenceClones = new List<ItemAmountSet>();
-        foreach (var reference in AmountReplacementReferences)
+        foreach (var reference in _amountReplacementReferences)
             referenceClones.Add(reference
                 .Clone()); //making sure we dont change the original reference as those need to be reused
 
-        foreach (var key in AmountReplacementsTemplate.Keys)
+        foreach (var key in _amountReplacementsTemplate.Keys)
         {
-            var set = AmountReplacementsTemplate[key];
+            var set = _amountReplacementsTemplate[key];
             var newList = new List<ItemAmountSet>();
             foreach (var id in set) newList.Add(referenceClones[id]);
             AmountReplacements.Add(key, newList);
@@ -363,13 +363,13 @@ public class DirectiveParser
     {
         IncrementalReplacements = new Dictionary<Item, List<ItemAmountSet>>(new ItemComparerIgnorePool());
         var referenceClones = new List<ItemAmountSet>();
-        foreach (var reference in IncrementalReplacementReferences)
+        foreach (var reference in _incrementalReplacementReferences)
             referenceClones.Add(reference
                 .Clone()); //making sure we dont change the original reference as those need to be reused
 
-        foreach (var key in IncrementalReplacementsTemplate.Keys)
+        foreach (var key in _incrementalReplacementsTemplate.Keys)
         {
-            var set = IncrementalReplacementsTemplate[key];
+            var set = _incrementalReplacementsTemplate[key];
             var newList = new List<ItemAmountSet>();
             foreach (var id in set) newList.Add(referenceClones[id]);
             IncrementalReplacements.Add(key, newList);
@@ -383,13 +383,13 @@ public class DirectiveParser
 
     public void AddOptions()
     {
-        foreach (var option in Options) Defines.AddRange(option.GetLogicDefines());
+        foreach (var option in Options) _defines.AddRange(option.GetLogicDefines());
     }
 
     public string ReplaceDefines(string locationString)
     {
         var outString = locationString;
-        foreach (var define in Defines)
+        foreach (var define in _defines)
         {
             if (define.CanReplace(outString)) outString = define.Replace(outString);
 
@@ -401,7 +401,7 @@ public class DirectiveParser
 
     public bool ShouldIgnoreLines()
     {
-        return IfCounter != 0;
+        return _ifCounter != 0;
     }
 
     public void ParseImportDirective(string[] directiveParts)
@@ -496,8 +496,8 @@ public class DirectiveParser
         if (!StringUtil.ParseString(directiveParts[2], out replacementAmount))
             throw new ParserException("!replaceamount has an invalid amount");
 
-        AmountReplacementReferences.Add(new ItemAmountSet(replacementItem, replacementAmount));
-        var referenceId = AmountReplacementReferences.Count - 1;
+        _amountReplacementReferences.Add(new ItemAmountSet(replacementItem, replacementAmount));
+        var referenceId = _amountReplacementReferences.Count - 1;
 
         var replacedItems = directiveParts[3].Split(',');
         foreach (var itemString in replacedItems)
@@ -505,17 +505,17 @@ public class DirectiveParser
             if (itemString == "")
                 continue;
             var item = new Item(itemString, "!replaceamount");
-            if (AmountReplacementsTemplate.ContainsKey(item))
+            if (_amountReplacementsTemplate.ContainsKey(item))
             {
-                var set = AmountReplacementsTemplate[item];
+                var set = _amountReplacementsTemplate[item];
                 set.Add(referenceId);
-                AmountReplacementsTemplate[item] = set;
+                _amountReplacementsTemplate[item] = set;
             }
             else
             {
                 var list = new List<int>();
                 list.Add(referenceId);
-                AmountReplacementsTemplate.Add(item, list);
+                _amountReplacementsTemplate.Add(item, list);
             }
         }
     }
@@ -531,8 +531,8 @@ public class DirectiveParser
         if (!StringUtil.ParseString(directiveParts[2], out replacementAmount))
             throw new ParserException("!replaceincrement has an invalid amount");
 
-        IncrementalReplacementReferences.Add(new ItemAmountSet(replacementItem, replacementAmount));
-        var referenceId = IncrementalReplacementReferences.Count - 1;
+        _incrementalReplacementReferences.Add(new ItemAmountSet(replacementItem, replacementAmount));
+        var referenceId = _incrementalReplacementReferences.Count - 1;
 
         var replacedItems = directiveParts[3].Split(',');
         foreach (var itemString in replacedItems)
@@ -540,17 +540,17 @@ public class DirectiveParser
             if (itemString == "")
                 continue;
             var item = new Item(itemString, "!replaceincrement");
-            if (IncrementalReplacementsTemplate.ContainsKey(item))
+            if (_incrementalReplacementsTemplate.ContainsKey(item))
             {
-                var set = IncrementalReplacementsTemplate[item];
+                var set = _incrementalReplacementsTemplate[item];
                 set.Add(referenceId);
-                IncrementalReplacementsTemplate[item] = set;
+                _incrementalReplacementsTemplate[item] = set;
             }
             else
             {
                 var list = new List<int>();
                 list.Add(referenceId);
-                IncrementalReplacementsTemplate.Add(item, list);
+                _incrementalReplacementsTemplate.Add(item, list);
             }
         }
     }

@@ -17,19 +17,19 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <None Remove="Resources\default.logic"/>
+        <None Remove="Resources\default.logic" />
     </ItemGroup>
 
     <ItemGroup>
-        <EmbeddedResource Include="Resources\default.logic"/>
+        <EmbeddedResource Include="Resources\default.logic" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Vendor\ColorzCore\ColorzCore\ColorzCore.csproj"/>
+        <ProjectReference Include="..\Vendor\ColorzCore\ColorzCore\ColorzCore.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Newtonsoft.Json" Version="13.0.2"/>
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
     </ItemGroup>
 
 </Project>

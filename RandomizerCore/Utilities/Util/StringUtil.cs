@@ -8,7 +8,13 @@ internal class StringUtil
     public static string AsStringHex(int val, int spacing)
     {
         return val.ToString("X").PadLeft(spacing, '0');
+    }    
+    
+    public static string AsStringHexUlong(ulong val, int spacing)
+    {
+        return val.ToString("X").PadLeft(spacing, '0');
     }
+
 
     public static string AsStringHex2(int val)
     {
@@ -28,6 +34,11 @@ internal class StringUtil
     public static string AsStringHex8(int val)
     {
         return AsStringHex(val, 8);
+    }
+
+    public static string AsStringHex8(ulong val)
+    {
+        return AsStringHexUlong(val, 8);
     }
 
     public static string AsStringHex16(int val)
