@@ -311,7 +311,6 @@ public sealed partial class MinishCapRandomizerUI : Form
 
 	private void logAllTransactionsToolStripMenuItem_Click(object sender, EventArgs e)
 	{
-        //DisplayAlert("Due to an issue with log size exploding you cannot enable the verbose logger at this time. This will be fixed in the next release.", "Cannot Enable Verbose Logger", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         logAllTransactionsToolStripMenuItem.Checked = !logAllTransactionsToolStripMenuItem.Checked;
         _configuration.UseVerboseLogger = logAllTransactionsToolStripMenuItem.Checked;
         _shufflerController.SetLoggerVerbosity(_configuration.UseVerboseLogger);
