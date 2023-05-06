@@ -1,4 +1,6 @@
-﻿using MinishCapRandomizerUI.DrawConstants;
+﻿using System.Net;
+using System.Reflection;
+using MinishCapRandomizerUI.DrawConstants;
 using MinishCapRandomizerUI.Elements;
 using MinishCapRandomizerUI.UI.Config;
 using Newtonsoft.Json;
@@ -222,7 +224,29 @@ Generating seeds with this shuffler may freeze the randomizer application for ma
 			catch { }
 		}
 
-		private void InitializeUi()
+        private static void CheckForUpdates()
+        {
+            var githubData = DownloadUrlAsString();
+            var releases = JsonConvert.DeserializeObject<List<Github.Release>>(githubData);
+            var tag = Assembly.GetExecutingAssembly().GetCustomAttributesData().First(x => x.AttributeType.Name == "AssemblyInformationalVersionAttribute").ConstructorArguments.First().ToString();
+            tag = tag[(tag.IndexOf('+') + 1)..^1];
+            if (releases!.First().Tag_Name == tag) return;
+            
+            var url = new UrlDialog.UrlDialog(releases!.First().Html_Url);
+            url.ShowDialog();
+        }
+        
+        private static string DownloadUrlAsString()
+        {
+            var request = (HttpWebRequest)WebRequest.Create("https://api.github.com/repositories/177660043/releases");
+            request.UserAgent = "MinishCapRandomizerUI";
+            request.KeepAlive = false;
+            using var response = (HttpWebResponse)request.GetResponse();
+            using var responseStream = new StreamReader(response.GetResponseStream());
+            return responseStream.ReadToEnd();
+        }
+
+        private void InitializeUi()
 		{
 			TabPane.TabPages.Remove(SeedOutput);
 			var seed = new SquaresRandomNumberGenerator().Next();
@@ -267,7 +291,11 @@ Generating seeds with this shuffler may freeze the randomizer application for ma
 			_defaultCosmetics = _shufflerController.GetCosmeticsString();
 
 			_shufflerController.SetRandomizationSeed(seed);
-		}
+
+            checkForUpdatesOnStartToolStripMenuItem.Checked = _configuration.CheckForUpdatesOnStart;
+            if (_configuration.CheckForUpdatesOnStart)
+                CheckForUpdates();
+        }
 
 		private void UpdateUIWithLogicOptions()
 		{

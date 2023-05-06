@@ -311,21 +311,15 @@ public sealed partial class MinishCapRandomizerUI : Form
 
 	private void logAllTransactionsToolStripMenuItem_Click(object sender, EventArgs e)
 	{
-		DisplayAlert("Due to an issue with log size exploding you cannot enable the verbose logger at this time. This will be fixed in the next release.", "Cannot Enable Verbose Logger", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-		//logAllTransactionsToolStripMenuItem.Checked = !logAllTransactionsToolStripMenuItem.Checked;
-		//_configuration.UseVerboseLogger = logAllTransactionsToolStripMenuItem.Checked;
-		//_shufflerController.SetLoggerVerbosity(_configuration.UseVerboseLogger);
-	}
+        //DisplayAlert("Due to an issue with log size exploding you cannot enable the verbose logger at this time. This will be fixed in the next release.", "Cannot Enable Verbose Logger", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        logAllTransactionsToolStripMenuItem.Checked = !logAllTransactionsToolStripMenuItem.Checked;
+        _configuration.UseVerboseLogger = logAllTransactionsToolStripMenuItem.Checked;
+        _shufflerController.SetLoggerVerbosity(_configuration.UseVerboseLogger);
+    }
 
-	private void UseSphereBasedShuffler_CheckedChanged(object sender, EventArgs e)
+    private void UseSphereBasedShuffler_CheckedChanged(object sender, EventArgs e)
 	{
 		_configuration.UseHendrusShuffler = UseSphereBasedShuffler.Checked;
-	}
-
-	private void useLoggerToolStripMenuItem_Click(object sender, EventArgs e)
-	{
-		DisplayAlert("Cannot disable logger. This is a testing build, we need the logger enabled at all times for error reporting. Don't worry, in the full release you will be able disable it, although we strongly suggest NOT doing that for when something inevitably breaks. If you encounter an error with the logger disabled, we will not be able to help you, because WE WON'T HAVE ANY LOGS because you turned it off like a dummy.", 
-			"Cannot Disable Logger", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 	}
 
 	private void LoadSettingPreset_Click(object sender, EventArgs e)
@@ -543,4 +537,21 @@ public sealed partial class MinishCapRandomizerUI : Form
 			}
 		}
 	}
+
+    private void aboutToolStripMenuItem1_Click(object sender, EventArgs e)
+    {
+        var aboutPage = new About();
+        aboutPage.Show();
+    }
+
+    private void checkForUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        CheckForUpdates();
+    }
+
+    private void checkForUpdatesOnStartToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+        checkForUpdatesOnStartToolStripMenuItem.Checked = !checkForUpdatesOnStartToolStripMenuItem.Checked;
+        _configuration.CheckForUpdatesOnStart = checkForUpdatesOnStartToolStripMenuItem.Checked;
+    }
 }

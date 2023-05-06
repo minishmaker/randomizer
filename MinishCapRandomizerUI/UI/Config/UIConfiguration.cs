@@ -22,5 +22,7 @@
 		public bool UseCustomPatch { get; set; }
 
 		public string CustomPatchFilepath { get; set; } = "";
-	}
+
+        public bool CheckForUpdatesOnStart { get; set; } = true;
+    }
 }
