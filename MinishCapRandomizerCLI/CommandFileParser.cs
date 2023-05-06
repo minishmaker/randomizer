@@ -61,12 +61,15 @@ public static class CommandFileParser
                     if (!bool.TryParse(inputs[2], out var shuffleSettingsEachAttempt))
                         throw new Exception("2nd parameter must be true or false!");
 
-                    var num = 0;
+                    var successes = 0;
                     var failures = 0;
                     var consecutiveFailures = 0;
+                    var totalSeeds = 0;
                     var lastRunFailure = false;
-                    while (num++ < numberOfSeedToGen)
+                    while (successes++ < numberOfSeedToGen)
                     {
+                        totalSeeds++;
+
                         GenericCommands.Seed("R");
                         
                         if (shuffleSettingsEachAttempt && !lastRunFailure) ShuffleAllOptions();
@@ -74,7 +77,7 @@ public static class CommandFileParser
                         var result = GenericCommands.Randomize("1");
                         if (!result)
                         {
-                            --num;
+                            --successes;
                             ++failures;
                             lastRunFailure = true;
                             if (++consecutiveFailures < 10) continue;
@@ -85,12 +88,12 @@ public static class CommandFileParser
                         }
                         else
                         {
-                            logBuilder.AppendLine($"Generated seed {num}");
+                            logBuilder.AppendLine($"Generated seed {successes}");
                             consecutiveFailures = 0;
                             lastRunFailure = false;
                         }
                     }
-                    logBuilder.AppendLine($"Total failure rate: {(double)failures/num}%");
+                    logBuilder.AppendLine($"Total Success Rate: {(--successes/(double)totalSeeds) * 100}%");
                     break;
                 case "Exit":
                     exited = true;
