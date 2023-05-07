@@ -146,7 +146,12 @@ public sealed partial class MinishCapRandomizerUI : Form
 
 		_configuration.MaximumRandomizationRetryCount = retryAttempts;
 		_shufflerController.SetRandomizationSeed(seed);
-		_shufflerController.LoadLocations(UseCustomLogic.Checked ? LogicFilePath.Text : "", UseCustomYAML.Checked ? YAMLPath.Text : "", "", true);
+        if (UseCustomYAML.Checked)
+		    _shufflerController.LoadLocations(UseCustomLogic.Checked ? LogicFilePath.Text : "", YAMLPath.Text, YAMLPath.Text, true);
+        else
+		    _shufflerController.LoadLocations(UseCustomLogic.Checked ? LogicFilePath.Text : "",
+                UseMysterySettings.Checked ? presetPath + "Mystery Settings" + Path.DirectorySeparatorChar + SettingsWeights.SelectedItem + ".yaml" : "",
+                UseMysteryCosmetics.Checked ? presetPath + "Mystery Cosmetics" + Path.DirectorySeparatorChar + CosmeticsWeights.SelectedItem + ".yaml" : "", false);
 		var result = _shufflerController.Randomize(retryAttempts, UseSphereBasedShuffler.Checked);
 		if (result)
 		{
@@ -565,4 +570,48 @@ public sealed partial class MinishCapRandomizerUI : Form
         var match = Regex.Match(name, "[\\x00-\\x1F<>:\"/\\\\|?*]");
         return !match.Success;
     }
+
+	private void LoadSettingSample_Click(object sender, EventArgs e)
+	{
+        var presets = _settingPresets.SettingsWeights;
+
+		if (!presets.Any(preset => preset == (string)SettingsWeights.SelectedItem))
+		{
+			DisplayAlert("No weights preset matching the specified name could be found! Make sure you select a valid weights preset.", "Failed to Load Preset", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			return;
+		}
+
+        var result = _shufflerController.LoadSettingsFromYAML(presetPath + "Mystery Settings" + Path.DirectorySeparatorChar + SettingsWeights.SelectedItem + ".yaml", true, false);
+
+        if (result)
+        {
+            _recentSettingsPreset = (string)SettingsWeights.SelectedItem;
+            _recentSettingsPresetHash = _shufflerController.GetSelectedOptions().OnlyLogic().GetHash();
+        }
+
+		DisplayConditionalAlertFromShufflerResult(result,
+			"Random settings loaded successfully!", "Settings Loaded", "Failed to load Settings preset!", "Failed to Load Settings");
+	}
+
+	private void LoadCosmeticSample_Click(object sender, EventArgs e)
+	{
+        var presets = _settingPresets.CosmeticsWeights;
+
+		if (!presets.Any(preset => preset == (string)CosmeticsWeights.SelectedItem))
+		{
+			DisplayAlert("No weights preset matching the specified name could be found! Make sure you select a valid weights preset.", "Failed to Load Preset", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			return;
+		}
+
+        var result = _shufflerController.LoadSettingsFromYAML(presetPath + "Mystery Cosmetics" + Path.DirectorySeparatorChar + CosmeticsWeights.SelectedItem + ".yaml", false, true);
+
+        if (result)
+        {
+            _recentCosmeticsPreset = (string)CosmeticsWeights.SelectedItem;
+            _recentCosmeticsPresetHash = _shufflerController.GetSelectedOptions().OnlyCosmetic().GetHash();
+        }
+
+		DisplayConditionalAlertFromShufflerResult(result,
+			"Random cosmetics loaded successfully!", "Cosmetics Loaded", "Failed to load cosmetics preset!", "Failed to Load Cosmetics");
+	}
 }
