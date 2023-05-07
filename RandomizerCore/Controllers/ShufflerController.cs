@@ -327,6 +327,21 @@ public class ShufflerController
         }
     }
 
+    public PatchFile CreatePatch()
+    {
+        _shuffler.ValidateState(true);
+        var romBytes = _shuffler.GetRandomizedRom();
+        var stream = new MemoryStream(romBytes);
+        _shuffler.ApplyPatch(stream);
+        return BpsPatcher.GeneratePatch(Rom.Instance!.RomData, romBytes, "Patch");
+    }
+
+    public string CreateSpoiler()
+    {
+        _shuffler.ValidateState(true);
+        return _shuffler.GetSpoiler();
+    }
+
     /// <summary>
     ///     Creates a patch from a patched ROM
     /// </summary>
