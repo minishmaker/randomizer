@@ -142,14 +142,14 @@ namespace MinishCapRandomizerUI.UI
 			this.label2 = new System.Windows.Forms.Label();
 			this.label16 = new System.Windows.Forms.Label();
 			this.RandomizationAttempts = new System.Windows.Forms.TextBox();
-            this.label29 = new System.Windows.Forms.Label();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.button3 = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+			this.label29 = new System.Windows.Forms.Label();
+			this.panel5 = new System.Windows.Forms.Panel();
+			this.LoadSettingSample = new System.Windows.Forms.Button();
+			this.SettingsWeights = new System.Windows.Forms.ComboBox();
+			this.UseMysterySettings = new System.Windows.Forms.CheckBox();
+			this.UseMysteryCosmetics = new System.Windows.Forms.CheckBox();
+			this.LoadCosmeticSample = new System.Windows.Forms.Button();
+			this.CosmeticsWeights = new System.Windows.Forms.ComboBox();
 			this.menuStrip1.SuspendLayout();
 			this.General.SuspendLayout();
 			this.panel9.SuspendLayout();
@@ -1328,80 +1328,80 @@ namespace MinishCapRandomizerUI.UI
 			this.label29.Name = "label29";
 			this.label29.Size = new System.Drawing.Size(83, 15);
 			this.label29.TabIndex = 22;
-			this.label29.Text = "YAML Settings";
+			this.label29.Text = "Mystery";
 			this.label29.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// panel5
 			// 
 			this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.panel5.Controls.Add(this.checkBox2);
-			this.panel5.Controls.Add(this.button1);
-			this.panel5.Controls.Add(this.comboBox2);
-			this.panel5.Controls.Add(this.checkBox1);
-			this.panel5.Controls.Add(this.button3);
-			this.panel5.Controls.Add(this.comboBox1);
+			this.panel5.Controls.Add(this.UseMysteryCosmetics);
+			this.panel5.Controls.Add(this.LoadCosmeticSample);
+			this.panel5.Controls.Add(this.CosmeticsWeights);
+			this.panel5.Controls.Add(this.UseMysterySettings);
+			this.panel5.Controls.Add(this.LoadSettingSample);
+			this.panel5.Controls.Add(this.SettingsWeights);
 			this.panel5.Location = new System.Drawing.Point(6, 285);
 			this.panel5.Name = "panel5";
 			this.panel5.Size = new System.Drawing.Size(760, 90);
 			this.panel5.TabIndex = 21;
 			// 
-			// button3
+			// LoadSettingSample
 			// 
-			this.button3.Location = new System.Drawing.Point(540, 13);
-			this.button3.Name = "button3";
-			this.button3.Size = new System.Drawing.Size(210, 23);
-			this.button3.TabIndex = 28;
-			this.button3.Text = "The first button";
-			this.button3.UseVisualStyleBackColor = true;
+			this.LoadSettingSample.Location = new System.Drawing.Point(540, 13);
+			this.LoadSettingSample.Name = "LoadSettingSample";
+			this.LoadSettingSample.Size = new System.Drawing.Size(210, 23);
+			this.LoadSettingSample.TabIndex = 28;
+			this.LoadSettingSample.Text = "Load Sample Options";
+			this.LoadSettingSample.UseVisualStyleBackColor = true;
+			this.LoadSettingSample.Click += new System.EventHandler(this.LoadSettingSample_Click);
 			// 
-			// comboBox1
+			// SettingsWeights
 			// 
-			this.comboBox1.FormattingEnabled = true;
-			this.comboBox1.Location = new System.Drawing.Point(180, 14);
-			this.comboBox1.Name = "comboBox1";
-			this.comboBox1.Size = new System.Drawing.Size(350, 23);
-			this.comboBox1.TabIndex = 27;
-			this.comboBox1.Text = "Dropdown (Remove this text)";
+			this.SettingsWeights.FormattingEnabled = true;
+			this.SettingsWeights.Location = new System.Drawing.Point(180, 14);
+			this.SettingsWeights.Name = "SettingsWeights";
+			this.SettingsWeights.Size = new System.Drawing.Size(350, 23);
+			this.SettingsWeights.TabIndex = 27;
 			// 
-			// checkBox1
+			// UseMysterySettings
 			// 
-			this.checkBox1.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.checkBox1.Location = new System.Drawing.Point(10, 14);
-			this.checkBox1.Name = "checkBox1";
-			this.checkBox1.Size = new System.Drawing.Size(160, 24);
-			this.checkBox1.TabIndex = 31;
-			this.checkBox1.Text = "Some Filler Text";
-			this.checkBox1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.checkBox1.UseVisualStyleBackColor = true;
+			this.UseMysterySettings.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.UseMysterySettings.Location = new System.Drawing.Point(10, 14);
+			this.UseMysterySettings.Name = "UseMysterySettings";
+			this.UseMysterySettings.Size = new System.Drawing.Size(160, 24);
+			this.UseMysterySettings.TabIndex = 31;
+			this.UseMysterySettings.Text = "Use Mystery Settings";
+			this.UseMysterySettings.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.UseMysterySettings.UseVisualStyleBackColor = true;
 			// 
-			// checkBox2
+			// UseMysteryCosmetics
 			// 
-			this.checkBox2.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.checkBox2.Location = new System.Drawing.Point(10, 49);
-			this.checkBox2.Name = "checkBox2";
-			this.checkBox2.Size = new System.Drawing.Size(160, 24);
-			this.checkBox2.TabIndex = 34;
-			this.checkBox2.Text = "Some Filler Text 2!";
-			this.checkBox2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.checkBox2.UseVisualStyleBackColor = true;
+			this.UseMysteryCosmetics.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.UseMysteryCosmetics.Location = new System.Drawing.Point(10, 49);
+			this.UseMysteryCosmetics.Name = "UseMysteryCosmetics";
+			this.UseMysteryCosmetics.Size = new System.Drawing.Size(160, 24);
+			this.UseMysteryCosmetics.TabIndex = 34;
+			this.UseMysteryCosmetics.Text = "Use Mystery Cosmetics";
+			this.UseMysteryCosmetics.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.UseMysteryCosmetics.UseVisualStyleBackColor = true;
 			// 
-			// button1
+			// LoadCosmeticSample
 			// 
-			this.button1.Location = new System.Drawing.Point(540, 48);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(210, 23);
-			this.button1.TabIndex = 33;
-			this.button1.Text = "The second button";
-			this.button1.UseVisualStyleBackColor = true;
+			this.LoadCosmeticSample.Location = new System.Drawing.Point(540, 48);
+			this.LoadCosmeticSample.Name = "LoadCosmeticSample";
+			this.LoadCosmeticSample.Size = new System.Drawing.Size(210, 23);
+			this.LoadCosmeticSample.TabIndex = 33;
+			this.LoadCosmeticSample.Text = "Load Sample Options";
+			this.LoadCosmeticSample.UseVisualStyleBackColor = true;
+			this.LoadCosmeticSample.Click += new System.EventHandler(this.LoadCosmeticSample_Click);
 			// 
-			// comboBox2
+			// CosmeticsWeights
 			// 
-			this.comboBox2.FormattingEnabled = true;
-			this.comboBox2.Location = new System.Drawing.Point(180, 49);
-			this.comboBox2.Name = "comboBox2";
-			this.comboBox2.Size = new System.Drawing.Size(350, 23);
-			this.comboBox2.TabIndex = 32;
-			this.comboBox2.Text = "Dropdown (Remove this text)";
+			this.CosmeticsWeights.FormattingEnabled = true;
+			this.CosmeticsWeights.Location = new System.Drawing.Point(180, 49);
+			this.CosmeticsWeights.Name = "CosmeticsWeights";
+			this.CosmeticsWeights.Size = new System.Drawing.Size(350, 23);
+			this.CosmeticsWeights.TabIndex = 32;
 			// 
 			// MinishCapRandomizerUI
 			// 
@@ -1558,12 +1558,12 @@ namespace MinishCapRandomizerUI.UI
 		private Panel panel4;
         private Label label29;
         private Panel panel5;
-        private Button button3;
-        private ComboBox comboBox1;
-        private CheckBox checkBox2;
-        private Button button1;
-        private ComboBox comboBox2;
-        private CheckBox checkBox1;
+        private Button LoadSettingSample;
+        private ComboBox SettingsWeights;
+        private CheckBox UseMysteryCosmetics;
+        private Button LoadCosmeticSample;
+        private ComboBox CosmeticsWeights;
+        private CheckBox UseMysterySettings;
         private ToolStripMenuItem checkForUpdatesToolStripMenuItem;
         private ToolStripMenuItem otherToolStripMenuItem;
         private ToolStripMenuItem checkForUpdatesOnStartToolStripMenuItem;

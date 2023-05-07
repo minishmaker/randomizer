@@ -162,6 +162,18 @@ Generating seeds with this shuffler may freeze the randomizer application for ma
 
                 CosmeticsPresets.Items.AddRange(_settingPresets.CosmeticsPresets.ToArray());
                 CosmeticsPresets.SelectedIndex = 0;
+
+                files = Directory.GetFiles(presetPath + "Mystery Settings").Where(file => file.EndsWith(".yaml", true, null));
+                _settingPresets.SettingsWeights = files.Select(file => file.Substring(file.LastIndexOf(Path.DirectorySeparatorChar) + 1)).Select(file => file.Substring(0, file.LastIndexOf("."))).ToList();
+
+                SettingsWeights.Items.AddRange(_settingPresets.SettingsWeights.ToArray());
+                SettingsWeights.SelectedIndex = 0;
+
+                files = Directory.GetFiles(presetPath + "Mystery Cosmetics").Where(file => file.EndsWith(".yaml", true, null));
+                _settingPresets.CosmeticsWeights = files.Select(file => file.Substring(file.LastIndexOf(Path.DirectorySeparatorChar) + 1)).Select(file => file.Substring(0, file.LastIndexOf("."))).ToList();
+
+                CosmeticsWeights.Items.AddRange(_settingPresets.CosmeticsWeights.ToArray());
+                CosmeticsWeights.SelectedIndex = 0;
             }
             catch
             {

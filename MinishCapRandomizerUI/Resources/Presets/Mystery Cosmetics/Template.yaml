@@ -1,0 +1,470 @@
+name: "Template"
+description: "(No description set)"
+settings:
+  ## Main Settings:
+  #  Dungeon Settings:
+  SMALL_KEYS_SETTING:                             # Small Keys
+    SMALL_KEASY: 1                                #   Removed (Keasy)
+    SMALL_KEYS_VANILLA: 1                         #   Vanilla
+    SMALL_KEYS_STANDARD: 1                        #   Own Dungeon
+    SMALL_KEYS_REGION: 1                          #   Own Region
+    SMALL_KEYS_DUNGEON: 1                         #   Any Dungeon
+    SMALL_KEYS_REGDUN: 1                          #   Any Region
+    SMALL_KEYSANITY: 1                            #   Anywhere (Keysanity)
+  COMPASS_SETTING:                                # Maps & Compasses
+    COMPASS_KEASY: 1                              #   Start With
+    COMPASS_VANILLA: 1                            #   Vanilla
+    COMPASS_STANDARD: 1                           #   Own Dungeon
+    COMPASS_REGION: 1                             #   Own Region
+    COMPASS_DUNGEON: 1                            #   Any Dungeon
+    COMPASS_REGDUN: 1                             #   Any Region
+    COMPASS_KEYSANITY: 1                          #   Anywhere (Keysanity)
+  BIG_KEYS_SETTING:                               # Big Keys
+    BIG_KEASY: 1                                  #   Removed (Keasy)
+    BIG_KEYS_VANILLA: 1                           #   Vanilla
+    BIG_KEYS_STANDARD: 1                          #   Own Dungeon
+    BIG_KEYS_REGION: 1                            #   Own Region
+    BIG_KEYS_DUNGEON: 1                           #   Any Dungeon
+    BIG_KEYS_REGDUN: 1                            #   Any Region
+    BIG_KEYSANITY: 1                              #   Anywhere (Keysanity)
+  DUNGEON:                                        # NonElement Dungeons
+    NONE: 1                                       #   Standard
+    UNREQ: 1                                      #   Unrequired
+    BARREN: 1                                     #   Barren
+    UNREQSUR: 1                                   #   Regions Unrequired
+    BARRENSUR: 1                                  #   Regions Barren
+  SHUFFLE_ELEMENTS:                               # Shuffle Elements
+    on: 1
+    off: 1
+  #  Requirements:
+  DHC_SETTING:                                    # Dark Hyrule Castle Opens
+    NORMALDHC: 1                                  #   After Requirements
+    NODHC: 1                                      #   Never Open
+    OPENDHC: 1                                    #   Always Open
+  REQUIREMENT_ITEM:                               # Requirement Reward
+    REQUIREMENT_ITEM_NONE: 1                      #   Disabled
+    REQUIREMENT_ITEM_DHC_BK: 1                    #   DHC Big Key
+    REQUIREMENT_ITEM_RANDOM: 1                    #   Random Item
+  AD_PED:                                         # Dungeons Required
+    AD_PED_0: 1                                   #   0
+    AD_PED_1: 1                                   #   1
+    AD_PED_2: 1                                   #   2
+    AD_PED_3: 1                                   #   3
+    AD_PED_4: 1                                   #   4
+    AD_PED_5: 1                                   #   5
+    AD_PED_6: 1                                   #   6
+  SWORD_SETTING:                                  # Sword Requirement
+    0SWORD: 1                                     #   No Sword
+    1SWORD: 1                                     #   Smith Sword
+    2SWORD: 1                                     #   Green Sword
+    3SWORD: 1                                     #   Red Sword
+    4SWORD: 1                                     #   Blue Sword
+    5SWORD: 1                                     #   Four Sword
+  ELEMENT_SETTING:                                # Elements Required
+    4: 1                                          #   4
+    3: 1                                          #   3
+    2: 1                                          #   2
+    1: 1                                          #   1
+    0ELEMENT: 1                                   #   0
+  FIGURINE_HUNT:                                  # Figurine Hunt
+    on: 1
+    off: 1
+  FIGURINE_TOTAL:                                 # Figurines in world
+    0: 1
+    30: 1
+    136: 1
+    0 136 1: 1
+  FIGURINE_COUNT:                                 # Figurines required
+    0: 1
+    20: 1
+    136: 1
+    0 136 1: 1
+  #  Shuffle:
+  DOJO:                                           # Dojo Swordmasters
+    DOJOVANILLA: 1                                #   Vanilla Scrolls
+    DOJORANDOM: 1                                 #   Randomized Scrolls
+    DOJOANY: 1                                    #   Any Item
+  CUCCO_SETTING:                                  # Cucco Minigame
+    CUCCO_0: 1                                    #   Nothing
+    CUCCO_1: 1                                    #   1 Round
+    CUCCO_2: 1                                    #   2 Rounds
+    CUCCO_3: 1                                    #   3 Rounds
+    CUCCO_4: 1                                    #   4 Rounds
+    CUCCO_5: 1                                    #   5 Rounds
+    CUCCO_6: 1                                    #   6 Rounds
+    CUCCO_7: 1                                    #   7 Rounds
+    CUCCO_8: 1                                    #   8 Rounds
+    CUCCO_9: 1                                    #   9 Rounds
+    CUCCO_10: 1                                   #   10 Rounds
+  GORON_SETTING:                                  # Goron Merchant
+    GORON_0: 1                                    #   Nothing
+    GORON_1: 1                                    #   1 Set
+    GORON_2: 1                                    #   2 Sets
+    GORON_3: 1                                    #   3 Sets
+    GORON_4: 1                                    #   4 Sets
+    GORON_5: 1                                    #   5 Sets
+  HEART_RANDO:                                    # Heart Pieces and Containers
+    on: 1
+    off: 1
+  RUPEEMANIA:                                     # Rupees
+    on: 1
+    off: 1
+  SPECIALPOTS:                                    # Special Pots
+    on: 1
+    off: 1
+  DIGGING:                                        # Dig spots
+    on: 1
+    off: 1
+  UNDERWATER:                                     # Underwater spots
+    on: 1
+    off: 1
+  GOLDEN_ENEMY:                                   # Golden Enemies
+    on: 1
+    off: 1
+  PED_ITEMS:                                      # Sanctuary Pedestal
+    on: 1
+    off: 1
+  ## World Settings:
+  #  Global:
+  OPENWORLD:                                      # Open World
+    on: 1
+    off: 1
+  ENTRANCES:                                      # Dungeon Entrances are
+    ENTRANCES_VANILLA: 1                          #   Vanilla
+    ENTRANCES_COUPLED: 1                          #   Shuffled
+  #  Fusions:
+  GOLD_FUSION_SETTING:                            # Gold Fusions are
+    NO_GOLD_FUSIONS: 1                            #   Removed (Closed)
+    VANILLA_GOLD_FUSIONS: 1                       #   Vanilla
+    COMBINED_GOLD_FUSIONS: 1                      #   Combined
+    OPEN_GOLD_FUSIONS: 1                          #   Completed (Open)
+  RED_FUSION_SETTING:                             # Red Fusions are
+    NO_RED_FUSIONS: 1                             #   Removed (Closed)
+    VANILLA_RED_FUSIONS: 1                        #   Vanilla
+    COMBINED_RED_FUSIONS: 1                       #   Combined
+    OPEN_RED_FUSIONS: 1                           #   Completed (Open)
+  BLUE_FUSION_SETTING:                            # Blue Fusions are
+    NO_BLUE_FUSIONS: 1                            #   Removed (Closed)
+    VANILLA_BLUE_FUSIONS: 1                       #   Vanilla
+    COMBINED_BLUE_FUSIONS: 1                      #   Combined
+    OPEN_BLUE_FUSIONS: 1                          #   Completed (Open)
+  GREEN_FUSION_SETTING:                           # Green Fusions are
+    NO_GREEN_FUSIONS: 1                           #   Removed (Closed)
+    VANILLA_GREEN_FUSIONS: 1                      #   Vanilla
+    COMBINED_GREEN_FUSIONS: 1                     #   Combined
+    OPEN_GREEN_FUSIONS: 1                         #   Completed (Open)
+  SEEDED_SHARED:                                  # Order Shared Fusions
+    on: 1
+    off: 1
+  DEFICKLE:                                       # Defickle Fusers
+    on: 1
+    off: 1
+  FUSION_SKIPS:                                   # Skip Fusion Cutscenes
+    ALLOW_FUSION_SKIPS: 1                         #   Choose
+    INSTANT_SKIP: 1                               #   Always
+    NO_FUSION_SKIP: 1                             #   Never
+  SHOW_MAP:                                       # Always Show Map
+    on: 1
+    off: 1
+  #  Wind Crests:
+  CRENEL_CREST:                                   # Mt Crenel
+    on: 1
+    off: 1
+  FALLS_CREST:                                    # Veil Falls
+    on: 1
+    off: 1
+  CLOUD_CREST:                                    # Cloud Tops
+    on: 1
+    off: 1
+  TOWN_CREST:                                     # Hyrule Town
+    on: 1
+    off: 1
+  SWAMP_CREST:                                    # Swamp
+    on: 1
+    off: 1
+  SHF_CREST:                                      # Link's House
+    on: 1
+    off: 1
+  MINISH_CREST:                                   # Minish Woods
+    on: 1
+    off: 1
+  #  Dungeon Warps:
+  DWS_BLUEWARP:                                   # DWS Blue
+    on: 1
+    off: 1
+  DWS_REDWARP:                                    # DWS Red
+    on: 1
+    off: 1
+  COF_BLUEWARP:                                   # CoF Blue
+    on: 1
+    off: 1
+  COF_REDWARP:                                    # CoF Red
+    on: 1
+    off: 1
+  FOW_BLUEWARP:                                   # FoW Blue
+    on: 1
+    off: 1
+  FOW_REDWARP:                                    # FoW Red
+    on: 1
+    off: 1
+  TOD_BLUEWARP:                                   # ToD Blue
+    on: 1
+    off: 1
+  TOD_REDWARP:                                    # ToD Red
+    on: 1
+    off: 1
+  POW_BLUEWARP:                                   # PoW Blue
+    on: 1
+    off: 1
+  POW_REDWARP:                                    # PoW Red
+    on: 1
+    off: 1
+  DHC_BLUEWARP:                                   # DHC Blue
+    on: 1
+    off: 1
+  DHC_REDWARP:                                    # DHC Red
+    on: 1
+    off: 1
+  ## Logic Settings:
+  #  Logic Rules:
+  NO_LOGIC:                                       # No Logic
+    on: 1
+    off: 1
+  ACCESSIBILITY:                                  # Reachable
+    ACCESS_LOCATIONS: 1                           #   All Locations
+    ACCESS_INVENTORY: 1                           #   All NonKeys
+    ACCESS_BEATABLE: 1                            #   Only the Goal
+  GRABBABLE:                                      # Grab items from a distance
+    NOT_GRABBABLE: 1                              #   Not Allowed
+    GRABBABLE: 1                                  #   Allowed
+    GRABBABLE_LOGIC: 1                            #   Require
+    GRABBABLE_HARD: 1                             #   Require Hard
+  #  Weapons:
+  BOMBWEAPON:                                     # Bombs
+    NOBOMB: 1                                     #   No
+    YESBOMB: 1                                    #   Yes
+    BOSSBOMB: 1                                   #   Yes + Bosses
+  BOWWEAPON:                                      # Bows
+    NOBOW: 1                                      #   No
+    YESBOW: 1                                     #   Yes
+    BOSSBOW: 1                                    #   Yes + Bosses
+  GUSTWEAPON:                                     # Gust Jar
+    NOGUST: 1                                     #   No
+    YESGUST: 1                                    #   Yes
+  LAMPWEAPON:                                     # Lantern
+    NOLAMP: 1                                     #   No
+    YESLAMP: 1                                    #   Yes
+  #  Require Tricks:
+  MITTSMONEY:                                     # Mole Mitts farm Infinite Rupees
+    NOFARM: 1                                     #   No
+    YESFARM: 1                                    #   Yes
+  BLOWDUST:                                       # Bombs blow away dust
+    GUST: 1                                       #   No
+    GUSTBOMBS: 1                                  #   Yes
+  MUSHROOM:                                       # Crenel mushroom grab with Gust jar
+    NOMUSH: 1                                     #   No
+    YESMUSH: 1                                    #   Yes
+  ARROWBREAK:                                     # Light Arrows break objects
+    NOLIGHTS: 1                                   #   No
+    YESLIGHTS: 1                                  #   Yes
+  BOBOMBS:                                        # Use Bobombs to destroy walls
+    NOBOBOMBS: 1                                  #   No
+    YESBOBOMBS: 1                                 #   Yes
+  LIKELIKE:                                       # LikeLike cave without a Sword
+    NOLIKELIKE: 1                                 #   No
+    YESLIKELIKE: 1                                #   Yes
+  GUARDSKIP:                                      # Skip Town guard using Boots
+    NOGUARDSKIP: 1                                #   No
+    YESGUARDSKIP: 1                               #   Yes
+  CRENELBEAM:                                     # Use Beam to hit switch on Mt Crenel
+    NOBEAM: 1                                     #   No
+    YESBEAM: 1                                    #   Yes
+  DTBEETLE:                                       # Use DownThrust to flip Spikey Beetles
+    NOTHRUST: 1                                   #   No
+    YESTHRUST: 1                                  #   Yes
+  DARKROOMS:                                      # Dark Rooms without a Lantern
+    NODARK: 1                                     #   No
+    YESDARK: 1                                    #   Yes
+  EXTENDCAPE:                                     # Tricky Cape jumps across water
+    NOEXTENSION: 1                                #   No
+    YESEXTENSION: 1                               #   Yes
+  LAKEMINISH:                                     # Minish in Lake without Boots
+    NOLAKEMINISH: 1                               #   No
+    YESLAKEMINISH: 1                              #   Yes
+  CABINSWIM:                                      # Swim to Cabin without lilypad
+    NOCABIN: 1                                    #   No
+    YESCABIN: 1                                   #   Yes
+  CLOUDSKILL:                                     # Kill Cloud Sharks without Weapons
+    NOCLOUDSKILL: 1                               #   No
+    YESCLOUDSKILL: 1                              #   Yes
+  POWJUMP:                                        # PoW 2F is clearable without a Cane
+    NOPOWJUMP: 1                                  #   No
+    YESPOWJUMP: 1                                 #   Yes
+  POWPOTOOL:                                      # Pot Puzzle without Power Bracelets
+    NOPOWOOL: 1                                   #   No
+    YESPOWOOL: 1                                  #   Yes
+  DHCCANON:                                       # DHC Canon rooms without Four Sword
+    NODHCCANON: 1                                 #   No
+    YESDHCCANON: 1                                #   Yes
+  DHCJOSTLE:                                      # DHC Pressure Pads without Four Sword
+    NODHCJOSTLE: 1                                #   No
+    YESDHCJOSTLE: 1                               #   Yes
+  DHCSWITCHES:                                    # DHC Switches without Four Sword
+    NODHCSWITCHES: 1                              #   No
+    YESDHCSWITCHES: 1                             #   Yes
+  FOWPOT:                                         # FoW Pot item early using the Gust Jar
+    NOFOWPOT: 1                                   #   No
+    YESFOWPOT: 1                                  #   Yes
+  ## Other:
+  #  Item Pool:
+  ITEM_POOL:                                      # Item Pool
+    ITEM_POOL_NORMAL: 1                           #   Balanced
+    ITEM_POOL_RIP: 1                              #   Reduced (RIP)
+    ITEM_POOL_PLENTIFUL: 1                        #   Plentiful
+  RANDOM_BOTTLE_CONTENT:                          # Random Bottle Contents
+    on: 1
+    off: 1
+  TRAPS:                                          # Traps
+    on: 1
+    off: 1
+  MEME:                                           # Fun Junk
+    on: 1
+    off: 1
+  PROGRESSIVE:                                    # Items are Progressive
+    NOPROG: 1                                     #   No
+    YESPROG: 1                                    #   Yes
+  #  Restrictions:
+  GLITCHLESS:                                     # Prevent Speedrun Glitches
+    on: 1
+    off: 1
+  TIMEDOHKO:                                      # Timed OHKO
+    on: 1
+    off: 1
+  THREE_HEART:                                    # Maximum Health
+    HEARTS_20: 1                                  #   20
+    19: 1                                         #   19
+    18: 1                                         #   18
+    17: 1                                         #   17
+    16: 1                                         #   16
+    15: 1                                         #   15
+    14: 1                                         #   14
+    13: 1                                         #   13
+    12: 1                                         #   12
+    11: 1                                         #   11
+    10: 1                                         #   10
+    9: 1                                          #   9
+    8: 1                                          #   8
+    7: 1                                          #   7
+    6: 1                                          #   6
+    5: 1                                          #   5
+    4: 1                                          #   4
+    3: 1                                          #   3
+    2: 1                                          #   2
+    1: 1                                          #   1
+  DAMAGE_MULTI:                                   # Damage Multiplier
+    MULTI_1: 1                                    #   1x
+    MULTI_2: 1                                    #   2x
+    MULTI_3: 1                                    #   3x
+    MULTI_4: 1                                    #   4x
+  #  Extras:
+  INSTANT_TEXT:                                   # Instant Text
+    on: 1
+    off: 1
+  ITEM_HISTORY:                                   # Item Name Display
+    on: 1
+    off: 1
+  SHY_FAIRIES:                                    # Shy Fairies
+    on: 1
+    off: 1
+  HOMEWARP:                                       # Homewarp
+    on: 1
+    off: 1
+  OCARINA_SELECT:                                 # Ocarina on Select
+    on: 1
+    off: 1
+  GORON_ALT_PRICES:                               # Goron Merchant JP/US prices
+    on: 1
+    off: 1
+  NO_KINSTONE_DROPS:                              # Disable Kinstone Drops
+    on: 1
+    off: 1
+  NO_SHELL_DROPS:                                 # Disable Shell Drops
+    on: 1
+    off: 1
+  BOOTS_L:                                        # Boots on L
+    BOOTS_L_OFF: 1                                #   Disabled
+    BOOTS_L_NORMAL: 1                             #   Enabled
+    BOOTS_L_MINISH: 1                             #   Enabled + Minish
+  FIREROD:                                        # Firerod
+    NO_FIREROD: 1                                 #   No Firerod
+    FIREROD_START: 1                              #   Start With
+    FIREROD_CHEST: 1                              #   Shuffled
+  ## Cosmetics:
+  #  Music & Sound Effects:
+  MUSIC_SETTING:                                  # Music
+    VANILLA_MUSIC: 1                              #   Vanilla
+    MUSIC_RANDO: 1                                #   Shuffled
+    NO_MUSIC: 1                                   #   None
+  HEALTH_BEEP:                                    # Low Health Beep
+    0: 1
+    90: 1
+    255: 1
+    0 255 1: 1
+  #  Text:
+  RANDOM_LANGUAGE:                                # Randomize language
+    on: 1
+    off: 1
+  #  Hearts:
+  RAINBOW_HEARTS:                                 # Rainbow Hearts
+    on: 1
+    off: 1
+  HEART_COLOR:                                    # Heart Color
+    vanilla: 1
+    default: 1
+    random: 1
+    255 80 16: 1
+    "#FF5010": 1
+  #  Tunic:
+  TUNIC_COLOR:                                    # Tunic Color
+    vanilla: 1
+    default: 1
+    random: 1
+    16 255 8: 1
+    "#10FF08": 1
+  #  Split Bar:
+  SPLIT_COLOR:                                    # Split Bar Color
+    vanilla: 1
+    default: 1
+    random: 1
+    74 255 24: 1
+    "#4AFF18": 1
+  #  Follower:
+  FOLLOWER_SETTING:                               # Follower
+    NOFOLLOWER: 1                                 #   None
+    0x04: 1                                       #   Mailman
+    0x05: 1                                       #   Zelda
+    0x1E: 1                                       #   Malon
+    0x22: 1                                       #   Smith
+    0x24: 1                                       #   King Daltus
+    0x31: 1                                       #   Cow
+    0x32: 1                                       #   Goron
+    0x45: 1                                       #   Anju
+  #  Don't do this:
+  FUZZY_SETTING:                                  # Nausia rating
+    NOFUZZ: 1                                     #   No thanks
+    0x0: 1                                        #   1
+    0x1: 1                                        #   2
+    0x2: 1                                        #   3
+    0x3: 1                                        #   4
+    0x4: 1                                        #   5
+    0x5: 1                                        #   6
+    0x6: 1                                        #   7
+    0x7: 1                                        #   8
+    0x8: 1                                        #   9
+    0x9: 1                                        #   10
+    0xA: 1                                        #   11
+    0xB: 1                                        #   12
+    0xC: 1                                        #   13
+    0xD: 1                                        #   14
+    0xE: 1                                        #   15
+subweights: {}
