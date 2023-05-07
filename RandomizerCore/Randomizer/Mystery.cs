@@ -135,6 +135,9 @@ internal static class Mystery
                     else
                         if (setting.Value is Dictionary<object, object>)
                         {
+                            foreach (var pair in ((Dictionary<object, object>) setting.Value))
+                                if (!int.TryParse("" + pair.Value, out var weight) || weight < 0)
+                                    throw new ParserException("Invalid weight for option value " + pair.Key + " in option " + setting.Key);
                             var choices = ((Dictionary<object, object>) setting.Value).Keys.ToList();
                             var chances = ((Dictionary<object, object>) setting.Value).Values.Select(c => int.Parse("" + c)).ToList();
                             var totalChance = chances.Sum();
@@ -150,6 +153,8 @@ internal static class Mystery
                                 }
                             }
                         }
+                        else
+                            throw new ParserException("Invalid node for option " + setting.Key);
                 }
             }
         }
@@ -164,6 +169,8 @@ internal static class Mystery
                 {
                     if (weightSet.Value.Chance is int chance)
                     {
+                        if (chance < 0)
+                            throw new ParserException("Negative weight for subweightset " + weightSet.Key);
                         choices.Add(weightSet.Value);
                         chances.Add(chance);
                         totalChance += chance;
