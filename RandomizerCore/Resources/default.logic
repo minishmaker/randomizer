@@ -1350,7 +1350,7 @@
 	!else
 		!define - DHC_MAIN_DUNGEONENTRANCE - :NoSpoiler;	Unshuffled
 		!define - DHC_SIDE_DUNGEONENTRANCE - ;	DungeonEntrance
-		!define - ENTERDHC - Items.Entrance.0x08
+		!define - ENTERDHC - Items.Entrance.0x08, Helpers.AccessDHC
 		Items.Entrance.0x08;	DungeonEntrance;
 	!endif
 	Items.Entrance.0x01;	DungeonEntrance;
@@ -6711,7 +6711,7 @@ Sanctuary_Pedestal_Item3	`DHC_OUTSIDE`;  `PED`;   pedestalSpot3Item:Define:First
 # Dark Hyrule Castle
 
 DHC_B2_King				`DHC_INSIDE`;		`DHCCHEST`;	0x00E46A;		(|(&`ENTERDHC`, Helpers.DHCKing), Helpers.Hundo);																		Items.Rupee1 #used to be a small key but a door got removed
-DHC_B1_BigChest			`DHC_INSIDE_MAP`;	`DHCCHEST`;	0x88-0x37-0x00;	(|`ENTERDHC`, Helpers.Hundo);																						Items.DungeonMap.0x1D
+DHC_B1_BigChest			`DHC_INSIDE_MAP`;	`DHCCHEST`;	0x88-0x37-0x00;	(|(&`ENTERDHC`), Helpers.Hundo);																						Items.DungeonMap.0x1D
 DHC_1F_Blade_Chest		`DHC_INSIDE_SK`;	`DHCCHEST`;	0x88-0x27-0x00;	(|(&`ENTERDHC`, Helpers.DHCFirstCanon, Helpers.DHCBladePuzzle), Helpers.Hundo);											Items.SmallKey.0x1D
 DHC_1F_Throne_BigChest		`DHC_INSIDE_COM`;	`DHCCHEST`;	0x88-0x20-0x00;	(|(&`ENTERDHC`, Helpers.DHC1stDoor, Helpers.DHC2ndCanon, Helpers.BombWalls, Helpers.DHCThrone), Helpers.Hundo);				Items.Compass.0x1D
 
@@ -6724,7 +6724,7 @@ DHC_3F_SouthEast_Chest		`DHC_INSIDE_SK`;	`DHCCHEST`;	0x88-0x04-0x00;	(|(&`ENTERD
 DHC_2F_BlueWarp_BigChest	`DHC_INSIDE_BK`;	`DHCCHEST`;	0x88-0x09-0x00;	(|(&`ENTERDHC`, Helpers.DHCBlackKnight, Helpers.DHCBigBlock, Helpers.CanSplit4), Helpers.Hundo);							`DHCBK`
 
 !ifdef - NODHC
-	BeatVaati;	Helper;	;	`ENTERDHC`, Helpers.AccessDHC
+	BeatVaati;	Helper;	;	`ENTERDHC`
 !else
 	BeatVaati;	Helper;	;	`ENTERDHC`, (|(&Helpers.DHC1stDoor, Helpers.BombWalls), Helpers.DHCRedWarp, (&Helpers.DHCBlueWarp, (|Helpers.OverworldBlocks, Items.RocsCape))), Helpers.DHCBossDoor, Helpers.CanSplit4, Helpers.HasBow, Items.GustJar, Items.PacciCane, Helpers.DarkRooms
 !endif
