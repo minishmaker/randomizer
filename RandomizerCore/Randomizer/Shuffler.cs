@@ -258,6 +258,9 @@ internal class Shuffler
         YamlPathCosmetics = useGlobalYAML ? yamlFileLogic : yamlFileCosmetics;
         YamlUseGlobal = useGlobalYAML;
 
+        // Reset everything to allow rerandomization
+        ClearLogic();
+
         if (string.IsNullOrEmpty(yamlFileLogic))
         {
             if (string.IsNullOrEmpty(yamlFileCosmetics) || useGlobalYAML)
@@ -305,9 +308,6 @@ internal class Shuffler
                 }
             }
         }
-
-        // Reset everything to allow rerandomization
-        ClearLogic();
 
 		// Set option defines
 		_logicParser.SubParser.AddOptions(Options);
