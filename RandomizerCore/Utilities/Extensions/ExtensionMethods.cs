@@ -1,4 +1,5 @@
 using System.Numerics;
+using RandomizerCore.Random;
 
 namespace RandomizerCore.Utilities.Extensions;
 
@@ -29,7 +30,7 @@ public static class ExtensionMethods
         return Convert.ToString(num, 16).ToUpper();
     }
 
-    public static void Shuffle<T>(this IList<T> list, Random rng)
+    public static void Shuffle<T>(this IList<T> list, SquaresRandomNumberGenerator rng)
     {
         var n = list.Count;
         while (n > 1)

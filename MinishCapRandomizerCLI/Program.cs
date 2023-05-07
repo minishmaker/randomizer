@@ -32,6 +32,7 @@ internal class Program
     private static void InputLoop()
     {
         PrintCommands();
+        Helpers.CheckForUpdates();
         while (!_exiting)
         {
             Console.Write("Waiting for command, type \"Help\" to see the list of available commands: ");

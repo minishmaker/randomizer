@@ -1,4 +1,5 @@
 using RandomizerCore.Core;
+using RandomizerCore.Random;
 using RandomizerCore.Randomizer.Enumerables;
 using RandomizerCore.Randomizer.Exceptions;
 using RandomizerCore.Randomizer.Logic.Dependency;
@@ -399,7 +400,7 @@ public class Parser
         return new LocationAddress(addressType, addressValue);
     }
 
-    public (List<Location> locations, List<Item> items) ParseLocationsAndItems(string[] lines, Random rng)
+    public (List<Location> locations, List<Item> items) ParseLocationsAndItems(string[] lines, SquaresRandomNumberGenerator rng)
     {
         Logger.Instance.BeginLogTransaction();
         Dependencies = new List<DependencyBase>();
@@ -423,7 +424,7 @@ public class Parser
                     if (trimmedLine.IndexOf("`", StringComparison.Ordinal) != -1)
                     {
                         if (trimmedLine.Contains("`RAND_INT`"))
-                            trimmedLine = trimmedLine.Replace("`RAND_INT`", StringUtil.AsStringHex8(rng.Next()));
+                            trimmedLine = trimmedLine.Replace("`RAND_INT`", StringUtil.AsStringHex8(rng.Next() & 0x7FFFFFFF));
                         trimmedLine = SubParser.ReplaceDefines(trimmedLine);
                     }
 

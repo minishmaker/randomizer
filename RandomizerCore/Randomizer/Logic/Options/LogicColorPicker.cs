@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using RandomizerCore.Random;
 using RandomizerCore.Randomizer.Enumerables;
 using RandomizerCore.Randomizer.Logic.Defines;
 using RandomizerCore.Utilities.Models;
@@ -50,7 +51,7 @@ public class LogicColorPicker : LogicOptionBase
 
     public void PickRandomColor()
     {
-        var random = new Random();
+        var random = new SquaresRandomNumberGenerator();
         DefinedColor = Color.FromArgb(random.Next(256), random.Next(256), random.Next(256));
     }
 

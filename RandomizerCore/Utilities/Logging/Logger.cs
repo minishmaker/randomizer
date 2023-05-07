@@ -52,7 +52,7 @@ internal class Logger
 
     public void SaveLogTransaction(bool forceSave = false)
     {
-        if (Transaction.HasWarningOrError || UseVerboseLogger || forceSave)
+        if (Transaction.HasWarningOrError || (UseVerboseLogger && Transaction.Logs.Any()) || forceSave)
             Transactions.Add(Transaction);
 
         _transaction = null;
