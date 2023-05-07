@@ -6,6 +6,8 @@
         <Nullable>enable</Nullable>
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
         <GenerateDependencyFile>false</GenerateDependencyFile>
+        <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+        <Title>TMCRandomizerCore</Title>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
