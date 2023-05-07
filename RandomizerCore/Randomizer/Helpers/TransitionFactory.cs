@@ -15,6 +15,9 @@ internal static class TransitionFactory
     private const uint TodEntrance = 0x13A24A;
     private const uint CryptEntrance = 0x1346F2;
     private const uint PowEntrance = 0x13A4B6;
+    private const uint DhcMainEntrance = 0x13460E;
+    private const uint DhcSideEntrance1 = 0x1345BE; //This is pre-DHC activated
+    private const uint DhcSideEntrance2 = 0x13464A; //This is post-DHC activated
 
     //Dungeon exits and green warps
     private const uint DwsExit = 0x138172;
@@ -37,6 +40,7 @@ internal static class TransitionFactory
 
     private const uint PowExit = 0x1082A1;
     private const uint PowGreenWarp = 0xE6A14;
+
 
     public static ITransition BuildTransitionFromDungeonEntranceType(DungeonEntranceType destinationEntrance)
     {
@@ -129,6 +133,35 @@ internal static class TransitionFactory
                 ElementGetExitX = 0x78,
                 ElementGetExitY = 0x78,
                 EntranceType = DungeonEntranceType.PoW
+            },
+            DungeonEntranceType.DHCMain => new Transition
+            {
+                ExitX = 0x1F8,
+                ExitY = 0x38,
+                EntranceArea = 0x07,
+                EntranceRoom = 0x00,
+                Height = 0x1,
+                FacingDirection = 0x4,
+                TransitionType = 0x0,
+                EntranceAddress1 = DhcMainEntrance,
+                GreenWarpExitCoordinate = 0x00DF,
+                ElementGetExitX = 0x1F8,
+                ElementGetExitY = 0x38
+            },
+            DungeonEntranceType.DHCSide => new Transition
+            {
+                ExitX = 0x68,
+                ExitY = 0x58,
+                EntranceArea = 0x07,
+                EntranceRoom = 0x00,
+                Height = 0x1,
+                FacingDirection = 0x0,
+                TransitionType = 0x0,
+                EntranceAddress1 = DhcSideEntrance1,
+                EntranceAddress2 = DhcSideEntrance2,
+                GreenWarpExitCoordinate = 0x0146,
+                ElementGetExitX = 0x68,
+                ElementGetExitY = 0x58
             },
             _ => throw new ShuffleException("Inavlid dungeon entrance type parsed!")
         };
