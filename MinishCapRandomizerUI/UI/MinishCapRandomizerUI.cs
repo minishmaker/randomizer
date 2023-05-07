@@ -545,12 +545,20 @@ public sealed partial class MinishCapRandomizerUI : Form
 
     private void checkForUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
     {
-        CheckForUpdates();
+        var noUpdates = CheckForUpdates();
+        if (!noUpdates)
+            DisplayAlert("You have the latest version!", "Up to Date", MessageBoxButtons.OK, MessageBoxIcon.Information);
     }
 
     private void checkForUpdatesOnStartToolStripMenuItem_Click(object sender, EventArgs e)
     {
         checkForUpdatesOnStartToolStripMenuItem.Checked = !checkForUpdatesOnStartToolStripMenuItem.Checked;
         _configuration.CheckForUpdatesOnStart = checkForUpdatesOnStartToolStripMenuItem.Checked;
+    }
+
+    private void CopyHashToClipboard_Click(object sender, EventArgs e)
+    {
+        if (ImagePanel.Controls.Count > 0)
+            Clipboard.SetImage(((PictureBox)ImagePanel.Controls[0]).Image);
     }
 }

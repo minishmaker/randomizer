@@ -65,6 +65,11 @@ public class ShufflerController
             : "Log output failed! Please check your file path and make sure you have write access.";
     }
 
+    public string GetEventWrites()
+    {
+        return _shuffler.GetEventWrites();
+    }
+
     public ShufflerControllerResult LoadSettingsFromSettingString(string settingString)
     {
         try

@@ -126,7 +126,8 @@ namespace MinishCapRandomizerUI.UI
 			this.label28 = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
 			this.panel1 = new System.Windows.Forms.Panel();
-			this.label21 = new System.Windows.Forms.Label();
+			this.CopyHashToClipboard = new System.Windows.Forms.Button();
+			this.ImagePanel = new System.Windows.Forms.FlowLayoutPanel();
 			this.label20 = new System.Windows.Forms.Label();
 			this.OutputSeedLabel = new System.Windows.Forms.Label();
 			this.label18 = new System.Windows.Forms.Label();
@@ -680,7 +681,7 @@ namespace MinishCapRandomizerUI.UI
 			// Seed
 			// 
 			this.Seed.Location = new System.Drawing.Point(160, 37);
-			this.Seed.MaxLength = 10;
+			this.Seed.MaxLength = 16;
 			this.Seed.Name = "Seed";
 			this.Seed.Size = new System.Drawing.Size(510, 23);
 			this.Seed.TabIndex = 12;
@@ -959,7 +960,7 @@ namespace MinishCapRandomizerUI.UI
 			this.label17.AutoSize = true;
 			this.label17.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
 			this.label17.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.label17.Location = new System.Drawing.Point(17, 247);
+			this.label17.Location = new System.Drawing.Point(17, 282);
 			this.label17.Name = "label17";
 			this.label17.Size = new System.Drawing.Size(128, 15);
 			this.label17.TabIndex = 21;
@@ -974,9 +975,9 @@ namespace MinishCapRandomizerUI.UI
 			this.panel3.Controls.Add(this.label23);
 			this.panel3.Controls.Add(this.CosmeticNameLabel);
 			this.panel3.Controls.Add(this.label26);
-			this.panel3.Location = new System.Drawing.Point(6, 255);
+			this.panel3.Location = new System.Drawing.Point(6, 290);
 			this.panel3.Name = "panel3";
-			this.panel3.Size = new System.Drawing.Size(760, 110);
+			this.panel3.Size = new System.Drawing.Size(760, 105);
 			this.panel3.TabIndex = 20;
 			// 
 			// CopyCosmeticsHashToClipboard
@@ -1037,7 +1038,7 @@ namespace MinishCapRandomizerUI.UI
 			this.label22.AutoSize = true;
 			this.label22.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
 			this.label22.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.label22.Location = new System.Drawing.Point(17, 117);
+			this.label22.Location = new System.Drawing.Point(17, 157);
 			this.label22.Name = "label22";
 			this.label22.Size = new System.Drawing.Size(115, 15);
 			this.label22.TabIndex = 19;
@@ -1052,9 +1053,9 @@ namespace MinishCapRandomizerUI.UI
 			this.panel2.Controls.Add(this.label24);
 			this.panel2.Controls.Add(this.SettingNameLabel);
 			this.panel2.Controls.Add(this.label28);
-			this.panel2.Location = new System.Drawing.Point(6, 125);
+			this.panel2.Location = new System.Drawing.Point(6, 165);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(760, 110);
+			this.panel2.Size = new System.Drawing.Size(760, 105);
 			this.panel2.TabIndex = 18;
 			// 
 			// CopySettingsHashToClipboard
@@ -1125,7 +1126,8 @@ namespace MinishCapRandomizerUI.UI
 			// panel1
 			// 
 			this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.panel1.Controls.Add(this.label21);
+			this.panel1.Controls.Add(this.CopyHashToClipboard);
+			this.panel1.Controls.Add(this.ImagePanel);
 			this.panel1.Controls.Add(this.label20);
 			this.panel1.Controls.Add(this.OutputSeedLabel);
 			this.panel1.Controls.Add(this.label18);
@@ -1133,29 +1135,34 @@ namespace MinishCapRandomizerUI.UI
 			this.panel1.Controls.Add(this.label2);
 			this.panel1.Location = new System.Drawing.Point(6, 15);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(760, 90);
+			this.panel1.Size = new System.Drawing.Size(760, 135);
 			this.panel1.TabIndex = 16;
 			// 
-			// label21
+			// CopyHashToClipboard
 			// 
-			this.label21.AutoSize = true;
-			this.label21.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-			this.label21.Location = new System.Drawing.Point(198, 50);
-			this.label21.MaximumSize = new System.Drawing.Size(550, 0);
-			this.label21.Name = "label21";
-			this.label21.Size = new System.Drawing.Size(533, 30);
-			this.label21.TabIndex = 23;
-			this.label21.Text = "This isn\'t implemented yet, but this will display the in game seed later so you d" +
-    "on\'t need to load the rom to see it";
-			this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.CopyHashToClipboard.Location = new System.Drawing.Point(525, 100);
+			this.CopyHashToClipboard.Name = "CopyHashToClipboard";
+			this.CopyHashToClipboard.Size = new System.Drawing.Size(225, 23);
+			this.CopyHashToClipboard.TabIndex = 25;
+			this.CopyHashToClipboard.Text = "Copy Hash To Clipboard";
+			this.CopyHashToClipboard.UseVisualStyleBackColor = true;
+			this.CopyHashToClipboard.Click += new System.EventHandler(this.CopyHashToClipboard_Click);
+			// 
+			// ImagePanel
+			// 
+			this.ImagePanel.Location = new System.Drawing.Point(230, 42);
+			this.ImagePanel.Margin = new System.Windows.Forms.Padding(0);
+			this.ImagePanel.Name = "ImagePanel";
+			this.ImagePanel.Size = new System.Drawing.Size(384, 48);
+			this.ImagePanel.TabIndex = 23;
 			// 
 			// label20
 			// 
 			this.label20.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
 			this.label20.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.label20.Location = new System.Drawing.Point(10, 50);
+			this.label20.Location = new System.Drawing.Point(10, 59);
 			this.label20.Name = "label20";
-			this.label20.Size = new System.Drawing.Size(178, 15);
+			this.label20.Size = new System.Drawing.Size(200, 15);
 			this.label20.TabIndex = 22;
 			this.label20.Text = "ROM Hash:";
 			this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1261,7 +1268,6 @@ namespace MinishCapRandomizerUI.UI
 			this.panel3.ResumeLayout(false);
 			this.panel2.ResumeLayout(false);
 			this.panel1.ResumeLayout(false);
-			this.panel1.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -1331,7 +1337,6 @@ namespace MinishCapRandomizerUI.UI
         private Label InputSeedLabel;
         private Label label18;
         private Label OutputSeedLabel;
-        private Label label21;
         private Label label20;
         private Label label22;
         private Panel panel2;
@@ -1372,5 +1377,7 @@ namespace MinishCapRandomizerUI.UI
         private ToolStripMenuItem checkForUpdatesToolStripMenuItem;
         private ToolStripMenuItem otherToolStripMenuItem;
         private ToolStripMenuItem checkForUpdatesOnStartToolStripMenuItem;
+        private FlowLayoutPanel ImagePanel;
+        private Button CopyHashToClipboard;
     }
 }

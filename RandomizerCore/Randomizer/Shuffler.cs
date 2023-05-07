@@ -132,7 +132,7 @@ internal class Shuffler
     public void SetSeed(ulong seed)
     {
         Seed = seed;
-        _rng = new SquaresRandomNumberGenerator(SquaresRandomNumberGenerator.DefaultKey, seed);
+        _rng = new SquaresRandomNumberGenerator();
         Logger.Instance.LogInfo($"Randomization seed set to {seed:X}");
     }
 
@@ -1072,7 +1072,7 @@ internal class Shuffler
         if (locations.Count == 0) return;
 
         var fillItems = items.Where(item => item.ShufflePool == ItemPool.Filler).ToList();
-        var rand = new SquaresRandomNumberGenerator(SquaresRandomNumberGenerator.DefaultKey, Seed);
+        var rand = new SquaresRandomNumberGenerator();
         while (locations.Count > 0)
         {
             _filledLocations.Add(locations[0]);
@@ -1476,17 +1476,19 @@ internal class Shuffler
 
         foreach (var define in _logicParser.GetEventDefines()) define.WriteDefineString(eventBuilder);
 
-        var seedValues = new byte[8];
+        var seedValues = new byte[4];
         seedValues[0] = (byte)((Seed >> 00) & 0xFF);
         seedValues[1] = (byte)((Seed >> 08) & 0xFF);
         seedValues[2] = (byte)((Seed >> 16) & 0xFF);
         seedValues[3] = (byte)((Seed >> 24) & 0xFF);
-        seedValues[4] = (byte)((Seed >> 32) & 0xFF);
-        seedValues[5] = (byte)((Seed >> 40) & 0xFF);
-        seedValues[6] = (byte)((Seed >> 48) & 0xFF);
-        seedValues[7] = (byte)((Seed >> 56) & 0xFF);
-        var crc = (int)CrcUtil.Crc32(seedValues, 8);
-        eventBuilder.AppendLine("#define seedHashed 0x" + StringUtil.AsStringHex8(crc));
+        var crc1 = (int)CrcUtil.Crc32(seedValues, 4);
+        seedValues[0] = (byte)((Seed >> 32) & 0xFF);
+        seedValues[1] = (byte)((Seed >> 40) & 0xFF);
+        seedValues[2] = (byte)((Seed >> 48) & 0xFF);
+        seedValues[3] = (byte)((Seed >> 56) & 0xFF);
+        var crc2 = (int)CrcUtil.Crc32(seedValues, 4);
+
+        eventBuilder.AppendLine("#define seedHashed 0x" + StringUtil.AsStringHex8(crc1 ^ crc2));
         eventBuilder.AppendLine("#define settingHash 0x" + StringUtil.AsStringHex8((int)GetSettingHash()));
 
         return eventBuilder.ToString();

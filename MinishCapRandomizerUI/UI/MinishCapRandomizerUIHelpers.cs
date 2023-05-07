@@ -1,12 +1,15 @@
-﻿using System.Net;
+﻿using System.Globalization;
+using System.Net;
 using System.Reflection;
 using MinishCapRandomizerUI.DrawConstants;
 using MinishCapRandomizerUI.Elements;
 using MinishCapRandomizerUI.UI.Config;
 using Newtonsoft.Json;
+using RandomizerCore.Controllers;
 using RandomizerCore.Controllers.Models;
 using RandomizerCore.Random;
 using RandomizerCore.Randomizer.Exceptions;
+using RandomizerCore.Utilities.Util;
 
 namespace MinishCapRandomizerUI.UI
 {
@@ -224,16 +227,17 @@ Generating seeds with this shuffler may freeze the randomizer application for ma
 			catch { }
 		}
 
-        private static void CheckForUpdates()
+        private static bool CheckForUpdates()
         {
             var githubData = DownloadUrlAsString();
             var releases = JsonConvert.DeserializeObject<List<Github.Release>>(githubData);
             var tag = Assembly.GetExecutingAssembly().GetCustomAttributesData().First(x => x.AttributeType.Name == "AssemblyInformationalVersionAttribute").ConstructorArguments.First().ToString();
             tag = tag[(tag.IndexOf('+') + 1)..^1];
-            if (releases!.First().Tag_Name == tag) return;
+            if (releases!.First().Tag_Name == tag) return false;
             
             var url = new UrlDialog.UrlDialog(releases!.First().Html_Url);
             url.ShowDialog();
+            return true;
         }
         
         private static string DownloadUrlAsString()
@@ -337,8 +341,84 @@ Generating seeds with this shuffler may freeze the randomizer application for ma
 
 			SettingHashLabel.Text = settingsString;
 			CosmeticStringLabel.Text = cosmeticsString;
+            
+            DisplaySeedHash();
 
 			TabPane.SelectedTab = SeedOutput;
 		}
+
+        private void DisplaySeedHash()
+        {
+            const byte hashMask = 0b111111;
+            
+            
+            ImagePanel.Controls.Clear();
+
+            var badBgColor = Color.FromArgb(0x30, 0xa0, 0xac).ToArgb();
+            var otherBadBgColor = Color.FromArgb(0x30, 0xa0, 0x78).ToArgb();
+            var newBgColor = Color.FromArgb(0x08, 0x19, 0xad);
+            var eventDefines = _shufflerController.GetEventWrites().Split('\n');
+            var customRng = uint.Parse(eventDefines.First(line => line.Contains("customRNG")).Split(' ')[2][2..], 
+                NumberStyles.HexNumber);
+            var seed = uint.Parse(eventDefines.First(line => line.Contains("seedHashed")).Split(' ')[2][2..],
+                NumberStyles.HexNumber);
+            var settings = uint.Parse(eventDefines.First(line => line.Contains("settingHash")).Split(' ')[2][2..],
+                NumberStyles.HexNumber);
+
+            using var stream = Assembly.GetAssembly(typeof(ShufflerController))?.GetManifestResourceStream("RandomizerCore.Resources.hashicons.png");
+            var hashImageList = new Bitmap(stream);
+
+            var image = new PictureBox
+            {
+                Width = 384,
+                Height = 48,
+                Margin = Padding.Empty
+            };
+            var hashImage = new Bitmap(384, 48);
+            
+            for (var imageNum = 0; imageNum < 8; ++imageNum)
+            {
+
+                var imageIndex = imageNum switch
+                {
+                    0 => (seed >> 24) & hashMask,
+                    1 => (seed >> 16) & hashMask,
+                    2 => (seed >> 8) & hashMask,
+                    3 => seed & hashMask,
+                    4 => (customRng >> 8) & hashMask,
+                    5 => 64U,
+                    6 => (settings >> 8) & hashMask,
+                    7 => (settings >> 16) & hashMask
+                };
+
+                var k = 16 * (int)imageIndex;
+                var l = 16 * imageNum;
+                for (var i = 0; i < 16; ++i)
+                {
+                    var i3 = i * 3;
+                    for (var j = 0; j < 16; ++j)
+                    {
+                        var color = hashImageList.GetPixel(j, i + k);
+                        var argb = color.ToArgb();
+                        if (argb == badBgColor || argb == otherBadBgColor)
+                            color = newBgColor;
+                        AddColorToImage3X(hashImage, color, j + l, i3);
+                        AddColorToImage3X(hashImage, color, j + l, i3 + 1);
+                        AddColorToImage3X(hashImage, color, j + l, i3 + 2);
+                    }
+                }
+            }
+
+            image.Image = hashImage;
+            ImagePanel.Controls.Add(image);
+        }
+
+        private static void AddColorToImage3X(Bitmap baseImage, Color targetColor, int x, int y)
+        {
+            x *= 3;
+            baseImage.SetPixel(x, y, targetColor);
+            baseImage.SetPixel(x + 1, y, targetColor);
+            baseImage.SetPixel(x + 2, y, targetColor);
+        }
 	}
 }

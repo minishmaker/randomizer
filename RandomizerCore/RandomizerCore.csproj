@@ -22,6 +22,10 @@
 
     <ItemGroup>
         <EmbeddedResource Include="Resources\default.logic" />
+        <None Remove="Resources\hashicons.png" />
+        <EmbeddedResource Include="Resources\hashicons.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </EmbeddedResource>
     </ItemGroup>
 
     <ItemGroup>
