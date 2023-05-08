@@ -1,15 +1,17 @@
-using System.Drawing;
+﻿using System.Drawing;
 using RandomizerCore.Random;
+using RandomizerCore.Randomizer;
 using RandomizerCore.Randomizer.Exceptions;
+using RandomizerCore.Randomizer.Helpers;
 using RandomizerCore.Randomizer.Logic.Options;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 
-namespace RandomizerCore.Randomizer.Models;
+namespace RandomizerCore.Utilities.Util;
 
-internal static class Mystery
+internal static class YamlParser
 {
-    private static string indent = "  ";
+        private static string indent = "  ";
     private static int commentOffset = 50;
 
     public static string CreateYAML(string? name, string? description, List<LogicOptionBase> logicOptions, bool mysteryFlag)
@@ -106,7 +108,7 @@ internal static class Mystery
 
     public static YAMLResult ParseYAML(string file, List<LogicOptionBase> baseOptions, SquaresRandomNumberGenerator random)
     {
-        OptionList newOptions = new OptionList(baseOptions.Count);
+        var newOptions = new OptionList(baseOptions.Count);
         var optionMap = new Dictionary<string, LogicOptionBase>(baseOptions.Count);
         foreach (var setting in baseOptions)
         {
@@ -200,10 +202,13 @@ internal static class Mystery
                 if (string.Equals(value, "on", StringComparison.OrdinalIgnoreCase) || string.Equals(value, "true", StringComparison.OrdinalIgnoreCase) || value == "1")
                     option.Active = true;
                 else
-                    if (string.Equals(value, "off", StringComparison.OrdinalIgnoreCase) || string.Equals(value, "false", StringComparison.OrdinalIgnoreCase) || value == "0")
+                {
+                    if (string.Equals(value, "off", StringComparison.OrdinalIgnoreCase) ||
+                        string.Equals(value, "false", StringComparison.OrdinalIgnoreCase) || value == "0")
                         option.Active = false;
                     else
                         throw new ParserException($"Invalid value \"{value}\" for Flag option \"{option.Name}\"");
+                }
                 break;
             case LogicDropdown dropdown:
                 if (dropdown.Selections.ContainsValue(value))
@@ -219,6 +224,7 @@ internal static class Mystery
                     colorPicker.DefinedColor = colorPicker.BaseColor;
                 }
                 else
+                {
                     if (string.Equals(value, "default", StringComparison.OrdinalIgnoreCase))
                     {
                         colorPicker.Active = true;
@@ -244,17 +250,20 @@ internal static class Mystery
                             else
                             {
                                 var colorValues = value.Split(" ");
-                                if (colorValues.Length == 3 && int.TryParse(colorValues[0], out int r) && int.TryParse(colorValues[1], out int g) && int.TryParse(colorValues[2], out int b))
+                                if (colorValues.Length == 3 && int.TryParse(colorValues[0], out int r) &&
+                                    int.TryParse(colorValues[1], out int g) && int.TryParse(colorValues[2], out int b))
                                 {
                                     colorPicker.Active = true;
                                     colorPicker.UseRandomColor = false;
                                     colorPicker.DefinedColor = Color.FromArgb(r, g, b);
                                 }
                                 else
-                                    throw new ParserException($"Invalid value \"{value}\" for Color option \"{option.Name}\"");
+                                    throw new ParserException(
+                                        $"Invalid value \"{value}\" for Color option \"{option.Name}\"");
                             }
                         }
                     }
+                }
                 break;
             case LogicNumberBox box:
                 if (int.TryParse(value, out var i) && i >= box.MinValue && i <= box.MaxValue)

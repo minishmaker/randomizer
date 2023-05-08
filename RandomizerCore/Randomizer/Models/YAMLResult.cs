@@ -1,4 +1,5 @@
 using RandomizerCore.Randomizer;
+using RandomizerCore.Randomizer.Helpers;
 
 public struct YAMLResult
 {

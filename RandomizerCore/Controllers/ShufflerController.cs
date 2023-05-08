@@ -34,15 +34,12 @@ public class ShufflerController : ControllerBase
         Shuffler = _shuffler;
     }
 
-    public string PublishLogs()
+    protected ShufflerController(Type childType) : base(childType)
     {
-        var published = Logger.Instance.PublishLogs();
-        return published
-            ? $"Success! Published logs to {Logger.Instance.OutputFilePath}"
-            : "Log output failed! Please check your file path and make sure you have write access.";
+        
     }
 
-    public string GetEventWrites()
+    public override string GetEventWrites()
     {
         return _shuffler.GetEventWrites();
     }

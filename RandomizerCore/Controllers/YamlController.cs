@@ -1,15 +1,12 @@
 ﻿using RandomizerCore.Controllers.Models;
 using RandomizerCore.Random;
-using RandomizerCore.Randomizer;
 using RandomizerCore.Randomizer.Exceptions;
-using RandomizerCore.Randomizer.Logic.Options;
-using RandomizerCore.Randomizer.Models;
 using RandomizerCore.Randomizer.Shuffler;
 using RandomizerCore.Utilities.Logging;
 
 namespace RandomizerCore.Controllers;
 
-public class YamlController : ControllerBase
+public class YamlController : ShufflerController
 {
     private readonly YamlShuffler _shuffler;
     private string? _cachedLogicFile;
@@ -50,25 +47,9 @@ public class YamlController : ControllerBase
         Shuffler = _shuffler;
     }
 
-    public ShufflerControllerResult SaveSettingsAsYAML(string filepath, string name, List<LogicOptionBase> options)
+    public override string GetEventWrites()
     {
-        try
-        {
-            File.WriteAllText(filepath, Mystery.CreateYAML(name, null, options, false));
-
-            return new ShufflerControllerResult { WasSuccessful = true };
-        }
-        catch (Exception e)
-        {
-            Logger.Instance.LogException(e);
-            Logger.Instance.SaveLogTransaction();
-            return new ShufflerControllerResult
-            {
-                WasSuccessful = false,
-                Error = e,
-                ErrorMessage = e.Message
-            };
-        }
+        return _shuffler.GetEventWrites();
     }
     
     public override ShufflerControllerResult LoadLocations(string? logicFile = null, string? yamlFileLogic = null, string? yamlFileCosmetics = null, bool useGlobalYAML = false)

@@ -1,4 +1,4 @@
-﻿namespace MinishCapRandomizerUI.UI
+﻿namespace MinishCapRandomizerUI.UI.About
 {
     partial class About
     {

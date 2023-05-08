@@ -1,7 +1,9 @@
 ﻿using System.Reflection;
 using RandomizerCore.Core;
-using RandomizerCore.Randomizer;
-using RandomizerCore.Randomizer.Models;
+using RandomizerCore.Random;
+using RandomizerCore.Randomizer.Enumerables;
+using RandomizerCore.Randomizer.Helpers;
+using RandomizerCore.Randomizer.Logic.Options;
 using RandomizerCore.Randomizer.Shuffler;
 using RandomizerCore.Utilities.Logging;
 using RandomizerCore.Utilities.Models;
@@ -31,6 +33,14 @@ public abstract class ControllerBase
     public void SetLoggerVerbosity(bool useVerboseLogger)
     {
         Logger.Instance.UseVerboseLogger = useVerboseLogger;
+    }
+
+    public string PublishLogs()
+    {
+        var published = Logger.Instance.PublishLogs();
+        return published
+            ? $"Success! Published logs to {Logger.Instance.OutputFilePath}"
+            : "Log output failed! Please check your file path and make sure you have write access.";
     }
 
     public ShufflerControllerResult LoadSettingsFromSettingString(string settingString)
@@ -378,20 +388,20 @@ public abstract class ControllerBase
         }
     }
 
-	public ShufflerControllerResult ExportYAML(string filepath, bool mystery)
+	public ShufflerControllerResult ExportYaml(string filepath, bool mystery)
 	{
         string? name = null;
         var index = filepath.LastIndexOf(Path.DirectorySeparatorChar);
         if (index != -1)
         {
-            name = filepath.Substring(index + 1);
-            index = name.LastIndexOf(".");
+            name = filepath[(index + 1)..];
+            index = name.LastIndexOf(".", StringComparison.Ordinal);
             if(index != -1)
-                name = name.Substring(0, index);
+                name = name[..index];
         }
         try
         {
-			File.WriteAllText(filepath, Mystery.CreateYAML(name, null, GetSelectedOptions(), mystery));
+			File.WriteAllText(filepath, YamlParser.CreateYAML(name, null, GetSelectedOptions(), mystery));
 			return new ShufflerControllerResult { WasSuccessful = true };
         }
         catch (Exception e)
@@ -410,6 +420,89 @@ public abstract class ControllerBase
 		}
     }
 
+    public ShufflerControllerResult SaveSettingsAsYaml(string filepath, string name, List<LogicOptionBase> options)
+    {
+        try
+        {
+            File.WriteAllText(filepath, YamlParser.CreateYAML(name, null, options, false));
+
+            return new ShufflerControllerResult { WasSuccessful = true };
+        }
+        catch (Exception e)
+        {
+            Logger.Instance.LogException(e);
+            Logger.Instance.SaveLogTransaction();
+            return new ShufflerControllerResult
+            {
+                WasSuccessful = false,
+                Error = e,
+                ErrorMessage = e.Message
+            };
+        }
+    }
+    
+    public ShufflerControllerResult LoadSettingsFromYaml(string filepath)
+    {
+        try
+        {
+            var options = Shuffler.GetSelectedOptions().OnlyLogic();
+            var result = YamlParser.ParseYAML(File.ReadAllText(filepath), options, new SquaresRandomNumberGenerator());
+            LoadSettings(LogicOptionType.Setting, options, result);
+
+            return new ShufflerControllerResult { WasSuccessful = true };
+        }
+        catch (Exception e)
+        {
+            Logger.Instance.LogException(e);
+            Logger.Instance.SaveLogTransaction();
+            return new ShufflerControllerResult
+            {
+                WasSuccessful = false,
+                Error = e,
+                ErrorMessage = e.Message
+            };
+        }
+    }
+
+    public ShufflerControllerResult LoadCosmeticsFromYaml(string filepath)
+    {
+        try
+        {
+            var options = Shuffler.GetSelectedOptions().OnlyCosmetic();
+            var result = YamlParser.ParseYAML(File.ReadAllText(filepath), options, new SquaresRandomNumberGenerator());
+            LoadSettings(LogicOptionType.Cosmetic, options, result);
+
+            return new ShufflerControllerResult { WasSuccessful = true };
+        }
+        catch (Exception e)
+        {
+            Logger.Instance.LogException(e);
+            Logger.Instance.SaveLogTransaction();
+            return new ShufflerControllerResult
+            {
+                WasSuccessful = false,
+                Error = e,
+                ErrorMessage = e.Message
+            };
+        }
+    }
+
+    private void LoadSettings(LogicOptionType optionType, IEnumerable<LogicOptionBase> options, YAMLResult result)
+    {
+        var resultOptionsIndex = 0;
+
+        foreach (var option in options)
+        {
+            if (option.Type != optionType) continue;
+            
+            if (option.Name != result.Options[resultOptionsIndex].Name)
+                throw new Exception($"Attempt to load {optionType} from yaml failed! Expected {result.Options[resultOptionsIndex].Name}, got {option.Name}");
+                        
+            option.CopyValueFrom(result.Options[resultOptionsIndex++]);
+            option.NotifyObservers();
+        }
+    }
+
     protected ControllerBase(Type baseClassType)
     {
         Logger.Instance.LogInfo($"Minish Cap Randomizer Core Version {VersionName} {RevName} initialized!");
@@ -426,4 +519,6 @@ public abstract class ControllerBase
     public abstract ShufflerControllerResult LoadLocations(string? logicFile = null, string? yamlFileLogic = null, string? yamlFileCosmetics = null, bool useGlobalYAML = false);
 
     public abstract ShufflerControllerResult Randomize(int retries = 1, bool useSphereBasedShuffler = false);
+
+    public abstract string GetEventWrites();
 }

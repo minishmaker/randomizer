@@ -32,6 +32,12 @@
       <Compile Remove="NewFolder\**" />
       <EmbeddedResource Remove="NewFolder\**" />
       <None Remove="NewFolder\**" />
+      <Compile Update="UI\About\About.cs">
+        <SubType>Form</SubType>
+      </Compile>
+      <Compile Update="UI\MainWindow\MinishCapRandomizerUI.cs">
+        <SubType>Form</SubType>
+      </Compile>
     </ItemGroup>
 
     <ItemGroup>
@@ -48,7 +54,6 @@
             <AutoGen>True</AutoGen>
             <DependentUpon>Resources.resx</DependentUpon>
         </Compile>
-        <Compile Update="UI\MinishCapRandomizerUI.cs" />
     </ItemGroup>
 
     <ItemGroup>
@@ -69,15 +74,15 @@
     </Target>
 
     <Target Name="PostBuildDebug" Condition="'$(Configuration)' == 'Debug'" AfterTargets="PostBuildEvent">
-        <Exec Command="xcopy &quot;$(ProjectDir)..\RandomizerCore\Resources\Patches\&quot; &quot;$(TargetDir)Patches\&quot; /y /d /s"/>
-        <Exec Command="xcopy &quot;$(ProjectDir)..\Vendor\Language Raws\&quot; &quot;$(TargetDir)Language Raws\&quot; /y /d /s"/>
-        <Exec Command="xcopy &quot;$(ProjectDir).\Resources\Presets\&quot; &quot;$(TargetDir)Presets\&quot; /y /d /s"/>
+        <Exec Command="xcopy &quot;$(ProjectDir)..\RandomizerCore\Resources\Patches\&quot; &quot;$(TargetDir)Patches\&quot; /y /d /s" />
+        <Exec Command="xcopy &quot;$(ProjectDir)..\Vendor\Language Raws\&quot; &quot;$(TargetDir)Language Raws\&quot; /y /d /s" />
+        <Exec Command="xcopy &quot;$(ProjectDir).\Resources\Presets\&quot; &quot;$(TargetDir)Presets\&quot; /y /d /s" />
     </Target>
 
     <Target Name="PostBuildRelease" Condition="'$(Configuration)' == 'Release'" AfterTargets="PostBuildEvent">
-        <Exec Command="xcopy &quot;$(ProjectDir)..\RandomizerCore\Resources\Patches\&quot; &quot;$(PublishDir)Patches\&quot; /y /d /s"/>
-        <Exec Command="xcopy &quot;$(ProjectDir)..\Vendor\Language Raws\&quot; &quot;$(PublishDir)Language Raws\&quot; /y /d /s"/>
-        <Exec Command="xcopy &quot;$(ProjectDir).\Resources\Presets\&quot; &quot;$(PublishDir)Presets\&quot; /y /d /s"/>
+        <Exec Command="xcopy &quot;$(ProjectDir)..\RandomizerCore\Resources\Patches\&quot; &quot;$(PublishDir)Patches\&quot; /y /d /s" />
+        <Exec Command="xcopy &quot;$(ProjectDir)..\Vendor\Language Raws\&quot; &quot;$(PublishDir)Language Raws\&quot; /y /d /s" />
+        <Exec Command="xcopy &quot;$(ProjectDir).\Resources\Presets\&quot; &quot;$(PublishDir)Presets\&quot; /y /d /s" />
     </Target>
 
 </Project>

@@ -57,8 +57,7 @@ internal class SphereBasedShuffler : Shuffler
 
         var diff = DateTime.Now - time;
         Logger.Instance.BeginLogTransaction();
-        var logicSettings = GetFinalOptions().OnlyLogic();
-        Logger.Instance.LogInfo($"Timing Benchmark - Shuffling with seed {Seed:X} and settings {MinifiedSettings.GenerateSettingsString(logicSettings.GetSorted(), logicSettings.GetCrc32())} took {diff.Seconds}.{diff.Milliseconds} seconds!");
+        Logger.Instance.LogInfo($"Timing Benchmark - Shuffling with seed {Seed:X} and settings {MinifiedSettings.GenerateSettingsString(GetSortedSettings(), GetLogicOptionsCrc32())} took {diff.Seconds}.{diff.Milliseconds} seconds!");
         Logger.Instance.SaveLogTransaction(true);
         
         Randomized = true;

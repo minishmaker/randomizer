@@ -1,12 +1,13 @@
 ﻿using System.Reflection;
 using System.Text;
 using ColorzCore;
-using RandomizerCore.Controllers;
+using RandomizerCore.Controllers.Models;
 using RandomizerCore.Core;
 using RandomizerCore.Random;
 using RandomizerCore.Randomizer.Enumerables;
 using RandomizerCore.Randomizer.Exceptions;
 using RandomizerCore.Randomizer.Helpers;
+using RandomizerCore.Randomizer.Helpers.Models;
 using RandomizerCore.Randomizer.Logic.Dependency;
 using RandomizerCore.Randomizer.Logic.Location;
 using RandomizerCore.Randomizer.Logic.Options;
@@ -55,8 +56,8 @@ internal abstract class ShufflerBase
             
             protected SquaresRandomNumberGenerator Rng;
             
-            protected OptionList Options;
-    
+            protected OptionList? Options;
+
             protected string? LogicPath;
 
         #endregion
@@ -176,7 +177,7 @@ internal abstract class ShufflerBase
             spoilerBuilder.AppendLine("Spoiler for Minish Cap Randomizer");
             spoilerBuilder.AppendLine($"Seed: {Seed:X}");
             spoilerBuilder.AppendLine(
-                $"Version: {ShufflerController.VersionIdentifier} {ShufflerController.RevisionIdentifier}");
+                $"Version: {ControllerBase.VersionIdentifier} {ControllerBase.RevisionIdentifier}");
             var logicSettings = GetFinalOptions().OnlyLogic();
             spoilerBuilder.AppendLine(
                 $"Settings String: {MinifiedSettings.GenerateSettingsString(logicSettings.GetSorted(), logicSettings.GetCrc32())}");
@@ -242,7 +243,7 @@ internal abstract class ShufflerBase
 
         public OptionList GetFinalOptions()
         {
-            return Options;
+            return Options ??= new OptionList(LogicParser.SubParser.Options);
         }
 
         public uint GetSettingHash()

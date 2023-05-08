@@ -3,7 +3,7 @@ using RandomizerCore.Randomizer.Enumerables;
 using RandomizerCore.Randomizer.Logic.Options;
 using RandomizerCore.Utilities.Util;
 
-namespace RandomizerCore.Randomizer;
+namespace RandomizerCore.Randomizer.Helpers;
 
 public class OptionList : List<LogicOptionBase>
 {

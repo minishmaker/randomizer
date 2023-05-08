@@ -145,7 +145,21 @@ internal static class GenericCommands
             Console.WriteLine("Invalid Input!");
             return;
         }
-        ShufflerController.LoadSettingsFromYAML(filepath, number % 2 == 1, number >= 2);
+
+        switch (number)
+        {
+            case 1:
+                ShufflerController.LoadSettingsFromYaml(filepath);
+                break;
+            case 2:
+                ShufflerController.LoadCosmeticsFromYaml(filepath);
+                break;
+            case 3:
+                ShufflerController.LoadSettingsFromYaml(filepath);
+                ShufflerController.LoadCosmeticsFromYaml(filepath);
+                break;
+        }
+        
         Console.WriteLine("Settings loaded successfully!");
     }
 
