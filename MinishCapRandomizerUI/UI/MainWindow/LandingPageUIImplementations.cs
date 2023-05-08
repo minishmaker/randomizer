@@ -108,7 +108,7 @@ partial class MinishCapRandomizerUI
 			return;
 		}
 
-        var result = _shufflerController.LoadSettingsFromYaml($"{presetPath}Settings{Path.DirectorySeparatorChar}{SettingPresets.SelectedItem}.yaml");
+        var result = _shufflerController.LoadSettingsFromYaml($"{_presetPath}Settings{Path.DirectorySeparatorChar}{SettingPresets.SelectedItem}.yaml");
 
         if (result)
         {
@@ -140,7 +140,7 @@ partial class MinishCapRandomizerUI
                 return;
             }
 
-            var result = _shufflerController.SaveSettingsAsYaml($"{presetPath}Settings{Path.DirectorySeparatorChar}{name}.yaml",
+            var result = _shufflerController.SaveSettingsAsYaml($"{_presetPath}Settings{Path.DirectorySeparatorChar}{name}.yaml",
                 name, _shufflerController.GetSelectedOptions().OnlyLogic());
 
             if (result)
@@ -174,7 +174,7 @@ partial class MinishCapRandomizerUI
 				try
 				{
 					presets.Remove(presets.First(preset => preset == (string)SettingPresets.SelectedItem));
-                    File.Delete($"{presetPath}Settings{Path.DirectorySeparatorChar}{SettingPresets.SelectedItem}.yaml");
+                    File.Delete($"{_presetPath}Settings{Path.DirectorySeparatorChar}{SettingPresets.SelectedItem}.yaml");
 
 					RemoveItemFromPresetsBox(SettingPresets, (string)SettingPresets.SelectedItem);
 					DisplayAlert("Preset deleted successfully!", "Preset deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -196,7 +196,7 @@ partial class MinishCapRandomizerUI
 			return;
 		}
 
-        var result = _shufflerController.LoadCosmeticsFromYaml($"{presetPath}Cosmetics{Path.DirectorySeparatorChar}{CosmeticsPresets.SelectedItem}.yaml");
+        var result = _shufflerController.LoadCosmeticsFromYaml($"{_presetPath}Cosmetics{Path.DirectorySeparatorChar}{CosmeticsPresets.SelectedItem}.yaml");
 
         if (result)
         {
@@ -228,7 +228,7 @@ partial class MinishCapRandomizerUI
                 return;
             }
 
-            var result = _shufflerController.SaveSettingsAsYaml($"{presetPath}Cosmetics{Path.DirectorySeparatorChar}{name}.yaml",
+            var result = _shufflerController.SaveSettingsAsYaml($"{_presetPath}Cosmetics{Path.DirectorySeparatorChar}{name}.yaml",
                 name, _shufflerController.GetSelectedOptions().OnlyCosmetic());
 
             if (result)
@@ -262,7 +262,7 @@ partial class MinishCapRandomizerUI
 				try
 				{
 					presets.Remove(presets.First(preset => preset == (string)CosmeticsPresets.SelectedItem));
-                    File.Delete($"{presetPath}Cosmetics{Path.DirectorySeparatorChar}{CosmeticsPresets.SelectedItem}.yaml");
+                    File.Delete($"{_presetPath}Cosmetics{Path.DirectorySeparatorChar}{CosmeticsPresets.SelectedItem}.yaml");
 
 					RemoveItemFromPresetsBox(CosmeticsPresets, (string)CosmeticsPresets.SelectedItem);
 					DisplayAlert("Preset deleted successfully!", "Preset deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);

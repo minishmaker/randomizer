@@ -84,8 +84,8 @@ partial class MinishCapRandomizerUI
             _yamlController.LoadLocations(UseCustomLogic.Checked ? LogicFilePath.Text : "", YAMLPath.Text, YAMLPath.Text, true);
         else
             _yamlController.LoadLocations(UseCustomLogic.Checked ? LogicFilePath.Text : "",
-                UseMysterySettings.Checked ? presetPath + "Mystery Settings" + Path.DirectorySeparatorChar + SettingsWeights.SelectedItem + ".yaml" : "",
-                UseMysteryCosmetics.Checked ? presetPath + "Mystery Cosmetics" + Path.DirectorySeparatorChar + CosmeticsWeights.SelectedItem + ".yaml" : "", false);
+                UseMysterySettings.Checked ? $"{_presetPath}Mystery Settings{Path.DirectorySeparatorChar}{SettingsWeights.SelectedItem}.yaml" : "",
+                UseMysteryCosmetics.Checked ? $"{_presetPath}Mystery Cosmetics{Path.DirectorySeparatorChar}{CosmeticsWeights.SelectedItem}.yaml" : "", false);
         
         var result = _yamlController.Randomize(retryAttempts, UseSphereBasedShuffler.Checked);
         
@@ -110,7 +110,7 @@ partial class MinishCapRandomizerUI
 			return;
 		}
 
-        var result = _yamlController.LoadSettingsFromYaml($"{presetPath}Mystery Settings{Path.DirectorySeparatorChar}{SettingsWeights.SelectedItem}.yaml");
+        var result = _yamlController.LoadSettingsFromYaml($"{_presetPath}Mystery Settings{Path.DirectorySeparatorChar}{SettingsWeights.SelectedItem}.yaml");
 
         if (result)
         {
@@ -132,7 +132,7 @@ partial class MinishCapRandomizerUI
 			return;
 		}
 
-        var result = _yamlController.LoadCosmeticsFromYaml($"{presetPath}Mystery Cosmetics{Path.DirectorySeparatorChar}{CosmeticsWeights.SelectedItem}.yaml");
+        var result = _yamlController.LoadCosmeticsFromYaml($"{_presetPath}Mystery Cosmetics{Path.DirectorySeparatorChar}{CosmeticsWeights.SelectedItem}.yaml");
 
         if (result)
         {

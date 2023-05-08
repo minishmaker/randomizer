@@ -151,23 +151,23 @@ Generating seeds with this shuffler may freeze the randomizer application for ma
         {
             _settingPresets = new SettingPresets();
 
-            var files = Directory.GetFiles($"{presetPath}Settings").Where(file => file.EndsWith(".yaml", true, null));
+            var files = Directory.GetFiles($"{_presetPath}Settings").Where(file => file.EndsWith(".yaml", true, null));
             _settingPresets.SettingsPresets = files.Select(file => file[(file.LastIndexOf(Path.DirectorySeparatorChar) + 1)..]).Select(file => file[..file.LastIndexOf(".", StringComparison.Ordinal)]).ToList();
 
 
-            files = Directory.GetFiles($"{presetPath}Cosmetics").Where(file => file.EndsWith(".yaml", true, null));
+            files = Directory.GetFiles($"{_presetPath}Cosmetics").Where(file => file.EndsWith(".yaml", true, null));
             _settingPresets.CosmeticsPresets = files.Select(file => file[(file.LastIndexOf(Path.DirectorySeparatorChar) + 1)..]).Select(file => file[..file.LastIndexOf(".", StringComparison.Ordinal)]).ToList();
 
             CosmeticsPresets.Items.AddRange(_settingPresets.CosmeticsPresets.ToArray());
             CosmeticsPresets.SelectedIndex = 0;
 
-            files = Directory.GetFiles($"{presetPath}Mystery Settings").Where(file => file.EndsWith(".yaml", true, null));
+            files = Directory.GetFiles($"{_presetPath}Mystery Settings").Where(file => file.EndsWith(".yaml", true, null));
             _settingPresets.SettingsWeights = files.Select(file => file[(file.LastIndexOf(Path.DirectorySeparatorChar) + 1)..]).Select(file => file[..file.LastIndexOf(".", StringComparison.Ordinal)]).ToList();
 
             SettingsWeights.Items.AddRange(_settingPresets.SettingsWeights.ToArray());
             SettingsWeights.SelectedIndex = 0;
 
-            files = Directory.GetFiles($"{presetPath}Mystery Cosmetics").Where(file => file.EndsWith(".yaml", true, null));
+            files = Directory.GetFiles($"{_presetPath}Mystery Cosmetics").Where(file => file.EndsWith(".yaml", true, null));
             _settingPresets.CosmeticsWeights = files.Select(file => file[(file.LastIndexOf(Path.DirectorySeparatorChar) + 1)..]).Select(file => file[..file.LastIndexOf(".", StringComparison.Ordinal)]).ToList();
 
             CosmeticsWeights.Items.AddRange(_settingPresets.CosmeticsWeights.ToArray());
@@ -257,10 +257,12 @@ Generating seeds with this shuffler may freeze the randomizer application for ma
         Seed.Text = $@"{seed:X}";
 
         var result = _shufflerController.LoadLogicFile(_configuration.UseCustomLogic ? _configuration.CustomLogicFilepath : "");
+        _yamlController.LoadLogicFile(_configuration.UseCustomLogic ? _configuration.CustomLogicFilepath : "");
         if (!result.WasSuccessful)
         {
             DisplayAlert("Could not load custom logic file from path in the config file. The file may have been moved or deleted.", "Could Not Load Logic File", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             _shufflerController.LoadLogicFile();
+            _yamlController.LoadLogicFile();
         }
         else
         {
@@ -299,6 +301,7 @@ Generating seeds with this shuffler may freeze the randomizer application for ma
         _defaultCosmetics = _shufflerController.GetSelectedCosmeticsString();
 
         _shufflerController.SetRandomizationSeed(seed);
+        _yamlController.SetRandomizationSeed(seed);
 
         checkForUpdatesOnStartToolStripMenuItem.Checked = _configuration.CheckForUpdatesOnStart;
         if (_configuration.CheckForUpdatesOnStart)
@@ -333,8 +336,6 @@ Generating seeds with this shuffler may freeze the randomizer application for ma
 
         var settingsString = _shufflerController.GetFinalSettingsString();
         var cosmeticsString = _shufflerController.GetFinalCosmeticsString();
-
-        //TODO: Fix this, it doesn't work anymore
         
         if (UseMysteryCosmetics.Checked || UseMysterySettings.Checked || UseCustomYAML.Checked)
             UpdateSeedInfoPageYaml(settingsString, cosmeticsString);

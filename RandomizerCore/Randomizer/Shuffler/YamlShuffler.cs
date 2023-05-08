@@ -1,7 +1,10 @@
 ﻿using System.Text;
 using RandomizerCore.Random;
+using RandomizerCore.Randomizer.Enumerables;
 using RandomizerCore.Randomizer.Helpers;
+using RandomizerCore.Randomizer.Logic.Dependency;
 using RandomizerCore.Randomizer.Models;
+using RandomizerCore.Utilities.Logging;
 using RandomizerCore.Utilities.Util;
 
 namespace RandomizerCore.Randomizer.Shuffler;
@@ -96,9 +99,34 @@ internal class YamlShuffler : Shuffler
         }
 
 		// Set option defines
-		LogicParser.SubParser.AddOptions(Options);
+        LogicParser.SubParser.AddOptions(Options);
+
+        var locationStrings = LoadLocationFile(logicFile);
         
-        base.LoadLocations(logicFile);
+        var time = DateTime.Now;
+        var locationAndItems = LogicParser.ParseLocationsAndItems(locationStrings, Rng);
+
+        LogicParser.SubParser.DuplicateAmountReplacements();
+        LogicParser.SubParser.DuplicateIncrementalReplacements();
+
+        var collectedLocations = locationAndItems.locations.Select(AddLocation).ToList();
+        var collectedItems = locationAndItems.items.Concat(locationAndItems.locations.Where(loc => loc.Type is LocationType.Unshuffled && loc.Contents.HasValue).Select(loc => loc.Contents!.Value)).Select(AddItem).ToList();
+
+        var distinctDeps = LogicParser.Dependencies.Distinct().ToList();
+
+        foreach (var itemDep in distinctDeps.Where(dep => dep.GetType() == typeof(ItemDependency)))
+            itemDep.ExpandRequiredDependencies(collectedLocations, collectedItems);
+        foreach (var countDep in distinctDeps.Where(dep => dep.GetType() == typeof(CounterDependency)))
+            countDep.ExpandRequiredDependencies(collectedLocations, collectedItems);
+        foreach (var locDep in distinctDeps.Where(dep => dep.GetType() == typeof(LocationDependency)))
+            locDep.ExpandRequiredDependencies(collectedLocations, collectedItems);
+        foreach (var itemDep in distinctDeps.Where(dep => dep.GetType() == typeof(NotItemDependency)))
+            itemDep.ExpandRequiredDependencies(collectedLocations, collectedItems);
+
+        var diff = DateTime.Now - time;
+        Logger.Instance.BeginLogTransaction();
+        Logger.Instance.LogInfo($"Timing Benchmark - Parsing logic file took {diff.Seconds}.{diff.Milliseconds} seconds!");
+        Logger.Instance.SaveLogTransaction(true);
     }
 
     public override string GetEventWrites()

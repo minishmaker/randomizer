@@ -8,9 +8,7 @@ namespace MinishCapRandomizerUI.UI.MainWindow;
 
 public sealed partial class MinishCapRandomizerUI : Form
 {
-	private ShufflerController _shufflerController;
-
-	private UIConfiguration _configuration;
+    private UIConfiguration _configuration;
 	private bool _customLogicFileLoaded = false;
 	private bool _randomizedRomCreated = false;
 	private bool _isApplyPatchMode = true;
@@ -22,15 +20,17 @@ public sealed partial class MinishCapRandomizerUI : Form
     private uint _recentSettingsPresetHash;
     private uint _recentCosmeticsPresetHash;
 
-    private readonly string presetPath = Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory) + Path.DirectorySeparatorChar + "Presets" + Path.DirectorySeparatorChar;
+    private readonly string _presetPath =
+        $@"{Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory)}{Path.DirectorySeparatorChar}Presets{Path.DirectorySeparatorChar}";
 
 #pragma warning disable CS8618
 	public MinishCapRandomizerUI()
 #pragma warning restore CS8618
 	{
 		InitializeComponent();
-		_shufflerController = new ShufflerController();
-		Text = $@"{_shufflerController.AppName} {_shufflerController.VersionName} {_shufflerController.RevName}";
+        InitializeYamlUi();
+        InitializeBaseUi();
+        Text = $@"{_shufflerController.AppName} {_shufflerController.VersionName} {_shufflerController.RevName}";
 		FormClosing += SaveConfig;
 		LoadConfig();
 		InitializeUi();

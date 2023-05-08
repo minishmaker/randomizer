@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using RandomizerCore.Controllers;
 
 namespace MinishCapRandomizerUI.UI.MainWindow;
 
@@ -9,6 +10,13 @@ public class MinishCapRandomizerBaseShufflerFunctions
 
 public partial class MinishCapRandomizerUI
 {
+    private ShufflerController _shufflerController;
+    
+    private void InitializeBaseUi()
+    {
+        _shufflerController = new ShufflerController();
+    }
+    
     private void RandomizeWithBaseShuffler()
     {
         if (!ulong.TryParse(Seed.Text, NumberStyles.HexNumber, default, out var seed))
