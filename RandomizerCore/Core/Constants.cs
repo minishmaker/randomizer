@@ -70,9 +70,7 @@ public enum DungeonEntranceType
     FoW = 0x03,
     ToD = 0x04,
     Crypt = 0x05,
-    PoW = 0x06,
-    DHCMain = 0x07,
-    DHCSide = 0x08,
+    PoW = 0x06
 }
 
 public enum DungeonType
