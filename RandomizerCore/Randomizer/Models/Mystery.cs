@@ -5,7 +5,7 @@ using RandomizerCore.Randomizer.Logic.Options;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 
-namespace RandomizerCore.Randomizer;
+namespace RandomizerCore.Randomizer.Models;
 
 internal static class Mystery
 {
