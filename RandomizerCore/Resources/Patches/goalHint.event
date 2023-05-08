@@ -25,7 +25,27 @@ String("You need to"); BYTE 0x0A
     String("beat "); BYTE 0x02 0x01 0x30+requirementDungeonsAmount; String(" dungeons"); BYTE 0x02 0x00; String(" and"); BYTE 0x0A
 #endif
 #ifdef requirementSwordTier
-    String("wield "); BYTE 0x02 0x01 0x30+requirementSwordTier; String(" swords"); BYTE 0x02 0x00; String(" and"); BYTE 0x0A
+    #ifdef requirementSwordName1
+        String("wield the "); BYTE 0x02 0x01; String("Smith Sword"); BYTE 0x02 0x00; String(" and"); BYTE 0x0A
+    #else
+        #ifdef requirementSwordName2
+            String("wield the "); BYTE 0x02 0x01; String("Green Sword"); BYTE 0x02 0x00; String(" and"); BYTE 0x0A
+        #else
+            #ifdef requirementSwordName3
+                String("wield the "); BYTE 0x02 0x01; String("Red Sword"); BYTE 0x02 0x00; String(" and"); BYTE 0x0A
+            #else
+                #ifdef requirementSwordName4
+                    String("wield the "); BYTE 0x02 0x01; String("Blue Sword"); BYTE 0x02 0x00; String(" and"); BYTE 0x0A
+                #else
+                    #ifdef requirementSwordName5
+                        String("wield the "); BYTE 0x02 0x01; String("Four Sword"); BYTE 0x02 0x00; String(" and"); BYTE 0x0A
+                    #else
+                        String("wield "); BYTE 0x02 0x01 0x30+requirementSwordTier; String(" swords"); BYTE 0x02 0x00; String(" and"); BYTE 0x0A
+                    #endif
+                #endif
+            #endif
+        #endif
+    #endif
 #endif
 #ifdef requirementElementsAmount
     String("acquire "); BYTE 0x02 0x01 0x30+requirementElementsAmount; String(" elements"); BYTE 0x02 0x00; String(" and"); BYTE 0x0A

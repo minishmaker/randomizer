@@ -1606,6 +1606,7 @@
 		!endif
 	!endif
 	!eventdefine - requirementSwordTier       - `SWORDLEVEL`
+	!eventdefine - requirementSwordName`SWORDLEVEL`
 	!ifdef - YESPROG
 		!undefine - GOTSWORDS
 		!define - GOTSWORDS - Items.ProgressiveItem.0x00:`SWORDLEVEL`
