@@ -72,6 +72,8 @@ public static class CommandFileParser
 
                     var num = 0;
                     var failures = 0;
+                    var lastRunFailure = false;
+                    var consecutiveFailures = 0;
                     while (num++ < numberOfSeedToGen)
                     {
                         GenericCommands.Seed("R");
@@ -86,7 +88,7 @@ public static class CommandFileParser
                             lastRunFailure = true;
                             if (++consecutiveFailures < 10) continue;
                             
-                            logBuilder.AppendLine($"Failed to generate with settings {GenericCommands.ShufflerController.GetSettingsString()}");
+                            logBuilder.AppendLine($"Failed to generate with settings {GenericCommands.ShufflerController.GetSelectedSettingsString()}");
                             lastRunFailure = false;
                             consecutiveFailures = 0;
                         }
@@ -113,7 +115,7 @@ public static class CommandFileParser
 
     private static void ShuffleAllOptions()
     {
-        var options = GenericCommands.ShufflerController.GetLogicOptions();
+        var options = GenericCommands.ShufflerController.GetSelectedOptions();
 
         var rand = new Random();
 

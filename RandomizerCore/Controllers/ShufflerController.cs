@@ -79,10 +79,6 @@ public class ShufflerController
 
     public string GetCosmeticsYAMLName() => _shuffler.GetCosmeticsYAMLName();
 
-    public string GetLogicYAMLDescription() => _shuffler.GetLogicYAMLDescription();
-
-    public string GetCosmeticsYAMLDescription() => _shuffler.GetCosmeticsYAMLDescription();
-
     public string GetEventWrites()
     {
         return _shuffler.GetEventWrites();
@@ -152,7 +148,7 @@ public class ShufflerController
                 affectedOptions = affectedOptions.OnlyLogic();
             if (!logicSettings)
                 affectedOptions = affectedOptions.OnlyCosmetic();
-            var result = Mystery.ParseYAML(File.ReadAllText(filepath), affectedOptions, new Random());
+            var result = Mystery.ParseYAML(File.ReadAllText(filepath), affectedOptions, new SquaresRandomNumberGenerator());
             var j = 0;
 
             for (var i = 0; i < currentOptions.Count; i++)

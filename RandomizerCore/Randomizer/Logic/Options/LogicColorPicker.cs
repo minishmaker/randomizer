@@ -82,7 +82,7 @@ public class LogicColorPicker : LogicOptionBase
 
         if (UseRandomColor)
         {
-            var random = new Random();
+            var random = new System.Random();
             FinalColor = Color.FromArgb(random.Next(256), random.Next(256), random.Next(256));
         }
 

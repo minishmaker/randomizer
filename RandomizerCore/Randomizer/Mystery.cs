@@ -1,4 +1,5 @@
 using System.Drawing;
+using RandomizerCore.Random;
 using RandomizerCore.Randomizer.Exceptions;
 using RandomizerCore.Randomizer.Logic.Options;
 using YamlDotNet.Serialization;
@@ -103,7 +104,7 @@ internal static class Mystery
         return line + new string(' ', Math.Max(0, padding-line.Length)) + "# " + comment + Environment.NewLine;
     }
 
-    public static YAMLResult ParseYAML(string file, List<LogicOptionBase> baseOptions, Random random)
+    public static YAMLResult ParseYAML(string file, List<LogicOptionBase> baseOptions, SquaresRandomNumberGenerator random)
     {
         OptionList newOptions = new OptionList(baseOptions.Count);
         var optionMap = new Dictionary<string, LogicOptionBase>(baseOptions.Count);
@@ -120,7 +121,7 @@ internal static class Mystery
         return new YAMLResult(newOptions, weights.Name ?? "(No name set)", weights.Description ?? "(No description set)");
     }
 
-    private static void HandleWeights(MysteryWeights weights, Dictionary<string, LogicOptionBase> optionMap, Random random)
+    private static void HandleWeights(MysteryWeights weights, Dictionary<string, LogicOptionBase> optionMap, SquaresRandomNumberGenerator random)
     {
         if (weights.Settings != null)
         {
@@ -191,7 +192,7 @@ internal static class Mystery
         }
     }
 
-    private static void SetOptionValue(LogicOptionBase option, string value, Random random)
+    private static void SetOptionValue(LogicOptionBase option, string value, SquaresRandomNumberGenerator random)
     {
         switch (option)
         {

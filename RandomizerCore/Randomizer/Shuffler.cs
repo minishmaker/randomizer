@@ -9,6 +9,7 @@ using RandomizerCore.Randomizer.Exceptions;
 using RandomizerCore.Randomizer.Helpers;
 using RandomizerCore.Randomizer.Logic.Dependency;
 using RandomizerCore.Randomizer.Logic.Location;
+using RandomizerCore.Randomizer.Logic.Options;
 using RandomizerCore.Randomizer.Models;
 using RandomizerCore.Utilities.Extensions;
 using RandomizerCore.Utilities.IO;
@@ -149,8 +150,6 @@ internal class Shuffler
     public string GetLogicYAMLName() => YamlNameLogic;
 
     public string GetCosmeticsYAMLName() => YamlNameCosmetics;
-
-    public string GetYAMLDescription() => YamlDescription;
     
     public List<LogicOptionBase> GetSortedSettings()
     {
@@ -270,7 +269,7 @@ internal class Shuffler
             else
             {
                 Options = new OptionList(GetSelectedOptions()).OnlyLogic();
-                var result = Mystery.ParseYAML(File.ReadAllText(yamlFileCosmetics), GetSelectedOptions(), new Random(Seed));
+                var result = Mystery.ParseYAML(File.ReadAllText(yamlFileCosmetics), GetSelectedOptions(), new SquaresRandomNumberGenerator(SquaresRandomNumberGenerator.DefaultKey, Seed));
                 Options.AddRange(result.Options.OnlyCosmetic());
                 YamlNameCosmetics = result.Name;
                 YamlDescriptionCosmetics = result.Description;
@@ -280,7 +279,7 @@ internal class Shuffler
         {
             if (useGlobalYAML)
             {
-                var result = Mystery.ParseYAML(File.ReadAllText(yamlFileLogic), GetSelectedOptions(), new Random(Seed));
+                var result = Mystery.ParseYAML(File.ReadAllText(yamlFileLogic), GetSelectedOptions(), new SquaresRandomNumberGenerator(SquaresRandomNumberGenerator.DefaultKey, Seed));
                 Options = result.Options;
                 YamlNameLogic = YamlNameCosmetics = result.Name;
                 YamlDescriptionLogic = YamlDescriptionCosmetics = result.Description;
@@ -290,18 +289,18 @@ internal class Shuffler
                 if (string.IsNullOrEmpty(yamlFileCosmetics))
                 {
                     Options = new OptionList(GetSelectedOptions()).OnlyCosmetic();
-                    var result = Mystery.ParseYAML(File.ReadAllText(yamlFileLogic), GetSelectedOptions(), new Random(Seed));
+                    var result = Mystery.ParseYAML(File.ReadAllText(yamlFileLogic), GetSelectedOptions(), new SquaresRandomNumberGenerator(SquaresRandomNumberGenerator.DefaultKey, Seed));
                     Options.AddRange(result.Options.OnlyLogic());
                     YamlNameLogic = result.Name;
                     YamlDescriptionLogic = result.Description;
                 }
                 else
                 {
-                    var result = Mystery.ParseYAML(File.ReadAllText(yamlFileLogic), GetSelectedOptions(), new Random(Seed));
+                    var result = Mystery.ParseYAML(File.ReadAllText(yamlFileLogic), GetSelectedOptions(), new SquaresRandomNumberGenerator(SquaresRandomNumberGenerator.DefaultKey, Seed));
                     Options = result.Options.OnlyLogic();
                     YamlNameLogic = result.Name;
                     YamlDescriptionLogic = result.Description;
-                    result = Mystery.ParseYAML(File.ReadAllText(yamlFileCosmetics), GetSelectedOptions(), new Random(Seed));
+                    result = Mystery.ParseYAML(File.ReadAllText(yamlFileCosmetics), GetSelectedOptions(), new SquaresRandomNumberGenerator(SquaresRandomNumberGenerator.DefaultKey, Seed));
                     Options.AddRange(result.Options.OnlyCosmetic());
                     YamlNameCosmetics = result.Name;
                     YamlDescriptionCosmetics = result.Description;
