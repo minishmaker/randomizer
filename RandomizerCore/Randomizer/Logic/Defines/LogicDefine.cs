@@ -19,12 +19,12 @@ public class LogicDefine
         Name = name;
         Replacement = replacement;
         Expression = new Regex($"`{Name}`");
-        Logger.Instance.LogInfo($"Define Expression: {name}");
+        // Logger.Instance.LogInfo($"Define Expression: {name}");
     }
 
     public bool CanReplace(string input)
     {
-        Logger.Instance.LogInfo($"Can replace: {Expression != null}");
+        // Logger.Instance.LogInfo($"Can replace: {Expression != null}");
         return Expression != null && Expression.IsMatch(input);
     }
 

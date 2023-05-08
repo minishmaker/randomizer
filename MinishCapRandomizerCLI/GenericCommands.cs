@@ -1,5 +1,7 @@
 ﻿using System.Drawing;
+using System.Globalization;
 using RandomizerCore.Controllers;
+using RandomizerCore.Random;
 using RandomizerCore.Randomizer.Logic.Options;
 
 namespace MinishCapRandomizerCLI;
@@ -38,7 +40,7 @@ internal static class GenericCommands
             switch (input.ToLowerInvariant())
             {
                 case "r":
-                    var rand = new Random();
+                    var rand = new SquaresRandomNumberGenerator();
                     var rSeed = rand.Next();
                     ShufflerController.SetRandomizationSeed(rSeed);
                     Console.WriteLine($"Seed {rSeed} set successfully!");
@@ -47,7 +49,7 @@ internal static class GenericCommands
                     Console.Write("Please enter the seed you want to use: ");
                     var seedString = seedStr ?? Console.ReadLine();
                     
-                    if (string.IsNullOrEmpty(seedString) || !int.TryParse(seedString, out var seed))
+                    if (string.IsNullOrEmpty(seedString) || !ulong.TryParse(seedString, NumberStyles.HexNumber, default, out var seed))
                     {
                         PrintError("Invalid seed entered!");
                         break;

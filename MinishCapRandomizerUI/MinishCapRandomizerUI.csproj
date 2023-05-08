@@ -12,6 +12,12 @@
         <SelfContained>true</SelfContained>
         <StartupObject>MinishCapRandomizerUI.Program</StartupObject>
         <ApplicationIcon>Resources\icon.ico</ApplicationIcon>
+		<Company>Team Minish Maker</Company>
+		<Title>Minish Cap Randomizer UI</Title>
+		<Description>A GUI that wraps the Legend of Zelda Minish Cap Randomizer Core</Description>
+		<Product>Minish Cap Randomizer UI</Product>
+		<FileVersion>0.7.0</FileVersion>
+		<AssemblyVersion>0.7.0</AssemblyVersion>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -23,11 +29,17 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Content Include="Resources\icon.ico"/>
+      <Compile Remove="NewFolder\**" />
+      <EmbeddedResource Remove="NewFolder\**" />
+      <None Remove="NewFolder\**" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\RandomizerCore\RandomizerCore.csproj"/>
+        <Content Include="Resources\icon.ico" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\RandomizerCore\RandomizerCore.csproj" />
     </ItemGroup>
 
     <ItemGroup>
@@ -36,7 +48,7 @@
             <AutoGen>True</AutoGen>
             <DependentUpon>Resources.resx</DependentUpon>
         </Compile>
-        <Compile Update="UI\MinishCapRandomizerUI.cs"/>
+        <Compile Update="UI\MinishCapRandomizerUI.cs" />
     </ItemGroup>
 
     <ItemGroup>
@@ -46,14 +58,24 @@
         </EmbeddedResource>
     </ItemGroup>
 
-    <Target Name="PostBuildDebug" Condition="'$(Configuration)' == 'Debug'" AfterTargets="PostBuildEvent">
-        <Exec Command="xcopy &quot;$(ProjectDir)..\RandomizerCore\Resources\Patches\&quot; &quot;$(TargetDir)Patches\&quot; /y /d /s"/>
-        <Exec Command="xcopy &quot;$(ProjectDir)..\Vendor\Language Raws\&quot; &quot;$(TargetDir)Language Raws\&quot; /y /d /s"/>
+    <ItemGroup>
+      <PackageReference Include="Octokit" Version="5.1.0" />
+    </ItemGroup>
+	
+	<Target Name="SetSourceRevisionId" BeforeTargets="InitializeSourceControlInformation">
+		<Exec Command="git describe --tag --abbrev=0" ConsoleToMSBuild="True" IgnoreExitCode="False">
+			<Output PropertyName="SourceRevisionId" TaskParameter="ConsoleOutput" />
+		</Exec>
+	</Target>
+
+	<Target Name="PostBuildDebug" Condition="'$(Configuration)' == 'Debug'" AfterTargets="PostBuildEvent">
+        <Exec Command="xcopy &quot;$(ProjectDir)..\RandomizerCore\Resources\Patches\&quot; &quot;$(TargetDir)Patches\&quot; /y /d /s" />
+        <Exec Command="xcopy &quot;$(ProjectDir)..\Vendor\Language Raws\&quot; &quot;$(TargetDir)Language Raws\&quot; /y /d /s" />
     </Target>
 
     <Target Name="PostBuildRelease" Condition="'$(Configuration)' == 'Release'" AfterTargets="PostBuildEvent">
-        <Exec Command="xcopy &quot;$(ProjectDir)..\RandomizerCore\Resources\Patches\&quot; &quot;$(PublishDir)Patches\&quot; /y /d /s"/>
-        <Exec Command="xcopy &quot;$(ProjectDir)..\Vendor\Language Raws\&quot; &quot;$(PublishDir)Language Raws\&quot; /y /d /s"/>
+        <Exec Command="xcopy &quot;$(ProjectDir)..\RandomizerCore\Resources\Patches\&quot; &quot;$(PublishDir)Patches\&quot; /y /d /s" />
+        <Exec Command="xcopy &quot;$(ProjectDir)..\Vendor\Language Raws\&quot; &quot;$(PublishDir)Language Raws\&quot; /y /d /s" />
     </Target>
 
 </Project>

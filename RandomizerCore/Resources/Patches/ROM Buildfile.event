@@ -69,17 +69,17 @@ String("make sure to use sram"); BYTE 0
 badSave3:
 String("minishmaker.com"); BYTE 0x2F; String("discord"); BYTE 0
 badEmu1:
-String("this emulator is inaccurate!"); BYTE 0
+String("this emulator does not"); BYTE 0
 badEmu2:
-String("please, consider switching"); BYTE 0
+String("support the randomizer!"); BYTE 0
 badEmu3:
-String("mgba.io"); BYTE 0x2F; String("downloads.html"); BYTE 0
+String("please download mgba"); BYTE 0
 badEmu4:
-String("press any button to play"); BYTE 0
+String("or use the mgba core in"); BYTE 0
 badEmu5:
-String("(pedestal will always"); BYTE 0
+String("bizhawk or retroarch"); BYTE 0
 badEmu6:
-String("crash on vba and vbam)"); BYTE 0
+String("mgba.io"); BYTE 0x2F; String("downloads.html"); BYTE 0
 
 #ifdef TEST
 	PUSH
@@ -406,7 +406,7 @@ POP
 PUSH; ORG $11B694; BYTE 1; POP
 #endif
 
-// Combine Kinstone pieces of the same color
+// Combine Kinstone pieces of the same color, or remove certain Kinstone piece sources
 PUSH
 // Fusions
 #ifdef combineKinstonesRed
@@ -506,6 +506,11 @@ PUSH
 	ORG $D21E1
 	BYTE 0x73 0x73 0x73
 #endif
+#ifdef disableKinstoneDrops
+	// Replace Kinstone drops by fairies
+	ORG $498C6
+	SHORT 0x46C0
+#endif
 // Business Scrub
 #ifdef combineKinstonesRed
 	ORG $CC0E8
@@ -518,6 +523,11 @@ PUSH
 #ifdef combineKinstonesGreen
 	ORG $CC0ED
 	BYTE 0x73 0x73 0x73
+#endif
+#ifdef disableKinstoneDrops
+	// Instead of selling Kinstones, talk about Bottle Scrub
+	ORG $CC0E0
+	SHORT 0x2912 0x2913
 #endif
 // Goron Merchant
 #ifdef combineKinstonesRed
@@ -545,6 +555,11 @@ PUSH
 	ORG $10BB96
 	BYTE 0x73 0x73 0x73
 #endif
+#ifdef disableKinstoneDrops
+	// Never get a Kinstone piece
+	ORG $629BC
+	SHORT 0xE018
+#endif
 // Inn
 #ifdef combineKinstonesRed
 	ORG $D61A3
@@ -568,28 +583,66 @@ PUSH
 	ORG $D6307
 	BYTE 0x73
 #endif
+#ifdef disableKinstoneDrops
+	// Chests are always open even after sleeping in the inn
+	ORG $4B4CE
+	SHORT 0xE009
+	ORG $4B552
+	SHORT 0xE008
+	ORG $4B5D6
+	SHORT 0xE009
+#endif
 // Simon's Simulations
-#ifdef combineKinstonesRed
-	ORG $F048B
-	BYTE 0x6E
-	ORG $F04A3
-	BYTE 0x6E
-	ORG $F04AB
-	BYTE 0x6E
+#ifdef disableKinstoneDrops
+	// Replace red Kinstone pieces by big red rupees
+	ORG $F04A2
+	BYTE 0x59 0x00
+	ORG $F04AA
+	BYTE 0x59 0x00
+	ORG $F04B2
+	BYTE 0x59 0x00
+	// Replace blue Kinstone pieces by big blue rupees
+	ORG $F0482
+	BYTE 0x58 0x00
+	ORG $F048A
+	BYTE 0x58 0x00
+	// Replace green Kinstone pieces by big green rupees
+	ORG $F045A
+	BYTE 0x57 0x00
+	ORG $F0462
+	BYTE 0x57 0x00
+	ORG $F046A
+	BYTE 0x57 0x00
+#else
+	#ifdef combineKinstonesRed
+		ORG $F04A3
+		BYTE 0x6E
+		ORG $F04AB
+		BYTE 0x6E
+		ORG $F04B3
+		BYTE 0x6E
+	#endif
+	#ifdef combineKinstonesBlue
+		ORG $F0483
+		BYTE 0x71
+		ORG $F048B
+		BYTE 0x71
+	#endif
+	#ifdef combineKinstonesGreen
+		ORG $F045B
+		BYTE 0x73
+		ORG $F0463
+		BYTE 0x73
+		ORG $F046B
+		BYTE 0x73
+	#endif
 #endif
-#ifdef combineKinstonesBlue
-	ORG $F0483
-	BYTE 0x71
-	ORG $F048B
-	BYTE 0x71
-#endif
-#ifdef combineKinstonesGreen
-	ORG $F045B
-	BYTE 0x73
-	ORG $F0463
-	BYTE 0x73
-	ORG $F046B
-	BYTE 0x73
+#ifdef disableShellDrops
+	// Replace shells by big blue rupees
+	ORG $F0472
+	BYTE 0x58 0x00
+	ORG $F0492
+	BYTE 0x58 0x00
 #endif
 POP
 

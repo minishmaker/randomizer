@@ -78,6 +78,7 @@ public enum DungeonEntranceType
 public enum DungeonType
 {
     Dojo = 00,
+    Universal = 23,
     Dws = 24,
     CoF = 25,
     FoW = 26,
