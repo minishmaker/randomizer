@@ -19,7 +19,7 @@ namespace MinishCapRandomizerUI.UI
         
         private void ZsrDiscordLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            RandoDiscordLink.LinkVisited = true;
+            ZsrDiscordLink.LinkVisited = true;
             Process.Start(new ProcessStartInfo("https://discord.com/invite/zsr") {UseShellExecute = true});
         }
 
