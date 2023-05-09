@@ -200,11 +200,11 @@
 !flag - Item Pool - Setting - Global - MEME - Fun Junk - Add some items to the item pool to replace junk, these items are completely useless.
 !dropdown - Item Pool - Setting - Global - FIREROD - Firerod - The Firerod is a leftover developer testing tool. It lets the user copy and paste tiles, effectively allowing you to walk through walls and most obstacles.\n\nWARNING: It is extremely easy to softlock yourself with this item, it is recommended to enable 'Homewarp' with this item, however some softlocks will completely prevent you from being able to beat the game. - NO_FIREROD - No Firerod - NO_FIREROD - 'No Firerod': Standard - Shuffled - FIREROD_CHEST - 'Shuffled': Firerod is added to the item pool, it can be randomized to any location. - Start With - FIREROD_START - 'Start With': Firerod is in Links Starting Inventory 
 
-!dropdown - Item Pool - Setting - Progressive - PROGRESSIVE_SWORD - Swords are Progressive - Option for the Swords to be found in any order or always progress in the intended order. - YES_SWORD_PROG - No - NO_SWORD_PROG - 'No': Each Sword is treated as its own item and can be collected in any order. To create a specific amount of clones you must have the sword that corresponds to that amount of clones.\n ie: If you only find the Four Sword, you can make exaclty 4 clones, but not 2 or 3.\n There are 5 Swords in total:\n Smith Sword\n Green Sword\n Red Sword (Allows making 2 Clones)\ Blue Sword (Allows making 3 Clones)\n Four Sword (Allows making 4 Clones) - Yes - YES_SWORD_PROG - 'Yes': The different Swords are replaced with a generic "Progressive" Sword that upgrades your Sword to the next level.\n ie: The first sword you get is the Smith sword, the next sword you get will upgrade it to the Green Sword.
-!dropdown - Item Pool - Setting - Progressive - PROGRESSIVE_BOW - Bows are Progressive - Option for the Bows to be found in any order or always progress in the intended order. - YES_BOW_PROG - No - NO_BOW_PROG - 'No': The Bow and the Light Arrows are 2 different items and can be found in any order. - Yes - YES_BOW_PROG - 'Yes': The different Bows are replaced with a generic "Progressive" Bow that upgrades your Bow to the next level.\n ie: The first Bow you get is the Regular Bow, the next Bow you get will upgrade it to the Light Arrows.
-!dropdown - Item Pool - Setting - Progressive - PROGRESSIVE_BOOM - Boomerangs are Progressive - Option for the Boomerangs to be found in any order or always progress in the intended order. - YES_BOOM_PROG - No - NO_BOOM_PROG - 'No': The Boomerang and the Magic Boomerang are 2 different items and can be found in any order. - Yes - YES_BOOM_PROG - 'Yes': The different Boomerangs are replaced with a generic "Progressive" Boomerang that upgrades your Boomerang to the next level.\n ie: The first Boomerang you get is the Regular Boomerang, the next Boomerang you get will upgrade it to the Magic Boomerang.
-!dropdown - Item Pool - Setting - Progressive - PROGRESSIVE_SHIELD - Shields are Progressive - Option for the Shields to be found in any order or always progress in the intended order. - YES_SHIELD_PROG - No - NO_SHIELD_PROG - 'No': The Shield and the Mirror Shield are 2 different items and can be found in any order. - Yes - YES_SHIELD_PROG - 'Yes': The different Shields are replaced with a generic "Progressive" Shield that upgrades your Shield to the next level.\n ie: The first Shield you get is the Regular Shield, the next Shield you get will upgrade it to the Mirror Shield.
-!dropdown - Item Pool - Setting - Progressive - PROGRESSIVE_SCROLL - Spin Scrolls are Progressive - Option for the Scrolls to be found in any order or always progress in the intended order. - YES_SCROLL_PROG - No - NO_SCROLL_PROG - 'No': Each Spin Scroll is treated as its own item and can be collected in any order. - Yes - YES_SCROLL_PROG - 'Yes': The different Spin Scrolls are replaced with a generic "Progressive" Spin Scroll that give you the next Spin upgrade in the list, the order you get scrolls in is always: \nSpin Scroll \nFast Spin \nFast Split \nGreatSpin \nLongSpin
+!flag - Item Pool - Setting - Progressive - YES_SWORD_PROG - Swords are Progressive - Option for the Swords to be found in any order or always progress in the intended order.\n\nWhen disabled, each Sword is treated as its own item and can be collected in any order. To create a specific amount of clones you must have the sword that corresponds to that amount of clones.\nie: If you only find the Four Sword, you can make exaclty 4 clones, but not 2 or 3.\nThere are 5 Swords in total:\nSmith Sword\nGreen Sword\nRed Sword (Allows making 2 Clones)\nBlue Sword (Allows making 3 Clones)\nFour Sword (Allows making 4 Clones)\n\nIf enabled, the different Swords are replaced with a generic "Progressive" Sword that upgrades your Sword to the next level.\nie: The first sword you get is the Smith sword, the next sword you get will upgrade it to the Green Sword. - true
+!flag - Item Pool - Setting - Progressive - YES_BOW_PROG - Bows are Progressive - Option for the Bows to be found in any order or always progress in the intended order.\n\nIf disabled, the Bow and the Light Arrows are 2 different items and can be found in any order.\n\nIf enabled, the different Bows are replaced with a generic "Progressive" Bow that upgrades your Bow to the next level.\nie: The first Bow you get is the Regular Bow, the next Bow you get will upgrade it to the Light Arrows. - true
+!flag - Item Pool - Setting - Progressive - YES_BOOM_PROG - Boomerangs are Progressive - Option for the Boomerangs to be found in any order or always progress in the intended order.\n\nIf disabled, the Boomerang and the Magic Boomerang are 2 different items and can be found in any order.\n\nIf enabled, the different Boomerangs are replaced with a generic "Progressive" Boomerang that upgrades your Boomerang to the next level.\nie: The first Boomerang you get is the Regular Boomerang, the next Boomerang you get will upgrade it to the Magic Boomerang. - true
+!flag - Item Pool - Setting - Progressive - YES_SHIELD_PROG - Shields are Progressive - Option for the Shields to be found in any order or always progress in the intended order.\n\nIf disabled, the Shield and the Mirror Shield are 2 different items and can be found in any order.\n\nIf enabled, the different Shields are replaced with a generic "Progressive" Shield that upgrades your Shield to the next level.\nie: The first Shield you get is the Regular Shield, the next Shield you get will upgrade it to the Mirror Shield. - true
+!flag - Item Pool - Setting - Progressive - YES_SCROLL_PROG - Spin Scrolls are Progressive - Option for the Scrolls to be found in any order or always progress in the intended order.\n\nIf disabled, each Spin Scroll is treated as its own item and can be collected in any order.\n\nIf enabled, the different Spin Scrolls are replaced with a generic "Progressive" Spin Scroll that give you the next Spin upgrade in the list, the order you get scrolls in is always: \nSpin Scroll \nFast Spin \nFast Split \nGreatSpin \nLongSpin. - true
 
 !dropdown - Item Pool - Setting - Kinstone Packs - GOLD1MULTIPLIER - Cloud Tops Kinstone pack size - Each time you pick up a kinstone you will get this many added to your bag.\nThis kinstone is the gold combined kinstone if enabled.\n\nTotal fusions are 5 in vanilla and 9 in combined. - 1 - 1 - 1 - - 2 - 2 - - 3 - 3 - - 4 - 4 - - 5 - 5 - - 6 - 6 - - Max - GOLD1MAX -
 !dropdown - Item Pool - Setting - Kinstone Packs - GOLD2MULTIPLIER - Swamp Kinstone pack size - When collecting kinstones, you will get this many added to your bag.\nThis kinstone is not shuffled when the combined setting is enabled. - 1 - 1 - 1 - - 2 - 2 - - Max - GOLD2MAX -
@@ -334,11 +334,6 @@
 !define - `REQUIREMENT_ITEM`
 !define - `DUNGEON`
 !define - `AD_PED`
-!define - `PROGRESSIVE_SWORD`
-!define - `PROGRESSIVE_BOW`
-!define - `PROGRESSIVE_BOOM`
-!define - `PROGRESSIVE_SHIELD`
-!define - `PROGRESSIVE_SCROLL`
 !define - `DOJO`
 !define - `CUCCO_SETTING`
 !define - `GORON_SETTING`
@@ -1368,7 +1363,14 @@
 
 #Item Pool settings
 !define - `ITEM_POOL`
-!ifdef - NO_SWORD_PROG
+!ifdef - YES_SWORD_PROG
+	!define - SMITHSWORD - Items.ProgressiveItem.0x00
+	!define - GREENSWORD - Items.ProgressiveItem.0x00
+	!define - REDSWORD - Items.ProgressiveItem.0x00
+	!define - BLUESWORD - Items.ProgressiveItem.0x00
+	!define - FOURSWORD - Items.ProgressiveItem.0x00
+	Items.ProgressiveItem.0x00:5;	Major;	#Sword
+!else
 	!eventdefine - arbitrarySwords
 	!define - SMITHSWORD - Items.SmithSword
 	!define - GREENSWORD - Items.GreenSword
@@ -1380,59 +1382,52 @@
 	Items.RedSword;		Major;
 	Items.BlueSword;		Major;
 	Items.FourSword;		Major;
-!else
-	!define - SMITHSWORD - Items.ProgressiveItem.0x00
-	!define - GREENSWORD - Items.ProgressiveItem.0x00
-	!define - REDSWORD - Items.ProgressiveItem.0x00
-	!define - BLUESWORD - Items.ProgressiveItem.0x00
-	!define - FOURSWORD - Items.ProgressiveItem.0x00
-	Items.ProgressiveItem.0x00:5;	Major;	#Sword
 !endif
-!ifdef - NO_BOW_PROG
+!ifdef - YES_BOW_PROG
+	!define - BOW - Items.ProgressiveItem.0x01
+	!define - LIGHTARROW - Items.ProgressiveItem.0x01
+	Items.ProgressiveItem.0x01:2;	Major;	#Bow
+!else
 	!eventdefine - arbitraryBows
 	!define - BOW - Items.Bow
 	!define - LIGHTARROW - Items.LightArrow
 	Items.Bow;			Major;
 	Items.LightArrow;		Major;
-!else
-	!define - BOW - Items.ProgressiveItem.0x01
-	!define - LIGHTARROW - Items.ProgressiveItem.0x01
-	Items.ProgressiveItem.0x01:2;	Major;	#Bow
 !endif
-!ifdef - NO_BOOM_PROG
+!ifdef - YES_BOOM_PROG
+	!define - BOOMERANG - Items.ProgressiveItem.0x02
+	!define - MAGICBOOMERANG - Items.ProgressiveItem.0x02
+	Items.ProgressiveItem.0x02;	Major;	#Boomerang
+!else
 	!eventdefine - arbitraryBoomerangs
 	!define - BOOMERANG - Items.Boomerang
 	!define - MAGICBOOMERANG - Items.MagicBoomerang
 	Items.Boomerang;		Major;
-!else
-	!define - BOOMERANG - Items.ProgressiveItem.0x02
-	!define - MAGICBOOMERANG - Items.ProgressiveItem.0x02
-	Items.ProgressiveItem.0x02;	Major;	#Boomerang
 !endif
-!ifdef - NO_SHIELD_PROG
+!ifdef - YES_SHIELD_PROG
+	!define - SHIELD - Items.ProgressiveItem.0x03
+	!define - MIRROR - Items.ProgressiveItem.0x03
+	Items.ProgressiveItem.0x03;	Major;	#Shield
+!else
 	!eventdefine - arbitraryShields
 	!define - SHIELD - Items.Shield
 	!define - MIRROR - Items.MirrorShield
 	Items.Shield;			Major;
-!else
-	!define - SHIELD - Items.ProgressiveItem.0x03
-	!define - MIRROR - Items.ProgressiveItem.0x03
-	Items.ProgressiveItem.0x03;	Major;	#Shield
 !endif
-!ifdef - NO_SCROLL_PROG
+!ifdef - YES_SCROLL_PROG
+	!ifdef - DOJORANDOM
+		Items.ProgressiveItem.0x04;	DungeonMajor;	dojo	#Scroll
+	!endif
+	!ifdef - DOJOANY
+		Items.ProgressiveItem.0x04;	Major;	#Scroll
+	!endif
+!else
 	!eventdefine - arbitraryScrolls
 	!ifdef - DOJORANDOM
 		Items.SpinAttack;		DungeonMajor;	dojo
 	!endif
 	!ifdef - DOJOANY
 		Items.SpinAttack;		Major;
-	!endif
-!else
-	!ifdef - DOJORANDOM
-		Items.ProgressiveItem.0x04;	DungeonMajor;	dojo	#Scroll
-	!endif
-	!ifdef - DOJOANY
-		Items.ProgressiveItem.0x04;	Major;	#Scroll
 	!endif
 !endif
 	Items.Lantern;		Major;
@@ -2022,31 +2017,43 @@
 	Items.SwimButterfly;			Minor;
 !endif
 !ifdef - ITEM_POOL_PLENTIFUL
-	!ifdef - NO_SWORD_PROG
+	!ifdef - YES_SWORD_PROG
+		Items.ProgressiveItem.0x00:2;	Minor;	#Sword
+	!else
 		Items.SmithSword;				Minor;
 		Items.GreenSword;				Minor;
 		Items.RedSword;				Minor;
 		Items.BlueSword;				Minor;
 		Items.FourSword;				Minor;
-	!else
-		Items.ProgressiveItem.0x00:2;	Minor;	#Sword
 	!endif
-	!ifdef - NO_BOW_PROG
-		Items.Bow;					Minor;
-	!else
+	!ifdef - YES_BOW_PROG
 		Items.ProgressiveItem.0x01;	Minor;	#Bow
-	!endif
-	!ifdef - NO_BOOM_PROG
-		Items.MagicBoomerang;			Major;
 	!else
+		Items.Bow;					Minor;
+	!endif
+	!ifdef - YES_BOOM_PROG
 		Items.ProgressiveItem.0x02;	Major;	#Boomerang
-	!endif
-	!ifdef - NO_SHIELD_PROG
-		Items.MirrorShield;			Major;
 	!else
-		Items.ProgressiveItem.0x03;	Minor;	#Shield
+		Items.MagicBoomerang;			Major;
 	!endif
-	!ifdef - NO_SCROLL_PROG
+	!ifdef - YES_SHIELD_PROG
+		Items.ProgressiveItem.0x03;	Minor;	#Shield
+	!else
+		Items.MirrorShield;			Major;
+	!endif
+	!ifdef - YES_SCROLL_PROG
+		!ifdef - DOJORANDOM
+			Items.ProgressiveItem.0x04:4;	DungeonMajor;	dojo	#Scroll
+			!ifdef - NO_RED_FUSIONS
+				FakeDojo1:dojo:NoSpoiler;		Dungeon;	FakeDojo11:Define:FirstByte, FakeDojo12:Define:SecondByte;	Helpers.BeatVaati;
+				FakeDojo2:dojo:NoSpoiler;		Dungeon;	FakeDojo21:Define:FirstByte, FakeDojo22:Define:SecondByte;	Helpers.BeatVaati;
+				FakeDojo3:dojo:NoSpoiler;		Dungeon;	FakeDojo31:Define:FirstByte, FakeDojo32:Define:SecondByte;	Helpers.BeatVaati;
+			!endif
+		!endif
+		!ifdef - DOJOANY
+			Items.ProgressiveItem.0x04:6;	Major;	#Scroll
+		!endif
+	!else
 		!ifdef - DOJORANDOM
 			Items.GreatSpin;				DungeonMajor;	dojo
 			Items.FastSpin;				DungeonMinor;	dojo
@@ -2064,18 +2071,6 @@
 			Items.FastSpin;				Major;
 			Items.FastSplit;				Major;
 			Items.LongSpin;				Major;
-		!endif
-	!else
-		!ifdef - DOJORANDOM
-			Items.ProgressiveItem.0x04:4;	DungeonMajor;	dojo	#Scroll
-			!ifdef - NO_RED_FUSIONS
-				FakeDojo1:dojo:NoSpoiler;		Dungeon;	FakeDojo11:Define:FirstByte, FakeDojo12:Define:SecondByte;	Helpers.BeatVaati;
-				FakeDojo2:dojo:NoSpoiler;		Dungeon;	FakeDojo21:Define:FirstByte, FakeDojo22:Define:SecondByte;	Helpers.BeatVaati;
-				FakeDojo3:dojo:NoSpoiler;		Dungeon;	FakeDojo31:Define:FirstByte, FakeDojo32:Define:SecondByte;	Helpers.BeatVaati;
-			!endif
-		!endif
-		!ifdef - DOJOANY
-			Items.ProgressiveItem.0x04:6;	Major;	#Scroll
 		!endif
 	!endif
 	Items.RemoteBombs;		Minor;
