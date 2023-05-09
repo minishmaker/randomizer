@@ -105,7 +105,11 @@ public static class CommandFileParser
                                 consecutiveFailures = 0;
                             }
                             else
-                                Console.WriteLine($"Generated seed {successes}");
+                            {
+                                logBuilder.AppendLine($"Generated seed {successes}");
+                                consecutiveFailures = 0;
+                                lastRunFailure = false;
+                            }
                         }
                     }
                     logBuilder.AppendLine($"Total Success Rate: {(--successes / (double)totalSeeds) * 100}%");
