@@ -26,6 +26,9 @@ internal class Shuffler : ShufflerBase
         // Reset everything to allow rerandomization
         ClearLogic();
 
+        // Set option defines
+        LogicParser.SubParser.AddOptions();
+
         var locationStrings = LoadLocationFile(logicFile);
         
         var time = DateTime.Now;

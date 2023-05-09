@@ -461,7 +461,6 @@ internal abstract class ShufflerBase
             LogicParser.SubParser.ClearReplacements();
             LogicParser.SubParser.ClearAmountReplacements();
             LogicParser.SubParser.ClearDefines();
-            LogicParser.SubParser.AddOptions();
         }
 
         /// <summary>
