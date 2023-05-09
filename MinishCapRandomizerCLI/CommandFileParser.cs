@@ -70,12 +70,15 @@ public static class CommandFileParser
                     if (!bool.TryParse(inputs[2], out var shuffleSettingsEachAttempt))
                         throw new Exception("2nd parameter must be true or false!");
 
-                    var num = 0;
+                    var successes = 0;
                     var failures = 0;
+                    var totalSeeds = 0;
                     var lastRunFailure = false;
                     var consecutiveFailures = 0;
-                    while (num++ < numberOfSeedToGen)
+                    while (successes++ < numberOfSeedToGen)
                     {
+                        totalSeeds++;
+                        
                         GenericCommands.Seed("R");
                         
                         if (shuffleSettingsEachAttempt && !lastRunFailure) ShuffleAllOptions();
@@ -83,11 +86,11 @@ public static class CommandFileParser
                         var result = GenericCommands.Randomize("1");
                         if (!result)
                         {
-                            --num;
+                            --successes;
                             ++failures;
                             lastRunFailure = true;
                             if (++consecutiveFailures < 10) continue;
-                            
+
                             logBuilder.AppendLine($"Failed to generate with settings {GenericCommands.ShufflerController.GetSelectedSettingsString()}");
                             lastRunFailure = false;
                             consecutiveFailures = 0;
@@ -105,7 +108,7 @@ public static class CommandFileParser
                                 Console.WriteLine($"Generated seed {successes}");
                         }
                     }
-                    Console.WriteLine($"Total failure rate: {(double)failures/num}%");
+                    logBuilder.AppendLine($"Total Success Rate: {(--successes / (double)totalSeeds) * 100}%");
                     break;
                 case "Exit":
                     exited = true;
