@@ -318,7 +318,7 @@ Generating seeds with this shuffler may freeze the randomizer application for ma
         if (_randomizedRomCreated)
             TabPane.TabPages.Add(SeedOutput);
 
-        var options = _shufflerController.GetSelectedOptions();
+        var options = (UseCustomYAML.Checked || UseMysterySettings.Checked || UseMysteryCosmetics.Checked) ? _yamlController.GetSelectedOptions() : _shufflerController.GetSelectedOptions();
         var wrappedOptions = WrappedLogicOptionFactory.BuildGenericWrappedLogicOptions(options);
         var pages = wrappedOptions.GroupBy(option => option.Page);
 
@@ -336,13 +336,18 @@ Generating seeds with this shuffler may freeze the randomizer application for ma
         InputSeedLabel.Text = Seed.Text;
         OutputSeedLabel.Text = @$"{_shufflerController.FinalSeed:X}";
 
-        var settingsString = _shufflerController.GetFinalSettingsString();
-        var cosmeticsString = _shufflerController.GetFinalCosmeticsString();
-        
         if (UseMysteryCosmetics.Checked || UseMysterySettings.Checked || UseCustomYAML.Checked)
+        {
+            var settingsString = _yamlController.GetFinalSettingsString();
+            var cosmeticsString = _yamlController.GetFinalCosmeticsString();
             UpdateSeedInfoPageYaml(settingsString, cosmeticsString);
+        }
         else
+        {
+            var settingsString = _shufflerController.GetFinalSettingsString();
+            var cosmeticsString = _shufflerController.GetFinalCosmeticsString();
             UpdateSeedInfoPageBase(settingsString, cosmeticsString);
+        }
             
         DisplaySeedHash();
 

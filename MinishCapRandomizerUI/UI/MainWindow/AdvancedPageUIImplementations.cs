@@ -12,6 +12,7 @@ public partial class MinishCapRandomizerUI
         DisplayOpenDialog(@"Logic Files|*.logic|All Files|*.*", @"Select Logic File", DialogResult.OK, filename =>
         {
             var result = _shufflerController.LoadLogicFile(filename);
+            _yamlController.LoadLogicFile(filename);
 
             if (result.WasSuccessful)
             {
@@ -23,6 +24,7 @@ public partial class MinishCapRandomizerUI
             {
                 DisplayConditionalAlertFromShufflerResult(result, "You shouldn't be seeing this, but if you are it means something weird happened. Please report to the dev team.", "You Shouldn't See This", "Failed to load Logic File!", "Failed to Load Logic File");
                 _shufflerController.LoadLogicFile();
+                _yamlController.LoadLogicFile();
                 UpdateUIWithLogicOptions();
             }
         });
@@ -43,6 +45,8 @@ public partial class MinishCapRandomizerUI
         {
             YAMLPath.Text = filepath;
             _configuration.CustomYAMLFilepath = filepath;
+
+            UpdateUIWithLogicOptions();
         });
     }	
     
@@ -55,11 +59,13 @@ public partial class MinishCapRandomizerUI
         {
             case false when _customLogicFileLoaded:
                 _shufflerController.LoadLogicFile();
+                _yamlController.LoadLogicFile();
                 UpdateUIWithLogicOptions();
                 _customLogicFileLoaded = false;
                 break;
             case true when LogicFilePath.Text.Length > 0:
                 _shufflerController.LoadLogicFile(LogicFilePath.Text);
+                _yamlController.LoadLogicFile(LogicFilePath.Text);
                 UpdateUIWithLogicOptions();
                 _customLogicFileLoaded = true;
                 break;
@@ -76,6 +82,20 @@ public partial class MinishCapRandomizerUI
     {
         BrowseCustomYAML.Enabled = UseCustomYAML.Checked;
         _configuration.UseCustomYAML = UseCustomYAML.Checked;
+        if (!UseMysteryCosmetics.Checked && !UseMysterySettings.Checked)
+            UpdateUIWithLogicOptions();
+    }
+
+    private void UseMysterySettings_CheckedChanged(object sender, EventArgs e)
+    {
+        if (!UseMysteryCosmetics.Checked && !UseCustomYAML.Checked)
+            UpdateUIWithLogicOptions();
+    }
+
+    private void UseMysteryCosmetics_CheckedChanged(object sender, EventArgs e)
+    {
+        if (!UseMysterySettings.Checked && !UseCustomYAML.Checked)
+            UpdateUIWithLogicOptions();
     }
 
     private void UseSphereBasedShuffler_CheckedChanged(object sender, EventArgs e)
