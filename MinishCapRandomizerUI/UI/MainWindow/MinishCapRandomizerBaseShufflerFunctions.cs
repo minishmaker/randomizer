@@ -51,6 +51,8 @@ public partial class MinishCapRandomizerUI
         CosmeticNameLabel.Text = _recentCosmeticsPreset != null && _shufflerController.GetSelectedOptions().OnlyCosmetic().GetHash() == _recentCosmeticsPresetHash ? _recentCosmeticsPreset : "Custom";
         SettingHashLabel.Text = settingsString;
         CosmeticStringLabel.Text = cosmeticsString;
+        SettingHashLabel.Visible = true;
+        CosmeticStringLabel.Visible = true;
     }
 
     private string GetFilenameBaseShuffler() => _shufflerController.SeedFilename;

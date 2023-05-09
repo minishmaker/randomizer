@@ -147,6 +147,7 @@
             InputSeedNumberLabel = new Label();
             MaxRandomizationAttemptsLabel = new Label();
             RandomizationAttempts = new TextBox();
+            YamlHashNotShownLabel = new Label();
             menuStrip1.SuspendLayout();
             General.SuspendLayout();
             PatcherAndPatchGeneratorPanel.SuspendLayout();
@@ -1268,6 +1269,7 @@
             // SeedInformationPanel
             // 
             SeedInformationPanel.BorderStyle = BorderStyle.FixedSingle;
+            SeedInformationPanel.Controls.Add(YamlHashNotShownLabel);
             SeedInformationPanel.Controls.Add(CopyHashToClipboard);
             SeedInformationPanel.Controls.Add(RomHashPanel);
             SeedInformationPanel.Controls.Add(RomHashLabel);
@@ -1372,6 +1374,19 @@
             RandomizationAttempts.Text = "1";
             RandomizationAttempts.TextAlign = HorizontalAlignment.Right;
             // 
+            // YamlHashNotShownLabel
+            // 
+            YamlHashNotShownLabel.AutoSize = true;
+            YamlHashNotShownLabel.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            YamlHashNotShownLabel.ImageAlign = ContentAlignment.MiddleRight;
+            YamlHashNotShownLabel.Location = new Point(230, 59);
+            YamlHashNotShownLabel.Name = "YamlHashNotShownLabel";
+            YamlHashNotShownLabel.Size = new Size(322, 15);
+            YamlHashNotShownLabel.TabIndex = 26;
+            YamlHashNotShownLabel.Text = "Hash is not displayed when YAML is being used for settings.";
+            YamlHashNotShownLabel.TextAlign = ContentAlignment.MiddleLeft;
+            YamlHashNotShownLabel.Visible = false;
+            // 
             // MinishCapRandomizerUI
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -1411,6 +1426,7 @@
             CosmeticsInformationPanel.ResumeLayout(false);
             SettingsInformationPanel.ResumeLayout(false);
             SeedInformationPanel.ResumeLayout(false);
+            SeedInformationPanel.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -1535,5 +1551,6 @@
         private ToolStripMenuItem checkForUpdatesOnStartToolStripMenuItem;
         private FlowLayoutPanel RomHashPanel;
         private Button CopyHashToClipboard;
+        private Label YamlHashNotShownLabel;
     }
 }

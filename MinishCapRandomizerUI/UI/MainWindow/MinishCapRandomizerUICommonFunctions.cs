@@ -356,7 +356,17 @@ Generating seeds with this shuffler may freeze the randomizer application for ma
 
     private void DisplaySeedHash()
     {
+        if (UseCustomYAML.Checked || UseMysterySettings.Checked)
+        {
+            RomHashPanel.Visible = false;
+            YamlHashNotShownLabel.Visible = true;
+            return;
+        }
+
         const byte hashMask = 0b111111;
+
+        RomHashPanel.Visible = true;
+        YamlHashNotShownLabel.Visible = false;
 
         RomHashPanel.Controls.Clear();
 
