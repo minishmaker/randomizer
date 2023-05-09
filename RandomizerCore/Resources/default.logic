@@ -1357,8 +1357,7 @@
 !endif
 
 !ifdef - DOJOVANILLA
-	!undefine - `PROGRESSIVE_SCROLL`
-	!define - NO_SCROLL_PROG
+	!undefine - YES_SCROLL_PROG
 !endif
 
 #Item Pool settings
@@ -1889,23 +1888,7 @@
 	Items.Arrows10;		Filler;
 	Items.Arrows30;		Filler;
 !ifdef - ITEM_POOL_RIP
-	!ifdef - NO_BOOM_PROG
-		!ifdef - VANILLA_RED_FUSIONS
-			Items.MagicBoomerang;		Major;
-		!else
-			!ifdef - COMBINED_RED_FUSIONS
-				Items.MagicBoomerang;		Major;
-			!else
-				!ifdef - VANILLA_GREEN_FUSIONS
-					Items.MagicBoomerang;		Major;
-				!else
-					!ifdef - COMBINED_GREEN_FUSIONS
-						Items.MagicBoomerang;		Major;
-					!endif
-				!endif
-			!endif
-		!endif
-	!else
+	!ifdef - YES_BOOM_PROG
 		!ifdef - VANILLA_RED_FUSIONS
 			Items.ProgressiveItem.0x02;		Major;	#Boomerang
 		!else
@@ -1917,6 +1900,22 @@
 				!else
 					!ifdef - COMBINED_GREEN_FUSIONS
 						Items.ProgressiveItem.0x02;		Major;	#Boomerang
+					!endif
+				!endif
+			!endif
+		!endif
+	!else
+		!ifdef - VANILLA_RED_FUSIONS
+			Items.MagicBoomerang;		Major;
+		!else
+			!ifdef - COMBINED_RED_FUSIONS
+				Items.MagicBoomerang;		Major;
+			!else
+				!ifdef - VANILLA_GREEN_FUSIONS
+					Items.MagicBoomerang;		Major;
+				!else
+					!ifdef - COMBINED_GREEN_FUSIONS
+						Items.MagicBoomerang;		Major;
 					!endif
 				!endif
 			!endif
@@ -1944,17 +1943,29 @@
 !endif
 !ifdef - ITEM_POOL_NORMAL
 	Items.RemoteBombs;						Minor;
-	!ifdef - NO_BOOM_PROG
-		Items.MagicBoomerang;			Major;
-	!else
+	!ifdef - YES_BOOM_PROG
 		Items.ProgressiveItem.0x02;		Major;	#Boomerang
-	!endif
-	!ifdef - NO_SHIELD_PROG
-		Items.MirrorShield;				Major;
 	!else
-		Items.ProgressiveItem.0x03;		Minor;	#Shield
+		Items.MagicBoomerang;			Major;
 	!endif
-	!ifdef - NO_SCROLL_PROG
+	!ifdef - YES_SHIELD_PROG
+		Items.ProgressiveItem.0x03;		Minor;	#Shield
+	!else
+		Items.MirrorShield;				Major;
+	!endif
+	!ifdef - YES_SCROLL_PROG
+		!ifdef - DOJORANDOM
+			Items.ProgressiveItem.0x04:4;	DungeonMajor;	dojo	#Scroll
+			!ifdef - NO_RED_FUSIONS
+				FakeDojo1:dojo:NoSpoiler;		Dungeon;	FakeDojo11:Define:FirstByte, FakeDojo12:Define:SecondByte;	Helpers.BeatVaati;
+				FakeDojo2:dojo:NoSpoiler;		Dungeon;	FakeDojo21:Define:FirstByte, FakeDojo22:Define:SecondByte;	Helpers.BeatVaati;
+				FakeDojo3:dojo:NoSpoiler;		Dungeon;	FakeDojo31:Define:FirstByte, FakeDojo32:Define:SecondByte;	Helpers.BeatVaati;
+			!endif
+		!endif
+		!ifdef - DOJOANY
+			Items.ProgressiveItem.0x04:4;	Major;	#Scroll
+		!endif
+	!else
 		!ifdef - DOJORANDOM
 			Items.GreatSpin;				DungeonMajor;	dojo
 			Items.FastSpin;				DungeonMinor;	dojo
@@ -1971,18 +1982,6 @@
 			Items.FastSpin;				Major;
 			Items.FastSplit;				Major;
 			Items.LongSpin;				Major;
-		!endif
-	!else
-		!ifdef - DOJORANDOM
-			Items.ProgressiveItem.0x04:4;	DungeonMajor;	dojo	#Scroll
-			!ifdef - NO_RED_FUSIONS
-				FakeDojo1:dojo:NoSpoiler;		Dungeon;	FakeDojo11:Define:FirstByte, FakeDojo12:Define:SecondByte;	Helpers.BeatVaati;
-				FakeDojo2:dojo:NoSpoiler;		Dungeon;	FakeDojo21:Define:FirstByte, FakeDojo22:Define:SecondByte;	Helpers.BeatVaati;
-				FakeDojo3:dojo:NoSpoiler;		Dungeon;	FakeDojo31:Define:FirstByte, FakeDojo32:Define:SecondByte;	Helpers.BeatVaati;
-			!endif
-		!endif
-		!ifdef - DOJOANY
-			Items.ProgressiveItem.0x04:4;	Major;	#Scroll
 		!endif
 	!endif
 	!ifdef - FIREROD_CHEST
@@ -6362,10 +6361,10 @@ CoF_Entrance										`DUNGEONENTRANCE`;	DumCoFENT:Define:FirstByte, DumCoFENT2:
 AccessSwamp;						Helper;				;																	(|Helpers.SwampWindCrest, (&Helpers.AccessWestern, (|Items.PegasusBoots, Items.RocsCape)))
 #NonSpinScrolls;					Helper;				;																	Items.RockBreaker, Items.DashAttack, Items.DownThrust, Items.RollAttack, Items.SwordBeam, Items.PerilBeam
 #SpinScrolls;						Helper;				;																	Items.SpinAttack, Items.GreatSpin, Items.FastSpin, Items.FastSplit, Items.LongSpin
-!ifdef - NO_SCROLL_PROG
-	GotScrolls;						Helper;				;																	(+7, Items.SpinAttack, Items.GreatSpin, Items.FastSpin, Items.FastSplit, Items.LongSpin, Items.RockBreaker, Items.DashAttack, Items.DownThrust, Items.RollAttack, Items.SwordBeam, Items.PerilBeam);
-!else
+!ifdef - YES_SCROLL_PROG
 	GotScrolls;						Helper;				;																	(|(&Items.RockBreaker, Items.DashAttack, Items.DownThrust, Items.RollAttack, Items.SwordBeam, Items.PerilBeam, Items.ProgressiveItem.0x04), (&Items.ProgressiveItem.0x04:2, (+5, Items.RockBreaker, Items.DashAttack, Items.DownThrust, Items.RollAttack, Items.SwordBeam, Items.PerilBeam)), (&Items.ProgressiveItem.0x04:3, (+4, Items.RockBreaker, Items.DashAttack, Items.DownThrust, Items.RollAttack, Items.SwordBeam, Items.PerilBeam)), (&Items.ProgressiveItem.0x04:4, (+3, Items.RockBreaker, Items.DashAttack, Items.DownThrust, Items.RollAttack, Items.SwordBeam, Items.PerilBeam)), (&Items.ProgressiveItem.0x04:5, (+2, Items.RockBreaker, Items.DashAttack, Items.DownThrust, Items.RollAttack, Items.SwordBeam, Items.PerilBeam)));
+!else
+	GotScrolls;						Helper;				;																	(+7, Items.SpinAttack, Items.GreatSpin, Items.FastSpin, Items.FastSplit, Items.LongSpin, Items.RockBreaker, Items.DashAttack, Items.DownThrust, Items.RollAttack, Items.SwordBeam, Items.PerilBeam);
 !endif
 Swamp_ButterflyFusion_Item;		`REDFUSION`;			0x0FE13F;															(|(&Helpers.Farore2Fusion, Helpers.AccessSwamp), Helpers.Hundo);																																									Items.DigButterfly
 Swamp_CenterCave_DarknutChest;		Any;					0x2B-0x00-0x00;														(|(&Helpers.AccessSwamp, Helpers.SwampDarknut), Helpers.Hundo);																																									Items.Kinstone.GoldenSwamp
