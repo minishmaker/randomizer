@@ -447,13 +447,13 @@ public abstract class ControllerBase
         }
     }
     
-    public ShufflerControllerResult LoadSettingsFromYaml(string filepath)
+    public ShufflerControllerResult LoadLogicSettingsFromYaml(string filepath)
     {
         try
         {
             var options = Shuffler.GetSelectedOptions().OnlyLogic();
             var result = YamlParser.ParseYAML(File.ReadAllText(filepath), options, new SquaresRandomNumberGenerator());
-            LoadSettings(LogicOptionType.Setting, options, result);
+            LoadSettings(true, false, options, result);
 
             return new ShufflerControllerResult { WasSuccessful = true };
         }
@@ -476,7 +476,7 @@ public abstract class ControllerBase
         {
             var options = Shuffler.GetSelectedOptions().OnlyCosmetic();
             var result = YamlParser.ParseYAML(File.ReadAllText(filepath), options, new SquaresRandomNumberGenerator());
-            LoadSettings(LogicOptionType.Cosmetic, options, result);
+            LoadSettings(false, true, options, result);
 
             return new ShufflerControllerResult { WasSuccessful = true };
         }
@@ -493,16 +493,39 @@ public abstract class ControllerBase
         }
     }
 
-    private void LoadSettings(LogicOptionType optionType, IEnumerable<LogicOptionBase> options, YAMLResult result)
+    public ShufflerControllerResult LoadAllSettingsFromYaml(string filepath)
+    {
+        try
+        {
+            var options = Shuffler.GetSelectedOptions();
+            var result = YamlParser.ParseYAML(File.ReadAllText(filepath), options, new SquaresRandomNumberGenerator());
+            LoadSettings(true, true, options, result);
+
+            return new ShufflerControllerResult { WasSuccessful = true };
+        }
+        catch (Exception e)
+        {
+            Logger.Instance.LogException(e);
+            Logger.Instance.SaveLogTransaction();
+            return new ShufflerControllerResult
+            {
+                WasSuccessful = false,
+                Error = e,
+                ErrorMessage = e.Message
+            };
+        }
+    }
+
+    private void LoadSettings(bool loadLogicSettings, bool loadCosmeticSettings, IEnumerable<LogicOptionBase> options, YAMLResult result)
     {
         var resultOptionsIndex = 0;
 
         foreach (var option in options)
         {
-            if (option.Type != optionType) continue;
+            if (option.Type == LogicOptionType.Setting ? !loadLogicSettings : !loadCosmeticSettings) continue;
             
             if (option.Name != result.Options[resultOptionsIndex].Name)
-                throw new Exception($"Attempt to load {optionType} from yaml failed! Expected {result.Options[resultOptionsIndex].Name}, got {option.Name}");
+                throw new Exception($"Attempt to load options from yaml failed! Expected {result.Options[resultOptionsIndex].Name}, got {option.Name}");
                         
             option.CopyValueFrom(result.Options[resultOptionsIndex++]);
             option.NotifyObservers();

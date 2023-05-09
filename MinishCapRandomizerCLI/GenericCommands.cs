@@ -150,14 +150,13 @@ internal static class GenericCommands
         switch (number)
         {
             case 1:
-                ShufflerController.LoadSettingsFromYaml(filepath);
+                ShufflerController.LoadLogicSettingsFromYaml(filepath);
                 break;
             case 2:
                 ShufflerController.LoadCosmeticsFromYaml(filepath);
                 break;
             case 3:
-                ShufflerController.LoadSettingsFromYaml(filepath);
-                ShufflerController.LoadCosmeticsFromYaml(filepath);
+                ShufflerController.LoadAllSettingsFromYaml(filepath);
                 break;
         }
         

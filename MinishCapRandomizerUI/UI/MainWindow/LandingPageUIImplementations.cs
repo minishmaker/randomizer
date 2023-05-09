@@ -108,7 +108,7 @@ partial class MinishCapRandomizerUI
 			return;
 		}
 
-        var result = _shufflerController.LoadSettingsFromYaml($"{_presetPath}Settings{Path.DirectorySeparatorChar}{SettingPresets.SelectedItem}.yaml");
+        var result = _shufflerController.LoadLogicSettingsFromYaml($"{_presetPath}Settings{Path.DirectorySeparatorChar}{SettingPresets.SelectedItem}.yaml");
 
         if (result)
         {

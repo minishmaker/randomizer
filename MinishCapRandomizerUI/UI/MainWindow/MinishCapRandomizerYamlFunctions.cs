@@ -110,7 +110,7 @@ partial class MinishCapRandomizerUI
 			return;
 		}
 
-        var result = _yamlController.LoadSettingsFromYaml($"{_presetPath}Mystery Settings{Path.DirectorySeparatorChar}{SettingsWeights.SelectedItem}.yaml");
+        var result = _yamlController.LoadLogicSettingsFromYaml($"{_presetPath}Mystery Settings{Path.DirectorySeparatorChar}{SettingsWeights.SelectedItem}.yaml");
 
         if (result)
         {
