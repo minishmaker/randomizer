@@ -1,6 +1,7 @@
 ﻿using System.Drawing;
 using System.Globalization;
 using RandomizerCore.Controllers;
+using RandomizerCore.Controllers.Models;
 using RandomizerCore.Random;
 using RandomizerCore.Randomizer.Logic.Options;
 
@@ -386,6 +387,12 @@ internal static class GenericCommands
                 PrintError("Failed to patch ROM! Please check your file paths and make sure you have read/write access. "+result.ErrorMessage);
             }
         }
+    }
+
+    internal static ShufflerControllerResult PatchRomWithoutSaving()
+    {
+        ShufflerController.CreatePatch(out var result);
+        return result;
     }
 
     internal static void CreatePatch()

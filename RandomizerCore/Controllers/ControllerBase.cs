@@ -245,13 +245,19 @@ public abstract class ControllerBase
         }
     }
 
-    public PatchFile CreatePatch()
+    public PatchFile CreatePatch(out ShufflerControllerResult result)
     {
         Shuffler.ValidateState(true);
         var romBytes = Shuffler.GetRandomizedRom();
         var stream = new MemoryStream(romBytes);
-        Shuffler.ApplyPatch(stream);
-        return BpsPatcher.GeneratePatch(Rom.Instance!.RomData, romBytes, "Patch");
+        var exitCode = Shuffler.ApplyPatch(stream);
+        if (exitCode == 0)
+        {
+            result = new ShufflerControllerResult() { WasSuccessful = true };
+            return BpsPatcher.GeneratePatch(Rom.Instance!.RomData, romBytes, "Patch");
+        }
+        result = new ShufflerControllerResult() { WasSuccessful = false, ErrorMessage = $"ColorzCore returned non-zero exit code {exitCode}" };
+        return new PatchFile();
     }
 
     public string CreateSpoiler()

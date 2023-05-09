@@ -93,7 +93,17 @@ public static class CommandFileParser
                             consecutiveFailures = 0;
                         }
                         else
-                            Console.WriteLine($"Generated seed {num}");
+                        {
+                            var res = GenericCommands.PatchRomWithoutSaving();
+                            if (!res)
+                            {
+                                logBuilder.AppendLine($"ROM with settings {GenericCommands.ShufflerController.GetSelectedSettingsString()} failed to patch! {res.ErrorMessage}");
+                                lastRunFailure = false;
+                                consecutiveFailures = 0;
+                            }
+                            else
+                                Console.WriteLine($"Generated seed {successes}");
+                        }
                     }
                     Console.WriteLine($"Total failure rate: {(double)failures/num}%");
                     break;
