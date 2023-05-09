@@ -154,6 +154,8 @@ Generating seeds with this shuffler may freeze the randomizer application for ma
             var files = Directory.GetFiles($"{_presetPath}Settings").Where(file => file.EndsWith(".yaml", true, null));
             _settingPresets.SettingsPresets = files.Select(file => file[(file.LastIndexOf(Path.DirectorySeparatorChar) + 1)..]).Select(file => file[..file.LastIndexOf(".", StringComparison.Ordinal)]).ToList();
 
+            SettingPresets.Items.AddRange(_settingPresets.SettingsPresets.ToArray());
+            SettingPresets.SelectedIndex = 0;
 
             files = Directory.GetFiles($"{_presetPath}Cosmetics").Where(file => file.EndsWith(".yaml", true, null));
             _settingPresets.CosmeticsPresets = files.Select(file => file[(file.LastIndexOf(Path.DirectorySeparatorChar) + 1)..]).Select(file => file[..file.LastIndexOf(".", StringComparison.Ordinal)]).ToList();

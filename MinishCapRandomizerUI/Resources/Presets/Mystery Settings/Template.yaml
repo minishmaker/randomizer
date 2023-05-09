@@ -3,6 +3,22 @@ description: "(No description set)"
 settings:
   ## Main Settings:
   #  Dungeon Settings:
+  MAP_SETTING:                                    # Dungeon Maps
+    MAP_KEASY: 1                                  #   Start With
+    MAP_VANILLA: 1                                #   Vanilla
+    MAP_STANDARD: 1                               #   Own Dungeon
+    MAP_REGION: 1                                 #   Own Region
+    MAP_DUNGEON: 1                                #   Any Dungeon
+    MAP_REGDUN: 1                                 #   Any Region
+    MAP_KEYSANITY: 1                              #   Anywhere (Keysanity)
+  COMPASS_SETTING:                                # Compasses
+    COMPASS_KEASY: 1                              #   Start With
+    COMPASS_VANILLA: 1                            #   Vanilla
+    COMPASS_STANDARD: 1                           #   Own Dungeon
+    COMPASS_REGION: 1                             #   Own Region
+    COMPASS_DUNGEON: 1                            #   Any Dungeon
+    COMPASS_REGDUN: 1                             #   Any Region
+    COMPASS_KEYSANITY: 1                          #   Anywhere (Keysanity)
   SMALL_KEYS_SETTING:                             # Small Keys
     SMALL_KEASY: 1                                #   Removed (Keasy)
     SMALL_KEYS_VANILLA: 1                         #   Vanilla
@@ -11,14 +27,6 @@ settings:
     SMALL_KEYS_DUNGEON: 1                         #   Any Dungeon
     SMALL_KEYS_REGDUN: 1                          #   Any Region
     SMALL_KEYSANITY: 1                            #   Anywhere (Keysanity)
-  COMPASS_SETTING:                                # Maps & Compasses
-    COMPASS_KEASY: 1                              #   Start With
-    COMPASS_VANILLA: 1                            #   Vanilla
-    COMPASS_STANDARD: 1                           #   Own Dungeon
-    COMPASS_REGION: 1                             #   Own Region
-    COMPASS_DUNGEON: 1                            #   Any Dungeon
-    COMPASS_REGDUN: 1                             #   Any Region
-    COMPASS_KEYSANITY: 1                          #   Anywhere (Keysanity)
   BIG_KEYS_SETTING:                               # Big Keys
     BIG_KEASY: 1                                  #   Removed (Keasy)
     BIG_KEYS_VANILLA: 1                           #   Vanilla
@@ -27,19 +35,20 @@ settings:
     BIG_KEYS_DUNGEON: 1                           #   Any Dungeon
     BIG_KEYS_REGDUN: 1                            #   Any Region
     BIG_KEYSANITY: 1                              #   Anywhere (Keysanity)
+  SHUFFLE_ELEMENTS:                               # Shuffle Elements
+    SHUFFLE_ELEMENTS_VANILLA: 1                   #   Vanilla
+    SHUFFLE_ELEMENTS_OFF: 1                       #   Dungeon Rewards
+    SHUFFLE_ELEMENTS_ON: 1                        #   Anywhere
   DUNGEON:                                        # NonElement Dungeons
     NONE: 1                                       #   Standard
     UNREQ: 1                                      #   Unrequired
     BARREN: 1                                     #   Barren
     UNREQSUR: 1                                   #   Regions Unrequired
     BARRENSUR: 1                                  #   Regions Barren
-  SHUFFLE_ELEMENTS:                               # Shuffle Elements
-    on: 1
-    off: 1
   #  Requirements:
   DHC_SETTING:                                    # Dark Hyrule Castle Opens
-    NORMALDHC: 1                                  #   After Requirements
     NODHC: 1                                      #   Never Open
+    NORMALDHC: 1                                  #   After Requirements
     OPENDHC: 1                                    #   Always Open
   REQUIREMENT_ITEM:                               # Requirement Reward
     REQUIREMENT_ITEM_NONE: 1                      #   Disabled
@@ -61,11 +70,11 @@ settings:
     4SWORD: 1                                     #   Blue Sword
     5SWORD: 1                                     #   Four Sword
   ELEMENT_SETTING:                                # Elements Required
-    4: 1                                          #   4
-    3: 1                                          #   3
-    2: 1                                          #   2
-    1: 1                                          #   1
     0ELEMENT: 1                                   #   0
+    1ELEMENT: 1                                   #   1
+    2ELEMENT: 1                                   #   2
+    3ELEMENT: 1                                   #   3
+    4ELEMENT: 1                                   #   4
   FIGURINE_HUNT:                                  # Figurine Hunt
     on: 1
     off: 1
@@ -126,9 +135,9 @@ settings:
     off: 1
   ## World Settings:
   #  Global:
-  OPENWORLD:                                      # Open World
-    on: 1
-    off: 1
+  OPENWORLD:                                      # World obstacles are
+    OPENWORLD_ON: 1                               #   Open
+    OPENWORLD_OFF: 1                              #   Standard
   ENTRANCES:                                      # Dungeon Entrances are
     ENTRANCES_VANILLA: 1                          #   Vanilla
     ENTRANCES_COUPLED: 1                          #   Shuffled
@@ -160,10 +169,17 @@ settings:
     on: 1
     off: 1
   FUSION_SKIPS:                                   # Skip Fusion Cutscenes
+    NO_FUSION_SKIP: 1                             #   Never
     ALLOW_FUSION_SKIPS: 1                         #   Choose
     INSTANT_SKIP: 1                               #   Always
-    NO_FUSION_SKIP: 1                             #   Never
   SHOW_MAP:                                       # Always Show Map
+    on: 1
+    off: 1
+  #  Speed Up:
+  OPEN_WIND_TRIBE:                                # Wind Tribe Tower
+    on: 1
+    off: 1
+  OPEN_TINGLE:                                    # Tingle Brothers
     on: 1
     off: 1
   #  Wind Crests:
@@ -315,11 +331,11 @@ settings:
   FOWPOT:                                         # FoW Pot item early using the Gust Jar
     NOFOWPOT: 1                                   #   No
     YESFOWPOT: 1                                  #   Yes
-  ## Other:
-  #  Item Pool:
+  ## Item Pool:
+  #  Global:
   ITEM_POOL:                                      # Item Pool
-    ITEM_POOL_NORMAL: 1                           #   Balanced
     ITEM_POOL_RIP: 1                              #   Reduced (RIP)
+    ITEM_POOL_NORMAL: 1                           #   Balanced
     ITEM_POOL_PLENTIFUL: 1                        #   Plentiful
   RANDOM_BOTTLE_CONTENT:                          # Random Bottle Contents
     on: 1
@@ -330,10 +346,140 @@ settings:
   MEME:                                           # Fun Junk
     on: 1
     off: 1
-  PROGRESSIVE:                                    # Items are Progressive
-    NOPROG: 1                                     #   No
-    YESPROG: 1                                    #   Yes
-  #  Restrictions:
+  FIREROD:                                        # Firerod
+    NO_FIREROD: 1                                 #   No Firerod
+    FIREROD_CHEST: 1                              #   Shuffled
+    FIREROD_START: 1                              #   Start With
+  #  Progressive:
+  YES_SWORD_PROG:                                 # Swords are Progressive
+    on: 1
+    off: 1
+  YES_BOW_PROG:                                   # Bows are Progressive
+    on: 1
+    off: 1
+  YES_BOOM_PROG:                                  # Boomerangs are Progressive
+    on: 1
+    off: 1
+  YES_SHIELD_PROG:                                # Shields are Progressive
+    on: 1
+    off: 1
+  YES_SCROLL_PROG:                                # Spin Scrolls are Progressive
+    on: 1
+    off: 1
+  #  Kinstone Packs:
+  GOLD1MULTIPLIER:                                # Cloud Tops Kinstone pack size
+    1: 1                                          #   1
+    2: 1                                          #   2
+    3: 1                                          #   3
+    4: 1                                          #   4
+    5: 1                                          #   5
+    6: 1                                          #   6
+    GOLD1MAX: 1                                   #   Max
+  GOLD2MULTIPLIER:                                # Swamp Kinstone pack size
+    1: 1                                          #   1
+    2: 1                                          #   2
+    GOLD2MAX: 1                                   #   Max
+  REDWMULTIPLIER:                                 # Red W Kinstone pack size
+    1: 1                                          #   1
+    2: 1                                          #   2
+    3: 1                                          #   3
+    4: 1                                          #   4
+    5: 1                                          #   5
+    9: 1                                          #   9
+    12: 1                                         #   12
+    REDWMAX: 1                                    #   Max
+  REDVMULTIPLIER:                                 # Red V Kinstone pack size
+    1: 1                                          #   1
+    2: 1                                          #   2
+    3: 1                                          #   3
+    4: 1                                          #   4
+    5: 1                                          #   5
+    REDVMAX: 1                                    #   Max
+  REDEMULTIPLIER:                                 # Red E Kinstone pack size
+    1: 1                                          #   1
+    2: 1                                          #   2
+    3: 1                                          #   3
+    4: 1                                          #   4
+    5: 1                                          #   5
+    REDEMAX: 1                                    #   Max
+  BLUELMULTIPLIER:                                # Blue L Kinstone pack size
+    1: 1                                          #   1
+    2: 1                                          #   2
+    3: 1                                          #   3
+    4: 1                                          #   4
+    5: 1                                          #   5
+    9: 1                                          #   9
+    BLUELMAX: 1                                   #   Max
+  BLUESMULTIPLIER:                                # Blue S Kinstone pack size
+    1: 1                                          #   1
+    2: 1                                          #   2
+    3: 1                                          #   3
+    4: 1                                          #   4
+    5: 1                                          #   5
+    BLUESMAX: 1                                   #   Max
+  GREENCMULTIPLIER:                               # Green C Kinstone pack size
+    1: 1                                          #   1
+    2: 1                                          #   2
+    3: 1                                          #   3
+    4: 1                                          #   4
+    5: 1                                          #   5
+    10: 1                                         #   10
+    20: 1                                         #   20
+    GREENCMAX: 1                                  #   Max
+  GREENGMULTIPLIER:                               # Green G Kinstone pack size
+    1: 1                                          #   1
+    2: 1                                          #   2
+    3: 1                                          #   3
+    4: 1                                          #   4
+    5: 1                                          #   5
+    8: 1                                          #   8
+    GREENGMAX: 1                                  #   Max
+  GREENPMULTIPLIER:                               # Green P Kinstone pack size
+    1: 1                                          #   1
+    2: 1                                          #   2
+    3: 1                                          #   3
+    4: 1                                          #   4
+    5: 1                                          #   5
+    8: 1                                          #   8
+    GREENPMAX: 1                                  #   Max
+  #  Key Chains:
+  KEYDWSMULTIPLIER:                               # Deepwood Shrine Keychain size
+    DWS1KEY: 1                                    #   1
+    DWS2KEY: 1                                    #   2
+    DWS3KEY: 1                                    #   3
+    DWS4KEY: 1                                    #   4
+  KEYCOFMULTIPLIER:                               # Cave of Flames Keychain size
+    COF1KEY: 1                                    #   1
+    COF2KEY: 1                                    #   2
+  KEYFOWMULTIPLIER:                               # Fortress of Winds Keychain size
+    FOW1KEY: 1                                    #   1
+    FOW2KEY: 1                                    #   2
+    FOW3KEY: 1                                    #   3
+    FOW4KEY: 1                                    #   4
+  KEYTODMULTIPLIER:                               # Temple of Droplets Keychain size
+    TOD1KEY: 1                                    #   1
+    TOD2KEY: 1                                    #   2
+    TOD3KEY: 1                                    #   3
+    TOD4KEY: 1                                    #   4
+  KEYRCMULTIPLIER:                                # Royal Crypt Keychain size
+    RC1KEY: 1                                     #   1
+    RC2KEY: 1                                     #   2
+    RC3KEY: 1                                     #   3
+  KEYPOWMULTIPLIER:                               # Palace of Winds Keychain size
+    POW1KEY: 1                                    #   1
+    POW2KEY: 1                                    #   2
+    POW3KEY: 1                                    #   3
+    POW4KEY: 1                                    #   4
+    POW5KEY: 1                                    #   5
+    POW6KEY: 1                                    #   6
+  KEYDHCMULTIPLIER:                               # Dark Hyrule Castle Keychain size
+    DHC1KEY: 1                                    #   1
+    DHC2KEY: 1                                    #   2
+    DHC3KEY: 1                                    #   3
+    DHC4KEY: 1                                    #   4
+    DHC5KEY: 1                                    #   5
+  ## Gameplay:
+  #  Difficulty:
   GLITCHLESS:                                     # Prevent Speedrun Glitches
     on: 1
     off: 1
@@ -341,39 +487,39 @@ settings:
     on: 1
     off: 1
   THREE_HEART:                                    # Maximum Health
-    HEARTS_20: 1                                  #   20
-    19: 1                                         #   19
-    18: 1                                         #   18
-    17: 1                                         #   17
-    16: 1                                         #   16
-    15: 1                                         #   15
-    14: 1                                         #   14
-    13: 1                                         #   13
-    12: 1                                         #   12
-    11: 1                                         #   11
-    10: 1                                         #   10
-    9: 1                                          #   9
-    8: 1                                          #   8
-    7: 1                                          #   7
-    6: 1                                          #   6
-    5: 1                                          #   5
-    4: 1                                          #   4
-    3: 1                                          #   3
-    2: 1                                          #   2
     1: 1                                          #   1
+    2: 1                                          #   2
+    3: 1                                          #   3
+    4: 1                                          #   4
+    5: 1                                          #   5
+    6: 1                                          #   6
+    7: 1                                          #   7
+    8: 1                                          #   8
+    9: 1                                          #   9
+    10: 1                                         #   10
+    11: 1                                         #   11
+    12: 1                                         #   12
+    13: 1                                         #   13
+    14: 1                                         #   14
+    15: 1                                         #   15
+    16: 1                                         #   16
+    17: 1                                         #   17
+    18: 1                                         #   18
+    19: 1                                         #   19
+    HEARTS_20: 1                                  #   20
   DAMAGE_MULTI:                                   # Damage Multiplier
     MULTI_1: 1                                    #   1x
     MULTI_2: 1                                    #   2x
     MULTI_3: 1                                    #   3x
     MULTI_4: 1                                    #   4x
-  #  Extras:
+  SHY_FAIRIES:                                    # Shy Fairies
+    on: 1
+    off: 1
+  #  Improvements:
   INSTANT_TEXT:                                   # Instant Text
     on: 1
     off: 1
   ITEM_HISTORY:                                   # Item Name Display
-    on: 1
-    off: 1
-  SHY_FAIRIES:                                    # Shy Fairies
     on: 1
     off: 1
   HOMEWARP:                                       # Homewarp
@@ -382,6 +528,11 @@ settings:
   OCARINA_SELECT:                                 # Ocarina on Select
     on: 1
     off: 1
+  BOOTS_L:                                        # Boots on L
+    BOOTS_L_OFF: 1                                #   Disabled
+    BOOTS_L_NORMAL: 1                             #   Enabled
+    BOOTS_L_MINISH: 1                             #   Enabled + Minish
+  #  Extras:
   GORON_ALT_PRICES:                               # Goron Merchant JP/US prices
     on: 1
     off: 1
@@ -391,20 +542,12 @@ settings:
   NO_SHELL_DROPS:                                 # Disable Shell Drops
     on: 1
     off: 1
-  BOOTS_L:                                        # Boots on L
-    BOOTS_L_OFF: 1                                #   Disabled
-    BOOTS_L_NORMAL: 1                             #   Enabled
-    BOOTS_L_MINISH: 1                             #   Enabled + Minish
-  FIREROD:                                        # Firerod
-    NO_FIREROD: 1                                 #   No Firerod
-    FIREROD_START: 1                              #   Start With
-    FIREROD_CHEST: 1                              #   Shuffled
   ## Cosmetics:
   #  Music & Sound Effects:
   MUSIC_SETTING:                                  # Music
+    NO_MUSIC: 1                                   #   None
     VANILLA_MUSIC: 1                              #   Vanilla
     MUSIC_RANDO: 1                                #   Shuffled
-    NO_MUSIC: 1                                   #   None
   HEALTH_BEEP:                                    # Low Health Beep
     0: 1
     90: 1
@@ -422,8 +565,15 @@ settings:
     vanilla: 1
     default: 1
     random: 1
-    255 80 16: 1
-    "#FF5010": 1
+    255 80 48: 1
+    "#FF5030": 1
+  #  Heart Outlines:
+  HEART_OUTLINE_COLOR:                            # Heart Outline Color
+    vanilla: 1
+    default: 1
+    random: 1
+    255 255 255: 1
+    "#FFFFFF": 1
   #  Tunic:
   TUNIC_COLOR:                                    # Tunic Color
     vanilla: 1
@@ -449,22 +599,4 @@ settings:
     0x31: 1                                       #   Cow
     0x32: 1                                       #   Goron
     0x45: 1                                       #   Anju
-  #  Don't do this:
-  FUZZY_SETTING:                                  # Nausia rating
-    NOFUZZ: 1                                     #   No thanks
-    0x0: 1                                        #   1
-    0x1: 1                                        #   2
-    0x2: 1                                        #   3
-    0x3: 1                                        #   4
-    0x4: 1                                        #   5
-    0x5: 1                                        #   6
-    0x6: 1                                        #   7
-    0x7: 1                                        #   8
-    0x8: 1                                        #   9
-    0x9: 1                                        #   10
-    0xA: 1                                        #   11
-    0xB: 1                                        #   12
-    0xC: 1                                        #   13
-    0xD: 1                                        #   14
-    0xE: 1                                        #   15
 subweights: {}
