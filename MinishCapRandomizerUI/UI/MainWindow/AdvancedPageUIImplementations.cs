@@ -82,20 +82,6 @@ public partial class MinishCapRandomizerUI
     {
         BrowseCustomYAML.Enabled = UseCustomYAML.Checked;
         _configuration.UseCustomYAML = UseCustomYAML.Checked;
-        if (!UseMysteryCosmetics.Checked && !UseMysterySettings.Checked)
-            UpdateUIWithLogicOptions();
-    }
-
-    private void UseMysterySettings_CheckedChanged(object sender, EventArgs e)
-    {
-        if (!UseMysteryCosmetics.Checked && !UseCustomYAML.Checked)
-            UpdateUIWithLogicOptions();
-    }
-
-    private void UseMysteryCosmetics_CheckedChanged(object sender, EventArgs e)
-    {
-        if (!UseMysterySettings.Checked && !UseCustomYAML.Checked)
-            UpdateUIWithLogicOptions();
     }
 
     private void UseSphereBasedShuffler_CheckedChanged(object sender, EventArgs e)

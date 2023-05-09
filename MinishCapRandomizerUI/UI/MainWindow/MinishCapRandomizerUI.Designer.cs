@@ -1001,7 +1001,6 @@
             UseMysteryCosmetics.Text = "Use Mystery Cosmetics";
             UseMysteryCosmetics.TextAlign = ContentAlignment.MiddleRight;
             UseMysteryCosmetics.UseVisualStyleBackColor = true;
-            UseMysteryCosmetics.CheckedChanged += UseMysteryCosmetics_CheckedChanged;
             // 
             // LoadCosmeticSample
             // 
@@ -1031,7 +1030,6 @@
             UseMysterySettings.Text = "Use Mystery Settings";
             UseMysterySettings.TextAlign = ContentAlignment.MiddleRight;
             UseMysterySettings.UseVisualStyleBackColor = true;
-            UseMysterySettings.CheckedChanged += UseMysterySettings_CheckedChanged;
             // 
             // LoadSettingSample
             // 
