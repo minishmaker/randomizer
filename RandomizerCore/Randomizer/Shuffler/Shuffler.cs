@@ -32,7 +32,9 @@ internal class Shuffler : ShufflerBase
         var locationStrings = LoadLocationFile(logicFile);
         
         var time = DateTime.Now;
-        var locationAndItems = LogicParser.ParseLocationsAndItems(locationStrings, Rng);
+        Logger.Instance.BeginLogTransaction();
+        var locationAndItems = _logicParser.ParseLocationsAndItems(locationStrings, _rng);
+        Logger.Instance.SaveLogTransaction();
 
         _logicParser.SubParser.DuplicateAmountReplacements();
         _logicParser.SubParser.DuplicateIncrementalReplacements();
@@ -96,6 +98,7 @@ internal class Shuffler : ShufflerBase
         unfilledLocations.AddRange(nextLocationGroup);
         unfilledLocations = unfilledLocations.Distinct().ToList();
         unfilledLocations.Shuffle(_rng);
+        Logger.Instance.LogInfo($"Placing Minors");
         FastFillLocations(_minorItems.Concat(_fillerItems).ToList(), unfilledLocations);
         
         nextLocationGroup = locationGroups.Any(group => group.Key == LocationType.Inaccessible)
@@ -104,6 +107,7 @@ internal class Shuffler : ShufflerBase
         unfilledLocations.AddRange(nextLocationGroup);
         unfilledLocations = unfilledLocations.Distinct().ToList();
         unfilledLocations.Shuffle(_rng);
+        Logger.Instance.LogInfo($"Filling all remaining locations");
         FastFillLocations(_fillerItems.ToList(), unfilledLocations);
 
         // Get every item that can be logically obtained, to check if the game can be completed
@@ -117,7 +121,7 @@ internal class Shuffler : ShufflerBase
         _filledLocations.AddRange(finalFilledLocations);
 
         var diff = DateTime.Now - time;
-        Logger.Instance.BeginLogTransaction();
+        Logger.Instance.SaveLogTransaction();
         Logger.Instance.LogInfo($"Timing Benchmark - Shuffling with seed {Seed:X} and settings {MinifiedSettings.GenerateSettingsString(GetSortedSettings(), GetLogicOptionsCrc32())} took {diff.Seconds}.{diff.Milliseconds} seconds!");
         Logger.Instance.SaveLogTransaction(true);
         
@@ -137,6 +141,7 @@ internal class Shuffler : ShufflerBase
             : new List<Location>();
 
         nextLocationGroup.Shuffle(_rng);
+        Logger.Instance.LogInfo($"Placing Music");
         FastFillLocations(_music, nextLocationGroup);
 
         _rng = temp;
@@ -150,6 +155,7 @@ internal class Shuffler : ShufflerBase
             ? locationGroups.First(group => group.Key == LocationType.DungeonEntrance).ToList()
             : new List<Location>();
         nextLocationGroup.Shuffle(_rng);
+        Logger.Instance.LogInfo($"Placing Entrances");
         FastFillLocations(_dungeonEntrances, nextLocationGroup);
 
         //Add all unfilled items to the available pool
@@ -168,30 +174,35 @@ internal class Shuffler : ShufflerBase
             ? locationGroups.First(group => group.Key == LocationType.DungeonConstraint).ToList()
             : new List<Location>();
         nextLocationGroup.Shuffle(_rng);
+        Logger.Instance.LogInfo($"Placing Dungeon Constraints");
         FastFillAndConsiderItemPlaced(_dungeonConstraints, nextLocationGroup);
         
         nextLocationGroup = locationGroups.Any(group => group.Key == LocationType.OverworldConstraint)
             ? locationGroups.First(group => group.Key == LocationType.OverworldConstraint).ToList()
             : new List<Location>();
         nextLocationGroup.Shuffle(_rng);
+        Logger.Instance.LogInfo($"Placing Overworld Constraints");
         FastFillAndConsiderItemPlaced(_overworldConstraints, nextLocationGroup);
 
         // //Shuffle prizes
         nextLocationGroup = locationGroups.Any(group => group.Key == LocationType.DungeonPrize)
             ? locationGroups.First(group => group.Key == LocationType.DungeonPrize).ToList()
             : new List<Location>();
+        Logger.Instance.LogInfo($"Placing Dungeon Prizes");
         var unfilledLocations = FillLocationsFrontToBack(_dungeonPrizes, nextLocationGroup, allItems);
 
         //Shuffle dungeon majors
         nextLocationGroup = locationGroups.Any(group => group.Key == LocationType.Dungeon)
             ? locationGroups.First(group => group.Key == LocationType.Dungeon).ToList()
             : new List<Location>();
+        Logger.Instance.LogInfo($"Placing Dungeon Majors");
         unfilledLocations.AddRange(FillLocationsFrontToBack(_dungeonMajorItems,
             nextLocationGroup,
             majorsAndEntrances,
             unfilledLocations));
 
         //Shuffle dungeon minors
+        Logger.Instance.LogInfo($"Placing Dungeon Minors");
         unfilledLocations.AddRange(FillLocationsFrontToBack(_dungeonMinorItems,
             unfilledLocations,
             allItemsAndEntrances));
@@ -270,10 +281,12 @@ internal class Shuffler : ShufflerBase
 
             if (usingFallback) fallbackLocations.Remove(availableLocations[locationIndex]);
             else locations.Remove(availableLocations[locationIndex]);
-            
+
             item.NotifyParentDependencies(true);
 
             filledLocations.Add(availableLocations[locationIndex]);
+
+            if (items.Count == 0) Logger.Instance.LogInfo($"All {item.ShufflePool} placed, {locations.Count} locations left unfilled");
 
             errorIndexes.Clear();
         }
@@ -359,10 +372,12 @@ internal class Shuffler : ShufflerBase
 
             if (usingFallback) fallbackLocations.Remove(availableLocations[locationIndex]);
             else locations.Remove(availableLocations[locationIndex]);
-            
+
             _filledLocations.Add(availableLocations[locationIndex]);
             _filledLocations.AddRange(tempFilledLocations);
             tempFilledLocations.ForEach(location => location.Contents!.Value.NotifyParentDependencies(false));
+
+            if (items.Count == 0) Logger.Instance.LogInfo($"All {item.ShufflePool} placed, {fallbackLocations.Count} locations left unfilled");
 
             errorIndexes.Clear();
         }

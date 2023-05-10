@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Security.Cryptography;
+using System.Text;
 using RandomizerCore.Randomizer.Logic.Options;
 
 namespace MinishCapRandomizerCLI;
@@ -78,14 +79,16 @@ public static class CommandFileParser
                     var totalSeeds = 0;
                     var lastRunFailure = false;
                     var consecutiveFailures = 0;
+                    var startTime = DateTime.Now;
                     while (successes++ < numberOfSeedToGen)
                     {
                         totalSeeds++;
-                        
+
                         GenericCommands.Seed("R");
                         
                         if (shuffleSettingsEachAttempt && !lastRunFailure) ShuffleAllOptions();
-                        
+
+                        var time = DateTime.Now;
                         var result = GenericCommands.Randomize("1");
                         if (!result)
                         {
@@ -109,12 +112,15 @@ public static class CommandFileParser
                             }
                             else
                             {
-                                logBuilder.AppendLine($"Generated seed {successes}");
+                                var diff = DateTime.Now - time;
+                                logBuilder.AppendLine($"Generated seed {successes} taking {diff.Seconds}.{diff.Milliseconds} seconds");
                                 consecutiveFailures = 0;
                                 lastRunFailure = false;
                             }
                         }
                     }
+                    logBuilder.AppendLine($"Total Time Taken: {(DateTime.Now - startTime).Hours.ToString("00")}:{(DateTime.Now - startTime).Minutes.ToString("00")}:{(DateTime.Now - startTime).Seconds.ToString("00")}.{(DateTime.Now - startTime).Milliseconds}");
+                    logBuilder.AppendLine($"Average time to gen a seed: {((DateTime.Now - startTime).TotalSeconds / (double)totalSeeds).ToString("0.00")} seconds");
                     logBuilder.AppendLine($"Total Success Rate: {(--successes / (double)totalSeeds) * 100}%");
                     break;
                 case "Exit":

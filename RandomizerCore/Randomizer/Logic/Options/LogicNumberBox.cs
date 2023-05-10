@@ -47,7 +47,7 @@ public class LogicNumberBox : LogicOptionBase
         // Only true if valid text has been entered
         if (Value != "")
         {
-            Logger.Instance.LogInfo($"Number box name: {Name}");
+            Logger.Instance.LogInfo($"Number box name: {Name}, Value: {Value}");
             defineList.Add(new LogicDefine(Name, Value));
         }
         else

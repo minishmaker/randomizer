@@ -489,20 +489,42 @@ internal abstract class ShufflerBase
         protected void FastFillLocations(List<Item> items, List<Location> locations)
         {
             var nonFillerItems = items.Where(item => item.ShufflePool is not ItemPool.Filler);
+            var i = items.Count - _fillerItems.Count;
+            var h = 0;
+            if (i < 0)
+            { 
+                i = items.Count;
+                h = 1;
+            }
             // Don't need to check logic, cause the items being placed do not affect logic
             foreach (var item in nonFillerItems)
             {
-                if (locations.Count == 0) return;
+                if (locations.Count == 0)
+                {
+                    Logger.Instance.LogInfo($"All locations filled with {items.Count} items unplaced");
+                    return;
+                }
 
                 _filledLocations.Add(locations[0]);
+                --i;
+                h = 0;
+                Logger.Instance.LogInfo(
+                    $"Placed {item.Type.ToString()} subtype {StringUtil.AsStringHex2(item.SubValue)} at {locations[0].Name} with {i} items remaining");
                 locations[0].Fill(item);
                 locations.RemoveAt(0);
             }
 
-            if (locations.Count == 0) return;
-
+            if (locations.Count == 0)
+            {
+                if (h == 1) Logger.Instance.LogInfo($"Nothing to place");
+                else Logger.Instance.LogInfo($"All locations filled with no remaining items");
+                return;
+            }
+            
             var fillItems = items.Where(item => item.ShufflePool == ItemPool.Filler).ToList();
-            var rand = new SquaresRandomNumberGenerator(SquaresRandomNumberGenerator.DefaultKey, Seed);
+            if (i == 0) Logger.Instance.LogInfo($"Filling {locations.Count} locations");
+            else Logger.Instance.LogInfo($"{i} items not placed");
+        var rand = new SquaresRandomNumberGenerator(SquaresRandomNumberGenerator.DefaultKey, Seed);
             while (locations.Count > 0)
             {
                 _filledLocations.Add(locations[0]);
@@ -513,6 +535,7 @@ internal abstract class ShufflerBase
 
         protected void FastFillAndConsiderItemPlaced(List<Item> items, List<Location> locations)
         {
+            var i = items.Count;
             foreach (var item in items)
             {
                 if (locations.Count == 0) return;
@@ -522,6 +545,9 @@ internal abstract class ShufflerBase
                 l.Shuffle(_rng);
                 
                 _filledLocations.Add(l[0]);
+                --i;
+                Logger.Instance.LogInfo(
+                    $"Placed {item.Type.ToString()} subtype {StringUtil.AsStringHex2(item.SubValue)} at {l[0].Name} with {i} items remaining");
                 l[0].Fill(item);
                 item.NotifyParentDependencies(true);
                 locations.Remove(l[0]);

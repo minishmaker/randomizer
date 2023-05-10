@@ -51,7 +51,7 @@ public class LogicDropdown : LogicOptionBase
 
         if (!Selections.TryGetValue(Selection, out var content)) return defineList;
 
-        Logger.Instance.LogInfo($"Active Define: {Name}");
+        Logger.Instance.LogInfo($"Active Define: {NiceName}, Value: {Selection}");
         defineList.Add(new LogicDefine(Name, content));
 
         return defineList;
