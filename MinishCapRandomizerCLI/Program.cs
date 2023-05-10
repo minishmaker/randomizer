@@ -1,7 +1,4 @@
-﻿using System.Drawing;
-using RandomizerCore.Controllers;
-using RandomizerCore.Controllers.Models;
-using RandomizerCore.Randomizer.Logic.Options;
+﻿using RandomizerCore.Controllers;
 
 namespace MinishCapRandomizerCLI;
 
@@ -14,8 +11,10 @@ internal class Program
     private static void Main(string[] args)
     {
         GenericCommands.ShufflerController = new ShufflerController();
+        GenericCommands.YamlController = new YamlController();
         Console.Write("Loading default logic file...");
         GenericCommands.ShufflerController.LoadLogicFile();
+        GenericCommands.YamlController.LoadLogicFile();
         Console.WriteLine("done");
         if (args.Length == 1)
         {
