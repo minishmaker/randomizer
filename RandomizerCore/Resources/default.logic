@@ -97,7 +97,7 @@
 !dropdown - Main Settings - Setting - Dungeon Settings - COMPASS_SETTING - Compasses - Compasses - COMPASS_STANDARD - Start With - COMPASS_KEASY - 'Start With': Compasses are given to you from the start. - Vanilla - COMPASS_VANILLA - 'Vanilla': Compasses are in the same places they appear in the vanilla game. - Own Dungeon - COMPASS_STANDARD - 'Own Dungeon': Compasses are randomized to locations in the dungeon they are used in. - Own Region - COMPASS_REGION - 'Own Region': Compasses are randomized inside and in the vicinity of their own dungeon. - Any Dungeon - COMPASS_DUNGEON - 'Any Dungeon': Compasses are randomized inside all dungeons. - Any Region - COMPASS_REGDUN - 'Any Region': Compasses are randomized inside and in the vicinity of all dungeons. - Anywhere (Keysanity) - COMPASS_KEYSANITY - 'Anywhere': Compasses are randomized to any location in the world.\n\nDWS Region: 'Minish Village', 'Belari's House', 'Chest near Belari', 'Minish Cave near Belari'.\nCoF Region: 'Melari's Mines', 'Melari's Mines Outside Path', 'Pre Melari Block Puzzle Chest'.\nFOW Region: 'Wind Ruins'.\nTOD Region: 'Nothing'.\nRC Region: 'Graveyard (Not Dampe)'.\nPOW Region: If Red Fusions are Removed: 'Wind Tribe', Otherwise: 'Upper Wind Tribe'.\nDHC Region: 'Castle Gardens (Not Moat)', If Pedestal Items is enabled: 'Sanctuary Pedestal'.
 !dropdown - Main Settings - Setting - Dungeon Settings - SMALL_KEYS_SETTING - Small Keys - Small Keys - SMALL_KEYS_STANDARD - Removed (Keasy) - SMALL_KEASY - 'Removed': Small keys are removed, All small locked doors are open from the start. - Vanilla - SMALL_KEYS_VANILLA - 'Vanilla': Small keys are in the same places they appear in the vanilla game. - Own Dungeon - SMALL_KEYS_STANDARD - 'Own Dungeon': Small keys are randomized to locations in the dungeon they are used in. - Own Region - SMALL_KEYS_REGION - 'Own Region': Small keys are randomized inside and in the vicinity of their own dungeon. - Any Dungeon - SMALL_KEYS_DUNGEON - 'Any Dungeon': Small keys are randomized inside all dungeons. - Any Region - SMALL_KEYS_REGDUN - 'Any Region': Small keys are randomized inside and in the vicinity of all dungeons. - Anywhere (Keysanity) - SMALL_KEYSANITY - 'Anywhere': Small keys are randomized to any location in the world, expect to return to dungeons multiple times.\n\nDWS Region: 'Minish Village', 'Belari's House', 'Chest near Belari', 'Minish Cave near Belari'.\nCoF Region: 'Melari's Mines', 'Melari's Mines Outside Path', 'Pre Melari Block Puzzle Chest'.\nFOW Region: 'Wind Ruins'.\nTOD Region: 'Nothing'.\nRC Region: 'Graveyard (Not Dampe)'.\nPOW Region: If Red Fusions are Removed: 'Wind Tribe', Otherwise: 'Upper Wind Tribe'.\nDHC Region: 'Castle Gardens (Not Moat)', If Pedestal Items is enabled: 'Sanctuary Pedestal'.
 !dropdown - Main Settings - Setting - Dungeon Settings - BIG_KEYS_SETTING - Big Keys - Big Keys - BIG_KEYS_STANDARD - Removed (Keasy) - BIG_KEASY - 'Removed': Big keys are removed, All locked Boss doors are open from the start. - Vanilla - BIG_KEYS_VANILLA - 'Vanilla': Big keys are in the same places they appear in the vanilla game. - Own Dungeon - BIG_KEYS_STANDARD - 'Own Dungeon': Big keys are randomized to locations in the dungeon they are used in. - Own Region - BIG_KEYS_REGION - 'Own Region': Big keys are randomized inside and in the vicinity of their own dungeon. - Any Dungeon - BIG_KEYS_DUNGEON - 'Any Dungeon': Big keys are randomized inside all dungeons. - Any Region - BIG_KEYS_REGDUN - 'Any Region': Big keys are randomized inside and in the vicinity of all dungeons. - Anywhere (Keysanity) - BIG_KEYSANITY  - 'Anywhere': Big keys are randomized to any location in the world, expect to return to dungeons multiple times.\n\nDWS Region: 'Minish Village', 'Belari's House', 'Chest near Belari', 'Minish Cave near Belari'.\nCoF Region: 'Melari's Mines', 'Melari's Mines Outside Path', 'Pre Melari Block Puzzle Chest'.\nFOW Region: 'Wind Ruins'.\nTOD Region: 'Nothing'.\nRC Region: 'Graveyard (Not Dampe)'.\nPOW Region: If Red Fusions are Removed: 'Wind Tribe', Otherwise: 'Upper Wind Tribe'.\nDHC Region: 'Castle Gardens (Not Moat)', If Pedestal Items is enabled: 'Sanctuary Pedestal'.
-!dropdown - Main Settings - Setting - Dungeon Settings - SHUFFLE_ELEMENTS - Shuffle Elements - Shuffle Elements - SHUFFLE_ELEMENTS_OFF - Vanilla - SHUFFLE_ELEMENTS_VANILLA - 'Vanilla': The Elements are found in their vanilla locations. Only works if the other settings chosen make it possible to reach all the dungeons with Elements. - Dungeon Rewards - SHUFFLE_ELEMENTS_OFF - 'Dungeon Rewards': Elements are shuffled among the 6 Dungeon Rewards. - Anywhere - SHUFFLE_ELEMENTS_ON - 'Anywhere': Elements are shuffled anywhere in the world. The Element icons on the map are removed.
+!dropdown - Main Settings - Setting - Dungeon Settings - SHUFFLE_ELEMENTS - Shuffle Elements - Shuffle Elements - SHUFFLE_ELEMENTS_OFF - Vanilla - SHUFFLE_ELEMENTS_VANILLA - 'Vanilla': The Elements are found in their vanilla locations. Will shuffle dungeon rewards if all 4 elements are required to complete the seed but the vanilla location is not accessible. - Dungeon Rewards - SHUFFLE_ELEMENTS_OFF - 'Dungeon Rewards': Elements are shuffled among the 6 Dungeon Rewards. - Anywhere - SHUFFLE_ELEMENTS_ON - 'Anywhere': Elements are shuffled anywhere in the world. The Element icons on the map are removed.
 !dropdown - Main Settings - Setting - Dungeon Settings - DUNGEON - NonElement Dungeons - NonElement Dungeons, This setting is disabled when 'Shuffle Elements' is set to 'Anywhere' or when 'Dungeons Required' is set to '5' or '6'. - NONE - Standard - NONE - 'Standard': NonElement Dungeons have no special rules. - Unrequired - UNREQ - 'Unrequired': NonElement Dungeons do not have items required to beat the game. - Barren - BARREN - 'Barren': NonElement Dungeons only contain junk items. - Regions Unrequired - UNREQSUR - 'Regions Unrequired': NonElement Dungeons and their Regions do not contain items needed to beat the game. - Regions Barren - BARRENSUR - 'Regions Barren': NonElement Dungeons and their Regions only contain junk items. \n\nDWS Region: 'Minish Village', 'Belari's House', 'Chest near Belari', 'Minish Cave near Belari'.\nCoF Region: 'Melari's Mines', 'Melari's Mines Outside Path', 'Pre Melari Block Puzzle Chest'.\nFOW Region: 'Wind Ruins'.\nTOD Region: 'Nothing'.\nRC Region: 'Graveyard (Not Dampe)'.\nPOW Region: If Red Fusions are Removed: 'Wind Tribe', Otherwise: 'Upper Wind Tribe'.
 
 !dropdown - Main Settings - Setting - Requirements - DHC_SETTING - Dark Hyrule Castle Opens - Dark Hyrule Castle is the last dungeon in the game, it has the final boss Vaati. - OPENDHC - Never Open - NODHC - 'Never Open': A barrier is placed at the front of the dungeon, The game ends when you visit the sanctuary after completing all the requirements. - After Requirements - NORMALDHC - 'After Requirements': A barrier is placed at the front of the dungeon, This barrier is removed when you visit the sanctuary after completing ALL the requirements. The game ends when you defeat Vaati. - Always Open - OPENDHC - 'Always Open': There is no barrier at the front of the dungeon, the game ends when you defeat Vaati.
@@ -1274,45 +1274,20 @@
 
 !ifdef - FALLS_CREST
 	!define - FALLS_ACCESS
-!else
-	!ifdef - CLOUD_CREST
-		!define - FALLS_ACCESS
-	!else
-		!ifndef - NO_GOLD_FUSIONS
-			!define - FALLS_ACCESS
-		!endif
-	!endif
-!endif
-!ifdef - ENTRANCES_COUPLED
-	!define - POW_ACCESS
-	!define - FOW_ACCESS
-	!ifdef - CLOUD_CREST
-		!define - UWT_ACCESS
-	!else
-		!ifndef - NO_GOLD_FUSIONS
-			!define - UWT_ACCESS
-		!endif
-	!endif
-!else
-	!ifndef - NO_GOLD_FUSIONS
-		!define - POW_ACCESS
-		!define - UWT_ACCESS
-		!define - FOW_ACCESS
-	!else
-		!ifdef - CLOUD_CREST
-			!define - POW_ACCESS
-			!define - UWT_ACCESS
-		!endif
-	!endif
 !endif
 !ifdef - CLOUD_CREST
+	!define - FALLS_ACCESS
 	!define - TRIBE_ACCESS
 !else
 	!ifndef - NO_GOLD_FUSIONS
+		!define - FALLS_ACCESS
 		!define - TRIBE_ACCESS
 	!else
 		!ifndef - NO_RED_FUSIONS
 			!define - TRIBE_ACCESS
+			!ifdef - OPEN_WIND_TRIBE
+				!define - FALLS_ACCESS
+			!endif
 		!endif
 	!endif
 !endif
@@ -1322,35 +1297,163 @@
 	!define - GORON_CAVE
 !endif
 
+# Entrances
 # Vanilla Elements only allowed when the respective dungeons are accessible (even if entrances are shuffled)
-!ifdef - SHUFFLE_ELEMENTS_VANILLA
-	!ifndef - UWT_ACCESS
-		!undefine - SHUFFLE_ELEMENTS_VANILLA
-		!define - SHUFFLE_ELEMENTS_OFF
-	!endif
-!endif
-
-#Entrances
 
 !ifdef - ENTRANCES_VANILLA
+	!define - RC_ACCESS
+	!ifndef - NO_GOLD_FUSIONS
+		!define - FOW_ACCESS
+		!define - UWT_ACCESS
+		!define - POW_ACCESS
+	!else
+		!ifdef - CLOUD_CREST
+			!define - UWT_ACCESS
+			!define - POW_ACCESS
+		!else
+			!ifndef - NO_RED_FUSIONS
+				!ifdef - OPEN_WIND_TRIBE
+					!define - UWT_ACCESS
+					!define - POW_ACCESS
+				!endif
+			!endif		
+		!endif
+	!endif
+	!ifdef - SHUFFLE_ELEMENTS_VANILLA
+		!ifndef - POW_ACCESS
+			!ifdef - 4ELEMENT
+				!ifndef - OPENDHC
+					!undefine - SHUFFLE_ELEMENTS_VANILLA
+					!define - SHUFFLE_ELEMENTS_OFF
+				!else
+					!ifdef - REQUIREMENT_ITEM_DHC_BK
+						!undefine - SHUFFLE_ELEMENTS_VANILLA
+						!define - SHUFFLE_ELEMENTS_OFF
+					!else
+						!define - NO_PALACE
+					!endif
+				!endif
+			!else
+				!define - NO_PALACE
+			!endif
+		!endif
+	!endif
 	!define - DUNGEONENTRANCE - :NoSpoiler;	Unshuffled
-	!define - DHC_MAIN_DUNGEONENTRANCE - :NoSpoiler;	Unshuffled
-	!define - DHC_SIDE_DUNGEONENTRANCE - :NoSpoiler;	Unshuffled
 	!define - ENTERDWS - Helpers.AccessDeepwood
 	!define - ENTERCOF - Helpers.AccessCoF
+	!define - FOW_DUNGEONENTRANCE - :NoSpoiler;	Unshuffled
 	!define - ENTERFOW - Helpers.AccessFortress
 	!define - ENTERTOD - Helpers.AccessDroplets
 	!define - ENTERRC - Helpers.AccessCrypt
+	!define - POW_DUNGEONENTRANCE - :NoSpoiler;	Unshuffled
 	!define - ENTERPOW - Helpers.AccessPalace
+	!define - PALACE_VANILLA - Items.Entrance.0x06
+	!define - DHC_MAIN_DUNGEONENTRANCE - :NoSpoiler;	Unshuffled
+	!define - DHC_SIDE_DUNGEONENTRANCE - :NoSpoiler;	Unshuffled
 	!define - ENTERDHC - Helpers.AccessDHC
 !else
+	!define - RC_ACCESS
+	!ifdef - SHUFFLE_ELEMENTS_VANILLA
+		!ifndef - NO_GOLD_FUSIONS
+			!define - FOW_ACCESS
+			!define - UWT_ACCESS
+			!define - POW_ACCESS
+		!else
+			!ifdef - CLOUD_CREST
+				!define - UWT_ACCESS
+				!define - POW_ACCESS
+			!else
+				!ifndef - NO_RED_FUSIONS
+					!ifdef - OPEN_WIND_TRIBE
+						!define - UWT_ACCESS
+						!define - POW_ACCESS
+					!else
+						!ifdef - 4ELEMENT
+							!ifndef - OPENDHC
+								!define - PALACE_FORCED
+							!else
+								!ifdef - REQUIREMENT_ITEM_DHC_BK
+									!define - PALACE_FORCED
+								!else
+									!define - NO_PALACE
+								!endif
+							!endif
+						!else
+							!define - NO_PALACE
+						!endif
+					!endif
+				!else
+					!ifdef - 4ELEMENT
+						!ifndef - OPENDHC
+							!define - PALACE_FORCED
+						!else
+							!ifdef - REQUIREMENT_ITEM_DHC_BK
+								!define - PALACE_FORCED
+							!else
+								!define - NO_PALACE
+							!endif
+						!endif
+					!else
+						!define - NO_PALACE
+					!endif
+				!endif
+			!endif
+		!endif
+	!else
+		!define - FOW_ACCESS
+		!define - POW_ACCESS
+		!ifndef - NO_GOLD_FUSIONS
+			!define - UWT_ACCESS
+		!else
+			!ifdef - CLOUD_CREST
+				!define - UWT_ACCESS
+			!else
+				!ifndef - NO_RED_FUSIONS
+					!ifdef - OPEN_WIND_TRIBE
+						!define - UWT_ACCESS
+					!endif
+				!endif
+			!endif
+		!endif
+	!endif
 	!define - DUNGEONENTRANCE - ;	DungeonEntrance
 	!define - ENTERDWS - Items.Entrance.0x01
+	Items.Entrance.0x01;	DungeonEntrance;
 	!define - ENTERCOF - Items.Entrance.0x02
-	!define - ENTERFOW - Items.Entrance.0x03
+	Items.Entrance.0x02;	DungeonEntrance;
+	!ifdef - FOW_ACCESS
+		!define - FOW_DUNGEONENTRANCE - ;	DungeonEntrance
+		!define - ENTERFOW - Items.Entrance.0x03
+		Items.Entrance.0x03;	DungeonEntrance;
+	!else
+		!define - FOW_DUNGEONENTRANCE - :NoSpoiler;	Unshuffled
+		!define - ENTERFOW - Helpers.BeatVaati
+	!endif
 	!define - ENTERTOD - Items.Entrance.0x04
-	!define - ENTERRC - Items.Entrance.0x05
-	!define - ENTERPOW - Items.Entrance.0x06
+	Items.Entrance.0x04;	DungeonEntrance;
+	!ifdef - POW_ACCESS
+		!define - ENTERRC - Items.Entrance.0x05
+		Items.Entrance.0x05;	DungeonEntrance;
+		!define - POW_DUNGEONENTRANCE - ;	DungeonEntrance
+		!define - ENTERPOW - Items.Entrance.0x06
+		!define - PALACE_VANILLA - Items.Entrance.0x06
+		Items.Entrance.0x06;	DungeonEntrance;
+	!else
+		!define - POW_DUNGEONENTRANCE - :NoSpoiler;	Unshuffled
+		!ifdef - PALACE_FORCED
+			!undefine - RC_ACCESS
+			!define - ENTERRC - Helpers.BeatVaati
+			!define - ENTERPOW - Items.Entrance.0x06
+			!define - PALACE_VANILLA - Items.Entrance.0x05
+			Items.Entrance.0x06;	DungeonEntrance;
+			!define - POW_ACCESS
+		!else
+			!define - ENTERRC - Items.Entrance.0x05
+			!define - PALACE_VANILLA - Items.Entrance.0x06
+			Items.Entrance.0x05;	DungeonEntrance;
+			!define - ENTERPOW - Helpers.BeatVaati
+		!endif
+	!endif
 	!ifdef - OPENDHC
 		!define - DHC_MAIN_DUNGEONENTRANCE - ;	DungeonEntrance
 		!define - DHC_SIDE_DUNGEONENTRANCE - :NoSpoiler;	Unshuffled
@@ -1362,12 +1465,6 @@
 		!define - ENTERDHC - Items.Entrance.0x08, Helpers.AccessDHC
 		Items.Entrance.0x08;	DungeonEntrance;
 	!endif
-	Items.Entrance.0x01;	DungeonEntrance;
-	Items.Entrance.0x02;	DungeonEntrance;
-	Items.Entrance.0x03;	DungeonEntrance;
-	Items.Entrance.0x04;	DungeonEntrance;
-	Items.Entrance.0x05;	DungeonEntrance;
-	Items.Entrance.0x06;	DungeonEntrance;
 !endif
 
 !ifdef - DOJOVANILLA
@@ -1723,13 +1820,33 @@
 				Items.SmallKey.0x1B;	`SMALL_KEY`;	`TOD_SMALL`
 			!endif
 		!endif
-		!ifdef - RC1KEY
-			Items.SmallKey.0x1E:3;	`SMALL_KEY`;	`RC_SMALL`
-		!else
-			!ifdef - RC2KEY
-				Items.SmallKey.0x1E:2;	`SMALL_KEY`;	`RC_SMALL`
+		!ifdef - RC_ACCESS
+			!ifdef - RC1KEY
+				Items.SmallKey.0x1E:3;	`SMALL_KEY`;	`RC_SMALL`
 			!else
-				Items.SmallKey.0x1E;	`SMALL_KEY`;	`RC_SMALL`
+				!ifdef - RC2KEY
+					Items.SmallKey.0x1E:2;	`SMALL_KEY`;	`RC_SMALL`
+				!else
+					Items.SmallKey.0x1E;	`SMALL_KEY`;	`RC_SMALL`
+				!endif
+			!endif
+		!else
+			!ifndef - SMALL_KEYS_VANILLA
+				!ifndef - SMALL_KEYS_REGION
+					!ifndef - SMALL_KEYS_STANDARD
+						!ifdef - MEME
+							!ifdef - RC1KEY
+								Items.SmallKey.0x1E:3;	`SMALL_KEY`;	`RC_SMALL`
+							!else
+								!ifdef - RC2KEY
+									Items.SmallKey.0x1E:2;	`SMALL_KEY`;	`RC_SMALL`
+								!else
+									Items.SmallKey.0x1E;	`SMALL_KEY`;	`RC_SMALL`
+								!endif
+							!endif
+						!endif
+					!endif
+				!endif
 			!endif
 		!endif
 		!ifdef - POW_ACCESS
@@ -2143,7 +2260,9 @@
 		Items.SmallKey.0x18:2;	Minor;
 		Items.SmallKey.0x19:2;	Minor;
 		Items.SmallKey.0x1B:2;	Minor;
-		Items.SmallKey.0x1E:2;	Minor;
+		!ifdef - RC_ACCESS
+			Items.SmallKey.0x1E:2;	Minor;
+		!endif
 		!ifdef - FOW_ACCESS
 			Items.SmallKey.0x1A:2;	Minor;
 		!endif
@@ -5617,6 +5736,14 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 		!define - UWTFUSIONGREEN - `PALACEOUTSIDECHEST`
 	!endif
 !endif
+# Royal Crypt
+!ifdef - RC_ACCESS
+	!define - CRYPTITEM - Dungeon
+	!define - CRYPTPRIZE - DungeonPrize
+!else
+	!define - CRYPTITEM - Inaccessible
+	!define - CRYPTPRIZE - Inaccessible
+!endif
 # Fortress of Winds
 !ifdef - FOW_ACCESS
 	!define - FORTRESSCHEST - Dungeon
@@ -5639,7 +5766,11 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 	!define - PALACERUPEE - `DUNGEONRUPEE`
 !else
 	!define - PALACECHEST - Inaccessible
-	!define - PALACEPRIZE - Inaccessible
+	!ifdef - NO_PALACE
+		!define - PALACEPRIZE - `DUNGEONPRIZE`
+	!else
+		!define - PALACEPRIZE - Inaccessible
+	!endif
 	!define - PALACEHP - Inaccessible
 	!define - PALACERUPEE - ;	Inaccessible
 !endif
@@ -6422,7 +6553,7 @@ Ruins_NearFoWFusion_Chest		`FOW_OUTSIDE`;	`GOLDREDFUSION`;			0x0FE0AE;										
 
 AccessFortress;								Helper;					;														Helpers.AccessRuins, Helpers.HasSword;
 
-Fortress_Entrance								`DUNGEONENTRANCE`;		DumFoWENT:Define:FirstByte, DumFoWENT2:Define:SecondByte;		(|Helpers.AccessFortress, Helpers.Hundo);																	Items.Entrance.0x03
+Fortress_Entrance								`FOW_DUNGEONENTRANCE`;		DumFoWENT:Define:FirstByte, DumFoWENT2:Define:SecondByte;		(|Helpers.AccessFortress, Helpers.Hundo);																	Items.Entrance.0x03
 
 # Royal Valley
 AccessValley;					Helper;			;			(|Helpers.CanSplit3, Helpers.CanSplit4), (|Helpers.OverworldBlocks, Helpers.CapeExtension);
@@ -6442,13 +6573,13 @@ AccessCrypt;						Helper;				;													Helpers.AccessValley, Helpers.DarkRoo
 CompleteCrypt;					Helper;				;													`ENTERRC`, Helpers.CryptDoor, Helpers.CryptBlocks, Helpers.CryptPuzzle
 
 
-Crypt_Entrance					`DUNGEONENTRANCE`;	DumRCENT:Define:FirstByte, DumRCENT2:Define:SecondByte;	(|Helpers.AccessCrypt, Helpers.Hundo);													Items.Entrance.0x05
+Crypt_Entrance					`DUNGEONENTRANCE`;	DumRCENT:Define:FirstByte, DumRCENT2:Define:SecondByte;	(|Helpers.AccessCrypt, Helpers.Hundo);												Items.Entrance.0x05
 
-Crypt_Gibdo_LeftItem	`RC_INSIDE`;		Dungeon;			0x0E688B;											(|(&`ENTERRC`, (|Helpers.HasDamageSource, Items.Lantern)), Helpers.Hundo);					Items.Bombs5
-Crypt_Gibdo_RightItem	`RC_INSIDE_SK`;	Dungeon;			0x0E68AB;											(|(&`ENTERRC`, (|Helpers.HasDamageSource, Items.Lantern)), Helpers.Hundo);					Items.SmallKey.0x1E
-Crypt_LeftItem		`RC_INSIDE_SK`;	Dungeon;			0x0E6357;											(|(&`ENTERRC`, Helpers.CryptDoor, Helpers.CanSplit3), Helpers.Hundo);						Items.SmallKey.0x1E
-Crypt_RightItem		`RC_INSIDE_SK`;	Dungeon;			0x0E63A7;											(|(&`ENTERRC`, Helpers.CryptDoor, Helpers.CanSplit3), Helpers.Hundo);						Items.SmallKey.0x1E
-Crypt_Prize			`RC_PRIZE`;		`DUNGEONPRIZE`;	0x00DA5A;											(|Helpers.CompleteCrypt, Helpers.Hundo);													Items.Kinstone.GoldenFalls
+Crypt_Gibdo_LeftItem	`RC_INSIDE`;		`CRYPTITEM`;		0x0E688B;											(|(&`ENTERRC`, (|Helpers.HasDamageSource, Items.Lantern)), Helpers.Hundo);				Items.Bombs5
+Crypt_Gibdo_RightItem	`RC_INSIDE_SK`;	`CRYPTITEM`;		0x0E68AB;											(|(&`ENTERRC`, (|Helpers.HasDamageSource, Items.Lantern)), Helpers.Hundo);				Items.SmallKey.0x1E
+Crypt_LeftItem		`RC_INSIDE_SK`;	`CRYPTITEM`;		0x0E6357;											(|(&`ENTERRC`, Helpers.CryptDoor, Helpers.CanSplit3), Helpers.Hundo);					Items.SmallKey.0x1E
+Crypt_RightItem		`RC_INSIDE_SK`;	`CRYPTITEM`;		0x0E63A7;											(|(&`ENTERRC`, Helpers.CryptDoor, Helpers.CanSplit3), Helpers.Hundo);					Items.SmallKey.0x1E
+Crypt_Prize			`RC_PRIZE`;		`CRYPTPRIZE`;		0x00DA5A;											(|Helpers.CompleteCrypt, Helpers.Hundo);												Items.Kinstone.GoldenFalls
 #Secret Chest reachable with Firerod
 
 # Veil Falls
@@ -6519,7 +6650,7 @@ WindTribe_4F_RightChest	`POW_OUTSIDE`;	`PALACEOUTSIDECHEST`;	0x30-0x03-0x01;				
 
 AccessPalace;													Helper;	;											Helpers.AccessWindTribe;
 
-Palace_Entrance							`DUNGEONENTRANCE`;	DumPoWENT:Define:FirstByte, DumPoWENT2:Define:SecondByte;	(|Helpers.AccessPalace, Helpers.Hundo);												Items.Entrance.0x06
+Palace_Entrance							`POW_DUNGEONENTRANCE`;	DumPoWENT:Define:FirstByte, DumPoWENT2:Define:SecondByte;	(|Helpers.AccessPalace, Helpers.Hundo);												`PALACE_VANILLA`
 
 # Deepwood locations
 Deepwood_2F_Chest						`DWS_INSIDE`;		Dungeon;			0x48-0x17-0x01;													(|(&`ENTERDWS`, Helpers.DeepwoodWeb), Helpers.Hundo);																											Items.Rupee20
