@@ -1,0 +1,149 @@
+name: "Max Random2"
+description: "(No description set)"
+settings:
+  ## Main Settings:
+  #  Dungeon Settings:
+  MAP_SETTING: MAP_KEYSANITY                      # Dungeon Maps
+  COMPASS_SETTING: COMPASS_KEYSANITY              # Compasses
+  SMALL_KEYS_SETTING: SMALL_KEYSANITY             # Small Keys
+  BIG_KEYS_SETTING: BIG_KEYSANITY                 # Big Keys
+  SHUFFLE_ELEMENTS: SHUFFLE_ELEMENTS_OFF          # Shuffle Elements
+  DUNGEON: BARREN                                 # NonElement Dungeons
+  #  Requirements:
+  DHC_SETTING: OPENDHC                            # Dark Hyrule Castle Opens
+  REQUIREMENT_ITEM: REQUIREMENT_ITEM_DHC_BK       # Requirement Reward
+  AD_PED: AD_PED_6                                # Dungeons Required
+  SWORD_SETTING: 5SWORD                           # Sword Requirement
+  ELEMENT_SETTING: 4ELEMENT                       # Elements Required
+  FIGURINE_HUNT: on                               # Figurine Hunt
+  FIGURINE_TOTAL: 136                             # Figurines in world
+  FIGURINE_COUNT: 136                             # Figurines required
+  #  Shuffle:
+  DOJO: DOJOANY                                   # Dojo Swordmasters
+  CUCCO_SETTING: CUCCO_10                         # Cucco Minigame
+  GORON_SETTING: GORON_5                          # Goron Merchant
+  HEART_RANDO: on                                 # Heart Pieces and Containers
+  RUPEEMANIA: on                                  # Rupees
+  SPECIALPOTS: on                                 # Special Pots
+  DIGGING: on                                     # Dig spots
+  UNDERWATER: on                                  # Underwater spots
+  GOLDEN_ENEMY: on                                # Golden Enemies
+  PED_ITEMS: on                                   # Sanctuary Pedestal
+  ## World Settings:
+  #  Global:
+  OPENWORLD: OPENWORLD_OFF                        # World obstacles are
+  ENTRANCES: ENTRANCES_COUPLED                    # Dungeon Entrances are
+  #  Fusions:
+  GOLD_FUSION_SETTING: VANILLA_GOLD_FUSIONS       # Gold Fusions are
+  RED_FUSION_SETTING: VANILLA_RED_FUSIONS         # Red Fusions are
+  BLUE_FUSION_SETTING: VANILLA_BLUE_FUSIONS       # Blue Fusions are
+  GREEN_FUSION_SETTING: VANILLA_GREEN_FUSIONS     # Green Fusions are
+  SEEDED_SHARED: on                               # Order Shared Fusions
+  DEFICKLE: on                                    # Defickle Fusers
+  FUSION_SKIPS: ALLOW_FUSION_SKIPS                # Skip Fusion Cutscenes
+  SHOW_MAP: off                                   # Always Show Map
+  #  Speed Up:
+  OPEN_WIND_TRIBE: off                            # Wind Tribe Tower
+  OPEN_TINGLE: off                                # Tingle Brothers
+  #  Wind Crests:
+  CRENEL_CREST: on                                # Mt Crenel
+  FALLS_CREST: on                                 # Veil Falls
+  CLOUD_CREST: on                                 # Cloud Tops
+  TOWN_CREST: on                                  # Hyrule Town
+  SWAMP_CREST: on                                 # Swamp
+  SHF_CREST: on                                   # Link's House
+  MINISH_CREST: on                                # Minish Woods
+  #  Dungeon Warps:
+  DWS_BLUEWARP: on                                # DWS Blue
+  DWS_REDWARP: on                                 # DWS Red
+  COF_BLUEWARP: on                                # CoF Blue
+  COF_REDWARP: on                                 # CoF Red
+  FOW_BLUEWARP: on                                # FoW Blue
+  FOW_REDWARP: on                                 # FoW Red
+  TOD_BLUEWARP: on                                # ToD Blue
+  TOD_REDWARP: on                                 # ToD Red
+  POW_BLUEWARP: on                                # PoW Blue
+  POW_REDWARP: on                                 # PoW Red
+  DHC_BLUEWARP: on                                # DHC Blue
+  DHC_REDWARP: on                                 # DHC Red
+  ## Logic Settings:
+  #  Logic Rules:
+  NO_LOGIC: off                                   # No Logic
+  ACCESSIBILITY: ACCESS_BEATABLE                  # Reachable
+  GRABBABLE: GRABBABLE_LOGIC                      # Grab items from a distance
+  #  Weapons:
+  BOMBWEAPON: YESBOMB                             # Bombs
+  BOWWEAPON: YESBOW                               # Bows
+  GUSTWEAPON: YESGUST                             # Gust Jar
+  LAMPWEAPON: YESLAMP                             # Lantern
+  #  Require Tricks:
+  MITTSMONEY: YESFARM                             # Mole Mitts farm Infinite Rupees
+  BLOWDUST: GUSTBOMBS                             # Bombs blow away dust
+  MUSHROOM: YESMUSH                               # Crenel mushroom grab with Gust jar
+  ARROWBREAK: YESLIGHTS                           # Light Arrows break objects
+  BOBOMBS: YESBOBOMBS                             # Use Bobombs to destroy walls
+  LIKELIKE: YESLIKELIKE                           # LikeLike cave without a Sword
+  GUARDSKIP: NOGUARDSKIP                          # Skip Town guard using Boots
+  CRENELBEAM: NOBEAM                              # Use Beam to hit switch on Mt Crenel
+  DTBEETLE: NOTHRUST                              # Use DownThrust to flip Spikey Beetles
+  DARKROOMS: NODARK                               # Dark Rooms without a Lantern
+  EXTENDCAPE: YESEXTENSION                        # Tricky Cape jumps across water
+  LAKEMINISH: NOLAKEMINISH                        # Minish in Lake without Boots
+  CABINSWIM: YESCABIN                             # Swim to Cabin without lilypad
+  CLOUDSKILL: YESCLOUDSKILL                       # Kill Cloud Sharks without Weapons
+  POWJUMP: NOPOWJUMP                              # PoW 2F is clearable without a Cane
+  POWPOTOOL: NOPOWOOL                             # Pot Puzzle without Power Bracelets
+  DHCCANON: NODHCCANON                            # DHC Canon rooms without Four Sword
+  DHCJOSTLE: NODHCJOSTLE                          # DHC Pressure Pads without Four Sword
+  DHCSWITCHES: NODHCSWITCHES                      # DHC Switches without Four Sword
+  FOWPOT: YESFOWPOT                               # FoW Pot item early using the Gust Jar
+  ## Item Pool:
+  #  Global:
+  ITEM_POOL: ITEM_POOL_NORMAL                     # Item Pool
+  RANDOM_BOTTLE_CONTENT: on                       # Random Bottle Contents
+  TRAPS: on                                       # Traps
+  MEME: on                                        # Fun Junk
+  FIREROD: NO_FIREROD                             # Firerod
+  #  Progressive:
+  YES_SWORD_PROG: on                              # Swords are Progressive
+  YES_BOW_PROG: on                                # Bows are Progressive
+  YES_BOOM_PROG: on                               # Boomerangs are Progressive
+  YES_SHIELD_PROG: on                             # Shields are Progressive
+  YES_SCROLL_PROG: on                             # Spin Scrolls are Progressive
+  #  Kinstone Packs:
+  GOLD1MULTIPLIER: 1                              # Cloud Tops Kinstone pack size
+  GOLD2MULTIPLIER: 1                              # Swamp Kinstone pack size
+  REDWMULTIPLIER: 1                               # Red W Kinstone pack size
+  REDVMULTIPLIER: 1                               # Red V Kinstone pack size
+  REDEMULTIPLIER: 1                               # Red E Kinstone pack size
+  BLUELMULTIPLIER: 1                              # Blue L Kinstone pack size
+  BLUESMULTIPLIER: 1                              # Blue S Kinstone pack size
+  GREENCMULTIPLIER: 1                             # Green C Kinstone pack size
+  GREENGMULTIPLIER: 1                             # Green G Kinstone pack size
+  GREENPMULTIPLIER: 1                             # Green P Kinstone pack size
+  #  Key Chains:
+  KEYDWSMULTIPLIER: DWS1KEY                       # Deepwood Shrine Keychain size
+  KEYCOFMULTIPLIER: COF1KEY                       # Cave of Flames Keychain size
+  KEYFOWMULTIPLIER: FOW1KEY                       # Fortress of Winds Keychain size
+  KEYTODMULTIPLIER: TOD1KEY                       # Temple of Droplets Keychain size
+  KEYRCMULTIPLIER: RC1KEY                         # Royal Crypt Keychain size
+  KEYPOWMULTIPLIER: POW1KEY                       # Palace of Winds Keychain size
+  KEYDHCMULTIPLIER: DHC1KEY                       # Dark Hyrule Castle Keychain size
+  ## Gameplay:
+  #  Difficulty:
+  GLITCHLESS: off                                 # Prevent Speedrun Glitches
+  TIMEDOHKO: off                                  # Timed OHKO
+  THREE_HEART: HEARTS_20                          # Maximum Health
+  DAMAGE_MULTI: MULTI_1                           # Damage Multiplier
+  SHY_FAIRIES: off                                # Shy Fairies
+  #  Improvements:
+  INSTANT_TEXT: on                                # Instant Text
+  ITEM_HISTORY: on                                # Item Name Display
+  HOMEWARP: on                                    # Homewarp
+  OCARINA_SELECT: on                              # Ocarina on Select
+  BOOTS_L: BOOTS_L_NORMAL                         # Boots on L
+  #  Extras:
+  GORON_ALT_PRICES: off                           # Goron Merchant JP/US prices
+  NO_KINSTONE_DROPS: on                           # Disable Kinstone Drops
+  NO_SHELL_DROPS: on                              # Disable Shell Drops
+subweights: {}
