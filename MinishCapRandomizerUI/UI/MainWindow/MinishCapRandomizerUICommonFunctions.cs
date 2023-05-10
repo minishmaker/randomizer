@@ -155,25 +155,25 @@ Generating seeds with this shuffler may freeze the randomizer application for ma
             _settingPresets.SettingsPresets = files.Select(file => file[(file.LastIndexOf(Path.DirectorySeparatorChar) + 1)..]).Select(file => file[..file.LastIndexOf(".", StringComparison.Ordinal)]).ToList();
 
             SettingPresets.Items.AddRange(_settingPresets.SettingsPresets.ToArray());
-            SettingPresets.SelectedIndex = 0;
+            if (SettingPresets.Items.Count != 0) SettingPresets.SelectedIndex = 0;
 
             files = Directory.GetFiles($"{_presetPath}Cosmetics").Where(file => file.EndsWith(".yaml", true, null));
             _settingPresets.CosmeticsPresets = files.Select(file => file[(file.LastIndexOf(Path.DirectorySeparatorChar) + 1)..]).Select(file => file[..file.LastIndexOf(".", StringComparison.Ordinal)]).ToList();
 
             CosmeticsPresets.Items.AddRange(_settingPresets.CosmeticsPresets.ToArray());
-            CosmeticsPresets.SelectedIndex = 0;
+            if (CosmeticsPresets.Items.Count != 0) CosmeticsPresets.SelectedIndex = 0;
 
             files = Directory.GetFiles($"{_presetPath}Mystery Settings").Where(file => file.EndsWith(".yaml", true, null));
             _settingPresets.SettingsWeights = files.Select(file => file[(file.LastIndexOf(Path.DirectorySeparatorChar) + 1)..]).Select(file => file[..file.LastIndexOf(".", StringComparison.Ordinal)]).ToList();
 
             SettingsWeights.Items.AddRange(_settingPresets.SettingsWeights.ToArray());
-            SettingsWeights.SelectedIndex = 0;
+            if (SettingsWeights.Items.Count != 0) SettingsWeights.SelectedIndex = 0;
 
             files = Directory.GetFiles($"{_presetPath}Mystery Cosmetics").Where(file => file.EndsWith(".yaml", true, null));
             _settingPresets.CosmeticsWeights = files.Select(file => file[(file.LastIndexOf(Path.DirectorySeparatorChar) + 1)..]).Select(file => file[..file.LastIndexOf(".", StringComparison.Ordinal)]).ToList();
 
             CosmeticsWeights.Items.AddRange(_settingPresets.CosmeticsWeights.ToArray());
-            CosmeticsWeights.SelectedIndex = 0;
+            if (CosmeticsWeights.Items.Count != 0) CosmeticsWeights.SelectedIndex = 0;
         }
         catch
         {
