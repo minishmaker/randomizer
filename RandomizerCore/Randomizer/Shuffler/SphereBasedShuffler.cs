@@ -26,15 +26,15 @@ internal class SphereBasedShuffler : Shuffler
         var locationGroups = groupsAndLocations.locationGroups;
         var unfilledLocations = groupsAndLocations.unfilledLocations;
         
-        var itemsToPlace = MajorItems.Concat(MinorItems).ToList();
-        var locationsToFill = Locations.Where(_ =>
+        var itemsToPlace = _majorItems.Concat(_minorItems).ToList();
+        var locationsToFill = _locations.Where(_ =>
             _.Type is LocationType.Any or LocationType.Major or LocationType.Minor).Concat(unfilledLocations).ToList();
 
         while (itemsToPlace.Count < locationsToFill.Count)
-            itemsToPlace.Add(FillerItems[Rng.Next(FillerItems.Count)]);
+            itemsToPlace.Add(_fillerItems[_rng.Next(_fillerItems.Count)]);
 
         unfilledLocations = FillLocations(itemsToPlace,
-            Locations.Where(location =>
+            _locations.Where(location =>
                 location.Filled && location.Contents.HasValue && location.Type is not LocationType.Helper
                     and not LocationType.Inaccessible and not LocationType.Untyped).ToList(), locationsToFill);
 
@@ -52,15 +52,15 @@ internal class SphereBasedShuffler : Shuffler
             : new List<Location>();
         unfilledLocations.AddRange(nextLocationGroup);
         unfilledLocations = unfilledLocations.Distinct().ToList();
-        unfilledLocations.Shuffle(Rng);
-        FastFillLocations(FillerItems, unfilledLocations);
+        unfilledLocations.Shuffle(_rng);
+        FastFillLocations(_fillerItems, unfilledLocations);
 
         var diff = DateTime.Now - time;
         Logger.Instance.BeginLogTransaction();
         Logger.Instance.LogInfo($"Timing Benchmark - Shuffling with seed {Seed:X} and settings {MinifiedSettings.GenerateSettingsString(GetSortedSettings(), GetLogicOptionsCrc32())} took {diff.Seconds}.{diff.Milliseconds} seconds!");
         Logger.Instance.SaveLogTransaction(true);
         
-        Randomized = true;
+        _randomized = true;
     }
     
     private List<Location> FillLocations(List<Item> allShuffledItems, List<Location> preFilledLocations, List<Location> allPlaceableLocations)
@@ -99,13 +99,13 @@ internal class SphereBasedShuffler : Shuffler
                 throw new ShuffleException(
                     "Could not find a viable seed with Hendrus Shuffler after 50,000 permutations! Please let the dev team know what settings and seed you are using!");
 
-            shuffledLocationsThisSphere.Shuffle(Rng);
+            shuffledLocationsThisSphere.Shuffle(_rng);
 
             var placedItemsThisSphere = new List<Item>();
 
             var forLoopRetryCount = 0;
             const int forLoopMaxRetries = 15;
-            shuffledLocationsThisSphere.Shuffle(Rng);
+            shuffledLocationsThisSphere.Shuffle(_rng);
             for (var i = 0; i < shuffledLocationsThisSphere.Count && forLoopRetryCount < forLoopMaxRetries;)
             {
                 var location = shuffledLocationsThisSphere[0];
@@ -116,15 +116,15 @@ internal class SphereBasedShuffler : Shuffler
                 var placeableItems = allShuffledItems.Where(item =>
                     string.IsNullOrEmpty(item.Dungeon) || location.Dungeons.Contains(item.Dungeon)).ToList();
 
-                var item = placeableItems[Rng.Next(placeableItems.Count)];
+                var item = placeableItems[_rng.Next(placeableItems.Count)];
 
                 if (itemsWithSameDungeon.Any())
-                    item = itemsWithSameDungeon[Rng.Next(itemsWithSameDungeon.Count)];
+                    item = itemsWithSameDungeon[_rng.Next(itemsWithSameDungeon.Count)];
 
-                if (!location.CanPlace(item, Locations))
+                if (!location.CanPlace(item, _locations))
                 {
                     forLoopRetryCount++;
-                    shuffledLocationsThisSphere.Shuffle(Rng);
+                    shuffledLocationsThisSphere.Shuffle(_rng);
                     continue;
                 }
 
