@@ -77,26 +77,26 @@ settings:
   GUSTWEAPON: NOGUST                              # Gust Jar
   LAMPWEAPON: NOLAMP                              # Lantern
   #  Require Tricks:
-  MITTSMONEY: NOFARM                              # Mole Mitts farm Infinite Rupees
-  BLOWDUST: GUST                                  # Bombs blow away dust
-  MUSHROOM: NOMUSH                                # Crenel mushroom grab with Gust jar
-  ARROWBREAK: NOLIGHTS                            # Light Arrows break objects
-  BOBOMBS: NOBOBOMBS                              # Use Bobombs to destroy walls
-  LIKELIKE: NOLIKELIKE                            # LikeLike cave without a Sword
-  GUARDSKIP: NOGUARDSKIP                          # Skip Town guard using Boots
-  CRENELBEAM: NOBEAM                              # Use Beam to hit switch on Mt Crenel
-  DTBEETLE: NOTHRUST                              # Use DownThrust to flip Spikey Beetles
-  DARKROOMS: NODARK                               # Dark Rooms without a Lantern
-  EXTENDCAPE: NOEXTENSION                         # Tricky Cape jumps across water
-  LAKEMINISH: NOLAKEMINISH                        # Minish in Lake without Boots
-  CABINSWIM: NOCABIN                              # Swim to Cabin without lilypad
-  CLOUDSKILL: NOCLOUDSKILL                        # Kill Cloud Sharks without Weapons
-  POWJUMP: NOPOWJUMP                              # PoW 2F is clearable without a Cane
-  POWPOTOOL: NOPOWOOL                             # Pot Puzzle without Power Bracelets
-  DHCCANON: NODHCCANON                            # DHC Canon rooms without Four Sword
-  DHCJOSTLE: NODHCJOSTLE                          # DHC Pressure Pads without Four Sword
-  DHCSWITCHES: NODHCSWITCHES                      # DHC Switches without Four Sword
-  FOWPOT: NOFOWPOT                                # FoW Pot item early using the Gust Jar
+  MITTSMONEY_SETTING: NOMITTSMONEY                              # Mole Mitts farm Infinite Rupees
+  BLOWDUST_SETTING: GUST                                  # Bombs blow away dust
+  MUSHROOM_SETTING: NOMUSH                                # Crenel mushroom grab with Gust jar
+  ARROWBREAK_SETTING: NOLIGHTS                            # Light Arrows break objects
+  BOBOMBS_SETTING: NOBOBOMBS                              # Use Bobombs to destroy walls
+  LIKELIKE_SETTING: NOLIKELIKE                            # LikeLike cave without a Sword
+  GUARDSKIP_SETTING: NOGUARDSKIP                          # Skip Town guard using Boots
+  CRENELBEAM_SETTING: NOBEAM                              # Use Beam to hit switch on Mt Crenel
+  DTBEETLE_SETTING: NOTHRUST                              # Use DownThrust to flip Spikey Beetles
+  DARKROOMS_SETTING: NODARK                               # Dark Rooms without a Lantern
+  EXTENDCAPE_SETTING: NOEXTENSION                         # Tricky Cape jumps across water
+  LAKEMINISH_SETTING: NOLAKEMINISH                        # Minish in Lake without Boots
+  CABINSWIM_SETTING: NOCABIN                              # Swim to Cabin without lilypad
+  CLOUDSKILL_SETTING: NOCLOUDSKILL                        # Kill Cloud Sharks without Weapons
+  POWJUMP_SETTING: NOPOWJUMP                              # PoW 2F is clearable without a Cane
+  POWPOTOOL_SETTING: NOPOWOOL                             # Pot Puzzle without Power Bracelets
+  DHCCANON_SETTING: NODHCCANON                            # DHC Canon rooms without Four Sword
+  DHCJOSTLE_SETTING: NODHCJOSTLE                          # DHC Pressure Pads without Four Sword
+  DHCSWITCHES_SETTING: NODHCSWITCHES                      # DHC Switches without Four Sword
+  FOWPOT_SETTING: NOFOWPOT                                # FoW Pot item early using the Gust Jar
   ## Item Pool:
   #  Global:
   ITEM_POOL: ITEM_POOL_PLENTIFUL                  # Item Pool

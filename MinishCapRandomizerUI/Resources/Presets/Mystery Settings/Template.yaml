@@ -271,64 +271,64 @@ settings:
     NOLAMP: 1                                     #   No
     YESLAMP: 1                                    #   Yes
   #  Require Tricks:
-  MITTSMONEY:                                     # Mole Mitts farm Infinite Rupees
-    NOFARM: 1                                     #   No
-    YESFARM: 1                                    #   Yes
-  BLOWDUST:                                       # Bombs blow away dust
+  MITTSMONEY_SETTING:                                     # Mole Mitts farm Infinite Rupees
+    NOMITTSMONEY: 1                                     #   No
+    MITTSMONEY: 1                                    #   Yes
+  BLOWDUST_SETTING:                                       # Bombs blow away dust
     GUST: 1                                       #   No
     GUSTBOMBS: 1                                  #   Yes
-  MUSHROOM:                                       # Crenel mushroom grab with Gust jar
+  MUSHROOM_SETTING:                                       # Crenel mushroom grab with Gust jar
     NOMUSH: 1                                     #   No
     YESMUSH: 1                                    #   Yes
-  ARROWBREAK:                                     # Light Arrows break objects
+  ARROWBREAK_SETTING:                                     # Light Arrows break objects
     NOLIGHTS: 1                                   #   No
     YESLIGHTS: 1                                  #   Yes
-  BOBOMBS:                                        # Use Bobombs to destroy walls
+  BOBOMBS_SETTING:                                        # Use Bobombs to destroy walls
     NOBOBOMBS: 1                                  #   No
     YESBOBOMBS: 1                                 #   Yes
-  LIKELIKE:                                       # LikeLike cave without a Sword
+  LIKELIKE_SETTING:                                       # LikeLike cave without a Sword
     NOLIKELIKE: 1                                 #   No
     YESLIKELIKE: 1                                #   Yes
-  GUARDSKIP:                                      # Skip Town guard using Boots
+  GUARDSKIP_SETTING:                                      # Skip Town guard using Boots
     NOGUARDSKIP: 1                                #   No
     YESGUARDSKIP: 1                               #   Yes
-  CRENELBEAM:                                     # Use Beam to hit switch on Mt Crenel
+  CRENELBEAM_SETTING:                                     # Use Beam to hit switch on Mt Crenel
     NOBEAM: 1                                     #   No
     YESBEAM: 1                                    #   Yes
-  DTBEETLE:                                       # Use DownThrust to flip Spikey Beetles
+  DTBEETLE_SETTING:                                       # Use DownThrust to flip Spikey Beetles
     NOTHRUST: 1                                   #   No
     YESTHRUST: 1                                  #   Yes
-  DARKROOMS:                                      # Dark Rooms without a Lantern
+  DARKROOMS_SETTING:                                      # Dark Rooms without a Lantern
     NODARK: 1                                     #   No
     YESDARK: 1                                    #   Yes
-  EXTENDCAPE:                                     # Tricky Cape jumps across water
+  EXTENDCAPE_SETTING:                                     # Tricky Cape jumps across water
     NOEXTENSION: 1                                #   No
     YESEXTENSION: 1                               #   Yes
-  LAKEMINISH:                                     # Minish in Lake without Boots
+  LAKEMINISH_SETTING:                                     # Minish in Lake without Boots
     NOLAKEMINISH: 1                               #   No
     YESLAKEMINISH: 1                              #   Yes
-  CABINSWIM:                                      # Swim to Cabin without lilypad
+  CABINSWIM_SETTING:                                      # Swim to Cabin without lilypad
     NOCABIN: 1                                    #   No
     YESCABIN: 1                                   #   Yes
-  CLOUDSKILL:                                     # Kill Cloud Sharks without Weapons
+  CLOUDSKILL_SETTING:                                     # Kill Cloud Sharks without Weapons
     NOCLOUDSKILL: 1                               #   No
     YESCLOUDSKILL: 1                              #   Yes
-  POWJUMP:                                        # PoW 2F is clearable without a Cane
+  POWJUMP_SETTING:                                        # PoW 2F is clearable without a Cane
     NOPOWJUMP: 1                                  #   No
     YESPOWJUMP: 1                                 #   Yes
-  POWPOTOOL:                                      # Pot Puzzle without Power Bracelets
+  POWPOTOOL_SETTING:                                      # Pot Puzzle without Power Bracelets
     NOPOWOOL: 1                                   #   No
     YESPOWOOL: 1                                  #   Yes
-  DHCCANON:                                       # DHC Canon rooms without Four Sword
+  DHCCANON_SETTING:                                       # DHC Canon rooms without Four Sword
     NODHCCANON: 1                                 #   No
     YESDHCCANON: 1                                #   Yes
-  DHCJOSTLE:                                      # DHC Pressure Pads without Four Sword
+  DHCJOSTLE_SETTING:                                      # DHC Pressure Pads without Four Sword
     NODHCJOSTLE: 1                                #   No
     YESDHCJOSTLE: 1                               #   Yes
-  DHCSWITCHES:                                    # DHC Switches without Four Sword
+  DHCSWITCHES_SETTING:                                    # DHC Switches without Four Sword
     NODHCSWITCHES: 1                              #   No
     YESDHCSWITCHES: 1                             #   Yes
-  FOWPOT:                                         # FoW Pot item early using the Gust Jar
+  FOWPOT_SETTING:                                         # FoW Pot item early using the Gust Jar
     NOFOWPOT: 1                                   #   No
     YESFOWPOT: 1                                  #   Yes
   ## Item Pool:

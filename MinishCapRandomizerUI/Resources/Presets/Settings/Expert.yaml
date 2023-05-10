@@ -77,26 +77,26 @@ settings:
   GUSTWEAPON: YESGUST                             # Gust Jar
   LAMPWEAPON: YESLAMP                             # Lantern
   #  Require Tricks:
-  MITTSMONEY: YESFARM                             # Mole Mitts farm Infinite Rupees
-  BLOWDUST: GUSTBOMBS                             # Bombs blow away dust
-  MUSHROOM: YESMUSH                               # Crenel mushroom grab with Gust jar
-  ARROWBREAK: YESLIGHTS                           # Light Arrows break objects
-  BOBOMBS: YESBOBOMBS                             # Use Bobombs to destroy walls
-  LIKELIKE: YESLIKELIKE                           # LikeLike cave without a Sword
-  GUARDSKIP: YESGUARDSKIP                         # Skip Town guard using Boots
-  CRENELBEAM: YESBEAM                             # Use Beam to hit switch on Mt Crenel
-  DTBEETLE: YESTHRUST                             # Use DownThrust to flip Spikey Beetles
-  DARKROOMS: YESDARK                              # Dark Rooms without a Lantern
-  EXTENDCAPE: YESEXTENSION                        # Tricky Cape jumps across water
-  LAKEMINISH: YESLAKEMINISH                       # Minish in Lake without Boots
-  CABINSWIM: YESCABIN                             # Swim to Cabin without lilypad
-  CLOUDSKILL: YESCLOUDSKILL                       # Kill Cloud Sharks without Weapons
-  POWJUMP: YESPOWJUMP                             # PoW 2F is clearable without a Cane
-  POWPOTOOL: YESPOWOOL                            # Pot Puzzle without Power Bracelets
-  DHCCANON: YESDHCCANON                           # DHC Canon rooms without Four Sword
-  DHCJOSTLE: YESDHCJOSTLE                         # DHC Pressure Pads without Four Sword
-  DHCSWITCHES: YESDHCSWITCHES                     # DHC Switches without Four Sword
-  FOWPOT: YESFOWPOT                               # FoW Pot item early using the Gust Jar
+  MITTSMONEY_SETTING: MITTSMONEY                             # Mole Mitts farm Infinite Rupees
+  BLOWDUST_SETTING: GUSTBOMBS                             # Bombs blow away dust
+  MUSHROOM_SETTING: YESMUSH                               # Crenel mushroom grab with Gust jar
+  ARROWBREAK_SETTING: YESLIGHTS                           # Light Arrows break objects
+  BOBOMBS_SETTING: YESBOBOMBS                             # Use Bobombs to destroy walls
+  LIKELIKE_SETTING: YESLIKELIKE                           # LikeLike cave without a Sword
+  GUARDSKIP_SETTING: YESGUARDSKIP                         # Skip Town guard using Boots
+  CRENELBEAM_SETTING: YESBEAM                             # Use Beam to hit switch on Mt Crenel
+  DTBEETLE_SETTING: YESTHRUST                             # Use DownThrust to flip Spikey Beetles
+  DARKROOMS_SETTING: YESDARK                              # Dark Rooms without a Lantern
+  EXTENDCAPE_SETTING: YESEXTENSION                        # Tricky Cape jumps across water
+  LAKEMINISH_SETTING: YESLAKEMINISH                       # Minish in Lake without Boots
+  CABINSWIM_SETTING: YESCABIN                             # Swim to Cabin without lilypad
+  CLOUDSKILL_SETTING: YESCLOUDSKILL                       # Kill Cloud Sharks without Weapons
+  POWJUMP_SETTING: YESPOWJUMP                             # PoW 2F is clearable without a Cane
+  POWPOTOOL_SETTING: YESPOWOOL                            # Pot Puzzle without Power Bracelets
+  DHCCANON_SETTING: YESDHCCANON                           # DHC Canon rooms without Four Sword
+  DHCJOSTLE_SETTING: YESDHCJOSTLE                         # DHC Pressure Pads without Four Sword
+  DHCSWITCHES_SETTING: YESDHCSWITCHES                     # DHC Switches without Four Sword
+  FOWPOT_SETTING: YESFOWPOT                               # FoW Pot item early using the Gust Jar
   ## Item Pool:
   #  Global:
   ITEM_POOL: ITEM_POOL_RIP                        # Item Pool
