@@ -12,6 +12,8 @@ internal static class GenericCommands
     //Not Null
 #pragma warning disable CS8618
     internal static ShufflerController ShufflerController;
+    internal static YamlController YamlController;
+    internal static ControllerBase? PreviouslyUsedController;
 #pragma warning restore CS8618
     private static string? _cachedLogicPath;
     private static string? _cachedPatchPath;
@@ -47,6 +49,7 @@ internal static class GenericCommands
                     var rand = new SquaresRandomNumberGenerator();
                     var rSeed = rand.Next();
                     ShufflerController.SetRandomizationSeed(rSeed);
+                    YamlController.SetRandomizationSeed(rSeed);
                     Console.WriteLine($"Seed {rSeed} set successfully!");
                     break;
                 case "s":
@@ -60,6 +63,7 @@ internal static class GenericCommands
                     }
                     
                     ShufflerController.SetRandomizationSeed(seed);
+                    YamlController.SetRandomizationSeed(seed);
                     Console.WriteLine("Seed set successfully!");
                     break;
                 default:
@@ -80,6 +84,7 @@ internal static class GenericCommands
         {
             _cachedLogicPath = logicFile ?? Console.ReadLine();
             ShufflerController.LoadLogicFile(_cachedLogicPath);
+            YamlController.LoadLogicFile(_cachedLogicPath);
             Console.WriteLine("Logic file loaded successfully!");
         }
         catch
@@ -93,6 +98,28 @@ internal static class GenericCommands
         Console.Write("Please enter the path to the Patch File you want to use (leave empty to use default patch): ");
         _cachedPatchPath = patchFile ?? Console.ReadLine();
         Console.WriteLine("Patch file loaded successfully!");
+    }
+
+    internal static void ClearYAMLConfig(string? option = null)
+    {
+        Console.Write("Are you sure you want to clear YAML config? This action cannot be undone! (Y or N): ");
+        var input = option ?? Console.ReadLine();
+        if (!string.IsNullOrEmpty(input))
+        {
+            switch (input.ToLowerInvariant())
+            {
+                case "n": 
+                    return;
+                case "y":
+                    _cachedUseGlobalYAML = false;
+                    _cachedYAMLPathCosmetics = null;
+                    _cachedYAMLPathLogic = null;
+                    ShufflerController.LoadLogicFile(_cachedLogicPath ?? "");
+                    Console.WriteLine("YAML config cleared successfully!");
+                    return;
+            }
+        }
+        else PrintError("Invalid Input!");
     }
 
     internal static void UseYAML(string? globalYAMLMode = null, string? yamlFileLogic = null, string? yamlFileCosmetics = null)
@@ -147,16 +174,21 @@ internal static class GenericCommands
             return;
         }
 
+        //TODO: Make a more elegant solution for this
         switch (number)
         {
             case 1:
-                ShufflerController.LoadLogicSettingsFromYaml(filepath);
+                YamlController.LoadLogicSettingsFromYaml(filepath);
+                ShufflerController.LoadSettingsFromSettingString(YamlController.GetSelectedSettingsString());
                 break;
             case 2:
-                ShufflerController.LoadCosmeticsFromYaml(filepath);
+                YamlController.LoadCosmeticsFromYaml(filepath);
+                ShufflerController.LoadCosmeticsFromCosmeticsString(YamlController.GetSelectedCosmeticsString());
                 break;
             case 3:
-                ShufflerController.LoadAllSettingsFromYaml(filepath);
+                YamlController.LoadAllSettingsFromYaml(filepath);
+                ShufflerController.LoadSettingsFromSettingString(YamlController.GetSelectedSettingsString());
+                ShufflerController.LoadCosmeticsFromCosmeticsString(YamlController.GetSelectedCosmeticsString());
                 break;
         }
         
@@ -210,9 +242,9 @@ internal static class GenericCommands
                 }
                 else
                 {
-                    if (options.Exists(option => String.Equals(option.Name, input)))
+                    if (options.Exists(option => string.Equals(option.Name, input)))
                     {
-                        var option = options.Find(option => String.Equals(option.Name, input));
+                        var option = options.Find(option => string.Equals(option.Name, input));
                         if (option != null)
                         {
                             EditOption(option);
@@ -291,25 +323,34 @@ internal static class GenericCommands
         var attemptsStr = randomizationAttempts ?? Console.ReadLine();
         if (!string.IsNullOrEmpty(attemptsStr) || !int.TryParse(attemptsStr, out var attempts) || attempts <= 0) attempts = 1;
 
-        ShufflerController.LoadLocations(_cachedLogicPath, _cachedYAMLPathLogic, _cachedYAMLPathCosmetics, _cachedUseGlobalYAML);
-        var result = ShufflerController.Randomize(attempts);
+        if (_cachedYAMLPathLogic != null || _cachedYAMLPathCosmetics != null || _cachedUseGlobalYAML)
+            YamlController.LoadLocations(_cachedLogicPath, _cachedYAMLPathLogic, _cachedYAMLPathCosmetics, _cachedUseGlobalYAML);
+        else
+            ShufflerController.LoadLocations(_cachedLogicPath);
+
+        PreviouslyUsedController = (_cachedYAMLPathLogic != null || _cachedYAMLPathCosmetics != null || _cachedUseGlobalYAML) ? YamlController : ShufflerController;
+        var result = PreviouslyUsedController.Randomize(attempts);
+
         if (result.WasSuccessful)
         {
             Console.WriteLine("Randomization successful!");
             return true;
         }
 
+        PreviouslyUsedController = null;
         PrintError($"Randomization failed! Error: {result.ErrorMessage}");
         return false;
     }
 
     internal static void SaveRom(string? output = null)
-    {        
+    {
+        if (!ValidatePreviouslyUsedController()) return;
+
         Console.Write("Please enter the path to save the ROM (blank for default): ");
         try
         {
             var input = output ?? Console.ReadLine();
-            ShufflerController.SaveAndPatchRom(string.IsNullOrEmpty(input) ? $"{Directory.GetCurrentDirectory()}{Path.DirectorySeparatorChar}MinishRandomizer-ROM.gba" : input);
+            PreviouslyUsedController.SaveAndPatchRom(string.IsNullOrEmpty(input) ? $"{Directory.GetCurrentDirectory()}{Path.DirectorySeparatorChar}MinishRandomizer-ROM.gba" : input);
             Console.WriteLine("Rom saved successfully!");
         }
         catch
@@ -319,12 +360,14 @@ internal static class GenericCommands
     }
 
     internal static void SaveSpoiler(string? output = null)
-    {        
+    {
+        if (!ValidatePreviouslyUsedController()) return;
+
         Console.Write("Please enter the path to save the spoiler (blank for default): ");
         try
         {
             var input = output ?? Console.ReadLine();
-            ShufflerController.SaveSpoiler(string.IsNullOrEmpty(input) ? $"{Directory.GetCurrentDirectory()}{Path.DirectorySeparatorChar}MinishRandomizer-Spoiler.txt" : input);
+            PreviouslyUsedController.SaveSpoiler(string.IsNullOrEmpty(input) ? $"{Directory.GetCurrentDirectory()}{Path.DirectorySeparatorChar}MinishRandomizer-Spoiler.txt" : input);
             Console.WriteLine("Spoiler saved successfully!");
         }
         catch
@@ -335,11 +378,13 @@ internal static class GenericCommands
 
     internal static void SavePatch(string? output = null)
     {
+        if (!ValidatePreviouslyUsedController()) return;
+
         Console.Write("Please enter the path to save the patch (blank for default): ");
         try
         {
             var input = output ?? Console.ReadLine();
-            ShufflerController.CreatePatch(string.IsNullOrEmpty(input) ? $"{Directory.GetCurrentDirectory()}{Path.DirectorySeparatorChar}MinishRandomizer-Patch.bps" : input, _cachedPatchPath);
+            PreviouslyUsedController.CreatePatch(string.IsNullOrEmpty(input) ? $"{Directory.GetCurrentDirectory()}{Path.DirectorySeparatorChar}MinishRandomizer-Patch.bps" : input, _cachedPatchPath);
             Console.WriteLine("Patch saved successfully!");
         }
         catch
@@ -350,18 +395,23 @@ internal static class GenericCommands
 
     internal static void GetSelectedSettingString()
     {
+        if (!ValidatePreviouslyUsedController()) return;
+
         Console.WriteLine("Setting String for selected settings:");
-        Console.WriteLine(ShufflerController.GetSelectedSettingsString());
+        Console.WriteLine(PreviouslyUsedController.GetSelectedSettingsString());
     }
 
     internal static void GetFinalSettingString()
     {
+        if (!ValidatePreviouslyUsedController()) return;
+
         Console.WriteLine("Setting String for settings used for seed generation:");
-        Console.WriteLine(ShufflerController.GetFinalSettingsString());
+        Console.WriteLine(PreviouslyUsedController.GetFinalSettingsString());
     }
 
     internal static void PatchRom()
     {
+        if (!ValidatePreviouslyUsedController()) return;
 
         Console.Write("Please enter the path of the rom patch: ");
         var patch = Console.ReadLine();
@@ -375,9 +425,9 @@ internal static class GenericCommands
         }
         else
         {
-            var result = ShufflerController.SaveRomPatch(patch, rom);
+            var result = PreviouslyUsedController.SaveRomPatch(patch, rom);
 
-            if(result)
+            if (result)
             {
                 Console.WriteLine("Rom patched successfully!");
             }
@@ -390,12 +440,16 @@ internal static class GenericCommands
 
     internal static ShufflerControllerResult PatchRomWithoutSaving()
     {
-        ShufflerController.CreatePatch(out var result);
+        if (!ValidatePreviouslyUsedController()) return new ShufflerControllerResult { WasSuccessful = false };
+
+        PreviouslyUsedController.CreatePatch(out var result);
         return result;
     }
 
     internal static void CreatePatch()
     {
+        if (!ValidatePreviouslyUsedController()) return;
+
         Console.Write("Please enter the path of the patched rom: ");
         var rom = Console.ReadLine();
             
@@ -408,7 +462,7 @@ internal static class GenericCommands
         }
         else
         {
-            var result = ShufflerController.SaveRomPatch(patch, rom);
+            var result = PreviouslyUsedController.SaveRomPatch(patch, rom);
 
             if(result)
             {
@@ -589,5 +643,16 @@ internal static class GenericCommands
         {
             Environment.Exit(1);
         }
+    }
+
+    private static bool ValidatePreviouslyUsedController()
+    {
+        if (PreviouslyUsedController == null)
+        {
+            Console.WriteLine("Randomize has not yet been called or the previous call failed! Please call randomize before running this command.");
+            return false;
+        }
+
+        return true;
     }
 }

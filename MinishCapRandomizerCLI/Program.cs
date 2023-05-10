@@ -56,6 +56,7 @@ internal class Program
             {"ChangeSeed", Seed},
             {"LoadLogic", LoadLogic},
             {"LoadPatch", LoadPatch},
+            {"ClearYAML", ClearYAML},
             {"UseYAML", UseYAML},
             {"LoadYAML", LoadYAML},
             {"LoadSettings", LoadSettings},
@@ -81,6 +82,7 @@ LoadRom                 Load a European Minish Cap ROM
 ChangeSeed              Change randomization seed
 LoadLogic               Load custom logic file
 LoadPatch               Load custom patch file
+ClearYAML               Clears the cached YAML options and resets all logic options to defaults
 LoadYAML                Load YAML file to use as a Preset, replaces the selected options
 UseYAML                 Use YAML file to use as a Preset or Mystery weights, instead of using the selected options
 LoadSettings            Load a setting string, replaces the selected options
@@ -117,6 +119,10 @@ Strict                  Toggle strict mode (exit after error)
     private static void LoadPatch()
     {
         GenericCommands.LoadPatch();
+    }
+    private static void ClearYAML()
+    {
+        GenericCommands.ClearYAMLConfig();
     }
 
     private static void UseYAML()
