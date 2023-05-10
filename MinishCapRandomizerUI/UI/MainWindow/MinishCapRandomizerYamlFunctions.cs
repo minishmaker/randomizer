@@ -51,10 +51,8 @@ partial class MinishCapRandomizerUI
                                      _yamlController.GetSelectedOptions().OnlyCosmetic().GetHash() == _recentCosmeticsPresetHash ? _recentCosmeticsPreset : "Custom";
         }
         
-        SettingHashLabel.Text = settingsString;
-        SettingHashLabel.Visible = !_yamlController.IsUsingLogicYaml();
-        CosmeticStringLabel.Text = cosmeticsString;
-        CosmeticStringLabel.Visible = !_yamlController.IsUsingCosmeticsYaml();
+        SettingHashLabel.Text = _yamlController.IsUsingLogicYaml() ? "Settings string is not shown when using mystery settings" : settingsString;
+        CosmeticStringLabel.Text = _yamlController.IsUsingCosmeticsYaml() ? "Cosmetics string is not shown when using mystery cosmetics" : cosmeticsString;
     }
 
     private string GetFilenameYamlShuffler()
@@ -78,7 +76,11 @@ partial class MinishCapRandomizerUI
                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
         _configuration.MaximumRandomizationRetryCount = retryAttempts;
-        
+
+        //TODO: This isn't the greatest solution to fix the issue with settings not syncing, come up with a better one later
+        _yamlController.LoadSettingsFromSettingString(_shufflerController.GetSelectedSettingsString());
+        _yamlController.LoadCosmeticsFromCosmeticsString(_shufflerController.GetSelectedCosmeticsString());
+
         _yamlController.SetRandomizationSeed(seed);
         if (UseCustomYAML.Checked)
             _yamlController.LoadLocations(UseCustomLogic.Checked ? LogicFilePath.Text : "", YAMLPath.Text, YAMLPath.Text, true);
@@ -114,6 +116,7 @@ partial class MinishCapRandomizerUI
 
         if (result)
         {
+            _shufflerController.LoadSettingsFromSettingString(_yamlController.GetSelectedSettingsString());
             _recentSettingsPreset = (string)SettingsWeights.SelectedItem;
             _recentSettingsPresetHash = _yamlController.GetSelectedOptions().OnlyLogic().GetHash();
         }
@@ -136,6 +139,7 @@ partial class MinishCapRandomizerUI
 
         if (result)
         {
+            _shufflerController.LoadCosmeticsFromCosmeticsString(_yamlController.GetSelectedCosmeticsString());
             _recentCosmeticsPreset = (string)CosmeticsWeights.SelectedItem;
             _recentCosmeticsPresetHash = _yamlController.GetSelectedOptions().OnlyCosmetic().GetHash();
         }

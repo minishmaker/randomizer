@@ -36,7 +36,7 @@ public class SquaresRandomNumberGenerator
 
     public int Next(int upperBound)
     {
-        
+        if (upperBound == 0) return 0;
         var x = _previousValue * _key;
         var z = x + _key;
 
@@ -46,6 +46,7 @@ public class SquaresRandomNumberGenerator
 
     public ulong Next(ulong counter, ulong upperBound)
     {
+        if (upperBound == 0) return 0;
         var x = counter * _key;
         var z = x + _key;
 

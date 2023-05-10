@@ -318,7 +318,7 @@ Generating seeds with this shuffler may freeze the randomizer application for ma
         if (_randomizedRomCreated)
             TabPane.TabPages.Add(SeedOutput);
 
-        var options = (UseCustomYAML.Checked || UseMysterySettings.Checked || UseMysteryCosmetics.Checked) ? _yamlController.GetSelectedOptions() : _shufflerController.GetSelectedOptions();
+        var options = _shufflerController.GetSelectedOptions();
         var wrappedOptions = WrappedLogicOptionFactory.BuildGenericWrappedLogicOptions(options);
         var pages = wrappedOptions.GroupBy(option => option.Page);
 
@@ -356,13 +356,6 @@ Generating seeds with this shuffler may freeze the randomizer application for ma
 
     private void DisplaySeedHash()
     {
-        if (UseCustomYAML.Checked || UseMysterySettings.Checked)
-        {
-            RomHashPanel.Visible = false;
-            YamlHashNotShownLabel.Visible = true;
-            return;
-        }
-
         const byte hashMask = 0b111111;
 
         RomHashPanel.Visible = true;
@@ -373,7 +366,7 @@ Generating seeds with this shuffler may freeze the randomizer application for ma
         var badBgColor = Color.FromArgb(0x30, 0xa0, 0xac).ToArgb();
         var otherBadBgColor = Color.FromArgb(0x30, 0xa0, 0x78).ToArgb();
         var newBgColor = Color.FromArgb(0x08, 0x19, 0xad);
-        var eventDefines = _shufflerController.GetEventWrites().Split('\n');
+        var eventDefines = (UseCustomYAML.Checked || UseMysterySettings.Checked || UseMysteryCosmetics.Checked) ? _yamlController.GetEventWrites().Split('\n') : _shufflerController.GetEventWrites().Split('\n');
         var customRng = uint.Parse(eventDefines.First(line => line.Contains("customRNG")).Split(' ')[2][2..], 
             NumberStyles.HexNumber);
         var seed = uint.Parse(eventDefines.First(line => line.Contains("seedHashed")).Split(' ')[2][2..],

@@ -146,11 +146,19 @@ internal class YamlShuffler : Shuffler
         seedValues[5] = (byte)((Seed >> 40) & 0xFF);
         seedValues[6] = (byte)((Seed >> 48) & 0xFF);
         seedValues[7] = (byte)((Seed >> 56) & 0xFF);
-        var crc = (int)CrcUtil.Crc32(seedValues, 8);
+        var crc = CrcUtil.Crc32(seedValues, 8);
 
         eventBuilder.AppendLine("#define seedHashed 0x" + StringUtil.AsStringHex8(crc));
-        if (string.IsNullOrEmpty(_yamlPathLogic))
-            eventBuilder.AppendLine("#define settingHash 0x" + StringUtil.AsStringHex8((int)GetFinalOptions().OnlyLogic().GetHash()));
+
+        //Is this excessive? I don't think so personally
+        var settingCrc = GetFinalOptions().OnlyLogic().GetHash();
+        var newSeed = crc ^ settingCrc;
+        for (var i = 0; i < 8; ++i)
+            seedValues[i] &= (byte)((newSeed >> ((i & 3) << 3)) & 0xFF);
+
+        newSeed = CrcUtil.Crc32(seedValues, 8);
+        var finalHash = new System.Random((int)(newSeed & int.MaxValue)).Next() ^ new SquaresRandomNumberGenerator(SquaresRandomNumberGenerator.DefaultKey, newSeed).Next(int.MaxValue);
+        eventBuilder.AppendLine("#define settingHash 0x" + StringUtil.AsStringHex8(finalHash));
 
         return eventBuilder.ToString();
     }

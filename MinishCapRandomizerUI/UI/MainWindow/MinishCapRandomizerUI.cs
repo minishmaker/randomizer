@@ -88,11 +88,11 @@ public sealed partial class MinishCapRandomizerUI : Form
 
     private void savePresetYAMLMenuItem_Click(object sender, EventArgs e)
     {
-        DisplaySaveDialog("YAML Files|*.yaml;*.yml|All Files|*.*", "Choose where to save Preset YAML file", "Preset.yaml", DialogResult.OK, (filepath) => DisplayConditionalAlertFromShufflerResult(_yamlController.ExportYaml(filepath, false), "Preset YAML file saved successfully!", "Saved YAML File", "Failed to save Preset YAML file!", "Failed to Save"));
+        DisplaySaveDialog("YAML Files|*.yaml;*.yml|All Files|*.*", "Choose where to save Preset YAML file", "Preset.yaml", DialogResult.OK, (filepath) => DisplayConditionalAlertFromShufflerResult(_shufflerController.ExportYaml(filepath, false), "Preset YAML file saved successfully!", "Saved YAML File", "Failed to save Preset YAML file!", "Failed to Save"));
     }
 
     private void saveMysteryYAMLMenuItem_Click(object sender, EventArgs e)
     {
-        DisplaySaveDialog("YAML Files|*.yaml;*.yml|All Files|*.*", "Choose where to save Mystery YAML file", "Mystery.yaml", DialogResult.OK, (filepath) => DisplayConditionalAlertFromShufflerResult(_yamlController.ExportYaml(filepath, true), "Mystery YAML file saved successfully!", "Saved YAML File", "Failed to save Mystery YAML file!", "Failed to Save"));
+        DisplaySaveDialog("YAML Files|*.yaml;*.yml|All Files|*.*", "Choose where to save Mystery YAML file", "Mystery.yaml", DialogResult.OK, (filepath) => DisplayConditionalAlertFromShufflerResult(_shufflerController.ExportYaml(filepath, true), "Mystery YAML file saved successfully!", "Saved YAML File", "Failed to save Mystery YAML file!", "Failed to Save"));
     }
 }
