@@ -1,6 +1,5 @@
 ﻿using System.Drawing;
 using RandomizerCore.Random;
-using RandomizerCore.Randomizer;
 using RandomizerCore.Randomizer.Exceptions;
 using RandomizerCore.Randomizer.Helpers;
 using RandomizerCore.Randomizer.Logic.Options;
@@ -103,7 +102,7 @@ internal static class YamlParser
 
     private static string PadComment(string line, string comment, int padding)
     {
-        return line + new string(' ', Math.Max(0, padding-line.Length)) + "# " + comment + Environment.NewLine;
+        return line + new string(' ', Math.Max(1, padding-line.Length)) + "# " + comment + Environment.NewLine;
     }
 
     public static YAMLResult ParseYAML(string file, List<LogicOptionBase> baseOptions, SquaresRandomNumberGenerator random)
