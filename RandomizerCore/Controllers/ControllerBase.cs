@@ -22,8 +22,8 @@ public abstract class ControllerBase
     public string VersionName => VersionIdentifier;
     public string RevName => RevisionIdentifier;
 
-    public static string VersionIdentifier => "v0.7.0";
-    public static string RevisionIdentifier => "Pre-release";
+    public static string VersionIdentifier => "v1.0.0";
+    public static string RevisionIdentifier => "RC 4";
 
     public void SetLogOutputPath(string logFilePath)
     {
