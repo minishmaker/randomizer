@@ -10,7 +10,7 @@ namespace RandomizerCore.Utilities.Util;
 
 internal static class YamlParser
 {
-        private static string indent = "  ";
+    private static string indent = "  ";
     private static int commentOffset = 50;
 
     public static string CreateYAML(string? name, string? description, List<LogicOptionBase> logicOptions, bool mysteryFlag)
