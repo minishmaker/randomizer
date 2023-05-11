@@ -53,6 +53,7 @@ partial class MinishCapRandomizerUI
         
         _outputSettingsString = settingsString;
         _outputCosmeticsString = cosmeticsString;
+        _outputUsedYAML = true;
         SettingHashLabel.Text = _yamlController.IsUsingLogicYaml() ? "Settings string is not shown when using mystery settings" : settingsString;
         CosmeticStringLabel.Text = _yamlController.IsUsingCosmeticsYaml() ? "Cosmetics string is not shown when using mystery cosmetics" : cosmeticsString;
     }

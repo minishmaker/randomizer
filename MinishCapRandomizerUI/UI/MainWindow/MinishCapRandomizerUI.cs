@@ -21,6 +21,7 @@ public sealed partial class MinishCapRandomizerUI : Form
     private uint _recentCosmeticsPresetHash;
     private string? _outputSettingsString = null;
     private string? _outputCosmeticsString = null;
+    private bool _outputUsedYAML = false;
 
     private readonly string _presetPath =
         $@"{Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory)}{Path.DirectorySeparatorChar}Presets{Path.DirectorySeparatorChar}";
