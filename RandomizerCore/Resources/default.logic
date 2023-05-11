@@ -490,6 +490,7 @@
 !endif
 !ifdef - AD_PED_4
 	!define - AD_PED_NUM - 4
+	!define - 4DUNGEON
 !endif
 !ifdef - AD_PED_5
 	!ifdef - NO_GOLD_FUSIONS
@@ -498,7 +499,19 @@
 			!define - NONE
 			!define - AD_PED_NUM - 5
 		!else
-			!define - AD_PED_NUM - 4
+			!ifdef - NO_RED_FUSIONS
+				!define - AD_PED_NUM - 4
+				!define - 4DUNGEON
+			!else
+				!ifdef - OPEN_WIND_TRIBE
+					!undefine - `DUNGEON`
+					!define - NONE
+					!define - AD_PED_NUM - 5
+				!else
+					!define - AD_PED_NUM - 4
+					!define - 4DUNGEON
+				!endif
+			!endif
 		!endif
 	!else
 		!undefine - `DUNGEON`
@@ -513,7 +526,19 @@
 			!define - NONE
 			!define - AD_PED_NUM - 5
 		!else
-			!define - AD_PED_NUM - 4
+			!ifdef - NO_RED_FUSIONS
+				!define - AD_PED_NUM - 4
+				!define - 4DUNGEON
+			!else
+				!ifdef - OPEN_WIND_TRIBE
+					!undefine - `DUNGEON`
+					!define - NONE
+					!define - AD_PED_NUM - 5
+				!else
+					!define - AD_PED_NUM - 4
+					!define - 4DUNGEON
+				!endif
+			!endif
 		!endif
 	!else
 		!undefine - `DUNGEON`
@@ -1265,7 +1290,21 @@
 					!endif
 				!endif
 			!else
-				!define - NO_PALACE
+				!ifdef - 4DUNGEON
+					!ifndef - OPENDHC
+						!undefine - SHUFFLE_ELEMENTS_VANILLA
+						!define - SHUFFLE_ELEMENTS_OFF
+					!else
+						!ifdef - REQUIREMENT_ITEM_DHC_BK
+							!undefine - SHUFFLE_ELEMENTS_VANILLA
+							!define - SHUFFLE_ELEMENTS_OFF
+						!else
+							!define - NO_PALACE
+						!endif
+					!endif
+				!else
+					!define - NO_PALACE
+				!endif
 			!endif
 		!endif
 	!endif
@@ -1305,12 +1344,18 @@
 							!else
 								!ifdef - REQUIREMENT_ITEM_DHC_BK
 									!define - PALACE_FORCED
-								!else
-									!define - NO_PALACE
 								!endif
 							!endif
 						!else
-							!define - NO_PALACE
+							!ifdef - 4DUNGEON
+								!ifndef - OPENDHC
+									!define - PALACE_FORCED
+								!else
+									!ifdef - REQUIREMENT_ITEM_DHC_BK
+										!define - PALACE_FORCED
+									!endif
+								!endif
+							!endif
 						!endif
 					!endif
 				!else
@@ -1320,12 +1365,18 @@
 						!else
 							!ifdef - REQUIREMENT_ITEM_DHC_BK
 								!define - PALACE_FORCED
-							!else
-								!define - NO_PALACE
 							!endif
 						!endif
 					!else
-						!define - NO_PALACE
+						!ifdef - 4DUNGEON
+							!ifndef - OPENDHC
+								!define - PALACE_FORCED
+							!else
+								!ifdef - REQUIREMENT_ITEM_DHC_BK
+									!define - PALACE_FORCED
+								!endif
+							!endif
+						!endif
 					!endif
 				!endif
 			!endif
@@ -1383,6 +1434,7 @@
 			!define - PALACE_VANILLA - Items.Entrance.0x06
 			Items.Entrance.0x05;	DungeonEntrance;
 			!define - ENTERPOW - Helpers.BeatVaati
+			!define - NO_PALACE
 		!endif
 	!endif
 	!ifdef - OPENDHC
