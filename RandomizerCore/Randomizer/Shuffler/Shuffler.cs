@@ -232,6 +232,7 @@ internal class Shuffler : ShufflerBase
         assumedItems.ForEach(item => item.NotifyParentDependencies(true));
 
         var errorIndexes = new List<int>();
+        if ( items.Count == 0 ) Logger.Instance.LogInfo($"Nothing to place");
         for (; items.Count > 0;)
         {
             // Get a random item from the list and save its index
@@ -268,7 +269,7 @@ internal class Shuffler : ShufflerBase
                 if (errorIndexes.Count == items.Count)
                     // The filler broke
                     throw new ShuffleException(
-                        $"Could not place {item.Type}! Subvalue: {StringUtil.AsStringHex2(item.SubValue)}, Dungeon: {item.Dungeon}");
+                        $"Failed to place {items.Count} items, last attempt: {item.Type}! Subvalue: {StringUtil.AsStringHex2(item.SubValue)}, Dungeon: {item.Dungeon}");
 
                 continue;
             }
@@ -277,7 +278,7 @@ internal class Shuffler : ShufflerBase
 
             availableLocations[locationIndex].Fill(item);
             Logger.Instance.LogInfo(
-                $"Placed {item.Type} subtype {StringUtil.AsStringHex2(item.SubValue)} at {availableLocations[locationIndex].Name} with {items.Count} items remaining");
+                $"Placed {item.Type} subtype {StringUtil.AsStringHex2(item.SubValue)} at {availableLocations[locationIndex].Name} from {availableLocations.Count} locations, with {items.Count} items remaining");
 
             if (usingFallback) fallbackLocations.Remove(availableLocations[locationIndex]);
             else locations.Remove(availableLocations[locationIndex]);
@@ -286,7 +287,7 @@ internal class Shuffler : ShufflerBase
 
             filledLocations.Add(availableLocations[locationIndex]);
 
-            if (items.Count == 0) Logger.Instance.LogInfo($"All {item.ShufflePool} placed, {locations.Count} locations left unfilled");
+            if (items.Count == 0) Logger.Instance.LogInfo($"All {item.ShufflePool} placed");
 
             errorIndexes.Clear();
         }
@@ -368,7 +369,7 @@ internal class Shuffler : ShufflerBase
 
             availableLocations[locationIndex].Fill(item);
             Logger.Instance.LogInfo(
-                $"Placed {item.Type.ToString()} subtype {StringUtil.AsStringHex2(item.SubValue)} at {availableLocations[locationIndex].Name} with {items.Count} items remaining");
+                $"Placed {item.Type.ToString()} subtype {StringUtil.AsStringHex2(item.SubValue)} at {availableLocations[locationIndex].Name} from {availableLocations.Count} locations, with {items.Count} items remaining");
 
             if (usingFallback) fallbackLocations.Remove(availableLocations[locationIndex]);
             else locations.Remove(availableLocations[locationIndex]);
@@ -377,7 +378,7 @@ internal class Shuffler : ShufflerBase
             FilledLocations.AddRange(tempFilledLocations);
             tempFilledLocations.ForEach(location => location.Contents!.Value.NotifyParentDependencies(false));
 
-            if (items.Count == 0) Logger.Instance.LogInfo($"All {item.ShufflePool} placed, {fallbackLocations.Count} locations left unfilled");
+            if (items.Count == 0) Logger.Instance.LogInfo($"All {item.ShufflePool} placed");
 
             errorIndexes.Clear();
         }

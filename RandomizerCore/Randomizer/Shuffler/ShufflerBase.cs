@@ -536,6 +536,7 @@ internal abstract class ShufflerBase
         protected void FastFillAndConsiderItemPlaced(List<Item> items, List<Location> locations)
         {
             var i = items.Count;
+            if ( i == 0 ) Logger.Instance.LogInfo($"Nothing to Place");
             foreach (var item in items)
             {
                 if (locations.Count == 0) return;
@@ -551,8 +552,9 @@ internal abstract class ShufflerBase
                 l[0].Fill(item);
                 item.NotifyParentDependencies(true);
                 locations.Remove(l[0]);
-            }
+                if (i == 0) Logger.Instance.LogInfo( $"All {item.ShufflePool} placed with {l.Count} locations remaining");
         }
+    }
 
         protected List<Location> UpdateObtainedItemsFromPlacedLocations()
         {
