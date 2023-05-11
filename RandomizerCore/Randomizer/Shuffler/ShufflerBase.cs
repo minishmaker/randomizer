@@ -34,31 +34,31 @@ internal abstract class ShufflerBase
         #region Protected
 
             //Item lists are sorted in the order they are processed
-            protected readonly List<Item> _dungeonConstraints;
-            protected readonly List<Item> _dungeonEntrances;
-            protected readonly List<Item> _dungeonMajorItems;
-            protected readonly List<Item> _dungeonMinorItems;
-            protected readonly List<Item> _dungeonPrizes;
-            protected readonly List<Item> _fillerItems;
+            protected readonly List<Item> DungeonConstraints;
+            protected readonly List<Item> DungeonEntrances;
+            protected readonly List<Item> DungeonMajorItems;
+            protected readonly List<Item> DungeonMinorItems;
+            protected readonly List<Item> DungeonPrizes;
+            protected readonly List<Item> FillerItems;
 
-            protected readonly List<Location> _locations;
-            protected readonly Parser.Parser _logicParser;
-            protected readonly List<Item> _majorItems;
-            protected readonly List<Item> _minorItems;
+            protected readonly List<Location> Locations;
+            protected readonly Parser.Parser LogicParser;
+            protected readonly List<Item> MajorItems;
+            protected readonly List<Item> MinorItems;
             
-            protected readonly List<Item> _music;
-            protected readonly List<Item> _overworldConstraints;
-            protected readonly List<Item> _unshuffledItems;
+            protected readonly List<Item> Music;
+            protected readonly List<Item> OverworldConstraints;
+            protected readonly List<Item> UnshuffledItems;
             
-            protected List<Location> _filledLocations;
+            protected List<Location> FilledLocations;
             
-            protected bool _randomized;
+            protected bool Randomized;
             
-            protected SquaresRandomNumberGenerator _rng;
+            protected SquaresRandomNumberGenerator Rng;
             
             protected OptionList? Options;
 
-            protected string? _logicPath;
+            protected string? LogicPath;
 
         #endregion
     #endregion
@@ -84,7 +84,7 @@ internal abstract class ShufflerBase
             if (!RomCrcValid(Rom.Instance))
                 throw new ShufflerConfigurationException("ROM does not match the expected CRC for the logic file!");
 
-            if (checkIfRandomized && !_randomized)
+            if (checkIfRandomized && !Randomized)
                 throw new ShufflerConfigurationException(
                     "You must randomize the ROM before saving the ROM or a patch file!");
 
@@ -95,7 +95,7 @@ internal abstract class ShufflerBase
         public void SetSeed(ulong seed)
         {
             Seed = seed;
-            _rng = new SquaresRandomNumberGenerator(SquaresRandomNumberGenerator.DefaultKey, seed);
+            Rng = new SquaresRandomNumberGenerator(SquaresRandomNumberGenerator.DefaultKey, seed);
             Logger.Instance.LogInfo($"Randomization seed set to {seed:X}");
         }
 
@@ -105,7 +105,7 @@ internal abstract class ShufflerBase
         public void LoadOptions(string? logicFile = null)
         {
             Logger.Instance.LogInfo("Loading Logic Options");
-            _logicParser.SubParser.ClearOptions();
+            LogicParser.SubParser.ClearOptions();
 
             string[] logicStrings;
 
@@ -126,7 +126,7 @@ internal abstract class ShufflerBase
                 logicStrings = File.ReadAllLines(logicFile);
             }
 
-            _logicParser.PreParse(logicStrings);
+            LogicParser.PreParse(logicStrings);
         }
         
         public int ApplyPatch(string romLocation, string? patchFile = null)
@@ -199,10 +199,10 @@ internal abstract class ShufflerBase
         {
             string fallbackName;
             string fallbackVersion;
-            if (_logicPath != null)
+            if (LogicPath != null)
             {
-                fallbackName = Path.GetFileNameWithoutExtension(_logicPath);
-                fallbackVersion = File.GetLastWriteTime(_logicPath).ToShortDateString();
+                fallbackName = Path.GetFileNameWithoutExtension(LogicPath);
+                fallbackVersion = File.GetLastWriteTime(LogicPath).ToShortDateString();
             }
             else
             {
@@ -210,52 +210,52 @@ internal abstract class ShufflerBase
                 fallbackVersion = Version;
             }
 
-            var name = _logicParser.SubParser.LogicName ?? fallbackName;
-            var version = _logicParser.SubParser.LogicVersion ?? fallbackVersion;
+            var name = LogicParser.SubParser.LogicName ?? fallbackName;
+            var version = LogicParser.SubParser.LogicVersion ?? fallbackVersion;
 
             return name;
         }
     
         public List<LogicOptionBase> GetSortedSettings()
         {
-            return _logicParser.SubParser.GetSortedSettings();
+            return LogicParser.SubParser.GetSortedSettings();
         }
     
         public List<LogicOptionBase> GetSortedCosmetics()
         {
-            return _logicParser.SubParser.GetSortedCosmetics();
+            return LogicParser.SubParser.GetSortedCosmetics();
         }
     
         public uint GetLogicOptionsCrc32()
         {
-            return _logicParser.SubParser.GetLogicOptionsCrc32();
+            return LogicParser.SubParser.GetLogicOptionsCrc32();
         }
 
         public uint GetCosmeticOptionsCrc32()
         {
-            return _logicParser.SubParser.GetCosmeticOptionsCrc32();
+            return LogicParser.SubParser.GetCosmeticOptionsCrc32();
         }
 
         public OptionList GetSelectedOptions()
         {
-            return new OptionList(_logicParser.SubParser.Options);
+            return new OptionList(LogicParser.SubParser.Options);
         }
 
         public OptionList GetFinalOptions()
         {
-            return Options ??= new OptionList(_logicParser.SubParser.Options);
+            return Options ??= new OptionList(LogicParser.SubParser.Options);
         }
 
         public uint GetSettingHash()
         {
-            var settingBytes = _logicParser.SubParser.GetSettingBytes();
+            var settingBytes = LogicParser.SubParser.GetSettingBytes();
 
             return settingBytes.Length > 0 ? settingBytes.Crc32() : 0;
         }
 
         public uint GetCosmeticsHash()
         {
-            var cosmeticBytes = _logicParser.SubParser.GetCosmeticBytes();
+            var cosmeticBytes = LogicParser.SubParser.GetCosmeticBytes();
 
             return cosmeticBytes.Length > 0 ? cosmeticBytes.Crc32() : 0;
         }
@@ -278,7 +278,7 @@ internal abstract class ShufflerBase
             using (var ms = new MemoryStream(outputBytes))
             {
                 var writer = new Writer(ms);
-                foreach (var location in _locations) location.WriteLocation(writer);
+                foreach (var location in Locations) location.WriteLocation(writer);
 
                 WriteElementPositions(writer);
                 UpdateEntrances(writer);
@@ -310,28 +310,28 @@ internal abstract class ShufflerBase
     {
         Version = GetVersionName();
 
-        _locations = new List<Location>();
+        Locations = new List<Location>();
 
-        _music = new List<Item>();
-        _unshuffledItems = new List<Item>();
+        Music = new List<Item>();
+        UnshuffledItems = new List<Item>();
 
-        _dungeonEntrances = new List<Item>();
-        _dungeonConstraints = new List<Item>();
-        _overworldConstraints = new List<Item>();
+        DungeonEntrances = new List<Item>();
+        DungeonConstraints = new List<Item>();
+        OverworldConstraints = new List<Item>();
 
-        _dungeonPrizes = new List<Item>();
-        _dungeonMajorItems = new List<Item>();
-        _dungeonMinorItems = new List<Item>();
-        _majorItems = new List<Item>();
+        DungeonPrizes = new List<Item>();
+        DungeonMajorItems = new List<Item>();
+        DungeonMinorItems = new List<Item>();
+        MajorItems = new List<Item>();
 
-        _minorItems = new List<Item>();
-        _fillerItems = new List<Item>();
+        MinorItems = new List<Item>();
+        FillerItems = new List<Item>();
 
-        _filledLocations = new List<Location>();
+        FilledLocations = new List<Location>();
 
-        _logicParser = new Parser.Parser();
+        LogicParser = new Parser.Parser();
 
-        _rng = new SquaresRandomNumberGenerator();
+        Rng = new SquaresRandomNumberGenerator();
     }
 
     #region Protected Functions
@@ -345,39 +345,39 @@ internal abstract class ShufflerBase
             switch (item.ShufflePool)
             {
                 case ItemPool.Music:
-                    _music.Add(item);
+                    Music.Add(item);
                     break;
                 case ItemPool.Unshuffled:
                     break;
                 case ItemPool.DungeonEntrance:
-                    _dungeonEntrances.Add(item);
+                    DungeonEntrances.Add(item);
                     break;
                 case ItemPool.DungeonConstraint:
-                    _dungeonConstraints.Add(item);
+                    DungeonConstraints.Add(item);
                     break;
                 case ItemPool.OverworldConstraint:
-                    _overworldConstraints.Add(item);
+                    OverworldConstraints.Add(item);
                     break;
                 case ItemPool.DungeonPrize:
-                    _dungeonPrizes.Add(item);
+                    DungeonPrizes.Add(item);
                     break;
                 case ItemPool.DungeonMajor:
-                    _dungeonMajorItems.Add(item);
+                    DungeonMajorItems.Add(item);
                     break;
                 case ItemPool.DungeonMinor:
-                    _dungeonMinorItems.Add(item);
+                    DungeonMinorItems.Add(item);
                     break;
                 case ItemPool.Major:
-                    _majorItems.Add(item);
+                    MajorItems.Add(item);
                     break;
                 case ItemPool.Minor:
-                    _minorItems.Add(item);
+                    MinorItems.Add(item);
                     break;
                 case ItemPool.Filler:
-                    _fillerItems.Add(item);
+                    FillerItems.Add(item);
                     break;
                 default:
-                    _minorItems.Add(item);
+                    MinorItems.Add(item);
                     break;
             }
 
@@ -412,7 +412,7 @@ internal abstract class ShufflerBase
         protected Location AddLocation(Location location)
         {
             // All locations are in the master location list
-            _locations.Add(location);
+            Locations.Add(location);
 
             if (!location.Contents.HasValue) return location;
 
@@ -421,14 +421,14 @@ internal abstract class ShufflerBase
             if (newItem.HasValue) location.SetItem(newItem.Value);
 
 
-            if (_logicParser.SubParser.LocationTypeOverrides.ContainsKey(location.Contents.Value))
-                location.Type = _logicParser.SubParser.LocationTypeOverrides[location.Contents.Value];
+            if (LogicParser.SubParser.LocationTypeOverrides.ContainsKey(location.Contents.Value))
+                location.Type = LogicParser.SubParser.LocationTypeOverrides[location.Contents.Value];
 
             if (location.Type != LocationType.Unshuffled) return location;
 
             // Unshuffled locations require contents, so add them here
             location.Fill(location.Contents!.Value);
-            _unshuffledItems.Add(location.Contents!.Value);
+            UnshuffledItems.Add(location.Contents!.Value);
 
             return location;
         }
@@ -437,30 +437,30 @@ internal abstract class ShufflerBase
         {
             DependencyBase.BeatVaatiDependency = null;
             Location.ShufflerConstraints.Clear();
-            _locations.Clear();
+            Locations.Clear();
 
-            _music.Clear();
-            _unshuffledItems.Clear();
+            Music.Clear();
+            UnshuffledItems.Clear();
 
-            _dungeonEntrances.Clear();
-            _dungeonConstraints.Clear();
-            _overworldConstraints.Clear();
+            DungeonEntrances.Clear();
+            DungeonConstraints.Clear();
+            OverworldConstraints.Clear();
 
-            _dungeonPrizes.Clear();
-            _dungeonMajorItems.Clear();
-            _dungeonMinorItems.Clear();
-            _majorItems.Clear();
+            DungeonPrizes.Clear();
+            DungeonMajorItems.Clear();
+            DungeonMinorItems.Clear();
+            MajorItems.Clear();
 
-            _minorItems.Clear();
-            _fillerItems.Clear();
+            MinorItems.Clear();
+            FillerItems.Clear();
 
-            _filledLocations.Clear();
+            FilledLocations.Clear();
 
-            _logicParser.SubParser.ClearTypeOverrides();
-            _logicParser.SubParser.ClearIncrementalReplacements();
-            _logicParser.SubParser.ClearReplacements();
-            _logicParser.SubParser.ClearAmountReplacements();
-            _logicParser.SubParser.ClearDefines();
+            LogicParser.SubParser.ClearTypeOverrides();
+            LogicParser.SubParser.ClearIncrementalReplacements();
+            LogicParser.SubParser.ClearReplacements();
+            LogicParser.SubParser.ClearAmountReplacements();
+            LogicParser.SubParser.ClearDefines();
         }
 
         /// <summary>
@@ -476,7 +476,7 @@ internal abstract class ShufflerBase
 
             foreach (var item in items)
             {
-                var locationIndex = _rng.Next(availableLocations.Count);
+                var locationIndex = Rng.Next(availableLocations.Count);
                 availableLocations[locationIndex].Fill(item);
             }
         }
@@ -489,7 +489,7 @@ internal abstract class ShufflerBase
         protected void FastFillLocations(List<Item> items, List<Location> locations)
         {
             var nonFillerItems = items.Where(item => item.ShufflePool is not ItemPool.Filler);
-            var i = items.Count - _fillerItems.Count;
+            var i = items.Count - FillerItems.Count;
             var h = 0;
             if (i < 0)
             { 
@@ -505,7 +505,7 @@ internal abstract class ShufflerBase
                     return;
                 }
 
-                _filledLocations.Add(locations[0]);
+                FilledLocations.Add(locations[0]);
                 --i;
                 h = 0;
                 Logger.Instance.LogInfo(
@@ -527,7 +527,7 @@ internal abstract class ShufflerBase
         var rand = new SquaresRandomNumberGenerator(SquaresRandomNumberGenerator.DefaultKey, Seed);
             while (locations.Count > 0)
             {
-                _filledLocations.Add(locations[0]);
+                FilledLocations.Add(locations[0]);
                 locations[0].Fill(fillItems[rand.Next(fillItems.Count)]);
                 locations.RemoveAt(0);
             }
@@ -542,9 +542,9 @@ internal abstract class ShufflerBase
 
                 var l = locations.Where(loc => loc.Dungeons.Contains(item.Dungeon)).ToList();
                 if (l.Count == 0) throw new Exception("Invalid logic file! No valid location for constraint found!");
-                l.Shuffle(_rng);
+                l.Shuffle(Rng);
                 
-                _filledLocations.Add(l[0]);
+                FilledLocations.Add(l[0]);
                 --i;
                 Logger.Instance.LogInfo(
                     $"Placed {item.Type.ToString()} subtype {StringUtil.AsStringHex2(item.SubValue)} at {l[0].Name} with {i} items remaining");
@@ -557,7 +557,7 @@ internal abstract class ShufflerBase
         protected List<Location> UpdateObtainedItemsFromPlacedLocations()
         {
             var allAvailableLocations = new List<Location>();
-            var availableLocations = _filledLocations.Where(location => location.IsAccessible()).ToList();
+            var availableLocations = FilledLocations.Where(location => location.IsAccessible()).ToList();
 
             while (availableLocations.Count > 0)
             {
@@ -565,11 +565,11 @@ internal abstract class ShufflerBase
 
                 foreach (var location in availableLocations)
                 {
-                    _filledLocations.Remove(location);
+                    FilledLocations.Remove(location);
                     location.Contents!.Value.NotifyParentDependencies(true);
                 }
 
-                availableLocations = _filledLocations.Where(location => location.IsAccessible()).ToList();
+                availableLocations = FilledLocations.Where(location => location.IsAccessible()).ToList();
             }
 
             return allAvailableLocations;
@@ -586,7 +586,7 @@ internal abstract class ShufflerBase
 
             availableItems.ForEach(item => item.NotifyParentDependencies(true));
 
-            var filledLocations = _locations.Where(location =>
+            var filledLocations = Locations.Where(location =>
                 location is
                 {
                     Filled: true,
@@ -619,9 +619,9 @@ internal abstract class ShufflerBase
 
         private Item? CheckReplacements(Item item)
         {
-            if (_logicParser.SubParser.IncrementalReplacements.ContainsKey(item))
+            if (LogicParser.SubParser.IncrementalReplacements.ContainsKey(item))
             {
-                var set = _logicParser.SubParser.IncrementalReplacements[item];
+                var set = LogicParser.SubParser.IncrementalReplacements[item];
                 var replacement = set[0];
                 if (replacement.Amount != 0)
                 {
@@ -635,17 +635,17 @@ internal abstract class ShufflerBase
                 if (replacement.Amount == 0)
                 {
                     set.RemoveAt(0);
-                    if (_logicParser.SubParser.IncrementalReplacements[item].Count == 0)
+                    if (LogicParser.SubParser.IncrementalReplacements[item].Count == 0)
                     {
-                        _logicParser.SubParser.IncrementalReplacements.Remove(item);
+                        LogicParser.SubParser.IncrementalReplacements.Remove(item);
                         Logger.Instance.LogInfo($"Removed incremental item, key {item.Type}");
                     }
                 }
             }
 
-            if (_logicParser.SubParser.AmountReplacements.ContainsKey(item))
+            if (LogicParser.SubParser.AmountReplacements.ContainsKey(item))
             {
-                var set = _logicParser.SubParser.AmountReplacements[item];
+                var set = LogicParser.SubParser.AmountReplacements[item];
                 var replacement = set[0];
                 if (replacement.Amount != 0)
                 {
@@ -657,18 +657,18 @@ internal abstract class ShufflerBase
                 if (replacement.Amount == 0)
                 {
                     set.RemoveAt(0);
-                    if (_logicParser.SubParser.AmountReplacements[item].Count == 0)
+                    if (LogicParser.SubParser.AmountReplacements[item].Count == 0)
                     {
-                        _logicParser.SubParser.AmountReplacements.Remove(item);
+                        LogicParser.SubParser.AmountReplacements.Remove(item);
                         Console.WriteLine("removed key:" + item.Type);
                     }
                 }
             }
 
-            if (_logicParser.SubParser.Replacements.ContainsKey(item))
+            if (LogicParser.SubParser.Replacements.ContainsKey(item))
             {
-                var chanceSet = _logicParser.SubParser.Replacements[item];
-                var number = _rng.Next(chanceSet.TotalChance);
+                var chanceSet = LogicParser.SubParser.Replacements[item];
+                var number = Rng.Next(chanceSet.TotalChance);
                 var val = 0;
 
                 for (var i = 0; i < chanceSet.RandomItems.Count(); i++)
@@ -687,8 +687,8 @@ internal abstract class ShufflerBase
 
         private bool RomCrcValid(Rom rom)
         {
-            if (_logicParser.SubParser.RomCrc != null)
-                return rom.RomData.Crc32() == _logicParser.SubParser.RomCrc;
+            if (LogicParser.SubParser.RomCrc != null)
+                return rom.RomData.Crc32() == LogicParser.SubParser.RomCrc;
             return true;
         }
 
@@ -700,7 +700,7 @@ internal abstract class ShufflerBase
         {
             spoilerBuilder.AppendLine("Location Contents:");
             // Get the locations that have been filled
-            var nonNullLocations = _locations.Where(location => location.Contents is not null);
+            var nonNullLocations = Locations.Where(location => location.Contents is not null);
 
             var filledLocations = nonNullLocations.Where(location =>
                 location is
@@ -733,7 +733,7 @@ internal abstract class ShufflerBase
         {
             spoilerBuilder.AppendLine("Spheres:");
 
-            var nonNullLocations = _locations.Where(location => location.Contents is not null);
+            var nonNullLocations = Locations.Where(location => location.Contents is not null);
 
             var filledLocations = nonNullLocations.Where(location =>
                 location is
@@ -780,7 +780,7 @@ internal abstract class ShufflerBase
         {
             builder.AppendLine("Playthrough:");
 
-            var nonNullLocations = _locations.Where(location => location.Contents is not null);
+            var nonNullLocations = Locations.Where(location => location.Contents is not null);
 
             var filledLocations = nonNullLocations.Where(location =>
                 location is
@@ -962,20 +962,20 @@ internal abstract class ShufflerBase
         private void WriteElementPositions(Writer w)
         {
             // Write coordinates for each element
-            var earthLocation = _locations.First(loc =>
+            var earthLocation = Locations.First(loc =>
                 loc.Contents is not null && loc.Contents.Value.Type == ItemType.EarthElement);
             MoveElement(w, earthLocation);
 
             var fireLocation =
-                _locations.First(loc => loc.Contents is not null && loc.Contents.Value.Type == ItemType.FireElement);
+                Locations.First(loc => loc.Contents is not null && loc.Contents.Value.Type == ItemType.FireElement);
             MoveElement(w, fireLocation);
 
-            var waterLocation = _locations.First(loc =>
+            var waterLocation = Locations.First(loc =>
                 loc.Contents is not null && loc.Contents.Value.Type == ItemType.WaterElement);
             MoveElement(w, waterLocation);
 
             var windLocation =
-                _locations.First(loc => loc.Contents is not null && loc.Contents.Value.Type == ItemType.WindElement);
+                Locations.First(loc => loc.Contents is not null && loc.Contents.Value.Type == ItemType.WindElement);
             MoveElement(w, windLocation);
         }
 
@@ -996,42 +996,42 @@ internal abstract class ShufflerBase
             switch (prizeLocation.Name)
             {
                 case "Deepwood_Prize":
-                    correspondingEntrance = _locations.First(location =>
+                    correspondingEntrance = Locations.First(location =>
                         location.Type is LocationType.DungeonEntrance or LocationType.Unshuffled &&
                         location.Contents is not null &&
                         (DungeonEntranceType)location.Contents.Value.SubValue is DungeonEntranceType.Dws);
                     coords = GetAddressFromDungeonEntranceName(correspondingEntrance.Name);
                     break;
                 case "CoF_Prize":
-                    correspondingEntrance = _locations.First(location =>
+                    correspondingEntrance = Locations.First(location =>
                         location.Type is LocationType.DungeonEntrance or LocationType.Unshuffled &&
                         location.Contents is not null &&
                         (DungeonEntranceType)location.Contents.Value.SubValue is DungeonEntranceType.CoF);
                     coords = GetAddressFromDungeonEntranceName(correspondingEntrance.Name);
                     break;
                 case "Fortress_Prize":
-                    correspondingEntrance = _locations.First(location =>
+                    correspondingEntrance = Locations.First(location =>
                         location.Type is LocationType.DungeonEntrance or LocationType.Unshuffled &&
                         location.Contents is not null &&
                         (DungeonEntranceType)location.Contents.Value.SubValue is DungeonEntranceType.FoW);
                     coords = GetAddressFromDungeonEntranceName(correspondingEntrance.Name);
                     break;
                 case "Droplets_Prize":
-                    correspondingEntrance = _locations.First(location =>
+                    correspondingEntrance = Locations.First(location =>
                         location.Type is LocationType.DungeonEntrance or LocationType.Unshuffled &&
                         location.Contents is not null &&
                         (DungeonEntranceType)location.Contents.Value.SubValue is DungeonEntranceType.ToD);
                     coords = GetAddressFromDungeonEntranceName(correspondingEntrance.Name);
                     break;
                 case "Crypt_Prize":
-                    correspondingEntrance = _locations.First(location =>
+                    correspondingEntrance = Locations.First(location =>
                         location.Type is LocationType.DungeonEntrance or LocationType.Unshuffled &&
                         location.Contents is not null &&
                         (DungeonEntranceType)location.Contents.Value.SubValue is DungeonEntranceType.Crypt);
                     coords = GetAddressFromDungeonEntranceName(correspondingEntrance.Name);
                     break;
                 case "Palace_Prize":
-                    correspondingEntrance = _locations.First(location =>
+                    correspondingEntrance = Locations.First(location =>
                         location.Type is LocationType.DungeonEntrance or LocationType.Unshuffled &&
                         location.Contents is not null &&
                         (DungeonEntranceType)location.Contents.Value.SubValue is DungeonEntranceType.PoW);
@@ -1101,7 +1101,7 @@ internal abstract class ShufflerBase
         private void UpdateEntrances(Writer w)
         {
             var entranceChangedLocations =
-                _locations.Where(location => location.Type is LocationType.DungeonEntrance).ToList();
+                Locations.Where(location => location.Type is LocationType.DungeonEntrance).ToList();
 
             foreach (var entrance in entranceChangedLocations) UpdateSpecialEntrances(w, entrance);
         }

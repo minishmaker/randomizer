@@ -41,7 +41,7 @@ internal class YamlShuffler : Shuffler
     public override void LoadLocationsYaml(string? logicFile = null, string? yamlFileLogic = null, string? yamlFileCosmetics = null, bool useGlobalYaml = false)
     {
         // Change the logic file path to match
-        _logicPath = logicFile;
+        LogicPath = logicFile;
         _yamlPathLogic = yamlFileLogic;
         _yamlPathCosmetics = useGlobalYaml ? yamlFileLogic : yamlFileCosmetics;
         _yamlUseGlobal = useGlobalYaml;
@@ -99,20 +99,20 @@ internal class YamlShuffler : Shuffler
         }
 
 		// Set option defines
-        _logicParser.SubParser.AddOptions(Options);
+        LogicParser.SubParser.AddOptions(Options);
 
         var locationStrings = LoadLocationFile(logicFile);
         
         var time = DateTime.Now;
-        var locationAndItems = _logicParser.ParseLocationsAndItems(locationStrings, _rng);
+        var locationAndItems = LogicParser.ParseLocationsAndItems(locationStrings, Rng);
 
-        _logicParser.SubParser.DuplicateAmountReplacements();
-        _logicParser.SubParser.DuplicateIncrementalReplacements();
+        LogicParser.SubParser.DuplicateAmountReplacements();
+        LogicParser.SubParser.DuplicateIncrementalReplacements();
 
         var collectedLocations = locationAndItems.locations.Select(AddLocation).ToList();
         var collectedItems = locationAndItems.items.Concat(locationAndItems.locations.Where(loc => loc.Type is LocationType.Unshuffled && loc.Contents.HasValue).Select(loc => loc.Contents!.Value)).Select(AddItem).ToList();
 
-        var distinctDeps = _logicParser.Dependencies.Distinct().ToList();
+        var distinctDeps = LogicParser.Dependencies.Distinct().ToList();
 
         foreach (var itemDep in distinctDeps.Where(dep => dep.GetType() == typeof(ItemDependency)))
             itemDep.ExpandRequiredDependencies(collectedLocations, collectedItems);
@@ -133,9 +133,9 @@ internal class YamlShuffler : Shuffler
     {
         var eventBuilder = new StringBuilder();
 
-        foreach (var location in _locations) location.WriteLocationEvent(eventBuilder);
+        foreach (var location in Locations) location.WriteLocationEvent(eventBuilder);
 
-        foreach (var define in _logicParser.GetEventDefines()) define.WriteDefineString(eventBuilder);
+        foreach (var define in LogicParser.GetEventDefines()) define.WriteDefineString(eventBuilder);
 
         var seedValues = new byte[8];
         seedValues[0] = (byte)((Seed >> 00) & 0xFF);

@@ -21,28 +21,28 @@ internal class Shuffler : ShufflerBase
     public override void LoadLocations(string? logicFile = null)
     {
         // Change the logic file path to match
-        _logicPath = logicFile;
+        LogicPath = logicFile;
 
         // Reset everything to allow rerandomization
         ClearLogic();
 
         // Set option defines
-        _logicParser.SubParser.AddOptions();
+        LogicParser.SubParser.AddOptions();
 
         var locationStrings = LoadLocationFile(logicFile);
         
         var time = DateTime.Now;
         Logger.Instance.BeginLogTransaction();
-        var locationAndItems = _logicParser.ParseLocationsAndItems(locationStrings, _rng);
+        var locationAndItems = LogicParser.ParseLocationsAndItems(locationStrings, Rng);
         Logger.Instance.SaveLogTransaction();
 
-        _logicParser.SubParser.DuplicateAmountReplacements();
-        _logicParser.SubParser.DuplicateIncrementalReplacements();
+        LogicParser.SubParser.DuplicateAmountReplacements();
+        LogicParser.SubParser.DuplicateIncrementalReplacements();
 
         var collectedLocations = locationAndItems.locations.Select(AddLocation).ToList();
         var collectedItems = locationAndItems.items.Concat(locationAndItems.locations.Where(loc => loc.Type is LocationType.Unshuffled && loc.Contents.HasValue).Select(loc => loc.Contents!.Value)).Select(AddItem).ToList();
 
-        var distinctDeps = _logicParser.Dependencies.Distinct().ToList();
+        var distinctDeps = LogicParser.Dependencies.Distinct().ToList();
 
         foreach (var itemDep in distinctDeps.Where(dep => dep.GetType() == typeof(ItemDependency)))
             itemDep.ExpandRequiredDependencies(collectedLocations, collectedItems);
@@ -85,7 +85,7 @@ internal class Shuffler : ShufflerBase
         nextLocationGroup = locationGroups.Any(group => group.Key == LocationType.Major)
             ? locationGroups.First(group => group.Key == LocationType.Major).ToList()
             : new List<Location>();
-        unfilledLocations.AddRange(FillLocationsUniform(_majorItems,
+        unfilledLocations.AddRange(FillLocationsUniform(MajorItems,
             nextLocationGroup,
             null,
             unfilledLocations));
@@ -97,18 +97,18 @@ internal class Shuffler : ShufflerBase
             : new List<Location>();
         unfilledLocations.AddRange(nextLocationGroup);
         unfilledLocations = unfilledLocations.Distinct().ToList();
-        unfilledLocations.Shuffle(_rng);
+        unfilledLocations.Shuffle(Rng);
         Logger.Instance.LogInfo($"Placing Minors");
-        FastFillLocations(_minorItems.Concat(_fillerItems).ToList(), unfilledLocations);
+        FastFillLocations(MinorItems.Concat(FillerItems).ToList(), unfilledLocations);
         
         nextLocationGroup = locationGroups.Any(group => group.Key == LocationType.Inaccessible)
             ? locationGroups.First(group => group.Key == LocationType.Inaccessible).ToList()
             : new List<Location>();
         unfilledLocations.AddRange(nextLocationGroup);
         unfilledLocations = unfilledLocations.Distinct().ToList();
-        unfilledLocations.Shuffle(_rng);
+        unfilledLocations.Shuffle(Rng);
         Logger.Instance.LogInfo($"Filling all remaining locations");
-        FastFillLocations(_fillerItems.ToList(), unfilledLocations);
+        FastFillLocations(FillerItems.ToList(), unfilledLocations);
 
         // Get every item that can be logically obtained, to check if the game can be completed
         //var finalMajorItems = GetAvailableItems(new List<Item>());
@@ -118,92 +118,92 @@ internal class Shuffler : ShufflerBase
             throw new ShuffleException("Randomization succeeded, but could not beat Vaati!");
         
         finalFilledLocations.ForEach(location => location.Contents!.Value.NotifyParentDependencies(false));
-        _filledLocations.AddRange(finalFilledLocations);
+        FilledLocations.AddRange(finalFilledLocations);
 
         var diff = DateTime.Now - time;
         Logger.Instance.SaveLogTransaction();
         Logger.Instance.LogInfo($"Timing Benchmark - Shuffling with seed {Seed:X} and settings {MinifiedSettings.GenerateSettingsString(GetSortedSettings(), GetLogicOptionsCrc32())} took {diff.Seconds}.{diff.Milliseconds} seconds!");
         Logger.Instance.SaveLogTransaction(true);
         
-        _randomized = true;
+        Randomized = true;
     }
 
     protected (List<IGrouping<LocationType, Location>> locationGroups, List<Location> unfilledLocations) PlaceImportantItems()
     {
-                var locationGroups = _locations.GroupBy(location => location.Type).ToList();
+                var locationGroups = Locations.GroupBy(location => location.Type).ToList();
         //We now do randomization in phases, following the ordering of items in <code>LocationType</code>
         //Make it so randomized music doesn't affect randomization
-        var temp = _rng;
-        _rng = new SquaresRandomNumberGenerator(SquaresRandomNumberGenerator.DefaultKey, Seed);
+        var temp = Rng;
+        Rng = new SquaresRandomNumberGenerator(SquaresRandomNumberGenerator.DefaultKey, Seed);
 
         var nextLocationGroup = locationGroups.Any(group => group.Key == LocationType.Music)
             ? locationGroups.First(group => group.Key == LocationType.Music).ToList()
             : new List<Location>();
 
-        nextLocationGroup.Shuffle(_rng);
-        Logger.Instance.LogInfo($"Placing Music");
-        FastFillLocations(_music, nextLocationGroup);
+        nextLocationGroup.Shuffle(Rng);
+        Logger.Instance.LogInfo("Placing Music");
+        FastFillLocations(Music, nextLocationGroup);
 
-        _rng = temp;
+        Rng = temp;
 
-        _filledLocations = new List<Location>();
+        FilledLocations = new List<Location>();
 
-        var majorsAndEntrances = _majorItems.Concat(_dungeonEntrances).ToList();
+        var majorsAndEntrances = MajorItems.Concat(DungeonEntrances).ToList();
 
         //Shuffle dungeon entrances
         nextLocationGroup = locationGroups.Any(group => group.Key == LocationType.DungeonEntrance)
             ? locationGroups.First(group => group.Key == LocationType.DungeonEntrance).ToList()
             : new List<Location>();
-        nextLocationGroup.Shuffle(_rng);
-        Logger.Instance.LogInfo($"Placing Entrances");
-        FastFillLocations(_dungeonEntrances, nextLocationGroup);
+        nextLocationGroup.Shuffle(Rng);
+        Logger.Instance.LogInfo("Placing Entrances");
+        FastFillLocations(DungeonEntrances, nextLocationGroup);
 
         //Add all unfilled items to the available pool
         nextLocationGroup = locationGroups.Any(group => group.Key == LocationType.Unshuffled)
             ? locationGroups.First(group => group.Key == LocationType.Unshuffled).ToList()
             : new List<Location>();
-        _filledLocations.AddRange(nextLocationGroup);
+        FilledLocations.AddRange(nextLocationGroup);
 
         //Grab all items that we need to beat the seed
-        var allItems = _majorItems.Concat(_dungeonMajorItems).ToList();
-        var allItemsAndEntrances = _majorItems.Concat(_dungeonMajorItems).Concat(_dungeonEntrances).ToList();
+        var allItems = MajorItems.Concat(DungeonMajorItems).ToList();
+        var allItemsAndEntrances = MajorItems.Concat(DungeonMajorItems).Concat(DungeonEntrances).ToList();
 
         //Like entrances, constraints shouldn't check logic when placing
         //Shuffle constraints
         nextLocationGroup = locationGroups.Any(group => group.Key == LocationType.DungeonConstraint)
             ? locationGroups.First(group => group.Key == LocationType.DungeonConstraint).ToList()
             : new List<Location>();
-        nextLocationGroup.Shuffle(_rng);
+        nextLocationGroup.Shuffle(Rng);
         Logger.Instance.LogInfo($"Placing Dungeon Constraints");
-        FastFillAndConsiderItemPlaced(_dungeonConstraints, nextLocationGroup);
+        FastFillAndConsiderItemPlaced(DungeonConstraints, nextLocationGroup);
         
         nextLocationGroup = locationGroups.Any(group => group.Key == LocationType.OverworldConstraint)
             ? locationGroups.First(group => group.Key == LocationType.OverworldConstraint).ToList()
             : new List<Location>();
-        nextLocationGroup.Shuffle(_rng);
+        nextLocationGroup.Shuffle(Rng);
         Logger.Instance.LogInfo($"Placing Overworld Constraints");
-        FastFillAndConsiderItemPlaced(_overworldConstraints, nextLocationGroup);
+        FastFillAndConsiderItemPlaced(OverworldConstraints, nextLocationGroup);
 
         // //Shuffle prizes
         nextLocationGroup = locationGroups.Any(group => group.Key == LocationType.DungeonPrize)
             ? locationGroups.First(group => group.Key == LocationType.DungeonPrize).ToList()
             : new List<Location>();
         Logger.Instance.LogInfo($"Placing Dungeon Prizes");
-        var unfilledLocations = FillLocationsFrontToBack(_dungeonPrizes, nextLocationGroup, allItems);
+        var unfilledLocations = FillLocationsFrontToBack(DungeonPrizes, nextLocationGroup, allItems);
 
         //Shuffle dungeon majors
         nextLocationGroup = locationGroups.Any(group => group.Key == LocationType.Dungeon)
             ? locationGroups.First(group => group.Key == LocationType.Dungeon).ToList()
             : new List<Location>();
         Logger.Instance.LogInfo($"Placing Dungeon Majors");
-        unfilledLocations.AddRange(FillLocationsFrontToBack(_dungeonMajorItems,
+        unfilledLocations.AddRange(FillLocationsFrontToBack(DungeonMajorItems,
             nextLocationGroup,
             majorsAndEntrances,
             unfilledLocations));
 
         //Shuffle dungeon minors
         Logger.Instance.LogInfo($"Placing Dungeon Minors");
-        unfilledLocations.AddRange(FillLocationsFrontToBack(_dungeonMinorItems,
+        unfilledLocations.AddRange(FillLocationsFrontToBack(DungeonMinorItems,
             unfilledLocations,
             allItemsAndEntrances));
 
@@ -236,9 +236,9 @@ internal class Shuffler : ShufflerBase
         {
             // Get a random item from the list and save its index
             var usingFallback = false;
-            var itemIndex = _rng.Next(items.Count);
+            var itemIndex = Rng.Next(items.Count);
             while (errorIndexes.Contains(itemIndex))
-                itemIndex = _rng.Next(items.Count);
+                itemIndex = Rng.Next(items.Count);
 
             var item = items[itemIndex];
 
@@ -248,13 +248,13 @@ internal class Shuffler : ShufflerBase
             filledLocations.AddRange(UpdateObtainedItemsFromPlacedLocations());
 
             // Find locations that are available for placing the item
-            var availableLocations = locations.Where(location => location.CanPlace(item, _locations))
+            var availableLocations = locations.Where(location => location.CanPlace(item, Locations))
                 .ToList();
 
             if (availableLocations.Count == 0)
             {
                 availableLocations = fallbackLocations
-                    .Where(location => location.CanPlace(item, _locations)).ToList();
+                    .Where(location => location.CanPlace(item, Locations)).ToList();
                 usingFallback = true;
             }
 
@@ -273,7 +273,7 @@ internal class Shuffler : ShufflerBase
                 continue;
             }
 
-            var locationIndex = _rng.Next(availableLocations.Count);
+            var locationIndex = Rng.Next(availableLocations.Count);
 
             availableLocations[locationIndex].Fill(item);
             Logger.Instance.LogInfo(
@@ -293,7 +293,7 @@ internal class Shuffler : ShufflerBase
 
         assumedItems.ForEach(item => item.NotifyParentDependencies(false));
         
-        _filledLocations.AddRange(filledLocations);
+        FilledLocations.AddRange(filledLocations);
         filledLocations.ForEach(location => location.Contents!.Value.NotifyParentDependencies(false));
 
         return locations.Concat(fallbackLocations).ToList();
@@ -325,9 +325,9 @@ internal class Shuffler : ShufflerBase
         {
             // Get a random item from the list and save its index
             var usingFallback = false;
-            var itemIndex = _rng.Next(items.Count);
+            var itemIndex = Rng.Next(items.Count);
             while (errorIndexes.Contains(itemIndex))
-                itemIndex = _rng.Next(items.Count);
+                itemIndex = Rng.Next(items.Count);
 
             var item = items[itemIndex];
 
@@ -338,13 +338,13 @@ internal class Shuffler : ShufflerBase
             var tempFilledLocations = UpdateObtainedItemsFromPlacedLocations();
 
             // Find locations that are available for placing the item
-            var availableLocations = locations.Where(location => location.CanPlace(item, _locations))
+            var availableLocations = locations.Where(location => location.CanPlace(item, Locations))
                 .ToList();
 
             if (availableLocations.Count == 0)
             {
                 availableLocations = fallbackLocations
-                    .Where(location => location.CanPlace(item, _locations)).ToList();
+                    .Where(location => location.CanPlace(item, Locations)).ToList();
                 usingFallback = true;
             }
 
@@ -364,7 +364,7 @@ internal class Shuffler : ShufflerBase
                 continue;
             }
 
-            var locationIndex = _rng.Next(availableLocations.Count);
+            var locationIndex = Rng.Next(availableLocations.Count);
 
             availableLocations[locationIndex].Fill(item);
             Logger.Instance.LogInfo(
@@ -373,8 +373,8 @@ internal class Shuffler : ShufflerBase
             if (usingFallback) fallbackLocations.Remove(availableLocations[locationIndex]);
             else locations.Remove(availableLocations[locationIndex]);
 
-            _filledLocations.Add(availableLocations[locationIndex]);
-            _filledLocations.AddRange(tempFilledLocations);
+            FilledLocations.Add(availableLocations[locationIndex]);
+            FilledLocations.AddRange(tempFilledLocations);
             tempFilledLocations.ForEach(location => location.Contents!.Value.NotifyParentDependencies(false));
 
             if (items.Count == 0) Logger.Instance.LogInfo($"All {item.ShufflePool} placed, {fallbackLocations.Count} locations left unfilled");
@@ -384,7 +384,7 @@ internal class Shuffler : ShufflerBase
 
         assumedItems.ForEach(item => item.NotifyParentDependencies(false));
         
-        _filledLocations.AddRange(filledLocations);
+        FilledLocations.AddRange(filledLocations);
         filledLocations.ForEach(location => location.Contents!.Value.NotifyParentDependencies(false));
 
         return locations.Concat(fallbackLocations).ToList();
@@ -394,9 +394,9 @@ internal class Shuffler : ShufflerBase
     {
         var eventBuilder = new StringBuilder();
 
-        foreach (var location in _locations) location.WriteLocationEvent(eventBuilder);
+        foreach (var location in Locations) location.WriteLocationEvent(eventBuilder);
 
-        foreach (var define in _logicParser.GetEventDefines()) define.WriteDefineString(eventBuilder);
+        foreach (var define in LogicParser.GetEventDefines()) define.WriteDefineString(eventBuilder);
 
         var seedValues = new byte[8];
         seedValues[0] = (byte)((Seed >> 00) & 0xFF);
