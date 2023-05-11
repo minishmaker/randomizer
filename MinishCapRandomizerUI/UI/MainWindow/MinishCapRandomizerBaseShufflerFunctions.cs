@@ -49,6 +49,8 @@ public partial class MinishCapRandomizerUI
     {
         SettingNameLabel.Text = _recentSettingsPreset != null && _shufflerController.GetSelectedOptions().OnlyLogic().GetHash() == _recentSettingsPresetHash ? _recentSettingsPreset : "Custom";
         CosmeticNameLabel.Text = _recentCosmeticsPreset != null && _shufflerController.GetSelectedOptions().OnlyCosmetic().GetHash() == _recentCosmeticsPresetHash ? _recentCosmeticsPreset : "Custom";
+        _outputSettingsString = settingsString;
+        _outputCosmeticsString = cosmeticsString;
         SettingHashLabel.Text = settingsString;
         CosmeticStringLabel.Text = cosmeticsString;
         SettingHashLabel.Visible = true;

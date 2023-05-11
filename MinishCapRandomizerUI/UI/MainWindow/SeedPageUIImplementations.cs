@@ -30,12 +30,12 @@ public partial class MinishCapRandomizerUI
 
     private void CopySettingsHashToClipboard_Click(object sender, EventArgs e)
     {
-        Clipboard.SetText(SettingHashLabel.Text);
+        Clipboard.SetText(_outputSettingsString);
     }
 
     private void CopyCosmeticsHashToClipboard_Click(object sender, EventArgs e)
     {
-        Clipboard.SetText(CosmeticStringLabel.Text);
+        Clipboard.SetText(_outputCosmeticsString);
     }
 
     private void CopyHashToClipboard_Click(object sender, EventArgs e)
