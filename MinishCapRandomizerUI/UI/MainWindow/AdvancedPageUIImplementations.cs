@@ -53,6 +53,7 @@ public partial class MinishCapRandomizerUI
     private void UseCustomLogic_CheckedChanged(object sender, EventArgs e)
     {
         BrowseCustomLogicFile.Enabled = UseCustomLogic.Checked;
+        LogicFilePath.Enabled = UseCustomLogic.Checked;
         _configuration.UseCustomLogic = UseCustomLogic.Checked;
 
         switch (UseCustomLogic.Checked)
@@ -75,13 +76,25 @@ public partial class MinishCapRandomizerUI
     private void UseCustomPatch_CheckedChanged(object sender, EventArgs e)
     {
         BrowseCustomPatch.Enabled = UseCustomPatch.Checked;
+        RomBuildfilePath.Enabled = UseCustomPatch.Checked;
         _configuration.UseCustomPatch = UseCustomPatch.Checked;
     }
 
     private void UseCustomYAML_CheckedChanged(object sender, EventArgs e)
     {
         BrowseCustomYAML.Enabled = UseCustomYAML.Checked;
+        YAMLPath.Enabled = UseCustomYAML.Checked;
         _configuration.UseCustomYAML = UseCustomYAML.Checked;
+    }
+
+    private void UseMysterySettings_CheckedChanged(object sender, EventArgs e)
+    {
+        CopySettingsHashToClipboard.Enabled = !UseMysterySettings.Checked;
+    }
+
+    private void UseMysteryCosmetics_CheckedChanged(object sender, EventArgs e)
+    {
+        CopyCosmeticsHashToClipboard.Enabled = !UseMysteryCosmetics.Checked;
     }
 
     private void UseSphereBasedShuffler_CheckedChanged(object sender, EventArgs e)
