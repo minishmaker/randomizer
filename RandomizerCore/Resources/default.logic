@@ -3360,12 +3360,12 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 	ShopScrubTrilby;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Items.MoleMitts)
 	ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Items.MoleMitts)
 !endif
-!ifndef - NOGUARDSKIP
+!ifdef - NOGUARDSKIP
 	GuardSkip;				Helper;;	Helpers.Inaccessible
 !else
 	GuardSkip;				Helper;;	Items.PegasusBoots
 !endif
-!ifndef - NOLIKELIKE
+!ifdef - NOLIKELIKE
 	LikeLike;				Helper;;	Helpers.HasSword
 !else
 	LikeLike;				Helper;;	
@@ -3375,82 +3375,82 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 !else
 	BlowDust;				Helper;;	(|Items.BombBag, Items.GustJar)
 !endif
-!ifndef - NOMUSH
+!ifdef - NOMUSH
 	CrenelMushroom;		Helper;;	Items.BombBag
 !else
 	CrenelMushroom;		Helper;;	(|Items.BombBag, Items.GustJar)
 !endif
-!ifndef - NOLIGHTS
+!ifdef - NOLIGHTS
 	LightArrowBreak;		Helper;;	Helpers.Inaccessible
 !else
 	LightArrowBreak;		Helper;;	Helpers.HasLightBow
 !endif
-!ifndef - NOBOBOMBS
+!ifdef - NOBOBOMBS
 	Bobombs;				Helper;;	Helpers.Inaccessible
 !else
 	Bobombs;				Helper;;	(|Helpers.HasSword, Items.GustJar, Items.BombBag)
 !endif
-!ifndef - NOBEAM
+!ifdef - NOBEAM
 	CrenelBeam;			Helper;;	Helpers.Inaccessible
 !else
 	CrenelBeam;			Helper;;	Helpers.HasBeam
 !endif
-!ifndef - NOTHRUST
+!ifdef - NOTHRUST
 	DownThrustBeetle;		Helper;;	Helpers.Inaccessible
 !else
 	DownThrustBeetle;		Helper;;	Helpers.CanDownThrust
 !endif
-!ifndef - NOEXTENSION
+!ifdef - NOEXTENSION
 	CapeExtension;			Helper;;	Items.Flippers
 !else
 	CapeExtension;			Helper;;	(|Items.Flippers, Items.RocsCape)
 !endif
-!ifndef - NODARK
+!ifdef - NODARK
 	DarkRooms;				Helper;;	Items.Lantern
 !else
 	DarkRooms;				Helper;;	
 !endif
-!ifndef - NOLAKEMINISH
+!ifdef - NOLAKEMINISH
 	LakeMinish;			Helper;;	Helpers.Inaccessible
 !else
 	LakeMinish;			Helper;;	Items.Ocarina, Helpers.VillageSideMinish3Fusion
 !endif
-!ifndef - NOCABIN
+!ifdef - NOCABIN
 	CabinSwim;				Helper;;	Items.GustJar
 !else
 	CabinSwim;				Helper;;	(|Items.Flippers, Items.GustJar)
 !endif
-!ifndef - NOCLOUDSKILL
+!ifdef - NOCLOUDSKILL
 	CloudsKill;			Helper;;	Helpers.HasDamageSource	
 !else
 	CloudsKill;			Helper;;	
 !endif
-!ifndef - NOFOWPOT
+!ifdef - NOFOWPOT
 	FoWPot;				Helper;;	Helpers.Inaccessible
 !else
 	FoWPot;				Helper;;	Items.GustJar
 !endif
-!ifndef - NOPOWJUMP
+!ifdef - NOPOWJUMP
 	PoWJump;				Helper;;	Items.PacciCane
 !else
 	PoWJump;				Helper;;	
 !endif
-!ifndef - NOPOWOOL
+!ifdef - NOPOWOOL
 	PoWPotPuzzleOOL;		Helper;;	Helpers.Inaccessible
 !else
 	PoWPotPuzzleOOL;		Helper;;	(|Helpers.HasSword, Helpers.HasBoomerang, Items.BombBag, Helpers.HasBow), (|(&Helpers.DarkRooms, (|(&Helpers.PoW2ndHalf1stDoor, Items.RocsCape), Helpers.PoWShortcuts), (|Helpers.PoW2ndHalf, Helpers.PoWBlueWarp)), (&Helpers.PoWRedWarp, Helpers.OverworldBlocks))
 !endif
-!ifndef - NODHCCANON
+!ifdef - NODHCCANON
 	DHCCanonHit;			Helper;;	Helpers.CanSplit4
 !else
 	DHCCanonHit;			Helper;;	Items.BombBag, Helpers.HasSword
 !endif
-!ifndef - NODHCJOSTLE
+!ifdef - NODHCJOSTLE
 	DHCBladePuzzleShuffle;	Helper;;	Helpers.CanSplit4
 !else
 	DHCBladePuzzleShuffle;	Helper;;	(|Helpers.CanSplit2, Helpers.CanSplit3, Helpers.CanSplit4)
 !endif
-!ifndef - NODHCSWITCHES
+!ifdef - NODHCSWITCHES
 	DHCSwitchHit;			Helper;;	Helpers.CanSplit4
 !else
 	DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
