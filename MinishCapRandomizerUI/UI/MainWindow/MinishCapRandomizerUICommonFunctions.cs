@@ -231,15 +231,23 @@ Generating seeds with this shuffler may freeze the randomizer application for ma
 
     private static bool CheckForUpdates()
     {
-        var githubData = DownloadUrlAsString();
-        var releases = JsonConvert.DeserializeObject<List<Github.Release>>(githubData);
-        var tag = Assembly.GetExecutingAssembly().GetCustomAttributesData().First(x => x.AttributeType.Name == "AssemblyInformationalVersionAttribute").ConstructorArguments.First().ToString();
-        tag = tag[(tag.IndexOf('+') + 1)..^1];
-        if (releases!.First().Tag_Name == tag) return false;
-            
-        var url = new UrlDialog.UrlDialog(releases!.First().Html_Url);
-        url.ShowDialog();
-        return true;
+        try
+        {
+            var githubData = DownloadUrlAsString();
+            var releases = JsonConvert.DeserializeObject<List<Github.Release>>(githubData);
+            var tag = Assembly.GetExecutingAssembly().GetCustomAttributesData().First(x => x.AttributeType.Name == "AssemblyInformationalVersionAttribute").ConstructorArguments.First().ToString();
+            tag = tag[(tag.IndexOf('+') + 1)..^1];
+            if (releases!.First().Tag_Name == tag) return false;
+
+            var url = new UrlDialog.UrlDialog(releases!.First().Html_Url);
+            url.ShowDialog();
+            return true;
+        } 
+        catch
+        {
+            DisplayAlert("Update check failed! Server did not respond!", "Failed to Check for Updates", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return false;
+        }
     }
         
     private static string DownloadUrlAsString()
