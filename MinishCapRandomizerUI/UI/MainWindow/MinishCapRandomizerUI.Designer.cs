@@ -46,7 +46,6 @@
 			this.italianoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.pleaseContactTheDevsIfYouWishToDoLocalizationForTheUIToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.changelogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.aboutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
 			this.checkForUpdatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.otherToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -302,30 +301,23 @@
 			// aboutToolStripMenuItem
 			// 
 			this.aboutToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.changelogToolStripMenuItem,
             this.aboutToolStripMenuItem1,
             this.checkForUpdatesToolStripMenuItem});
 			this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
 			this.aboutToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
 			this.aboutToolStripMenuItem.Text = "About";
 			// 
-			// changelogToolStripMenuItem
-			// 
-			this.changelogToolStripMenuItem.Name = "changelogToolStripMenuItem";
-			this.changelogToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
-			this.changelogToolStripMenuItem.Text = "Changelog";
-			// 
 			// aboutToolStripMenuItem1
 			// 
 			this.aboutToolStripMenuItem1.Name = "aboutToolStripMenuItem1";
-			this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(171, 22);
+			this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
 			this.aboutToolStripMenuItem1.Text = "About";
 			this.aboutToolStripMenuItem1.Click += new System.EventHandler(this.aboutToolStripMenuItem1_Click);
 			// 
 			// checkForUpdatesToolStripMenuItem
 			// 
 			this.checkForUpdatesToolStripMenuItem.Name = "checkForUpdatesToolStripMenuItem";
-			this.checkForUpdatesToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+			this.checkForUpdatesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
 			this.checkForUpdatesToolStripMenuItem.Text = "Check for Updates";
 			this.checkForUpdatesToolStripMenuItem.Click += new System.EventHandler(this.checkForUpdatesToolStripMenuItem_Click);
 			// 
@@ -1519,7 +1511,6 @@
         private ToolStripMenuItem localizationToolStripMenuItem;
         private ToolStripMenuItem englishToolStripMenuItem;
         private ToolStripMenuItem aboutToolStripMenuItem;
-        private ToolStripMenuItem changelogToolStripMenuItem;
         private ToolStripMenuItem aboutToolStripMenuItem1;
         private TabPage General;
         private Label PatcherAndPatchGeneratorLabel;
