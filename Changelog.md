@@ -1,3 +1,104 @@
+# 1.0 RC 4
+
+
+#### This is a pre-release version
+
+## What's New!
+
+---
+
+### Randomization Updates
+
+The random number generator has been changed to support 64 bit seeds now, written out as a 16 character hex string. This is to ensure more integrity for our races.
+
+### UI Updates
+
+#### New & Improved Pages
+
+- About page has now been created! It contains some useful links for the randomizer, links include
+  - A link to the TMCR Discord
+  - A link to the ZSR Discord
+  - A link to the Github
+  - A link to the releases
+  - A link to download EmoTracker
+  - A link to download Bizhawk
+- Seed output page now shows what the in-game hash for the seed is when you generate a seed! This means no more having to run the seed to see the hash.
+  - A button was added to let you copy the hash to the clipboard
+
+#### New UI Features
+
+- Verbose logger makes its return! With the issues plaguing the verbose logger finally fixed, it can now be enabled. Especially useful for people who want to mess with logic!
+- Automatic update checker! When the randomizer is started it will automatically check to see if an update is available. If Github is down for any reason it will have a slight delay before letting you know it failed to check.
+  - A setting was added to let you choose whether or not to check for updates on start, this can be found under the "Other" tab
+  - When the alert is displayed letting you know that an update is available, there will be text you can click that will take you to the page where you can download the latest update
+    - We are exploring solutions to make it so you can click a button and it will update the app for you, however this is very much still an idea and likely will not be coming for some time
+- A button to check for updates has also been added to the "About" tab that when clicked will run the update check.
+- Hendrus Shuffler has graduated from the Experimental category! Now you too can generate plandos with ease!
+- Removed the ability to turn off the logger. When errors occur we need the logs as developers so we can fix bugs.
+- Removed the changelog page from the UI
+
+### Mystery Settings
+
+Mystery settings have been added to the randomizer! There are some default mystery setting presets that come built in, and people can also make their own!
+Mystery settings use YAML. You can use the "Save Mystery YAML Template" button found by clicking "Logic" on the menu bar to export a copy of the template that you can edit.
+
+- Mystery settings can be found at the bottom of the "Advanced" page
+- You can use both Mystery Settings as well as Mystery Cosmetics
+- Included Mystery Settings Presets are:
+  - Expert
+  - Friendly
+  - Template
+  - Unweighted (Everything has an equal chance of being on or off)
+- Included Mystery Cosmetics Presets are:
+  - Random Follower
+  - Template
+  - Unweighted
+- Buttons have also been added next to the dropdown that you can click to generate settings from the preset and view them in the UI
+- To save a mystery preset, save it in the "Presets" folder in either "Mystery Settings" if it is a settings preset or "Mystery Cosmetics" if it is a cosmetics preset
+  - Buttons to add and remove presets coming in the next version
+- You can click the button "Save Selected Options as YAML Preset" to save options as a preset and share them with others
+  - You can load presets shared in this way by selecting "Use Global YAML" on the "Advanced" page
+
+#### Changes for Mystery Settings
+
+- When mystery settings are being used you cannot copy the settings string to the clipboard and it will not be shown on the output page
+  - This is also the case for mystery cosmetics
+- When any YAML setting is used there is some obfuscation done on the icons for the "settings" done in the hash meaning that if you use the same settings with different seeds you will get different results. This is to ensure mystery setting races don't run the risk of people memorizing what settings map to what icons.
+
+### Settings
+
+#### Myth needs to fill this in
+
+### CLI Improvements
+
+- BulkGenerateSeeds now outputs the success rate instead of the failure rate
+- Logs from BulkGenerateSeeds are now written to a file called "CLIBulkGenOutput.json" where you ran the CLI from
+- BulkGenerateSeeds will now also try and patch the seeds as well to test patches work
+- YAML is now supported by the CLI
+
+#### Known Issues
+
+- With closed golds, entrance shuffle on, element shuffle on, some settings combinations have a high chance of failing to beat Vaati. This has no easy code fix until Logic v2 is done.
+  - To work around this, click the "New Seed" button and try again, or set your "Max Randomization Attempts" to 5 or more and try and randomize again
+- When the Graveyard Key is knocked out of your hands, it looks like the progressive sword.
+- Electric Chu’s have buggy animations.
+- Regional Keys combined with Dungeon Entrance Shuffle is unintuitive, eg: If Fortress is shuffled to Crenel, Small Keys for Fortress can be found in Wind Ruins but not in Crenel.
+- Getting a second bomb bag with remotes equipped sometimes changes it back to regular bombs.
+- Followers cause a fair amount of visual bugs ranging from miss coloured palettes, to certain sprites being completely missing.
+- The Clouds in Palace of Winds sometimes are invisible but function normally, leaving and re-entering the room they are in can make them visible again.
+
+### Useful Resources
+
+- EmoTracker download - https://emotracker.net/download/
+  - Get Deoxis' tracker on EmoTracker, it has support for the newest settings. No other trackers are updated with the newest features.
+- BizHawk download - https://tasvideos.org/Bizhawk/ReleaseHistory#Bizhawk242
+  - Required prerequisites - https://github.com/TASEmulators/BizHawk-Prereqs/releases
+- mGBA download - https://mgba.io/downloads.html
+
+# History
+
+# 0.7.0 Rev 3.1
+
 #### This is a pre-release version
 
 ## What's New!
