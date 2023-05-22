@@ -102,6 +102,9 @@ public class YamlController : ShufflerController
                     Logger.Instance.LogException(e);
                     capturedExceptions.Add(e);
                     attempts++;
+                    if (attempts > retries) break;
+                    Logger.Instance.SaveLogTransaction();
+
                     LoadLocations(_cachedLogicFile, CachedYamlFileLogic, CachedYamlFileCosmetics, CachedUseGlobalYaml);
                     _shuffler.SetSeed(new SquaresRandomNumberGenerator().Next());
                     Logger.Instance.SaveLogTransaction();

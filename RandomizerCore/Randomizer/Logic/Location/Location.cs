@@ -123,6 +123,10 @@ public class Location
     /// <returns>If the item can be placed in this location</returns>
     public bool CanPlace(Item itemToPlace, List<Location> allLocations)
     {
+        if (ShufflerConstraints.Any() &&
+            !ShufflerConstraints.Contains(Imports.LogicImports.FunctionValues["VERIFY_LOCATION_IS_ACCESSIBLE"]))
+            ShufflerConstraints.Clear();
+
         switch (Type)
         {
             case LocationType.Helper:

@@ -156,7 +156,7 @@
 !flag - World Settings - Setting - Dungeon Warps - DHC_REDWARP - DHC Red - If enabled, will activate the Dark Hyrule Castle Red Warp from the start of the game.
 
 !flag - Logic Settings - Setting - Logic Rules - NO_LOGIC - No Logic - Items can go anywhere without regard to logic.\nLIKELY RESULTS IN UNBEATABLE SEEDS!
-!dropdown - Logic Settings - Setting - Logic Rules - ACCESSIBILITY - Reachable - Determines which items and locations are guaranteed to be reachable. - ACCESS_INVENTORY - All Locations - ACCESS_LOCATIONS - 'All Locations': All enabled locations are reachable. - All NonKeys - ACCESS_INVENTORY - 'All NonKeys': Like 'All Locations', except keys can lock themselves. - Only the Goal - ACCESS_BEATABLE - 'Only the Goal': Only the goal is guaranteed to be reachable. Some locations and items may be inaccessible. If DHC setting is set to 'Never Open' then the goal is the pedestal requirements, otherwise the goal is Defeat Vaati.
+!dropdown - Logic Settings - Setting - Logic Rules - ACCESSIBILITY - Reachable - Determines which items and locations are guaranteed to be reachable. - ACCESS_BEATABLE - All Locations - ACCESS_LOCATIONS - 'All Locations': All enabled locations are reachable. - All NonKeys - ACCESS_INVENTORY - 'All NonKeys': Like 'All Locations', except keys can lock themselves. - Only the Goal - ACCESS_BEATABLE - 'Only the Goal': Only the goal is guaranteed to be reachable. Some locations and items may be inaccessible. If DHC setting is set to 'Never Open' then the goal is the pedestal requirements, otherwise the goal is Defeat Vaati.
 !dropdown - Logic Settings - Setting - Logic Rules - GRABBABLE - Grab items from a distance - Items can be collected from a distance with either Gust Jar, Boomerang, or even a Sword Slash. - GRABBABLE - Not Allowed - NOT_GRABBABLE - 'Not Allowed': Items cannot be grabbed from a distance. - Allowed - GRABBABLE - 'Allowed': Items can be grabbed from a distance, but this will never be required by logic. - Require - GRABBABLE_LOGIC - 'Require': Items can be grabbed from a distance and logic can require grabbing them when they are obviously grabbable. - Require Hard - GRABBABLE_HARD - 'Require Hard': Items can be grabbed from a distance, and logic can require some very difficult Boomerang throws to be able to collect these items.\nMany of these involve throwing the Boomerang in an arc behind or to the side of the items before making Link run in the opposite direction to get the Boomerang to grab the item on the return journey to Link.
 
 !dropdown - Logic Settings - Setting - Weapons - BOMBWEAPON - Bombs - Bombs can damage nearly every enemy, Bombs are never considered for Simon Simulations, and Golden Enemies. - NOBOMB - No - NOBOMB - 'No': Bombs are not considered as Weapons. - Yes - YESBOMB - 'Yes': Bombs are considered as weapons for most regular enemy fights. - Yes + Bosses - BOSSBOMB - 'Yes + Bosses': Bombs are considered as weapons for most enemy fights. Fighting Green/Blu Chu, Madderpillars and Darknuts require only 10 bomb bag. Gleerok, Mazaal and Scissor Beetles require at least 30 bomb bag. Octo and Gyorg cannot be defeated with bombs.
@@ -479,18 +479,14 @@
 !endif
 
 # Set the number of required dungeons
-!ifdef - AD_PED_1
-	!define - AD_PED_NUM - 1
-!endif
-!ifdef - AD_PED_2
-	!define - AD_PED_NUM - 2
-!endif
-!ifdef - AD_PED_3
-	!define - AD_PED_NUM - 3
-!endif
-!ifdef - AD_PED_4
-	!define - AD_PED_NUM - 4
-	!define - 4DUNGEON
+!ifdef - AD_PED_6
+	!ifdef - NO_GOLD_FUSIONS
+		!define - AD_PED_5
+	!else
+		!undefine - `DUNGEON`
+		!define - NONE
+		!define - AD_PED_NUM - 6
+	!endif
 !endif
 !ifdef - AD_PED_5
 	!ifdef - NO_GOLD_FUSIONS
@@ -500,16 +496,14 @@
 			!define - AD_PED_NUM - 5
 		!else
 			!ifdef - NO_RED_FUSIONS
-				!define - AD_PED_NUM - 4
-				!define - 4DUNGEON
+				!define - AD_PED_4
 			!else
 				!ifdef - OPEN_WIND_TRIBE
 					!undefine - `DUNGEON`
 					!define - NONE
 					!define - AD_PED_NUM - 5
 				!else
-					!define - AD_PED_NUM - 4
-					!define - 4DUNGEON
+					!define - AD_PED_4
 				!endif
 			!endif
 		!endif
@@ -519,53 +513,27 @@
 		!define - AD_PED_NUM - 5
 	!endif
 !endif
-!ifdef - AD_PED_6
-	!ifdef - NO_GOLD_FUSIONS
-		!ifdef - CLOUD_CREST
-			!undefine - `DUNGEON`
-			!define - NONE
-			!define - AD_PED_NUM - 5
+!ifdef - AD_PED_4
+	!define - AD_PED_NUM - 4
+!endif
+!ifdef - AD_PED_3
+	!ifdef - 4ELEMENT
+		!ifdef - SHUFFLE_ELEMENTS_ON
+			!define - AD_PED_NUM - 3
 		!else
-			!ifdef - NO_RED_FUSIONS
-				!define - AD_PED_NUM - 4
-				!define - 4DUNGEON
-			!else
-				!ifdef - OPEN_WIND_TRIBE
-					!undefine - `DUNGEON`
-					!define - NONE
-					!define - AD_PED_NUM - 5
-				!else
-					!define - AD_PED_NUM - 4
-					!define - 4DUNGEON
-				!endif
-			!endif
+			!undefine - AD_PED_3
+			!define - AD_PED_NUM - 4
+			!define - AD_PED_4
 		!endif
 	!else
-		!undefine - `DUNGEON`
-		!define - NONE
-		!define - AD_PED_NUM - 6
+		!define - AD_PED_NUM - 3
 	!endif
 !endif
-
-# Shuffle Elements removes the "Prize" dungeon and changes all the elements to regular "Major" items to be globally shuffled
-!ifdef - SHUFFLE_ELEMENTS_ON
-    !eventdefine - globalElements - 1   # if defined, does not draw elements on map (during full shuffle)
-	!eventdefine - elementTraps
-	!undefine - `DUNGEON`
-	!define - NONE
-!else
-	!ifdef - UNREQ
-		!import - NON_ELEMENT_DUNGEONS_NOT_REQUIRED
-	!endif
-	!ifdef - UNREQSUR
-		!import - NON_ELEMENT_DUNGEONS_NOT_REQUIRED
-	!endif
-	!ifdef - BARREN
-		!import - NON_ELEMENT_DUNGEONS_BARREN
-	!endif
-	!ifdef - BARRENSUR
-		!import - NON_ELEMENT_DUNGEONS_BARREN
-	!endif
+!ifdef - AD_PED_2
+	!define - AD_PED_NUM - 2
+!endif
+!ifdef - AD_PED_1
+	!define - AD_PED_NUM - 1
 !endif
 
 # Open World removes any key/fusion settings and defines things in patches to open the world
@@ -867,8 +835,519 @@
 	!endif
 !endif
 
-# Keasy removes keys from the pool and unlocks all key doors
+!ifdef - BOOTS_L_NORMAL
+	!eventdefine - bootsOnL
+!endif
+!ifdef - BOOTS_L_MINISH
+	!eventdefine - bootsOnL
+	!eventdefine - bootsMinish
+!endif
 
+!ifdef - OCARINA_SELECT
+	!eventdefine - ocarinaOnSelect
+!endif
+
+!ifdef - DEFICKLE
+    !eventdefine - removeFickleness
+!endif
+
+!ifdef - GLITCHLESS
+    !eventdefine - glitchless		# if defined, loads various hacks to disable the use of some speedrun glitches
+!endif
+
+!ifdef - RANDOM_LANGUAGE
+    !eventdefine - randomLanguage	# if defined, text changes language constantly
+!endif
+
+!ifdef - ALLOW_FUSION_SKIPS
+	!eventdefine - alwaysSkipFusionCutscene - 0					# if 0, fusion cutscenes are skipped when the buttons are held
+!endif
+!ifdef - INSTANT_SKIP
+	!eventdefine - alwaysSkipFusionCutscene - 1					# if non-0, fusion cutscenes are always skipped
+!endif
+!ifdef - NO_FUSION_SKIP
+	!eventdefine - neverSkipFusionCutscene						# if defined, fusion cutscenes are just like vanilla
+!endif
+!ifdef - SHOW_MAP
+	!eventdefine - skipFusionCutsceneShowMap - 1				# if non-0 and fusion cutscenes are skipped, map views are shown
+!else
+	!eventdefine - skipFusionCutsceneShowMap - 0				# if 0 and fusion cutscenes are skipped, map views are also skipped
+!endif
+
+!ifdef - NO_KINSTONE_DROPS
+	!eventdefine - disableKinstoneDrops
+!endif
+
+!ifdef - NO_SHELL_DROPS
+	!eventdefine - disableShellDrops
+!endif
+
+!ifdef - TIMEDOHKO
+    !eventdefine - timedohkoOption
+!endif
+
+!ifdef - FIREROD_CHEST
+    !eventdefine - enable_firerod - 1
+!endif
+!ifdef - FIREROD_START
+    !eventdefine - enable_firerod - 1
+    !eventdefine - enable_firerod_start - 1
+!endif
+
+!ifdef - FALLS_CREST
+	!define - FALLS_ACCESS
+!endif
+!ifdef - CLOUD_CREST
+	!define - FALLS_ACCESS
+	!define - TRIBE_ACCESS
+!else
+	!ifndef - NO_GOLD_FUSIONS
+		!define - FALLS_ACCESS
+		!define - TRIBE_ACCESS
+	!else
+		!ifndef - NO_RED_FUSIONS
+			!define - TRIBE_ACCESS
+			!ifdef - OPEN_WIND_TRIBE
+				!define - FALLS_ACCESS
+			!endif
+		!endif
+	!endif
+!endif
+!ifndef - NO_BLUE_FUSIONS
+	!define - RIGHT_GRAVE
+	!define - MINISH_TREE
+	!define - GORON_CAVE
+!endif
+
+# Entrances
+# Vanilla Elements only allowed when the respective dungeons are accessible (even if entrances are shuffled)
+
+!ifdef - ENTRANCES_VANILLA
+	!define - RC_ACCESS
+	!ifndef - NO_GOLD_FUSIONS
+		!define - FOW_ACCESS
+		!define - UWT_ACCESS
+		!define - POW_ACCESS
+	!else
+		!ifdef - SMALL_KEYS_REGDUN
+			!undefine - SMALL_KEYS_REGDUN
+			!define - SMALL_KEYS_STANDARD
+		!else
+			!ifdef - SMALL_KEYS_DUNGEON
+				!undefine - SMALL_KEYS_DUNGEON
+				!define - SMALL_KEYS_STANDARD
+			!endif
+		!endif
+		!ifdef - BIG_KEYS_REGDUN
+			!undefine - BIG_KEYS_REGDUN
+			!define - BIG_KEYS_STANDARD
+		!else
+			!ifdef - BIG_KEYS_DUNGEON
+				!undefine - BIG_KEYS_DUNGEON
+				!define - BIG_KEYS_STANDARD
+			!endif
+		!endif
+		!ifdef - MAP_REGDUN
+			!undefine - MAP_REGDUN
+			!define - MAP_STANDARD
+		!else
+			!ifdef - MAP_DUNGEON
+				!undefine - MAP_DUNGEON
+				!define - MAP_STANDARD
+			!endif
+		!endif
+		!ifdef - COMPASS_REGDUN
+			!undefine - COMPASS_REGDUN
+			!define - COMPASS_STANDARD
+		!else
+			!ifdef - COMPASS_DUNGEON
+				!undefine - COMPASS_DUNGEON
+				!define - COMPASS_STANDARD
+			!endif
+		!endif
+		
+		!ifdef - CLOUD_CREST
+			!define - UWT_ACCESS
+			!define - POW_ACCESS
+		!else
+			!ifndef - NO_RED_FUSIONS
+				!ifdef - OPEN_WIND_TRIBE
+					!define - UWT_ACCESS
+					!define - POW_ACCESS
+				!endif
+			!endif		
+		!endif
+	!endif
+	!ifdef - SHUFFLE_ELEMENTS_VANILLA
+		!ifndef - POW_ACCESS
+			!ifdef - 4ELEMENT
+				!ifndef - OPENDHC
+					!undefine - SHUFFLE_ELEMENTS_VANILLA
+					!define - SHUFFLE_ELEMENTS_OFF
+				!else
+					!ifdef - REQUIREMENT_ITEM_DHC_BK
+						!undefine - SHUFFLE_ELEMENTS_VANILLA
+						!define - SHUFFLE_ELEMENTS_OFF
+					!else
+						!define - NO_PALACE
+					!endif
+				!endif
+			!else
+				!ifdef - AD_PED_4
+					!ifndef - OPENDHC
+						!undefine - SHUFFLE_ELEMENTS_VANILLA
+						!define - SHUFFLE_ELEMENTS_OFF
+					!else
+						!ifdef - REQUIREMENT_ITEM_DHC_BK
+							!undefine - SHUFFLE_ELEMENTS_VANILLA
+							!define - SHUFFLE_ELEMENTS_OFF
+						!else
+							!define - NO_PALACE
+						!endif
+					!endif
+				!else
+					!define - NO_PALACE
+				!endif
+			!endif
+		!endif
+	!endif
+	!define - DUNGEONENTRANCE - :NoSpoiler;	Unshuffled
+	!define - ENTERDWS - Helpers.AccessDeepwood
+	!define - ENTERCOF - Helpers.AccessCoF
+	!define - FOW_DUNGEONENTRANCE - :NoSpoiler;	Unshuffled
+	!define - ENTERFOW - Helpers.AccessFortress
+	!define - ENTERTOD - Helpers.AccessDroplets
+	!define - ENTERRC - Helpers.AccessCrypt
+	!define - POW_DUNGEONENTRANCE - :NoSpoiler;	Unshuffled
+	!define - ENTERPOW - Helpers.AccessPalace
+	!define - DHC_MAIN_DUNGEONENTRANCE - :NoSpoiler;	Unshuffled
+	!define - DHC_SIDE_DUNGEONENTRANCE - :NoSpoiler;	Unshuffled
+	!define - ENTERDHC - Helpers.AccessDHC
+!else
+	!define - RC_ACCESS
+	!define - FOW_ACCESS
+	!define - POW_ACCESS
+	!ifdef - SHUFFLE_ELEMENTS_VANILLA
+		!ifndef - NO_GOLD_FUSIONS
+			!define - RUINS_ACCESS
+			!define - UWT_ACCESS
+		!else
+			!ifdef - SMALL_KEYS_REGION
+				!undefine - SMALL_KEYS_REGION
+				!define - SMALL_KEYS_STANDARD
+			!else
+				!ifdef - SMALL_KEYS_REGDUN
+					!undefine - SMALL_KEYS_REGDUN
+					!define - SMALL_KEYS_STANDARD
+				!else
+					!ifdef - SMALL_KEYS_DUNGEON
+						!undefine - SMALL_KEYS_DUNGEON
+						!define - SMALL_KEYS_STANDARD
+					!endif
+				!endif
+			!endif
+			!ifdef - BIG_KEYS_REGION
+				!undefine - BIG_KEYS_REGION
+				!define - BIG_KEYS_STANDARD
+			!else
+				!ifdef - BIG_KEYS_REGDUN
+					!undefine - BIG_KEYS_REGDUN
+					!define - BIG_KEYS_STANDARD
+				!else
+					!ifdef - BIG_KEYS_DUNGEON
+						!undefine - BIG_KEYS_DUNGEON
+						!define - BIG_KEYS_STANDARD
+					!endif
+				!endif
+			!endif
+			!ifdef - MAP_REGION
+				!undefine - MAP_REGION
+				!define - MAP_STANDARD
+			!else
+				!ifdef - MAP_REGDUN
+					!undefine - MAP_REGDUN
+					!define - MAP_STANDARD
+				!else
+					!ifdef - MAP_DUNGEON
+						!undefine - MAP_DUNGEON
+						!define - MAP_STANDARD
+					!endif
+				!endif
+			!endif
+			!ifdef - COMPASS_REGION
+				!undefine - COMPASS_REGION
+				!define - COMPASS_STANDARD
+			!else
+				!ifdef - COMPASS_REGDUN
+					!undefine - COMPASS_REGDUN
+					!define - COMPASS_STANDARD
+				!else
+					!ifdef - COMPASS_DUNGEON
+						!undefine - COMPASS_DUNGEON
+						!define - COMPASS_STANDARD
+					!endif
+				!endif
+			!endif
+			
+			!ifdef - CLOUD_CREST
+				!define - UWT_ACCESS
+				!define - POW_ACCESS
+			!else
+				!ifndef - NO_RED_FUSIONS
+					!ifdef - OPEN_WIND_TRIBE
+						!define - UWT_ACCESS
+						!define - POW_ACCESS
+					!else
+						!ifdef - 4ELEMENT
+							!ifndef - OPENDHC
+								!define - PALACE_FORCED
+							!else
+								!ifdef - REQUIREMENT_ITEM_DHC_BK
+									!define - PALACE_FORCED
+								!endif
+							!endif
+						!else
+							!define - ELEMENTS_FORCED
+						!endif
+					!endif
+				!else
+					!ifdef - 4ELEMENT
+						!ifndef - OPENDHC
+							!define - PALACE_FORCED
+						!else
+							!ifdef - REQUIREMENT_ITEM_DHC_BK
+								!define - PALACE_FORCED
+							!endif
+						!endif
+					!else
+						!define - ELEMENTS_FORCED
+					!endif
+				!endif
+			!endif
+		!endif
+	!else
+		!ifndef - NO_GOLD_FUSIONS
+			!define - UWT_ACCESS
+			!define - RUINS_ACCESS
+		!else
+			!ifdef - SMALL_KEYS_REGION
+				!undefine - SMALL_KEYS_REGION
+				!define - SMALL_KEYS_STANDARD
+			!else
+				!ifdef - SMALL_KEYS_REGDUN
+					!undefine - SMALL_KEYS_REGDUN
+					!define - SMALL_KEYS_STANDARD
+				!else
+					!ifdef - SMALL_KEYS_DUNGEON
+						!undefine - SMALL_KEYS_DUNGEON
+						!define - SMALL_KEYS_STANDARD
+					!endif
+				!endif
+			!endif
+			!ifdef - BIG_KEYS_REGION
+				!undefine - BIG_KEYS_REGION
+				!define - BIG_KEYS_STANDARD
+			!else
+				!ifdef - BIG_KEYS_REGDUN
+					!undefine - BIG_KEYS_REGDUN
+					!define - BIG_KEYS_STANDARD
+				!else
+					!ifdef - BIG_KEYS_DUNGEON
+						!undefine - BIG_KEYS_DUNGEON
+						!define - BIG_KEYS_STANDARD
+					!endif
+				!endif
+			!endif
+			!ifdef - MAP_REGION
+				!undefine - MAP_REGION
+				!define - MAP_STANDARD
+			!else
+				!ifdef - MAP_REGDUN
+					!undefine - MAP_REGDUN
+					!define - MAP_STANDARD
+				!else
+					!ifdef - MAP_DUNGEON
+						!undefine - MAP_DUNGEON
+						!define - MAP_STANDARD
+					!endif
+				!endif
+			!endif
+			!ifdef - COMPASS_REGION
+				!undefine - COMPASS_REGION
+				!define - COMPASS_STANDARD
+			!else
+				!ifdef - COMPASS_REGDUN
+					!undefine - COMPASS_REGDUN
+					!define - COMPASS_STANDARD
+				!else
+					!ifdef - COMPASS_DUNGEON
+						!undefine - COMPASS_DUNGEON
+						!define - COMPASS_STANDARD
+					!endif
+				!endif
+			!endif
+			
+			!ifdef - AD_PED_4
+				!ifndef - SHUFFLE_ELEMENTS_ON
+					!undefine - `DUNGEON`
+					!define - NONE
+				!endif
+			!endif
+			
+			!ifdef - CLOUD_CREST
+				!define - UWT_ACCESS
+			!else
+				!ifdef - NO_RED_FUSIONS
+					!ifdef - AD_PED_4
+						!undefine - 0ELEMENT
+						!define - 4ELEMENT
+					!else
+						!ifdef - AD_PED_3
+							!undefine - 0ELEMENT
+							!define - AD_ELEMENT_SPECIAL_CASE
+						!endif
+					!endif
+				!else
+					!ifdef - OPEN_WIND_TRIBE
+						!define - UWT_ACCESS
+					!else
+						!ifdef - AD_PED_4
+							!undefine - 0ELEMENT
+							!define - 4ELEMENT
+						!else
+							!ifdef - AD_PED_3
+								!undefine - 0ELEMENT
+								!define - AD_ELEMENT_SPECIAL_CASE
+							!endif
+						!endif					
+					!endif
+				!endif
+			!endif
+		!endif
+	!endif
+	!define - DUNGEONENTRANCE - :DHCValid;	DungeonEntrance
+	!define - ENTERDWS - Items.Entrance.0x01
+	!define - ENTERCOF - Items.Entrance.0x02
+	!define - ENTERFOW - Items.Entrance.0x03
+	!define - ENTERTOD - Items.Entrance.0x04
+	!define - ENTERRC - Items.Entrance.0x05
+	!define - ENTERPOW - Items.Entrance.0x06
+	!ifdef - ELEMENTS_FORCED
+		Items.Entrance.0x01;	DungeonEntrance;	DHCValid
+		Items.Entrance.0x02;	DungeonEntrance;	DHCValid
+		Items.Entrance.0x04;	DungeonEntrance;	DHCValid
+		Items.Entrance.0x06;	DungeonEntrance;	DHCValid
+	!else
+		!ifdef - PALACE_FORCED
+			Items.Entrance.0x01;	DungeonEntrance;	DHCValid
+			Items.Entrance.0x02;	DungeonEntrance;	DHCValid
+			Items.Entrance.0x04;	DungeonEntrance;	DHCValid
+			Items.Entrance.0x06;	DungeonEntrance;	DHCValid
+		!else
+			Items.Entrance.0x01;	DungeonEntrance;	
+			Items.Entrance.0x02;	DungeonEntrance;	
+			Items.Entrance.0x04;	DungeonEntrance;	
+			Items.Entrance.0x06;	DungeonEntrance;
+		!endif
+	!endif
+	!ifdef - RUINS_ACCESS
+		Items.Entrance.0x03;	DungeonEntrance;
+		!define - FOW_DUNGEONENTRANCE - :DHCValid;	DungeonEntrance
+	!else
+		!ifdef - SHUFFLE_ELEMENTS_ON
+			!define - FOW_DUNGEONENTRANCE - :NoSpoiler:NoElement;	DungeonEntrance
+			Items.Entrance.0x03;	DungeonEntrance;
+		!else
+			!ifndef - AD_PED_5
+				!ifndef - UWT_ACCESS
+					!undefine - `DUNGEON`
+					!define - BARREN
+				!endif
+			!endif
+			!ifdef - ELEMENTS_FORCED
+				!define - FOW_DUNGEONENTRANCE - :NoSpoiler:NoElement;	DungeonEntrance
+				!undefine - FOW_ACCESS
+				Items.Entrance.0x03;	DungeonEntrance;	NoElement
+			!else
+				!ifdef - PALACE_FORCED
+					!define - FOW_DUNGEONENTRANCE - :NoSpoiler:NoElement;	DungeonEntrance
+					!undefine - FOW_ACCESS
+					Items.Entrance.0x03;	DungeonEntrance;	NoElement
+				!else
+					!define - FOW_DUNGEONENTRANCE - :NoSpoiler;	DungeonEntrance
+					Items.Entrance.0x03;	DungeonEntrance;
+					!undefine - `ACCESSIBILITY`
+					!define - ACCESS_BEATABLE
+				!endif
+			!endif
+		!endif
+	!endif
+	!ifdef - UWT_ACCESS
+		Items.Entrance.0x05;	DungeonEntrance;
+		!define - POW_DUNGEONENTRANCE - :DHCValid;	DungeonEntrance
+	!else
+		!ifdef - SHUFFLE_ELEMENTS_ON
+			!define - POW_DUNGEONENTRANCE - :NoSpoiler:NoElement;	DungeonEntrance
+			Items.Entrance.0x05;	DungeonEntrance;
+		!else
+			!undefine - `DUNGEON`
+			!define - BARREN
+			!ifdef - ELEMENTS_FORCED
+				!define - POW_DUNGEONENTRANCE - :NoSpoiler:NoElement;	DungeonEntrance
+				!undefine - RC_ACCESS
+				!define - POW_ACCESS
+				Items.Entrance.0x05;	DungeonEntrance;	NoElement
+			!else
+				!ifdef - PALACE_FORCED
+					!define - POW_DUNGEONENTRANCE - :NoSpoiler:NoElement;	DungeonEntrance
+					!undefine - RC_ACCESS
+					!define - POW_ACCESS
+					Items.Entrance.0x05;	DungeonEntrance;	NoElement
+				!else
+					!define - POW_DUNGEONENTRANCE - :NoSpoiler;	DungeonEntrance
+					Items.Entrance.0x05;	DungeonEntrance;
+					!define - NO_PALACE
+					!undefine - `ACCESSIBILITY`
+					!define - ACCESS_BEATABLE
+				!endif
+			!endif
+		!endif
+	!endif
+	!ifdef - OPENDHC
+		!define - DHC_MAIN_DUNGEONENTRANCE - :DHCValid;	DungeonEntrance
+		!define - DHC_SIDE_DUNGEONENTRANCE - :NoSpoiler;	Unshuffled
+		!define - ENTERDHC - Items.Entrance.0x07
+		Items.Entrance.0x07;	DungeonEntrance;	DHCValid
+	!else
+		!define - DHC_MAIN_DUNGEONENTRANCE - :NoSpoiler;	Unshuffled
+		!define - DHC_SIDE_DUNGEONENTRANCE - :DHCValid;	DungeonEntrance
+		!define - ENTERDHC - Items.Entrance.0x08, Helpers.AccessDHC
+		Items.Entrance.0x08;	DungeonEntrance;	DHCValid
+	!endif
+!endif
+
+# Shuffle Elements removes the "Prize" dungeon and changes all the elements to regular "Major" items to be globally shuffled
+!ifdef - SHUFFLE_ELEMENTS_ON
+    !eventdefine - globalElements - 1   # if defined, does not draw elements on map (during full shuffle)
+	!eventdefine - elementTraps
+	!undefine - `DUNGEON`
+	!define - NONE
+!else
+	!ifdef - UNREQ
+		!import - NON_ELEMENT_DUNGEONS_NOT_REQUIRED
+	!endif
+	!ifdef - UNREQSUR
+		!import - NON_ELEMENT_DUNGEONS_NOT_REQUIRED
+	!endif
+	!ifdef - BARREN
+		!import - NON_ELEMENT_DUNGEONS_BARREN
+	!endif
+	!ifdef - BARRENSUR
+		!import - NON_ELEMENT_DUNGEONS_BARREN
+	!endif
+!endif
+
+# Keasy removes keys from the pool and unlocks all key doors
 !ifdef - SMALL_KEASY
 	!define - Replace_Small_Keys - 
 	!undefine - `KEYDWSMULTIPLIER`
@@ -1169,287 +1648,6 @@
 	!endif
 !endif
 
-!ifdef - BOOTS_L_NORMAL
-	!eventdefine - bootsOnL
-!endif
-!ifdef - BOOTS_L_MINISH
-	!eventdefine - bootsOnL
-	!eventdefine - bootsMinish
-!endif
-
-!ifdef - OCARINA_SELECT
-	!eventdefine - ocarinaOnSelect
-!endif
-
-!ifdef - DEFICKLE
-    !eventdefine - removeFickleness
-!endif
-
-!ifdef - GLITCHLESS
-    !eventdefine - glitchless		# if defined, loads various hacks to disable the use of some speedrun glitches
-!endif
-
-!ifdef - RANDOM_LANGUAGE
-    !eventdefine - randomLanguage	# if defined, text changes language constantly
-!endif
-
-!ifdef - ALLOW_FUSION_SKIPS
-	!eventdefine - alwaysSkipFusionCutscene - 0					# if 0, fusion cutscenes are skipped when the buttons are held
-!endif
-!ifdef - INSTANT_SKIP
-	!eventdefine - alwaysSkipFusionCutscene - 1					# if non-0, fusion cutscenes are always skipped
-!endif
-!ifdef - NO_FUSION_SKIP
-	!eventdefine - neverSkipFusionCutscene						# if defined, fusion cutscenes are just like vanilla
-!endif
-!ifdef - SHOW_MAP
-	!eventdefine - skipFusionCutsceneShowMap - 1				# if non-0 and fusion cutscenes are skipped, map views are shown
-!else
-	!eventdefine - skipFusionCutsceneShowMap - 0				# if 0 and fusion cutscenes are skipped, map views are also skipped
-!endif
-
-!ifdef - NO_KINSTONE_DROPS
-	!eventdefine - disableKinstoneDrops
-!endif
-
-!ifdef - NO_SHELL_DROPS
-	!eventdefine - disableShellDrops
-!endif
-
-!ifdef - TIMEDOHKO
-    !eventdefine - timedohkoOption
-!endif
-
-!ifdef - FIREROD_CHEST
-    !eventdefine - enable_firerod - 1
-!endif
-!ifdef - FIREROD_START
-    !eventdefine - enable_firerod - 1
-    !eventdefine - enable_firerod_start - 1
-!endif
-
-!ifdef - FALLS_CREST
-	!define - FALLS_ACCESS
-!endif
-!ifdef - CLOUD_CREST
-	!define - FALLS_ACCESS
-	!define - TRIBE_ACCESS
-!else
-	!ifndef - NO_GOLD_FUSIONS
-		!define - FALLS_ACCESS
-		!define - TRIBE_ACCESS
-	!else
-		!ifndef - NO_RED_FUSIONS
-			!define - TRIBE_ACCESS
-			!ifdef - OPEN_WIND_TRIBE
-				!define - FALLS_ACCESS
-			!endif
-		!endif
-	!endif
-!endif
-!ifndef - NO_BLUE_FUSIONS
-	!define - RIGHT_GRAVE
-	!define - MINISH_TREE
-	!define - GORON_CAVE
-!endif
-
-# Entrances
-# Vanilla Elements only allowed when the respective dungeons are accessible (even if entrances are shuffled)
-
-!ifdef - ENTRANCES_VANILLA
-	!define - RC_ACCESS
-	!ifndef - NO_GOLD_FUSIONS
-		!define - FOW_ACCESS
-		!define - UWT_ACCESS
-		!define - POW_ACCESS
-	!else
-		!ifdef - CLOUD_CREST
-			!define - UWT_ACCESS
-			!define - POW_ACCESS
-		!else
-			!ifndef - NO_RED_FUSIONS
-				!ifdef - OPEN_WIND_TRIBE
-					!define - UWT_ACCESS
-					!define - POW_ACCESS
-				!endif
-			!endif		
-		!endif
-	!endif
-	!ifdef - SHUFFLE_ELEMENTS_VANILLA
-		!ifndef - POW_ACCESS
-			!ifdef - 4ELEMENT
-				!ifndef - OPENDHC
-					!undefine - SHUFFLE_ELEMENTS_VANILLA
-					!define - SHUFFLE_ELEMENTS_OFF
-				!else
-					!ifdef - REQUIREMENT_ITEM_DHC_BK
-						!undefine - SHUFFLE_ELEMENTS_VANILLA
-						!define - SHUFFLE_ELEMENTS_OFF
-					!else
-						!define - NO_PALACE
-					!endif
-				!endif
-			!else
-				!ifdef - 4DUNGEON
-					!ifndef - OPENDHC
-						!undefine - SHUFFLE_ELEMENTS_VANILLA
-						!define - SHUFFLE_ELEMENTS_OFF
-					!else
-						!ifdef - REQUIREMENT_ITEM_DHC_BK
-							!undefine - SHUFFLE_ELEMENTS_VANILLA
-							!define - SHUFFLE_ELEMENTS_OFF
-						!else
-							!define - NO_PALACE
-						!endif
-					!endif
-				!else
-					!define - NO_PALACE
-				!endif
-			!endif
-		!endif
-	!endif
-	!define - DUNGEONENTRANCE - :NoSpoiler;	Unshuffled
-	!define - ENTERDWS - Helpers.AccessDeepwood
-	!define - ENTERCOF - Helpers.AccessCoF
-	!define - FOW_DUNGEONENTRANCE - :NoSpoiler;	Unshuffled
-	!define - ENTERFOW - Helpers.AccessFortress
-	!define - ENTERTOD - Helpers.AccessDroplets
-	!define - ENTERRC - Helpers.AccessCrypt
-	!define - POW_DUNGEONENTRANCE - :NoSpoiler;	Unshuffled
-	!define - ENTERPOW - Helpers.AccessPalace
-	!define - PALACE_VANILLA - Items.Entrance.0x06
-	!define - DHC_MAIN_DUNGEONENTRANCE - :NoSpoiler;	Unshuffled
-	!define - DHC_SIDE_DUNGEONENTRANCE - :NoSpoiler;	Unshuffled
-	!define - ENTERDHC - Helpers.AccessDHC
-!else
-	!define - RC_ACCESS
-	!ifdef - SHUFFLE_ELEMENTS_VANILLA
-		!ifndef - NO_GOLD_FUSIONS
-			!define - FOW_ACCESS
-			!define - UWT_ACCESS
-			!define - POW_ACCESS
-		!else
-			!ifdef - CLOUD_CREST
-				!define - UWT_ACCESS
-				!define - POW_ACCESS
-			!else
-				!ifndef - NO_RED_FUSIONS
-					!ifdef - OPEN_WIND_TRIBE
-						!define - UWT_ACCESS
-						!define - POW_ACCESS
-					!else
-						!ifdef - 4ELEMENT
-							!ifndef - OPENDHC
-								!define - PALACE_FORCED
-							!else
-								!ifdef - REQUIREMENT_ITEM_DHC_BK
-									!define - PALACE_FORCED
-								!endif
-							!endif
-						!else
-							!ifdef - 4DUNGEON
-								!ifndef - OPENDHC
-									!define - PALACE_FORCED
-								!else
-									!ifdef - REQUIREMENT_ITEM_DHC_BK
-										!define - PALACE_FORCED
-									!endif
-								!endif
-							!endif
-						!endif
-					!endif
-				!else
-					!ifdef - 4ELEMENT
-						!ifndef - OPENDHC
-							!define - PALACE_FORCED
-						!else
-							!ifdef - REQUIREMENT_ITEM_DHC_BK
-								!define - PALACE_FORCED
-							!endif
-						!endif
-					!else
-						!ifdef - 4DUNGEON
-							!ifndef - OPENDHC
-								!define - PALACE_FORCED
-							!else
-								!ifdef - REQUIREMENT_ITEM_DHC_BK
-									!define - PALACE_FORCED
-								!endif
-							!endif
-						!endif
-					!endif
-				!endif
-			!endif
-		!endif
-	!else
-		!define - FOW_ACCESS
-		!define - POW_ACCESS
-		!ifndef - NO_GOLD_FUSIONS
-			!define - UWT_ACCESS
-		!else
-			!ifdef - CLOUD_CREST
-				!define - UWT_ACCESS
-			!else
-				!ifndef - NO_RED_FUSIONS
-					!ifdef - OPEN_WIND_TRIBE
-						!define - UWT_ACCESS
-					!endif
-				!endif
-			!endif
-		!endif
-	!endif
-	!define - DUNGEONENTRANCE - ;	DungeonEntrance
-	!define - ENTERDWS - Items.Entrance.0x01
-	Items.Entrance.0x01;	DungeonEntrance;
-	!define - ENTERCOF - Items.Entrance.0x02
-	Items.Entrance.0x02;	DungeonEntrance;
-	!ifdef - FOW_ACCESS
-		!define - FOW_DUNGEONENTRANCE - ;	DungeonEntrance
-		!define - ENTERFOW - Items.Entrance.0x03
-		Items.Entrance.0x03;	DungeonEntrance;
-	!else
-		!define - FOW_DUNGEONENTRANCE - :NoSpoiler;	Unshuffled
-		!define - ENTERFOW - Helpers.BeatVaati
-	!endif
-	!define - ENTERTOD - Items.Entrance.0x04
-	Items.Entrance.0x04;	DungeonEntrance;
-	!ifdef - POW_ACCESS
-		!define - ENTERRC - Items.Entrance.0x05
-		Items.Entrance.0x05;	DungeonEntrance;
-		!define - POW_DUNGEONENTRANCE - ;	DungeonEntrance
-		!define - ENTERPOW - Items.Entrance.0x06
-		!define - PALACE_VANILLA - Items.Entrance.0x06
-		Items.Entrance.0x06;	DungeonEntrance;
-	!else
-		!define - POW_DUNGEONENTRANCE - :NoSpoiler;	Unshuffled
-		!ifdef - PALACE_FORCED
-			!undefine - RC_ACCESS
-			!define - ENTERRC - Helpers.BeatVaati
-			!define - ENTERPOW - Items.Entrance.0x06
-			!define - PALACE_VANILLA - Items.Entrance.0x05
-			Items.Entrance.0x06;	DungeonEntrance;
-			!define - POW_ACCESS
-		!else
-			!define - ENTERRC - Items.Entrance.0x05
-			!define - PALACE_VANILLA - Items.Entrance.0x06
-			Items.Entrance.0x05;	DungeonEntrance;
-			!define - ENTERPOW - Helpers.BeatVaati
-			!define - NO_PALACE
-		!endif
-	!endif
-	!ifdef - OPENDHC
-		!define - DHC_MAIN_DUNGEONENTRANCE - ;	DungeonEntrance
-		!define - DHC_SIDE_DUNGEONENTRANCE - :NoSpoiler;	Unshuffled
-		!define - ENTERDHC - Items.Entrance.0x07
-		Items.Entrance.0x07;	DungeonEntrance;
-	!else
-		!define - DHC_MAIN_DUNGEONENTRANCE - :NoSpoiler;	Unshuffled
-		!define - DHC_SIDE_DUNGEONENTRANCE - ;	DungeonEntrance
-		!define - ENTERDHC - Items.Entrance.0x08, Helpers.AccessDHC
-		Items.Entrance.0x08;	DungeonEntrance;
-	!endif
-!endif
-
 !ifdef - DOJOVANILLA
 	!undefine - YES_SCROLL_PROG
 !endif
@@ -1740,7 +1938,7 @@
 					!ifndef - BIG_KEYS_STANDARD
 						!ifdef - MEME
 							Items.BigKey.0x1A;	`BIG_KEY`;	`FOW_BIG`
-						!endif
+						!endif						
 					!endif
 				!endif
 			!endif
@@ -2311,17 +2509,24 @@
 !ifndef - 0ELEMENT
 	!ifdef - 1ELEMENT
 		!define - ELEMENT_COUNT - 1
+		!define - ELEMENT_DEF - 1
 	!endif
 	!ifdef - 2ELEMENT
 		!define - ELEMENT_COUNT - 2
+		!define - ELEMENT_DEF - 2
 	!endif
 	!ifdef - 3ELEMENT
 		!define - ELEMENT_COUNT - 3
+		!define - ELEMENT_DEF - 3
 	!endif
 	!ifdef - 4ELEMENT
 		!define - ELEMENT_COUNT - 4
+		!define - ELEMENT_DEF - 4
 	!endif
-	!eventdefine - requirementElementsAmount - `ELEMENT_COUNT`
+	!ifdef - AD_ELEMENT_SPECIAL_CASE
+		!define - ELEMENT_DEF - 3
+	!endif
+	!eventdefine - requirementElementsAmount - `ELEMENT_DEF`
 	!undefine - GOTELEMENTS
 	!define - GOTELEMENTS - , (+`ELEMENT_COUNT`, Items.WaterElement, Items.FireElement, Items.WindElement, Items.EarthElement)
 !endif
@@ -6529,7 +6734,7 @@ Ruins_NearFoWFusion_Chest		`FOW_OUTSIDE`;	`GOLDREDFUSION`;			0x0FE0AE;										
 
 AccessFortress;								Helper;					;														Helpers.AccessRuins, Helpers.HasSword;
 
-Fortress_Entrance								`FOW_DUNGEONENTRANCE`;		DumFoWENT:Define:FirstByte, DumFoWENT2:Define:SecondByte;		(|Helpers.AccessFortress, Helpers.Hundo);																	Items.Entrance.0x03
+Fortress_Entrance								`FOW_DUNGEONENTRANCE`;		DumFoWENT:Define:FirstByte, DumFoWENT2:Define:SecondByte;		(|Helpers.AccessFortress, Helpers.BeatVaati);																	Items.Entrance.0x03
 
 # Royal Valley
 AccessValley;					Helper;			;			(|Helpers.CanSplit3, Helpers.CanSplit4), (|Helpers.OverworldBlocks, Helpers.CapeExtension);
@@ -6626,7 +6831,7 @@ WindTribe_4F_RightChest	`POW_OUTSIDE`;	`PALACEOUTSIDECHEST`;	0x30-0x03-0x01;				
 
 AccessPalace;													Helper;	;											Helpers.AccessWindTribe;
 
-Palace_Entrance							`POW_DUNGEONENTRANCE`;	DumPoWENT:Define:FirstByte, DumPoWENT2:Define:SecondByte;	(|Helpers.AccessPalace, Helpers.Hundo);												`PALACE_VANILLA`
+Palace_Entrance							`POW_DUNGEONENTRANCE`;	DumPoWENT:Define:FirstByte, DumPoWENT2:Define:SecondByte;	(|Helpers.AccessPalace, Helpers.BeatVaati);												Items.Entrance.0x06
 
 # Deepwood locations
 Deepwood_2F_Chest						`DWS_INSIDE`;		Dungeon;			0x48-0x17-0x01;													(|(&`ENTERDWS`, Helpers.DeepwoodWeb), Helpers.Hundo);																											Items.Rupee20

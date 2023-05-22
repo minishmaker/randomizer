@@ -114,7 +114,7 @@ internal class Shuffler : ShufflerBase
         //var finalMajorItems = GetAvailableItems(new List<Item>());
         var finalFilledLocations = UpdateObtainedItemsFromPlacedLocations();
 
-        if (!DependencyBase.BeatVaatiDependency!.DependencyFulfilled())
+        if (Location.ShufflerConstraints.Any() && !DependencyBase.BeatVaatiDependency!.DependencyFulfilled())
             throw new ShuffleException("Randomization succeeded, but could not beat Vaati!");
         
         finalFilledLocations.ForEach(location => location.Contents!.Value.NotifyParentDependencies(false));
@@ -130,7 +130,7 @@ internal class Shuffler : ShufflerBase
 
     protected (List<IGrouping<LocationType, Location>> locationGroups, List<Location> unfilledLocations) PlaceImportantItems()
     {
-                var locationGroups = Locations.GroupBy(location => location.Type).ToList();
+        var locationGroups = Locations.GroupBy(location => location.Type).ToList();
         //We now do randomization in phases, following the ordering of items in <code>LocationType</code>
         //Make it so randomized music doesn't affect randomization
         var temp = Rng;
@@ -149,6 +149,7 @@ internal class Shuffler : ShufflerBase
         FilledLocations = new List<Location>();
 
         var majorsAndEntrances = MajorItems.Concat(DungeonEntrances).ToList();
+        var majorsAndPrizesAndDungeon = MajorItems.Concat(DungeonPrizes).Concat(DungeonMajorItems).Concat(UnshuffledItems).ToList();
 
         //Shuffle dungeon entrances
         nextLocationGroup = locationGroups.Any(group => group.Key == LocationType.DungeonEntrance)
@@ -156,7 +157,15 @@ internal class Shuffler : ShufflerBase
             : new List<Location>();
         nextLocationGroup.Shuffle(Rng);
         Logger.Instance.LogInfo("Placing Entrances");
-        FastFillLocations(DungeonEntrances, nextLocationGroup);
+        if (DungeonEntrances.Any(ent => ent.SubValue is 7 or 8))
+        {
+            var dhc = DungeonEntrances.First(ent => ent.SubValue is 7 or 8);
+            DungeonEntrances.Remove(dhc);
+            var extraEntrances = FillLocationsFrontToBack(new List<Item> { dhc }, nextLocationGroup, majorsAndPrizesAndDungeon);
+            FillLocationsFrontToBack(DungeonEntrances, extraEntrances, majorsAndPrizesAndDungeon);
+        }
+        else
+            FillLocationsFrontToBack(DungeonEntrances, nextLocationGroup, majorsAndPrizesAndDungeon);
 
         //Add all unfilled items to the available pool
         nextLocationGroup = locationGroups.Any(group => group.Key == LocationType.Unshuffled)

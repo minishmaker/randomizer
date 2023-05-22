@@ -42,7 +42,7 @@ internal class SphereBasedShuffler : Shuffler
         // Get every item that can be logically obtained, to check if the game can be completed
         var finalMajorItems = GetAvailableItems(new List<Item>());
 
-        if (!DependencyBase.BeatVaatiDependency!.DependencyFulfilled())
+        if (Location.ShufflerConstraints.Any() && !DependencyBase.BeatVaatiDependency!.DependencyFulfilled())
             throw new ShuffleException("Randomization succeeded, but could not beat Vaati!");
         
         finalMajorItems.ForEach(item => item.NotifyParentDependencies(false));

@@ -524,7 +524,7 @@ internal abstract class ShufflerBase
             var fillItems = items.Where(item => item.ShufflePool == ItemPool.Filler).ToList();
             if (i == 0) Logger.Instance.LogInfo($"Filling {locations.Count} locations");
             else Logger.Instance.LogInfo($"{i} items not placed");
-        var rand = new SquaresRandomNumberGenerator(SquaresRandomNumberGenerator.DefaultKey, Seed);
+            var rand = new SquaresRandomNumberGenerator(SquaresRandomNumberGenerator.DefaultKey, Seed);
             while (locations.Count > 0)
             {
                 FilledLocations.Add(locations[0]);
