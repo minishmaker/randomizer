@@ -15,6 +15,7 @@ public partial class MinishCapRandomizerUI
     private void InitializeBaseUi()
     {
         _shufflerController = new ShufflerController();
+        _previousShuffler = _shufflerController;
     }
     
     private void RandomizeWithBaseShuffler()
@@ -37,7 +38,7 @@ public partial class MinishCapRandomizerUI
         if (result)
         {
             _randomizedRomCreated = result.WasSuccessful;
-
+            _previousShuffler = _shufflerController;
             DisplayAndUpdateSeedInfoPage();
         }
         else

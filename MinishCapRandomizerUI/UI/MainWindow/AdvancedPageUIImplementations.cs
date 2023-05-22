@@ -89,12 +89,10 @@ public partial class MinishCapRandomizerUI
 
     private void UseMysterySettings_CheckedChanged(object sender, EventArgs e)
     {
-        CopySettingsHashToClipboard.Enabled = !UseMysterySettings.Checked;
     }
 
     private void UseMysteryCosmetics_CheckedChanged(object sender, EventArgs e)
     {
-        CopyCosmeticsHashToClipboard.Enabled = !UseMysteryCosmetics.Checked;
     }
 
     private void UseSphereBasedShuffler_CheckedChanged(object sender, EventArgs e)

@@ -344,18 +344,13 @@ Generating seeds with this shuffler may freeze the randomizer application for ma
         InputSeedLabel.Text = Seed.Text;
         OutputSeedLabel.Text = @$"{_shufflerController.FinalSeed:X}";
 
+        var settingsString = _previousShuffler.GetFinalSettingsString();
+        var cosmeticsString = _previousShuffler.GetFinalCosmeticsString();
+
         if (UseMysteryCosmetics.Checked || UseMysterySettings.Checked || UseCustomYAML.Checked)
-        {
-            var settingsString = _yamlController.GetFinalSettingsString();
-            var cosmeticsString = _yamlController.GetFinalCosmeticsString();
             UpdateSeedInfoPageYaml(settingsString, cosmeticsString);
-        }
         else
-        {
-            var settingsString = _shufflerController.GetFinalSettingsString();
-            var cosmeticsString = _shufflerController.GetFinalCosmeticsString();
             UpdateSeedInfoPageBase(settingsString, cosmeticsString);
-        }
             
         DisplaySeedHash();
 

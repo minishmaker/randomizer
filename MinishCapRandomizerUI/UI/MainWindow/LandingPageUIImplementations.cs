@@ -160,7 +160,7 @@ partial class MinishCapRandomizerUI
 
 	private void DeleteSettingPreset_Click(object sender, EventArgs e)
 	{
-		DisplayAlert($"Are you sure you wish to delete preset {SettingPresets.SelectedItem}? This action cannot be undone!", "Delete Preset", MessageBoxButtons.YesNo, MessageBoxIcon.Question, DialogResult.Yes,
+		DisplayAlert($"Are you sure you wish to delete preset \"{SettingPresets.SelectedItem}\"? This action cannot be undone!", "Delete Preset", MessageBoxButtons.YesNo, MessageBoxIcon.Question, DialogResult.Yes,
 			() =>
 			{
                 var presets = _settingPresets.SettingsPresets;
@@ -248,7 +248,7 @@ partial class MinishCapRandomizerUI
 
 	private void DeleteCosmeticPreset_Click(object sender, EventArgs e)
 	{
-		DisplayAlert($"Are you sure you wish to delete preset {CosmeticsPresets.SelectedItem}? This action cannot be undone!", "Delete Preset", MessageBoxButtons.YesNo, MessageBoxIcon.Question, DialogResult.Yes,
+		DisplayAlert($"Are you sure you wish to delete preset \"{CosmeticsPresets.SelectedItem}\"? This action cannot be undone!", "Delete Preset", MessageBoxButtons.YesNo, MessageBoxIcon.Question, DialogResult.Yes,
 			() =>
 			{
                 var presets = _settingPresets.CosmeticsPresets;

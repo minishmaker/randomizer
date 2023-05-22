@@ -28,15 +28,15 @@ public class YamlController : ShufflerController
     public override ulong FinalSeed => _shuffler.Seed;
     
     public override string SeedFilename => _shuffler.IsGlobalYamlMode()
-        ? $"Minish Randomizer-{_shuffler.Seed:X}-{_shuffler.Version}-{(_shuffler.IsUsingLogicYaml() ? _shuffler.GetLogicYamlName() : _shuffler.GetSelectedOptions().GetIdentifier(true))}"
-        : $"Minish Randomizer-{_shuffler.Seed}-{_shuffler.Version}-{(_shuffler.IsUsingLogicYaml() ? _shuffler.GetLogicYamlName() : _shuffler.GetSelectedOptions().OnlyLogic().GetIdentifier(false))}-{(_shuffler.IsUsingCosmeticsYaml() ? _shuffler.GetCosmeticsYamlName() : _shuffler.GetSelectedOptions().OnlyCosmetic().GetIdentifier(false))}";
+        ? $"Minish Randomizer-{_shuffler.Seed:X}-{VersionIdentifier}-{(_shuffler.IsUsingLogicYaml() ? _shuffler.GetLogicYamlName() : _shuffler.GetSelectedOptions().GetIdentifier(true))}"
+        : $"Minish Randomizer-{_shuffler.Seed:X}-{VersionIdentifier}-{(_shuffler.IsUsingLogicYaml() ? _shuffler.GetLogicYamlName() : _shuffler.GetSelectedOptions().OnlyLogic().GetIdentifier(false))}-{(_shuffler.IsUsingCosmeticsYaml() ? _shuffler.GetCosmeticsYamlName() : _shuffler.GetSelectedOptions().OnlyCosmetic().GetIdentifier(false))}";
 
     public string GetSeedFilename(string? overrideSelectedLogic = null, string? overrideSelectedCosmetics = null)
     {
         if (_shuffler.IsGlobalYamlMode() && _shuffler.IsUsingLogicYaml())
-            return $"Minish Randomizer-{_shuffler.Seed}-{_shuffler.Version}-{_shuffler.GetLogicYamlName()}";
+            return $"Minish Randomizer-{_shuffler.Seed:X}-{VersionIdentifier}-{_shuffler.GetLogicYamlName()}";
         
-        return $"Minish Randomizer-{_shuffler.Seed}-{_shuffler.Version}-" +
+        return $"Minish Randomizer-{_shuffler.Seed:X}-{VersionIdentifier}-" +
                $"{(_shuffler.IsUsingLogicYaml() ? _shuffler.GetLogicYamlName() : overrideSelectedLogic ?? "Custom")}-" +
                $"{(_shuffler.IsUsingCosmeticsYaml() ? _shuffler.GetCosmeticsYamlName() : overrideSelectedCosmetics ?? "Custom")}";
     }

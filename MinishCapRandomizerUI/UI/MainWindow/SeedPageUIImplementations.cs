@@ -11,21 +11,21 @@ public partial class MinishCapRandomizerUI
     {
         DisplaySaveDialog(@"Text File|*.txt|All Files|*.*", @"Save Spoiler Log", 
             $"{GetSeedFilename()}-Spoiler.txt", DialogResult.OK, filename =>
-                DisplayConditionalAlertFromShufflerResult((_outputUsedYAML ? _yamlController : _shufflerController).SaveSpoiler(filename), "Spoiler Saved Successfully!", "Spoiler Saved", "Failed to save spoiler!", "Spoiler Save Failed"));
+                DisplayConditionalAlertFromShufflerResult(_previousShuffler.SaveSpoiler(filename), "Spoiler Saved Successfully!", "Spoiler Saved", "Failed to save spoiler!", "Spoiler Save Failed"));
     }
 
     private void SavePatch_Click(object sender, EventArgs e)
     {
         DisplaySaveDialog(@"BPS Patch|*.bps|All Files|*.*", @"Save Patch", 
             $"{GetSeedFilename()}-Patch.bps", DialogResult.OK, filename =>
-                DisplayConditionalAlertFromShufflerResult((_outputUsedYAML ? _yamlController : _shufflerController).CreatePatch(filename, UseCustomPatch.Checked ? RomBuildfilePath.Text : ""), "Patch Saved Successfully!", "Patch Saved", "Failed to save patch!", "Patch Save Failed"));
+                DisplayConditionalAlertFromShufflerResult(_previousShuffler.CreatePatch(filename, UseCustomPatch.Checked ? RomBuildfilePath.Text : ""), "Patch Saved Successfully!", "Patch Saved", "Failed to save patch!", "Patch Save Failed"));
     }
 
     private void SaveRom_Click(object sender, EventArgs e)
     {
         DisplaySaveDialog(@"GBA ROM|*.gba|All Files|*.*", @"Save ROM", 
             $"{GetSeedFilename()}-ROM.gba", DialogResult.OK, filename => 
-                DisplayConditionalAlertFromShufflerResult((_outputUsedYAML ? _yamlController : _shufflerController).SaveAndPatchRom(filename, UseCustomPatch.Checked ? RomBuildfilePath.Text : ""), "ROM Saved Successfully!", "ROM Saved", "Failed to save ROM!", "ROM Save Failed"));
+                DisplayConditionalAlertFromShufflerResult(_previousShuffler.SaveAndPatchRom(filename, UseCustomPatch.Checked ? RomBuildfilePath.Text : ""), "ROM Saved Successfully!", "ROM Saved", "Failed to save ROM!", "ROM Save Failed"));
     }
 
     private void CopySettingsHashToClipboard_Click(object sender, EventArgs e)

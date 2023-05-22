@@ -24,7 +24,7 @@ public class ShufflerController : ControllerBase
     private string? _cachedLogicFile;
 
     public override string SeedFilename =>
-        $"Minish Randomizer-{_shuffler.Seed:X}-{_shuffler.Version}-{_shuffler.GetSelectedOptions().GetIdentifier()}";
+        $"Minish Randomizer-{_shuffler.Seed:X}-{VersionIdentifier}-{_shuffler.GetSelectedOptions().GetIdentifier()}";
 
     public override ulong FinalSeed => _shuffler.Seed;
 
