@@ -67,14 +67,95 @@ Mystery settings use YAML. You can use the "Save Mystery YAML Template" button f
 
 ### Settings
 
-#### Myth needs to fill this in
+#### Decouple Open World
+
+The following settings will no longer be affected when toggling Open World on/off:
+
+- All Key settings, specifically locked doors
+- All Fusion settings
+- Wind Crests
+- Dungeon Warps
+
+There is the potential for further customization of settings in the future, these changes have these ideas in mind without having to commit to completing them in the short term.
+
+#### Features added by Catobat
+
+- Kinstone Packs and Key Chains
+  - A multiplier is added that determines how many Pieces/Keys are added to the player inventory when one is collected.
+- Speed up Pedestal Cutscene (When collecting an item)
+- Dungeon Maps and Compasses have independent shuffle options.
+- Vanilla Elements option added to force elements onto their vanilla locations.
+- Wind Tribe now has an setting to be automatically set to opened from the start of the game.
+  - Tingle brothers also received a similar setting, skipping having to talk to Tingle first.
+- New Cosmetic option: Heart Border Colour.
+- The game can no longer be started on inaccurate emulators.
+- Gentari has text that tells you the goal and requirements for the seed, useful for Mystery settings seeds.
+
+#### DHC added to Dungeon entrance shuffle
+
+It was a terribly kept secret in my earlier commits, and a few races were done on dev builds so the cat is out the bag. Here are some of the changes to the first attempt to the added option.
+
+- Fixed a bug Myth made in the Green Warp destination coordinates when leaving a dungeon located in Castle Gardens.
+- Pedestal needs to check for access requirements (Thanks Deoxis)
+- Fixed generation failure when DHC was set to 'Never' and entrances where shuffled, resulting in the chance of a dungeon being shuffled to DHC but never being considered reachable.
+
+
+#### Misc Features
+
+- Progressive items have been seperated and have independent options.
+  - Swords, Bows, Boomerangs, Shields, and Spin Scrolls
+  - This also includes a general bugfix to Dojos
+- Certain unshuffled locations that held major items in vanilla (HPs, LLR Key, Kinstones) now hold **NO** item, it is completely empty when you don't shuffle it into the pool.
+- Various clarifications in the Tooltips and neatening the UI.
+- Homewarp will be always be enabled when the setting combination has the possibility of allowing a softlock.
+- Certain combinations of Shuffled Dungeons with specific settings resulted in low generation success rates, we adjusted what was possible to make these far more likely to successfully generate seeds.
+
+### Bug Fixes
+
+#### Community sourced bugs
+
+The Discord community has been invaluable, bringing us to the attention of many issues that would be difficult to find otherwise:
+
+- DWS Blue Warp not spawning (Unfortunately affected many people)
+- ToD Blue Warp logic (Thanks Deoxis)
+- CoF Blue Warp logic (Thanks Deoxis)
+- Trilby/Crenel logical access from swamp wind crest (Thanks Nesman)
+- Spoiler logs sphere section breaking when generating multiple spoiler logs (Thanks Tabbomat)
+- Fix the logic of the North Minish Woods HP to first check for access to Minish Woods first when considering if it is grabbable from a distance. (Thanks CapTem)
+
+#### 'Bulk Generation Testing' sourced bugs
+
+A bulk generator has been implemented for use with the CLI which has allowed us to generate X number of seeds with random settings to find setting combinations that cause failures, here are the following bugs resolved through this method:
+
+- Dojos causing seed failures when red fusions removed.
+- Dungeon Warp setting causing certain vanilla key placements not be logically reachable.
+- Dungeons required lowered to a valid amount if not all dungeons reachable.
+  - Dungeon requirement and shuffled elements now correctly redefine the non-element dungeon settings
+- Keys having a lot of issues:
+  - Temple of Droplets Key Logic got overhauled to behave when dungeon warps are enabled and to obey regional key rules.
+  - Vanilla placements are correctly checked instead of being assumed, and play nice when other dungeon items are placable.
+- Recursive dependency for Beat Vaati making some end loaded seeds fail.
+
+#### Misc Bug fixes
+
+- Picking up free standing 10 or 30 bombs or arrows no longer gives a text box.
+- Spoiler log playthrough now lists all major items correctly
+- One of the graves in the graveyard was closed when it was automatically open in vanilla
+- Fixed the sword trick logic in DHC being inverted.
+- Melari now respects barren rules if Cave of Flames is Non-Element.
+- Minor fix to the 'Failure Rate' stat when batch generating test seeds, is now a 'Success Rate' and is now correctly a %
+- Comment out Fuzzyness Setting. Sorry but no one uses it and it was taking space in the UI from Heart Colour Borders, which is unlikely people will complain about having instead. Don't @ Myth
+- A 'bushwhacker' has been taken to the Logic file in the overgrown location paramater splurge, found just before the Location defines, its a bit better than before but still needs completely ripping out and moving somewhere else in the file (or into a different file 👀?)
 
 ### CLI Improvements
 
-- BulkGenerateSeeds now outputs the success rate instead of the failure rate
+- BulkGenerateSeeds has more stats
+  - Outputs the success rate instead of the failure rate
+  - Lists the time taken to generate all the seeds and the average time per seed
 - Logs from BulkGenerateSeeds are now written to a file called "CLIBulkGenOutput.json" where you ran the CLI from
 - BulkGenerateSeeds will now also try and patch the seeds as well to test patches work
 - YAML is now supported by the CLI
+- 'UseRandomColor' can be used for color options
 
 #### Known Issues
 
@@ -86,11 +167,12 @@ Mystery settings use YAML. You can use the "Save Mystery YAML Template" button f
 - Getting a second bomb bag with remotes equipped sometimes changes it back to regular bombs.
 - Followers cause a fair amount of visual bugs ranging from miss coloured palettes, to certain sprites being completely missing.
 - The Clouds in Palace of Winds sometimes are invisible but function normally, leaving and re-entering the room they are in can make them visible again.
+- Credits stat for Door Mimics is very wrong, how big of a number can you get? Post your record in the discord!
 
 ### Useful Resources
 
 - EmoTracker download - https://emotracker.net/download/
-  - Get Deoxis' tracker on EmoTracker, it has support for the newest settings. No other trackers are updated with the newest features.
+  - Get the Deoxis' tracker with this version on EmoTracker, it has support for the newest settings. No other trackers are currently updated with the newest features.
 - BizHawk download - https://tasvideos.org/Bizhawk/ReleaseHistory#Bizhawk242
   - Required prerequisites - https://github.com/TASEmulators/BizHawk-Prereqs/releases
 - mGBA download - https://mgba.io/downloads.html
