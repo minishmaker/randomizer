@@ -2,7 +2,7 @@
 {
 	public class SettingPresets
 	{
-		public List<string> SettingsPresets { get; set; } = new();
+		public Dictionary<int, string> SettingsPresets { get; set; } = new();
 
 		public List<string> CosmeticsPresets { get; set; } = new();
 

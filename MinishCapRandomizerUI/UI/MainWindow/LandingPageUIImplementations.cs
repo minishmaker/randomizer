@@ -102,13 +102,14 @@ partial class MinishCapRandomizerUI
 	{
         var presets = _settingPresets.SettingsPresets;
 
-		if (presets.All(preset => preset != (string)SettingPresets.SelectedItem))
+		if (presets.All(preset => preset.Value != $"{SettingPresets.SelectedItem}_{preset.Key}"))
 		{
 			DisplayAlert("No preset matching the specified name could be found! Make sure you select a valid preset.", "Failed to Load Preset", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			return;
 		}
 
-        var result = _shufflerController.LoadLogicSettingsFromYaml($"{_presetPath}Settings{Path.DirectorySeparatorChar}{SettingPresets.SelectedItem}.yaml");
+        var key = presets.First(preset => preset.Value == $"{SettingPresets.SelectedItem}_{preset.Key}").Key;
+        var result = _shufflerController.LoadLogicSettingsFromYaml($"{_presetPath}Settings{Path.DirectorySeparatorChar}{SettingPresets.SelectedItem}_{key}.yaml");
 
         if (result)
         {
@@ -134,18 +135,19 @@ partial class MinishCapRandomizerUI
                 return;
             }
 
-            if (presets.Any(preset => string.Equals(preset, name, StringComparison.CurrentCultureIgnoreCase)))
+            if (presets.Any(preset => string.Equals(preset.Value[..preset.Value.LastIndexOf('_')], name, StringComparison.CurrentCultureIgnoreCase)))
             {
                 DisplayAlert("A setting preset with the specified name already exists!", "Failed to Save Preset", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            var result = _shufflerController.SaveSettingsAsYaml($"{_presetPath}Settings{Path.DirectorySeparatorChar}{name}.yaml",
-                name, _shufflerController.GetSelectedOptions().OnlyLogic());
+            var updatedName = $"{name}_{presets.Keys.Max() + 1}";
+            var result = _shufflerController.SaveSettingsAsYaml($"{_presetPath}Settings{Path.DirectorySeparatorChar}{updatedName}.yaml",
+                updatedName, _shufflerController.GetSelectedOptions().OnlyLogic());
 
             if (result)
             {
-                presets.Add(name);
+                presets.Add(presets.Keys.Max() + 1, updatedName);
                 AddItemToPresetsBox(SettingPresets, name);
                 _recentSettingsPreset = name;
                 _recentSettingsPresetHash = _shufflerController.GetSelectedOptions().OnlyLogic().GetHash();
@@ -165,16 +167,17 @@ partial class MinishCapRandomizerUI
 			{
                 var presets = _settingPresets.SettingsPresets;
 
-				if (presets.All(preset => preset != (string)SettingPresets.SelectedItem))
+				if (presets.All(preset => preset.Value != $"{SettingPresets.SelectedItem}_{preset.Key}"))
 				{
 					DisplayAlert("No preset matching the specified name could be found! Make sure you select a valid preset before deleting.", "Failed to Delete Preset", MessageBoxButtons.OK, MessageBoxIcon.Error);
 					return;
 				}
-
-				try
-				{
-					presets.Remove(presets.First(preset => preset == (string)SettingPresets.SelectedItem));
-                    File.Delete($"{_presetPath}Settings{Path.DirectorySeparatorChar}{SettingPresets.SelectedItem}.yaml");
+                
+                try
+                {
+                    var key = presets.First(preset => preset.Value == $"{SettingPresets.SelectedItem}_{preset.Key}").Key;
+                    presets.Remove(key);
+                    File.Delete($"{_presetPath}Settings{Path.DirectorySeparatorChar}{SettingPresets.SelectedItem}_{key}.yaml");
 
 					RemoveItemFromPresetsBox(SettingPresets, (string)SettingPresets.SelectedItem);
 					DisplayAlert("Preset deleted successfully!", "Preset deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);

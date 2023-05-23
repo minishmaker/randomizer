@@ -152,9 +152,17 @@ Generating seeds with this shuffler may freeze the randomizer application for ma
             _settingPresets = new SettingPresets();
 
             var files = Directory.GetFiles($"{_presetPath}Settings").Where(file => file.EndsWith(".yaml", true, null));
-            _settingPresets.SettingsPresets = files.Select(file => file[(file.LastIndexOf(Path.DirectorySeparatorChar) + 1)..]).Select(file => file[..file.LastIndexOf(".", StringComparison.Ordinal)]).ToList();
+            var basePresetArray = files.Select(file => file[(file.LastIndexOf(Path.DirectorySeparatorChar) + 1)..]).Select(file => file[..file.LastIndexOf(".", StringComparison.Ordinal)]).ToList();
+            
+            _settingPresets.SettingsPresets = basePresetArray.ToDictionary(preset => int.Parse(preset[(preset.LastIndexOf('_') + 1)..]), EqualityComparer<int>.Default);
 
-            SettingPresets.Items.AddRange(_settingPresets.SettingsPresets.ToArray());
+            for (var i = 1; i <= _settingPresets.SettingsPresets.Keys.Max(); ++i)
+            {
+                if (!_settingPresets.SettingsPresets.TryGetValue(i, out var preset)) continue;
+
+                SettingPresets.Items.Add(preset[..preset.LastIndexOf('_')]);
+            }
+            
             if (SettingPresets.Items.Count != 0) SettingPresets.SelectedIndex = 0;
 
             files = Directory.GetFiles($"{_presetPath}Cosmetics").Where(file => file.EndsWith(".yaml", true, null));

@@ -1,4 +1,4 @@
-name: "Max Random2"
+name: "Max Random_15"
 description: "(No description set)"
 settings:
   ## Main Settings:
@@ -7,8 +7,8 @@ settings:
   COMPASS_SETTING: COMPASS_KEYSANITY              # Compasses
   SMALL_KEYS_SETTING: SMALL_KEYSANITY             # Small Keys
   BIG_KEYS_SETTING: BIG_KEYSANITY                 # Big Keys
-  SHUFFLE_ELEMENTS: SHUFFLE_ELEMENTS_OFF          # Shuffle Elements
-  DUNGEON: BARREN                                 # NonElement Dungeons
+  SHUFFLE_ELEMENTS: SHUFFLE_ELEMENTS_ON           # Shuffle Elements
+  DUNGEON: NONE                                   # NonElement Dungeons
   #  Requirements:
   DHC_SETTING: OPENDHC                            # Dark Hyrule Castle Opens
   REQUIREMENT_ITEM: REQUIREMENT_ITEM_DHC_BK       # Requirement Reward
@@ -34,17 +34,17 @@ settings:
   OPENWORLD: OPENWORLD_OFF                        # World obstacles are
   ENTRANCES: ENTRANCES_COUPLED                    # Dungeon Entrances are
   #  Fusions:
-  GOLD_FUSION_SETTING: VANILLA_GOLD_FUSIONS       # Gold Fusions are
-  RED_FUSION_SETTING: VANILLA_RED_FUSIONS         # Red Fusions are
-  BLUE_FUSION_SETTING: VANILLA_BLUE_FUSIONS       # Blue Fusions are
-  GREEN_FUSION_SETTING: VANILLA_GREEN_FUSIONS     # Green Fusions are
+  GOLD_FUSION_SETTING: COMBINED_GOLD_FUSIONS      # Gold Fusions are
+  RED_FUSION_SETTING: COMBINED_RED_FUSIONS        # Red Fusions are
+  BLUE_FUSION_SETTING: COMBINED_BLUE_FUSIONS      # Blue Fusions are
+  GREEN_FUSION_SETTING: COMBINED_GREEN_FUSIONS    # Green Fusions are
   SEEDED_SHARED: on                               # Order Shared Fusions
   DEFICKLE: on                                    # Defickle Fusers
   FUSION_SKIPS: ALLOW_FUSION_SKIPS                # Skip Fusion Cutscenes
   SHOW_MAP: off                                   # Always Show Map
   #  Speed Up:
-  OPEN_WIND_TRIBE: off                            # Wind Tribe Tower
-  OPEN_TINGLE: off                                # Tingle Brothers
+  OPEN_WIND_TRIBE: on                             # Wind Tribe Tower
+  OPEN_TINGLE: on                                 # Tingle Brothers
   #  Wind Crests:
   CRENEL_CREST: on                                # Mt Crenel
   FALLS_CREST: on                                 # Veil Falls
@@ -70,33 +70,33 @@ settings:
   #  Logic Rules:
   NO_LOGIC: off                                   # No Logic
   ACCESSIBILITY: ACCESS_BEATABLE                  # Reachable
-  GRABBABLE: GRABBABLE_LOGIC                      # Grab items from a distance
+  GRABBABLE: GRABBABLE                            # Grab items from a distance
   #  Weapons:
   BOMBWEAPON: YESBOMB                             # Bombs
   BOWWEAPON: YESBOW                               # Bows
   GUSTWEAPON: YESGUST                             # Gust Jar
   LAMPWEAPON: YESLAMP                             # Lantern
   #  Require Tricks:
-  MITTSMONEY_SETTING: MITTSMONEY                             # Mole Mitts farm Infinite Rupees
-  BLOWDUST_SETTING: GUSTBOMBS                             # Bombs blow away dust
-  MUSHROOM_SETTING: YESMUSH                               # Crenel mushroom grab with Gust jar
-  ARROWBREAK_SETTING: YESLIGHTS                           # Light Arrows break objects
-  BOBOMBS_SETTING: YESBOBOMBS                             # Use Bobombs to destroy walls
-  LIKELIKE_SETTING: YESLIKELIKE                           # LikeLike cave without a Sword
-  GUARDSKIP_SETTING: NOGUARDSKIP                          # Skip Town guard using Boots
-  CRENELBEAM_SETTING: NOBEAM                              # Use Beam to hit switch on Mt Crenel
-  DTBEETLE_SETTING: NOTHRUST                              # Use DownThrust to flip Spikey Beetles
-  DARKROOMS_SETTING: NODARK                               # Dark Rooms without a Lantern
-  EXTENDCAPE_SETTING: YESEXTENSION                        # Tricky Cape jumps across water
-  LAKEMINISH_SETTING: NOLAKEMINISH                        # Minish in Lake without Boots
-  CABINSWIM_SETTING: YESCABIN                             # Swim to Cabin without lilypad
-  CLOUDSKILL_SETTING: YESCLOUDSKILL                       # Kill Cloud Sharks without Weapons
-  POWJUMP_SETTING: NOPOWJUMP                              # PoW 2F is clearable without a Cane
-  POWPOTOOL_SETTING: NOPOWOOL                             # Pot Puzzle without Power Bracelets
-  DHCCANON_SETTING: NODHCCANON                            # DHC Canon rooms without Four Sword
-  DHCJOSTLE_SETTING: NODHCJOSTLE                          # DHC Pressure Pads without Four Sword
-  DHCSWITCHES_SETTING: NODHCSWITCHES                      # DHC Switches without Four Sword
-  FOWPOT_SETTING: YESFOWPOT                               # FoW Pot item early using the Gust Jar
+  MITTSMONEY_SETTING: MITTSMONEY                  # Mole Mitts farm Infinite Rupees
+  BLOWDUST_SETTING: GUSTBOMBS                     # Bombs blow away dust
+  MUSHROOM_SETTING: YESMUSH                       # Crenel mushroom grab with Gust jar
+  ARROWBREAK_SETTING: YESLIGHTS                   # Light Arrows break objects
+  BOBOMBS_SETTING: YESBOBOMBS                     # Use Bobombs to destroy walls
+  LIKELIKE_SETTING: YESLIKELIKE                   # LikeLike cave without a Sword
+  GUARDSKIP_SETTING: YESGUARDSKIP                 # Skip Town guard using Boots
+  CRENELBEAM_SETTING: YESBEAM                     # Use Beam to hit switch on Mt Crenel
+  DTBEETLE_SETTING: YESTHRUST                     # Use DownThrust to flip Spikey Beetles
+  DARKROOMS_SETTING: YESDARK                      # Dark Rooms without a Lantern
+  EXTENDCAPE_SETTING: YESEXTENSION                # Tricky Cape jumps across water
+  LAKEMINISH_SETTING: YESLAKEMINISH               # Minish in Lake without Boots
+  CABINSWIM_SETTING: YESCABIN                     # Swim to Cabin without lilypad
+  CLOUDSKILL_SETTING: YESCLOUDSKILL               # Kill Cloud Sharks without Weapons
+  POWJUMP_SETTING: YESPOWJUMP                     # PoW 2F is clearable without a Cane
+  POWPOTOOL_SETTING: YESPOWOOL                    # Pot Puzzle without Power Bracelets
+  DHCCANON_SETTING: NODHCCANON                    # DHC Canon rooms without Four Sword
+  DHCJOSTLE_SETTING: NODHCJOSTLE                  # DHC Pressure Pads without Four Sword
+  DHCSWITCHES_SETTING: YESDHCSWITCHES             # DHC Switches without Four Sword
+  FOWPOT_SETTING: YESFOWPOT                       # FoW Pot item early using the Gust Jar
   ## Item Pool:
   #  Global:
   ITEM_POOL: ITEM_POOL_NORMAL                     # Item Pool
@@ -105,11 +105,11 @@ settings:
   MEME: on                                        # Fun Junk
   FIREROD: NO_FIREROD                             # Firerod
   #  Progressive:
-  YES_SWORD_PROG: on                              # Swords are Progressive
-  YES_BOW_PROG: on                                # Bows are Progressive
-  YES_BOOM_PROG: on                               # Boomerangs are Progressive
-  YES_SHIELD_PROG: on                             # Shields are Progressive
-  YES_SCROLL_PROG: on                             # Spin Scrolls are Progressive
+  YES_SWORD_PROG: off                             # Swords are Progressive
+  YES_BOW_PROG: off                               # Bows are Progressive
+  YES_BOOM_PROG: off                              # Boomerangs are Progressive
+  YES_SHIELD_PROG: off                            # Shields are Progressive
+  YES_SCROLL_PROG: off                            # Spin Scrolls are Progressive
   #  Kinstone Packs:
   GOLD1MULTIPLIER: 1                              # Cloud Tops Kinstone pack size
   GOLD2MULTIPLIER: 1                              # Swamp Kinstone pack size
