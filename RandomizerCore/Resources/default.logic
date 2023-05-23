@@ -1,8 +1,8 @@
 
 #Default logic for the randomizer - Doesn't allow glitches, but allows unintuitive tricks
 
-!name - 0.7.0 prealpha rev3
-!version - 0.7.0_prealpha_rev3
+!name - 1.0.0 RC 4
+!version - 1.0.0 RC 4
 !crc - 0xE8637292
 
 #Explanation on the required format and features
@@ -254,8 +254,8 @@
 !eventdefine - customRNG - 0x`RAND_INT`
 
 #version 0.7.0a
-!eventdefine - versionNumber - 0x00070017
-!eventdefine - versionNumbers - 0x00070017
+!eventdefine - versionNumber - 0x010000FF
+!eventdefine - versionNumbers - 0x010000FF
 
 #Cosmetic defines
 
