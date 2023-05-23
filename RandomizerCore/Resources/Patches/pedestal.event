@@ -5,11 +5,15 @@
 #endif
 
 #ifdef openDHC 
-	#undef noDHC
+	#ifdef noDHC 
+		#undef noDHC
+	#endif
 #endif
 
 #ifdef noDHC 
-	#undef openDHC
+	#ifdef openDHC 
+		#undef openDHC
+	#endif
 #endif
 
 #ifndef pedestalSpot1Item

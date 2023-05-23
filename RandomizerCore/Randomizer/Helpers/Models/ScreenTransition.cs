@@ -1,6 +1,7 @@
 ﻿using RandomizerCore.Core;
+using RandomizerCore.Randomizer.Models;
 
-namespace RandomizerCore.Randomizer.Models;
+namespace RandomizerCore.Randomizer.Helpers.Models;
 
 internal class ScreenTransition : Transition
 {

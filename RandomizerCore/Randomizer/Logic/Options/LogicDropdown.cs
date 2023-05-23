@@ -20,12 +20,25 @@ public class LogicDropdown : LogicOptionBase
         base(name, niceName, true, settingGroup, settingPage, descriptionText, type)
     {
         Selections = selections;
+        DefaultSelection = defaultSelection;
         Selection = selections.Keys.ToList()[
             selections.Values.ToList()
-                .IndexOf(defaultSelection)]; //Not sure if this works, it should but needs to be tested
+                .IndexOf(defaultSelection)];
+    }
+
+    public override void Reset()
+    {
+        Selection = Selections.Keys.ToList()[Selections.Values.ToList().IndexOf(DefaultSelection)];
+    }
+
+    public override void CopyValueFrom(LogicOptionBase option)
+    {
+        base.CopyValueFrom(option);
+        Selection = ((LogicDropdown)option).Selection;
     }
 
     public string Selection { get; set; }
+    public string DefaultSelection { get; }
     public Dictionary<string, string> Selections { get; }
 
     public override List<LogicDefine> GetLogicDefines()
@@ -38,7 +51,7 @@ public class LogicDropdown : LogicOptionBase
 
         if (!Selections.TryGetValue(Selection, out var content)) return defineList;
 
-        Logger.Instance.LogInfo($"Active Define: {Name}");
+        Logger.Instance.LogInfo($"Active Define: {NiceName}, Value: {Selection}");
         defineList.Add(new LogicDefine(Name, content));
 
         return defineList;

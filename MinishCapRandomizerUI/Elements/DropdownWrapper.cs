@@ -15,7 +15,7 @@ public class DropdownWrapper : WrapperBase, ILogicOptionObserver
     private new const int ElementHeight = DropdownHeight + DefaultBottomMargin - 8;
 
     private Label? _label;
-    private ComboBox? _comboBox;
+    private FlatComboBox? _comboBox;
     private LogicDropdown _dropdown;
 
     public DropdownWrapper(LogicDropdown dropdown) : base(ElementWidth, ElementHeight, dropdown.SettingGroup, dropdown.SettingPage)
@@ -42,7 +42,7 @@ public class DropdownWrapper : WrapperBase, ILogicOptionObserver
             UseMnemonic = Constants.UseMnemonic,
         };
 
-        _comboBox = new ComboBox
+        _comboBox = new FlatComboBox
         {
             AutoSize = false,
             Name = _dropdown.Name,
@@ -50,6 +50,9 @@ public class DropdownWrapper : WrapperBase, ILogicOptionObserver
             Location = new Point(initialX + (int)((TextWidth + Constants.WidthMargin)*Constants.SpecialScaling), initialY + DropdownAlign),
             Height = (int)(DropdownHeight*Constants.SpecialScaling),
             Width = (int)(DropdownWidth*Constants.SpecialScaling),
+            AutoCompleteMode = AutoCompleteMode.Append,
+            AutoCompleteSource = AutoCompleteSource.ListItems,
+            DropDownStyle = ComboBoxStyle.DropDownList,
         };
 
         var selectedDefaultItem = false;

@@ -1,6 +1,7 @@
 ﻿using System.Drawing;
 using System.Globalization;
 using RandomizerCore.Controllers;
+using RandomizerCore.Controllers.Models;
 using RandomizerCore.Random;
 using RandomizerCore.Randomizer.Logic.Options;
 
@@ -11,9 +12,14 @@ internal static class GenericCommands
     //Not Null
 #pragma warning disable CS8618
     internal static ShufflerController ShufflerController;
+    internal static YamlController YamlController;
+    internal static ControllerBase? PreviouslyUsedController;
 #pragma warning restore CS8618
     private static string? _cachedLogicPath;
     private static string? _cachedPatchPath;
+    private static string? _cachedYAMLPathLogic;
+    private static string? _cachedYAMLPathCosmetics;
+    private static bool _cachedUseGlobalYAML = false;
     private static bool _strict = false;
     
     internal static void LoadRom(string? path = null)
@@ -43,6 +49,7 @@ internal static class GenericCommands
                     var rand = new SquaresRandomNumberGenerator();
                     var rSeed = rand.Next();
                     ShufflerController.SetRandomizationSeed(rSeed);
+                    YamlController.SetRandomizationSeed(rSeed);
                     Console.WriteLine($"Seed {rSeed} set successfully!");
                     break;
                 case "s":
@@ -56,6 +63,7 @@ internal static class GenericCommands
                     }
                     
                     ShufflerController.SetRandomizationSeed(seed);
+                    YamlController.SetRandomizationSeed(seed);
                     Console.WriteLine("Seed set successfully!");
                     break;
                 default:
@@ -76,6 +84,7 @@ internal static class GenericCommands
         {
             _cachedLogicPath = logicFile ?? Console.ReadLine();
             ShufflerController.LoadLogicFile(_cachedLogicPath);
+            YamlController.LoadLogicFile(_cachedLogicPath);
             Console.WriteLine("Logic file loaded successfully!");
         }
         catch
@@ -85,10 +94,105 @@ internal static class GenericCommands
     }
 
     internal static void LoadPatch(string? patchFile = null)
-    {        
+    {
         Console.Write("Please enter the path to the Patch File you want to use (leave empty to use default patch): ");
         _cachedPatchPath = patchFile ?? Console.ReadLine();
         Console.WriteLine("Patch file loaded successfully!");
+    }
+
+    internal static void ClearYAMLConfig(string? option = null)
+    {
+        Console.Write("Are you sure you want to clear YAML config? This action cannot be undone! (Y or N): ");
+        var input = option ?? Console.ReadLine();
+        if (!string.IsNullOrEmpty(input))
+        {
+            switch (input.ToLowerInvariant())
+            {
+                case "n": 
+                    return;
+                case "y":
+                    _cachedUseGlobalYAML = false;
+                    _cachedYAMLPathCosmetics = null;
+                    _cachedYAMLPathLogic = null;
+                    ShufflerController.LoadLogicFile(_cachedLogicPath ?? "");
+                    Console.WriteLine("YAML config cleared successfully!");
+                    return;
+            }
+        }
+        else PrintError("Invalid Input!");
+    }
+
+    internal static void UseYAML(string? globalYAMLMode = null, string? yamlFileLogic = null, string? yamlFileCosmetics = null)
+    {
+        Console.WriteLine("Do you want to use a single YAML file (if any) for all options or should Logic and Cosmetic options be handled separately?");
+        Console.WriteLine("1) All settings handled the same way");
+        Console.WriteLine("2) Separate Logic and Cosmetic settings");
+        Console.Write("Enter the number corresponding to the mode you want to use: ");
+        var input = globalYAMLMode ?? Console.ReadLine();
+        if (string.IsNullOrEmpty(input) || !int.TryParse(input, out var number) || number < 1 || number > 2)
+        {
+            Console.WriteLine("Invalid Input!");
+            return;
+        }
+        _cachedUseGlobalYAML = number == 1;
+        if (_cachedUseGlobalYAML)
+        {
+            Console.Write("Please enter the path to the YAML File you want to use (leave empty to use selected settings instead of YAML): ");
+            _cachedYAMLPathLogic = yamlFileLogic ?? Console.ReadLine();
+            _cachedYAMLPathCosmetics = _cachedYAMLPathLogic;
+            Console.WriteLine(string.IsNullOrEmpty(_cachedYAMLPathLogic) ? "Using selected settings instead of YAML!" : "YAML file loaded successfully!");
+        }
+        else
+        {
+            Console.Write("Please enter the path to the YAML File you want to use for Logic Options (leave empty to use selected settings instead of YAML): ");
+            _cachedYAMLPathLogic = yamlFileLogic ?? Console.ReadLine();
+            Console.WriteLine(string.IsNullOrEmpty(_cachedYAMLPathLogic) ? "Using selected settings instead of YAML!" : "YAML file loaded successfully!");
+            Console.Write("Please enter the path to the YAML File you want to use for Cosmetic Options (leave empty to use selected settings instead of YAML): ");
+            _cachedYAMLPathCosmetics = yamlFileCosmetics ?? Console.ReadLine();
+            Console.WriteLine(string.IsNullOrEmpty(_cachedYAMLPathCosmetics) ? "Using selected settings instead of YAML!" : "YAML file loaded successfully!");
+        }
+    }
+
+    internal static void LoadYAML(string? yamlFile = null, string? optionTypes = null)
+    {
+        Console.Write("Please enter the path to the YAML File to load options from: ");
+        var filepath = yamlFile ?? Console.ReadLine();
+        if (string.IsNullOrEmpty(filepath))
+        {
+            Console.WriteLine("Invalid Input!");
+            return;
+        }
+        Console.WriteLine("0) Nothing");
+        Console.WriteLine("1) Only Logic Settings");
+        Console.WriteLine("2) Only Cosmetic Setting");
+        Console.WriteLine("3) All Settings");
+        Console.Write("Enter the number corresponding to the setting type(s) you want to load: ");
+        var input = optionTypes ?? Console.ReadLine();
+        if (string.IsNullOrEmpty(input) || !uint.TryParse(input, out var number) || number > 3)
+        {
+            Console.WriteLine("Invalid Input!");
+            return;
+        }
+
+        //TODO: Make a more elegant solution for this
+        switch (number)
+        {
+            case 1:
+                YamlController.LoadLogicSettingsFromYaml(filepath);
+                ShufflerController.LoadSettingsFromSettingString(YamlController.GetSelectedSettingsString());
+                break;
+            case 2:
+                YamlController.LoadCosmeticsFromYaml(filepath);
+                ShufflerController.LoadCosmeticsFromCosmeticsString(YamlController.GetSelectedCosmeticsString());
+                break;
+            case 3:
+                YamlController.LoadAllSettingsFromYaml(filepath);
+                ShufflerController.LoadSettingsFromSettingString(YamlController.GetSelectedSettingsString());
+                ShufflerController.LoadCosmeticsFromCosmeticsString(YamlController.GetSelectedCosmeticsString());
+                break;
+        }
+        
+        Console.WriteLine("Settings loaded successfully!");
     }
 
     internal static void LoadSettings(string? settings = null)
@@ -103,7 +207,7 @@ internal static class GenericCommands
     internal static void Options()
     {
         Console.WriteLine("Options for current logic file:");
-        var options = ShufflerController.GetLogicOptions();
+        var options = ShufflerController.GetSelectedOptions();
         for (var i = 0; i < options.Count; )
         {
             var option = options[i];
@@ -138,9 +242,9 @@ internal static class GenericCommands
                 }
                 else
                 {
-                    if (options.Exists(option => String.Equals(option.Name, input)))
+                    if (options.Exists(option => string.Equals(option.Name, input)))
                     {
-                        var option = options.Find(option => String.Equals(option.Name, input));
+                        var option = options.Find(option => string.Equals(option.Name, input));
                         if (option != null)
                         {
                             EditOption(option);
@@ -219,25 +323,33 @@ internal static class GenericCommands
         var attemptsStr = randomizationAttempts ?? Console.ReadLine();
         if (!string.IsNullOrEmpty(attemptsStr) || !int.TryParse(attemptsStr, out var attempts) || attempts <= 0) attempts = 1;
 
-        ShufflerController.LoadLocations(_cachedLogicPath);
-        var result = ShufflerController.Randomize(attempts);
+        PreviouslyUsedController = (_cachedYAMLPathLogic != null || _cachedYAMLPathCosmetics != null || _cachedUseGlobalYAML) ? YamlController : ShufflerController;
+
+        //Even if all values are provided, the base shuffler controller ignores 3 of them whereas yaml doesn't so this works
+        PreviouslyUsedController.LoadLocations(_cachedLogicPath, _cachedYAMLPathLogic, _cachedYAMLPathCosmetics, _cachedUseGlobalYAML);
+
+        var result = PreviouslyUsedController.Randomize(attempts);
+
         if (result.WasSuccessful)
         {
             Console.WriteLine("Randomization successful!");
             return true;
         }
 
+        PreviouslyUsedController = null;
         PrintError($"Randomization failed! Error: {result.ErrorMessage}");
         return false;
     }
 
     internal static void SaveRom(string? output = null)
-    {        
+    {
+        if (!ValidatePreviouslyUsedController()) return;
+
         Console.Write("Please enter the path to save the ROM (blank for default): ");
         try
         {
             var input = output ?? Console.ReadLine();
-            ShufflerController.SaveAndPatchRom(string.IsNullOrEmpty(input) ? $"{Directory.GetCurrentDirectory()}{Path.DirectorySeparatorChar}MinishRandomizer-ROM.gba" : input);
+            PreviouslyUsedController.SaveAndPatchRom(string.IsNullOrEmpty(input) ? $"{Directory.GetCurrentDirectory()}{Path.DirectorySeparatorChar}MinishRandomizer-ROM.gba" : input);
             Console.WriteLine("Rom saved successfully!");
         }
         catch
@@ -247,12 +359,14 @@ internal static class GenericCommands
     }
 
     internal static void SaveSpoiler(string? output = null)
-    {        
+    {
+        if (!ValidatePreviouslyUsedController()) return;
+
         Console.Write("Please enter the path to save the spoiler (blank for default): ");
         try
         {
             var input = output ?? Console.ReadLine();
-            ShufflerController.SaveSpoiler(string.IsNullOrEmpty(input) ? $"{Directory.GetCurrentDirectory()}{Path.DirectorySeparatorChar}MinishRandomizer-Spoiler.txt" : input);
+            PreviouslyUsedController.SaveSpoiler(string.IsNullOrEmpty(input) ? $"{Directory.GetCurrentDirectory()}{Path.DirectorySeparatorChar}MinishRandomizer-Spoiler.txt" : input);
             Console.WriteLine("Spoiler saved successfully!");
         }
         catch
@@ -263,11 +377,13 @@ internal static class GenericCommands
 
     internal static void SavePatch(string? output = null)
     {
+        if (!ValidatePreviouslyUsedController()) return;
+
         Console.Write("Please enter the path to save the patch (blank for default): ");
         try
         {
             var input = output ?? Console.ReadLine();
-            ShufflerController.CreatePatch(string.IsNullOrEmpty(input) ? $"{Directory.GetCurrentDirectory()}{Path.DirectorySeparatorChar}MinishRandomizer-Patch.bps" : input, _cachedPatchPath);
+            PreviouslyUsedController.CreatePatch(string.IsNullOrEmpty(input) ? $"{Directory.GetCurrentDirectory()}{Path.DirectorySeparatorChar}MinishRandomizer-Patch.bps" : input, _cachedPatchPath);
             Console.WriteLine("Patch saved successfully!");
         }
         catch
@@ -276,14 +392,25 @@ internal static class GenericCommands
         }
     }
 
-    internal static void GetSettingString()
+    internal static void GetSelectedSettingString()
     {
-        Console.WriteLine("Setting String:");
-        Console.WriteLine(ShufflerController.GetSettingsString());
+        if (!ValidatePreviouslyUsedController()) return;
+
+        Console.WriteLine("Setting String for selected settings:");
+        Console.WriteLine(PreviouslyUsedController.GetSelectedSettingsString());
+    }
+
+    internal static void GetFinalSettingString()
+    {
+        if (!ValidatePreviouslyUsedController()) return;
+
+        Console.WriteLine("Setting String for settings used for seed generation:");
+        Console.WriteLine(PreviouslyUsedController.GetFinalSettingsString());
     }
 
     internal static void PatchRom()
     {
+        if (!ValidatePreviouslyUsedController()) return;
 
         Console.Write("Please enter the path of the rom patch: ");
         var patch = Console.ReadLine();
@@ -297,9 +424,9 @@ internal static class GenericCommands
         }
         else
         {
-            var result = ShufflerController.SaveRomPatch(patch, rom);
+            var result = PreviouslyUsedController.SaveRomPatch(patch, rom);
 
-            if(result)
+            if (result)
             {
                 Console.WriteLine("Rom patched successfully!");
             }
@@ -310,8 +437,18 @@ internal static class GenericCommands
         }
     }
 
+    internal static ShufflerControllerResult PatchRomWithoutSaving()
+    {
+        if (!ValidatePreviouslyUsedController()) return new ShufflerControllerResult { WasSuccessful = false };
+
+        PreviouslyUsedController.CreatePatch(out var result);
+        return result;
+    }
+
     internal static void CreatePatch()
     {
+        if (!ValidatePreviouslyUsedController()) return;
+
         Console.Write("Please enter the path of the patched rom: ");
         var rom = Console.ReadLine();
             
@@ -324,7 +461,7 @@ internal static class GenericCommands
         }
         else
         {
-            var result = ShufflerController.SaveRomPatch(patch, rom);
+            var result = PreviouslyUsedController.SaveRomPatch(patch, rom);
 
             if(result)
             {
@@ -420,7 +557,8 @@ internal static class GenericCommands
                 Console.WriteLine("1) Use Vanilla Color");
                 Console.WriteLine("2) Use Default Color");
                 Console.WriteLine("3) Use Random Color");
-                Console.WriteLine("4) Enter ARGB Color Code");
+                Console.WriteLine("4) Pick Random Color");
+                Console.WriteLine("5) Enter ARGB Color Code");
                 Console.Write("Enter the number of the option you want for the color picker: ");
                 var input = Console.ReadLine();
                 if (string.IsNullOrEmpty(input) || !int.TryParse(input, out var i) || i is < 1 or > 4)
@@ -436,19 +574,28 @@ internal static class GenericCommands
                 {
                     case 1:
                         colorPicker.Active = false;
+                        colorPicker.UseRandomColor = false;
                         Console.WriteLine("Color set successfully!");
                         break;
                     case 2:
                         colorPicker.Active = true;
+                        colorPicker.UseRandomColor = false;
                         colorPicker.DefinedColor = colorPicker.BaseColor;
                         Console.WriteLine("Color set successfully!");
                         break;
                     case 3:
                         colorPicker.Active = true;
+                        colorPicker.UseRandomColor = true;
                         colorPicker.PickRandomColor();
                         Console.WriteLine("Color set successfully!");
                         break;
                     case 4:
+                        colorPicker.Active = true;
+                        colorPicker.UseRandomColor = false;
+                        colorPicker.PickRandomColor();
+                        Console.WriteLine("Color set successfully!");
+                        break;
+                    case 5:
                         Console.Write("Please enter the ARGB color string you wish to use: ");
                         var argb = Console.ReadLine();
                         if (string.IsNullOrEmpty(argb) || !int.TryParse(argb, out var color))
@@ -461,6 +608,7 @@ internal static class GenericCommands
                         }
 
                         colorPicker.Active = true;
+                        colorPicker.UseRandomColor = false;
                         colorPicker.DefinedColor = Color.FromArgb(color);
                         Console.WriteLine("Color set successfully!");
                         break;
@@ -494,5 +642,16 @@ internal static class GenericCommands
         {
             Environment.Exit(1);
         }
+    }
+
+    private static bool ValidatePreviouslyUsedController()
+    {
+        if (PreviouslyUsedController == null)
+        {
+            Console.WriteLine("Randomize has not yet been called or the previous call failed! Please call randomize before running this command.");
+            return false;
+        }
+
+        return true;
     }
 }

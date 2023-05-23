@@ -1,6 +1,7 @@
 ﻿using RandomizerCore.Core;
 using RandomizerCore.Randomizer.Enumerables;
 using RandomizerCore.Randomizer.Logic.Dependency;
+using RandomizerCore.Randomizer.Logic.Location;
 using RandomizerCore.Randomizer.Models;
 
 namespace RandomizerCore.Randomizer.Logic.Imports;

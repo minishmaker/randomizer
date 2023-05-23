@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Security.Cryptography;
+using System.Text;
 using RandomizerCore.Randomizer.Logic.Options;
 
 namespace MinishCapRandomizerCLI;
@@ -30,6 +31,15 @@ public static class CommandFileParser
                 case "LoadPatch":
                     GenericCommands.LoadPatch(inputs.Length > 1 ? inputs[1] : "");
                     break;
+                case "ClearYAML":
+                    GenericCommands.ClearYAMLConfig("Y");
+                    break;
+                case "UseYAML":
+                    GenericCommands.UseYAML(inputs.Length > 1 ? inputs[1] : null, inputs.Length > 2 ? inputs[2] : null, inputs.Length > 3 ? inputs[3] : null);
+                    break;
+                case "LoadYAML":
+                    GenericCommands.LoadYAML(inputs.Length > 1 ? inputs[1] : null, inputs.Length > 2 ? inputs[2] : null);
+                    break;
                 case "LoadSettings":
                     GenericCommands.LoadSettings(inputs[1]);
                     break;
@@ -49,7 +59,10 @@ public static class CommandFileParser
                     GenericCommands.SavePatch(inputs[1]);
                     break;
                 case "GetSettingString":
-                    GenericCommands.GetSettingString();
+                    GenericCommands.GetSelectedSettingString();
+                    break;
+                case "GetFinalSettingString":
+                    GenericCommands.GetFinalSettingString();
                     break;
                 case "Rem":
                     Console.WriteLine($"Commented out line {input}");
@@ -63,9 +76,10 @@ public static class CommandFileParser
 
                     var successes = 0;
                     var failures = 0;
-                    var consecutiveFailures = 0;
                     var totalSeeds = 0;
                     var lastRunFailure = false;
+                    var consecutiveFailures = 0;
+                    var startTime = DateTime.Now;
                     while (successes++ < numberOfSeedToGen)
                     {
                         totalSeeds++;
@@ -73,7 +87,8 @@ public static class CommandFileParser
                         GenericCommands.Seed("R");
                         
                         if (shuffleSettingsEachAttempt && !lastRunFailure) ShuffleAllOptions();
-                        
+
+                        var time = DateTime.Now;
                         var result = GenericCommands.Randomize("1");
                         if (!result)
                         {
@@ -81,19 +96,32 @@ public static class CommandFileParser
                             ++failures;
                             lastRunFailure = true;
                             if (++consecutiveFailures < 10) continue;
-                            
-                            logBuilder.AppendLine($"Failed to generate with settings {GenericCommands.ShufflerController.GetSettingsString()}");
+
+                            logBuilder.AppendLine($"Failed to generate with settings {GenericCommands.ShufflerController.GetSelectedSettingsString()}");
                             lastRunFailure = false;
                             consecutiveFailures = 0;
                         }
                         else
                         {
-                            logBuilder.AppendLine($"Generated seed {successes}");
-                            consecutiveFailures = 0;
-                            lastRunFailure = false;
+                            var res = GenericCommands.PatchRomWithoutSaving();
+                            if (!res)
+                            {
+                                logBuilder.AppendLine($"ROM with settings {GenericCommands.ShufflerController.GetSelectedSettingsString()} failed to patch! {res.ErrorMessage}");
+                                lastRunFailure = false;
+                                consecutiveFailures = 0;
+                            }
+                            else
+                            {
+                                var diff = DateTime.Now - time;
+                                logBuilder.AppendLine($"Generated seed {successes} taking {diff.Seconds}.{diff.Milliseconds} seconds");
+                                consecutiveFailures = 0;
+                                lastRunFailure = false;
+                            }
                         }
                     }
-                    logBuilder.AppendLine($"Total Success Rate: {(--successes/(double)totalSeeds) * 100}%");
+                    logBuilder.AppendLine($"Total Time Taken: {(DateTime.Now - startTime).Hours.ToString("00")}:{(DateTime.Now - startTime).Minutes.ToString("00")}:{(DateTime.Now - startTime).Seconds.ToString("00")}.{(DateTime.Now - startTime).Milliseconds}");
+                    logBuilder.AppendLine($"Average time to gen a seed: {((DateTime.Now - startTime).TotalSeconds / (double)totalSeeds).ToString("0.00")} seconds");
+                    logBuilder.AppendLine($"Total Success Rate: {(--successes / (double)totalSeeds) * 100}%");
                     break;
                 case "Exit":
                     exited = true;
@@ -113,7 +141,7 @@ public static class CommandFileParser
 
     private static void ShuffleAllOptions()
     {
-        var options = GenericCommands.ShufflerController.GetLogicOptions();
+        var options = GenericCommands.ShufflerController.GetSelectedOptions();
 
         var rand = new Random();
 

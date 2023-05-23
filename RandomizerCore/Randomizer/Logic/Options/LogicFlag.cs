@@ -5,6 +5,8 @@ namespace RandomizerCore.Randomizer.Logic.Options;
 
 public class LogicFlag : LogicOptionBase
 {
+    public bool Default { get; }
+
     public LogicFlag(
         string name,
         string niceName,
@@ -15,6 +17,12 @@ public class LogicFlag : LogicOptionBase
         LogicOptionType type) :
         base(name, niceName, active, settingGroup, settingPage, descriptionText, type)
     {
+        Default = active;
+    }
+
+    public override void Reset()
+    {
+        Active = Default;
     }
 
     public override List<LogicDefine> GetLogicDefines()

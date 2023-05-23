@@ -41,6 +41,22 @@ public class LogicColorPicker : LogicOptionBase
         BaseColor = colors[0];
         DefinedColor = colors[0];
         InitialColors = colors;
+        UseRandomColor = false;
+    }
+
+    public override void Reset()
+    {
+        Active = true;
+        UseRandomColor = false;
+        DefinedColor = BaseColor;
+    }
+
+    public override void CopyValueFrom(LogicOptionBase option)
+    {
+        base.CopyValueFrom(option);
+        var colorPicker = (LogicColorPicker)option;
+        UseRandomColor = colorPicker.UseRandomColor;
+        DefinedColor = colorPicker.DefinedColor;
     }
 
     public Color BaseColor { get; set; }
@@ -62,12 +78,18 @@ public class LogicColorPicker : LogicOptionBase
         // Only true if a color has been selected
         if (!Active) return defineList;
 
-        if (UseRandomColor) PickRandomColor();
+        var FinalColor = DefinedColor;
+
+        if (UseRandomColor)
+        {
+            var random = new System.Random();
+            FinalColor = Color.FromArgb(random.Next(256), random.Next(256), random.Next(256));
+        }
 
         defineList.Add(new LogicDefine(Name));
 
         defineList.AddRange(InitialColors
-            .Select(color => new GbaColor(ColorUtil.AdjustHue(color, BaseColor, DefinedColor)))
+            .Select(color => new GbaColor(ColorUtil.AdjustHue(color, BaseColor, FinalColor)))
             .Select((newColor, i) => new LogicDefine(Name + "_" + i, StringUtil.AsStringHex4(newColor.CombinedValue))));
 
         return defineList;

@@ -402,7 +402,7 @@ public class Parser
 
     public (List<Location> locations, List<Item> items) ParseLocationsAndItems(string[] lines, SquaresRandomNumberGenerator rng)
     {
-        Logger.Instance.BeginLogTransaction();
+        // Logger.Instance.BeginLogTransaction();
         Dependencies = new List<DependencyBase>();
         var locations = new List<Location>();
         var items = new List<Item>();
@@ -460,7 +460,7 @@ public class Parser
                     if (trimmedLine[0] == '!') SubParser.ParseDirective(trimmedLine);
                 }
 
-                Logger.Instance.SaveLogTransaction();
+                // Logger.Instance.SaveLogTransaction();
             }
             catch (Exception e)
             {

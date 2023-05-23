@@ -1,5 +1,6 @@
 ﻿using RandomizerCore.Core;
 using RandomizerCore.Randomizer.Exceptions;
+using RandomizerCore.Randomizer.Helpers.Models;
 using RandomizerCore.Randomizer.Models;
 
 namespace RandomizerCore.Randomizer.Helpers;

@@ -24,5 +24,9 @@
 		public string CustomPatchFilepath { get; set; } = "";
 
         public bool CheckForUpdatesOnStart { get; set; } = true;
-    }
+
+		public bool UseCustomYAML { get; set; }
+
+		public string CustomYAMLFilepath { get; set; } = "";
+	}
 }

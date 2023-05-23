@@ -1,3 +1,186 @@
+# 1.0 RC 4
+
+
+#### This is a pre-release version
+
+## What's New!
+
+---
+
+### Randomization Updates
+
+The random number generator has been changed to support 64 bit seeds now, written out as a 16 character hex string. This is to ensure more integrity for our races.
+
+### UI Updates
+
+#### New & Improved Pages
+
+- About page has now been created! It contains some useful links for the randomizer, links include
+  - A link to the TMCR Discord
+  - A link to the ZSR Discord
+  - A link to the Github
+  - A link to the releases
+  - A link to download EmoTracker
+  - A link to download Bizhawk
+- Seed output page now shows what the in-game hash for the seed is when you generate a seed! This means no more having to run the seed to see the hash.
+  - A button was added to let you copy the hash to the clipboard
+
+#### New UI Features
+
+- Verbose logger makes its return! With the issues plaguing the verbose logger finally fixed, it can now be enabled. Especially useful for people who want to mess with logic!
+- Automatic update checker! When the randomizer is started it will automatically check to see if an update is available. If Github is down for any reason it will have a slight delay before letting you know it failed to check.
+  - A setting was added to let you choose whether or not to check for updates on start, this can be found under the "Other" tab
+  - When the alert is displayed letting you know that an update is available, there will be text you can click that will take you to the page where you can download the latest update
+    - We are exploring solutions to make it so you can click a button and it will update the app for you, however this is very much still an idea and likely will not be coming for some time
+- A button to check for updates has also been added to the "About" tab that when clicked will run the update check.
+- Hendrus Shuffler has graduated from the Experimental category! Now you too can generate plandos with ease!
+- Removed the ability to turn off the logger. When errors occur we need the logs as developers so we can fix bugs.
+- Removed the changelog page from the UI
+
+### Mystery Settings
+
+Mystery settings have been added to the randomizer! There are some default mystery setting presets that come built in, and people can also make their own!
+Mystery settings use YAML. You can use the "Save Mystery YAML Template" button found by clicking "Logic" on the menu bar to export a copy of the template that you can edit.
+
+- Mystery settings can be found at the bottom of the "Advanced" page
+- You can use both Mystery Settings as well as Mystery Cosmetics
+- Included Mystery Settings Presets are:
+  - Expert
+  - Friendly
+  - Template
+  - Unweighted (Everything has an equal chance of being on or off)
+- Included Mystery Cosmetics Presets are:
+  - Random Follower
+  - Template
+  - Unweighted
+- Buttons have also been added next to the dropdown that you can click to generate settings from the preset and view them in the UI
+- To save a mystery preset, save it in the "Presets" folder in either "Mystery Settings" if it is a settings preset or "Mystery Cosmetics" if it is a cosmetics preset
+  - Buttons to add and remove presets coming in the next version
+- You can click the button "Save Selected Options as YAML Preset" to save options as a preset and share them with others
+  - You can load presets shared in this way by selecting "Use Global YAML" on the "Advanced" page
+
+#### Changes for Mystery Settings
+
+- When mystery settings are being used you cannot copy the settings string to the clipboard and it will not be shown on the output page
+  - This is also the case for mystery cosmetics
+- When any YAML setting is used there is some obfuscation done on the icons for the "settings" done in the hash meaning that if you use the same settings with different seeds you will get different results. This is to ensure mystery setting races don't run the risk of people memorizing what settings map to what icons.
+
+### Settings
+
+#### Decouple Open World
+
+The following settings will no longer be affected when toggling Open World on/off:
+
+- All Key settings, specifically locked doors
+- All Fusion settings
+- Wind Crests
+- Dungeon Warps
+
+There is the potential for further customization of settings in the future, these changes have these ideas in mind without having to commit to completing them in the short term.
+
+#### Features added by Catobat
+
+- Kinstone Packs and Key Chains
+  - A multiplier is added that determines how many Pieces/Keys are added to the player inventory when one is collected.
+- Speed up Pedestal Cutscene (When collecting an item)
+- Dungeon Maps and Compasses have independent shuffle options.
+- Vanilla Elements option added to force elements onto their vanilla locations.
+- Wind Tribe now has an setting to be automatically set to opened from the start of the game.
+  - Tingle brothers also received a similar setting, skipping having to talk to Tingle first.
+- New Cosmetic option: Heart Border Colour.
+- The game can no longer be started on inaccurate emulators.
+- Gentari has text that tells you the goal and requirements for the seed, useful for Mystery settings seeds.
+
+#### DHC added to Dungeon entrance shuffle
+
+It was a terribly kept secret in my earlier commits, and a few races were done on dev builds so the cat is out the bag. Here are some of the changes to the first attempt to the added option.
+
+- Fixed a bug Myth made in the Green Warp destination coordinates when leaving a dungeon located in Castle Gardens.
+- Pedestal needs to check for access requirements (Thanks Deoxis)
+- Fixed generation failure when DHC was set to 'Never' and entrances where shuffled, resulting in the chance of a dungeon being shuffled to DHC but never being considered reachable.
+
+
+#### Misc Features
+
+- Progressive items have been seperated and have independent options.
+  - Swords, Bows, Boomerangs, Shields, and Spin Scrolls
+  - This also includes a general bugfix to Dojos
+- Certain unshuffled locations that held major items in vanilla (HPs, LLR Key, Kinstones) now hold **NO** item, it is completely empty when you don't shuffle it into the pool.
+- Various clarifications in the Tooltips and neatening the UI.
+- Homewarp will be always be enabled when the setting combination has the possibility of allowing a softlock.
+- Certain combinations of Shuffled Dungeons with specific settings resulted in low generation success rates, we adjusted what was possible to make these far more likely to successfully generate seeds.
+
+### Bug Fixes
+
+#### Community sourced bugs
+
+The Discord community has been invaluable, bringing us to the attention of many issues that would be difficult to find otherwise:
+
+- DWS Blue Warp not spawning (Unfortunately affected many people)
+- ToD Blue Warp logic (Thanks Deoxis)
+- CoF Blue Warp logic (Thanks Deoxis)
+- Trilby/Crenel logical access from swamp wind crest (Thanks Nesman)
+- Spoiler logs sphere section breaking when generating multiple spoiler logs (Thanks Tabbomat)
+- Fix the logic of the North Minish Woods HP to first check for access to Minish Woods first when considering if it is grabbable from a distance. (Thanks CapTem)
+
+#### 'Bulk Generation Testing' sourced bugs
+
+A bulk generator has been implemented for use with the CLI which has allowed us to generate X number of seeds with random settings to find setting combinations that cause failures, here are the following bugs resolved through this method:
+
+- Dojos causing seed failures when red fusions removed.
+- Dungeon Warp setting causing certain vanilla key placements not be logically reachable.
+- Dungeons required lowered to a valid amount if not all dungeons reachable.
+  - Dungeon requirement and shuffled elements now correctly redefine the non-element dungeon settings
+- Keys having a lot of issues:
+  - Temple of Droplets Key Logic got overhauled to behave when dungeon warps are enabled and to obey regional key rules.
+  - Vanilla placements are correctly checked instead of being assumed, and play nice when other dungeon items are placable.
+- Recursive dependency for Beat Vaati making some end loaded seeds fail.
+
+#### Misc Bug fixes
+
+- Picking up free standing 10 or 30 bombs or arrows no longer gives a text box.
+- Spoiler log playthrough now lists all major items correctly
+- One of the graves in the graveyard was closed when it was automatically open in vanilla
+- Fixed the sword trick logic in DHC being inverted.
+- Melari now respects barren rules if Cave of Flames is Non-Element.
+- Minor fix to the 'Failure Rate' stat when batch generating test seeds, is now a 'Success Rate' and is now correctly a %
+- Comment out Fuzzyness Setting. Sorry but no one uses it and it was taking space in the UI from Heart Colour Borders, which is unlikely people will complain about having instead. Don't @ Myth
+- A 'bushwhacker' has been taken to the Logic file in the overgrown location paramater splurge, found just before the Location defines, its a bit better than before but still needs completely ripping out and moving somewhere else in the file (or into a different file 👀?)
+
+### CLI Improvements
+
+- BulkGenerateSeeds has more stats
+  - Outputs the success rate instead of the failure rate
+  - Lists the time taken to generate all the seeds and the average time per seed
+- Logs from BulkGenerateSeeds are now written to a file called "CLIBulkGenOutput.json" where you ran the CLI from
+- BulkGenerateSeeds will now also try and patch the seeds as well to test patches work
+- YAML is now supported by the CLI
+- 'UseRandomColor' can be used for color options
+
+#### Known Issues
+
+- With closed golds, entrance shuffle on, element shuffle on, some settings combinations have a high chance of failing to beat Vaati. This has no easy code fix until Logic v2 is done.
+  - To work around this, click the "New Seed" button and try again, or set your "Max Randomization Attempts" to 5 or more and try and randomize again
+- When the Graveyard Key is knocked out of your hands, it looks like the progressive sword.
+- Electric Chu’s have buggy animations.
+- Regional Keys combined with Dungeon Entrance Shuffle is unintuitive, eg: If Fortress is shuffled to Crenel, Small Keys for Fortress can be found in Wind Ruins but not in Crenel.
+- Getting a second bomb bag with remotes equipped sometimes changes it back to regular bombs.
+- Followers cause a fair amount of visual bugs ranging from miss coloured palettes, to certain sprites being completely missing.
+- The Clouds in Palace of Winds sometimes are invisible but function normally, leaving and re-entering the room they are in can make them visible again.
+- Credits stat for Door Mimics is very wrong, how big of a number can you get? Post your record in the discord!
+
+### Useful Resources
+
+- EmoTracker download - https://emotracker.net/download/
+  - Get the Deoxis' tracker with this version on EmoTracker, it has support for the newest settings. No other trackers are currently updated with the newest features.
+- BizHawk download - https://tasvideos.org/Bizhawk/ReleaseHistory#Bizhawk242
+  - Required prerequisites - https://github.com/TASEmulators/BizHawk-Prereqs/releases
+- mGBA download - https://mgba.io/downloads.html
+
+# History
+
+# 0.7.0 Rev 3.1
+
 #### This is a pre-release version
 
 ## What's New!

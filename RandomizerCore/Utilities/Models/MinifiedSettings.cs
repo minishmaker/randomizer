@@ -187,8 +187,6 @@ internal static class MinifiedSettings
             bytes.Add(colorSecondByte);
         }
 
-        //bytes.Add(0);
-
         return Convert.ToBase64String(bytes.ToArray());
     }
 }

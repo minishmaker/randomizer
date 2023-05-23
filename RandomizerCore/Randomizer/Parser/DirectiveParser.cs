@@ -8,6 +8,7 @@ using RandomizerCore.Randomizer.Logic.Imports;
 using RandomizerCore.Randomizer.Logic.Location;
 using RandomizerCore.Randomizer.Logic.Options;
 using RandomizerCore.Randomizer.Models;
+using RandomizerCore.Utilities.Logging;
 using RandomizerCore.Utilities.Models;
 using RandomizerCore.Utilities.Util;
 
@@ -248,6 +249,7 @@ public class DirectiveParser
             }
 
         _defines.Add(define);
+        Logger.Instance.LogInfo($"Defined: {define.Name} - {define.Replacement}");
     }
 
     public void RemoveDefine(LogicDefine define)
@@ -256,6 +258,7 @@ public class DirectiveParser
             if (define.Name == predefined.Name)
             {
                 _defines.Remove(predefined);
+                Logger.Instance.LogInfo($"Undefined: {define.Name}");
                 return;
             }
     }
@@ -381,10 +384,10 @@ public class DirectiveParser
         LocationTypeOverrides.Clear();
     }
 
-    public void AddOptions()
-    {
-        foreach (var option in Options) _defines.AddRange(option.GetLogicDefines());
-    }
+	public void AddOptions(List<LogicOptionBase>? options = null)
+	{
+		foreach (var option in options ?? Options) _defines.AddRange(option.GetLogicDefines());
+	}
 
     public string ReplaceDefines(string locationString)
     {

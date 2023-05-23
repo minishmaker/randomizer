@@ -4,7 +4,7 @@ using RandomizerCore.Randomizer.Logic.Defines;
 
 namespace RandomizerCore.Randomizer.Logic.Options;
 
-public abstract class LogicOptionBase
+public abstract class LogicOptionBase : ICloneable
 {
     private readonly List<ILogicOptionObserver> Observers;
 
@@ -48,6 +48,13 @@ public abstract class LogicOptionBase
         Observers.Add(observer);
     }
 
+    public abstract void Reset();
+
+    public virtual void CopyValueFrom(LogicOptionBase option)
+    {
+        Active = option.Active;
+    }
+
     public abstract List<LogicDefine> GetLogicDefines();
 
     public abstract string GetOptions();
@@ -55,4 +62,6 @@ public abstract class LogicOptionBase
     public abstract byte GetHashByte();
 
     public abstract string GetOptionUiType();
+
+    public object Clone() => MemberwiseClone();
 }

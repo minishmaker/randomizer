@@ -93,19 +93,19 @@
 
 #Settings options displayed in the rando UI
 
-!dropdown - Main Settings - Setting - Dungeon Settings - MAP_SETTING - Dungeon Maps - Dungeon Maps - MAP_STANDARD - Start With - MAP_KEASY - 'Start With': Maps are given to you from the start. - Vanilla - MAP_VANILLA - 'Vanilla': Maps are in the same places they appear in the vanilla game. - Own Dungeon - MAP_STANDARD - 'Own Dungeon': Maps are randomized to locations in the dungeon they are used in. - Own Region - MAP_REGION - 'Own Region': Maps are randomized inside and in the vicinity of their own dungeon. - Any Dungeon - MAP_DUNGEON - 'Any Dungeon': Maps are randomized inside all dungeons. - Any Region - MAP_REGDUN - 'Any Region': Maps are randomized inside and in the vicinity of all dungeons. - Anywhere (Keysanity) - MAP_KEYSANITY - 'Anywhere': Maps are randomized to any location in the world.\n\n DWS Region: 'Minish Village', 'Belari's House', 'Chest near Belari', 'Minish Cave near Belari'.\n CoF Region: 'Melari's Mines', 'Melari's Mines Outside Path', 'Pre Melari Block Puzzle Chest'.\n FOW Region: 'Wind Ruins'.\n TOD Region: 'Nothing'.\n RC Region: 'Graveyard (Not Dampe)'.\n POW Region: If Red Fusions are Removed: 'Wind Tribe', Otherwise: 'Upper Wind Tribe'.\n DHC Region: 'Castle Gardens (Not Moat)', If Pedestal Items is enabled: 'Sanctuary Pedestal'.
-!dropdown - Main Settings - Setting - Dungeon Settings - COMPASS_SETTING - Compasses - Compasses - COMPASS_STANDARD - Start With - COMPASS_KEASY - 'Start With': Compasses are given to you from the start. - Vanilla - COMPASS_VANILLA - 'Vanilla': Compasses are in the same places they appear in the vanilla game. - Own Dungeon - COMPASS_STANDARD - 'Own Dungeon': Compasses are randomized to locations in the dungeon they are used in. - Own Region - COMPASS_REGION - 'Own Region': Compasses are randomized inside and in the vicinity of their own dungeon. - Any Dungeon - COMPASS_DUNGEON - 'Any Dungeon': Compasses are randomized inside all dungeons. - Any Region - COMPASS_REGDUN - 'Any Region': Compasses are randomized inside and in the vicinity of all dungeons. - Anywhere (Keysanity) - COMPASS_KEYSANITY - 'Anywhere': Compasses are randomized to any location in the world.\n\n DWS Region: 'Minish Village', 'Belari's House', 'Chest near Belari', 'Minish Cave near Belari'.\n CoF Region: 'Melari's Mines', 'Melari's Mines Outside Path', 'Pre Melari Block Puzzle Chest'.\n FOW Region: 'Wind Ruins'.\n TOD Region: 'Nothing'.\n RC Region: 'Graveyard (Not Dampe)'.\n POW Region: If Red Fusions are Removed: 'Wind Tribe', Otherwise: 'Upper Wind Tribe'.\n DHC Region: 'Castle Gardens (Not Moat)', If Pedestal Items is enabled: 'Sanctuary Pedestal'.
-!dropdown - Main Settings - Setting - Dungeon Settings - SMALL_KEYS_SETTING - Small Keys - Small Keys - SMALL_KEYS_STANDARD - Removed (Keasy) - SMALL_KEASY - 'Removed': Small keys are removed, All small locked doors are open from the start. - Vanilla - SMALL_KEYS_VANILLA - 'Vanilla': Small keys are in the same places they appear in the vanilla game. - Own Dungeon - SMALL_KEYS_STANDARD - 'Own Dungeon': Small keys are randomized to locations in the dungeon they are used in. - Own Region - SMALL_KEYS_REGION - 'Own Region': Small keys are randomized inside and in the vicinity of their own dungeon. - Any Dungeon - SMALL_KEYS_DUNGEON - 'Any Dungeon': Small keys are randomized inside all dungeons. - Any Region - SMALL_KEYS_REGDUN - 'Any Region': Small keys are randomized inside and in the vicinity of all dungeons. - Anywhere (Keysanity) - SMALL_KEYSANITY - 'Anywhere': Small keys are randomized to any location in the world, expect to return to dungeons multiple times.\n\n DWS Region: 'Minish Village', 'Belari's House', 'Chest near Belari', 'Minish Cave near Belari'.\n CoF Region: 'Melari's Mines', 'Melari's Mines Outside Path', 'Pre Melari Block Puzzle Chest'.\n FOW Region: 'Wind Ruins'.\n TOD Region: 'Nothing'.\n RC Region: 'Graveyard (Not Dampe)'.\n POW Region: If Red Fusions are Removed: 'Wind Tribe', Otherwise: 'Upper Wind Tribe'.\n DHC Region: 'Castle Gardens (Not Moat)', If Pedestal Items is enabled: 'Sanctuary Pedestal'.
-!dropdown - Main Settings - Setting - Dungeon Settings - BIG_KEYS_SETTING - Big Keys - Big Keys - BIG_KEYS_STANDARD - Removed (Keasy) - BIG_KEASY - 'Removed': Big keys are removed, All locked Boss doors are open from the start. - Vanilla - BIG_KEYS_VANILLA - 'Vanilla': Big keys are in the same places they appear in the vanilla game. - Own Dungeon - BIG_KEYS_STANDARD - 'Own Dungeon': Big keys are randomized to locations in the dungeon they are used in. - Own Region - BIG_KEYS_REGION - 'Own Region': Big keys are randomized inside and in the vicinity of their own dungeon. - Any Dungeon - BIG_KEYS_DUNGEON - 'Any Dungeon': Big keys are randomized inside all dungeons. - Any Region - BIG_KEYS_REGDUN - 'Any Region': Big keys are randomized inside and in the vicinity of all dungeons. - Anywhere (Keysanity) - BIG_KEYSANITY  - 'Anywhere': Big keys are randomized to any location in the world, expect to return to dungeons multiple times.\n\n DWS Region: 'Minish Village', 'Belari's House', 'Chest near Belari', 'Minish Cave near Belari'.\n CoF Region: 'Melari's Mines', 'Melari's Mines Outside Path', 'Pre Melari Block Puzzle Chest'.\n FOW Region: 'Wind Ruins'.\n TOD Region: 'Nothing'.\n RC Region: 'Graveyard (Not Dampe)'.\n POW Region: If Red Fusions are Removed: 'Wind Tribe', Otherwise: 'Upper Wind Tribe'.\n DHC Region: 'Castle Gardens (Not Moat)', If Pedestal Items is enabled: 'Sanctuary Pedestal'.
-!dropdown - Main Settings - Setting - Dungeon Settings - SHUFFLE_ELEMENTS - Shuffle Elements - Shuffle Elements - SHUFFLE_ELEMENTS_OFF - Vanilla - SHUFFLE_ELEMENTS_VANILLA - 'Vanilla': The Elements are found in their vanilla locations. Only works if the other settings chosen make it possible to reach all the dungeons with Elements. - Dungeon Rewards - SHUFFLE_ELEMENTS_OFF - 'Dungeon Rewards': Elements are shuffled among the 6 Dungeon Rewards. - Anywhere - SHUFFLE_ELEMENTS_ON - 'Anywhere': Elements are shuffled anywhere in the world. The Element icons on the map are removed.
-!dropdown - Main Settings - Setting - Dungeon Settings - DUNGEON - NonElement Dungeons - NonElement Dungeons, This setting is disabled when 'Shuffle Elements' is set to 'Anywhere' or when 'Dungeons Required' is set to '5' or '6'. - NONE - Standard - NONE - 'Standard': NonElement Dungeons have no special rules. - Unrequired - UNREQ - 'Unrequired': NonElement Dungeons do not have items required to beat the game. - Barren - BARREN - 'Barren': NonElement Dungeons only contain junk items. - Regions Unrequired - UNREQSUR - 'Regions Unrequired': NonElement Dungeons and their Regions do not contain items needed to beat the game. - Regions Barren - BARRENSUR - 'Regions Barren': NonElement Dungeons and their Regions only contain junk items. \n\n DWS Region: 'Minish Village', 'Belari's House', 'Chest near Belari', 'Minish Cave near Belari'.\n CoF Region: 'Melari's Mines', 'Melari's Mines Outside Path', 'Pre Melari Block Puzzle Chest'.\n FOW Region: 'Wind Ruins'.\n TOD Region: 'Nothing'.\n RC Region: 'Graveyard (Not Dampe)'.\n POW Region: If Red Fusions are Removed: 'Wind Tribe', Otherwise: 'Upper Wind Tribe'.
+!dropdown - Main Settings - Setting - Dungeon Settings - MAP_SETTING - Dungeon Maps - Dungeon Maps - MAP_STANDARD - Start With - MAP_KEASY - 'Start With': Maps are given to you from the start. - Vanilla - MAP_VANILLA - 'Vanilla': Maps are in the same places they appear in the vanilla game. - Own Dungeon - MAP_STANDARD - 'Own Dungeon': Maps are randomized to locations in the dungeon they are used in. - Own Region - MAP_REGION - 'Own Region': Maps are randomized inside and in the vicinity of their own dungeon. - Any Dungeon - MAP_DUNGEON - 'Any Dungeon': Maps are randomized inside all dungeons. - Any Region - MAP_REGDUN - 'Any Region': Maps are randomized inside and in the vicinity of all dungeons. - Anywhere (Keysanity) - MAP_KEYSANITY - 'Anywhere': Maps are randomized to any location in the world.\n\nDWS Region: 'Minish Village', 'Belari's House', 'Chest near Belari', 'Minish Cave near Belari'.\nCoF Region: 'Melari's Mines', 'Melari's Mines Outside Path', 'Pre Melari Block Puzzle Chest'.\nFOW Region: 'Wind Ruins'.\nTOD Region: 'Nothing'.\nRC Region: 'Graveyard (Not Dampe)'.\nPOW Region: If Red Fusions are Removed: 'Wind Tribe', Otherwise: 'Upper Wind Tribe'.\nDHC Region: 'Castle Gardens (Not Moat)', If Pedestal Items is enabled: 'Sanctuary Pedestal'.
+!dropdown - Main Settings - Setting - Dungeon Settings - COMPASS_SETTING - Compasses - Compasses - COMPASS_STANDARD - Start With - COMPASS_KEASY - 'Start With': Compasses are given to you from the start. - Vanilla - COMPASS_VANILLA - 'Vanilla': Compasses are in the same places they appear in the vanilla game. - Own Dungeon - COMPASS_STANDARD - 'Own Dungeon': Compasses are randomized to locations in the dungeon they are used in. - Own Region - COMPASS_REGION - 'Own Region': Compasses are randomized inside and in the vicinity of their own dungeon. - Any Dungeon - COMPASS_DUNGEON - 'Any Dungeon': Compasses are randomized inside all dungeons. - Any Region - COMPASS_REGDUN - 'Any Region': Compasses are randomized inside and in the vicinity of all dungeons. - Anywhere (Keysanity) - COMPASS_KEYSANITY - 'Anywhere': Compasses are randomized to any location in the world.\n\nDWS Region: 'Minish Village', 'Belari's House', 'Chest near Belari', 'Minish Cave near Belari'.\nCoF Region: 'Melari's Mines', 'Melari's Mines Outside Path', 'Pre Melari Block Puzzle Chest'.\nFOW Region: 'Wind Ruins'.\nTOD Region: 'Nothing'.\nRC Region: 'Graveyard (Not Dampe)'.\nPOW Region: If Red Fusions are Removed: 'Wind Tribe', Otherwise: 'Upper Wind Tribe'.\nDHC Region: 'Castle Gardens (Not Moat)', If Pedestal Items is enabled: 'Sanctuary Pedestal'.
+!dropdown - Main Settings - Setting - Dungeon Settings - SMALL_KEYS_SETTING - Small Keys - Small Keys - SMALL_KEYS_STANDARD - Removed (Keasy) - SMALL_KEASY - 'Removed': Small keys are removed, All small locked doors are open from the start. - Vanilla - SMALL_KEYS_VANILLA - 'Vanilla': Small keys are in the same places they appear in the vanilla game. - Own Dungeon - SMALL_KEYS_STANDARD - 'Own Dungeon': Small keys are randomized to locations in the dungeon they are used in. - Own Region - SMALL_KEYS_REGION - 'Own Region': Small keys are randomized inside and in the vicinity of their own dungeon. - Any Dungeon - SMALL_KEYS_DUNGEON - 'Any Dungeon': Small keys are randomized inside all dungeons. - Any Region - SMALL_KEYS_REGDUN - 'Any Region': Small keys are randomized inside and in the vicinity of all dungeons. - Anywhere (Keysanity) - SMALL_KEYSANITY - 'Anywhere': Small keys are randomized to any location in the world, expect to return to dungeons multiple times.\n\nDWS Region: 'Minish Village', 'Belari's House', 'Chest near Belari', 'Minish Cave near Belari'.\nCoF Region: 'Melari's Mines', 'Melari's Mines Outside Path', 'Pre Melari Block Puzzle Chest'.\nFOW Region: 'Wind Ruins'.\nTOD Region: 'Nothing'.\nRC Region: 'Graveyard (Not Dampe)'.\nPOW Region: If Red Fusions are Removed: 'Wind Tribe', Otherwise: 'Upper Wind Tribe'.\nDHC Region: 'Castle Gardens (Not Moat)', If Pedestal Items is enabled: 'Sanctuary Pedestal'.
+!dropdown - Main Settings - Setting - Dungeon Settings - BIG_KEYS_SETTING - Big Keys - Big Keys - BIG_KEYS_STANDARD - Removed (Keasy) - BIG_KEASY - 'Removed': Big keys are removed, All locked Boss doors are open from the start. - Vanilla - BIG_KEYS_VANILLA - 'Vanilla': Big keys are in the same places they appear in the vanilla game. - Own Dungeon - BIG_KEYS_STANDARD - 'Own Dungeon': Big keys are randomized to locations in the dungeon they are used in. - Own Region - BIG_KEYS_REGION - 'Own Region': Big keys are randomized inside and in the vicinity of their own dungeon. - Any Dungeon - BIG_KEYS_DUNGEON - 'Any Dungeon': Big keys are randomized inside all dungeons. - Any Region - BIG_KEYS_REGDUN - 'Any Region': Big keys are randomized inside and in the vicinity of all dungeons. - Anywhere (Keysanity) - BIG_KEYSANITY  - 'Anywhere': Big keys are randomized to any location in the world, expect to return to dungeons multiple times.\n\nDWS Region: 'Minish Village', 'Belari's House', 'Chest near Belari', 'Minish Cave near Belari'.\nCoF Region: 'Melari's Mines', 'Melari's Mines Outside Path', 'Pre Melari Block Puzzle Chest'.\nFOW Region: 'Wind Ruins'.\nTOD Region: 'Nothing'.\nRC Region: 'Graveyard (Not Dampe)'.\nPOW Region: If Red Fusions are Removed: 'Wind Tribe', Otherwise: 'Upper Wind Tribe'.\nDHC Region: 'Castle Gardens (Not Moat)', If Pedestal Items is enabled: 'Sanctuary Pedestal'.
+!dropdown - Main Settings - Setting - Dungeon Settings - SHUFFLE_ELEMENTS - Shuffle Elements - Shuffle Elements - SHUFFLE_ELEMENTS_OFF - Vanilla - SHUFFLE_ELEMENTS_VANILLA - 'Vanilla': The Elements are found in their vanilla locations. Will shuffle dungeon rewards if all 4 elements are required to complete the seed but the vanilla location is not accessible. - Dungeon Rewards - SHUFFLE_ELEMENTS_OFF - 'Dungeon Rewards': Elements are shuffled among the 6 Dungeon Rewards. - Anywhere - SHUFFLE_ELEMENTS_ON - 'Anywhere': Elements are shuffled anywhere in the world. The Element icons on the map are removed.
+!dropdown - Main Settings - Setting - Dungeon Settings - DUNGEON - NonElement Dungeons - NonElement Dungeons, This setting is disabled when 'Shuffle Elements' is set to 'Anywhere' or when 'Dungeons Required' is set to '5' or '6'. - NONE - Standard - NONE - 'Standard': NonElement Dungeons have no special rules. - Unrequired - UNREQ - 'Unrequired': NonElement Dungeons do not have items required to beat the game. - Barren - BARREN - 'Barren': NonElement Dungeons only contain junk items. - Regions Unrequired - UNREQSUR - 'Regions Unrequired': NonElement Dungeons and their Regions do not contain items needed to beat the game. - Regions Barren - BARRENSUR - 'Regions Barren': NonElement Dungeons and their Regions only contain junk items. \n\nDWS Region: 'Minish Village', 'Belari's House', 'Chest near Belari', 'Minish Cave near Belari'.\nCoF Region: 'Melari's Mines', 'Melari's Mines Outside Path', 'Pre Melari Block Puzzle Chest'.\nFOW Region: 'Wind Ruins'.\nTOD Region: 'Nothing'.\nRC Region: 'Graveyard (Not Dampe)'.\nPOW Region: If Red Fusions are Removed: 'Wind Tribe', Otherwise: 'Upper Wind Tribe'.
 
 !dropdown - Main Settings - Setting - Requirements - DHC_SETTING - Dark Hyrule Castle Opens - Dark Hyrule Castle is the last dungeon in the game, it has the final boss Vaati. - OPENDHC - Never Open - NODHC - 'Never Open': A barrier is placed at the front of the dungeon, The game ends when you visit the sanctuary after completing all the requirements. - After Requirements - NORMALDHC - 'After Requirements': A barrier is placed at the front of the dungeon, This barrier is removed when you visit the sanctuary after completing ALL the requirements. The game ends when you defeat Vaati. - Always Open - OPENDHC - 'Always Open': There is no barrier at the front of the dungeon, the game ends when you defeat Vaati.
 !dropdown - Main Settings - Setting - Requirements - REQUIREMENT_ITEM - Requirement Reward - An item that the player receives once they meet the selected requirements. - REQUIREMENT_ITEM_DHC_BK - Disabled - REQUIREMENT_ITEM_NONE - 'Disabled': No extra item is awarded for requirement completion. - DHC Big Key - REQUIREMENT_ITEM_DHC_BK - 'DHC Big Key': The DHC Big Key is instantly awarded to the player once they meet the selected requirements. Overrides whatever the general Big Key setting is. - Random Item - REQUIREMENT_ITEM_RANDOM - 'Random Item': An item from the random item pool is instantly awarded to the player once they meet the selected requirements.
-!dropdown - Main Settings - Setting - Requirements - AD_PED - Dungeons Required - The number of dungeons that have to be beaten to activate the Sanctuary. \nIf you select a number of dungeons higher that what are available given the other settings chosen, then this will be lowered to the total number of accessible dungeons. \nThere are 6 dungeons in the game that count:\n Deepwood Shrine\n Cave of Flames\n Fortress of Winds\n Temple of Droplets\n Royal Crypt\n Palace of Winds - AD_PED_0 - 0 - AD_PED_0 - - 1 - AD_PED_1 - - 2 - AD_PED_2 - - 3 - AD_PED_3 - - 4 - AD_PED_4 - - 5 - AD_PED_5 - - 6 - AD_PED_6 -
+!dropdown - Main Settings - Setting - Requirements - AD_PED - Dungeons Required - The number of dungeons that have to be beaten to activate the Sanctuary. \nIf you select a number of dungeons higher that what are available given the other settings chosen, then this will be lowered to the total number of accessible dungeons. \nThere are 6 dungeons in the game that count:\nDeepwood Shrine\nCave of Flames\nFortress of Winds\nTemple of Droplets\nRoyal Crypt\nPalace of Winds - AD_PED_0 - 0 - AD_PED_0 - - 1 - AD_PED_1 - - 2 - AD_PED_2 - - 3 - AD_PED_3 - - 4 - AD_PED_4 - - 5 - AD_PED_5 - - 6 - AD_PED_6 -
 !dropdown - Main Settings - Setting - Requirements - SWORD_SETTING - Sword Requirement - The level of sword that needs to be collected to activate the Sanctuary - 5SWORD - No Sword - 0SWORD - - Smith Sword - 1SWORD - - Green Sword - 2SWORD - - Red Sword - 3SWORD - - Blue Sword - 4SWORD - - Four Sword - 5SWORD -
 !dropdown - Main Settings - Setting - Requirements - ELEMENT_SETTING - Elements Required - The number of Elements that need to be collected to activate the Sanctuary - 4ELEMENT - 0 - 0ELEMENT - - 1 - 1ELEMENT - - 2 - 2ELEMENT - - 3 - 3ELEMENT - - 4 - 4ELEMENT -
-!flag - Main Settings - Setting - Requirements - FIGURINE_HUNT - Figurine Hunt - Carlov's Figurine pieces have been scattered into the world, collect enough of them to be able to activate the Sanctuary, this is way better than a gacha game!\n Don't forget to visit Carlov's Machine to view the figurines you have collected so far.
+!flag - Main Settings - Setting - Requirements - FIGURINE_HUNT - Figurine Hunt - Carlov's Figurine pieces have been scattered into the world, collect enough of them to be able to activate the Sanctuary, this is way better than a gacha game!\nDon't forget to visit Carlov's Machine to view the figurines you have collected so far.
 !numberbox - Main Settings - Setting - Requirements - FIGURINE_TOTAL - Figurines in world - The total number of Figurines that get added to the item pool, the maximum amount is 136. - 30 - 0 - 136
 !numberbox - Main Settings - Setting - Requirements - FIGURINE_COUNT - Figurines required - The number of Figurines required to activate the Sanctuary, do not raise this to higher than the total number of Figurines or you won't be able to beat the game silly. - 20 - 0 - 136
 
@@ -116,22 +116,22 @@
 !flag - Main Settings - Setting - Shuffle - RUPEEMANIA - Rupees - If enabled will shuffle any free standing Rupees normally found in the world that are one off collectable, this adds a lot of extra money in the pool and certain locations will be very item dense.
 !flag - Main Settings - Setting - Shuffle - SPECIALPOTS - Special Pots - If enabled will shuffle items found is special pots around the world that contain one off collectables. This setting does not affect the LonLonRanch Key Item which will always shuffled, however if this setting is off then the pot in the ranch will always contain junk.
 !flag - Main Settings - Setting - Shuffle - DIGGING - Dig spots - If enabled will shuffle items found at special digging locations around the world that are one off collectables, Use the mitts on a patch of ground to dig up an item.
-!flag - Main Settings - Setting - Shuffle - UNDERWATER - Underwater spots - If enabled will shuffle items found when swimming underwater at special locations (Mostly near waterfalls).\n The Locations that normally contain a Heart Piece found underwater in the lake and the Small Key found underwater in Temple of Droplets will always be junk if this setting is disabled, unless Hearts are not shuffled or Small Keys are set to Vanilla respectively.
-!flag - Main Settings - Setting - Shuffle - GOLDEN_ENEMY - Golden Enemies - If enabled will shuffle items dropped by Golden Enemies once then are defeated. There are 3 kinds of Golden Enemy: "Golden Octo", "Golden Tektite" and "Golden Rope".\n These Enemies are spawned by completing certain Kinstone Fusions in the game, if you remove certain kinstone colors then those enemies made innaccessible will not have items.\n These enemies have a lot of health but are not invulnerable, Keep hitting them!
-!flag - Main Settings - Setting - Shuffle - PED_ITEMS - Sanctuary Pedestal - This setting is force disabled when playing on any DHC setting other than 'Always Open'.\n If enabled will shuffle 3 items onto the pedestal found in the Sanctuary, these can be collected when the pedestal is visited with 2 elements, 3 elements and 4 elements respectively.
+!flag - Main Settings - Setting - Shuffle - UNDERWATER - Underwater spots - If enabled will shuffle items found when swimming underwater at special locations (Mostly near waterfalls).\nThe Locations that normally contain a Heart Piece found underwater in the lake and the Small Key found underwater in Temple of Droplets will always be junk if this setting is disabled, unless Hearts are not shuffled or Small Keys are set to Vanilla respectively.
+!flag - Main Settings - Setting - Shuffle - GOLDEN_ENEMY - Golden Enemies - If enabled will shuffle items dropped by Golden Enemies once then are defeated. There are 3 kinds of Golden Enemy: "Golden Octo", "Golden Tektite" and "Golden Rope".\nThese Enemies are spawned by completing certain Kinstone Fusions in the game, if you remove certain kinstone colors then those enemies made innaccessible will not have items.\nThese enemies have a lot of health but are not invulnerable, Keep hitting them!
+!flag - Main Settings - Setting - Shuffle - PED_ITEMS - Sanctuary Pedestal - This setting is force disabled when playing on any DHC setting other than 'Always Open'.\nIf enabled will shuffle 3 items onto the pedestal found in the Sanctuary, these can be collected when the pedestal is visited with 2 elements, 3 elements and 4 elements respectively.
 
-!dropdown - World Settings - Setting - Global - OPENWORLD - World obstacles are - Does not affect Key Doors, Fusions, Wind Crests and Dungeon Warps. - OPENWORLD_OFF - Open - OPENWORLD_ON - 'Open': Opens every permanently solvable obstacle in the game: Every cut tree, cracked block, bomb wall, boulder shortcut, non key door, bean vine, switch, lever, chest spawn and extendable bridge.\n              The World is open from the start. - Standard - OPENWORLD_OFF - 'Standard': All obstacles have to be completed like normal. 
-!dropdown - World Settings - Setting - Global - ENTRANCES - Dungeon Entrances are - The 6 Dungeons that can hold elements may have their entrances shuffled. These are always coupled entrance swaps which means when you leave a shuffled dungeon you will always go back to the place you originally came from.\n Dark Hyrule Castle is not currently shuffled. - ENTRANCES_VANILLA - Vanilla - ENTRANCES_VANILLA - 'Vanilla': Dungeon entrances are not shuffled. - Shuffled - ENTRANCES_COUPLED - 'Shuffled': All Dungeon entrances are shuffled between each other, these are the following dungeons that are shuffled:\n                   Deepwood Shrine\n                   Cave of Flames\n                   Fortress of Winds\n                   Temple of Droplets\n                   Royal Crypt\n                   Palace of Winds
-!dropdown - World Settings - Setting - Fusions - GOLD_FUSION_SETTING - Gold Fusions are - Golden Kinstones come in 3 shapes: 5 for Cloud Tops, 3 for Castor Wilds (Swamp), and 1 for Veil Falls (A Crown) for 9 in Total.\n The fusions that require Golden Kinstones lock major areas of the game. - VANILLA_GOLD_FUSIONS - Removed (Closed) - NO_GOLD_FUSIONS - 'Removed': All the Gold Kinstones are removed from the pool, and the fusions are unable to be completed. This prevents Fortress of Winds from being reachable, and without the Open Wind Tribe setting this will prevent Palace of Winds from being reachable. - Vanilla - VANILLA_GOLD_FUSIONS - 'Vanilla': This shuffles the 3 different shaped Golden Kinstones into the pool (9 total: 5/3/1), the locations of the fusions and what shape they ask for are not shuffled. - Combined - COMBINED_GOLD_FUSIONS - 'Combined': This converts the different shaped Golden Kinstones into a single Golden shape. 9 of these are shuffled into the world, the locations of the fusions are not shuffled and all ask for the same shape. - Completed (Open) - OPEN_GOLD_FUSIONS - 'Completed': All the Golden Kinstones are removed from the pool, and all the fusions are already completed.
-!dropdown - World Settings - Setting - Fusions - RED_FUSION_SETTING - Red Fusions are - Red Kinstones come in 3 shapes, Fusions can be found everywhere but are mostly from unique individuals.\n There are 24 Fusions in total, There are more Kinstones in the pool than fusions available just to be generous. - NO_RED_FUSIONS - Removed (Closed) - NO_RED_FUSIONS - 'Removed': All the Red Kinstones are removed from the pool, and the fusions are unable to be completed. - Vanilla - VANILLA_RED_FUSIONS - 'Vanilla': This shuffles the 3 different shaped Red Kinstones into the pool, the exact amount needed to do every available fusion, the locations of the fusions and what shape they ask for are not shuffled. - Combined - COMBINED_RED_FUSIONS - 'Combined': This converts the different shaped Red Kinstones into a single Red shape. The locations of the fusions are not shuffled and all ask for the same shape. - Completed (Open) - OPEN_RED_FUSIONS - 'Completed': All the Red Kinstones are removed from the pool, and all the fusions are already completed.
-!dropdown - World Settings - Setting - Fusions - BLUE_FUSION_SETTING - Blue Fusions are - Blue Kinstones come in 2 shapes, Fusions can be found everywhere but are mostly from Walls or unique individuals.\n There are 18 Fusions in total, There are more Kinstones in the pool than fusions available just to be generous. - NO_BLUE_FUSIONS - Removed (Closed) - NO_BLUE_FUSIONS - 'Removed': All the Blue Kinstones are removed from the pool, and the fusions are unable to be completed. - Vanilla - VANILLA_BLUE_FUSIONS - 'Vanilla': This shuffles the 2 different shaped Blue Kinstones into the pool, the exact amount needed to do every available fusion, the locations of the fusions and what shape they ask for are not shuffled. - Combined - COMBINED_BLUE_FUSIONS - 'Combined': This converts the different shaped Blue Kinstones into a single Blue shape. The locations of the fusions are not shuffled and all ask for the same shape. - Completed (Open) - OPEN_BLUE_FUSIONS - 'Completed': All the Blue Kinstones are removed from the pool, and all the fusions are already completed.
-!dropdown - World Settings - Setting - Fusions - GREEN_FUSION_SETTING - Green Fusions are - Green Kinstones come in 3 shapes, Fusions can be found everywhere and a large amount are shared between many people.\n There are 49 Fusions in total, There are more Kinstones in the pool than fusions available just to be generous. - NO_GREEN_FUSIONS - Removed (Closed) - NO_GREEN_FUSIONS - 'Removed': All the Green Kinstones are removed from the pool, and the fusions are unable to be completed. - Vanilla - VANILLA_GREEN_FUSIONS - 'Vanilla': This shuffles the 3 different shaped Green Kinstones into the pool, the exact amount needed to do every available fusion, the locations of the fusions and what shape they ask for are not shuffled. - Combined - COMBINED_GREEN_FUSIONS - 'Combined': This converts the different shaped Green Kinstones into a single Green shape. The locations of the fusions are not shuffled and all ask for the same shape. - Completed (Open) - OPEN_GREEN_FUSIONS - 'Completed': All the Green Kinstones are removed from the pool, and all the fusions are already completed.
-!flag - World Settings - Setting - Fusions - SEEDED_SHARED - Order Shared Fusions - There is a Pool of 18 Shared Fusions in the Game: 16 Green, 1 Blue and 1 Red. These Fusions are randomly selected by an NPC who offers Shared Fusions when you enter the room they are in.\n\n If this setting is enabled then the seed generates a listed order these NPCs offer the Fusions in. This makes different people playing the same seed have the same Fusions available which is useful for races. - true
-!flag - World Settings - Setting - Fusions - DEFICKLE - Defickle Fusers - Many NPCs who offer fusions are considered 'Fickle', this means they can randomly decide to NOT offer their fusion.\n\n Enable this to make them ALWAYS offer a fusion. - true
-!dropdown - World Settings - Setting - Fusions - FUSION_SKIPS - Skip Fusion Cutscenes - When doing a Kinstone Fusion you get a cutscene aftewards to show you what the fusion activated, and then a Map indicator spawns. - ALLOW_FUSION_SKIPS - Never - NO_FUSION_SKIP - 'Never': The cutscene is never able to be skipped by the player. - Choose - ALLOW_FUSION_SKIPS - 'Choose': If you hold a button prior to the start of the cutscene, then the cutscene is skipped, otherwise the cutscene plays normally.\n                 If 'Show Map' is enabled then only the cutscene is skipped, but the map screen is still shown. - Always - INSTANT_SKIP - 'Always': The cutscene is always skipped without player input.\n                 If 'Show Map' is enabled then it will always show the map screen.
+!dropdown - World Settings - Setting - Global - OPENWORLD - World obstacles are - Does not affect Key Doors, Fusions, Wind Crests and Dungeon Warps. - OPENWORLD_OFF - Open - OPENWORLD_ON - 'Open': Opens every permanently solvable obstacle in the game: Every cut tree, cracked block, bomb wall, boulder shortcut, non key door, bean vine, switch, lever, chest spawn and extendable bridge.\n             The World is open from the start. - Standard - OPENWORLD_OFF - 'Standard': All obstacles have to be completed like normal. 
+!dropdown - World Settings - Setting - Global - ENTRANCES - Dungeon Entrances are - The 6 Dungeons that can hold elements may have their entrances shuffled. These are always coupled entrance swaps which means when you leave a shuffled dungeon you will always go back to the place you originally came from.\nDark Hyrule Castle is not currently shuffled. - ENTRANCES_VANILLA - Vanilla - ENTRANCES_VANILLA - 'Vanilla': Dungeon entrances are not shuffled. - Shuffled - ENTRANCES_COUPLED - 'Shuffled': All Dungeon entrances are shuffled between each other, these are the following dungeons that are shuffled:\n                  Deepwood Shrine\n                  Cave of Flames\n                  Fortress of Winds\n                  Temple of Droplets\n                  Royal Crypt\n                  Palace of Winds
+!dropdown - World Settings - Setting - Fusions - GOLD_FUSION_SETTING - Gold Fusions are - Golden Kinstones come in 3 shapes: 5 for Cloud Tops, 3 for Castor Wilds (Swamp), and 1 for Veil Falls (A Crown) for 9 in Total.\nThe fusions that require Golden Kinstones lock major areas of the game. - VANILLA_GOLD_FUSIONS - Removed (Closed) - NO_GOLD_FUSIONS - 'Removed': All the Gold Kinstones are removed from the pool, and the fusions are unable to be completed. This prevents Fortress of Winds from being reachable, and without the Open Wind Tribe setting this will prevent Palace of Winds from being reachable. - Vanilla - VANILLA_GOLD_FUSIONS - 'Vanilla': This shuffles the 3 different shaped Golden Kinstones into the pool (9 total: 5/3/1), the locations of the fusions and what shape they ask for are not shuffled. - Combined - COMBINED_GOLD_FUSIONS - 'Combined': This converts the different shaped Golden Kinstones into a single Golden shape. 9 of these are shuffled into the world, the locations of the fusions are not shuffled and all ask for the same shape. - Completed (Open) - OPEN_GOLD_FUSIONS - 'Completed': All the Golden Kinstones are removed from the pool, and all the fusions are already completed.
+!dropdown - World Settings - Setting - Fusions - RED_FUSION_SETTING - Red Fusions are - Red Kinstones come in 3 shapes, Fusions can be found everywhere but are mostly from unique individuals.\nThere are 24 Fusions in total, There are more Kinstones in the pool than fusions available just to be generous. - NO_RED_FUSIONS - Removed (Closed) - NO_RED_FUSIONS - 'Removed': All the Red Kinstones are removed from the pool, and the fusions are unable to be completed. - Vanilla - VANILLA_RED_FUSIONS - 'Vanilla': This shuffles the 3 different shaped Red Kinstones into the pool, the exact amount needed to do every available fusion, the locations of the fusions and what shape they ask for are not shuffled. - Combined - COMBINED_RED_FUSIONS - 'Combined': This converts the different shaped Red Kinstones into a single Red shape. The locations of the fusions are not shuffled and all ask for the same shape. - Completed (Open) - OPEN_RED_FUSIONS - 'Completed': All the Red Kinstones are removed from the pool, and all the fusions are already completed.
+!dropdown - World Settings - Setting - Fusions - BLUE_FUSION_SETTING - Blue Fusions are - Blue Kinstones come in 2 shapes, Fusions can be found everywhere but are mostly from Walls or unique individuals.\nThere are 18 Fusions in total, There are more Kinstones in the pool than fusions available just to be generous. - NO_BLUE_FUSIONS - Removed (Closed) - NO_BLUE_FUSIONS - 'Removed': All the Blue Kinstones are removed from the pool, and the fusions are unable to be completed. - Vanilla - VANILLA_BLUE_FUSIONS - 'Vanilla': This shuffles the 2 different shaped Blue Kinstones into the pool, the exact amount needed to do every available fusion, the locations of the fusions and what shape they ask for are not shuffled. - Combined - COMBINED_BLUE_FUSIONS - 'Combined': This converts the different shaped Blue Kinstones into a single Blue shape. The locations of the fusions are not shuffled and all ask for the same shape. - Completed (Open) - OPEN_BLUE_FUSIONS - 'Completed': All the Blue Kinstones are removed from the pool, and all the fusions are already completed.
+!dropdown - World Settings - Setting - Fusions - GREEN_FUSION_SETTING - Green Fusions are - Green Kinstones come in 3 shapes, Fusions can be found everywhere and a large amount are shared between many people.\nThere are 49 Fusions in total, There are more Kinstones in the pool than fusions available just to be generous. - NO_GREEN_FUSIONS - Removed (Closed) - NO_GREEN_FUSIONS - 'Removed': All the Green Kinstones are removed from the pool, and the fusions are unable to be completed. - Vanilla - VANILLA_GREEN_FUSIONS - 'Vanilla': This shuffles the 3 different shaped Green Kinstones into the pool, the exact amount needed to do every available fusion, the locations of the fusions and what shape they ask for are not shuffled. - Combined - COMBINED_GREEN_FUSIONS - 'Combined': This converts the different shaped Green Kinstones into a single Green shape. The locations of the fusions are not shuffled and all ask for the same shape. - Completed (Open) - OPEN_GREEN_FUSIONS - 'Completed': All the Green Kinstones are removed from the pool, and all the fusions are already completed.
+!flag - World Settings - Setting - Fusions - SEEDED_SHARED - Order Shared Fusions - There is a Pool of 18 Shared Fusions in the Game: 16 Green, 1 Blue and 1 Red. These Fusions are randomly selected by an NPC who offers Shared Fusions when you enter the room they are in.\n\nIf this setting is enabled then the seed generates a listed order these NPCs offer the Fusions in. This makes different people playing the same seed have the same Fusions available which is useful for races. - true
+!flag - World Settings - Setting - Fusions - DEFICKLE - Defickle Fusers - Many NPCs who offer fusions are considered 'Fickle', this means they can randomly decide to NOT offer their fusion.\n\nEnable this to make them ALWAYS offer a fusion. - true
+!dropdown - World Settings - Setting - Fusions - FUSION_SKIPS - Skip Fusion Cutscenes - When doing a Kinstone Fusion you get a cutscene aftewards to show you what the fusion activated, and then a Map indicator spawns. - ALLOW_FUSION_SKIPS - Never - NO_FUSION_SKIP - 'Never': The cutscene is never able to be skipped by the player. - Choose - ALLOW_FUSION_SKIPS - 'Choose': If you hold a button prior to the start of the cutscene, then the cutscene is skipped, otherwise the cutscene plays normally.\n                If 'Show Map' is enabled then only the cutscene is skipped, but the map screen is still shown. - Always - INSTANT_SKIP - 'Always': The cutscene is always skipped without player input.\n                If 'Show Map' is enabled then it will always show the map screen.
 !flag - World Settings - Setting - Fusions - SHOW_MAP - Always Show Map - If enabled, it will always show the map screen at the end of a cutscene, even if the cutscene is skipped.
 
-!flag - World Settings - Setting - Speed Up - OPEN_WIND_TRIBE - Wind Tribe Tower - If enabled, Wind Tribe Tower will act like it has already been entered from Cloud Tops from the start of the game. This unlocks the upper floors, Gregal's 2nd item and the main exit to Cloud tops early.\nIf disabled, Wind Tribe will stay in its initial state until the player enters the building from Cloud Tops.
+!flag - World Settings - Setting - Speed Up - OPEN_WIND_TRIBE - Wind Tribe Tower - If enabled, Wind Tribe Tower will act like it has already been entered from Cloud Tops from the start of the game. This unlocks the upper floors, Gregal's 2nd item and the main exit to Cloud tops early.\nCertain combinations of settings may allow for a softlock when going to Cloud tops without the Tornado being completed, Homewarp will always be available in these situations.\n\nIf disabled, Wind Tribe will stay in its initial state until the player enters the building from Cloud Tops.
 !flag - World Settings - Setting - Speed Up - OPEN_TINGLE - Tingle Brothers - If enabled, will spawn Tingle's brothers Knuckle, Ankle and David Jr. from the start of the game.\nIf disabled, the Tingle brothers will only spawn after talking to Tingle twice in a row.
 
 !flag - World Settings - Setting - Wind Crests - CRENEL_CREST - Mt Crenel - If enabled, will activate the wind crest in Mt Crenel from the start of the game.
@@ -155,56 +155,56 @@
 !flag - World Settings - Setting - Dungeon Warps - DHC_BLUEWARP - DHC Blue - If enabled, will activate the Dark Hyrule Castle Blue Warp from the start of the game.
 !flag - World Settings - Setting - Dungeon Warps - DHC_REDWARP - DHC Red - If enabled, will activate the Dark Hyrule Castle Red Warp from the start of the game.
 
-!flag - Logic Settings - Setting - Logic Rules - NO_LOGIC - No Logic - Items can go anywhere without regard to logic.\n LIKELY RESULTS IN UNBEATABLE SEEDS!
-!dropdown - Logic Settings - Setting - Logic Rules - ACCESSIBILITY - Reachable - Determines which items and locations are guaranteed to be reachable. - ACCESS_INVENTORY - All Locations - ACCESS_LOCATIONS - 'All Locations': All enabled locations are reachable. - All NonKeys - ACCESS_INVENTORY - 'All NonKeys': Like 'All Locations', except keys can lock themselves. - Only the Goal - ACCESS_BEATABLE - 'Only the Goal': Only the goal is guaranteed to be reachable. Some locations and items may be inaccessible. If DHC setting is set to 'Never Open' then the goal is the pedestal requirements, otherwise the goal is Defeat Vaati.
-!dropdown - Logic Settings - Setting - Logic Rules - GRABBABLE - Grab items from a distance - Items can be collected from a distance with either Gust Jar, Boomerang, or even a Sword Slash. - GRABBABLE - Not Allowed - NOT_GRABBABLE - 'Not Allowed': Items cannot be grabbed from a distance. - Allowed - GRABBABLE - 'Allowed': Items can be grabbed from a distance, but this will never be required by logic. - Require - GRABBABLE_LOGIC - 'Require': Items can be grabbed from a distance and logic can require grabbing them when they are obviously grabbable. - Require Hard - GRABBABLE_HARD - 'Require Hard': Items can be grabbed from a distance, and logic can require some very difficult Boomerang throws to be able to collect these items.\n Many of these involve throwing the Boomerang in an arc behind or to the side of the items before making Link run in the opposite direction to get the Boomerang to grab the item on the return journey to Link.
+!flag - Logic Settings - Setting - Logic Rules - NO_LOGIC - No Logic - Items can go anywhere without regard to logic.\nLIKELY RESULTS IN UNBEATABLE SEEDS!
+!dropdown - Logic Settings - Setting - Logic Rules - ACCESSIBILITY - Reachable - Determines which items and locations are guaranteed to be reachable. - ACCESS_BEATABLE - All Locations - ACCESS_LOCATIONS - 'All Locations': All enabled locations are reachable. - All NonKeys - ACCESS_INVENTORY - 'All NonKeys': Like 'All Locations', except keys can lock themselves. - Only the Goal - ACCESS_BEATABLE - 'Only the Goal': Only the goal is guaranteed to be reachable. Some locations and items may be inaccessible. If DHC setting is set to 'Never Open' then the goal is the pedestal requirements, otherwise the goal is Defeat Vaati.
+!dropdown - Logic Settings - Setting - Logic Rules - GRABBABLE - Grab items from a distance - Items can be collected from a distance with either Gust Jar, Boomerang, or even a Sword Slash. - GRABBABLE - Not Allowed - NOT_GRABBABLE - 'Not Allowed': Items cannot be grabbed from a distance. - Allowed - GRABBABLE - 'Allowed': Items can be grabbed from a distance, but this will never be required by logic. - Require - GRABBABLE_LOGIC - 'Require': Items can be grabbed from a distance and logic can require grabbing them when they are obviously grabbable. - Require Hard - GRABBABLE_HARD - 'Require Hard': Items can be grabbed from a distance, and logic can require some very difficult Boomerang throws to be able to collect these items.\nMany of these involve throwing the Boomerang in an arc behind or to the side of the items before making Link run in the opposite direction to get the Boomerang to grab the item on the return journey to Link.
 
 !dropdown - Logic Settings - Setting - Weapons - BOMBWEAPON - Bombs - Bombs can damage nearly every enemy, Bombs are never considered for Simon Simulations, and Golden Enemies. - NOBOMB - No - NOBOMB - 'No': Bombs are not considered as Weapons. - Yes - YESBOMB - 'Yes': Bombs are considered as weapons for most regular enemy fights. - Yes + Bosses - BOSSBOMB - 'Yes + Bosses': Bombs are considered as weapons for most enemy fights. Fighting Green/Blu Chu, Madderpillars and Darknuts require only 10 bomb bag. Gleerok, Mazaal and Scissor Beetles require at least 30 bomb bag. Octo and Gyorg cannot be defeated with bombs.
 !dropdown - Logic Settings - Setting - Weapons - BOWWEAPON - Bows - Bow can damage most enemies, many enemies are very resiliant to damage. Chu Bosses and Darknuts are Immune. - NOBOW - No - NOBOW - 'No': Bows are not considered as Weapons. - Yes - YESBOW - 'Yes': Bows are considered as weapons for most enemy fights. Bows are never considered for Chu Bossfights, Darknuts, Scissor Beetles, Madderpillar, Wizrobes, Simon Simulations, and Golden Enemies. - Yes + Bosses - BOSSBOW - 'Yes + Bosses': Bows are considered as weapons for most enemy fights, but can also be solely required to defeat Gleerok and Mazaal.
 !dropdown - Logic Settings - Setting - Weapons - GUSTWEAPON - Gust Jar - Gust Jar can suck up various enemies like Ghini(Ghosts) and Beetles (The things that grab onto link). It can also grab objects and fire them like projectiles to kill enemies, some enemies or parts of enemies can be used as projectiles such as Helmasaurs and Stalfos. - NOGUST - No - NOGUST - 'No': Gust Jar is never considered for killing enemies. - Yes - YESGUST - 'Yes': Gust Jar is considered as weapons for all enemies that get sucked up by it, you are never expected to use objects as projectiles to kill enemies.
 !dropdown - Logic Settings - Setting - Weapons - LAMPWEAPON - Lantern - The lit Lantern can instantly kill wizrobes by walking through them. - NOLAMP - No - NOLAMP - 'No': Lantern is not considered as a Weapon. - Yes - YESLAMP - 'Yes': Lantern is considered as a weapon for fighting Wizrobes.
 
-!dropdown - Logic Settings - Setting - Require Tricks - MITTSMONEY - Mole Mitts farm Infinite Rupees - Low:Difficulty:\n A single spot outside of Link's house can be dug to find a 20 Rupee that respawns every time you leave link's house. - NOFARM - No - NOFARM - 'No': You will always require finding enough rupees in the item pool before you have to buy items. - Yes - YESFARM - 'Yes': You may be required to farm rupees outside link's house to afford purchasing items if Mitts are acquired.
-!dropdown - Logic Settings - Setting - Require Tricks - BLOWDUST - Bombs blow away dust - Low Difficulty:\n Dust piles can be found that can be blown away to what is underneath. - GUST - No - GUST - 'No': Gust Jar will always be required to blow away dust piles. - Yes - GUSTBOMBS - 'Yes': Bombs may be required to blow away dust piles instead of Gust Jar. 
+!dropdown - Logic Settings - Setting - Require Tricks - MITTSMONEY_SETTING - Mole Mitts farm Infinite Rupees - Low Difficulty:\nA single spot outside of Link's house can be dug to find a 20 Rupee that respawns every time you leave link's house. - NOMITTSMONEY - No - NOMITTSMONEY - 'No': You will always require finding enough rupees in the item pool before you have to buy items. - Yes - MITTSMONEY - 'Yes': You may be required to farm rupees outside link's house to afford purchasing items if Mitts are acquired.
+!dropdown - Logic Settings - Setting - Require Tricks - BLOWDUST_SETTING - Bombs blow away dust - Low Difficulty:\nDust piles can be found that can be blown away to what is underneath. - GUST - No - GUST - 'No': Gust Jar will always be required to blow away dust piles. - Yes - GUSTBOMBS - 'Yes': Bombs may be required to blow away dust piles instead of Gust Jar. 
 
-!dropdown - Logic Settings - Setting - Require Tricks - MUSHROOM - Crenel mushroom grab with Gust jar - Low Difficulty:\n Half way up Mt Crenel across the wooden bridge, the mushroom on the ledge above can be grabbed with the Gust Jar to continue climbing up the mountain.\n This only matters when playing with 'OpenWorld' enabled, since reaching this area requires either Bombs or Grip ring. - NOMUSH - No - NOMUSH - 'No': You will always be expected to have Bombs or Grip Ring to continue up the mountain. - Yes - YESMUSH - 'Yes': You may be required to use the Gust Jar to grab the mushroom to continue up the mountain.
-!dropdown - Logic Settings - Setting - Require Tricks - ARROWBREAK - Light Arrows break objects - Low Difficulty:\n Fully charged Light Arrow shots can break pots, bushes, and small trees. - NOLIGHTS - No - NOLIGHTS - 'No': Light Arrows will never be required to break objects. - Yes - YESLIGHTS - 'Yes': Some obstacles may require Light Arrows to destroy.
+!dropdown - Logic Settings - Setting - Require Tricks - MUSHROOM_SETTING - Crenel mushroom grab with Gust jar - Low Difficulty:\nHalf way up Mt Crenel across the wooden bridge, the mushroom on the ledge above can be grabbed with the Gust Jar to continue climbing up the mountain.\nThis only matters when playing with 'OpenWorld' enabled, since reaching this area requires either Bombs or Grip ring. - NOMUSH - No - NOMUSH - 'No': You will always be expected to have Bombs or Grip Ring to continue up the mountain. - Yes - YESMUSH - 'Yes': You may be required to use the Gust Jar to grab the mushroom to continue up the mountain.
+!dropdown - Logic Settings - Setting - Require Tricks - ARROWBREAK_SETTING - Light Arrows break objects - Low Difficulty:\nFully charged Light Arrow shots can break pots, bushes, and small trees. - NOLIGHTS - No - NOLIGHTS - 'No': Light Arrows will never be required to break objects. - Yes - YESLIGHTS - 'Yes': Some obstacles may require Light Arrows to destroy.
 
-!dropdown - Logic Settings - Setting - Require Tricks - BOBOMBS - Use Bobombs to destroy walls - Low Difficulty:\n Bobombs can be used in 2 rooms in Cave of Flames, when a Bobomb is killed it explodes which can open Bomb Walls.\n Items such as Sword and Gust Jar can easily be used to move the Bobombs near the bomb wall to blow it up.\n Other items like the Boomerang, Shield, Bow, and even thrown pots can be used to make bobombs explode but with much higher difficulty, these will never be required due to it being mostly luck.\n If you killed all the bobombs in a room without blowing up the wall, they will respawn after you do a QUICKWARP. - NOBOBOMBS - No - NOBOBOMBS - 'No': A Bomb Bag will always be required to destroy bombable walls. - Yes - YESBOBOMBS - 'Yes': Either a Sword, the Gust Jar, or a Bomb bag will be required to blow up bombable walls near Bobombs.
-!dropdown - Logic Settings - Setting - Require Tricks - LIKELIKE - LikeLike cave without a Sword - Medium Difficulty:\n The LikeLike digging cave in Minish Woods has 2 chests and has several LikeLikes that grab you when you try to open them. - NOLIKELIKE - No - NOLIKELIKE - 'No': A sword will always be required to reach these chests. - Yes - YESLIKELIKE - 'Yes': You may be required to collect these chests without a sword.
+!dropdown - Logic Settings - Setting - Require Tricks - BOBOMBS_SETTING - Use Bobombs to destroy walls - Low Difficulty:\nBobombs can be used in 2 rooms in Cave of Flames, when a Bobomb is killed it explodes which can open Bomb Walls.\nItems such as Sword and Gust Jar can easily be used to move the Bobombs near the bomb wall to blow it up.\nOther items like the Boomerang, Shield, Bow, and even thrown pots can be used to make bobombs explode but with much higher difficulty, these will never be required due to it being mostly luck.\nIf you killed all the bobombs in a room without blowing up the wall, they will respawn after you do a QUICKWARP. - NOBOBOMBS - No - NOBOBOMBS - 'No': A Bomb Bag will always be required to destroy bombable walls. - Yes - YESBOBOMBS - 'Yes': Either a Sword, the Gust Jar, or a Bomb bag will be required to blow up bombable walls near Bobombs.
+!dropdown - Logic Settings - Setting - Require Tricks - LIKELIKE_SETTING - LikeLike cave without a Sword - Medium Difficulty:\nThe LikeLike digging cave in Minish Woods has 2 chests and has several LikeLikes that grab you when you try to open them. - NOLIKELIKE - No - NOLIKELIKE - 'No': A sword will always be required to reach these chests. - Yes - YESLIKELIKE - 'Yes': You may be required to collect these chests without a sword.
 
-!dropdown - Logic Settings - Setting - Require Tricks - GUARDSKIP - Skip Town guard using Boots - High Difficulty:\n The Guard found on the West side of Town blocks your path to Trilby Highlands and beyond, unless you have: a Sword+Spin, a Cape, or Flippers.\n It is possible to dash with the boots faster than the guard and then quickly roll past them. - NOGUARDSKIP - No - NOGUARDSKIP - 'No': You will only be expected to get past the guard if the guard has moved out of the way because you have the required items. - Yes - YESGUARDSKIP - 'Yes': You may be required to reach Trilby Highlands and beyond by using just the boots.
-!dropdown - Logic Settings - Setting - Require Tricks - CRENELBEAM - Use Beam to hit switch on Mt Crenel - Medium Difficulty:\n In the section after the rain on Mt Crenel is a series of caves, one cave has a switch on the other side of a gap that needs to be hit to extend a bridge.\n This switch can be hit with any of: Boomerang, Bomb Bag, Bow, Sword and Peril Beam, Sword and Sword Beam, or can be skipped entirely with the Rocs Cape. - NOBEAM - No - NOBEAM - 'No': The switch will never require being hit with a sword beam or peril beam. - Yes - YESBEAM - 'Yes': You may be required to hit the switch with a beam, if you have peril beam then you can damage down on the chuchu enemies nearby. If sword beam is required to hit the switch then a bottle will always be required as well (To store a fairy/potion so you can be on full HP to fire a beam).
+!dropdown - Logic Settings - Setting - Require Tricks - GUARDSKIP_SETTING - Skip Town guard using Boots - High Difficulty:\nThe Guard found on the West side of Town blocks your path to Trilby Highlands and beyond, unless you have: a Sword+Spin, a Cape, or Flippers.\nIt is possible to dash with the boots faster than the guard and then quickly roll past them. - NOGUARDSKIP - No - NOGUARDSKIP - 'No': You will only be expected to get past the guard if the guard has moved out of the way because you have the required items. - Yes - YESGUARDSKIP - 'Yes': You may be required to reach Trilby Highlands and beyond by using just the boots.
+!dropdown - Logic Settings - Setting - Require Tricks - CRENELBEAM_SETTING - Use Beam to hit switch on Mt Crenel - Medium Difficulty:\nIn the section after the rain on Mt Crenel is a series of caves, one cave has a switch on the other side of a gap that needs to be hit to extend a bridge.\nThis switch can be hit with any of: Boomerang, Bomb Bag, Bow, Sword and Peril Beam, Sword and Sword Beam, or can be skipped entirely with the Rocs Cape. - NOBEAM - No - NOBEAM - 'No': The switch will never require being hit with a sword beam or peril beam. - Yes - YESBEAM - 'Yes': You may be required to hit the switch with a beam, if you have peril beam then you can damage down on the chuchu enemies nearby. If sword beam is required to hit the switch then a bottle will always be required as well (To store a fairy/potion so you can be on full HP to fire a beam).
 
-!dropdown - Logic Settings - Setting - Require Tricks - DTBEETLE - Use DownThrust to flip Spikey Beetles - Low Difficulty:\n The spikey beetles found in the entrance of Cave of Flames need to be flipped onto their back in order to be killed.\n The actions that can do this are: Cane shot, Shield bonk, Bomb explosion, or Down Strike. - NOTHRUST - No - NOTHRUST - 'No': DownThrust will never be required to flip spikey beetles. - Yes - YESTHRUST - 'Yes': DownThrust may be required to flip spikey beetles.
-!dropdown - Logic Settings - Setting - Require Tricks - DARKROOMS - Dark Rooms without a Lantern - Low/Medium Difficulty:\n Various rooms in the game are dark which makes the room black except for a small circle around link at all times, if the Lantern is equipped then the light extends to a much larger circle. - NODARK - No - NODARK - 'No': Dark rooms will always require a Lantern in order to navigate. The only exception is a small section of a dark room lit by a lamp in Temple of Droplets after the lilypad section to reach the Blue Warp, as this is required in the vanilla game. - Yes - YESDARK - 'Yes': Dark rooms may require to be navigated without a lantern. In most setting combinations this is low difficulty, however if Open World is enabled then some sections of Temple of Droplets may require navigation in the dark that are much harder.
+!dropdown - Logic Settings - Setting - Require Tricks - DTBEETLE_SETTING - Use DownThrust to flip Spikey Beetles - Low Difficulty:\nThe spikey beetles found in the entrance of Cave of Flames need to be flipped onto their back in order to be killed.\nThe actions that can do this are: Cane shot, Shield bonk, Bomb explosion, or Down Strike. - NOTHRUST - No - NOTHRUST - 'No': DownThrust will never be required to flip spikey beetles. - Yes - YESTHRUST - 'Yes': DownThrust may be required to flip spikey beetles.
+!dropdown - Logic Settings - Setting - Require Tricks - DARKROOMS_SETTING - Dark Rooms without a Lantern - Low/Medium Difficulty:\nVarious rooms in the game are dark which makes the room black except for a small circle around link at all times, if the Lantern is equipped then the light extends to a much larger circle. - NODARK - No - NODARK - 'No': Dark rooms will always require a Lantern in order to navigate. The only exception is a small section of a dark room lit by a lamp in Temple of Droplets after the lilypad section to reach the Blue Warp, as this is required in the vanilla game. - Yes - YESDARK - 'Yes': Dark rooms may require to be navigated without a lantern. In most setting combinations this is low difficulty, however if Open World is enabled then some sections of Temple of Droplets may require navigation in the dark that are much harder.
 
-!dropdown - Logic Settings - Setting - Require Tricks - EXTENDCAPE - Tricky Cape jumps across water - Medium Difficulty:\n The Cape can be used to make many unintended jumps across bodies of water you wouldn't expect. Some gaps seem too far to be reachable normally or require jumping at a weird angle, however the distance of the cape glide can be extended:\n Instead of holding the cape button the entire time, tap the cape to do a hop and then press and hold to glide after link is near the end of his hop. - NOEXTENSION - No - NOEXTENSION - 'No': Cape jumps across large bodies of water will always require the flippers. - Yes - YESEXTENSION - 'Yes': Cape can be required to make jumps across sections of water. The Cape jump to the moving platform in Palace is its own setting.
-!dropdown - Logic Settings - Setting - Require Tricks - LAKEMINISH - Minish in Lake without Boots - Medium Difficulty:\n Turning Minish in lake normally requires using the boots to bonk into a tree near the cabin, however that is not the only way of turning minish in lake.\n If Red Fusions are enabled then you can ocarina warp to lake to shrink at the stump located there instead, navigate through the path opened by the crack to reach the island in the middle of the lake where Librari can be found.\n From here you can then jump off the ledge into the middle of the lake. You can always regrow at the tree without having to bonk into it first so you will never be softlocked. - NOLAKEMINISH - No - NOLAKEMINISH - 'No': Minish Sized locations in lake will always require the boots to reach. - Yes - YESLAKEMINISH - 'Yes': Boots may not be required to reach lake minish if it is possible to reach Librari and you have the Flippers.
+!dropdown - Logic Settings - Setting - Require Tricks - EXTENDCAPE_SETTING - Tricky Cape jumps across water - Medium Difficulty:\nThe Cape can be used to make many unintended jumps across bodies of water you wouldn't expect. Some gaps seem too far to be reachable normally or require jumping at a weird angle, however the distance of the cape glide can be extended:\nInstead of holding the cape button the entire time, tap the cape to do a hop and then press and hold to glide after link is near the end of his hop. - NOEXTENSION - No - NOEXTENSION - 'No': Cape jumps across large bodies of water will always require the flippers. - Yes - YESEXTENSION - 'Yes': Cape can be required to make jumps across sections of water. The Cape jump to the moving platform in Palace is its own setting.
+!dropdown - Logic Settings - Setting - Require Tricks - LAKEMINISH_SETTING - Minish in Lake without Boots - Medium Difficulty:\nTurning Minish in lake normally requires using the boots to bonk into a tree near the cabin, however that is not the only way of turning minish in lake.\nIf Red Fusions are enabled then you can ocarina warp to lake to shrink at the stump located there instead, navigate through the path opened by the crack to reach the island in the middle of the lake where Librari can be found.\nFrom here you can then jump off the ledge into the middle of the lake. You can always regrow at the tree without having to bonk into it first so you will never be softlocked. - NOLAKEMINISH - No - NOLAKEMINISH - 'No': Minish Sized locations in lake will always require the boots to reach. - Yes - YESLAKEMINISH - 'Yes': Boots may not be required to reach lake minish if it is possible to reach Librari and you have the Flippers.
 
-!dropdown - Logic Settings - Setting - Require Tricks - CABINSWIM - Swim to Cabin without lilypad - Low Difficulty:\n In the Minish path located at the lake cabin, there is a lilypad you can use to reach the pier on the bottom side of the path. If you try and swim down to the pier you cannot climb up onto it from in the water,\n however you can instead swim to the screen transition at the bottom which will make you enter the cabin, you can then exit the doorway you came from to be placed on the pier. - NOCABIN - No - NOCABIN - 'No': Gust Jar will always be required to reach the lake cabin as minish. - Yes - YESCABIN - 'Yes': Either Gust Jar or Flippers can be required to reach the lake cabin as minish.
-!dropdown - Logic Settings - Setting - Require Tricks - CLOUDSKILL - Kill Cloud Sharks without Weapons - Medium Difficulty:\n The Cloud Shark enemies found in Cloud Tops can be killed with various damaging items like Sword, Bombs or Bow.\n However they can die if they jump off a ledge into the void, this can be easy to do by just standing still on the edge of the platform and waiting for them to jump attack you. - NOCLOUDSKILL - No - NOCLOUDSKILL - 'No': Cloud Sharks will always require a Weapon to kill, depending on what weapon settings are chosen. - Yes - YESCLOUDSKILL - 'Yes': Cloud Sharks can require no items to kill them, stand still by and edge and wait until they jump off to their deaths.
+!dropdown - Logic Settings - Setting - Require Tricks - CABINSWIM_SETTING - Swim to Cabin without lilypad - Low Difficulty:\nIn the Minish path located at the lake cabin, there is a lilypad you can use to reach the pier on the bottom side of the path. If you try and swim down to the pier you cannot climb up onto it from in the water,\nhowever you can instead swim to the screen transition at the bottom which will make you enter the cabin, you can then exit the doorway you came from to be placed on the pier. - NOCABIN - No - NOCABIN - 'No': Gust Jar will always be required to reach the lake cabin as minish. - Yes - YESCABIN - 'Yes': Either Gust Jar or Flippers can be required to reach the lake cabin as minish.
+!dropdown - Logic Settings - Setting - Require Tricks - CLOUDSKILL_SETTING - Kill Cloud Sharks without Weapons - Medium Difficulty:\nThe Cloud Shark enemies found in Cloud Tops can be killed with various damaging items like Sword, Bombs or Bow.\nHowever they can die if they jump off a ledge into the void, this can be easy to do by just standing still on the edge of the platform and waiting for them to jump attack you. - NOCLOUDSKILL - No - NOCLOUDSKILL - 'No': Cloud Sharks will always require a Weapon to kill, depending on what weapon settings are chosen. - Yes - YESCLOUDSKILL - 'Yes': Cloud Sharks can require no items to kill them, stand still by and edge and wait until they jump off to their deaths.
 
-!dropdown - Logic Settings - Setting - Require Tricks - POWJUMP - PoW 2F is clearable without a Cane - High Difficulty:\n In Palace of Winds 2F is a sequence of rooms that at the end requires the Cane of Pacci to hole jump up to a higher platform.\n However the majority of the floor can be skipped with a reasonably precise jump to a moving platform seen when first entering that floor at the bottom of the screen, this skips all the other rooms on this floor which never have any items.\n The jump can be done either with a known setup to make it completely consistent, or the player can just attempt to jump and land on the platform when it stops moving. - NOPOWJUMP - No - NOPOWJUMP - 'No': Everything in Palace of Winds on the 2nd floor or later will require the Cane of Pacci to reach. - Yes - YESPOWJUMP - 'Yes': The only location in Palace of Winds that will require the Cane of Pacci to reach is the Pot Push Puzzle item drop.
-!dropdown - Logic Settings - Setting - Require Tricks - POWPOTOOL - Pot Puzzle without Power Bracelets - Medium Difficulty:\n In Palace of Winds 3F is a section you have to push some pots while minish to reach an item, these pots require the Power Bracelets to be pushed.\n Once you regrow, you then must hit a switch which makes the item drop and a door open. This switch is reachable from a later part of the dungeon, which means the Power Bracelets can be avoided by reaching this later part of the dungeon, hitting the switch, and then backtracking back to the beginning. - NOPOWOOL - No - NOPOWOOL - 'No': Power Bracelets will always be required to reach this location. - Yes - YESPOWOOL - 'Yes': It may be required to reach 3F of the internal section of the dungeon during the 2nd half, located near the blue and red warps. Once the switch has been hit then you can return to the entrance of the dungeon and continue to the item location without having to shrink.
+!dropdown - Logic Settings - Setting - Require Tricks - POWJUMP_SETTING - PoW 2F is clearable without a Cane - High Difficulty:\nIn Palace of Winds 2F is a sequence of rooms that at the end requires the Cane of Pacci to hole jump up to a higher platform.\nHowever the majority of the floor can be skipped with a reasonably precise jump to a moving platform seen when first entering that floor at the bottom of the screen, this skips all the other rooms on this floor which never have any items.\nThe jump can be done either with a known setup to make it completely consistent, or the player can just attempt to jump and land on the platform when it stops moving. - NOPOWJUMP - No - NOPOWJUMP - 'No': Everything in Palace of Winds on the 2nd floor or later will require the Cane of Pacci to reach. - Yes - YESPOWJUMP - 'Yes': The only location in Palace of Winds that will require the Cane of Pacci to reach is the Pot Push Puzzle item drop.
+!dropdown - Logic Settings - Setting - Require Tricks - POWPOTOOL_SETTING - Pot Puzzle without Power Bracelets - Medium Difficulty:\nIn Palace of Winds 3F is a section you have to push some pots while minish to reach an item, these pots require the Power Bracelets to be pushed.\nOnce you regrow, you then must hit a switch which makes the item drop and a door open. This switch is reachable from a later part of the dungeon, which means the Power Bracelets can be avoided by reaching this later part of the dungeon, hitting the switch, and then backtracking back to the beginning. - NOPOWOOL - No - NOPOWOOL - 'No': Power Bracelets will always be required to reach this location. - Yes - YESPOWOOL - 'Yes': It may be required to reach 3F of the internal section of the dungeon during the 2nd half, located near the blue and red warps. Once the switch has been hit then you can return to the entrance of the dungeon and continue to the item location without having to shrink.
 
-!dropdown - Logic Settings - Setting - Require Tricks - DHCCANON - DHC Canon rooms without Four Sword - High Difficulty:\n In Dark Hyrule are two rooms that require knocking canon balls back at canons to complete a puzzle.\n These two rooms are located near the main entrance of the dungeon, one on 1F found by heading north from the main entrance, the other found on B1 by going down the right staircase from the main entrance.\n The intended method of completing these puzzles is by creating 4 Links with the Four Sword, and then doing a sword slash to knock all of the 4 canonballs back simultanously.\n However, it is possible (with setups and practice) to complete these without cloning but by instead using a well timed and placed bomb and sword slash.\n Despite this being a High Difficulty setting, it is unlikely to be required without Four Sword unless you play on the DHC: 'Always Open' setting. Having Four Sword as a requirement for entering DHC will make this always require Four Sword. - NODHCCANON - No - NODHCCANON - 'No': Four Sword (and a Spin) is always required to clear any canon room puzzle in DHC. - Yes - YESDHCCANON - 'Yes': DHC Canon rooms may require only a sword and a bomb bag.
-!dropdown - Logic Settings - Setting - Require Tricks - DHCJOSTLE - DHC Pressure Pads without Four Sword - High Difficulty:\n After the 1F Canon room in the room with the moving blade trap, there are 4 pressure pads that must be pressed to spawn a chest containing an item.\n The intended method to do this puzzle is to use the Four Sword and create 4 Links to stand on these pads simultanously, however it is possible to this with less clones.\n These pads have a slight lag in their detection, which means you can use 2 Links (the amount you get with Red Sword) and make Link quickly walk between 2 pads adjacent to each other for the game to detect both as pressed,\n the clone will mirror the main link and do the same on the other 2 switches to trigger all the pads simultanously and spawn the chest.\n Similar to the DHC Canon setting, this is unlikely to be required unless you play on the DHC: 'Always Open' setting, and will always require Four Sword if one of the DHC requirements is Four Sword.\n This trick is relatively low difficulty to execute, however to reach this area without the Four Sword you must pass a Canon room which will never be required unless the DHC Canon setting is set to 'Yes'. - NODHCJOSTLE - No - NODHCJOSTLE - 'No': Four Sword (and a Spin) will always be required for this location. - Yes - YESDHCJOSTLE - 'Yes': Red Sword (and a Spin) is all that is required for this location. If DHC Canon is set to 'No' then this location requires Four Sword (and a Spin).
+!dropdown - Logic Settings - Setting - Require Tricks - DHCCANON_SETTING - DHC Canon rooms without Four Sword - High Difficulty:\nIn Dark Hyrule are two rooms that require knocking canon balls back at canons to complete a puzzle.\nThese two rooms are located near the main entrance of the dungeon, one on 1F found by heading north from the main entrance, the other found on B1 by going down the right staircase from the main entrance.\nThe intended method of completing these puzzles is by creating 4 Links with the Four Sword, and then doing a sword slash to knock all of the 4 canonballs back simultanously.\nHowever, it is possible (with setups and practice) to complete these without cloning but by instead using a well timed and placed bomb and sword slash.\nDespite this being a High Difficulty setting, it is unlikely to be required without Four Sword unless you play on the DHC: 'Always Open' setting. Having Four Sword as a requirement for entering DHC will make this always require Four Sword. - NODHCCANON - No - NODHCCANON - 'No': Four Sword (and a Spin) is always required to clear any canon room puzzle in DHC. - Yes - YESDHCCANON - 'Yes': DHC Canon rooms may require only a sword and a bomb bag.
+!dropdown - Logic Settings - Setting - Require Tricks - DHCJOSTLE_SETTING - DHC Pressure Pads without Four Sword - High Difficulty:\nAfter the 1F Canon room in the room with the moving blade trap, there are 4 pressure pads that must be pressed to spawn a chest containing an item.\nThe intended method to do this puzzle is to use the Four Sword and create 4 Links to stand on these pads simultanously, however it is possible to this with less clones.\nThese pads have a slight lag in their detection, which means you can use 2 Links (the amount you get with Red Sword) and make Link quickly walk between 2 pads adjacent to each other for the game to detect both as pressed,\nthe clone will mirror the main link and do the same on the other 2 switches to trigger all the pads simultanously and spawn the chest.\nSimilar to the DHC Canon setting, this is unlikely to be required unless you play on the DHC: 'Always Open' setting, and will always require Four Sword if one of the DHC requirements is Four Sword.\nThis trick is relatively low difficulty to execute, however to reach this area without the Four Sword you must pass a Canon room which will never be required unless the DHC Canon setting is set to 'Yes'. - NODHCJOSTLE - No - NODHCJOSTLE - 'No': Four Sword (and a Spin) will always be required for this location. - Yes - YESDHCJOSTLE - 'Yes': Red Sword (and a Spin) is all that is required for this location. If DHC Canon is set to 'No' then this location requires Four Sword (and a Spin).
 
-!dropdown - Logic Settings - Setting - Require Tricks - DHCSWITCHES - DHC Switches without Four Sword - Medium/High Difficulty:\n In Dark Hyrule Castle 2F are 2 rooms that contain puzzles which require hitting 4 switches simultanously to solve the puzzle,\n these switches are close enough together at each location that a single spin attack from a precise spot can hit all the switches and solve the puzzle without having to create clones.\n However because they are located late in the dungeon behind puzzles that always require the Four Sword, this setting will only matter when playing Open World and going through the red warp to reach this floor. - NODHCSWITCHES - No - NODHCSWITCHES - 'No': Four Sword (and a Spin) will always be required to hit these switches. - Yes - YESDHCSWITCHES - 'Yes': A sword and spin is all that is needed to do these puzzles. If Open World is off then Four Sword (and Spin) are required.
-!dropdown - Logic Settings - Setting - Require Tricks - FOWPOT - FoW Pot item early using the Gust Jar - Low Difficulty:\n In Fortress of Winds there are 2 pots that contain items when playing with 'Special Pots', these are located in a dirt filled room in the back right section of the dungeon on 2F locked behind various locked doors.\n However the lower of the 2 pots can be grabbed with the Gust Jar from a much earlier part of the dungeon located in the front right section 2F.\n The pot can accidentally be released inside the wall which makes the item unobtainable, simply reload the room and the pot and item will respawn. - NOFOWPOT - No - NOFOWPOT - 'No': From the entrance of Fortress, this location always requires at least 3 Fortress small keys as well as the Mole Mitts and Bow. - Yes - YESFOWPOT - 'Yes': From the entrance of Fortress, this location may only require the Gust Jar.
+!dropdown - Logic Settings - Setting - Require Tricks - DHCSWITCHES_SETTING - DHC Switches without Four Sword - Medium/High Difficulty:\nIn Dark Hyrule Castle 2F are 2 rooms that contain puzzles which require hitting 4 switches simultanously to solve the puzzle,\nthese switches are close enough together at each location that a single spin attack from a precise spot can hit all the switches and solve the puzzle without having to create clones.\nHowever because they are located late in the dungeon behind puzzles that always require the Four Sword, this setting will only matter when playing Open World and going through the red warp to reach this floor. - NODHCSWITCHES - No - NODHCSWITCHES - 'No': Four Sword (and a Spin) will always be required to hit these switches. - Yes - YESDHCSWITCHES - 'Yes': A sword and spin is all that is needed to do these puzzles. If Open World is off then Four Sword (and Spin) are required.
+!dropdown - Logic Settings - Setting - Require Tricks - FOWPOT_SETTING - FoW Pot item early using the Gust Jar - Low Difficulty:\nIn Fortress of Winds there are 2 pots that contain items when playing with 'Special Pots', these are located in a dirt filled room in the back right section of the dungeon on 2F locked behind various locked doors.\nHowever the lower of the 2 pots can be grabbed with the Gust Jar from a much earlier part of the dungeon located in the front right section 2F.\nThe pot can accidentally be released inside the wall which makes the item unobtainable, simply reload the room and the pot and item will respawn. - NOFOWPOT - No - NOFOWPOT - 'No': From the entrance of Fortress, this location always requires at least 3 Fortress small keys as well as the Mole Mitts and Bow. - Yes - YESFOWPOT - 'Yes': From the entrance of Fortress, this location may only require the Gust Jar.
 
-!dropdown - Item Pool - Setting - Global - ITEM_POOL - Item Pool -  - ITEM_POOL_NORMAL - Reduced (RIP) - ITEM_POOL_RIP - 'Reduced': Removes many items from the pool:\n All Heart Containers removed and some Heart Pieces removed (Max Hearts available is 10)\n Remote Bombs removed\n All Spin Scroll Upgrades removed, a single Spin Scroll remains\n All Butterflies removed\n All Quivers removed\n A Shield is removed, a single Shield remains\n A Boomerang is removed, a single Boomerang remains. If either 'Vanilla Red Fusions' or 'Vanilla Green Fusions' are on then no Boomerangs are removed.\n 3 Bottles removed, a single Bottle remains\n 3 Bomb bags are removed, a single Bomb bag remains - Balanced - ITEM_POOL_NORMAL - 'Balanced': Normal Item Pool. - Plentiful - ITEM_POOL_PLENTIFUL - 'Plentiful': Adds extra copies of major items to the pool.\n Items with 2 extra copies:\n Sword\n Lantern\n Gust Jar\n Cane of Pacci\n Rocs Cape\n Ocarina\n Flippers\n Spin Attack\n Items with 1 extra copy:\n Bow\n Mole Mitts\n Pegasus Boots\n Grip Ring\n Graveyard Key\n If Gold Kinstones are randomized:\n 2 extra Cloud Kinstones, 2 extra Swamp Kinstones, and an extra Falls Kinstone (5 extra if combined)\n If other fusion colors are randomized:\n 2 of each red shape (6 if combined)\n 2 of each blue shape (4 if combined)\n 3 of each green shape (9 if combined)\n If Big Keysanity is on then there is an extra Big Key for each Dungeon\n If Small Keysanity is on then there are 2 extra Small Keys for each Dungeon
+!dropdown - Item Pool - Setting - Global - ITEM_POOL - Item Pool -  - ITEM_POOL_NORMAL - Reduced (RIP) - ITEM_POOL_RIP - 'Reduced': Removes many items from the pool:\nAll Heart Containers removed and some Heart Pieces removed (Max Hearts available is 10)\nRemote Bombs removed\nAll Spin Scroll Upgrades removed, a single Spin Scroll remains\nAll Butterflies removed\nAll Quivers removed\nA Shield is removed, a single Shield remains\nA Boomerang is removed, a single Boomerang remains. If either 'Vanilla Red Fusions' or 'Vanilla Green Fusions' are on then no Boomerangs are removed.\n3 Bottles removed, a single Bottle remains\n3 Bomb bags are removed, a single Bomb bag remains - Balanced - ITEM_POOL_NORMAL - 'Balanced': Normal Item Pool. - Plentiful - ITEM_POOL_PLENTIFUL - 'Plentiful': Adds extra copies of major items to the pool.\nItems with 2 extra copies:\nSword\nLantern\nGust Jar\nCane of Pacci\nRocs Cape\nOcarina\nFlippers\nSpin Attack\nItems with 1 extra copy:\nBow\nMole Mitts\nPegasus Boots\nGrip Ring\nGraveyard Key\nIf Gold Kinstones are randomized:\n2 extra Cloud Kinstones, 2 extra Swamp Kinstones, and an extra Falls Kinstone (5 extra if combined)\nIf other fusion colors are randomized:\n2 of each red shape (6 if combined)\n2 of each blue shape (4 if combined)\n3 of each green shape (9 if combined)\nIf Big Keysanity is on then there is an extra Big Key for each Dungeon\nIf Small Keysanity is on then there are 2 extra Small Keys for each Dungeon
 !flag - Item Pool - Setting - Global - RANDOM_BOTTLE_CONTENT - Random Bottle Contents - Randomizes the contents of the bottles that are shuffled in the pool, these contents are never considered by logic. - true
-!flag - Item Pool - Setting - Global - TRAPS - Traps - Add Trap items to the item pool, These items are disguised to look like major items if they are in visible locations.\n Traps have 10 different possible effects they can deploy when collected, see if you can experience them all! 
+!flag - Item Pool - Setting - Global - TRAPS - Traps - Add Trap items to the item pool, These items are disguised to look like major items if they are in visible locations.\nTraps have 10 different possible effects they can deploy when collected, see if you can experience them all! 
 !flag - Item Pool - Setting - Global - MEME - Fun Junk - Add some items to the item pool to replace junk, these items are completely useless.
-!dropdown - Item Pool - Setting - Global - FIREROD - Firerod - The Firerod is a leftover developer testing tool. It lets the user copy and paste tiles, effectively allowing you to walk through walls and most obstacles.\n\n WARNING: It is extremely easy to softlock yourself with this item, it is recommended to enable 'Homewarp' with this item, however some softlocks will completely prevent you from being able to beat the game. - NO_FIREROD - No Firerod - NO_FIREROD - 'No Firerod': Standard - Shuffled - FIREROD_CHEST - 'Shuffled': Firerod is added to the item pool, it can be randomized to any location. - Start With - FIREROD_START - 'Start With': Firerod is in Links Starting Inventory 
+!dropdown - Item Pool - Setting - Global - FIREROD - Firerod - The Firerod is a leftover developer testing tool. It lets the user copy and paste tiles, effectively allowing you to walk through walls and most obstacles.\nWARNING: It is extremely easy to softlock yourself with this item, 'Homewarp' is always enabled with this item, however some softlocks will completely prevent you from being able to beat the game. - NO_FIREROD - No Firerod - NO_FIREROD - 'No Firerod': Firerod is never available. - Shuffled - FIREROD_CHEST - 'Shuffled': Firerod is added to the item pool, it can be randomized to any location. - Start With - FIREROD_START - 'Start With': Firerod is in Links Starting Inventory.
 
-!dropdown - Item Pool - Setting - Progressive - PROGRESSIVE_SWORD - Swords are Progressive - Option for the Swords to be found in any order or always progress in the intended order. - YES_SWORD_PROG - No - NO_SWORD_PROG - 'No': Each Sword is treated as its own item and can be collected in any order. To create a specific amount of clones you must have the sword that corresponds to that amount of clones.\n ie: If you only find the Four Sword, you can make exaclty 4 clones, but not 2 or 3.\n There are 5 Swords in total:\n Smith Sword\n Green Sword\n Red Sword (Allows making 2 Clones)\ Blue Sword (Allows making 3 Clones)\n Four Sword (Allows making 4 Clones) - Yes - YES_SWORD_PROG - 'Yes': The different Swords are replaced with a generic "Progressive" Sword that upgrades your Sword to the next level.\n ie: The first sword you get is the Smith sword, the next sword you get will upgrade it to the Green Sword.
-!dropdown - Item Pool - Setting - Progressive - PROGRESSIVE_BOW - Bows are Progressive - Option for the Bows to be found in any order or always progress in the intended order. - YES_BOW_PROG - No - NO_BOW_PROG - 'No': The Bow and the Light Arrows are 2 different items and can be found in any order. - Yes - YES_BOW_PROG - 'Yes': The different Bows are replaced with a generic "Progressive" Bow that upgrades your Bow to the next level.\n ie: The first Bow you get is the Regular Bow, the next Bow you get will upgrade it to the Light Arrows.
-!dropdown - Item Pool - Setting - Progressive - PROGRESSIVE_BOOM - Boomerangs are Progressive - Option for the Boomerangs to be found in any order or always progress in the intended order. - YES_BOOM_PROG - No - NO_BOOM_PROG - 'No': The Boomerang and the Magic Boomerang are 2 different items and can be found in any order. - Yes - YES_BOOM_PROG - 'Yes': The different Boomerangs are replaced with a generic "Progressive" Boomerang that upgrades your Boomerang to the next level.\n ie: The first Boomerang you get is the Regular Boomerang, the next Boomerang you get will upgrade it to the Magic Boomerang.
-!dropdown - Item Pool - Setting - Progressive - PROGRESSIVE_SHIELD - Shields are Progressive - Option for the Shields to be found in any order or always progress in the intended order. - YES_SHIELD_PROG - No - NO_SHIELD_PROG - 'No': The Shield and the Mirror Shield are 2 different items and can be found in any order. - Yes - YES_SHIELD_PROG - 'Yes': The different Shields are replaced with a generic "Progressive" Shield that upgrades your Shield to the next level.\n ie: The first Shield you get is the Regular Shield, the next Shield you get will upgrade it to the Mirror Shield.
-!dropdown - Item Pool - Setting - Progressive - PROGRESSIVE_SCROLL - Spin Scrolls are Progressive - Option for the Scrolls to be found in any order or always progress in the intended order. - YES_SCROLL_PROG - No - NO_SCROLL_PROG - 'No': Each Spin Scroll is treated as its own item and can be collected in any order. - Yes - YES_SCROLL_PROG - 'Yes': The different Spin Scrolls are replaced with a generic "Progressive" Spin Scroll that give you the next Spin upgrade in the list, the order you get scrolls in is always: \nSpin Scroll \nFast Spin \nFast Split \nGreatSpin \nLongSpin
+!flag - Item Pool - Setting - Progressive - YES_SWORD_PROG - Swords are Progressive - Option for the Swords to be found in any order or always progress in the intended order.\n\nWhen disabled, each Sword is treated as its own item and can be collected in any order. To create a specific amount of clones you must have the sword that corresponds to that amount of clones.\nie: If you only find the Four Sword, you can make exaclty 4 clones, but not 2 or 3.\nThere are 5 Swords in total:\nSmith Sword\nGreen Sword\nRed Sword (Allows making 2 Clones)\nBlue Sword (Allows making 3 Clones)\nFour Sword (Allows making 4 Clones)\n\nIf enabled, the different Swords are replaced with a generic "Progressive" Sword that upgrades your Sword to the next level.\nie: The first sword you get is the Smith sword, the next sword you get will upgrade it to the Green Sword. - true
+!flag - Item Pool - Setting - Progressive - YES_BOW_PROG - Bows are Progressive - Option for the Bows to be found in any order or always progress in the intended order.\n\nIf disabled, the Bow and the Light Arrows are 2 different items and can be found in any order.\n\nIf enabled, the different Bows are replaced with a generic "Progressive" Bow that upgrades your Bow to the next level.\nie: The first Bow you get is the Regular Bow, the next Bow you get will upgrade it to the Light Arrows. - true
+!flag - Item Pool - Setting - Progressive - YES_BOOM_PROG - Boomerangs are Progressive - Option for the Boomerangs to be found in any order or always progress in the intended order.\n\nIf disabled, the Boomerang and the Magic Boomerang are 2 different items and can be found in any order.\n\nIf enabled, the different Boomerangs are replaced with a generic "Progressive" Boomerang that upgrades your Boomerang to the next level.\nie: The first Boomerang you get is the Regular Boomerang, the next Boomerang you get will upgrade it to the Magic Boomerang. - true
+!flag - Item Pool - Setting - Progressive - YES_SHIELD_PROG - Shields are Progressive - Option for the Shields to be found in any order or always progress in the intended order.\n\nIf disabled, the Shield and the Mirror Shield are 2 different items and can be found in any order.\n\nIf enabled, the different Shields are replaced with a generic "Progressive" Shield that upgrades your Shield to the next level.\nie: The first Shield you get is the Regular Shield, the next Shield you get will upgrade it to the Mirror Shield. - true
+!flag - Item Pool - Setting - Progressive - YES_SCROLL_PROG - Spin Scrolls are Progressive - Option for the Scrolls to be found in any order or always progress in the intended order.\n\nIf disabled, each Spin Scroll is treated as its own item and can be collected in any order.\n\nIf enabled, the different Spin Scrolls are replaced with a generic "Progressive" Spin Scroll that give you the next Spin upgrade in the list, the order you get scrolls in is always: \nSpin Scroll \nFast Spin \nFast Split \nGreatSpin \nLongSpin. - true
 
 !dropdown - Item Pool - Setting - Kinstone Packs - GOLD1MULTIPLIER - Cloud Tops Kinstone pack size - Each time you pick up a kinstone you will get this many added to your bag.\nThis kinstone is the gold combined kinstone if enabled.\n\nTotal fusions are 5 in vanilla and 9 in combined. - 1 - 1 - 1 - - 2 - 2 - - 3 - 3 - - 4 - 4 - - 5 - 5 - - 6 - 6 - - Max - GOLD1MAX -
 !dropdown - Item Pool - Setting - Kinstone Packs - GOLD2MULTIPLIER - Swamp Kinstone pack size - When collecting kinstones, you will get this many added to your bag.\nThis kinstone is not shuffled when the combined setting is enabled. - 1 - 1 - 1 - - 2 - 2 - - Max - GOLD2MAX -
@@ -224,15 +224,15 @@
 !dropdown - Item Pool - Setting - Key Chains - KEYPOWMULTIPLIER - Palace of Winds Keychain size - When collecting keys, you will get this many added to your total. - POW1KEY - 1 - POW1KEY - - 2 - POW2KEY - - 3 - POW3KEY - - 4 - POW4KEY - - 5 - POW5KEY - - 6 - POW6KEY -
 !dropdown - Item Pool - Setting - Key Chains - KEYDHCMULTIPLIER - Dark Hyrule Castle Keychain size - When collecting keys, you will get this many added to your total. - DHC1KEY - 1 - DHC1KEY - - 2 - DHC2KEY - - 3 - DHC3KEY - - 4 - DHC4KEY - - 5 - DHC5KEY -
 
-!flag - Gameplay - Setting - Difficulty - GLITCHLESS - Prevent Speedrun Glitches - Attempts were made to patch the glitches used by speedrunners to reach areas before intended, these attempts failed but we still keep this setting around.\n It is not recommended to enable this setting as it instead causes many bugs in regular gameplay
-!flag - Gameplay - Setting - Difficulty - TIMEDOHKO - Timed OHKO - A 10 minute timer starts when you start your save file, collect timers to increase time on this timer. When the timer hits 00:00 you enter OHKO mode, one hit will kill you.\n Blue Timers increase the time by 2 Mintues\n Green Timers increase the time by 4 minutes\n Red timers reduce the timer to 00:00\n WARNING: Do not enable this with 'Damage Multiplier' above x1, it will generate the seed but fail to patch the game.
+!flag - Gameplay - Setting - Difficulty - GLITCHLESS - Prevent Speedrun Glitches - Attempts were made to patch the glitches used by speedrunners to reach areas before intended, these attempts failed but we still keep this setting around.\nIt is not recommended to enable this setting as it instead causes many bugs in regular gameplay
+!flag - Gameplay - Setting - Difficulty - TIMEDOHKO - Timed OHKO - A 10 minute timer starts when you start your save file, collect timers to increase time on this timer. When the timer hits 00:00 you enter OHKO mode, one hit will kill you.\nBlue Timers increase the time by 2 Mintues\nGreen Timers increase the time by 4 minutes\nRed timers reduce the timer to 00:00\nWARNING: Do not enable this with 'Damage Multiplier' above x1, it will generate the seed but fail to patch the game.
 !dropdown - Gameplay - Setting - Difficulty - THREE_HEART - Maximum Health - The maximum amount of health you can have from healing, Heart Pieces above your max health will be blank. - HEARTS_20 - 1 - 1 - - 2 - 2 - - 3 - 3 - - 4 - 4 - - 5 - 5 - - 6 - 6 - - 7 - 7 - - 8 - 8 - - 9 - 9 - - 10 - 10 - - 11 - 11 - - 12 - 12 - - 13 - 13 - - 14 - 14 - - 15 - 15 - - 16 - 16 - - 17 - 17 - - 18 - 18 - - 19 - 19 - - 20 - HEARTS_20 -
-#!flag - Gameplay - Setting - Difficulty - HERO_MODE - Hero Mode (WIP) - Disables health drops from enemies/pots.\n WARNING: Do not enable this with Timed OHKO.
+#!flag - Gameplay - Setting - Difficulty - HERO_MODE - Hero Mode (WIP) - Disables health drops from enemies/pots.\nWARNING: Do not enable this with Timed OHKO.
 !dropdown - Gameplay - Setting - Difficulty - DAMAGE_MULTI - Damage Multiplier - Multiply the damage received from enemies. WARNING Do NOT enable with 'Timed OHKO', it will generate the seed but fail to patch the game. - MULTI_1 - 1x - MULTI_1 - - 2x - MULTI_2 - - 3x - MULTI_3 - - 4x - MULTI_4 - 
 !flag - Gameplay - Setting - Difficulty - SHY_FAIRIES - Shy Fairies - Fairies do not come out of bottles when your health reaches 0.
 !flag - Gameplay - Setting - Improvements - INSTANT_TEXT - Instant Text - Holding down a button will quickly skip through text, including choices. - true
 !flag - Gameplay - Setting - Improvements - ITEM_HISTORY - Item Name Display - Collecting an item will display text at the bottom left corner of the screen telling you what you just picked up, useful in Keysanity modes where the textbox closes too quickly for you to read which dungeon it came from. - true
-!flag - Gameplay - Setting - Improvements - HOMEWARP - Homewarp - In the Pause menu there is a 'SLEEP' option on the 'QUEST STATUS' screen, using this will warp Link back to his bed from wherever he is. - true
+!flag - Gameplay - Setting - Improvements - HOMEWARP - Homewarp - In the Pause menu there is a 'SLEEP' option on the 'QUEST STATUS' screen, using this will warp Link back to his bed from wherever he is.\nThis option is force enabled whenever a setting combination has the possibility of softlocks - true
 !flag - Gameplay - Setting - Improvements - OCARINA_SELECT - Ocarina on Select - Allows you to use the Ocarina by pressing the Select button, once obtained.\nWarning: Since this removes the Ezlo interaction, this prevents certain glitches. - true
 !flag - Gameplay - Setting - Extras - GORON_ALT_PRICES - Goron Merchant JP/US prices - If enabled will use the prices found in the JP and US versions.\nThese are the prices from left to right:\nEU 1st set: 200, 100, 50\nEU 2nd set: 300, 200, 100\nEU 3rd set: 400, 300, 200\nEU 4th set: 500, 400, 300\nEU 5th set: 600, 500, 400\nJP any set: 300, 200, 50
 !flag - Gameplay - Setting - Extras - NO_KINSTONE_DROPS - Disable Kinstone Drops - Kinstone Pieces can no longer randomly drop.\nThey can also not be obtained through any other means than items in the random item pool. - true
@@ -241,14 +241,14 @@
 
 # Cosmetic settings
 !dropdown - Cosmetics - Cosmetic - Music & Sound Effects - MUSIC_SETTING - Music - - VANILLA_MUSIC - None - NO_MUSIC - 'None': Removes Background Music. - Vanilla - VANILLA_MUSIC - 'Vanilla': Plays the original game music. - Shuffled - MUSIC_RANDO - 'Shuffled': Shuffles the Music heard throughout the game. 
-!numberbox - Cosmetics - Cosmetic - Music & Sound Effects - HEALTH_BEEP - Low Health Beep - The number of frames between the low health beeps.\n One second is 60, Vanilla value is 90, max 255. - 90 - 0 - 255
+!numberbox - Cosmetics - Cosmetic - Music & Sound Effects - HEALTH_BEEP - Low Health Beep - The number of frames between the low health beeps.\nOne second is 60, Vanilla value is 90, max 255. - 90 - 0 - 255
 !flag - Cosmetics - Cosmetic - Text - RANDOM_LANGUAGE - Randomize language - Every textbox opened will have the language randomized
 !flag - Cosmetics - Cosmetic - Hearts - RAINBOW_HEARTS - Rainbow Hearts - Links Hearts shimmer through the colors of the rainbow, and not just for the month of June!
 !color - Cosmetics - Cosmetic - Hearts - HEART_COLOR - Heart Color - Rainbow Hearts overwrites this -    0xFF - 0x50 - 0x30
 !color - Cosmetics - Cosmetic - Heart Outlines - HEART_OUTLINE_COLOR - Heart Outline Color - The color of the (normally white) heart outline -    0xFF - 0xFF - 0xFF
 !color - Cosmetics - Cosmetic - Tunic - TUNIC_COLOR - Tunic Color - Links Tunic Color -    0x10 - 0xFF - 0x08    -    0x10 - 0x7B - 0x29    -    0x41 - 0xA0 - 0x28    -    0xBD - 0xFF - 0xA0
 !color - Cosmetics - Cosmetic - Split Bar - SPLIT_COLOR - Split Bar Color - When holding a Spin Attack (Having either Red/Blue/Four Sword) there is a Bar that appears under Links Hearts -    0x4A - 0xFF - 0x18     -    0x31 - 0x9C - 0x18    -   0x31 - 0x52 - 0x18
-!dropdown - Cosmetics - Cosmetic - Follower - FOLLOWER_SETTING - Follower - Followers are NPCs that follow behind link, they do not interact with anything and have no effect on gameplay other than providing moral support.\n WARNING: Some game sprites won't load if a follower is used but the objects still exist. This mainly affects the climbable clouds in Palace of Winds, leaving and reentering the room should fix the sprite. - NOFOLLOWER - None - NOFOLLOWER -  - Mailman - 0x04 - - Zelda - 0x05 - - Malon - 0x1E - - Smith - 0x22 - - King Daltus - 0x24 - - Cow - 0x31 - - Goron - 0x32 - - Anju - 0x45 -
+!dropdown - Cosmetics - Cosmetic - Follower - FOLLOWER_SETTING - Follower - Followers are NPCs that follow behind link, they do not interact with anything and have no effect on gameplay other than providing moral support.\nWARNING: Some game sprites won't load if a follower is used but the objects still exist. This mainly affects the climbable clouds in Palace of Winds, leaving and reentering the room should fix the sprite. - NOFOLLOWER - None - NOFOLLOWER -  - Mailman - 0x04 - - Zelda - 0x05 - - Malon - 0x1E - - Smith - 0x22 - - King Daltus - 0x24 - - Cow - 0x31 - - Goron - 0x32 - - Anju - 0x45 -
 #!dropdown - Cosmetics - Cosmetic - Don't do this - FUZZY_SETTING - Nausia rating - Seriously just don't do this to yourself, you'll thank me later - NOFUZZ - No thanks - NOFUZZ - - 1 - 0x0 - - 2 - 0x1 - - 3 - 0x2 - - 4 - 0x3 - - 5 - 0x4 - - 6 - 0x5 - - 7 - 0x6 - - 8 - 0x7 - - 9 - 0x8 - - 10 - 0x9 - - 11 - 0xA - - 12 - 0xB - - 13 - 0xC - - 14 - 0xD - - 15 - 0xE -
 
 !eventdefine - customRNG - 0x`RAND_INT`
@@ -264,7 +264,6 @@
     !eventdefine - follower
     !eventdefine - followerID - `FOLLOWER_SETTING`
 !endif
-!undefine - `FOLLOWER_SETTING` 
 
 # !define - `FUZZY_SETTING`
 # !ifndef - NOFUZZ
@@ -276,7 +275,6 @@
 
 !ifdef - NO_MUSIC
 	!eventdefine - no_music
-	!undefine - MUSIC_RANDO
 !endif
 
 !ifdef - TUNIC_COLOR
@@ -325,27 +323,63 @@
 !define - `SMALL_KEYS_SETTING`
 !define - `BIG_KEYS_SETTING`
 !define - `SHUFFLE_ELEMENTS`
+!define - `DUNGEON`
+!define - `DHC_SETTING`
+!define - `REQUIREMENT_ITEM`
+!define - `AD_PED`
+!define - `SWORD_SETTING`
+!define - `ELEMENT_SETTING`
+!define - `DOJO`
+!define - `CUCCO_SETTING`
+!define - `GORON_SETTING`
+
+!define - `OPENWORLD`
+!define - `ENTRANCES`
 !define - `GOLD_FUSION_SETTING`
 !define - `RED_FUSION_SETTING`
 !define - `BLUE_FUSION_SETTING`
 !define - `GREEN_FUSION_SETTING`
 !define - `FUSION_SKIPS`
-!define - `DHC_SETTING`
-!define - `REQUIREMENT_ITEM`
-!define - `DUNGEON`
-!define - `AD_PED`
-!define - `PROGRESSIVE_SWORD`
-!define - `PROGRESSIVE_BOW`
-!define - `PROGRESSIVE_BOOM`
-!define - `PROGRESSIVE_SHIELD`
-!define - `PROGRESSIVE_SCROLL`
-!define - `DOJO`
-!define - `CUCCO_SETTING`
-!define - `GORON_SETTING`
-!define - `ENTRANCES`
+
 !define - `ACCESSIBILITY`
-!define - `BOOTS_L`
 !define - `GRABBABLE`
+!define - `BOMBWEAPON`
+!define - `BOWWEAPON`
+!define - `GUSTWEAPON`
+!define - `LAMPWEAPON`
+!define - `MITTSMONEY_SETTING`
+!define - `BLOWDUST_SETTING`
+!define - `MUSHROOM_SETTING`
+!define - `ARROWBREAK_SETTING`
+!define - `BOBOMBS_SETTING`
+!define - `LIKELIKE_SETTING`
+!define - `GUARDSKIP_SETTING`
+!define - `CRENELBEAM_SETTING`
+!define - `DTBEETLE_SETTING`
+!define - `DARKROOMS_SETTING`
+!define - `EXTENDCAPE_SETTING`
+!define - `LAKEMINISH_SETTING`
+!define - `CABINSWIM_SETTING`
+!define - `CLOUDSKILL_SETTING`
+!define - `POWJUMP_SETTING`
+!define - `POWPOTOOL_SETTING`
+!define - `DHCCANON_SETTING`
+!define - `DHCJOSTLE_SETTING`
+!define - `DHCSWITCHES_SETTING`
+!define - `FOWPOT_SETTING`
+
+!define - `ITEM_POOL`
+!define - `FIREROD`
+!define - `GOLD1MULTIPLIER`
+!define - `GOLD2MULTIPLIER`
+!define - `REDWMULTIPLIER`
+!define - `REDVMULTIPLIER`
+!define - `REDEMULTIPLIER`
+!define - `BLUELMULTIPLIER`
+!define - `BLUESMULTIPLIER`
+!define - `GREENCMULTIPLIER`
+!define - `GREENGMULTIPLIER`
+!define - `GREENPMULTIPLIER`
 !define - `KEYDWSMULTIPLIER`
 !define - `KEYCOFMULTIPLIER`
 !define - `KEYFOWMULTIPLIER`
@@ -354,110 +388,23 @@
 !define - `KEYPOWMULTIPLIER`
 !define - `KEYDHCMULTIPLIER`
 
-# Logic setting defines
-!define - `OPENWORLD`
-!ifdef - OPENWORLD_OFF
-	!undefine - OPENWORLD
-!endif
-!define - `MITTSMONEY`
-!ifdef - NOFARM
-	!undefine - MITTSMONEY
-!endif
-!define - `BLOWDUST`
-!ifdef - GUST
-	!undefine - BLOWDUST
-!endif
-!define - `MUSHROOM`
-!ifdef - NOMUSH
-	!undefine - MUSHROOM
-!endif
-!define - `ARROWBREAK`
-!ifdef - NOLIGHTS
-	!undefine - ARROWBREAK
-!endif
-!define - `BOBOMBS`
-!ifdef - NOBOBOMBS
-	!undefine - BOBOMBS
-!endif
-!define - `LIKELIKE`
-!ifdef - NOLIKELIKE
-	!undefine - LIKELIKE
-!endif
-!define - `GUARDSKIP`
-!ifdef - NOGUARDSKIP
-	!undefine - GUARDSKIP
-!endif
-!define - `CRENELBEAM`
-!ifdef - NOBEAM
-	!undefine - CRENELBEAM
-!endif
-!define - `DTBEETLE`
-!ifdef - NOTHRUST
-	!undefine - DTBEETLE
-!endif
-!define - `DARKROOMS`
-!ifdef - NODARK
-	!undefine - DARKROOMS
-!endif
-!define - `EXTENDCAPE`
-!ifdef - NOEXTENSION
-	!undefine - EXTENDCAPE
-!endif
-!define - `LAKEMINISH`
-!ifdef - NOLAKEMINISH
-	!undefine - LAKEMINISH
-!endif
-!define - `CABINSWIM`
-!ifdef - NOCABIN
-	!undefine - CABINSWIM
-!endif
-!define - `CLOUDSKILL`
-!ifdef - NOCLOUDSKILL
-	!undefine - CLOUDSKILL
-!endif
-!define - `POWJUMP`
-!ifdef - NOPOWJUMP
-	!undefine - POWJUMP
-!endif
-!define - `POWPOTOOL`
-!ifdef - NOPOWOOL
-	!undefine - POWPOTOOL
-!endif
-!define - `DHCCANON`
-!ifdef - NODHCCANON
-	!undefine - DHCCANON
-!endif
-!define - `DHCJOSTLE`
-!ifdef - NODHCJOSTLE
-	!undefine - DHCJOSTLE
-!endif
-!define - `DHCSWITCHES`
-!ifdef - NODHCSWITCHES
-	!undefine - DHCSWITCHES
-!endif
-!define - `FOWPOT`
-!ifdef - NOFOWPOT
-	!undefine - FOWPOT
-!endif
+!define - `THREE_HEART`
+!define - `DAMAGE_MULTI`
+!define - `BOOTS_L`
 
+# Logic setting defines
 !ifdef - INSTANT_TEXT
     !eventdefine - instantText
 !endif
-
 !ifdef - ITEM_HISTORY
     !eventdefine - historyOption - 0x180
 !endif
-
-!define - `THREE_HEART`
 !ifndef - HEARTS_20
 	!eventdefine - heartLimited - `THREE_HEART`
 !endif
-
 !ifdef - HERO_MODE
 	#!eventdefine - heroMode
 !endif
-
-!define - `DAMAGE_MULTI`
 !ifdef - DAMAGE_MULTI
 	!ifndef - MULTI_1
 		!eventdefine - heroMode
@@ -472,15 +419,27 @@
 		!eventdefine - dmgMulti - 4
 	!endif
 !endif
-
 !ifdef - HOMEWARP
     !eventdefine - allowHomewarp
+!else
+	!define - TOWN_CREST
+	!ifndef - NO_FIREROD
+		!define - HOMEWARP
+		!eventdefine - allowHomewarp		
+	!else
+		!ifndef - OPEN_GOLD_FUSIONS
+			!ifndef - NO_RED_FUSIONS
+				!ifdef - OPEN_WIND_TRIBE
+					!define - HOMEWARP
+					!eventdefine - allowHomewarp
+				!endif
+			!endif
+		!endif
+	!endif
 !endif
-
 !ifdef - SHY_FAIRIES
 	!eventdefine - noFairy
 !endif
-
 !ifndef - GORON_ALT_PRICES
 	!define - GORONLEFT1 	-		(|(+4,  Items.Rupee100, Items.Rupee200:2), Helpers.MittsMoney)
 	!define - GORONMID1 	-		(|(+2,  Items.Rupee100, Items.Rupee200:2), Helpers.MittsMoney)
@@ -515,23 +474,19 @@
 	!define - GORONRIGHT5 - ,				(|(+25, Items.Rupee100, Items.Rupee200:2), Helpers.MittsMoney)
 	!eventdefine - goronJPPrices
 !endif
-
 !ifndef - NOT_GRABBABLE
 	!eventdefine - itemsCanCollectItems
 !endif
 
 # Set the number of required dungeons
-!ifdef - AD_PED_1
-	!define - AD_PED_NUM - 1
-!endif
-!ifdef - AD_PED_2
-	!define - AD_PED_NUM - 2
-!endif
-!ifdef - AD_PED_3
-	!define - AD_PED_NUM - 3
-!endif
-!ifdef - AD_PED_4
-	!define - AD_PED_NUM - 4
+!ifdef - AD_PED_6
+	!ifdef - NO_GOLD_FUSIONS
+		!define - AD_PED_5
+	!else
+		!undefine - `DUNGEON`
+		!define - NONE
+		!define - AD_PED_NUM - 6
+	!endif
 !endif
 !ifdef - AD_PED_5
 	!ifdef - NO_GOLD_FUSIONS
@@ -540,7 +495,17 @@
 			!define - NONE
 			!define - AD_PED_NUM - 5
 		!else
-			!define - AD_PED_NUM - 4
+			!ifdef - NO_RED_FUSIONS
+				!define - AD_PED_4
+			!else
+				!ifdef - OPEN_WIND_TRIBE
+					!undefine - `DUNGEON`
+					!define - NONE
+					!define - AD_PED_NUM - 5
+				!else
+					!define - AD_PED_4
+				!endif
+			!endif
 		!endif
 	!else
 		!undefine - `DUNGEON`
@@ -548,58 +513,37 @@
 		!define - AD_PED_NUM - 5
 	!endif
 !endif
-!ifdef - AD_PED_6
-	!ifdef - NO_GOLD_FUSIONS
-		!ifdef - CLOUD_CREST
-			!undefine - `DUNGEON`
-			!define - NONE
-			!define - AD_PED_NUM - 5
+!ifdef - AD_PED_4
+	!define - AD_PED_NUM - 4
+!endif
+!ifdef - AD_PED_3
+	!ifdef - 4ELEMENT
+		!ifdef - SHUFFLE_ELEMENTS_ON
+			!define - AD_PED_NUM - 3
 		!else
+			!undefine - AD_PED_3
 			!define - AD_PED_NUM - 4
+			!define - AD_PED_4
 		!endif
 	!else
-		!undefine - `DUNGEON`
-		!define - NONE
-		!define - AD_PED_NUM - 6
+		!define - AD_PED_NUM - 3
 	!endif
 !endif
-
-# Shuffle Elements removes the "Prize" dungeon and changes all the elements to regular "Major" items to be globally shuffled
-!ifdef - SHUFFLE_ELEMENTS_ON
-    !eventdefine - globalElements - 1   # if defined, does not draw elements on map (during full shuffle)
-	!eventdefine - elementTraps
-	!undefine - `DUNGEON`
-	!define - NONE
-!else
-	!ifdef - UNREQ
-		!import - NON_ELEMENT_DUNGEONS_NOT_REQUIRED
-	!endif
-	!ifdef - UNREQSUR
-		!import - NON_ELEMENT_DUNGEONS_NOT_REQUIRED
-	!endif
-	!ifdef - BARREN
-		!import - NON_ELEMENT_DUNGEONS_BARREN
-	!endif
-	!ifdef - BARRENSUR
-		!import - NON_ELEMENT_DUNGEONS_BARREN
-	!endif
+!ifdef - AD_PED_2
+	!define - AD_PED_NUM - 2
+!endif
+!ifdef - AD_PED_1
+	!define - AD_PED_NUM - 1
 !endif
 
 # Open World removes any key/fusion settings and defines things in patches to open the world
-!ifdef - OPENWORLD
+!ifdef - OPENWORLD_ON
 	!eventdefine - openWorld					# if defines, opens all the permanent flags in dungeons and overworld (puzzles/shortcuts/etc...)
 !endif
 
-!define - GOLDEN_ENEMY_GREEN
-!define - GOLDEN_ENEMY_RED
-
-!ifndef - GOLDEN_ENEMY
-	!undefine - GOLDEN_ENEMY_GREEN
-	!undefine - GOLDEN_ENEMY_RED
-!endif
-
-!ifndef - HOMEWARP
-	!define - TOWN_CREST
+!ifdef - GOLDEN_ENEMY
+	!define - GOLDEN_ENEMY_GREEN
+	!define - GOLDEN_ENEMY_RED
 !endif
 
 !ifdef - CRENEL_CREST
@@ -745,8 +689,6 @@
 		!eventdefine - mC81 - 0x3E							# marks the cloud tops clouds as having fused so they never offer a fusion, this address doesn't spawn the tornado
 	!else
 		!eventdefine - mC81 - 0x00										# sets the golden fusions as not completed
-		!define - `GOLD1MULTIPLIER`
-		!define - `GOLD2MULTIPLIER`
 		!ifndef - GOLD1MAX
 			!eventdefine - kinstoneMultiplierGoldCloud - `GOLD1MULTIPLIER`	# golden cloud kinstones come in packs of this amount
 		!endif
@@ -774,9 +716,6 @@
 		!eventdefine - kinstoneMultiplierRedE - 0			# red E kinstones don't get added to the kinstone bag
 		!undefine - GOLDEN_ENEMY_RED						# removes the golden enemy spawned by the red fusion from logic
 	!else
-		!define - `REDWMULTIPLIER`
-		!define - `REDVMULTIPLIER`
-		!define - `REDEMULTIPLIER`
 		!ifndef - REDWMAX
 			!eventdefine - kinstoneMultiplierRedW - `REDWMULTIPLIER`	# red W kinstones come in packs of this amount
 		!endif
@@ -806,8 +745,6 @@
 		!eventdefine - kinstoneMultiplierBlueL - 0			# blue L kinstones don't get added to the kinstone bag
 		!eventdefine - kinstoneMultiplierBlueS - 0			# blue S kinstones don't get added to the kinstone bag
 	!else
-		!define - `BLUELMULTIPLIER`
-		!define - `BLUESMULTIPLIER`
 		!ifndef - BLUELMAX
 			!eventdefine - kinstoneMultiplierBlueL - `BLUELMULTIPLIER`	# blue L kinstones come in packs of this amount
 		!endif
@@ -837,9 +774,6 @@
 		!eventdefine - kinstoneMultiplierGreenP - 0			# green P kinstones don't get added to the kinstone bag
 		!undefine - GOLDEN_ENEMY_GREEN
 	!else
-		!define - `GREENCMULTIPLIER`
-		!define - `GREENGMULTIPLIER`
-		!define - `GREENPMULTIPLIER`
 		!ifndef - GREENCMAX
 			!eventdefine - kinstoneMultiplierGreenC - `GREENCMULTIPLIER`	# green C kinstones come in packs of this amount
 		!endif
@@ -901,8 +835,519 @@
 	!endif
 !endif
 
-# Keasy removes keys from the pool and unlocks all key doors
+!ifdef - BOOTS_L_NORMAL
+	!eventdefine - bootsOnL
+!endif
+!ifdef - BOOTS_L_MINISH
+	!eventdefine - bootsOnL
+	!eventdefine - bootsMinish
+!endif
 
+!ifdef - OCARINA_SELECT
+	!eventdefine - ocarinaOnSelect
+!endif
+
+!ifdef - DEFICKLE
+    !eventdefine - removeFickleness
+!endif
+
+!ifdef - GLITCHLESS
+    !eventdefine - glitchless		# if defined, loads various hacks to disable the use of some speedrun glitches
+!endif
+
+!ifdef - RANDOM_LANGUAGE
+    !eventdefine - randomLanguage	# if defined, text changes language constantly
+!endif
+
+!ifdef - ALLOW_FUSION_SKIPS
+	!eventdefine - alwaysSkipFusionCutscene - 0					# if 0, fusion cutscenes are skipped when the buttons are held
+!endif
+!ifdef - INSTANT_SKIP
+	!eventdefine - alwaysSkipFusionCutscene - 1					# if non-0, fusion cutscenes are always skipped
+!endif
+!ifdef - NO_FUSION_SKIP
+	!eventdefine - neverSkipFusionCutscene						# if defined, fusion cutscenes are just like vanilla
+!endif
+!ifdef - SHOW_MAP
+	!eventdefine - skipFusionCutsceneShowMap - 1				# if non-0 and fusion cutscenes are skipped, map views are shown
+!else
+	!eventdefine - skipFusionCutsceneShowMap - 0				# if 0 and fusion cutscenes are skipped, map views are also skipped
+!endif
+
+!ifdef - NO_KINSTONE_DROPS
+	!eventdefine - disableKinstoneDrops
+!endif
+
+!ifdef - NO_SHELL_DROPS
+	!eventdefine - disableShellDrops
+!endif
+
+!ifdef - TIMEDOHKO
+    !eventdefine - timedohkoOption
+!endif
+
+!ifdef - FIREROD_CHEST
+    !eventdefine - enable_firerod - 1
+!endif
+!ifdef - FIREROD_START
+    !eventdefine - enable_firerod - 1
+    !eventdefine - enable_firerod_start - 1
+!endif
+
+!ifdef - FALLS_CREST
+	!define - FALLS_ACCESS
+!endif
+!ifdef - CLOUD_CREST
+	!define - FALLS_ACCESS
+	!define - TRIBE_ACCESS
+!else
+	!ifndef - NO_GOLD_FUSIONS
+		!define - FALLS_ACCESS
+		!define - TRIBE_ACCESS
+	!else
+		!ifndef - NO_RED_FUSIONS
+			!define - TRIBE_ACCESS
+			!ifdef - OPEN_WIND_TRIBE
+				!define - FALLS_ACCESS
+			!endif
+		!endif
+	!endif
+!endif
+!ifndef - NO_BLUE_FUSIONS
+	!define - RIGHT_GRAVE
+	!define - MINISH_TREE
+	!define - GORON_CAVE
+!endif
+
+# Entrances
+# Vanilla Elements only allowed when the respective dungeons are accessible (even if entrances are shuffled)
+
+!ifdef - ENTRANCES_VANILLA
+	!define - RC_ACCESS
+	!ifndef - NO_GOLD_FUSIONS
+		!define - FOW_ACCESS
+		!define - UWT_ACCESS
+		!define - POW_ACCESS
+	!else
+		!ifdef - SMALL_KEYS_REGDUN
+			!undefine - SMALL_KEYS_REGDUN
+			!define - SMALL_KEYS_STANDARD
+		!else
+			!ifdef - SMALL_KEYS_DUNGEON
+				!undefine - SMALL_KEYS_DUNGEON
+				!define - SMALL_KEYS_STANDARD
+			!endif
+		!endif
+		!ifdef - BIG_KEYS_REGDUN
+			!undefine - BIG_KEYS_REGDUN
+			!define - BIG_KEYS_STANDARD
+		!else
+			!ifdef - BIG_KEYS_DUNGEON
+				!undefine - BIG_KEYS_DUNGEON
+				!define - BIG_KEYS_STANDARD
+			!endif
+		!endif
+		!ifdef - MAP_REGDUN
+			!undefine - MAP_REGDUN
+			!define - MAP_STANDARD
+		!else
+			!ifdef - MAP_DUNGEON
+				!undefine - MAP_DUNGEON
+				!define - MAP_STANDARD
+			!endif
+		!endif
+		!ifdef - COMPASS_REGDUN
+			!undefine - COMPASS_REGDUN
+			!define - COMPASS_STANDARD
+		!else
+			!ifdef - COMPASS_DUNGEON
+				!undefine - COMPASS_DUNGEON
+				!define - COMPASS_STANDARD
+			!endif
+		!endif
+		
+		!ifdef - CLOUD_CREST
+			!define - UWT_ACCESS
+			!define - POW_ACCESS
+		!else
+			!ifndef - NO_RED_FUSIONS
+				!ifdef - OPEN_WIND_TRIBE
+					!define - UWT_ACCESS
+					!define - POW_ACCESS
+				!endif
+			!endif		
+		!endif
+	!endif
+	!ifdef - SHUFFLE_ELEMENTS_VANILLA
+		!ifndef - POW_ACCESS
+			!ifdef - 4ELEMENT
+				!ifndef - OPENDHC
+					!undefine - SHUFFLE_ELEMENTS_VANILLA
+					!define - SHUFFLE_ELEMENTS_OFF
+				!else
+					!ifdef - REQUIREMENT_ITEM_DHC_BK
+						!undefine - SHUFFLE_ELEMENTS_VANILLA
+						!define - SHUFFLE_ELEMENTS_OFF
+					!else
+						!define - NO_PALACE
+					!endif
+				!endif
+			!else
+				!ifdef - AD_PED_4
+					!ifndef - OPENDHC
+						!undefine - SHUFFLE_ELEMENTS_VANILLA
+						!define - SHUFFLE_ELEMENTS_OFF
+					!else
+						!ifdef - REQUIREMENT_ITEM_DHC_BK
+							!undefine - SHUFFLE_ELEMENTS_VANILLA
+							!define - SHUFFLE_ELEMENTS_OFF
+						!else
+							!define - NO_PALACE
+						!endif
+					!endif
+				!else
+					!define - NO_PALACE
+				!endif
+			!endif
+		!endif
+	!endif
+	!define - DUNGEONENTRANCE - :NoSpoiler;	Unshuffled
+	!define - ENTERDWS - Helpers.AccessDeepwood
+	!define - ENTERCOF - Helpers.AccessCoF
+	!define - FOW_DUNGEONENTRANCE - :NoSpoiler;	Unshuffled
+	!define - ENTERFOW - Helpers.AccessFortress
+	!define - ENTERTOD - Helpers.AccessDroplets
+	!define - ENTERRC - Helpers.AccessCrypt
+	!define - POW_DUNGEONENTRANCE - :NoSpoiler;	Unshuffled
+	!define - ENTERPOW - Helpers.AccessPalace
+	!define - DHC_MAIN_DUNGEONENTRANCE - :NoSpoiler;	Unshuffled
+	!define - DHC_SIDE_DUNGEONENTRANCE - :NoSpoiler;	Unshuffled
+	!define - ENTERDHC - Helpers.AccessDHC
+!else
+	!define - RC_ACCESS
+	!define - FOW_ACCESS
+	!define - POW_ACCESS
+	!ifdef - SHUFFLE_ELEMENTS_VANILLA
+		!ifndef - NO_GOLD_FUSIONS
+			!define - RUINS_ACCESS
+			!define - UWT_ACCESS
+		!else
+			!ifdef - SMALL_KEYS_REGION
+				!undefine - SMALL_KEYS_REGION
+				!define - SMALL_KEYS_STANDARD
+			!else
+				!ifdef - SMALL_KEYS_REGDUN
+					!undefine - SMALL_KEYS_REGDUN
+					!define - SMALL_KEYS_STANDARD
+				!else
+					!ifdef - SMALL_KEYS_DUNGEON
+						!undefine - SMALL_KEYS_DUNGEON
+						!define - SMALL_KEYS_STANDARD
+					!endif
+				!endif
+			!endif
+			!ifdef - BIG_KEYS_REGION
+				!undefine - BIG_KEYS_REGION
+				!define - BIG_KEYS_STANDARD
+			!else
+				!ifdef - BIG_KEYS_REGDUN
+					!undefine - BIG_KEYS_REGDUN
+					!define - BIG_KEYS_STANDARD
+				!else
+					!ifdef - BIG_KEYS_DUNGEON
+						!undefine - BIG_KEYS_DUNGEON
+						!define - BIG_KEYS_STANDARD
+					!endif
+				!endif
+			!endif
+			!ifdef - MAP_REGION
+				!undefine - MAP_REGION
+				!define - MAP_STANDARD
+			!else
+				!ifdef - MAP_REGDUN
+					!undefine - MAP_REGDUN
+					!define - MAP_STANDARD
+				!else
+					!ifdef - MAP_DUNGEON
+						!undefine - MAP_DUNGEON
+						!define - MAP_STANDARD
+					!endif
+				!endif
+			!endif
+			!ifdef - COMPASS_REGION
+				!undefine - COMPASS_REGION
+				!define - COMPASS_STANDARD
+			!else
+				!ifdef - COMPASS_REGDUN
+					!undefine - COMPASS_REGDUN
+					!define - COMPASS_STANDARD
+				!else
+					!ifdef - COMPASS_DUNGEON
+						!undefine - COMPASS_DUNGEON
+						!define - COMPASS_STANDARD
+					!endif
+				!endif
+			!endif
+			
+			!ifdef - CLOUD_CREST
+				!define - UWT_ACCESS
+				!define - POW_ACCESS
+			!else
+				!ifndef - NO_RED_FUSIONS
+					!ifdef - OPEN_WIND_TRIBE
+						!define - UWT_ACCESS
+						!define - POW_ACCESS
+					!else
+						!ifdef - 4ELEMENT
+							!ifndef - OPENDHC
+								!define - PALACE_FORCED
+							!else
+								!ifdef - REQUIREMENT_ITEM_DHC_BK
+									!define - PALACE_FORCED
+								!endif
+							!endif
+						!else
+							!define - ELEMENTS_FORCED
+						!endif
+					!endif
+				!else
+					!ifdef - 4ELEMENT
+						!ifndef - OPENDHC
+							!define - PALACE_FORCED
+						!else
+							!ifdef - REQUIREMENT_ITEM_DHC_BK
+								!define - PALACE_FORCED
+							!endif
+						!endif
+					!else
+						!define - ELEMENTS_FORCED
+					!endif
+				!endif
+			!endif
+		!endif
+	!else
+		!ifndef - NO_GOLD_FUSIONS
+			!define - UWT_ACCESS
+			!define - RUINS_ACCESS
+		!else
+			!ifdef - SMALL_KEYS_REGION
+				!undefine - SMALL_KEYS_REGION
+				!define - SMALL_KEYS_STANDARD
+			!else
+				!ifdef - SMALL_KEYS_REGDUN
+					!undefine - SMALL_KEYS_REGDUN
+					!define - SMALL_KEYS_STANDARD
+				!else
+					!ifdef - SMALL_KEYS_DUNGEON
+						!undefine - SMALL_KEYS_DUNGEON
+						!define - SMALL_KEYS_STANDARD
+					!endif
+				!endif
+			!endif
+			!ifdef - BIG_KEYS_REGION
+				!undefine - BIG_KEYS_REGION
+				!define - BIG_KEYS_STANDARD
+			!else
+				!ifdef - BIG_KEYS_REGDUN
+					!undefine - BIG_KEYS_REGDUN
+					!define - BIG_KEYS_STANDARD
+				!else
+					!ifdef - BIG_KEYS_DUNGEON
+						!undefine - BIG_KEYS_DUNGEON
+						!define - BIG_KEYS_STANDARD
+					!endif
+				!endif
+			!endif
+			!ifdef - MAP_REGION
+				!undefine - MAP_REGION
+				!define - MAP_STANDARD
+			!else
+				!ifdef - MAP_REGDUN
+					!undefine - MAP_REGDUN
+					!define - MAP_STANDARD
+				!else
+					!ifdef - MAP_DUNGEON
+						!undefine - MAP_DUNGEON
+						!define - MAP_STANDARD
+					!endif
+				!endif
+			!endif
+			!ifdef - COMPASS_REGION
+				!undefine - COMPASS_REGION
+				!define - COMPASS_STANDARD
+			!else
+				!ifdef - COMPASS_REGDUN
+					!undefine - COMPASS_REGDUN
+					!define - COMPASS_STANDARD
+				!else
+					!ifdef - COMPASS_DUNGEON
+						!undefine - COMPASS_DUNGEON
+						!define - COMPASS_STANDARD
+					!endif
+				!endif
+			!endif
+			
+			!ifdef - AD_PED_4
+				!ifndef - SHUFFLE_ELEMENTS_ON
+					!undefine - `DUNGEON`
+					!define - NONE
+				!endif
+			!endif
+			
+			!ifdef - CLOUD_CREST
+				!define - UWT_ACCESS
+			!else
+				!ifdef - NO_RED_FUSIONS
+					!ifdef - AD_PED_4
+						!undefine - 0ELEMENT
+						!define - 4ELEMENT
+					!else
+						!ifdef - AD_PED_3
+							!undefine - 0ELEMENT
+							!define - AD_ELEMENT_SPECIAL_CASE
+						!endif
+					!endif
+				!else
+					!ifdef - OPEN_WIND_TRIBE
+						!define - UWT_ACCESS
+					!else
+						!ifdef - AD_PED_4
+							!undefine - 0ELEMENT
+							!define - 4ELEMENT
+						!else
+							!ifdef - AD_PED_3
+								!undefine - 0ELEMENT
+								!define - AD_ELEMENT_SPECIAL_CASE
+							!endif
+						!endif					
+					!endif
+				!endif
+			!endif
+		!endif
+	!endif
+	!define - DUNGEONENTRANCE - :DHCValid;	DungeonEntrance
+	!define - ENTERDWS - Items.Entrance.0x01
+	!define - ENTERCOF - Items.Entrance.0x02
+	!define - ENTERFOW - Items.Entrance.0x03
+	!define - ENTERTOD - Items.Entrance.0x04
+	!define - ENTERRC - Items.Entrance.0x05
+	!define - ENTERPOW - Items.Entrance.0x06
+	!ifdef - ELEMENTS_FORCED
+		Items.Entrance.0x01;	DungeonEntrance;	DHCValid
+		Items.Entrance.0x02;	DungeonEntrance;	DHCValid
+		Items.Entrance.0x04;	DungeonEntrance;	DHCValid
+		Items.Entrance.0x06;	DungeonEntrance;	DHCValid
+	!else
+		!ifdef - PALACE_FORCED
+			Items.Entrance.0x01;	DungeonEntrance;	DHCValid
+			Items.Entrance.0x02;	DungeonEntrance;	DHCValid
+			Items.Entrance.0x04;	DungeonEntrance;	DHCValid
+			Items.Entrance.0x06;	DungeonEntrance;	DHCValid
+		!else
+			Items.Entrance.0x01;	DungeonEntrance;	
+			Items.Entrance.0x02;	DungeonEntrance;	
+			Items.Entrance.0x04;	DungeonEntrance;	
+			Items.Entrance.0x06;	DungeonEntrance;
+		!endif
+	!endif
+	!ifdef - RUINS_ACCESS
+		Items.Entrance.0x03;	DungeonEntrance;
+		!define - FOW_DUNGEONENTRANCE - :DHCValid;	DungeonEntrance
+	!else
+		!ifdef - SHUFFLE_ELEMENTS_ON
+			!define - FOW_DUNGEONENTRANCE - :NoSpoiler:NoElement;	DungeonEntrance
+			Items.Entrance.0x03;	DungeonEntrance;
+		!else
+			!ifndef - AD_PED_5
+				!ifndef - UWT_ACCESS
+					!undefine - `DUNGEON`
+					!define - BARREN
+				!endif
+			!endif
+			!ifdef - ELEMENTS_FORCED
+				!define - FOW_DUNGEONENTRANCE - :NoSpoiler:NoElement;	DungeonEntrance
+				!undefine - FOW_ACCESS
+				Items.Entrance.0x03;	DungeonEntrance;	NoElement
+			!else
+				!ifdef - PALACE_FORCED
+					!define - FOW_DUNGEONENTRANCE - :NoSpoiler:NoElement;	DungeonEntrance
+					!undefine - FOW_ACCESS
+					Items.Entrance.0x03;	DungeonEntrance;	NoElement
+				!else
+					!define - FOW_DUNGEONENTRANCE - :NoSpoiler;	DungeonEntrance
+					Items.Entrance.0x03;	DungeonEntrance;
+					!undefine - `ACCESSIBILITY`
+					!define - ACCESS_BEATABLE
+				!endif
+			!endif
+		!endif
+	!endif
+	!ifdef - UWT_ACCESS
+		Items.Entrance.0x05;	DungeonEntrance;
+		!define - POW_DUNGEONENTRANCE - :DHCValid;	DungeonEntrance
+	!else
+		!ifdef - SHUFFLE_ELEMENTS_ON
+			!define - POW_DUNGEONENTRANCE - :NoSpoiler:NoElement;	DungeonEntrance
+			Items.Entrance.0x05;	DungeonEntrance;
+		!else
+			!undefine - `DUNGEON`
+			!define - BARREN
+			!ifdef - ELEMENTS_FORCED
+				!define - POW_DUNGEONENTRANCE - :NoSpoiler:NoElement;	DungeonEntrance
+				!undefine - RC_ACCESS
+				!define - POW_ACCESS
+				Items.Entrance.0x05;	DungeonEntrance;	NoElement
+			!else
+				!ifdef - PALACE_FORCED
+					!define - POW_DUNGEONENTRANCE - :NoSpoiler:NoElement;	DungeonEntrance
+					!undefine - RC_ACCESS
+					!define - POW_ACCESS
+					Items.Entrance.0x05;	DungeonEntrance;	NoElement
+				!else
+					!define - POW_DUNGEONENTRANCE - :NoSpoiler;	DungeonEntrance
+					Items.Entrance.0x05;	DungeonEntrance;
+					!define - NO_PALACE
+					!undefine - `ACCESSIBILITY`
+					!define - ACCESS_BEATABLE
+				!endif
+			!endif
+		!endif
+	!endif
+	!ifdef - OPENDHC
+		!define - DHC_MAIN_DUNGEONENTRANCE - :DHCValid;	DungeonEntrance
+		!define - DHC_SIDE_DUNGEONENTRANCE - :NoSpoiler;	Unshuffled
+		!define - ENTERDHC - Items.Entrance.0x07
+		Items.Entrance.0x07;	DungeonEntrance;	DHCValid
+	!else
+		!define - DHC_MAIN_DUNGEONENTRANCE - :NoSpoiler;	Unshuffled
+		!define - DHC_SIDE_DUNGEONENTRANCE - :DHCValid;	DungeonEntrance
+		!define - ENTERDHC - Items.Entrance.0x08, Helpers.AccessDHC
+		Items.Entrance.0x08;	DungeonEntrance;	DHCValid
+	!endif
+!endif
+
+# Shuffle Elements removes the "Prize" dungeon and changes all the elements to regular "Major" items to be globally shuffled
+!ifdef - SHUFFLE_ELEMENTS_ON
+    !eventdefine - globalElements - 1   # if defined, does not draw elements on map (during full shuffle)
+	!eventdefine - elementTraps
+	!undefine - `DUNGEON`
+	!define - NONE
+!else
+	!ifdef - UNREQ
+		!import - NON_ELEMENT_DUNGEONS_NOT_REQUIRED
+	!endif
+	!ifdef - UNREQSUR
+		!import - NON_ELEMENT_DUNGEONS_NOT_REQUIRED
+	!endif
+	!ifdef - BARREN
+		!import - NON_ELEMENT_DUNGEONS_BARREN
+	!endif
+	!ifdef - BARRENSUR
+		!import - NON_ELEMENT_DUNGEONS_BARREN
+	!endif
+!endif
+
+# Keasy removes keys from the pool and unlocks all key doors
 !ifdef - SMALL_KEASY
 	!define - Replace_Small_Keys - 
 	!undefine - `KEYDWSMULTIPLIER`
@@ -1203,172 +1648,19 @@
 	!endif
 !endif
 
-!ifdef - BOOTS_L_NORMAL
-	!eventdefine - bootsOnL
-!endif
-!ifdef - BOOTS_L_MINISH
-	!eventdefine - bootsOnL
-	!eventdefine - bootsMinish
-!endif
-
-!ifdef - OCARINA_SELECT
-	!eventdefine - ocarinaOnSelect
-!endif
-
-!ifdef - DEFICKLE
-    !eventdefine - removeFickleness
-!endif
-
-!ifdef - GLITCHLESS
-    !eventdefine - glitchless		# if defined, loads various hacks to disable the use of some speedrun glitches
-!endif
-
-!ifdef - RANDOM_LANGUAGE
-    !eventdefine - randomLanguage	# if defined, text changes language constantly
-!endif
-
-!ifdef - ALLOW_FUSION_SKIPS
-	!eventdefine - alwaysSkipFusionCutscene - 0					# if 0, fusion cutscenes are skipped when the buttons are held
-!endif
-!ifdef - INSTANT_SKIP
-	!eventdefine - alwaysSkipFusionCutscene - 1					# if non-0, fusion cutscenes are always skipped
-!endif
-!ifdef - NO_FUSION_SKIP
-	!eventdefine - neverSkipFusionCutscene						# if defined, fusion cutscenes are just like vanilla
-!endif
-!ifdef - SHOW_MAP
-	!eventdefine - skipFusionCutsceneShowMap - 1				# if non-0 and fusion cutscenes are skipped, map views are shown
-!else
-	!eventdefine - skipFusionCutsceneShowMap - 0				# if 0 and fusion cutscenes are skipped, map views are also skipped
-!endif
-
-!ifdef - NO_KINSTONE_DROPS
-	!eventdefine - disableKinstoneDrops
-!endif
-
-!ifdef - NO_SHELL_DROPS
-	!eventdefine - disableShellDrops
-!endif
-
-!ifdef - TIMEDOHKO
-    !eventdefine - timedohkoOption
-!endif
-
-!define - `FIREROD`
-!ifdef - FIREROD_CHEST
-    !eventdefine - enable_firerod - 1
-!endif
-!ifdef - FIREROD_START
-    !eventdefine - enable_firerod - 1
-    !eventdefine - enable_firerod_start - 1
-!endif
-
-!ifdef - FALLS_CREST
-	!define - FALLS_ACCESS
-!else
-	!ifdef - CLOUD_CREST
-		!define - FALLS_ACCESS
-	!else
-		!ifndef - NO_GOLD_FUSIONS
-			!define - FALLS_ACCESS
-		!endif
-	!endif
-!endif
-!ifdef - ENTRANCES_COUPLED
-	!define - POW_ACCESS
-	!define - FOW_ACCESS
-	!ifdef - CLOUD_CREST
-		!define - UWT_ACCESS
-	!else
-		!ifndef - NO_GOLD_FUSIONS
-			!define - UWT_ACCESS
-		!endif
-	!endif
-!else
-	!ifndef - NO_GOLD_FUSIONS
-		!define - POW_ACCESS
-		!define - UWT_ACCESS
-		!define - FOW_ACCESS
-	!else
-		!ifdef - CLOUD_CREST
-			!define - POW_ACCESS
-			!define - UWT_ACCESS
-		!endif
-	!endif
-!endif
-!ifdef - CLOUD_CREST
-	!define - TRIBE_ACCESS
-!else
-	!ifndef - NO_GOLD_FUSIONS
-		!define - TRIBE_ACCESS
-	!else
-		!ifndef - NO_RED_FUSIONS
-			!define - TRIBE_ACCESS
-		!endif
-	!endif
-!endif
-!ifndef - NO_BLUE_FUSIONS
-	!define - RIGHT_GRAVE
-	!define - MINISH_TREE
-	!define - GORON_CAVE
-!endif
-
-# Vanilla Elements only allowed when the respective dungeons are accessible (even if entrances are shuffled)
-!ifdef - SHUFFLE_ELEMENTS_VANILLA
-	!ifndef - UWT_ACCESS
-		!undefine - SHUFFLE_ELEMENTS_VANILLA
-		!define - SHUFFLE_ELEMENTS_OFF
-	!endif
-!endif
-
-#Entrances
-
-!ifdef - ENTRANCES_VANILLA
-	!define - DUNGEONENTRANCE - :NoSpoiler;	Unshuffled
-	!define - DHC_MAIN_DUNGEONENTRANCE - :NoSpoiler;	Unshuffled
-	!define - DHC_SIDE_DUNGEONENTRANCE - :NoSpoiler;	Unshuffled
-	!define - ENTERDWS - Helpers.AccessDeepwood
-	!define - ENTERCOF - Helpers.AccessCoF
-	!define - ENTERFOW - Helpers.AccessFortress
-	!define - ENTERTOD - Helpers.AccessDroplets
-	!define - ENTERRC - Helpers.AccessCrypt
-	!define - ENTERPOW - Helpers.AccessPalace
-	!define - ENTERDHC - Helpers.AccessDHC
-!else
-	!define - DUNGEONENTRANCE - ;	DungeonEntrance
-	!define - ENTERDWS - Items.Entrance.0x01
-	!define - ENTERCOF - Items.Entrance.0x02
-	!define - ENTERFOW - Items.Entrance.0x03
-	!define - ENTERTOD - Items.Entrance.0x04
-	!define - ENTERRC - Items.Entrance.0x05
-	!define - ENTERPOW - Items.Entrance.0x06
-	!ifdef - OPENDHC
-		!define - DHC_MAIN_DUNGEONENTRANCE - ;	DungeonEntrance
-		!define - DHC_SIDE_DUNGEONENTRANCE - :NoSpoiler;	Unshuffled
-		!define - ENTERDHC - Items.Entrance.0x07
-		Items.Entrance.0x07;	DungeonEntrance;
-	!else
-		!define - DHC_MAIN_DUNGEONENTRANCE - :NoSpoiler;	Unshuffled
-		!define - DHC_SIDE_DUNGEONENTRANCE - ;	DungeonEntrance
-		!define - ENTERDHC - Items.Entrance.0x08, Helpers.AccessDHC
-		Items.Entrance.0x08;	DungeonEntrance;
-	!endif
-	Items.Entrance.0x01;	DungeonEntrance;
-	Items.Entrance.0x02;	DungeonEntrance;
-	Items.Entrance.0x03;	DungeonEntrance;
-	Items.Entrance.0x04;	DungeonEntrance;
-	Items.Entrance.0x05;	DungeonEntrance;
-	Items.Entrance.0x06;	DungeonEntrance;
-!endif
-
 !ifdef - DOJOVANILLA
-	!undefine - `PROGRESSIVE_SCROLL`
-	!define - NO_SCROLL_PROG
+	!undefine - YES_SCROLL_PROG
 !endif
 
 #Item Pool settings
-!define - `ITEM_POOL`
-!ifdef - NO_SWORD_PROG
+!ifdef - YES_SWORD_PROG
+	!define - SMITHSWORD - Items.ProgressiveItem.0x00
+	!define - GREENSWORD - Items.ProgressiveItem.0x00
+	!define - REDSWORD - Items.ProgressiveItem.0x00
+	!define - BLUESWORD - Items.ProgressiveItem.0x00
+	!define - FOURSWORD - Items.ProgressiveItem.0x00
+	Items.ProgressiveItem.0x00:5;	Major;	#Sword
+!else
 	!eventdefine - arbitrarySwords
 	!define - SMITHSWORD - Items.SmithSword
 	!define - GREENSWORD - Items.GreenSword
@@ -1380,59 +1672,52 @@
 	Items.RedSword;		Major;
 	Items.BlueSword;		Major;
 	Items.FourSword;		Major;
-!else
-	!define - SMITHSWORD - Items.ProgressiveItem.0x00
-	!define - GREENSWORD - Items.ProgressiveItem.0x00
-	!define - REDSWORD - Items.ProgressiveItem.0x00
-	!define - BLUESWORD - Items.ProgressiveItem.0x00
-	!define - FOURSWORD - Items.ProgressiveItem.0x00
-	Items.ProgressiveItem.0x00:5;	Major;	#Sword
 !endif
-!ifdef - NO_BOW_PROG
+!ifdef - YES_BOW_PROG
+	!define - BOW - Items.ProgressiveItem.0x01
+	!define - LIGHTARROW - Items.ProgressiveItem.0x01
+	Items.ProgressiveItem.0x01:2;	Major;	#Bow
+!else
 	!eventdefine - arbitraryBows
 	!define - BOW - Items.Bow
 	!define - LIGHTARROW - Items.LightArrow
 	Items.Bow;			Major;
 	Items.LightArrow;		Major;
-!else
-	!define - BOW - Items.ProgressiveItem.0x01
-	!define - LIGHTARROW - Items.ProgressiveItem.0x01
-	Items.ProgressiveItem.0x01:2;	Major;	#Bow
 !endif
-!ifdef - NO_BOOM_PROG
+!ifdef - YES_BOOM_PROG
+	!define - BOOMERANG - Items.ProgressiveItem.0x02
+	!define - MAGICBOOMERANG - Items.ProgressiveItem.0x02
+	Items.ProgressiveItem.0x02;	Major;	#Boomerang
+!else
 	!eventdefine - arbitraryBoomerangs
 	!define - BOOMERANG - Items.Boomerang
 	!define - MAGICBOOMERANG - Items.MagicBoomerang
 	Items.Boomerang;		Major;
-!else
-	!define - BOOMERANG - Items.ProgressiveItem.0x02
-	!define - MAGICBOOMERANG - Items.ProgressiveItem.0x02
-	Items.ProgressiveItem.0x02;	Major;	#Boomerang
 !endif
-!ifdef - NO_SHIELD_PROG
+!ifdef - YES_SHIELD_PROG
+	!define - SHIELD - Items.ProgressiveItem.0x03
+	!define - MIRROR - Items.ProgressiveItem.0x03
+	Items.ProgressiveItem.0x03;	Major;	#Shield
+!else
 	!eventdefine - arbitraryShields
 	!define - SHIELD - Items.Shield
 	!define - MIRROR - Items.MirrorShield
 	Items.Shield;			Major;
-!else
-	!define - SHIELD - Items.ProgressiveItem.0x03
-	!define - MIRROR - Items.ProgressiveItem.0x03
-	Items.ProgressiveItem.0x03;	Major;	#Shield
 !endif
-!ifdef - NO_SCROLL_PROG
+!ifdef - YES_SCROLL_PROG
+	!ifdef - DOJORANDOM
+		Items.ProgressiveItem.0x04;	DungeonMajor;	dojo	#Scroll
+	!endif
+	!ifdef - DOJOANY
+		Items.ProgressiveItem.0x04;	Major;	#Scroll
+	!endif
+!else
 	!eventdefine - arbitraryScrolls
 	!ifdef - DOJORANDOM
 		Items.SpinAttack;		DungeonMajor;	dojo
 	!endif
 	!ifdef - DOJOANY
 		Items.SpinAttack;		Major;
-	!endif
-!else
-	!ifdef - DOJORANDOM
-		Items.ProgressiveItem.0x04;	DungeonMajor;	dojo	#Scroll
-	!endif
-	!ifdef - DOJOANY
-		Items.ProgressiveItem.0x04;	Major;	#Scroll
 	!endif
 !endif
 	Items.Lantern;		Major;
@@ -1452,7 +1737,7 @@
 		Items.CakeSlice;			Filler;
 	!endif	
 	Items.DogFoodBottle;	Major;
-	!ifdef - OPENWORLD
+	!ifdef - OPENWORLD_ON
 		!ifdef - MEME
 			Items.LonLonKey;		Minor;
 			Items.GraveyardKey;	Minor;
@@ -1653,7 +1938,7 @@
 					!ifndef - BIG_KEYS_STANDARD
 						!ifdef - MEME
 							Items.BigKey.0x1A;	`BIG_KEY`;	`FOW_BIG`
-						!endif
+						!endif						
 					!endif
 				!endif
 			!endif
@@ -1715,13 +2000,33 @@
 				Items.SmallKey.0x1B;	`SMALL_KEY`;	`TOD_SMALL`
 			!endif
 		!endif
-		!ifdef - RC1KEY
-			Items.SmallKey.0x1E:3;	`SMALL_KEY`;	`RC_SMALL`
-		!else
-			!ifdef - RC2KEY
-				Items.SmallKey.0x1E:2;	`SMALL_KEY`;	`RC_SMALL`
+		!ifdef - RC_ACCESS
+			!ifdef - RC1KEY
+				Items.SmallKey.0x1E:3;	`SMALL_KEY`;	`RC_SMALL`
 			!else
-				Items.SmallKey.0x1E;	`SMALL_KEY`;	`RC_SMALL`
+				!ifdef - RC2KEY
+					Items.SmallKey.0x1E:2;	`SMALL_KEY`;	`RC_SMALL`
+				!else
+					Items.SmallKey.0x1E;	`SMALL_KEY`;	`RC_SMALL`
+				!endif
+			!endif
+		!else
+			!ifndef - SMALL_KEYS_VANILLA
+				!ifndef - SMALL_KEYS_REGION
+					!ifndef - SMALL_KEYS_STANDARD
+						!ifdef - MEME
+							!ifdef - RC1KEY
+								Items.SmallKey.0x1E:3;	`SMALL_KEY`;	`RC_SMALL`
+							!else
+								!ifdef - RC2KEY
+									Items.SmallKey.0x1E:2;	`SMALL_KEY`;	`RC_SMALL`
+								!else
+									Items.SmallKey.0x1E;	`SMALL_KEY`;	`RC_SMALL`
+								!endif
+							!endif
+						!endif
+					!endif
+				!endif
 			!endif
 		!endif
 		!ifdef - POW_ACCESS
@@ -1894,23 +2199,7 @@
 	Items.Arrows10;		Filler;
 	Items.Arrows30;		Filler;
 !ifdef - ITEM_POOL_RIP
-	!ifdef - NO_BOOM_PROG
-		!ifdef - VANILLA_RED_FUSIONS
-			Items.MagicBoomerang;		Major;
-		!else
-			!ifdef - COMBINED_RED_FUSIONS
-				Items.MagicBoomerang;		Major;
-			!else
-				!ifdef - VANILLA_GREEN_FUSIONS
-					Items.MagicBoomerang;		Major;
-				!else
-					!ifdef - COMBINED_GREEN_FUSIONS
-						Items.MagicBoomerang;		Major;
-					!endif
-				!endif
-			!endif
-		!endif
-	!else
+	!ifdef - YES_BOOM_PROG
 		!ifdef - VANILLA_RED_FUSIONS
 			Items.ProgressiveItem.0x02;		Major;	#Boomerang
 		!else
@@ -1922,6 +2211,22 @@
 				!else
 					!ifdef - COMBINED_GREEN_FUSIONS
 						Items.ProgressiveItem.0x02;		Major;	#Boomerang
+					!endif
+				!endif
+			!endif
+		!endif
+	!else
+		!ifdef - VANILLA_RED_FUSIONS
+			Items.MagicBoomerang;		Major;
+		!else
+			!ifdef - COMBINED_RED_FUSIONS
+				Items.MagicBoomerang;		Major;
+			!else
+				!ifdef - VANILLA_GREEN_FUSIONS
+					Items.MagicBoomerang;		Major;
+				!else
+					!ifdef - COMBINED_GREEN_FUSIONS
+						Items.MagicBoomerang;		Major;
 					!endif
 				!endif
 			!endif
@@ -1949,17 +2254,29 @@
 !endif
 !ifdef - ITEM_POOL_NORMAL
 	Items.RemoteBombs;						Minor;
-	!ifdef - NO_BOOM_PROG
-		Items.MagicBoomerang;			Major;
-	!else
+	!ifdef - YES_BOOM_PROG
 		Items.ProgressiveItem.0x02;		Major;	#Boomerang
-	!endif
-	!ifdef - NO_SHIELD_PROG
-		Items.MirrorShield;				Major;
 	!else
-		Items.ProgressiveItem.0x03;		Minor;	#Shield
+		Items.MagicBoomerang;			Major;
 	!endif
-	!ifdef - NO_SCROLL_PROG
+	!ifdef - YES_SHIELD_PROG
+		Items.ProgressiveItem.0x03;		Minor;	#Shield
+	!else
+		Items.MirrorShield;				Major;
+	!endif
+	!ifdef - YES_SCROLL_PROG
+		!ifdef - DOJORANDOM
+			Items.ProgressiveItem.0x04:4;	DungeonMajor;	dojo	#Scroll
+			!ifdef - NO_RED_FUSIONS
+				FakeDojo1:dojo:NoSpoiler;		Dungeon;	FakeDojo11:Define:FirstByte, FakeDojo12:Define:SecondByte;	Helpers.BeatVaati;
+				FakeDojo2:dojo:NoSpoiler;		Dungeon;	FakeDojo21:Define:FirstByte, FakeDojo22:Define:SecondByte;	Helpers.BeatVaati;
+				FakeDojo3:dojo:NoSpoiler;		Dungeon;	FakeDojo31:Define:FirstByte, FakeDojo32:Define:SecondByte;	Helpers.BeatVaati;
+			!endif
+		!endif
+		!ifdef - DOJOANY
+			Items.ProgressiveItem.0x04:4;	Major;	#Scroll
+		!endif
+	!else
 		!ifdef - DOJORANDOM
 			Items.GreatSpin;				DungeonMajor;	dojo
 			Items.FastSpin;				DungeonMinor;	dojo
@@ -1976,18 +2293,6 @@
 			Items.FastSpin;				Major;
 			Items.FastSplit;				Major;
 			Items.LongSpin;				Major;
-		!endif
-	!else
-		!ifdef - DOJORANDOM
-			Items.ProgressiveItem.0x04:4;	DungeonMajor;	dojo	#Scroll
-			!ifdef - NO_RED_FUSIONS
-				FakeDojo1:dojo:NoSpoiler;		Dungeon;	FakeDojo11:Define:FirstByte, FakeDojo12:Define:SecondByte;	Helpers.BeatVaati;
-				FakeDojo2:dojo:NoSpoiler;		Dungeon;	FakeDojo21:Define:FirstByte, FakeDojo22:Define:SecondByte;	Helpers.BeatVaati;
-				FakeDojo3:dojo:NoSpoiler;		Dungeon;	FakeDojo31:Define:FirstByte, FakeDojo32:Define:SecondByte;	Helpers.BeatVaati;
-			!endif
-		!endif
-		!ifdef - DOJOANY
-			Items.ProgressiveItem.0x04:4;	Major;	#Scroll
 		!endif
 	!endif
 	!ifdef - FIREROD_CHEST
@@ -2022,31 +2327,43 @@
 	Items.SwimButterfly;			Minor;
 !endif
 !ifdef - ITEM_POOL_PLENTIFUL
-	!ifdef - NO_SWORD_PROG
+	!ifdef - YES_SWORD_PROG
+		Items.ProgressiveItem.0x00:2;	Minor;	#Sword
+	!else
 		Items.SmithSword;				Minor;
 		Items.GreenSword;				Minor;
 		Items.RedSword;				Minor;
 		Items.BlueSword;				Minor;
 		Items.FourSword;				Minor;
-	!else
-		Items.ProgressiveItem.0x00:2;	Minor;	#Sword
 	!endif
-	!ifdef - NO_BOW_PROG
-		Items.Bow;					Minor;
-	!else
+	!ifdef - YES_BOW_PROG
 		Items.ProgressiveItem.0x01;	Minor;	#Bow
-	!endif
-	!ifdef - NO_BOOM_PROG
-		Items.MagicBoomerang;			Major;
 	!else
+		Items.Bow;					Minor;
+	!endif
+	!ifdef - YES_BOOM_PROG
 		Items.ProgressiveItem.0x02;	Major;	#Boomerang
-	!endif
-	!ifdef - NO_SHIELD_PROG
-		Items.MirrorShield;			Major;
 	!else
-		Items.ProgressiveItem.0x03;	Minor;	#Shield
+		Items.MagicBoomerang;			Major;
 	!endif
-	!ifdef - NO_SCROLL_PROG
+	!ifdef - YES_SHIELD_PROG
+		Items.ProgressiveItem.0x03;	Minor;	#Shield
+	!else
+		Items.MirrorShield;			Major;
+	!endif
+	!ifdef - YES_SCROLL_PROG
+		!ifdef - DOJORANDOM
+			Items.ProgressiveItem.0x04:4;	DungeonMajor;	dojo	#Scroll
+			!ifdef - NO_RED_FUSIONS
+				FakeDojo1:dojo:NoSpoiler;		Dungeon;	FakeDojo11:Define:FirstByte, FakeDojo12:Define:SecondByte;	Helpers.BeatVaati;
+				FakeDojo2:dojo:NoSpoiler;		Dungeon;	FakeDojo21:Define:FirstByte, FakeDojo22:Define:SecondByte;	Helpers.BeatVaati;
+				FakeDojo3:dojo:NoSpoiler;		Dungeon;	FakeDojo31:Define:FirstByte, FakeDojo32:Define:SecondByte;	Helpers.BeatVaati;
+			!endif
+		!endif
+		!ifdef - DOJOANY
+			Items.ProgressiveItem.0x04:6;	Major;	#Scroll
+		!endif
+	!else
 		!ifdef - DOJORANDOM
 			Items.GreatSpin;				DungeonMajor;	dojo
 			Items.FastSpin;				DungeonMinor;	dojo
@@ -2064,18 +2381,6 @@
 			Items.FastSpin;				Major;
 			Items.FastSplit;				Major;
 			Items.LongSpin;				Major;
-		!endif
-	!else
-		!ifdef - DOJORANDOM
-			Items.ProgressiveItem.0x04:4;	DungeonMajor;	dojo	#Scroll
-			!ifdef - NO_RED_FUSIONS
-				FakeDojo1:dojo:NoSpoiler;		Dungeon;	FakeDojo11:Define:FirstByte, FakeDojo12:Define:SecondByte;	Helpers.BeatVaati;
-				FakeDojo2:dojo:NoSpoiler;		Dungeon;	FakeDojo21:Define:FirstByte, FakeDojo22:Define:SecondByte;	Helpers.BeatVaati;
-				FakeDojo3:dojo:NoSpoiler;		Dungeon;	FakeDojo31:Define:FirstByte, FakeDojo32:Define:SecondByte;	Helpers.BeatVaati;
-			!endif
-		!endif
-		!ifdef - DOJOANY
-			Items.ProgressiveItem.0x04:6;	Major;	#Scroll
 		!endif
 	!endif
 	Items.RemoteBombs;		Minor;
@@ -2135,7 +2440,9 @@
 		Items.SmallKey.0x18:2;	Minor;
 		Items.SmallKey.0x19:2;	Minor;
 		Items.SmallKey.0x1B:2;	Minor;
-		Items.SmallKey.0x1E:2;	Minor;
+		!ifdef - RC_ACCESS
+			Items.SmallKey.0x1E:2;	Minor;
+		!endif
 		!ifdef - FOW_ACCESS
 			Items.SmallKey.0x1A:2;	Minor;
 		!endif
@@ -2163,7 +2470,6 @@
 
 # Activate Firerod from the start of the game
 
-!define - `SWORD_SETTING`
 !define - SWORDLEVEL - 0
 !define - GOTSWORDS -
 !ifndef - 0SWORD
@@ -2192,28 +2498,35 @@
 		!endif
 	!endif
 	!eventdefine - requirementSwordTier       - `SWORDLEVEL`
+	!eventdefine - requirementSwordName`SWORDLEVEL`
 	!ifdef - YES_SWORD_PROG
 		!undefine - GOTSWORDS
 		!define - GOTSWORDS - Items.ProgressiveItem.0x00:`SWORDLEVEL`
 	!endif
 !endif
 
-!define - `ELEMENT_SETTING`
 !define - GOTELEMENTS -
 !ifndef - 0ELEMENT
 	!ifdef - 1ELEMENT
 		!define - ELEMENT_COUNT - 1
+		!define - ELEMENT_DEF - 1
 	!endif
 	!ifdef - 2ELEMENT
 		!define - ELEMENT_COUNT - 2
+		!define - ELEMENT_DEF - 2
 	!endif
 	!ifdef - 3ELEMENT
 		!define - ELEMENT_COUNT - 3
+		!define - ELEMENT_DEF - 3
 	!endif
 	!ifdef - 4ELEMENT
 		!define - ELEMENT_COUNT - 4
+		!define - ELEMENT_DEF - 4
 	!endif
-	!eventdefine - requirementElementsAmount - `ELEMENT_COUNT`
+	!ifdef - AD_ELEMENT_SPECIAL_CASE
+		!define - ELEMENT_DEF - 3
+	!endif
+	!eventdefine - requirementElementsAmount - `ELEMENT_DEF`
 	!undefine - GOTELEMENTS
 	!define - GOTELEMENTS - , (+`ELEMENT_COUNT`, Items.WaterElement, Items.FireElement, Items.WindElement, Items.EarthElement)
 !endif
@@ -3101,10 +3414,6 @@ HasBeam;				Helper;; Helpers.HasSword, (|Helpers.SwordBeam, Items.PerilBeam)
 CanDownThrust;		Helper;; Helpers.HasSword, Items.DownThrust, Items.RocsCape
 
 # This section checks what the Weapon setting is and adjusts fight logic
-!define - `BOMBWEAPON`
-!define - `BOWWEAPON`
-!define - `GUSTWEAPON`
-!define - `LAMPWEAPON`
 !ifdef - NOBOMB
 	!define - BOMBHELPER -
 	!define - CHUBOMBS - 
@@ -3256,97 +3565,97 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 	ShopScrubTrilby;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Items.MoleMitts)
 	ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Items.MoleMitts)
 !endif
-!ifndef - GUARDSKIP
+!ifdef - NOGUARDSKIP
 	GuardSkip;				Helper;;	Helpers.Inaccessible
 !else
 	GuardSkip;				Helper;;	Items.PegasusBoots
 !endif
-!ifndef - LIKELIKE
+!ifdef - NOLIKELIKE
 	LikeLike;				Helper;;	Helpers.HasSword
 !else
 	LikeLike;				Helper;;	
 !endif
-!ifndef - BLOWDUST
+!ifdef - GUST
 	BlowDust;				Helper;;	Items.GustJar
 !else
 	BlowDust;				Helper;;	(|Items.BombBag, Items.GustJar)
 !endif
-!ifndef - MUSHROOM
+!ifdef - NOMUSH
 	CrenelMushroom;		Helper;;	Items.BombBag
 !else
 	CrenelMushroom;		Helper;;	(|Items.BombBag, Items.GustJar)
 !endif
-!ifndef - ARROWBREAK
+!ifdef - NOLIGHTS
 	LightArrowBreak;		Helper;;	Helpers.Inaccessible
 !else
 	LightArrowBreak;		Helper;;	Helpers.HasLightBow
 !endif
-!ifndef - BOBOMBS
+!ifdef - NOBOBOMBS
 	Bobombs;				Helper;;	Helpers.Inaccessible
 !else
 	Bobombs;				Helper;;	(|Helpers.HasSword, Items.GustJar, Items.BombBag)
 !endif
-!ifndef - CRENELBEAM
+!ifdef - NOBEAM
 	CrenelBeam;			Helper;;	Helpers.Inaccessible
 !else
 	CrenelBeam;			Helper;;	Helpers.HasBeam
 !endif
-!ifndef - DTBEETLE
+!ifdef - NOTHRUST
 	DownThrustBeetle;		Helper;;	Helpers.Inaccessible
 !else
 	DownThrustBeetle;		Helper;;	Helpers.CanDownThrust
 !endif
-!ifndef - EXTENDCAPE
+!ifdef - NOEXTENSION
 	CapeExtension;			Helper;;	Items.Flippers
 !else
 	CapeExtension;			Helper;;	(|Items.Flippers, Items.RocsCape)
 !endif
-!ifndef - DARKROOMS
+!ifdef - NODARK
 	DarkRooms;				Helper;;	Items.Lantern
 !else
 	DarkRooms;				Helper;;	
 !endif
-!ifndef - LAKEMINISH
+!ifdef - NOLAKEMINISH
 	LakeMinish;			Helper;;	Helpers.Inaccessible
 !else
 	LakeMinish;			Helper;;	Items.Ocarina, Helpers.VillageSideMinish3Fusion
 !endif
-!ifndef - CABINSWIM
+!ifdef - NOCABIN
 	CabinSwim;				Helper;;	Items.GustJar
 !else
 	CabinSwim;				Helper;;	(|Items.Flippers, Items.GustJar)
 !endif
-!ifndef - CLOUDSKILL
+!ifdef - NOCLOUDSKILL
 	CloudsKill;			Helper;;	Helpers.HasDamageSource	
 !else
 	CloudsKill;			Helper;;	
 !endif
-!ifndef - FOWPOT
+!ifdef - NOFOWPOT
 	FoWPot;				Helper;;	Helpers.Inaccessible
 !else
 	FoWPot;				Helper;;	Items.GustJar
 !endif
-!ifndef - POWJUMP
+!ifdef - NOPOWJUMP
 	PoWJump;				Helper;;	Items.PacciCane
 !else
 	PoWJump;				Helper;;	
 !endif
-!ifndef - POWPOTOOL
+!ifdef - NOPOWOOL
 	PoWPotPuzzleOOL;		Helper;;	Helpers.Inaccessible
 !else
 	PoWPotPuzzleOOL;		Helper;;	(|Helpers.HasSword, Helpers.HasBoomerang, Items.BombBag, Helpers.HasBow), (|(&Helpers.DarkRooms, (|(&Helpers.PoW2ndHalf1stDoor, Items.RocsCape), Helpers.PoWShortcuts), (|Helpers.PoW2ndHalf, Helpers.PoWBlueWarp)), (&Helpers.PoWRedWarp, Helpers.OverworldBlocks))
 !endif
-!ifndef - DHCCANON
+!ifdef - NODHCCANON
 	DHCCanonHit;			Helper;;	Helpers.CanSplit4
 !else
 	DHCCanonHit;			Helper;;	Items.BombBag, Helpers.HasSword
 !endif
-!ifndef - DHCJOSTLE
+!ifdef - NODHCJOSTLE
 	DHCBladePuzzleShuffle;	Helper;;	Helpers.CanSplit4
 !else
 	DHCBladePuzzleShuffle;	Helper;;	(|Helpers.CanSplit2, Helpers.CanSplit3, Helpers.CanSplit4)
 !endif
-!ifndef - DHCSWITCHES
+!ifdef - NODHCSWITCHES
 	DHCSwitchHit;			Helper;;	Helpers.CanSplit4
 !else
 	DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
@@ -5080,7 +5389,7 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 
 
 # Every Obstacle in the game is listed here
-!ifdef - OPENWORLD
+!ifdef - OPENWORLD_ON
 	CanDestroyTrees;			Helper;;	
 	BonkedTrees;				Helper;;	
 	NorthFieldCrack;			Helper;;	
@@ -5608,6 +5917,14 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 		!define - UWTFUSIONGREEN - `PALACEOUTSIDECHEST`
 	!endif
 !endif
+# Royal Crypt
+!ifdef - RC_ACCESS
+	!define - CRYPTITEM - Dungeon
+	!define - CRYPTPRIZE - DungeonPrize
+!else
+	!define - CRYPTITEM - Inaccessible
+	!define - CRYPTPRIZE - Inaccessible
+!endif
 # Fortress of Winds
 !ifdef - FOW_ACCESS
 	!define - FORTRESSCHEST - Dungeon
@@ -5630,7 +5947,11 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 	!define - PALACERUPEE - `DUNGEONRUPEE`
 !else
 	!define - PALACECHEST - Inaccessible
-	!define - PALACEPRIZE - Inaccessible
+	!ifdef - NO_PALACE
+		!define - PALACEPRIZE - `DUNGEONPRIZE`
+	!else
+		!define - PALACEPRIZE - Inaccessible
+	!endif
 	!define - PALACEHP - Inaccessible
 	!define - PALACERUPEE - ;	Inaccessible
 !endif
@@ -6366,10 +6687,10 @@ CoF_Entrance										`DUNGEONENTRANCE`;	DumCoFENT:Define:FirstByte, DumCoFENT2:
 AccessSwamp;						Helper;				;																	(|Helpers.SwampWindCrest, (&Helpers.AccessWestern, (|Items.PegasusBoots, Items.RocsCape)))
 #NonSpinScrolls;					Helper;				;																	Items.RockBreaker, Items.DashAttack, Items.DownThrust, Items.RollAttack, Items.SwordBeam, Items.PerilBeam
 #SpinScrolls;						Helper;				;																	Items.SpinAttack, Items.GreatSpin, Items.FastSpin, Items.FastSplit, Items.LongSpin
-!ifdef - NO_SCROLL_PROG
-	GotScrolls;						Helper;				;																	(+7, Items.SpinAttack, Items.GreatSpin, Items.FastSpin, Items.FastSplit, Items.LongSpin, Items.RockBreaker, Items.DashAttack, Items.DownThrust, Items.RollAttack, Items.SwordBeam, Items.PerilBeam);
-!else
+!ifdef - YES_SCROLL_PROG
 	GotScrolls;						Helper;				;																	(|(&Items.RockBreaker, Items.DashAttack, Items.DownThrust, Items.RollAttack, Items.SwordBeam, Items.PerilBeam, Items.ProgressiveItem.0x04), (&Items.ProgressiveItem.0x04:2, (+5, Items.RockBreaker, Items.DashAttack, Items.DownThrust, Items.RollAttack, Items.SwordBeam, Items.PerilBeam)), (&Items.ProgressiveItem.0x04:3, (+4, Items.RockBreaker, Items.DashAttack, Items.DownThrust, Items.RollAttack, Items.SwordBeam, Items.PerilBeam)), (&Items.ProgressiveItem.0x04:4, (+3, Items.RockBreaker, Items.DashAttack, Items.DownThrust, Items.RollAttack, Items.SwordBeam, Items.PerilBeam)), (&Items.ProgressiveItem.0x04:5, (+2, Items.RockBreaker, Items.DashAttack, Items.DownThrust, Items.RollAttack, Items.SwordBeam, Items.PerilBeam)));
+!else
+	GotScrolls;						Helper;				;																	(+7, Items.SpinAttack, Items.GreatSpin, Items.FastSpin, Items.FastSplit, Items.LongSpin, Items.RockBreaker, Items.DashAttack, Items.DownThrust, Items.RollAttack, Items.SwordBeam, Items.PerilBeam);
 !endif
 Swamp_ButterflyFusion_Item;		`REDFUSION`;			0x0FE13F;															(|(&Helpers.Farore2Fusion, Helpers.AccessSwamp), Helpers.Hundo);																																									Items.DigButterfly
 Swamp_CenterCave_DarknutChest;		Any;					0x2B-0x00-0x00;														(|(&Helpers.AccessSwamp, Helpers.SwampDarknut), Helpers.Hundo);																																									Items.Kinstone.GoldenSwamp
@@ -6413,7 +6734,7 @@ Ruins_NearFoWFusion_Chest		`FOW_OUTSIDE`;	`GOLDREDFUSION`;			0x0FE0AE;										
 
 AccessFortress;								Helper;					;														Helpers.AccessRuins, Helpers.HasSword;
 
-Fortress_Entrance								`DUNGEONENTRANCE`;		DumFoWENT:Define:FirstByte, DumFoWENT2:Define:SecondByte;		(|Helpers.AccessFortress, Helpers.Hundo);																	Items.Entrance.0x03
+Fortress_Entrance								`FOW_DUNGEONENTRANCE`;		DumFoWENT:Define:FirstByte, DumFoWENT2:Define:SecondByte;		(|Helpers.AccessFortress, Helpers.BeatVaati);																	Items.Entrance.0x03
 
 # Royal Valley
 AccessValley;					Helper;			;			(|Helpers.CanSplit3, Helpers.CanSplit4), (|Helpers.OverworldBlocks, Helpers.CapeExtension);
@@ -6433,13 +6754,13 @@ AccessCrypt;						Helper;				;													Helpers.AccessValley, Helpers.DarkRoo
 CompleteCrypt;					Helper;				;													`ENTERRC`, Helpers.CryptDoor, Helpers.CryptBlocks, Helpers.CryptPuzzle
 
 
-Crypt_Entrance					`DUNGEONENTRANCE`;	DumRCENT:Define:FirstByte, DumRCENT2:Define:SecondByte;	(|Helpers.AccessCrypt, Helpers.Hundo);													Items.Entrance.0x05
+Crypt_Entrance					`DUNGEONENTRANCE`;	DumRCENT:Define:FirstByte, DumRCENT2:Define:SecondByte;	(|Helpers.AccessCrypt, Helpers.Hundo);												Items.Entrance.0x05
 
-Crypt_Gibdo_LeftItem	`RC_INSIDE`;		Dungeon;			0x0E688B;											(|(&`ENTERRC`, (|Helpers.HasDamageSource, Items.Lantern)), Helpers.Hundo);					Items.Bombs5
-Crypt_Gibdo_RightItem	`RC_INSIDE_SK`;	Dungeon;			0x0E68AB;											(|(&`ENTERRC`, (|Helpers.HasDamageSource, Items.Lantern)), Helpers.Hundo);					Items.SmallKey.0x1E
-Crypt_LeftItem		`RC_INSIDE_SK`;	Dungeon;			0x0E6357;											(|(&`ENTERRC`, Helpers.CryptDoor, Helpers.CanSplit3), Helpers.Hundo);						Items.SmallKey.0x1E
-Crypt_RightItem		`RC_INSIDE_SK`;	Dungeon;			0x0E63A7;											(|(&`ENTERRC`, Helpers.CryptDoor, Helpers.CanSplit3), Helpers.Hundo);						Items.SmallKey.0x1E
-Crypt_Prize			`RC_PRIZE`;		`DUNGEONPRIZE`;	0x00DA5A;											(|Helpers.CompleteCrypt, Helpers.Hundo);													Items.Kinstone.GoldenFalls
+Crypt_Gibdo_LeftItem	`RC_INSIDE`;		`CRYPTITEM`;		0x0E688B;											(|(&`ENTERRC`, (|Helpers.HasDamageSource, Items.Lantern)), Helpers.Hundo);				Items.Bombs5
+Crypt_Gibdo_RightItem	`RC_INSIDE_SK`;	`CRYPTITEM`;		0x0E68AB;											(|(&`ENTERRC`, (|Helpers.HasDamageSource, Items.Lantern)), Helpers.Hundo);				Items.SmallKey.0x1E
+Crypt_LeftItem		`RC_INSIDE_SK`;	`CRYPTITEM`;		0x0E6357;											(|(&`ENTERRC`, Helpers.CryptDoor, Helpers.CanSplit3), Helpers.Hundo);					Items.SmallKey.0x1E
+Crypt_RightItem		`RC_INSIDE_SK`;	`CRYPTITEM`;		0x0E63A7;											(|(&`ENTERRC`, Helpers.CryptDoor, Helpers.CanSplit3), Helpers.Hundo);					Items.SmallKey.0x1E
+Crypt_Prize			`RC_PRIZE`;		`CRYPTPRIZE`;		0x00DA5A;											(|Helpers.CompleteCrypt, Helpers.Hundo);												Items.Kinstone.GoldenFalls
 #Secret Chest reachable with Firerod
 
 # Veil Falls
@@ -6510,7 +6831,7 @@ WindTribe_4F_RightChest	`POW_OUTSIDE`;	`PALACEOUTSIDECHEST`;	0x30-0x03-0x01;				
 
 AccessPalace;													Helper;	;											Helpers.AccessWindTribe;
 
-Palace_Entrance							`DUNGEONENTRANCE`;	DumPoWENT:Define:FirstByte, DumPoWENT2:Define:SecondByte;	(|Helpers.AccessPalace, Helpers.Hundo);												Items.Entrance.0x06
+Palace_Entrance							`POW_DUNGEONENTRANCE`;	DumPoWENT:Define:FirstByte, DumPoWENT2:Define:SecondByte;	(|Helpers.AccessPalace, Helpers.BeatVaati);												Items.Entrance.0x06
 
 # Deepwood locations
 Deepwood_2F_Chest						`DWS_INSIDE`;		Dungeon;			0x48-0x17-0x01;													(|(&`ENTERDWS`, Helpers.DeepwoodWeb), Helpers.Hundo);																											Items.Rupee20

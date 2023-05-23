@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using RandomizerCore.Controllers;
 
-namespace MinishCapRandomizerUI.UI
+namespace MinishCapRandomizerUI.UI.About
 {
     public partial class About : Form
     {
