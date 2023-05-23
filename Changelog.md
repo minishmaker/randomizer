@@ -1,4 +1,4 @@
-# 1.0 RC 4
+# Version 1.0.0 RC 4
 
 
 #### This is a pre-release version
@@ -157,7 +157,40 @@ A bulk generator has been implemented for use with the CLI which has allowed us 
 - YAML is now supported by the CLI
 - 'UseRandomColor' can be used for color options
 
-#### Known Issues
+### Setting Presets
+
+Due to the large amount of settings available in the randomizer it can be hard to decide what to choose, so we made some presets for players to be able to experience all the main features of the randomizer!
+Here are some short descriptions of what you can find in each preset.
+
+#### Basic Presets
+
+It is recommended that players first play **Beginner**, then **Intermediate**, and then **Advanced**, to become familiar with most features of the randomizer.
+
+- **Beginner**: Recommended for anyone who has not played 'The Minish Cap Randomizer' before, especially if you have not played the base game in many years. These settings are very short, removing the longer dungeons found later in the game, so that you can experience a quick introduction to the randomizer in one sitting. You win the game once you visit the sanctuary after finding all sword upgrades to acquire the Four Sword, and collecting all 4 Elements from beating the bosses of the 4 available dungeons.
+- **Intermediate**: Recommended once players have re-familiarized themselves with the game world, controls, and has learned the majority of the item locations. Adds more locations, and randomizes more items, to build on what the player has learned so far. You win the game after defeating Vaati at the end of Dark Hyrule Castle, once you have the Four Sword and all 4 Elements which are now shuffled to any of the 6 available dungeons (checked on the map screen).
+- **Advanced**: Recommended once players have become comfortable with the options present in **Intermediate**. Adds much more complex settings to show off a greater depth of randomization, such as dungeon shuffle and forcing dungeons without an element to be barren (not containing any important items). It will also test your ability to do more advanced strategies to reach locations not considered required to beat seeds on easier difficulties, such as certain trickier cape jumps and unintuitive routes.
+
+#### Race Presets
+
+These are the current and historic race settings for the randomizer. The current race settings are recommended for players wishing to practice for racing and upcoming tournaments.
+
+- **Version 1.0 Tentative Race settings**: These are the current race settings for community races once v1.0 is released. Similar to Advanced settings, however all logic tricks are *not required*, it is up to the player to decide if they wish to do 'out of logic' checks.
+- **Tournament 4 Race settings**: These were the settings used in the previous 2022 Tournament, played on the prior v0.6.2 'Tourney Build'.
+
+#### Extra Presets
+
+The following presets are intended to be played once one has become comfortable with the **Advanced** preset listed above. Some presets are useful to become more comfortable in specific parts of the randomizer, such as kinstones or figurines, while others are meant to be challenging to all players, such as the **Expert** preset. 
+
+- **Expert**: This is the MOST challenging combination of settings currently present. It requires an intimate knowledge of all aspects of the base game as well as all randomization options. Completing these settings in under 3.5 hours is proof you are a 'Minish Cap Expert'.
+- **Max Ranom**: This randomizes all possible things in the game that can be randomized, including all possible items and all possible locations. The difficulty is toned down so that it is enjoyable for most skill levels.
+- **No Logic Open World**: Items are randomized with no consideration for logic, making seeds have the possibility to be unbeatable, however most world obstacles are removed to give the player a fighting chance. Players will have to think outside of the box, and may have to utilize speedrun glitches, in order to beat these seeds.
+- **Firerod**: These settings all focus on the Firerod item, a leftover developer tool that has been re-introduced to give the player a completely different way of playing the game. Given to the player from the start, it allows the player to copy and paste tiles which effectively lets them walk through any wall/obstacle. Many advanced strategies and techniques can be utilised such as warping between regions and cloning items.
+- **Funky Fusions**: These settings focus on kinstone fusions. Somewhere between Intermediate and Advanced in terms of difficulty, this is aimed as an introduction to learning vanilla fusion locations and NPC's. Kinstones are in packs, so collecting one you will add the exact amount to your bag to complete all the fusions of that size and shape.
+- **v0.1.0 Settings**: These settings emulate the very first version of the randomizer, released in 2019. None of the logic errors are present. The setting hash is two Green rupees since it was the first version of the randomizer.
+- **Figurine Hunt**: Similar to 'Triforce Hunt' found in many other Zelda randomizers, These settings are roughly in-between Intermediate and Advanced in terms of difficulty. 30 Figurines are added to the pool and at least 20 must be collected before you can complete the game.
+- **Regional Dungeon Items**: Similar to 1.0 Race Settings, but without Dungeon Shuffle. Dungeon locations are expanded to include the locations found in the region surrounding the dungeon. This allows keys and other dungeon items to be shuffled to these locations, and these regions are considered barren if the dungeon does not have an element as the prize.
+
+### Known Issues
 
 - With closed golds, entrance shuffle on, element shuffle on, some settings combinations have a high chance of failing to beat Vaati. This has no easy code fix until Logic v2 is done.
   - To work around this, click the "New Seed" button and try again, or set your "Max Randomization Attempts" to 5 or more and try and randomize again
