@@ -32,45 +32,26 @@ bne	checksave
 bl	loadFont
 
 @write the message
-ldr	r4,=#0x6000102
+ldr	r1,=#0x6000088
 ldr	r0,badEmu1
-mov	r1,r4
 bl	draw
-add	r4,#0xC2
+ldr	r1,=#0x6000106
 ldr	r0,badEmu2
-mov	r1,r4
 bl	draw
-add	r4,#0x44
+ldr	r1,=#0x600020A
 ldr	r0,badEmu3
-mov	r1,r4
 bl	draw
-add	r4,#0xBE
+ldr	r1,=#0x6000286
 ldr	r0,badEmu4
-mov	r1,r4
 bl	draw
-add	r4,#0xC2
+ldr	r1,=#0x600030A
 ldr	r0,badEmu5
-mov	r1,r4
 bl	draw
-add	r4,#0x42
+ldr	r1,=#0x6000408
 ldr	r0,badEmu6
-mov	r1,r4
 bl	draw
 
-mov	r4,#0
-sleeps:
-swi	#5
-add	r4,#1
-cmp	r4,#180
-bne	sleeps
-
-ldr	r4,=#0x4000130
-ldr	r5,=#0x3FF
-button:
-swi	#5
-ldrh	r0,[r4]
-cmp	r0,r5
-beq	button
+b	sleep
 
 @save type detection
 checksave:

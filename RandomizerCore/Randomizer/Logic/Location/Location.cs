@@ -46,15 +46,8 @@ public class Location
 
         Dependencies = dependencies;
 
-        if (replacementContents == null)
+        if (replacementContents != null)
         {
-            // Need to get the item from the ROM
-            // _defaultContents = GetItemContents();
-            // Contents = _defaultContents;
-        }
-        else
-        {
-            // The item is specified by the logic rather than the ROM
             DefaultContents = (Item)replacementContents;
             Contents = DefaultContents;
         }
@@ -102,7 +95,7 @@ public class Location
                 !string.IsNullOrEmpty(define.Define.Name))
                 return true;
 
-        Logger.Instance.LogInfo($"Can't place subvalued items in {Name}");
+        // Logger.Instance.LogInfo($"Can't place subvalued items in {Name}");
         return false;
     }
 
@@ -122,26 +115,6 @@ public class Location
     }
 
     /// <summary>
-    ///     Read the item from the ROM
-    /// </summary>
-    /// <returns>The item contained at the address</returns>
-    // public Item GetItemContents()
-    // {
-    //     var type = ItemType.Untyped;
-    //     byte subType = 0;
-    //
-    //     // Read all the addresses, taking the last of each byte type
-    //     foreach (var address in _addresses) address.ReadAddress(Rom.Instance.reader, ref type, ref subType);
-    //
-    //     // If the contents of the address aren't defined/are untyped, it's probably broken
-    //     if (type == ItemType.Untyped && Type != LocationType.Helper && Type != LocationType.Unshuffled)
-    //         Logger.Instance.LogInfo($"Untyped contents in {Name}! Addresses may be bad");
-    //
-    //     // Dungeon items get the Dungeon part defined
-    //     return Type is LocationType.DungeonConstraint or LocationType.DungeonMajor or LocationType.DungeonMinor ? new Item(type, subType, Dungeon) : new Item(type, subType);
-    // }
-
-    /// <summary>
     ///     Check if an item can be placed into the location
     /// </summary>
     /// <param name="itemToPlace">The item to check placeability of</param>
@@ -150,6 +123,10 @@ public class Location
     /// <returns>If the item can be placed in this location</returns>
     public bool CanPlace(Item itemToPlace, List<Location> allLocations)
     {
+        if (ShufflerConstraints.Any() &&
+            !ShufflerConstraints.Contains(Imports.LogicImports.FunctionValues["VERIFY_LOCATION_IS_ACCESSIBLE"]))
+            ShufflerConstraints.Clear();
+
         switch (Type)
         {
             case LocationType.Helper:

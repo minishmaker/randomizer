@@ -1,4 +1,4 @@
-﻿namespace RandomizerCore.Randomizer.Models;
+﻿namespace RandomizerCore.Randomizer.Helpers.Models;
 
 internal interface ITransition
 {

@@ -1,0 +1,68 @@
+PUSH
+ORG 0xC850 // Gentari script after Jabber Nut check
+BYTE 0x5A 0x08 0x34 0x11 // show text box
+BYTE 0x03 0x08 0x26 0x00 // skip some other commands
+
+ORG 0x9CC270+0x34*4
+WORD goalTextEnglish-0x9CC270
+ORG 0x9F7420+0x34*4
+WORD goalTextFrench-0x9F7420
+ORG 0xA3EEB0+0x34*4
+WORD goalTextGerman-0xA3EEB0
+ORG 0xA81E70+0x34*4
+WORD goalTextSpanish-0xA81E70
+ORG 0xAC37A0+0x34*4
+WORD goalTextItalian-0xAC37A0
+POP
+
+goalTextEnglish:
+goalTextFrench:
+goalTextGerman:
+goalTextSpanish:
+goalTextItalian:
+String("You need to"); BYTE 0x0A
+#ifdef requirementDungeonsAmount
+    String("beat "); BYTE 0x02 0x01 0x30+requirementDungeonsAmount; String(" dungeons"); BYTE 0x02 0x00; String(" and"); BYTE 0x0A
+#endif
+#ifdef requirementSwordTier
+    #ifdef requirementSwordName1
+        String("wield the "); BYTE 0x02 0x01; String("Smith Sword"); BYTE 0x02 0x00; String(" and"); BYTE 0x0A
+    #else
+        #ifdef requirementSwordName2
+            String("wield the "); BYTE 0x02 0x01; String("Green Sword"); BYTE 0x02 0x00; String(" and"); BYTE 0x0A
+        #else
+            #ifdef requirementSwordName3
+                String("wield the "); BYTE 0x02 0x01; String("Red Sword"); BYTE 0x02 0x00; String(" and"); BYTE 0x0A
+            #else
+                #ifdef requirementSwordName4
+                    String("wield the "); BYTE 0x02 0x01; String("Blue Sword"); BYTE 0x02 0x00; String(" and"); BYTE 0x0A
+                #else
+                    #ifdef requirementSwordName5
+                        String("wield the "); BYTE 0x02 0x01; String("Four Sword"); BYTE 0x02 0x00; String(" and"); BYTE 0x0A
+                    #else
+                        String("wield "); BYTE 0x02 0x01 0x30+requirementSwordTier; String(" swords"); BYTE 0x02 0x00; String(" and"); BYTE 0x0A
+                    #endif
+                #endif
+            #endif
+        #endif
+    #endif
+#endif
+#ifdef requirementElementsAmount
+    String("acquire "); BYTE 0x02 0x01 0x30+requirementElementsAmount; String(" elements"); BYTE 0x02 0x00; String(" and"); BYTE 0x0A
+#endif
+#ifdef requirementFigurinesAmount
+    String("collect enough figurines and"); BYTE 0x0A
+#endif
+#ifdef noDHC
+    String("pull the pedestal.")
+#else
+    #ifdef openDHC
+        String("defeat Vaati.")
+    #else
+        String("pull the pedestal and defeat Vaati.")
+    #endif
+#endif
+#ifdef requirementPrize
+    BYTE 0x0A; String("You will receive an item once the"); BYTE 0x0A; String("requirements are met.")
+#endif
+BYTE 0x00

@@ -1,6 +1,10 @@
 .equ dungeonDisplayTable, dungeonDisplayGraphics+4
 .equ dungeonMapsTable, dungeonDisplayTable+4
 .equ dungeonDisplayKeys, dungeonMapsTable+4
+.equ universalMaps, dungeonDisplayKeys+4
+.equ universalCompasses, universalMaps+4
+.equ universalSmallKeys, universalCompasses+4
+.equ universalBigKeys, universalSmallKeys+4
 .thumb
 push	{r4-r7}
 
@@ -78,6 +82,12 @@ bl	draw
 
 @draw the map if unlocked
 ldrb	r0,[r7,r4]
+ldr	r1,universalMaps
+cmp	r1,#0
+beq	notUniversalMap
+ldrb	r0,[r7]
+
+notUniversalMap:
 mov	r1,#1
 and	r0,r1
 cmp	r0,#0
@@ -90,6 +100,12 @@ bl	draw
 noMap:
 @draw the compass if unlocked
 ldrb	r0,[r7,r4]
+ldr	r1,universalCompasses
+cmp	r1,#0
+beq	notUniversalCompass
+ldrb	r0,[r7]
+
+notUniversalCompass:
 mov	r1,#2
 and	r0,r1
 cmp	r0,#0
@@ -102,6 +118,12 @@ bl	draw
 noCompass:
 @draw the big key if unlocked
 ldrb	r0,[r7,r4]
+ldr	r1,universalBigKeys
+cmp	r1,#0
+beq	notUniversalBig
+ldrb	r0,[r7]
+
+notUniversalBig:
 mov	r1,#4
 and	r0,r1
 cmp	r0,#0
@@ -114,6 +136,12 @@ bl	draw
 noBig:
 @draw key ammount
 ldrb	r0,[r6,r4]
+ldr	r1,universalSmallKeys
+cmp	r1,#0
+beq	notUniversalSmall1
+ldrb	r0,[r6]
+
+notUniversalSmall1:
 cmp	r0,#9
 bls	np
 mov	r0,#9
@@ -159,6 +187,12 @@ bl	draw
 
 @draw the key ammount
 ldrb	r0,[r6,r4]
+ldr	r1,universalSmallKeys
+cmp	r1,#0
+beq	notUniversalSmall2
+ldrb	r0,[r6]
+
+notUniversalSmall2:
 cmp	r0,#9
 bls	np2
 mov	r0,#9

@@ -1,7 +1,7 @@
 ﻿using MinishCapRandomizerUI.DrawConstants;
 using MinishCapRandomizerUI.Elements;
 
-namespace MinishCapRandomizerUI.UI;
+namespace MinishCapRandomizerUI.UI.MainWindow.Helpers;
 
 public static class UIGenerator
 {

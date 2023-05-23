@@ -29,6 +29,17 @@ public class LogicNumberBox : LogicOptionBase
     public byte MaxValue { get; }
     public byte DefaultValue { get; }
 
+    public override void Reset()
+    {
+        Value = $"{DefaultValue}";
+    }
+
+    public override void CopyValueFrom(LogicOptionBase option)
+    {
+        base.CopyValueFrom(option);
+        Value = ((LogicNumberBox)option).Value;
+    }
+
     public override List<LogicDefine> GetLogicDefines()
     {
         var defineList = new List<LogicDefine>(3);
@@ -36,7 +47,7 @@ public class LogicNumberBox : LogicOptionBase
         // Only true if valid text has been entered
         if (Value != "")
         {
-            Logger.Instance.LogInfo($"Number box name: {Name}");
+            Logger.Instance.LogInfo($"Number box name: {Name}, Value: {Value}");
             defineList.Add(new LogicDefine(Name, Value));
         }
         else

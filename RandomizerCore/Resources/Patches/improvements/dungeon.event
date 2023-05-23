@@ -1,13 +1,97 @@
-//keys, maps, etc, can have the area they are for as a sub id
-PUSH; ORG $5231E; SHORT 0; POP //keys can be collected anywhere
-PUSH; ORG $52320; jumpToHack(keysSub); POP
+#ifndef keyMultiplierUniversal
+	#define keyMultiplierUniversal 1
+#endif
+#ifndef keyMultiplierDWS
+	#define keyMultiplierDWS 1
+#endif
+#ifndef keyMultiplierCOF
+	#define keyMultiplierCOF 1
+#endif
+#ifndef keyMultiplierFOW
+	#define keyMultiplierFOW 1
+#endif
+#ifndef keyMultiplierTOD
+	#define keyMultiplierTOD 1
+#endif
+#ifndef keyMultiplierPOW
+	#define keyMultiplierPOW 1
+#endif
+#ifndef keyMultiplierDHC
+	#define keyMultiplierDHC 1
+#endif
+#ifndef keyMultiplierRC
+	#define keyMultiplierRC 1
+#endif
+
+//keys, maps, etc, can have the area they are for as a sub id and can be collected anywhere
+PUSH; ORG $5231E; SHORT 0; jumpToHack(keysSub); POP
 ALIGN 4
 keysSub:
 #incbin "asm/keysSub.dmp"
+POIN keyMultiplierTable
+#ifdef universalSmallKeys
+	WORD 1
+#else
+	WORD 0
+#endif
 PUSH; ORG $53CF4; jumpToHack(dungeonSub); POP
 ALIGN 4
 dungeonSub:
 #incbin "asm/dungeonSub.dmp"
+#ifdef universalMaps
+	WORD 1
+#else
+	WORD 0
+#endif
+#ifdef universalCompasses
+	WORD 1
+#else
+	WORD 0
+#endif
+#ifdef universalBigKeys
+	WORD 1
+#else
+	WORD 0
+#endif
+
+keyMultiplierTable:
+BYTE keyMultiplierUniversal
+BYTE keyMultiplierDWS
+BYTE keyMultiplierCOF
+BYTE keyMultiplierFOW
+BYTE keyMultiplierTOD
+BYTE keyMultiplierPOW
+BYTE keyMultiplierDHC
+BYTE keyMultiplierRC
+
+#ifdef universalMaps
+	PUSH
+	//check if has map
+	ORG $523FC; SHORT 0x46C0;
+	POP
+#endif
+#ifdef universalCompasses
+	PUSH
+	//check if has compass
+	ORG $523CC; SHORT 0x46C0;
+	POP
+#endif
+#ifdef universalSmallKeys
+	PUSH
+	//check if has small key
+	ORG $52364; SHORT 0x46C0;
+	//key display
+	ORG $1C9E8; SHORT 0xE01C;
+	ORG $1CA60; SHORT 0x1C11;
+	ORG $1CA76; SHORT 0x1C10;
+	POP
+#endif
+#ifdef universalBigKeys
+	PUSH
+	//check if has big key
+	ORG $52394; SHORT 0x46C0;
+	POP
+#endif
 
 //press select in dungeon map to look at world map (and select again to go back)
 PUSH; ORG $A47E4; jumpToHack(mapSwap); POP
@@ -24,6 +108,26 @@ POIN dungeonDisplayGraphics
 POIN dungeonDisplayTable
 POIN dungeonMapsTable
 POIN dungeonDisplayKeys
+#ifdef universalMaps
+	WORD 1
+#else
+	WORD 0
+#endif
+#ifdef universalCompasses
+	WORD 1
+#else
+	WORD 0
+#endif
+#ifdef universalSmallKeys
+	WORD 1
+#else
+	WORD 0
+#endif
+#ifdef universalBigKeys
+	WORD 1
+#else
+	WORD 0
+#endif
 ALIGN 4
 dungeonDisplayGraphics:
 #incbin "dungeonItems.img.bin"

@@ -5,11 +5,15 @@
 #endif
 
 #ifdef openDHC 
-	#undef noDHC
+	#ifdef noDHC 
+		#undef noDHC
+	#endif
 #endif
 
 #ifdef noDHC 
-	#undef openDHC
+	#ifdef openDHC 
+		#undef openDHC
+	#endif
 #endif
 
 #ifndef pedestalSpot1Item
@@ -194,3 +198,13 @@ PUSH
 ORG $5A4510
 #incbin "dhcBlocker.pal.bin"
 POP
+
+#ifdef pedestalItems
+	//skip rumbling and camera scrolling after pedestal pulls
+	PUSH
+	ORG $13AEC
+	BYTE 0x20 0x00
+	ORG $13AFE
+	BYTE 0x03 0x08 0x72 0x00
+	POP
+#endif

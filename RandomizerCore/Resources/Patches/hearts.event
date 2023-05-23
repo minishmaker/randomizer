@@ -5,7 +5,7 @@
 #ifdef heartscolor
 //backwards compatibility for the old hearts
 #ifdef heartscolorred
-	#define heartFillColor "0x095F"
+	#define heartFillColor "0x195F"
 	#define heartEdgeColor "0x7FFF"
 #endif
 #ifdef heartscoloryellow
@@ -78,7 +78,7 @@ SHORT 0xFFFF 0xFFFF //terminator
 
 //safety definitions
 #ifndef heartFillColor
-	#define heartFillColor "0x095F"
+	#define heartFillColor "0x195F"
 #endif
 #ifndef heartEdgeColor
 	#define heartEdgeColor "0x7FFF"
