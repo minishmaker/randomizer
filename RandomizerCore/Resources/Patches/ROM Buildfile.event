@@ -1,5 +1,6 @@
 #define jumpToHack(offset) "BYTE 0x00 0x4B 0x18 0x47; POIN (offset|0x1)"
 #include "extDefinitions.event" //a file reserved for the randomizer to output definitions for the patches
+#include "guaranteedBarlov.event"
 
 #ifndef seedHashed
 	#define seedHashed "0"
