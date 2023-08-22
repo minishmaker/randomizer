@@ -286,6 +286,7 @@ Generating seeds with this shuffler may freeze the randomizer application for ma
         {
             UseCustomLogic.Checked = _configuration.UseCustomLogic;
             LogicFilePath.Text = _configuration.CustomLogicFilepath;
+            _customLogicFileLoaded = true;
         }
         BrowseCustomLogicFile.Enabled = UseCustomLogic.Checked;
 
