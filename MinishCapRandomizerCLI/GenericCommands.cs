@@ -561,7 +561,7 @@ internal static class GenericCommands
                 Console.WriteLine("5) Enter ARGB Color Code");
                 Console.Write("Enter the number of the option you want for the color picker: ");
                 var input = Console.ReadLine();
-                if (string.IsNullOrEmpty(input) || !int.TryParse(input, out var i) || i is < 1 or > 4)
+                if (string.IsNullOrEmpty(input) || !int.TryParse(input, out var i) || i is < 1 or > 5)
                 {
                     if (!input.Equals("exit", StringComparison.OrdinalIgnoreCase))
                     {
