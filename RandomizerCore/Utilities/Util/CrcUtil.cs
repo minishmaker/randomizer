@@ -1,4 +1,6 @@
-﻿namespace RandomizerCore.Utilities.Util;
+﻿using System.IO.Hashing;
+
+namespace RandomizerCore.Utilities.Util;
 
 public static class CrcUtil
 {
@@ -7,6 +9,7 @@ public static class CrcUtil
     /// </summary>
     /// <param name="data">The byte array to checksum</param>
     /// <param name="length">The size of the array to checksum, negative values equal the size of data</param>
+    [Obsolete("Use Crc32(this byte[] data) instead of this method due to performance reasons")]
     public static uint Crc32(byte[] data, long length)
     {
         var crcTable = new uint[256];
@@ -28,7 +31,9 @@ public static class CrcUtil
 
     public static uint Crc32(this byte[] data)
     {
-        return Crc32(data, data.Length);
+        var crc = new Crc32();
+        crc.Append(data);
+        return crc.GetCurrentHashAsUInt32();
     }
 
     public static byte Crc8(this byte[] bytes)
