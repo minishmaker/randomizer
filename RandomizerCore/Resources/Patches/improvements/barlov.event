@@ -1,0 +1,6 @@
+#ifdef guaranteedBarlov
+	PUSH
+	ORG $113A14
+	#incbin "asm/guaranteedBarlov.dmp"
+	POP
+#endif 
