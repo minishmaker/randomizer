@@ -78,10 +78,10 @@ public sealed partial class MinishCapRandomizerUI : Form
         aboutPage.Show();
     }
 
-    private void checkForUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
+    private async void checkForUpdatesToolStripMenuItem_Click(object sender, EventArgs e)
     {
-        var noUpdates = CheckForUpdates();
-        if (!noUpdates)
+        var noUpdates = await CheckForUpdates();
+        if (noUpdates is { wasSuccessful: true, hasUpdates: false })
             DisplayAlert("You have the latest version!", "Up to Date", MessageBoxButtons.OK, MessageBoxIcon.Information);
     }
 

@@ -10,6 +10,7 @@ using RandomizerCore.Controllers;
 using RandomizerCore.Controllers.Models;
 using RandomizerCore.Random;
 using RandomizerCore.Randomizer.Exceptions;
+using RestSharp;
 
 namespace MinishCapRandomizerUI.UI.MainWindow;
 
@@ -237,38 +238,39 @@ Generating seeds with this shuffler may freeze the randomizer application for ma
         catch { }
     }
 
-    private static bool CheckForUpdates()
+    private static async Task<(bool hasUpdates, bool wasSuccessful)> CheckForUpdates()
     {
         try
         {
-            var githubData = DownloadUrlAsString();
+            var githubData = await DownloadUrlAsString();
             var releases = JsonConvert.DeserializeObject<List<Github.Release>>(githubData);
             var tag = Assembly.GetExecutingAssembly().GetCustomAttributesData().First(x => x.AttributeType.Name == "AssemblyInformationalVersionAttribute").ConstructorArguments.First().ToString();
             tag = tag[(tag.IndexOf('+') + 1)..^1];
-            if (releases!.First().Tag_Name == tag) return false;
+            if (releases!.First().Tag_Name == tag) return (false, true);
 
             var url = new UrlDialog.UrlDialog(releases!.First().Html_Url);
             url.ShowDialog();
-            return true;
+            return (true, true);
         } 
-        catch
+        catch (Exception e)
         {
-            DisplayAlert("Update check failed! Server did not respond!", "Failed to Check for Updates", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            return false;
+            DisplayAlert(e.Message, "Update Check Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return (false, false);
         }
     }
         
-    private static string DownloadUrlAsString()
+    private static async Task<string> DownloadUrlAsString()
     {
-        var request = (HttpWebRequest)WebRequest.Create("https://api.github.com/repositories/177660043/releases");
-        request.UserAgent = "MinishCapRandomizerUI";
-        request.KeepAlive = false;
-        using var response = (HttpWebResponse)request.GetResponse();
-        using var responseStream = new StreamReader(response.GetResponseStream());
-        return responseStream.ReadToEnd();
+        var client = new RestClient();
+        var request = new RestRequest("https://api.github.com/repositories/177660043/releases", Method.Get);
+        var result = await client.ExecuteAsync(request);
+        if (!result.IsSuccessful || string.IsNullOrEmpty(result.Content))
+            throw new Exception($"Server returned status code {result.StatusCode} with message {result.ErrorMessage}");
+
+        return result.Content;
     }
 
-    private void InitializeUi()
+    private async void InitializeUi()
     {
         TabPane.TabPages.Remove(SeedOutput);
         var seed = new SquaresRandomNumberGenerator().Next();
@@ -323,7 +325,7 @@ Generating seeds with this shuffler may freeze the randomizer application for ma
 
         checkForUpdatesOnStartToolStripMenuItem.Checked = _configuration.CheckForUpdatesOnStart;
         if (_configuration.CheckForUpdatesOnStart)
-            CheckForUpdates();
+            await CheckForUpdates();
     }
 
     private void UpdateUIWithLogicOptions()
