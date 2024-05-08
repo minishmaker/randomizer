@@ -417,7 +417,7 @@ internal class Shuffler : ShufflerBase
         seedValues[5] = (byte)((Seed >> 40) & 0xFF);
         seedValues[6] = (byte)((Seed >> 48) & 0xFF);
         seedValues[7] = (byte)((Seed >> 56) & 0xFF);
-        var crc = (int)CrcUtil.Crc32(seedValues, 8);
+        var crc = (int)seedValues.Crc32();
 
         eventBuilder.AppendLine("#define seedHashed 0x" + StringUtil.AsStringHex8(crc));
         eventBuilder.AppendLine("#define settingHash 0x" + StringUtil.AsStringHex8((int)GetFinalOptions().OnlyLogic().GetHash()));

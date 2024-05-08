@@ -4,6 +4,7 @@ using RandomizerCore.Controllers;
 using RandomizerCore.Controllers.Models;
 using RandomizerCore.Random;
 using RandomizerCore.Randomizer.Logic.Options;
+using SkiaSharp;
 
 namespace MinishCapRandomizerCLI;
 
@@ -392,6 +393,27 @@ internal static class GenericCommands
         }
     }
 
+    internal static void SaveSeedHash()
+    {
+        if (!ValidatePreviouslyUsedController()) return;
+
+        Console.Write("Please enter the path to save the hash (blank for default, .png will be appended to the filename): ");
+        try
+        {
+            var input = Console.ReadLine();
+            var eventDefines = PreviouslyUsedController.GetEventWrites().Split('\n');
+            using var image = ImageHandler.GetHashImage(eventDefines);
+            using var stream = new MemoryStream();
+            image.Encode(stream, SKEncodedImageFormat.Png, 100);
+            File.WriteAllBytes(string.IsNullOrEmpty(input) ? $"{Directory.GetCurrentDirectory()}{Path.DirectorySeparatorChar}MinishRandomizer-Hash.png" : $"{input}.png", stream.ToArray());
+            Console.WriteLine("Hash image saved successfully!");
+        }
+        catch
+        {
+            PrintError("Failed to save hash image! Please check your file path and make sure you have write access.");
+        }
+    }
+
     internal static void GetSelectedSettingString()
     {
         if (!ValidatePreviouslyUsedController()) return;
@@ -561,7 +583,7 @@ internal static class GenericCommands
                 Console.WriteLine("5) Enter ARGB Color Code");
                 Console.Write("Enter the number of the option you want for the color picker: ");
                 var input = Console.ReadLine();
-                if (string.IsNullOrEmpty(input) || !int.TryParse(input, out var i) || i is < 1 or > 4)
+                if (string.IsNullOrEmpty(input) || !int.TryParse(input, out var i) || i is < 1 or > 5)
                 {
                     if (!input.Equals("exit", StringComparison.OrdinalIgnoreCase))
                     {

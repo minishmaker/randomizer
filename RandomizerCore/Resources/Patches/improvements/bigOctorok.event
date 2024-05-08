@@ -1,0 +1,6 @@
+PUSH
+ORG $CE850
+#incbin "asm/noInkBigOctorok.dmp"
+ORG $36DD2
+#incbin "asm/noChargeBigOctorok.dmp"
+POP

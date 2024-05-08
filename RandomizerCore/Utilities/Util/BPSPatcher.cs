@@ -59,7 +59,7 @@ public static class BpsPatcher
     public static byte[] ApplyPatch(byte[] sourceRom, PatchFile patchFile)
     {
         var patch = Patch.BuildPatchFromContentBytes(patchFile.Content);
-        if (CrcUtil.Crc32(sourceRom, sourceRom.Length) != patch.SourceChecksum)
+        if (sourceRom.Crc32() != patch.SourceChecksum)
             throw new ArgumentException("Hash of provided ROM does not match expected hash!");
 
         var newRom = new List<byte>(patch.PatchedSize);
@@ -107,7 +107,7 @@ public static class BpsPatcher
             }
 
         var newRomBytes = newRom.ToArray();
-        if (CrcUtil.Crc32(newRomBytes, newRomBytes.Length) != patch.PatchedChecksum)
+        if (newRomBytes.Crc32() != patch.PatchedChecksum)
             throw new ArgumentException("Hash of patched ROM does not match expected hash!");
 
         return newRomBytes;
@@ -119,8 +119,8 @@ public static class BpsPatcher
         {
             SourceSize = sourceRom.Length,
             PatchedSize = patchedRom.Length,
-            SourceChecksum = CrcUtil.Crc32(sourceRom, sourceRom.Length),
-            PatchedChecksum = CrcUtil.Crc32(patchedRom, patchedRom.Length)
+            SourceChecksum = sourceRom.Crc32(),
+            PatchedChecksum = patchedRom.Crc32()
         };
 
         //This uses linear patching by default instead of delta due to ease of implementation, we can change to delta if we want

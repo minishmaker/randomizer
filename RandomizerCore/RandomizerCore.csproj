@@ -1,13 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net6.0</TargetFramework>
+        <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
         <GenerateDependencyFile>false</GenerateDependencyFile>
         <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
         <Title>TMCRandomizerCore</Title>
+        <LangVersion>default</LangVersion>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -36,6 +37,7 @@
 
     <ItemGroup>
         <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+        <PackageReference Include="System.IO.Hashing" Version="9.0.0-preview.3.24172.9" />
         <PackageReference Include="YamlDotNet" Version="13.0.1" />
     </ItemGroup>
 
