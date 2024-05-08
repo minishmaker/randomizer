@@ -43,6 +43,11 @@
         </Content>
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="RestSharp" Version="110.2.0" />
+      <PackageReference Include="SkiaSharp.NativeAssets.Linux.NoDependencies" Version="2.88.8" />
+    </ItemGroup>
+
 	<Target Name="SetSourceRevisionId" BeforeTargets="InitializeSourceControlInformation">
 		<Exec Command="git describe --tag --abbrev=0" ConsoleToMSBuild="True" IgnoreExitCode="False">
 			<Output PropertyName="SourceRevisionId" TaskParameter="ConsoleOutput" />

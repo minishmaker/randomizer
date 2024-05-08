@@ -1,5 +1,4 @@
 ﻿using System.Globalization;
-using System.Net;
 using System.Reflection;
 using MinishCapRandomizerUI.DrawConstants;
 using MinishCapRandomizerUI.Elements;
