@@ -65,6 +65,7 @@ internal class Program
             {"SaveRom", SaveRom},
             {"SaveSpoiler", SaveSpoiler},
             {"SavePatch", SavePatch},
+            {"SaveHash", SaveHash},
             {"GetSettingString", GetSettingString},
             {"GetFinalSettingString", GetFinalSettingString},
             {"PatchRom", PatchRom},
@@ -91,6 +92,7 @@ Randomize               Generates a randomized ROM
 SaveRom                 Saves and patches the ROM, requires Randomize to have been called
 SaveSpoiler             Saves the spoiler log, requires Randomize to have been called
 SavePatch               Saves a BPS patch for the randomized ROM, requires Randomize to have been called
+SaveHash                Saves a .png of the hash for the generated seed, requires Randomize to have been called
 GetSettingString        Gets the setting string for your currently selected settings
 GetFinalSettingString   Gets the setting string for the settings used for the randomized ROM, requires Randomize to have been called
 PatchRom                Patches a European Minish Cap ROM with a BPS patch
@@ -167,6 +169,11 @@ Strict                  Toggle strict mode (exit after error)
     private static void SavePatch()
     {
         GenericCommands.SavePatch();
+    }
+
+    private static void SaveHash()
+    {
+        GenericCommands.SaveSeedHash();
     }
 
     private static void GetSettingString()

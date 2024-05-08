@@ -366,6 +366,9 @@ Generating seeds with this shuffler may freeze the randomizer application for ma
         TabPane.SelectedTab = SeedOutput;
     }
 
+    /*
+     * This is a windows only implementation, for a cross platform implementation of hash processing see the CLI
+     */
     private void DisplaySeedHash()
     {
         const byte hashMask = 0b111111;

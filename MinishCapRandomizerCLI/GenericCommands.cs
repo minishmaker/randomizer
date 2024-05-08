@@ -4,6 +4,7 @@ using RandomizerCore.Controllers;
 using RandomizerCore.Controllers.Models;
 using RandomizerCore.Random;
 using RandomizerCore.Randomizer.Logic.Options;
+using SkiaSharp;
 
 namespace MinishCapRandomizerCLI;
 
@@ -389,6 +390,27 @@ internal static class GenericCommands
         catch
         {
             PrintError("Failed to save patch! Please check your file path and make sure you have write access.");
+        }
+    }
+
+    internal static void SaveSeedHash()
+    {
+        if (!ValidatePreviouslyUsedController()) return;
+
+        Console.Write("Please enter the path to save the hash (blank for default, .png will be appended to the filename): ");
+        try
+        {
+            var input = Console.ReadLine();
+            var eventDefines = PreviouslyUsedController.GetEventWrites().Split('\n');
+            using var image = ImageHandler.GetHashImage(eventDefines);
+            using var stream = new MemoryStream();
+            image.Encode(stream, SKEncodedImageFormat.Png, 100);
+            File.WriteAllBytes(string.IsNullOrEmpty(input) ? $"{Directory.GetCurrentDirectory()}{Path.DirectorySeparatorChar}MinishRandomizer-Hash.png" : $"{input}.png", stream.ToArray());
+            Console.WriteLine("Hash image saved successfully!");
+        }
+        catch
+        {
+            PrintError("Failed to save hash image! Please check your file path and make sure you have write access.");
         }
     }
 
