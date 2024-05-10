@@ -7,7 +7,6 @@
         <UseWindowsForms>true</UseWindowsForms>
         <ImplicitUsings>enable</ImplicitUsings>
         <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
-        <PublishSingleFile>true</PublishSingleFile>
         <PublishReadyToRun>true</PublishReadyToRun>
         <SelfContained>true</SelfContained>
         <StartupObject>MinishCapRandomizerUI.Program</StartupObject>
@@ -16,8 +15,7 @@
 		<Title>Minish Cap Randomizer UI</Title>
 		<Description>A GUI that wraps the Legend of Zelda Minish Cap Randomizer Core</Description>
 		<Product>Minish Cap Randomizer UI</Product>
-		<FileVersion>0.7.0</FileVersion>
-		<AssemblyVersion>0.7.0</AssemblyVersion>
+        <Version>1.0.0-rc1.1</Version>
 		<LangVersion>default</LangVersion>
     </PropertyGroup>
 
