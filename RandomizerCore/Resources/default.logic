@@ -542,9 +542,9 @@
 	!define - AD_PED_NUM - 1
 !endif
 
-# Open World removes any key/fusion settings and defines things in patches to open the world
+# Open World defines things in patches to open the world
 !ifdef - OPENWORLD_ON
-	!eventdefine - openWorld					# if defines, opens all the permanent flags in dungeons and overworld (puzzles/shortcuts/etc...)
+	!eventdefine - openWorld					# if defined, opens all the permanent flags in dungeons and overworld (puzzles/shortcuts/etc...) except those covered by other settings
 !endif
 
 !ifdef - GOLDEN_ENEMY
@@ -685,7 +685,11 @@
 	!eventdefine - kinstoneMultiplierGoldFalls - 0			# golden falls kinstones don't get added to the kinstone bag
 	!eventdefine - mC81 - 0xFE								# sets all the cloud tops fusions, as well as the left and middle swamp fusions (the right swamp and falls fusions share an address with red fusions)
 	!eventdefine - goldTornado								# sets the tornado in cloud tops as spawned, shares an address with Graveyard Key stages
-	!eventdefine - goldSwampBlock							# visually destroys the stone block at the Castor Wilds statues
+	!ifdef - OPENWORLD_ON
+		!eventdefine - mCBF - 0xC0							# completely destroys the stone block at the Castor Wilds statues (and removes an obstacle elsewhere)
+	!else
+		!eventdefine - mCBF - 0x40							# completely destroys the stone block at the Castor Wilds statues
+	!endif
 !else
 	!ifdef - NO_GOLD_FUSIONS
 		!eventdefine - noGoldFusions						# if defined, golden kinstone fusions are not available (except the cloud fusions which is handled below)
@@ -702,6 +706,11 @@
 			!eventdefine - kinstoneMultiplierGoldSwamp - `GOLD2MULTIPLIER`	# golden swamp kinstones come in packs of this amount
 		!endif
 		!eventdefine - kinstoneMultiplierGoldFalls - 1					# only one golden falls kinstones is ever used
+	!endif
+	!ifdef - OPENWORLD_ON
+		!eventdefine - mCBF - 0x80							# stone block at the Castor Wilds statues is not removed (but an obstacle elsewhere)
+	!else
+		!eventdefine - mCBF - 0x00							# stone block at the Castor Wilds statues is not removed
 	!endif
 !endif
 
