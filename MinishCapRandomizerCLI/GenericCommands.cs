@@ -327,14 +327,16 @@ internal static class GenericCommands
         PreviouslyUsedController = (_cachedYAMLPathLogic != null || _cachedYAMLPathCosmetics != null || _cachedUseGlobalYAML) ? YamlController : ShufflerController;
 
         //Even if all values are provided, the base shuffler controller ignores 3 of them whereas yaml doesn't so this works
-        PreviouslyUsedController.LoadLocations(_cachedLogicPath, _cachedYAMLPathLogic, _cachedYAMLPathCosmetics, _cachedUseGlobalYAML);
-
-        var result = PreviouslyUsedController.Randomize(attempts);
-
-        if (result.WasSuccessful)
+        var result = PreviouslyUsedController.LoadLocations(_cachedLogicPath, _cachedYAMLPathLogic, _cachedYAMLPathCosmetics, _cachedUseGlobalYAML);
+        if (result)
         {
-            Console.WriteLine("Randomization successful!");
-            return true;
+            result = PreviouslyUsedController.Randomize(attempts);
+
+            if (result.WasSuccessful)
+            {
+                Console.WriteLine("Randomization successful!");
+                return true;
+            }
         }
 
         PreviouslyUsedController = null;
