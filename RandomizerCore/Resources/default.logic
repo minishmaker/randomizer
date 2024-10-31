@@ -3979,7 +3979,7 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 			CanFuseRedDin;		Helper;; (+`REDWTOTAL3`, Items.Kinstone.RedW:`REDWMULTIPLIER`)
 			CanFuseRedMinish;		Helper;; (+`REDWTOTAL1`, Items.Kinstone.RedW:`REDWMULTIPLIER`)
 		!endif
-		BelariFusion;				Helper;;	Helpers.CanFuseRedW, Locations.MinishWoods_BombMinish_NPC2																			#RuinsEndChest			0A
+		BelariFusion;				Helper;;	Helpers.CanFuseRedW, Helpers.AccessBelari																							#RuinsEndChest			0A
 		BremorFusion;				Helper;;	Helpers.CanFuseRedW, Helpers.DinNayruFaroreFusion																					#USELESSHouse				0B
 		GreybladeFusion;			Helper;;	Helpers.CanFuseRedW, Locations.Crenel_Dojo_HP																					#SwampWaterfallDojo		0C
 		!ifdef - NO_GREEN_FUSIONS
@@ -4112,7 +4112,7 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 		Shared2DFusion;		Helper;;	Helpers.CanFuseSharedBlue																											#USELESSNHFTree			2D
 		HillsMinishFusion;	Helper;;	Helpers.CanFuseBlueS, Helpers.AccessEasternHills																						#HillsBeanstalk			2E
 		Dampe1Fusion;			Helper;;	Helpers.CanFuseBlueS, Locations.Valley_DampeNPC																						#RightGrave				30
-		Spekter1Fusion;		Helper;;	Helpers.CanFuseBlueGhost, Locations.Valley_GraveyardLeftGrave_HP																		#USELESSChestGame			31
+		Spekter1Fusion;		Helper;;	Helpers.CanFuseBlueGhost, Helpers.AccessValley, Helpers.DarkRooms, Helpers.Graveyard													#USELESSChestGame			31
 		HurdyFusion;			Helper;;	Helpers.CanFuseBlueS																												#SHFTree					32
 		GoronLeftFusion;		Helper;;	Helpers.CanFuseBlueS, (&Helpers.GoronCave, (|Helpers.CanDestroyTrees, Items.Ocarina))														#GoronMerchant			33
 	!endif
@@ -4998,7 +4998,7 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 	!endif
 !endif
 	LibrariAtLibrary;	Helper;; Helpers.Library, Items.PacciCane, Items.RedBook, Items.GreenBook, Items.BlueBook, Items.GripRing
-	VillageSideMinish0Fusion;	Helper;;	Helpers.CanFuseShared, Items.Flippers
+	VillageSideMinish0Fusion;	Helper;;	Helpers.CanFuseShared, Helpers.AccessMinishWoods, Items.Flippers
 	
 # Key Doors Logic, checks the Key Settings to determine what number of keys are needed to pass through certain doors
 !ifdef - DWS1KEY
