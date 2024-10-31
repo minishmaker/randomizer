@@ -3760,14 +3760,23 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 				Items.Kinstone.GoldenCloudTops:9;		Major;
 			!endif
 			CanFuseGoldTornado;  Helper;; (+9, Items.Kinstone.GoldenCloudTops:`GOLD1MULTIPLIER`)
-			CanFuseGoldTotem;    Helper;; (+9, Items.Kinstone.GoldenCloudTops:`GOLD1MULTIPLIER`)			
+			CanFuseGoldTotem;    Helper;; (+9, Items.Kinstone.GoldenCloudTops:`GOLD1MULTIPLIER`)
+			# The Veil Falls Gold Fusion only requires 4 Golden Kinstones if Cloud Tops is locked behind it
 			!ifdef - CLOUD_CREST
 				CanFuseGoldCrown;    Helper;; (+9, Items.Kinstone.GoldenCloudTops:`GOLD1MULTIPLIER`)
 			!else
 				!ifdef - FALLS_CREST
 					CanFuseGoldCrown;    Helper;; (+9, Items.Kinstone.GoldenCloudTops:`GOLD1MULTIPLIER`)
 				!else
-					CanFuseGoldCrown;    Helper;; (+4, Items.Kinstone.GoldenCloudTops:`GOLD1MULTIPLIER`)
+					!ifdef - OPEN_WIND_TRIBE
+						!ifndef - NO_RED_FUSIONS
+							CanFuseGoldCrown;    Helper;; (+9, Items.Kinstone.GoldenCloudTops:`GOLD1MULTIPLIER`)
+						!else
+							CanFuseGoldCrown;    Helper;; (+4, Items.Kinstone.GoldenCloudTops:`GOLD1MULTIPLIER`)
+						!endif
+					!else
+						CanFuseGoldCrown;    Helper;; (+4, Items.Kinstone.GoldenCloudTops:`GOLD1MULTIPLIER`)
+					!endif
 				!endif
 			!endif
 		!endif
