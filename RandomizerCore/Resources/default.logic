@@ -4977,8 +4977,25 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 !endif
 	LibrariAtLibrary;	Helper;; Helpers.Library, Items.PacciCane, Items.RedBook, Items.GreenBook, Items.BlueBook, Items.GripRing
 	VillageSideMinish0Fusion;	Helper;;	Helpers.CanFuseShared, Helpers.AccessMinishWoods, Items.Flippers
-	
+
 # Key Doors Logic, checks the Key Settings to determine what number of keys are needed to pass through certain doors
+!ifndef - ACCESS_LOCATIONS
+	!ifdef - DWS1KEY
+		!define - DWS_LOCKED_KEYS
+	!endif
+	!ifdef - FOW1KEY
+		!define - FOW_LOCKED_KEYS
+	!endif
+	!ifdef - TOD1KEY
+		!define - TOD_LOCKED_KEYS
+	!endif
+	!ifdef - POW1KEY
+		!define - POW_LOCKED_KEYS
+	!endif
+	!ifdef - DHC1KEY
+		!define - DHC_LOCKED_KEYS
+	!endif
+!endif
 !ifdef - DWS1KEY
 	!eventdefine - keyMultiplierDWS - 1
 	!define - DWSKEYAMOUNT - 1
@@ -5002,7 +5019,7 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 		!undefine - Deepwood2ndDoor
 		!define - Deepwood2ndDoor - , (+2, Items.SmallKey.0x18:`DWSKEYAMOUNT`)
 	!endif
-	!ifndef - ACCESS_LOCATIONS
+	!ifdef - DWS_LOCKED_KEYS
 		!ifndef - SMALL_KEYS_ELSE
 			!ifndef - SMALL_KEYS_VANILLA
 				!ifdef - NO_RED_FUSIONS
@@ -5060,7 +5077,7 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 	!define - FoWRightDoor - 
 	!define - FoWMiddleDoor - 
 	!define - FoWLastDoor - 
-	!ifndef - ACCESS_LOCATIONS
+	!ifdef - FOW_LOCKED_KEYS
 		!ifndef - SMALL_KEYS_ELSE
 			!ifndef - SMALL_KEYS_VANILLA
 				!ifdef - SMALL_KEYS_STANDARD
@@ -5142,7 +5159,7 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 		!endif
 	!endif
 	!ifndef - TOD_BIGDOOR_SKIP
-		!ifdef - ACCESS_LOCATIONS
+		!ifndef - TOD_LOCKED_KEYS
 			!ifndef - BIG_KEYS_ELSE
 				!ifdef - SMALL_KEYS_ELSE
 					!ifdef - BIG_KEYS_VANILLA
@@ -5154,7 +5171,7 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 						!undefine - ToDBigDoor
 						!define - ToDRightBlock - (|(&Items.ToDKeys.0xb, ~Items.BigKey.0x1B), (&Items.ToDKeys.0xa, ~Items.SmallKey.0x1B, ~Items.DungeonMap.0x1B, ~Items.Compass.0x1B))
 						!define - ToDLeftBlock - , (&Items.ToDKeys.0xb, Items.SmallKey.0x1B, ~Items.SmallKey.0x1B, ~Items.DungeonMap.0x1B, ~Items.Compass.0x1B), (&Items.ToDKeys.0xa, Items.BigKey.0x1B, (+4, Items.SmallKey.0x1B:`TODKEYAMOUNT`))
-						!define - ToDBigDoor - , (&Items.SmallKey.0x1B, Items.BigKey.0x1B, Items.ToDKeys.0xb), (&Items.BigKey.0x1B, Items.ToDKeys.0xa))
+						!define - ToDBigDoor - , (&Items.SmallKey.0x1B, Items.BigKey.0x1B, Items.ToDKeys.0xb), (&Items.BigKey.0x1B, Items.ToDKeys.0xa)
 					!endif
 				!else
 					!ifdef - SMALL_KEYS_VANILLA
@@ -5286,7 +5303,7 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 		!define - PoWFans - , Items.SmallKey.0x1C:2
 		!define - PoW1stDoor - , Items.SmallKey.0x1C:3
 	!endif
-	!ifndef - ACCESS_LOCATIONS
+	!ifdef - POW_LOCKED_KEYS
 		!ifndef - BIG_KEYS_VANILLA
 			!ifndef - SMALL_KEYS_ELSE
 					!undefine - PoWFans - 
@@ -5336,7 +5353,7 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 !endif
 	DHC1stDoor;				Helper;;	(|(+5, Items.SmallKey.0x1D:`DHCKEYAMOUNT`), (&Helpers.DHCNoWarps, Items.SmallKey.0x1D))
 	!define - DHCBigBlock - 
-	!ifndef - ACCESS_LOCATIONS
+	!ifdef - DHC_LOCKED_KEYS
 		!ifndef - SMALL_KEYS_ELSE
 			!ifndef - SMALL_KEYS_VANILLA
 				!define - Sanctuary_Pedestal_Item3 - 
