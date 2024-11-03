@@ -1,7 +1,38 @@
 PUSH
-ORG 0xC850 // Gentari script after Jabber Nut check
-BYTE 0x5A 0x08 0x34 0x11 // show text box
-BYTE 0x03 0x08 0x26 0x00 // skip some other commands
+ORG 0xC82E // Gentari script with vanilla Jabber Nut check, we use this to jump to our custom checks
+SHORT 0x0803 // always jump to below code instead of depending on Jabber Nut
+#ifdef goalHintAlways
+    SHORT showGoalTextBox-0xC830 // skip checks and jump straight to goal reveal
+#endif
+
+ORG 0xC850 // Gentari script after successful vanilla Jabber Nut check, we use this for our custom checks
+#ifdef goalHintElement
+    SHORT 0x0400 0x0400 0x0400 0x0400 // no operation
+#else
+    #ifdef goalHintNutOrElement
+        SHORT 0x080F 0x005B // check for Jabber Nut
+        SHORT 0x0804 showGoalTextBox-0xC856 // if Link has it, reveal goal
+    #else
+        SHORT 0x080F 0x005B // check for Jabber Nut
+        SHORT 0x0805 0xC832-0xC856 // if Link does not have it, no goal reveal (jump to 0xC832)
+    #endif
+#endif
+#ifndef goalHintNut
+    SHORT 0x080F 0x0040 // check for Earth Element
+    SHORT 0x0804 showGoalTextBox-0xC85E // if Link has it, reveal goal
+    SHORT 0x080F 0x0041 // check for Fire Element
+    SHORT 0x0804 showGoalTextBox-0xC866 // if Link has it, reveal goal
+    SHORT 0x080F 0x0042 // check for Water Element
+    SHORT 0x0804 showGoalTextBox-0xC86E // if Link has it, reveal goal
+    SHORT 0x080F 0x0043 // check for Wind Element
+    SHORT 0x0805 0xC832-(showGoalTextBox-2) // if Link does not have it, no goal reveal (jump to 0xC832)
+#else
+    SHORT 0x0803 showGoalTextBox-0xC85A // since Jabber Nut check was successful, reveal goal
+#endif
+
+ORG 0xC878
+showGoalTextBox:
+SHORT 0x085A 0x1134 // show text box with text defined below
 
 ORG 0x9CC270+0x34*4
 WORD goalTextEnglish-0x9CC270

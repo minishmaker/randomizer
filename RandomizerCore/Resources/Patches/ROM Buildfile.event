@@ -254,8 +254,25 @@ WORD customRNG
 #include "hash.event"
 #include "traps.event"
 #include "removeFusions.event"
-#include "goalHint.event"
 #include "c/textSpeed.cevent"
+
+// Gentari can reveal the goal requirements
+#ifndef goalHintAlways
+	#ifndef goalHintNutOrElement
+		#ifndef goalHintNut
+			#ifndef goalHintElement
+				#ifndef goalHintNutAndElement
+					#ifndef goalHintNever
+						#define goalHintNever
+					#endif
+				#endif
+			#endif
+		#endif
+	#endif
+#endif
+#ifndef goalHintNever
+	#include "goalHint.event"
+#endif
 
 #ifdef heartLimited // extra hearts do not grant extra hp
 
