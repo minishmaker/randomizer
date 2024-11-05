@@ -585,6 +585,7 @@
 !endif
 !ifdef - MINISH_CREST
 	!eventdefine - minishCrest - 0x80
+	!eventdefine - minishCrestFlag
 !else
 	!eventdefine - minishCrest - 0x00
 !endif
