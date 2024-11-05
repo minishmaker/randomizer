@@ -1004,43 +1004,49 @@ internal abstract class ShufflerBase
             {
                 case "Deepwood_Prize":
                     correspondingEntrance = Locations.First(location =>
-                        location.Type is LocationType.DungeonEntrance or LocationType.Unshuffled &&
+                        (location.Type is LocationType.DungeonEntrance or LocationType.Unshuffled) &&
                         location.Contents is not null &&
+                        location.Contents.Value.Type is ItemType.Entrance &&
                         (DungeonEntranceType)location.Contents.Value.SubValue is DungeonEntranceType.Dws);
                     coords = GetAddressFromDungeonEntranceName(correspondingEntrance.Name);
                     break;
                 case "CoF_Prize":
                     correspondingEntrance = Locations.First(location =>
-                        location.Type is LocationType.DungeonEntrance or LocationType.Unshuffled &&
+                        (location.Type is LocationType.DungeonEntrance or LocationType.Unshuffled) &&
                         location.Contents is not null &&
+                        location.Contents.Value.Type is ItemType.Entrance &&
                         (DungeonEntranceType)location.Contents.Value.SubValue is DungeonEntranceType.CoF);
                     coords = GetAddressFromDungeonEntranceName(correspondingEntrance.Name);
                     break;
                 case "Fortress_Prize":
                     correspondingEntrance = Locations.First(location =>
-                        location.Type is LocationType.DungeonEntrance or LocationType.Unshuffled &&
+                        (location.Type is LocationType.DungeonEntrance or LocationType.Unshuffled) &&
                         location.Contents is not null &&
+                        location.Contents.Value.Type is ItemType.Entrance &&
                         (DungeonEntranceType)location.Contents.Value.SubValue is DungeonEntranceType.FoW);
                     coords = GetAddressFromDungeonEntranceName(correspondingEntrance.Name);
                     break;
                 case "Droplets_Prize":
                     correspondingEntrance = Locations.First(location =>
-                        location.Type is LocationType.DungeonEntrance or LocationType.Unshuffled &&
+                        (location.Type is LocationType.DungeonEntrance or LocationType.Unshuffled) &&
                         location.Contents is not null &&
+                        location.Contents.Value.Type is ItemType.Entrance &&
                         (DungeonEntranceType)location.Contents.Value.SubValue is DungeonEntranceType.ToD);
                     coords = GetAddressFromDungeonEntranceName(correspondingEntrance.Name);
                     break;
                 case "Crypt_Prize":
                     correspondingEntrance = Locations.First(location =>
-                        location.Type is LocationType.DungeonEntrance or LocationType.Unshuffled &&
+                        (location.Type is LocationType.DungeonEntrance or LocationType.Unshuffled) &&
                         location.Contents is not null &&
+                        location.Contents.Value.Type is ItemType.Entrance &&
                         (DungeonEntranceType)location.Contents.Value.SubValue is DungeonEntranceType.Crypt);
                     coords = GetAddressFromDungeonEntranceName(correspondingEntrance.Name);
                     break;
                 case "Palace_Prize":
                     correspondingEntrance = Locations.First(location =>
-                        location.Type is LocationType.DungeonEntrance or LocationType.Unshuffled &&
+                        (location.Type is LocationType.DungeonEntrance or LocationType.Unshuffled) &&
                         location.Contents is not null &&
+                        location.Contents.Value.Type is ItemType.Entrance &&
                         (DungeonEntranceType)location.Contents.Value.SubValue is DungeonEntranceType.PoW);
                     coords = GetAddressFromDungeonEntranceName(correspondingEntrance.Name);
                     break;
