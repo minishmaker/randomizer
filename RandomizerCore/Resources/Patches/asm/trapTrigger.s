@@ -17,6 +17,13 @@ ldr	r0,[r0]
 cmp	r0,#0
 bne	end
 
+@prevent softlock with goron merchant
+ldr	r0,=#0x2000058
+ldrh	r0,[r0]
+ldr	r1,=#0x2C1C
+cmp	r0,r1
+beq	end
+
 @check if we should run requirement checks
 ldr	r0,requirementPrize
 cmp	r0,#0
