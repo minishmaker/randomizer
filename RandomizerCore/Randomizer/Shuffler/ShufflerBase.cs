@@ -533,15 +533,20 @@ internal abstract class ShufflerBase
             }
         }
 
-        protected void FastFillAndConsiderItemPlaced(List<Item> items, List<Location> locations)
+        /// <summary>
+        ///     Fill items in locations without checking logic for speed.
+        ///     Intended for constraints rather than normal items and locations.
+        ///     Throws an exception if any items could not be placed or any locations could not be filled.
+        /// </summary>
+        /// <param name="items">The items to fill with</param>
+        /// <param name="locations">The locations in which to fill the items</param>
+        protected void FastFillConstraints(List<Item> items, List<Location> locations)
         {
             var i = items.Count;
-            if ( i == 0 ) Logger.Instance.LogInfo($"Nothing to Place");
+            if (i == 0) Logger.Instance.LogInfo($"Nothing to Place");
             foreach (var item in items)
             {
-                if (locations.Count == 0) return;
-
-                var l = locations.Where(loc => loc.Dungeons.Contains(item.Dungeon)).ToList();
+                var l = locations.Where(loc => item.Dungeon == "" || loc.Dungeons.Contains(item.Dungeon)).ToList();
                 if (l.Count == 0) throw new Exception("Invalid logic file! No valid location for constraint found!");
                 l.Shuffle(Rng);
                 
@@ -550,11 +555,11 @@ internal abstract class ShufflerBase
                 Logger.Instance.LogInfo(
                     $"Placed {item.Type.ToString()} subtype {StringUtil.AsStringHex2(item.SubValue)} at {l[0].Name} with {i} items remaining");
                 l[0].Fill(item);
-                item.NotifyParentDependencies(true);
                 locations.Remove(l[0]);
-                if (i == 0) Logger.Instance.LogInfo( $"All {item.ShufflePool} placed with {l.Count} locations remaining");
+                if (i == 0) Logger.Instance.LogInfo($"All {item.ShufflePool} placed with {l.Count} locations remaining");
+            }
+            if (locations.Count != 0) throw new Exception("Invalid logic file! Not all locations for constraint filled!");
         }
-    }
 
         protected List<Location> UpdateObtainedItemsFromPlacedLocations()
         {
@@ -999,43 +1004,49 @@ internal abstract class ShufflerBase
             {
                 case "Deepwood_Prize":
                     correspondingEntrance = Locations.First(location =>
-                        location.Type is LocationType.DungeonEntrance or LocationType.Unshuffled &&
+                        (location.Type is LocationType.DungeonEntrance or LocationType.Unshuffled) &&
                         location.Contents is not null &&
+                        location.Contents.Value.Type is ItemType.Entrance &&
                         (DungeonEntranceType)location.Contents.Value.SubValue is DungeonEntranceType.Dws);
                     coords = GetAddressFromDungeonEntranceName(correspondingEntrance.Name);
                     break;
                 case "CoF_Prize":
                     correspondingEntrance = Locations.First(location =>
-                        location.Type is LocationType.DungeonEntrance or LocationType.Unshuffled &&
+                        (location.Type is LocationType.DungeonEntrance or LocationType.Unshuffled) &&
                         location.Contents is not null &&
+                        location.Contents.Value.Type is ItemType.Entrance &&
                         (DungeonEntranceType)location.Contents.Value.SubValue is DungeonEntranceType.CoF);
                     coords = GetAddressFromDungeonEntranceName(correspondingEntrance.Name);
                     break;
                 case "Fortress_Prize":
                     correspondingEntrance = Locations.First(location =>
-                        location.Type is LocationType.DungeonEntrance or LocationType.Unshuffled &&
+                        (location.Type is LocationType.DungeonEntrance or LocationType.Unshuffled) &&
                         location.Contents is not null &&
+                        location.Contents.Value.Type is ItemType.Entrance &&
                         (DungeonEntranceType)location.Contents.Value.SubValue is DungeonEntranceType.FoW);
                     coords = GetAddressFromDungeonEntranceName(correspondingEntrance.Name);
                     break;
                 case "Droplets_Prize":
                     correspondingEntrance = Locations.First(location =>
-                        location.Type is LocationType.DungeonEntrance or LocationType.Unshuffled &&
+                        (location.Type is LocationType.DungeonEntrance or LocationType.Unshuffled) &&
                         location.Contents is not null &&
+                        location.Contents.Value.Type is ItemType.Entrance &&
                         (DungeonEntranceType)location.Contents.Value.SubValue is DungeonEntranceType.ToD);
                     coords = GetAddressFromDungeonEntranceName(correspondingEntrance.Name);
                     break;
                 case "Crypt_Prize":
                     correspondingEntrance = Locations.First(location =>
-                        location.Type is LocationType.DungeonEntrance or LocationType.Unshuffled &&
+                        (location.Type is LocationType.DungeonEntrance or LocationType.Unshuffled) &&
                         location.Contents is not null &&
+                        location.Contents.Value.Type is ItemType.Entrance &&
                         (DungeonEntranceType)location.Contents.Value.SubValue is DungeonEntranceType.Crypt);
                     coords = GetAddressFromDungeonEntranceName(correspondingEntrance.Name);
                     break;
                 case "Palace_Prize":
                     correspondingEntrance = Locations.First(location =>
-                        location.Type is LocationType.DungeonEntrance or LocationType.Unshuffled &&
+                        (location.Type is LocationType.DungeonEntrance or LocationType.Unshuffled) &&
                         location.Contents is not null &&
+                        location.Contents.Value.Type is ItemType.Entrance &&
                         (DungeonEntranceType)location.Contents.Value.SubValue is DungeonEntranceType.PoW);
                     coords = GetAddressFromDungeonEntranceName(correspondingEntrance.Name);
                     break;

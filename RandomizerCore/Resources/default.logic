@@ -542,9 +542,9 @@
 	!define - AD_PED_NUM - 1
 !endif
 
-# Open World removes any key/fusion settings and defines things in patches to open the world
+# Open World defines things in patches to open the world
 !ifdef - OPENWORLD_ON
-	!eventdefine - openWorld					# if defines, opens all the permanent flags in dungeons and overworld (puzzles/shortcuts/etc...)
+	!eventdefine - openWorld					# if defined, opens all the permanent flags in dungeons and overworld (puzzles/shortcuts/etc...) except those covered by other settings
 !endif
 
 !ifdef - GOLDEN_ENEMY
@@ -585,6 +585,7 @@
 !endif
 !ifdef - MINISH_CREST
 	!eventdefine - minishCrest - 0x80
+	!eventdefine - minishCrestFlag
 !else
 	!eventdefine - minishCrest - 0x00
 !endif
@@ -685,7 +686,11 @@
 	!eventdefine - kinstoneMultiplierGoldFalls - 0			# golden falls kinstones don't get added to the kinstone bag
 	!eventdefine - mC81 - 0xFE								# sets all the cloud tops fusions, as well as the left and middle swamp fusions (the right swamp and falls fusions share an address with red fusions)
 	!eventdefine - goldTornado								# sets the tornado in cloud tops as spawned, shares an address with Graveyard Key stages
-	!eventdefine - goldSwampBlock							# visually destroys the stone block at the Castor Wilds statues
+	!ifdef - OPENWORLD_ON
+		!eventdefine - mCBF - 0xC0							# completely destroys the stone block at the Castor Wilds statues (and removes an obstacle elsewhere)
+	!else
+		!eventdefine - mCBF - 0x40							# completely destroys the stone block at the Castor Wilds statues
+	!endif
 !else
 	!ifdef - NO_GOLD_FUSIONS
 		!eventdefine - noGoldFusions						# if defined, golden kinstone fusions are not available (except the cloud fusions which is handled below)
@@ -702,6 +707,11 @@
 			!eventdefine - kinstoneMultiplierGoldSwamp - `GOLD2MULTIPLIER`	# golden swamp kinstones come in packs of this amount
 		!endif
 		!eventdefine - kinstoneMultiplierGoldFalls - 1					# only one golden falls kinstones is ever used
+	!endif
+	!ifdef - OPENWORLD_ON
+		!eventdefine - mCBF - 0x80							# stone block at the Castor Wilds statues is not removed (but an obstacle elsewhere)
+	!else
+		!eventdefine - mCBF - 0x00							# stone block at the Castor Wilds statues is not removed
 	!endif
 !endif
 
@@ -2902,87 +2912,71 @@ All_Requirements_Met;	`ALLREQUIREMENTS`;	requirementPrizeItem:Define:FirstByte, 
 		SeededGreen35C3;	Helper;	;	Items.Fusion.0x35, Helpers.CanFuseGreenCShared3
 		SeededGreen35C4;	Helper;	;	Items.Fusion.0x35, Helpers.CanFuseGreenCShared4
 		SeededGreen35C5;	Helper;	;	Items.Fusion.0x35, Helpers.CanFuseGreenCShared5
-		SeededGreen35C6;	Helper;	;	Items.Fusion.0x35, Helpers.CanFuseGreenCShared6
 		SeededGreen36C1;	Helper;	;	Items.Fusion.0x36, Helpers.CanFuseGreenCShared1
 		SeededGreen36C2;	Helper;	;	Items.Fusion.0x36, Helpers.CanFuseGreenCShared2
 		SeededGreen36C3;	Helper;	;	Items.Fusion.0x36, Helpers.CanFuseGreenCShared3
 		SeededGreen36C4;	Helper;	;	Items.Fusion.0x36, Helpers.CanFuseGreenCShared4
 		SeededGreen36C5;	Helper;	;	Items.Fusion.0x36, Helpers.CanFuseGreenCShared5
-		SeededGreen36C6;	Helper;	;	Items.Fusion.0x36, Helpers.CanFuseGreenCShared6
 		SeededGreen37C1;	Helper;	;	Items.Fusion.0x37, Helpers.CanFuseGreenCShared1
 		SeededGreen37C2;	Helper;	;	Items.Fusion.0x37, Helpers.CanFuseGreenCShared2
 		SeededGreen37C3;	Helper;	;	Items.Fusion.0x37, Helpers.CanFuseGreenCShared3
 		SeededGreen37C4;	Helper;	;	Items.Fusion.0x37, Helpers.CanFuseGreenCShared4
 		SeededGreen37C5;	Helper;	;	Items.Fusion.0x37, Helpers.CanFuseGreenCShared5
-		SeededGreen37C6;	Helper;	;	Items.Fusion.0x37, Helpers.CanFuseGreenCShared6
 		SeededGreen39C1;	Helper;	;	Items.Fusion.0x39, Helpers.CanFuseGreenCShared1
 		SeededGreen39C2;	Helper;	;	Items.Fusion.0x39, Helpers.CanFuseGreenCShared2
 		SeededGreen39C3;	Helper;	;	Items.Fusion.0x39, Helpers.CanFuseGreenCShared3
 		SeededGreen39C4;	Helper;	;	Items.Fusion.0x39, Helpers.CanFuseGreenCShared4
 		SeededGreen39C5;	Helper;	;	Items.Fusion.0x39, Helpers.CanFuseGreenCShared5
-		SeededGreen39C6;	Helper;	;	Items.Fusion.0x39, Helpers.CanFuseGreenCShared6
 		SeededGreen3CC1;	Helper;	;	Items.Fusion.0x3C, Helpers.CanFuseGreenCShared1
 		SeededGreen3CC2;	Helper;	;	Items.Fusion.0x3C, Helpers.CanFuseGreenCShared2
 		SeededGreen3CC3;	Helper;	;	Items.Fusion.0x3C, Helpers.CanFuseGreenCShared3
 		SeededGreen3CC4;	Helper;	;	Items.Fusion.0x3C, Helpers.CanFuseGreenCShared4
 		SeededGreen3CC5;	Helper;	;	Items.Fusion.0x3C, Helpers.CanFuseGreenCShared5
-		SeededGreen3CC6;	Helper;	;	Items.Fusion.0x3C, Helpers.CanFuseGreenCShared6
 		SeededGreen44G1;	Helper;	;	Items.Fusion.0x44, Helpers.CanFuseGreenGShared1
 		SeededGreen44G2;	Helper;	;	Items.Fusion.0x44, Helpers.CanFuseGreenGShared2
 		SeededGreen44G3;	Helper;	;	Items.Fusion.0x44, Helpers.CanFuseGreenGShared3
 		SeededGreen44G4;	Helper;	;	Items.Fusion.0x44, Helpers.CanFuseGreenGShared4
-		SeededGreen44G5;	Helper;	;	Items.Fusion.0x44, Helpers.CanFuseGreenGShared5
 		SeededGreen46G1;	Helper;	;	Items.Fusion.0x46, Helpers.CanFuseGreenGShared1
 		SeededGreen46G2;	Helper;	;	Items.Fusion.0x46, Helpers.CanFuseGreenGShared2
 		SeededGreen46G3;	Helper;	;	Items.Fusion.0x46, Helpers.CanFuseGreenGShared3
 		SeededGreen46G4;	Helper;	;	Items.Fusion.0x46, Helpers.CanFuseGreenGShared4
-		SeededGreen46G5;	Helper;	;	Items.Fusion.0x46, Helpers.CanFuseGreenGShared5
 		SeededGreen47G1;	Helper;	;	Items.Fusion.0x47, Helpers.CanFuseGreenGShared1
 		SeededGreen47G2;	Helper;	;	Items.Fusion.0x47, Helpers.CanFuseGreenGShared2
 		SeededGreen47G3;	Helper;	;	Items.Fusion.0x47, Helpers.CanFuseGreenGShared3
 		SeededGreen47G4;	Helper;	;	Items.Fusion.0x47, Helpers.CanFuseGreenGShared4
-		SeededGreen47G5;	Helper;	;	Items.Fusion.0x47, Helpers.CanFuseGreenGShared5
 		SeededGreen4EG1;	Helper;	;	Items.Fusion.0x4E, Helpers.CanFuseGreenGShared1
 		SeededGreen4EG2;	Helper;	;	Items.Fusion.0x4E, Helpers.CanFuseGreenGShared2
 		SeededGreen4EG3;	Helper;	;	Items.Fusion.0x4E, Helpers.CanFuseGreenGShared3
 		SeededGreen4EG4;	Helper;	;	Items.Fusion.0x4E, Helpers.CanFuseGreenGShared4
-		SeededGreen4EG5;	Helper;	;	Items.Fusion.0x4E, Helpers.CanFuseGreenGShared5
 		SeededGreen50P1;	Helper;	;	Items.Fusion.0x50, Helpers.CanFuseGreenPShared1
 		SeededGreen50P2;	Helper;	;	Items.Fusion.0x50, Helpers.CanFuseGreenPShared2
 		SeededGreen50P3;	Helper;	;	Items.Fusion.0x50, Helpers.CanFuseGreenPShared3
 		SeededGreen50P4;	Helper;	;	Items.Fusion.0x50, Helpers.CanFuseGreenPShared4
-		SeededGreen50P5;	Helper;	;	Items.Fusion.0x50, Helpers.CanFuseGreenPShared5
 		SeededGreen53P1;	Helper;	;	Items.Fusion.0x53, Helpers.CanFuseGreenPShared1
 		SeededGreen53P2;	Helper;	;	Items.Fusion.0x53, Helpers.CanFuseGreenPShared2
 		SeededGreen53P3;	Helper;	;	Items.Fusion.0x53, Helpers.CanFuseGreenPShared3
 		SeededGreen53P4;	Helper;	;	Items.Fusion.0x53, Helpers.CanFuseGreenPShared4
-		SeededGreen53P5;	Helper;	;	Items.Fusion.0x53, Helpers.CanFuseGreenPShared5
 		SeededGreen55P1;	Helper;	;	Items.Fusion.0x55, Helpers.CanFuseGreenPShared1
 		SeededGreen55P2;	Helper;	;	Items.Fusion.0x55, Helpers.CanFuseGreenPShared2
 		SeededGreen55P3;	Helper;	;	Items.Fusion.0x55, Helpers.CanFuseGreenPShared3
 		SeededGreen55P4;	Helper;	;	Items.Fusion.0x55, Helpers.CanFuseGreenPShared4
-		SeededGreen55P5;	Helper;	;	Items.Fusion.0x55, Helpers.CanFuseGreenPShared5
 		SeededGreen56P1;	Helper;	;	Items.Fusion.0x56, Helpers.CanFuseGreenPShared1
 		SeededGreen56P2;	Helper;	;	Items.Fusion.0x56, Helpers.CanFuseGreenPShared2
 		SeededGreen56P3;	Helper;	;	Items.Fusion.0x56, Helpers.CanFuseGreenPShared3
 		SeededGreen56P4;	Helper;	;	Items.Fusion.0x56, Helpers.CanFuseGreenPShared4
-		SeededGreen56P5;	Helper;	;	Items.Fusion.0x56, Helpers.CanFuseGreenPShared5
 		SeededGreen58P1;	Helper;	;	Items.Fusion.0x58, Helpers.CanFuseGreenPShared1
 		SeededGreen58P2;	Helper;	;	Items.Fusion.0x58, Helpers.CanFuseGreenPShared2
 		SeededGreen58P3;	Helper;	;	Items.Fusion.0x58, Helpers.CanFuseGreenPShared3
 		SeededGreen58P4;	Helper;	;	Items.Fusion.0x58, Helpers.CanFuseGreenPShared4
-		SeededGreen58P5;	Helper;	;	Items.Fusion.0x58, Helpers.CanFuseGreenPShared5
 		SeededGreen5FC1;	Helper;	;	Items.Fusion.0x5F, Helpers.CanFuseGreenCShared1
 		SeededGreen5FC2;	Helper;	;	Items.Fusion.0x5F, Helpers.CanFuseGreenCShared2
 		SeededGreen5FC3;	Helper;	;	Items.Fusion.0x5F, Helpers.CanFuseGreenCShared3
 		SeededGreen5FC4;	Helper;	;	Items.Fusion.0x5F, Helpers.CanFuseGreenCShared4
 		SeededGreen5FC5;	Helper;	;	Items.Fusion.0x5F, Helpers.CanFuseGreenCShared5
-		SeededGreen5FC6;	Helper;	;	Items.Fusion.0x5F, Helpers.CanFuseGreenCShared6
 		SeededGreen60G1;	Helper;	;	Items.Fusion.0x60, Helpers.CanFuseGreenGShared1
 		SeededGreen60G2;	Helper;	;	Items.Fusion.0x60, Helpers.CanFuseGreenGShared2
 		SeededGreen60G3;	Helper;	;	Items.Fusion.0x60, Helpers.CanFuseGreenGShared3
 		SeededGreen60G4;	Helper;	;	Items.Fusion.0x60, Helpers.CanFuseGreenGShared4
-		SeededGreen60G5;	Helper;	;	Items.Fusion.0x60, Helpers.CanFuseGreenGShared5
 	!else
 		SeededGreen35S1;	Helper;	;	Items.Fusion.0x35, Helpers.CanFuseGreenShared1
 		SeededGreen35S2;	Helper;	;	Items.Fusion.0x35, Helpers.CanFuseGreenShared2
@@ -3241,8 +3235,8 @@ All_Requirements_Met;	`ALLREQUIREMENTS`;	requirementPrizeItem:Define:FirstByte, 
 		Shared02:SF:NoSpoiler;   OverworldConstraint; fusionScrap02:Define:FirstByte, 0x0C9846:SecondByte;	(+2, Items.Fusion.0xF2, Helpers.CanFuseSharedRed, Helpers.CanFuseSharedBlue, Helpers.SeededGreen35C2, Helpers.SeededGreen36C2, Helpers.SeededGreen37C2, Helpers.SeededGreen39C2, Helpers.SeededGreen3CC2, Helpers.SeededGreen44G2, Helpers.SeededGreen46G2, Helpers.SeededGreen47G2, Helpers.SeededGreen4EG2, Helpers.SeededGreen50P2, Helpers.SeededGreen53P2, Helpers.SeededGreen55P2, Helpers.SeededGreen56P2, Helpers.SeededGreen58P2, Helpers.SeededGreen5FC2, Helpers.SeededGreen60G2);
 		Shared03:SF:NoSpoiler;   OverworldConstraint; fusionScrap03:Define:FirstByte, 0x0C9847:SecondByte;	(+3, Items.Fusion.0xF2, Helpers.CanFuseSharedRed, Helpers.CanFuseSharedBlue, Helpers.SeededGreen35C3, Helpers.SeededGreen36C3, Helpers.SeededGreen37C3, Helpers.SeededGreen39C3, Helpers.SeededGreen3CC3, Helpers.SeededGreen44G3, Helpers.SeededGreen46G3, Helpers.SeededGreen47G3, Helpers.SeededGreen4EG3, Helpers.SeededGreen50P3, Helpers.SeededGreen53P3, Helpers.SeededGreen55P3, Helpers.SeededGreen56P3, Helpers.SeededGreen58P3, Helpers.SeededGreen5FC3, Helpers.SeededGreen60G3);
 		Shared04:SF:NoSpoiler;   OverworldConstraint; fusionScrap04:Define:FirstByte, 0x0C9848:SecondByte;	(+4, Items.Fusion.0xF2, Helpers.CanFuseSharedRed, Helpers.CanFuseSharedBlue, Helpers.SeededGreen35C4, Helpers.SeededGreen36C4, Helpers.SeededGreen37C4, Helpers.SeededGreen39C4, Helpers.SeededGreen3CC4, Helpers.SeededGreen44G4, Helpers.SeededGreen46G4, Helpers.SeededGreen47G4, Helpers.SeededGreen4EG4, Helpers.SeededGreen50P4, Helpers.SeededGreen53P4, Helpers.SeededGreen55P4, Helpers.SeededGreen56P4, Helpers.SeededGreen58P4, Helpers.SeededGreen5FC4, Helpers.SeededGreen60G4);
-		Shared05:SF:NoSpoiler;   OverworldConstraint; fusionScrap05:Define:FirstByte, 0x0C9849:SecondByte;	(+5, Items.Fusion.0xF2, Helpers.CanFuseSharedRed, Helpers.CanFuseSharedBlue, Helpers.SeededGreen35C5, Helpers.SeededGreen36C5, Helpers.SeededGreen37C5, Helpers.SeededGreen39C5, Helpers.SeededGreen3CC5, Helpers.SeededGreen44G5, Helpers.SeededGreen46G5, Helpers.SeededGreen47G5, Helpers.SeededGreen4EG5, Helpers.SeededGreen50P5, Helpers.SeededGreen53P5, Helpers.SeededGreen55P5, Helpers.SeededGreen56P5, Helpers.SeededGreen58P5, Helpers.SeededGreen5FC5, Helpers.SeededGreen60G5);
-		Shared06:SF:NoSpoiler;   OverworldConstraint; fusionScrap06:Define:FirstByte, 0x0C984A:SecondByte;	(+6, Items.Fusion.0xF2, Helpers.CanFuseSharedRed, Helpers.CanFuseSharedBlue, Helpers.SeededGreen35C6, Helpers.SeededGreen36C6, Helpers.SeededGreen37C6, Helpers.SeededGreen39C6, Helpers.SeededGreen3CC6, Helpers.CanFuseShared44, Helpers.CanFuseShared46, Helpers.CanFuseShared47, Helpers.CanFuseShared4E, Helpers.CanFuseShared50, Helpers.CanFuseShared53, Helpers.CanFuseShared55, Helpers.CanFuseShared56, Helpers.CanFuseShared58, Helpers.SeededGreen5FC6, Helpers.CanFuseShared60);
+		Shared05:SF:NoSpoiler;   OverworldConstraint; fusionScrap05:Define:FirstByte, 0x0C9849:SecondByte;	(+5, Items.Fusion.0xF2, Helpers.CanFuseSharedRed, Helpers.CanFuseSharedBlue, Helpers.SeededGreen35C5, Helpers.SeededGreen36C5, Helpers.SeededGreen37C5, Helpers.SeededGreen39C5, Helpers.SeededGreen3CC5, Helpers.CanFuseShared44, Helpers.CanFuseShared46, Helpers.CanFuseShared47, Helpers.CanFuseShared4E, Helpers.CanFuseShared50, Helpers.CanFuseShared53, Helpers.CanFuseShared55, Helpers.CanFuseShared56, Helpers.CanFuseShared58, Helpers.SeededGreen5FC5, Helpers.CanFuseShared60);
+		Shared06:SF:NoSpoiler;   OverworldConstraint; fusionScrap06:Define:FirstByte, 0x0C984A:SecondByte;	(+6, Items.Fusion.0xF2, Helpers.CanFuseSharedRed, Helpers.CanFuseSharedBlue, Helpers.CanFuseShared35, Helpers.CanFuseShared36, Helpers.CanFuseShared37, Helpers.CanFuseShared39, Helpers.CanFuseShared3C, Helpers.CanFuseShared44, Helpers.CanFuseShared46, Helpers.CanFuseShared47, Helpers.CanFuseShared4E, Helpers.CanFuseShared50, Helpers.CanFuseShared53, Helpers.CanFuseShared55, Helpers.CanFuseShared56, Helpers.CanFuseShared58, Helpers.CanFuseShared5F, Helpers.CanFuseShared60);
 		Shared07:SF:NoSpoiler;   OverworldConstraint; fusionScrap07:Define:FirstByte, 0x0C984B:SecondByte;	(+7, Items.Fusion.0xF2, Helpers.CanFuseSharedRed, Helpers.CanFuseSharedBlue, Helpers.CanFuseShared35, Helpers.CanFuseShared36, Helpers.CanFuseShared37, Helpers.CanFuseShared39, Helpers.CanFuseShared3C, Helpers.CanFuseShared44, Helpers.CanFuseShared46, Helpers.CanFuseShared47, Helpers.CanFuseShared4E, Helpers.CanFuseShared50, Helpers.CanFuseShared53, Helpers.CanFuseShared55, Helpers.CanFuseShared56, Helpers.CanFuseShared58, Helpers.CanFuseShared5F, Helpers.CanFuseShared60);
 		Shared08:SF:NoSpoiler;   OverworldConstraint; fusionScrap08:Define:FirstByte, 0x0C984C:SecondByte;	(+8, Items.Fusion.0xF2, Helpers.CanFuseSharedRed, Helpers.CanFuseSharedBlue, Helpers.CanFuseShared35, Helpers.CanFuseShared36, Helpers.CanFuseShared37, Helpers.CanFuseShared39, Helpers.CanFuseShared3C, Helpers.CanFuseShared44, Helpers.CanFuseShared46, Helpers.CanFuseShared47, Helpers.CanFuseShared4E, Helpers.CanFuseShared50, Helpers.CanFuseShared53, Helpers.CanFuseShared55, Helpers.CanFuseShared56, Helpers.CanFuseShared58, Helpers.CanFuseShared5F, Helpers.CanFuseShared60);
 		Shared09:SF:NoSpoiler;   OverworldConstraint; fusionScrap09:Define:FirstByte, 0x0C984D:SecondByte;	(+9, Items.Fusion.0xF2, Helpers.CanFuseSharedRed, Helpers.CanFuseSharedBlue, Helpers.CanFuseShared35, Helpers.CanFuseShared36, Helpers.CanFuseShared37, Helpers.CanFuseShared39, Helpers.CanFuseShared3C, Helpers.CanFuseShared44, Helpers.CanFuseShared46, Helpers.CanFuseShared47, Helpers.CanFuseShared4E, Helpers.CanFuseShared50, Helpers.CanFuseShared53, Helpers.CanFuseShared55, Helpers.CanFuseShared56, Helpers.CanFuseShared58, Helpers.CanFuseShared5F, Helpers.CanFuseShared60);
@@ -3751,14 +3745,23 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 				Items.Kinstone.GoldenCloudTops:9;		Major;
 			!endif
 			CanFuseGoldTornado;  Helper;; (+9, Items.Kinstone.GoldenCloudTops:`GOLD1MULTIPLIER`)
-			CanFuseGoldTotem;    Helper;; (+9, Items.Kinstone.GoldenCloudTops:`GOLD1MULTIPLIER`)			
+			CanFuseGoldTotem;    Helper;; (+9, Items.Kinstone.GoldenCloudTops:`GOLD1MULTIPLIER`)
+			# The Veil Falls Gold Fusion only requires 4 Golden Kinstones if Cloud Tops is locked behind it
 			!ifdef - CLOUD_CREST
 				CanFuseGoldCrown;    Helper;; (+9, Items.Kinstone.GoldenCloudTops:`GOLD1MULTIPLIER`)
 			!else
 				!ifdef - FALLS_CREST
 					CanFuseGoldCrown;    Helper;; (+9, Items.Kinstone.GoldenCloudTops:`GOLD1MULTIPLIER`)
 				!else
-					CanFuseGoldCrown;    Helper;; (+4, Items.Kinstone.GoldenCloudTops:`GOLD1MULTIPLIER`)
+					!ifdef - OPEN_WIND_TRIBE
+						!ifndef - NO_RED_FUSIONS
+							CanFuseGoldCrown;    Helper;; (+9, Items.Kinstone.GoldenCloudTops:`GOLD1MULTIPLIER`)
+						!else
+							CanFuseGoldCrown;    Helper;; (+4, Items.Kinstone.GoldenCloudTops:`GOLD1MULTIPLIER`)
+						!endif
+					!else
+						CanFuseGoldCrown;    Helper;; (+4, Items.Kinstone.GoldenCloudTops:`GOLD1MULTIPLIER`)
+					!endif
 				!endif
 			!endif
 		!endif
@@ -3961,7 +3964,7 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 			CanFuseRedDin;		Helper;; (+`REDWTOTAL3`, Items.Kinstone.RedW:`REDWMULTIPLIER`)
 			CanFuseRedMinish;		Helper;; (+`REDWTOTAL1`, Items.Kinstone.RedW:`REDWMULTIPLIER`)
 		!endif
-		BelariFusion;				Helper;;	Helpers.CanFuseRedW, Locations.MinishWoods_BombMinish_NPC2																			#RuinsEndChest			0A
+		BelariFusion;				Helper;;	Helpers.CanFuseRedW, Helpers.AccessBelari																							#RuinsEndChest			0A
 		BremorFusion;				Helper;;	Helpers.CanFuseRedW, Helpers.DinNayruFaroreFusion																					#USELESSHouse				0B
 		GreybladeFusion;			Helper;;	Helpers.CanFuseRedW, Locations.Crenel_Dojo_HP																					#SwampWaterfallDojo		0C
 		!ifdef - NO_GREEN_FUSIONS
@@ -4094,7 +4097,7 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 		Shared2DFusion;		Helper;;	Helpers.CanFuseSharedBlue																											#USELESSNHFTree			2D
 		HillsMinishFusion;	Helper;;	Helpers.CanFuseBlueS, Helpers.AccessEasternHills																						#HillsBeanstalk			2E
 		Dampe1Fusion;			Helper;;	Helpers.CanFuseBlueS, Locations.Valley_DampeNPC																						#RightGrave				30
-		Spekter1Fusion;		Helper;;	Helpers.CanFuseBlueGhost, Locations.Valley_GraveyardLeftGrave_HP																		#USELESSChestGame			31
+		Spekter1Fusion;		Helper;;	Helpers.CanFuseBlueGhost, Helpers.AccessValley, Helpers.DarkRooms, Helpers.Graveyard													#USELESSChestGame			31
 		HurdyFusion;			Helper;;	Helpers.CanFuseBlueS																												#SHFTree					32
 		GoronLeftFusion;		Helper;;	Helpers.CanFuseBlueS, (&Helpers.GoronCave, (|Helpers.CanDestroyTrees, Items.Ocarina))														#GoronMerchant			33
 	!endif
@@ -4113,17 +4116,14 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 	CanFuseGreenCShared3;		Helper;;
 	CanFuseGreenCShared4;		Helper;;
 	CanFuseGreenCShared5;		Helper;;
-	CanFuseGreenCShared6;		Helper;;
 	CanFuseGreenGShared1;		Helper;;
 	CanFuseGreenGShared2;		Helper;;
 	CanFuseGreenGShared3;		Helper;;
 	CanFuseGreenGShared4;		Helper;;
-	CanFuseGreenGShared5;		Helper;;
 	CanFuseGreenPShared1;		Helper;;
 	CanFuseGreenPShared2;		Helper;;
 	CanFuseGreenPShared3;		Helper;;
 	CanFuseGreenPShared4;		Helper;;
-	CanFuseGreenPShared5;		Helper;;
 	CanFuseGreenShared1;		Helper;;
 	CanFuseGreenShared2;		Helper;;
 	CanFuseGreenShared3;		Helper;;
@@ -4203,17 +4203,14 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 		CanFuseGreenCShared3;		Helper;;
 		CanFuseGreenCShared4;		Helper;;
 		CanFuseGreenCShared5;		Helper;;
-		CanFuseGreenCShared6;		Helper;;
 		CanFuseGreenGShared1;		Helper;;
 		CanFuseGreenGShared2;		Helper;;
 		CanFuseGreenGShared3;		Helper;;
 		CanFuseGreenGShared4;		Helper;;
-		CanFuseGreenGShared5;		Helper;;
 		CanFuseGreenPShared1;		Helper;;
 		CanFuseGreenPShared2;		Helper;;
 		CanFuseGreenPShared3;		Helper;;
 		CanFuseGreenPShared4;		Helper;;
-		CanFuseGreenPShared5;		Helper;;
 		CanFuseGreenShared1;		Helper;;
 		CanFuseGreenShared2;		Helper;;
 		CanFuseGreenShared3;		Helper;;
@@ -4289,7 +4286,6 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 						!define - GREENCTOTAL3 - 14
 						!define - GREENCTOTAL4 - 13
 						!define - GREENCTOTAL5 - 12
-						!define - GREENCTOTAL6 - 11
 					!else
 						!define - GREENCTOTAL - 16
 						!define - GREENCTOTAL1 - 15
@@ -4297,7 +4293,6 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 						!define - GREENCTOTAL3 - 13
 						!define - GREENCTOTAL4 - 12
 						!define - GREENCTOTAL5 - 11
-						!define - GREENCTOTAL6 - 10
 					!endif
 				!else
 					!ifdef - UWT_ACCESS
@@ -4307,7 +4302,6 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 						!define - GREENCTOTAL3 - 13
 						!define - GREENCTOTAL4 - 12
 						!define - GREENCTOTAL5 - 11
-						!define - GREENCTOTAL6 - 10
 					!else
 						!define - GREENCTOTAL - 15
 						!define - GREENCTOTAL1 - 14
@@ -4315,7 +4309,6 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 						!define - GREENCTOTAL3 - 12
 						!define - GREENCTOTAL4 - 11
 						!define - GREENCTOTAL5 - 10
-						!define - GREENCTOTAL6 - 9
 					!endif
 				!endif
 			!else
@@ -4327,7 +4320,6 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 						!define - GREENCTOTAL3 - 12
 						!define - GREENCTOTAL4 - 11
 						!define - GREENCTOTAL5 - 10
-						!define - GREENCTOTAL6 - 9
 					!else
 						!define - GREENCTOTAL - 14
 						!define - GREENCTOTAL1 - 13
@@ -4335,7 +4327,6 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 						!define - GREENCTOTAL3 - 11
 						!define - GREENCTOTAL4 - 10
 						!define - GREENCTOTAL5 - 9
-						!define - GREENCTOTAL6 - 8
 					!endif
 				!else
 					!ifdef - UWT_ACCESS
@@ -4345,7 +4336,6 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 						!define - GREENCTOTAL3 - 11
 						!define - GREENCTOTAL4 - 10
 						!define - GREENCTOTAL5 - 9
-						!define - GREENCTOTAL6 - 8
 					!else
 						!define - GREENCTOTAL - 13
 						!define - GREENCTOTAL1 - 12
@@ -4353,7 +4343,6 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 						!define - GREENCTOTAL3 - 10
 						!define - GREENCTOTAL4 - 9
 						!define - GREENCTOTAL5 - 8
-						!define - GREENCTOTAL6 - 7
 					!endif
 				!endif
 			!endif
@@ -4364,14 +4353,12 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 					!define - GREENPTOTAL2 - 14
 					!define - GREENPTOTAL3 - 13
 					!define - GREENPTOTAL4 - 12
-					!define - GREENPTOTAL5 - 11
 				!else
 					!define - GREENPTOTAL - 15
 					!define - GREENPTOTAL1 - 14
 					!define - GREENPTOTAL2 - 13
 					!define - GREENPTOTAL3 - 12
 					!define - GREENPTOTAL4 - 11
-					!define - GREENPTOTAL5 - 10
 				!endif
 			!else
 				!ifdef - MINISH_TREE
@@ -4380,14 +4367,12 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 					!define - GREENPTOTAL2 - 13
 					!define - GREENPTOTAL3 - 12
 					!define - GREENPTOTAL4 - 11
-					!define - GREENPTOTAL5 - 10
 				!else
 					!define - GREENPTOTAL - 14
 					!define - GREENPTOTAL1 - 13
 					!define - GREENPTOTAL2 - 12
 					!define - GREENPTOTAL3 - 11
 					!define - GREENPTOTAL4 - 10
-					!define - GREENPTOTAL5 - 9
 				!endif
 			!endif
 			!ifdef - UWT_ACCESS
@@ -4396,7 +4381,6 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 				!define - GREENGTOTAL2 - 14
 				!define - GREENGTOTAL3 - 13
 				!define - GREENGTOTAL4 - 12
-				!define - GREENGTOTAL5 - 11
 			!else
 				!ifdef - TRIBE_ACCESS
 					!ifdef - FALLS_ACCESS
@@ -4405,14 +4389,12 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 						!define - GREENGTOTAL2 - 13
 						!define - GREENGTOTAL3 - 12
 						!define - GREENGTOTAL4 - 11
-						!define - GREENGTOTAL5 - 10
 					!else
 						!define - GREENGTOTAL - 14
 						!define - GREENGTOTAL1 - 13
 						!define - GREENGTOTAL2 - 12
 						!define - GREENGTOTAL3 - 11
 						!define - GREENGTOTAL4 - 10
-						!define - GREENGTOTAL5 - 9
 					!endif
 				!else
 					!ifdef - FALLS_ACCESS
@@ -4421,14 +4403,12 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 						!define - GREENGTOTAL2 - 11
 						!define - GREENGTOTAL3 - 10
 						!define - GREENGTOTAL4 - 9
-						!define - GREENGTOTAL5 - 8
 					!else
 						!define - GREENGTOTAL - 12
 						!define - GREENGTOTAL1 - 11
 						!define - GREENGTOTAL2 - 10
 						!define - GREENGTOTAL3 - 9
 						!define - GREENGTOTAL4 - 8
-						!define - GREENGTOTAL5 - 7
 					!endif
 				!endif
 			!endif
@@ -4462,27 +4442,24 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 			Items.Kinstone.GreenP:`GREENPTOTAL`;	Major;
 			Items.Kinstone.GreenG:`GREENGTOTAL`;	Major;
 			CanFuseGreenC;   		Helper;; (+`GREENCTOTAL`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
-			CanFuseGreenCShared1;	Helper;; (+`GREENCTOTAL6`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
-			CanFuseGreenCShared2;	Helper;; (+`GREENCTOTAL5`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
-			CanFuseGreenCShared3;	Helper;; (+`GREENCTOTAL4`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
-			CanFuseGreenCShared4;	Helper;; (+`GREENCTOTAL3`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
-			CanFuseGreenCShared5;	Helper;; (+`GREENCTOTAL2`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
-			CanFuseGreenCShared6;	Helper;; (+`GREENCTOTAL1`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+			CanFuseGreenCShared1;	Helper;; (+`GREENCTOTAL5`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+			CanFuseGreenCShared2;	Helper;; (+`GREENCTOTAL4`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+			CanFuseGreenCShared3;	Helper;; (+`GREENCTOTAL3`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+			CanFuseGreenCShared4;	Helper;; (+`GREENCTOTAL2`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+			CanFuseGreenCShared5;	Helper;; (+`GREENCTOTAL1`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 			CanFuseGreenP;   		Helper;; (+`GREENPTOTAL`, Items.Kinstone.GreenP:`GREENPMULTIPLIER`)
 			CanFuseGreenTFZ2;		Helper;; (+`GREENPTOTAL`, Items.Kinstone.GreenP:`GREENPMULTIPLIER`)
 			CanFuseGreenDavid;	Helper;; (+`GREENPTOTAL`, Items.Kinstone.GreenP:`GREENPMULTIPLIER`)
-			CanFuseGreenPShared1;	Helper;; (+`GREENPTOTAL5`, Items.Kinstone.GreenP:`GREENPMULTIPLIER`)
-			CanFuseGreenPShared2;	Helper;; (+`GREENPTOTAL4`, Items.Kinstone.GreenP:`GREENPMULTIPLIER`)
-			CanFuseGreenPShared3;	Helper;; (+`GREENPTOTAL3`, Items.Kinstone.GreenP:`GREENPMULTIPLIER`)
-			CanFuseGreenPShared4;	Helper;; (+`GREENPTOTAL2`, Items.Kinstone.GreenP:`GREENPMULTIPLIER`)
-			CanFuseGreenPShared5;	Helper;; (+`GREENPTOTAL1`, Items.Kinstone.GreenP:`GREENPMULTIPLIER`)
+			CanFuseGreenPShared1;	Helper;; (+`GREENPTOTAL4`, Items.Kinstone.GreenP:`GREENPMULTIPLIER`)
+			CanFuseGreenPShared2;	Helper;; (+`GREENPTOTAL3`, Items.Kinstone.GreenP:`GREENPMULTIPLIER`)
+			CanFuseGreenPShared3;	Helper;; (+`GREENPTOTAL2`, Items.Kinstone.GreenP:`GREENPMULTIPLIER`)
+			CanFuseGreenPShared4;	Helper;; (+`GREENPTOTAL1`, Items.Kinstone.GreenP:`GREENPMULTIPLIER`)
 			CanFuseGreenG;   		Helper;; (+`GREENGTOTAL`, Items.Kinstone.GreenG:`GREENGMULTIPLIER`)
 			CanFuseGreenTFZ1;		Helper;; (+`GREENGTOTAL`, Items.Kinstone.GreenG:`GREENGMULTIPLIER`)
-			CanFuseGreenGShared1;	Helper;; (+`GREENGTOTAL5`, Items.Kinstone.GreenG:`GREENGMULTIPLIER`)
-			CanFuseGreenGShared2;	Helper;; (+`GREENGTOTAL4`, Items.Kinstone.GreenG:`GREENGMULTIPLIER`)
-			CanFuseGreenGShared3;	Helper;; (+`GREENGTOTAL3`, Items.Kinstone.GreenG:`GREENGMULTIPLIER`)
-			CanFuseGreenGShared4;	Helper;; (+`GREENGTOTAL2`, Items.Kinstone.GreenG:`GREENGMULTIPLIER`)
-			CanFuseGreenGShared5;	Helper;; (+`GREENGTOTAL1`, Items.Kinstone.GreenG:`GREENGMULTIPLIER`)
+			CanFuseGreenGShared1;	Helper;; (+`GREENGTOTAL4`, Items.Kinstone.GreenG:`GREENGMULTIPLIER`)
+			CanFuseGreenGShared2;	Helper;; (+`GREENGTOTAL3`, Items.Kinstone.GreenG:`GREENGMULTIPLIER`)
+			CanFuseGreenGShared3;	Helper;; (+`GREENGTOTAL2`, Items.Kinstone.GreenG:`GREENGMULTIPLIER`)
+			CanFuseGreenGShared4;	Helper;; (+`GREENGTOTAL1`, Items.Kinstone.GreenG:`GREENGMULTIPLIER`)
 			!ifdef - UWT_ACCESS
 				CanFuseGreenSiroc;	Helper;; (+`GREENCTOTAL`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 			!else
@@ -4522,6 +4499,7 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 						!define - GREENCTOTALC - 37
 						!define - GREENCTOTALD - 36
 						!define - GREENCTOTALE - 35
+						!define - GREENCTOTALF - 34
 					!else
 						!define - GREENCTOTAL - 47
 						!define - GREENCTOTAL1 - 46
@@ -4538,6 +4516,7 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 						!define - GREENCTOTALC - 35
 						!define - GREENCTOTALD - 34
 						!define - GREENCTOTALE - 33
+						!define - GREENCTOTALF - 32
 					!endif
 				!else
 					!ifdef - MINISH_TREE
@@ -4556,6 +4535,7 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 						!define - GREENCTOTALC - 35
 						!define - GREENCTOTALD - 34
 						!define - GREENCTOTALE - 33
+						!define - GREENCTOTALF - 32
 					!else
 						!define - GREENCTOTAL - 45
 						!define - GREENCTOTAL1 - 44
@@ -4572,6 +4552,7 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 						!define - GREENCTOTALC - 33
 						!define - GREENCTOTALD - 32
 						!define - GREENCTOTALE - 31
+						!define - GREENCTOTALF - 30
 					!endif
 				!endif
 			!else
@@ -4594,6 +4575,7 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 								!define - GREENCTOTALC - 35
 								!define - GREENCTOTALD - 34
 								!define - GREENCTOTALE - 33
+								!define - GREENCTOTALF - 32
 							!else
 								!define - GREENCTOTAL - 46
 								!define - GREENCTOTAL1 - 45
@@ -4610,6 +4592,7 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 								!define - GREENCTOTALC - 34
 								!define - GREENCTOTALD - 33
 								!define - GREENCTOTALE - 32
+								!define - GREENCTOTALF - 31
 							!endif
 						!else
 							!ifdef - FALLS_ACCESS
@@ -4628,6 +4611,7 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 								!define - GREENCTOTALC - 33
 								!define - GREENCTOTALD - 32
 								!define - GREENCTOTALE - 31
+								!define - GREENCTOTALF - 30
 							!else
 								!define - GREENCTOTAL - 44
 								!define - GREENCTOTAL1 - 43
@@ -4644,6 +4628,7 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 								!define - GREENCTOTALC - 32
 								!define - GREENCTOTALD - 31
 								!define - GREENCTOTALE - 30
+								!define - GREENCTOTALF - 29
 							!endif
 						!endif
 					!else
@@ -4664,6 +4649,7 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 								!define - GREENCTOTALC - 33
 								!define - GREENCTOTALD - 32
 								!define - GREENCTOTALE - 31
+								!define - GREENCTOTALF - 30
 							!else
 								!define - GREENCTOTAL - 44
 								!define - GREENCTOTAL1 - 43
@@ -4680,6 +4666,7 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 								!define - GREENCTOTALC - 32
 								!define - GREENCTOTALD - 31
 								!define - GREENCTOTALE - 30
+								!define - GREENCTOTALF - 29
 							!endif
 						!else
 							!ifdef - FALLS_ACCESS
@@ -4698,6 +4685,7 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 								!define - GREENCTOTALC - 31
 								!define - GREENCTOTALD - 30
 								!define - GREENCTOTALE - 29
+								!define - GREENCTOTALF - 28
 							!else
 								!define - GREENCTOTAL - 42
 								!define - GREENCTOTAL1 - 41
@@ -4714,6 +4702,7 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 								!define - GREENCTOTALC - 30
 								!define - GREENCTOTALD - 29
 								!define - GREENCTOTALE - 28
+								!define - GREENCTOTALF - 27
 							!endif
 						!endif
 					!endif
@@ -4736,6 +4725,7 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 								!define - GREENCTOTALC - 32
 								!define - GREENCTOTALD - 31
 								!define - GREENCTOTALE - 30
+								!define - GREENCTOTALF - 29
 							!else
 								!define - GREENCTOTAL - 43
 								!define - GREENCTOTAL1 - 42
@@ -4752,6 +4742,7 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 								!define - GREENCTOTALC - 31
 								!define - GREENCTOTALD - 30
 								!define - GREENCTOTALE - 29
+								!define - GREENCTOTALF - 28
 							!endif
 						!else
 							!ifdef - FALLS_ACCESS
@@ -4770,6 +4761,7 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 								!define - GREENCTOTALC - 30
 								!define - GREENCTOTALD - 29
 								!define - GREENCTOTALE - 28
+								!define - GREENCTOTALF - 27
 							!else
 								!define - GREENCTOTAL - 41
 								!define - GREENCTOTAL1 - 40
@@ -4786,6 +4778,7 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 								!define - GREENCTOTALC - 29
 								!define - GREENCTOTALD - 28
 								!define - GREENCTOTALE - 27
+								!define - GREENCTOTALF - 26
 							!endif
 						!endif
 					!else
@@ -4806,6 +4799,7 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 								!define - GREENCTOTALC - 30
 								!define - GREENCTOTALD - 29
 								!define - GREENCTOTALE - 28
+								!define - GREENCTOTALF - 27
 							!else
 								!define - GREENCTOTAL - 41
 								!define - GREENCTOTAL1 - 40
@@ -4822,6 +4816,7 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 								!define - GREENCTOTALC - 29
 								!define - GREENCTOTALD - 28
 								!define - GREENCTOTALE - 27
+								!define - GREENCTOTALF - 26
 							!endif
 						!else
 							!ifdef - FALLS_ACCESS
@@ -4840,6 +4835,7 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 								!define - GREENCTOTALC - 28
 								!define - GREENCTOTALD - 27
 								!define - GREENCTOTALE - 26
+								!define - GREENCTOTALF - 25
 							!else
 								!define - GREENCTOTAL - 39
 								!define - GREENCTOTAL1 - 38
@@ -4856,6 +4852,7 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 								!define - GREENCTOTALC - 27
 								!define - GREENCTOTALD - 26
 								!define - GREENCTOTALE - 25
+								!define - GREENCTOTALF - 24
 							!endif
 						!endif
 					!endif
@@ -4883,21 +4880,21 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 			CanFuseGreenP;   		Helper;; (+`GREENCTOTAL`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 			CanFuseGreenTFZ2;		Helper;; (+`GREENCTOTAL1`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 			CanFuseGreenDavid;	Helper;; (+`GREENCTOTAL1`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
-			CanFuseGreenShared15;	Helper;; (+`GREENCTOTAL`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
-			CanFuseGreenShared14;	Helper;; (+`GREENCTOTAL1`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
-			CanFuseGreenShared13;	Helper;; (+`GREENCTOTAL2`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
-			CanFuseGreenShared12;	Helper;; (+`GREENCTOTAL3`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
-			CanFuseGreenShared11;	Helper;; (+`GREENCTOTAL4`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
-			CanFuseGreenShared10;	Helper;; (+`GREENCTOTAL5`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
-			CanFuseGreenShared9;	Helper;; (+`GREENCTOTAL6`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
-			CanFuseGreenShared8;	Helper;; (+`GREENCTOTAL7`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
-			CanFuseGreenShared7;	Helper;; (+`GREENCTOTAL8`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
-			CanFuseGreenShared6;	Helper;; (+`GREENCTOTAL9`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
-			CanFuseGreenShared5;	Helper;; (+`GREENCTOTALA`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
-			CanFuseGreenShared4;	Helper;; (+`GREENCTOTALB`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
-			CanFuseGreenShared3;	Helper;; (+`GREENCTOTALC`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
-			CanFuseGreenShared2;	Helper;; (+`GREENCTOTALD`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
-			CanFuseGreenShared1;	Helper;; (+`GREENCTOTALE`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+			CanFuseGreenShared15;	Helper;; (+`GREENCTOTAL1`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+			CanFuseGreenShared14;	Helper;; (+`GREENCTOTAL2`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+			CanFuseGreenShared13;	Helper;; (+`GREENCTOTAL3`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+			CanFuseGreenShared12;	Helper;; (+`GREENCTOTAL4`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+			CanFuseGreenShared11;	Helper;; (+`GREENCTOTAL5`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+			CanFuseGreenShared10;	Helper;; (+`GREENCTOTAL6`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+			CanFuseGreenShared9;	Helper;; (+`GREENCTOTAL7`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+			CanFuseGreenShared8;	Helper;; (+`GREENCTOTAL8`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+			CanFuseGreenShared7;	Helper;; (+`GREENCTOTAL9`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+			CanFuseGreenShared6;	Helper;; (+`GREENCTOTALA`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+			CanFuseGreenShared5;	Helper;; (+`GREENCTOTALB`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+			CanFuseGreenShared4;	Helper;; (+`GREENCTOTALC`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+			CanFuseGreenShared3;	Helper;; (+`GREENCTOTALD`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+			CanFuseGreenShared2;	Helper;; (+`GREENCTOTALE`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+			CanFuseGreenShared1;	Helper;; (+`GREENCTOTALF`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 			!ifdef - UWT_ACCESS
 				CanFuseGreenSiroc;	Helper;; (+`GREENCTOTAL1`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 			!else
@@ -4980,9 +4977,26 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 	!endif
 !endif
 	LibrariAtLibrary;	Helper;; Helpers.Library, Items.PacciCane, Items.RedBook, Items.GreenBook, Items.BlueBook, Items.GripRing
-	VillageSideMinish0Fusion;	Helper;;	Helpers.CanFuseShared, Items.Flippers
-	
+	VillageSideMinish0Fusion;	Helper;;	Helpers.CanFuseShared, Helpers.AccessMinishWoods, Items.Flippers
+
 # Key Doors Logic, checks the Key Settings to determine what number of keys are needed to pass through certain doors
+!ifndef - ACCESS_LOCATIONS
+	!ifdef - DWS1KEY
+		!define - DWS_LOCKED_KEYS
+	!endif
+	!ifdef - FOW1KEY
+		!define - FOW_LOCKED_KEYS
+	!endif
+	!ifdef - TOD1KEY
+		!define - TOD_LOCKED_KEYS
+	!endif
+	!ifdef - POW1KEY
+		!define - POW_LOCKED_KEYS
+	!endif
+	!ifdef - DHC1KEY
+		!define - DHC_LOCKED_KEYS
+	!endif
+!endif
 !ifdef - DWS1KEY
 	!eventdefine - keyMultiplierDWS - 1
 	!define - DWSKEYAMOUNT - 1
@@ -5006,7 +5020,7 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 		!undefine - Deepwood2ndDoor
 		!define - Deepwood2ndDoor - , (+2, Items.SmallKey.0x18:`DWSKEYAMOUNT`)
 	!endif
-	!ifndef - ACCESS_LOCATIONS
+	!ifdef - DWS_LOCKED_KEYS
 		!ifndef - SMALL_KEYS_ELSE
 			!ifndef - SMALL_KEYS_VANILLA
 				!ifdef - NO_RED_FUSIONS
@@ -5064,7 +5078,7 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 	!define - FoWRightDoor - 
 	!define - FoWMiddleDoor - 
 	!define - FoWLastDoor - 
-	!ifndef - ACCESS_LOCATIONS
+	!ifdef - FOW_LOCKED_KEYS
 		!ifndef - SMALL_KEYS_ELSE
 			!ifndef - SMALL_KEYS_VANILLA
 				!ifdef - SMALL_KEYS_STANDARD
@@ -5146,7 +5160,7 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 		!endif
 	!endif
 	!ifndef - TOD_BIGDOOR_SKIP
-		!ifdef - ACCESS_LOCATIONS
+		!ifndef - TOD_LOCKED_KEYS
 			!ifndef - BIG_KEYS_ELSE
 				!ifdef - SMALL_KEYS_ELSE
 					!ifdef - BIG_KEYS_VANILLA
@@ -5158,7 +5172,7 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 						!undefine - ToDBigDoor
 						!define - ToDRightBlock - (|(&Items.ToDKeys.0xb, ~Items.BigKey.0x1B), (&Items.ToDKeys.0xa, ~Items.SmallKey.0x1B, ~Items.DungeonMap.0x1B, ~Items.Compass.0x1B))
 						!define - ToDLeftBlock - , (&Items.ToDKeys.0xb, Items.SmallKey.0x1B, ~Items.SmallKey.0x1B, ~Items.DungeonMap.0x1B, ~Items.Compass.0x1B), (&Items.ToDKeys.0xa, Items.BigKey.0x1B, (+4, Items.SmallKey.0x1B:`TODKEYAMOUNT`))
-						!define - ToDBigDoor - , (&Items.SmallKey.0x1B, Items.BigKey.0x1B, Items.ToDKeys.0xb), (&Items.BigKey.0x1B, Items.ToDKeys.0xa))
+						!define - ToDBigDoor - , (&Items.SmallKey.0x1B, Items.BigKey.0x1B, Items.ToDKeys.0xb), (&Items.BigKey.0x1B, Items.ToDKeys.0xa)
 					!endif
 				!else
 					!ifdef - SMALL_KEYS_VANILLA
@@ -5290,7 +5304,7 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 		!define - PoWFans - , Items.SmallKey.0x1C:2
 		!define - PoW1stDoor - , Items.SmallKey.0x1C:3
 	!endif
-	!ifndef - ACCESS_LOCATIONS
+	!ifdef - POW_LOCKED_KEYS
 		!ifndef - BIG_KEYS_VANILLA
 			!ifndef - SMALL_KEYS_ELSE
 					!undefine - PoWFans - 
@@ -5340,7 +5354,7 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 !endif
 	DHC1stDoor;				Helper;;	(|(+5, Items.SmallKey.0x1D:`DHCKEYAMOUNT`), (&Helpers.DHCNoWarps, Items.SmallKey.0x1D))
 	!define - DHCBigBlock - 
-	!ifndef - ACCESS_LOCATIONS
+	!ifdef - DHC_LOCKED_KEYS
 		!ifndef - SMALL_KEYS_ELSE
 			!ifndef - SMALL_KEYS_VANILLA
 				!define - Sanctuary_Pedestal_Item3 - 

@@ -184,14 +184,14 @@ internal class Shuffler : ShufflerBase
             : new List<Location>();
         nextLocationGroup.Shuffle(Rng);
         Logger.Instance.LogInfo($"Placing Dungeon Constraints");
-        FastFillAndConsiderItemPlaced(DungeonConstraints, nextLocationGroup);
+        FastFillConstraints(DungeonConstraints, nextLocationGroup);
         
         nextLocationGroup = locationGroups.Any(group => group.Key == LocationType.OverworldConstraint)
             ? locationGroups.First(group => group.Key == LocationType.OverworldConstraint).ToList()
             : new List<Location>();
         nextLocationGroup.Shuffle(Rng);
         Logger.Instance.LogInfo($"Placing Overworld Constraints");
-        FastFillAndConsiderItemPlaced(OverworldConstraints, nextLocationGroup);
+        FastFillConstraints(OverworldConstraints, nextLocationGroup);
 
         // //Shuffle prizes
         nextLocationGroup = locationGroups.Any(group => group.Key == LocationType.DungeonPrize)
