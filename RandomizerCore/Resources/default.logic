@@ -2541,10 +2541,11 @@
 	!endif
 	!ifdef - AD_ELEMENT_SPECIAL_CASE
 		!define - ELEMENT_DEF - 3
+    !else
+    	!undefine - GOTELEMENTS
+	    !define - GOTELEMENTS - , (+`ELEMENT_COUNT`, Items.WaterElement, Items.FireElement, Items.WindElement, Items.EarthElement)
 	!endif
 	!eventdefine - requirementElementsAmount - `ELEMENT_DEF`
-	!undefine - GOTELEMENTS
-	!define - GOTELEMENTS - , (+`ELEMENT_COUNT`, Items.WaterElement, Items.FireElement, Items.WindElement, Items.EarthElement)
 !endif
 
 !define - DHC_FIG -
