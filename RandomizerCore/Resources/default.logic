@@ -3747,22 +3747,19 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 			!endif
 			CanFuseGoldTornado;  Helper;; (+9, Items.Kinstone.GoldenCloudTops:`GOLD1MULTIPLIER`)
 			CanFuseGoldTotem;    Helper;; (+9, Items.Kinstone.GoldenCloudTops:`GOLD1MULTIPLIER`)
-			# The Veil Falls Gold Fusion only requires 4 Golden Kinstones if Cloud Tops is locked behind it
+			# The Veil Falls Gold Fusion only requires 4 Golden Kinstones if Cloud Tops is locked behind it, as then you could not waste Gold Kinstones there
+			# Exception: The Veil Falls wind crest does not affect this, because if you can reach Cloud Tops from there, you have the Grip Ring and this Fusion is no longer needed
 			!ifdef - CLOUD_CREST
 				CanFuseGoldCrown;    Helper;; (+9, Items.Kinstone.GoldenCloudTops:`GOLD1MULTIPLIER`)
 			!else
-				!ifdef - FALLS_CREST
-					CanFuseGoldCrown;    Helper;; (+9, Items.Kinstone.GoldenCloudTops:`GOLD1MULTIPLIER`)
-				!else
-					!ifdef - OPEN_WIND_TRIBE
-						!ifndef - NO_RED_FUSIONS
-							CanFuseGoldCrown;    Helper;; (+9, Items.Kinstone.GoldenCloudTops:`GOLD1MULTIPLIER`)
-						!else
-							CanFuseGoldCrown;    Helper;; (+4, Items.Kinstone.GoldenCloudTops:`GOLD1MULTIPLIER`)
-						!endif
+				!ifdef - OPEN_WIND_TRIBE
+					!ifndef - NO_RED_FUSIONS
+						CanFuseGoldCrown;    Helper;; (+9, Items.Kinstone.GoldenCloudTops:`GOLD1MULTIPLIER`)
 					!else
 						CanFuseGoldCrown;    Helper;; (+4, Items.Kinstone.GoldenCloudTops:`GOLD1MULTIPLIER`)
 					!endif
+				!else
+					CanFuseGoldCrown;    Helper;; (+4, Items.Kinstone.GoldenCloudTops:`GOLD1MULTIPLIER`)
 				!endif
 			!endif
 		!endif
