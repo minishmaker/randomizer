@@ -3772,22 +3772,19 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 			!endif
 			CanFuseGoldTornado;  Helper;; (+9, Items.Kinstone.GoldenCloudTops:`GOLD1MULTIPLIER`)
 			CanFuseGoldTotem;    Helper;; (+9, Items.Kinstone.GoldenCloudTops:`GOLD1MULTIPLIER`)
-			# The Veil Falls Gold Fusion only requires 4 Golden Kinstones if Cloud Tops is locked behind it
+			# The Veil Falls Gold Fusion only requires 4 Golden Kinstones if Cloud Tops is locked behind it, as then you could not waste Gold Kinstones there
+			# Exception: The Veil Falls wind crest does not affect this, because if you can reach Cloud Tops from there, you have the Grip Ring and this Fusion is no longer needed
 			!ifdef - CLOUD_CREST
 				CanFuseGoldCrown;    Helper;; (+9, Items.Kinstone.GoldenCloudTops:`GOLD1MULTIPLIER`)
 			!else
-				!ifdef - FALLS_CREST
-					CanFuseGoldCrown;    Helper;; (+9, Items.Kinstone.GoldenCloudTops:`GOLD1MULTIPLIER`)
-				!else
-					!ifdef - OPEN_WIND_TRIBE
-						!ifndef - NO_RED_FUSIONS
-							CanFuseGoldCrown;    Helper;; (+9, Items.Kinstone.GoldenCloudTops:`GOLD1MULTIPLIER`)
-						!else
-							CanFuseGoldCrown;    Helper;; (+4, Items.Kinstone.GoldenCloudTops:`GOLD1MULTIPLIER`)
-						!endif
+				!ifdef - OPEN_WIND_TRIBE
+					!ifndef - NO_RED_FUSIONS
+						CanFuseGoldCrown;    Helper;; (+9, Items.Kinstone.GoldenCloudTops:`GOLD1MULTIPLIER`)
 					!else
 						CanFuseGoldCrown;    Helper;; (+4, Items.Kinstone.GoldenCloudTops:`GOLD1MULTIPLIER`)
 					!endif
+				!else
+					CanFuseGoldCrown;    Helper;; (+4, Items.Kinstone.GoldenCloudTops:`GOLD1MULTIPLIER`)
 				!endif
 			!endif
 		!endif
@@ -6813,8 +6810,8 @@ Crypt_Prize			`RC_PRIZE`;		`CRYPTPRIZE`;		0x00DA5A;											(|Helpers.Complete
 AccessFalls;							Helper;			;														(|(&Helpers.OverworldBlocks, Helpers.FallsFusion, Helpers.DarkRooms, Items.GripRing), Helpers.FallsWindCrest, (&Items.GripRing, (|Helpers.CloudWindCrest, (&Helpers.StrangerFusion, Helpers.OpenWindTribe))));
 
 Falls_Entrance_HP;					`HP`;			0x0F87C3;												(|Helpers.FallsHP, Helpers.Hundo);																								Items.PieceOfHeart
-Falls_WaterDigCaveFusion_HP;			`REDFUSIONHP`;	0x0F3DD7;												(|(&Helpers.VillageSideMinish2Fusion, (|(&Helpers.OverworldBlocks, Helpers.CapeExtension), (&Helpers.AccessFalls, Items.GripRing, (|Items.Flippers, (&Items.RocsCape, Helpers.DarkRooms)))), Items.MoleMitts),  Helpers.Hundo);	Items.PieceOfHeart
-Falls_WaterDigCaveFusion_Chest;			`REDFUSION`;		0x16-0x00-0x00;											(|(&Helpers.VillageSideMinish2Fusion, (|(&Helpers.OverworldBlocks, Helpers.CapeExtension), (&Helpers.AccessFalls, Items.GripRing, (|Items.Flippers, (&Items.RocsCape, Helpers.DarkRooms)))), Items.MoleMitts),  Helpers.Hundo);	Items.Shells.50
+Falls_WaterDigCaveFusion_HP;			`REDFUSIONHP`;	0x0F3DD7;												(|(&Helpers.VillageSideMinish2Fusion, (|(&Helpers.OverworldBlocks, Helpers.CapeExtension), (&Helpers.AccessFalls, Items.GripRing, (|Items.Flippers, (&Helpers.CapeExtension, Helpers.DarkRooms)))), Items.MoleMitts),  Helpers.Hundo);	Items.PieceOfHeart
+Falls_WaterDigCaveFusion_Chest;			`REDFUSION`;		0x16-0x00-0x00;											(|(&Helpers.VillageSideMinish2Fusion, (|(&Helpers.OverworldBlocks, Helpers.CapeExtension), (&Helpers.AccessFalls, Items.GripRing, (|Items.Flippers, (&Helpers.CapeExtension, Helpers.DarkRooms)))), Items.MoleMitts),  Helpers.Hundo);	Items.Shells.50
 
 Falls_1stCave_Chest;					`FALLSCHEST`;		0x33-0x05-0x00;											(|(&Helpers.OverworldBlocks, Helpers.FallsFusion, Helpers.DarkRooms, Helpers.BombWalls), (&Helpers.AccessFalls, Items.GripRing, Helpers.BombWalls), Helpers.Hundo);																								Items.Shells.50
 Falls_Cliff_Chest;					`FALLSCHEST`;		0x0A-0x00-0x00;											(|(&Helpers.OverworldBlocks, Helpers.FallsFusion, Helpers.DarkRooms, Helpers.BombWalls, (|Helpers.CanSplit3, Helpers.CanSplit4)), (&Helpers.AccessFalls, Items.GripRing, Helpers.BombWalls, Helpers.DarkRooms, (|Helpers.CanSplit3, Helpers.CanSplit4)), Helpers.Hundo);		Items.Shells.100
