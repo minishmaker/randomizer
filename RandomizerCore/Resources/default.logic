@@ -240,6 +240,7 @@
 !flag - Gameplay - Setting - Extras - NO_KINSTONE_DROPS - Disable Kinstone Drops - Kinstone Pieces can no longer randomly drop.\nThey can also not be obtained through any other means than items in the random item pool. - true
 !flag - Gameplay - Setting - Extras - NO_SHELL_DROPS - Disable Shell Drops - Mysterious Shells can no longer randomly drop.\nThey can also not be obtained from beating Simon's Simulations multiple times. - true
 !dropdown - Gameplay - Setting - Improvements - BOOTS_L - Boots on L - Allows you to use the Pegasus Boots by pressing the L button, once obtained. - BOOTS_L_NORMAL - Disabled - BOOTS_L_OFF - 'Disabled': Boots can only be used when equipped on the A or B button. - Enabled - BOOTS_L_NORMAL - 'Enabled': Boots can also be used with the L button. - Enabled + Minish - BOOTS_L_MINISH - 'Enabled + Minish': Even as a Minish, Boots can be used with the L button.\nWarning: Dashing as a Minish has some unintended effects.
+!dropdown - Gameplay - Setting - Mystery - GOAL_HINT - Gentari Requirements Hint - Talking to Gentari (the elder in Minish Village) will reveal the requirements needed to beat the game (see 'Main Settings').\nOnly matters in Mystery when these settings are not yet known by the player. - GOAL_HINT_NUT_OR_ELEMENT - Always - GOAL_HINT_ALWAYS - 'Always': Gentari will always reveal the information. - Nut Or Element - GOAL_HINT_NUT_OR_ELEMENT - 'Nut Or Element': Information is revealed when the player has the Jabber Nut or at least one Element. - Jabber Nut - GOAL_HINT_NUT - 'Jabber Nut': Information is revealed when the player has the Jabber Nut. - Element - GOAL_HINT_ELEMENT - 'Element': Information is revealed when the player has at least one Element. - Nut And Element - GOAL_HINT_NUT_AND_ELEMENT - 'Nut And Element': Information is revealed when the player has both the Jabber Nut and at least one Element. - Never - GOAL_HINT_NEVER - 'Never': Gentari reveals no information.
 
 # Cosmetic settings
 !dropdown - Cosmetics - Cosmetic - Music & Sound Effects - MUSIC_SETTING - Music - - VANILLA_MUSIC - None - NO_MUSIC - 'None': Removes Background Music. - Vanilla - VANILLA_MUSIC - 'Vanilla': Plays the original game music. - Shuffled - MUSIC_RANDO - 'Shuffled': Shuffles the Music heard throughout the game. 
@@ -394,6 +395,7 @@
 !define - `THREE_HEART`
 !define - `DAMAGE_MULTI`
 !define - `BOOTS_L`
+!define - `GOAL_HINT`
 
 # Logic setting defines
 !ifdef - BARLOVFARM
@@ -857,6 +859,28 @@
 !ifdef - BOOTS_L_MINISH
 	!eventdefine - bootsOnL
 	!eventdefine - bootsMinish
+!endif
+
+!ifdef - GOAL_HINT_ALWAYS
+	!eventdefine - goalHintAlways
+!else
+	!ifdef - GOAL_HINT_NUT_OR_ELEMENT
+		!eventdefine - goalHintNutOrElement
+	!else
+		!ifdef - GOAL_HINT_NUT
+			!eventdefine - goalHintNut
+		!else
+			!ifdef - GOAL_HINT_ELEMENT
+				!eventdefine - goalHintElement
+			!else
+				!ifdef - GOAL_HINT_NUT_AND_ELEMENT
+					!eventdefine - goalHintNutAndElement
+				!else
+					!eventdefine - goalHintNever
+				!endif
+			!endif
+		!endif
+	!endif
 !endif
 
 !ifdef - OCARINA_SELECT
