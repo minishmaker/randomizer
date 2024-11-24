@@ -556,7 +556,7 @@ internal abstract class ShufflerBase
                     $"Placed {item.Type.ToString()} subtype {StringUtil.AsStringHex2(item.SubValue)} at {l[0].Name} with {i} items remaining");
                 l[0].Fill(item);
                 locations.Remove(l[0]);
-                if (i == 0) Logger.Instance.LogInfo($"All {item.ShufflePool} placed with {l.Count} locations remaining");
+                if (i == 0) Logger.Instance.LogInfo($"All {item.ShufflePool} placed with {l.Count - 1} locations remaining");
             }
             if (locations.Count != 0) throw new Exception("Invalid logic file! Not all locations for constraint filled!");
         }

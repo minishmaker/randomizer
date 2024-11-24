@@ -38,7 +38,7 @@ public class FlagWrapper : WrapperBase, ILogicOptionObserver
             UseMnemonic = Constants.UseMnemonic,
         };
 
-        if (!string.IsNullOrEmpty(_flag.DescriptionText))
+        if (!string.IsNullOrEmpty(_flag.DescriptionText.Trim()))
         {
             var tip = new ToolTip();
             tip.UseFading = true;
