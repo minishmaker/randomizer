@@ -20,18 +20,8 @@ doneshop:
 push	{r1-r7}
 @set up the data
 mov	r4,r0	@item ID
-mov r7,r1	@sub ID
+mov	r7,r1	@sub ID
 ldr	r5,progressiveTable
-
-@check if we are in the biggoron room
-ldr	r0,=#0x3000BF0
-ldrb	r1,[r0,#5]
-cmp	r1,#0
-bne	notgoron
-ldrb	r0,[r0,#4]
-cmp	r0,#0x1A
-beq	End
-notgoron:
 
 @check if this is the extra item
 cmp	r4, #0x05

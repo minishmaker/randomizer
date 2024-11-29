@@ -1,20 +1,21 @@
 .thumb
+checkking:
 ldrb	r2,[r4,#0x09]
 cmp	r2,#0x6A
 bne	checkbird
 ldrb	r1,[r4,#0x0A]
 cmp	r1,#0x12
-bne	checkbird
+bne	checkbiggoron
 ldrb	r1,[r4,#0x0B]
 cmp	r1,#0x09
-bne	checkbird
+bne	checkbiggoron
 ldr	r0,=#0x3000BF0
 ldrb	r1,[r0,#4]
 cmp	r1,#0x68
-bne	checkbird
+bne	checkbiggoron
 ldrb	r1,[r0,#5]
 cmp	r1,#0
-bne	checkbird
+bne	checkbiggoron
 ldr	r1,=#0x800DA5B
 ldrb	r1,[r1]
 strb	r1,[r4,#0x0B]
@@ -26,14 +27,34 @@ mov	r0,r4
 ldr	r3,=#0x80A2065
 bx	r3
 
+checkbiggoron:
+ldrb	r1,[r4,#0x0A]
+cmp	r1,#0x2A
+bne	checkbird
+ldr	r0,=#0x3000BF0
+ldrb	r1,[r0,#4]
+cmp	r1,#0x1A
+bne	checkbird
+ldrb	r1,[r0,#5]
+cmp	r1,#0
+bne	checkbird
+ldr	r1,=#0x806D0A4
+ldrb	r1,[r1]
+strb	r1,[r4,#0x0B]
+ldr	r0,=#0x80A2074
+ldr	r2,[r0]
+ldr	r1,=#0x806D0A2
+ldrb	r1,[r1]
+mov	r0,r4
+ldr	r3,=#0x80A2065
+bx	r3
+
 checkbird:
-ldrb 	r1, [r4,#0x0A]
-cmp		r2,#0x95
+ldrb 	r1,[r4,#0x0A]
+cmp	r2,#0x95
 bne	vanilla
 ldrb	r3,[r4,#0x0E]
-cmp		r3,#0xFE
-ldrb	r1,[r4,#0x0E]
-cmp	r1,#0xFE
+cmp	r3,#0xFE
 blo	vanilla
 mov	r2,#0
 vanilla:
@@ -51,7 +72,7 @@ ldrb	r3, [r4, #0x0A]
 cmp	r3, #0x1B
 bne	notTrap
 ldrb	r3, [r4,#0x08]
-cmp		r3, #0x06
+cmp	r3, #0x06
 bne	notTrap
 mov	r0, r4
 ldr	r3, trapGetIcon

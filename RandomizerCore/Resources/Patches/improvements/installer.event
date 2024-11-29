@@ -265,7 +265,7 @@ PUSH; ORG $E2F51; BYTE 0xFE
 ORG $9C8F4; WORD 0xFECEF7E3
 ORG $9C9B8; WORD 0xFE6CF7E3
 ORG $9C7B8; jumpToHack(birdFix1)
-ORG $A2058; jumpToHack(birdFix2)
+ORG $A2058; jumpToHack(birdFix2) //also fixes graphics for king item and biggoron item
 ORG $9C844; jumpToHack(birdFix3)
 ORG $9C94E; SHORT 0x20FE 0x73A0; POP
 ALIGN 4

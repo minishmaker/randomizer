@@ -111,7 +111,8 @@
 
 !dropdown - Main Settings - Setting - Shuffle - DOJO - Dojo Swordmasters -	Dojo Swordmasters have Scrolls as their rewards. - DOJOANY - Vanilla Scrolls - DOJOVANILLA - 'Vanilla Scrolls': Dojo Swordmasters offer their vanilla rewards, this overrides Progressive Scrolls. - Randomized Scrolls - DOJORANDOM - 'Randomized Scrolls': Scrolls are shuffled between the Dojo Swordmasters. - Any Item - DOJOANY - 'Any Item': Dojo Swordmasters are shuffled into the main pool.
 !dropdown - Main Settings - Setting - Shuffle - CUCCO_SETTING - Cucco Minigame - How many rounds of the Cucco Minigame are playable and have an item. - CUCCO_1 - Nothing - CUCCO_0 - - 1 Round - CUCCO_1 - - 2 Rounds - CUCCO_2 - - 3 Rounds - CUCCO_3 - - 4 Rounds - CUCCO_4 - - 5 Rounds - CUCCO_5 - - 6 Rounds - CUCCO_6 - - 7 Rounds - CUCCO_7 - - 8 Rounds - CUCCO_8 - - 9 Rounds - CUCCO_9 - - 10 Rounds - CUCCO_10 -
-!dropdown - Main Settings - Setting - Shuffle - GORON_SETTING - Goron Merchant - How many sets of Goron Merchant items are included in the random item pool.\nEach set consists of 3 items, and all 3 must be bought to advance to the next set.\nThere are 5 sets in total.\nThe remaining sets will be filled with junk items. - GORON_0 - Nothing - GORON_0 - - 1 Set - GORON_1 - - 2 Sets - GORON_2 - - 3 Sets - GORON_3 - - 4 Sets - GORON_4 - - 5 Sets - GORON_5 -
+!dropdown - Main Settings - Setting - Shuffle - GORON_SETTING - Goron Merchant - How many sets of Goron Merchant items are included in the random item pool.\nEach set consists of 3 items, and all 3 must be bought to advance to the next set.\nThere are 5 sets in total.\nThe remaining sets are either Kinstones (not in logic) like in vanilla, or removed from the game if Kinstone Drops are Disabled.\nIf Blue Fusions are Removed, these locations are not accessible. - GORON_0 - Nothing - GORON_0 - - 1 Set - GORON_1 - - 2 Sets - GORON_2 - - 3 Sets - GORON_3 - - 4 Sets - GORON_4 - - 5 Sets - GORON_5 -
+!dropdown - Main Settings - Setting - Shuffle - BIGGORON_SETTING - Biggoron - If enabled will shuffle the item received by Biggoron. To get it, you have to talk to it while in possession of a Shield.\nIf Red Fusions are Removed, or Blue Fusions are Removed and Red Fusions not Open, this location is not accessible. - BIGGORON_OFF - Disabled - BIGGORON_OFF - 'Disabled': Biggoron does not give an item. - Normal - BIGGORON_NORMAL - 'Normal': Biggoron gives an item if you show it any Shield. If you only have a regular Shield, Biggoron will eat it, but you can buy a replacement in the shop in town. - Require Mirror - BIGGORON_MIRROR - 'Require Mirror': Biggoron gives an item only if you show it a Mirror Shield.
 !flag - Main Settings - Setting - Shuffle - HEART_RANDO - Heart Pieces and Containers - If enabled will shuffle Heart Pieces and Heart Containers into the pool, otherwise Heart Pieces and Containers will always be found in their vanilla location. This makes any items randomized to Heart Piece locations visible prior to collecting them. - true
 !flag - Main Settings - Setting - Shuffle - RUPEEMANIA - Rupees - If enabled will shuffle any free standing Rupees normally found in the world that are one off collectable, this adds a lot of extra money in the pool and certain locations will be very item dense.
 !flag - Main Settings - Setting - Shuffle - SPECIALPOTS - Special Pots - If enabled will shuffle items found is special pots around the world that contain one off collectables. This setting does not affect the LonLonRanch Key Item which will always be shuffled, however if this setting is off then the pot in the ranch will always contain junk.
@@ -385,6 +386,7 @@
 !define - `DOJO`
 !define - `CUCCO_SETTING`
 !define - `GORON_SETTING`
+!define - `BIGGORON_SETTING`
 
 !define - `OPENWORLD`
 !define - `ENTRANCES`
@@ -613,6 +615,13 @@
 !ifdef - GOLDEN_ENEMY
 	!define - GOLDEN_ENEMY_GREEN
 	!define - GOLDEN_ENEMY_RED
+!endif
+
+!ifndef - BIGGORON_OFF
+	!eventdefine - enableBiggoronItem
+	!ifdef - BIGGORON_MIRROR
+		!eventdefine - biggoronRequiresMirrorShield
+	!endif
 !endif
 
 !ifdef - CRENEL_CREST
@@ -2961,6 +2970,14 @@
 				!endif
 			!endif
 		!endif
+	!else
+		!ifdef - BIGGORON_MIRROR
+			!ifdef - YES_SHIELD_PROG
+				Items.ProgressiveItem.0x03;	Major;	#Shield
+			!else
+				Items.MirrorShield;	Major;
+			!endif
+		!endif
 	!endif
 	!ifdef - YES_SCROLL_PROG
 		!ifdef - START_SCROLL_FAST_SPIN
@@ -4281,6 +4298,16 @@ HasLightBow;			Helper;; (|Items.ProgressiveItem.0x01:2, Items.LightArrow)
 HasBoomerang;			Helper;; (|Items.Boomerang, Items.MagicBoomerang, Items.ProgressiveItem.0x02)
 HasMagicBoomerang;	Helper;; (|Items.ProgressiveItem.0x02:2, Items.MagicBoomerang)
 HasShield;			Helper;; (|Items.Shield, Items.MirrorShield, Items.ProgressiveItem.0x03)
+HasMirrorShield;		Helper;; (|Items.ProgressiveItem.0x03:2, Items.MirrorShield)
+!ifdef - BIGGORON_MIRROR
+	HasBiggoronShield;		Helper;; Helpers.HasMirrorShield
+!else
+	!ifdef - BIGGORON_NORMAL
+		HasBiggoronShield;		Helper;; Helpers.HasShield
+	!else
+		HasBiggoronShield;		Helper;; Helpers.Inaccessible
+	!endif
+!endif
 !ifdef - HEARTS_20
 	SwordBeam;			Helper;; Items.SwordBeam, Helpers.HasBottle
 !else
@@ -4656,7 +4683,7 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 	BremorFusion;				Helper;;	Helpers.Inaccessible																												#USELESSHouse				0B
 	GreybladeFusion;			Helper;;	Helpers.Inaccessible																												#SwampWaterfallDojo		0C
 	Tingle2Fusion;			Helper;;	Helpers.Inaccessible																												#CrenelUpperTektite		0D
-	GoronRightFusion;			Helper;;	Helpers.Inaccessible																												#USELESSBiggoron			0E
+	GoronRightFusion;			Helper;;	Helpers.Inaccessible																												#Biggoron			0E
 	StrangerFusion;			Helper;;	Helpers.Inaccessible																												#WindPortal				0F
 	Farore2Fusion;			Helper;;	Helpers.Inaccessible																												#SwampButterfly			10
 	HyliaMiddleMinishFusion;	Helper;;	Helpers.Inaccessible																												#WesternWoodsTreeThorns	11
@@ -4688,7 +4715,7 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 		BremorFusion;				Helper;;																																#USELESSHouse				0B
 		GreybladeFusion;			Helper;;																																#SwampWaterfallDojo		0C
 		Tingle2Fusion;			Helper;;																																#CrenelUpperTektite		0D
-		GoronRightFusion;			Helper;;																																#USELESSBiggoron			0E
+		GoronRightFusion;			Helper;;																																#Biggoron			0E
 		StrangerFusion;			Helper;;																																#WindPortal				0F
 		Farore2Fusion;			Helper;;																																#SwampButterfly			10
 		HyliaMiddleMinishFusion;	Helper;;																																#WesternWoodsTreeThorns	11
@@ -4848,7 +4875,7 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 			!define - Tingle2Fusion - Helpers.Tingle1Fusion, Helpers.HasMagicBoomerang
 		!endif
 		Tingle2Fusion;			Helper;;	Helpers.CanFuseRedW, `Tingle2Fusion`																							#CrenelUpperTektite		0D
-		GoronRightFusion;			Helper;;	Helpers.CanFuseRedW, Locations.LonLon_GoronCaveFusion_BigChest																		#USELESSBiggoron			0E
+		GoronRightFusion;			Helper;;	Helpers.CanFuseRedW, Locations.LonLon_GoronCaveFusion_BigChest																		#Biggoron			0E
 		StrangerFusion;			Helper;;	Helpers.CanFuseRedW																											#WindPortal				0F
 		Farore2Fusion;			Helper;;	Helpers.CanFuseRedW, Helpers.DinNayruFaroreFusion																					#SwampButterfly			10
 		HyliaMiddleMinishFusion;	Helper;;	Helpers.CanFuseRedW, Items.Ocarina																								#WesternWoodsTreeThorns	11
@@ -6767,6 +6794,17 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 	!define - FALLSGREEN - `GREENFUSIONDUNGEON`
 	!define - FALLSENEMY - `GREENFUSIONENEMY`
 	!define - FALLSHP - `REDFUSIONHP`
+	!ifndef - BIGGORON_OFF
+		!ifndef - NO_RED_FUSIONS
+			!ifndef - NO_BLUE_FUSIONS
+				!define - FALLSBIGGORON - Any
+			!else
+				!ifdef - OPEN_RED_FUSIONS
+					!define - FALLSBIGGORON - Any
+				!endif
+			!endif
+		!endif
+	!endif
 !else
 	!define - FALLSCHEST - Inaccessible
 	!define - FALLSRUPEE - ;	Inaccessible
@@ -6776,6 +6814,9 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 	!define - FALLSGREEN - Inaccessible
 	!define - FALLSENEMY - ;	Inaccessible
 	!define - FALLSHP - Inaccessible
+!endif
+!ifndef - FALLSBIGGORON
+	!define - FALLSBIGGORON - Inaccessible
 !endif
 # Lower Wind Tribe Access
 !ifdef - TRIBE_ACCESS
@@ -7690,6 +7731,7 @@ Falls_RupeeCave_Underwater_BottomLeft	`FALLSWATER`;		0x0F8FF7;												(|(&He
 Falls_RupeeCave_Underwater_BottomRight	`FALLSWATER`;		0x0F9007;												(|(&Helpers.AccessFalls, Items.Flippers), Helpers.Hundo);							Items.Rupee20
 Falls_TopCave_BombWall_Chest;			`FALLSCHEST`;		0x33-0x02-0x00;											(|(&Helpers.AccessFalls, Helpers.BombWalls), Helpers.Hundo);						Items.Shells.50
 Falls_TopCave_Chest;					`FALLSCHEST`;		0x33-0x00-0x00;											(|Helpers.AccessFalls, Helpers.Hundo);											Items.Rupee100
+Falls_Biggoron;							`FALLSBIGGORON`;	biggoronItem:Define:FirstByte, biggoronSub:Define:SecondByte;	(|(&Helpers.GoronRightFusion, Helpers.AccessFalls, Helpers.HasBiggoronShield), Helpers.Hundo);	`MIRROR`
 
 # Cloud Tops
 AccessClouds;					Helper;				;				(|(&Helpers.AccessFalls, Items.GripRing), Helpers.CloudWindCrest, (&Helpers.StrangerFusion, Helpers.OpenWindTribe))

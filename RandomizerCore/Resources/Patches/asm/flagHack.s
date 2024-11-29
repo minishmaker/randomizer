@@ -3,23 +3,6 @@ push	{r4,lr}
 mov	r4,r1
 ldr	r0,[r4]
 
-@check if this is the goron check
-ldr	r1,=#0x800943A
-cmp	r0,r1
-bne	notgoron
-@check if we found the second shield
-push	{r0}
-ldr	r0,=#0x2002EA4
-ldr	r1,=#30
-ldr	r3,=#0x801D5E0	@vanilla flag check routine
-mov	lr,r3
-.short	0xF800
-mov	r1,r0
-pop	{r0}
-cmp	r1,#0
-beq	EndNewFalse
-notgoron:
-
 @check if there is a match with our changed flags
 ldr	r1,flags
 loop:
