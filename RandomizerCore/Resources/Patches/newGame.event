@@ -310,6 +310,7 @@ POIN dhcRemovedDoor;	WORD 0x2002DC1 1
 #ifdef startInventoryMirrorShield
 	POIN mirrorShieldStart; WORD 0x2002B35 1
 	POIN shieldShopStart; WORD 0x2002EA6 1
+	POIN mirrorShieldShopStart; WORD 0x2002EA7 1
 #endif
 #ifdef startInventoryLantern
 	POIN lanternStart; WORD 0x2002B35 1
@@ -838,6 +839,9 @@ BYTE 0x10
 
 shieldShopStart:
 BYTE 0x80
+
+mirrorShieldShopStart:
+BYTE 0x40
 
 lanternStart:
 BYTE 0x40
