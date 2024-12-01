@@ -1,5 +1,4 @@
-﻿using System.Drawing;
-using System.Globalization;
+﻿using System.Globalization;
 using System.Reflection;
 using RandomizerCore.Controllers;
 using SkiaSharp;

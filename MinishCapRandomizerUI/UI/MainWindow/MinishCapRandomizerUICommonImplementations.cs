@@ -1,6 +1,4 @@
-﻿using System.Globalization;
-
-namespace MinishCapRandomizerUI.UI.MainWindow;
+﻿namespace MinishCapRandomizerUI.UI.MainWindow;
 
 public class MinishCapRandomizerUICommonImplementations
 {

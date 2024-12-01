@@ -1,9 +1,5 @@
-using System.Globalization;
-using System.Text.RegularExpressions;
 using MinishCapRandomizerUI.UI.Config;
-using RandomizerCore.Controllers;
 using RandomizerCore.Controllers.Models;
-using RandomizerCore.Random;
 
 namespace MinishCapRandomizerUI.UI.MainWindow;
 

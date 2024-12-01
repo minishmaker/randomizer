@@ -3,7 +3,6 @@ using RandomizerCore.Random;
 using RandomizerCore.Randomizer.Enumerables;
 using RandomizerCore.Randomizer.Helpers;
 using RandomizerCore.Randomizer.Logic.Dependency;
-using RandomizerCore.Randomizer.Models;
 using RandomizerCore.Utilities.Logging;
 using RandomizerCore.Utilities.Util;
 
