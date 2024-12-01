@@ -32,7 +32,7 @@ public sealed partial class MinishCapRandomizerUI : Form
         InitializeComponent();
         InitializeYamlUi();
         InitializeBaseUi();
-        Text = $@"{_shufflerController.AppName} {_shufflerController.VersionName} {_shufflerController.RevName}";
+        Text = $@"{_shufflerController!.AppName} {_shufflerController.VersionName} {_shufflerController.RevName}";
         FormClosing += SaveConfig;
         LoadConfig();
         InitializeUi();

@@ -14,7 +14,7 @@ public static class CommandFileParser
         {
             var input = file.ReadLine();
 
-            var inputs = input.Split(' ');
+            var inputs = input!.Split(' ');
 
             switch (inputs[0])
             {

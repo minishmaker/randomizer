@@ -42,14 +42,14 @@ public static class AssemblyInfo
     ///     Gets the git hash value from the assembly
     ///     or null if it cannot be found.
     /// </summary>
-    public static string GetGitHash()
+    public static string? GetGitHash()
     {
         var asm = typeof(AssemblyInfo).Assembly;
         var attrs = asm.GetCustomAttributes<AssemblyMetadataAttribute>();
         return attrs.FirstOrDefault(a => a.Key == "GitHash")?.Value;
     }
 
-    public static string GetGitTag()
+    public static string? GetGitTag()
     {
         var asm = typeof(AssemblyInfo).Assembly;
         var attrs = asm.GetCustomAttributes<AssemblyMetadataAttribute>();

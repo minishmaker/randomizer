@@ -38,7 +38,8 @@ public static class ImageHandler
                 4 => (customRng >> 8) & hashMask,
                 5 => 64U,
                 6 => (settings >> 8) & hashMask,
-                7 => (settings >> 16) & hashMask
+                7 => (settings >> 16) & hashMask,
+                _ => throw new ArgumentException()
             };
 
             var k = 16 * (int)imageIndex;

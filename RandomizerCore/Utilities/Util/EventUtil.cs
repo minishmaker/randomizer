@@ -22,8 +22,8 @@ public static class EventUtil
         Program.EaParse("TMC", "Language Raws", ".txt", input, "TMCR", output, log, definitions);
     }
 
-    private static Dictionary<string, Definition> GetDefinitions(List<EventDefine> defines)
+    private static Dictionary<string, Definition>? GetDefinitions(List<EventDefine> defines)
     {
-        return defines.ToDictionary(define => define.Name, define => EventDefine.Definition);
+        return defines.ToDictionary(define => define.Name, define => EventDefine.Definition!);
     }
 }

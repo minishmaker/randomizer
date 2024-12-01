@@ -390,7 +390,7 @@ public class Parser
         if ((addressType & AddressType.GroundItem) == AddressType.GroundItem) throw new NotImplementedException();
 
         // Look chest address up in table
-        var areaTableAddr = Rom.Instance.Reader.ReadAddr(Rom.Instance.Headers.AreaMetadataBase + (area << 2));
+        var areaTableAddr = Rom.Instance!.Reader.ReadAddr(Rom.Instance.Headers.AreaMetadataBase + (area << 2));
         var roomTableAddr = Rom.Instance.Reader.ReadAddr(areaTableAddr + (room << 2));
         var chestTableAddr = Rom.Instance.Reader.ReadAddr(roomTableAddr + 0x0C);
 

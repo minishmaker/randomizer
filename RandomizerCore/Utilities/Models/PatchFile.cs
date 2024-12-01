@@ -2,7 +2,7 @@
 
 public class PatchFile
 {
-    public string Filename { get; set; }
+    public string? Filename { get; set; }
 
-    public byte[] Content { get; set; }
+    public byte[]? Content { get; set; }
 }

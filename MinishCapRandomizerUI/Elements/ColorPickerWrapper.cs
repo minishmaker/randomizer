@@ -40,7 +40,7 @@ public class ColorPickerWrapper : WrapperBase, ILogicOptionObserver
     private Label? _previewLabel;
     private PictureBox? _colorPreview;
     private LogicColorPicker _colorPicker;
-    private ToolTip tip;
+    private ToolTip? tip;
 
     public ColorPickerWrapper(LogicColorPicker colorPicker) : base(ElementWidth, ElementHeight, colorPicker.SettingGroup, colorPicker.SettingPage)
     {
@@ -171,7 +171,7 @@ public class ColorPickerWrapper : WrapperBase, ILogicOptionObserver
             UseMnemonic = Constants.UseMnemonic,
         };
 
-        tip.SetToolTip(button, toolTipText);
+        tip!.SetToolTip(button, toolTipText);
 
         button.Click += onClickEvent;
 
@@ -215,6 +215,6 @@ public class ColorPickerWrapper : WrapperBase, ILogicOptionObserver
     public void NotifyObserver()
     {
         UpdateColorPreview();
-        _checkBox.Checked = _colorPicker.UseRandomColor;
+        _checkBox!.Checked = _colorPicker.UseRandomColor;
     }
 }

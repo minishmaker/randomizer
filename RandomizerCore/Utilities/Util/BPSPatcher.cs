@@ -58,7 +58,7 @@ public static class BpsPatcher
 
     public static byte[] ApplyPatch(byte[] sourceRom, PatchFile patchFile)
     {
-        var patch = Patch.BuildPatchFromContentBytes(patchFile.Content);
+        var patch = Patch.BuildPatchFromContentBytes(patchFile.Content!);
         if (sourceRom.Crc32() != patch.SourceChecksum)
             throw new ArgumentException("Hash of provided ROM does not match expected hash!");
 
@@ -68,14 +68,14 @@ public static class BpsPatcher
         var sourceRelativeOffset = 0;
         var targetRelativeOffset = 0;
 
-        foreach (var action in patch.ExportActions)
+        foreach (var action in patch.ExportActions!)
             switch (action.OperandType)
             {
                 case BpsOperandType.SourceRead:
                     newRom.AddRange(ReadBytes(sourceRom, action.ActionLength, ref offset));
                     break;
                 case BpsOperandType.TargetRead:
-                    newRom.AddRange(action.Bytes);
+                    newRom.AddRange(action.Bytes!);
                     offset += action.ActionLength;
                     break;
                 case BpsOperandType.SourceCopy:

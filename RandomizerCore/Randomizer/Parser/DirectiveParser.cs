@@ -22,10 +22,10 @@ public class DirectiveParser
     private readonly List<ItemAmountSet> _incrementalReplacementReferences;
     private readonly Dictionary<Item, List<int>> _incrementalReplacementsTemplate;
     private int _ifCounter;
-    public Dictionary<Item, List<ItemAmountSet>> AmountReplacements; //dont want to modify the original
+    public Dictionary<Item, List<ItemAmountSet>>? AmountReplacements; //dont want to modify the original
 
     public readonly List<EventDefine> EventDefines;
-    public Dictionary<Item, List<ItemAmountSet>> IncrementalReplacements;
+    public Dictionary<Item, List<ItemAmountSet>>? IncrementalReplacements;
     public readonly Dictionary<Item, LocationType> LocationTypeOverrides;
     public string? LogicName;
     public string? LogicVersion;

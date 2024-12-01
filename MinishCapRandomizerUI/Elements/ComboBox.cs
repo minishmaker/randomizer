@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Runtime.InteropServices;
+
 public class FlatComboBox : ComboBox
 {
     private Color borderColor = Color.FromArgb(0xab, 0xad, 0xb3);

@@ -5,10 +5,10 @@ namespace RandomizerCore.Utilities.Models;
 public class Settings
 {
     public static int CurrentSettingsVersion = 2;
-    public Dictionary<byte, List<byte>> Flags { get; set; }
-    public Dictionary<byte, List<byte>> Dropdowns { get; set; }
-    public Dictionary<byte, List<byte>> NumberBoxes { get; set; }
-    public Dictionary<byte, List<ushort>> ColorPickers { get; set; }
+    public Dictionary<byte, List<byte>>? Flags { get; set; }
+    public Dictionary<byte, List<byte>>? Dropdowns { get; set; }
+    public Dictionary<byte, List<byte>>? NumberBoxes { get; set; }
+    public Dictionary<byte, List<ushort>>? ColorPickers { get; set; }
 
     public int SettingsVersion { get; set; }
     public uint SettingHash { get; set; }

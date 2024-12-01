@@ -2,7 +2,7 @@
 {
 	public partial class InputDialog : Form
 	{
-		private Action<string> _callback;
+		private Action<string>? _callback;
 
 		public InputDialog()
 		{
@@ -17,13 +17,13 @@
 			_callback = callback;
 		}
 
-		private void Okay_Click(object sender, EventArgs e)
+		private void Okay_Click(object? sender, EventArgs e)
 		{
-			_callback.Invoke(UserInput.Text);
+			_callback!.Invoke(UserInput.Text);
 			Close();
 		}
 
-		private void Cancel_Click(object sender, EventArgs e)
+		private void Cancel_Click(object? sender, EventArgs e)
 		{
 			Close();
 		}

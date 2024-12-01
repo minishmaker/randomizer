@@ -7,7 +7,7 @@ public class LogicDefine
 {
     private readonly Regex? Expression;
     public string Name;
-    public string Replacement;
+    public string? Replacement;
 
     public LogicDefine(string name)
     {
@@ -30,6 +30,6 @@ public class LogicDefine
 
     public string Replace(string input)
     {
-        return Expression.Replace(input, Replacement);
+        return Expression!.Replace(input, Replacement!);
     }
 }

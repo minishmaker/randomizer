@@ -226,7 +226,7 @@ public abstract class ControllerBase
             if (exitCode != 0)
                 throw new Exception("Errors occured when saving the rom");
             var patch = BpsPatcher.GeneratePatch(Rom.Instance!.RomData, romBytes, patchFilename);
-            File.WriteAllBytes(patchFilename, patch.Content);
+            File.WriteAllBytes(patchFilename, patch.Content!);
             return new ShufflerControllerResult { WasSuccessful = true };
         }
         catch (Exception e)
@@ -286,7 +286,7 @@ public abstract class ControllerBase
         {
             var patchedRom = File.ReadAllBytes(patchedRomFilename);
             var patch = BpsPatcher.GeneratePatch(Rom.Instance.RomData, patchedRom, patchFilename);
-            File.WriteAllBytes(patchFilename, patch.Content);
+            File.WriteAllBytes(patchFilename, patch.Content!);
             return new ShufflerControllerResult { WasSuccessful = true };
         }
         catch (Exception e)
@@ -375,7 +375,7 @@ public abstract class ControllerBase
         {
             var assembly = Assembly.GetAssembly(typeof(ControllerBase));
             using var stream = assembly?.GetManifestResourceStream("RandomizerCore.Resources.default.logic");
-            File.WriteAllText(filepath, new StreamReader(stream).ReadToEnd());
+            File.WriteAllText(filepath, new StreamReader(stream!).ReadToEnd());
             return new ShufflerControllerResult { WasSuccessful = true };
         }
         catch (Exception e)
@@ -532,7 +532,9 @@ public abstract class ControllerBase
         }
     }
 
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
     protected ControllerBase(Type baseClassType)
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
     {
         Logger.Instance.LogInfo($"Minish Cap Randomizer Core Version {VersionName} {RevName} initialized!");
         Logger.Instance.LogInfo($"Shuffler {baseClassType} initialized!");

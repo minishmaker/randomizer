@@ -10,10 +10,10 @@ namespace RandomizerCore.Randomizer.Shuffler;
 
 internal class YamlShuffler : Shuffler
 {
-    private string _yamlNameLogic;
-    private string _yamlNameCosmetics;
-    private string _yamlDescriptionLogic;
-    private string _yamlDescriptionCosmetics;
+    private string? _yamlNameLogic;
+    private string? _yamlNameCosmetics;
+    private string? _yamlDescriptionLogic;
+    private string? _yamlDescriptionCosmetics;
     private string? _yamlPathLogic;
     private string? _yamlPathCosmetics;
     private bool _yamlUseGlobal;
@@ -24,9 +24,13 @@ internal class YamlShuffler : Shuffler
 
     public bool IsGlobalYamlMode() => _yamlUseGlobal;
 
-    public string GetLogicYamlName() => _yamlNameLogic;
+    public string? GetLogicYamlName() => _yamlNameLogic;
 
-    public string GetCosmeticsYamlName() => _yamlNameCosmetics;
+    public string? GetCosmeticsYamlName() => _yamlNameCosmetics;
+
+    public string? GetLogicYamlDescription() => _yamlDescriptionLogic;
+
+    public string? GetCosmeticsYamlDescription() => _yamlDescriptionCosmetics;
 
     public override void LoadLocations(string? logicFile = null) => throw new NotImplementedException();
     

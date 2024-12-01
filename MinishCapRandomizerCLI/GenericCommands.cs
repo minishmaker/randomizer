@@ -352,7 +352,7 @@ internal static class GenericCommands
         try
         {
             var input = output ?? Console.ReadLine();
-            PreviouslyUsedController.SaveAndPatchRom(string.IsNullOrEmpty(input) ? $"{Directory.GetCurrentDirectory()}{Path.DirectorySeparatorChar}MinishRandomizer-ROM.gba" : input);
+            PreviouslyUsedController!.SaveAndPatchRom(string.IsNullOrEmpty(input) ? $"{Directory.GetCurrentDirectory()}{Path.DirectorySeparatorChar}MinishRandomizer-ROM.gba" : input);
             Console.WriteLine("Rom saved successfully!");
         }
         catch
@@ -369,7 +369,7 @@ internal static class GenericCommands
         try
         {
             var input = output ?? Console.ReadLine();
-            PreviouslyUsedController.SaveSpoiler(string.IsNullOrEmpty(input) ? $"{Directory.GetCurrentDirectory()}{Path.DirectorySeparatorChar}MinishRandomizer-Spoiler.txt" : input);
+            PreviouslyUsedController!.SaveSpoiler(string.IsNullOrEmpty(input) ? $"{Directory.GetCurrentDirectory()}{Path.DirectorySeparatorChar}MinishRandomizer-Spoiler.txt" : input);
             Console.WriteLine("Spoiler saved successfully!");
         }
         catch
@@ -386,7 +386,7 @@ internal static class GenericCommands
         try
         {
             var input = output ?? Console.ReadLine();
-            PreviouslyUsedController.CreatePatch(string.IsNullOrEmpty(input) ? $"{Directory.GetCurrentDirectory()}{Path.DirectorySeparatorChar}MinishRandomizer-Patch.bps" : input, _cachedPatchPath);
+            PreviouslyUsedController!.CreatePatch(string.IsNullOrEmpty(input) ? $"{Directory.GetCurrentDirectory()}{Path.DirectorySeparatorChar}MinishRandomizer-Patch.bps" : input, _cachedPatchPath);
             Console.WriteLine("Patch saved successfully!");
         }
         catch
@@ -403,7 +403,7 @@ internal static class GenericCommands
         try
         {
             var input = Console.ReadLine();
-            var eventDefines = PreviouslyUsedController.GetEventWrites().Split('\n');
+            var eventDefines = PreviouslyUsedController!.GetEventWrites().Split('\n');
             using var image = ImageHandler.GetHashImage(eventDefines);
             using var stream = new MemoryStream();
             image.Encode(stream, SKEncodedImageFormat.Png, 100);
@@ -421,7 +421,7 @@ internal static class GenericCommands
         if (!ValidatePreviouslyUsedController()) return;
 
         Console.WriteLine("Setting String for selected settings:");
-        Console.WriteLine(PreviouslyUsedController.GetSelectedSettingsString());
+        Console.WriteLine(PreviouslyUsedController!.GetSelectedSettingsString());
     }
 
     internal static void GetFinalSettingString()
@@ -429,7 +429,7 @@ internal static class GenericCommands
         if (!ValidatePreviouslyUsedController()) return;
 
         Console.WriteLine("Setting String for settings used for seed generation:");
-        Console.WriteLine(PreviouslyUsedController.GetFinalSettingsString());
+        Console.WriteLine(PreviouslyUsedController!.GetFinalSettingsString());
     }
 
     internal static void PatchRom()
@@ -448,7 +448,7 @@ internal static class GenericCommands
         }
         else
         {
-            var result = PreviouslyUsedController.SaveRomPatch(patch, rom);
+            var result = PreviouslyUsedController!.SaveRomPatch(patch, rom);
 
             if (result)
             {
@@ -465,7 +465,7 @@ internal static class GenericCommands
     {
         if (!ValidatePreviouslyUsedController()) return new ShufflerControllerResult { WasSuccessful = false };
 
-        PreviouslyUsedController.CreatePatch(out var result);
+        PreviouslyUsedController!.CreatePatch(out var result);
         return result;
     }
 
@@ -485,7 +485,7 @@ internal static class GenericCommands
         }
         else
         {
-            var result = PreviouslyUsedController.SaveRomPatch(patch, rom);
+            var result = PreviouslyUsedController!.SaveRomPatch(patch, rom);
 
             if(result)
             {
@@ -540,7 +540,7 @@ internal static class GenericCommands
                 var input = Console.ReadLine();
                 if (string.IsNullOrEmpty(input) || !int.TryParse(input, out var i) || (i != 0 && i != 1 && i != 2))
                 {
-                    if (!input.Equals("exit", StringComparison.OrdinalIgnoreCase))
+                    if (!input!.Equals("exit", StringComparison.OrdinalIgnoreCase))
                     {
                         PrintError("Invalid Input!");
                     }
@@ -565,7 +565,7 @@ internal static class GenericCommands
                 
                 if (string.IsNullOrEmpty(input) || !int.TryParse(input, out var o) || o < 1 || o > keys.Count)
                 {
-                    if (!input.Equals("exit", StringComparison.OrdinalIgnoreCase))
+                    if (!input!.Equals("exit", StringComparison.OrdinalIgnoreCase))
                     {
                         PrintError("Invalid Input!");
                     }
@@ -587,7 +587,7 @@ internal static class GenericCommands
                 var input = Console.ReadLine();
                 if (string.IsNullOrEmpty(input) || !int.TryParse(input, out var i) || i is < 1 or > 5)
                 {
-                    if (!input.Equals("exit", StringComparison.OrdinalIgnoreCase))
+                    if (!input!.Equals("exit", StringComparison.OrdinalIgnoreCase))
                     {
                         PrintError("Invalid Input!");
                     }
@@ -624,7 +624,7 @@ internal static class GenericCommands
                         var argb = Console.ReadLine();
                         if (string.IsNullOrEmpty(argb) || !int.TryParse(argb, out var color))
                         {
-                            if (!argb.Equals("exit", StringComparison.OrdinalIgnoreCase))
+                            if (!argb!.Equals("exit", StringComparison.OrdinalIgnoreCase))
                             {
                                 PrintError("Invalid Input!");
                             }
@@ -645,7 +645,7 @@ internal static class GenericCommands
                 var input = Console.ReadLine();
                 if (string.IsNullOrEmpty(input) || !int.TryParse(input, out var i) || i < box.MinValue || i > box.MaxValue)
                 {
-                    if (!input.Equals("exit", StringComparison.OrdinalIgnoreCase))
+                    if (!input!.Equals("exit", StringComparison.OrdinalIgnoreCase))
                     {
                         PrintError("Invalid Input!");
                     }

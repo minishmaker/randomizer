@@ -113,7 +113,7 @@ partial class MinishCapRandomizerUI
 
         if (result)
         {
-            _recentSettingsPreset = (string)SettingPresets.SelectedItem;
+            _recentSettingsPreset = (string?)SettingPresets.SelectedItem;
             _recentSettingsPresetHash = _shufflerController.GetSelectedOptions().OnlyLogic().GetHash();
         }
 
@@ -179,7 +179,7 @@ partial class MinishCapRandomizerUI
                     presets.Remove(key);
                     File.Delete($"{_presetPath}Settings{Path.DirectorySeparatorChar}{SettingPresets.SelectedItem}_{key}.yaml");
 
-					RemoveItemFromPresetsBox(SettingPresets, (string)SettingPresets.SelectedItem);
+					RemoveItemFromPresetsBox(SettingPresets, (string)SettingPresets.SelectedItem!);
 					DisplayAlert("Preset deleted successfully!", "Preset deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
 				}
 				catch
@@ -193,7 +193,7 @@ partial class MinishCapRandomizerUI
 	{
         var presets = _settingPresets.CosmeticsPresets;
 
-		if (presets.All(preset => preset != (string)CosmeticsPresets.SelectedItem))
+		if (presets.All(preset => preset != (string?)CosmeticsPresets.SelectedItem))
 		{
 			DisplayAlert("No preset matching the specified name could be found! Make sure you select a valid preset.", "Failed to Load Preset", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			return;
@@ -203,7 +203,7 @@ partial class MinishCapRandomizerUI
 
         if (result)
         {
-            _recentCosmeticsPreset = (string)CosmeticsPresets.SelectedItem;
+            _recentCosmeticsPreset = (string?)CosmeticsPresets.SelectedItem;
             _recentCosmeticsPresetHash = _shufflerController.GetSelectedOptions().OnlyCosmetic().GetHash();
         }
 
@@ -256,7 +256,7 @@ partial class MinishCapRandomizerUI
 			{
                 var presets = _settingPresets.CosmeticsPresets;
 
-				if (presets.All(preset => preset != (string)CosmeticsPresets.SelectedItem))
+				if (presets.All(preset => preset != (string?)CosmeticsPresets.SelectedItem))
 				{
 					DisplayAlert("No preset matching the specified name could be found! Make sure you select a valid preset before deleting.", "Failed to Delete Preset", MessageBoxButtons.OK, MessageBoxIcon.Error);
 					return;
@@ -264,10 +264,10 @@ partial class MinishCapRandomizerUI
 
 				try
 				{
-					presets.Remove(presets.First(preset => preset == (string)CosmeticsPresets.SelectedItem));
+					presets.Remove(presets.First(preset => preset == (string?)CosmeticsPresets.SelectedItem));
                     File.Delete($"{_presetPath}Cosmetics{Path.DirectorySeparatorChar}{CosmeticsPresets.SelectedItem}.yaml");
 
-					RemoveItemFromPresetsBox(CosmeticsPresets, (string)CosmeticsPresets.SelectedItem);
+					RemoveItemFromPresetsBox(CosmeticsPresets, (string)CosmeticsPresets.SelectedItem!);
 					DisplayAlert("Preset deleted successfully!", "Preset deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
 				}
 				catch
