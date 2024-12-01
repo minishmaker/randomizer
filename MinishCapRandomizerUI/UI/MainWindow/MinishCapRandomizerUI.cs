@@ -23,6 +23,7 @@ public sealed partial class MinishCapRandomizerUI : Form
     private string? _outputSettingsString = null;
     private string? _outputCosmeticsString = null;
     private bool _outputUsedYAML = false;
+    private string? _outputFilename = null;
     private ControllerBase _previousShuffler;
 
     private readonly string _presetPath =

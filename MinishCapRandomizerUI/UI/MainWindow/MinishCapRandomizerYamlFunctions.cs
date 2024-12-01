@@ -55,6 +55,7 @@ partial class MinishCapRandomizerUI
         _outputSettingsString = settingsString;
         _outputCosmeticsString = cosmeticsString;
         _outputUsedYAML = true;
+        _outputFilename = GetFilenameYamlShuffler();
         SettingHashLabel.Text = UseMysterySettings.Checked && _yamlController.IsUsingLogicYaml() ? "Settings string is not shown when using mystery settings" : settingsString;
         CosmeticStringLabel.Text = UseMysteryCosmetics.Checked && _yamlController.IsUsingCosmeticsYaml() ? "Cosmetics string is not shown when using mystery cosmetics" : cosmeticsString;
         CopySettingsHashToClipboard.Enabled = !UseMysterySettings.Checked;

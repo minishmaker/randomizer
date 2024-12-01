@@ -448,11 +448,9 @@ Generating seeds with this shuffler may freeze the randomizer application for ma
         baseImage.SetPixel(x + 2, y, targetColor);
     }
 
-    private string GetSeedFilename()
+    private string? GetSeedFilename()
     {
-        if (UseMysteryCosmetics.Checked || UseMysterySettings.Checked || UseCustomYAML.Checked)
-            return GetFilenameYamlShuffler();
-        return GetFilenameBaseShuffler();
+        return _outputFilename;
     }
 
     private static void AddItemToPresetsBox(ComboBox box, string presetName)
