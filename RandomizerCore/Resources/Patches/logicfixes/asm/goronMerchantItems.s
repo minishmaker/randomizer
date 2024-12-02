@@ -36,10 +36,16 @@ bne	skip
 vanilla:
 mov	r1,#0x5C
 pop	{r2}
+mov	r0,#0
+push	{r0}
 b	end
 
 custom:
 pop	{r0}
+@ the 15 item slots should each have a unique number
+lsl	r0,r2,#2
+add	r0,r5
+push	{r0}
 ldr	r3,shopData
 lsl	r0,r2,#3
 add	r3,r0
@@ -53,6 +59,14 @@ mov	r0,#0x02
 ldr	r3,=#0x80A217C @ CreateObject
 mov	lr,r3
 .short	0xF800
+cmp	r0,#0
+beq	objectfail
+@ store the unique number (or 0 if vanilla) in the entity so it can be used by a trap disguise
+mov	r2,#0x7E
+pop	{r1}
+strb	r1,[r0,r2]
+
+objectfail:
 ldr	r3,=#0x805D1C1
 bx	r3
 
