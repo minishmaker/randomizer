@@ -119,6 +119,7 @@
 !flag - Main Settings - Setting - Shuffle - DIGGING - Dig spots - If enabled will shuffle items found at special digging locations around the world that are one off collectables, Use the mitts on a patch of ground to dig up an item.
 !flag - Main Settings - Setting - Shuffle - UNDERWATER - Underwater spots - If enabled will shuffle items found when swimming underwater at special locations (Mostly near waterfalls).\nThe Locations that normally contain a Heart Piece found underwater in the lake and the Small Key found underwater in Temple of Droplets will always be junk if this setting is disabled, unless Hearts are not shuffled or Small Keys are set to Vanilla respectively.
 !flag - Main Settings - Setting - Shuffle - GOLDEN_ENEMY - Golden Enemies - If enabled will shuffle items dropped by Golden Enemies once then are defeated. There are 3 kinds of Golden Enemy: "Golden Octo", "Golden Tektite" and "Golden Rope".\nThese Enemies are spawned by completing certain Kinstone Fusions in the game, if you remove certain kinstone colors then those enemies made innaccessible will not have items.\nThese enemies have a lot of health but are not invulnerable, Keep hitting them!
+!flag - Main Settings - Setting - Shuffle - SHOP_BOMBBAG - Extra JP/US Shop Item - If enabled will add a location to the shop in town with a randomized item that costs 600 Rupees.\nThis location is meant to represent the Bomb Bag location that can be purchased in the JP/US versions.
 !flag - Main Settings - Setting - Shuffle - PED_ITEMS - Sanctuary Pedestal - This setting is force disabled when playing on any DHC setting other than 'Always Open'.\nIf enabled will shuffle 3 items onto the pedestal found in the Sanctuary, these can be collected when the pedestal is visited with 2 elements, 3 elements and 4 elements respectively.
 
 !dropdown - World Settings - Setting - Global - OPENWORLD - World obstacles are - Does not affect Key Doors, Fusions, Wind Crests and Dungeon Warps. - OPENWORLD_OFF - Open - OPENWORLD_ON - 'Open': Opens every permanently solvable obstacle in the game: Every cut tree, cracked block, bomb wall, boulder shortcut, non key door, bean vine, switch, lever, chest spawn and extendable bridge.\n             The World is open from the start. - Standard - OPENWORLD_OFF - 'Standard': All obstacles have to be completed like normal. 
@@ -541,6 +542,9 @@
 !endif
 !ifndef - NOT_GRABBABLE
 	!eventdefine - itemsCanCollectItems
+!endif
+!ifdef - SHOP_BOMBBAG
+	!eventdefine - enableBombBagShopItem
 !endif
 
 !ifdef - DOJOVANILLA
@@ -4315,6 +4319,11 @@ HasMirrorShield;		Helper;; (|Items.ProgressiveItem.0x03:2, Items.MirrorShield)
 !endif
 HasBeam;				Helper;; Helpers.HasSword, (|Helpers.SwordBeam, Items.PerilBeam)
 CanDownThrust;		Helper;; Helpers.HasSword, Items.DownThrust, Items.RocsCape
+!ifdef - SHOP_BOMBBAG
+	ShopBombBag;		Helper;;
+!else
+	ShopBombBag;		Helper;; Helpers.Inaccessible
+!endif
 
 # This section checks what the Weapon setting is and adjusts fight logic
 !ifdef - NOBOMB
@@ -4466,7 +4475,11 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 ShopSimon;			Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Helpers.InfiniteMoney)
 Shop80;				Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Helpers.InfiniteMoney)
 Shop300;				Helper;;	(|(+510, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Helpers.InfiniteMoney)
-Shop600;				Helper;;	(|(+1110, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Helpers.InfiniteMoney)
+!ifndef - SHOP_BOMBBAG
+	Shop600;				Helper;;	(|(+1110, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Helpers.InfiniteMoney)
+!else
+	Shop600;				Helper;;	(|(+1710, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Helpers.InfiniteMoney)
+!endif
 ShopWitch;			Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Helpers.InfiniteMoney)
 ShopScrubTrilby;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Helpers.InfiniteMoney)
 ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Helpers.InfiniteMoney)
@@ -7271,6 +7284,13 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 		!define - GORONSET5 - Any
 	!endif
 !endif
+#Extra Shop Item
+!ifdef - SHOP_BOMBBAG
+	!define - SHOPBOMBBAG - Any
+!else
+	!define - SHOPBOMBBAG - Inaccessible
+!endif
+
 #End of the mess, Location defines below here
 
 # South Field
@@ -7303,6 +7323,7 @@ Town_CafeLady_NPC;				Any;					0x00EDDA;															;																								
 Town_Shop_80Item;					Any;					walletShopItem:Define:FirstByte, walletShopSub:Define:SecondByte;			(|Helpers.Shop80, Helpers.Hundo);																																						Items.Wallet
 Town_Shop_300Item;				Any;					boomerangShopItem:Define:FirstByte, boomerangShopSub:Define:SecondByte;		(|(&Items.Wallet, Helpers.Shop300), Helpers.Hundo);																																		`BOOMERANG`
 Town_Shop_600Item;				Any;					quiverShopItem:Define:FirstByte, quiverShopSub:Define:SecondByte;			(|(&Items.Wallet:3, Helpers.Shop600), Helpers.Hundo);																																		Items.LargeQuiver
+Town_Shop_Extra600Item;				`SHOPBOMBBAG`;		bombBagShopItem:Define:FirstByte, bombBagShopSub:Define:SecondByte;			(|(&Items.Wallet:3, Helpers.Shop600, Helpers.ShopBombBag), Helpers.Hundo);																													Items.BombBag
 Town_Shop_BehindCounterItem;		Any;					dogShopItem:Define:FirstByte, dogShopSub:Define:SecondByte;				(|Helpers.ShopBack,Helpers.Hundo);																																						Items.DogFoodBottle
 Town_Shop_AtticChest;				Any;					0x2E-0x01-0x01;														(|Helpers.TownDog, Helpers.Hundo);																																						Items.Shells.10
 Town_Bakery_AtticChest;			Any;					0x2E-0x03-0x00;														(|Helpers.TownDog, Helpers.Hundo);																																						Items.Rupee100

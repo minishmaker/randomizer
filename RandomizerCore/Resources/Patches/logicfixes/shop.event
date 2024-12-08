@@ -22,6 +22,12 @@
 #ifndef quiverShopSub
 	#define quiverShopSub "0x00"
 #endif
+#ifndef bombBagShopItem
+	#define bombBagShopItem "0x65"
+#endif
+#ifndef bombBagShopSub
+	#define bombBagShopSub "0x00"
+#endif
 #ifndef goronMerchantCustomSets
 	#define goronMerchantCustomSets "0"
 #endif
@@ -133,6 +139,7 @@ POIN shopConsumables
 POIN shopBuy1
 POIN shopBuy2
 POIN shopBuy3
+POIN shopBuy4
 
 PUSH; ORG $77EE8; jumpToHack(shopGrab); POP
 ALIGN 4
@@ -149,6 +156,8 @@ WORD boomerangShopItem
 WORD boomerangShopSub
 WORD quiverShopItem
 WORD quiverShopSub
+WORD bombBagShopItem
+WORD bombBagShopSub
 
 PUSH; ORG $64BB4; jumpToHack(shopAsk); POP
 ALIGN 4
@@ -160,6 +169,8 @@ WORD boomerangShopItem
 WORD boomerangShopSub
 WORD quiverShopItem
 WORD quiverShopSub
+WORD bombBagShopItem
+WORD bombBagShopSub
 POIN getTextOffset
 POIN shootbutterflyCredits
 POIN digbutterflyCredits
@@ -228,7 +239,10 @@ POP
 #endif
 
 //set price for mirror shield
-PUSH; ORG $FCF18; SHORT 40; POP
+PUSH; ORG $FCEA8+(8*0x0E); SHORT 40; POP
+
+//set price for bomb bag
+PUSH; ORG $FCEA8+(8*0x65); SHORT 600; POP
 
 //can only buy mirror shield if you do not have it currently
 PUSH
@@ -273,6 +287,13 @@ shopTerminator
 ALIGN 4
 shopBuy3:
 shopItem(quiverShopItem,quiverShopSub,0x66,0x52,0x80) //third randomized item
+shopTerminator
+
+ALIGN 4
+shopBuy4:
+#ifdef enableBombBagShopItem
+	shopItem(bombBagShopItem,bombBagShopSub,0x65,0x78,0x80) //fourth randomized item
+#endif
 shopTerminator
 
 ALIGN 4

@@ -3,7 +3,9 @@
 .equ boomerangShopSub, boomerangShopItem+4
 .equ quiverShopItem, boomerangShopSub+4
 .equ quiverShopSub, quiverShopItem+4
-.equ getTextOffset, quiverShopSub+4
+.equ bombBagShopItem, quiverShopSub+4
+.equ bombBagShopSub, bombBagShopItem+4
+.equ getTextOffset, bombBagShopSub+4
 .equ shootbutterflyCredits, getTextOffset+4
 .equ digbutterflyCredits, shootbutterflyCredits+4
 .equ swimbutterflyCredits, digbutterflyCredits+4
@@ -26,6 +28,8 @@ cmp	r0,#0x0B
 beq	boomerang
 cmp	r0,#0x66
 beq	quiver
+cmp	r0,#0x65
+beq	bombBag
 cmp	r0,#0x0E
 beq	mirrorShield
 b	vanilla
@@ -49,6 +53,14 @@ b	buildText
 quiver:
 ldr	r0,quiverShopItem
 ldr	r1,quiverShopSub
+bl	getText
+mov	r1,r3
+mov	r2,#2
+b	buildText
+
+bombBag:
+ldr	r0,bombBagShopItem
+ldr	r1,bombBagShopSub
 bl	getText
 mov	r1,r3
 mov	r2,#2
@@ -478,6 +490,8 @@ walletShopItem:
 @WORD boomerangShopSub
 @WORD quiverShopItem
 @WORD quiverShopSub
+@WORD bombBagShopItem
+@WORD bombBagShopSub
 @POIN getTextOffset
 @POIN shootbutterflyCredits
 @POIN digbutterflyCredits

@@ -4,6 +4,7 @@
 .equ shopBuy1, shopConsumables+4
 .equ shopBuy2, shopBuy1+4
 .equ shopBuy3, shopBuy2+4
+.equ shopBuy4, shopBuy3+4
 .thumb
 push	{r4-r7,lr}
 
@@ -90,6 +91,20 @@ mov	lr,r3
 .short	0xF800
 no3:
 
+@check if we purchased this item
+ldr	r0,=#0x2002EA4
+ldr	r1,=#34
+ldr	r3,=#0x801D5E0	@vanilla flag check routine
+mov	lr,r3
+.short	0xF800
+cmp	r0,#0
+bne	no4
+ldr	r0,shopBuy4
+ldr	r3,=#0x804AAF8
+mov	lr,r3
+.short	0xF800
+no4:
+
 end:
 pop	{r4-r7,pc}
 .align
@@ -102,3 +117,4 @@ shopFloor:
 @POIN shopBuy1
 @POIN shopBuy2
 @POIN shopBuy3
+@POIN shopBuy4
