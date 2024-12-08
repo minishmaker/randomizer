@@ -69,7 +69,7 @@ public class DropdownWrapper : WrapperBase, ILogicOptionObserver
         if (!selectedDefaultItem)
             _comboBox.SelectedItem = _comboBox.Items[0];
 
-        if (!string.IsNullOrEmpty(_dropdown.DescriptionText))
+        if (!string.IsNullOrEmpty(_dropdown.DescriptionText.Trim()))
         {
             var tip = new ToolTip();
             tip.UseFading = true;

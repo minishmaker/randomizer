@@ -272,6 +272,8 @@ Generating seeds with this shuffler may freeze the randomizer application for ma
     private async void InitializeUi()
     {
         TabPane.TabPages.Remove(SeedOutput);
+        TabPane.SelectedIndexChanged += (sender, e) => TabPane.SelectedTab?.Focus(); // helps with mouse wheel scrolling
+
         var seed = new SquaresRandomNumberGenerator().Next();
         Seed.Text = $@"{seed:X}";
 

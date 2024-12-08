@@ -55,7 +55,7 @@ public class NumberBoxWrapper : WrapperBase, ILogicOptionObserver
             Width = (int)(NumberBoxWidth*Constants.SpecialScaling),
         };        
         
-        if (!string.IsNullOrEmpty(_numberBox.DescriptionText))
+        if (!string.IsNullOrEmpty(_numberBox.DescriptionText.Trim()))
         {
             var tip = new ToolTip();
             tip.UseFading = true;

@@ -51,6 +51,45 @@ POIN dungeonPortal;	WORD 0x2002EBD 6
 #ifdef timedohkoClock
 	POIN timedohkoStartingTime;	WORD 0x203FFE0 4
 #endif
+#ifdef startInventoryFourSword
+	POIN fourSwordClonesStart; WORD 0x203FE00+(10*2) 1
+#else
+	#ifdef startInventoryBlueSword
+		POIN blueSwordClonesStart; WORD 0x203FE00+(10*2) 1
+	#else
+		#ifdef startInventoryRedSword
+			POIN redSwordClonesStart; WORD 0x203FE00+(10*2) 1
+		#endif
+	#endif
+#endif
+#ifdef startInventoryBombBags
+	POIN bombBagCountStart; WORD 0x2002AEE 1
+	POIN gentariCurtainStart; WORD 0x2002CEC 1
+#endif
+#ifdef startInventoryBombs
+	POIN bombCountStart; WORD 0x2002AEC 1
+#endif
+#ifdef startInventoryQuivers
+	POIN quiverCountStart; WORD 0x2002AEF 1
+#endif
+#ifdef startInventoryArrows
+	POIN arrowCountStart; WORD 0x2002AED 1
+#endif
+#ifdef startInventoryWallets
+	POIN walletCountStart; WORD 0x2002AE8 1
+#endif
+#ifdef startInventoryBottle1
+	POIN bottleContent1Start; WORD 0x2002AF6 1
+	#ifdef startInventoryBottle2
+		POIN bottleContent2Start; WORD 0x2002AF7 1
+		#ifdef startInventoryBottle3
+			POIN bottleContent3Start; WORD 0x2002AF8 1
+			#ifdef startInventoryBottle4
+				POIN bottleContent4Start; WORD 0x2002AF9 1
+			#endif
+		#endif
+	#endif
+#endif
 WORD 0 0 0 //terminator
 
 ALIGN 4
@@ -234,6 +273,180 @@ POIN dhcRemovedDoor;	WORD 0x2002DC1 1
 	POIN worldOpen;	WORD 0x2002C9C 308
 #endif
 
+#ifdef startInventorySmithSword
+	POIN smithSwordStart; WORD 0x2002B32 1
+#endif
+#ifdef startInventoryGreenSword
+	POIN greenSwordStart; WORD 0x2002B32 1
+#endif
+#ifdef startInventoryRedSword
+	POIN redSwordStart; WORD 0x2002B32 1
+#endif
+#ifdef startInventoryBlueSword
+	POIN blueSwordStart; WORD 0x2002B33 1
+#endif
+#ifdef startInventoryFourSword
+	POIN fourSwordStart; WORD 0x2002B33 1
+#endif
+#ifdef startInventoryRemoteBombs
+	POIN remoteBombsStart; WORD 0x2002B34 1
+#endif
+#ifdef startInventoryBow
+	POIN bowStart; WORD 0x2002B34 1
+#endif
+#ifdef startInventoryLightArrows
+	POIN lightArrowsStart; WORD 0x2002B34 1
+#endif
+#ifdef startInventoryBoomerang
+	POIN boomerangStart; WORD 0x2002B34 1
+#endif
+#ifdef startInventoryMagicBoomerang
+	POIN magicBoomerangStart; WORD 0x2002B35 1
+#endif
+#ifdef startInventoryShield
+	POIN shieldStart; WORD 0x2002B35 1
+	POIN shieldShopStart; WORD 0x2002EA6 1
+#endif
+#ifdef startInventoryMirrorShield
+	POIN mirrorShieldStart; WORD 0x2002B35 1
+	POIN shieldShopStart; WORD 0x2002EA6 1
+#endif
+#ifdef startInventoryLantern
+	POIN lanternStart; WORD 0x2002B35 1
+#endif
+#ifdef startInventoryGustJar
+	POIN gustJarStart; WORD 0x2002B36 1
+#endif
+#ifdef startInventoryPacci
+	POIN pacciStart; WORD 0x2002B36 1
+	POIN stairsDogStart; WORD 0x2002CD5 1
+#endif
+#ifdef startInventoryMoleMitts
+	POIN moleMittsStart; WORD 0x2002B36 1
+#endif
+#ifdef startInventoryCape
+	POIN capeStart; WORD 0x2002B37 1
+	POIN spinSoldierStart; WORD 0x2002CD5 1
+	POIN stairsDogStart; WORD 0x2002CD5 1
+#endif
+#ifdef startInventoryBoots
+	POIN bootsStart; WORD 0x2002B37 1
+#endif
+#ifdef startInventoryOcarina
+	POIN ocarinaStart; WORD 0x2002B37 1
+	POIN libraryStart; WORD 0x2002CA1 1
+	#ifdef minishCrestFlag
+		POIN gentariCurtainStart; WORD 0x2002CEC 1
+	#endif
+#endif
+#ifdef startInventoryDogFood
+	POIN dogFoodStart; WORD 0x2002B3F 1
+#endif
+#ifdef startInventoryRanchKey
+	POIN ranchKeyStart; WORD 0x2002B3F 1
+#endif
+#ifdef startInventoryMushroom
+	POIN mushroomStart; WORD 0x2002B40 1
+#endif
+#ifdef startInventoryBook1
+	POIN book1Start; WORD 0x2002B40 1
+#endif
+#ifdef startInventoryBook2
+	POIN book2Start; WORD 0x2002B40 1
+#endif
+#ifdef startInventoryBook3
+	POIN book3Start; WORD 0x2002B40 1
+#endif
+#ifdef startInventoryGraveyardKey
+	POIN graveyardKeyStart; WORD 0x2002B41 1
+#endif
+#ifdef startInventoryTingleTrophy
+	POIN tingleTrophyStart; WORD 0x2002B41 1
+#endif
+#ifdef startInventoryCarlovMedal
+	POIN carlovMedalStart; WORD 0x2002B41 1
+	POIN carlovMedalHouseStart; WORD 0x2002CD5 1
+#endif
+#ifdef startInventoryGripRing
+	POIN gripRingStart; WORD 0x2002B43 1
+#endif
+#ifdef startInventoryPowerBracelets
+	POIN powerBraceletsStart; WORD 0x2002B43 1
+#endif
+#ifdef startInventoryFlippers
+	POIN flippersStart; WORD 0x2002B43 1
+	POIN spinSoldierStart; WORD 0x2002CD5 1
+	POIN festariStart; WORD 0x2002CEC 1
+	POIN stairsDogStart; WORD 0x2002CD5 1
+#endif
+#ifdef startInventoryJabberNut
+	POIN jabberNutStart; WORD 0x2002B48 1
+	POIN festariStart; WORD 0x2002CEC 1
+#endif
+#ifdef startInventoryScrollSpin
+	POIN scrollSpinStart; WORD 0x2002B44 1
+#endif
+#ifdef startInventoryScrollRoll
+	POIN scrollRollStart; WORD 0x2002B44 1
+#endif
+#ifdef startInventoryScrollDash
+	POIN scrollDashStart; WORD 0x2002B44 1
+#endif
+#ifdef startInventoryScrollRock
+	POIN scrollRockStart; WORD 0x2002B44 1
+#endif
+#ifdef startInventoryScrollSwordBeam
+	POIN scrollSwordBeamStart; WORD 0x2002B45 1
+#endif
+#ifdef startInventoryScrollGreatSpin
+	POIN scrollGreatSpinStart; WORD 0x2002B45 1
+#endif
+#ifdef startInventoryScrollDownThrust
+	POIN scrollDownThrustStart; WORD 0x2002B45 1
+#endif
+#ifdef startInventoryScrollPerilBeam
+	POIN scrollPerilBeamStart; WORD 0x2002B45 1
+#endif
+#ifdef startInventoryScrollFastSpin
+	POIN scrollFastSpinStart; WORD 0x2002B4E 1
+#endif
+#ifdef startInventoryScrollFastSplit
+	POIN scrollFastSplitStart; WORD 0x2002B4F 1
+#endif
+#ifdef startInventoryScrollLongSpin
+	POIN scrollLongSpinStart; WORD 0x2002B4F 1
+#endif
+#ifdef startInventoryArrowButterfly
+	POIN arrowButterflyStart; WORD 0x2002B4E 1
+#endif
+#ifdef startInventoryDigButterfly
+	POIN digButterflyStart; WORD 0x2002B4E 1
+#endif
+#ifdef startInventorySwimButterfly
+	POIN swimButterflyStart; WORD 0x2002B4E 1
+#endif
+#ifdef startInventoryBombBags
+	POIN bombsStart; WORD 0x2002B33 1
+	POIN bombBagStart; WORD 0x2002B4B 1
+#endif
+#ifdef startInventoryQuivers
+	POIN quiverStart; WORD 0x2002B4B 1
+#endif
+#ifdef startInventoryWallets
+	POIN walletStart; WORD 0x2002B4B 1
+#endif
+#ifdef startInventoryBottle1
+	POIN bottle1Start; WORD 0x2002B39 1
+	#ifdef startInventoryBottle2
+		POIN bottle2Start; WORD 0x2002B39 1
+		#ifdef startInventoryBottle3
+			POIN bottle3Start; WORD 0x2002B39 1
+			#ifdef startInventoryBottle4
+				POIN bottle4Start; WORD 0x2002B39 1
+			#endif
+		#endif
+	#endif
+#endif
 WORD 0 0 0 //terminator
 
 ALIGN 4
@@ -521,6 +734,254 @@ BYTE ( (powRedPortal << 5) | (powRedPortal << 4) )
 
 dungeonPortal:
 BYTE (dwsBluePortal | dwsRedPortal) (cofBluePortal | cofRedPortal) (fowBluePortal | fowRedPortal) (todBluePortal | todRedPortal) (powBluePortal | powRedPortal) (dhcBluePortal | dhcRedPortal) 
+
+//Starting inventory
+
+redSwordClonesStart:
+BYTE 0x01
+
+blueSwordClonesStart:
+BYTE 0x02
+
+fourSwordClonesStart:
+BYTE 0x03
+
+bombBagCountStart:
+#ifndef startInventoryBombBags
+	#define startInventoryBombBags 0
+#endif
+BYTE startInventoryBombBags
+
+bombCountStart:
+#ifndef startInventoryBombs
+	#define startInventoryBombs 0
+#endif
+BYTE startInventoryBombs
+
+quiverCountStart:
+#ifndef startInventoryQuivers
+	#define startInventoryQuivers 0
+#endif
+BYTE startInventoryQuivers
+
+arrowCountStart:
+#ifndef startInventoryArrows
+	#define startInventoryArrows 0
+#endif
+BYTE startInventoryArrows
+
+walletCountStart:
+#ifndef startInventoryWallets
+	#define startInventoryWallets 0
+#endif
+BYTE startInventoryWallets
+
+bottleContent1Start:
+#ifndef startInventoryBottleContent1
+	#define startInventoryBottleContent1 0x20
+#endif
+BYTE startInventoryBottleContent1
+
+bottleContent2Start:
+#ifndef startInventoryBottleContent2
+	#define startInventoryBottleContent2 0x20
+#endif
+BYTE startInventoryBottleContent2
+
+bottleContent3Start:
+#ifndef startInventoryBottleContent3
+	#define startInventoryBottleContent3 0x20
+#endif
+BYTE startInventoryBottleContent3
+
+bottleContent4Start:
+#ifndef startInventoryBottleContent4
+	#define startInventoryBottleContent4 0x20
+#endif
+BYTE startInventoryBottleContent4
+
+smithSwordStart:
+BYTE 0x04
+
+greenSwordStart:
+BYTE 0x10
+
+redSwordStart:
+BYTE 0x40
+
+blueSwordStart:
+BYTE 0x01
+
+fourSwordStart:
+BYTE 0x10
+
+remoteBombsStart:
+BYTE 0x01
+
+bowStart:
+BYTE 0x04
+
+lightArrowsStart:
+BYTE 0x10
+
+boomerangStart:
+BYTE 0x40
+
+magicBoomerangStart:
+BYTE 0x01
+
+shieldStart:
+BYTE 0x04
+
+mirrorShieldStart:
+BYTE 0x10
+
+shieldShopStart:
+BYTE 0x80
+
+lanternStart:
+BYTE 0x40
+
+gustJarStart:
+BYTE 0x04
+
+pacciStart:
+BYTE 0x10
+
+moleMittsStart:
+BYTE 0x40
+
+capeStart:
+BYTE 0x01
+
+bootsStart:
+BYTE 0x04
+
+ocarinaStart:
+BYTE 0x40
+
+libraryStart:
+BYTE 0x02
+
+bombsStart:
+BYTE 0x40
+
+bombBagStart:
+BYTE 0x04
+
+gentariCurtainStart:
+BYTE 0x08
+
+quiverStart:
+BYTE 0x10
+
+walletStart:
+BYTE 0x01
+
+bottle1Start:
+BYTE 0x01
+
+bottle2Start:
+BYTE 0x04
+
+bottle3Start:
+BYTE 0x10
+
+bottle4Start:
+BYTE 0x40
+
+dogFoodStart:
+BYTE 0x10
+
+ranchKeyStart:
+BYTE 0x40
+
+mushroomStart:
+BYTE 0x01
+
+book1Start:
+BYTE 0x04
+
+book2Start:
+BYTE 0x10
+
+book3Start:
+BYTE 0x40
+
+graveyardKeyStart:
+BYTE 0x01
+
+tingleTrophyStart:
+BYTE 0x04
+
+carlovMedalStart:
+BYTE 0x10
+
+carlovMedalHouseStart:
+BYTE 0x40
+
+gripRingStart:
+BYTE 0x01
+
+powerBraceletsStart:
+BYTE 0x04
+
+flippersStart:
+BYTE 0x10
+
+spinSoldierStart:
+BYTE 0x08
+
+festariStart:
+BYTE 0x04
+
+stairsDogStart:
+BYTE 0x10
+
+jabberNutStart:
+BYTE 0x40
+
+scrollSpinStart:
+BYTE 0x01
+
+scrollRollStart:
+BYTE 0x04
+
+scrollDashStart:
+BYTE 0x10
+
+scrollRockStart:
+BYTE 0x40
+
+scrollSwordBeamStart:
+BYTE 0x01
+
+scrollGreatSpinStart:
+BYTE 0x04
+
+scrollDownThrustStart:
+BYTE 0x10
+
+scrollPerilBeamStart:
+BYTE 0x40
+
+scrollFastSpinStart:
+BYTE 0x40
+
+scrollFastSplitStart:
+BYTE 0x01
+
+scrollLongSpinStart:
+BYTE 0x04
+
+arrowButterflyStart:
+BYTE 0x01
+
+digButterflyStart:
+BYTE 0x04
+
+swimButterflyStart:
+BYTE 0x10
 
 // Set flags for Cucco Minigame
 #ifndef cuccoSkippedLevels

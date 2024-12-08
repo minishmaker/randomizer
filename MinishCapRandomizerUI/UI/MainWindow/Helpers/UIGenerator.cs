@@ -17,6 +17,8 @@ public static class UIGenerator
             Size = TabPaneSize,
             BackColor = Constants.DefaultBackgroundColor,
         };
+
+        page.Click += (sender, e) => page.Focus(); // helps with mouse wheel scrolling
         
         var groups = wrappedLogicOptions.GroupBy(option => option.SettingGrouping).ToList();
 
@@ -63,6 +65,9 @@ public static class UIGenerator
                 Text = group.Key,
                 UseMnemonic = Constants.UseMnemonic,
             };
+
+            categoryLabel.Click += (sender, e) => page.Focus(); // helps with mouse wheel scrolling
+            pane.Click += (sender, e) => page.Focus(); // helps with mouse wheel scrolling
 
             var currentElementXLocation = Constants.FirstElementInRowX;
             var currentElementYLocation = Constants.TopRowAboveSpacing;

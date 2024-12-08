@@ -45,7 +45,7 @@
 #   In the item pool, they are - Items.(type).[subtype]:[amount]; (item pool type); [dungeon_id]
 #    On unshuffled locations, they are - Items.(type).[subtype]
 #
-# A location is built up as (name):[dungeon id1]:[dungeon_id2]:...:[dungeon_idN]; (location type); (address); [logic]; [item] (Only applies to Unshuffled locations)
+# A location is built up as (name):[dungeon id 1]:[dungeon id 2]:...:[dungeon id N]; (location type); (address); [logic]; [item] (Only applies to Unshuffled locations)
 #
 # Give a location the dungeon_id: `NoSpoiler` to hide it from the spoiler log
 #
@@ -114,7 +114,7 @@
 !dropdown - Main Settings - Setting - Shuffle - GORON_SETTING - Goron Merchant - How many sets of Goron Merchant items are included in the random item pool.\nEach set consists of 3 items, and all 3 must be bought to advance to the next set.\nThere are 5 sets in total.\nThe remaining sets will be filled with junk items. - GORON_0 - Nothing - GORON_0 - - 1 Set - GORON_1 - - 2 Sets - GORON_2 - - 3 Sets - GORON_3 - - 4 Sets - GORON_4 - - 5 Sets - GORON_5 -
 !flag - Main Settings - Setting - Shuffle - HEART_RANDO - Heart Pieces and Containers - If enabled will shuffle Heart Pieces and Heart Containers into the pool, otherwise Heart Pieces and Containers will always be found in their vanilla location. This makes any items randomized to Heart Piece locations visible prior to collecting them. - true
 !flag - Main Settings - Setting - Shuffle - RUPEEMANIA - Rupees - If enabled will shuffle any free standing Rupees normally found in the world that are one off collectable, this adds a lot of extra money in the pool and certain locations will be very item dense.
-!flag - Main Settings - Setting - Shuffle - SPECIALPOTS - Special Pots - If enabled will shuffle items found is special pots around the world that contain one off collectables. This setting does not affect the LonLonRanch Key Item which will always shuffled, however if this setting is off then the pot in the ranch will always contain junk.
+!flag - Main Settings - Setting - Shuffle - SPECIALPOTS - Special Pots - If enabled will shuffle items found is special pots around the world that contain one off collectables. This setting does not affect the LonLonRanch Key Item which will always be shuffled, however if this setting is off then the pot in the ranch will always contain junk.
 !flag - Main Settings - Setting - Shuffle - DIGGING - Dig spots - If enabled will shuffle items found at special digging locations around the world that are one off collectables, Use the mitts on a patch of ground to dig up an item.
 !flag - Main Settings - Setting - Shuffle - UNDERWATER - Underwater spots - If enabled will shuffle items found when swimming underwater at special locations (Mostly near waterfalls).\nThe Locations that normally contain a Heart Piece found underwater in the lake and the Small Key found underwater in Temple of Droplets will always be junk if this setting is disabled, unless Hearts are not shuffled or Small Keys are set to Vanilla respectively.
 !flag - Main Settings - Setting - Shuffle - GOLDEN_ENEMY - Golden Enemies - If enabled will shuffle items dropped by Golden Enemies once then are defeated. There are 3 kinds of Golden Enemy: "Golden Octo", "Golden Tektite" and "Golden Rope".\nThese Enemies are spawned by completing certain Kinstone Fusions in the game, if you remove certain kinstone colors then those enemies made innaccessible will not have items.\nThese enemies have a lot of health but are not invulnerable, Keep hitting them!
@@ -224,6 +224,57 @@
 !dropdown - Item Pool - Setting - Key Chains - KEYRCMULTIPLIER - Royal Crypt Keychain size - When collecting keys, you will get this many added to your total. - RC1KEY - 1 - RC1KEY - - 2 - RC2KEY - - 3 - RC3KEY -
 !dropdown - Item Pool - Setting - Key Chains - KEYPOWMULTIPLIER - Palace of Winds Keychain size - When collecting keys, you will get this many added to your total. - POW1KEY - 1 - POW1KEY - - 2 - POW2KEY - - 3 - POW3KEY - - 4 - POW4KEY - - 5 - POW5KEY - - 6 - POW6KEY -
 !dropdown - Item Pool - Setting - Key Chains - KEYDHCMULTIPLIER - Dark Hyrule Castle Keychain size - When collecting keys, you will get this many added to your total. - DHC1KEY - 1 - DHC1KEY - - 2 - DHC2KEY - - 3 - DHC3KEY - - 4 - DHC4KEY - - 5 - DHC5KEY -
+
+!flag - Start Inventory - Setting - Main Items - START_SMITH_SWORD - Smith Sword -
+!flag - Start Inventory - Setting - Main Items - START_GREEN_SWORD - Green Sword -
+!flag - Start Inventory - Setting - Main Items - START_RED_SWORD - Red Sword -
+!flag - Start Inventory - Setting - Main Items - START_BLUE_SWORD - Blue Sword -
+!flag - Start Inventory - Setting - Main Items - START_FOUR_SWORD - Four Sword -
+!flag - Start Inventory - Setting - Main Items - START_NORMAL_BOW - Bow -
+!flag - Start Inventory - Setting - Main Items - START_LIGHT_BOW - Light Arrows -
+!flag - Start Inventory - Setting - Main Items - START_NORMAL_BOOM - Boomerang -
+!flag - Start Inventory - Setting - Main Items - START_MAGIC_BOOM - Magical Boomerang -
+!flag - Start Inventory - Setting - Main Items - START_NORMAL_SHIELD - Shield -
+!flag - Start Inventory - Setting - Main Items - START_MIRROR_SHIELD - Mirror Shield -
+!flag - Start Inventory - Setting - Main Items - START_REMOTE - Remote Bomb Upgrade -
+!flag - Start Inventory - Setting - Main Items - START_LANTERN - Lantern -
+!flag - Start Inventory - Setting - Main Items - START_GUST - Gust Jar -
+!flag - Start Inventory - Setting - Main Items - START_PACCI - Cane of Pacci -
+!flag - Start Inventory - Setting - Main Items - START_MITTS - Mole Mitts -
+!flag - Start Inventory - Setting - Main Items - START_CAPE - Roc's Cape -
+!flag - Start Inventory - Setting - Main Items - START_BOOTS - Pegasus Boots -
+!flag - Start Inventory - Setting - Main Items - START_OCARINA - Ocarina of Wind -
+!dropdown - Start Inventory - Setting - Start Capacity - START_BOMBBAGS - Bomb Bags - - START_BOMBBAGS_0 - 0 - START_BOMBBAGS_0 - - 1 - START_BOMBBAGS_1 - - 2 - START_BOMBBAGS_2 - - 3 - START_BOMBBAGS_3 - - 4 - START_BOMBBAGS_4 - The first Bomb Bag lets you carry 10 Bombs, the next one 30, then 50 and finally 99
+!dropdown - Start Inventory - Setting - Start Capacity - START_QUIVERS - Quivers - - START_QUIVERS_0 - 0 - START_QUIVERS_0 - - 1 - START_QUIVERS_1 - - 2 - START_QUIVERS_2 - - 3 - START_QUIVERS_3 - Without a Quiver you can carry up to 30 Arrows, with the first you can carry 50, then 70 and finally 99
+!dropdown - Start Inventory - Setting - Start Capacity - START_WALLETS - Wallets - - START_WALLETS_0 - 0 - START_WALLETS_0 - - 1 - START_WALLETS_1 - - 2 - START_WALLETS_2 - - 3 - START_WALLETS_3 - Without a Wallet you can carry up to 100 Rupees, with the first you can carry 300, then 500 and finally 999
+!dropdown - Start Inventory - Setting - Start Capacity - START_BOTTLES - Bottles - - START_BOTTLES_0 - 0 - START_BOTTLES_0 - - 1 - START_BOTTLES_1 - - 2 - START_BOTTLES_2 - - 3 - START_BOTTLES_3 - - 4 - START_BOTTLES_4 - These Bottles always start out empty, unless "Random Bottle Contents" is enabled
+!flag - Start Inventory - Setting - Quest Status Items - START_DOG_FOOD - Dog Food Bottle -
+!flag - Start Inventory - Setting - Quest Status Items - START_RANCH_KEY - Lon Lon Ranch Key -
+!flag - Start Inventory - Setting - Quest Status Items - START_MUSHROOM - Wake Up Mushroom -
+!flag - Start Inventory - Setting - Quest Status Items - START_BOOK_1 - Red Library Book -
+!flag - Start Inventory - Setting - Quest Status Items - START_BOOK_2 - Green Library Book -
+!flag - Start Inventory - Setting - Quest Status Items - START_BOOK_3 - Blue Library Book -
+!flag - Start Inventory - Setting - Quest Status Items - START_GRAVEYARD_KEY - Graveyard Key -
+!flag - Start Inventory - Setting - Quest Status Items - START_TINGLE_TROPHY - Tingle Trophy -
+!flag - Start Inventory - Setting - Quest Status Items - START_CARLOV_MEDAL - Carlov Medal -
+!flag - Start Inventory - Setting - Quest Status Items - START_GRIP_RING - Grip Ring -
+!flag - Start Inventory - Setting - Quest Status Items - START_POWER_BRACELETS - Power Bracelets -
+!flag - Start Inventory - Setting - Quest Status Items - START_FLIPPERS - Flippers -
+!flag - Start Inventory - Setting - Quest Status Items - START_JABBER_NUT - Jabber Nut -
+!flag - Start Inventory - Setting - Sword Scrolls - START_SCROLL_SPIN - Spin Attack -
+!flag - Start Inventory - Setting - Sword Scrolls - START_SCROLL_ROLL - Roll Attack -
+!flag - Start Inventory - Setting - Sword Scrolls - START_SCROLL_DASH - Dash Attack -
+!flag - Start Inventory - Setting - Sword Scrolls - START_SCROLL_ROCK - Rock Breaker -
+!flag - Start Inventory - Setting - Sword Scrolls - START_SCROLL_SWORD_BEAM - Sword Beam -
+!flag - Start Inventory - Setting - Sword Scrolls - START_SCROLL_GREAT_SPIN - Great Spin Attack -
+!flag - Start Inventory - Setting - Sword Scrolls - START_SCROLL_DOWN_THRUST - Down Thrust -
+!flag - Start Inventory - Setting - Sword Scrolls - START_SCROLL_PERIL_BEAM - Peril Beam -
+!flag - Start Inventory - Setting - Sword Scrolls - START_SCROLL_FAST_SPIN - Fast Spin Charge -
+!flag - Start Inventory - Setting - Sword Scrolls - START_SCROLL_FAST_SPLIT - Fast Split Gauge -
+!flag - Start Inventory - Setting - Sword Scrolls - START_SCROLL_LONG_SPIN - Longer Great Spin Attack -
+!flag - Start Inventory - Setting - Joy Butterflies - START_ARROW_BUTTERFLY - Arrow Joy Butterfly -
+!flag - Start Inventory - Setting - Joy Butterflies - START_DIG_BUTTERFLY - Dig Joy Butterfly -
+!flag - Start Inventory - Setting - Joy Butterflies - START_SWIM_BUTTERFLY - Swim Joy Butterfly -
 
 !flag - Gameplay - Setting - Difficulty - GLITCHLESS - Prevent Speedrun Glitches - Attempts were made to patch the glitches used by speedrunners to reach areas before intended, these attempts failed but we still keep this setting around.\nIt is not recommended to enable this setting as it instead causes many bugs in regular gameplay
 !flag - Gameplay - Setting - Difficulty - TIMEDOHKO - Timed OHKO - A 10 minute timer starts when you start your save file, collect timers to increase time on this timer. When the timer hits 00:00 you enter OHKO mode, one hit will kill you.\nBlue Timers increase the time by 2 Mintues\nGreen Timers increase the time by 4 minutes\nRed timers reduce the timer to 00:00\nWARNING: Do not enable this with 'Damage Multiplier' above x1, it will generate the seed but fail to patch the game.
@@ -391,6 +442,11 @@
 !define - `KEYPOWMULTIPLIER`
 !define - `KEYDHCMULTIPLIER`
 
+!define - `START_BOMBBAGS`
+!define - `START_QUIVERS`
+!define - `START_WALLETS`
+!define - `START_BOTTLES`
+
 !define - `THREE_HEART`
 !define - `DAMAGE_MULTI`
 !define - `BOOTS_L`
@@ -483,6 +539,12 @@
 !endif
 !ifndef - NOT_GRABBABLE
 	!eventdefine - itemsCanCollectItems
+!endif
+
+!ifdef - DOJOVANILLA
+	!ifdef - YES_SCROLL_PROG
+		!undefine - YES_SCROLL_PROG
+	!endif
 !endif
 
 # Set the number of required dungeons
@@ -668,6 +730,271 @@
 	!endif
 	!ifndef - SMALL_KEYS_VANILLA
 		!eventdefine - todKeyWater
+	!endif
+!endif
+
+# Sets starting inventory
+!ifdef - START_FOUR_SWORD
+	!eventdefine - startInventoryFourSword
+	!ifdef - YES_SWORD_PROG
+		!ifndef - START_BLUE_SWORD
+			!define - START_BLUE_SWORD
+		!endif
+	!endif
+!endif
+!ifdef - START_BLUE_SWORD
+	!eventdefine - startInventoryBlueSword
+	!ifdef - YES_SWORD_PROG
+		!ifndef - START_RED_SWORD
+			!define - START_RED_SWORD
+		!endif
+	!endif
+!endif
+!ifdef - START_RED_SWORD
+	!eventdefine - startInventoryRedSword
+	!ifdef - YES_SWORD_PROG
+		!ifndef - START_GREEN_SWORD
+			!define - START_GREEN_SWORD
+		!endif
+	!endif
+!endif
+!ifdef - START_GREEN_SWORD
+	!eventdefine - startInventoryGreenSword
+	!ifdef - YES_SWORD_PROG
+		!ifndef - START_SMITH_SWORD
+			!define - START_SMITH_SWORD
+		!endif
+	!endif
+!endif
+!ifdef - START_SMITH_SWORD
+	!eventdefine - startInventorySmithSword
+!endif
+!ifdef - START_REMOTE
+	!eventdefine - startInventoryRemoteBombs
+!endif
+!ifdef - START_LIGHT_BOW
+	!eventdefine - startInventoryLightArrows
+	!define - START_SOME_BOW
+	!ifdef - YES_BOW_PROG
+		!ifndef - START_NORMAL_BOW
+			!define - START_NORMAL_BOW
+		!endif
+	!endif
+!endif
+!ifdef - START_NORMAL_BOW
+	!eventdefine - startInventoryBow
+	!ifndef - START_SOME_BOW
+		!define - START_SOME_BOW
+	!endif
+!endif
+!ifdef - START_MAGIC_BOOM
+	!eventdefine - startInventoryMagicBoomerang
+	!ifdef - YES_BOOM_PROG
+		!ifndef - START_NORMAL_BOOM
+			!define - START_NORMAL_BOOM
+		!endif
+	!endif
+!endif
+!ifdef - START_NORMAL_BOOM
+	!eventdefine - startInventoryBoomerang
+!endif
+!ifdef - START_MIRROR_SHIELD
+	!eventdefine - startInventoryMirrorShield
+	!ifdef - YES_SHIELD_PROG
+		!ifndef - START_NORMAL_SHIELD
+			!define - START_NORMAL_SHIELD
+		!endif
+	!endif
+!endif
+!ifdef - START_NORMAL_SHIELD
+	!eventdefine - startInventoryShield
+!endif
+!ifdef - START_LANTERN
+	!eventdefine - startInventoryLantern
+!endif
+!ifdef - START_GUST
+	!eventdefine - startInventoryGustJar
+!endif
+!ifdef - START_PACCI
+	!eventdefine - startInventoryPacci
+!endif
+!ifdef - START_MITTS
+	!eventdefine - startInventoryMoleMitts
+!endif
+!ifdef - START_CAPE
+	!eventdefine - startInventoryCape
+!endif
+!ifdef - START_BOOTS
+	!eventdefine - startInventoryBoots
+!endif
+!ifdef - START_OCARINA
+	!eventdefine - startInventoryOcarina
+!endif
+!ifdef - START_DOG_FOOD
+	!eventdefine - startInventoryDogFood
+!endif
+!ifdef - START_RANCH_KEY
+	!eventdefine - startInventoryRanchKey
+!endif
+!ifdef - START_MUSHROOM
+	!eventdefine - startInventoryMushroom
+!endif
+!ifdef - START_BOOK_1
+	!eventdefine - startInventoryBook1
+!endif
+!ifdef - START_BOOK_2
+	!eventdefine - startInventoryBook2
+!endif
+!ifdef - START_BOOK_3
+	!eventdefine - startInventoryBook3
+!endif
+!ifdef - START_GRAVEYARD_KEY
+	!eventdefine - startInventoryGraveyardKey
+!endif
+!ifdef - START_TINGLE_TROPHY
+	!eventdefine - startInventoryTingleTrophy
+!endif
+!ifdef - START_CARLOV_MEDAL
+	!eventdefine - startInventoryCarlovMedal
+!endif
+!ifdef - START_GRIP_RING
+	!eventdefine - startInventoryGripRing
+!endif
+!ifdef - START_POWER_BRACELETS
+	!eventdefine - startInventoryPowerBracelets
+!endif
+!ifdef - START_FLIPPERS
+	!eventdefine - startInventoryFlippers
+!endif
+!ifdef - START_JABBER_NUT
+	!eventdefine - startInventoryJabberNut
+!endif
+!ifdef - START_SCROLL_LONG_SPIN
+	!eventdefine - startInventoryScrollLongSpin
+	!ifdef - YES_SCROLL_PROG
+		!ifndef - START_SCROLL_GREAT_SPIN
+			!define - START_SCROLL_GREAT_SPIN
+		!endif
+	!endif
+!endif
+!ifdef - START_SCROLL_GREAT_SPIN
+	!eventdefine - startInventoryScrollGreatSpin
+	!ifdef - YES_SCROLL_PROG
+		!ifndef - START_SCROLL_FAST_SPLIT
+			!define - START_SCROLL_FAST_SPLIT
+		!endif
+	!endif
+!endif
+!ifdef - START_SCROLL_FAST_SPLIT
+	!eventdefine - startInventoryScrollFastSplit
+	!ifdef - YES_SCROLL_PROG
+		!ifndef - START_SCROLL_FAST_SPIN
+			!define - START_SCROLL_FAST_SPIN
+		!endif
+	!endif
+!endif
+!ifdef - START_SCROLL_FAST_SPIN
+	!eventdefine - startInventoryScrollFastSpin
+	!ifdef - YES_SCROLL_PROG
+		!ifndef - START_SCROLL_SPIN
+			!define - START_SCROLL_SPIN
+		!endif
+	!endif
+!endif
+!ifdef - START_SCROLL_SPIN
+	!eventdefine - startInventoryScrollSpin
+!endif
+!ifdef - START_SCROLL_ROLL
+	!eventdefine - startInventoryScrollRoll
+!endif
+!ifdef - START_SCROLL_DASH
+	!eventdefine - startInventoryScrollDash
+!endif
+!ifdef - START_SCROLL_ROCK
+	!eventdefine - startInventoryScrollRock
+!endif
+!ifdef - START_SCROLL_SWORD_BEAM
+	!eventdefine - startInventoryScrollSwordBeam
+!endif
+!ifdef - START_SCROLL_DOWN_THRUST
+	!eventdefine - startInventoryScrollDownThrust
+!endif
+!ifdef - START_SCROLL_PERIL_BEAM
+	!eventdefine - startInventoryScrollPerilBeam
+!endif
+!ifdef - START_ARROW_BUTTERFLY
+	!eventdefine - startInventoryArrowButterfly
+!endif
+!ifdef - START_DIG_BUTTERFLY
+	!eventdefine - startInventoryDigButterfly
+!endif
+!ifdef - START_SWIM_BUTTERFLY
+	!eventdefine - startInventorySwimButterfly
+!endif
+!ifdef - START_BOMBBAGS_1
+	!eventdefine - startInventoryBombBags - 1
+	!eventdefine - startInventoryBombs - 10
+!endif
+!ifdef - START_BOMBBAGS_2
+	!eventdefine - startInventoryBombBags - 2
+	!eventdefine - startInventoryBombs - 30
+!endif
+!ifdef - START_BOMBBAGS_3
+	!eventdefine - startInventoryBombBags - 3
+	!eventdefine - startInventoryBombs - 50
+!endif
+!ifdef - START_BOMBBAGS_4
+	!eventdefine - startInventoryBombBags - 4
+	!eventdefine - startInventoryBombs - 99
+!endif
+!ifdef - START_QUIVERS_0
+	!ifdef - START_SOME_BOW
+		!eventdefine - startInventoryArrows - 30
+	!endif
+!endif
+!ifdef - START_QUIVERS_1
+	!eventdefine - startInventoryQuivers - 1
+	!ifdef - START_SOME_BOW
+		!eventdefine - startInventoryArrows - 50
+	!endif
+!endif
+!ifdef - START_QUIVERS_2
+	!eventdefine - startInventoryQuivers - 2
+	!ifdef - START_SOME_BOW
+		!eventdefine - startInventoryArrows - 70
+	!endif
+!endif
+!ifdef - START_QUIVERS_3
+	!eventdefine - startInventoryQuivers - 3
+	!ifdef - START_SOME_BOW
+		!eventdefine - startInventoryArrows - 99
+	!endif
+!endif
+!ifdef - START_WALLETS_1
+	!eventdefine - startInventoryWallets - 1
+!endif
+!ifdef - START_WALLETS_2
+	!eventdefine - startInventoryWallets - 2
+!endif
+!ifdef - START_WALLETS_3
+	!eventdefine - startInventoryWallets - 3
+!endif
+!ifndef - START_BOTTLES_0
+	!eventdefine - startInventoryBottle1
+	!ifndef - START_BOTTLES_1
+		!eventdefine - startInventoryBottle2
+		!ifndef - START_BOTTLES_2
+			!eventdefine - startInventoryBottle3
+			!ifndef - START_BOTTLES_3
+				!eventdefine - startInventoryBottle4
+			!endif
+		!endif
+	!endif
+	!ifdef - RANDOM_BOTTLE_CONTENT
+		!eventdefine - startInventoryBottleContent1 - (0x`RAND_INT`%0x12)+0x20
+		!eventdefine - startInventoryBottleContent2 - (0x`RAND_INT`%0x12)+0x20
+		!eventdefine - startInventoryBottleContent3 - (0x`RAND_INT`%0x12)+0x20
+		!eventdefine - startInventoryBottleContent4 - (0x`RAND_INT`%0x12)+0x20
 	!endif
 !endif
 
@@ -1687,10 +2014,6 @@
 	!endif
 !endif
 
-!ifdef - DOJOVANILLA
-	!undefine - YES_SCROLL_PROG
-!endif
-
 #Item Pool settings
 !ifdef - YES_SWORD_PROG
 	!define - SMITHSWORD - Items.ProgressiveItem.0x00
@@ -1698,7 +2021,34 @@
 	!define - REDSWORD - Items.ProgressiveItem.0x00
 	!define - BLUESWORD - Items.ProgressiveItem.0x00
 	!define - FOURSWORD - Items.ProgressiveItem.0x00
-	Items.ProgressiveItem.0x00:5;	Major;	#Sword
+	!ifdef - START_SMITH_SWORD
+		Dummy_SmithSword:NoSpoiler;	Unshuffled;	DumSmithSword1:Define:FirstByte, DumSmithSword2:Define:SecondByte;	;	Items.ProgressiveItem.0x00
+		!ifdef - START_GREEN_SWORD
+			Dummy_GreenSword:NoSpoiler;	Unshuffled;	DumGreenSword1:Define:FirstByte, DumGreenSword2:Define:SecondByte;	;	Items.ProgressiveItem.0x00
+			!ifdef - START_RED_SWORD
+				Dummy_RedSword:NoSpoiler;	Unshuffled;	DumRedSword1:Define:FirstByte, DumRedSword2:Define:SecondByte;	;	Items.ProgressiveItem.0x00
+				!ifdef - START_BLUE_SWORD
+					Dummy_BlueSword:NoSpoiler;	Unshuffled;	DumBlueSword1:Define:FirstByte, DumBlueSword2:Define:SecondByte;	;	Items.ProgressiveItem.0x00
+					!ifdef - START_FOUR_SWORD
+						Dummy_FourSword:NoSpoiler;	Unshuffled;	DumFourSword1:Define:FirstByte, DumFourSword2:Define:SecondByte;	;	Items.ProgressiveItem.0x00
+						!ifdef - MEME
+							Items.ProgressiveItem.0x00:5;	Minor;	#Sword
+						!endif
+					!else
+						Items.ProgressiveItem.0x00:1;	Major;	#Sword
+					!endif
+				!else
+					Items.ProgressiveItem.0x00:2;	Major;	#Sword
+				!endif
+			!else
+				Items.ProgressiveItem.0x00:3;	Major;	#Sword
+			!endif
+		!else
+			Items.ProgressiveItem.0x00:4;	Major;	#Sword
+		!endif
+	!else
+		Items.ProgressiveItem.0x00:5;	Major;	#Sword
+	!endif
 !else
 	!eventdefine - arbitrarySwords
 	!define - SMITHSWORD - Items.SmithSword
@@ -1706,67 +2056,220 @@
 	!define - REDSWORD - Items.RedSword
 	!define - BLUESWORD - Items.BlueSword
 	!define - FOURSWORD - Items.FourSword
-	Items.SmithSword;		Major;
-	Items.GreenSword;		Major;
-	Items.RedSword;		Major;
-	Items.BlueSword;		Major;
-	Items.FourSword;		Major;
+	!ifndef - START_SMITH_SWORD
+		Items.SmithSword;	Major;
+	!else
+		Dummy_SmithSword:NoSpoiler;	Unshuffled;	DumSmithSword1:Define:FirstByte, DumSmithSword2:Define:SecondByte;	;	Items.SmithSword
+		!ifdef - MEME
+			Items.SmithSword;	Minor;
+		!endif
+	!endif
+	!ifndef - START_GREEN_SWORD
+		Items.GreenSword;	Major;
+	!else
+		Dummy_GreenSword:NoSpoiler;	Unshuffled;	DumGreenSword1:Define:FirstByte, DumGreenSword2:Define:SecondByte;	;	Items.GreenSword
+		!ifdef - MEME
+			Items.GreenSword;	Minor;
+		!endif
+	!endif
+	!ifndef - START_RED_SWORD
+		Items.RedSword;	Major;
+	!else
+		Dummy_RedSword:NoSpoiler;	Unshuffled;	DumRedSword1:Define:FirstByte, DumRedSword2:Define:SecondByte;	;	Items.RedSword
+		!ifdef - MEME
+			Items.RedSword;	Minor;
+		!endif
+	!endif
+	!ifndef - START_BLUE_SWORD
+		Items.BlueSword;	Major;
+	!else
+		Dummy_BlueSword:NoSpoiler;	Unshuffled;	DumBlueSword1:Define:FirstByte, DumBlueSword2:Define:SecondByte;	;	Items.BlueSword
+		!ifdef - MEME
+			Items.BlueSword;	Minor;
+		!endif
+	!endif
+	!ifndef - START_FOUR_SWORD
+		Items.FourSword;	Major;
+	!else
+		Dummy_FourSword:NoSpoiler;	Unshuffled;	DumFourSword1:Define:FirstByte, DumFourSword2:Define:SecondByte;	;	Items.FourSword
+		!ifdef - MEME
+			Items.FourSword;	Minor;
+		!endif
+	!endif
 !endif
 !ifdef - YES_BOW_PROG
 	!define - BOW - Items.ProgressiveItem.0x01
 	!define - LIGHTARROW - Items.ProgressiveItem.0x01
-	Items.ProgressiveItem.0x01:2;	Major;	#Bow
+	!ifdef - START_NORMAL_BOW
+		Dummy_Bow:NoSpoiler;	Unshuffled;	DumBow1:Define:FirstByte, DumBow2:Define:SecondByte;	;	Items.ProgressiveItem.0x01
+		!ifdef - START_LIGHT_BOW
+			Dummy_LightArrows:NoSpoiler;	Unshuffled;	DumLightArrows1:Define:FirstByte, DumLightArrows2:Define:SecondByte;	;	Items.ProgressiveItem.0x01
+			!ifdef - MEME
+				Items.ProgressiveItem.0x01:2;	Minor;	#Bow
+			!endif
+		!else
+			Items.ProgressiveItem.0x01;	Major;	#Bow
+		!endif
+	!else
+		Items.ProgressiveItem.0x01:2;	Major;	#Bow
+	!endif
 !else
 	!eventdefine - arbitraryBows
 	!define - BOW - Items.Bow
 	!define - LIGHTARROW - Items.LightArrow
-	Items.Bow;			Major;
-	Items.LightArrow;		Major;
+	!ifndef - START_NORMAL_BOW
+		Items.Bow;	Major;
+	!else
+		Dummy_Bow:NoSpoiler;	Unshuffled;	DumBow1:Define:FirstByte, DumBow2:Define:SecondByte;	;	Items.Bow
+		!ifdef - MEME
+			Items.Bow;	Minor;
+		!endif
+	!endif
+	!ifndef - START_LIGHT_BOW
+		Items.LightArrow;	Major;
+	!else
+		Dummy_LightArrows:NoSpoiler;	Unshuffled;	DumLightArrows1:Define:FirstByte, DumLightArrows2:Define:SecondByte;	;	Items.LightArrow
+		!ifdef - MEME
+			Items.LightArrow;	Minor;
+		!endif
+	!endif
 !endif
 !ifdef - YES_BOOM_PROG
 	!define - BOOMERANG - Items.ProgressiveItem.0x02
 	!define - MAGICBOOMERANG - Items.ProgressiveItem.0x02
-	Items.ProgressiveItem.0x02;	Major;	#Boomerang
+	!ifdef - START_NORMAL_BOOM
+		Dummy_Boom:NoSpoiler;	Unshuffled;	DumBoom1:Define:FirstByte, DumBoom2:Define:SecondByte;	;	Items.ProgressiveItem.0x02
+	!else
+		Items.ProgressiveItem.0x02;	Major;	#Boomerang
+	!endif
 !else
 	!eventdefine - arbitraryBoomerangs
 	!define - BOOMERANG - Items.Boomerang
 	!define - MAGICBOOMERANG - Items.MagicBoomerang
-	Items.Boomerang;		Major;
+	!ifndef - START_NORMAL_BOOM
+		Items.Boomerang;	Major;
+	!else
+		Dummy_Boom:NoSpoiler;	Unshuffled;	DumBoom1:Define:FirstByte, DumBoom2:Define:SecondByte;	;	Items.Boomerang
+		!ifdef - MEME
+			Items.Boomerang;	Minor;
+		!endif
+	!endif
 !endif
 !ifdef - YES_SHIELD_PROG
 	!define - SHIELD - Items.ProgressiveItem.0x03
 	!define - MIRROR - Items.ProgressiveItem.0x03
-	Items.ProgressiveItem.0x03;	Major;	#Shield
+	!ifdef - START_NORMAL_SHIELD
+		Dummy_Shield:NoSpoiler;	Unshuffled;	DumShield1:Define:FirstByte, DumShield2:Define:SecondByte;	;	Items.ProgressiveItem.0x03
+	!else
+		Items.ProgressiveItem.0x03;	Major;	#Shield
+	!endif
 !else
 	!eventdefine - arbitraryShields
 	!define - SHIELD - Items.Shield
 	!define - MIRROR - Items.MirrorShield
 	Items.Shield;			Major;
+	!ifndef - START_NORMAL_SHIELD
+		Items.Shield;	Major;
+	!else
+		Dummy_Shield:NoSpoiler;	Unshuffled;	DumShield1:Define:FirstByte, DumShield2:Define:SecondByte;	;	Items.Shield
+	!endif
+!endif
+!ifdef - DOJORANDOM
+	!define - SCROLLMAJOR - DungeonMajor;	dojo
+	!define - SCROLLMINOR - DungeonMinor;	dojo
+!endif
+!ifdef - DOJOANY
+	!define - SCROLLMAJOR - Major;
+	!define - SCROLLMINOR - Major;
 !endif
 !ifdef - YES_SCROLL_PROG
-	!ifdef - DOJORANDOM
-		Items.ProgressiveItem.0x04;	DungeonMajor;	dojo	#Scroll
-	!endif
-	!ifdef - DOJOANY
-		Items.ProgressiveItem.0x04;	Major;	#Scroll
+	!ifdef - SCROLLMAJOR
+		!ifdef - START_SCROLL_SPIN
+			Dummy_Spin:NoSpoiler;	Unshuffled;	DumSpin1:Define:FirstByte, DumSpin2:Define:SecondByte;	;	Items.ProgressiveItem.0x04
+			!ifdef - DOJORANDOM
+				Items.Rupee5;	DungeonMinor;	dojo
+			!endif
+		!else
+			Items.ProgressiveItem.0x04;	`SCROLLMAJOR`	#Scroll
+		!endif
 	!endif
 !else
 	!eventdefine - arbitraryScrolls
-	!ifdef - DOJORANDOM
-		Items.SpinAttack;		DungeonMajor;	dojo
-	!endif
-	!ifdef - DOJOANY
-		Items.SpinAttack;		Major;
+	!ifdef - SCROLLMAJOR
+		!ifdef - START_SCROLL_SPIN
+			Dummy_Spin:NoSpoiler;	Unshuffled;	DumSpin1:Define:FirstByte, DumSpin2:Define:SecondByte;	;	Items.SpinAttack
+			!ifdef - DOJORANDOM
+				Items.Rupee5;	DungeonMinor;	dojo
+			!endif
+			!ifdef - MEME
+				Items.SpinAttack;	Minor;
+			!endif
+		!else
+			Items.SpinAttack;		`SCROLLMAJOR`
+		!endif
 	!endif
 !endif
-	Items.Lantern;		Major;
-	Items.GustJar;		Major;
-	Items.PacciCane;		Major;
-	Items.MoleMitts;		Major;
-	Items.RocsCape;		Major;
+!ifndef - START_LANTERN
+	Items.Lantern;	Major;
+!else
+	Dummy_Lantern:NoSpoiler;	Unshuffled;	DumLantern1:Define:FirstByte, DumLantern2:Define:SecondByte;	;	Items.Lantern
+	!ifdef - MEME
+		Items.Lantern;	Minor;
+	!endif
+!endif
+!ifndef - START_GUST
+	Items.GustJar;	Major;
+!else
+	Dummy_Gust:NoSpoiler;	Unshuffled;	DumGust1:Define:FirstByte, DumGust2:Define:SecondByte;	;	Items.GustJar
+	!ifdef - MEME
+		Items.GustJar;	Minor;
+	!endif
+!endif
+!ifndef - START_PACCI
+	Items.PacciCane;	Major;
+!else
+	Dummy_Pacci:NoSpoiler;	Unshuffled;	DumPacci1:Define:FirstByte, DumPacci2:Define:SecondByte;	;	Items.PacciCane
+	!ifdef - MEME
+		Items.PacciCane;	Minor;
+	!endif
+!endif
+!ifndef - START_MITTS
+	Items.MoleMitts;	Major;
+!else
+	Dummy_Mitts:NoSpoiler;	Unshuffled;	DumMitts1:Define:FirstByte, DumMitts2:Define:SecondByte;	;	Items.MoleMitts
+	!ifdef - MEME
+		Items.MoleMitts;	Minor;
+	!endif
+!endif
+!ifndef - START_CAPE
+	Items.RocsCape;	Major;
+!else
+	Dummy_Cape:NoSpoiler;	Unshuffled;	DumCape1:Define:FirstByte, DumCape2:Define:SecondByte;	;	Items.RocsCape
+	!ifdef - MEME
+		Items.RocsCape;	Minor;
+	!endif
+!endif
+!ifndef - START_BOOTS
 	Items.PegasusBoots;	Major;
-	Items.Ocarina;		Major;
+!else
+	Dummy_Boots:NoSpoiler;	Unshuffled;	DumBoots1:Define:FirstByte, DumBoots2:Define:SecondByte;	;	Items.PegasusBoots
+	!ifdef - MEME
+		Items.PegasusBoots;	Minor;
+	!endif
+!endif
+!ifndef - START_OCARINA
+	Items.Ocarina;	Major;
+!else
+	Dummy_Ocarina:NoSpoiler;	Unshuffled;	DumOcarina1:Define:FirstByte, DumOcarina2:Define:SecondByte;	;	Items.Ocarina
+	!ifdef - MEME
+		Items.Ocarina;	Minor;
+	!endif
+!endif
+!ifdef - START_BOTTLES_0
 	Items.Bottle;			Major;
+!else
+	Dummy_Bottle:NoSpoiler;	Unshuffled;	DumBottle1:Define:FirstByte, DumBottle2:Define:SecondByte;	;	Items.Bottle
+!endif
 	!ifdef - MEME
 		Items.SmithSwordQuest;		Minor;
 		Items.BrokenPicoriBlade;	Minor;
@@ -1774,27 +2277,98 @@
 		Items.Croissant;			Filler;
 		Items.PieSlice;			Filler;
 		Items.CakeSlice;			Filler;
-	!endif	
+	!endif
+!ifndef - START_DOG_FOOD
 	Items.DogFoodBottle;	Major;
+!else
+	Dummy_DogFood:NoSpoiler;	Unshuffled;	DumDogFood1:Define:FirstByte, DumDogFood2:Define:SecondByte;	;	Items.DogFoodBottle
+!endif
+!ifndef - START_RANCH_KEY
 	!ifdef - OPENWORLD_ON
 		!ifdef - MEME
-			Items.LonLonKey;		Minor;
-			Items.GraveyardKey;	Minor;
-			Items.PowerBracelets;	Minor;
-			Items.JabberNut;		Minor;
+			Items.LonLonKey;	Minor;
 		!endif
 	!else
 		Items.LonLonKey;		Minor;
-		Items.GraveyardKey;	Major;
-		Items.PowerBracelets;	Major;
+	!endif
+!else
+	Dummy_RanchKey:NoSpoiler;	Unshuffled;	DumRanchKey1:Define:FirstByte, DumRanchKey2:Define:SecondByte;	;	Items.LonLonKey
+!endif
+!ifndef - START_GRAVEYARD_KEY
+	!ifdef - OPENWORLD_ON
+		!ifdef - MEME
+			Items.GraveyardKey;	Minor;
+		!endif
+	!else
+		Items.GraveyardKey;		Major;
+	!endif
+!else
+	Dummy_GraveyardKey:NoSpoiler;	Unshuffled;	DumGraveyardKey1:Define:FirstByte, DumGraveyardKey2:Define:SecondByte;	;	Items.GraveyardKey
+!endif
+!ifndef - START_POWER_BRACELETS
+	!ifdef - OPENWORLD_ON
+		!ifdef - MEME
+			Items.PowerBracelets;	Minor;
+		!endif
+	!else
+		Items.PowerBracelets;		Major;
+	!endif
+!else
+	Dummy_PowerBracelets:NoSpoiler;	Unshuffled;	DumPowerBracelets1:Define:FirstByte, DumPowerBracelets2:Define:SecondByte;	;	Items.PowerBracelets
+	!ifdef - MEME
+		Items.PowerBracelets;	Minor;
+	!endif
+!endif
+!ifndef - START_JABBER_NUT
+	!ifdef - OPENWORLD_ON
+		!ifdef - MEME
+			Items.JabberNut;	Minor;
+		!endif
+	!else
 		Items.JabberNut;		Minor;
 	!endif
+!else
+	Dummy_JabberNut:NoSpoiler;	Unshuffled;	DumJabberNut1:Define:FirstByte, DumJabberNut2:Define:SecondByte;	;	Items.JabberNut
+	!ifdef - MEME
+		Items.JabberNut;	Minor;
+	!endif
+!endif
+!ifndef - START_MUSHROOM
 	Items.WakeUpMushroom;	Major;
-	Items.RedBook;		Major;
-	Items.GreenBook;		Major;
-	Items.BlueBook;		Major;
+!else
+	Dummy_Mushroom:NoSpoiler;	Unshuffled;	DumMushroom1:Define:FirstByte, DumMushroom2:Define:SecondByte;	;	Items.WakeUpMushroom
+!endif
+!ifndef - START_BOOK_1
+	Items.RedBook;	Major;
+!else
+	Dummy_RedBook:NoSpoiler;	Unshuffled;	DumRedBook1:Define:FirstByte, DumRedBook2:Define:SecondByte;	;	Items.RedBook
+!endif
+!ifndef - START_BOOK_2
+	Items.GreenBook;	Major;
+!else
+	Dummy_GreenBook:NoSpoiler;	Unshuffled;	DumGreenBook1:Define:FirstByte, DumGreenBook2:Define:SecondByte;	;	Items.GreenBook
+!endif
+!ifndef - START_BOOK_3
+	Items.BlueBook;	Major;
+!else
+	Dummy_BlueBook:NoSpoiler;	Unshuffled;	DumBlueBook1:Define:FirstByte, DumBlueBook2:Define:SecondByte;	;	Items.BlueBook
+!endif
+!ifndef - START_TINGLE_TROPHY
 	Items.TingleTrophy;	Major;
+!else
+	Dummy_TingleTrophy:NoSpoiler;	Unshuffled;	DumTingleTrophy1:Define:FirstByte, DumTingleTrophy2:Define:SecondByte;	;	Items.TingleTrophy
+	!ifdef - MEME
+		Items.TingleTrophy;	Minor;
+	!endif
+!endif
+!ifndef - START_CARLOV_MEDAL
 	Items.CarlovMedal;	Major;
+!else
+	Dummy_CarlovMedal:NoSpoiler;	Unshuffled;	DumCarlovMedal1:Define:FirstByte, DumCarlovMedal2:Define:SecondByte;	;	Items.CarlovMedal
+	!ifdef - MEME
+		Items.CarlovMedal;	Minor;
+	!endif
+!endif
 	!ifndef - SHUFFLE_ELEMENTS_VANILLA
 		!ifdef - SHUFFLE_ELEMENTS_ON
 			Items.EarthElement;		Major;
@@ -1808,25 +2382,72 @@
 			Items.WindElement;		DungeonPrize;
 		!endif
 	!endif
-	Items.GripRing;		Major;
-	Items.Flippers;		Major;
-	!ifndef - DOJOVANILLA
+!ifndef - START_GRIP_RING
+	Items.GripRing;	Major;
+!else
+	Dummy_GripRing:NoSpoiler;	Unshuffled;	DumGripRing1:Define:FirstByte, DumGripRing2:Define:SecondByte;	;	Items.GripRing
+	!ifdef - MEME
+		Items.GripRing;	Minor;
+	!endif
+!endif
+!ifndef - START_FLIPPERS
+	Items.Flippers;	Major;
+!else
+	Dummy_Flippers:NoSpoiler;	Unshuffled;	DumFlippers1:Define:FirstByte, DumFlippers2:Define:SecondByte;	;	Items.Flippers
+	!ifdef - MEME
+		Items.Flippers;	Minor;
+	!endif
+!endif
+!ifndef - DOJOVANILLA
+	!ifndef - START_SCROLL_ROLL
+		Items.RollAttack;	`SCROLLMINOR`
+	!else
+		Dummy_Roll:NoSpoiler;	Unshuffled;	DumRoll1:Define:FirstByte, DumRoll2:Define:SecondByte;	;	Items.RollAttack
 		!ifdef - DOJORANDOM
-			Items.RollAttack;		DungeonMinor;	dojo
-			Items.DashAttack;		DungeonMinor;	dojo
-			Items.RockBreaker;	DungeonMinor;	dojo
-			Items.SwordBeam;		DungeonMajor;	dojo
-			Items.DownThrust;		DungeonMajor;	dojo
-			Items.PerilBeam;		DungeonMajor;	dojo		
-		!else
-			Items.RollAttack;		Major;
-			Items.DashAttack;		Major;
-			Items.RockBreaker;	Major;
-			Items.SwordBeam;		Major;
-			Items.DownThrust;		Major;
-			Items.PerilBeam;		Major;
+			Items.Rupee5;		DungeonMinor;	dojo
 		!endif
 	!endif
+	!ifndef - START_SCROLL_DASH
+		Items.DashAttack;	`SCROLLMINOR`
+	!else
+		Dummy_Dash:NoSpoiler;	Unshuffled;	DumDash1:Define:FirstByte, DumDash2:Define:SecondByte;	;	Items.DashAttack
+		!ifdef - DOJORANDOM
+			Items.Rupee5;		DungeonMinor;	dojo
+		!endif
+	!endif
+	!ifndef - START_SCROLL_ROCK
+		Items.RockBreaker;	`SCROLLMINOR`
+	!else
+		Dummy_Rock:NoSpoiler;	Unshuffled;	DumRock1:Define:FirstByte, DumRock2:Define:SecondByte;	;	Items.RockBreaker
+		!ifdef - DOJORANDOM
+			Items.Rupee5;		DungeonMinor;	dojo
+		!endif
+	!endif
+	!ifndef - START_SCROLL_SWORD_BEAM
+		Items.SwordBeam;	`SCROLLMAJOR`
+	!else
+		Dummy_SwordBeam:NoSpoiler;	Unshuffled;	DumSwordBeam1:Define:FirstByte, DumSwordBeam2:Define:SecondByte;	;	Items.SwordBeam
+		!ifdef - DOJORANDOM
+			Items.Rupee5;		DungeonMinor;	dojo
+		!endif
+	!endif
+	!ifndef - START_SCROLL_DOWN_THRUST
+		Items.DownThrust;	`SCROLLMAJOR`
+	!else
+		Dummy_DownThrust:NoSpoiler;	Unshuffled;	DumDownThrust1:Define:FirstByte, DumDownThrust2:Define:SecondByte;	;	Items.DownThrust
+		!ifdef - DOJORANDOM
+			Items.Rupee5;		DungeonMinor;	dojo
+		!endif
+	!endif
+	!ifndef - START_SCROLL_PERIL_BEAM
+		Items.PerilBeam;	`SCROLLMAJOR`
+	!else
+		Dummy_PerilBeam:NoSpoiler;	Unshuffled;	DumPerilBeam1:Define:FirstByte, DumPerilBeam2:Define:SecondByte;	;	Items.PerilBeam
+		!ifdef - DOJORANDOM
+			Items.Rupee5;		DungeonMinor;	dojo
+		!endif
+	!endif
+!endif
 	!ifdef - Replace_Map
 		!ifdef - MEME
 			Items.DungeonMap.0x18;	Minor;
@@ -2231,44 +2852,141 @@
 		Items.PieceOfHeart:4;	Major;
 		!eventdefine - heartTraps
 	!endif
-	Items.Wallet:3;		Major;
-	Items.BombBag;		Major;
+	!ifndef - START_WALLETS_0
+		Dummy_FirstWallet:NoSpoiler;	Unshuffled;	DumFirstWallet1:Define:FirstByte, DumFirstWallet2:Define:SecondByte;	;	Items.Wallet
+		!ifndef - START_WALLETS_1
+			Dummy_SecondWallet:NoSpoiler;	Unshuffled;	DumSecondWallet1:Define:FirstByte, DumSecondWallet2:Define:SecondByte;	;	Items.Wallet
+			!ifndef - START_WALLETS_2
+				Dummy_ThirdWallet:NoSpoiler;	Unshuffled;	DumThirdWallet1:Define:FirstByte, DumThirdWallet2:Define:SecondByte;	;	Items.Wallet
+			!else
+				Items.Wallet;	Major;
+			!endif
+		!else
+			Items.Wallet:2;		Major;
+		!endif
+	!else
+		Items.Wallet:3;		Major;
+	!endif
+	!ifndef - START_BOMBBAGS_0
+		Dummy_BombBag:NoSpoiler;	Unshuffled;	DumBombBag1:Define:FirstByte, DumBombBag2:Define:SecondByte;	;	Items.BombBag
+		!ifndef - START_BOMBBAGS_1
+			!ifndef - START_BOMBBAGS_2
+				!ifdef - START_BOMBBAGS_3
+					!ifndef - ITEM_POOL_RIP
+						Items.BombBag;	Minor;
+					!endif
+				!endif
+			!else
+				!ifndef - ITEM_POOL_RIP
+					Items.BombBag:2;	Minor;
+				!endif
+			!endif
+		!else
+			!ifndef - ITEM_POOL_RIP
+				Items.BombBag:3;	Minor;
+			!endif
+		!endif
+	!else
+		Items.BombBag;	Major;
+		!ifndef - ITEM_POOL_RIP
+			Items.BombBag:3;	Minor;
+		!endif
+	!endif
 	Items.Bombs10;		Filler;
 	Items.Bombs30;		Filler;
 	Items.Arrows10;		Filler;
 	Items.Arrows30;		Filler;
 !ifdef - ITEM_POOL_RIP
+	# Magic Boomerang needs to be in the item pool when any fusions requiring it exist
 	!ifdef - YES_BOOM_PROG
-		!ifdef - VANILLA_RED_FUSIONS
-			Items.ProgressiveItem.0x02;		Major;	#Boomerang
+		!ifdef - START_MAGIC_BOOM
+			Dummy_MagicBoom:NoSpoiler;	Unshuffled;	DumMagicBoom1:Define:FirstByte, DumMagicBoom2:Define:SecondByte;	;	Items.ProgressiveItem.0x02
+			!ifdef - MEME
+				Items.ProgressiveItem.0x02:2;	Minor;	#Boomerang
+			!endif
 		!else
-			!ifdef - COMBINED_RED_FUSIONS
+			!ifdef - VANILLA_RED_FUSIONS
 				Items.ProgressiveItem.0x02;		Major;	#Boomerang
 			!else
-				!ifdef - VANILLA_GREEN_FUSIONS
+				!ifdef - COMBINED_RED_FUSIONS
 					Items.ProgressiveItem.0x02;		Major;	#Boomerang
 				!else
-					!ifdef - COMBINED_GREEN_FUSIONS
+					!ifdef - VANILLA_GREEN_FUSIONS
 						Items.ProgressiveItem.0x02;		Major;	#Boomerang
+					!else
+						!ifdef - COMBINED_GREEN_FUSIONS
+							Items.ProgressiveItem.0x02;		Major;	#Boomerang
+						!endif
 					!endif
 				!endif
 			!endif
 		!endif
 	!else
-		!ifdef - VANILLA_RED_FUSIONS
-			Items.MagicBoomerang;		Major;
+		!ifdef - START_MAGIC_BOOM
+			Dummy_MagicBoom:NoSpoiler;	Unshuffled;	DumMagicBoom1:Define:FirstByte, DumMagicBoom2:Define:SecondByte;	;	Items.MagicBoomerang
+			!ifdef - MEME
+				Items.MagicBoomerang;	Minor;
+			!endif
 		!else
-			!ifdef - COMBINED_RED_FUSIONS
+			!ifdef - VANILLA_RED_FUSIONS
 				Items.MagicBoomerang;		Major;
 			!else
-				!ifdef - VANILLA_GREEN_FUSIONS
+				!ifdef - COMBINED_RED_FUSIONS
 					Items.MagicBoomerang;		Major;
 				!else
-					!ifdef - COMBINED_GREEN_FUSIONS
+					!ifdef - VANILLA_GREEN_FUSIONS
 						Items.MagicBoomerang;		Major;
+					!else
+						!ifdef - COMBINED_GREEN_FUSIONS
+							Items.MagicBoomerang;		Major;
+						!endif
 					!endif
 				!endif
 			!endif
+		!endif
+	!endif
+	# Mirror Shield and four of the Scrolls are normally not in this item pool, but they can affect logic when starting with them
+	!ifdef - START_MIRROR_SHIELD
+		!ifdef - YES_SHIELD_PROG
+			Dummy_MirrorShield:NoSpoiler;	Unshuffled;	DumMirrorShield1:Define:FirstByte, DumMirrorShield2:Define:SecondByte;	;	Items.ProgressiveItem.0x03
+			!ifdef - MEME
+				Items.ProgressiveItem.0x03:2;	Minor;	#Shield
+			!endif
+		!else
+			Dummy_MirrorShield:NoSpoiler;	Unshuffled;	DumMirrorShield1:Define:FirstByte, DumMirrorShield2:Define:SecondByte;	;	Items.MirrorShield
+			!ifdef - MEME
+				Items.MirrorShield;	Minor;
+				!ifdef - START_NORMAL_SHIELD
+					Items.Shield;	Minor;
+				!endif
+			!endif
+		!endif
+	!endif
+	!ifdef - YES_SCROLL_PROG
+		!ifdef - START_SCROLL_FAST_SPIN
+			Dummy_FastSpin:NoSpoiler;	Unshuffled;	DumFastSpin1:Define:FirstByte, DumFastSpin2:Define:SecondByte;	;	Items.ProgressiveItem.0x04
+		!endif
+		!ifdef - START_SCROLL_FAST_SPLIT
+			Dummy_FastSplit:NoSpoiler;	Unshuffled;	DumFastSplit1:Define:FirstByte, DumFastSplit2:Define:SecondByte;	;	Items.ProgressiveItem.0x04
+		!endif
+		!ifdef - START_SCROLL_GREAT_SPIN
+			Dummy_GreatSpin:NoSpoiler;	Unshuffled;	DumGreatSpin1:Define:FirstByte, DumGreatSpin2:Define:SecondByte;	;	Items.ProgressiveItem.0x04
+		!endif
+		!ifdef - START_SCROLL_LONG_SPIN
+			Dummy_LongSpin:NoSpoiler;	Unshuffled;	DumLongSpin1:Define:FirstByte, DumLongSpin2:Define:SecondByte;	;	Items.ProgressiveItem.0x04
+		!endif
+	!else
+		!ifdef - START_SCROLL_FAST_SPIN
+			Dummy_FastSpin:NoSpoiler;	Unshuffled;	DumFastSpin1:Define:FirstByte, DumFastSpin2:Define:SecondByte;	;	Items.FastSpin
+		!endif
+		!ifdef - START_SCROLL_FAST_SPLIT
+			Dummy_FastSplit:NoSpoiler;	Unshuffled;	DumFastSplit1:Define:FirstByte, DumFastSplit2:Define:SecondByte;	;	Items.FastSplit
+		!endif
+		!ifdef - START_SCROLL_GREAT_SPIN
+			Dummy_GreatSpin:NoSpoiler;	Unshuffled;	DumGreatSpin1:Define:FirstByte, DumGreatSpin2:Define:SecondByte;	;	Items.GreatSpin
+		!endif
+		!ifdef - START_SCROLL_LONG_SPIN
+			Dummy_LongSpin:NoSpoiler;	Unshuffled;	DumLongSpin1:Define:FirstByte, DumLongSpin2:Define:SecondByte;	;	Items.LongSpin
 		!endif
 	!endif
 	!ifdef - FIREROD_CHEST
@@ -2290,22 +3008,74 @@
 			Items.Rupee5:4;		DungeonMinor;	dojo
 		!endif
 	!endif
-!endif
-!ifdef - ITEM_POOL_NORMAL
-	Items.RemoteBombs;						Minor;
+!else
 	!ifdef - YES_BOOM_PROG
-		Items.ProgressiveItem.0x02;		Major;	#Boomerang
+		!ifdef - START_MAGIC_BOOM
+			Dummy_MagicBoom:NoSpoiler;	Unshuffled;	DumMagicBoom1:Define:FirstByte, DumMagicBoom2:Define:SecondByte;	;	Items.ProgressiveItem.0x02
+			!ifdef - MEME
+				Items.ProgressiveItem.0x02:2;	Minor;	#Boomerang
+			!endif
+		!else
+			Items.ProgressiveItem.0x02;	Major;	#Boomerang
+		!endif
 	!else
-		Items.MagicBoomerang;			Major;
+		!ifdef - START_MAGIC_BOOM
+			Dummy_MagicBoom:NoSpoiler;	Unshuffled;	DumMagicBoom1:Define:FirstByte, DumMagicBoom2:Define:SecondByte;	;	Items.MagicBoomerang
+			!ifdef - MEME
+				Items.MagicBoomerang;	Minor;
+			!endif
+		!else
+			Items.MagicBoomerang;	Major;
+		!endif
 	!endif
 	!ifdef - YES_SHIELD_PROG
-		Items.ProgressiveItem.0x03;		Minor;	#Shield
+		!ifdef - START_MIRROR_SHIELD
+			Dummy_MirrorShield:NoSpoiler;	Unshuffled;	DumMirrorShield1:Define:FirstByte, DumMirrorShield2:Define:SecondByte;	;	Items.ProgressiveItem.0x03
+			!ifdef - MEME
+				Items.ProgressiveItem.0x03:2;	Minor;	#Shield
+			!endif
+		!else
+			Items.ProgressiveItem.0x03;	Major;	#Shield
+		!endif
 	!else
-		Items.MirrorShield;				Major;
+		!ifdef - START_MIRROR_SHIELD
+			Dummy_MirrorShield:NoSpoiler;	Unshuffled;	DumMirrorShield1:Define:FirstByte, DumMirrorShield2:Define:SecondByte;	;	Items.MirrorShield
+			!ifdef - MEME
+				Items.MirrorShield;	Minor;
+				!ifdef - START_NORMAL_SHIELD
+					Items.Shield;	Minor;
+				!endif
+			!endif
+		!else
+			Items.MirrorShield;	Major;
+		!endif
 	!endif
 	!ifdef - YES_SCROLL_PROG
 		!ifdef - DOJORANDOM
-			Items.ProgressiveItem.0x04:4;	DungeonMajor;	dojo	#Scroll
+			!ifdef - START_SCROLL_FAST_SPIN
+				Dummy_FastSpin:NoSpoiler;	Unshuffled;	DumFastSpin1:Define:FirstByte, DumFastSpin2:Define:SecondByte;	;	Items.ProgressiveItem.0x04
+				Items.Rupee5;		DungeonMinor;	dojo
+			!else
+				Items.ProgressiveItem.0x04;	DungeonMajor;	dojo	#Scroll
+			!endif
+			!ifdef - START_SCROLL_FAST_SPLIT
+				Dummy_FastSplit:NoSpoiler;	Unshuffled;	DumFastSplit1:Define:FirstByte, DumFastSplit2:Define:SecondByte;	;	Items.ProgressiveItem.0x04
+				Items.Rupee5;		DungeonMinor;	dojo
+			!else
+				Items.ProgressiveItem.0x04;	DungeonMajor;	dojo	#Scroll
+			!endif
+			!ifdef - START_SCROLL_GREAT_SPIN
+				Dummy_GreatSpin:NoSpoiler;	Unshuffled;	DumGreatSpin1:Define:FirstByte, DumGreatSpin2:Define:SecondByte;	;	Items.ProgressiveItem.0x04
+				Items.Rupee5;		DungeonMinor;	dojo
+			!else
+				Items.ProgressiveItem.0x04;	DungeonMajor;	dojo	#Scroll
+			!endif
+			!ifdef - START_SCROLL_LONG_SPIN
+				Dummy_LongSpin:NoSpoiler;	Unshuffled;	DumLongSpin1:Define:FirstByte, DumLongSpin2:Define:SecondByte;	;	Items.ProgressiveItem.0x04
+				Items.Rupee5;		DungeonMinor;	dojo
+			!else
+				Items.ProgressiveItem.0x04;	DungeonMajor;	dojo	#Scroll
+			!endif
 			!ifdef - NO_RED_FUSIONS
 				FakeDojo1:dojo:NoSpoiler;		Dungeon;	FakeDojo11:Define:FirstByte, FakeDojo12:Define:SecondByte;	Helpers.BeatVaati;
 				FakeDojo2:dojo:NoSpoiler;		Dungeon;	FakeDojo21:Define:FirstByte, FakeDojo22:Define:SecondByte;	Helpers.BeatVaati;
@@ -2313,14 +3083,53 @@
 			!endif
 		!endif
 		!ifdef - DOJOANY
-			Items.ProgressiveItem.0x04:4;	Major;	#Scroll
+			!ifdef - START_SCROLL_FAST_SPIN
+				Dummy_FastSpin:NoSpoiler;	Unshuffled;	DumFastSpin1:Define:FirstByte, DumFastSpin2:Define:SecondByte;	;	Items.ProgressiveItem.0x04
+			!else
+				Items.ProgressiveItem.0x04;	Major;	#Scroll
+			!endif
+			!ifdef - START_SCROLL_FAST_SPLIT
+				Dummy_FastSplit:NoSpoiler;	Unshuffled;	DumFastSplit1:Define:FirstByte, DumFastSplit2:Define:SecondByte;	;	Items.ProgressiveItem.0x04
+			!else
+				Items.ProgressiveItem.0x04;	Major;	#Scroll
+			!endif
+			!ifdef - START_SCROLL_GREAT_SPIN
+				Dummy_GreatSpin:NoSpoiler;	Unshuffled;	DumGreatSpin1:Define:FirstByte, DumGreatSpin2:Define:SecondByte;	;	Items.ProgressiveItem.0x04
+			!else
+				Items.ProgressiveItem.0x04;	Major;	#Scroll
+			!endif
+			!ifdef - START_SCROLL_LONG_SPIN
+				Dummy_LongSpin:NoSpoiler;	Unshuffled;	DumLongSpin1:Define:FirstByte, DumLongSpin2:Define:SecondByte;	;	Items.ProgressiveItem.0x04
+			!else
+				Items.ProgressiveItem.0x04;	Major;	#Scroll
+			!endif
 		!endif
 	!else
 		!ifdef - DOJORANDOM
-			Items.GreatSpin;				DungeonMajor;	dojo
-			Items.FastSpin;				DungeonMinor;	dojo
-			Items.FastSplit;				DungeonMinor;	dojo
-			Items.LongSpin;				DungeonMinor;	dojo
+			!ifdef - START_SCROLL_FAST_SPIN
+				Dummy_FastSpin:NoSpoiler;	Unshuffled;	DumFastSpin1:Define:FirstByte, DumFastSpin2:Define:SecondByte;	;	Items.FastSpin
+				Items.Rupee5;		DungeonMinor;	dojo
+			!else
+				Items.FastSpin;	DungeonMinor;	dojo
+			!endif
+			!ifdef - START_SCROLL_FAST_SPLIT
+				Dummy_FastSplit:NoSpoiler;	Unshuffled;	DumFastSplit1:Define:FirstByte, DumFastSplit2:Define:SecondByte;	;	Items.FastSplit
+				Items.Rupee5;		DungeonMinor;	dojo
+			!else
+				Items.FastSplit;	DungeonMinor;	dojo
+			!endif
+			!ifdef - START_SCROLL_GREAT_SPIN
+				Dummy_GreatSpin:NoSpoiler;	Unshuffled;	DumGreatSpin1:Define:FirstByte, DumGreatSpin2:Define:SecondByte;	;	Items.GreatSpin
+				Items.Rupee5;		DungeonMinor;	dojo
+			!else
+				Items.GreatSpin;	DungeonMajor;	dojo
+			!endif
+			!ifdef - START_SCROLL_LONG_SPIN
+				Dummy_LongSpin:NoSpoiler;	Unshuffled;	DumLongSpin1:Define:FirstByte, DumLongSpin2:Define:SecondByte;	;	Items.LongSpin
+				Items.Rupee5;		DungeonMinor;	dojo
+			!else
+				Items.LongSpin;	DungeonMinor;	dojo
+			!endif
 			!ifdef - NO_RED_FUSIONS
 				FakeDojo1:dojo:NoSpoiler;		Dungeon;	FakeDojo11:Define:FirstByte, FakeDojo12:Define:SecondByte;	Helpers.BeatVaati;
 				FakeDojo2:dojo:NoSpoiler;		Dungeon;	FakeDojo21:Define:FirstByte, FakeDojo22:Define:SecondByte;	Helpers.BeatVaati;
@@ -2328,114 +3137,76 @@
 			!endif
 		!endif
 		!ifdef - DOJOANY
-			Items.GreatSpin;				Major;
-			Items.FastSpin;				Major;
-			Items.FastSplit;				Major;
-			Items.LongSpin;				Major;
-		!endif
-	!endif
-	!ifdef - FIREROD_CHEST
-		Items.Firerod;			Minor;
-	!endif
-	!ifdef - TIMEDOHKO
-		Items.GreenClock:10;		Minor;
-		Items.BlueClock:10;		Minor;
-		Items.RedClock:10;		Minor;
-	!endif
-	!ifdef - TRAPS
-		Items.Trap.0x00:2;		Minor;
-		Items.Trap.0x01:2;		Minor;
-		Items.Trap.0x02:2;		Minor;
-		Items.Trap.0x03:2;		Minor;
-		Items.Trap.0x04:2;		Minor;
-		Items.Trap.0x05:2;		Minor;
-		Items.Trap.0x06:2;		Minor;
-		Items.Trap.0x07:2;		Minor;
-		Items.Trap.0x08:2;		Minor;
-		Items.Trap.0x09:2;		Minor;
-	!endif
-	Items.Bottle:3;				Minor;
-	!ifdef - HEART_RANDO
-		Items.HeartContainer:6;	Major;
-		Items.PieceOfHeart:40;		Minor;
-	!endif
-	Items.BombBag:3;				Minor;
-	Items.LargeQuiver:3;			Minor;
-	Items.ArrowButterfly;			Minor;
-	Items.DigButterfly;			Minor;
-	Items.SwimButterfly;			Minor;
-!endif
-!ifdef - ITEM_POOL_PLENTIFUL
-	!ifdef - YES_SWORD_PROG
-		Items.ProgressiveItem.0x00:2;	Minor;	#Sword
-	!else
-		Items.SmithSword;				Minor;
-		Items.GreenSword;				Minor;
-		Items.RedSword;				Minor;
-		Items.BlueSword;				Minor;
-		Items.FourSword;				Minor;
-	!endif
-	!ifdef - YES_BOW_PROG
-		Items.ProgressiveItem.0x01;	Minor;	#Bow
-	!else
-		Items.Bow;					Minor;
-	!endif
-	!ifdef - YES_BOOM_PROG
-		Items.ProgressiveItem.0x02;	Major;	#Boomerang
-	!else
-		Items.MagicBoomerang;			Major;
-	!endif
-	!ifdef - YES_SHIELD_PROG
-		Items.ProgressiveItem.0x03;	Minor;	#Shield
-	!else
-		Items.MirrorShield;			Major;
-	!endif
-	!ifdef - YES_SCROLL_PROG
-		!ifdef - DOJORANDOM
-			Items.ProgressiveItem.0x04:4;	DungeonMajor;	dojo	#Scroll
-			!ifdef - NO_RED_FUSIONS
-				FakeDojo1:dojo:NoSpoiler;		Dungeon;	FakeDojo11:Define:FirstByte, FakeDojo12:Define:SecondByte;	Helpers.BeatVaati;
-				FakeDojo2:dojo:NoSpoiler;		Dungeon;	FakeDojo21:Define:FirstByte, FakeDojo22:Define:SecondByte;	Helpers.BeatVaati;
-				FakeDojo3:dojo:NoSpoiler;		Dungeon;	FakeDojo31:Define:FirstByte, FakeDojo32:Define:SecondByte;	Helpers.BeatVaati;
+			!ifdef - START_SCROLL_FAST_SPIN
+				Dummy_FastSpin:NoSpoiler;	Unshuffled;	DumFastSpin1:Define:FirstByte, DumFastSpin2:Define:SecondByte;	;	Items.FastSpin
+			!else
+				Items.FastSpin;	Major;
+			!endif
+			!ifdef - START_SCROLL_FAST_SPLIT
+				Dummy_FastSplit:NoSpoiler;	Unshuffled;	DumFastSplit1:Define:FirstByte, DumFastSplit2:Define:SecondByte;	;	Items.FastSplit
+			!else
+				Items.FastSplit;	Major;
+			!endif
+			!ifdef - START_SCROLL_GREAT_SPIN
+				Dummy_GreatSpin:NoSpoiler;	Unshuffled;	DumGreatSpin1:Define:FirstByte, DumGreatSpin2:Define:SecondByte;	;	Items.GreatSpin
+			!else
+				Items.GreatSpin;	Major;
+			!endif
+			!ifdef - START_SCROLL_LONG_SPIN
+				Dummy_LongSpin:NoSpoiler;	Unshuffled;	DumLongSpin1:Define:FirstByte, DumLongSpin2:Define:SecondByte;	;	Items.LongSpin
+			!else
+				Items.LongSpin;	Major;
 			!endif
 		!endif
-		!ifdef - DOJOANY
-			Items.ProgressiveItem.0x04:6;	Major;	#Scroll
-		!endif
+	!endif
+	!ifndef - START_REMOTE
+		Items.RemoteBombs;	Minor;
 	!else
-		!ifdef - DOJORANDOM
-			Items.GreatSpin;				DungeonMajor;	dojo
-			Items.FastSpin;				DungeonMinor;	dojo
-			Items.FastSplit;				DungeonMinor;	dojo
-			Items.LongSpin;				DungeonMinor;	dojo
-			!ifdef - NO_RED_FUSIONS
-				FakeDojo1:dojo:NoSpoiler;		Dungeon;	FakeDojo11:Define:FirstByte, FakeDojo12:Define:SecondByte;	Helpers.BeatVaati;
-				FakeDojo2:dojo:NoSpoiler;		Dungeon;	FakeDojo21:Define:FirstByte, FakeDojo22:Define:SecondByte;	Helpers.BeatVaati;
-				FakeDojo3:dojo:NoSpoiler;		Dungeon;	FakeDojo31:Define:FirstByte, FakeDojo32:Define:SecondByte;	Helpers.BeatVaati;
-			!endif
-		!endif
-		!ifdef - DOJOANY
-			Items.SpinAttack:2;			Minor;
-			Items.GreatSpin;				Major;
-			Items.FastSpin;				Major;
-			Items.FastSplit;				Major;
-			Items.LongSpin;				Major;
+		!ifdef - MEME
+			Items.RemoteBombs;	Minor;
 		!endif
 	!endif
-	Items.RemoteBombs;		Minor;
-	Items.Lantern:2;			Minor;
-	Items.GustJar:2;			Minor;
-	Items.PacciCane:2;		Minor;
-	Items.MoleMitts;			Minor;
-	Items.RocsCape:2;			Minor;
-	Items.PegasusBoots;		Minor;
-	!ifdef - FIREROD_CHEST
-		Items.Firerod:2;		Minor;
+	!ifndef - START_ARROW_BUTTERFLY
+		Items.ArrowButterfly;			Minor;
+	!else
+		!ifdef - MEME
+			Items.ArrowButterfly;			Minor;
+		!endif
 	!endif
-	Items.Ocarina:2;			Minor;
-	!ifdef - TIMEDOHKO
-		Items.GreenClock:15;	Minor;
-		Items.BlueClock:15;	Minor;
+	!ifndef - START_DIG_BUTTERFLY
+		Items.DigButterfly;			Minor;
+	!else
+		!ifdef - MEME
+			Items.DigButterfly;			Minor;
+		!endif
+	!endif
+	!ifndef - START_SWIM_BUTTERFLY
+		Items.SwimButterfly;			Minor;
+	!else
+		!ifdef - MEME
+			Items.SwimButterfly;			Minor;
+		!endif
+	!endif
+	!ifdef - START_QUIVERS_0
+		Items.LargeQuiver:3;		Minor;
+	!endif
+	!ifdef - START_QUIVERS_1
+		Items.LargeQuiver:2;		Minor;
+	!endif
+	!ifdef - START_QUIVERS_2
+		Items.LargeQuiver;		Minor;
+	!endif
+	!ifdef - START_BOTTLES_0
+		Items.Bottle:3;				Minor;
+	!endif
+	!ifdef - START_BOTTLES_1
+		Items.Bottle:3;				Minor;
+	!endif
+	!ifdef - START_BOTTLES_2
+		Items.Bottle:2;				Minor;
+	!endif
+	!ifdef - START_BOTTLES_3
+		Items.Bottle;				Minor;
 	!endif
 	!ifdef - TRAPS
 		Items.Trap.0x00:2;	Minor;
@@ -2449,16 +3220,95 @@
 		Items.Trap.0x08:2;	Minor;
 		Items.Trap.0x09:2;	Minor;
 	!endif
-	Items.Bottle:3;		Minor;
-	Items.GraveyardKey;	Minor;
+	!ifdef - HEART_RANDO
+		Items.HeartContainer:6;	Major;
+		Items.PieceOfHeart:40;		Minor;
+	!endif
+!endif
+!ifdef - ITEM_POOL_NORMAL
+	!ifdef - FIREROD_CHEST
+		Items.Firerod;			Minor;
+	!endif
+	!ifdef - TIMEDOHKO
+		Items.GreenClock:10;		Minor;
+		Items.BlueClock:10;		Minor;
+		Items.RedClock:10;		Minor;
+	!endif
+!endif
+!ifdef - ITEM_POOL_PLENTIFUL
+	!ifdef - YES_SWORD_PROG
+		!ifndef - START_FOUR_SWORD
+			Items.ProgressiveItem.0x00:2;	Minor;	#Sword
+		!endif
+	!else
+		!ifndef - START_SMITH_SWORD
+			Items.SmithSword;				Minor;
+		!endif
+		!ifndef - START_GREEN_SWORD
+			Items.GreenSword;				Minor;
+		!endif
+		!ifndef - START_RED_SWORD
+			Items.RedSword;				Minor;
+		!endif
+		!ifndef - START_BLUE_SWORD
+			Items.BlueSword;				Minor;
+		!endif
+		!ifndef - START_FOUR_SWORD
+			Items.FourSword;				Minor;
+		!endif
+	!endif
+	!ifdef - YES_BOW_PROG
+		!ifndef - START_LIGHT_BOW
+			Items.ProgressiveItem.0x01;	Minor;	#Bow
+		!endif
+	!else
+		!ifndef - START_NORMAL_BOW
+			Items.Bow;					Minor;
+		!endif
+	!endif
+	!ifndef - START_LANTERN
+		Items.Lantern:2;			Minor;
+	!endif
+	!ifndef - START_GUST
+		Items.GustJar:2;			Minor;
+	!endif
+	!ifndef - START_PACCI
+		Items.PacciCane:2;		Minor;
+	!endif
+	!ifndef - START_MITTS
+		Items.MoleMitts;			Minor;
+	!endif
+	!ifndef - START_CAPE
+		Items.RocsCape:2;			Minor;
+	!endif
+	!ifndef - START_BOOTS
+		Items.PegasusBoots;		Minor;
+	!endif
+	!ifdef - FIREROD_CHEST
+		Items.Firerod:2;		Minor;
+	!endif
+	!ifndef - START_OCARINA
+		Items.Ocarina:2;			Minor;
+	!endif
+	!ifdef - TIMEDOHKO
+		Items.GreenClock:15;	Minor;
+		Items.BlueClock:15;	Minor;
+	!endif
+	!ifndef - START_GRAVEYARD_KEY
+		Items.GraveyardKey;	Minor;
+	!endif
 	!ifdef - SHUFFLE_ELEMENTS_ON
 		Items.EarthElement;	Minor;
 		Items.FireElement;	Minor;
 		Items.WaterElement;	Minor;
 		Items.WindElement;	Minor;
 	!endif
-	Items.GripRing;			Minor;
-	Items.Flippers:2;			Minor;
+	!ifndef - START_GRIP_RING
+		Items.GripRing;			Minor;
+	!endif
+	!ifndef - START_FLIPPERS
+		Items.Flippers:2;			Minor;
+	!endif
 	!ifdef - BIG_KEYSANITY
 		Items.BigKey.0x18;	Minor;	
 		Items.BigKey.0x19;	Minor;
@@ -2492,15 +3342,17 @@
 			Items.SmallKey.0x1D:2;	Minor;
 		!endif
 	!endif
-	!ifdef - HEART_RANDO
-		Items.HeartContainer:6;	Major;
-		Items.PieceOfHeart:40;		Minor;
+	!ifdef - DOJOANY
+		!ifdef - YES_SCROLL_PROG
+			!ifndef - START_SCROLL_LONG_SPIN
+				Items.ProgressiveItem.0x04:2;	Minor;	#Scroll
+			!endif
+		!else
+			!ifndef - START_SCROLL_SPIN
+				Items.SpinAttack:2;			Minor;
+			!endif
+		!endif
 	!endif
-	Items.BombBag:3;			Minor;
-	Items.LargeQuiver:3;		Minor;
-	Items.ArrowButterfly;		Minor;
-	Items.DigButterfly;		Minor;
-	Items.SwimButterfly;		Minor;
 !endif
 
 !ifdef - RANDOM_BOTTLE_CONTENT
