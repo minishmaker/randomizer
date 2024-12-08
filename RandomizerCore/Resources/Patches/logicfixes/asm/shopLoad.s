@@ -1,3 +1,4 @@
+.equ shopFloor, vanillaShopOrder+4
 .equ shopShield, shopFloor+4
 .equ shopMirrorShield, shopShield+4
 .equ shopConsumables, shopMirrorShield+4
@@ -49,7 +50,9 @@ ldr	r3,=#0x804AAF8
 mov	lr,r3
 .short	0xF800
 
-@check if we purchased this item
+ldrb	r4,vanillaShopOrder
+
+@check if we purchased the wallet item
 ldr	r0,=#0x2002EA4
 ldr	r1,=#24
 ldr	r3,=#0x801D5E0	@vanilla flag check routine
@@ -61,9 +64,11 @@ ldr	r0,shopBuy1
 ldr	r3,=#0x804AAF8
 mov	lr,r3
 .short	0xF800
+cmp	r4,#0
+bne	no4
 no1:
 
-@check if we purchased this item
+@check if we purchased the boomerang item
 ldr	r0,=#0x2002EA4
 ldr	r1,=#25
 ldr	r3,=#0x801D5E0	@vanilla flag check routine
@@ -75,23 +80,11 @@ ldr	r0,shopBuy2
 ldr	r3,=#0x804AAF8
 mov	lr,r3
 .short	0xF800
+cmp	r4,#0
+bne	no4
 no2:
 
-@check if we purchased this item
-ldr	r0,=#0x2002EA4
-ldr	r1,=#26
-ldr	r3,=#0x801D5E0	@vanilla flag check routine
-mov	lr,r3
-.short	0xF800
-cmp	r0,#0
-bne	no3
-ldr	r0,shopBuy3
-ldr	r3,=#0x804AAF8
-mov	lr,r3
-.short	0xF800
-no3:
-
-@check if we purchased this item
+@check if we purchased the bomb bag item
 ldr	r0,=#0x2002EA4
 ldr	r1,=#34
 ldr	r3,=#0x801D5E0	@vanilla flag check routine
@@ -105,11 +98,26 @@ mov	lr,r3
 .short	0xF800
 no4:
 
+@check if we purchased the quiver item
+ldr	r0,=#0x2002EA4
+ldr	r1,=#26
+ldr	r3,=#0x801D5E0	@vanilla flag check routine
+mov	lr,r3
+.short	0xF800
+cmp	r0,#0
+bne	no3
+ldr	r0,shopBuy3
+ldr	r3,=#0x804AAF8
+mov	lr,r3
+.short	0xF800
+no3:
+
 end:
 pop	{r4-r7,pc}
 .align
 .ltorg
-shopFloor:
+vanillaShopOrder:
+@POIN vanillaShopOrder
 @POIN shopFloor
 @POIN shopShield
 @POIN shopMirrorShield

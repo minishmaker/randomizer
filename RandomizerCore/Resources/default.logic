@@ -288,6 +288,7 @@
 !flag - Gameplay - Setting - Improvements - ITEM_HISTORY - Item Name Display - Collecting an item will display text at the bottom left corner of the screen telling you what you just picked up, useful in Keysanity modes where the textbox closes too quickly for you to read which dungeon it came from. - true
 !flag - Gameplay - Setting - Improvements - HOMEWARP - Homewarp - In the Pause menu there is a 'SLEEP' option on the 'QUEST STATUS' screen, using this will warp Link back to his bed from wherever he is.\nThis option is force enabled whenever a setting combination has the possibility of softlocks - true
 !flag - Gameplay - Setting - Improvements - OCARINA_SELECT - Ocarina on Select - Allows you to use the Ocarina by pressing the Select button, once obtained.\nWarning: Since this removes the Ezlo interaction, this prevents certain glitches. - true
+!flag - Gameplay - Setting - Extras - VANILLA_SHOP_ORDER - Vanilla Shop Item Order - If enabled, the 300 Rupees item only appears after the 80 Rupees item has been bought.\nIf the extra JP/US item is enabled, that one only spawns after buying the 300 Rupees item.
 !flag - Gameplay - Setting - Extras - GORON_ALT_PRICES - Goron Merchant JP/US prices - If enabled will use the prices found in the JP and US versions.\nThese are the prices from left to right:\nEU 1st set: 200, 100, 50\nEU 2nd set: 300, 200, 100\nEU 3rd set: 400, 300, 200\nEU 4th set: 500, 400, 300\nEU 5th set: 600, 500, 400\nJP any set: 300, 200, 50
 !flag - Gameplay - Setting - Extras - NO_KINSTONE_DROPS - Disable Kinstone Drops - Kinstone Pieces can no longer randomly drop.\nThey can also not be obtained through any other means than items in the random item pool. - true
 !flag - Gameplay - Setting - Extras - NO_SHELL_DROPS - Disable Shell Drops - Mysterious Shells can no longer randomly drop.\nThey can also not be obtained from beating Simon's Simulations multiple times. - true
@@ -545,6 +546,9 @@
 !endif
 !ifdef - SHOP_BOMBBAG
 	!eventdefine - enableBombBagShopItem
+!endif
+!ifdef - VANILLA_SHOP_ORDER
+	!eventdefine - vanillaShopOrder
 !endif
 
 !ifdef - DOJOVANILLA
