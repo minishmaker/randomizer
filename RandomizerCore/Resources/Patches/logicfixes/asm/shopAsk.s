@@ -26,6 +26,8 @@ cmp	r0,#0x0B
 beq	boomerang
 cmp	r0,#0x66
 beq	quiver
+cmp	r0,#0x0E
+beq	mirrorShield
 b	vanilla
 
 wallet:
@@ -51,6 +53,11 @@ bl	getText
 mov	r1,r3
 mov	r2,#2
 b	buildText
+
+mirrorShield:
+ldr	r0,=#0x040E
+mov	r1,#0
+mov	r2,#3
 
 buildText:
 push	{r4-r7}
@@ -82,7 +89,16 @@ cmp	r6,#0
 beq	is80
 cmp	r6,#1
 beq	is300
-b	is600
+cmp	r6,#2
+beq	is600
+is40:
+mov	r0,#0x34
+strb	r0,[r7]
+add	r7,#1
+mov	r0,#0x30
+strb	r0,[r7]
+add	r7,#1
+b	doneprice
 is80:
 mov	r0,#0x38
 strb	r0,[r7]

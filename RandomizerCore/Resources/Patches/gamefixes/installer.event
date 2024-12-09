@@ -110,3 +110,6 @@ PUSH; ORG $51824; jumpToHack(gleerokFallFix); POP
 ALIGN 4
 gleerokFallFix:
 #incbin "asm/gleerokFallFix.dmp"
+
+//fix animation for getting back a shield from a like like (fix from non-EU)
+PUSH; ORG $28206; SHORT 0xF07F 0xF903; POP

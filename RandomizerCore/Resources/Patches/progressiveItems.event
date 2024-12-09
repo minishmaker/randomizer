@@ -164,8 +164,9 @@ BYTE 0x03 0x03 //Magical Boomerang
 BYTE 0xFF //terminator
 
 progressiveShieldFlags:
-BYTE 0x03 0x0C //Small Shield
-BYTE 0x03 0x30 //Mirror Shield
+//these are the corresponding shop flags to prevent missing out on an item
+BYTE 0xFE 23 //Small Shield
+BYTE 0xFE 30 //Mirror Shield
 BYTE 0xFF //terminator
 
 progressiveKinstoneBagFlags:

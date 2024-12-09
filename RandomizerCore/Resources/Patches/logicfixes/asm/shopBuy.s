@@ -10,23 +10,15 @@ cmp	r5,#0x0B
 beq	boomerang
 cmp	r5,#0x66
 beq	quiver
-cmp	r5,#0x0D
-beq	shield
 vanilla:
 mov	r0,r5
 end:
 mov	r2,#0
-wasshield:
 ldr	r3,=#0x80A7410
 mov	lr,r3
 .short	0xF800
 ldr	r3,=#0x8064ED5
 bx	r3
-
-shield:
-mov	r0,r5
-mov	r2,#2
-b	wasshield
 
 wallet:
 ldr	r0,=#0x2002EA4

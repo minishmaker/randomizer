@@ -1,5 +1,6 @@
 .equ shopShield, shopFloor+4
-.equ shopConsumables, shopShield+4
+.equ shopMirrorShield, shopShield+4
+.equ shopConsumables, shopMirrorShield+4
 .equ shopBuy1, shopConsumables+4
 .equ shopBuy2, shopBuy1+4
 .equ shopBuy3, shopBuy2+4
@@ -11,6 +12,21 @@ ldr	r0,shopFloor
 ldr	r3,=#0x804AAF8
 mov	lr,r3
 .short	0xF800
+
+@check if we ever found a mirror shield
+ldr	r0,=#0x2002EA4
+ldr	r1,=#30
+ldr	r3,=#0x801D5E0	@vanilla flag check routine
+mov	lr,r3
+.short	0xF800
+cmp	r0,#0
+beq	noMirrorShield
+ldr	r0,shopMirrorShield
+ldr	r3,=#0x804AAF8
+mov	lr,r3
+.short	0xF800
+b	noShield
+noMirrorShield:
 
 @check if we ever found a shield
 ldr	r0,=#0x2002EA4
@@ -81,6 +97,7 @@ pop	{r4-r7,pc}
 shopFloor:
 @POIN shopFloor
 @POIN shopShield
+@POIN shopMirrorShield
 @POIN shopConsumables
 @POIN shopBuy1
 @POIN shopBuy2

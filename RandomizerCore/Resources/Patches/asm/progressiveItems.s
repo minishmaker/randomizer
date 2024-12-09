@@ -20,18 +20,18 @@ doneshop:
 push	{r1-r7}
 @set up the data
 mov	r4,r0	@item ID
-mov r7,r1	@sub ID
+mov	r7,r1	@sub ID
 ldr	r5,progressiveTable
 
-@check if we are in the biggoron room
-ldr	r0,=#0x3000BF0
-ldrb	r1,[r0,#5]
-cmp	r1,#0
-bne	notgoron
-ldrb	r0,[r0,#4]
-cmp	r0,#0x1A
-beq	End
-notgoron:
+@check if this is a non-progressive shield
+cmp	r4,#0x0D
+beq	notSword
+cmp	r4,#0x0E
+beq	notSword
+@this fixes two issues with progressive shields:
+@first, like likes could steal a mirror shield, but only give back a normal shield when killed in certain situations
+@second, the mirror shield sold in the shop to ensure you cannot permanently lose the mirror shield only gave you a normal shield if you had no shield
+@this check should not have any other effects as long as no non-progressive mirror shields are placed in the item pool when shields are set to be progressive
 
 @check if this is the extra item
 cmp	r4, #0x05
@@ -68,20 +68,37 @@ tableMatch:
 mov	r4,#0		@number of flags met
 ldr	r6,[r5,#4]	@flags table
 ldr	r5,[r5]		@item id table
-ldr	r3,=#0x2002B32	@location of flags
+ldr	r3,=#0x2002B32	@location of inventory flags
+ldr	r7,=#0x2002EA4	@location of custom flags
+
 @check how many flags are met
 checkFlag:
 ldrb	r0,[r6]
 cmp	r0,#0xFF
 beq	doneFlags
+cmp	r0,#0xFE
+bne	inventoryFlag
+
+customFlag:
+mov	r0,r7
+ldrb	r1,[r6,#1]
+ldr	r2,=#0x801D5E0	@vanilla flag check routine
+mov	lr,r2
+.short	0xF800
+b	compare
+
+inventoryFlag:
 ldrb	r1,[r6,#1]
 ldrb	r0,[r3,r0]
 and	r0,r1
+
+compare:
 cmp	r0,#0
 beq	doneFlags
 add	r6,#2
 add	r4,#1
 b	checkFlag
+
 doneFlags:
 @check how many items there are in the table
 mov	r3,#0

@@ -168,8 +168,43 @@ PUSH; ORG $EEA82; SHORT 0; POP
 PUSH; ORG $EEA92; SHORT 0; POP
 
 //biggoron changes
-PUSH; ORG $9402; SHORT 21; POP //biggoron doesn't ask for a major feat (checks if you have ezlo instead)
+PUSH; ORG $9400; SHORT 0x0400; SHORT 0x0400 //biggoron does not check for game completion
+#ifdef enableBiggoronItem
+	SHORT 0x0803 //always jump (go to shield checks)
+#else
+	SHORT 0x0400 //never jump (go to major feat text)
+#endif
+POP
+PUSH; ORG $9438; SHORT 0x0024; POP //use local flag 0xAC to determine whether the item was already received, if so, jump to thanks text
+#ifdef biggoronRequiresMirrorShield
+	PUSH; ORG $943E; SHORT 0x0400 0x0400; POP //normal shield does not matter
+#endif
 PUSH; ORG $6D082; SHORT 0x2000; POP //no timer for mirror shield
+PUSH; ORG $9458; SHORT 0x0803; POP //give item even when we have mirror shield
+PUSH; ORG $94D4; SHORT 0x0016; POP //give item instantly without having to talk to biggoron again
+PUSH; ORG $951A; SHORT 0x0400 0x0400; POP //no clearing of local flag 0xAC
+#ifndef biggoronItem
+	#define biggoronItem 0x0E
+#endif
+#ifndef biggoronSub
+	#define biggoronSub 0x00
+#endif
+//write the item
+PUSH
+ORG $6D0A2
+BYTE biggoronItem
+ORG $6D0A4
+BYTE biggoronSub
+POP
+//trickery to make the mirror shield cutscene draw the correct item (also needs birdFix2)
+PUSH
+ORG $95B20
+SHORT 0xB570 // push {r4-r6,r14}
+SHORT 0x2101 // mov r1,#0x1
+SHORT 0x7601 // strb r1,[r0,#0x18]
+BYTE biggoronItem 0x21 // mov r1,#item
+SHORT 0xE001 // b #0x08095B2E
+POP
 
 //all fusions are available in all town states
 #ifdef noFusions
