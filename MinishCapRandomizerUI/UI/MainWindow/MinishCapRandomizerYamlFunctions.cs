@@ -55,6 +55,7 @@ partial class MinishCapRandomizerUI
         _outputSettingsString = settingsString;
         _outputCosmeticsString = cosmeticsString;
         _outputUsedYAML = true;
+        _outputFilename = GetFilenameYamlShuffler();
         SettingHashLabel.Text = UseMysterySettings.Checked && _yamlController.IsUsingLogicYaml() ? "Settings string is not shown when using mystery settings" : settingsString;
         CosmeticStringLabel.Text = UseMysteryCosmetics.Checked && _yamlController.IsUsingCosmeticsYaml() ? "Cosmetics string is not shown when using mystery cosmetics" : cosmeticsString;
         CopySettingsHashToClipboard.Enabled = !UseMysterySettings.Checked;
@@ -120,7 +121,7 @@ partial class MinishCapRandomizerUI
 	{
         var presets = _settingPresets.SettingsWeights;
 
-		if (presets.All(preset => preset != (string)SettingsWeights.SelectedItem))
+		if (presets.All(preset => preset != (string?)SettingsWeights.SelectedItem))
 		{
 			DisplayAlert("No weights preset matching the specified name could be found! Make sure you select a valid weights preset.", "Failed to Load Preset", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			return;
@@ -131,7 +132,7 @@ partial class MinishCapRandomizerUI
         if (result)
         {
             _shufflerController.LoadSettingsFromSettingString(_yamlController.GetSelectedSettingsString());
-            _recentSettingsPreset = (string)SettingsWeights.SelectedItem;
+            _recentSettingsPreset = (string?)SettingsWeights.SelectedItem;
             _recentSettingsPresetHash = _yamlController.GetSelectedOptions().OnlyLogic().GetHash();
         }
 
@@ -143,7 +144,7 @@ partial class MinishCapRandomizerUI
 	{
         var presets = _settingPresets.CosmeticsWeights;
 
-		if (presets.All(preset => preset != (string)CosmeticsWeights.SelectedItem))
+		if (presets.All(preset => preset != (string?)CosmeticsWeights.SelectedItem))
 		{
 			DisplayAlert("No weights preset matching the specified name could be found! Make sure you select a valid weights preset.", "Failed to Load Preset", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			return;
@@ -154,7 +155,7 @@ partial class MinishCapRandomizerUI
         if (result)
         {
             _shufflerController.LoadCosmeticsFromCosmeticsString(_yamlController.GetSelectedCosmeticsString());
-            _recentCosmeticsPreset = (string)CosmeticsWeights.SelectedItem;
+            _recentCosmeticsPreset = (string?)CosmeticsWeights.SelectedItem;
             _recentCosmeticsPresetHash = _yamlController.GetSelectedOptions().OnlyCosmetic().GetHash();
         }
 

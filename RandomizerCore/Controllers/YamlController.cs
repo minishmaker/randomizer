@@ -21,9 +21,9 @@ public class YamlController : ShufflerController
 
     public bool IsGlobalYamlMode() => _shuffler.IsGlobalYamlMode();
 
-    public string GetLogicYamlName() => _shuffler.GetLogicYamlName();
+    public string? GetLogicYamlName() => _shuffler.GetLogicYamlName();
 
-    public string GetCosmeticsYamlName() => _shuffler.GetCosmeticsYamlName();
+    public string? GetCosmeticsYamlName() => _shuffler.GetCosmeticsYamlName();
 
     public override ulong FinalSeed => _shuffler.Seed;
     

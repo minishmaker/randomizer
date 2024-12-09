@@ -4,9 +4,9 @@ namespace RandomizerCore.Randomizer.Models;
 
 public class Sphere
 {
-    public List<Item> Items { get; set; }
+    public List<Item>? Items { get; set; }
 
-    public List<Location> Locations { get; set; }
+    public List<Location>? Locations { get; set; }
 
     public int SphereNumber { get; set; }
 
@@ -16,7 +16,7 @@ public class Sphere
 
     public int CurrentAttemptCount { get; set; }
 
-    public List<Item> PreFilledItemsAddedThisSphere { get; set; }
+    public List<Item>? PreFilledItemsAddedThisSphere { get; set; }
 
-    public List<Location> PreFilledLocationsAddedThisSphere { get; set; }
+    public List<Location>? PreFilledLocationsAddedThisSphere { get; set; }
 }

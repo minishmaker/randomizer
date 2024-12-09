@@ -49,7 +49,7 @@ public class FlagWrapper : WrapperBase, ILogicOptionObserver
             tip.SetToolTip(_checkBox, _flag.DescriptionText);
         }
 
-        _checkBox.CheckedChanged += (object sender, EventArgs e) =>
+        _checkBox.CheckedChanged += (object? sender, EventArgs e) =>
         {
             _flag.Active = _checkBox.Checked;
         };
@@ -59,6 +59,6 @@ public class FlagWrapper : WrapperBase, ILogicOptionObserver
 
 	public void NotifyObserver()
 	{
-        _checkBox.Checked = _flag.Active;
+        _checkBox!.Checked = _flag.Active;
 	}
 }

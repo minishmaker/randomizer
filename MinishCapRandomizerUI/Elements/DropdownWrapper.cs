@@ -80,17 +80,17 @@ public class DropdownWrapper : WrapperBase, ILogicOptionObserver
             tip.SetToolTip(_comboBox, _dropdown.DescriptionText);
         }
 
-        _comboBox.SelectedIndexChanged += (object sender, EventArgs e) =>
+        _comboBox.SelectedIndexChanged += (object? sender, EventArgs e) =>
         {
-            _dropdown.Selection = (string)_comboBox.SelectedItem;
+            _dropdown.Selection = (string)_comboBox.SelectedItem!;
         };
         
-        _comboBox.SelectedValueChanged += (object sender, EventArgs e) =>
+        _comboBox.SelectedValueChanged += (object? sender, EventArgs e) =>
         {
-            _dropdown.Selection = (string)_comboBox.SelectedItem;
+            _dropdown.Selection = (string)_comboBox.SelectedItem!;
         };
         
-        _comboBox.KeyPress += (object sender, KeyPressEventArgs e) =>
+        _comboBox.KeyPress += (object? sender, KeyPressEventArgs e) =>
         {
             e.Handled = true;
         };
@@ -101,6 +101,6 @@ public class DropdownWrapper : WrapperBase, ILogicOptionObserver
 	public void NotifyObserver()
 	{
         var index = _dropdown.Selections.Keys.ToList().IndexOf(_dropdown.Selection);
-        _comboBox.SelectedIndex = index;
+        _comboBox!.SelectedIndex = index;
 	}
 }

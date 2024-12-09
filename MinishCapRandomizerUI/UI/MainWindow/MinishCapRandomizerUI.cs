@@ -1,9 +1,5 @@
-using System.Globalization;
-using System.Text.RegularExpressions;
 using MinishCapRandomizerUI.UI.Config;
-using RandomizerCore.Controllers;
 using RandomizerCore.Controllers.Models;
-using RandomizerCore.Random;
 
 namespace MinishCapRandomizerUI.UI.MainWindow;
 
@@ -23,6 +19,7 @@ public sealed partial class MinishCapRandomizerUI : Form
     private string? _outputSettingsString = null;
     private string? _outputCosmeticsString = null;
     private bool _outputUsedYAML = false;
+    private string? _outputFilename = null;
     private ControllerBase _previousShuffler;
 
     private readonly string _presetPath =
@@ -35,7 +32,7 @@ public sealed partial class MinishCapRandomizerUI : Form
         InitializeComponent();
         InitializeYamlUi();
         InitializeBaseUi();
-        Text = $@"{_shufflerController.AppName} {_shufflerController.VersionName} {_shufflerController.RevName}";
+        Text = $@"{_shufflerController!.AppName} {_shufflerController.VersionName} {_shufflerController.RevName}";
         FormClosing += SaveConfig;
         LoadConfig();
         InitializeUi();

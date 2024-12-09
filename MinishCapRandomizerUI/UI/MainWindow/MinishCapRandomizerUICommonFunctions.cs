@@ -247,7 +247,7 @@ Generating seeds with this shuffler may freeze the randomizer application for ma
             tag = tag[(tag.IndexOf('+') + 1)..^1];
             if (releases!.First().Tag_Name == tag) return (false, true);
 
-            var url = new UrlDialog.UrlDialog(releases!.First().Html_Url);
+            var url = new UrlDialog.UrlDialog(releases!.First().Html_Url!);
             url.ShowDialog();
             return (true, true);
         } 
@@ -359,7 +359,8 @@ Generating seeds with this shuffler may freeze the randomizer application for ma
         var settingsString = _previousShuffler.GetFinalSettingsString();
         var cosmeticsString = _previousShuffler.GetFinalCosmeticsString();
 
-        if (UseMysteryCosmetics.Checked || UseMysterySettings.Checked || UseCustomYAML.Checked)
+        _outputUsedYAML = UseMysteryCosmetics.Checked || UseMysterySettings.Checked || UseCustomYAML.Checked;
+        if (_outputUsedYAML)
             UpdateSeedInfoPageYaml(settingsString, cosmeticsString);
         else
             UpdateSeedInfoPageBase(settingsString, cosmeticsString);
@@ -393,7 +394,7 @@ Generating seeds with this shuffler may freeze the randomizer application for ma
             NumberStyles.HexNumber);
 
         using var stream = Assembly.GetAssembly(typeof(ShufflerController))?.GetManifestResourceStream("RandomizerCore.Resources.hashicons.png");
-        var hashImageList = new Bitmap(stream);
+        var hashImageList = new Bitmap(stream!);
 
         var image = new PictureBox
         {
@@ -415,7 +416,8 @@ Generating seeds with this shuffler may freeze the randomizer application for ma
                 4 => (customRng >> 8) & hashMask,
                 5 => 64U,
                 6 => (settings >> 8) & hashMask,
-                7 => (settings >> 16) & hashMask
+                7 => (settings >> 16) & hashMask,
+                _ => throw new ArgumentException()
             };
 
             var k = 16 * (int)imageIndex;
@@ -448,11 +450,9 @@ Generating seeds with this shuffler may freeze the randomizer application for ma
         baseImage.SetPixel(x + 2, y, targetColor);
     }
 
-    private string GetSeedFilename()
+    private string? GetSeedFilename()
     {
-        if (UseMysteryCosmetics.Checked || UseMysterySettings.Checked || UseCustomYAML.Checked)
-            return GetFilenameYamlShuffler();
-        return GetFilenameBaseShuffler();
+        return _outputFilename;
     }
 
     private static void AddItemToPresetsBox(ComboBox box, string presetName)
@@ -464,7 +464,7 @@ Generating seeds with this shuffler may freeze the randomizer application for ma
 
     private static void RemoveItemFromPresetsBox(ComboBox box, string presetName)
     {
-        var isRemovedPresetSelected = (string)box.SelectedItem == presetName;
+        var isRemovedPresetSelected = (string?)box.SelectedItem == presetName;
 
         box.Items.Remove(presetName);
         box.Text = "";

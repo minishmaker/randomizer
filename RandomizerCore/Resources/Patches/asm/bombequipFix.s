@@ -1,5 +1,5 @@
 .thumb
-push	{r0-r1}
+push	{r0-r3}
 @check if we are ending
 cmp	r1,#2
 beq	end
@@ -23,7 +23,8 @@ ldrb	r1,[r0,#1]
 cmp	r1,#7
 beq	end
 cmp	r1,#8
-bne	switch
+beq	end
+b	switch
 
 @check if this is a bow
 notBombs:
@@ -43,7 +44,8 @@ ldrb	r1,[r0,#1]
 cmp	r1,#9
 beq	end
 cmp	r1,#10
-bne	switch
+beq	end
+b	switch
 
 @check if this item is in any of the lists
 notBow:

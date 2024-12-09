@@ -67,7 +67,7 @@ public class NumberBoxWrapper : WrapperBase, ILogicOptionObserver
             tip.SetToolTip(_upDownBox, _numberBox.DescriptionText);
         }
 
-        _upDownBox.TextChanged += (object sender, EventArgs e) =>
+        _upDownBox.TextChanged += (object? sender, EventArgs e) =>
         {
             if (_upDownBox.Text.Length == 0)
             {
@@ -96,6 +96,6 @@ public class NumberBoxWrapper : WrapperBase, ILogicOptionObserver
 
 	public void NotifyObserver()
 	{
-        _upDownBox.Text = _numberBox.Value.ToString();
+        _upDownBox!.Text = _numberBox.Value.ToString();
 	}
 }

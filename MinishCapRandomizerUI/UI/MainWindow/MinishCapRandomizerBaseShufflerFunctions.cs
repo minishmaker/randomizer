@@ -58,11 +58,12 @@ public partial class MinishCapRandomizerUI
         _outputSettingsString = settingsString;
         _outputCosmeticsString = cosmeticsString;
         _outputUsedYAML = false;
+        _outputFilename = GetFilenameBaseShuffler();
         SettingHashLabel.Text = settingsString;
         CosmeticStringLabel.Text = cosmeticsString;
         SettingHashLabel.Visible = true;
         CosmeticStringLabel.Visible = true;
     }
 
-    private string GetFilenameBaseShuffler() => _shufflerController.SeedFilename;
+    private string GetFilenameBaseShuffler() => _previousShuffler.SeedFilename;
 }

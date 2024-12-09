@@ -113,8 +113,8 @@ internal abstract class ShufflerBase
             {
                 // Load default logic if no alternative is specified
                 var assembly = Assembly.GetAssembly(typeof(ShufflerBase));
-                using (var stream = assembly?.GetManifestResourceStream("RandomizerCore.Resources.default.logic"))
-                using (var reader = new StreamReader(stream))
+                using (var stream = assembly!.GetManifestResourceStream("RandomizerCore.Resources.default.logic"))
+                using (var reader = new StreamReader(stream!))
                 {
                     var allLocations = reader.ReadToEnd();
                     // Each line is a different location, split regardless of return form
@@ -272,7 +272,7 @@ internal abstract class ShufflerBase
         public byte[] GetRandomizedRom()
         {
             // Create a copy of the ROM data to modify for output
-            var outputBytes = new byte[Rom.Instance.RomData.Length];
+            var outputBytes = new byte[Rom.Instance!.RomData.Length];
             Array.Copy(Rom.Instance.RomData, 0, outputBytes, 0, outputBytes.Length);
 
             using (var ms = new MemoryStream(outputBytes))
@@ -393,8 +393,8 @@ internal abstract class ShufflerBase
             {
                 // Load default logic if no alternative is specified
                 var assembly = Assembly.GetAssembly(typeof(Shuffler));
-                using (var stream = assembly?.GetManifestResourceStream("RandomizerCore.Resources.default.logic"))
-                using (var reader = new StreamReader(stream))
+                using (var stream = assembly!.GetManifestResourceStream("RandomizerCore.Resources.default.logic"))
+                using (var reader = new StreamReader(stream!))
                 {
                     var allLocations = reader.ReadToEnd();
                     // Each line is a different location, split regardless of return form
@@ -626,7 +626,7 @@ internal abstract class ShufflerBase
 
         private Item? CheckReplacements(Item item)
         {
-            if (LogicParser.SubParser.IncrementalReplacements.ContainsKey(item))
+            if (LogicParser.SubParser.IncrementalReplacements!.ContainsKey(item))
             {
                 var set = LogicParser.SubParser.IncrementalReplacements[item];
                 var replacement = set[0];
@@ -650,7 +650,7 @@ internal abstract class ShufflerBase
                 }
             }
 
-            if (LogicParser.SubParser.AmountReplacements.ContainsKey(item))
+            if (LogicParser.SubParser.AmountReplacements!.ContainsKey(item))
             {
                 var set = LogicParser.SubParser.AmountReplacements[item];
                 var replacement = set[0];
@@ -1108,6 +1108,7 @@ internal abstract class ShufflerBase
                 "Palace_Entrance" => (0xB51B, 0x0D8800E8),
                 "DHC_Main_Entrance" => (0x7812, 0x07C800F8),
                 "DHC_Side_Entrance" => (0x6D14, 0x06400118),
+                _ => throw new ArgumentException()
             };
         }
 

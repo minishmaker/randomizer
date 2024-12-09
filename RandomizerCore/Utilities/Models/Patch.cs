@@ -12,7 +12,7 @@ public class Patch
 
     public int PatchedSize { get; set; }
 
-    public List<BpsExportAction> ExportActions { get; set; }
+    public List<BpsExportAction>? ExportActions { get; set; }
 
     public uint SourceChecksum { get; set; }
 
@@ -79,13 +79,13 @@ public class Patch
         BpsPatcher.WriteVln(PatchedSize, ref data);
         data.Add(0x80); //We don't include any metadata in the patch, so we encode 0
 
-        foreach (var action in ExportActions)
+        foreach (var action in ExportActions!)
         {
             BpsPatcher.WriteVln(((action.ActionLength - 1) << 2) + (int)action.OperandType, ref data);
             switch (action.OperandType)
             {
                 case BpsPatcher.BpsOperandType.TargetRead:
-                    data.AddRange(action.Bytes);
+                    data.AddRange(action.Bytes!);
                     break;
                 case BpsPatcher.BpsOperandType.SourceCopy or BpsPatcher.BpsOperandType.TargetCopy:
                     BpsPatcher.WriteVln((Math.Abs(action.RelativeOffset) << 1) +

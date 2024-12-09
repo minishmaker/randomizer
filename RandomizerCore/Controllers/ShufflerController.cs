@@ -1,13 +1,8 @@
-﻿using System.Reflection;
-using RandomizerCore.Controllers.Models;
-using RandomizerCore.Core;
+﻿using RandomizerCore.Controllers.Models;
 using RandomizerCore.Random;
-using RandomizerCore.Randomizer;
 using RandomizerCore.Randomizer.Exceptions;
 using RandomizerCore.Randomizer.Shuffler;
 using RandomizerCore.Utilities.Logging;
-using RandomizerCore.Utilities.Models;
-using RandomizerCore.Utilities.Util;
 
 namespace RandomizerCore.Controllers;
 
@@ -34,7 +29,9 @@ public class ShufflerController : ControllerBase
         Shuffler = _shuffler;
     }
 
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
     protected ShufflerController(Type childType) : base(childType)
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
     {
         
     }

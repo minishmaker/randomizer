@@ -5,7 +5,9 @@ namespace MinishCapRandomizerCLI;
 internal class Program
 {
     //Not Null
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
     private static Dictionary<string, Action> _commands;
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
     private static bool _exiting = false;
     
     private static void Main(string[] args)

@@ -174,54 +174,54 @@ internal class SphereBasedShuffler : Shuffler
 
                     sphereNumber--;
 
-                    allPlaceableLocations.AddRange(locationsAvailableThisSphere);
+                    allPlaceableLocations.AddRange(locationsAvailableThisSphere!);
 
                     var lastSphere = spheres[sphereNumber];
-                    allShuffledItems.AddRange(lastSphere.Items);
+                    allShuffledItems.AddRange(lastSphere.Items!);
 
-                    foreach (var item in lastSphere.Items)
+                    foreach (var item in lastSphere.Items!)
                     {
                         obtainedItems.Remove(item);
                         item.NotifyParentDependencies(false);
                     }
 
-                    foreach (var item in lastSphere.PreFilledItemsAddedThisSphere)
+                    foreach (var item in lastSphere.PreFilledItemsAddedThisSphere!)
                     {
                         obtainedItems.Remove(item);
                         item.NotifyParentDependencies(false);
                     }
 
-                    preFilledLocations.AddRange(lastSphere.PreFilledLocationsAddedThisSphere);
+                    preFilledLocations.AddRange(lastSphere.PreFilledLocationsAddedThisSphere!);
 
                     while (lastSphere.TotalShuffledLocations == 0 || lastSphere.CurrentAttemptCount > lastSphere.MaxRetryCount)
                     {
                         spheres.Remove(lastSphere);
                         sphereNumber--;
-                        allPlaceableLocations.AddRange(lastSphere.Locations);
+                        allPlaceableLocations.AddRange(lastSphere.Locations!);
 
                         if (sphereNumber < 0)
                             throw new ShuffleException("Could not place any items in sphere 0 that advanced logic!");
                         lastSphere = spheres[sphereNumber];
-                        allShuffledItems.AddRange(lastSphere.Items);
+                        allShuffledItems.AddRange(lastSphere.Items!);
 
-                        foreach (var item in lastSphere.Items)
+                        foreach (var item in lastSphere.Items!)
                         {
                             obtainedItems.Remove(item);
                             item.NotifyParentDependencies(false);
                         }
 
-                        foreach (var item in lastSphere.PreFilledItemsAddedThisSphere)
+                        foreach (var item in lastSphere.PreFilledItemsAddedThisSphere!)
                         {
                             obtainedItems.Remove(item);
                             item.NotifyParentDependencies(false);
                         }
 
-                        preFilledLocations.AddRange(lastSphere.PreFilledLocationsAddedThisSphere);
+                        preFilledLocations.AddRange(lastSphere.PreFilledLocationsAddedThisSphere!);
                     }
 
                     locationsAvailableThisSphere = lastSphere.Locations;
 
-                    shuffledLocationsThisSphere = locationsAvailableThisSphere
+                    shuffledLocationsThisSphere = locationsAvailableThisSphere!
                         .Where(location => location.Type is not LocationType.Unshuffled).ToList();
 
                     sphere = new Sphere
@@ -237,7 +237,7 @@ internal class SphereBasedShuffler : Shuffler
                     continue;
                 }
 
-                shuffledLocationsThisSphere = locationsAvailableThisSphere
+                shuffledLocationsThisSphere = locationsAvailableThisSphere!
                     .Where(location => location.Type is not LocationType.Unshuffled).ToList();
                 
                 continue;
@@ -250,7 +250,7 @@ internal class SphereBasedShuffler : Shuffler
             if (shuffledLocationsThisSphere.Any())
             {
                 allPlaceableLocations.AddRange(shuffledLocationsThisSphere);
-                sphere.Locations.RemoveAll(location => shuffledLocationsThisSphere.Contains(location));
+                sphere.Locations!.RemoveAll(location => shuffledLocationsThisSphere.Contains(location));
                 sphere.TotalShuffledLocations -= shuffledLocationsThisSphere.Count;
                 locationsAvailableNextSphere.AddRange(
                     shuffledLocationsThisSphere.Where(location => location.IsAccessible()));
@@ -291,7 +291,7 @@ internal class SphereBasedShuffler : Shuffler
             retryCount = 0;
         }
 
-        allPlaceableLocations.AddRange(locationsAvailableThisSphere);
+        allPlaceableLocations.AddRange(locationsAvailableThisSphere!);
         obtainedItems.ForEach(item => item.NotifyParentDependencies(false));
         return allPlaceableLocations;
     }

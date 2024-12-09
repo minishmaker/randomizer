@@ -137,7 +137,7 @@ internal static class YamlParser
                     else
                         if (setting.Value is Dictionary<object, object>)
                         {
-                            foreach (var pair in ((Dictionary<object, object>) setting.Value))
+                            foreach (var pair in (Dictionary<object, object>) setting.Value)
                                 if (!int.TryParse("" + pair.Value, out var weight) || weight < 0)
                                     throw new ParserException("Invalid weight for option value " + pair.Key + " in option " + setting.Key);
                             var choices = ((Dictionary<object, object>) setting.Value).Keys.ToList();
@@ -287,6 +287,7 @@ internal static class YamlParser
         }
     }
 
+#pragma warning disable CS0649
     private struct MysteryWeights
     {
         public string? Name;
@@ -295,4 +296,5 @@ internal static class YamlParser
         public Dictionary<object, object>? Settings;
         public Dictionary<object, Dictionary<object, MysteryWeights>>? Subweights;
     }
+#pragma warning restore CS0649
 }

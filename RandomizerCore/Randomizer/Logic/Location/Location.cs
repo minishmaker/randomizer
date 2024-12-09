@@ -3,7 +3,6 @@ using RandomizerCore.Randomizer.Enumerables;
 using RandomizerCore.Randomizer.Logic.Dependency;
 using RandomizerCore.Randomizer.Models;
 using RandomizerCore.Utilities.IO;
-using RandomizerCore.Utilities.Logging;
 
 namespace RandomizerCore.Randomizer.Logic.Location;
 
@@ -11,7 +10,6 @@ public class Location
 {
     private readonly List<LocationAddress> Addresses;
     private readonly List<EventLocationAddress> Defines;
-    private bool? AvailableCache;
     private Item DefaultContents;
 
     public bool Addressed;
@@ -53,7 +51,6 @@ public class Location
         }
 
         Filled = false;
-        AvailableCache = null;
         HideFromSpoilerLog = hideFromSpoilerLog;
     }
 
@@ -64,7 +61,7 @@ public class Location
 
     public static List<Item> GetItems(List<Location> locations)
     {
-        return (from location in locations where location.Contents.HasValue select location.Contents.Value).ToList();
+        return (from location in locations where location.Contents.HasValue select location.Contents!.Value).ToList();
     }
 
     public bool IsAddressed()
@@ -163,11 +160,6 @@ public class Location
 
         RecursionCount--;
         return true;
-    }
-
-    public void InvalidateCache()
-    {
-        AvailableCache = null;
     }
 
     public void Fill(Item contents)

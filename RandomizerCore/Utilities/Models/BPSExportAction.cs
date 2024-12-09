@@ -10,5 +10,5 @@ public class BpsExportAction
 
     public int RelativeOffset { get; set; }
 
-    public List<byte> Bytes { get; set; }
+    public List<byte>? Bytes { get; set; }
 }

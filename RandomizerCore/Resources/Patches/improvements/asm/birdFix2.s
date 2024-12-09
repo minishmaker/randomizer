@@ -74,6 +74,9 @@ bne	notTrap
 ldrb	r3, [r4,#0x08]
 cmp	r3, #0x06
 bne	notTrap
+ldrb	r3, [r4,#0x0B]
+cmp	r3, #0x10
+bcs	notTrap
 mov	r0, r4
 ldr	r3, trapGetIcon
 mov	lr, r3

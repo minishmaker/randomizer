@@ -1,18 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace MinishCapRandomizerUI.UI.InputDialog
+﻿namespace MinishCapRandomizerUI.UI.InputDialog
 {
 	public partial class InputDialog : Form
 	{
-		private Action<string> _callback;
+		private Action<string>? _callback;
 
 		public InputDialog()
 		{
@@ -27,13 +17,13 @@ namespace MinishCapRandomizerUI.UI.InputDialog
 			_callback = callback;
 		}
 
-		private void Okay_Click(object sender, EventArgs e)
+		private void Okay_Click(object? sender, EventArgs e)
 		{
-			_callback.Invoke(UserInput.Text);
+			_callback!.Invoke(UserInput.Text);
 			Close();
 		}
 
-		private void Cancel_Click(object sender, EventArgs e)
+		private void Cancel_Click(object? sender, EventArgs e)
 		{
 			Close();
 		}
