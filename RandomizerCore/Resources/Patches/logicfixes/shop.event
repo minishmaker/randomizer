@@ -22,6 +22,12 @@
 #ifndef quiverShopSub
 	#define quiverShopSub "0x00"
 #endif
+#ifndef bombBagShopItem
+	#define bombBagShopItem "0x65"
+#endif
+#ifndef bombBagShopSub
+	#define bombBagShopSub "0x00"
+#endif
 #ifndef goronMerchantCustomSets
 	#define goronMerchantCustomSets "0"
 #endif
@@ -126,6 +132,11 @@ PUSH; ORG $4EB54; jumpToHack(shopLoad); POP
 ALIGN 4
 shopLoad:
 #incbin "asm/shopLoad.dmp"
+#ifndef vanillaShopOrder
+	WORD 0
+#else
+	WORD 1
+#endif
 POIN shopFloor
 POIN shopShield
 POIN shopMirrorShield
@@ -133,6 +144,7 @@ POIN shopConsumables
 POIN shopBuy1
 POIN shopBuy2
 POIN shopBuy3
+POIN shopBuy4
 
 PUSH; ORG $77EE8; jumpToHack(shopGrab); POP
 ALIGN 4
@@ -149,6 +161,8 @@ WORD boomerangShopItem
 WORD boomerangShopSub
 WORD quiverShopItem
 WORD quiverShopSub
+WORD bombBagShopItem
+WORD bombBagShopSub
 
 PUSH; ORG $64BB4; jumpToHack(shopAsk); POP
 ALIGN 4
@@ -160,6 +174,8 @@ WORD boomerangShopItem
 WORD boomerangShopSub
 WORD quiverShopItem
 WORD quiverShopSub
+WORD bombBagShopItem
+WORD bombBagShopSub
 POIN getTextOffset
 POIN shootbutterflyCredits
 POIN digbutterflyCredits
@@ -228,7 +244,10 @@ POP
 #endif
 
 //set price for mirror shield
-PUSH; ORG $FCF18; SHORT 40; POP
+PUSH; ORG $FCEA8+(8*0x0E); SHORT 40; POP
+
+//set price for bomb bag
+PUSH; ORG $FCEA8+(8*0x65); SHORT 600; POP
 
 //can only buy mirror shield if you do not have it currently
 PUSH
@@ -243,13 +262,21 @@ BYTE 0x06 0x0F 0x00 dogShopItem dogShopSub 0x04; SHORT 0 0x90 0x54 0 0x53 //floo
 shopTerminator
 
 ALIGN 4
-shopShield:
-shopItem(0x0D,0x00,0x0D,0xC8,0x80) //small shield, spawns if you have had a shield, but no mirror shield
+shopShield: //small shield, spawns if you have had a shield, but no mirror shield
+#ifndef vanillaShopOrder
+	shopItem(0x0D,0x00,0x0D,0xC8,0x80)
+#else
+	shopItem(0x0D,0x00,0x0D,0x2D,0x80)
+#endif
 shopTerminator
 
 ALIGN 4
-shopMirrorShield:
-shopItem(0x0E,0x00,0x0E,0xC8,0x80) //mirror shield, spawns if you have had a mirror shield
+shopMirrorShield: //mirror shield, spawns if you have had a mirror shield
+#ifndef vanillaShopOrder
+	shopItem(0x0E,0x00,0x0E,0xC8,0x80)
+#else
+	shopItem(0x0E,0x00,0x0E,0x2D,0x80)
+#endif
 shopTerminator
 
 ALIGN 4
@@ -261,18 +288,41 @@ shopItem(0x6F,0x00,0x6F,0x64,0x40) //30 arrows, always spawns
 shopTerminator
 
 ALIGN 4
-shopBuy1:
-shopItem(walletShopItem,walletShopSub,0x64,0x2D,0x80) //first randomized item
+shopBuy1: //first randomized item (wallet)
+#ifndef vanillaShopOrder
+	shopItem(walletShopItem,walletShopSub,0x64,0x2D,0x80)
+#else
+	shopItem(walletShopItem,walletShopSub,0x64,0x52,0x80)
+#endif
 shopTerminator
 
 ALIGN 4
-shopBuy2:
-shopItem(boomerangShopItem,boomerangShopSub,0x0B,0x40,0x80) //second randomized item
+shopBuy2: //second randomized item (boomerang)
+#ifndef vanillaShopOrder
+	shopItem(boomerangShopItem,boomerangShopSub,0x0B,0x40,0x80)
+#else
+	shopItem(boomerangShopItem,boomerangShopSub,0x0B,0x52,0x80)
+#endif
 shopTerminator
 
 ALIGN 4
-shopBuy3:
-shopItem(quiverShopItem,quiverShopSub,0x66,0x52,0x80) //third randomized item
+shopBuy3: //third randomized item (quiver)
+#ifndef vanillaShopOrder
+	shopItem(quiverShopItem,quiverShopSub,0x66,0x52,0x80)
+#else
+	shopItem(quiverShopItem,quiverShopSub,0x66,0x40,0x80)
+#endif
+shopTerminator
+
+ALIGN 4
+shopBuy4: //fourth randomized item (bomb bag)
+#ifdef enableBombBagShopItem
+	#ifndef vanillaShopOrder
+		shopItem(bombBagShopItem,bombBagShopSub,0x65,0x78,0x80)
+	#else
+		shopItem(bombBagShopItem,bombBagShopSub,0x65,0x52,0x80)
+	#endif
+#endif
 shopTerminator
 
 ALIGN 4
