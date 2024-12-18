@@ -489,16 +489,19 @@
 !ifdef - HOMEWARP
     !eventdefine - allowHomewarp
 !else
+	# Prevent hardlocks from using the Ocarina
 	!define - TOWN_CREST
+	# Prevent hardlocks from using the Firerod
 	!ifndef - NO_FIREROD
-		!define - HOMEWARP
 		!eventdefine - allowHomewarp		
 	!else
-		!ifndef - OPEN_GOLD_FUSIONS
-			!ifndef - NO_RED_FUSIONS
-				!ifdef - OPEN_WIND_TRIBE
-					!define - HOMEWARP
-					!eventdefine - allowHomewarp
+		# Prevent hardlocks from exiting the Wind Tribe house and falling down Cloud Tops
+		!ifndef - START_OCARINA
+			!ifndef - OPEN_GOLD_FUSIONS
+				!ifndef - NO_RED_FUSIONS
+					!ifdef - OPEN_WIND_TRIBE
+						!eventdefine - allowHomewarp
+					!endif
 				!endif
 			!endif
 		!endif
