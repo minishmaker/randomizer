@@ -3446,7 +3446,7 @@
 		!define - ELEMENT_DEF - 3
     !else
     	!undefine - GOTELEMENTS
-	    !define - GOTELEMENTS - , (+`ELEMENT_COUNT`, Items.WaterElement, Items.FireElement, Items.WindElement, Items.EarthElement)
+	    !define - GOTELEMENTS - , (+`ELEMENT_COUNT`, Helpers.HasWaterElement, Helpers.HasFireElement, Helpers.HasWindElement, Helpers.HasEarthElement)
 	!endif
 	!eventdefine - requirementElementsAmount - `ELEMENT_DEF`
 !endif
@@ -4331,6 +4331,11 @@ CanDownThrust;		Helper;; Helpers.HasSword, Items.DownThrust, Items.RocsCape
 !else
 	ShopBombBag;		Helper;; Helpers.Inaccessible
 !endif
+# These make it so we can count how many unique elements have been collected, as opposed to counting them with multiplicity
+HasEarthElement;			Helper;; Items.EarthElement
+HasFireElement;			Helper;; Items.FireElement
+HasWaterElement;			Helper;; Items.WaterElement
+HasWindElement;			Helper;; Items.WindElement
 
 # This section checks what the Weapon setting is and adjusts fight logic
 !ifdef - NOBOMB
@@ -7990,9 +7995,9 @@ Palace_BossItem								`POW_INSIDE`;	`PALACEHP`;		gyorgContainerItem:Define:Firs
 Palace_Prize									`POW_PRIZE`;	`PALACEPRIZE`;	0x0E69E3;															(|Helpers.CompletePalace, Helpers.Hundo);	Items.WindElement
 
 # Pedestal Items
-Sanctuary_Pedestal_Item1	`DHC_OUTSIDE`;  `PED`;   pedestalSpot1Item:Define:FirstByte, pedestalSpot1Sub:Define:SecondByte; `ENTERDHC`, (+2, Items.WaterElement, Items.FireElement, Items.WindElement, Items.EarthElement);   `REDSWORD`
-Sanctuary_Pedestal_Item2	`DHC_OUTSIDE`;  `PED`;   pedestalSpot2Item:Define:FirstByte, pedestalSpot2Sub:Define:SecondByte; `ENTERDHC`, (+3, Items.WaterElement, Items.FireElement, Items.WindElement, Items.EarthElement);   `BLUESWORD`
-Sanctuary_Pedestal_Item3	`DHC_OUTSIDE`;  `PED`;   pedestalSpot3Item:Define:FirstByte, pedestalSpot3Sub:Define:SecondByte; `ENTERDHC`, (+4, Items.WaterElement, Items.FireElement, Items.WindElement, Items.EarthElement);   `FOURSWORD`
+Sanctuary_Pedestal_Item1	`DHC_OUTSIDE`;  `PED`;   pedestalSpot1Item:Define:FirstByte, pedestalSpot1Sub:Define:SecondByte; `ENTERDHC`, (+2, Helpers.HasWaterElement, Helpers.HasFireElement, Helpers.HasWindElement, Helpers.HasEarthElement);   `REDSWORD`
+Sanctuary_Pedestal_Item2	`DHC_OUTSIDE`;  `PED`;   pedestalSpot2Item:Define:FirstByte, pedestalSpot2Sub:Define:SecondByte; `ENTERDHC`, (+3, Helpers.HasWaterElement, Helpers.HasFireElement, Helpers.HasWindElement, Helpers.HasEarthElement);   `BLUESWORD`
+Sanctuary_Pedestal_Item3	`DHC_OUTSIDE`;  `PED`;   pedestalSpot3Item:Define:FirstByte, pedestalSpot3Sub:Define:SecondByte; `ENTERDHC`, (+4, Helpers.HasWaterElement, Helpers.HasFireElement, Helpers.HasWindElement, Helpers.HasEarthElement);   `FOURSWORD`
 
 # Dark Hyrule Castle
 
