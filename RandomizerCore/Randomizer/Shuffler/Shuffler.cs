@@ -198,17 +198,15 @@ internal class Shuffler : ShufflerBase
             ? locationGroups.First(group => group.Key == LocationType.DungeonPrize).ToList()
             : new List<Location>();
         Logger.Instance.LogInfo($"Placing Dungeon Prizes");
-        var unfilledLocations = FillLocationsFrontToBack(DungeonPrizes, nextLocationGroup, allItems);
+        var unfilledPrizeLocations = FillLocationsFrontToBack(DungeonPrizes, nextLocationGroup, allItems);
 
         //Shuffle dungeon majors
         nextLocationGroup = locationGroups.Any(group => group.Key == LocationType.Dungeon)
             ? locationGroups.First(group => group.Key == LocationType.Dungeon).ToList()
             : new List<Location>();
+        nextLocationGroup.AddRange(unfilledPrizeLocations);
         Logger.Instance.LogInfo($"Placing Dungeon Majors");
-        unfilledLocations.AddRange(FillLocationsFrontToBack(DungeonMajorItems,
-            nextLocationGroup,
-            majorsAndEntrances,
-            unfilledLocations));
+        var unfilledLocations = FillLocationsFrontToBack(DungeonMajorItems, nextLocationGroup, majorsAndEntrances);
 
         //Shuffle dungeon minors
         Logger.Instance.LogInfo($"Placing Dungeon Minors");

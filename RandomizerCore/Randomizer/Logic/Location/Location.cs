@@ -140,8 +140,7 @@ public class Location
         // Can only place in correct dungeon
         if (itemToPlace.Dungeon != "" && !Dungeons.Contains(itemToPlace.Dungeon)) return false;
 
-        if ((Type == LocationType.DungeonPrize && itemToPlace.ShufflePool is not ItemPool.DungeonPrize) ||
-            (itemToPlace.ShufflePool is ItemPool.DungeonPrize && Type != LocationType.DungeonPrize)) return false;
+        if (itemToPlace.ShufflePool is ItemPool.DungeonPrize && Type != LocationType.DungeonPrize) return false;
 
         return ShufflerConstraints.All(constraint => constraint.Invoke(this, itemToPlace, allLocations));
     }
