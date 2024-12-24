@@ -14,7 +14,6 @@ namespace RandomizerCore.Randomizer.Shuffler;
 
 internal class Shuffler : ShufflerBase
 {
-
     public Shuffler()
     { }
 
@@ -33,14 +32,14 @@ internal class Shuffler : ShufflerBase
         
         var time = DateTime.Now;
         Logger.Instance.BeginLogTransaction();
-        var locationAndItems = LogicParser.ParseLocationsAndItems(locationStrings, Rng);
+        var (locations, items) = LogicParser.ParseLocationsAndItems(locationStrings, Rng);
         Logger.Instance.SaveLogTransaction();
 
         LogicParser.SubParser.DuplicateAmountReplacements();
         LogicParser.SubParser.DuplicateIncrementalReplacements();
 
-        var collectedLocations = locationAndItems.locations.Select(AddLocation).ToList();
-        var collectedItems = locationAndItems.items.Concat(locationAndItems.locations.Where(loc => loc.Type is LocationType.Unshuffled && loc.Contents.HasValue).Select(loc => loc.Contents!.Value)).Select(AddItem).ToList();
+        var collectedLocations = locations.Select(AddLocation).ToList();
+        var collectedItems = items.Concat(locations.Where(loc => loc.Type is LocationType.Unshuffled && loc.Contents.HasValue).Select(loc => loc.Contents!.Value)).Select(AddItem).ToList();
 
         var distinctDeps = LogicParser.Dependencies.Distinct().ToList();
 
@@ -148,7 +147,6 @@ internal class Shuffler : ShufflerBase
 
         FilledLocations = new List<Location>();
 
-        var majorsAndEntrances = MajorItems.Concat(DungeonEntrances).ToList();
         var majorsAndPrizesAndDungeon = MajorItems.Concat(DungeonPrizes).Concat(DungeonMajorItems).Concat(UnshuffledItems).ToList();
 
         //Shuffle dungeon entrances
@@ -193,12 +191,14 @@ internal class Shuffler : ShufflerBase
         Logger.Instance.LogInfo($"Placing Overworld Constraints");
         FastFillConstraints(OverworldConstraints, nextLocationGroup);
 
-        // //Shuffle prizes
+        //Shuffle prizes
         nextLocationGroup = locationGroups.Any(group => group.Key == LocationType.DungeonPrize)
             ? locationGroups.First(group => group.Key == LocationType.DungeonPrize).ToList()
             : new List<Location>();
-        Logger.Instance.LogInfo($"Placing Dungeon Prizes");
-        var unfilledPrizeLocations = FillLocationsFrontToBack(DungeonPrizes, nextLocationGroup, allItems);
+        Logger.Instance.LogInfo($"Assigning Dungeon Prizes");
+        var unfilledPrizeLocations = FillLocationsFrontToBack(DungeonPrizes, nextLocationGroup, allItems, considerPrizePlacements: true);
+        //Take prizes that will get placed later into account for dungeon majors
+        var majorsAndDungeonMinorsAndEntrances = MajorItems.Concat(DungeonEntrances).Concat(DungeonMinorItems).ToList();
 
         //Shuffle dungeon majors
         nextLocationGroup = locationGroups.Any(group => group.Key == LocationType.Dungeon)
@@ -206,7 +206,7 @@ internal class Shuffler : ShufflerBase
             : new List<Location>();
         nextLocationGroup.AddRange(unfilledPrizeLocations);
         Logger.Instance.LogInfo($"Placing Dungeon Majors");
-        var unfilledLocations = FillLocationsFrontToBack(DungeonMajorItems, nextLocationGroup, majorsAndEntrances);
+        var unfilledLocations = FillLocationsFrontToBack(DungeonMajorItems, nextLocationGroup, majorsAndDungeonMinorsAndEntrances);
 
         //Shuffle dungeon minors
         Logger.Instance.LogInfo($"Placing Dungeon Minors");
@@ -226,11 +226,14 @@ internal class Shuffler : ShufflerBase
     /// <param name="items">The items to fill with</param>
     /// <param name="locations">The locations to be filled</param>
     /// <param name="assumedItems">The items that are available by default</param>
-    /// <returns>A list of the locations that were filled</returns>
+    /// <param name="fallbackLocations">The locations that may also be filled if an item could not get placed in the other list</param>
+    /// <param name="considerPrizePlacements">Whether the items should be associated with the selected locations and not necessarily placed, depending on whether a prize placement rule exists for the selected location</param>
+    /// <returns>A list of the locations that were not filled</returns>
     private List<Location> FillLocationsFrontToBack(List<Item> items, List<Location> locations,
-        List<Item>? assumedItems = null, List<Location>? fallbackLocations = null)
+        List<Item>? assumedItems = null, List<Location>? fallbackLocations = null, bool considerPrizePlacements = false)
     {
         var filledLocations = new List<Location>();
+        var skippedLocations = new List<Location>();
 
         if (fallbackLocations == null) fallbackLocations = new List<Location>();
 
@@ -256,13 +259,13 @@ internal class Shuffler : ShufflerBase
             filledLocations.AddRange(UpdateObtainedItemsFromPlacedLocations());
 
             // Find locations that are available for placing the item
-            var availableLocations = locations.Where(location => location.CanPlace(item, Locations))
-                .ToList();
+            var availableLocations = locations.Where(location => location.CanPlace(item, Locations,
+                considerPrizePlacements && LogicParser.SubParser.PrizePlacements.ContainsKey(location.Name))).ToList();
 
             if (availableLocations.Count == 0)
             {
-                availableLocations = fallbackLocations
-                    .Where(location => location.CanPlace(item, Locations)).ToList();
+                availableLocations = fallbackLocations.Where(location => location.CanPlace(item, Locations,
+                    considerPrizePlacements && LogicParser.SubParser.PrizePlacements.ContainsKey(location.Name))).ToList();
                 usingFallback = true;
             }
 
@@ -282,17 +285,42 @@ internal class Shuffler : ShufflerBase
             }
 
             var locationIndex = Rng.Next(availableLocations.Count);
+            var location = availableLocations[locationIndex];
 
-            availableLocations[locationIndex].Fill(item);
-            Logger.Instance.LogInfo(
-                $"Placed {item.Type} subtype {StringUtil.AsStringHex2(item.SubValue)} at {availableLocations[locationIndex].Name} from {availableLocations.Count} locations, with {items.Count} items remaining");
+            if (considerPrizePlacements) location.AssociatedPrize = item;
 
-            if (usingFallback) fallbackLocations.Remove(availableLocations[locationIndex]);
-            else locations.Remove(availableLocations[locationIndex]);
+            if (considerPrizePlacements && LogicParser.SubParser.PrizePlacements.TryGetValue(location.Name, out var dungeon))
+            {
+                // Instead of placing the prize item here, the prize is only associated with the prize location, and the item placed later in a region dependent on this location
+                if (ElementAssociations.TryGetValue(item.Type, out var locs)) locs.Add(location);
+                else ElementAssociations.Add(item.Type, [location]);
+                Logger.Instance.LogInfo(
+                    $"Assigned prize {item.Type} subtype {StringUtil.AsStringHex2(item.SubValue)} to {location.Name} from {availableLocations.Count} locations, with {items.Count} items remaining");
 
-            item.NotifyParentDependencies(true);
+                // We are using DungeonMinor instead of DungeonMajor here so that other items like keys get placed first and do not run out of free locations, the same logic rules apply either way
+                item.ShufflePool = dungeon == "" ? ItemPool.Major : ItemPool.DungeonMinor;
+                item.Dungeon = dungeon;
+                (dungeon == "" ? MajorItems : DungeonMinorItems).Add(item);
 
-            filledLocations.Add(availableLocations[locationIndex]);
+                if (usingFallback) fallbackLocations.Remove(location);
+                else locations.Remove(location);
+
+                skippedLocations.Add(location);
+            }
+            else
+            {
+                // Place the item here
+                location.Fill(item);
+                Logger.Instance.LogInfo(
+                    $"Placed {item.Type} subtype {StringUtil.AsStringHex2(item.SubValue)} at {location.Name} from {availableLocations.Count} locations, with {items.Count} items remaining");
+
+                if (usingFallback) fallbackLocations.Remove(location);
+                else locations.Remove(location);
+
+                item.NotifyParentDependencies(true);
+
+                filledLocations.Add(location);
+            }
 
             if (items.Count == 0) Logger.Instance.LogInfo($"All {item.ShufflePool} placed");
 
@@ -304,7 +332,7 @@ internal class Shuffler : ShufflerBase
         FilledLocations.AddRange(filledLocations);
         filledLocations.ForEach(location => location.Contents!.Value.NotifyParentDependencies(false));
 
-        return locations.Concat(fallbackLocations).ToList();
+        return locations.Concat(fallbackLocations).Concat(skippedLocations).ToList();
     }
 
     /// <summary>
@@ -313,7 +341,8 @@ internal class Shuffler : ShufflerBase
     /// <param name="items">The items to fill with</param>
     /// <param name="locations">The locations to be filled</param>
     /// <param name="assumedItems">The items that are available by default</param>
-    /// <returns>A list of the locations that were filled</returns>
+    /// <param name="fallbackLocations">The locations that may also be filled if an item could not get placed in the other list</param>
+    /// <returns>A list of the locations that were not filled</returns>
     private List<Location> FillLocationsUniform(List<Item> items, List<Location> locations,
         List<Item>? assumedItems = null, List<Location>? fallbackLocations = null)
     {

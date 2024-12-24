@@ -49,6 +49,8 @@ internal abstract class ShufflerBase
             protected readonly List<Item> Music;
             protected readonly List<Item> OverworldConstraints;
             protected readonly List<Item> UnshuffledItems;
+
+            protected readonly Dictionary<ItemType, HashSet<Location>> ElementAssociations;
             
             protected List<Location> FilledLocations;
             
@@ -327,6 +329,8 @@ internal abstract class ShufflerBase
         MinorItems = new List<Item>();
         FillerItems = new List<Item>();
 
+        ElementAssociations = new Dictionary<ItemType, HashSet<Location>>();
+
         FilledLocations = new List<Location>();
 
         LogicParser = new Parser.Parser();
@@ -454,12 +458,15 @@ internal abstract class ShufflerBase
             MinorItems.Clear();
             FillerItems.Clear();
 
+            ElementAssociations.Clear();
+
             FilledLocations.Clear();
 
             LogicParser.SubParser.ClearTypeOverrides();
             LogicParser.SubParser.ClearIncrementalReplacements();
             LogicParser.SubParser.ClearReplacements();
             LogicParser.SubParser.ClearAmountReplacements();
+            LogicParser.SubParser.ClearPrizePlacements();
             LogicParser.SubParser.ClearDefines();
         }
 
@@ -858,10 +865,9 @@ internal abstract class ShufflerBase
                 spoilerBuilder.AppendLine($"\t\tItem: {GetTrapName(location.Contents.Value.SubValue)}");
             else if (location.Contents.Value.ShufflePool is ItemPool.DungeonEntrance)
                 spoilerBuilder.AppendLine($"\t\tDungeon: {GetEntranceNameFromSubvalue(location.Contents.Value.SubValue)}");
-            else if (location.Contents.Value.ShufflePool is ItemPool.DungeonMajor ||
-                     (location.Contents.Value.SubValue != 0 &&
+            else if (location.Contents.Value.SubValue != 0 &&
                       location.Contents.Value.Type is ItemType.SmallKey or ItemType.BigKey or ItemType.Compass
-                          or ItemType.DungeonMap))
+                          or ItemType.DungeonMap)
                 spoilerBuilder.AppendLine(
                     $"\t\tDungeon: {GetDungeonNameFromDungeonSubvalue(location.Contents.Value.SubValue)}");
             else if (location.Contents.Value.SubValue != 0)
@@ -969,29 +975,23 @@ internal abstract class ShufflerBase
         private void WriteElementPositions(Writer w)
         {
             // Write coordinates for each element
-            var earthLocation = Locations.First(loc =>
-                loc.Contents is not null && loc.Contents.Value.Type == ItemType.EarthElement);
-            MoveElement(w, earthLocation);
-
-            var fireLocation =
-                Locations.First(loc => loc.Contents is not null && loc.Contents.Value.Type == ItemType.FireElement);
-            MoveElement(w, fireLocation);
-
-            var waterLocation = Locations.First(loc =>
-                loc.Contents is not null && loc.Contents.Value.Type == ItemType.WaterElement);
-            MoveElement(w, waterLocation);
-
-            var windLocation =
-                Locations.First(loc => loc.Contents is not null && loc.Contents.Value.Type == ItemType.WindElement);
-            MoveElement(w, windLocation);
+            foreach (var itemType in new List<ItemType>([ItemType.EarthElement, ItemType.FireElement, ItemType.WaterElement, ItemType.WindElement]))
+            {
+                var associatedLocation = ElementAssociations.GetValueOrDefault(itemType, []).SingleOrDefault((Location?)null);
+                if (associatedLocation != null)
+                {
+                    MoveElement(w, associatedLocation, itemType);
+                }
+            }
         }
 
         /// <summary>
         ///     Moves a single element marker to the location that contains it
         /// </summary>
         /// <param name="w">The writer to write to</param>
-        /// <param name="location">The location that contains the element</param>
-        private void MoveElement(Writer w, Location prizeLocation)
+        /// <param name="location">The location that is associated with the element</param>
+        /// <param name="itemType">The item type of the element</param>
+        private void MoveElement(Writer w, Location prizeLocation, ItemType itemType)
         {
             // Coordinates for the unzoomed map
             var largeCoords = new byte[2];
@@ -1063,7 +1063,7 @@ internal abstract class ShufflerBase
             int largeAddress;
             int smallAddress;
 
-            switch (prizeLocation.Contents!.Value.Type)
+            switch (itemType)
             {
                 case ItemType.EarthElement:
                     largeAddress = 0x128699;

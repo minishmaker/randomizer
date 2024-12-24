@@ -22,9 +22,9 @@
 #   DungeonEntrance - Used to specify that this location represents a dungeon entrance. Only items of type DungeonEntrance can be placed here. If there are any unfilled locations after placing all DungeonEntrance items, randomization will fail.
 #   DungeonConstraint - Used by dummy items to manipulate where other items can get placed in dungeons, only items of type DungeonConstraint can be placed here. If there are any unfilled locations after placing all DungeonConstraint items, randomization will fail.
 #   OverworldConstraint - Used by dummy items to manipulate where other items can get placed in the overworld, only items of type OverworldConstraint can be placed here. If there are any unfilled locations after placing all OverworldConstraint items, randomization will fail.
-#   DungeonPrize - Used to specify that a location can have an item with type DungeonPrize placed on it, if any locations are left after placing prizes, they will get added to the Dungeon pool.
+#   DungeonPrize - Used to specify that a location can have an item with type DungeonPrize assigned to it (and placed there if the placement rule is not overridden using !prizeplacement), if any locations are left after placing prizes, they will get added to the Dungeon pool.
 #   Major - Used to specify that only items of type Major can be placed here. Any locations that aren't filled after placing all Major items will be added to the Any pool.
-#   Dungeon - Used to specify that any item with type DungeonMajor can be placed here. Any locations that aren't filled after placing all DungeonMajor items will be added to the Any pool.
+#   Dungeon - Used to specify that any item with type DungeonMajor or DungeonMinor can be placed here. Any locations that aren't filled after placing all DungeonMajor and DungeonMinor items will be added to the Any pool.
 #   Any - Used to specify that any item with type DungeonMajor, DungeonMinor, Major, Minor, or Filler can be placed here.
 #   Minor - Used to specify that only items of type Minor can be placed here. Any locations that aren't filled after placing all Minor items will be filled with Filler items.
 #   Inaccessible - No items are randomized to this location, and it is ignored by logic.
@@ -34,7 +34,7 @@
 #   DungeonEntrance - Used to specify that this item can only be placed on locations of type DungeonEntrance. If there are any items left in this group after all DungeonEntrance locations are filled then randomization will fail.
 #   DungeonConstraint - Used to specify that this item can only be placed on locations of type DungeonConstraint. If there are any items left in this group after all DungeonConstraint locations are filled then randomization will fail.
 #   OverworldConstraint - Used to specify that this item can only be placed on locations of type OverworldConstraint. If there are any items left in this group after all OverworldConstraint locations are filled then randomization will fail.
-#   DungeonPrize - Used to specify that this item can only be placed on locations of type DungeonPrize. If there are any items left in this group after all DungeonPrize locations are filled then randomization will fail.
+#   DungeonPrize - Used to specify that this item can only be placed on locations of type DungeonPrize, or connected locations determined through !prizeplacement. If there are any items left in this group after all DungeonPrize locations are filled then randomization will fail.
 #   DungeonMajor - Used to specify that this item can only be placed on locations of type Dungeon. If there are any items left in this group after all DungeonPrize locations are filled then randomization will fail.
 #   DungeonMinor - Used to specify that this item can only be placed after Dungeon Majors, and can only be placed on locations of type Dungeon. If there are any items left in this group after all DungeonPrize locations are filled then randomization will fail.
 #   Major - Used to specify that this item can only be placed on locations of type Major, Dungeon, and then Any in that order.
@@ -42,7 +42,7 @@
 #   Filler - Used to specify that this item should be used to fill any unfilled locations after all other items are placed. Items with the Filler type will be randomly chosen for each location left when randomization ends, and items can be chosen multiple times. Increase the number of a specific item in the Filler pool to increase the odds of that item being used.
 #
 # Items are built up in two different ways:
-#   In the item pool, they are - Items.(type).[subtype]:[amount]; (item pool type); [dungeon_id]
+#   In the item pool, they are - Items.(type).[subtype]:[amount]; (item pool type); [dungeon id]
 #    On unshuffled locations, they are - Items.(type).[subtype]
 #
 # A location is built up as (name):[dungeon id 1]:[dungeon id 2]:...:[dungeon id N]; (location type); (address); [logic]; [item] (Only applies to Unshuffled locations)
@@ -79,6 +79,8 @@
 # !replaceincrement - (item) - (amount) - (to replace) : replaces the first (amount) occurrences of any items in (to replace) with (item), the subtype of (item) increases by 1 every time it replaces something.
 # !addition - (define name) - (values)                 : adds all , seperated number values in (values) together and sets (define name) to that value.
 # !settype - (item) - (location type)                  : set all occurrences of (item) to be of type (location type).
+# !import - (function name)                            : tells the shuffler to perform certain logical checks before placing an item, the allowed values for (function name) are defined in LogicImport.cs.
+# !prizeplacement - (location name) - [dungeon id]     : when a DungeonPrize item gets assigned to the DungeonPrize location with the given (location name), instead of placing the item there, the item will get placed later within the given [dungeon id] (or anywhere if no [dungeon id] is given).
 #
 # = Location Logic =
 # all logic symbols other than , are to be put in ()
@@ -89,7 +91,7 @@
 # (| (item), ~(item)~)      : an OR, "(|Items.x, Items.y)" will need either x or y.
 # (& (item), ~(item)~)      : an AND, "(&Items.x, Items.y)" will need both x and y.
 # (+(value), ~(itemvalue)~) : a count, "(+50, Items.x:2, Items.y)" x is worth 2, y is worth 1, this needs enough x's and y's to reach the value 50.
-#~(item)                    : a NOT item, prevents the item chosen from being placed at this location, can only be used for item locations and not helpers.eg: (| Items.a , (&Items.b, ~Items.c)) 
+# ~(item)                   : a NOT item, prevents the item chosen from being placed at this location, can only be used for item locations and not helpers.eg: (| Items.a , (&Items.b, ~Items.c)) 
 
 #Settings options displayed in the rando UI
 

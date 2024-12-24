@@ -228,7 +228,7 @@ public class Parser
 
         var dungeon = "";
 
-        if (itemShufflePool is ItemPool.DungeonMajor && allItemParts.Length < 3)
+        if (itemShufflePool is ItemPool.DungeonMajor or ItemPool.DungeonMinor && allItemParts.Length < 3)
             throw new ParserException("Dungeon item is missing dungeon name!");
 
         if (allItemParts.Length >= 3)

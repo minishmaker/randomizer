@@ -6,13 +6,13 @@ using RandomizerCore.Utilities.Util;
 
 namespace RandomizerCore.Randomizer.Models;
 
-public readonly struct Item
+public struct Item
 {
     public readonly ItemType Type;
     public readonly KinstoneType Kinstone;
-    public readonly ItemPool ShufflePool;
+    public ItemPool ShufflePool;
     public readonly byte SubValue;
-    public readonly string Dungeon;
+    public string Dungeon;
     public readonly bool UseAny;
     private readonly List<DependencyBase> Dependencies;
 
