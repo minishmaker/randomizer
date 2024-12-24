@@ -99,8 +99,8 @@
 !dropdown - Main Settings - Setting - Dungeon Settings - COMPASS_SETTING - Compasses - Compasses - COMPASS_STANDARD - Start With - COMPASS_KEASY - 'Start With': Compasses are given to you from the start. - Vanilla - COMPASS_VANILLA - 'Vanilla': Compasses are in the same places they appear in the vanilla game. - Own Dungeon - COMPASS_STANDARD - 'Own Dungeon': Compasses are randomized to locations in the dungeon they are used in. - Own Region - COMPASS_REGION - 'Own Region': Compasses are randomized inside and in the vicinity of their own dungeon. - Any Dungeon - COMPASS_DUNGEON - 'Any Dungeon': Compasses are randomized inside all dungeons. - Any Region - COMPASS_REGDUN - 'Any Region': Compasses are randomized inside and in the vicinity of all dungeons. - Anywhere (Keysanity) - COMPASS_KEYSANITY - 'Anywhere': Compasses are randomized to any location in the world.\n\nDWS Region: 'Minish Village', 'Belari's House', 'Chest near Belari', 'Minish Cave near Belari'.\nCoF Region: 'Melari's Mines', 'Melari's Mines Outside Path', 'Pre Melari Block Puzzle Chest'.\nFOW Region: 'Wind Ruins'.\nTOD Region: 'Nothing'.\nRC Region: 'Graveyard (Not Dampe)'.\nPOW Region: If Red Fusions are Removed: 'Wind Tribe', Otherwise: 'Upper Wind Tribe'.\nDHC Region: 'Castle Gardens (Not Moat)', If Pedestal Items is enabled: 'Sanctuary Pedestal'.
 !dropdown - Main Settings - Setting - Dungeon Settings - SMALL_KEYS_SETTING - Small Keys - Small Keys - SMALL_KEYS_STANDARD - Removed (Keasy) - SMALL_KEASY - 'Removed': Small keys are removed, All small locked doors are open from the start. - Vanilla - SMALL_KEYS_VANILLA - 'Vanilla': Small keys are in the same places they appear in the vanilla game. - Own Dungeon - SMALL_KEYS_STANDARD - 'Own Dungeon': Small keys are randomized to locations in the dungeon they are used in. - Own Region - SMALL_KEYS_REGION - 'Own Region': Small keys are randomized inside and in the vicinity of their own dungeon. - Any Dungeon - SMALL_KEYS_DUNGEON - 'Any Dungeon': Small keys are randomized inside all dungeons. - Any Region - SMALL_KEYS_REGDUN - 'Any Region': Small keys are randomized inside and in the vicinity of all dungeons. - Anywhere (Keysanity) - SMALL_KEYSANITY - 'Anywhere': Small keys are randomized to any location in the world, expect to return to dungeons multiple times.\n\nDWS Region: 'Minish Village', 'Belari's House', 'Chest near Belari', 'Minish Cave near Belari'.\nCoF Region: 'Melari's Mines', 'Melari's Mines Outside Path', 'Pre Melari Block Puzzle Chest'.\nFOW Region: 'Wind Ruins'.\nTOD Region: 'Nothing'.\nRC Region: 'Graveyard (Not Dampe)'.\nPOW Region: If Red Fusions are Removed: 'Wind Tribe', Otherwise: 'Upper Wind Tribe'.\nDHC Region: 'Castle Gardens (Not Moat)', If Pedestal Items is enabled: 'Sanctuary Pedestal'.
 !dropdown - Main Settings - Setting - Dungeon Settings - BIG_KEYS_SETTING - Big Keys - Big Keys - BIG_KEYS_STANDARD - Removed (Keasy) - BIG_KEASY - 'Removed': Big keys are removed, All locked Boss doors are open from the start. - Vanilla - BIG_KEYS_VANILLA - 'Vanilla': Big keys are in the same places they appear in the vanilla game. - Own Dungeon - BIG_KEYS_STANDARD - 'Own Dungeon': Big keys are randomized to locations in the dungeon they are used in. - Own Region - BIG_KEYS_REGION - 'Own Region': Big keys are randomized inside and in the vicinity of their own dungeon. - Any Dungeon - BIG_KEYS_DUNGEON - 'Any Dungeon': Big keys are randomized inside all dungeons. - Any Region - BIG_KEYS_REGDUN - 'Any Region': Big keys are randomized inside and in the vicinity of all dungeons. - Anywhere (Keysanity) - BIG_KEYSANITY  - 'Anywhere': Big keys are randomized to any location in the world, expect to return to dungeons multiple times.\n\nDWS Region: 'Minish Village', 'Belari's House', 'Chest near Belari', 'Minish Cave near Belari'.\nCoF Region: 'Melari's Mines', 'Melari's Mines Outside Path', 'Pre Melari Block Puzzle Chest'.\nFOW Region: 'Wind Ruins'.\nTOD Region: 'Nothing'.\nRC Region: 'Graveyard (Not Dampe)'.\nPOW Region: If Red Fusions are Removed: 'Wind Tribe', Otherwise: 'Upper Wind Tribe'.\nDHC Region: 'Castle Gardens (Not Moat)', If Pedestal Items is enabled: 'Sanctuary Pedestal'.
-!dropdown - Main Settings - Setting - Dungeon Settings - SHUFFLE_ELEMENTS - Shuffle Elements - Shuffle Elements - SHUFFLE_ELEMENTS_OFF - Vanilla - SHUFFLE_ELEMENTS_VANILLA - 'Vanilla': The Elements are found in their vanilla locations. Will shuffle dungeon rewards if all 4 elements are required to complete the seed but the vanilla location is not accessible. - Dungeon Rewards - SHUFFLE_ELEMENTS_OFF - 'Dungeon Rewards': Elements are shuffled among the 6 Dungeon Rewards. - Anywhere - SHUFFLE_ELEMENTS_ON - 'Anywhere': Elements are shuffled anywhere in the world. The Element icons on the map are removed.
-!dropdown - Main Settings - Setting - Dungeon Settings - DUNGEON - NonElement Dungeons - NonElement Dungeons, This setting is disabled when 'Shuffle Elements' is set to 'Anywhere' or when 'Dungeons Required' is set to '5' or '6'. - NONE - Standard - NONE - 'Standard': NonElement Dungeons have no special rules. - Unrequired - UNREQ - 'Unrequired': NonElement Dungeons do not have items required to beat the game. - Barren - BARREN - 'Barren': NonElement Dungeons only contain junk items. - Regions Unrequired - UNREQSUR - 'Regions Unrequired': NonElement Dungeons and their Regions do not contain items needed to beat the game. - Regions Barren - BARRENSUR - 'Regions Barren': NonElement Dungeons and their Regions only contain junk items. \n\nDWS Region: 'Minish Village', 'Belari's House', 'Chest near Belari', 'Minish Cave near Belari'.\nCoF Region: 'Melari's Mines', 'Melari's Mines Outside Path', 'Pre Melari Block Puzzle Chest'.\nFOW Region: 'Wind Ruins'.\nTOD Region: 'Nothing'.\nRC Region: 'Graveyard (Not Dampe)'.\nPOW Region: If Red Fusions are Removed: 'Wind Tribe', Otherwise: 'Upper Wind Tribe'.
+!dropdown - Main Settings - Setting - Dungeon Settings - SHUFFLE_ELEMENTS - Shuffle Elements - Shuffle Elements - SHUFFLE_ELEMENTS_OFF - Vanilla - SHUFFLE_ELEMENTS_VANILLA - 'Vanilla': The Elements are found in their vanilla locations. Will shuffle dungeon rewards if all 4 elements are required to complete the seed but the vanilla location is not accessible. - Dungeon Rewards - SHUFFLE_ELEMENTS_OFF - 'Dungeon Rewards': Elements are shuffled among the 6 Dungeon Rewards. - Own Dungeon - SHUFFLE_ELEMENTS_DUNGEON - 'Own Dungeon': Elements are shuffled among the 6 Dungeons that have a Reward at the end, but are then placed in a random location within that Dungeon. - Own Region - SHUFFLE_ELEMENTS_REGION - 'Own Region': Elements are shuffled among the 6 Dungeons that have a Reward at the end, but are then placed in a random location inside or in the vicinity of that Dungeon. - Any Dungeon - SHUFFLE_ELEMENTS_ON_DUNGEONS - 'Any Dungeon': Elements are freely shuffled across all locations in all 7 Dungeons. The Element icons on the map are removed. - Any Region - SHUFFLE_ELEMENTS_ON_REGIONS - 'Any Region': Elements are freely shuffled inside and in the vicinity of all 7 Dungeons. The Element icons on the map are removed. - Anywhere - SHUFFLE_ELEMENTS_ON - 'Anywhere': Elements are shuffled anywhere in the world. The Element icons on the map are removed.\n\nDWS Region: 'Minish Village', 'Belari's House', 'Chest near Belari', 'Minish Cave near Belari'.\nCoF Region: 'Melari's Mines', 'Melari's Mines Outside Path', 'Pre Melari Block Puzzle Chest'.\nFOW Region: 'Wind Ruins'.\nTOD Region: 'Nothing'.\nRC Region: 'Graveyard (Not Dampe)'.\nPOW Region: If Red Fusions are Removed: 'Wind Tribe', Otherwise: 'Upper Wind Tribe'.\nDHC Region: 'Castle Gardens (Not Moat)', If Pedestal Items is enabled: 'Sanctuary Pedestal'.
+!dropdown - Main Settings - Setting - Dungeon Settings - DUNGEON - NonElement Dungeons - NonElement Dungeons, This setting is disabled when 'Shuffle Elements' is set to 'Any Dungeon', 'Any Region' or 'Anywhere' or when 'Dungeons Required' is set to '5' or '6'. - NONE - Standard - NONE - 'Standard': NonElement Dungeons have no special rules. - Unrequired - UNREQ - 'Unrequired': NonElement Dungeons do not have items required to beat the game. - Barren - BARREN - 'Barren': NonElement Dungeons only contain junk items. - Regions Unrequired - UNREQSUR - 'Regions Unrequired': NonElement Dungeons and their Regions do not contain items needed to beat the game. - Regions Barren - BARRENSUR - 'Regions Barren': NonElement Dungeons and their Regions only contain junk items. \n\nDWS Region: 'Minish Village', 'Belari's House', 'Chest near Belari', 'Minish Cave near Belari'.\nCoF Region: 'Melari's Mines', 'Melari's Mines Outside Path', 'Pre Melari Block Puzzle Chest'.\nFOW Region: 'Wind Ruins'.\nTOD Region: 'Nothing'.\nRC Region: 'Graveyard (Not Dampe)'.\nPOW Region: If Red Fusions are Removed: 'Wind Tribe', Otherwise: 'Upper Wind Tribe'.
 
 !dropdown - Main Settings - Setting - Requirements - DHC_SETTING - Dark Hyrule Castle Opens - Dark Hyrule Castle is the last dungeon in the game, it has the final boss Vaati. - OPENDHC - Never Open - NODHC - 'Never Open': A barrier is placed at the front of the dungeon, The game ends when you visit the sanctuary after completing all the requirements. - After Requirements - NORMALDHC - 'After Requirements': A barrier is placed at the front of the dungeon, This barrier is removed when you visit the sanctuary after completing ALL the requirements. The game ends when you defeat Vaati. - Always Open - OPENDHC - 'Always Open': There is no barrier at the front of the dungeon, the game ends when you defeat Vaati.
 !dropdown - Main Settings - Setting - Requirements - REQUIREMENT_ITEM - Requirement Reward - An item that the player receives once they meet the selected requirements. - REQUIREMENT_ITEM_DHC_BK - Disabled - REQUIREMENT_ITEM_NONE - 'Disabled': No extra item is awarded for requirement completion. - DHC Big Key - REQUIREMENT_ITEM_DHC_BK - 'DHC Big Key': The DHC Big Key is instantly awarded to the player once they meet the selected requirements. Overrides whatever the general Big Key setting is. - Random Item - REQUIREMENT_ITEM_RANDOM - 'Random Item': An item from the random item pool is instantly awarded to the player once they meet the selected requirements.
@@ -556,6 +556,14 @@
 	!eventdefine - vanillaShopOrder
 !endif
 
+!ifndef - SHUFFLE_ELEMENTS_ON_DUNGEONS
+	!ifndef - SHUFFLE_ELEMENTS_ON_REGIONS
+		!ifndef - SHUFFLE_ELEMENTS_ON
+			!define - ELEMENTS_TIED_TO_DUNGEONS
+		!endif
+	!endif
+!endif
+
 !ifdef - DOJOVANILLA
 	!ifdef - YES_SCROLL_PROG
 		!undefine - YES_SCROLL_PROG
@@ -602,7 +610,7 @@
 !endif
 !ifdef - AD_PED_3
 	!ifdef - 4ELEMENT
-		!ifdef - SHUFFLE_ELEMENTS_ON
+		!ifndef - ELEMENTS_TIED_TO_DUNGEONS
 			!define - AD_PED_NUM - 3
 		!else
 			!undefine - AD_PED_3
@@ -1576,7 +1584,7 @@
 			!endif
 			
 			!ifdef - AD_PED_4
-				!ifndef - SHUFFLE_ELEMENTS_ON
+				!ifdef - ELEMENTS_TIED_TO_DUNGEONS
 					!undefine - `DUNGEON`
 					!define - NONE
 				!endif
@@ -1642,7 +1650,7 @@
 		Items.Entrance.0x03;	DungeonEntrance;
 		!define - FOW_DUNGEONENTRANCE - :DHCValid;	DungeonEntrance
 	!else
-		!ifdef - SHUFFLE_ELEMENTS_ON
+		!ifndef - ELEMENTS_TIED_TO_DUNGEONS
 			!define - FOW_DUNGEONENTRANCE - :NoSpoiler:NoElement;	DungeonEntrance
 			Items.Entrance.0x03;	DungeonEntrance;
 		!else
@@ -1674,7 +1682,7 @@
 		Items.Entrance.0x05;	DungeonEntrance;
 		!define - POW_DUNGEONENTRANCE - :DHCValid;	DungeonEntrance
 	!else
-		!ifdef - SHUFFLE_ELEMENTS_ON
+		!ifndef - ELEMENTS_TIED_TO_DUNGEONS
 			!define - POW_DUNGEONENTRANCE - :NoSpoiler:NoElement;	DungeonEntrance
 			Items.Entrance.0x05;	DungeonEntrance;
 		!else
@@ -1715,8 +1723,8 @@
 !endif
 
 # Shuffle Elements removes the "Prize" dungeon and changes all the elements to regular "Major" items to be globally shuffled
-!ifdef - SHUFFLE_ELEMENTS_ON
-    !eventdefine - globalElements - 1   # if defined, does not draw elements on map (during full shuffle)
+!ifndef - ELEMENTS_TIED_TO_DUNGEONS
+    !eventdefine - globalElements # if defined, does not draw elements on map (during full shuffle)
 	!eventdefine - elementTraps
 	!undefine - `DUNGEON`
 	!define - NONE
@@ -2391,19 +2399,48 @@
 		Items.CarlovMedal;	Minor;
 	!endif
 !endif
-	!ifndef - SHUFFLE_ELEMENTS_VANILLA
-		!ifdef - SHUFFLE_ELEMENTS_ON
-			Items.EarthElement;		Major;
-			Items.FireElement;		Major;
-			Items.WaterElement;		Major;
-			Items.WindElement;		Major;
-		!else
-			Items.EarthElement;		DungeonPrize;
-			Items.FireElement;		DungeonPrize;
-			Items.WaterElement;		DungeonPrize;
-			Items.WindElement;		DungeonPrize;
+!ifndef - SHUFFLE_ELEMENTS_VANILLA
+	!ifdef - ELEMENTS_TIED_TO_DUNGEONS
+		Items.EarthElement;		DungeonPrize;
+		Items.FireElement;		DungeonPrize;
+		Items.WaterElement;		DungeonPrize;
+		Items.WindElement;		DungeonPrize;
+		!ifdef - SHUFFLE_ELEMENTS_DUNGEON
+			!prizeplacement - Deepwood_Prize - DWSPrize
+			!prizeplacement - CoF_Prize - CoFPrize
+			!prizeplacement - Fortress_Prize - FoWPrize
+			!prizeplacement - Droplets_Prize - ToDPrize
+			!prizeplacement - Crypt_Prize - RCPrize
+			!prizeplacement - Palace_Prize - PoWPrize
+		!endif
+		!ifdef - SHUFFLE_ELEMENTS_REGION
+			!prizeplacement - Deepwood_Prize - DWSPrizeOutside
+			!prizeplacement - CoF_Prize - CoFPrizeOutside
+			!prizeplacement - Fortress_Prize - FoWPrizeOutside
+			!prizeplacement - Droplets_Prize - ToDPrize
+			!prizeplacement - Crypt_Prize - RCPrizeOutside
+			!prizeplacement - Palace_Prize - PoWPrizeOutside
 		!endif
 	!endif
+	!ifdef - SHUFFLE_ELEMENTS_ON_DUNGEONS
+		Items.EarthElement;		DungeonMajor;	Prize
+		Items.FireElement;		DungeonMajor;	Prize
+		Items.WaterElement;		DungeonMajor;	Prize
+		Items.WindElement;		DungeonMajor;	Prize
+	!endif
+	!ifdef - SHUFFLE_ELEMENTS_ON_REGIONS
+		Items.EarthElement;		DungeonMajor;	PrizeOutside
+		Items.FireElement;		DungeonMajor;	PrizeOutside
+		Items.WaterElement;		DungeonMajor;	PrizeOutside
+		Items.WindElement;		DungeonMajor;	PrizeOutside
+	!endif
+	!ifdef - SHUFFLE_ELEMENTS_ON
+		Items.EarthElement;		Major;
+		Items.FireElement;		Major;
+		Items.WaterElement;		Major;
+		Items.WindElement;		Major;
+	!endif
+!endif
 !ifndef - START_GRIP_RING
 	Items.GripRing;	Major;
 !else
@@ -6925,19 +6962,19 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 	!define - DHCCHEST - Inaccessible
 !endif
 # Dungeon Item Shuffle Rules
-!define - DWS_OUTSIDE - 	:DWSSmallOutside	:DWSBigOutside	:DWSMapOutside	:DWSCompassOutside	:SmallOutside	:BigOutside	:MapOutside	:CompassOutside
-!define - COF_OUTSIDE - 	:CoFSmallOutside	:CoFBigOutside	:CoFMapOutside	:CoFCompassOutside	:SmallOutside	:BigOutside	:MapOutside	:CompassOutside
-!define - FOW_OUTSIDE - 	:FoWSmallOutside	:FoWBigOutside	:FoWMapOutside	:FoWCompassOutside	:SmallOutside	:BigOutside	:MapOutside	:CompassOutside
-!define - POW_OUTSIDE -	:PoWSmallOutside	:PoWBigOutside	:PoWMapOutside	:PoWCompassOutside	:SmallOutside	:BigOutside	:MapOutside	:CompassOutside
-!define - DHC_OUTSIDE -	:DHCSmallOutside	:DHCBigOutside	:DHCMapOutside	:DHCCompassOutside	:SmallOutside	:BigOutside	:MapOutside	:CompassOutside
-!define - RC_OUTSIDE -	:RCSmallOutside														:SmallOutside	:BigOutside	:MapOutside	:CompassOutside
-!define - DWS_INSIDE - `DWS_OUTSIDE`	:DWSSmall	:DWSBig	:DWSMap	:DWSCompass	:Small	:Big	:Map	:Compass
-!define - COF_INSIDE - `COF_OUTSIDE`	:CoFSmall	:CoFBig	:CoFMap	:CoFCompass	:Small	:Big	:Map	:Compass	:CoF
-!define - FOW_INSIDE - `FOW_OUTSIDE`	:FoWSmall	:FoWBig	:FoWMap	:FoWCompass	:Small	:Big	:Map	:Compass
-!define - TOD_INSIDE - 				:ToDSmall	:ToDBig	:ToDMap	:ToDCompass	:Small	:Big	:Map	:Compass
-!define - POW_INSIDE - `POW_OUTSIDE`	:PoWSmall	:PoWBig	:PoWMap	:PoWCompass	:Small	:Big	:Map	:Compass
-!define - DHC_INSIDE - `DHC_OUTSIDE`	:DHCSmall	:DHCBig	:DHCMap	:DHCCompass	:Small	:Big	:Map	:Compass
-!define - RC_INSIDE - `RC_OUTSIDE`		:RCSmall									:Small	:Big	:Map	:Compass
+!define - DWS_OUTSIDE - 	:DWSSmallOutside	:DWSBigOutside	:DWSMapOutside	:DWSCompassOutside	:DWSPrizeOutside	:SmallOutside	:BigOutside	:MapOutside	:CompassOutside	:PrizeOutside
+!define - COF_OUTSIDE - 	:CoFSmallOutside	:CoFBigOutside	:CoFMapOutside	:CoFCompassOutside	:CoFPrizeOutside	:SmallOutside	:BigOutside	:MapOutside	:CompassOutside	:PrizeOutside
+!define - FOW_OUTSIDE - 	:FoWSmallOutside	:FoWBigOutside	:FoWMapOutside	:FoWCompassOutside	:FoWPrizeOutside	:SmallOutside	:BigOutside	:MapOutside	:CompassOutside	:PrizeOutside
+!define - POW_OUTSIDE -	:PoWSmallOutside	:PoWBigOutside	:PoWMapOutside	:PoWCompassOutside	:PoWPrizeOutside	:SmallOutside	:BigOutside	:MapOutside	:CompassOutside	:PrizeOutside
+!define - DHC_OUTSIDE -	:DHCSmallOutside	:DHCBigOutside	:DHCMapOutside	:DHCCompassOutside	:DHCPrizeOutside	:SmallOutside	:BigOutside	:MapOutside	:CompassOutside	:PrizeOutside
+!define - RC_OUTSIDE -	:RCSmallOutside															:RCPrizeOutside	:SmallOutside	:BigOutside	:MapOutside	:CompassOutside	:PrizeOutside
+!define - DWS_INSIDE - `DWS_OUTSIDE`	:DWSSmall	:DWSBig	:DWSMap	:DWSCompass	:DWSPrize	:Small	:Big	:Map	:Compass	:Prize
+!define - COF_INSIDE - `COF_OUTSIDE`	:CoFSmall	:CoFBig	:CoFMap	:CoFCompass	:CoFPrize	:Small	:Big	:Map	:Compass	:Prize	:CoF
+!define - FOW_INSIDE - `FOW_OUTSIDE`	:FoWSmall	:FoWBig	:FoWMap	:FoWCompass	:FoWPrize	:Small	:Big	:Map	:Compass	:Prize
+!define - TOD_INSIDE - 				:ToDSmall	:ToDBig	:ToDMap	:ToDCompass	:ToDPrize	:Small	:Big	:Map	:Compass	:Prize
+!define - POW_INSIDE - `POW_OUTSIDE`	:PoWSmall	:PoWBig	:PoWMap	:PoWCompass	:PoWPrize	:Small	:Big	:Map	:Compass	:Prize
+!define - DHC_INSIDE - `DHC_OUTSIDE`	:DHCSmall	:DHCBig	:DHCMap	:DHCCompass	:DHCPrize	:Small	:Big	:Map	:Compass	:Prize
+!define - RC_INSIDE - `RC_OUTSIDE`		:RCSmall								:RCPrize	:Small	:Big	:Map	:Compass	:Prize
 !ifndef - NO_RED_FUSIONS
 	!define - POW_F_OUTSIDE - 
 !else
@@ -7011,36 +7048,36 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 	!define - DHC_INSIDE_COM - `DHC_INSIDE`
 !endif
 !ifdef - UNREQSUR
-	!define - DWS_PRIZE - :DWSSmall	:DWSBig	:DWSMap	:DWSCompass	:DWSSmallOutside	:DWSBigOutside	:DWSMapOutside	:DWSCompassOutside
-	!define - COF_PRIZE - :CoFSmall	:CoFBig	:CoFMap	:CoFCompass	:CoFSmallOutside	:CoFBigOutside	:CoFMapOutside	:CoFCompassOutside	:CoF	
-	!define - FOW_PRIZE - :FoWSmall	:FoWBig	:FoWMap	:FoWCompass	:FoWSmallOutside	:FoWBigOutside	:FoWMapOutside	:FoWCompassOutside
-	!define - TOD_PRIZE - :ToDSmall	:ToDBig	:ToDMap	:ToDCompass
-	!define - POW_PRIZE - :PoWSmall	:PoWBig	:PoWMap	:PoWCompass	:PoWSmallOutside	:PoWBigOutside	:PoWMapOutside	:PoWCompassOutside
-	!define - RC_PRIZE - 	:RCSmall									:RCSmallOutside
+	!define - DWS_PRIZE - :DWSSmall	:DWSBig	:DWSMap	:DWSCompass	:DWSPrize	:DWSSmallOutside	:DWSBigOutside	:DWSMapOutside	:DWSCompassOutside	:DWSPrizeOutside
+	!define - COF_PRIZE - :CoFSmall	:CoFBig	:CoFMap	:CoFCompass	:CoFPrize	:CoFSmallOutside	:CoFBigOutside	:CoFMapOutside	:CoFCompassOutside	:CoFPrizeOutside	:CoF
+	!define - FOW_PRIZE - :FoWSmall	:FoWBig	:FoWMap	:FoWCompass	:FoWPrize	:FoWSmallOutside	:FoWBigOutside	:FoWMapOutside	:FoWCompassOutside	:FoWPrizeOutside
+	!define - TOD_PRIZE - :ToDSmall	:ToDBig	:ToDMap	:ToDCompass	:ToDPrize
+	!define - POW_PRIZE - :PoWSmall	:PoWBig	:PoWMap	:PoWCompass	:PoWPrize	:PoWSmallOutside	:PoWBigOutside	:PoWMapOutside	:PoWCompassOutside	:PoWPrizeOutside
+	!define - RC_PRIZE - 	:RCSmall							:RCPrize	:RCSmallOutside															:RCPrizeOutside
 !else
 	!ifdef - BARRENSUR
-		!define - DWS_PRIZE - :DWSSmall	:DWSBig	:DWSMap	:DWSCompass	:DWSSmallOutside	:DWSBigOutside	:DWSMapOutside	:DWSCompassOutside
-		!define - COF_PRIZE - :CoFSmall	:CoFBig	:CoFMap	:CoFCompass	:CoFSmallOutside	:CoFBigOutside	:CoFMapOutside	:CoFCompassOutside	:CoF	
-		!define - FOW_PRIZE - :FoWSmall	:FoWBig	:FoWMap	:FoWCompass	:FoWSmallOutside	:FoWBigOutside	:FoWMapOutside	:FoWCompassOutside
-		!define - TOD_PRIZE - :ToDSmall	:ToDBig	:ToDMap	:ToDCompass
-		!define - POW_PRIZE - :PoWSmall	:PoWBig	:PoWMap	:PoWCompass	:PoWSmallOutside	:PoWBigOutside	:PoWMapOutside	:PoWCompassOutside
-		!define - RC_PRIZE - 	:RCSmall 								:RCSmallOutside
+		!define - DWS_PRIZE - :DWSSmall	:DWSBig	:DWSMap	:DWSCompass	:DWSPrize	:DWSSmallOutside	:DWSBigOutside	:DWSMapOutside	:DWSCompassOutside	:DWSPrizeOutside
+		!define - COF_PRIZE - :CoFSmall	:CoFBig	:CoFMap	:CoFCompass	:CoFPrize	:CoFSmallOutside	:CoFBigOutside	:CoFMapOutside	:CoFCompassOutside	:CoFPrizeOutside	:CoF
+		!define - FOW_PRIZE - :FoWSmall	:FoWBig	:FoWMap	:FoWCompass	:FoWPrize	:FoWSmallOutside	:FoWBigOutside	:FoWMapOutside	:FoWCompassOutside	:FoWPrizeOutside
+		!define - TOD_PRIZE - :ToDSmall	:ToDBig	:ToDMap	:ToDCompass	:ToDPrize
+		!define - POW_PRIZE - :PoWSmall	:PoWBig	:PoWMap	:PoWCompass	:PoWPrize	:PoWSmallOutside	:PoWBigOutside	:PoWMapOutside	:PoWCompassOutside	:PoWPrizeOutside
+		!define - RC_PRIZE - 	:RCSmall 							:RCPrize	:RCSmallOutside															:RCPrizeOutside
 	!else
 		!ifdef - UNREQ
-			!define - DWS_PRIZE - :DWSSmall	:DWSBig	:DWSMap	:DWSCompass
-			!define - COF_PRIZE - :CoFSmall	:CoFBig	:CoFMap	:CoFCompass	:CoF
-			!define - FOW_PRIZE - :FoWSmall	:FoWBig	:FoWMap	:FoWCompass
-			!define - TOD_PRIZE - :ToDSmall	:ToDBig	:ToDMap	:ToDCompass
-			!define - POW_PRIZE - :PoWSmall	:PoWBig	:PoWMap	:PoWCompass
-			!define - RC_PRIZE - 	:RCSmall
+			!define - DWS_PRIZE - :DWSSmall	:DWSBig	:DWSMap	:DWSCompass	:DWSPrize
+			!define - COF_PRIZE - :CoFSmall	:CoFBig	:CoFMap	:CoFCompass	:CoFPrize	:CoF
+			!define - FOW_PRIZE - :FoWSmall	:FoWBig	:FoWMap	:FoWCompass	:FoWPrize
+			!define - TOD_PRIZE - :ToDSmall	:ToDBig	:ToDMap	:ToDCompass	:ToDPrize
+			!define - POW_PRIZE - :PoWSmall	:PoWBig	:PoWMap	:PoWCompass	:PoWPrize
+			!define - RC_PRIZE - 	:RCSmall							:RCPrize
 		!else
 			!ifdef - BARREN
-				!define - DWS_PRIZE - :DWSSmall	:DWSBig	:DWSMap	:DWSCompass
-				!define - COF_PRIZE - :CoFSmall	:CoFBig	:CoFMap	:CoFCompass	:CoF
-				!define - FOW_PRIZE - :FoWSmall	:FoWBig	:FoWMap	:FoWCompass
-				!define - TOD_PRIZE - :ToDSmall	:ToDBig	:ToDMap	:ToDCompass
-				!define - POW_PRIZE - :PoWSmall	:PoWBig	:PoWMap	:PoWCompass
-				!define - RC_PRIZE - 	:RCSmall
+				!define - DWS_PRIZE - :DWSSmall	:DWSBig	:DWSMap	:DWSCompass	:DWSPrize
+				!define - COF_PRIZE - :CoFSmall	:CoFBig	:CoFMap	:CoFCompass	:CoFPrize	:CoF
+				!define - FOW_PRIZE - :FoWSmall	:FoWBig	:FoWMap	:FoWCompass	:FoWPrize
+				!define - TOD_PRIZE - :ToDSmall	:ToDBig	:ToDMap	:ToDCompass	:ToDPrize
+				!define - POW_PRIZE - :PoWSmall	:PoWBig	:PoWMap	:PoWCompass	:PoWPrize
+				!define - RC_PRIZE - 	:RCSmall							:RCPrize
 			!else
 				!define - DWS_PRIZE - `DWS_INSIDE`
 				!define - COF_PRIZE - `COF_INSIDE`
