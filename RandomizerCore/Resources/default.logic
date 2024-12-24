@@ -2309,7 +2309,7 @@
 			Items.LonLonKey;	Minor;
 		!endif
 	!else
-		Items.LonLonKey;		Minor;
+		Items.LonLonKey;		Major;
 	!endif
 !else
 	Dummy_RanchKey:NoSpoiler;	Unshuffled;	DumRanchKey1:Define:FirstByte, DumRanchKey2:Define:SecondByte;	;	Items.LonLonKey
@@ -2345,7 +2345,7 @@
 			Items.JabberNut;	Minor;
 		!endif
 	!else
-		Items.JabberNut;		Minor;
+		Items.JabberNut;		Major;
 	!endif
 !else
 	Dummy_JabberNut:NoSpoiler;	Unshuffled;	DumJabberNut1:Define:FirstByte, DumJabberNut2:Define:SecondByte;	;	Items.JabberNut
