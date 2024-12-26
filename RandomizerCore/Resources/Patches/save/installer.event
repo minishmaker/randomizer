@@ -28,7 +28,7 @@ killCounter:
 #incbin "asm/killCounter.dmp"
 WORD 0x203FB00 //base offset of kill counters
 POIN enemyKillTable
-WORD (0x203FB00+(0x24*2)+3)&(0xFFFFFFFC) //base offset of kill timestamps, 4 aligned
+WORD (0x203FB00+(0x25*2)+3)&(0xFFFFFFFC) //base offset of kill timestamps, 4 aligned
 //timestamp time killed for the bosses
 PUSH; ORG $7C6C0; jumpToHack(bossKills); POP
 ALIGN 4
