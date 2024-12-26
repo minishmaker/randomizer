@@ -7097,6 +7097,25 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 		!endif
 	!endif
 !endif
+# Unrequired or Barren Cave of Flames should also affect locations from Fusions that are locked behind it
+!ifdef - VANILLA_RED_FUSIONS
+	!define - COFREDFUSION - :CoF
+!else
+	!ifdef - COMBINED_RED_FUSIONS
+		!define - COFREDFUSION - :CoF
+	!else
+		!define - COFREDFUSION -
+	!endif
+!endif
+!ifdef - VANILLA_GREEN_FUSIONS
+	!define - COFGREENFUSION - :CoF
+!else
+	!ifdef - COMBINED_GREEN_FUSIONS
+		!define - COFGREENFUSION - :CoF
+	!else
+		!define - COFGREENFUSION -
+	!endif
+!endif
 
 # Junk fill for Barren DHC
 !ifndef - NODHC
@@ -7717,7 +7736,7 @@ CrenelBase_WaterCave_HP;			`HP`;				0x0FB32B;														(|(&Helpers.AccessTri
 CrenelBase_MinishVineHole_Chest;	Any;					0x35-0x00-0x00;													(|(&Helpers.AccessTrilby, Helpers.LowerBean, (|Helpers.BombWalls, Items.RocsCape), Helpers.CrenelDust), (&Helpers.CrenelWindCrest, (|Helpers.UpperBean, (&Items.GripRing, (|Helpers.BombWalls, Items.RocsCape))), Helpers.CrenelDust), Helpers.Hundo);															Items.Kinstone.BlueL
 CrenelBase_MinishCrack_Chest;		Any;					0x27-0x03-0x00;													(|(&Helpers.AccessTrilby, Helpers.LowerBean, (|Helpers.BombWalls, Items.RocsCape), Helpers.CrenelDust), (&Helpers.CrenelWindCrest, (|Helpers.UpperBean, (&Items.GripRing, (|Helpers.BombWalls, Items.RocsCape))), Helpers.CrenelDust), Helpers.Hundo);															Items.Kinstone.RedV
 
-Crenel_VineTop_GoldenTektite		`GREENFUSIONENEMY`;	golden2Item:Define:FirstByte, golden2Sub:Define:SecondByte; 			(|(&Helpers.MinesMinishKitchenFusion,Helpers.AccessCrenel, Helpers.HasSword), Helpers.Hundo);																						Items.Rupee100
+Crenel_VineTop_GoldenTektite		`COFGREENFUSION``GREENFUSIONENEMY`;	golden2Item:Define:FirstByte, golden2Sub:Define:SecondByte;	(|(&Helpers.MinesMinishKitchenFusion,Helpers.AccessCrenel, Helpers.HasSword), Helpers.Hundo);																						Items.Rupee100
 Crenel_BridgeCave_Chest;			Any;					0x26-0x07-0x00;													(|(&Helpers.AccessCrenel, Helpers.BombWalls), Helpers.Hundo);																													Items.Kinstone.BlueL
 Crenel_FairyCave_HP;				`HP`;				0x0FB0BB;														(|(&Helpers.AccessCrenel, Helpers.BombWalls), Helpers.Hundo);																													Items.PieceOfHeart
 Crenel_BelowCoF_GoldenTektite		`REDFUSIONENEMY`;		golden7Item:Define:FirstByte, golden7Sub:Define:SecondByte;			(|(&Helpers.Tingle2Fusion, Helpers.AccessCrenel, Helpers.HasSword, (|Items.GripRing, Items.BombBag, Helpers.CrenelMushroom, Helpers.CrenelWindCrest)), Helpers.Hundo);						Items.Rupee200
@@ -7729,15 +7748,15 @@ Crenel_Dojo_NPC:dojo;				`DOJOITEM`;			graybladeDojoItem:Define:FirstByte, grayb
 Crenel_GreatFairy_NPC;				Any;					0x00B828;														(|(&Helpers.AccessCrenel, Items.GripRing, Helpers.BombWalls, (|Items.BombBag, Helpers.HasBottle)), Helpers.Hundo);																	Items.BombBag
 Crenel_ClimbFusion_Chest;			`GREENFUSION`;		0x0FE10E;														(|(&Helpers.MeenieFusion, Helpers.AccessCrenel, Items.GripRing), Helpers.Hundo);																									Items.Kinstone.BlueL
 Crenel_DigCave_HP;				`HP`;				0x0F3BA7;														(|(&Helpers.AccessCrenel, Items.GripRing, Items.MoleMitts), Helpers.Hundo);																										Items.PieceOfHeart
-Crenel_BeanstalkFusion_HP;			`REDFUSIONHP`;		0x0F5D9B;														(|(&Helpers.MelariFusion, Helpers.AccessCrenel, Items.GripRing), Helpers.Hundo);																									Items.PieceOfHeart
-Crenel_BeanstalkFusion_Item1		`REDFUSIONRUPEE`;		0x0F5DAB;														(|(&Helpers.MelariFusion, Helpers.AccessCrenel, Items.GripRing), Helpers.Hundo);																									Items.Rupee20
-Crenel_BeanstalkFusion_Item2		`REDFUSIONRUPEE`;		0x0F5DBB;														(|(&Helpers.MelariFusion, Helpers.AccessCrenel, Items.GripRing), Helpers.Hundo);																									Items.Rupee20
-Crenel_BeanstalkFusion_Item3		`REDFUSIONRUPEE`;		0x0F5DCB;														(|(&Helpers.MelariFusion, Helpers.AccessCrenel, Items.GripRing), Helpers.Hundo);																									Items.Rupee20
-Crenel_BeanstalkFusion_Item4		`REDFUSIONRUPEE`;		0x0F5DDB;														(|(&Helpers.MelariFusion, Helpers.AccessCrenel, Items.GripRing), Helpers.Hundo);																									Items.Rupee20
-Crenel_BeanstalkFusion_Item5		`REDFUSIONRUPEE`;		0x0F5DEB;														(|(&Helpers.MelariFusion, Helpers.AccessCrenel, Items.GripRing), Helpers.Hundo);																									Items.Rupee20
-Crenel_BeanstalkFusion_Item6		`REDFUSIONRUPEE`;		0x0F5DFB;														(|(&Helpers.MelariFusion, Helpers.AccessCrenel, Items.GripRing), Helpers.Hundo);																									Items.Rupee20
-Crenel_BeanstalkFusion_Item7		`REDFUSIONRUPEE`;		0x0F5E0B;														(|(&Helpers.MelariFusion, Helpers.AccessCrenel, Items.GripRing), Helpers.Hundo);																									Items.Rupee20
-Crenel_BeanstalkFusion_Item8		`REDFUSIONRUPEE`;		0x0F5E1B;														(|(&Helpers.MelariFusion, Helpers.AccessCrenel, Items.GripRing), Helpers.Hundo);																									Items.Rupee20
+Crenel_BeanstalkFusion_HP			`COFREDFUSION`;	`REDFUSIONHP`;	0x0F5D9B;											(|(&Helpers.MelariFusion, Helpers.AccessCrenel, Items.GripRing), Helpers.Hundo);																									Items.PieceOfHeart
+Crenel_BeanstalkFusion_Item1		`COFREDFUSION``REDFUSIONRUPEE`;	0x0F5DAB;											(|(&Helpers.MelariFusion, Helpers.AccessCrenel, Items.GripRing), Helpers.Hundo);																									Items.Rupee20
+Crenel_BeanstalkFusion_Item2		`COFREDFUSION``REDFUSIONRUPEE`;	0x0F5DBB;											(|(&Helpers.MelariFusion, Helpers.AccessCrenel, Items.GripRing), Helpers.Hundo);																									Items.Rupee20
+Crenel_BeanstalkFusion_Item3		`COFREDFUSION``REDFUSIONRUPEE`;	0x0F5DCB;											(|(&Helpers.MelariFusion, Helpers.AccessCrenel, Items.GripRing), Helpers.Hundo);																									Items.Rupee20
+Crenel_BeanstalkFusion_Item4		`COFREDFUSION``REDFUSIONRUPEE`;	0x0F5DDB;											(|(&Helpers.MelariFusion, Helpers.AccessCrenel, Items.GripRing), Helpers.Hundo);																									Items.Rupee20
+Crenel_BeanstalkFusion_Item5		`COFREDFUSION``REDFUSIONRUPEE`;	0x0F5DEB;											(|(&Helpers.MelariFusion, Helpers.AccessCrenel, Items.GripRing), Helpers.Hundo);																									Items.Rupee20
+Crenel_BeanstalkFusion_Item6		`COFREDFUSION``REDFUSIONRUPEE`;	0x0F5DFB;											(|(&Helpers.MelariFusion, Helpers.AccessCrenel, Items.GripRing), Helpers.Hundo);																									Items.Rupee20
+Crenel_BeanstalkFusion_Item7		`COFREDFUSION``REDFUSIONRUPEE`;	0x0F5E0B;											(|(&Helpers.MelariFusion, Helpers.AccessCrenel, Items.GripRing), Helpers.Hundo);																									Items.Rupee20
+Crenel_BeanstalkFusion_Item8		`COFREDFUSION``REDFUSIONRUPEE`;	0x0F5E1B;											(|(&Helpers.MelariFusion, Helpers.AccessCrenel, Items.GripRing), Helpers.Hundo);																									Items.Rupee20
 Crenel_RainPathFusion_Chest;		`GREENFUSION`;		0x0FE066;														(|(&Helpers.MinesMinishBedroomFusion, Helpers.AccessCrenel, Items.GripRing), Helpers.Hundo);																						Items.Kinstone.BlueL
 
 AccessMelari;										Helper;				;													(|Helpers.CrenelWindCrest, (&Helpers.AccessCrenel, (|(&Items.PacciCane, (|Items.GripRing, Helpers.CrenelMushroom)), (&Items.GripRing, (|Items.RocsCape, Helpers.LightArrowBreak, Items.GustJar), Helpers.CrenelSwitch))))
