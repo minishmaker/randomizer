@@ -42,12 +42,13 @@
 #   Filler - Used to specify that this item should be used to fill any unfilled locations after all other items are placed. Items with the Filler type will be randomly chosen for each location left when randomization ends, and items can be chosen multiple times. Increase the number of a specific item in the Filler pool to increase the odds of that item being used.
 #
 # Items are built up in two different ways:
-#   In the item pool, they are - Items.(type).[subtype]:[amount]; (item pool type); [dungeon id]
-#    On unshuffled locations, they are - Items.(type).[subtype]
+#   In the item pool, they are - Items.(type).[subtype]:[amount].[multiplier]; (item pool type); [dungeon id]
+#   On unshuffled locations, they are - Items.(type).[subtype]
+# In the former case, if both an amount and a multiplier are given, the total number of added items is amount/multiplier rounded up.
 #
 # A location is built up as (name):[dungeon id 1]:[dungeon id 2]:...:[dungeon id N]; (location type); (address); [logic]; [item] (Only applies to Unshuffled locations)
 #
-# Give a location the dungeon_id: `NoSpoiler` to hide it from the spoiler log
+# Give a location the dungeon id: `NoSpoiler` to hide it from the spoiler log
 #
 # addresses can be written in multiple ways.
 # xx-xx-xx needs hexadecimal numbers to make an "area - room - chest id" combination
@@ -7957,7 +7958,7 @@ CoF_1F_Item2					`COF_INSIDE` 		`DUNGEONRUPEE`;	0x0DFAFB;																(|(&`EN
 CoF_1F_Item3					`COF_INSIDE` 		`DUNGEONRUPEE`;	0x0DFB0B;																(|(&`ENTERCOF`, Helpers.CoFRupees), Helpers.Hundo);																																									Items.Rupee1
 CoF_1F_Item4					`COF_INSIDE` 		`DUNGEONRUPEE`;	0x0DFB1B;																(|(&`ENTERCOF`, Helpers.CoFRupees), Helpers.Hundo);																																									Items.Rupee1
 CoF_1F_Item5					`COF_INSIDE`		`DUNGEONRUPEE`;	0x0DFB2B;																(|(&`ENTERCOF`, Helpers.CoFRupees), Helpers.Hundo);																																									Items.Rupee1
-			
+
 CoF_B1_HazyRoom_BigChest		`COF_INSIDE_COM`;	Dungeon;			0x50-0x09-0x01;															(|(&`ENTERCOF`, (|Helpers.BombWalls, Helpers.Bobombs), Helpers.CoFSpikeBeetle, Helpers.CoFHelmasaur), Helpers.Hundo);																										Items.Compass.0x19
 CoF_B1_HazyRoom_SmallChest		`COF_INSIDE`;		Dungeon;			0x50-0x09-0x00;															(|(&`ENTERCOF`, (|Helpers.BombWalls, Helpers.Bobombs), Helpers.CoFSpikeBeetle, Helpers.CoFHelmasaur), Helpers.Hundo);																										Items.Kinstone.BlueL
 CoF_B1_Rollobite_Chest			`COF_INSIDE`;		Dungeon;			0x50-0x08-0x01;															(|(&`ENTERCOF`, (|Helpers.BombWalls, Helpers.Bobombs), Helpers.CoFSpikeBeetle, Helpers.CoFHelmasaur, (|Helpers.HasSword, Items.GustJar, Items.PacciCane, Helpers.HasBoomerang, Items.BombBag)), Helpers.Hundo);						Items.Rupee50
@@ -7994,10 +7995,10 @@ Fortress_Left_2F_Item7					`FOW_INSIDE`		`FORTRESSRUPEE`;		0x0F3F97;												
 Fortress_Left_3F_SwitchChest			`FOW_INSIDE`;		`FORTRESSCHEST`;		0x18-0x02-0x00;														(|(&`ENTERFOW`, Helpers.FoWEyeSwitch, Helpers.FoWStalfosFight, Helpers.FoWDigSwitch), Helpers.Hundo);																					Items.Kinstone.RedV
 Fortress_Left_3F_Eyegore_BigChest		`FOW_INSIDE_MAP`;	`FORTRESSCHEST`;		0x58-0x00-0x00;														(|(&`ENTERFOW`, Helpers.FoWEyeSwitch, Helpers.FoWStalfosFight, Helpers.FoWCloneSwitch), Helpers.Hundo);																					Items.DungeonMap.0x1A
 Fortress_Left_3F_ItemDrop				`FOW_INSIDE_SK`;	`FORTRESSCHEST`;		fowLeftItem:Define:FirstByte,fowLeftSub:Define:SecondByte;					(|(&`ENTERFOW`, Helpers.FoWLeftDrop), Helpers.Hundo);																																Items.SmallKey.0x1A
-					
+
 Fortress_Middle_2F_BigChest			`FOW_INSIDE_COM`;	`FORTRESSCHEST`;		0x58-0x19-0x00;														(|(&`ENTERFOW`, (|Helpers.FoWEyegores, (&Helpers.FoWBlueWarp, Helpers.FoWDarknut))), Helpers.Hundo);																					Items.Compass.0x1A
 Fortress_Middle_2F_StatueChest			`FOW_INSIDE`;		`FORTRESSCHEST`;		0x18-0x01-0x01;														(|(&`ENTERFOW`, Items.MoleMitts), Helpers.Hundo);																																	Items.Kinstone.BlueL
-					
+
 Fortress_Right_2F_LeftChest			`FOW_INSIDE`;		`FORTRESSCHEST`;		0x58-0x1D-0x00;														(|`ENTERFOW`, Helpers.Hundo);																																					Items.Kinstone.BlueL
 Fortress_Right_2F_RightChest			`FOW_INSIDE`;		`FORTRESSCHEST`;		0x58-0x1D-0x01;														(|`ENTERFOW`, Helpers.Hundo);																																					Items.Kinstone.BlueS
 Fortress_Right_2F_DigChest				`FOW_INSIDE`;		`FORTRESSCHEST`;		0x18-0x01-0x02;														(|(&`ENTERFOW`, Items.MoleMitts), Helpers.Hundo);																																	Items.Kinstone.RedE
@@ -8013,7 +8014,7 @@ Fortress_BackRight_Minish_ItemDrop		`FOW_INSIDE_SK`;	`FORTRESSCHEST`;		0x0F424F;
 Fortress_BackRight_DigRoom_TopPot		`FOW_INSIDE`;		`FORTRESSPOT`;		0x0F3FC7:FirstByte, 0x0F3FC9:SecondByte;									(|(&`ENTERFOW`, (|(&Helpers.FoWBlueWarp, Helpers.FoWDarknut), Helpers.FoWEyegores), Helpers.FoWRightDoor, Helpers.FoWMiddleDoor, Items.MoleMitts), Helpers.Hundo);							Items.Rupee50
 Fortress_BackRight_DigRoom_BottomPot	`FOW_INSIDE`;		`FORTRESSPOT`;		0x0F3FD7:FirstByte, 0x0F3FD9:SecondByte;									(|(&`ENTERFOW`, (|(&Helpers.FoWBlueWarp, Helpers.FoWDarknut), Helpers.FoWEyegores), Helpers.FoWRightDoor, Helpers.FoWMiddleDoor, Items.MoleMitts), (&`ENTERFOW`, Helpers.FoWPot), Helpers.Hundo);	Items.Shells
 Fortress_BackRight_BigChest			`FOW_INSIDE_BK`;	`FORTRESSCHEST`;		0x58-0x1B-0x00;														(|(&`ENTERFOW`, (|(&Helpers.FoWBlueWarp, Helpers.FoWDarknut), Helpers.FoWEyegores), Helpers.FoWRightDoor, Helpers.FoWMiddleDoor, Items.MoleMitts, Helpers.FoWLastDoor), Helpers.Hundo);			Items.BigKey.0x1A
-	
+
 CompleteFortress;										Helper;				;																	`ENTERFOW`, Items.MoleMitts, Helpers.FoWBossDoor, Helpers.HasMazaalDamage, Helpers.HasBow;
 
 Fortress_BossItem						`FOW_INSIDE`;		`FORTRESSHP`;			mazaalContainerItem:Define:FirstByte, mazaalContainerSub:Define:SecondByte;	(|Helpers.CompleteFortress, Helpers.Hundo);																																		Items.HeartContainer
