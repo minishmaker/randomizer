@@ -4809,11 +4809,10 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 			!endif
 			!ifndef - NO_GOLD_FUSIONS
 				!define - REDETOTAL - 8
-				!define - REDETOTAL1 - 7
 			!else
 				!define - REDETOTAL - 7
-				!define - REDETOTAL1 - 6
 			!endif
+			!define - REDETOTAL1 - `REDETOTAL`, Helpers.Start
 			!ifdef - ITEM_POOL_PLENTIFUL
 				Items.Kinstone.RedW:2;	Minor;
 				Items.Kinstone.RedV:2;	Minor;
@@ -4848,55 +4847,34 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 				!ifdef - GORON_CAVE
 					!ifdef - FALLS_ACCESS
 						!define - REDWTOTAL - 24
-						!define - REDWTOTAL1 - 23
-						!define - REDWTOTAL2 - 22
-						!define - REDWTOTAL3 - 20
 					!else
 						!define - REDWTOTAL - 23
-						!define - REDWTOTAL1 - 22
-						!define - REDWTOTAL2 - 21
-						!define - REDWTOTAL3 - 19
 					!endif
 				!else
 					!ifdef - FALLS_ACCESS
 						!define - REDWTOTAL - 23
-						!define - REDWTOTAL1 - 22
-						!define - REDWTOTAL2 - 21
-						!define - REDWTOTAL3 - 19
 					!else
 						!define - REDWTOTAL - 22
-						!define - REDWTOTAL1 - 21
-						!define - REDWTOTAL2 - 20
-						!define - REDWTOTAL3 - 18
 					!endif
 				!endif
 			!else
 				!ifdef - GORON_CAVE
 					!ifdef - FALLS_ACCESS
 						!define - REDWTOTAL - 23
-						!define - REDWTOTAL1 - 22
-						!define - REDWTOTAL2 - 21
-						!define - REDWTOTAL3 - 19
 					!else
 						!define - REDWTOTAL - 22
-						!define - REDWTOTAL1 - 21
-						!define - REDWTOTAL2 - 20
-						!define - REDWTOTAL3 - 18
 					!endif
 				!else
 					!ifdef - FALLS_ACCESS
 						!define - REDWTOTAL - 22
-						!define - REDWTOTAL1 - 21
-						!define - REDWTOTAL2 - 20
-						!define - REDWTOTAL3 - 18
 					!else
 						!define - REDWTOTAL - 21
-						!define - REDWTOTAL1 - 20
-						!define - REDWTOTAL2 - 19
-						!define - REDWTOTAL3 - 17
 					!endif
 				!endif
 			!endif
+			!define - REDWTOTAL1 - `REDWTOTAL`, Helpers.Start
+			!define - REDWTOTAL2 - `REDWTOTAL`, Helpers.Start:2
+			!define - REDWTOTAL4 - `REDWTOTAL`, Helpers.Start:4
 			!ifdef - ITEM_POOL_PLENTIFUL
 				!ifdef - REDWMAX
 					Items.Kinstone.RedW:2;	Minor
@@ -4915,7 +4893,7 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 			CanFuseRedV;			Helper;;	(+`REDWTOTAL`, Items.Kinstone.RedW:`REDWMULTIPLIER`)
 			CanFuseRedMinish0;	Helper;;	(+`REDWTOTAL2`, Items.Kinstone.RedW:`REDWMULTIPLIER`)
 			CanFuseRedE;			Helper;; (+`REDWTOTAL`, Items.Kinstone.RedW:`REDWMULTIPLIER`)
-			CanFuseRedDin;		Helper;; (+`REDWTOTAL3`, Items.Kinstone.RedW:`REDWMULTIPLIER`)
+			CanFuseRedDin;		Helper;; (+`REDWTOTAL4`, Items.Kinstone.RedW:`REDWMULTIPLIER`)
 			CanFuseRedMinish;		Helper;; (+`REDWTOTAL1`, Items.Kinstone.RedW:`REDWMULTIPLIER`)
 		!endif
 		BelariFusion;				Helper;;	Helpers.CanFuseRedW, Helpers.AccessBelari																							#RuinsEndChest			0A
@@ -5233,137 +5211,74 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 				!ifdef - MINISH_TREE
 					!ifdef - UWT_ACCESS
 						!define - GREENCTOTAL - 17
-						!define - GREENCTOTAL1 - 16
-						!define - GREENCTOTAL2 - 15
-						!define - GREENCTOTAL3 - 14
-						!define - GREENCTOTAL4 - 13
-						!define - GREENCTOTAL5 - 12
 					!else
 						!define - GREENCTOTAL - 16
-						!define - GREENCTOTAL1 - 15
-						!define - GREENCTOTAL2 - 14
-						!define - GREENCTOTAL3 - 13
-						!define - GREENCTOTAL4 - 12
-						!define - GREENCTOTAL5 - 11
 					!endif
 				!else
 					!ifdef - UWT_ACCESS
 						!define - GREENCTOTAL - 16
-						!define - GREENCTOTAL1 - 15
-						!define - GREENCTOTAL2 - 14
-						!define - GREENCTOTAL3 - 13
-						!define - GREENCTOTAL4 - 12
-						!define - GREENCTOTAL5 - 11
 					!else
 						!define - GREENCTOTAL - 15
-						!define - GREENCTOTAL1 - 14
-						!define - GREENCTOTAL2 - 13
-						!define - GREENCTOTAL3 - 12
-						!define - GREENCTOTAL4 - 11
-						!define - GREENCTOTAL5 - 10
 					!endif
 				!endif
 			!else
 				!ifdef - MINISH_TREE
 					!ifdef - UWT_ACCESS
 						!define - GREENCTOTAL - 15
-						!define - GREENCTOTAL1 - 14
-						!define - GREENCTOTAL2 - 13
-						!define - GREENCTOTAL3 - 12
-						!define - GREENCTOTAL4 - 11
-						!define - GREENCTOTAL5 - 10
 					!else
 						!define - GREENCTOTAL - 14
-						!define - GREENCTOTAL1 - 13
-						!define - GREENCTOTAL2 - 12
-						!define - GREENCTOTAL3 - 11
-						!define - GREENCTOTAL4 - 10
-						!define - GREENCTOTAL5 - 9
 					!endif
 				!else
 					!ifdef - UWT_ACCESS
 						!define - GREENCTOTAL - 14
-						!define - GREENCTOTAL1 - 13
-						!define - GREENCTOTAL2 - 12
-						!define - GREENCTOTAL3 - 11
-						!define - GREENCTOTAL4 - 10
-						!define - GREENCTOTAL5 - 9
 					!else
 						!define - GREENCTOTAL - 13
-						!define - GREENCTOTAL1 - 12
-						!define - GREENCTOTAL2 - 11
-						!define - GREENCTOTAL3 - 10
-						!define - GREENCTOTAL4 - 9
-						!define - GREENCTOTAL5 - 8
 					!endif
 				!endif
 			!endif
+			!define - GREENCTOTAL1 - `GREENCTOTAL`, Helpers.Start
+			!define - GREENCTOTAL2 - `GREENCTOTAL`, Helpers.Start:2
+			!define - GREENCTOTAL3 - `GREENCTOTAL`, Helpers.Start:3
+			!define - GREENCTOTAL4 - `GREENCTOTAL`, Helpers.Start:4
+			!define - GREENCTOTAL5 - `GREENCTOTAL`, Helpers.Start:5
 			!ifdef - TRIBE_ACCESS
 				!ifdef - MINISH_TREE
 					!define - GREENPTOTAL - 16
-					!define - GREENPTOTAL1 - 15
-					!define - GREENPTOTAL2 - 14
-					!define - GREENPTOTAL3 - 13
-					!define - GREENPTOTAL4 - 12
 				!else
 					!define - GREENPTOTAL - 15
-					!define - GREENPTOTAL1 - 14
-					!define - GREENPTOTAL2 - 13
-					!define - GREENPTOTAL3 - 12
-					!define - GREENPTOTAL4 - 11
 				!endif
 			!else
 				!ifdef - MINISH_TREE
 					!define - GREENPTOTAL - 15
-					!define - GREENPTOTAL1 - 14
-					!define - GREENPTOTAL2 - 13
-					!define - GREENPTOTAL3 - 12
-					!define - GREENPTOTAL4 - 11
 				!else
 					!define - GREENPTOTAL - 14
-					!define - GREENPTOTAL1 - 13
-					!define - GREENPTOTAL2 - 12
-					!define - GREENPTOTAL3 - 11
-					!define - GREENPTOTAL4 - 10
 				!endif
 			!endif
+			!define - GREENPTOTAL1 - `GREENPTOTAL`, Helpers.Start
+			!define - GREENPTOTAL2 - `GREENPTOTAL`, Helpers.Start:2
+			!define - GREENPTOTAL3 - `GREENPTOTAL`, Helpers.Start:3
+			!define - GREENPTOTAL4 - `GREENPTOTAL`, Helpers.Start:4
 			!ifdef - UWT_ACCESS
 				!define - GREENGTOTAL - 16
-				!define - GREENGTOTAL1 - 15
-				!define - GREENGTOTAL2 - 14
-				!define - GREENGTOTAL3 - 13
-				!define - GREENGTOTAL4 - 12
 			!else
 				!ifdef - TRIBE_ACCESS
 					!ifdef - FALLS_ACCESS
 						!define - GREENGTOTAL - 15
-						!define - GREENGTOTAL1 - 14
-						!define - GREENGTOTAL2 - 13
-						!define - GREENGTOTAL3 - 12
-						!define - GREENGTOTAL4 - 11
 					!else
 						!define - GREENGTOTAL - 14
-						!define - GREENGTOTAL1 - 13
-						!define - GREENGTOTAL2 - 12
-						!define - GREENGTOTAL3 - 11
-						!define - GREENGTOTAL4 - 10
 					!endif
 				!else
 					!ifdef - FALLS_ACCESS
 						!define - GREENGTOTAL - 13
-						!define - GREENGTOTAL1 - 12
-						!define - GREENGTOTAL2 - 11
-						!define - GREENGTOTAL3 - 10
-						!define - GREENGTOTAL4 - 9
 					!else
 						!define - GREENGTOTAL - 12
-						!define - GREENGTOTAL1 - 11
-						!define - GREENGTOTAL2 - 10
-						!define - GREENGTOTAL3 - 9
-						!define - GREENGTOTAL4 - 8
 					!endif
 				!endif
 			!endif
+			!define - GREENGTOTAL1 - `GREENGTOTAL`, Helpers.Start
+			!define - GREENGTOTAL2 - `GREENGTOTAL`, Helpers.Start:2
+			!define - GREENGTOTAL3 - `GREENGTOTAL`, Helpers.Start:3
+			!define - GREENGTOTAL4 - `GREENGTOTAL`, Helpers.Start:4
 			!ifdef - ITEM_POOL_PLENTIFUL
 				Items.Kinstone.GreenC:3;	Minor;
 				Items.Kinstone.GreenG:3;	Minor;
@@ -5431,74 +5346,14 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 				!ifdef - RIGHT_GRAVE
 					!ifdef - MINISH_TREE
 						!define - GREENCTOTAL - 49
-						!define - GREENCTOTAL1 - 48
-						!define - GREENCTOTAL2 - 47
-						!define - GREENCTOTAL3 - 46
-						!define - GREENCTOTAL4 - 45
-						!define - GREENCTOTAL5 - 44
-						!define - GREENCTOTAL6 - 43
-						!define - GREENCTOTAL7 - 42
-						!define - GREENCTOTAL8 - 41
-						!define - GREENCTOTAL9 - 40
-						!define - GREENCTOTALA - 39
-						!define - GREENCTOTALB - 38
-						!define - GREENCTOTALC - 37
-						!define - GREENCTOTALD - 36
-						!define - GREENCTOTALE - 35
-						!define - GREENCTOTALF - 34
 					!else
 						!define - GREENCTOTAL - 47
-						!define - GREENCTOTAL1 - 46
-						!define - GREENCTOTAL2 - 45
-						!define - GREENCTOTAL3 - 44
-						!define - GREENCTOTAL4 - 43
-						!define - GREENCTOTAL5 - 42
-						!define - GREENCTOTAL6 - 41
-						!define - GREENCTOTAL7 - 40
-						!define - GREENCTOTAL8 - 39
-						!define - GREENCTOTAL9 - 38
-						!define - GREENCTOTALA - 37
-						!define - GREENCTOTALB - 36
-						!define - GREENCTOTALC - 35
-						!define - GREENCTOTALD - 34
-						!define - GREENCTOTALE - 33
-						!define - GREENCTOTALF - 32
 					!endif
 				!else
 					!ifdef - MINISH_TREE
 						!define - GREENCTOTAL - 47
-						!define - GREENCTOTAL1 - 46
-						!define - GREENCTOTAL2 - 45
-						!define - GREENCTOTAL3 - 44
-						!define - GREENCTOTAL4 - 43
-						!define - GREENCTOTAL5 - 42
-						!define - GREENCTOTAL6 - 41
-						!define - GREENCTOTAL7 - 40
-						!define - GREENCTOTAL8 - 39
-						!define - GREENCTOTAL9 - 38
-						!define - GREENCTOTALA - 37
-						!define - GREENCTOTALB - 36
-						!define - GREENCTOTALC - 35
-						!define - GREENCTOTALD - 34
-						!define - GREENCTOTALE - 33
-						!define - GREENCTOTALF - 32
 					!else
 						!define - GREENCTOTAL - 45
-						!define - GREENCTOTAL1 - 44
-						!define - GREENCTOTAL2 - 43
-						!define - GREENCTOTAL3 - 42
-						!define - GREENCTOTAL4 - 41
-						!define - GREENCTOTAL5 - 40
-						!define - GREENCTOTAL6 - 39
-						!define - GREENCTOTAL7 - 38
-						!define - GREENCTOTAL8 - 37
-						!define - GREENCTOTAL9 - 36
-						!define - GREENCTOTALA - 35
-						!define - GREENCTOTALB - 34
-						!define - GREENCTOTALC - 33
-						!define - GREENCTOTALD - 32
-						!define - GREENCTOTALE - 31
-						!define - GREENCTOTALF - 30
 					!endif
 				!endif
 			!else
@@ -5507,148 +5362,28 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 						!ifdef - MINISH_TREE
 							!ifdef - FALLS_ACCESS
 								!define - GREENCTOTAL - 47
-								!define - GREENCTOTAL1 - 46
-								!define - GREENCTOTAL2 - 45
-								!define - GREENCTOTAL3 - 44
-								!define - GREENCTOTAL4 - 43
-								!define - GREENCTOTAL5 - 42
-								!define - GREENCTOTAL6 - 41
-								!define - GREENCTOTAL7 - 40
-								!define - GREENCTOTAL8 - 39
-								!define - GREENCTOTAL9 - 38
-								!define - GREENCTOTALA - 37
-								!define - GREENCTOTALB - 36
-								!define - GREENCTOTALC - 35
-								!define - GREENCTOTALD - 34
-								!define - GREENCTOTALE - 33
-								!define - GREENCTOTALF - 32
 							!else
 								!define - GREENCTOTAL - 46
-								!define - GREENCTOTAL1 - 45
-								!define - GREENCTOTAL2 - 44
-								!define - GREENCTOTAL3 - 43
-								!define - GREENCTOTAL4 - 42
-								!define - GREENCTOTAL5 - 41
-								!define - GREENCTOTAL6 - 40
-								!define - GREENCTOTAL7 - 39
-								!define - GREENCTOTAL8 - 38
-								!define - GREENCTOTAL9 - 37
-								!define - GREENCTOTALA - 36
-								!define - GREENCTOTALB - 35
-								!define - GREENCTOTALC - 34
-								!define - GREENCTOTALD - 33
-								!define - GREENCTOTALE - 32
-								!define - GREENCTOTALF - 31
 							!endif
 						!else
 							!ifdef - FALLS_ACCESS
 								!define - GREENCTOTAL - 45
-								!define - GREENCTOTAL1 - 44
-								!define - GREENCTOTAL2 - 43
-								!define - GREENCTOTAL3 - 42
-								!define - GREENCTOTAL4 - 41
-								!define - GREENCTOTAL5 - 40
-								!define - GREENCTOTAL6 - 39
-								!define - GREENCTOTAL7 - 38
-								!define - GREENCTOTAL8 - 37
-								!define - GREENCTOTAL9 - 36
-								!define - GREENCTOTALA - 35
-								!define - GREENCTOTALB - 34
-								!define - GREENCTOTALC - 33
-								!define - GREENCTOTALD - 32
-								!define - GREENCTOTALE - 31
-								!define - GREENCTOTALF - 30
 							!else
 								!define - GREENCTOTAL - 44
-								!define - GREENCTOTAL1 - 43
-								!define - GREENCTOTAL2 - 42
-								!define - GREENCTOTAL3 - 41
-								!define - GREENCTOTAL4 - 40
-								!define - GREENCTOTAL5 - 39
-								!define - GREENCTOTAL6 - 38
-								!define - GREENCTOTAL7 - 37
-								!define - GREENCTOTAL8 - 36
-								!define - GREENCTOTAL9 - 35
-								!define - GREENCTOTALA - 34
-								!define - GREENCTOTALB - 33
-								!define - GREENCTOTALC - 32
-								!define - GREENCTOTALD - 31
-								!define - GREENCTOTALE - 30
-								!define - GREENCTOTALF - 29
 							!endif
 						!endif
 					!else
 						!ifdef - MINISH_TREE
 							!ifdef - FALLS_ACCESS
 								!define - GREENCTOTAL - 45
-								!define - GREENCTOTAL1 - 44
-								!define - GREENCTOTAL2 - 43
-								!define - GREENCTOTAL3 - 42
-								!define - GREENCTOTAL4 - 41
-								!define - GREENCTOTAL5 - 40
-								!define - GREENCTOTAL6 - 39
-								!define - GREENCTOTAL7 - 38
-								!define - GREENCTOTAL8 - 37
-								!define - GREENCTOTAL9 - 36
-								!define - GREENCTOTALA - 35
-								!define - GREENCTOTALB - 34
-								!define - GREENCTOTALC - 33
-								!define - GREENCTOTALD - 32
-								!define - GREENCTOTALE - 31
-								!define - GREENCTOTALF - 30
 							!else
 								!define - GREENCTOTAL - 44
-								!define - GREENCTOTAL1 - 43
-								!define - GREENCTOTAL2 - 42
-								!define - GREENCTOTAL3 - 41
-								!define - GREENCTOTAL4 - 40
-								!define - GREENCTOTAL5 - 39
-								!define - GREENCTOTAL6 - 38
-								!define - GREENCTOTAL7 - 37
-								!define - GREENCTOTAL8 - 36
-								!define - GREENCTOTAL9 - 35
-								!define - GREENCTOTALA - 34
-								!define - GREENCTOTALB - 33
-								!define - GREENCTOTALC - 32
-								!define - GREENCTOTALD - 31
-								!define - GREENCTOTALE - 30
-								!define - GREENCTOTALF - 29
 							!endif
 						!else
 							!ifdef - FALLS_ACCESS
 								!define - GREENCTOTAL - 43
-								!define - GREENCTOTAL1 - 42
-								!define - GREENCTOTAL2 - 41
-								!define - GREENCTOTAL3 - 40
-								!define - GREENCTOTAL4 - 39
-								!define - GREENCTOTAL5 - 38
-								!define - GREENCTOTAL6 - 37
-								!define - GREENCTOTAL7 - 36
-								!define - GREENCTOTAL8 - 35
-								!define - GREENCTOTAL9 - 34
-								!define - GREENCTOTALA - 33
-								!define - GREENCTOTALB - 32
-								!define - GREENCTOTALC - 31
-								!define - GREENCTOTALD - 30
-								!define - GREENCTOTALE - 29
-								!define - GREENCTOTALF - 28
 							!else
 								!define - GREENCTOTAL - 42
-								!define - GREENCTOTAL1 - 41
-								!define - GREENCTOTAL2 - 40
-								!define - GREENCTOTAL3 - 39
-								!define - GREENCTOTAL4 - 38
-								!define - GREENCTOTAL5 - 37
-								!define - GREENCTOTAL6 - 36
-								!define - GREENCTOTAL7 - 35
-								!define - GREENCTOTAL8 - 34
-								!define - GREENCTOTAL9 - 33
-								!define - GREENCTOTALA - 32
-								!define - GREENCTOTALB - 31
-								!define - GREENCTOTALC - 30
-								!define - GREENCTOTALD - 29
-								!define - GREENCTOTALE - 28
-								!define - GREENCTOTALF - 27
 							!endif
 						!endif
 					!endif
@@ -5657,153 +5392,48 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 						!ifdef - MINISH_TREE
 							!ifdef - FALLS_ACCESS
 								!define - GREENCTOTAL - 44
-								!define - GREENCTOTAL1 - 43
-								!define - GREENCTOTAL2 - 42
-								!define - GREENCTOTAL3 - 41
-								!define - GREENCTOTAL4 - 40
-								!define - GREENCTOTAL5 - 39
-								!define - GREENCTOTAL6 - 38
-								!define - GREENCTOTAL7 - 37
-								!define - GREENCTOTAL8 - 36
-								!define - GREENCTOTAL9 - 35
-								!define - GREENCTOTALA - 34
-								!define - GREENCTOTALB - 33
-								!define - GREENCTOTALC - 32
-								!define - GREENCTOTALD - 31
-								!define - GREENCTOTALE - 30
-								!define - GREENCTOTALF - 29
 							!else
 								!define - GREENCTOTAL - 43
-								!define - GREENCTOTAL1 - 42
-								!define - GREENCTOTAL2 - 41
-								!define - GREENCTOTAL3 - 40
-								!define - GREENCTOTAL4 - 39
-								!define - GREENCTOTAL5 - 38
-								!define - GREENCTOTAL6 - 37
-								!define - GREENCTOTAL7 - 36
-								!define - GREENCTOTAL8 - 35
-								!define - GREENCTOTAL9 - 34
-								!define - GREENCTOTALA - 33
-								!define - GREENCTOTALB - 32
-								!define - GREENCTOTALC - 31
-								!define - GREENCTOTALD - 30
-								!define - GREENCTOTALE - 29
-								!define - GREENCTOTALF - 28
 							!endif
 						!else
 							!ifdef - FALLS_ACCESS
 								!define - GREENCTOTAL - 42
-								!define - GREENCTOTAL1 - 41
-								!define - GREENCTOTAL2 - 40
-								!define - GREENCTOTAL3 - 39
-								!define - GREENCTOTAL4 - 38
-								!define - GREENCTOTAL5 - 37
-								!define - GREENCTOTAL6 - 36
-								!define - GREENCTOTAL7 - 35
-								!define - GREENCTOTAL8 - 34
-								!define - GREENCTOTAL9 - 33
-								!define - GREENCTOTALA - 32
-								!define - GREENCTOTALB - 31
-								!define - GREENCTOTALC - 30
-								!define - GREENCTOTALD - 29
-								!define - GREENCTOTALE - 28
-								!define - GREENCTOTALF - 27
 							!else
 								!define - GREENCTOTAL - 41
-								!define - GREENCTOTAL1 - 40
-								!define - GREENCTOTAL2 - 39
-								!define - GREENCTOTAL3 - 38
-								!define - GREENCTOTAL4 - 37
-								!define - GREENCTOTAL5 - 36
-								!define - GREENCTOTAL6 - 35
-								!define - GREENCTOTAL7 - 34
-								!define - GREENCTOTAL8 - 33
-								!define - GREENCTOTAL9 - 32
-								!define - GREENCTOTALA - 31
-								!define - GREENCTOTALB - 30
-								!define - GREENCTOTALC - 29
-								!define - GREENCTOTALD - 28
-								!define - GREENCTOTALE - 27
-								!define - GREENCTOTALF - 26
 							!endif
 						!endif
 					!else
 						!ifdef - MINISH_TREE
 							!ifdef - FALLS_ACCESS
 								!define - GREENCTOTAL - 42
-								!define - GREENCTOTAL1 - 41
-								!define - GREENCTOTAL2 - 40
-								!define - GREENCTOTAL3 - 39
-								!define - GREENCTOTAL4 - 38
-								!define - GREENCTOTAL5 - 37
-								!define - GREENCTOTAL6 - 36
-								!define - GREENCTOTAL7 - 35
-								!define - GREENCTOTAL8 - 34
-								!define - GREENCTOTAL9 - 33
-								!define - GREENCTOTALA - 32
-								!define - GREENCTOTALB - 31
-								!define - GREENCTOTALC - 30
-								!define - GREENCTOTALD - 29
-								!define - GREENCTOTALE - 28
-								!define - GREENCTOTALF - 27
 							!else
 								!define - GREENCTOTAL - 41
-								!define - GREENCTOTAL1 - 40
-								!define - GREENCTOTAL2 - 39
-								!define - GREENCTOTAL3 - 38
-								!define - GREENCTOTAL4 - 37
-								!define - GREENCTOTAL5 - 36
-								!define - GREENCTOTAL6 - 35
-								!define - GREENCTOTAL7 - 34
-								!define - GREENCTOTAL8 - 33
-								!define - GREENCTOTAL9 - 32
-								!define - GREENCTOTALA - 31
-								!define - GREENCTOTALB - 30
-								!define - GREENCTOTALC - 29
-								!define - GREENCTOTALD - 28
-								!define - GREENCTOTALE - 27
-								!define - GREENCTOTALF - 26
 							!endif
 						!else
 							!ifdef - FALLS_ACCESS
 								!define - GREENCTOTAL - 40
-								!define - GREENCTOTAL1 - 39
-								!define - GREENCTOTAL2 - 38
-								!define - GREENCTOTAL3 - 37
-								!define - GREENCTOTAL4 - 36
-								!define - GREENCTOTAL5 - 35
-								!define - GREENCTOTAL6 - 34
-								!define - GREENCTOTAL7 - 33
-								!define - GREENCTOTAL8 - 32
-								!define - GREENCTOTAL9 - 31
-								!define - GREENCTOTALA - 30
-								!define - GREENCTOTALB - 29
-								!define - GREENCTOTALC - 28
-								!define - GREENCTOTALD - 27
-								!define - GREENCTOTALE - 26
-								!define - GREENCTOTALF - 25
 							!else
 								!define - GREENCTOTAL - 39
-								!define - GREENCTOTAL1 - 38
-								!define - GREENCTOTAL2 - 37
-								!define - GREENCTOTAL3 - 36
-								!define - GREENCTOTAL4 - 35
-								!define - GREENCTOTAL5 - 34
-								!define - GREENCTOTAL6 - 33
-								!define - GREENCTOTAL7 - 32
-								!define - GREENCTOTAL8 - 31
-								!define - GREENCTOTAL9 - 30
-								!define - GREENCTOTALA - 29
-								!define - GREENCTOTALB - 28
-								!define - GREENCTOTALC - 27
-								!define - GREENCTOTALD - 26
-								!define - GREENCTOTALE - 25
-								!define - GREENCTOTALF - 24
 							!endif
 						!endif
 					!endif
 				!endif
 			!endif
+			!define - GREENCTOTAL1 - `GREENCTOTAL`, Helpers.Start
+			!define - GREENCTOTAL2 - `GREENCTOTAL`, Helpers.Start:2
+			!define - GREENCTOTAL3 - `GREENCTOTAL`, Helpers.Start:3
+			!define - GREENCTOTAL4 - `GREENCTOTAL`, Helpers.Start:4
+			!define - GREENCTOTAL5 - `GREENCTOTAL`, Helpers.Start:5
+			!define - GREENCTOTAL6 - `GREENCTOTAL`, Helpers.Start:6
+			!define - GREENCTOTAL7 - `GREENCTOTAL`, Helpers.Start:7
+			!define - GREENCTOTAL8 - `GREENCTOTAL`, Helpers.Start:8
+			!define - GREENCTOTAL9 - `GREENCTOTAL`, Helpers.Start:9
+			!define - GREENCTOTALA - `GREENCTOTAL`, Helpers.Start:10
+			!define - GREENCTOTALB - `GREENCTOTAL`, Helpers.Start:11
+			!define - GREENCTOTALC - `GREENCTOTAL`, Helpers.Start:12
+			!define - GREENCTOTALD - `GREENCTOTAL`, Helpers.Start:13
+			!define - GREENCTOTALE - `GREENCTOTAL`, Helpers.Start:14
+			!define - GREENCTOTALF - `GREENCTOTAL`, Helpers.Start:15
 			!ifdef - ITEM_POOL_PLENTIFUL
 				!ifdef - GREENCMAX
 					Items.Kinstone.GreenC:3;	Minor;
