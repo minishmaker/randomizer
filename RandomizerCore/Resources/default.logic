@@ -139,6 +139,7 @@
 
 !flag - World Settings - Setting - Speed Up - OPEN_WIND_TRIBE - Wind Tribe Tower - If enabled, Wind Tribe Tower will act like it has already been entered from Cloud Tops from the start of the game. This unlocks the upper floors, Gregal's 2nd item and the main exit to Cloud tops early.\nCertain combinations of settings may allow for a softlock when going to Cloud tops without the Tornado being completed, Homewarp will always be available in these situations.\n\nIf disabled, Wind Tribe will stay in its initial state until the player enters the building from Cloud Tops.
 !flag - World Settings - Setting - Speed Up - OPEN_TINGLE - Tingle Brothers - If enabled, will spawn Tingle's brothers Knuckle, Ankle and David Jr. from the start of the game.\nIf disabled, the Tingle brothers will only spawn after talking to Tingle twice in a row.
+!flag - World Settings - Setting - Speed Up - OPEN_LIBRARY - Library - If enabled, the Library will be open from the start of the game.\nIf disabled, the Library will open when you find the Ocarina, but only if the Lake Hylia wind crest is enabled.
 
 !flag - World Settings - Setting - Wind Crests - CRENEL_CREST - Mt Crenel - If enabled, will activate the wind crest in Mt Crenel from the start of the game.
 !flag - World Settings - Setting - Wind Crests - FALLS_CREST - Veil Falls - If enabled, will activate the wind crest in Veil Falls from the start of the game.
@@ -1043,6 +1044,9 @@
 !ifdef - OPEN_TINGLE
 	!eventdefine - openTingleBrothers						# spawns Tingle's brothers without having to talk to him first
 !endif
+!ifdef - OPEN_LIBRARY
+	!eventdefine - openLibrary								# opens the library
+!endif
 
 # This section defines values used by the patcher, this sets if and which fusions should be available
 !ifdef - OPEN_GOLD_FUSIONS
@@ -1301,7 +1305,7 @@
 !ifdef - LAKE_CREST
 	!define - LIBRARY_ACCESS
 !else
-	!ifdef - OPENWORLD_ON
+	!ifdef - OPEN_LIBRARY
 		!define - LIBRARY_ACCESS
 	!endif
 !endif
@@ -6170,7 +6174,6 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 	Julietta;				Helper;;	
 	Fountain;				Helper;;	Helpers.TownDog
 	TownMulldozers;			Helper;;	Helpers.Fountain, Items.PacciCane
-	Library;					Helper;;	
 	OverworldBlocks;			Helper;;	
 	CastleDojo;				Helper;;	
 	BombWalls;				Helper;;	
@@ -6269,7 +6272,6 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 	Julietta;				Helper;;	Helpers.TownDog, Helpers.HasBottle
 	Fountain;				Helper;;	Helpers.TownDog, Helpers.HasBottle
 	TownMulldozers;			Helper;;	Helpers.Fountain, Items.PacciCane, Helpers.HasDamageSource
-	Library;					Helper;;	Helpers.LakeWindCrest
 	OverworldBlocks;			Helper;;	Items.BombBag
 	CastleDojo;				Helper;;	Items.Lantern
 	BombWalls;				Helper;;	Items.BombBag
@@ -6366,6 +6368,11 @@ ToDEitherPath;			Helper;;	Helpers.ToDEitherDoor, Items.Flippers, Helpers.ToDLeft
 ToD2ndRupeePath;			Helper;;	(|(&Helpers.ToDMainRoom, (|(&Helpers.ToDLeftPath, Items.RocsCape), Helpers.ToDRightPath, Helpers.ToDEitherPath)), (&Helpers.ToDBlueWarp, Helpers.ToDScissorBeetles, Items.RocsCape, Helpers.DarkRooms))
 AccessOcto;				Helper;;	Helpers.ToDMainRoom, Helpers.ToDEastSwitch, Helpers.ToDWestSwitch
 PoW2ndHalf;				Helper;;	(|(&Helpers.PoWBlueWarp, Helpers.PoWDarknut), (&Items.RocsCape, (|Helpers.CanSplit3, Helpers.CanSplit4), Helpers.PoWJump, Helpers.PoW1stDoor, Helpers.PoWBossDoor))
+!ifdef - OPEN_LIBRARY
+	Library;					Helper;;
+!else
+	Library;					Helper;;	Helpers.LakeWindCrest
+!endif
 !ifdef - CRENEL_CREST
 	CrenelWindCrest;			Helper;;	Items.Ocarina
 !else
