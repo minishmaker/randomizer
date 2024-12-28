@@ -142,9 +142,11 @@ BYTE 0x36 //dog food
 	BYTE 0x37 //silver key
 #endif
 BYTE 0x38 //mushroom
-BYTE 0x39 //red book
-BYTE 0x3A //green book
-BYTE 0x3B //blue book
+#ifdef bookTraps
+	BYTE 0x39 //red book
+	BYTE 0x3A //green book
+	BYTE 0x3B //blue book
+#endif
 #ifndef openWorld
 	BYTE 0x3C //gold key
 #endif

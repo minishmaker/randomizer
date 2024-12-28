@@ -129,6 +129,7 @@ WORD 40 //pie price
 WORD 60 //cake price
 
 //set flag when ocarina is collected, custom flag 1
+//also remove activation of the lake hylia wind crest on item collection
 PUSH; ORG $9C9F4; jumpToHack(ocarinaFlag1); POP
 ALIGN 4
 ocarinaFlag1:
@@ -144,7 +145,18 @@ ALIGN 4
 ocarinaFlag3:
 #incbin "asm/ocarinaFlag3.dmp"
 
-//give the jabber nut item spot its own flag, custm flag 0
+#ifdef disableLakeCrest
+	//remove activation of the lake hylia wind crest when using the ocarina
+	PUSH; ORG $9CCFE; SHORT 0x46C0; POP
+
+	//ocarina only calls bird if at least one wind crest is activated
+	PUSH; ORG $9CF90; jumpToHack(ocarinaCheck); POP
+	ALIGN 4
+	ocarinaCheck:
+	#incbin "asm/ocarinaCheck.dmp"
+#endif
+
+//give the jabber nut item spot its own flag, custom flag 0
 PUSH; ORG $4C15C; jumpToHack(jabberNut1); POP
 ALIGN 4
 jabberNut1:

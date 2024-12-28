@@ -144,6 +144,7 @@
 !flag - World Settings - Setting - Wind Crests - FALLS_CREST - Veil Falls - If enabled, will activate the wind crest in Veil Falls from the start of the game.
 !flag - World Settings - Setting - Wind Crests - CLOUD_CREST - Cloud Tops - If enabled, will activate the wind crest in Cloud Tops from the start of the game.
 !flag - World Settings - Setting - Wind Crests - TOWN_CREST - Hyrule Town - If enabled, will activate the wind crest in Hyrule Town from the start of the game.\nNote: This is always enabled if Homewarp is disabled. - true
+!flag - World Settings - Setting - Wind Crests - LAKE_CREST - Lake Hylia - If enabled, will activate the wind crest at Lake Hylia from the start of the game.\nNote: If disabled, some locations are removed from the game, including the Library if not open from the start through the corresponding setting. - true
 !flag - World Settings - Setting - Wind Crests - SWAMP_CREST - Swamp - If enabled, will activate the wind crest in Swamp from the start of the game.
 !flag - World Settings - Setting - Wind Crests - SHF_CREST - Link's House - If enabled, will activate the wind crest near Link's House from the start of the game.
 !flag - World Settings - Setting - Wind Crests - MINISH_CREST - Minish Woods - If enabled, will activate the wind crest in Minish Woods from the start of the game.
@@ -667,7 +668,12 @@
 !else
 	!eventdefine - townCrest - 0x00
 !endif
-!eventdefine - lakeCrest - 0x10 #gets forced in game anyway, can't overide
+!ifdef - LAKE_CREST
+	!eventdefine - lakeCrest - 0x10
+!else
+	!eventdefine - lakeCrest - 0x00
+	!eventdefine - disableLakeCrest
+!endif
 !ifdef - SWAMP_CREST
 	!eventdefine - swampCrest - 0x20
 !else
@@ -1292,6 +1298,16 @@
     !eventdefine - enable_firerod_start - 1
 !endif
 
+!ifdef - LAKE_CREST
+	!define - LIBRARY_ACCESS
+!else
+	!ifdef - OPENWORLD_ON
+		!define - LIBRARY_ACCESS
+	!endif
+!endif
+!ifdef - LIBRARY_ACCESS
+	!eventdefine - bookTraps
+!endif
 !ifdef - FALLS_CREST
 	!define - FALLS_ACCESS
 !endif
@@ -2371,17 +2387,35 @@
 	Dummy_Mushroom:NoSpoiler;	Unshuffled;	DumMushroom1:Define:FirstByte, DumMushroom2:Define:SecondByte;	;	Items.WakeUpMushroom
 !endif
 !ifndef - START_BOOK_1
-	Items.RedBook;	Major;
+	!ifdef - LIBRARY_ACCESS
+		Items.RedBook;	Major;
+	!else
+		!ifdef - MEME
+			Items.RedBook;	Minor;
+		!endif
+	!endif
 !else
 	Dummy_RedBook:NoSpoiler;	Unshuffled;	DumRedBook1:Define:FirstByte, DumRedBook2:Define:SecondByte;	;	Items.RedBook
 !endif
 !ifndef - START_BOOK_2
-	Items.GreenBook;	Major;
+	!ifdef - LIBRARY_ACCESS
+		Items.GreenBook;	Major;
+	!else
+		!ifdef - MEME
+			Items.GreenBook;	Minor;
+		!endif
+	!endif
 !else
 	Dummy_GreenBook:NoSpoiler;	Unshuffled;	DumGreenBook1:Define:FirstByte, DumGreenBook2:Define:SecondByte;	;	Items.GreenBook
 !endif
 !ifndef - START_BOOK_3
-	Items.BlueBook;	Major;
+	!ifdef - LIBRARY_ACCESS
+		Items.BlueBook;	Major;
+	!else
+		!ifdef - MEME
+			Items.BlueBook;	Minor;
+		!endif
+	!endif
 !else
 	Dummy_BlueBook:NoSpoiler;	Unshuffled;	DumBlueBook1:Define:FirstByte, DumBlueBook2:Define:SecondByte;	;	Items.BlueBook
 !endif
@@ -4589,7 +4623,7 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 !ifdef - NOLAKEMINISH
 	LakeMinish;			Helper;;	Helpers.Inaccessible
 !else
-	LakeMinish;			Helper;;	Items.Ocarina, Helpers.VillageSideMinish3Fusion
+	LakeMinish;			Helper;;	Helpers.LakeWindCrest, Helpers.VillageSideMinish3Fusion
 !endif
 !ifdef - NOCABIN
 	CabinSwim;				Helper;;	Items.GustJar
@@ -4846,29 +4880,61 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 			!ifndef - NO_GOLD_FUSIONS
 				!ifdef - GORON_CAVE
 					!ifdef - FALLS_ACCESS
-						!define - REDWTOTAL - 24
+						!ifdef - LAKE_CREST
+							!define - REDWTOTAL - 24
+						!else
+							!define - REDWTOTAL - 23
+						!endif
 					!else
-						!define - REDWTOTAL - 23
+						!ifdef - LAKE_CREST
+							!define - REDWTOTAL - 23
+						!else
+							!define - REDWTOTAL - 22
+						!endif
 					!endif
 				!else
 					!ifdef - FALLS_ACCESS
-						!define - REDWTOTAL - 23
+						!ifdef - LAKE_CREST
+							!define - REDWTOTAL - 23
+						!else
+							!define - REDWTOTAL - 22
+						!endif
 					!else
-						!define - REDWTOTAL - 22
+						!ifdef - LAKE_CREST
+							!define - REDWTOTAL - 22
+						!else
+							!define - REDWTOTAL - 21
+						!endif
 					!endif
 				!endif
 			!else
 				!ifdef - GORON_CAVE
 					!ifdef - FALLS_ACCESS
-						!define - REDWTOTAL - 23
+						!ifdef - LAKE_CREST
+							!define - REDWTOTAL - 23
+						!else
+							!define - REDWTOTAL - 22
+						!endif
 					!else
-						!define - REDWTOTAL - 22
+						!ifdef - LAKE_CREST
+							!define - REDWTOTAL - 22
+						!else
+							!define - REDWTOTAL - 21
+						!endif
 					!endif
 				!else
 					!ifdef - FALLS_ACCESS
-						!define - REDWTOTAL - 22
+						!ifdef - LAKE_CREST
+							!define - REDWTOTAL - 22
+						!else
+							!define - REDWTOTAL - 21
+						!endif
 					!else
-						!define - REDWTOTAL - 21
+						!ifdef - LAKE_CREST
+							!define - REDWTOTAL - 21
+						!else
+							!define - REDWTOTAL - 20
+						!endif
 					!endif
 				!endif
 			!endif
@@ -4908,7 +4974,7 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 		GoronRightFusion;			Helper;;	Helpers.CanFuseRedW, Locations.LonLon_GoronCaveFusion_BigChest																		#Biggoron			0E
 		StrangerFusion;			Helper;;	Helpers.CanFuseRedW																											#WindPortal				0F
 		Farore2Fusion;			Helper;;	Helpers.CanFuseRedW, Helpers.DinNayruFaroreFusion																					#SwampButterfly			10
-		HyliaMiddleMinishFusion;	Helper;;	Helpers.CanFuseRedW, Items.Ocarina																								#WesternWoodsTreeThorns	11
+		HyliaMiddleMinishFusion;	Helper;;	Helpers.CanFuseRedW, Helpers.LakeWindCrest																							#WesternWoodsTreeThorns	11
 		VillageSideMinish3Fusion;	Helper;;	Helpers.CanFuseRedW, Helpers.VillageSideMinish2Fusion																				#HyliaLibrariCrack		12
 		GaleFusion;				Helper;;	Helpers.CanFuseRedV, Helpers.AccessClouds																						#FallsTopWaterfall		13
 		SHFMinishFusion;			Helper;;	Helpers.CanFuseRedV, Helpers.CanDestroyTrees, Helpers.BonkedTrees																	#USELESSWitchPotion		14
@@ -4973,8 +5039,14 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 		GoronLeftFusion;		Helper;;																																	#GoronMerchant			33
 	!else
 		!ifndef - COMBINED_BLUE_FUSIONS
-			!define - BLUELTOTAL - 9
+			!ifdef - LIBRARY_ACCESS
+				!define - BLUELTOTAL - 9
+			!else
+				!define - BLUELTOTAL - 8
+			!endif
+			!define - BLUELTOTAL1 - `BLUELTOTAL`, Helpers.Start
 			!define - BLUESTOTAL - 9
+			!define - BLUESTOTAL1 - 8
 			!ifdef - ITEM_POOL_PLENTIFUL
 				Items.Kinstone.BlueL:2;	Minor;
 				Items.Kinstone.BlueS:2;	Minor;
@@ -4991,12 +5063,18 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 			!endif
 			Items.Kinstone.BlueL:`BLUELTOTAL`.`BLUELMULTIPLIER`;	Major;
 			Items.Kinstone.BlueS:`BLUESTOTAL`.`BLUESMULTIPLIER`;	Major;
-			CanFuseBlueL;    		Helper;; (+9, Items.Kinstone.BlueL:`BLUELMULTIPLIER`)
-			CanFuseBlueS;    		Helper;; (+9, Items.Kinstone.BlueS:`BLUESMULTIPLIER`)
-			CanFuseBlue4Wall;		Helper;; (+8, Items.Kinstone.BlueL:`BLUELMULTIPLIER`), (+8, Items.Kinstone.BlueS:`BLUESMULTIPLIER`)
-			CanFuseBlueGhost;		Helper;; (+9, Items.Kinstone.BlueS:`BLUESMULTIPLIER`)
+			CanFuseBlueL;    		Helper;; (+`BLUELTOTAL`, Items.Kinstone.BlueL:`BLUELMULTIPLIER`)
+			CanFuseBlueS;    		Helper;; (+`BLUESTOTAL`, Items.Kinstone.BlueS:`BLUESMULTIPLIER`)
+			CanFuseBlue4Wall;		Helper;; (+`BLUELTOTAL1`, Items.Kinstone.BlueL:`BLUELMULTIPLIER`), (+`BLUESTOTAL1`, Items.Kinstone.BlueS:`BLUESMULTIPLIER`)
+			CanFuseBlueGhost;		Helper;; (+`BLUESTOTAL`, Items.Kinstone.BlueS:`BLUESMULTIPLIER`)
 		!else
-			!define - BLUELTOTAL - 18
+			!ifdef - LIBRARY_ACCESS
+				!define - BLUELTOTAL - 18
+			!else
+				!define - BLUELTOTAL - 17
+			!endif
+			!define - BLUELTOTAL1 - `BLUELTOTAL`, Helpers.Start
+			!define - BLUELTOTAL2 - `BLUELTOTAL`, Helpers.Start:2
 			!ifdef - ITEM_POOL_PLENTIFUL
 				!ifdef - BLUELMAX
 					Items.Kinstone.BlueL:2;	Minor;
@@ -5011,10 +5089,10 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 			!endif
 			!eventdefine - combineKinstonesBlue
 			Items.Kinstone.BlueL:`BLUELTOTAL`.`BLUELMULTIPLIER`;	Major;
-			CanFuseBlueL;			Helper;; (+18, Items.Kinstone.BlueL:`BLUELMULTIPLIER`)
-			CanFuseBlueS;			Helper;; (+18, Items.Kinstone.BlueL:`BLUELMULTIPLIER`)
-			CanFuseBlue4Wall;		Helper;; (+16, Items.Kinstone.BlueL:`BLUELMULTIPLIER`)
-			CanFuseBlueGhost;		Helper;; (+17, Items.Kinstone.BlueL:`BLUELMULTIPLIER`)
+			CanFuseBlueL;			Helper;; (+`BLUELTOTAL`, Items.Kinstone.BlueL:`BLUELMULTIPLIER`)
+			CanFuseBlueS;			Helper;; (+`BLUELTOTAL`, Items.Kinstone.BlueL:`BLUELMULTIPLIER`)
+			CanFuseBlue4Wall;		Helper;; (+`BLUELTOTAL2`, Items.Kinstone.BlueL:`BLUELMULTIPLIER`)
+			CanFuseBlueGhost;		Helper;; (+`BLUELTOTAL1`, Items.Kinstone.BlueL:`BLUELMULTIPLIER`)
 		!endif
 		CandyFusion;			Helper;;	Helpers.CanFuseBlueL, Helpers.Library																								#TrilbyPlatform			22
 		LakeEastMinishFusion;	Helper;;	Helpers.CanFuseBlueL, Locations.Hylia_NorthMinishHole_Chest																			#LakeBeanstalk			23
@@ -5029,7 +5107,7 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 		Dampe1Fusion;			Helper;;	Helpers.CanFuseBlueS, Locations.Valley_DampeNPC																						#RightGrave				30
 		Spekter1Fusion;		Helper;;	Helpers.CanFuseBlueGhost, Helpers.AccessValley, Helpers.DarkRooms, Helpers.Graveyard													#USELESSChestGame			31
 		HurdyFusion;			Helper;;	Helpers.CanFuseBlueS																												#SHFTree					32
-		GoronLeftFusion;		Helper;;	Helpers.CanFuseBlueS, (&Helpers.GoronCave, (|Helpers.CanDestroyTrees, Items.Ocarina))														#GoronMerchant			33
+		GoronLeftFusion;		Helper;;	Helpers.CanFuseBlueS, (&Helpers.GoronCave, (|Helpers.CanDestroyTrees, Helpers.LakeWindCrest))														#GoronMerchant			33
 	!endif
 !endif
 !ifdef - NO_GREEN_FUSIONS
@@ -5243,15 +5321,31 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 			!define - GREENCTOTAL5 - `GREENCTOTAL`, Helpers.Start:5
 			!ifdef - TRIBE_ACCESS
 				!ifdef - MINISH_TREE
-					!define - GREENPTOTAL - 16
+					!ifdef - LIBRARY_ACCESS
+						!define - GREENPTOTAL - 16
+					!else
+						!define - GREENPTOTAL - 15
+					!endif
 				!else
-					!define - GREENPTOTAL - 15
+					!ifdef - LIBRARY_ACCESS
+						!define - GREENPTOTAL - 15
+					!else
+						!define - GREENPTOTAL - 14
+					!endif
 				!endif
 			!else
 				!ifdef - MINISH_TREE
-					!define - GREENPTOTAL - 15
+					!ifdef - LIBRARY_ACCESS
+						!define - GREENPTOTAL - 15
+					!else
+						!define - GREENPTOTAL - 14
+					!endif
 				!else
-					!define - GREENPTOTAL - 14
+					!ifdef - LIBRARY_ACCESS
+						!define - GREENPTOTAL - 14
+					!else
+						!define - GREENPTOTAL - 13
+					!endif
 				!endif
 			!endif
 			!define - GREENPTOTAL1 - `GREENPTOTAL`, Helpers.Start
@@ -5345,15 +5439,31 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 			!ifdef - UWT_ACCESS
 				!ifdef - RIGHT_GRAVE
 					!ifdef - MINISH_TREE
-						!define - GREENCTOTAL - 49
+						!ifdef - LIBRARY_ACCESS
+							!define - GREENCTOTAL - 49
+						!else
+							!define - GREENCTOTAL - 48
+						!endif
 					!else
-						!define - GREENCTOTAL - 47
+						!ifdef - LIBRARY_ACCESS
+							!define - GREENCTOTAL - 47
+						!else
+							!define - GREENCTOTAL - 46
+						!endif
 					!endif
 				!else
 					!ifdef - MINISH_TREE
-						!define - GREENCTOTAL - 47
+						!ifdef - LIBRARY_ACCESS
+							!define - GREENCTOTAL - 47
+						!else
+							!define - GREENCTOTAL - 46
+						!endif
 					!else
-						!define - GREENCTOTAL - 45
+						!ifdef - LIBRARY_ACCESS
+							!define - GREENCTOTAL - 45
+						!else
+							!define - GREENCTOTAL - 44
+						!endif
 					!endif
 				!endif
 			!else
@@ -5361,29 +5471,61 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 					!ifdef - RIGHT_GRAVE
 						!ifdef - MINISH_TREE
 							!ifdef - FALLS_ACCESS
-								!define - GREENCTOTAL - 47
+								!ifdef - LIBRARY_ACCESS
+									!define - GREENCTOTAL - 47
+								!else
+									!define - GREENCTOTAL - 46
+								!endif
 							!else
-								!define - GREENCTOTAL - 46
+								!ifdef - LIBRARY_ACCESS
+									!define - GREENCTOTAL - 46
+								!else
+									!define - GREENCTOTAL - 45
+								!endif
 							!endif
 						!else
 							!ifdef - FALLS_ACCESS
-								!define - GREENCTOTAL - 45
+								!ifdef - LIBRARY_ACCESS
+									!define - GREENCTOTAL - 45
+								!else
+									!define - GREENCTOTAL - 44
+								!endif
 							!else
-								!define - GREENCTOTAL - 44
+								!ifdef - LIBRARY_ACCESS
+									!define - GREENCTOTAL - 44
+								!else
+									!define - GREENCTOTAL - 43
+								!endif
 							!endif
 						!endif
 					!else
 						!ifdef - MINISH_TREE
 							!ifdef - FALLS_ACCESS
-								!define - GREENCTOTAL - 45
+								!ifdef - LIBRARY_ACCESS
+									!define - GREENCTOTAL - 45
+								!else
+									!define - GREENCTOTAL - 44
+								!endif
 							!else
-								!define - GREENCTOTAL - 44
+								!ifdef - LIBRARY_ACCESS
+									!define - GREENCTOTAL - 44
+								!else
+									!define - GREENCTOTAL - 43
+								!endif
 							!endif
 						!else
 							!ifdef - FALLS_ACCESS
-								!define - GREENCTOTAL - 43
+								!ifdef - LIBRARY_ACCESS
+									!define - GREENCTOTAL - 43
+								!else
+									!define - GREENCTOTAL - 42
+								!endif
 							!else
-								!define - GREENCTOTAL - 42
+								!ifdef - LIBRARY_ACCESS
+									!define - GREENCTOTAL - 42
+								!else
+									!define - GREENCTOTAL - 41
+								!endif
 							!endif
 						!endif
 					!endif
@@ -5391,29 +5533,61 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 					!ifdef - RIGHT_GRAVE
 						!ifdef - MINISH_TREE
 							!ifdef - FALLS_ACCESS
-								!define - GREENCTOTAL - 44
+								!ifdef - LIBRARY_ACCESS
+									!define - GREENCTOTAL - 44
+								!else
+									!define - GREENCTOTAL - 43
+								!endif
 							!else
-								!define - GREENCTOTAL - 43
+								!ifdef - LIBRARY_ACCESS
+									!define - GREENCTOTAL - 43
+								!else
+									!define - GREENCTOTAL - 42
+								!endif
 							!endif
 						!else
 							!ifdef - FALLS_ACCESS
-								!define - GREENCTOTAL - 42
+								!ifdef - LIBRARY_ACCESS
+									!define - GREENCTOTAL - 42
+								!else
+									!define - GREENCTOTAL - 41
+								!endif
 							!else
-								!define - GREENCTOTAL - 41
+								!ifdef - LIBRARY_ACCESS
+									!define - GREENCTOTAL - 41
+								!else
+									!define - GREENCTOTAL - 40
+								!endif
 							!endif
 						!endif
 					!else
 						!ifdef - MINISH_TREE
 							!ifdef - FALLS_ACCESS
-								!define - GREENCTOTAL - 42
+								!ifdef - LIBRARY_ACCESS
+									!define - GREENCTOTAL - 42
+								!else
+									!define - GREENCTOTAL - 41
+								!endif
 							!else
-								!define - GREENCTOTAL - 41
+								!ifdef - LIBRARY_ACCESS
+									!define - GREENCTOTAL - 41
+								!else
+									!define - GREENCTOTAL - 40
+								!endif
 							!endif
 						!else
 							!ifdef - FALLS_ACCESS
-								!define - GREENCTOTAL - 40
+								!ifdef - LIBRARY_ACCESS
+									!define - GREENCTOTAL - 40
+								!else
+									!define - GREENCTOTAL - 39
+								!endif
 							!else
-								!define - GREENCTOTAL - 39
+								!ifdef - LIBRARY_ACCESS
+									!define - GREENCTOTAL - 39
+								!else
+									!define - GREENCTOTAL - 38
+								!endif
 							!endif
 						!endif
 					!endif
@@ -6095,7 +6269,7 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 	Julietta;				Helper;;	Helpers.TownDog, Helpers.HasBottle
 	Fountain;				Helper;;	Helpers.TownDog, Helpers.HasBottle
 	TownMulldozers;			Helper;;	Helpers.Fountain, Items.PacciCane, Helpers.HasDamageSource
-	Library;					Helper;;	Items.Ocarina
+	Library;					Helper;;	Helpers.LakeWindCrest
 	OverworldBlocks;			Helper;;	Items.BombBag
 	CastleDojo;				Helper;;	Items.Lantern
 	BombWalls;				Helper;;	Items.BombBag
@@ -6206,6 +6380,11 @@ PoW2ndHalf;				Helper;;	(|(&Helpers.PoWBlueWarp, Helpers.PoWDarknut), (&Items.Ro
 	CloudWindCrest;			Helper;;	Items.Ocarina
 !else
 	CloudWindCrest;			Helper;;	Helpers.Inaccessible
+!endif
+!ifdef - LAKE_CREST
+	LakeWindCrest;			Helper;;	Items.Ocarina
+!else
+	LakeWindCrest;			Helper;;	Helpers.Inaccessible
 !endif
 !ifdef - SWAMP_CREST
 	SwampWindCrest;			Helper;;	Items.Ocarina
@@ -6440,20 +6619,54 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 	!define - REDFUSIONRUPEE - `RUPEE`
 	!define - REDFUSIONENEMY - `ENEMY`
 !endif
+# Lake Hylia Wind Crest Access
+!ifdef - LAKE_CREST
+	!define - LAKEREDFUSION - `REDFUSION`
+	!define - REDLAKEFUSIONHP - `REDFUSIONHP`
+!else
+	!define - LAKEREDFUSION - Inaccessible
+	!ifdef - OPEN_RED_FUSIONS
+		!define - REDLAKEFUSIONHP - `REDFUSIONHP`
+	!else
+		!define - REDLAKEFUSIONHP - Inaccessible
+	!endif
+!endif
+# Library Access
+!ifdef - LIBRARY_ACCESS
+	!define - LIBRARY - Any
+	!define - LIBRARYWATER - `WATER`
+	!define - BLUELIBRARYFUSION - `BLUEFUSION`
+!else
+	!define - LIBRARY - Inaccessible
+	!define - LIBRARYWATER - ;	Inaccessible
+	!ifdef - OPEN_BLUE_FUSIONS
+		!define - BLUELIBRARYFUSION - `BLUEFUSION`
+	!else
+		!define - BLUELIBRARYFUSION - Inaccessible
+	!endif
+!endif
 # Wind Ruins Access
 !ifdef - NO_GOLD_FUSIONS
 	!define - GOLDFUSION - Inaccessible
 	!define - GOLDFUSIONHP - Inaccessible
 	!define - GOLDFUSIONPOT - Inaccessible
 	!define - GOLDGREENFUSION - Inaccessible
-	!define - GOLDGREENFUSIONENEMY - ;	Inaccessible
+	!define - GOLDGREENLIBRARYFUSIONENEMY - ;	Inaccessible
 	!define - GOLDREDFUSION - Inaccessible
 !else
 	!define - GOLDFUSION - Dungeon
 	!define - GOLDFUSIONHP - `DUNGEONHP`
 	!define - GOLDFUSIONPOT - `DUNGEONPOT`
 	!define - GOLDGREENFUSION - `GREENFUSIONDUNGEON`
-	!define - GOLDGREENFUSIONENEMY - `GREENFUSIONENEMY`
+	!ifdef - LIBRARY_ACCESS
+		!define - GOLDGREENLIBRARYFUSIONENEMY - `GREENFUSIONENEMY`
+	!else
+		!ifdef - OPEN_GREEN_FUSIONS
+			!define - GOLDGREENLIBRARYFUSIONENEMY - `GREENFUSIONENEMY`
+		!else
+			!define - GOLDGREENLIBRARYFUSIONENEMY - ;	Inaccessible
+		!endif
+	!endif
 	!define - GOLDREDFUSION - `REDFUSIONDUNGEON`
 !endif
 # Veil Falls Access
@@ -7130,10 +7343,10 @@ Town_DrLeft_AtticItem;				Any;					greenBookItem:Define:FirstByte, greenBookSub:
 Town_Fountain_BigChest;			Any;					0x62-0x03-0x00;														(|Helpers.TownMulldozers, Helpers.Hundo);																																				Items.PowerBracelets
 Town_Fountain_SmallChest;			Any;					0x62-0x04-0x00;														(|(&Helpers.Fountain, (|Items.Flippers, Items.RocsCape)), Helpers.Hundo);																													Items.Rupee100
 Town_Fountain_HP;					`HP`;				0x0EF3B7;															(|(&Helpers.Fountain, Helpers.FountainHP), Helpers.Hundo);																																	Items.PieceOfHeart
-Town_Library_YellowMinish_NPC;		Any;					0x00E7BE;															(|(&Helpers.Library, Items.PacciCane, Items.RedBook, Items.GreenBook, Items.BlueBook), Helpers.Hundo);																							Items.Rupee50
-Town_UnderLibrary_FrozenChest;		Any;					0x62-0x12-0x00;														(|(&Helpers.Library, Items.Flippers, Items.PacciCane, Items.Lantern), Helpers.Hundo);																											Items.Shells.100
-Town_UnderLibrary_BigChest;		Any;					0x62-0x10-0x00;														(|(&Helpers.Library, Items.PacciCane, Helpers.HasDamageSource, (|Items.Flippers, (&Items.RedBook, Items.GreenBook, Items.BlueBook, Items.GripRing, (|Items.GustJar, Items.RocsCape)))), Helpers.Hundo);	Items.Flippers
-Town_UnderLibrary_Underwater		`WATER`;				0x0EF79B;															(|(&Helpers.Library,Items.Flippers, Items.PacciCane), Helpers.Hundo);																														Items.Rupee50
+Town_Library_YellowMinish_NPC;		`LIBRARY`;			0x00E7BE;															(|(&Helpers.Library, Items.PacciCane, Items.RedBook, Items.GreenBook, Items.BlueBook), Helpers.Hundo);																							Items.Rupee50
+Town_UnderLibrary_FrozenChest;		`LIBRARY`;			0x62-0x12-0x00;														(|(&Helpers.Library, Items.Flippers, Items.PacciCane, Items.Lantern), Helpers.Hundo);																											Items.Shells.100
+Town_UnderLibrary_BigChest;			`LIBRARY`;			0x62-0x10-0x00;														(|(&Helpers.Library, Items.PacciCane, Helpers.HasDamageSource, (|Items.Flippers, (&Items.RedBook, Items.GreenBook, Items.BlueBook, Items.GripRing, (|Items.GustJar, Items.RocsCape)))), Helpers.Hundo);	Items.Flippers
+Town_UnderLibrary_Underwater		`LIBRARYWATER`;		0x0EF79B;															(|(&Helpers.Library,Items.Flippers, Items.PacciCane), Helpers.Hundo);																														Items.Rupee50
 
 # North Field
 NorthField_DigSpot					`DIG`;			0x0F720F;															(|Items.MoleMitts, Helpers.Hundo);											Items.Rupee50
@@ -7171,9 +7384,9 @@ Hills_BombCave_Chest;				Any;					0x32-0x13-0x00;											(|(&Helpers.AccessEa
 Minish_GreatFairy_NPC;				Any;					0x00B7B4;												(|(&Helpers.AccessMinishWoods, Items.PacciCane), Helpers.Hundo);									Items.Wallet
 Hills_FarmDigCave_Item				`RUPEE`;				0x0F3C9F;												(|(&Helpers.AccessMinishWoods, Items.MoleMitts), Helpers.Hundo);									Items.Rupee20
 
-AccessLonLon;						Helper;			;											(|Items.Ocarina, (&Helpers.CanDestroyTrees, (|Items.LonLonKey, Items.RocsCape, Helpers.LonLonNorthShortcut, (&Items.Flippers, Items.MoleMitts))));	
+AccessLonLon;						Helper;			;											(|Helpers.LakeWindCrest, (&Helpers.CanDestroyTrees, (|Items.LonLonKey, Items.RocsCape, Helpers.LonLonNorthShortcut, (&Items.Flippers, Items.MoleMitts))));
 
-LonLon_RanchPot;					`POT`;			0x0F2C9B:FirstByte, 0x0F2C9D:SecondByte;			(|Helpers.CanDestroyTrees, Items.Ocarina, Helpers.Hundo);																							Items.LonLonKey
+LonLon_RanchPot;					`POT`;			0x0F2C9B:FirstByte, 0x0F2C9D:SecondByte;			(|Helpers.CanDestroyTrees, Helpers.LakeWindCrest, Helpers.Hundo);																					Items.LonLonKey
 LonLon_PuddleFusion_BigChest;		`REDFUSION`;		0x32-0x0F-0x00;								(|(&Helpers.MayorFusion, Helpers.AccessLonLon), Helpers.Hundo);																					Items.Wallet
 LonLon_Cave_Chest;				Any;				0x32-0x0C-0x00;								(|(&Helpers.AccessLonLon, (|Helpers.CanSplit2, Helpers.CanSplit3, Helpers.CanSplit4)), Helpers.Hundo);													Items.Rupee50
 LonLon_CaveSecret_Chest;			Any;				0x32-0x0D-0x00;								(|(&Helpers.AccessLonLon, (|Helpers.CanSplit2, Helpers.CanSplit3, Helpers.CanSplit4), Helpers.BombWalls, Helpers.LonLonSecret), Helpers.Hundo);				Items.Kinstone.BlueS
@@ -7181,8 +7394,8 @@ LonLon_Path_FusionChest;			`GREENFUSION`;	0x0FE086;									(|(&Helpers.Shared50
 LonLon_Path_HP;					`HP`;			0x0D56EF;									(|(&Helpers.AccessLonLon, Helpers.BonkedTrees), Helpers.Hundo);																					Items.PieceOfHeart
 LonLon_DigSpot					`DIG`;			0x0F6CFF;									(|(&Helpers.AccessLonLon, (|Items.PacciCane, Items.RocsCape), Items.MoleMitts), Helpers.Hundo);														Items.Rupee50
 LonLon_NorthMinishCrack_Chest;		Any;				0x27-0x00-0x00;								(|(&Helpers.AccessLonLon, (|Items.PacciCane, Items.RocsCape)), Helpers.Hundo);																		Items.Kinstone.RedV
-LonLon_GoronCaveFusion_SmallChest;	`BLUEFUSION`;		0x2F-0x01-0x00;								(|(&Helpers.4WallFusions, Helpers.GoronCave, (|Helpers.CanDestroyTrees, Items.Ocarina)), Helpers.Hundo);												Items.Rupee200
-LonLon_GoronCaveFusion_BigChest;	`BLUEFUSION`;		0x2F-0x01-0x01;								(|(&Helpers.6WallFusions, Helpers.GoronCave, (|Helpers.CanDestroyTrees, Items.Ocarina)), Helpers.Hundo);												Items.Bottle
+LonLon_GoronCaveFusion_SmallChest;	`BLUEFUSION`;		0x2F-0x01-0x00;								(|(&Helpers.4WallFusions, Helpers.GoronCave, (|Helpers.CanDestroyTrees, Helpers.LakeWindCrest)), Helpers.Hundo);										Items.Rupee200
+LonLon_GoronCaveFusion_BigChest;	`BLUEFUSION`;		0x2F-0x01-0x01;								(|(&Helpers.6WallFusions, Helpers.GoronCave, (|Helpers.CanDestroyTrees, Helpers.LakeWindCrest)), Helpers.Hundo);										Items.Bottle
 
 # Lower Veil Falls
 FallsLower_LonLonFusion_Chest;			`GREENFUSION`;	0x0FE0FE;															(|(&Helpers.Shared60Fusion, Helpers.AccessMinishWoods, Items.PacciCane), Helpers.Hundo);									Items.Rupee200
@@ -7225,7 +7438,7 @@ HasHearts;							Helper;				;																(+28, Items.PieceOfHeart, Items.Hea
 Hylia_BottomHP;						`HP`;				0x0F324B;														(|Helpers.LakeSouthHP, Helpers.Hundo);																														Items.PieceOfHeart
 Hylia_Dojo_HP;						`HP`;				0x0D7B03;														(|(&Helpers.AccessLonLon, (|Helpers.CapeExtension, Helpers.LakeShortcut)), Helpers.Hundo);																		Items.PieceOfHeart
 Hylia_Dojo_NPC:dojo;					`DOJOITEM`;			wavebladeDojoItem:Define:FirstByte, wavebladeDojoSub:Define:SecondByte;	(|(&Helpers.AccessLonLon, Helpers.HasHearts, Helpers.HasSword, (|Helpers.CapeExtension, Helpers.LakeShortcut)), Helpers.Hundo);										Items.PerilBeam
-Hylia_CrackFusion_LibrariNPC;			`REDFUSION`;			0x0124EC;														(|(&Helpers.VillageSideMinish3Fusion, Items.Ocarina, (|Items.Flippers,Items.RocsCape)), Helpers.Hundo);																Items.HeartContainer
+Hylia_CrackFusion_LibrariNPC;			`LAKEREDFUSION`;		0x0124EC;														(|(&Helpers.VillageSideMinish3Fusion, Helpers.LakeWindCrest, (|Items.Flippers,Items.RocsCape)), Helpers.Hundo);															Items.HeartContainer
 Hylia_NorthMinishHole_Chest;			Any;					0x35-0x07-0x00;													(|(&Helpers.AccessSouthLake, (|Helpers.BonkedTrees, Helpers.LakeMinish), Items.Flippers), Helpers.Hundo);															Items.Kinstone.RedW
 Hylia_SouthMinishHole_Chest;			Any;					0x35-0x05-0x00;													(|(&Helpers.AccessSouthLake, (|Helpers.BonkedTrees, Helpers.LakeMinish), Items.Flippers), Helpers.Hundo);															Items.Kinstone.RedE
 Hylia_CabinPathFusion_Chest;			`GREENFUSION`;		0x0FE09E;														(|(&Helpers.FifiFusion, Helpers.AccessSouthLake, (|(&Helpers.BonkedTrees, Helpers.CabinSwim), (&Helpers.LakeMinish, Items.Flippers, Helpers.CabinSwim))), Helpers.Hundo);	Items.Kinstone.BlueL
@@ -7240,7 +7453,7 @@ WitchDiggingCave_Chest;					Any;					0x0C-0x00-0x00;											(|(&Helpers.Acces
 MinishWoods_NorthFusion_Chest;				`GREENFUSION`;		0x0FE07E;												(|(&Helpers.Shared44Fusion, Helpers.AccessNorthMinish), Helpers.Hundo);					Items.Kinstone.BlueS
 MinishWoods_TopHP;						`HP`;				0x0F4347;       											(|Helpers.MinishNorthHP, Helpers.Hundo);												Items.PieceOfHeart
 
-AccessMinishWoods;						Helper;				;														(|Helpers.CanDestroyTrees, Items.Ocarina);
+AccessMinishWoods;						Helper;				;														(|Helpers.CanDestroyTrees, Helpers.LakeWindCrest);
 
 MinishWoods_WestFusion_Chest;				`GREENFUSION`;		0x0FE0CE;												(|(&Helpers.Shared47Fusion, Helpers.AccessMinishWoods), Helpers.Hundo);					Items.Rupee200
 MinishWoods_LikeLikeDiggingCave_LeftChest;	Any;					0x0C-0x00-0x01; 											(|(&Helpers.AccessMinishWoods, Items.MoleMitts, Helpers.LikeLike), Helpers.Hundo);		Items.Rupee50
@@ -7276,7 +7489,7 @@ Trilby_MiddleFusion_Chest;			`GREENFUSION`;	0x0FE0EE;														(|(&Helpers.T
 Trilby_TopFusion_Chest;			`GREENFUSION`;	0x0FE0BE;														(|(&Helpers.Smith2Fusion, Helpers.AccessTrilby), Helpers.Hundo);												Items.Kinstone.RedV
 Trilby_DigCave_LeftChest;			Any;				0x13-0x03-0x00;                       							(|(&Helpers.AccessTrilby, Items.MoleMitts), Helpers.Hundo);													Items.Kinstone.BlueL
 Trilby_DigCave_RightChest;			Any;				0x13-0x03-0x02;                       							(|(&Helpers.AccessTrilby, Items.MoleMitts), Helpers.Hundo);													Items.Kinstone.BlueS
-Trilby_DigCave_WaterFusion_Chest;	`BLUEFUSION`;		0x13-0x03-0x01;													(|(&Helpers.CandyFusion, Helpers.AccessTrilby, Items.MoleMitts, (|Items.RocsCape,Items.Flippers)), Helpers.Hundo);	Items.Kinstone.RedV
+Trilby_DigCave_WaterFusion_Chest;	`BLUELIBRARYFUSION`;	0x13-0x03-0x01;												(|(&Helpers.CandyFusion, Helpers.AccessTrilby, Items.MoleMitts, (|Items.RocsCape, Items.Flippers)), Helpers.Hundo);	Items.Kinstone.RedV
 Trilby_Scrub_NPC;					Any;				bottleScrubItem:Define:FirstByte, bottleScrubSub:Define:SecondByte;		(|(&Helpers.AccessTrilby, Helpers.BombWalls, Helpers.Scrubs, Helpers.ShopScrubTrilby), Helpers.Hundo);        		Items.Bottle
 
 Trilby_BombCave_Chest;			Any;					0x32-0x07-0x00;                       							(|(&Helpers.AccessWestern, Helpers.BombWalls), Helpers.Hundo);				Items.Kinstone.RedE
@@ -7297,7 +7510,7 @@ Trilby_PuddleFusion_Item14 	`GREENFUSIONRUPEE`;	0x0F848B;														(|(&Helpe
 Trilby_PuddleFusion_Item15		`GREENFUSIONRUPEE`;	0x0F849B;														(|(&Helpers.TrilbyMinishFusion,  Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee5
 
 WesternWoods_FusionChest;			`BLUEGREENFUSION`;		0x03-0x08-0x01;											(|(&Helpers.Gina2Fusion, Helpers.AccessWestern), Helpers.Hundo);						Items.Shells.100
-WesternWoods_TreeFusion_HP;		`REDFUSIONHP`;			0x0F9E1F;												(|(&Helpers.HyliaMiddleMinishFusion, Helpers.AccessWestern), Helpers.Hundo);				Items.PieceOfHeart
+WesternWoods_TreeFusion_HP;			`REDLAKEFUSIONHP`;		0x0F9E1F;												(|(&Helpers.HyliaMiddleMinishFusion, Helpers.AccessWestern), Helpers.Hundo);				Items.PieceOfHeart
 WesternWoods_TopDig1				`WTFUSIONGREENDIG`;		0x0F77CF;												(|(&Helpers.Flurris2Fusion, Helpers.AccessWestern, Items.MoleMitts), Helpers.Hundo);		Items.Rupee50
 WesternWoods_TopDig2				`WTFUSIONGREENDIG`;		0x0F77DF;												(|(&Helpers.Flurris2Fusion, Helpers.AccessWestern, Items.MoleMitts), Helpers.Hundo);		Items.Rupee50
 WesternWoods_TopDig3				`WTFUSIONGREENDIG`;		0x0F77EF;												(|(&Helpers.Flurris2Fusion, Helpers.AccessWestern, Items.MoleMitts), Helpers.Hundo);		Items.Rupee50
@@ -7429,7 +7642,7 @@ Ruins_CrackFusion_Chest		`FOW_OUTSIDE`;	`GOLDGREENFUSION`;		0x27-0x0C-0x00;					
 Ruins_MinishCave_HP			`FOW_OUTSIDE`;	`GOLDFUSIONHP`;			0x0DB4BF;												(|(&Helpers.AccessRuins, Helpers.RuinsArmos, Helpers.RuinsTektites), Helpers.Hundo);								Items.PieceOfHeart
 Ruins_ArmosKill_LeftChest		`FOW_OUTSIDE`;	`GOLDFUSION`;				0x05-0x05-0x00;											(|(&Helpers.AccessRuins, Helpers.HasDamageSource), Helpers.Hundo);												Items.Rupee50
 Ruins_ArmosKill_RightChest		`FOW_OUTSIDE`;	`GOLDFUSION`;				0x05-0x05-0x01;											(|(&Helpers.AccessRuins, Helpers.HasDamageSource), Helpers.Hundo);												Items.Shells.50
-Ruins_GoldenOcto				`FOW_OUTSIDE`		`GOLDGREENFUSIONENEMY`;	golden1Item:Define:FirstByte, golden1Sub:Define:SecondByte;	(|(&Helpers.LibrariFusion, Helpers.AccessRuins, Helpers.HasSword), Helpers.Hundo);								Items.Rupee100
+Ruins_GoldenOcto				`FOW_OUTSIDE`	`GOLDGREENLIBRARYFUSIONENEMY`;	golden1Item:Define:FirstByte, golden1Sub:Define:SecondByte;	(|(&Helpers.LibrariFusion, Helpers.AccessRuins, Helpers.HasSword), Helpers.Hundo);								Items.Rupee100
 Ruins_NearFoWFusion_Chest		`FOW_OUTSIDE`;	`GOLDREDFUSION`;			0x0FE0AE;												(|(&Helpers.BelariFusion, Helpers.AccessRuins, Helpers.HasSword), Helpers.Hundo);								Items.BombBag
 
 AccessFortress;								Helper;					;														Helpers.AccessRuins, Helpers.HasSword;

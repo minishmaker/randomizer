@@ -148,7 +148,9 @@ SHORT 0x050E 30; WORD 0x2002EA4 //mirror shield sets flag 30, which makes mirror
 //the bomb bag shop item uses flag 34
 SHORT 0x3D07 6; WORD 0x2002CB4 //set the simulation heart piece flag after it ends
 SHORT 0x4803 1; WORD 0x2002CA1 //library quest can be started with flippers
-SHORT 0x0517 1; WORD 0x2002CA1 //picking up the ocarina automatically starts the library quest
+#ifndef disableLakeCrest
+	SHORT 0x0517 1; WORD 0x2002CA1 //picking up the ocarina automatically starts the library quest
+#endif
 SHORT 0x0507 3; WORD 0x2002CEC //gentari door opens when getting bombs
 SHORT 0x0563 3; WORD 0x2002CEC //gentari door opens when getting bombs
 #ifdef minishCrestFlag
