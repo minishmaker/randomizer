@@ -256,6 +256,10 @@
 !dropdown - Start Inventory - Setting - Start Capacity - START_QUIVERS - Quivers - - START_QUIVERS_0 - 0 - START_QUIVERS_0 - - 1 - START_QUIVERS_1 - - 2 - START_QUIVERS_2 - - 3 - START_QUIVERS_3 - Without a Quiver you can carry up to 30 Arrows, with the first you can carry 50, then 70 and finally 99
 !dropdown - Start Inventory - Setting - Start Capacity - START_WALLETS - Wallets - - START_WALLETS_0 - 0 - START_WALLETS_0 - - 1 - START_WALLETS_1 - - 2 - START_WALLETS_2 - - 3 - START_WALLETS_3 - Without a Wallet you can carry up to 100 Rupees, with the first you can carry 300, then 500 and finally 999
 !dropdown - Start Inventory - Setting - Start Capacity - START_BOTTLES - Bottles - - START_BOTTLES_0 - 0 - START_BOTTLES_0 - - 1 - START_BOTTLES_1 - - 2 - START_BOTTLES_2 - - 3 - START_BOTTLES_3 - - 4 - START_BOTTLES_4 - These Bottles always start out empty, unless "Random Bottle Contents" is enabled
+!flag - Start Inventory - Setting - Quest Status Items - START_EARTH_ELEMENT - Earth Element -
+!flag - Start Inventory - Setting - Quest Status Items - START_FIRE_ELEMENT - Fire Element -
+!flag - Start Inventory - Setting - Quest Status Items - START_WATER_ELEMENT - Water Element -
+!flag - Start Inventory - Setting - Quest Status Items - START_WIND_ELEMENT - Wind Element -
 !flag - Start Inventory - Setting - Quest Status Items - START_DOG_FOOD - Dog Food Bottle -
 !flag - Start Inventory - Setting - Quest Status Items - START_RANCH_KEY - Lon Lon Ranch Key -
 !flag - Start Inventory - Setting - Quest Status Items - START_MUSHROOM - Wake Up Mushroom -
@@ -868,6 +872,18 @@
 !endif
 !ifdef - START_OCARINA
 	!eventdefine - startInventoryOcarina
+!endif
+!ifdef - START_EARTH_ELEMENT
+	!eventdefine - startInventoryEarthElement
+!endif
+!ifdef - START_FIRE_ELEMENT
+	!eventdefine - startInventoryFireElement
+!endif
+!ifdef - START_WATER_ELEMENT
+	!eventdefine - startInventoryWaterElement
+!endif
+!ifdef - START_WIND_ELEMENT
+	!eventdefine - startInventoryWindElement
 !endif
 !ifdef - START_DOG_FOOD
 	!eventdefine - startInventoryDogFood
@@ -2439,12 +2455,52 @@
 		Items.CarlovMedal;	Minor;
 	!endif
 !endif
+!ifdef - START_EARTH_ELEMENT
+	Dummy_EarthElement:NoSpoiler;	Unshuffled;	DumEarthElement1:Define:FirstByte, DumEarthElement2:Define:SecondByte;	;	Items.EarthElement
+	!ifdef - MEME
+		!ifndef - SHUFFLE_ELEMENTS_VANILLA
+			Items.EarthElement;	Minor;
+		!endif
+	!endif
+!endif
+!ifdef - START_FIRE_ELEMENT
+	Dummy_FireElement:NoSpoiler;	Unshuffled;	DumFireElement1:Define:FirstByte, DumFireElement2:Define:SecondByte;	;	Items.FireElement
+	!ifdef - MEME
+		!ifndef - SHUFFLE_ELEMENTS_VANILLA
+			Items.FireElement;	Minor;
+		!endif
+	!endif
+!endif
+!ifdef - START_WATER_ELEMENT
+	Dummy_WaterElement:NoSpoiler;	Unshuffled;	DumWaterElement1:Define:FirstByte, DumWaterElement2:Define:SecondByte;	;	Items.WaterElement
+	!ifdef - MEME
+		!ifndef - SHUFFLE_ELEMENTS_VANILLA
+			Items.WaterElement;	Minor;
+		!endif
+	!endif
+!endif
+!ifdef - START_WIND_ELEMENT
+	Dummy_WindElement:NoSpoiler;	Unshuffled;	DumWindElement1:Define:FirstByte, DumWindElement2:Define:SecondByte;	;	Items.WindElement
+	!ifdef - MEME
+		!ifndef - SHUFFLE_ELEMENTS_VANILLA
+			Items.WindElement;	Minor;
+		!endif
+	!endif
+!endif
 !ifndef - SHUFFLE_ELEMENTS_VANILLA
 	!ifdef - ELEMENTS_TIED_TO_DUNGEONS
-		Items.EarthElement;		DungeonPrize;
-		Items.FireElement;		DungeonPrize;
-		Items.WaterElement;		DungeonPrize;
-		Items.WindElement;		DungeonPrize;
+		!ifndef - START_EARTH_ELEMENT
+			Items.EarthElement;		DungeonPrize;
+		!endif
+		!ifndef - START_FIRE_ELEMENT
+			Items.FireElement;		DungeonPrize;
+		!endif
+		!ifndef - START_WATER_ELEMENT
+			Items.WaterElement;		DungeonPrize;
+		!endif
+		!ifndef - START_WIND_ELEMENT
+			Items.WindElement;		DungeonPrize;
+		!endif
 		!ifdef - SHUFFLE_ELEMENTS_DUNGEON
 			!prizeplacement - Deepwood_Prize - DWSPrize
 			!prizeplacement - CoF_Prize - CoFPrize
@@ -2463,22 +2519,46 @@
 		!endif
 	!endif
 	!ifdef - SHUFFLE_ELEMENTS_ON_DUNGEONS
-		Items.EarthElement;		DungeonMajor;	Prize
-		Items.FireElement;		DungeonMajor;	Prize
-		Items.WaterElement;		DungeonMajor;	Prize
-		Items.WindElement;		DungeonMajor;	Prize
+		!ifndef - START_EARTH_ELEMENT
+			Items.EarthElement;		DungeonMajor;	Prize
+		!endif
+		!ifndef - START_FIRE_ELEMENT
+			Items.FireElement;		DungeonMajor;	Prize
+		!endif
+		!ifndef - START_WATER_ELEMENT
+			Items.WaterElement;		DungeonMajor;	Prize
+		!endif
+		!ifndef - START_WIND_ELEMENT
+			Items.WindElement;		DungeonMajor;	Prize
+		!endif
 	!endif
 	!ifdef - SHUFFLE_ELEMENTS_ON_REGIONS
-		Items.EarthElement;		DungeonMajor;	PrizeOutside
-		Items.FireElement;		DungeonMajor;	PrizeOutside
-		Items.WaterElement;		DungeonMajor;	PrizeOutside
-		Items.WindElement;		DungeonMajor;	PrizeOutside
+		!ifndef - START_EARTH_ELEMENT
+			Items.EarthElement;		DungeonMajor;	PrizeOutside
+		!endif
+		!ifndef - START_FIRE_ELEMENT
+			Items.FireElement;		DungeonMajor;	PrizeOutside
+		!endif
+		!ifndef - START_WATER_ELEMENT
+			Items.WaterElement;		DungeonMajor;	PrizeOutside
+		!endif
+		!ifndef - START_WIND_ELEMENT
+			Items.WindElement;		DungeonMajor;	PrizeOutside
+		!endif
 	!endif
 	!ifdef - SHUFFLE_ELEMENTS_ON
-		Items.EarthElement;		Major;
-		Items.FireElement;		Major;
-		Items.WaterElement;		Major;
-		Items.WindElement;		Major;
+		!ifndef - START_EARTH_ELEMENT
+			Items.EarthElement;		Major;
+		!endif
+		!ifndef - START_FIRE_ELEMENT
+			Items.FireElement;		Major;
+		!endif
+		!ifndef - START_WATER_ELEMENT
+			Items.WaterElement;		Major;
+		!endif
+		!ifndef - START_WIND_ELEMENT
+			Items.WindElement;		Major;
+		!endif
 	!endif
 !endif
 !ifndef - START_GRIP_RING
@@ -3405,10 +3485,18 @@
 		Items.GraveyardKey;	Minor;
 	!endif
 	!ifdef - SHUFFLE_ELEMENTS_ON
-		Items.EarthElement;	Minor;
-		Items.FireElement;	Minor;
-		Items.WaterElement;	Minor;
-		Items.WindElement;	Minor;
+		!ifndef - START_EARTH_ELEMENT
+			Items.EarthElement;	Minor;
+		!endif
+		!ifndef - START_FIRE_ELEMENT
+			Items.FireElement;	Minor;
+		!endif
+		!ifndef - START_WATER_ELEMENT
+			Items.WaterElement;	Minor;
+		!endif
+		!ifndef - START_WIND_ELEMENT
+			Items.WindElement;	Minor;
+		!endif
 	!endif
 	!ifndef - START_GRIP_RING
 		Items.GripRing;			Minor;

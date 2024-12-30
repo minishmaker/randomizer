@@ -343,6 +343,18 @@ POIN dhcRemovedDoor;	WORD 0x2002DC1 1
 		POIN gentariCurtainStart; WORD 0x2002CEC 1
 	#endif
 #endif
+#ifdef startInventoryEarthElement
+	POIN earthElementStart; WORD 0x2002B42 1
+#endif
+#ifdef startInventoryFireElement
+	POIN fireElementStart; WORD 0x2002B42 1
+#endif
+#ifdef startInventoryWaterElement
+	POIN waterElementStart; WORD 0x2002B42 1
+#endif
+#ifdef startInventoryWindElement
+	POIN windElementStart; WORD 0x2002B42 1
+#endif
 #ifdef startInventoryDogFood
 	POIN dogFoodStart; WORD 0x2002B3F 1
 #endif
@@ -898,6 +910,18 @@ bottle3Start:
 BYTE 0x10
 
 bottle4Start:
+BYTE 0x40
+
+earthElementStart:
+BYTE 0x01
+
+fireElementStart:
+BYTE 0x04
+
+waterElementStart:
+BYTE 0x10
+
+windElementStart:
 BYTE 0x40
 
 dogFoodStart:
