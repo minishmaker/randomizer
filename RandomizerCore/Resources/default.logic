@@ -287,6 +287,17 @@
 !flag - Start Inventory - Setting - Joy Butterflies - START_ARROW_BUTTERFLY - Arrow Joy Butterfly -
 !flag - Start Inventory - Setting - Joy Butterflies - START_DIG_BUTTERFLY - Dig Joy Butterfly -
 !flag - Start Inventory - Setting - Joy Butterflies - START_SWIM_BUTTERFLY - Swim Joy Butterfly -
+!numberbox - Start Inventory - Setting - Kinstones - START_KINSTONES_GOLD_CLOUD - Cloud Tops - This kinstone is the gold combined kinstone when that setting is enabled.\nMax 5 for vanilla and 9 for combined. - 0 - 0 - 9
+!numberbox - Start Inventory - Setting - Kinstones - START_KINSTONES_GOLD_SWAMP - Swamp - This kinstone is not shuffled when the gold combined setting is enabled.\nMax 3. - 0 - 0 - 3
+!flag - Start Inventory - Setting - Kinstones - START_KINSTONES_GOLD_FALLS - Veil Falls - This kinstone is not shuffled when the gold combined setting is enabled.
+!numberbox - Start Inventory - Setting - Kinstones - START_KINSTONES_RED_W - Red W - This kinstone is the red combined kinstone when that setting is enabled.\nMax 9 for vanilla and 24 for combined. - 0 - 0 - 24
+!numberbox - Start Inventory - Setting - Kinstones - START_KINSTONES_RED_V - Red V - This kinstone is not shuffled when the red combined setting is enabled.\nMax 7. - 0 - 0 - 7
+!numberbox - Start Inventory - Setting - Kinstones - START_KINSTONES_RED_E - Red E - This kinstone is not shuffled when the red combined setting is enabled.\nMax 8. - 0 - 0 - 8
+!numberbox - Start Inventory - Setting - Kinstones - START_KINSTONES_BLUE_L - Blue L - This kinstone is the blue combined kinstone when that setting is enabled.\nMax 9 for vanilla and 18 for combined. - 0 - 0 - 18
+!numberbox - Start Inventory - Setting - Kinstones - START_KINSTONES_BLUE_S - Blue S - This kinstone is not shuffled when the blue combined setting is enabled.\nMax 9. - 0 - 0 - 9
+!numberbox - Start Inventory - Setting - Kinstones - START_KINSTONES_GREEN_C - Green C - This kinstone is the green combined kinstone when that setting is enabled.\nMax 17 for vanilla and 49 for combined. - 0 - 0 - 49
+!numberbox - Start Inventory - Setting - Kinstones - START_KINSTONES_GREEN_G - Green G - This kinstone is not shuffled when the green combined setting is enabled.\nMax 16. - 0 - 0 - 16
+!numberbox - Start Inventory - Setting - Kinstones - START_KINSTONES_GREEN_P - Green P - This kinstone is not shuffled when the green combined setting is enabled.\nMax 16. - 0 - 0 - 16
 
 !flag - Gameplay - Setting - Difficulty - GLITCHLESS - Prevent Speedrun Glitches - Attempts were made to patch the glitches used by speedrunners to reach areas before intended, these attempts failed but we still keep this setting around.\nIt is not recommended to enable this setting as it instead causes many bugs in regular gameplay
 !flag - Gameplay - Setting - Difficulty - TIMEDOHKO - Timed OHKO - A 10 minute timer starts when you start your save file, collect timers to increase time on this timer. When the timer hits 00:00 you enter OHKO mode, one hit will kill you.\nBlue Timers increase the time by 2 Mintues\nGreen Timers increase the time by 4 minutes\nRed timers reduce the timer to 00:00\nWARNING: Do not enable this with 'Damage Multiplier' above x1, it will generate the seed but fail to patch the game.
@@ -460,6 +471,16 @@
 !define - `START_QUIVERS`
 !define - `START_WALLETS`
 !define - `START_BOTTLES`
+!define - START_KINSTONES_GOLD_CLOUD_`START_KINSTONES_GOLD_CLOUD`
+!define - START_KINSTONES_GOLD_SWAMP_`START_KINSTONES_GOLD_SWAMP`
+!define - START_KINSTONES_RED_W_`START_KINSTONES_RED_W`
+!define - START_KINSTONES_RED_V_`START_KINSTONES_RED_V`
+!define - START_KINSTONES_RED_E_`START_KINSTONES_RED_E`
+!define - START_KINSTONES_BLUE_L_`START_KINSTONES_BLUE_L`
+!define - START_KINSTONES_BLUE_S_`START_KINSTONES_BLUE_S`
+!define - START_KINSTONES_GREEN_C_`START_KINSTONES_GREEN_C`
+!define - START_KINSTONES_GREEN_G_`START_KINSTONES_GREEN_G`
+!define - START_KINSTONES_GREEN_P_`START_KINSTONES_GREEN_P`
 
 !define - `THREE_HEART`
 !define - `DAMAGE_MULTI`
@@ -1050,6 +1071,63 @@
 		!eventdefine - startInventoryBottleContent2 - (0x`RAND_INT`%0x12)+0x20
 		!eventdefine - startInventoryBottleContent3 - (0x`RAND_INT`%0x12)+0x20
 		!eventdefine - startInventoryBottleContent4 - (0x`RAND_INT`%0x12)+0x20
+	!endif
+!endif
+!ifndef - NO_GOLD_FUSIONS
+	!ifndef - OPEN_GOLD_FUSIONS
+		!ifndef - START_KINSTONES_GOLD_CLOUD_0
+			!eventdefine - startInventoryKinstonesGoldCloud - `START_KINSTONES_GOLD_CLOUD`
+		!endif
+		!ifndef - COMBINED_GOLD_FUSIONS
+			!ifndef - START_KINSTONES_GOLD_SWAMP_0
+				!eventdefine - startInventoryKinstonesGoldSwamp - `START_KINSTONES_GOLD_SWAMP`
+			!endif
+			!ifdef - START_KINSTONES_GOLD_FALLS
+				!eventdefine - startInventoryKinstonesGoldFalls - 1
+			!endif
+		!endif
+	!endif
+!endif
+!ifndef - NO_RED_FUSIONS
+	!ifndef - OPEN_RED_FUSIONS
+		!ifndef - START_KINSTONES_RED_W_0
+			!eventdefine - startInventoryKinstonesRedW - `START_KINSTONES_RED_W`
+		!endif
+		!ifndef - COMBINED_RED_FUSIONS
+			!ifndef - START_KINSTONES_RED_V_0
+				!eventdefine - startInventoryKinstonesRedV - `START_KINSTONES_RED_V`
+			!endif
+			!ifndef - START_KINSTONES_RED_E_0
+				!eventdefine - startInventoryKinstonesRedE - `START_KINSTONES_RED_E`
+			!endif
+		!endif
+	!endif
+!endif
+!ifndef - NO_BLUE_FUSIONS
+	!ifndef - OPEN_BLUE_FUSIONS
+		!ifndef - START_KINSTONES_BLUE_L_0
+			!eventdefine - startInventoryKinstonesBlueL - `START_KINSTONES_BLUE_L`
+		!endif
+		!ifndef - COMBINED_BLUE_FUSIONS
+			!ifndef - START_KINSTONES_BLUE_S_0
+				!eventdefine - startInventoryKinstonesBlueS - `START_KINSTONES_BLUE_S`
+			!endif
+		!endif
+	!endif
+!endif
+!ifndef - NO_GREEN_FUSIONS
+	!ifndef - OPEN_GREEN_FUSIONS
+		!ifndef - START_KINSTONES_GREEN_C_0
+			!eventdefine - startInventoryKinstonesGreenC - `START_KINSTONES_GREEN_C`
+		!endif
+		!ifndef - COMBINED_GREEN_FUSIONS
+			!ifndef - START_KINSTONES_GREEN_G_0
+				!eventdefine - startInventoryKinstonesGreenG - `START_KINSTONES_GREEN_G`
+			!endif
+			!ifndef - START_KINSTONES_GREEN_P_0
+				!eventdefine - startInventoryKinstonesGreenP - `START_KINSTONES_GREEN_P`
+			!endif
+		!endif
 	!endif
 !endif
 
@@ -4460,7 +4538,8 @@ All_Requirements_Met;	`ALLREQUIREMENTS`;	requirementPrizeItem:Define:FirstByte, 
 		!define - ALLGREENSHARED - , Helpers.CanFuseGreenC, Helpers.CanFuseGreenG, Helpers.CanFuseGreenP
 	!endif
 !endif
-Start;				Helper;;	
+Start;				Helper;;
+StartInv;			Helper;;
 CanFuseShared;		Helper;; Helpers.Start `ALLREDSHARED` `ALLBLUESHARED` `ALLGREENSHARED`
 
 # Helpers, these let us write shorter expressions we would normally use often
@@ -4800,11 +4879,24 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 	!else
 		!ifndef - COMBINED_GOLD_FUSIONS
 			!ifdef - ITEM_POOL_PLENTIFUL
-				Items.Kinstone.GoldenFalls; 		Minor;
-				Items.Kinstone.GoldenCloudTops:2;	Minor;
-				Items.Kinstone.GoldenSwamp:2;		Minor;
+				!ifndef - START_KINSTONES_GOLD_CLOUD_5
+					!ifndef - START_KINSTONES_GOLD_CLOUD_6
+						!ifndef - START_KINSTONES_GOLD_CLOUD_7
+							!ifndef - START_KINSTONES_GOLD_CLOUD_8
+								!ifndef - START_KINSTONES_GOLD_CLOUD_9
+									Items.Kinstone.GoldenCloudTops:2;	Minor;
+								!endif
+							!endif
+						!endif
+					!endif
+				!endif
+				!ifndef - START_KINSTONES_GOLD_SWAMP_3
+					Items.Kinstone.GoldenSwamp:2;		Minor;
+				!endif
+				!ifndef - START_KINSTONES_GOLD_FALLS
+					Items.Kinstone.GoldenFalls; 		Minor;
+				!endif
 			!endif
-			Items.Kinstone.GoldenFalls;			Major;
 			!ifdef - GOLD1MAX
 				!undefine - GOLD1MULTIPLIER
 				!define - GOLD1MULTIPLIER - 5
@@ -4817,15 +4909,24 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 			!endif
 			Items.Kinstone.GoldenCloudTops:5.`GOLD1MULTIPLIER`;	Major;
 			Items.Kinstone.GoldenSwamp:3.`GOLD2MULTIPLIER`;		Major;
-			CanFuseGoldTornado;  Helper;; (+5, Items.Kinstone.GoldenCloudTops:`GOLD1MULTIPLIER`)
-			CanFuseGoldTotem;    Helper;; (+3, Items.Kinstone.GoldenSwamp:`GOLD2MULTIPLIER`)
-			CanFuseGoldCrown;    Helper;; Items.Kinstone.GoldenFalls
+			!ifndef - START_KINSTONES_GOLD_FALLS
+				Items.Kinstone.GoldenFalls;			Major;
+			!endif
+			CanFuseGoldTornado;  Helper;; (+5, Helpers.StartInv:`START_KINSTONES_GOLD_CLOUD`, Items.Kinstone.GoldenCloudTops:`GOLD1MULTIPLIER`)
+			CanFuseGoldTotem;    Helper;; (+3, Helpers.StartInv:`START_KINSTONES_GOLD_SWAMP`, Items.Kinstone.GoldenSwamp:`GOLD2MULTIPLIER`)
+			!ifndef - START_KINSTONES_GOLD_FALLS
+				CanFuseGoldCrown;    Helper;; Items.Kinstone.GoldenFalls
+			!else
+				CanFuseGoldCrown;    Helper;;
+			!endif
 		!else
 			!ifdef - ITEM_POOL_PLENTIFUL
-				!ifdef - GOLD1MAX
-					Items.Kinstone.GoldenCloudTops:2;	Minor;
-				!else
-					Items.Kinstone.GoldenCloudTops:5;	Minor;
+				!ifndef - START_KINSTONES_GOLD_CLOUD_9
+					!ifdef - GOLD1MAX
+						Items.Kinstone.GoldenCloudTops:2;	Minor;
+					!else
+						Items.Kinstone.GoldenCloudTops:5;	Minor;
+					!endif
 				!endif
 			!endif
 			!ifdef - GOLD1MAX
@@ -4835,21 +4936,21 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 			!endif
 			!eventdefine - combineKinstonesGold
 			Items.Kinstone.GoldenCloudTops:9.`GOLD1MULTIPLIER`;	Major;
-			CanFuseGoldTornado;  Helper;; (+9, Items.Kinstone.GoldenCloudTops:`GOLD1MULTIPLIER`)
-			CanFuseGoldTotem;    Helper;; (+9, Items.Kinstone.GoldenCloudTops:`GOLD1MULTIPLIER`)
+			CanFuseGoldTornado;  Helper;; (+9, Helpers.StartInv:`START_KINSTONES_GOLD_CLOUD`, Items.Kinstone.GoldenCloudTops:`GOLD1MULTIPLIER`)
+			CanFuseGoldTotem;    Helper;; (+9, Helpers.StartInv:`START_KINSTONES_GOLD_CLOUD`, Items.Kinstone.GoldenCloudTops:`GOLD1MULTIPLIER`)
 			# The Veil Falls Gold Fusion only requires 4 Golden Kinstones if Cloud Tops is locked behind it, as then you could not waste Gold Kinstones there
 			# Exception: The Veil Falls wind crest does not affect this, because if you can reach Cloud Tops from there, you have the Grip Ring and this Fusion is no longer needed
 			!ifdef - CLOUD_CREST
-				CanFuseGoldCrown;    Helper;; (+9, Items.Kinstone.GoldenCloudTops:`GOLD1MULTIPLIER`)
+				CanFuseGoldCrown;    Helper;; (+9, Helpers.StartInv:`START_KINSTONES_GOLD_CLOUD`, Items.Kinstone.GoldenCloudTops:`GOLD1MULTIPLIER`)
 			!else
 				!ifdef - OPEN_WIND_TRIBE
 					!ifndef - NO_RED_FUSIONS
-						CanFuseGoldCrown;    Helper;; (+9, Items.Kinstone.GoldenCloudTops:`GOLD1MULTIPLIER`)
+						CanFuseGoldCrown;    Helper;; (+9, Helpers.StartInv:`START_KINSTONES_GOLD_CLOUD`, Items.Kinstone.GoldenCloudTops:`GOLD1MULTIPLIER`)
 					!else
-						CanFuseGoldCrown;    Helper;; (+4, Items.Kinstone.GoldenCloudTops:`GOLD1MULTIPLIER`)
+						CanFuseGoldCrown;    Helper;; (+4, Helpers.StartInv:`START_KINSTONES_GOLD_CLOUD`, Items.Kinstone.GoldenCloudTops:`GOLD1MULTIPLIER`)
 					!endif
 				!else
-					CanFuseGoldCrown;    Helper;; (+4, Items.Kinstone.GoldenCloudTops:`GOLD1MULTIPLIER`)
+					CanFuseGoldCrown;    Helper;; (+4, Helpers.StartInv:`START_KINSTONES_GOLD_CLOUD`, Items.Kinstone.GoldenCloudTops:`GOLD1MULTIPLIER`)
 				!endif
 			!endif
 		!endif
@@ -4940,9 +5041,17 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 			!endif
 			!define - REDETOTAL1 - `REDETOTAL`, Helpers.Start
 			!ifdef - ITEM_POOL_PLENTIFUL
-				Items.Kinstone.RedW:2;	Minor;
-				Items.Kinstone.RedV:2;	Minor;
-				Items.Kinstone.RedE:2;	Minor;
+				!ifndef - START_KINSTONES_RED_W_9 # ignoring the other numbers for now
+					!ifndef - START_KINSTONES_RED_W_24
+						Items.Kinstone.RedW:2;	Minor;
+					!endif
+				!endif
+				!ifndef - START_KINSTONES_RED_V_7
+					Items.Kinstone.RedV:2;	Minor;
+				!endif
+				!ifndef - START_KINSTONES_RED_E_8
+					Items.Kinstone.RedE:2;	Minor;
+				!endif
 			!endif
 			!ifdef - REDWMAX
 				!eventdefine - kinstoneMultiplierRedW - `REDWTOTAL`
@@ -4962,12 +5071,12 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 			Items.Kinstone.RedW:`REDWTOTAL`.`REDWMULTIPLIER`;	Major;
 			Items.Kinstone.RedV:`REDVTOTAL`.`REDVMULTIPLIER`;	Major;
 			Items.Kinstone.RedE:`REDETOTAL`.`REDEMULTIPLIER`;	Major;
-			CanFuseRedW;			Helper;;	(+`REDWTOTAL`, Items.Kinstone.RedW:`REDWMULTIPLIER`)
-			CanFuseRedV;			Helper;;	(+`REDVTOTAL`, Items.Kinstone.RedV:`REDVMULTIPLIER`)
-			CanFuseRedMinish0;	Helper;;	(+`REDVTOTAL`, Items.Kinstone.RedV:`REDVMULTIPLIER`)
-			CanFuseRedE;			Helper;;	(+`REDETOTAL`, Items.Kinstone.RedE:`REDEMULTIPLIER`)
-			CanFuseRedDin;		Helper;;	(+`REDETOTAL1`, Items.Kinstone.RedE:`REDEMULTIPLIER`)
-			CanFuseRedMinish;		Helper;;	(+`REDETOTAL`, Items.Kinstone.RedE:`REDEMULTIPLIER`)
+			CanFuseRedW;			Helper;;	(+`REDWTOTAL`, Helpers.StartInv:`START_KINSTONES_RED_W`, Items.Kinstone.RedW:`REDWMULTIPLIER`)
+			CanFuseRedV;			Helper;;	(+`REDVTOTAL`, Helpers.StartInv:`START_KINSTONES_RED_V`, Items.Kinstone.RedV:`REDVMULTIPLIER`)
+			CanFuseRedMinish0;	Helper;;	(+`REDVTOTAL`, Helpers.StartInv:`START_KINSTONES_RED_V`, Items.Kinstone.RedV:`REDVMULTIPLIER`)
+			CanFuseRedE;			Helper;;	(+`REDETOTAL`, Helpers.StartInv:`START_KINSTONES_RED_E`, Items.Kinstone.RedE:`REDEMULTIPLIER`)
+			CanFuseRedDin;		Helper;;	(+`REDETOTAL1`, Helpers.StartInv:`START_KINSTONES_RED_E`, Items.Kinstone.RedE:`REDEMULTIPLIER`)
+			CanFuseRedMinish;		Helper;;	(+`REDETOTAL`, Helpers.StartInv:`START_KINSTONES_RED_E`, Items.Kinstone.RedE:`REDEMULTIPLIER`)
 		!else
 			!ifndef - NO_GOLD_FUSIONS
 				!ifdef - GORON_CAVE
@@ -5034,10 +5143,12 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 			!define - REDWTOTAL2 - `REDWTOTAL`, Helpers.Start:2
 			!define - REDWTOTAL4 - `REDWTOTAL`, Helpers.Start:4
 			!ifdef - ITEM_POOL_PLENTIFUL
-				!ifdef - REDWMAX
-					Items.Kinstone.RedW:2;	Minor
-				!else
-					Items.Kinstone.RedW:6;	Minor
+				!ifndef - START_KINSTONES_RED_W_24
+					!ifdef - REDWMAX
+						Items.Kinstone.RedW:2;	Minor
+					!else
+						Items.Kinstone.RedW:6;	Minor
+					!endif
 				!endif
 			!endif
 			!ifdef - REDWMAX
@@ -5047,12 +5158,12 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 			!endif
 			!eventdefine - combineKinstonesRed
 			Items.Kinstone.RedW:`REDWTOTAL`.`REDWMULTIPLIER`;	Major;
-			CanFuseRedW;			Helper;;	(+`REDWTOTAL`, Items.Kinstone.RedW:`REDWMULTIPLIER`)
-			CanFuseRedV;			Helper;;	(+`REDWTOTAL`, Items.Kinstone.RedW:`REDWMULTIPLIER`)
-			CanFuseRedMinish0;	Helper;;	(+`REDWTOTAL2`, Items.Kinstone.RedW:`REDWMULTIPLIER`)
-			CanFuseRedE;			Helper;; (+`REDWTOTAL`, Items.Kinstone.RedW:`REDWMULTIPLIER`)
-			CanFuseRedDin;		Helper;; (+`REDWTOTAL4`, Items.Kinstone.RedW:`REDWMULTIPLIER`)
-			CanFuseRedMinish;		Helper;; (+`REDWTOTAL1`, Items.Kinstone.RedW:`REDWMULTIPLIER`)
+			CanFuseRedW;			Helper;;	(+`REDWTOTAL`, Helpers.StartInv:`START_KINSTONES_RED_W`, Items.Kinstone.RedW:`REDWMULTIPLIER`)
+			CanFuseRedV;			Helper;;	(+`REDWTOTAL`, Helpers.StartInv:`START_KINSTONES_RED_W`, Items.Kinstone.RedW:`REDWMULTIPLIER`)
+			CanFuseRedMinish0;	Helper;;	(+`REDWTOTAL2`, Helpers.StartInv:`START_KINSTONES_RED_W`, Items.Kinstone.RedW:`REDWMULTIPLIER`)
+			CanFuseRedE;			Helper;; (+`REDWTOTAL`, Helpers.StartInv:`START_KINSTONES_RED_W`, Items.Kinstone.RedW:`REDWMULTIPLIER`)
+			CanFuseRedDin;		Helper;; (+`REDWTOTAL4`, Helpers.StartInv:`START_KINSTONES_RED_W`, Items.Kinstone.RedW:`REDWMULTIPLIER`)
+			CanFuseRedMinish;		Helper;; (+`REDWTOTAL1`, Helpers.StartInv:`START_KINSTONES_RED_W`, Items.Kinstone.RedW:`REDWMULTIPLIER`)
 		!endif
 		BelariFusion;				Helper;;	Helpers.CanFuseRedW, Helpers.AccessBelari																							#RuinsEndChest			0A
 		BremorFusion;				Helper;;	Helpers.CanFuseRedW, Helpers.DinNayruFaroreFusion																					#USELESSHouse				0B
@@ -5140,8 +5251,14 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 			!define - BLUESTOTAL - 9
 			!define - BLUESTOTAL1 - 8
 			!ifdef - ITEM_POOL_PLENTIFUL
-				Items.Kinstone.BlueL:2;	Minor;
-				Items.Kinstone.BlueS:2;	Minor;
+				!ifndef - START_KINSTONES_BLUE_L_9 # ignoring the other numbers for now
+					!ifndef - START_KINSTONES_BLUE_L_18
+						Items.Kinstone.BlueL:2;	Minor;
+					!endif
+				!endif
+				!ifndef - START_KINSTONES_BLUE_S_9
+					Items.Kinstone.BlueS:2;	Minor;
+				!endif
 			!endif
 			!ifdef - BLUELMAX
 				!undefine - BLUELMULTIPLIER
@@ -5155,10 +5272,10 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 			!endif
 			Items.Kinstone.BlueL:`BLUELTOTAL`.`BLUELMULTIPLIER`;	Major;
 			Items.Kinstone.BlueS:`BLUESTOTAL`.`BLUESMULTIPLIER`;	Major;
-			CanFuseBlueL;    		Helper;; (+`BLUELTOTAL`, Items.Kinstone.BlueL:`BLUELMULTIPLIER`)
-			CanFuseBlueS;    		Helper;; (+`BLUESTOTAL`, Items.Kinstone.BlueS:`BLUESMULTIPLIER`)
-			CanFuseBlue4Wall;		Helper;; (+`BLUELTOTAL1`, Items.Kinstone.BlueL:`BLUELMULTIPLIER`), (+`BLUESTOTAL1`, Items.Kinstone.BlueS:`BLUESMULTIPLIER`)
-			CanFuseBlueGhost;		Helper;; (+`BLUESTOTAL`, Items.Kinstone.BlueS:`BLUESMULTIPLIER`)
+			CanFuseBlueL;    		Helper;; (+`BLUELTOTAL`, Helpers.StartInv:`START_KINSTONES_BLUE_L`, Items.Kinstone.BlueL:`BLUELMULTIPLIER`)
+			CanFuseBlueS;    		Helper;; (+`BLUESTOTAL`, Helpers.StartInv:`START_KINSTONES_BLUE_S`, Items.Kinstone.BlueS:`BLUESMULTIPLIER`)
+			CanFuseBlue4Wall;		Helper;; (+`BLUELTOTAL1`, Helpers.StartInv:`START_KINSTONES_BLUE_L`, Items.Kinstone.BlueL:`BLUELMULTIPLIER`), (+`BLUESTOTAL1`, Helpers.StartInv:`START_KINSTONES_BLUE_S`, Items.Kinstone.BlueS:`BLUESMULTIPLIER`)
+			CanFuseBlueGhost;		Helper;; (+`BLUESTOTAL`, Helpers.StartInv:`START_KINSTONES_BLUE_S`, Items.Kinstone.BlueS:`BLUESMULTIPLIER`)
 		!else
 			!ifdef - LIBRARY_ACCESS
 				!define - BLUELTOTAL - 18
@@ -5168,10 +5285,12 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 			!define - BLUELTOTAL1 - `BLUELTOTAL`, Helpers.Start
 			!define - BLUELTOTAL2 - `BLUELTOTAL`, Helpers.Start:2
 			!ifdef - ITEM_POOL_PLENTIFUL
-				!ifdef - BLUELMAX
-					Items.Kinstone.BlueL:2;	Minor;
-				!else
-					Items.Kinstone.BlueL:4;	Minor;
+				!ifndef - START_KINSTONES_BLUE_L_18
+					!ifdef - BLUELMAX
+						Items.Kinstone.BlueL:2;	Minor;
+					!else
+						Items.Kinstone.BlueL:4;	Minor;
+					!endif
 				!endif
 			!endif
 			!ifdef - BLUELMAX
@@ -5181,10 +5300,10 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 			!endif
 			!eventdefine - combineKinstonesBlue
 			Items.Kinstone.BlueL:`BLUELTOTAL`.`BLUELMULTIPLIER`;	Major;
-			CanFuseBlueL;			Helper;; (+`BLUELTOTAL`, Items.Kinstone.BlueL:`BLUELMULTIPLIER`)
-			CanFuseBlueS;			Helper;; (+`BLUELTOTAL`, Items.Kinstone.BlueL:`BLUELMULTIPLIER`)
-			CanFuseBlue4Wall;		Helper;; (+`BLUELTOTAL2`, Items.Kinstone.BlueL:`BLUELMULTIPLIER`)
-			CanFuseBlueGhost;		Helper;; (+`BLUELTOTAL1`, Items.Kinstone.BlueL:`BLUELMULTIPLIER`)
+			CanFuseBlueL;			Helper;; (+`BLUELTOTAL`, Helpers.StartInv:`START_KINSTONES_BLUE_L`, Items.Kinstone.BlueL:`BLUELMULTIPLIER`)
+			CanFuseBlueS;			Helper;; (+`BLUELTOTAL`, Helpers.StartInv:`START_KINSTONES_BLUE_L`, Items.Kinstone.BlueL:`BLUELMULTIPLIER`)
+			CanFuseBlue4Wall;		Helper;; (+`BLUELTOTAL2`, Helpers.StartInv:`START_KINSTONES_BLUE_L`, Items.Kinstone.BlueL:`BLUELMULTIPLIER`)
+			CanFuseBlueGhost;		Helper;; (+`BLUELTOTAL1`, Helpers.StartInv:`START_KINSTONES_BLUE_L`, Items.Kinstone.BlueL:`BLUELMULTIPLIER`)
 		!endif
 		CandyFusion;			Helper;;	Helpers.CanFuseBlueL, Helpers.Library																								#TrilbyPlatform			22
 		LakeEastMinishFusion;	Helper;;	Helpers.CanFuseBlueL, Locations.Hylia_NorthMinishHole_Chest																			#LakeBeanstalk			23
@@ -5466,9 +5585,17 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 			!define - GREENGTOTAL3 - `GREENGTOTAL`, Helpers.Start:3
 			!define - GREENGTOTAL4 - `GREENGTOTAL`, Helpers.Start:4
 			!ifdef - ITEM_POOL_PLENTIFUL
-				Items.Kinstone.GreenC:3;	Minor;
-				Items.Kinstone.GreenG:3;	Minor;
-				Items.Kinstone.GreenP:3;	Minor;
+				!ifndef - START_KINSTONES_GREEN_C_17 # ignoring the other numbers for now
+					!ifndef - START_KINSTONES_GREEN_C_49
+						Items.Kinstone.GreenC:3;	Minor;
+					!endif
+				!endif
+				!ifndef - START_KINSTONES_GREEN_G_16
+					Items.Kinstone.GreenG:3;	Minor;
+				!endif
+				!ifndef - START_KINSTONES_GREEN_P_16
+					Items.Kinstone.GreenP:3;	Minor;
+				!endif
 			!endif
 			!ifdef - GREENCMAX
 				!eventdefine - kinstoneMultiplierGreenC - `GREENCTOTAL`
@@ -5488,42 +5615,42 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 			Items.Kinstone.GreenC:`GREENCTOTAL`.`GREENCMULTIPLIER`;	Major;
 			Items.Kinstone.GreenP:`GREENPTOTAL`.`GREENPMULTIPLIER`;	Major;
 			Items.Kinstone.GreenG:`GREENGTOTAL`.`GREENGMULTIPLIER`;	Major;
-			CanFuseGreenC;   		Helper;; (+`GREENCTOTAL`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
-			CanFuseGreenCShared1;	Helper;; (+`GREENCTOTAL5`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
-			CanFuseGreenCShared2;	Helper;; (+`GREENCTOTAL4`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
-			CanFuseGreenCShared3;	Helper;; (+`GREENCTOTAL3`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
-			CanFuseGreenCShared4;	Helper;; (+`GREENCTOTAL2`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
-			CanFuseGreenCShared5;	Helper;; (+`GREENCTOTAL1`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
-			CanFuseGreenP;   		Helper;; (+`GREENPTOTAL`, Items.Kinstone.GreenP:`GREENPMULTIPLIER`)
-			CanFuseGreenTFZ2;		Helper;; (+`GREENPTOTAL`, Items.Kinstone.GreenP:`GREENPMULTIPLIER`)
-			CanFuseGreenDavid;	Helper;; (+`GREENPTOTAL`, Items.Kinstone.GreenP:`GREENPMULTIPLIER`)
-			CanFuseGreenPShared1;	Helper;; (+`GREENPTOTAL4`, Items.Kinstone.GreenP:`GREENPMULTIPLIER`)
-			CanFuseGreenPShared2;	Helper;; (+`GREENPTOTAL3`, Items.Kinstone.GreenP:`GREENPMULTIPLIER`)
-			CanFuseGreenPShared3;	Helper;; (+`GREENPTOTAL2`, Items.Kinstone.GreenP:`GREENPMULTIPLIER`)
-			CanFuseGreenPShared4;	Helper;; (+`GREENPTOTAL1`, Items.Kinstone.GreenP:`GREENPMULTIPLIER`)
-			CanFuseGreenG;   		Helper;; (+`GREENGTOTAL`, Items.Kinstone.GreenG:`GREENGMULTIPLIER`)
-			CanFuseGreenTFZ1;		Helper;; (+`GREENGTOTAL`, Items.Kinstone.GreenG:`GREENGMULTIPLIER`)
-			CanFuseGreenGShared1;	Helper;; (+`GREENGTOTAL4`, Items.Kinstone.GreenG:`GREENGMULTIPLIER`)
-			CanFuseGreenGShared2;	Helper;; (+`GREENGTOTAL3`, Items.Kinstone.GreenG:`GREENGMULTIPLIER`)
-			CanFuseGreenGShared3;	Helper;; (+`GREENGTOTAL2`, Items.Kinstone.GreenG:`GREENGMULTIPLIER`)
-			CanFuseGreenGShared4;	Helper;; (+`GREENGTOTAL1`, Items.Kinstone.GreenG:`GREENGMULTIPLIER`)
+			CanFuseGreenC;   		Helper;; (+`GREENCTOTAL`, Helpers.StartInv:`START_KINSTONES_GREEN_C`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+			CanFuseGreenCShared1;	Helper;; (+`GREENCTOTAL5`, Helpers.StartInv:`START_KINSTONES_GREEN_C`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+			CanFuseGreenCShared2;	Helper;; (+`GREENCTOTAL4`, Helpers.StartInv:`START_KINSTONES_GREEN_C`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+			CanFuseGreenCShared3;	Helper;; (+`GREENCTOTAL3`, Helpers.StartInv:`START_KINSTONES_GREEN_C`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+			CanFuseGreenCShared4;	Helper;; (+`GREENCTOTAL2`, Helpers.StartInv:`START_KINSTONES_GREEN_C`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+			CanFuseGreenCShared5;	Helper;; (+`GREENCTOTAL1`, Helpers.StartInv:`START_KINSTONES_GREEN_C`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+			CanFuseGreenP;   		Helper;; (+`GREENPTOTAL`, Helpers.StartInv:`START_KINSTONES_GREEN_P`, Items.Kinstone.GreenP:`GREENPMULTIPLIER`)
+			CanFuseGreenTFZ2;		Helper;; (+`GREENPTOTAL`, Helpers.StartInv:`START_KINSTONES_GREEN_P`, Items.Kinstone.GreenP:`GREENPMULTIPLIER`)
+			CanFuseGreenDavid;	Helper;; (+`GREENPTOTAL`, Helpers.StartInv:`START_KINSTONES_GREEN_P`, Items.Kinstone.GreenP:`GREENPMULTIPLIER`)
+			CanFuseGreenPShared1;	Helper;; (+`GREENPTOTAL4`, Helpers.StartInv:`START_KINSTONES_GREEN_P`, Items.Kinstone.GreenP:`GREENPMULTIPLIER`)
+			CanFuseGreenPShared2;	Helper;; (+`GREENPTOTAL3`, Helpers.StartInv:`START_KINSTONES_GREEN_P`, Items.Kinstone.GreenP:`GREENPMULTIPLIER`)
+			CanFuseGreenPShared3;	Helper;; (+`GREENPTOTAL2`, Helpers.StartInv:`START_KINSTONES_GREEN_P`, Items.Kinstone.GreenP:`GREENPMULTIPLIER`)
+			CanFuseGreenPShared4;	Helper;; (+`GREENPTOTAL1`, Helpers.StartInv:`START_KINSTONES_GREEN_P`, Items.Kinstone.GreenP:`GREENPMULTIPLIER`)
+			CanFuseGreenG;   		Helper;; (+`GREENGTOTAL`, Helpers.StartInv:`START_KINSTONES_GREEN_G`, Items.Kinstone.GreenG:`GREENGMULTIPLIER`)
+			CanFuseGreenTFZ1;		Helper;; (+`GREENGTOTAL`, Helpers.StartInv:`START_KINSTONES_GREEN_G`, Items.Kinstone.GreenG:`GREENGMULTIPLIER`)
+			CanFuseGreenGShared1;	Helper;; (+`GREENGTOTAL4`, Helpers.StartInv:`START_KINSTONES_GREEN_G`, Items.Kinstone.GreenG:`GREENGMULTIPLIER`)
+			CanFuseGreenGShared2;	Helper;; (+`GREENGTOTAL3`, Helpers.StartInv:`START_KINSTONES_GREEN_G`, Items.Kinstone.GreenG:`GREENGMULTIPLIER`)
+			CanFuseGreenGShared3;	Helper;; (+`GREENGTOTAL2`, Helpers.StartInv:`START_KINSTONES_GREEN_G`, Items.Kinstone.GreenG:`GREENGMULTIPLIER`)
+			CanFuseGreenGShared4;	Helper;; (+`GREENGTOTAL1`, Helpers.StartInv:`START_KINSTONES_GREEN_G`, Items.Kinstone.GreenG:`GREENGMULTIPLIER`)
 			!ifdef - UWT_ACCESS
-				CanFuseGreenSiroc;	Helper;; (+`GREENCTOTAL`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+				CanFuseGreenSiroc;	Helper;; (+`GREENCTOTAL`, Helpers.StartInv:`START_KINSTONES_GREEN_C`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 			!else
 				CanFuseGreenSiroc;	Helper;; Helpers.Inaccessible
 			!endif
 			!ifdef - MINISH_TREE
-				CanFuseGreenScrub;	Helper;; (+`GREENCTOTAL`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+				CanFuseGreenScrub;	Helper;; (+`GREENCTOTAL`, Helpers.StartInv:`START_KINSTONES_GREEN_C`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 			!else
 				CanFuseGreenScrub;	Helper;; Helpers.Inaccessible
 			!endif
 			!ifdef - RIGHT_GRAVE
-				CanFuseGreenGina;		Helper;; (+`GREENCTOTAL1`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+				CanFuseGreenGina;		Helper;; (+`GREENCTOTAL1`, Helpers.StartInv:`START_KINSTONES_GREEN_C`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 			!else
 				CanFuseGreenGina;		Helper;; Helpers.Inaccessible
 			!endif
 			!ifdef - TRIBE_ACCESS
-				CanFuseGreenFlurris;	Helper;; (+`GREENGTOTAL1`, Items.Kinstone.GreenG:`GREENGMULTIPLIER`)
+				CanFuseGreenFlurris;	Helper;; (+`GREENGTOTAL1`, Helpers.StartInv:`START_KINSTONES_GREEN_G`, Items.Kinstone.GreenG:`GREENGMULTIPLIER`)
 			!else
 				CanFuseGreenFlurris;	Helper;; Helpers.Inaccessible
 			!endif	
@@ -5701,10 +5828,12 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 			!define - GREENCTOTALE - `GREENCTOTAL`, Helpers.Start:14
 			!define - GREENCTOTALF - `GREENCTOTAL`, Helpers.Start:15
 			!ifdef - ITEM_POOL_PLENTIFUL
-				!ifdef - GREENCMAX
-					Items.Kinstone.GreenC:3;	Minor;
-				!else
-					Items.Kinstone.GreenC:9;	Minor;
+				!ifndef - START_KINSTONES_GREEN_C_49
+					!ifdef - GREENCMAX
+						Items.Kinstone.GreenC:3;	Minor;
+					!else
+						Items.Kinstone.GreenC:9;	Minor;
+					!endif
 				!endif
 			!endif
 			!ifdef - GREENCMAX
@@ -5714,44 +5843,44 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 			!endif
 			!eventdefine - combineKinstonesGreen
 			Items.Kinstone.GreenC:`GREENCTOTAL`.`GREENCMULTIPLIER`;	Major;
-			CanFuseGreenC;   		Helper;; (+`GREENCTOTAL`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
-			CanFuseGreenG;   		Helper;; (+`GREENCTOTAL`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
-			CanFuseGreenTFZ1;		Helper;; (+`GREENCTOTAL2`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
-			CanFuseGreenP;   		Helper;; (+`GREENCTOTAL`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
-			CanFuseGreenTFZ2;		Helper;; (+`GREENCTOTAL1`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
-			CanFuseGreenDavid;	Helper;; (+`GREENCTOTAL1`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
-			CanFuseGreenShared15;	Helper;; (+`GREENCTOTAL1`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
-			CanFuseGreenShared14;	Helper;; (+`GREENCTOTAL2`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
-			CanFuseGreenShared13;	Helper;; (+`GREENCTOTAL3`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
-			CanFuseGreenShared12;	Helper;; (+`GREENCTOTAL4`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
-			CanFuseGreenShared11;	Helper;; (+`GREENCTOTAL5`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
-			CanFuseGreenShared10;	Helper;; (+`GREENCTOTAL6`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
-			CanFuseGreenShared9;	Helper;; (+`GREENCTOTAL7`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
-			CanFuseGreenShared8;	Helper;; (+`GREENCTOTAL8`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
-			CanFuseGreenShared7;	Helper;; (+`GREENCTOTAL9`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
-			CanFuseGreenShared6;	Helper;; (+`GREENCTOTALA`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
-			CanFuseGreenShared5;	Helper;; (+`GREENCTOTALB`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
-			CanFuseGreenShared4;	Helper;; (+`GREENCTOTALC`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
-			CanFuseGreenShared3;	Helper;; (+`GREENCTOTALD`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
-			CanFuseGreenShared2;	Helper;; (+`GREENCTOTALE`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
-			CanFuseGreenShared1;	Helper;; (+`GREENCTOTALF`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+			CanFuseGreenC;   		Helper;; (+`GREENCTOTAL`, Helpers.StartInv:`START_KINSTONES_GREEN_C`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+			CanFuseGreenG;   		Helper;; (+`GREENCTOTAL`, Helpers.StartInv:`START_KINSTONES_GREEN_C`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+			CanFuseGreenTFZ1;		Helper;; (+`GREENCTOTAL2`, Helpers.StartInv:`START_KINSTONES_GREEN_C`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+			CanFuseGreenP;   		Helper;; (+`GREENCTOTAL`, Helpers.StartInv:`START_KINSTONES_GREEN_C`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+			CanFuseGreenTFZ2;		Helper;; (+`GREENCTOTAL1`, Helpers.StartInv:`START_KINSTONES_GREEN_C`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+			CanFuseGreenDavid;	Helper;; (+`GREENCTOTAL1`, Helpers.StartInv:`START_KINSTONES_GREEN_C`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+			CanFuseGreenShared15;	Helper;; (+`GREENCTOTAL1`, Helpers.StartInv:`START_KINSTONES_GREEN_C`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+			CanFuseGreenShared14;	Helper;; (+`GREENCTOTAL2`, Helpers.StartInv:`START_KINSTONES_GREEN_C`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+			CanFuseGreenShared13;	Helper;; (+`GREENCTOTAL3`, Helpers.StartInv:`START_KINSTONES_GREEN_C`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+			CanFuseGreenShared12;	Helper;; (+`GREENCTOTAL4`, Helpers.StartInv:`START_KINSTONES_GREEN_C`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+			CanFuseGreenShared11;	Helper;; (+`GREENCTOTAL5`, Helpers.StartInv:`START_KINSTONES_GREEN_C`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+			CanFuseGreenShared10;	Helper;; (+`GREENCTOTAL6`, Helpers.StartInv:`START_KINSTONES_GREEN_C`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+			CanFuseGreenShared9;	Helper;; (+`GREENCTOTAL7`, Helpers.StartInv:`START_KINSTONES_GREEN_C`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+			CanFuseGreenShared8;	Helper;; (+`GREENCTOTAL8`, Helpers.StartInv:`START_KINSTONES_GREEN_C`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+			CanFuseGreenShared7;	Helper;; (+`GREENCTOTAL9`, Helpers.StartInv:`START_KINSTONES_GREEN_C`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+			CanFuseGreenShared6;	Helper;; (+`GREENCTOTALA`, Helpers.StartInv:`START_KINSTONES_GREEN_C`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+			CanFuseGreenShared5;	Helper;; (+`GREENCTOTALB`, Helpers.StartInv:`START_KINSTONES_GREEN_C`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+			CanFuseGreenShared4;	Helper;; (+`GREENCTOTALC`, Helpers.StartInv:`START_KINSTONES_GREEN_C`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+			CanFuseGreenShared3;	Helper;; (+`GREENCTOTALD`, Helpers.StartInv:`START_KINSTONES_GREEN_C`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+			CanFuseGreenShared2;	Helper;; (+`GREENCTOTALE`, Helpers.StartInv:`START_KINSTONES_GREEN_C`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+			CanFuseGreenShared1;	Helper;; (+`GREENCTOTALF`, Helpers.StartInv:`START_KINSTONES_GREEN_C`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 			!ifdef - UWT_ACCESS
-				CanFuseGreenSiroc;	Helper;; (+`GREENCTOTAL1`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+				CanFuseGreenSiroc;	Helper;; (+`GREENCTOTAL1`, Helpers.StartInv:`START_KINSTONES_GREEN_C`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 			!else
 				CanFuseGreenSiroc;	Helper;; Helpers.Inaccessible
 			!endif
 			!ifdef - MINISH_TREE
-				CanFuseGreenScrub;	Helper;; (+`GREENCTOTAL1`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+				CanFuseGreenScrub;	Helper;; (+`GREENCTOTAL1`, Helpers.StartInv:`START_KINSTONES_GREEN_C`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 			!else
 				CanFuseGreenScrub;	Helper;; Helpers.Inaccessible
 			!endif
 			!ifdef - RIGHT_GRAVE
-				CanFuseGreenGina;		Helper;; (+`GREENCTOTAL1`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+				CanFuseGreenGina;		Helper;; (+`GREENCTOTAL1`, Helpers.StartInv:`START_KINSTONES_GREEN_C`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 			!else
 				CanFuseGreenGina;		Helper;; Helpers.Inaccessible
 			!endif
 			!ifdef - TRIBE_ACCESS
-				CanFuseGreenFlurris;	Helper;; (+`GREENCTOTAL1`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
+				CanFuseGreenFlurris;	Helper;; (+`GREENCTOTAL1`, Helpers.StartInv:`START_KINSTONES_GREEN_C`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 			!else
 				CanFuseGreenFlurris;	Helper;; Helpers.Inaccessible
 			!endif

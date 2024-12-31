@@ -90,6 +90,67 @@ POIN dungeonPortal;	WORD 0x2002EBD 6
 		#endif
 	#endif
 #endif
+//the only point of this macro and the temp define is so ColorzCore does not give us a warning log message for redefining kinstoneIndex
+#define incrementKinstoneIndex "#define temp kinstoneIndex+1; #undef kinstoneIndex; #define kinstoneIndex temp; #undef temp"
+#define kinstoneIndex 0
+//we are putting in green kinstones first and gold last just so the more common ones are generally more near the top in the fuse menu
+#ifdef startInventoryKinstonesGreenC
+	POIN kinstonesGreenCType; WORD 0x2002B58+kinstoneIndex 1
+	POIN kinstonesGreenCStart; WORD 0x2002B6B+kinstoneIndex 1
+	incrementKinstoneIndex
+#endif
+#ifdef startInventoryKinstonesGreenG
+	POIN kinstonesGreenGType; WORD 0x2002B58+kinstoneIndex 1
+	POIN kinstonesGreenGStart; WORD 0x2002B6B+kinstoneIndex 1
+	incrementKinstoneIndex
+#endif
+#ifdef startInventoryKinstonesGreenP
+	POIN kinstonesGreenPType; WORD 0x2002B58+kinstoneIndex 1
+	POIN kinstonesGreenPStart; WORD 0x2002B6B+kinstoneIndex 1
+	incrementKinstoneIndex
+#endif
+#ifdef startInventoryKinstonesBlueL
+	POIN kinstonesBlueLType; WORD 0x2002B58+kinstoneIndex 1
+	POIN kinstonesBlueLStart; WORD 0x2002B6B+kinstoneIndex 1
+	incrementKinstoneIndex
+#endif
+#ifdef startInventoryKinstonesBlueS
+	POIN kinstonesBlueSType; WORD 0x2002B58+kinstoneIndex 1
+	POIN kinstonesBlueSStart; WORD 0x2002B6B+kinstoneIndex 1
+	incrementKinstoneIndex
+#endif
+#ifdef startInventoryKinstonesRedW
+	POIN kinstonesRedWType; WORD 0x2002B58+kinstoneIndex 1
+	POIN kinstonesRedWStart; WORD 0x2002B6B+kinstoneIndex 1
+	incrementKinstoneIndex
+#endif
+#ifdef startInventoryKinstonesRedV
+	POIN kinstonesRedVType; WORD 0x2002B58+kinstoneIndex 1
+	POIN kinstonesRedVStart; WORD 0x2002B6B+kinstoneIndex 1
+	incrementKinstoneIndex
+#endif
+#ifdef startInventoryKinstonesRedE
+	POIN kinstonesRedEType; WORD 0x2002B58+kinstoneIndex 1
+	POIN kinstonesRedEStart; WORD 0x2002B6B+kinstoneIndex 1
+	incrementKinstoneIndex
+#endif
+#ifdef startInventoryKinstonesGoldCloud
+	POIN kinstonesGoldCloudType; WORD 0x2002B58+kinstoneIndex 1
+	POIN kinstonesGoldCloudStart; WORD 0x2002B6B+kinstoneIndex 1
+	incrementKinstoneIndex
+#endif
+#ifdef startInventoryKinstonesGoldSwamp
+	POIN kinstonesGoldSwampType; WORD 0x2002B58+kinstoneIndex 1
+	POIN kinstonesGoldSwampStart; WORD 0x2002B6B+kinstoneIndex 1
+	incrementKinstoneIndex
+#endif
+#ifdef startInventoryKinstonesGoldFalls
+	POIN kinstonesGoldFallsType; WORD 0x2002B58+kinstoneIndex 1
+	POIN kinstonesGoldFallsStart; WORD 0x2002B6B+kinstoneIndex 1
+	incrementKinstoneIndex
+#endif
+#undef kinstoneIndex
+#undef incrementKinstoneIndex
 WORD 0 0 0 //terminator
 
 ALIGN 4
@@ -818,6 +879,105 @@ bottleContent4Start:
 	#define startInventoryBottleContent4 0x20
 #endif
 BYTE startInventoryBottleContent4
+
+kinstonesGoldCloudType:
+BYTE 0x65
+
+kinstonesGoldCloudStart:
+#ifndef startInventoryKinstonesGoldCloud
+	#define startInventoryKinstonesGoldCloud 0
+#endif
+BYTE startInventoryKinstonesGoldCloud
+
+kinstonesGoldSwampType:
+BYTE 0x6A
+
+kinstonesGoldSwampStart:
+#ifndef startInventoryKinstonesGoldSwamp
+	#define startInventoryKinstonesGoldSwamp 0
+#endif
+BYTE startInventoryKinstonesGoldSwamp
+
+kinstonesGoldFallsType:
+BYTE 0x6D
+
+kinstonesGoldFallsStart:
+#ifndef startInventoryKinstonesGoldFalls
+	#define startInventoryKinstonesGoldFalls 0
+#endif
+BYTE startInventoryKinstonesGoldFalls
+
+kinstonesRedWType:
+BYTE 0x6E
+
+kinstonesRedWStart:
+#ifndef startInventoryKinstonesRedW
+	#define startInventoryKinstonesRedW 0
+#endif
+BYTE startInventoryKinstonesRedW
+
+kinstonesRedVType:
+BYTE 0x6F
+
+kinstonesRedVStart:
+#ifndef startInventoryKinstonesRedV
+	#define startInventoryKinstonesRedV 0
+#endif
+BYTE startInventoryKinstonesRedV
+
+kinstonesRedEType:
+BYTE 0x70
+
+kinstonesRedEStart:
+#ifndef startInventoryKinstonesRedE
+	#define startInventoryKinstonesRedE 0
+#endif
+BYTE startInventoryKinstonesRedE
+
+kinstonesBlueLType:
+BYTE 0x71
+
+kinstonesBlueLStart:
+#ifndef startInventoryKinstonesBlueL
+	#define startInventoryKinstonesBlueL 0
+#endif
+BYTE startInventoryKinstonesBlueL
+
+kinstonesBlueSType:
+BYTE 0x72
+
+kinstonesBlueSStart:
+#ifndef startInventoryKinstonesBlueS
+	#define startInventoryKinstonesBlueS 0
+#endif
+BYTE startInventoryKinstonesBlueS
+
+kinstonesGreenCType:
+BYTE 0x73
+
+kinstonesGreenCStart:
+#ifndef startInventoryKinstonesGreenC
+	#define startInventoryKinstonesGreenC 0
+#endif
+BYTE startInventoryKinstonesGreenC
+
+kinstonesGreenGType:
+BYTE 0x74
+
+kinstonesGreenGStart:
+#ifndef startInventoryKinstonesGreenG
+	#define startInventoryKinstonesGreenG 0
+#endif
+BYTE startInventoryKinstonesGreenG
+
+kinstonesGreenPType:
+BYTE 0x75
+
+kinstonesGreenPStart:
+#ifndef startInventoryKinstonesGreenP
+	#define startInventoryKinstonesGreenP 0
+#endif
+BYTE startInventoryKinstonesGreenP
 
 smithSwordStart:
 BYTE 0x04
