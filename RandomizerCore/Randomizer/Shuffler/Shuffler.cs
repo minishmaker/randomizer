@@ -113,8 +113,7 @@ internal class Shuffler : ShufflerBase
         //var finalMajorItems = GetAvailableItems(new List<Item>());
         var finalFilledLocations = UpdateObtainedItemsFromPlacedLocations();
 
-        if (Location.ShufflerConstraints.Any() && !DependencyBase.BeatVaatiDependency!.DependencyFulfilled())
-            throw new ShuffleException("Randomization succeeded, but could not beat Vaati!");
+        VerifyReachability();
         
         finalFilledLocations.ForEach(location => location.Contents!.Value.NotifyParentDependencies(false));
         FilledLocations.AddRange(finalFilledLocations);

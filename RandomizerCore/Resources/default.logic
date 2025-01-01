@@ -82,6 +82,7 @@
 # !settype - (item) - (location type)                  : set all occurrences of (item) to be of type (location type).
 # !import - (function name)                            : tells the shuffler to perform certain logical checks before placing an item, the allowed values for (function name) are defined in LogicImport.cs.
 # !prizeplacement - (location name) - [dungeon id]     : when a DungeonPrize item gets assigned to the DungeonPrize location with the given (location name), instead of placing the item there, the item will get placed later within the given [dungeon id] (or anywhere if no [dungeon id] is given).
+# !ensurereachability                                  : tells the shuffler to make sure that all item and entrance locations are reachable.
 #
 # = Location Logic =
 # all logic symbols other than , are to be put in ()
@@ -4642,6 +4643,7 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 	!ifdef - ACCESS_BEATABLE
 		Hundo;	Helper;	;	Helpers.BeatVaati
 	!else
+		!ensurereachability
 		Hundo;	Helper;	;	Items.Untyped.0xFF:0xFF
 	!endif
 !endif

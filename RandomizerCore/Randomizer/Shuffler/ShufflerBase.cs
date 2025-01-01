@@ -468,6 +468,7 @@ internal abstract class ShufflerBase
             LogicParser.SubParser.ClearAmountReplacements();
             LogicParser.SubParser.ClearPrizePlacements();
             LogicParser.SubParser.ClearDefines();
+            LogicParser.SubParser.EnsureReachability = false;
         }
 
         /// <summary>
@@ -625,6 +626,33 @@ internal abstract class ShufflerBase
             } while (previousSize > 0);
 
             return availableItems;
+        }
+
+        /// <summary>
+        ///     Checks whether the game is beatable.
+        ///     If all locations are supposed to be reachable, this is also checked.
+        ///     Throws an exception if any check fails.
+        /// </summary>
+        protected void VerifyReachability()
+        {
+            if (Location.ShufflerConstraints.Any())
+            {
+                if (!DependencyBase.BeatVaatiDependency!.DependencyFulfilled())
+                    throw new ShuffleException("Randomization succeeded, but could not beat Vaati!");
+
+                if (LogicParser.SubParser.EnsureReachability)
+                {
+                    var itemLocations = Locations.Where(location =>
+                        location.Type is not LocationType.Helper and not LocationType.DungeonConstraint and not LocationType.OverworldConstraint
+                            and not LocationType.Music and not LocationType.Untyped and not LocationType.Inaccessible).ToList();
+                    var inaccessibleLocations = itemLocations.Where(location => !location.IsAccessible());
+                    if (inaccessibleLocations.Any())
+                    {
+                        foreach (var location in inaccessibleLocations) Logger.Instance.LogInfo($"Unreachable location: {location.Name}");
+                        throw new ShuffleException($"Randomization succeeded, but {inaccessibleLocations.Count()} locations ended up unreachable!");
+                    }
+                }
+            }
         }
         
     #endregion
