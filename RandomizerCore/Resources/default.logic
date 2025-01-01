@@ -4907,10 +4907,12 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 				!define - GOLD2MULTIPLIER - 3
 				!eventdefine - kinstoneMultiplierGoldSwamp - 3
 			!endif
-			Items.Kinstone.GoldenCloudTops:5.`GOLD1MULTIPLIER`;	Major;
-			Items.Kinstone.GoldenSwamp:3.`GOLD2MULTIPLIER`;		Major;
+			!addition - GOLD1TOTALPOOL - 5, -`START_KINSTONES_GOLD_CLOUD`
+			Items.Kinstone.GoldenCloudTops:`GOLD1TOTALPOOL`.`GOLD1MULTIPLIER`;	Major;
+			!addition - GOLD2TOTALPOOL - 3, -`START_KINSTONES_GOLD_SWAMP`
+			Items.Kinstone.GoldenSwamp:`GOLD2TOTALPOOL`.`GOLD2MULTIPLIER`;		Major;
 			!ifndef - START_KINSTONES_GOLD_FALLS
-				Items.Kinstone.GoldenFalls;			Major;
+				Items.Kinstone.GoldenFalls;										Major;
 			!endif
 			CanFuseGoldTornado;  Helper;; (+5, Helpers.StartInv:`START_KINSTONES_GOLD_CLOUD`, Items.Kinstone.GoldenCloudTops:`GOLD1MULTIPLIER`)
 			CanFuseGoldTotem;    Helper;; (+3, Helpers.StartInv:`START_KINSTONES_GOLD_SWAMP`, Items.Kinstone.GoldenSwamp:`GOLD2MULTIPLIER`)
@@ -4935,7 +4937,8 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 				!eventdefine - kinstoneMultiplierGoldCloud - 9
 			!endif
 			!eventdefine - combineKinstonesGold
-			Items.Kinstone.GoldenCloudTops:9.`GOLD1MULTIPLIER`;	Major;
+			!addition - GOLD1TOTALPOOL - 9, -`START_KINSTONES_GOLD_CLOUD`
+			Items.Kinstone.GoldenCloudTops:`GOLD1TOTALPOOL`.`GOLD1MULTIPLIER`;	Major;
 			CanFuseGoldTornado;  Helper;; (+9, Helpers.StartInv:`START_KINSTONES_GOLD_CLOUD`, Items.Kinstone.GoldenCloudTops:`GOLD1MULTIPLIER`)
 			CanFuseGoldTotem;    Helper;; (+9, Helpers.StartInv:`START_KINSTONES_GOLD_CLOUD`, Items.Kinstone.GoldenCloudTops:`GOLD1MULTIPLIER`)
 			# The Veil Falls Gold Fusion only requires 4 Golden Kinstones if Cloud Tops is locked behind it, as then you could not waste Gold Kinstones there
@@ -5068,9 +5071,12 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 				!undefine - REDEMULTIPLIER
 				!define - REDEMULTIPLIER - `REDETOTAL`
 			!endif
-			Items.Kinstone.RedW:`REDWTOTAL`.`REDWMULTIPLIER`;	Major;
-			Items.Kinstone.RedV:`REDVTOTAL`.`REDVMULTIPLIER`;	Major;
-			Items.Kinstone.RedE:`REDETOTAL`.`REDEMULTIPLIER`;	Major;
+			!addition - REDWTOTALPOOL - `REDWTOTAL`, -`START_KINSTONES_RED_W`
+			Items.Kinstone.RedW:`REDWTOTALPOOL`.`REDWMULTIPLIER`;	Major;
+			!addition - REDVTOTALPOOL - `REDVTOTAL`, -`START_KINSTONES_RED_V`
+			Items.Kinstone.RedV:`REDVTOTALPOOL`.`REDVMULTIPLIER`;	Major;
+			!addition - REDETOTALPOOL - `REDETOTAL`, -`START_KINSTONES_RED_E`
+			Items.Kinstone.RedE:`REDETOTALPOOL`.`REDEMULTIPLIER`;	Major;
 			CanFuseRedW;			Helper;;	(+`REDWTOTAL`, Helpers.StartInv:`START_KINSTONES_RED_W`, Items.Kinstone.RedW:`REDWMULTIPLIER`)
 			CanFuseRedV;			Helper;;	(+`REDVTOTAL`, Helpers.StartInv:`START_KINSTONES_RED_V`, Items.Kinstone.RedV:`REDVMULTIPLIER`)
 			CanFuseRedMinish0;	Helper;;	(+`REDVTOTAL`, Helpers.StartInv:`START_KINSTONES_RED_V`, Items.Kinstone.RedV:`REDVMULTIPLIER`)
@@ -5157,7 +5163,8 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 				!define - REDWMULTIPLIER - `REDWTOTAL`
 			!endif
 			!eventdefine - combineKinstonesRed
-			Items.Kinstone.RedW:`REDWTOTAL`.`REDWMULTIPLIER`;	Major;
+			!addition - REDWTOTALPOOL - `REDWTOTAL`, -`START_KINSTONES_RED_W`
+			Items.Kinstone.RedW:`REDWTOTALPOOL`.`REDWMULTIPLIER`;	Major;
 			CanFuseRedW;			Helper;;	(+`REDWTOTAL`, Helpers.StartInv:`START_KINSTONES_RED_W`, Items.Kinstone.RedW:`REDWMULTIPLIER`)
 			CanFuseRedV;			Helper;;	(+`REDWTOTAL`, Helpers.StartInv:`START_KINSTONES_RED_W`, Items.Kinstone.RedW:`REDWMULTIPLIER`)
 			CanFuseRedMinish0;	Helper;;	(+`REDWTOTAL2`, Helpers.StartInv:`START_KINSTONES_RED_W`, Items.Kinstone.RedW:`REDWMULTIPLIER`)
@@ -5270,8 +5277,10 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 				!define - BLUESMULTIPLIER - `BLUESTOTAL`
 				!eventdefine - kinstoneMultiplierBlueS - `BLUESTOTAL`
 			!endif
-			Items.Kinstone.BlueL:`BLUELTOTAL`.`BLUELMULTIPLIER`;	Major;
-			Items.Kinstone.BlueS:`BLUESTOTAL`.`BLUESMULTIPLIER`;	Major;
+			!addition - BLUELTOTALPOOL - `BLUELTOTAL`, -`START_KINSTONES_BLUE_L`
+			Items.Kinstone.BlueL:`BLUELTOTALPOOL`.`BLUELMULTIPLIER`;	Major;
+			!addition - BLUESTOTALPOOL - `BLUESTOTAL`, -`START_KINSTONES_BLUE_S`
+			Items.Kinstone.BlueS:`BLUESTOTALPOOL`.`BLUESMULTIPLIER`;	Major;
 			CanFuseBlueL;    		Helper;; (+`BLUELTOTAL`, Helpers.StartInv:`START_KINSTONES_BLUE_L`, Items.Kinstone.BlueL:`BLUELMULTIPLIER`)
 			CanFuseBlueS;    		Helper;; (+`BLUESTOTAL`, Helpers.StartInv:`START_KINSTONES_BLUE_S`, Items.Kinstone.BlueS:`BLUESMULTIPLIER`)
 			CanFuseBlue4Wall;		Helper;; (+`BLUELTOTAL1`, Helpers.StartInv:`START_KINSTONES_BLUE_L`, Items.Kinstone.BlueL:`BLUELMULTIPLIER`), (+`BLUESTOTAL1`, Helpers.StartInv:`START_KINSTONES_BLUE_S`, Items.Kinstone.BlueS:`BLUESMULTIPLIER`)
@@ -5299,7 +5308,8 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 				!eventdefine - kinstoneMultiplierBlueL - `BLUELTOTAL`
 			!endif
 			!eventdefine - combineKinstonesBlue
-			Items.Kinstone.BlueL:`BLUELTOTAL`.`BLUELMULTIPLIER`;	Major;
+			!addition - BLUELTOTALPOOL - `BLUELTOTAL`, -`START_KINSTONES_BLUE_L`
+			Items.Kinstone.BlueL:`BLUELTOTALPOOL`.`BLUELMULTIPLIER`;	Major;
 			CanFuseBlueL;			Helper;; (+`BLUELTOTAL`, Helpers.StartInv:`START_KINSTONES_BLUE_L`, Items.Kinstone.BlueL:`BLUELMULTIPLIER`)
 			CanFuseBlueS;			Helper;; (+`BLUELTOTAL`, Helpers.StartInv:`START_KINSTONES_BLUE_L`, Items.Kinstone.BlueL:`BLUELMULTIPLIER`)
 			CanFuseBlue4Wall;		Helper;; (+`BLUELTOTAL2`, Helpers.StartInv:`START_KINSTONES_BLUE_L`, Items.Kinstone.BlueL:`BLUELMULTIPLIER`)
@@ -5612,9 +5622,12 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 				!undefine - GREENGMULTIPLIER
 				!define - GREENGMULTIPLIER - `GREENGTOTAL`
 			!endif
-			Items.Kinstone.GreenC:`GREENCTOTAL`.`GREENCMULTIPLIER`;	Major;
-			Items.Kinstone.GreenP:`GREENPTOTAL`.`GREENPMULTIPLIER`;	Major;
-			Items.Kinstone.GreenG:`GREENGTOTAL`.`GREENGMULTIPLIER`;	Major;
+			!addition - GREENCTOTALPOOL - `GREENCTOTAL`, -`START_KINSTONES_GREEN_C`
+			Items.Kinstone.GreenC:`GREENCTOTALPOOL`.`GREENCMULTIPLIER`;	Major;
+			!addition - GREENPTOTALPOOL - `GREENPTOTAL`, -`START_KINSTONES_GREEN_P`
+			Items.Kinstone.GreenP:`GREENPTOTALPOOL`.`GREENPMULTIPLIER`;	Major;
+			!addition - GREENGTOTALPOOL - `GREENGTOTAL`, -`START_KINSTONES_GREEN_G`
+			Items.Kinstone.GreenG:`GREENGTOTALPOOL`.`GREENGMULTIPLIER`;	Major;
 			CanFuseGreenC;   		Helper;; (+`GREENCTOTAL`, Helpers.StartInv:`START_KINSTONES_GREEN_C`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 			CanFuseGreenCShared1;	Helper;; (+`GREENCTOTAL5`, Helpers.StartInv:`START_KINSTONES_GREEN_C`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 			CanFuseGreenCShared2;	Helper;; (+`GREENCTOTAL4`, Helpers.StartInv:`START_KINSTONES_GREEN_C`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
@@ -5842,7 +5855,8 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 				!define - GREENCMULTIPLIER - `GREENCTOTAL`
 			!endif
 			!eventdefine - combineKinstonesGreen
-			Items.Kinstone.GreenC:`GREENCTOTAL`.`GREENCMULTIPLIER`;	Major;
+			!addition - GREENCTOTALPOOL - `GREENCTOTAL`, -`START_KINSTONES_GREEN_C`
+			Items.Kinstone.GreenC:`GREENCTOTALPOOL`.`GREENCMULTIPLIER`;	Major;
 			CanFuseGreenC;   		Helper;; (+`GREENCTOTAL`, Helpers.StartInv:`START_KINSTONES_GREEN_C`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 			CanFuseGreenG;   		Helper;; (+`GREENCTOTAL`, Helpers.StartInv:`START_KINSTONES_GREEN_C`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
 			CanFuseGreenTFZ1;		Helper;; (+`GREENCTOTAL2`, Helpers.StartInv:`START_KINSTONES_GREEN_C`, Items.Kinstone.GreenC:`GREENCMULTIPLIER`)
