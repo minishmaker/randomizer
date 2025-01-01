@@ -4,6 +4,7 @@ using RandomizerCore.Randomizer.Enumerables;
 using RandomizerCore.Randomizer.Helpers;
 using RandomizerCore.Randomizer.Logic.Dependency;
 using RandomizerCore.Utilities.Logging;
+using RandomizerCore.Utilities.Models;
 using RandomizerCore.Utilities.Util;
 
 namespace RandomizerCore.Randomizer.Shuffler;
@@ -128,7 +129,7 @@ internal class YamlShuffler : Shuffler
 
         var diff = DateTime.Now - time;
         Logger.Instance.BeginLogTransaction();
-        Logger.Instance.LogInfo($"Timing Benchmark - Parsing logic file took {diff.Seconds}.{diff.Milliseconds} seconds!");
+        Logger.Instance.LogInfo($"Timing Benchmark - Parsing logic file with settings {MinifiedSettings.GenerateSettingsString(Options.OnlyLogic().GetSorted(), Options.OnlyLogic().GetCrc32())} and cosmetics {MinifiedSettings.GenerateSettingsString(Options.OnlyCosmetic().GetSorted(), Options.OnlyCosmetic().GetCrc32())} took {diff.Seconds}.{diff.Milliseconds} seconds!");
         Logger.Instance.SaveLogTransaction(true);
     }
 

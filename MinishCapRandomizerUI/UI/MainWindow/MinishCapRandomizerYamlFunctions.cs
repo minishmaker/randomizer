@@ -56,10 +56,10 @@ partial class MinishCapRandomizerUI
         _outputCosmeticsString = cosmeticsString;
         _outputUsedYAML = true;
         _outputFilename = GetFilenameYamlShuffler();
-        SettingHashLabel.Text = UseMysterySettings.Checked && _yamlController.IsUsingLogicYaml() ? "Settings string is not shown when using mystery settings" : settingsString;
-        CosmeticStringLabel.Text = UseMysteryCosmetics.Checked && _yamlController.IsUsingCosmeticsYaml() ? "Cosmetics string is not shown when using mystery cosmetics" : cosmeticsString;
-        CopySettingsHashToClipboard.Enabled = !UseMysterySettings.Checked;
-        CopyCosmeticsHashToClipboard.Enabled = !UseMysteryCosmetics.Checked;
+        SettingHashLabel.Text = _yamlController.IsUsingLogicYaml() ? "Settings string is not shown when using mystery settings" : settingsString;
+        CosmeticStringLabel.Text = _yamlController.IsUsingCosmeticsYaml() ? "Cosmetics string is not shown when using mystery cosmetics" : cosmeticsString;
+        CopySettingsHashToClipboard.Enabled = !_yamlController.IsUsingLogicYaml();
+        CopyCosmeticsHashToClipboard.Enabled = !_yamlController.IsUsingCosmeticsYaml();
     }
 
     private string GetFilenameYamlShuffler()
