@@ -6737,7 +6737,11 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 # Dojos
 !ifdef - DOJOVANILLA
 	!define - DOJOITEM - Unshuffled
-	!define - DOJOITEMRED - Unshuffled
+	!ifdef - NO_RED_FUSIONS
+		!define - DOJOITEMRED - Inaccessible
+	!else
+		!define - DOJOITEMRED - Unshuffled
+	!endif
 !else
 	!define - DOJOITEM - Dungeon
 	!ifdef - NO_RED_FUSIONS
@@ -7076,7 +7080,11 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 	!define - FOW_INSIDE_BK - :FoWBigV
 	!define - TOD_INSIDE_BK - :ToDBigV
 	!define - POW_INSIDE_BK - :PoWBigV
-	!define - DHC_INSIDE_BK - :DHCBigV
+	!ifndef - REQUIREMENT_ITEM_DHC_BK
+		!define - DHC_INSIDE_BK - :DHCBigV
+	!else
+		!define - DHC_INSIDE_BK - `DHC_INSIDE`
+	!endif
 !else
 	!define - DWS_INSIDE_BK - `DWS_INSIDE`
 	!define - COF_INSIDE_BK - `COF_INSIDE`
