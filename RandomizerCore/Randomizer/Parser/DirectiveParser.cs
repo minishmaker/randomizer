@@ -582,15 +582,15 @@ public class DirectiveParser
 
     public LogicDefine ParseAdditionDirective(string[] directiveParts)
     {
+        if (directiveParts.Length < 3) throw new ParserException("!addition has an invalid amount of arguments");
+        //to support negative values, we pretend like everything after the second "-" in the line has not been split
+        var lastPart = string.Join("-", directiveParts.ToList().GetRange(2, directiveParts.Length - 2));
         var totalValue = 0;
-        var values = directiveParts[2].Split(',');
+        var values = lastPart.Split(',');
         foreach (var value in values)
         {
-            byte number;
-            if (!StringUtil.ParseString(value, out number)) throw new ParserException("!addition has an invalid value");
+            if (!StringUtil.ParseString(value, out int number)) throw new ParserException("!addition has an invalid value");
             totalValue += number;
-
-            if (totalValue > 255) throw new ParserException("!addition resulted in a value higher than 255 (0xFF)");
         }
 
         return new LogicDefine(directiveParts[1], totalValue.ToString());
