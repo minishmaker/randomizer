@@ -219,7 +219,14 @@ public class Parser
                 if (Enum.TryParse(subParts[2], out KinstoneType subKinstoneType))
                     subType = (byte)subKinstoneType;
 
-        var amount = itemParts.Length > 1 ? int.Parse(itemParts[1]) : 1;
+        var amount = 1;
+        if (itemParts.Length > 1)
+        {
+            var amountSubParts = itemParts[1].Split('.');
+            amount = int.Parse(amountSubParts[0]);
+            if (amountSubParts.Length > 1)
+                amount = (int)Math.Ceiling((double)amount / int.Parse(amountSubParts[1]));
+        }
 
         if (!Enum.TryParse(allItemParts[1], out ItemPool itemShufflePool))
             throw new ParserException("Item has invalid shuffle pool!");
@@ -443,8 +450,8 @@ public class Parser
                         if (trimmedLine.Split('.')[0] == "Items")
                         {
                             //It is an item, parse it as one
-                            var newItem = GetItems(trimmedLine);
-                            items.AddRange(newItem);
+                            var newItems = GetItems(trimmedLine);
+                            items.AddRange(newItems);
                         }
                         else
                         {
