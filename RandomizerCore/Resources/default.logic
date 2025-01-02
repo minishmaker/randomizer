@@ -114,7 +114,7 @@
 !numberbox - Main Settings - Setting - Requirements - FIGURINE_TOTAL - Figurines in world - The total number of Figurines that get added to the item pool, the maximum amount is 136. - 30 - 0 - 136
 !numberbox - Main Settings - Setting - Requirements - FIGURINE_COUNT - Figurines required - The number of Figurines required to activate the Sanctuary, do not raise this to higher than the total number of Figurines or you won't be able to beat the game silly. - 20 - 0 - 136
 
-!dropdown - Main Settings - Setting - Shuffle - DOJO - Dojo Swordmasters -	Dojo Swordmasters have Scrolls as their rewards. - DOJOANY - Vanilla Scrolls - DOJOVANILLA - 'Vanilla Scrolls': Dojo Swordmasters offer their vanilla rewards, this overrides Progressive Scrolls. - Randomized Scrolls - DOJORANDOM - 'Randomized Scrolls': Scrolls are shuffled between the Dojo Swordmasters. - Any Item - DOJOANY - 'Any Item': Dojo Swordmasters are shuffled into the main pool.
+!dropdown - Main Settings - Setting - Shuffle - DOJO - Dojo Swordmasters -	Dojo Swordmasters have Scrolls as their rewards. - DOJOANY - Vanilla Scrolls - DOJOVANILLA - 'Vanilla Scrolls': Dojo Swordmasters offer their vanilla rewards.\nIf combined with Progressive Scrolls, the 5 Spin Scrolls are always obtained in the same order and are placed at the 5 Spin Scroll locations. - Randomized Scrolls - DOJORANDOM - 'Randomized Scrolls': Scrolls are shuffled between the Dojo Swordmasters. - Any Item - DOJOANY - 'Any Item': Dojo Swordmasters are shuffled into the main pool.
 !dropdown - Main Settings - Setting - Shuffle - CUCCO_SETTING - Cucco Minigame - How many rounds of the Cucco Minigame are playable and have an item. - CUCCO_1 - Nothing - CUCCO_0 - - 1 Round - CUCCO_1 - - 2 Rounds - CUCCO_2 - - 3 Rounds - CUCCO_3 - - 4 Rounds - CUCCO_4 - - 5 Rounds - CUCCO_5 - - 6 Rounds - CUCCO_6 - - 7 Rounds - CUCCO_7 - - 8 Rounds - CUCCO_8 - - 9 Rounds - CUCCO_9 - - 10 Rounds - CUCCO_10 -
 !dropdown - Main Settings - Setting - Shuffle - GORON_SETTING - Goron Merchant - How many sets of Goron Merchant items are included in the random item pool.\nEach set consists of 3 items, and all 3 must be bought to advance to the next set.\nThere are 5 sets in total.\nThe remaining sets are either Kinstones (not in logic) like in vanilla, or removed from the game if Kinstone Drops are Disabled.\nIf Blue Fusions are Removed, these locations are not accessible. - GORON_0 - Nothing - GORON_0 - - 1 Set - GORON_1 - - 2 Sets - GORON_2 - - 3 Sets - GORON_3 - - 4 Sets - GORON_4 - - 5 Sets - GORON_5 -
 !dropdown - Main Settings - Setting - Shuffle - BIGGORON_SETTING - Biggoron - If enabled will shuffle the item received by Biggoron. To get it, you have to talk to it while in possession of a Shield.\nIf Red Fusions are Removed, or Blue Fusions are Removed and Red Fusions not Open, this location is not accessible. - BIGGORON_OFF - Disabled - BIGGORON_OFF - 'Disabled': Biggoron does not give an item. - Normal - BIGGORON_NORMAL - 'Normal': Biggoron gives an item if you show it any Shield. If you only have a regular Shield, Biggoron will eat it, but you can buy a replacement in the shop in town. - Require Mirror - BIGGORON_MIRROR - 'Require Mirror': Biggoron gives an item only if you show it a Mirror Shield.
@@ -594,12 +594,6 @@
 	!endif
 !endif
 
-!ifdef - DOJOVANILLA
-	!ifdef - YES_SCROLL_PROG
-		!undefine - YES_SCROLL_PROG
-	!endif
-!endif
-
 # Set the number of required dungeons
 !ifdef - AD_PED_6
 	!ifdef - NO_GOLD_FUSIONS
@@ -749,7 +743,6 @@
 	!eventdefine - fowRedPortal - 0x00
 !endif
 !ifdef - TOD_BLUEWARP
-	
 	!eventdefine - todBluePortal - 0x01
 !else
 	!eventdefine - todBluePortal - 0x00
@@ -2321,6 +2314,20 @@
 		Dummy_Shield:NoSpoiler;	Unshuffled;	DumShield1:Define:FirstByte, DumShield2:Define:SecondByte;	;	Items.Shield
 	!endif
 !endif
+!ifdef - YES_SCROLL_PROG
+	!define - SPINATTACK - Items.ProgressiveItem.0x04
+	!define - FASTSPIN - Items.ProgressiveItem.0x04
+	!define - FASTSPLIT - Items.ProgressiveItem.0x04
+	!define - GREATSPIN - Items.ProgressiveItem.0x04
+	!define - LONGSPIN - Items.ProgressiveItem.0x04
+!else
+	!eventdefine - arbitraryScrolls
+	!define - SPINATTACK - Items.SpinAttack
+	!define - FASTSPIN - Items.FastSpin
+	!define - FASTSPLIT - Items.FastSplit
+	!define - GREATSPIN - Items.GreatSpin
+	!define - LONGSPIN - Items.LongSpin
+!endif
 !ifdef - DOJORANDOM
 	!define - SCROLLMAJOR - DungeonMajor;	dojo
 	!define - SCROLLMINOR - DungeonMinor;	dojo
@@ -2329,29 +2336,18 @@
 	!define - SCROLLMAJOR - Major;
 	!define - SCROLLMINOR - Major;
 !endif
-!ifdef - YES_SCROLL_PROG
-	!ifdef - SCROLLMAJOR
-		!ifdef - START_SCROLL_SPIN
-			!ifdef - DOJORANDOM
-				Items.Rupee5;	DungeonMinor;	dojo
-			!endif
-		!else
-			Items.ProgressiveItem.0x04;	`SCROLLMAJOR`	#Scroll
+!ifndef - DOJOVANILLA
+	!ifdef - START_SCROLL_SPIN
+		!ifdef - DOJORANDOM
+			Items.Rupee5;	DungeonMinor;	dojo
 		!endif
-	!endif
-!else
-	!eventdefine - arbitraryScrolls
-	!ifdef - SCROLLMAJOR
-		!ifdef - START_SCROLL_SPIN
-			!ifdef - DOJORANDOM
-				Items.Rupee5;	DungeonMinor;	dojo
-			!endif
-			!ifdef - MEME
+		!ifdef - MEME
+			!ifndef - YES_SCROLL_PROG
 				Items.SpinAttack;	Minor;
 			!endif
-		!else
-			Items.SpinAttack;		`SCROLLMAJOR`
 		!endif
+	!else
+		`SPINATTACK`;		`SCROLLMAJOR`
 	!endif
 !endif
 !ifndef - START_LANTERN
@@ -2672,38 +2668,20 @@
 !ifdef - START_SCROLL_PERIL_BEAM
 	Dummy_PerilBeam:NoSpoiler;	Unshuffled;	DumPerilBeam1:Define:FirstByte, DumPerilBeam2:Define:SecondByte;	;	Items.PerilBeam
 !endif
-!ifdef - YES_SCROLL_PROG
-	!ifdef - START_SCROLL_SPIN
-		Dummy_Spin:NoSpoiler;	Unshuffled;	DumSpin1:Define:FirstByte, DumSpin2:Define:SecondByte;	;	Items.ProgressiveItem.0x04
-	!endif
-	!ifdef - START_SCROLL_FAST_SPIN
-		Dummy_FastSpin:NoSpoiler;	Unshuffled;	DumFastSpin1:Define:FirstByte, DumFastSpin2:Define:SecondByte;	;	Items.ProgressiveItem.0x04
-	!endif
-	!ifdef - START_SCROLL_FAST_SPLIT
-		Dummy_FastSplit:NoSpoiler;	Unshuffled;	DumFastSplit1:Define:FirstByte, DumFastSplit2:Define:SecondByte;	;	Items.ProgressiveItem.0x04
-	!endif
-	!ifdef - START_SCROLL_GREAT_SPIN
-		Dummy_GreatSpin:NoSpoiler;	Unshuffled;	DumGreatSpin1:Define:FirstByte, DumGreatSpin2:Define:SecondByte;	;	Items.ProgressiveItem.0x04
-	!endif
-	!ifdef - START_SCROLL_LONG_SPIN
-		Dummy_LongSpin:NoSpoiler;	Unshuffled;	DumLongSpin1:Define:FirstByte, DumLongSpin2:Define:SecondByte;	;	Items.ProgressiveItem.0x04
-	!endif
-!else
-	!ifdef - START_SCROLL_SPIN
-		Dummy_Spin:NoSpoiler;	Unshuffled;	DumSpin1:Define:FirstByte, DumSpin2:Define:SecondByte;	;	Items.SpinAttack
-	!endif
-	!ifdef - START_SCROLL_FAST_SPIN
-		Dummy_FastSpin:NoSpoiler;	Unshuffled;	DumFastSpin1:Define:FirstByte, DumFastSpin2:Define:SecondByte;	;	Items.FastSpin
-	!endif
-	!ifdef - START_SCROLL_FAST_SPLIT
-		Dummy_FastSplit:NoSpoiler;	Unshuffled;	DumFastSplit1:Define:FirstByte, DumFastSplit2:Define:SecondByte;	;	Items.FastSplit
-	!endif
-	!ifdef - START_SCROLL_GREAT_SPIN
-		Dummy_GreatSpin:NoSpoiler;	Unshuffled;	DumGreatSpin1:Define:FirstByte, DumGreatSpin2:Define:SecondByte;	;	Items.GreatSpin
-	!endif
-	!ifdef - START_SCROLL_LONG_SPIN
-		Dummy_LongSpin:NoSpoiler;	Unshuffled;	DumLongSpin1:Define:FirstByte, DumLongSpin2:Define:SecondByte;	;	Items.LongSpin
-	!endif
+!ifdef - START_SCROLL_SPIN
+	Dummy_Spin:NoSpoiler;	Unshuffled;	DumSpin1:Define:FirstByte, DumSpin2:Define:SecondByte;	;	`SPINATTACK`
+!endif
+!ifdef - START_SCROLL_FAST_SPIN
+	Dummy_FastSpin:NoSpoiler;	Unshuffled;	DumFastSpin1:Define:FirstByte, DumFastSpin2:Define:SecondByte;	;	`FASTSPIN`
+!endif
+!ifdef - START_SCROLL_FAST_SPLIT
+	Dummy_FastSplit:NoSpoiler;	Unshuffled;	DumFastSplit1:Define:FirstByte, DumFastSplit2:Define:SecondByte;	;	`FASTSPLIT`
+!endif
+!ifdef - START_SCROLL_GREAT_SPIN
+	Dummy_GreatSpin:NoSpoiler;	Unshuffled;	DumGreatSpin1:Define:FirstByte, DumGreatSpin2:Define:SecondByte;	;	`GREATSPIN`
+!endif
+!ifdef - START_SCROLL_LONG_SPIN
+	Dummy_LongSpin:NoSpoiler;	Unshuffled;	DumLongSpin1:Define:FirstByte, DumLongSpin2:Define:SecondByte;	;	`LONGSPIN`
 !endif
 !ifndef - DOJOVANILLA
 	!ifndef - START_SCROLL_ROLL
@@ -3332,89 +3310,45 @@
 			Items.MirrorShield;	Major;
 		!endif
 	!endif
-	!ifdef - YES_SCROLL_PROG
-		!ifdef - DOJORANDOM
-			!ifdef - START_SCROLL_FAST_SPIN
-				Items.Rupee5;		DungeonMinor;	dojo
-			!else
-				Items.ProgressiveItem.0x04;	DungeonMajor;	dojo	#Scroll
-			!endif
-			!ifdef - START_SCROLL_FAST_SPLIT
-				Items.Rupee5;		DungeonMinor;	dojo
-			!else
-				Items.ProgressiveItem.0x04;	DungeonMajor;	dojo	#Scroll
-			!endif
-			!ifdef - START_SCROLL_GREAT_SPIN
-				Items.Rupee5;		DungeonMinor;	dojo
-			!else
-				Items.ProgressiveItem.0x04;	DungeonMajor;	dojo	#Scroll
-			!endif
-			!ifdef - START_SCROLL_LONG_SPIN
-				Items.Rupee5;		DungeonMinor;	dojo
-			!else
-				Items.ProgressiveItem.0x04;	DungeonMajor;	dojo	#Scroll
-			!endif
-			!ifdef - NO_RED_FUSIONS
-				FakeDojo1:dojo:NoSpoiler;		Dungeon;	FakeDojo11:Define:FirstByte, FakeDojo12:Define:SecondByte;	Helpers.BeatVaati;
-				FakeDojo2:dojo:NoSpoiler;		Dungeon;	FakeDojo21:Define:FirstByte, FakeDojo22:Define:SecondByte;	Helpers.BeatVaati;
-				FakeDojo3:dojo:NoSpoiler;		Dungeon;	FakeDojo31:Define:FirstByte, FakeDojo32:Define:SecondByte;	Helpers.BeatVaati;
-			!endif
+	!ifdef - DOJORANDOM
+		!ifdef - START_SCROLL_FAST_SPIN
+			Items.Rupee5;	DungeonMinor;	dojo
+		!else
+			`FASTSPIN`;		DungeonMinor;	dojo
 		!endif
-		!ifdef - DOJOANY
-			!ifndef - START_SCROLL_FAST_SPIN
-				Items.ProgressiveItem.0x04;	Major;	#Scroll
-			!endif
-			!ifndef - START_SCROLL_FAST_SPLIT
-				Items.ProgressiveItem.0x04;	Major;	#Scroll
-			!endif
-			!ifndef - START_SCROLL_GREAT_SPIN
-				Items.ProgressiveItem.0x04;	Major;	#Scroll
-			!endif
-			!ifndef - START_SCROLL_LONG_SPIN
-				Items.ProgressiveItem.0x04;	Major;	#Scroll
-			!endif
+		!ifdef - START_SCROLL_FAST_SPLIT
+			Items.Rupee5;	DungeonMinor;	dojo
+		!else
+			`FASTSPLIT`;	DungeonMinor;	dojo
 		!endif
-	!else
-		!ifdef - DOJORANDOM
-			!ifdef - START_SCROLL_FAST_SPIN
-				Items.Rupee5;		DungeonMinor;	dojo
-			!else
-				Items.FastSpin;	DungeonMinor;	dojo
-			!endif
-			!ifdef - START_SCROLL_FAST_SPLIT
-				Items.Rupee5;		DungeonMinor;	dojo
-			!else
-				Items.FastSplit;	DungeonMinor;	dojo
-			!endif
-			!ifdef - START_SCROLL_GREAT_SPIN
-				Items.Rupee5;		DungeonMinor;	dojo
-			!else
-				Items.GreatSpin;	DungeonMajor;	dojo
-			!endif
-			!ifdef - START_SCROLL_LONG_SPIN
-				Items.Rupee5;		DungeonMinor;	dojo
-			!else
-				Items.LongSpin;	DungeonMinor;	dojo
-			!endif
-			!ifdef - NO_RED_FUSIONS
-				FakeDojo1:dojo:NoSpoiler;		Dungeon;	FakeDojo11:Define:FirstByte, FakeDojo12:Define:SecondByte;	Helpers.BeatVaati;
-				FakeDojo2:dojo:NoSpoiler;		Dungeon;	FakeDojo21:Define:FirstByte, FakeDojo22:Define:SecondByte;	Helpers.BeatVaati;
-				FakeDojo3:dojo:NoSpoiler;		Dungeon;	FakeDojo31:Define:FirstByte, FakeDojo32:Define:SecondByte;	Helpers.BeatVaati;
-			!endif
+		!ifdef - START_SCROLL_GREAT_SPIN
+			Items.Rupee5;	DungeonMinor;	dojo
+		!else
+			`GREATSPIN`;	DungeonMajor;	dojo
 		!endif
-		!ifdef - DOJOANY
-			!ifndef - START_SCROLL_FAST_SPIN
-				Items.FastSpin;	Major;
-			!endif
-			!ifndef - START_SCROLL_FAST_SPLIT
-				Items.FastSplit;	Major;
-			!endif
-			!ifndef - START_SCROLL_GREAT_SPIN
-				Items.GreatSpin;	Major;
-			!endif
-			!ifndef - START_SCROLL_LONG_SPIN
-				Items.LongSpin;	Major;
-			!endif
+		!ifdef - START_SCROLL_LONG_SPIN
+			Items.Rupee5;	DungeonMinor;	dojo
+		!else
+			`LONGSPIN`;		DungeonMinor;	dojo
+		!endif
+		!ifdef - NO_RED_FUSIONS
+			FakeDojo1:dojo:NoSpoiler;		Dungeon;	FakeDojo11:Define:FirstByte, FakeDojo12:Define:SecondByte;	Helpers.BeatVaati;
+			FakeDojo2:dojo:NoSpoiler;		Dungeon;	FakeDojo21:Define:FirstByte, FakeDojo22:Define:SecondByte;	Helpers.BeatVaati;
+			FakeDojo3:dojo:NoSpoiler;		Dungeon;	FakeDojo31:Define:FirstByte, FakeDojo32:Define:SecondByte;	Helpers.BeatVaati;
+		!endif
+	!endif
+	!ifdef - DOJOANY
+		!ifndef - START_SCROLL_FAST_SPIN
+			`FASTSPIN`;		Major;
+		!endif
+		!ifndef - START_SCROLL_FAST_SPLIT
+			`FASTSPLIT`;	Major;
+		!endif
+		!ifndef - START_SCROLL_GREAT_SPIN
+			`GREATSPIN`;	Major;
+		!endif
+		!ifndef - START_SCROLL_LONG_SPIN
+			`LONGSPIN`;		Major;
 		!endif
 	!endif
 	!ifndef - START_REMOTE
@@ -6735,7 +6669,11 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 		!define - DOJOITEMRED - Unshuffled
 	!endif
 !else
-	!define - DOJOITEM - Dungeon
+	!ifdef - DOJORANDOM
+		!define - DOJOITEM - Dungeon
+	!else
+		!define - DOJOITEM - Any
+	!endif
 	!ifdef - NO_RED_FUSIONS
 		!define - DOJOITEMRED - Inaccessible
 	!else
@@ -7542,7 +7480,7 @@ Town_GoronMerchant_4_Right;		`GORONSET4`;			goron4RightItem:Define:FirstByte,	go
 Town_GoronMerchant_5_Left;			`GORONSET5`;			goron5LeftItem:Define:FirstByte,	goron5LeftSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet	`GORONLEFT5`	), Helpers.Hundo);																												Items.Kinstone.RedV
 Town_GoronMerchant_5_Middle;		`GORONSET5`;			goron5MiddleItem:Define:FirstByte,	goron5MiddleSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet	`GORONMID5`	), Helpers.Hundo);																												Items.Kinstone.BlueL
 Town_GoronMerchant_5_Right;		`GORONSET5`;			goron5RightItem:Define:FirstByte,	goron5RightSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet	`GORONRIGHT5`	), Helpers.Hundo);																												Items.Kinstone.GreenC
-Town_Dojo_NPC1:dojo;				`DOJOITEM`;			swiftblade1DojoItem:Define:FirstByte, swiftblade1DojoSub:Define:SecondByte;	(|Helpers.HasSword, Helpers.Hundo);																																						Items.SpinAttack
+Town_Dojo_NPC1:dojo;				`DOJOITEM`;			swiftblade1DojoItem:Define:FirstByte, swiftblade1DojoSub:Define:SecondByte;	(|Helpers.HasSword, Helpers.Hundo);																																						`SPINATTACK`
 Town_Dojo_NPC2:dojo;				`DOJOITEM`;			swiftblade2DojoItem:Define:FirstByte, swiftblade2DojoSub:Define:SecondByte;	(|Helpers.HasWhiteSword, Helpers.Hundo);																																					Items.RockBreaker
 Town_Dojo_NPC3:dojo;				`DOJOITEM`;			swiftblade3DojoItem:Define:FirstByte, swiftblade3DojoSub:Define:SecondByte;	(|(&Helpers.HasSword, Items.PegasusBoots), Helpers.Hundo);																																	Items.DashAttack
 Town_Dojo_NPC4:dojo;				`DOJOITEM`;			swiftblade4DojoItem:Define:FirstByte, swiftblade4DojoSub:Define:SecondByte;	(|(&Helpers.HasSword, Items.RocsCape), Helpers.Hundo);																																	Items.DownThrust
@@ -7596,7 +7534,7 @@ NorthField_TreeFusion_TopRightChest;	`GREENFUSION`;	0x32-0x00-0x01;													
 NorthField_TreeFusion_BottomLeftChest;	`GREENFUSION`;	0x32-0x00-0x02;														(|Helpers.KnuckleFusion, Helpers.Hundo);										Items.Kinstone.RedE
 NorthField_TreeFusion_BottomRightChest;	`GREENFUSION`;	0x32-0x00-0x03;														(|Helpers.DavidJr1Fusion, Helpers.Hundo);									Items.Shells.200
 NorthField_TreeFusion_CenterBigChest;	`GREENFUSION`;	0x32-0x00-0x04;														(|Helpers.NorthFieldLadder, Helpers.Hundo);									`MAGICBOOMERANG`
-NorthField_WaterfallFusion_DojoNPC:dojo;	`DOJOITEMRED`;	greatbladeDojoItem:Define:FirstByte, greatbladeDojoSub:Define:SecondByte;	(|(&Helpers.WavebladeFusion, Items.Flippers, Helpers.HasSword), Helpers.Hundo);	Items.LongSpin
+NorthField_WaterfallFusion_DojoNPC:dojo;	`DOJOITEMRED`;	greatbladeDojoItem:Define:FirstByte, greatbladeDojoSub:Define:SecondByte;	(|(&Helpers.WavebladeFusion, Items.Flippers, Helpers.HasSword), Helpers.Hundo);	`LONGSPIN`
 
 #Castle
 Castle_Moat_LeftChest;					Any;				0x07-0x00-0x01;														(|Items.Flippers, Helpers.Hundo);	Items.Shells.100
@@ -7640,7 +7578,7 @@ LonLon_GoronCaveFusion_BigChest;	`BLUEFUSION`;		0x2F-0x01-0x01;								(|(&Helpe
 # Lower Veil Falls
 FallsLower_LonLonFusion_Chest;			`GREENFUSION`;	0x0FE0FE;															(|(&Helpers.Shared60Fusion, Helpers.AccessMinishWoods, Items.PacciCane), Helpers.Hundo);									Items.Rupee200
 FallsLower_HP;						`HP`;			0x0F87D3;															(|(&Helpers.AccessMinishWoods, Items.PacciCane), Helpers.Hundo);														Items.PieceOfHeart
-FallsLower_WaterfallFusion_DojoNPC:dojo;	`DOJOITEMRED`;	splitbladeDojoItem:Define:FirstByte, splitbladeDojoSub:Define:SecondByte;	(|(&Helpers.GrimbladeFusion, Helpers.AccessMinishWoods, Items.PacciCane, Items.Flippers, Helpers.HasSword), Helpers.Hundo);	Items.FastSplit
+FallsLower_WaterfallFusion_DojoNPC:dojo;	`DOJOITEMRED`;	splitbladeDojoItem:Define:FirstByte, splitbladeDojoSub:Define:SecondByte;	(|(&Helpers.GrimbladeFusion, Helpers.AccessMinishWoods, Items.PacciCane, Items.Flippers, Helpers.HasSword), Helpers.Hundo);	`FASTSPLIT`
 FallsLower_RockItem1					`RUPEE`;			0x0F87E3;															(|Helpers.LowerFallsItems, Helpers.Hundo);																			Items.Rupee20
 FallsLower_RockItem2					`RUPEE`;			0x0F87F3;															(|Helpers.LowerFallsItems, Helpers.Hundo);																			Items.Rupee20
 FallsLower_RockItem3					`RUPEE`;			0x0F8803;															(|Helpers.LowerFallsItems, Helpers.Hundo);																			Items.Rupee20
@@ -7850,7 +7788,7 @@ Swamp_CenterCave_DarknutChest;		Any;					0x2B-0x00-0x00;														(|(&Helper
 Swamp_CenterChest;				Any;					0x04-0x00-0x00;														(|(&Helpers.AccessSwamp, Helpers.HasBow), Helpers.Hundo);																																											Items.Kinstone.BlueL
 Swamp_GoldenRope					`WTFUSIONGREENENEMY`;	golden3Item:Define:FirstByte, golden3Sub:Define:SecondByte;				(|(&Helpers.Flurris1Fusion, Helpers.AccessSwamp, Helpers.HasSword), Helpers.Hundo);																																					Items.Rupee100
 Swamp_NearWaterfall_CaveHP;		`HP`;				0x0D9907;															(|(&Helpers.AccessSwamp, (|Helpers.SwampNorthShortcut, Helpers.HasBow), (|Items.RocsCape, Items.Flippers)), Helpers.Hundo);																												Items.PieceOfHeart
-Swamp_WaterfallFusion_DojoNPC:dojo;	`DOJOITEMRED`;		scarbladeDojoItem:Define:FirstByte, scarbladeDojoSub:Define:SecondByte;		(|(&Helpers.GreybladeFusion, Helpers.AccessSwamp, (|Helpers.SwampNorthShortcut, Helpers.HasBow), Items.Flippers), Helpers.Hundo);																											Items.FastSpin
+Swamp_WaterfallFusion_DojoNPC:dojo;	`DOJOITEMRED`;		scarbladeDojoItem:Define:FirstByte, scarbladeDojoSub:Define:SecondByte;		(|(&Helpers.GreybladeFusion, Helpers.AccessSwamp, (|Helpers.SwampNorthShortcut, Helpers.HasBow), Items.Flippers), Helpers.Hundo);																									`FASTSPIN`
 Swamp_NorthCave_Chest;				Any;					0x2A-0x01-0x00;														(|(&Helpers.AccessSwamp, (|Helpers.SwampNorthShortcut, Helpers.HasBow)), Helpers.Hundo);																																				Items.Kinstone.GoldenSwamp
 Swamp_DiggingCave_LeftChest;		Any;					0x17-0x00-0x00;														(|(&Helpers.AccessSwamp, Items.MoleMitts), Helpers.Hundo);																																											Items.Shells.50
 Swamp_DiggingCave_RightChest;		Any;					0x17-0x00-0x01;														(|(&Helpers.AccessSwamp, Items.MoleMitts), Helpers.Hundo);																																											Items.Kinstone.RedW
@@ -7859,7 +7797,7 @@ Swamp_Underwater_Middle;			`WATERKINSTONE`;		0x0D9357;															(|(&Helpers
 Swamp_Underwater_Bottom;			`WATERKINSTONE`;		0x0D9367;															(|(&Helpers.AccessSwamp, Items.Flippers), Helpers.Hundo);																																											Items.Kinstone.RedE
 Swamp_SouthCave_Chest;				Any;					0x2A-0x00-0x00;														(|(&Helpers.AccessSwamp, (|Items.Flippers, Items.RocsCape, (&Helpers.HasBow, Items.PegasusBoots), (&Helpers.SwampShortcut, Helpers.SwampSouthShortcut))), (&Helpers.SwampWindCrest, (|Helpers.HasBow, Helpers.SwampSouthShortcut)), Helpers.Hundo);	Items.Kinstone.GoldenSwamp
 Swamp_Dojo_HP;					`HP`;				0x0D78CB;															(|(&Helpers.AccessSwamp, (|Items.RocsCape, Helpers.HasBow, (&Items.PegasusBoots, Items.Flippers))), (&Helpers.SwampWindCrest, Items.PegasusBoots), Helpers.Hundo);																			Items.PieceOfHeart
-Swamp_Dojo_NPC:dojo;				`DOJOITEM`;			swiftbladeIDojoItem:Define:FirstByte, swiftbladeIDojoSub:Define:SecondByte;	(|(&Helpers.AccessSwamp, (|Items.RocsCape, Helpers.HasBow, (&Items.PegasusBoots, Items.Flippers)), Helpers.GotScrolls, Helpers.HasSword), (&Helpers.SwampWindCrest, Items.PegasusBoots, Helpers.GotScrolls, Helpers.HasSword), Helpers.Hundo);			Items.GreatSpin
+Swamp_Dojo_NPC:dojo;				`DOJOITEM`;			swiftbladeIDojoItem:Define:FirstByte, swiftbladeIDojoSub:Define:SecondByte;	(|(&Helpers.AccessSwamp, (|Items.RocsCape, Helpers.HasBow, (&Items.PegasusBoots, Items.Flippers)), Helpers.GotScrolls, Helpers.HasSword), (&Helpers.SwampWindCrest, Items.PegasusBoots, Helpers.GotScrolls, Helpers.HasSword), Helpers.Hundo);	`GREATSPIN`
 
 Swamp_MinishFusion_NorthCrack_Chest;	`GREENFUSION`;		0x27-0x09-0x00;	(|(&Helpers.TFZ1Fusion, Helpers.AccessSwamp, (|Items.PegasusBoots, Items.RocsCape, Helpers.HasBow)), Helpers.Hundo);											Items.Kinstone.BlueS
 Swamp_Minish_Mulldozer_BigChest;		Any;					0x27-0x06-0x00;	(|(&Helpers.AccessSwamp, (|Items.PegasusBoots, Items.RocsCape, Helpers.HasBow), (|Items.Flippers, Items.GustJar), Helpers.HasDamageSource), Helpers.Hundo);		`BOW`
