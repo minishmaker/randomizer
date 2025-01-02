@@ -489,16 +489,19 @@
 !ifdef - HOMEWARP
     !eventdefine - allowHomewarp
 !else
+	# Prevent hardlocks from using the Ocarina
 	!define - TOWN_CREST
+	# Prevent hardlocks from using the Firerod
 	!ifndef - NO_FIREROD
-		!define - HOMEWARP
 		!eventdefine - allowHomewarp		
 	!else
-		!ifndef - OPEN_GOLD_FUSIONS
-			!ifndef - NO_RED_FUSIONS
-				!ifdef - OPEN_WIND_TRIBE
-					!define - HOMEWARP
-					!eventdefine - allowHomewarp
+		# Prevent hardlocks from exiting the Wind Tribe house and falling down Cloud Tops
+		!ifndef - START_OCARINA
+			!ifndef - OPEN_GOLD_FUSIONS
+				!ifndef - NO_RED_FUSIONS
+					!ifdef - OPEN_WIND_TRIBE
+						!eventdefine - allowHomewarp
+					!endif
 				!endif
 			!endif
 		!endif
@@ -2306,7 +2309,7 @@
 			Items.LonLonKey;	Minor;
 		!endif
 	!else
-		Items.LonLonKey;		Minor;
+		Items.LonLonKey;		Major;
 	!endif
 !else
 	Dummy_RanchKey:NoSpoiler;	Unshuffled;	DumRanchKey1:Define:FirstByte, DumRanchKey2:Define:SecondByte;	;	Items.LonLonKey
@@ -2342,7 +2345,7 @@
 			Items.JabberNut;	Minor;
 		!endif
 	!else
-		Items.JabberNut;		Minor;
+		Items.JabberNut;		Major;
 	!endif
 !else
 	Dummy_JabberNut:NoSpoiler;	Unshuffled;	DumJabberNut1:Define:FirstByte, DumJabberNut2:Define:SecondByte;	;	Items.JabberNut
@@ -3443,7 +3446,7 @@
 		!define - ELEMENT_DEF - 3
     !else
     	!undefine - GOTELEMENTS
-	    !define - GOTELEMENTS - , (+`ELEMENT_COUNT`, Items.WaterElement, Items.FireElement, Items.WindElement, Items.EarthElement)
+	    !define - GOTELEMENTS - , (+`ELEMENT_COUNT`, Helpers.HasWaterElement, Helpers.HasFireElement, Helpers.HasWindElement, Helpers.HasEarthElement)
 	!endif
 	!eventdefine - requirementElementsAmount - `ELEMENT_DEF`
 !endif
@@ -4328,6 +4331,11 @@ CanDownThrust;		Helper;; Helpers.HasSword, Items.DownThrust, Items.RocsCape
 !else
 	ShopBombBag;		Helper;; Helpers.Inaccessible
 !endif
+# These make it so we can count how many unique elements have been collected, as opposed to counting them with multiplicity
+HasEarthElement;			Helper;; Items.EarthElement
+HasFireElement;			Helper;; Items.FireElement
+HasWaterElement;			Helper;; Items.WaterElement
+HasWindElement;			Helper;; Items.WindElement
 
 # This section checks what the Weapon setting is and adjusts fight logic
 !ifdef - NOBOMB
@@ -7607,7 +7615,7 @@ CrenelBase_MinishCrack_Chest;		Any;					0x27-0x03-0x00;													(|(&Helpers.
 Crenel_VineTop_GoldenTektite		`GREENFUSIONENEMY`;	golden2Item:Define:FirstByte, golden2Sub:Define:SecondByte; 			(|(&Helpers.MinesMinishKitchenFusion,Helpers.AccessCrenel, Helpers.HasSword), Helpers.Hundo);																						Items.Rupee100
 Crenel_BridgeCave_Chest;			Any;					0x26-0x07-0x00;													(|(&Helpers.AccessCrenel, Helpers.BombWalls), Helpers.Hundo);																													Items.Kinstone.BlueL
 Crenel_FairyCave_HP;				`HP`;				0x0FB0BB;														(|(&Helpers.AccessCrenel, Helpers.BombWalls), Helpers.Hundo);																													Items.PieceOfHeart
-Crenel_BelowCoF_GoldenTektite		`REDFUSIONENEMY`;		golden7Item:Define:FirstByte, golden7Sub:Define:SecondByte;			(|(&Helpers.Tingle2Fusion, Helpers.AccessCrenel, Helpers.HasSword, (|Items.GripRing, Items.BombBag, Helpers.CrenelMushroom, Helpers.CrenelWindCrest)), Helpers.Hundo);						Items.Rupee100
+Crenel_BelowCoF_GoldenTektite		`REDFUSIONENEMY`;		golden7Item:Define:FirstByte, golden7Sub:Define:SecondByte;			(|(&Helpers.Tingle2Fusion, Helpers.AccessCrenel, Helpers.HasSword, (|Items.GripRing, Items.BombBag, Helpers.CrenelMushroom, Helpers.CrenelWindCrest)), Helpers.Hundo);						Items.Rupee200
 Crenel_Scrub_NPC;					Any;					gripScrubItem:Define:FirstByte, gripScrubSub:Define:SecondByte;		(|(&Helpers.AccessCrenel, Helpers.BombWalls, (|Items.GripRing, Items.BombBag, Helpers.CrenelMushroom, Helpers.CrenelWindCrest), Helpers.Scrubs, Helpers.ShopScrubCrenel), Helpers.Hundo);	Items.GripRing
 Crenel_Dojo_LeftChest;				Any;					0x25-0x00-0x00;													(|(&Helpers.AccessCrenel, Items.GripRing, Helpers.CrenelDojo), Helpers.Hundo);																									Items.Rupee50
 Crenel_Dojo_RightChest;			Any;					0x25-0x00-0x01;													(|(&Helpers.AccessCrenel, Items.GripRing, Helpers.CrenelDojo), Helpers.Hundo);																									Items.Rupee50
@@ -7927,7 +7935,7 @@ Droplets_LeftPath_B2_Waterfall_Underwater4		`TOD_INSIDE`		`DUNGEONUNDERWATER`;		
 Droplets_LeftPath_B2_Waterfall_Underwater5		`TOD_INSIDE`		`DUNGEONUNDERWATER`;		0x0E591F;													(|(&`ENTERTOD`, Items.Flippers, (|(&Helpers.ToDMainRoom, Helpers.ToDLeftMushroomSwitch), (&Helpers.ToDLilypadEnd, Helpers.ToDLeftReverse))), Helpers.Hundo);	Items.Rupee5
 Droplets_LeftPath_B2_Waterfall_Underwater6		`TOD_INSIDE`		`DUNGEONUNDERWATER`;		0x0E592F;													(|(&`ENTERTOD`, Items.Flippers, (|(&Helpers.ToDMainRoom, Helpers.ToDLeftMushroomSwitch), (&Helpers.ToDLilypadEnd, Helpers.ToDLeftReverse))), Helpers.Hundo);	Items.Rupee5
 
-Droplets_LeftPath_B2_Underwater_Pot				`TOD_INSIDE_SK`;	`DUNGEONSMALLUNDERWATER`;	0x0E5BC7;													(|(&`ENTERTOD`, Items.Flippers, (|(&Helpers.ToDMainRoom, Helpers.ToDLeftPillars), Helpers.ToDLilypadEnd)), Helpers.Hundo);																								Items.SmallKey.0x1B
+Droplets_LeftPath_B2_Underwater_Pot				`TOD_INSIDE_SK`;	`DUNGEONSMALLUNDERWATER`;	0x0E5BC7;													(|(&`ENTERTOD`, Items.Flippers, (|(&Helpers.ToDMainRoom, Helpers.ToDLeftMushroomSwitch), Helpers.ToDLilypadEnd)), Helpers.Hundo);																								Items.SmallKey.0x1B
 Droplets_LeftPath_B2_IceMadderpillar_BigChest	`TOD_INSIDE_COM`;	Dungeon;					0x60-0x32-0x01;												(|(&`ENTERTOD`, Items.GustJar, Helpers.ToDMadderpillars, (|Helpers.ToDLilypadEnd, (&Helpers.ToDMainRoom, Helpers.ToDBasementLilySpawn))), Helpers.Hundo);																	Items.Compass.0x1B
 Droplets_LeftPath_B2_IcePlain_FrozenChest		`TOD_INSIDE`;		Dungeon;					0x60-0x28-0x00;												(|(&`ENTERTOD`, Items.Lantern, (|(&Helpers.ToDMainRoom, Items.Flippers, Helpers.ToDWestDoor, Helpers.ToDLeftPillars), (&Helpers.ToDLilypadEnd, (|Items.GustJar, Items.Flippers, Items.RocsCape)))), Helpers.Hundo);					Items.Shells.100
 Droplets_LeftPath_B2_IcePlain_Chest				`TOD_INSIDE`;		Dungeon;					0x60-0x28-0x01;												(|(&`ENTERTOD`, (|(&Helpers.ToDMainRoom, Items.Flippers, Helpers.ToDWestDoor, Helpers.ToDLeftMushroomSwitch, Helpers.ToDLeftPillars), (&Helpers.ToDLilypadEnd, (|Items.GustJar, Items.Flippers, Items.RocsCape)))), Helpers.Hundo);	Items.Rupee50
@@ -7987,9 +7995,9 @@ Palace_BossItem								`POW_INSIDE`;	`PALACEHP`;		gyorgContainerItem:Define:Firs
 Palace_Prize									`POW_PRIZE`;	`PALACEPRIZE`;	0x0E69E3;															(|Helpers.CompletePalace, Helpers.Hundo);	Items.WindElement
 
 # Pedestal Items
-Sanctuary_Pedestal_Item1	`DHC_OUTSIDE`;  `PED`;   pedestalSpot1Item:Define:FirstByte, pedestalSpot1Sub:Define:SecondByte; `ENTERDHC`, (+2, Items.WaterElement, Items.FireElement, Items.WindElement, Items.EarthElement);   `REDSWORD`
-Sanctuary_Pedestal_Item2	`DHC_OUTSIDE`;  `PED`;   pedestalSpot2Item:Define:FirstByte, pedestalSpot2Sub:Define:SecondByte; `ENTERDHC`, (+3, Items.WaterElement, Items.FireElement, Items.WindElement, Items.EarthElement);   `BLUESWORD`
-Sanctuary_Pedestal_Item3	`DHC_OUTSIDE`;  `PED`;   pedestalSpot3Item:Define:FirstByte, pedestalSpot3Sub:Define:SecondByte; `ENTERDHC`, (+4, Items.WaterElement, Items.FireElement, Items.WindElement, Items.EarthElement);   `FOURSWORD`
+Sanctuary_Pedestal_Item1	`DHC_OUTSIDE`;  `PED`;   pedestalSpot1Item:Define:FirstByte, pedestalSpot1Sub:Define:SecondByte; `ENTERDHC`, (+2, Helpers.HasWaterElement, Helpers.HasFireElement, Helpers.HasWindElement, Helpers.HasEarthElement);   `REDSWORD`
+Sanctuary_Pedestal_Item2	`DHC_OUTSIDE`;  `PED`;   pedestalSpot2Item:Define:FirstByte, pedestalSpot2Sub:Define:SecondByte; `ENTERDHC`, (+3, Helpers.HasWaterElement, Helpers.HasFireElement, Helpers.HasWindElement, Helpers.HasEarthElement);   `BLUESWORD`
+Sanctuary_Pedestal_Item3	`DHC_OUTSIDE`;  `PED`;   pedestalSpot3Item:Define:FirstByte, pedestalSpot3Sub:Define:SecondByte; `ENTERDHC`, (+4, Helpers.HasWaterElement, Helpers.HasFireElement, Helpers.HasWindElement, Helpers.HasEarthElement);   `FOURSWORD`
 
 # Dark Hyrule Castle
 

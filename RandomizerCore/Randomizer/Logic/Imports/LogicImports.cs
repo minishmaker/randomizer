@@ -53,10 +53,10 @@ public static class LogicImports
         {
             Type: ItemType.EarthElement or ItemType.FireElement or ItemType.WaterElement or ItemType.WindElement
         } || (itemToPlace.ShufflePool is ItemPool.DungeonMajor && DependencyBase.BeatVaatiDependency!.DependencyFulfilled());
-        
+
         if (!accessible && self.Dependencies.All(dep => dep != DependencyBase.BeatVaatiDependency!))
             self.Dependencies.Add(DependencyBase.BeatVaatiDependency!);
-        
+
         return accessible;
     }
 
@@ -74,10 +74,10 @@ public static class LogicImports
         {
             Type: ItemType.EarthElement or ItemType.FireElement or ItemType.WaterElement or ItemType.WindElement
         } || DependencyBase.BeatVaatiDependency!.DependencyFulfilled();
-        
-        if (!accessible && self.Dependencies.All(dep => dep == DependencyBase.BeatVaatiDependency!))
+
+        if (!accessible && self.Dependencies.All(dep => dep != DependencyBase.BeatVaatiDependency!))
             self.Dependencies.Add(DependencyBase.BeatVaatiDependency!);
-        
+
         return accessible;
     }
 }

@@ -35,7 +35,7 @@ PUSH; ORG $4E0C8; SHORT 0 0; POP
 //stop dws lilypad from going away after getting flippers
 PUSH; ORG $84EF0; SHORT 0x4280; POP
 
-////prevent tod from being unbetable if the left lever is used first
+//prevent tod from being unbeatable if the left lever is used first
 PUSH; ORG $5A0C4; jumpToHack(todLevers1); POP
 ALIGN 4
 todLevers1:
@@ -48,6 +48,9 @@ todLevers2:
 
 //add door to match keyhole door in dhc
 PUSH; ORG $EDC6C; WORD 0; ORG $EDAE0; BYTE 0x06 0x0F 0x08 0x00 0 0 0 0; SHORT 0x58 0x28 0xFFFF 0x6A; POP
+
+//add door to match boss door in tod
+PUSH; ORG $E3950; BYTE 0x06 0x0F 0x39 0x00 0 0 0 0; SHORT 0x108 0x28 0xFFFF 0x2C; POP
 
 //add door to match keyhole door in tod
 PUSH; ORG $E4FBC; POIN todDoor; POP
@@ -113,3 +116,11 @@ gleerokFallFix:
 
 //fix animation for getting back a shield from a like like (fix from non-EU)
 PUSH; ORG $28206; SHORT 0xF07F 0xF903; POP
+
+#ifdef bootsMinish
+    //fix push value not resetting at the end of a jump off a ledge as minish
+    PUSH; ORG $70C74; jumpToHack(minishLedgeFix); POP
+    ALIGN 4
+    minishLedgeFix:
+    #incbin "asm/minishLedgeFix.dmp"
+#endif
