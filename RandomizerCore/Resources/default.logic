@@ -2332,7 +2332,6 @@
 !ifdef - YES_SCROLL_PROG
 	!ifdef - SCROLLMAJOR
 		!ifdef - START_SCROLL_SPIN
-			Dummy_Spin:NoSpoiler;	Unshuffled;	DumSpin1:Define:FirstByte, DumSpin2:Define:SecondByte;	;	Items.ProgressiveItem.0x04
 			!ifdef - DOJORANDOM
 				Items.Rupee5;	DungeonMinor;	dojo
 			!endif
@@ -2344,7 +2343,6 @@
 	!eventdefine - arbitraryScrolls
 	!ifdef - SCROLLMAJOR
 		!ifdef - START_SCROLL_SPIN
-			Dummy_Spin:NoSpoiler;	Unshuffled;	DumSpin1:Define:FirstByte, DumSpin2:Define:SecondByte;	;	Items.SpinAttack
 			!ifdef - DOJORANDOM
 				Items.Rupee5;	DungeonMinor;	dojo
 			!endif
@@ -2656,11 +2654,61 @@
 		Items.Flippers;	Minor;
 	!endif
 !endif
+!ifdef - START_SCROLL_ROLL
+	Dummy_Roll:NoSpoiler;	Unshuffled;	DumRoll1:Define:FirstByte, DumRoll2:Define:SecondByte;	;	Items.RollAttack
+!endif
+!ifdef - START_SCROLL_DASH
+	Dummy_Dash:NoSpoiler;	Unshuffled;	DumDash1:Define:FirstByte, DumDash2:Define:SecondByte;	;	Items.DashAttack
+!endif
+!ifdef - START_SCROLL_ROCK
+	Dummy_Rock:NoSpoiler;	Unshuffled;	DumRock1:Define:FirstByte, DumRock2:Define:SecondByte;	;	Items.RockBreaker
+!endif
+!ifdef - START_SCROLL_SWORD_BEAM
+	Dummy_SwordBeam:NoSpoiler;	Unshuffled;	DumSwordBeam1:Define:FirstByte, DumSwordBeam2:Define:SecondByte;	;	Items.SwordBeam
+!endif
+!ifdef - START_SCROLL_DOWN_THRUST
+	Dummy_DownThrust:NoSpoiler;	Unshuffled;	DumDownThrust1:Define:FirstByte, DumDownThrust2:Define:SecondByte;	;	Items.DownThrust
+!endif
+!ifdef - START_SCROLL_PERIL_BEAM
+	Dummy_PerilBeam:NoSpoiler;	Unshuffled;	DumPerilBeam1:Define:FirstByte, DumPerilBeam2:Define:SecondByte;	;	Items.PerilBeam
+!endif
+!ifdef - YES_SCROLL_PROG
+	!ifdef - START_SCROLL_SPIN
+		Dummy_Spin:NoSpoiler;	Unshuffled;	DumSpin1:Define:FirstByte, DumSpin2:Define:SecondByte;	;	Items.ProgressiveItem.0x04
+	!endif
+	!ifdef - START_SCROLL_FAST_SPIN
+		Dummy_FastSpin:NoSpoiler;	Unshuffled;	DumFastSpin1:Define:FirstByte, DumFastSpin2:Define:SecondByte;	;	Items.ProgressiveItem.0x04
+	!endif
+	!ifdef - START_SCROLL_FAST_SPLIT
+		Dummy_FastSplit:NoSpoiler;	Unshuffled;	DumFastSplit1:Define:FirstByte, DumFastSplit2:Define:SecondByte;	;	Items.ProgressiveItem.0x04
+	!endif
+	!ifdef - START_SCROLL_GREAT_SPIN
+		Dummy_GreatSpin:NoSpoiler;	Unshuffled;	DumGreatSpin1:Define:FirstByte, DumGreatSpin2:Define:SecondByte;	;	Items.ProgressiveItem.0x04
+	!endif
+	!ifdef - START_SCROLL_LONG_SPIN
+		Dummy_LongSpin:NoSpoiler;	Unshuffled;	DumLongSpin1:Define:FirstByte, DumLongSpin2:Define:SecondByte;	;	Items.ProgressiveItem.0x04
+	!endif
+!else
+	!ifdef - START_SCROLL_SPIN
+		Dummy_Spin:NoSpoiler;	Unshuffled;	DumSpin1:Define:FirstByte, DumSpin2:Define:SecondByte;	;	Items.SpinAttack
+	!endif
+	!ifdef - START_SCROLL_FAST_SPIN
+		Dummy_FastSpin:NoSpoiler;	Unshuffled;	DumFastSpin1:Define:FirstByte, DumFastSpin2:Define:SecondByte;	;	Items.FastSpin
+	!endif
+	!ifdef - START_SCROLL_FAST_SPLIT
+		Dummy_FastSplit:NoSpoiler;	Unshuffled;	DumFastSplit1:Define:FirstByte, DumFastSplit2:Define:SecondByte;	;	Items.FastSplit
+	!endif
+	!ifdef - START_SCROLL_GREAT_SPIN
+		Dummy_GreatSpin:NoSpoiler;	Unshuffled;	DumGreatSpin1:Define:FirstByte, DumGreatSpin2:Define:SecondByte;	;	Items.GreatSpin
+	!endif
+	!ifdef - START_SCROLL_LONG_SPIN
+		Dummy_LongSpin:NoSpoiler;	Unshuffled;	DumLongSpin1:Define:FirstByte, DumLongSpin2:Define:SecondByte;	;	Items.LongSpin
+	!endif
+!endif
 !ifndef - DOJOVANILLA
 	!ifndef - START_SCROLL_ROLL
 		Items.RollAttack;	`SCROLLMINOR`
 	!else
-		Dummy_Roll:NoSpoiler;	Unshuffled;	DumRoll1:Define:FirstByte, DumRoll2:Define:SecondByte;	;	Items.RollAttack
 		!ifdef - DOJORANDOM
 			Items.Rupee5;		DungeonMinor;	dojo
 		!endif
@@ -2668,7 +2716,6 @@
 	!ifndef - START_SCROLL_DASH
 		Items.DashAttack;	`SCROLLMINOR`
 	!else
-		Dummy_Dash:NoSpoiler;	Unshuffled;	DumDash1:Define:FirstByte, DumDash2:Define:SecondByte;	;	Items.DashAttack
 		!ifdef - DOJORANDOM
 			Items.Rupee5;		DungeonMinor;	dojo
 		!endif
@@ -2676,7 +2723,6 @@
 	!ifndef - START_SCROLL_ROCK
 		Items.RockBreaker;	`SCROLLMINOR`
 	!else
-		Dummy_Rock:NoSpoiler;	Unshuffled;	DumRock1:Define:FirstByte, DumRock2:Define:SecondByte;	;	Items.RockBreaker
 		!ifdef - DOJORANDOM
 			Items.Rupee5;		DungeonMinor;	dojo
 		!endif
@@ -2684,7 +2730,6 @@
 	!ifndef - START_SCROLL_SWORD_BEAM
 		Items.SwordBeam;	`SCROLLMAJOR`
 	!else
-		Dummy_SwordBeam:NoSpoiler;	Unshuffled;	DumSwordBeam1:Define:FirstByte, DumSwordBeam2:Define:SecondByte;	;	Items.SwordBeam
 		!ifdef - DOJORANDOM
 			Items.Rupee5;		DungeonMinor;	dojo
 		!endif
@@ -2692,7 +2737,6 @@
 	!ifndef - START_SCROLL_DOWN_THRUST
 		Items.DownThrust;	`SCROLLMAJOR`
 	!else
-		Dummy_DownThrust:NoSpoiler;	Unshuffled;	DumDownThrust1:Define:FirstByte, DumDownThrust2:Define:SecondByte;	;	Items.DownThrust
 		!ifdef - DOJORANDOM
 			Items.Rupee5;		DungeonMinor;	dojo
 		!endif
@@ -2700,7 +2744,6 @@
 	!ifndef - START_SCROLL_PERIL_BEAM
 		Items.PerilBeam;	`SCROLLMAJOR`
 	!else
-		Dummy_PerilBeam:NoSpoiler;	Unshuffled;	DumPerilBeam1:Define:FirstByte, DumPerilBeam2:Define:SecondByte;	;	Items.PerilBeam
 		!ifdef - DOJORANDOM
 			Items.Rupee5;		DungeonMinor;	dojo
 		!endif
@@ -3228,33 +3271,6 @@
 			!endif
 		!endif
 	!endif
-	!ifdef - YES_SCROLL_PROG
-		!ifdef - START_SCROLL_FAST_SPIN
-			Dummy_FastSpin:NoSpoiler;	Unshuffled;	DumFastSpin1:Define:FirstByte, DumFastSpin2:Define:SecondByte;	;	Items.ProgressiveItem.0x04
-		!endif
-		!ifdef - START_SCROLL_FAST_SPLIT
-			Dummy_FastSplit:NoSpoiler;	Unshuffled;	DumFastSplit1:Define:FirstByte, DumFastSplit2:Define:SecondByte;	;	Items.ProgressiveItem.0x04
-		!endif
-		!ifdef - START_SCROLL_GREAT_SPIN
-			Dummy_GreatSpin:NoSpoiler;	Unshuffled;	DumGreatSpin1:Define:FirstByte, DumGreatSpin2:Define:SecondByte;	;	Items.ProgressiveItem.0x04
-		!endif
-		!ifdef - START_SCROLL_LONG_SPIN
-			Dummy_LongSpin:NoSpoiler;	Unshuffled;	DumLongSpin1:Define:FirstByte, DumLongSpin2:Define:SecondByte;	;	Items.ProgressiveItem.0x04
-		!endif
-	!else
-		!ifdef - START_SCROLL_FAST_SPIN
-			Dummy_FastSpin:NoSpoiler;	Unshuffled;	DumFastSpin1:Define:FirstByte, DumFastSpin2:Define:SecondByte;	;	Items.FastSpin
-		!endif
-		!ifdef - START_SCROLL_FAST_SPLIT
-			Dummy_FastSplit:NoSpoiler;	Unshuffled;	DumFastSplit1:Define:FirstByte, DumFastSplit2:Define:SecondByte;	;	Items.FastSplit
-		!endif
-		!ifdef - START_SCROLL_GREAT_SPIN
-			Dummy_GreatSpin:NoSpoiler;	Unshuffled;	DumGreatSpin1:Define:FirstByte, DumGreatSpin2:Define:SecondByte;	;	Items.GreatSpin
-		!endif
-		!ifdef - START_SCROLL_LONG_SPIN
-			Dummy_LongSpin:NoSpoiler;	Unshuffled;	DumLongSpin1:Define:FirstByte, DumLongSpin2:Define:SecondByte;	;	Items.LongSpin
-		!endif
-	!endif
 	!ifdef - FIREROD_CHEST
 		Items.Firerod;		Minor;
 	!endif
@@ -3319,25 +3335,21 @@
 	!ifdef - YES_SCROLL_PROG
 		!ifdef - DOJORANDOM
 			!ifdef - START_SCROLL_FAST_SPIN
-				Dummy_FastSpin:NoSpoiler;	Unshuffled;	DumFastSpin1:Define:FirstByte, DumFastSpin2:Define:SecondByte;	;	Items.ProgressiveItem.0x04
 				Items.Rupee5;		DungeonMinor;	dojo
 			!else
 				Items.ProgressiveItem.0x04;	DungeonMajor;	dojo	#Scroll
 			!endif
 			!ifdef - START_SCROLL_FAST_SPLIT
-				Dummy_FastSplit:NoSpoiler;	Unshuffled;	DumFastSplit1:Define:FirstByte, DumFastSplit2:Define:SecondByte;	;	Items.ProgressiveItem.0x04
 				Items.Rupee5;		DungeonMinor;	dojo
 			!else
 				Items.ProgressiveItem.0x04;	DungeonMajor;	dojo	#Scroll
 			!endif
 			!ifdef - START_SCROLL_GREAT_SPIN
-				Dummy_GreatSpin:NoSpoiler;	Unshuffled;	DumGreatSpin1:Define:FirstByte, DumGreatSpin2:Define:SecondByte;	;	Items.ProgressiveItem.0x04
 				Items.Rupee5;		DungeonMinor;	dojo
 			!else
 				Items.ProgressiveItem.0x04;	DungeonMajor;	dojo	#Scroll
 			!endif
 			!ifdef - START_SCROLL_LONG_SPIN
-				Dummy_LongSpin:NoSpoiler;	Unshuffled;	DumLongSpin1:Define:FirstByte, DumLongSpin2:Define:SecondByte;	;	Items.ProgressiveItem.0x04
 				Items.Rupee5;		DungeonMinor;	dojo
 			!else
 				Items.ProgressiveItem.0x04;	DungeonMajor;	dojo	#Scroll
@@ -3349,49 +3361,37 @@
 			!endif
 		!endif
 		!ifdef - DOJOANY
-			!ifdef - START_SCROLL_FAST_SPIN
-				Dummy_FastSpin:NoSpoiler;	Unshuffled;	DumFastSpin1:Define:FirstByte, DumFastSpin2:Define:SecondByte;	;	Items.ProgressiveItem.0x04
-			!else
+			!ifndef - START_SCROLL_FAST_SPIN
 				Items.ProgressiveItem.0x04;	Major;	#Scroll
 			!endif
-			!ifdef - START_SCROLL_FAST_SPLIT
-				Dummy_FastSplit:NoSpoiler;	Unshuffled;	DumFastSplit1:Define:FirstByte, DumFastSplit2:Define:SecondByte;	;	Items.ProgressiveItem.0x04
-			!else
+			!ifndef - START_SCROLL_FAST_SPLIT
 				Items.ProgressiveItem.0x04;	Major;	#Scroll
 			!endif
-			!ifdef - START_SCROLL_GREAT_SPIN
-				Dummy_GreatSpin:NoSpoiler;	Unshuffled;	DumGreatSpin1:Define:FirstByte, DumGreatSpin2:Define:SecondByte;	;	Items.ProgressiveItem.0x04
-			!else
+			!ifndef - START_SCROLL_GREAT_SPIN
 				Items.ProgressiveItem.0x04;	Major;	#Scroll
 			!endif
-			!ifdef - START_SCROLL_LONG_SPIN
-				Dummy_LongSpin:NoSpoiler;	Unshuffled;	DumLongSpin1:Define:FirstByte, DumLongSpin2:Define:SecondByte;	;	Items.ProgressiveItem.0x04
-			!else
+			!ifndef - START_SCROLL_LONG_SPIN
 				Items.ProgressiveItem.0x04;	Major;	#Scroll
 			!endif
 		!endif
 	!else
 		!ifdef - DOJORANDOM
 			!ifdef - START_SCROLL_FAST_SPIN
-				Dummy_FastSpin:NoSpoiler;	Unshuffled;	DumFastSpin1:Define:FirstByte, DumFastSpin2:Define:SecondByte;	;	Items.FastSpin
 				Items.Rupee5;		DungeonMinor;	dojo
 			!else
 				Items.FastSpin;	DungeonMinor;	dojo
 			!endif
 			!ifdef - START_SCROLL_FAST_SPLIT
-				Dummy_FastSplit:NoSpoiler;	Unshuffled;	DumFastSplit1:Define:FirstByte, DumFastSplit2:Define:SecondByte;	;	Items.FastSplit
 				Items.Rupee5;		DungeonMinor;	dojo
 			!else
 				Items.FastSplit;	DungeonMinor;	dojo
 			!endif
 			!ifdef - START_SCROLL_GREAT_SPIN
-				Dummy_GreatSpin:NoSpoiler;	Unshuffled;	DumGreatSpin1:Define:FirstByte, DumGreatSpin2:Define:SecondByte;	;	Items.GreatSpin
 				Items.Rupee5;		DungeonMinor;	dojo
 			!else
 				Items.GreatSpin;	DungeonMajor;	dojo
 			!endif
 			!ifdef - START_SCROLL_LONG_SPIN
-				Dummy_LongSpin:NoSpoiler;	Unshuffled;	DumLongSpin1:Define:FirstByte, DumLongSpin2:Define:SecondByte;	;	Items.LongSpin
 				Items.Rupee5;		DungeonMinor;	dojo
 			!else
 				Items.LongSpin;	DungeonMinor;	dojo
@@ -3403,24 +3403,16 @@
 			!endif
 		!endif
 		!ifdef - DOJOANY
-			!ifdef - START_SCROLL_FAST_SPIN
-				Dummy_FastSpin:NoSpoiler;	Unshuffled;	DumFastSpin1:Define:FirstByte, DumFastSpin2:Define:SecondByte;	;	Items.FastSpin
-			!else
+			!ifndef - START_SCROLL_FAST_SPIN
 				Items.FastSpin;	Major;
 			!endif
-			!ifdef - START_SCROLL_FAST_SPLIT
-				Dummy_FastSplit:NoSpoiler;	Unshuffled;	DumFastSplit1:Define:FirstByte, DumFastSplit2:Define:SecondByte;	;	Items.FastSplit
-			!else
+			!ifndef - START_SCROLL_FAST_SPLIT
 				Items.FastSplit;	Major;
 			!endif
-			!ifdef - START_SCROLL_GREAT_SPIN
-				Dummy_GreatSpin:NoSpoiler;	Unshuffled;	DumGreatSpin1:Define:FirstByte, DumGreatSpin2:Define:SecondByte;	;	Items.GreatSpin
-			!else
+			!ifndef - START_SCROLL_GREAT_SPIN
 				Items.GreatSpin;	Major;
 			!endif
-			!ifdef - START_SCROLL_LONG_SPIN
-				Dummy_LongSpin:NoSpoiler;	Unshuffled;	DumLongSpin1:Define:FirstByte, DumLongSpin2:Define:SecondByte;	;	Items.LongSpin
-			!else
+			!ifndef - START_SCROLL_LONG_SPIN
 				Items.LongSpin;	Major;
 			!endif
 		!endif
