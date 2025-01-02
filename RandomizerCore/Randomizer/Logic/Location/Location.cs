@@ -57,6 +57,7 @@ public class Location
     public static List<Func<Location, Item, List<Location>, bool>> ShufflerConstraints { get; } = new();
 
     public Item? Contents { get; private set; }
+    public Item? AssociatedPrize { get; set; }
     public int RecursionCount { get; private set; }
 
     public static List<Item> GetItems(List<Location> locations)
@@ -115,10 +116,10 @@ public class Location
     ///     Check if an item can be placed into the location
     /// </summary>
     /// <param name="itemToPlace">The item to check placeability of</param>
-    /// <param name="availableItems">The items used for checking accessibility</param>
-    /// <param name="locations">The locations used for checking accessibility</param>
+    /// <param name="allLocations">The locations used for checking accessibility</param>
+    /// <param name="ignoreConstraints">Whether the checks in the ShufflerConstraints should be skipped</param>
     /// <returns>If the item can be placed in this location</returns>
-    public bool CanPlace(Item itemToPlace, List<Location> allLocations)
+    public bool CanPlace(Item itemToPlace, List<Location> allLocations, bool ignoreConstraints = false)
     {
         if (ShufflerConstraints.Any() &&
             !ShufflerConstraints.Contains(Imports.LogicImports.FunctionValues["VERIFY_LOCATION_IS_ACCESSIBLE"]))
@@ -142,7 +143,7 @@ public class Location
 
         if (itemToPlace.ShufflePool is ItemPool.DungeonPrize && Type != LocationType.DungeonPrize) return false;
 
-        return ShufflerConstraints.All(constraint => constraint.Invoke(this, itemToPlace, allLocations));
+        return ignoreConstraints || ShufflerConstraints.All(constraint => constraint.Invoke(this, itemToPlace, allLocations));
     }
 
     public bool IsAccessible(Item? itemToPlace = null)

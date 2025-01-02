@@ -31,6 +31,7 @@ public class DirectiveParser
     public string? LogicVersion;
     public readonly List<LogicOptionBase> Options;
     public readonly Dictionary<Item, ChanceItemSet> Replacements;
+    public readonly Dictionary<string, string> PrizePlacements;
     public uint? RomCrc;
 
     public DirectiveParser()
@@ -40,6 +41,7 @@ public class DirectiveParser
         EventDefines = new List<EventDefine>();
         LocationTypeOverrides = new Dictionary<Item, LocationType>();
         Replacements = new Dictionary<Item, ChanceItemSet>(new ItemComparerIgnorePool());
+        PrizePlacements = new Dictionary<string, string>();
         _amountReplacementReferences = new List<ItemAmountSet>();
         _amountReplacementsTemplate = new Dictionary<Item, List<int>>();
         _incrementalReplacementReferences = new List<ItemAmountSet>();
@@ -92,6 +94,7 @@ public class DirectiveParser
             case "!replaceincrement":
             case "!settype":
             case "!import":
+            case "!prizeplacement":
                 return false;
             default:
                 throw new ParserException($"\"{directive}\" is not a valid directive! The logic file may be bad.");
@@ -158,6 +161,9 @@ public class DirectiveParser
                     break;
                 case "!import":
                     ParseImportDirective(mainDirectiveParts);
+                    break;
+                case "!prizeplacement":
+                    ParsePrizePlacementDirective(mainDirectiveParts);
                     break;
                 case "!name":
                     LogicName = mainDirectiveParts[1];
@@ -345,6 +351,11 @@ public class DirectiveParser
         _amountReplacementsTemplate.Clear();
     }
 
+    public void ClearPrizePlacements()
+    {
+        PrizePlacements.Clear();
+    }
+
     public void DuplicateAmountReplacements()
     {
         AmountReplacements = new Dictionary<Item, List<ItemAmountSet>>(new ItemComparerIgnorePool());
@@ -418,6 +429,17 @@ public class DirectiveParser
             throw new ParserException("Import directive requires a function that does not exist!");
 
         Location.ShufflerConstraints.Add(function);
+    }
+
+    public void ParsePrizePlacementDirective(string[] directiveParts)
+    {
+        if (directiveParts.Length != 3)
+            throw new ParserException("Prize placement directive does not have the required number of parameters!");
+
+        var locationName = directiveParts[1];
+        var dungeonName = directiveParts[2];
+
+        PrizePlacements.Add(locationName, dungeonName);
     }
 
     private LogicDefine ParseDefineDirective(string[] directiveParts)

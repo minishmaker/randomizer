@@ -49,7 +49,7 @@ public static class LogicImports
 
         if (prizeDungeonForItem == null) return true;
 
-        var accessible = prizeDungeonForItem.Contents is
+        var accessible = prizeDungeonForItem.AssociatedPrize is
         {
             Type: ItemType.EarthElement or ItemType.FireElement or ItemType.WaterElement or ItemType.WindElement
         } || (itemToPlace.ShufflePool is ItemPool.DungeonMajor && DependencyBase.BeatVaatiDependency!.DependencyFulfilled());
@@ -70,7 +70,7 @@ public static class LogicImports
 
         if (prizeDungeonForItem == null) return true;
 
-        var accessible = prizeDungeonForItem.Contents is
+        var accessible = prizeDungeonForItem.AssociatedPrize is
         {
             Type: ItemType.EarthElement or ItemType.FireElement or ItemType.WaterElement or ItemType.WindElement
         } || DependencyBase.BeatVaatiDependency!.DependencyFulfilled();
