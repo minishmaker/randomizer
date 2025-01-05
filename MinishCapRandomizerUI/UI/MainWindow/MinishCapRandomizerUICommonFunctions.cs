@@ -149,45 +149,47 @@ Generating seeds with this shuffler may freeze the randomizer application for ma
     {
         try
         {
-            _settingPresets = new SettingPresets();
-
-            var files = Directory.GetFiles($"{_presetPath}Settings").Where(file => file.EndsWith(".yaml", true, null));
-            var basePresetArray = files.Select(file => file[(file.LastIndexOf(Path.DirectorySeparatorChar) + 1)..]).Select(file => file[..file.LastIndexOf(".", StringComparison.Ordinal)]).ToList();
-            
-            _settingPresets.SettingsPresets = basePresetArray.ToDictionary(preset => int.Parse(preset[(preset.LastIndexOf('_') + 1)..]), EqualityComparer<int>.Default);
-
-            for (var i = 1; i <= _settingPresets.SettingsPresets.Keys.Max(); ++i)
+            _settingPresets = new SettingPresets()
             {
-                if (!_settingPresets.SettingsPresets.TryGetValue(i, out var preset)) continue;
-
-                SettingPresets.Items.Add(preset[..preset.LastIndexOf('_')]);
-            }
-            
-            if (SettingPresets.Items.Count != 0) SettingPresets.SelectedIndex = 0;
-
-            files = Directory.GetFiles($"{_presetPath}Cosmetics").Where(file => file.EndsWith(".yaml", true, null));
-            _settingPresets.CosmeticsPresets = files.Select(file => file[(file.LastIndexOf(Path.DirectorySeparatorChar) + 1)..]).Select(file => file[..file.LastIndexOf(".", StringComparison.Ordinal)]).ToList();
-
-            CosmeticsPresets.Items.AddRange(_settingPresets.CosmeticsPresets.ToArray());
-            if (CosmeticsPresets.Items.Count != 0) CosmeticsPresets.SelectedIndex = 0;
-
-            files = Directory.GetFiles($"{_presetPath}Mystery Settings").Where(file => file.EndsWith(".yaml", true, null));
-            _settingPresets.SettingsWeights = files.Select(file => file[(file.LastIndexOf(Path.DirectorySeparatorChar) + 1)..]).Select(file => file[..file.LastIndexOf(".", StringComparison.Ordinal)]).ToList();
-
-            SettingsWeights.Items.AddRange(_settingPresets.SettingsWeights.ToArray());
-            if (SettingsWeights.Items.Count != 0) SettingsWeights.SelectedIndex = 0;
-
-            files = Directory.GetFiles($"{_presetPath}Mystery Cosmetics").Where(file => file.EndsWith(".yaml", true, null));
-            _settingPresets.CosmeticsWeights = files.Select(file => file[(file.LastIndexOf(Path.DirectorySeparatorChar) + 1)..]).Select(file => file[..file.LastIndexOf(".", StringComparison.Ordinal)]).ToList();
-
-            CosmeticsWeights.Items.AddRange(_settingPresets.CosmeticsWeights.ToArray());
-            if (CosmeticsWeights.Items.Count != 0) CosmeticsWeights.SelectedIndex = 0;
+                SettingsPresets = LoadPresetList("Settings", SettingPresets),
+                CosmeticsPresets = LoadPresetList("Cosmetics", CosmeticsPresets),
+                SettingsWeights = LoadPresetList("Mystery Settings", SettingsWeights),
+                CosmeticsWeights = LoadPresetList("Mystery Cosmetics", CosmeticsWeights)
+            };
         }
         catch
         {
             DisplayAlert("Could not load settings presets. The preset directories may have been moved or deleted.", "Could Not Load Settings Presets", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             _settingPresets = new SettingPresets();
         }
+    }
+
+    private List<PresetFileInfo> LoadPresetList(string directory, ComboBox comboBox)
+    {
+        var files = Directory.GetFiles($"{_presetPath}{directory}").Where(file => file.EndsWith(".yaml", true, null));
+        var presetFiles = files.Select(file => file[(file.LastIndexOf(Path.DirectorySeparatorChar) + 1)..]).Select(file => file[..file.LastIndexOf(".", StringComparison.Ordinal)]).ToList();
+        var presets = new List<PresetFileInfo>(presetFiles.Count);
+
+        foreach (var filename in presetFiles)
+        {
+            PresetFileInfo? info = null;
+            if (filename.Contains('_'))
+            {
+                var lastIndex = filename.LastIndexOf('_');
+                if (int.TryParse(filename[(lastIndex + 1)..], out var priority))
+                {
+                    info = new PresetFileInfo { Filename = filename, PresetName = filename[..lastIndex], SortIndex = priority };
+                }
+            }
+            info ??= new PresetFileInfo { Filename = filename, PresetName = filename, SortIndex = int.MaxValue };
+            if (!presets.Any(preset => preset.PresetName == info.PresetName)) presets.Add(info);
+        }
+        presets.Sort((a, b) => a.SortIndex - b.SortIndex);
+
+        comboBox.Items.AddRange(presets.Select(preset => preset.PresetName).ToArray());
+        if (comboBox.Items.Count != 0) comboBox.SelectedIndex = 0;
+
+        return presets;
     }
 
     private void LoadConfig()

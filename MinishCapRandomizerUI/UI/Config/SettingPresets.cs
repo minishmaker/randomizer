@@ -1,13 +1,13 @@
 ﻿namespace MinishCapRandomizerUI.UI.Config
 {
-	public class SettingPresets
+	public record SettingPresets
 	{
-		public Dictionary<int, string> SettingsPresets { get; set; } = new();
+		public List<PresetFileInfo> SettingsPresets { get; set; } = [];
 
-		public List<string> CosmeticsPresets { get; set; } = new();
+		public List<PresetFileInfo> CosmeticsPresets { get; set; } = [];
 
-		public List<string> SettingsWeights { get; set; } = new();
+		public List<PresetFileInfo> SettingsWeights { get; set; } = [];
 
-		public List<string> CosmeticsWeights { get; set; } = new();
+		public List<PresetFileInfo> CosmeticsWeights { get; set; } = [];
 	}
 }

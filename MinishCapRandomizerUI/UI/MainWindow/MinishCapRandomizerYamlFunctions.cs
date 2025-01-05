@@ -94,9 +94,10 @@ partial class MinishCapRandomizerUI
         if (UseCustomYAML.Checked)
             result = _yamlController.LoadLocations(UseCustomLogic.Checked ? LogicFilePath.Text : "", YAMLPath.Text, YAMLPath.Text, true);
         else
-            result = _yamlController.LoadLocations(UseCustomLogic.Checked ? LogicFilePath.Text : "",
-                UseMysterySettings.Checked ? $"{_presetPath}Mystery Settings{Path.DirectorySeparatorChar}{SettingsWeights.SelectedItem}.yaml" : "",
-                UseMysteryCosmetics.Checked ? $"{_presetPath}Mystery Cosmetics{Path.DirectorySeparatorChar}{CosmeticsWeights.SelectedItem}.yaml" : "", false);
+            result = _yamlController.LoadLocations(UseCustomLogic.Checked ? LogicFilePath.Text : "", UseMysterySettings.Checked ?
+                $"{_presetPath}Mystery Settings{Path.DirectorySeparatorChar}{_settingPresets.SettingsWeights.First(preset => preset.PresetName == (string)SettingsWeights.SelectedItem!).Filename}.yaml"
+                : "", UseMysteryCosmetics.Checked ?
+                $"{_presetPath}Mystery Cosmetics{Path.DirectorySeparatorChar}{_settingPresets.CosmeticsWeights.First(preset => preset.PresetName == (string)CosmeticsWeights.SelectedItem!).Filename}.yaml" : "", false);
         if (!result)
         {
             DisplayConditionalAlertFromShufflerResult(result, "You shouldn't be seeing this, but if you are it means something weird happened. Please report to the dev team.", "You Shouldn't See This", "Failed to parse logic!", "Failed to parse logic");
@@ -121,13 +122,13 @@ partial class MinishCapRandomizerUI
 	{
         var presets = _settingPresets.SettingsWeights;
 
-		if (presets.All(preset => preset != (string?)SettingsWeights.SelectedItem))
+		if (presets.All(preset => preset.PresetName != (string?)SettingsWeights.SelectedItem))
 		{
 			DisplayAlert("No weights preset matching the specified name could be found! Make sure you select a valid weights preset.", "Failed to Load Preset", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			return;
 		}
 
-        var result = _yamlController.LoadLogicSettingsFromYaml($"{_presetPath}Mystery Settings{Path.DirectorySeparatorChar}{SettingsWeights.SelectedItem}.yaml");
+        var result = _yamlController.LoadLogicSettingsFromYaml($"{_presetPath}Mystery Settings{Path.DirectorySeparatorChar}{_settingPresets.SettingsWeights.First(preset => preset.PresetName == (string)SettingsWeights.SelectedItem!).Filename}.yaml");
 
         if (result)
         {
@@ -144,13 +145,13 @@ partial class MinishCapRandomizerUI
 	{
         var presets = _settingPresets.CosmeticsWeights;
 
-		if (presets.All(preset => preset != (string?)CosmeticsWeights.SelectedItem))
+		if (presets.All(preset => preset.PresetName != (string?)CosmeticsWeights.SelectedItem))
 		{
 			DisplayAlert("No weights preset matching the specified name could be found! Make sure you select a valid weights preset.", "Failed to Load Preset", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			return;
 		}
 
-        var result = _yamlController.LoadCosmeticsFromYaml($"{_presetPath}Mystery Cosmetics{Path.DirectorySeparatorChar}{CosmeticsWeights.SelectedItem}.yaml");
+        var result = _yamlController.LoadCosmeticsFromYaml($"{_presetPath}Mystery Cosmetics{Path.DirectorySeparatorChar}{_settingPresets.CosmeticsWeights.First(preset => preset.PresetName == (string)CosmeticsWeights.SelectedItem!).Filename}.yaml");
 
         if (result)
         {
