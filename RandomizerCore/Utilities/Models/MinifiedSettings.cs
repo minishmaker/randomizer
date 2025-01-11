@@ -1,4 +1,5 @@
-﻿using RandomizerCore.Randomizer.Logic.Options;
+﻿using System.Numerics;
+using RandomizerCore.Randomizer.Logic.Options;
 using RandomizerCore.Utilities.Extensions;
 
 namespace RandomizerCore.Utilities.Models;
@@ -6,7 +7,7 @@ namespace RandomizerCore.Utilities.Models;
 /// <summary>
 ///     A minified version of settings strings that can be shared. These require that the logic file crc32 matches,
 ///     otherwise it will fail to load.
-///     These always start with the 6 character string NLogiC to make them unique from the other format (which is WIP)
+///     These always start with the 4 character string NlgC to make them unique from the other format (which is WIP)
 /// </summary>
 internal static class MinifiedSettings
 {
@@ -56,20 +57,21 @@ internal static class MinifiedSettings
             ? optionGroups.First(group => group.Key == typeof(LogicDropdown)).Cast<LogicDropdown>().ToList()
             : new List<LogicDropdown>();
 
-        for (int i = 2, dropdownsProcessed = 0; dropdownsProcessed < dropdowns.Count; i -= 6, ++dropdownsProcessed)
+        for (int i = 8, dropdownsProcessed = 0; dropdownsProcessed < dropdowns.Count; ++dropdownsProcessed)
         {
+            var dropdown = dropdowns[dropdownsProcessed];
+            var (mask, bitCount) = GetBitInfoForOptionCount(dropdown.Selections.Count);
             var dropdownIndex = 0;
+            i -= bitCount;
 
             if (i < 0)
             {
                 i += 8;
-                dropdownIndex |= (currentByte << (8 - i)) & 0x3F;
+                dropdownIndex |= (currentByte << (8 - i)) & mask;
                 currentByte = bytes[++currentIndex];
             }
 
-            dropdownIndex |= (currentByte >> i) & 0x3F;
-
-            var dropdown = dropdowns[dropdownsProcessed];
+            dropdownIndex |= (currentByte >> i) & mask;
 
             dropdown.Selection = dropdown.Selections.Keys.ToList()[dropdownIndex];
             dropdown.NotifyObservers();
@@ -139,10 +141,12 @@ internal static class MinifiedSettings
             ? optionGroups.First(group => group.Key == typeof(LogicDropdown)).Cast<LogicDropdown>().ToList()
             : new List<LogicDropdown>();
 
-        for (int i = 2, dropdownsProcessed = 0; dropdownsProcessed < dropdowns.Count; i -= 6, ++dropdownsProcessed)
+        for (int i = 8, dropdownsProcessed = 0; dropdownsProcessed < dropdowns.Count; ++dropdownsProcessed)
         {
             var dropdown = dropdowns[dropdownsProcessed];
-            var dropdownValueAsByte = dropdown.Selections.Keys.ToList().IndexOf(dropdown.Selection) & 0x3F;
+            var (mask, bitCount) = GetBitInfoForOptionCount(dropdown.Selections.Count);
+            var dropdownValueAsByte = dropdown.Selections.Keys.ToList().IndexOf(dropdown.Selection) & mask;
+            i -= bitCount;
 
             if (i < 0)
             {
@@ -188,5 +192,13 @@ internal static class MinifiedSettings
         }
 
         return Convert.ToBase64String(bytes.ToArray());
+    }
+
+    public static (int, int) GetBitInfoForOptionCount(int optionCount)
+    {
+        var roundedOptionCount = BitOperations.RoundUpToPowerOf2(Math.Max(2, (uint)optionCount));
+        var mask = roundedOptionCount - 1;
+        var bitCount = BitOperations.Log2(roundedOptionCount);
+        return ((int)mask, bitCount);
     }
 }
