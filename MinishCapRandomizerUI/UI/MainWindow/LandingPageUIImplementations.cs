@@ -75,6 +75,8 @@ partial class MinishCapRandomizerUI
     private void GenerateSettings_Click(object sender, EventArgs e)
     {
         SettingString.Text = _shufflerController.GetSelectedSettingsString();
+        SettingString.Focus();
+        SettingString.SelectAll();
     }
 
     private void ResetDefaultSettings_Click(object sender, EventArgs e)
@@ -91,6 +93,8 @@ partial class MinishCapRandomizerUI
     private void GenerateCosmetics_Click(object sender, EventArgs e)
     {
         CosmeticsString.Text = _shufflerController.GetSelectedCosmeticsString();
+        CosmeticsString.Focus();
+        CosmeticsString.SelectAll();
     }
 
     private void ResetDefaultCosmetics_Click(object sender, EventArgs e)
