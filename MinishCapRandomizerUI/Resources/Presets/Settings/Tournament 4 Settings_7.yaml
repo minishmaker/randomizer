@@ -1,4 +1,4 @@
-name: "Tournament 4 Settings2_17"
+name: "Tournament 4 Settings"
 description: "(No description set)"
 settings:
   ## Main Settings:
@@ -9,6 +9,7 @@ settings:
   BIG_KEYS_SETTING: BIG_KEYS_STANDARD             # Big Keys
   SHUFFLE_ELEMENTS: SHUFFLE_ELEMENTS_OFF          # Shuffle Elements
   DUNGEON: NONE                                   # NonElement Dungeons
+  DHC_BARREN: off                                 # DHC is Barren
   #  Requirements:
   DHC_SETTING: NORMALDHC                          # Dark Hyrule Castle Opens
   REQUIREMENT_ITEM: REQUIREMENT_ITEM_NONE         # Requirement Reward
@@ -22,12 +23,14 @@ settings:
   DOJO: DOJOANY                                   # Dojo Swordmasters
   CUCCO_SETTING: CUCCO_1                          # Cucco Minigame
   GORON_SETTING: GORON_0                          # Goron Merchant
+  BIGGORON_SETTING: BIGGORON_OFF                  # Biggoron
   HEART_RANDO: on                                 # Heart Pieces and Containers
   RUPEEMANIA: on                                  # Rupees
   SPECIALPOTS: on                                 # Special Pots
   DIGGING: on                                     # Dig spots
   UNDERWATER: on                                  # Underwater spots
   GOLDEN_ENEMY: off                               # Golden Enemies
+  SHOP_BOMBBAG: off                               # Extra JP/US Shop Item
   PED_ITEMS: off                                  # Sanctuary Pedestal
   ## World Settings:
   #  Global:
@@ -45,11 +48,13 @@ settings:
   #  Speed Up:
   OPEN_WIND_TRIBE: off                            # Wind Tribe Tower
   OPEN_TINGLE: off                                # Tingle Brothers
+  OPEN_LIBRARY: off                               # Library
   #  Wind Crests:
   CRENEL_CREST: off                               # Mt Crenel
   FALLS_CREST: off                                # Veil Falls
   CLOUD_CREST: off                                # Cloud Tops
   TOWN_CREST: on                                  # Hyrule Town
+  LAKE_CREST: on                                  # Lake Hylia
   SWAMP_CREST: off                                # Swamp
   SHF_CREST: off                                  # Link's House
   MINISH_CREST: off                               # Minish Woods
@@ -71,6 +76,7 @@ settings:
   NO_LOGIC: off                                   # No Logic
   ACCESSIBILITY: ACCESS_LOCATIONS                 # Reachable
   GRABBABLE: NOT_GRABBABLE                        # Grab items from a distance
+  GUARANTEED_BARLOV: BARLOVFARM                   # Barlov farm Infinite Rupees
   #  Weapons:
   BOMBWEAPON: YESBOMB                             # Bombs
   BOWWEAPON: YESBOW                               # Bows
@@ -129,6 +135,78 @@ settings:
   KEYRCMULTIPLIER: RC1KEY                         # Royal Crypt Keychain size
   KEYPOWMULTIPLIER: POW1KEY                       # Palace of Winds Keychain size
   KEYDHCMULTIPLIER: DHC1KEY                       # Dark Hyrule Castle Keychain size
+  ## Start Inventory:
+  #  Main Items:
+  START_SMITH_SWORD: off                          # Smith Sword
+  START_GREEN_SWORD: off                          # Green Sword
+  START_RED_SWORD: off                            # Red Sword
+  START_BLUE_SWORD: off                           # Blue Sword
+  START_FOUR_SWORD: off                           # Four Sword
+  START_NORMAL_BOW: off                           # Bow
+  START_LIGHT_BOW: off                            # Light Arrows
+  START_NORMAL_BOOM: off                          # Boomerang
+  START_MAGIC_BOOM: off                           # Magical Boomerang
+  START_NORMAL_SHIELD: off                        # Shield
+  START_MIRROR_SHIELD: off                        # Mirror Shield
+  START_REMOTE: off                               # Remote Bomb Upgrade
+  START_LANTERN: off                              # Lantern
+  START_GUST: off                                 # Gust Jar
+  START_PACCI: off                                # Cane of Pacci
+  START_MITTS: off                                # Mole Mitts
+  START_CAPE: off                                 # Roc's Cape
+  START_BOOTS: off                                # Pegasus Boots
+  START_OCARINA: off                              # Ocarina of Wind
+  #  Start Capacity:
+  START_BOMBBAGS: START_BOMBBAGS_0                # Bomb Bags
+  START_QUIVERS: START_QUIVERS_0                  # Quivers
+  START_WALLETS: START_WALLETS_0                  # Wallets
+  START_BOTTLES: START_BOTTLES_0                  # Bottles
+  #  Quest Status Items:
+  START_EARTH_ELEMENT: off                        # Earth Element
+  START_FIRE_ELEMENT: off                         # Fire Element
+  START_WATER_ELEMENT: off                        # Water Element
+  START_WIND_ELEMENT: off                         # Wind Element
+  START_DOG_FOOD: off                             # Dog Food Bottle
+  START_RANCH_KEY: off                            # Lon Lon Ranch Key
+  START_MUSHROOM: off                             # Wake Up Mushroom
+  START_BOOK_1: off                               # Red Library Book
+  START_BOOK_2: off                               # Green Library Book
+  START_BOOK_3: off                               # Blue Library Book
+  START_GRAVEYARD_KEY: off                        # Graveyard Key
+  START_TINGLE_TROPHY: off                        # Tingle Trophy
+  START_CARLOV_MEDAL: off                         # Carlov Medal
+  START_GRIP_RING: off                            # Grip Ring
+  START_POWER_BRACELETS: off                      # Power Bracelets
+  START_FLIPPERS: off                             # Flippers
+  START_JABBER_NUT: off                           # Jabber Nut
+  #  Sword Scrolls:
+  START_SCROLL_SPIN: off                          # Spin Attack
+  START_SCROLL_ROLL: off                          # Roll Attack
+  START_SCROLL_DASH: off                          # Dash Attack
+  START_SCROLL_ROCK: off                          # Rock Breaker
+  START_SCROLL_SWORD_BEAM: off                    # Sword Beam
+  START_SCROLL_GREAT_SPIN: off                    # Great Spin Attack
+  START_SCROLL_DOWN_THRUST: off                   # Down Thrust
+  START_SCROLL_PERIL_BEAM: off                    # Peril Beam
+  START_SCROLL_FAST_SPIN: off                     # Fast Spin Charge
+  START_SCROLL_FAST_SPLIT: off                    # Fast Split Gauge
+  START_SCROLL_LONG_SPIN: off                     # Longer Great Spin Attack
+  #  Joy Butterflies:
+  START_ARROW_BUTTERFLY: off                      # Arrow Joy Butterfly
+  START_DIG_BUTTERFLY: off                        # Dig Joy Butterfly
+  START_SWIM_BUTTERFLY: off                       # Swim Joy Butterfly
+  #  Kinstones:
+  START_KINSTONES_GOLD_CLOUD: 0                   # Cloud Tops
+  START_KINSTONES_GOLD_SWAMP: 0                   # Swamp
+  START_KINSTONES_GOLD_FALLS: off                 # Veil Falls
+  START_KINSTONES_RED_W: 0                        # Red W
+  START_KINSTONES_RED_V: 0                        # Red V
+  START_KINSTONES_RED_E: 0                        # Red E
+  START_KINSTONES_BLUE_L: 0                       # Blue L
+  START_KINSTONES_BLUE_S: 0                       # Blue S
+  START_KINSTONES_GREEN_C: 0                      # Green C
+  START_KINSTONES_GREEN_G: 0                      # Green G
+  START_KINSTONES_GREEN_P: 0                      # Green P
   ## Gameplay:
   #  Difficulty:
   GLITCHLESS: off                                 # Prevent Speedrun Glitches
@@ -143,7 +221,10 @@ settings:
   OCARINA_SELECT: on                              # Ocarina on Select
   BOOTS_L: BOOTS_L_NORMAL                         # Boots on L
   #  Extras:
+  VANILLA_SHOP_ORDER: off                         # Vanilla Shop Item Order
   GORON_ALT_PRICES: off                           # Goron Merchant JP/US prices
   NO_KINSTONE_DROPS: on                           # Disable Kinstone Drops
   NO_SHELL_DROPS: on                              # Disable Shell Drops
+  #  Mystery:
+  GOAL_HINT: GOAL_HINT_NUT_OR_ELEMENT             # Gentari Requirements Hint
 subweights: {}
