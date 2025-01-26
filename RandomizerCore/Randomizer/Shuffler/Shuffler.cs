@@ -258,13 +258,11 @@ internal class Shuffler : ShufflerBase
             filledLocations.AddRange(UpdateObtainedItemsFromPlacedLocations());
 
             // Find locations that are available for placing the item
-            var availableLocations = locations.Where(location => location.CanPlace(item, Locations,
-                considerPrizePlacements && LogicParser.SubParser.PrizePlacements.ContainsKey(location.Name))).ToList();
+            var availableLocations = locations.Where(location => location.CanPlace(item, Locations)).ToList();
 
             if (availableLocations.Count == 0)
             {
-                availableLocations = fallbackLocations.Where(location => location.CanPlace(item, Locations,
-                    considerPrizePlacements && LogicParser.SubParser.PrizePlacements.ContainsKey(location.Name))).ToList();
+                availableLocations = fallbackLocations.Where(location => location.CanPlace(item, Locations)).ToList();
                 usingFallback = true;
             }
 
