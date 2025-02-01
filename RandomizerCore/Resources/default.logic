@@ -102,7 +102,7 @@
 !dropdown - Main Settings - Setting - Dungeon Settings - SMALL_KEYS_SETTING - Small Keys - Small Keys - SMALL_KEYS_STANDARD - Removed (Keasy) - SMALL_KEASY - 'Removed': Small keys are removed, All small locked doors are open from the start. - Vanilla - SMALL_KEYS_VANILLA - 'Vanilla': Small keys are in the same places they appear in the vanilla game. - Own Dungeon - SMALL_KEYS_STANDARD - 'Own Dungeon': Small keys are randomized to locations in the dungeon they are used in. - Own Region - SMALL_KEYS_REGION - 'Own Region': Small keys are randomized inside and in the vicinity of their own dungeon. - Any Dungeon - SMALL_KEYS_DUNGEON - 'Any Dungeon': Small keys are randomized inside all dungeons. - Any Region - SMALL_KEYS_REGDUN - 'Any Region': Small keys are randomized inside and in the vicinity of all dungeons. - Anywhere (Keysanity) - SMALL_KEYSANITY - 'Anywhere': Small keys are randomized to any location in the world, expect to return to dungeons multiple times.\n\nDWS Region: 'Minish Village', 'Belari's House', 'Chest near Belari', 'Minish Cave near Belari'.\nCoF Region: 'Melari's Mines', 'Melari's Mines Outside Path', 'Pre Melari Block Puzzle Chest'.\nFOW Region: 'Wind Ruins'.\nTOD Region: 'Nothing'.\nRC Region: 'Graveyard (Not Dampe)'.\nPOW Region: If Red Fusions are Removed: 'Wind Tribe', Otherwise: 'Upper Wind Tribe'.\nDHC Region: 'Castle Gardens (Not Moat)', If Pedestal Items is enabled: 'Sanctuary Pedestal'.
 !dropdown - Main Settings - Setting - Dungeon Settings - BIG_KEYS_SETTING - Big Keys - Big Keys - BIG_KEYS_STANDARD - Removed (Keasy) - BIG_KEASY - 'Removed': Big keys are removed, All locked Boss doors are open from the start. - Vanilla - BIG_KEYS_VANILLA - 'Vanilla': Big keys are in the same places they appear in the vanilla game. - Own Dungeon - BIG_KEYS_STANDARD - 'Own Dungeon': Big keys are randomized to locations in the dungeon they are used in. - Own Region - BIG_KEYS_REGION - 'Own Region': Big keys are randomized inside and in the vicinity of their own dungeon. - Any Dungeon - BIG_KEYS_DUNGEON - 'Any Dungeon': Big keys are randomized inside all dungeons. - Any Region - BIG_KEYS_REGDUN - 'Any Region': Big keys are randomized inside and in the vicinity of all dungeons. - Anywhere (Keysanity) - BIG_KEYSANITY  - 'Anywhere': Big keys are randomized to any location in the world, expect to return to dungeons multiple times.\n\nDWS Region: 'Minish Village', 'Belari's House', 'Chest near Belari', 'Minish Cave near Belari'.\nCoF Region: 'Melari's Mines', 'Melari's Mines Outside Path', 'Pre Melari Block Puzzle Chest'.\nFOW Region: 'Wind Ruins'.\nTOD Region: 'Nothing'.\nRC Region: 'Graveyard (Not Dampe)'.\nPOW Region: If Red Fusions are Removed: 'Wind Tribe', Otherwise: 'Upper Wind Tribe'.\nDHC Region: 'Castle Gardens (Not Moat)', If Pedestal Items is enabled: 'Sanctuary Pedestal'.
 !dropdown - Main Settings - Setting - Dungeon Settings - SHUFFLE_ELEMENTS - Shuffle Elements - Shuffle Elements - SHUFFLE_ELEMENTS_OFF - Vanilla - SHUFFLE_ELEMENTS_VANILLA - 'Vanilla': The Elements are found in their vanilla locations. Will shuffle dungeon rewards if all 4 elements are required to complete the seed but the vanilla location is not accessible. - Dungeon Rewards - SHUFFLE_ELEMENTS_OFF - 'Dungeon Rewards': Elements are shuffled among the 6 Dungeon Rewards. - Own Dungeon - SHUFFLE_ELEMENTS_DUNGEON - 'Own Dungeon': Elements are shuffled among the 6 Dungeons that have a Reward at the end, but are then placed in a random location within that Dungeon. - Own Region - SHUFFLE_ELEMENTS_REGION - 'Own Region': Elements are shuffled among the 6 Dungeons that have a Reward at the end, but are then placed in a random location inside or in the vicinity of that Dungeon. - Any Dungeon - SHUFFLE_ELEMENTS_ON_DUNGEONS - 'Any Dungeon': Elements are freely shuffled across all locations in all 7 Dungeons. The Element icons on the map are removed. - Any Region - SHUFFLE_ELEMENTS_ON_REGIONS - 'Any Region': Elements are freely shuffled inside and in the vicinity of all 7 Dungeons. The Element icons on the map are removed. - Anywhere - SHUFFLE_ELEMENTS_ON - 'Anywhere': Elements are shuffled anywhere in the world. The Element icons on the map are removed.\n\nDWS Region: 'Minish Village', 'Belari's House', 'Chest near Belari', 'Minish Cave near Belari'.\nCoF Region: 'Melari's Mines', 'Melari's Mines Outside Path', 'Pre Melari Block Puzzle Chest'.\nFOW Region: 'Wind Ruins'.\nTOD Region: 'Nothing'.\nRC Region: 'Graveyard (Not Dampe)'.\nPOW Region: If Red Fusions are Removed: 'Wind Tribe', Otherwise: 'Upper Wind Tribe'.\nDHC Region: 'Castle Gardens (Not Moat)', If Pedestal Items is enabled: 'Sanctuary Pedestal'.
-!dropdown - Main Settings - Setting - Dungeon Settings - DUNGEON - NonElement Dungeons - NonElement Dungeons, This setting is disabled when 'Shuffle Elements' is set to 'Any Dungeon', 'Any Region' or 'Anywhere' or when 'Dungeons Required' is set to '5' or '6'. - NONE - Standard - NONE - 'Standard': NonElement Dungeons have no special rules. - Unrequired - UNREQ - 'Unrequired': NonElement Dungeons do not have items required to beat the game. - Barren - BARREN - 'Barren': NonElement Dungeons only contain junk items. - Regions Unrequired - UNREQSUR - 'Regions Unrequired': NonElement Dungeons and their Regions do not contain items needed to beat the game. - Regions Barren - BARRENSUR - 'Regions Barren': NonElement Dungeons and their Regions only contain junk items. \n\nDWS Region: 'Minish Village', 'Belari's House', 'Chest near Belari', 'Minish Cave near Belari'.\nCoF Region: 'Melari's Mines', 'Melari's Mines Outside Path', 'Pre Melari Block Puzzle Chest'.\nFOW Region: 'Wind Ruins'.\nTOD Region: 'Nothing'.\nRC Region: 'Graveyard (Not Dampe)'.\nPOW Region: If Red Fusions are Removed: 'Wind Tribe', Otherwise: 'Upper Wind Tribe'.
+!dropdown - Main Settings - Setting - Dungeon Settings - DUNGEON - NonElement Dungeons - NonElement Dungeons, This setting is disabled when 'Shuffle Elements' is set to 'Any Dungeon', 'Any Region' or 'Anywhere' or when 'Dungeons Required' is higher than the number of Elements placed. - NONE - Standard - NONE - 'Standard': NonElement Dungeons have no special rules. - Unrequired - UNREQ - 'Unrequired': NonElement Dungeons do not have items required to beat the game. - Barren - BARREN - 'Barren': NonElement Dungeons only contain junk items. - Regions Unrequired - UNREQSUR - 'Regions Unrequired': NonElement Dungeons and their Regions do not contain items needed to beat the game. - Regions Barren - BARRENSUR - 'Regions Barren': NonElement Dungeons and their Regions only contain junk items. \n\nDWS Region: 'Minish Village', 'Belari's House', 'Chest near Belari', 'Minish Cave near Belari'.\nCoF Region: 'Melari's Mines', 'Melari's Mines Outside Path', 'Pre Melari Block Puzzle Chest'.\nFOW Region: 'Wind Ruins'.\nTOD Region: 'Nothing'.\nRC Region: 'Graveyard (Not Dampe)'.\nPOW Region: If Red Fusions are Removed: 'Wind Tribe', Otherwise: 'Upper Wind Tribe'.
 !flag - Main Settings - Setting - Dungeon Settings - DHC_BARREN - DHC is Barren - If enabled will completely fill the interior of Dark Hyrule Castle with junk aside from dungeon items that have to be placed in there because of the dungeon item settings.\n\nFor technical reasons, dungeon items that are allowed to be placed outside of DHC (and its region) will always be placed outside DHC. Also, setting dungeon items to 'Own Region' will make the corresponding DHC items behave like in 'Own Dungeon'.
 
 !dropdown - Main Settings - Setting - Requirements - DHC_SETTING - Dark Hyrule Castle Opens - Dark Hyrule Castle is the last dungeon in the game, it has the final boss Vaati. - OPENDHC - Never Open - NODHC - 'Never Open': A barrier is placed at the front of the dungeon, The game ends when you visit the sanctuary after completing all the requirements. - After Requirements - NORMALDHC - 'After Requirements': A barrier is placed at the front of the dungeon, This barrier is removed when you visit the sanctuary after completing ALL the requirements. The game ends when you defeat Vaati. - Always Open - OPENDHC - 'Always Open': There is no barrier at the front of the dungeon, the game ends when you defeat Vaati.
@@ -594,6 +594,23 @@
 	!endif
 !endif
 
+# Count how many elements we start with and how many will get placed
+!define - START_ELEMENTS_COUNT - 0
+!ifdef - START_EARTH_ELEMENT
+	!addition - START_ELEMENTS_COUNT - `START_ELEMENTS_COUNT`, 1
+!endif
+!ifdef - START_FIRE_ELEMENT
+	!addition - START_ELEMENTS_COUNT - `START_ELEMENTS_COUNT`, 1
+!endif
+!ifdef - START_WATER_ELEMENT
+	!addition - START_ELEMENTS_COUNT - `START_ELEMENTS_COUNT`, 1
+!endif
+!ifdef - START_WIND_ELEMENT
+	!addition - START_ELEMENTS_COUNT - `START_ELEMENTS_COUNT`, 1
+!endif
+!addition - TOTAL_PLACED_ELEMENTS - 4, -`START_ELEMENTS_COUNT`
+!define - TOTAL_PLACED_ELEMENTS_`TOTAL_PLACED_ELEMENTS`
+
 # Set the number of required dungeons
 !ifdef - AD_PED_6
 	!ifdef - NO_GOLD_FUSIONS
@@ -631,25 +648,49 @@
 !endif
 !ifdef - AD_PED_4
 	!define - AD_PED_NUM - 4
+	!ifndef - TOTAL_PLACED_ELEMENTS_4
+		!undefine - `DUNGEON`
+		!define - NONE
+	!endif
 !endif
 !ifdef - AD_PED_3
-	!ifdef - 4ELEMENT
-		!ifndef - ELEMENTS_TIED_TO_DUNGEONS
-			!define - AD_PED_NUM - 3
+	!ifdef - TOTAL_PLACED_ELEMENTS_4
+		!ifdef - 4ELEMENT
+			!ifndef - ELEMENTS_TIED_TO_DUNGEONS
+				!define - AD_PED_NUM - 3
+			!else
+				!undefine - AD_PED_3
+				!define - AD_PED_NUM - 4
+				!define - AD_PED_4
+			!endif
 		!else
-			!undefine - AD_PED_3
-			!define - AD_PED_NUM - 4
-			!define - AD_PED_4
+			!define - AD_PED_NUM - 3
 		!endif
 	!else
 		!define - AD_PED_NUM - 3
+		!ifndef - TOTAL_PLACED_ELEMENTS_3
+			!undefine - `DUNGEON`
+			!define - NONE
+		!endif
 	!endif
 !endif
 !ifdef - AD_PED_2
 	!define - AD_PED_NUM - 2
+	!ifndef - TOTAL_PLACED_ELEMENTS_4
+		!ifndef - TOTAL_PLACED_ELEMENTS_3
+			!ifndef - TOTAL_PLACED_ELEMENTS_2
+				!undefine - `DUNGEON`
+				!define - NONE
+			!endif
+		!endif
+	!endif
 !endif
 !ifdef - AD_PED_1
 	!define - AD_PED_NUM - 1
+	!ifdef - TOTAL_PLACED_ELEMENTS_0
+		!undefine - `DUNGEON`
+		!define - NONE
+	!endif
 !endif
 
 # Open World defines things in patches to open the world
@@ -1695,8 +1736,10 @@
 			
 			!ifdef - AD_PED_4
 				!ifdef - ELEMENTS_TIED_TO_DUNGEONS
-					!undefine - `DUNGEON`
-					!define - NONE
+					!ifndef - NONE
+						!undefine - `DUNGEON`
+						!define - NONE
+					!endif
 				!endif
 			!endif
 			
