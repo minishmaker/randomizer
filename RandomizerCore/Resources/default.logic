@@ -5166,7 +5166,7 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 		Nayru2Fusion;				Helper;;	Helpers.CanFuseRedV, Helpers.DinNayruFaroreFusion																					#GraveyardButterfly		19
 		MelariFusion;				Helper;;	Helpers.CanFuseRedV, Helpers.CompleteCoF																							#CrenelBeanstalk			1A
 		DinNayruFaroreFusion;		Helper;;	Helpers.CanFuseRedDin																											#USELESSGorman House		1B
-		GentariFusion;			Helper;;	Helpers.CanFuseRedE, Locations.MinishVillage_HP																					#BelariRemotes			1C
+		GentariFusion;			Helper;;	Helpers.CanFuseRedE, Helpers.AccessMinishWoods																					#BelariRemotes			1C
 		GrimbladeFusion;			Helper;;	Helpers.CanFuseRedE																											#FallsLowerWaterfallDojo	1D
 		MayorFusion;				Helper;;	Helpers.CanFuseRedE																											#LonLonPuddle				1E
 		VillageSideMinish2Fusion;	Helper;;	Helpers.CanFuseRedMinish, Helpers.VillageSideMinish0Fusion																			#FallsWaterPlatform		1F
@@ -5888,7 +5888,7 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 			Gina1Fusion;				Helper;;	Helpers.Inaccessible																											#TownWaterfall		42
 		!else
 			Dampe2Fusion;				Helper;;	Helpers.CanFuseGreenC, Helpers.Dampe1Fusion																						#RuinsCrack			41
-			Gina1Fusion;				Helper;;	Helpers.CanFuseGreenGina, Locations.Valley_GraveyardRightGraveFusion_Chest															#TownWaterfall		42
+			Gina1Fusion;				Helper;;	Helpers.CanFuseGreenGina, Helpers.Dampe1Fusion, Helpers.AccessValley, Helpers.DarkRooms, Helpers.Graveyard						#TownWaterfall		42
 		!endif
 		MinesMinishBedroomFusion;	Helper;;	Helpers.CanFuseGreenG, Helpers.AccessMelari																						#CrenelRainChest		43
 		Shared44Fusion;			Helper;;	Helpers.CanFuseShared44																										#MWNorthChest			44
@@ -5898,7 +5898,7 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 		Flurris2Fusion;			Helper;;	Helpers.CanFuseGreenG, Helpers.Flurris1Fusion																					#WesternTreeFallTop	48
 		Flurris1Fusion;			Helper;;	Helpers.CanFuseGreenFlurris, (|Helpers.StrangerFusion, Helpers.AccessWindTribe)														#SwampRope			49
 		HaileyFusion;				Helper;;	Helpers.CanFuseGreenG, Helpers.AccessClouds																						#FallsTektite			4A
-		TFZ1Fusion;				Helper;;	Helpers.CanFuseGreenTFZ1, (|Helpers.Fountain, Locations.MinishVillage_HP, Helpers.Library) 											#SwampNorthLily		4B
+		TFZ1Fusion;				Helper;;	Helpers.CanFuseGreenTFZ1, (|Helpers.Fountain, Helpers.AccessMinishWoods, Helpers.Library) 											#SwampNorthLily		4B
 		CastleMinishFusion;		Helper;;	Helpers.CanFuseGreenG, Helpers.BonkedTrees																						#WesternTreeFallSouth	4C
 		KnuckleFusion;			Helper;;	Helpers.CanFuseGreenG, Helpers.TingleBrothers, Locations.Trilby_DigCave_RightChest													#NHFBottomLeftTree	4D
 		Shared4EFusion;			Helper;;	Helpers.CanFuseShared4E																										#MWCrack				4E		
@@ -6053,21 +6053,21 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 					!define - Ruins_GoldenOcto - 
 					!ifndef - NO_RED_FUSIONS
 						!undefine - Ruins_ButterflyFusion_Item
-						!define - Ruins_ButterflyFusion_Item - , Locations.Ruins_ButterflyFusion_Item
+						!define - Ruins_ButterflyFusion_Item - , Helpers.Din2Fusion, Helpers.AccessRuins
 						!undefine - Ruins_BeanStalkFusion_BigChest
-						!define - Ruins_BeanStalkFusion_BigChest - , Locations.Ruins_BeanStalkFusion_BigChest
+						!define - Ruins_BeanStalkFusion_BigChest - , Helpers.RuinsMinishFusion, Helpers.AccessRuins, Helpers.RuinsArmos, Helpers.RuinsTektites
 						!undefine - Ruins_NearFoWFusion_Chest
-						!define - Ruins_NearFoWFusion_Chest - , Locations.Ruins_NearFoWFusion_Chest
+						!define - Ruins_NearFoWFusion_Chest - , Helpers.BelariFusion, Helpers.AccessRuins, Helpers.HasSword
 					!endif
 					!ifndef - NO_GREEN_FUSIONS
 						!undefine - Ruins_PillarsFusion_Chest
-						!define - Ruins_PillarsFusion_Chest - , Locations.Ruins_PillarsFusion_Chest
+						!define - Ruins_PillarsFusion_Chest - , Helpers.NHFMinishFusion, Helpers.AccessRuins, Helpers.RuinsArmos
 						!undefine - Ruins_CrackFusion_Chest
-						!define - Ruins_CrackFusion_Chest - , Locations.Ruins_CrackFusion_Chest
+						!define - Ruins_CrackFusion_Chest - , Helpers.Dampe2Fusion, Helpers.AccessRuins, Helpers.RuinsArmos, Helpers.RuinsTektites
 					!endif
 					!ifndef - GOLDEN_ENEMY_GREEN
 						!undefine - Ruins_GoldenOcto
-						!define - Ruins_GoldenOcto - , Locations.Ruins_GoldenOcto
+						!define - Ruins_GoldenOcto - , Helpers.LibrariFusion, Helpers.AccessRuins, Helpers.HasSword
 					!endif
 					!ifndef - SPECIALPOTS
 						!undefine - FoWRightDoor
@@ -6321,35 +6321,35 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 				!ifndef - SMALL_KEYS_STANDARD
 					!ifdef - PED_ITEMS
 						!undefine - Sanctuary_Pedestal_Item3
-						!define - Sanctuary_Pedestal_Item3 - , Locations.Sanctuary_Pedestal_Item3
+						!define - Sanctuary_Pedestal_Item3 - , Helpers.HasWaterElement, Helpers.HasFireElement, Helpers.HasWindElement, Helpers.HasEarthElement
 					!endif
 					!ifndef - NO_GREEN_FUSIONS
 						!ifdef - GOLDEN_ENEMY
 							!undefine - Castle_GoldenRope
-							!define - Castle_GoldenRope - , Locations.Castle_GoldenRope
+							!define - Castle_GoldenRope - , Helpers.Shared3CFusion, Helpers.HasSword
 						!endif
 						!undefine - Castle_LeftFountainFusion_MinishHoleChest
-						!define - Castle_LeftFountainFusion_MinishHoleChest - , Locations.Castle_LeftFountainFusion_MinishHoleChest
+						!define - Castle_LeftFountainFusion_MinishHoleChest - , Helpers.Shared35Fusion, Helpers.BonkedTrees
 					!endif
 					!ifndef - NO_RED_FUSIONS
 						!ifdef - HEART_RANDO
 							!undefine - Castle_RightFountainFusion_HP
-							!define - Castle_RightFountainFusion_HP - , Locations.Castle_RightFountainFusion_HP
+							!define - Castle_RightFountainFusion_HP - , Helpers.Shared18Fusion
 						!endif
 						!undefine - Castle_RightFountainFusion_MinishHoleChest
-						!define - Castle_RightFountainFusion_MinishHoleChest - , Locations.Castle_RightFountainFusion_MinishHoleChest
+						!define - Castle_RightFountainFusion_MinishHoleChest - , Helpers.Shared18Fusion, Helpers.BonkedTrees
 					!endif
 					!ifdef - HEART_RANDO
 						!undefine - Castle_Dojo_HP
-						!define - Castle_Dojo_HP - , Locations.Castle_Dojo_HP
+						!define - Castle_Dojo_HP -
 					!endif
 					!ifdef - DOJOANY
 						!undefine - Castle_Dojo_NPC
-						!define - Castle_Dojo_NPC - , Locations.Castle_Dojo_NPC
+						!define - Castle_Dojo_NPC - , Helpers.CastleDojo, Helpers.HasSword
 					!endif
 				!endif
 				!undefine - DHCBigBlock
-				!define - DHCBigBlock - , (&(+4, Items.SmallKey.0x1D:`DHCKEYAMOUNT`), Helpers.DHCKing, Locations.DHC_1F_Blade_Chest, Locations.DHC_1F_Throne_BigChest, Helpers.DHCBlackKnight, Helpers.DHCTowerDarknuts, Helpers.HasBow, Helpers.DHCLampPuzzle, Helpers.DHCGhini, Helpers.DHCSwitchPuzzles `Sanctuary_Pedestal_Item3` `Castle_GoldenRope` `Castle_RightFountainFusion_HP` `Castle_Dojo_HP` `Castle_Dojo_NPC` `Castle_RightFountainFusion_MinishHoleChest` `Castle_LeftFountainFusion_MinishHoleChest`)
+				!define - DHCBigBlock - , (&(+4, Items.SmallKey.0x1D:`DHCKEYAMOUNT`), Helpers.DHCKing, Helpers.DHCFirstCanon, Helpers.DHCBladePuzzle, Helpers.DHC1stDoor, Helpers.DHC2ndCanon, Helpers.BombWalls, Helpers.DHCThrone, Helpers.DHCBlackKnight, Helpers.DHCTowerDarknuts, Helpers.HasBow, Helpers.DHCLampPuzzle, Helpers.DHCGhini, Helpers.DHCSwitchPuzzles `Sanctuary_Pedestal_Item3` `Castle_GoldenRope` `Castle_RightFountainFusion_HP` `Castle_Dojo_HP` `Castle_Dojo_NPC` `Castle_RightFountainFusion_MinishHoleChest` `Castle_LeftFountainFusion_MinishHoleChest`)
 			!endif
 		!endif
 	!endif
