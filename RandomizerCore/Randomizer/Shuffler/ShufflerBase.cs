@@ -638,21 +638,31 @@ internal abstract class ShufflerBase
             if (Location.ShufflerConstraints.Any())
             {
                 if (!DependencyBase.BeatVaatiDependency!.DependencyFulfilled())
+                {
+                    var inaccessibleLocations = GetUnreachableLocations(); // Log these for debugging
+                    foreach (var location in inaccessibleLocations) Logger.Instance.LogInfo($"Unreachable location: {location.Name} containing {location.Contents}");
                     throw new ShuffleException("Randomization succeeded, but could not beat Vaati!");
+                }
 
                 if (LogicParser.SubParser.EnsureReachability)
                 {
-                    var itemLocations = Locations.Where(location =>
-                        location.Type is not LocationType.Helper and not LocationType.DungeonConstraint and not LocationType.OverworldConstraint
-                            and not LocationType.Music and not LocationType.Untyped and not LocationType.Inaccessible).ToList();
-                    var inaccessibleLocations = itemLocations.Where(location => !location.IsAccessible());
-                    if (inaccessibleLocations.Any())
+                    var inaccessibleLocations = GetUnreachableLocations();
+                    foreach (var location in inaccessibleLocations) Logger.Instance.LogInfo($"Unreachable location: {location.Name} containing {location.Contents}");
+                    if (inaccessibleLocations.Count != 0)
                     {
-                        foreach (var location in inaccessibleLocations) Logger.Instance.LogInfo($"Unreachable location: {location.Name}");
-                        throw new ShuffleException($"Randomization succeeded, but {inaccessibleLocations.Count()} locations ended up unreachable!");
+                        throw new ShuffleException($"Randomization succeeded, but {inaccessibleLocations.Count} locations ended up unreachable!");
                     }
                 }
             }
+        }
+
+        protected IList<Location> GetUnreachableLocations()
+        {
+            var itemLocations = Locations.Where(location =>
+                location.Type is not LocationType.Helper and not LocationType.DungeonConstraint and not LocationType.OverworldConstraint
+                    and not LocationType.Music and not LocationType.Untyped and not LocationType.Inaccessible).ToList();
+            var inaccessibleLocations = itemLocations.Where(location => !location.IsAccessible());
+            return inaccessibleLocations.ToList();
         }
         
     #endregion
