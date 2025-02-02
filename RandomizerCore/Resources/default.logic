@@ -6886,40 +6886,6 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 	!endif
 	!define - GOLDREDFUSION - `REDFUSIONDUNGEON`
 !endif
-# Veil Falls Access
-!ifdef - FALLS_ACCESS
-	!define - FALLSCHEST - Any
-	!define - FALLSRUPEE - `RUPEE`
-	!define - FALLSDIG - `DIG`
-	!define - FALLSDIGKINSTONE - `DIGKINSTONE`
-	!define - FALLSWATER - `WATER`
-	!define - FALLSGREEN - `GREENFUSIONDUNGEON`
-	!define - FALLSENEMY - `GREENFUSIONENEMY`
-	!define - FALLSHP - `REDFUSIONHP`
-	!ifndef - BIGGORON_OFF
-		!ifndef - NO_RED_FUSIONS
-			!ifndef - NO_BLUE_FUSIONS
-				!define - FALLSBIGGORON - Any
-			!else
-				!ifdef - OPEN_RED_FUSIONS
-					!define - FALLSBIGGORON - Any
-				!endif
-			!endif
-		!endif
-	!endif
-!else
-	!define - FALLSCHEST - Inaccessible
-	!define - FALLSRUPEE - ;	Inaccessible
-	!define - FALLSDIG - ; Inaccessible
-	!define - FALLSDIGKINSTONE - Inaccessible
-	!define - FALLSWATER - ;	Inaccessible
-	!define - FALLSGREEN - Inaccessible
-	!define - FALLSENEMY - ;	Inaccessible
-	!define - FALLSHP - Inaccessible
-!endif
-!ifndef - FALLSBIGGORON
-	!define - FALLSBIGGORON - Inaccessible
-!endif
 # Lower Wind Tribe Access
 !ifdef - TRIBE_ACCESS
 	!define - WTFUSION - Dungeon
@@ -6954,6 +6920,40 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 		!define - WTFUSIONGREENENEMY - `WTFUSIONENEMY`
 		!define - UWTFUSIONGREEN - `PALACEOUTSIDECHEST`
 	!endif
+!endif
+# Veil Falls Access
+!ifdef - FALLS_ACCESS
+	!define - FALLSCHEST - Any
+	!define - FALLSRUPEE - `RUPEE`
+	!define - FALLSDIG - `DIG`
+	!define - FALLSDIGKINSTONE - `DIGKINSTONE`
+	!define - FALLSWATER - `WATER`
+	!define - FALLSGREEN - `WTFUSIONGREEN`
+	!define - FALLSENEMY - `GREENFUSIONENEMY`
+	!define - FALLSHP - `REDFUSIONHP`
+	!ifndef - BIGGORON_OFF
+		!ifndef - NO_RED_FUSIONS
+			!ifndef - NO_BLUE_FUSIONS
+				!define - FALLSBIGGORON - Any
+			!else
+				!ifdef - OPEN_RED_FUSIONS
+					!define - FALLSBIGGORON - Any
+				!endif
+			!endif
+		!endif
+	!endif
+!else
+	!define - FALLSCHEST - Inaccessible
+	!define - FALLSRUPEE - ;	Inaccessible
+	!define - FALLSDIG - ; Inaccessible
+	!define - FALLSDIGKINSTONE - Inaccessible
+	!define - FALLSWATER - ;	Inaccessible
+	!define - FALLSGREEN - Inaccessible
+	!define - FALLSENEMY - ;	Inaccessible
+	!define - FALLSHP - Inaccessible
+!endif
+!ifndef - FALLSBIGGORON
+	!define - FALLSBIGGORON - Inaccessible
 !endif
 # Royal Crypt
 !ifdef - RC_ACCESS
