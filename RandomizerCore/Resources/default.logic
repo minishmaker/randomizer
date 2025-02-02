@@ -1556,6 +1556,10 @@
 					!define - NO_PALACE
 				!endif
 			!endif
+			!ifdef - NO_PALACE
+				!undefine - `ACCESSIBILITY`
+				!define - ACCESS_BEATABLE
+			!endif
 		!endif
 	!endif
 	!define - DUNGEONENTRANCE - :NoSpoiler;	Unshuffled
