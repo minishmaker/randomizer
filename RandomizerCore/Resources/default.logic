@@ -4552,10 +4552,28 @@ CanDownThrust;		Helper;; Helpers.HasSword, Items.DownThrust, Items.RocsCape
 	ShopBombBag;		Helper;; Helpers.Inaccessible
 !endif
 # These make it so we can count how many unique elements have been collected, as opposed to counting them with multiplicity
-HasEarthElement;			Helper;; Items.EarthElement
+HasEarthElement;		Helper;; Items.EarthElement
 HasFireElement;			Helper;; Items.FireElement
-HasWaterElement;			Helper;; Items.WaterElement
+HasWaterElement;		Helper;; Items.WaterElement
 HasWindElement;			Helper;; Items.WindElement
+# Same with scrolls
+HasSpinAttack;			Helper;; Items.SpinAttack
+HasGreatSpin;			Helper;; Items.GreatSpin
+HasFastSpin;			Helper;; Items.FastSpin
+HasFastSplit;			Helper;; Items.FastSplit
+HasLongSpin;			Helper;; Items.LongSpin
+HasRockBreaker;			Helper;; Items.RockBreaker
+HasDashAttack;			Helper;; Items.DashAttack
+HasDownThrust;			Helper;; Items.DownThrust
+HasRollAttack;			Helper;; Items.RollAttack
+HasSwordBeam;			Helper;; Items.SwordBeam
+HasPerilBeam;			Helper;; Items.PerilBeam
+!define - NON_SPIN_SCROLLS - Helpers.HasRockBreaker, Helpers.HasDashAttack, Helpers.HasDownThrust, Helpers.HasRollAttack, Helpers.HasSwordBeam, Helpers.HasPerilBeam
+!ifdef - YES_SCROLL_PROG
+	GotScrolls;			Helper;; (|(&`NON_SPIN_SCROLLS`, Items.ProgressiveItem.0x04), (&Items.ProgressiveItem.0x04:2, (+5, `NON_SPIN_SCROLLS`)), (&Items.ProgressiveItem.0x04:3, (+4, `NON_SPIN_SCROLLS`)), (&Items.ProgressiveItem.0x04:4, (+3, `NON_SPIN_SCROLLS`)), (&Items.ProgressiveItem.0x04:5, (+2, `NON_SPIN_SCROLLS`)));
+!else
+	GotScrolls;			Helper;; (+7, Helpers.HasSpinAttack, Helpers.HasGreatSpin, Helpers.HasFastSpin, Helpers.HasFastSplit, Helpers.HasLongSpin, `NON_SPIN_SCROLLS`);
+!endif
 
 # This section checks what the Weapon setting is and adjusts fight logic
 !ifdef - NOBOMB
@@ -7823,13 +7841,6 @@ CoF_Entrance										`DUNGEONENTRANCE`;	DumCoFENT:Define:FirstByte, DumCoFENT2:
 
 # Swamp
 AccessSwamp;						Helper;				;																	(|Helpers.SwampWindCrest, (&Helpers.AccessWestern, (|Items.PegasusBoots, Items.RocsCape)))
-#NonSpinScrolls;					Helper;				;																	Items.RockBreaker, Items.DashAttack, Items.DownThrust, Items.RollAttack, Items.SwordBeam, Items.PerilBeam
-#SpinScrolls;						Helper;				;																	Items.SpinAttack, Items.GreatSpin, Items.FastSpin, Items.FastSplit, Items.LongSpin
-!ifdef - YES_SCROLL_PROG
-	GotScrolls;						Helper;				;																	(|(&Items.RockBreaker, Items.DashAttack, Items.DownThrust, Items.RollAttack, Items.SwordBeam, Items.PerilBeam, Items.ProgressiveItem.0x04), (&Items.ProgressiveItem.0x04:2, (+5, Items.RockBreaker, Items.DashAttack, Items.DownThrust, Items.RollAttack, Items.SwordBeam, Items.PerilBeam)), (&Items.ProgressiveItem.0x04:3, (+4, Items.RockBreaker, Items.DashAttack, Items.DownThrust, Items.RollAttack, Items.SwordBeam, Items.PerilBeam)), (&Items.ProgressiveItem.0x04:4, (+3, Items.RockBreaker, Items.DashAttack, Items.DownThrust, Items.RollAttack, Items.SwordBeam, Items.PerilBeam)), (&Items.ProgressiveItem.0x04:5, (+2, Items.RockBreaker, Items.DashAttack, Items.DownThrust, Items.RollAttack, Items.SwordBeam, Items.PerilBeam)));
-!else
-	GotScrolls;						Helper;				;																	(+7, Items.SpinAttack, Items.GreatSpin, Items.FastSpin, Items.FastSplit, Items.LongSpin, Items.RockBreaker, Items.DashAttack, Items.DownThrust, Items.RollAttack, Items.SwordBeam, Items.PerilBeam);
-!endif
 Swamp_ButterflyFusion_Item;		`REDFUSION`;			0x0FE13F;															(|(&Helpers.Farore2Fusion, Helpers.AccessSwamp), Helpers.Hundo);																																									Items.DigButterfly
 Swamp_CenterCave_DarknutChest;		Any;					0x2B-0x00-0x00;														(|(&Helpers.AccessSwamp, Helpers.SwampDarknut), Helpers.Hundo);																																									Items.Kinstone.GoldenSwamp
 Swamp_CenterChest;				Any;					0x04-0x00-0x00;														(|(&Helpers.AccessSwamp, Helpers.HasBow), Helpers.Hundo);																																											Items.Kinstone.BlueL
