@@ -39,6 +39,7 @@ internal abstract class ShufflerBase
             protected readonly List<Item> DungeonMajorItems;
             protected readonly List<Item> DungeonMinorItems;
             protected readonly List<Item> DungeonPrizes;
+            protected readonly List<Item> ReshuffledPrizes;
             protected readonly List<Item> FillerItems;
 
             protected readonly List<Location> Locations;
@@ -322,6 +323,7 @@ internal abstract class ShufflerBase
         OverworldConstraints = new List<Item>();
 
         DungeonPrizes = new List<Item>();
+        ReshuffledPrizes = new List<Item>();
         DungeonMajorItems = new List<Item>();
         DungeonMinorItems = new List<Item>();
         MajorItems = new List<Item>();
@@ -451,6 +453,7 @@ internal abstract class ShufflerBase
             OverworldConstraints.Clear();
 
             DungeonPrizes.Clear();
+            ReshuffledPrizes.Clear();
             DungeonMajorItems.Clear();
             DungeonMinorItems.Clear();
             MajorItems.Clear();
