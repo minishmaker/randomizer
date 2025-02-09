@@ -51,7 +51,7 @@ internal static class GenericCommands
                     var rSeed = rand.Next();
                     ShufflerController.SetRandomizationSeed(rSeed);
                     YamlController.SetRandomizationSeed(rSeed);
-                    Console.WriteLine($"Seed {rSeed} set successfully!");
+                    Console.WriteLine($"Seed {rSeed:X} set successfully!");
                     break;
                 case "s":
                     Console.Write("Please enter the seed you want to use: ");

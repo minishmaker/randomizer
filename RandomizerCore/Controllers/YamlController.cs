@@ -112,7 +112,7 @@ public class YamlController : ShufflerController
             }
 
             if (!successfulGeneration)
-                throw new ShuffleException($"Multiple Failures Occurred - Only showing last failure message: {capturedExceptions.Last().Message}");
+                throw new ShuffleException($"Multiple Failures Occurred with Seed {_shuffler.Seed:X} - Only showing last failure message: {capturedExceptions.Last().Message}");
 
             return new ShufflerControllerResult { WasSuccessful = successfulGeneration };
         }
