@@ -3309,10 +3309,13 @@
 		Items.PieceOfHeart:24;	Major;
 	!endif
 	!ifdef - DOJORANDOM
-		!ifdef - NO_RED_FUSIONS
-			Items.Rupee5;			DungeonMinor;	dojo
+		!ifndef - ACCESS_BEATABLE
+			Items.Rupee5;		DungeonMinor;	dojojunk
 		!else
-			Items.Rupee5:4;		DungeonMinor;	dojo
+			Items.Rupee5;		DungeonMinor;	dojo
+		!endif
+		!ifndef - NO_RED_FUSIONS
+			Items.Rupee5:3;		DungeonMinor;	dojo
 		!endif
 	!endif
 !else
@@ -6736,6 +6739,11 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 !else
 	!ifdef - DOJORANDOM
 		!define - DOJOITEM - Dungeon
+		!ifdef - ITEM_POOL_RIP
+			!ifndef - ACCESS_BEATABLE
+				!define - SWAMP_DOJO - dojojunk
+			!endif
+		!endif
 	!else
 		!define - DOJOITEM - Any
 	!endif
@@ -6748,6 +6756,9 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 			!define - DOJOITEMRED - Any
 		!endif
 	!endif
+!endif
+!ifndef - SWAMP_DOJO
+	!define - SWAMP_DOJO - dojo
 !endif
 # HP Toggle
 !ifdef - HEART_RANDO
@@ -7906,7 +7917,7 @@ Swamp_Underwater_Middle;			`WATERKINSTONE`;		0x0D9357;															(|(&Helpers
 Swamp_Underwater_Bottom;			`WATERKINSTONE`;		0x0D9367;															(|(&Helpers.AccessSwamp, Items.Flippers), Helpers.Hundo);																																											Items.Kinstone.RedE
 Swamp_SouthCave_Chest;				Any;					0x2A-0x00-0x00;														(|(&Helpers.AccessSwamp, (|Items.Flippers, Items.RocsCape, (&Helpers.HasBow, Items.PegasusBoots), (&Helpers.SwampShortcut, Helpers.SwampSouthShortcut))), (&Helpers.SwampWindCrest, (|Helpers.HasBow, Helpers.SwampSouthShortcut)), Helpers.Hundo);	Items.Kinstone.GoldenSwamp
 Swamp_Dojo_HP;					`HP`;				0x0D78CB;															(|(&Helpers.AccessSwamp, (|Items.RocsCape, Helpers.HasBow, (&Items.PegasusBoots, Items.Flippers))), (&Helpers.SwampWindCrest, Items.PegasusBoots), Helpers.Hundo);																			Items.PieceOfHeart
-Swamp_Dojo_NPC:dojo;				`DOJOITEM`;			swiftbladeIDojoItem:Define:FirstByte, swiftbladeIDojoSub:Define:SecondByte;	(|(&Helpers.AccessSwamp, (|Items.RocsCape, Helpers.HasBow, (&Items.PegasusBoots, Items.Flippers)), Helpers.GotScrolls, Helpers.HasSword), (&Helpers.SwampWindCrest, Items.PegasusBoots, Helpers.GotScrolls, Helpers.HasSword), `HUNDO_SWAMP_DOJO`);	`GREATSPIN`
+Swamp_Dojo_NPC:`SWAMP_DOJO`;			`DOJOITEM`;			swiftbladeIDojoItem:Define:FirstByte, swiftbladeIDojoSub:Define:SecondByte;	(|(&Helpers.AccessSwamp, (|Items.RocsCape, Helpers.HasBow, (&Items.PegasusBoots, Items.Flippers)), Helpers.GotScrolls, Helpers.HasSword), (&Helpers.SwampWindCrest, Items.PegasusBoots, Helpers.GotScrolls, Helpers.HasSword), `HUNDO_SWAMP_DOJO`);	`GREATSPIN`
 
 Swamp_MinishFusion_NorthCrack_Chest;	`GREENFUSION`;		0x27-0x09-0x00;	(|(&Helpers.TFZ1Fusion, Helpers.AccessSwamp, (|Items.PegasusBoots, Items.RocsCape, Helpers.HasBow)), Helpers.Hundo);											Items.Kinstone.BlueS
 Swamp_Minish_Mulldozer_BigChest;		Any;					0x27-0x06-0x00;	(|(&Helpers.AccessSwamp, (|Items.PegasusBoots, Items.RocsCape, Helpers.HasBow), (|Items.Flippers, Items.GustJar), Helpers.HasDamageSource), Helpers.Hundo);		`BOW`
