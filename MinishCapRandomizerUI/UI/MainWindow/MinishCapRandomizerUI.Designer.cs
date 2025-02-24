@@ -1077,6 +1077,7 @@
 			// 
 			// CosmeticsWeights
 			// 
+			this.CosmeticsWeights.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.CosmeticsWeights.FormattingEnabled = true;
 			this.CosmeticsWeights.Location = new System.Drawing.Point(180, 49);
 			this.CosmeticsWeights.Name = "CosmeticsWeights";
@@ -1107,6 +1108,7 @@
 			// 
 			// SettingsWeights
 			// 
+			this.SettingsWeights.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.SettingsWeights.FormattingEnabled = true;
 			this.SettingsWeights.Location = new System.Drawing.Point(180, 14);
 			this.SettingsWeights.Name = "SettingsWeights";

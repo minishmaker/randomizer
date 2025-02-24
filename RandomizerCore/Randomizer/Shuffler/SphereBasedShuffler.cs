@@ -42,8 +42,7 @@ internal class SphereBasedShuffler : Shuffler
         // Get every item that can be logically obtained, to check if the game can be completed
         var finalMajorItems = GetAvailableItems(new List<Item>());
 
-        if (Location.ShufflerConstraints.Any() && !DependencyBase.BeatVaatiDependency!.DependencyFulfilled())
-            throw new ShuffleException("Randomization succeeded, but could not beat Vaati!");
+        VerifyReachability();
         
         finalMajorItems.ForEach(item => item.NotifyParentDependencies(false));
 
@@ -57,7 +56,7 @@ internal class SphereBasedShuffler : Shuffler
 
         var diff = DateTime.Now - time;
         Logger.Instance.BeginLogTransaction();
-        Logger.Instance.LogInfo($"Timing Benchmark - Shuffling with seed {Seed:X} and settings {MinifiedSettings.GenerateSettingsString(GetSortedSettings(), GetLogicOptionsCrc32())} took {diff.Seconds}.{diff.Milliseconds} seconds!");
+        Logger.Instance.LogInfo($"Timing Benchmark - Shuffling with seed {Seed:X} and settings {MinifiedSettings.GenerateSettingsString(GetFinalOptions().OnlyLogic().GetSorted(), GetLogicOptionsCrc32())} took {diff.Seconds}.{diff.Milliseconds} seconds!");
         Logger.Instance.SaveLogTransaction(true);
         
         Randomized = true;
@@ -93,11 +92,11 @@ internal class SphereBasedShuffler : Shuffler
         var retryCount = 0;
         var totalPermutations = 0;
 
-        while (!canBeatVaati)
+        while (!canBeatVaati || (LogicParser.SubParser.EnsureReachability && allShuffledItems.Count != 0))
         {
             if (totalPermutations++ > 200000)
                 throw new ShuffleException(
-                    "Could not find a viable seed with Hendrus Shuffler after 50,000 permutations! Please let the dev team know what settings and seed you are using!");
+                    "Could not find a viable seed with Hendrus Shuffler after 200,000 permutations! Please let the dev team know what settings and seed you are using!");
 
             shuffledLocationsThisSphere.Shuffle(Rng);
 

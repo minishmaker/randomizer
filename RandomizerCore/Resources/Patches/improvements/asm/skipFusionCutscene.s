@@ -21,6 +21,20 @@ cmp	r3,#0
 beq	cutscene
 
 noCutscene:
+@check if this fusion unlocks Gina's grave
+ldrb	r3,[r1,#4]
+cmp	r3,#0x4F
+bne	notGrave
+
+@Gina's grave normally gets pushed during the cutscene, so set the flag now
+ldr	r3,=#0x2002CC6
+ldrb	r0,[r3]
+mov	r3,#0x20
+orr	r0,r3
+ldr	r3,=#0x2002CC6
+strb	r0,[r3]
+
+notGrave:
 ldr	r3,showMap
 cmp	r3,#0
 beq	fullSkip
@@ -107,7 +121,7 @@ pop	{r2,r4-r5}
 cmp	r2,#0
 beq	skipToMap
 
-return
+return:
 ldr	r3,=#0x80A3601
 bx	r3
 

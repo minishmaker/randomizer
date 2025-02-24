@@ -99,7 +99,7 @@ public class ShufflerController : ControllerBase
 
             if (!successfulGeneration)
                 throw new ShuffleException(
-                    $"Multiple Failures Occurred - Only showing last failure message: {capturedExceptions.Last().Message}");
+                    $"Multiple Failures Occurred with Seed {_shuffler.Seed:X} - Only showing last failure message: {capturedExceptions.Last().Message}");
 
             return new ShufflerControllerResult { WasSuccessful = successfulGeneration };
         }

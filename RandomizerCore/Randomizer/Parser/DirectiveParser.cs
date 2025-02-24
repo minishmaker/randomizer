@@ -29,6 +29,7 @@ public class DirectiveParser
     public readonly Dictionary<Item, LocationType> LocationTypeOverrides;
     public string? LogicName;
     public string? LogicVersion;
+    public bool EnsureReachability;
     public readonly List<LogicOptionBase> Options;
     public readonly Dictionary<Item, ChanceItemSet> Replacements;
     public readonly Dictionary<string, string> PrizePlacements;
@@ -95,6 +96,7 @@ public class DirectiveParser
             case "!settype":
             case "!import":
             case "!prizeplacement":
+            case "!ensurereachability":
                 return false;
             default:
                 throw new ParserException($"\"{directive}\" is not a valid directive! The logic file may be bad.");
@@ -164,6 +166,9 @@ public class DirectiveParser
                     break;
                 case "!prizeplacement":
                     ParsePrizePlacementDirective(mainDirectiveParts);
+                    break;
+                case "!ensurereachability":
+                    EnsureReachability = true;
                     break;
                 case "!name":
                     LogicName = mainDirectiveParts[1];

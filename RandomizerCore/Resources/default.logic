@@ -82,6 +82,7 @@
 # !settype - (item) - (location type)                  : set all occurrences of (item) to be of type (location type).
 # !import - (function name)                            : tells the shuffler to perform certain logical checks before placing an item, the allowed values for (function name) are defined in LogicImport.cs.
 # !prizeplacement - (location name) - [dungeon id]     : when a DungeonPrize item gets assigned to the DungeonPrize location with the given (location name), instead of placing the item there, the item will get placed later within the given [dungeon id] (or anywhere if no [dungeon id] is given).
+# !ensurereachability                                  : tells the shuffler to make sure that all item and entrance locations are reachable.
 #
 # = Location Logic =
 # all logic symbols other than , are to be put in ()
@@ -101,7 +102,7 @@
 !dropdown - Main Settings - Setting - Dungeon Settings - SMALL_KEYS_SETTING - Small Keys - Small Keys - SMALL_KEYS_STANDARD - Removed (Keasy) - SMALL_KEASY - 'Removed': Small keys are removed, All small locked doors are open from the start. - Vanilla - SMALL_KEYS_VANILLA - 'Vanilla': Small keys are in the same places they appear in the vanilla game. - Own Dungeon - SMALL_KEYS_STANDARD - 'Own Dungeon': Small keys are randomized to locations in the dungeon they are used in. - Own Region - SMALL_KEYS_REGION - 'Own Region': Small keys are randomized inside and in the vicinity of their own dungeon. - Any Dungeon - SMALL_KEYS_DUNGEON - 'Any Dungeon': Small keys are randomized inside all dungeons. - Any Region - SMALL_KEYS_REGDUN - 'Any Region': Small keys are randomized inside and in the vicinity of all dungeons. - Anywhere (Keysanity) - SMALL_KEYSANITY - 'Anywhere': Small keys are randomized to any location in the world, expect to return to dungeons multiple times.\n\nDWS Region: 'Minish Village', 'Belari's House', 'Chest near Belari', 'Minish Cave near Belari'.\nCoF Region: 'Melari's Mines', 'Melari's Mines Outside Path', 'Pre Melari Block Puzzle Chest'.\nFOW Region: 'Wind Ruins'.\nTOD Region: 'Nothing'.\nRC Region: 'Graveyard (Not Dampe)'.\nPOW Region: If Red Fusions are Removed: 'Wind Tribe', Otherwise: 'Upper Wind Tribe'.\nDHC Region: 'Castle Gardens (Not Moat)', If Pedestal Items is enabled: 'Sanctuary Pedestal'.
 !dropdown - Main Settings - Setting - Dungeon Settings - BIG_KEYS_SETTING - Big Keys - Big Keys - BIG_KEYS_STANDARD - Removed (Keasy) - BIG_KEASY - 'Removed': Big keys are removed, All locked Boss doors are open from the start. - Vanilla - BIG_KEYS_VANILLA - 'Vanilla': Big keys are in the same places they appear in the vanilla game. - Own Dungeon - BIG_KEYS_STANDARD - 'Own Dungeon': Big keys are randomized to locations in the dungeon they are used in. - Own Region - BIG_KEYS_REGION - 'Own Region': Big keys are randomized inside and in the vicinity of their own dungeon. - Any Dungeon - BIG_KEYS_DUNGEON - 'Any Dungeon': Big keys are randomized inside all dungeons. - Any Region - BIG_KEYS_REGDUN - 'Any Region': Big keys are randomized inside and in the vicinity of all dungeons. - Anywhere (Keysanity) - BIG_KEYSANITY  - 'Anywhere': Big keys are randomized to any location in the world, expect to return to dungeons multiple times.\n\nDWS Region: 'Minish Village', 'Belari's House', 'Chest near Belari', 'Minish Cave near Belari'.\nCoF Region: 'Melari's Mines', 'Melari's Mines Outside Path', 'Pre Melari Block Puzzle Chest'.\nFOW Region: 'Wind Ruins'.\nTOD Region: 'Nothing'.\nRC Region: 'Graveyard (Not Dampe)'.\nPOW Region: If Red Fusions are Removed: 'Wind Tribe', Otherwise: 'Upper Wind Tribe'.\nDHC Region: 'Castle Gardens (Not Moat)', If Pedestal Items is enabled: 'Sanctuary Pedestal'.
 !dropdown - Main Settings - Setting - Dungeon Settings - SHUFFLE_ELEMENTS - Shuffle Elements - Shuffle Elements - SHUFFLE_ELEMENTS_OFF - Vanilla - SHUFFLE_ELEMENTS_VANILLA - 'Vanilla': The Elements are found in their vanilla locations. Will shuffle dungeon rewards if all 4 elements are required to complete the seed but the vanilla location is not accessible. - Dungeon Rewards - SHUFFLE_ELEMENTS_OFF - 'Dungeon Rewards': Elements are shuffled among the 6 Dungeon Rewards. - Own Dungeon - SHUFFLE_ELEMENTS_DUNGEON - 'Own Dungeon': Elements are shuffled among the 6 Dungeons that have a Reward at the end, but are then placed in a random location within that Dungeon. - Own Region - SHUFFLE_ELEMENTS_REGION - 'Own Region': Elements are shuffled among the 6 Dungeons that have a Reward at the end, but are then placed in a random location inside or in the vicinity of that Dungeon. - Any Dungeon - SHUFFLE_ELEMENTS_ON_DUNGEONS - 'Any Dungeon': Elements are freely shuffled across all locations in all 7 Dungeons. The Element icons on the map are removed. - Any Region - SHUFFLE_ELEMENTS_ON_REGIONS - 'Any Region': Elements are freely shuffled inside and in the vicinity of all 7 Dungeons. The Element icons on the map are removed. - Anywhere - SHUFFLE_ELEMENTS_ON - 'Anywhere': Elements are shuffled anywhere in the world. The Element icons on the map are removed.\n\nDWS Region: 'Minish Village', 'Belari's House', 'Chest near Belari', 'Minish Cave near Belari'.\nCoF Region: 'Melari's Mines', 'Melari's Mines Outside Path', 'Pre Melari Block Puzzle Chest'.\nFOW Region: 'Wind Ruins'.\nTOD Region: 'Nothing'.\nRC Region: 'Graveyard (Not Dampe)'.\nPOW Region: If Red Fusions are Removed: 'Wind Tribe', Otherwise: 'Upper Wind Tribe'.\nDHC Region: 'Castle Gardens (Not Moat)', If Pedestal Items is enabled: 'Sanctuary Pedestal'.
-!dropdown - Main Settings - Setting - Dungeon Settings - DUNGEON - NonElement Dungeons - NonElement Dungeons, This setting is disabled when 'Shuffle Elements' is set to 'Any Dungeon', 'Any Region' or 'Anywhere' or when 'Dungeons Required' is set to '5' or '6'. - NONE - Standard - NONE - 'Standard': NonElement Dungeons have no special rules. - Unrequired - UNREQ - 'Unrequired': NonElement Dungeons do not have items required to beat the game. - Barren - BARREN - 'Barren': NonElement Dungeons only contain junk items. - Regions Unrequired - UNREQSUR - 'Regions Unrequired': NonElement Dungeons and their Regions do not contain items needed to beat the game. - Regions Barren - BARRENSUR - 'Regions Barren': NonElement Dungeons and their Regions only contain junk items. \n\nDWS Region: 'Minish Village', 'Belari's House', 'Chest near Belari', 'Minish Cave near Belari'.\nCoF Region: 'Melari's Mines', 'Melari's Mines Outside Path', 'Pre Melari Block Puzzle Chest'.\nFOW Region: 'Wind Ruins'.\nTOD Region: 'Nothing'.\nRC Region: 'Graveyard (Not Dampe)'.\nPOW Region: If Red Fusions are Removed: 'Wind Tribe', Otherwise: 'Upper Wind Tribe'.
+!dropdown - Main Settings - Setting - Dungeon Settings - DUNGEON - NonElement Dungeons - NonElement Dungeons, This setting is disabled when 'Shuffle Elements' is set to 'Any Dungeon', 'Any Region' or 'Anywhere' or when 'Dungeons Required' is higher than the number of Elements placed. - NONE - Standard - NONE - 'Standard': NonElement Dungeons have no special rules. - Unrequired - UNREQ - 'Unrequired': NonElement Dungeons do not have items required to beat the game. - Barren - BARREN - 'Barren': NonElement Dungeons only contain junk items. - Regions Unrequired - UNREQSUR - 'Regions Unrequired': NonElement Dungeons and their Regions do not contain items needed to beat the game. - Regions Barren - BARRENSUR - 'Regions Barren': NonElement Dungeons and their Regions only contain junk items. \n\nDWS Region: 'Minish Village', 'Belari's House', 'Chest near Belari', 'Minish Cave near Belari'.\nCoF Region: 'Melari's Mines', 'Melari's Mines Outside Path', 'Pre Melari Block Puzzle Chest'.\nFOW Region: 'Wind Ruins'.\nTOD Region: 'Nothing'.\nRC Region: 'Graveyard (Not Dampe)'.\nPOW Region: If Red Fusions are Removed: 'Wind Tribe', Otherwise: 'Upper Wind Tribe'.
 !flag - Main Settings - Setting - Dungeon Settings - DHC_BARREN - DHC is Barren - If enabled will completely fill the interior of Dark Hyrule Castle with junk aside from dungeon items that have to be placed in there because of the dungeon item settings.\n\nFor technical reasons, dungeon items that are allowed to be placed outside of DHC (and its region) will always be placed outside DHC. Also, setting dungeon items to 'Own Region' will make the corresponding DHC items behave like in 'Own Dungeon'.
 
 !dropdown - Main Settings - Setting - Requirements - DHC_SETTING - Dark Hyrule Castle Opens - Dark Hyrule Castle is the last dungeon in the game, it has the final boss Vaati. - OPENDHC - Never Open - NODHC - 'Never Open': A barrier is placed at the front of the dungeon, The game ends when you visit the sanctuary after completing all the requirements. - After Requirements - NORMALDHC - 'After Requirements': A barrier is placed at the front of the dungeon, This barrier is removed when you visit the sanctuary after completing ALL the requirements. The game ends when you defeat Vaati. - Always Open - OPENDHC - 'Always Open': There is no barrier at the front of the dungeon, the game ends when you defeat Vaati.
@@ -113,7 +114,7 @@
 !numberbox - Main Settings - Setting - Requirements - FIGURINE_TOTAL - Figurines in world - The total number of Figurines that get added to the item pool, the maximum amount is 136. - 30 - 0 - 136
 !numberbox - Main Settings - Setting - Requirements - FIGURINE_COUNT - Figurines required - The number of Figurines required to activate the Sanctuary, do not raise this to higher than the total number of Figurines or you won't be able to beat the game silly. - 20 - 0 - 136
 
-!dropdown - Main Settings - Setting - Shuffle - DOJO - Dojo Swordmasters -	Dojo Swordmasters have Scrolls as their rewards. - DOJOANY - Vanilla Scrolls - DOJOVANILLA - 'Vanilla Scrolls': Dojo Swordmasters offer their vanilla rewards, this overrides Progressive Scrolls. - Randomized Scrolls - DOJORANDOM - 'Randomized Scrolls': Scrolls are shuffled between the Dojo Swordmasters. - Any Item - DOJOANY - 'Any Item': Dojo Swordmasters are shuffled into the main pool.
+!dropdown - Main Settings - Setting - Shuffle - DOJO - Dojo Swordmasters -	Dojo Swordmasters have Scrolls as their rewards. - DOJOANY - Vanilla Scrolls - DOJOVANILLA - 'Vanilla Scrolls': Dojo Swordmasters offer their vanilla rewards.\nIf combined with Progressive Scrolls, the 5 Spin Scrolls are always obtained in the same order and are placed at the 5 Spin Scroll locations. - Randomized Scrolls - DOJORANDOM - 'Randomized Scrolls': Scrolls are shuffled between the Dojo Swordmasters. - Any Item - DOJOANY - 'Any Item': Dojo Swordmasters are shuffled into the main pool.
 !dropdown - Main Settings - Setting - Shuffle - CUCCO_SETTING - Cucco Minigame - How many rounds of the Cucco Minigame are playable and have an item. - CUCCO_1 - Nothing - CUCCO_0 - - 1 Round - CUCCO_1 - - 2 Rounds - CUCCO_2 - - 3 Rounds - CUCCO_3 - - 4 Rounds - CUCCO_4 - - 5 Rounds - CUCCO_5 - - 6 Rounds - CUCCO_6 - - 7 Rounds - CUCCO_7 - - 8 Rounds - CUCCO_8 - - 9 Rounds - CUCCO_9 - - 10 Rounds - CUCCO_10 -
 !dropdown - Main Settings - Setting - Shuffle - GORON_SETTING - Goron Merchant - How many sets of Goron Merchant items are included in the random item pool.\nEach set consists of 3 items, and all 3 must be bought to advance to the next set.\nThere are 5 sets in total.\nThe remaining sets are either Kinstones (not in logic) like in vanilla, or removed from the game if Kinstone Drops are Disabled.\nIf Blue Fusions are Removed, these locations are not accessible. - GORON_0 - Nothing - GORON_0 - - 1 Set - GORON_1 - - 2 Sets - GORON_2 - - 3 Sets - GORON_3 - - 4 Sets - GORON_4 - - 5 Sets - GORON_5 -
 !dropdown - Main Settings - Setting - Shuffle - BIGGORON_SETTING - Biggoron - If enabled will shuffle the item received by Biggoron. To get it, you have to talk to it while in possession of a Shield.\nIf Red Fusions are Removed, or Blue Fusions are Removed and Red Fusions not Open, this location is not accessible. - BIGGORON_OFF - Disabled - BIGGORON_OFF - 'Disabled': Biggoron does not give an item. - Normal - BIGGORON_NORMAL - 'Normal': Biggoron gives an item if you show it any Shield. If you only have a regular Shield, Biggoron will eat it, but you can buy a replacement in the shop in town. - Require Mirror - BIGGORON_MIRROR - 'Require Mirror': Biggoron gives an item only if you show it a Mirror Shield.
@@ -593,11 +594,22 @@
 	!endif
 !endif
 
-!ifdef - DOJOVANILLA
-	!ifdef - YES_SCROLL_PROG
-		!undefine - YES_SCROLL_PROG
-	!endif
+# Count how many elements we start with and how many will get placed
+!define - START_ELEMENTS_COUNT - 0
+!ifdef - START_EARTH_ELEMENT
+	!addition - START_ELEMENTS_COUNT - `START_ELEMENTS_COUNT`, 1
 !endif
+!ifdef - START_FIRE_ELEMENT
+	!addition - START_ELEMENTS_COUNT - `START_ELEMENTS_COUNT`, 1
+!endif
+!ifdef - START_WATER_ELEMENT
+	!addition - START_ELEMENTS_COUNT - `START_ELEMENTS_COUNT`, 1
+!endif
+!ifdef - START_WIND_ELEMENT
+	!addition - START_ELEMENTS_COUNT - `START_ELEMENTS_COUNT`, 1
+!endif
+!addition - TOTAL_PLACED_ELEMENTS - 4, -`START_ELEMENTS_COUNT`
+!define - TOTAL_PLACED_ELEMENTS_`TOTAL_PLACED_ELEMENTS`
 
 # Set the number of required dungeons
 !ifdef - AD_PED_6
@@ -636,25 +648,49 @@
 !endif
 !ifdef - AD_PED_4
 	!define - AD_PED_NUM - 4
+	!ifndef - TOTAL_PLACED_ELEMENTS_4
+		!undefine - `DUNGEON`
+		!define - NONE
+	!endif
 !endif
 !ifdef - AD_PED_3
-	!ifdef - 4ELEMENT
-		!ifndef - ELEMENTS_TIED_TO_DUNGEONS
-			!define - AD_PED_NUM - 3
+	!ifdef - TOTAL_PLACED_ELEMENTS_4
+		!ifdef - 4ELEMENT
+			!ifndef - ELEMENTS_TIED_TO_DUNGEONS
+				!define - AD_PED_NUM - 3
+			!else
+				!undefine - AD_PED_3
+				!define - AD_PED_NUM - 4
+				!define - AD_PED_4
+			!endif
 		!else
-			!undefine - AD_PED_3
-			!define - AD_PED_NUM - 4
-			!define - AD_PED_4
+			!define - AD_PED_NUM - 3
 		!endif
 	!else
 		!define - AD_PED_NUM - 3
+		!ifndef - TOTAL_PLACED_ELEMENTS_3
+			!undefine - `DUNGEON`
+			!define - NONE
+		!endif
 	!endif
 !endif
 !ifdef - AD_PED_2
 	!define - AD_PED_NUM - 2
+	!ifndef - TOTAL_PLACED_ELEMENTS_4
+		!ifndef - TOTAL_PLACED_ELEMENTS_3
+			!ifndef - TOTAL_PLACED_ELEMENTS_2
+				!undefine - `DUNGEON`
+				!define - NONE
+			!endif
+		!endif
+	!endif
 !endif
 !ifdef - AD_PED_1
 	!define - AD_PED_NUM - 1
+	!ifdef - TOTAL_PLACED_ELEMENTS_0
+		!undefine - `DUNGEON`
+		!define - NONE
+	!endif
 !endif
 
 # Open World defines things in patches to open the world
@@ -748,7 +784,6 @@
 	!eventdefine - fowRedPortal - 0x00
 !endif
 !ifdef - TOD_BLUEWARP
-	
 	!eventdefine - todBluePortal - 0x01
 !else
 	!eventdefine - todBluePortal - 0x00
@@ -1521,6 +1556,10 @@
 					!define - NO_PALACE
 				!endif
 			!endif
+			!ifdef - NO_PALACE
+				!undefine - `ACCESSIBILITY`
+				!define - ACCESS_BEATABLE
+			!endif
 		!endif
 	!endif
 	!define - DUNGEONENTRANCE - :NoSpoiler;	Unshuffled
@@ -1701,8 +1740,10 @@
 			
 			!ifdef - AD_PED_4
 				!ifdef - ELEMENTS_TIED_TO_DUNGEONS
-					!undefine - `DUNGEON`
-					!define - NONE
+					!ifndef - NONE
+						!undefine - `DUNGEON`
+						!define - NONE
+					!endif
 				!endif
 			!endif
 			
@@ -2320,6 +2361,20 @@
 		Dummy_Shield:NoSpoiler;	Unshuffled;	DumShield1:Define:FirstByte, DumShield2:Define:SecondByte;	;	Items.Shield
 	!endif
 !endif
+!ifdef - YES_SCROLL_PROG
+	!define - SPINATTACK - Items.ProgressiveItem.0x04
+	!define - FASTSPIN - Items.ProgressiveItem.0x04
+	!define - FASTSPLIT - Items.ProgressiveItem.0x04
+	!define - GREATSPIN - Items.ProgressiveItem.0x04
+	!define - LONGSPIN - Items.ProgressiveItem.0x04
+!else
+	!eventdefine - arbitraryScrolls
+	!define - SPINATTACK - Items.SpinAttack
+	!define - FASTSPIN - Items.FastSpin
+	!define - FASTSPLIT - Items.FastSplit
+	!define - GREATSPIN - Items.GreatSpin
+	!define - LONGSPIN - Items.LongSpin
+!endif
 !ifdef - DOJORANDOM
 	!define - SCROLLMAJOR - DungeonMajor;	dojo
 	!define - SCROLLMINOR - DungeonMinor;	dojo
@@ -2328,31 +2383,18 @@
 	!define - SCROLLMAJOR - Major;
 	!define - SCROLLMINOR - Major;
 !endif
-!ifdef - YES_SCROLL_PROG
-	!ifdef - SCROLLMAJOR
-		!ifdef - START_SCROLL_SPIN
-			Dummy_Spin:NoSpoiler;	Unshuffled;	DumSpin1:Define:FirstByte, DumSpin2:Define:SecondByte;	;	Items.ProgressiveItem.0x04
-			!ifdef - DOJORANDOM
-				Items.Rupee5;	DungeonMinor;	dojo
-			!endif
-		!else
-			Items.ProgressiveItem.0x04;	`SCROLLMAJOR`	#Scroll
+!ifndef - DOJOVANILLA
+	!ifdef - START_SCROLL_SPIN
+		!ifdef - DOJORANDOM
+			Items.Rupee5;	DungeonMinor;	dojo
 		!endif
-	!endif
-!else
-	!eventdefine - arbitraryScrolls
-	!ifdef - SCROLLMAJOR
-		!ifdef - START_SCROLL_SPIN
-			Dummy_Spin:NoSpoiler;	Unshuffled;	DumSpin1:Define:FirstByte, DumSpin2:Define:SecondByte;	;	Items.SpinAttack
-			!ifdef - DOJORANDOM
-				Items.Rupee5;	DungeonMinor;	dojo
-			!endif
-			!ifdef - MEME
+		!ifdef - MEME
+			!ifndef - YES_SCROLL_PROG
 				Items.SpinAttack;	Minor;
 			!endif
-		!else
-			Items.SpinAttack;		`SCROLLMAJOR`
 		!endif
+	!else
+		`SPINATTACK`;		`SCROLLMAJOR`
 	!endif
 !endif
 !ifndef - START_LANTERN
@@ -2655,11 +2697,43 @@
 		Items.Flippers;	Minor;
 	!endif
 !endif
+!ifdef - START_SCROLL_ROLL
+	Dummy_Roll:NoSpoiler;	Unshuffled;	DumRoll1:Define:FirstByte, DumRoll2:Define:SecondByte;	;	Items.RollAttack
+!endif
+!ifdef - START_SCROLL_DASH
+	Dummy_Dash:NoSpoiler;	Unshuffled;	DumDash1:Define:FirstByte, DumDash2:Define:SecondByte;	;	Items.DashAttack
+!endif
+!ifdef - START_SCROLL_ROCK
+	Dummy_Rock:NoSpoiler;	Unshuffled;	DumRock1:Define:FirstByte, DumRock2:Define:SecondByte;	;	Items.RockBreaker
+!endif
+!ifdef - START_SCROLL_SWORD_BEAM
+	Dummy_SwordBeam:NoSpoiler;	Unshuffled;	DumSwordBeam1:Define:FirstByte, DumSwordBeam2:Define:SecondByte;	;	Items.SwordBeam
+!endif
+!ifdef - START_SCROLL_DOWN_THRUST
+	Dummy_DownThrust:NoSpoiler;	Unshuffled;	DumDownThrust1:Define:FirstByte, DumDownThrust2:Define:SecondByte;	;	Items.DownThrust
+!endif
+!ifdef - START_SCROLL_PERIL_BEAM
+	Dummy_PerilBeam:NoSpoiler;	Unshuffled;	DumPerilBeam1:Define:FirstByte, DumPerilBeam2:Define:SecondByte;	;	Items.PerilBeam
+!endif
+!ifdef - START_SCROLL_SPIN
+	Dummy_Spin:NoSpoiler;	Unshuffled;	DumSpin1:Define:FirstByte, DumSpin2:Define:SecondByte;	;	`SPINATTACK`
+!endif
+!ifdef - START_SCROLL_FAST_SPIN
+	Dummy_FastSpin:NoSpoiler;	Unshuffled;	DumFastSpin1:Define:FirstByte, DumFastSpin2:Define:SecondByte;	;	`FASTSPIN`
+!endif
+!ifdef - START_SCROLL_FAST_SPLIT
+	Dummy_FastSplit:NoSpoiler;	Unshuffled;	DumFastSplit1:Define:FirstByte, DumFastSplit2:Define:SecondByte;	;	`FASTSPLIT`
+!endif
+!ifdef - START_SCROLL_GREAT_SPIN
+	Dummy_GreatSpin:NoSpoiler;	Unshuffled;	DumGreatSpin1:Define:FirstByte, DumGreatSpin2:Define:SecondByte;	;	`GREATSPIN`
+!endif
+!ifdef - START_SCROLL_LONG_SPIN
+	Dummy_LongSpin:NoSpoiler;	Unshuffled;	DumLongSpin1:Define:FirstByte, DumLongSpin2:Define:SecondByte;	;	`LONGSPIN`
+!endif
 !ifndef - DOJOVANILLA
 	!ifndef - START_SCROLL_ROLL
 		Items.RollAttack;	`SCROLLMINOR`
 	!else
-		Dummy_Roll:NoSpoiler;	Unshuffled;	DumRoll1:Define:FirstByte, DumRoll2:Define:SecondByte;	;	Items.RollAttack
 		!ifdef - DOJORANDOM
 			Items.Rupee5;		DungeonMinor;	dojo
 		!endif
@@ -2667,7 +2741,6 @@
 	!ifndef - START_SCROLL_DASH
 		Items.DashAttack;	`SCROLLMINOR`
 	!else
-		Dummy_Dash:NoSpoiler;	Unshuffled;	DumDash1:Define:FirstByte, DumDash2:Define:SecondByte;	;	Items.DashAttack
 		!ifdef - DOJORANDOM
 			Items.Rupee5;		DungeonMinor;	dojo
 		!endif
@@ -2675,7 +2748,6 @@
 	!ifndef - START_SCROLL_ROCK
 		Items.RockBreaker;	`SCROLLMINOR`
 	!else
-		Dummy_Rock:NoSpoiler;	Unshuffled;	DumRock1:Define:FirstByte, DumRock2:Define:SecondByte;	;	Items.RockBreaker
 		!ifdef - DOJORANDOM
 			Items.Rupee5;		DungeonMinor;	dojo
 		!endif
@@ -2683,7 +2755,6 @@
 	!ifndef - START_SCROLL_SWORD_BEAM
 		Items.SwordBeam;	`SCROLLMAJOR`
 	!else
-		Dummy_SwordBeam:NoSpoiler;	Unshuffled;	DumSwordBeam1:Define:FirstByte, DumSwordBeam2:Define:SecondByte;	;	Items.SwordBeam
 		!ifdef - DOJORANDOM
 			Items.Rupee5;		DungeonMinor;	dojo
 		!endif
@@ -2691,7 +2762,6 @@
 	!ifndef - START_SCROLL_DOWN_THRUST
 		Items.DownThrust;	`SCROLLMAJOR`
 	!else
-		Dummy_DownThrust:NoSpoiler;	Unshuffled;	DumDownThrust1:Define:FirstByte, DumDownThrust2:Define:SecondByte;	;	Items.DownThrust
 		!ifdef - DOJORANDOM
 			Items.Rupee5;		DungeonMinor;	dojo
 		!endif
@@ -2699,7 +2769,6 @@
 	!ifndef - START_SCROLL_PERIL_BEAM
 		Items.PerilBeam;	`SCROLLMAJOR`
 	!else
-		Dummy_PerilBeam:NoSpoiler;	Unshuffled;	DumPerilBeam1:Define:FirstByte, DumPerilBeam2:Define:SecondByte;	;	Items.PerilBeam
 		!ifdef - DOJORANDOM
 			Items.Rupee5;		DungeonMinor;	dojo
 		!endif
@@ -3227,33 +3296,6 @@
 			!endif
 		!endif
 	!endif
-	!ifdef - YES_SCROLL_PROG
-		!ifdef - START_SCROLL_FAST_SPIN
-			Dummy_FastSpin:NoSpoiler;	Unshuffled;	DumFastSpin1:Define:FirstByte, DumFastSpin2:Define:SecondByte;	;	Items.ProgressiveItem.0x04
-		!endif
-		!ifdef - START_SCROLL_FAST_SPLIT
-			Dummy_FastSplit:NoSpoiler;	Unshuffled;	DumFastSplit1:Define:FirstByte, DumFastSplit2:Define:SecondByte;	;	Items.ProgressiveItem.0x04
-		!endif
-		!ifdef - START_SCROLL_GREAT_SPIN
-			Dummy_GreatSpin:NoSpoiler;	Unshuffled;	DumGreatSpin1:Define:FirstByte, DumGreatSpin2:Define:SecondByte;	;	Items.ProgressiveItem.0x04
-		!endif
-		!ifdef - START_SCROLL_LONG_SPIN
-			Dummy_LongSpin:NoSpoiler;	Unshuffled;	DumLongSpin1:Define:FirstByte, DumLongSpin2:Define:SecondByte;	;	Items.ProgressiveItem.0x04
-		!endif
-	!else
-		!ifdef - START_SCROLL_FAST_SPIN
-			Dummy_FastSpin:NoSpoiler;	Unshuffled;	DumFastSpin1:Define:FirstByte, DumFastSpin2:Define:SecondByte;	;	Items.FastSpin
-		!endif
-		!ifdef - START_SCROLL_FAST_SPLIT
-			Dummy_FastSplit:NoSpoiler;	Unshuffled;	DumFastSplit1:Define:FirstByte, DumFastSplit2:Define:SecondByte;	;	Items.FastSplit
-		!endif
-		!ifdef - START_SCROLL_GREAT_SPIN
-			Dummy_GreatSpin:NoSpoiler;	Unshuffled;	DumGreatSpin1:Define:FirstByte, DumGreatSpin2:Define:SecondByte;	;	Items.GreatSpin
-		!endif
-		!ifdef - START_SCROLL_LONG_SPIN
-			Dummy_LongSpin:NoSpoiler;	Unshuffled;	DumLongSpin1:Define:FirstByte, DumLongSpin2:Define:SecondByte;	;	Items.LongSpin
-		!endif
-	!endif
 	!ifdef - FIREROD_CHEST
 		Items.Firerod;		Minor;
 	!endif
@@ -3267,10 +3309,13 @@
 		Items.PieceOfHeart:24;	Major;
 	!endif
 	!ifdef - DOJORANDOM
-		!ifdef - NO_RED_FUSIONS
-			Items.Rupee5;			DungeonMinor;	dojo
+		!ifndef - ACCESS_BEATABLE
+			Items.Rupee5;		DungeonMinor;	dojojunk
 		!else
-			Items.Rupee5:4;		DungeonMinor;	dojo
+			Items.Rupee5;		DungeonMinor;	dojo
+		!endif
+		!ifndef - NO_RED_FUSIONS
+			Items.Rupee5:3;		DungeonMinor;	dojo
 		!endif
 	!endif
 !else
@@ -3315,113 +3360,45 @@
 			Items.MirrorShield;	Major;
 		!endif
 	!endif
-	!ifdef - YES_SCROLL_PROG
-		!ifdef - DOJORANDOM
-			!ifdef - START_SCROLL_FAST_SPIN
-				Dummy_FastSpin:NoSpoiler;	Unshuffled;	DumFastSpin1:Define:FirstByte, DumFastSpin2:Define:SecondByte;	;	Items.ProgressiveItem.0x04
-				Items.Rupee5;		DungeonMinor;	dojo
-			!else
-				Items.ProgressiveItem.0x04;	DungeonMajor;	dojo	#Scroll
-			!endif
-			!ifdef - START_SCROLL_FAST_SPLIT
-				Dummy_FastSplit:NoSpoiler;	Unshuffled;	DumFastSplit1:Define:FirstByte, DumFastSplit2:Define:SecondByte;	;	Items.ProgressiveItem.0x04
-				Items.Rupee5;		DungeonMinor;	dojo
-			!else
-				Items.ProgressiveItem.0x04;	DungeonMajor;	dojo	#Scroll
-			!endif
-			!ifdef - START_SCROLL_GREAT_SPIN
-				Dummy_GreatSpin:NoSpoiler;	Unshuffled;	DumGreatSpin1:Define:FirstByte, DumGreatSpin2:Define:SecondByte;	;	Items.ProgressiveItem.0x04
-				Items.Rupee5;		DungeonMinor;	dojo
-			!else
-				Items.ProgressiveItem.0x04;	DungeonMajor;	dojo	#Scroll
-			!endif
-			!ifdef - START_SCROLL_LONG_SPIN
-				Dummy_LongSpin:NoSpoiler;	Unshuffled;	DumLongSpin1:Define:FirstByte, DumLongSpin2:Define:SecondByte;	;	Items.ProgressiveItem.0x04
-				Items.Rupee5;		DungeonMinor;	dojo
-			!else
-				Items.ProgressiveItem.0x04;	DungeonMajor;	dojo	#Scroll
-			!endif
-			!ifdef - NO_RED_FUSIONS
-				FakeDojo1:dojo:NoSpoiler;		Dungeon;	FakeDojo11:Define:FirstByte, FakeDojo12:Define:SecondByte;	Helpers.BeatVaati;
-				FakeDojo2:dojo:NoSpoiler;		Dungeon;	FakeDojo21:Define:FirstByte, FakeDojo22:Define:SecondByte;	Helpers.BeatVaati;
-				FakeDojo3:dojo:NoSpoiler;		Dungeon;	FakeDojo31:Define:FirstByte, FakeDojo32:Define:SecondByte;	Helpers.BeatVaati;
-			!endif
+	!ifdef - DOJORANDOM
+		!ifdef - START_SCROLL_FAST_SPIN
+			Items.Rupee5;	DungeonMinor;	dojo
+		!else
+			`FASTSPIN`;		DungeonMinor;	dojo
 		!endif
-		!ifdef - DOJOANY
-			!ifdef - START_SCROLL_FAST_SPIN
-				Dummy_FastSpin:NoSpoiler;	Unshuffled;	DumFastSpin1:Define:FirstByte, DumFastSpin2:Define:SecondByte;	;	Items.ProgressiveItem.0x04
-			!else
-				Items.ProgressiveItem.0x04;	Major;	#Scroll
-			!endif
-			!ifdef - START_SCROLL_FAST_SPLIT
-				Dummy_FastSplit:NoSpoiler;	Unshuffled;	DumFastSplit1:Define:FirstByte, DumFastSplit2:Define:SecondByte;	;	Items.ProgressiveItem.0x04
-			!else
-				Items.ProgressiveItem.0x04;	Major;	#Scroll
-			!endif
-			!ifdef - START_SCROLL_GREAT_SPIN
-				Dummy_GreatSpin:NoSpoiler;	Unshuffled;	DumGreatSpin1:Define:FirstByte, DumGreatSpin2:Define:SecondByte;	;	Items.ProgressiveItem.0x04
-			!else
-				Items.ProgressiveItem.0x04;	Major;	#Scroll
-			!endif
-			!ifdef - START_SCROLL_LONG_SPIN
-				Dummy_LongSpin:NoSpoiler;	Unshuffled;	DumLongSpin1:Define:FirstByte, DumLongSpin2:Define:SecondByte;	;	Items.ProgressiveItem.0x04
-			!else
-				Items.ProgressiveItem.0x04;	Major;	#Scroll
-			!endif
+		!ifdef - START_SCROLL_FAST_SPLIT
+			Items.Rupee5;	DungeonMinor;	dojo
+		!else
+			`FASTSPLIT`;	DungeonMinor;	dojo
 		!endif
-	!else
-		!ifdef - DOJORANDOM
-			!ifdef - START_SCROLL_FAST_SPIN
-				Dummy_FastSpin:NoSpoiler;	Unshuffled;	DumFastSpin1:Define:FirstByte, DumFastSpin2:Define:SecondByte;	;	Items.FastSpin
-				Items.Rupee5;		DungeonMinor;	dojo
-			!else
-				Items.FastSpin;	DungeonMinor;	dojo
-			!endif
-			!ifdef - START_SCROLL_FAST_SPLIT
-				Dummy_FastSplit:NoSpoiler;	Unshuffled;	DumFastSplit1:Define:FirstByte, DumFastSplit2:Define:SecondByte;	;	Items.FastSplit
-				Items.Rupee5;		DungeonMinor;	dojo
-			!else
-				Items.FastSplit;	DungeonMinor;	dojo
-			!endif
-			!ifdef - START_SCROLL_GREAT_SPIN
-				Dummy_GreatSpin:NoSpoiler;	Unshuffled;	DumGreatSpin1:Define:FirstByte, DumGreatSpin2:Define:SecondByte;	;	Items.GreatSpin
-				Items.Rupee5;		DungeonMinor;	dojo
-			!else
-				Items.GreatSpin;	DungeonMajor;	dojo
-			!endif
-			!ifdef - START_SCROLL_LONG_SPIN
-				Dummy_LongSpin:NoSpoiler;	Unshuffled;	DumLongSpin1:Define:FirstByte, DumLongSpin2:Define:SecondByte;	;	Items.LongSpin
-				Items.Rupee5;		DungeonMinor;	dojo
-			!else
-				Items.LongSpin;	DungeonMinor;	dojo
-			!endif
-			!ifdef - NO_RED_FUSIONS
-				FakeDojo1:dojo:NoSpoiler;		Dungeon;	FakeDojo11:Define:FirstByte, FakeDojo12:Define:SecondByte;	Helpers.BeatVaati;
-				FakeDojo2:dojo:NoSpoiler;		Dungeon;	FakeDojo21:Define:FirstByte, FakeDojo22:Define:SecondByte;	Helpers.BeatVaati;
-				FakeDojo3:dojo:NoSpoiler;		Dungeon;	FakeDojo31:Define:FirstByte, FakeDojo32:Define:SecondByte;	Helpers.BeatVaati;
-			!endif
+		!ifdef - START_SCROLL_GREAT_SPIN
+			Items.Rupee5;	DungeonMinor;	dojo
+		!else
+			`GREATSPIN`;	DungeonMajor;	dojo
 		!endif
-		!ifdef - DOJOANY
-			!ifdef - START_SCROLL_FAST_SPIN
-				Dummy_FastSpin:NoSpoiler;	Unshuffled;	DumFastSpin1:Define:FirstByte, DumFastSpin2:Define:SecondByte;	;	Items.FastSpin
-			!else
-				Items.FastSpin;	Major;
-			!endif
-			!ifdef - START_SCROLL_FAST_SPLIT
-				Dummy_FastSplit:NoSpoiler;	Unshuffled;	DumFastSplit1:Define:FirstByte, DumFastSplit2:Define:SecondByte;	;	Items.FastSplit
-			!else
-				Items.FastSplit;	Major;
-			!endif
-			!ifdef - START_SCROLL_GREAT_SPIN
-				Dummy_GreatSpin:NoSpoiler;	Unshuffled;	DumGreatSpin1:Define:FirstByte, DumGreatSpin2:Define:SecondByte;	;	Items.GreatSpin
-			!else
-				Items.GreatSpin;	Major;
-			!endif
-			!ifdef - START_SCROLL_LONG_SPIN
-				Dummy_LongSpin:NoSpoiler;	Unshuffled;	DumLongSpin1:Define:FirstByte, DumLongSpin2:Define:SecondByte;	;	Items.LongSpin
-			!else
-				Items.LongSpin;	Major;
-			!endif
+		!ifdef - START_SCROLL_LONG_SPIN
+			Items.Rupee5;	DungeonMinor;	dojo
+		!else
+			`LONGSPIN`;		DungeonMinor;	dojo
+		!endif
+		!ifdef - NO_RED_FUSIONS
+			FakeDojo1:dojo:NoSpoiler;		Dungeon;	FakeDojo11:Define:FirstByte, FakeDojo12:Define:SecondByte;	Helpers.BeatVaati;
+			FakeDojo2:dojo:NoSpoiler;		Dungeon;	FakeDojo21:Define:FirstByte, FakeDojo22:Define:SecondByte;	Helpers.BeatVaati;
+			FakeDojo3:dojo:NoSpoiler;		Dungeon;	FakeDojo31:Define:FirstByte, FakeDojo32:Define:SecondByte;	Helpers.BeatVaati;
+		!endif
+	!endif
+	!ifdef - DOJOANY
+		!ifndef - START_SCROLL_FAST_SPIN
+			`FASTSPIN`;		Major;
+		!endif
+		!ifndef - START_SCROLL_FAST_SPLIT
+			`FASTSPLIT`;	Major;
+		!endif
+		!ifndef - START_SCROLL_GREAT_SPIN
+			`GREATSPIN`;	Major;
+		!endif
+		!ifndef - START_SCROLL_LONG_SPIN
+			`LONGSPIN`;		Major;
 		!endif
 	!endif
 	!ifndef - START_REMOTE
@@ -4578,10 +4555,28 @@ CanDownThrust;		Helper;; Helpers.HasSword, Items.DownThrust, Items.RocsCape
 	ShopBombBag;		Helper;; Helpers.Inaccessible
 !endif
 # These make it so we can count how many unique elements have been collected, as opposed to counting them with multiplicity
-HasEarthElement;			Helper;; Items.EarthElement
+HasEarthElement;		Helper;; Items.EarthElement
 HasFireElement;			Helper;; Items.FireElement
-HasWaterElement;			Helper;; Items.WaterElement
+HasWaterElement;		Helper;; Items.WaterElement
 HasWindElement;			Helper;; Items.WindElement
+# Same with scrolls
+HasSpinAttack;			Helper;; Items.SpinAttack
+HasGreatSpin;			Helper;; Items.GreatSpin
+HasFastSpin;			Helper;; Items.FastSpin
+HasFastSplit;			Helper;; Items.FastSplit
+HasLongSpin;			Helper;; Items.LongSpin
+HasRockBreaker;			Helper;; Items.RockBreaker
+HasDashAttack;			Helper;; Items.DashAttack
+HasDownThrust;			Helper;; Items.DownThrust
+HasRollAttack;			Helper;; Items.RollAttack
+HasSwordBeam;			Helper;; Items.SwordBeam
+HasPerilBeam;			Helper;; Items.PerilBeam
+!define - NON_SPIN_SCROLLS - Helpers.HasRockBreaker, Helpers.HasDashAttack, Helpers.HasDownThrust, Helpers.HasRollAttack, Helpers.HasSwordBeam, Helpers.HasPerilBeam
+!ifdef - YES_SCROLL_PROG
+	GotScrolls;			Helper;; (|(&`NON_SPIN_SCROLLS`, Items.ProgressiveItem.0x04), (&Items.ProgressiveItem.0x04:2, (+5, `NON_SPIN_SCROLLS`)), (&Items.ProgressiveItem.0x04:3, (+4, `NON_SPIN_SCROLLS`)), (&Items.ProgressiveItem.0x04:4, (+3, `NON_SPIN_SCROLLS`)), (&Items.ProgressiveItem.0x04:5, (+2, `NON_SPIN_SCROLLS`)));
+!else
+	GotScrolls;			Helper;; (+7, Helpers.HasSpinAttack, Helpers.HasGreatSpin, Helpers.HasFastSpin, Helpers.HasFastSplit, Helpers.HasLongSpin, `NON_SPIN_SCROLLS`);
+!endif
 
 # This section checks what the Weapon setting is and adjusts fight logic
 !ifdef - NOBOMB
@@ -4642,6 +4637,7 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 	!ifdef - ACCESS_BEATABLE
 		Hundo;	Helper;	;	Helpers.BeatVaati
 	!else
+		!ensurereachability
 		Hundo;	Helper;	;	Items.Untyped.0xFF:0xFF
 	!endif
 !endif
@@ -5195,7 +5191,7 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 		Nayru2Fusion;				Helper;;	Helpers.CanFuseRedV, Helpers.DinNayruFaroreFusion																					#GraveyardButterfly		19
 		MelariFusion;				Helper;;	Helpers.CanFuseRedV, Helpers.CompleteCoF																							#CrenelBeanstalk			1A
 		DinNayruFaroreFusion;		Helper;;	Helpers.CanFuseRedDin																											#USELESSGorman House		1B
-		GentariFusion;			Helper;;	Helpers.CanFuseRedE, Locations.MinishVillage_HP																					#BelariRemotes			1C
+		GentariFusion;			Helper;;	Helpers.CanFuseRedE, Helpers.AccessMinishWoods																					#BelariRemotes			1C
 		GrimbladeFusion;			Helper;;	Helpers.CanFuseRedE																											#FallsLowerWaterfallDojo	1D
 		MayorFusion;				Helper;;	Helpers.CanFuseRedE																											#LonLonPuddle				1E
 		VillageSideMinish2Fusion;	Helper;;	Helpers.CanFuseRedMinish, Helpers.VillageSideMinish0Fusion																			#FallsWaterPlatform		1F
@@ -5917,7 +5913,7 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 			Gina1Fusion;				Helper;;	Helpers.Inaccessible																											#TownWaterfall		42
 		!else
 			Dampe2Fusion;				Helper;;	Helpers.CanFuseGreenC, Helpers.Dampe1Fusion																						#RuinsCrack			41
-			Gina1Fusion;				Helper;;	Helpers.CanFuseGreenGina, Locations.Valley_GraveyardRightGraveFusion_Chest															#TownWaterfall		42
+			Gina1Fusion;				Helper;;	Helpers.CanFuseGreenGina, Helpers.Dampe1Fusion, Helpers.AccessValley, Helpers.DarkRooms, Helpers.Graveyard						#TownWaterfall		42
 		!endif
 		MinesMinishBedroomFusion;	Helper;;	Helpers.CanFuseGreenG, Helpers.AccessMelari																						#CrenelRainChest		43
 		Shared44Fusion;			Helper;;	Helpers.CanFuseShared44																										#MWNorthChest			44
@@ -5927,7 +5923,7 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 		Flurris2Fusion;			Helper;;	Helpers.CanFuseGreenG, Helpers.Flurris1Fusion																					#WesternTreeFallTop	48
 		Flurris1Fusion;			Helper;;	Helpers.CanFuseGreenFlurris, (|Helpers.StrangerFusion, Helpers.AccessWindTribe)														#SwampRope			49
 		HaileyFusion;				Helper;;	Helpers.CanFuseGreenG, Helpers.AccessClouds																						#FallsTektite			4A
-		TFZ1Fusion;				Helper;;	Helpers.CanFuseGreenTFZ1, (|Helpers.Fountain, Locations.MinishVillage_HP, Helpers.Library) 											#SwampNorthLily		4B
+		TFZ1Fusion;				Helper;;	Helpers.CanFuseGreenTFZ1, (|Helpers.Fountain, Helpers.AccessMinishWoods, Helpers.Library) 											#SwampNorthLily		4B
 		CastleMinishFusion;		Helper;;	Helpers.CanFuseGreenG, Helpers.BonkedTrees																						#WesternTreeFallSouth	4C
 		KnuckleFusion;			Helper;;	Helpers.CanFuseGreenG, Helpers.TingleBrothers, Locations.Trilby_DigCave_RightChest													#NHFBottomLeftTree	4D
 		Shared4EFusion;			Helper;;	Helpers.CanFuseShared4E																										#MWCrack				4E		
@@ -6082,21 +6078,21 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 					!define - Ruins_GoldenOcto - 
 					!ifndef - NO_RED_FUSIONS
 						!undefine - Ruins_ButterflyFusion_Item
-						!define - Ruins_ButterflyFusion_Item - , Locations.Ruins_ButterflyFusion_Item
+						!define - Ruins_ButterflyFusion_Item - , Helpers.Din2Fusion, Helpers.AccessRuins
 						!undefine - Ruins_BeanStalkFusion_BigChest
-						!define - Ruins_BeanStalkFusion_BigChest - , Locations.Ruins_BeanStalkFusion_BigChest
+						!define - Ruins_BeanStalkFusion_BigChest - , Helpers.RuinsMinishFusion, Helpers.AccessRuins, Helpers.RuinsArmos, Helpers.RuinsTektites
 						!undefine - Ruins_NearFoWFusion_Chest
-						!define - Ruins_NearFoWFusion_Chest - , Locations.Ruins_NearFoWFusion_Chest
+						!define - Ruins_NearFoWFusion_Chest - , Helpers.BelariFusion, Helpers.AccessRuins, Helpers.HasSword
 					!endif
 					!ifndef - NO_GREEN_FUSIONS
 						!undefine - Ruins_PillarsFusion_Chest
-						!define - Ruins_PillarsFusion_Chest - , Locations.Ruins_PillarsFusion_Chest
+						!define - Ruins_PillarsFusion_Chest - , Helpers.NHFMinishFusion, Helpers.AccessRuins, Helpers.RuinsArmos
 						!undefine - Ruins_CrackFusion_Chest
-						!define - Ruins_CrackFusion_Chest - , Locations.Ruins_CrackFusion_Chest
+						!define - Ruins_CrackFusion_Chest - , Helpers.Dampe2Fusion, Helpers.AccessRuins, Helpers.RuinsArmos, Helpers.RuinsTektites
 					!endif
 					!ifndef - GOLDEN_ENEMY_GREEN
 						!undefine - Ruins_GoldenOcto
-						!define - Ruins_GoldenOcto - , Locations.Ruins_GoldenOcto
+						!define - Ruins_GoldenOcto - , Helpers.LibrariFusion, Helpers.AccessRuins, Helpers.HasSword
 					!endif
 					!ifndef - SPECIALPOTS
 						!undefine - FoWRightDoor
@@ -6350,35 +6346,35 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 				!ifndef - SMALL_KEYS_STANDARD
 					!ifdef - PED_ITEMS
 						!undefine - Sanctuary_Pedestal_Item3
-						!define - Sanctuary_Pedestal_Item3 - , Locations.Sanctuary_Pedestal_Item3
+						!define - Sanctuary_Pedestal_Item3 - , Helpers.HasWaterElement, Helpers.HasFireElement, Helpers.HasWindElement, Helpers.HasEarthElement
 					!endif
 					!ifndef - NO_GREEN_FUSIONS
 						!ifdef - GOLDEN_ENEMY
 							!undefine - Castle_GoldenRope
-							!define - Castle_GoldenRope - , Locations.Castle_GoldenRope
+							!define - Castle_GoldenRope - , Helpers.Shared3CFusion, Helpers.HasSword
 						!endif
 						!undefine - Castle_LeftFountainFusion_MinishHoleChest
-						!define - Castle_LeftFountainFusion_MinishHoleChest - , Locations.Castle_LeftFountainFusion_MinishHoleChest
+						!define - Castle_LeftFountainFusion_MinishHoleChest - , Helpers.Shared35Fusion, Helpers.BonkedTrees
 					!endif
 					!ifndef - NO_RED_FUSIONS
 						!ifdef - HEART_RANDO
 							!undefine - Castle_RightFountainFusion_HP
-							!define - Castle_RightFountainFusion_HP - , Locations.Castle_RightFountainFusion_HP
+							!define - Castle_RightFountainFusion_HP - , Helpers.Shared18Fusion
 						!endif
 						!undefine - Castle_RightFountainFusion_MinishHoleChest
-						!define - Castle_RightFountainFusion_MinishHoleChest - , Locations.Castle_RightFountainFusion_MinishHoleChest
+						!define - Castle_RightFountainFusion_MinishHoleChest - , Helpers.Shared18Fusion, Helpers.BonkedTrees
 					!endif
 					!ifdef - HEART_RANDO
 						!undefine - Castle_Dojo_HP
-						!define - Castle_Dojo_HP - , Locations.Castle_Dojo_HP
+						!define - Castle_Dojo_HP -
 					!endif
 					!ifdef - DOJOANY
 						!undefine - Castle_Dojo_NPC
-						!define - Castle_Dojo_NPC - , Locations.Castle_Dojo_NPC
+						!define - Castle_Dojo_NPC - , Helpers.CastleDojo, Helpers.HasSword
 					!endif
 				!endif
 				!undefine - DHCBigBlock
-				!define - DHCBigBlock - , (&(+4, Items.SmallKey.0x1D:`DHCKEYAMOUNT`), Helpers.DHCKing, Locations.DHC_1F_Blade_Chest, Locations.DHC_1F_Throne_BigChest, Helpers.DHCBlackKnight, Helpers.DHCTowerDarknuts, Helpers.HasBow, Helpers.DHCLampPuzzle, Helpers.DHCGhini, Helpers.DHCSwitchPuzzles `Sanctuary_Pedestal_Item3` `Castle_GoldenRope` `Castle_RightFountainFusion_HP` `Castle_Dojo_HP` `Castle_Dojo_NPC` `Castle_RightFountainFusion_MinishHoleChest` `Castle_LeftFountainFusion_MinishHoleChest`)
+				!define - DHCBigBlock - , (&(+4, Items.SmallKey.0x1D:`DHCKEYAMOUNT`), Helpers.DHCKing, Helpers.DHCFirstCanon, Helpers.DHCBladePuzzle, Helpers.DHC1stDoor, Helpers.DHC2ndCanon, Helpers.BombWalls, Helpers.DHCThrone, Helpers.DHCBlackKnight, Helpers.DHCTowerDarknuts, Helpers.HasBow, Helpers.DHCLampPuzzle, Helpers.DHCGhini, Helpers.DHCSwitchPuzzles `Sanctuary_Pedestal_Item3` `Castle_GoldenRope` `Castle_RightFountainFusion_HP` `Castle_Dojo_HP` `Castle_Dojo_NPC` `Castle_RightFountainFusion_MinishHoleChest` `Castle_LeftFountainFusion_MinishHoleChest`)
 			!endif
 		!endif
 	!endif
@@ -6735,9 +6731,22 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 # Dojos
 !ifdef - DOJOVANILLA
 	!define - DOJOITEM - Unshuffled
-	!define - DOJOITEMRED - Unshuffled
+	!ifdef - NO_RED_FUSIONS
+		!define - DOJOITEMRED - Inaccessible
+	!else
+		!define - DOJOITEMRED - Unshuffled
+	!endif
 !else
-	!define - DOJOITEM - Dungeon
+	!ifdef - DOJORANDOM
+		!define - DOJOITEM - Dungeon
+		!ifdef - ITEM_POOL_RIP
+			!ifndef - ACCESS_BEATABLE
+				!define - SWAMP_DOJO - dojojunk
+			!endif
+		!endif
+	!else
+		!define - DOJOITEM - Any
+	!endif
 	!ifdef - NO_RED_FUSIONS
 		!define - DOJOITEMRED - Inaccessible
 	!else
@@ -6747,6 +6756,9 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 			!define - DOJOITEMRED - Any
 		!endif
 	!endif
+!endif
+!ifndef - SWAMP_DOJO
+	!define - SWAMP_DOJO - dojo
 !endif
 # HP Toggle
 !ifdef - HEART_RANDO
@@ -6907,40 +6919,6 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 	!endif
 	!define - GOLDREDFUSION - `REDFUSIONDUNGEON`
 !endif
-# Veil Falls Access
-!ifdef - FALLS_ACCESS
-	!define - FALLSCHEST - Any
-	!define - FALLSRUPEE - `RUPEE`
-	!define - FALLSDIG - `DIG`
-	!define - FALLSDIGKINSTONE - `DIGKINSTONE`
-	!define - FALLSWATER - `WATER`
-	!define - FALLSGREEN - `GREENFUSIONDUNGEON`
-	!define - FALLSENEMY - `GREENFUSIONENEMY`
-	!define - FALLSHP - `REDFUSIONHP`
-	!ifndef - BIGGORON_OFF
-		!ifndef - NO_RED_FUSIONS
-			!ifndef - NO_BLUE_FUSIONS
-				!define - FALLSBIGGORON - Any
-			!else
-				!ifdef - OPEN_RED_FUSIONS
-					!define - FALLSBIGGORON - Any
-				!endif
-			!endif
-		!endif
-	!endif
-!else
-	!define - FALLSCHEST - Inaccessible
-	!define - FALLSRUPEE - ;	Inaccessible
-	!define - FALLSDIG - ; Inaccessible
-	!define - FALLSDIGKINSTONE - Inaccessible
-	!define - FALLSWATER - ;	Inaccessible
-	!define - FALLSGREEN - Inaccessible
-	!define - FALLSENEMY - ;	Inaccessible
-	!define - FALLSHP - Inaccessible
-!endif
-!ifndef - FALLSBIGGORON
-	!define - FALLSBIGGORON - Inaccessible
-!endif
 # Lower Wind Tribe Access
 !ifdef - TRIBE_ACCESS
 	!define - WTFUSION - Dungeon
@@ -6975,6 +6953,40 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 		!define - WTFUSIONGREENENEMY - `WTFUSIONENEMY`
 		!define - UWTFUSIONGREEN - `PALACEOUTSIDECHEST`
 	!endif
+!endif
+# Veil Falls Access
+!ifdef - FALLS_ACCESS
+	!define - FALLSCHEST - Any
+	!define - FALLSRUPEE - `RUPEE`
+	!define - FALLSDIG - `DIG`
+	!define - FALLSDIGKINSTONE - `DIGKINSTONE`
+	!define - FALLSWATER - `WATER`
+	!define - FALLSGREEN - `WTFUSIONGREEN`
+	!define - FALLSENEMY - `GREENFUSIONENEMY`
+	!define - FALLSHP - `REDFUSIONHP`
+	!ifndef - BIGGORON_OFF
+		!ifndef - NO_RED_FUSIONS
+			!ifndef - NO_BLUE_FUSIONS
+				!define - FALLSBIGGORON - Any
+			!else
+				!ifdef - OPEN_RED_FUSIONS
+					!define - FALLSBIGGORON - Any
+				!endif
+			!endif
+		!endif
+	!endif
+!else
+	!define - FALLSCHEST - Inaccessible
+	!define - FALLSRUPEE - ;	Inaccessible
+	!define - FALLSDIG - ; Inaccessible
+	!define - FALLSDIGKINSTONE - Inaccessible
+	!define - FALLSWATER - ;	Inaccessible
+	!define - FALLSGREEN - Inaccessible
+	!define - FALLSENEMY - ;	Inaccessible
+	!define - FALLSHP - Inaccessible
+!endif
+!ifndef - FALLSBIGGORON
+	!define - FALLSBIGGORON - Inaccessible
 !endif
 # Royal Crypt
 !ifdef - RC_ACCESS
@@ -7074,7 +7086,11 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 	!define - FOW_INSIDE_BK - :FoWBigV
 	!define - TOD_INSIDE_BK - :ToDBigV
 	!define - POW_INSIDE_BK - :PoWBigV
-	!define - DHC_INSIDE_BK - :DHCBigV
+	!ifndef - REQUIREMENT_ITEM_DHC_BK
+		!define - DHC_INSIDE_BK - :DHCBigV
+	!else
+		!define - DHC_INSIDE_BK - `DHC_INSIDE`
+	!endif
 !else
 	!define - DWS_INSIDE_BK - `DWS_INSIDE`
 	!define - COF_INSIDE_BK - `COF_INSIDE`
@@ -7231,6 +7247,57 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 			!endif
 		!endif
 	!endif
+!endif
+
+# Workaround for an issue with the way scrolls and elements get placed that affects some specific combinations of options
+!ifdef - ACCESS_BEATABLE
+	!ifdef - DOJORANDOM
+		!ifndef - YES_SCROLL_PROG
+			!ifndef - START_SCROLL_SPIN
+				!ifndef - 0ELEMENT
+					!ifdef - SHUFFLE_ELEMENTS_DUNGEON
+						!define - ADJUST_DOJOS_FOR_RESHUFFLED_ELEMENTS
+					!endif
+					!ifdef - SHUFFLE_ELEMENTS_REGION
+						!define - ADJUST_DOJOS_FOR_RESHUFFLED_ELEMENTS
+					!endif
+				!endif
+			!endif
+		!endif
+	!endif
+!endif
+# In these option combinations, ensure SpinAttack is obtainable
+!ifdef - ADJUST_DOJOS_FOR_RESHUFFLED_ELEMENTS
+	# Crenel dojo requires Spin
+	!define - HUNDO_CRENEL_DOJO - (&Items.SpinAttack, Helpers.Hundo)
+	# Swamp dojos require Spin if Open World and Swamp Wind Crest are off
+	!ifndef - OPENWORLD_ON
+		!ifndef - SWAMP_CREST
+			!define - HUNDO_SWAMP_DOJO - (&Items.SpinAttack, Helpers.Hundo)
+			!ifndef - NO_RED_FUSIONS
+				!define - HUNDO_SWAMP_WATERFALL_DOJO - (&Items.SpinAttack, Helpers.Hundo)
+			!endif
+		!endif
+	!endif
+	# Main swamp dojo requires Spin if otherwise not enough scrolls are available to unlock its item
+	!ifndef - HUNDO_SWAMP_DOJO
+		!ifdef - ITEM_POOL_RIP
+			!define - HUNDO_SWAMP_DOJO - (&Items.SpinAttack, Helpers.Hundo)
+		!else
+			!ifdef - NO_RED_FUSIONS
+				!define - HUNDO_SWAMP_DOJO - (&Items.SpinAttack, Helpers.Hundo)
+			!endif
+		!endif
+	!endif
+!endif
+!ifndef - HUNDO_CRENEL_DOJO
+	!define - HUNDO_CRENEL_DOJO - Helpers.Hundo
+!endif
+!ifndef - HUNDO_SWAMP_DOJO
+	!define - HUNDO_SWAMP_DOJO - Helpers.Hundo
+!endif
+!ifndef - HUNDO_SWAMP_WATERFALL_DOJO
+	!define - HUNDO_SWAMP_WATERFALL_DOJO - Helpers.Hundo
 !endif
 
 #Cucco game
@@ -7540,7 +7607,7 @@ Town_GoronMerchant_4_Right;		`GORONSET4`;			goron4RightItem:Define:FirstByte,	go
 Town_GoronMerchant_5_Left;			`GORONSET5`;			goron5LeftItem:Define:FirstByte,	goron5LeftSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet	`GORONLEFT5`	), Helpers.Hundo);																												Items.Kinstone.RedV
 Town_GoronMerchant_5_Middle;		`GORONSET5`;			goron5MiddleItem:Define:FirstByte,	goron5MiddleSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet	`GORONMID5`	), Helpers.Hundo);																												Items.Kinstone.BlueL
 Town_GoronMerchant_5_Right;		`GORONSET5`;			goron5RightItem:Define:FirstByte,	goron5RightSub:Define:SecondByte;		(|(&Helpers.GoronLeftFusion, Items.Wallet	`GORONRIGHT5`	), Helpers.Hundo);																												Items.Kinstone.GreenC
-Town_Dojo_NPC1:dojo;				`DOJOITEM`;			swiftblade1DojoItem:Define:FirstByte, swiftblade1DojoSub:Define:SecondByte;	(|Helpers.HasSword, Helpers.Hundo);																																						Items.SpinAttack
+Town_Dojo_NPC1:dojo;				`DOJOITEM`;			swiftblade1DojoItem:Define:FirstByte, swiftblade1DojoSub:Define:SecondByte;	(|Helpers.HasSword, Helpers.Hundo);																																						`SPINATTACK`
 Town_Dojo_NPC2:dojo;				`DOJOITEM`;			swiftblade2DojoItem:Define:FirstByte, swiftblade2DojoSub:Define:SecondByte;	(|Helpers.HasWhiteSword, Helpers.Hundo);																																					Items.RockBreaker
 Town_Dojo_NPC3:dojo;				`DOJOITEM`;			swiftblade3DojoItem:Define:FirstByte, swiftblade3DojoSub:Define:SecondByte;	(|(&Helpers.HasSword, Items.PegasusBoots), Helpers.Hundo);																																	Items.DashAttack
 Town_Dojo_NPC4:dojo;				`DOJOITEM`;			swiftblade4DojoItem:Define:FirstByte, swiftblade4DojoSub:Define:SecondByte;	(|(&Helpers.HasSword, Items.RocsCape), Helpers.Hundo);																																	Items.DownThrust
@@ -7594,7 +7661,7 @@ NorthField_TreeFusion_TopRightChest;	`GREENFUSION`;	0x32-0x00-0x01;													
 NorthField_TreeFusion_BottomLeftChest;	`GREENFUSION`;	0x32-0x00-0x02;														(|Helpers.KnuckleFusion, Helpers.Hundo);										Items.Kinstone.RedE
 NorthField_TreeFusion_BottomRightChest;	`GREENFUSION`;	0x32-0x00-0x03;														(|Helpers.DavidJr1Fusion, Helpers.Hundo);									Items.Shells.200
 NorthField_TreeFusion_CenterBigChest;	`GREENFUSION`;	0x32-0x00-0x04;														(|Helpers.NorthFieldLadder, Helpers.Hundo);									`MAGICBOOMERANG`
-NorthField_WaterfallFusion_DojoNPC:dojo;	`DOJOITEMRED`;	greatbladeDojoItem:Define:FirstByte, greatbladeDojoSub:Define:SecondByte;	(|(&Helpers.WavebladeFusion, Items.Flippers, Helpers.HasSword), Helpers.Hundo);	Items.LongSpin
+NorthField_WaterfallFusion_DojoNPC:dojo;	`DOJOITEMRED`;	greatbladeDojoItem:Define:FirstByte, greatbladeDojoSub:Define:SecondByte;	(|(&Helpers.WavebladeFusion, Items.Flippers, Helpers.HasSword), Helpers.Hundo);	`LONGSPIN`
 
 #Castle
 Castle_Moat_LeftChest;					Any;				0x07-0x00-0x01;														(|Items.Flippers, Helpers.Hundo);	Items.Shells.100
@@ -7638,7 +7705,7 @@ LonLon_GoronCaveFusion_BigChest;	`BLUEFUSION`;		0x2F-0x01-0x01;								(|(&Helpe
 # Lower Veil Falls
 FallsLower_LonLonFusion_Chest;			`GREENFUSION`;	0x0FE0FE;															(|(&Helpers.Shared60Fusion, Helpers.AccessMinishWoods, Items.PacciCane), Helpers.Hundo);									Items.Rupee200
 FallsLower_HP;						`HP`;			0x0F87D3;															(|(&Helpers.AccessMinishWoods, Items.PacciCane), Helpers.Hundo);														Items.PieceOfHeart
-FallsLower_WaterfallFusion_DojoNPC:dojo;	`DOJOITEMRED`;	splitbladeDojoItem:Define:FirstByte, splitbladeDojoSub:Define:SecondByte;	(|(&Helpers.GrimbladeFusion, Helpers.AccessMinishWoods, Items.PacciCane, Items.Flippers, Helpers.HasSword), Helpers.Hundo);	Items.FastSplit
+FallsLower_WaterfallFusion_DojoNPC:dojo;	`DOJOITEMRED`;	splitbladeDojoItem:Define:FirstByte, splitbladeDojoSub:Define:SecondByte;	(|(&Helpers.GrimbladeFusion, Helpers.AccessMinishWoods, Items.PacciCane, Items.Flippers, Helpers.HasSword), Helpers.Hundo);	`FASTSPLIT`
 FallsLower_RockItem1					`RUPEE`;			0x0F87E3;															(|Helpers.LowerFallsItems, Helpers.Hundo);																			Items.Rupee20
 FallsLower_RockItem2					`RUPEE`;			0x0F87F3;															(|Helpers.LowerFallsItems, Helpers.Hundo);																			Items.Rupee20
 FallsLower_RockItem3					`RUPEE`;			0x0F8803;															(|Helpers.LowerFallsItems, Helpers.Hundo);																			Items.Rupee20
@@ -7802,7 +7869,7 @@ Crenel_Scrub_NPC;					Any;					gripScrubItem:Define:FirstByte, gripScrubSub:Defi
 Crenel_Dojo_LeftChest;				Any;					0x25-0x00-0x00;													(|(&Helpers.AccessCrenel, Items.GripRing, Helpers.CrenelDojo), Helpers.Hundo);																									Items.Rupee50
 Crenel_Dojo_RightChest;			Any;					0x25-0x00-0x01;													(|(&Helpers.AccessCrenel, Items.GripRing, Helpers.CrenelDojo), Helpers.Hundo);																									Items.Rupee50
 Crenel_Dojo_HP;					`HP`;				0x0D752B;														(|(&Helpers.AccessCrenel, Items.GripRing, Helpers.CrenelDojo), Helpers.Hundo);																									Items.PieceOfHeart
-Crenel_Dojo_NPC:dojo;				`DOJOITEM`;			graybladeDojoItem:Define:FirstByte, graybladeDojoSub:Define:SecondByte;	(|(&Helpers.AccessCrenel, Items.GripRing, Helpers.CrenelDojo, Helpers.HasSword), Helpers.Hundo);																					Items.RollAttack
+Crenel_Dojo_NPC:dojo;				`DOJOITEM`;			graybladeDojoItem:Define:FirstByte, graybladeDojoSub:Define:SecondByte;	(|(&Helpers.AccessCrenel, Items.GripRing, Helpers.CrenelDojo, Helpers.HasSword), `HUNDO_CRENEL_DOJO`);																			Items.RollAttack
 Crenel_GreatFairy_NPC;				Any;					0x00B828;														(|(&Helpers.AccessCrenel, Items.GripRing, Helpers.BombWalls, (|Items.BombBag, Helpers.HasBottle)), Helpers.Hundo);																	Items.BombBag
 Crenel_ClimbFusion_Chest;			`GREENFUSION`;		0x0FE10E;														(|(&Helpers.MeenieFusion, Helpers.AccessCrenel, Items.GripRing), Helpers.Hundo);																									Items.Kinstone.BlueL
 Crenel_DigCave_HP;				`HP`;				0x0F3BA7;														(|(&Helpers.AccessCrenel, Items.GripRing, Items.MoleMitts), Helpers.Hundo);																										Items.PieceOfHeart
@@ -7836,19 +7903,12 @@ CoF_Entrance										`DUNGEONENTRANCE`;	DumCoFENT:Define:FirstByte, DumCoFENT2:
 
 # Swamp
 AccessSwamp;						Helper;				;																	(|Helpers.SwampWindCrest, (&Helpers.AccessWestern, (|Items.PegasusBoots, Items.RocsCape)))
-#NonSpinScrolls;					Helper;				;																	Items.RockBreaker, Items.DashAttack, Items.DownThrust, Items.RollAttack, Items.SwordBeam, Items.PerilBeam
-#SpinScrolls;						Helper;				;																	Items.SpinAttack, Items.GreatSpin, Items.FastSpin, Items.FastSplit, Items.LongSpin
-!ifdef - YES_SCROLL_PROG
-	GotScrolls;						Helper;				;																	(|(&Items.RockBreaker, Items.DashAttack, Items.DownThrust, Items.RollAttack, Items.SwordBeam, Items.PerilBeam, Items.ProgressiveItem.0x04), (&Items.ProgressiveItem.0x04:2, (+5, Items.RockBreaker, Items.DashAttack, Items.DownThrust, Items.RollAttack, Items.SwordBeam, Items.PerilBeam)), (&Items.ProgressiveItem.0x04:3, (+4, Items.RockBreaker, Items.DashAttack, Items.DownThrust, Items.RollAttack, Items.SwordBeam, Items.PerilBeam)), (&Items.ProgressiveItem.0x04:4, (+3, Items.RockBreaker, Items.DashAttack, Items.DownThrust, Items.RollAttack, Items.SwordBeam, Items.PerilBeam)), (&Items.ProgressiveItem.0x04:5, (+2, Items.RockBreaker, Items.DashAttack, Items.DownThrust, Items.RollAttack, Items.SwordBeam, Items.PerilBeam)));
-!else
-	GotScrolls;						Helper;				;																	(+7, Items.SpinAttack, Items.GreatSpin, Items.FastSpin, Items.FastSplit, Items.LongSpin, Items.RockBreaker, Items.DashAttack, Items.DownThrust, Items.RollAttack, Items.SwordBeam, Items.PerilBeam);
-!endif
 Swamp_ButterflyFusion_Item;		`REDFUSION`;			0x0FE13F;															(|(&Helpers.Farore2Fusion, Helpers.AccessSwamp), Helpers.Hundo);																																									Items.DigButterfly
 Swamp_CenterCave_DarknutChest;		Any;					0x2B-0x00-0x00;														(|(&Helpers.AccessSwamp, Helpers.SwampDarknut), Helpers.Hundo);																																									Items.Kinstone.GoldenSwamp
 Swamp_CenterChest;				Any;					0x04-0x00-0x00;														(|(&Helpers.AccessSwamp, Helpers.HasBow), Helpers.Hundo);																																											Items.Kinstone.BlueL
 Swamp_GoldenRope					`WTFUSIONGREENENEMY`;	golden3Item:Define:FirstByte, golden3Sub:Define:SecondByte;				(|(&Helpers.Flurris1Fusion, Helpers.AccessSwamp, Helpers.HasSword), Helpers.Hundo);																																					Items.Rupee100
 Swamp_NearWaterfall_CaveHP;		`HP`;				0x0D9907;															(|(&Helpers.AccessSwamp, (|Helpers.SwampNorthShortcut, Helpers.HasBow), (|Items.RocsCape, Items.Flippers)), Helpers.Hundo);																												Items.PieceOfHeart
-Swamp_WaterfallFusion_DojoNPC:dojo;	`DOJOITEMRED`;		scarbladeDojoItem:Define:FirstByte, scarbladeDojoSub:Define:SecondByte;		(|(&Helpers.GreybladeFusion, Helpers.AccessSwamp, (|Helpers.SwampNorthShortcut, Helpers.HasBow), Items.Flippers), Helpers.Hundo);																											Items.FastSpin
+Swamp_WaterfallFusion_DojoNPC:dojo;	`DOJOITEMRED`;		scarbladeDojoItem:Define:FirstByte, scarbladeDojoSub:Define:SecondByte;		(|(&Helpers.GreybladeFusion, Helpers.AccessSwamp, (|Helpers.SwampNorthShortcut, Helpers.HasBow), Items.Flippers), `HUNDO_SWAMP_WATERFALL_DOJO`);																					`FASTSPIN`
 Swamp_NorthCave_Chest;				Any;					0x2A-0x01-0x00;														(|(&Helpers.AccessSwamp, (|Helpers.SwampNorthShortcut, Helpers.HasBow)), Helpers.Hundo);																																				Items.Kinstone.GoldenSwamp
 Swamp_DiggingCave_LeftChest;		Any;					0x17-0x00-0x00;														(|(&Helpers.AccessSwamp, Items.MoleMitts), Helpers.Hundo);																																											Items.Shells.50
 Swamp_DiggingCave_RightChest;		Any;					0x17-0x00-0x01;														(|(&Helpers.AccessSwamp, Items.MoleMitts), Helpers.Hundo);																																											Items.Kinstone.RedW
@@ -7857,7 +7917,7 @@ Swamp_Underwater_Middle;			`WATERKINSTONE`;		0x0D9357;															(|(&Helpers
 Swamp_Underwater_Bottom;			`WATERKINSTONE`;		0x0D9367;															(|(&Helpers.AccessSwamp, Items.Flippers), Helpers.Hundo);																																											Items.Kinstone.RedE
 Swamp_SouthCave_Chest;				Any;					0x2A-0x00-0x00;														(|(&Helpers.AccessSwamp, (|Items.Flippers, Items.RocsCape, (&Helpers.HasBow, Items.PegasusBoots), (&Helpers.SwampShortcut, Helpers.SwampSouthShortcut))), (&Helpers.SwampWindCrest, (|Helpers.HasBow, Helpers.SwampSouthShortcut)), Helpers.Hundo);	Items.Kinstone.GoldenSwamp
 Swamp_Dojo_HP;					`HP`;				0x0D78CB;															(|(&Helpers.AccessSwamp, (|Items.RocsCape, Helpers.HasBow, (&Items.PegasusBoots, Items.Flippers))), (&Helpers.SwampWindCrest, Items.PegasusBoots), Helpers.Hundo);																			Items.PieceOfHeart
-Swamp_Dojo_NPC:dojo;				`DOJOITEM`;			swiftbladeIDojoItem:Define:FirstByte, swiftbladeIDojoSub:Define:SecondByte;	(|(&Helpers.AccessSwamp, (|Items.RocsCape, Helpers.HasBow, (&Items.PegasusBoots, Items.Flippers)), Helpers.GotScrolls, Helpers.HasSword), (&Helpers.SwampWindCrest, Items.PegasusBoots, Helpers.GotScrolls, Helpers.HasSword), Helpers.Hundo);			Items.GreatSpin
+Swamp_Dojo_NPC:`SWAMP_DOJO`;			`DOJOITEM`;			swiftbladeIDojoItem:Define:FirstByte, swiftbladeIDojoSub:Define:SecondByte;	(|(&Helpers.AccessSwamp, (|Items.RocsCape, Helpers.HasBow, (&Items.PegasusBoots, Items.Flippers)), Helpers.GotScrolls, Helpers.HasSword), (&Helpers.SwampWindCrest, Items.PegasusBoots, Helpers.GotScrolls, Helpers.HasSword), `HUNDO_SWAMP_DOJO`);	`GREATSPIN`
 
 Swamp_MinishFusion_NorthCrack_Chest;	`GREENFUSION`;		0x27-0x09-0x00;	(|(&Helpers.TFZ1Fusion, Helpers.AccessSwamp, (|Items.PegasusBoots, Items.RocsCape, Helpers.HasBow)), Helpers.Hundo);											Items.Kinstone.BlueS
 Swamp_Minish_Mulldozer_BigChest;		Any;					0x27-0x06-0x00;	(|(&Helpers.AccessSwamp, (|Items.PegasusBoots, Items.RocsCape, Helpers.HasBow), (|Items.Flippers, Items.GustJar), Helpers.HasDamageSource), Helpers.Hundo);		`BOW`

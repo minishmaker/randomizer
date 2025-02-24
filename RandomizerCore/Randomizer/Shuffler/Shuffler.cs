@@ -54,7 +54,7 @@ internal class Shuffler : ShufflerBase
 
         var diff = DateTime.Now - time;
         Logger.Instance.BeginLogTransaction();
-        Logger.Instance.LogInfo($"Timing Benchmark - Parsing logic file took {diff.Seconds}.{diff.Milliseconds} seconds!");
+        Logger.Instance.LogInfo($"Timing Benchmark - Parsing logic file with settings {MinifiedSettings.GenerateSettingsString(GetSortedSettings(), GetLogicOptionsCrc32())} and cosmetics {MinifiedSettings.GenerateSettingsString(GetSortedCosmetics(), GetCosmeticOptionsCrc32())} took {diff.Seconds}.{diff.Milliseconds} seconds!");
         Logger.Instance.SaveLogTransaction(true);
     }
 
@@ -113,15 +113,14 @@ internal class Shuffler : ShufflerBase
         //var finalMajorItems = GetAvailableItems(new List<Item>());
         var finalFilledLocations = UpdateObtainedItemsFromPlacedLocations();
 
-        if (Location.ShufflerConstraints.Any() && !DependencyBase.BeatVaatiDependency!.DependencyFulfilled())
-            throw new ShuffleException("Randomization succeeded, but could not beat Vaati!");
+        VerifyReachability();
         
         finalFilledLocations.ForEach(location => location.Contents!.Value.NotifyParentDependencies(false));
         FilledLocations.AddRange(finalFilledLocations);
 
         var diff = DateTime.Now - time;
         Logger.Instance.SaveLogTransaction();
-        Logger.Instance.LogInfo($"Timing Benchmark - Shuffling with seed {Seed:X} and settings {MinifiedSettings.GenerateSettingsString(GetSortedSettings(), GetLogicOptionsCrc32())} took {diff.Seconds}.{diff.Milliseconds} seconds!");
+        Logger.Instance.LogInfo($"Timing Benchmark - Shuffling with seed {Seed:X} and settings {MinifiedSettings.GenerateSettingsString(GetFinalOptions().OnlyLogic().GetSorted(), GetLogicOptionsCrc32())} took {diff.Seconds}.{diff.Milliseconds} seconds!");
         Logger.Instance.SaveLogTransaction(true);
         
         Randomized = true;
@@ -174,6 +173,7 @@ internal class Shuffler : ShufflerBase
         //Grab all items that we need to beat the seed
         var allItems = MajorItems.Concat(DungeonMajorItems).ToList();
         var allItemsAndEntrances = MajorItems.Concat(DungeonMajorItems).Concat(DungeonEntrances).ToList();
+        var majorsAndEntrances = MajorItems.Concat(DungeonEntrances).ToList();
 
         //Like entrances, constraints shouldn't check logic when placing
         //Shuffle constraints
@@ -183,7 +183,7 @@ internal class Shuffler : ShufflerBase
         nextLocationGroup.Shuffle(Rng);
         Logger.Instance.LogInfo($"Placing Dungeon Constraints");
         FastFillConstraints(DungeonConstraints, nextLocationGroup);
-        
+
         nextLocationGroup = locationGroups.Any(group => group.Key == LocationType.OverworldConstraint)
             ? locationGroups.First(group => group.Key == LocationType.OverworldConstraint).ToList()
             : new List<Location>();
@@ -198,7 +198,7 @@ internal class Shuffler : ShufflerBase
         Logger.Instance.LogInfo($"Assigning Dungeon Prizes");
         var unfilledPrizeLocations = FillLocationsFrontToBack(DungeonPrizes, nextLocationGroup, allItems, considerPrizePlacements: true);
         //Take prizes that will get placed later into account for dungeon majors
-        var majorsAndDungeonMinorsAndEntrances = MajorItems.Concat(DungeonEntrances).Concat(DungeonMinorItems).ToList();
+        var majorsAndReshuffledPrizesAndEntrances = MajorItems.Concat(DungeonEntrances).Concat(ReshuffledPrizes).ToList();
 
         //Shuffle dungeon majors
         nextLocationGroup = locationGroups.Any(group => group.Key == LocationType.Dungeon)
@@ -206,13 +206,15 @@ internal class Shuffler : ShufflerBase
             : new List<Location>();
         nextLocationGroup.AddRange(unfilledPrizeLocations);
         Logger.Instance.LogInfo($"Placing Dungeon Majors");
-        var unfilledLocations = FillLocationsFrontToBack(DungeonMajorItems, nextLocationGroup, majorsAndDungeonMinorsAndEntrances);
+        var unfilledLocations = FillLocationsFrontToBack(DungeonMajorItems, nextLocationGroup, majorsAndReshuffledPrizesAndEntrances);
+
+        //Shuffle prizes that have been assigned to dungeons, but not yet placed
+        Logger.Instance.LogInfo($"Placing Reshuffled Dungeon Prizes");
+        unfilledLocations = FillLocationsFrontToBack(ReshuffledPrizes, unfilledLocations, majorsAndEntrances);
 
         //Shuffle dungeon minors
         Logger.Instance.LogInfo($"Placing Dungeon Minors");
-        unfilledLocations.AddRange(FillLocationsFrontToBack(DungeonMinorItems,
-            unfilledLocations,
-            allItemsAndEntrances));
+        unfilledLocations.AddRange(FillLocationsFrontToBack(DungeonMinorItems, unfilledLocations, allItemsAndEntrances));
 
         unfilledLocations = unfilledLocations.Distinct().ToList();
 
@@ -259,13 +261,11 @@ internal class Shuffler : ShufflerBase
             filledLocations.AddRange(UpdateObtainedItemsFromPlacedLocations());
 
             // Find locations that are available for placing the item
-            var availableLocations = locations.Where(location => location.CanPlace(item, Locations,
-                considerPrizePlacements && LogicParser.SubParser.PrizePlacements.ContainsKey(location.Name))).ToList();
+            var availableLocations = locations.Where(location => location.CanPlace(item, Locations)).ToList();
 
             if (availableLocations.Count == 0)
             {
-                availableLocations = fallbackLocations.Where(location => location.CanPlace(item, Locations,
-                    considerPrizePlacements && LogicParser.SubParser.PrizePlacements.ContainsKey(location.Name))).ToList();
+                availableLocations = fallbackLocations.Where(location => location.CanPlace(item, Locations)).ToList();
                 usingFallback = true;
             }
 
@@ -297,10 +297,9 @@ internal class Shuffler : ShufflerBase
                 Logger.Instance.LogInfo(
                     $"Assigned prize {item.Type} subtype {StringUtil.AsStringHex2(item.SubValue)} to {location.Name} from {availableLocations.Count} locations, with {items.Count} items remaining");
 
-                // We are using DungeonMinor instead of DungeonMajor here so that other items like keys get placed first and do not run out of free locations, the same logic rules apply either way
-                item.ShufflePool = dungeon == "" ? ItemPool.Major : ItemPool.DungeonMinor;
+                item.ShufflePool = dungeon == "" ? ItemPool.Major : ItemPool.DungeonMajor;
                 item.Dungeon = dungeon;
-                (dungeon == "" ? MajorItems : DungeonMinorItems).Add(item);
+                (dungeon == "" ? MajorItems : ReshuffledPrizes).Add(item);
 
                 if (usingFallback) fallbackLocations.Remove(location);
                 else locations.Remove(location);
@@ -322,7 +321,7 @@ internal class Shuffler : ShufflerBase
                 filledLocations.Add(location);
             }
 
-            if (items.Count == 0) Logger.Instance.LogInfo($"All {item.ShufflePool} placed");
+            if (items.Count == 0) Logger.Instance.LogInfo(considerPrizePlacements ? "All Dungeon Prizes assigned" : $"All {item.ShufflePool} placed");
 
             errorIndexes.Clear();
         }

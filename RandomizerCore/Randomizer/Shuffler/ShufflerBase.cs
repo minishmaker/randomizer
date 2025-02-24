@@ -39,6 +39,7 @@ internal abstract class ShufflerBase
             protected readonly List<Item> DungeonMajorItems;
             protected readonly List<Item> DungeonMinorItems;
             protected readonly List<Item> DungeonPrizes;
+            protected readonly List<Item> ReshuffledPrizes;
             protected readonly List<Item> FillerItems;
 
             protected readonly List<Location> Locations;
@@ -322,6 +323,7 @@ internal abstract class ShufflerBase
         OverworldConstraints = new List<Item>();
 
         DungeonPrizes = new List<Item>();
+        ReshuffledPrizes = new List<Item>();
         DungeonMajorItems = new List<Item>();
         DungeonMinorItems = new List<Item>();
         MajorItems = new List<Item>();
@@ -451,6 +453,7 @@ internal abstract class ShufflerBase
             OverworldConstraints.Clear();
 
             DungeonPrizes.Clear();
+            ReshuffledPrizes.Clear();
             DungeonMajorItems.Clear();
             DungeonMinorItems.Clear();
             MajorItems.Clear();
@@ -468,6 +471,7 @@ internal abstract class ShufflerBase
             LogicParser.SubParser.ClearAmountReplacements();
             LogicParser.SubParser.ClearPrizePlacements();
             LogicParser.SubParser.ClearDefines();
+            LogicParser.SubParser.EnsureReachability = false;
         }
 
         /// <summary>
@@ -625,6 +629,43 @@ internal abstract class ShufflerBase
             } while (previousSize > 0);
 
             return availableItems;
+        }
+
+        /// <summary>
+        ///     Checks whether the game is beatable.
+        ///     If all locations are supposed to be reachable, this is also checked.
+        ///     Throws an exception if any check fails.
+        /// </summary>
+        protected void VerifyReachability()
+        {
+            if (Location.ShufflerConstraints.Any())
+            {
+                if (!DependencyBase.BeatVaatiDependency!.DependencyFulfilled())
+                {
+                    var inaccessibleLocations = GetUnreachableLocations(); // Log these for debugging
+                    foreach (var location in inaccessibleLocations) Logger.Instance.LogInfo($"Unreachable location: {location.Name} containing {location.Contents}");
+                    throw new ShuffleException("Randomization succeeded, but could not beat Vaati!");
+                }
+
+                if (LogicParser.SubParser.EnsureReachability)
+                {
+                    var inaccessibleLocations = GetUnreachableLocations();
+                    foreach (var location in inaccessibleLocations) Logger.Instance.LogInfo($"Unreachable location: {location.Name} containing {location.Contents}");
+                    if (inaccessibleLocations.Count != 0)
+                    {
+                        throw new ShuffleException($"Randomization succeeded, but {inaccessibleLocations.Count} locations ended up unreachable!");
+                    }
+                }
+            }
+        }
+
+        protected IList<Location> GetUnreachableLocations()
+        {
+            var itemLocations = Locations.Where(location =>
+                location.Type is not LocationType.Helper and not LocationType.DungeonConstraint and not LocationType.OverworldConstraint
+                    and not LocationType.Music and not LocationType.Untyped and not LocationType.Inaccessible).ToList();
+            var inaccessibleLocations = itemLocations.Where(location => !location.IsAccessible());
+            return inaccessibleLocations.ToList();
         }
         
     #endregion

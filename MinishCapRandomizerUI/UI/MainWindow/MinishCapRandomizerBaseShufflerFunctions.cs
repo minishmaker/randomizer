@@ -61,6 +61,8 @@ public partial class MinishCapRandomizerUI
         _outputFilename = GetFilenameBaseShuffler();
         SettingHashLabel.Text = settingsString;
         CosmeticStringLabel.Text = cosmeticsString;
+        CopySettingsHashToClipboard.Enabled = true;
+        CopyCosmeticsHashToClipboard.Enabled = true;
         SettingHashLabel.Visible = true;
         CosmeticStringLabel.Visible = true;
     }
