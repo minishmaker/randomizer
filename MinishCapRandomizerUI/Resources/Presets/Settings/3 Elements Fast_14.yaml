@@ -1,0 +1,230 @@
+name: "3 Elements Fast"
+description: "Find the Elements in the three selected dungeons and finish in the sanctuary. All other dungeons are unrequired."
+settings:
+  ## Main Settings:
+  #  Dungeon Settings:
+  MAP_SETTING: MAP_STANDARD                       # Dungeon Maps
+  COMPASS_SETTING: COMPASS_STANDARD               # Compasses
+  SMALL_KEYS_SETTING: SMALL_KEYS_STANDARD         # Small Keys
+  BIG_KEYS_SETTING: BIG_KEYS_STANDARD             # Big Keys
+  SHUFFLE_ELEMENTS: SHUFFLE_ELEMENTS_DUNGEON      # Shuffle Elements
+  DUNGEON: UNREQ                                  # NonElement Dungeons
+  DHC_BARREN: on                                  # DHC is Barren
+  #  Requirements:
+  DHC_SETTING: NODHC                              # Dark Hyrule Castle Opens
+  REQUIREMENT_ITEM: REQUIREMENT_ITEM_NONE         # Requirement Reward
+  AD_PED: AD_PED_0                                # Dungeons Required
+  SWORD_SETTING: 0SWORD                           # Sword Requirement
+  ELEMENT_SETTING: 4ELEMENT                       # Elements Required
+  FIGURINE_HUNT: off                              # Figurine Hunt
+  FIGURINE_TOTAL: 30                              # Figurines in world
+  FIGURINE_COUNT: 20                              # Figurines required
+  #  Shuffle:
+  DOJO: DOJOANY                                   # Dojo Swordmasters
+  CUCCO_SETTING: CUCCO_0                          # Cucco Minigame
+  GORON_SETTING: GORON_0                          # Goron Merchant
+  BIGGORON_SETTING: BIGGORON_OFF                  # Biggoron
+  HEART_RANDO: on                                 # Heart Pieces and Containers
+  RUPEEMANIA: on                                  # Rupees
+  SPECIALPOTS: on                                 # Special Pots
+  DIGGING: on                                     # Dig spots
+  UNDERWATER: on                                  # Underwater spots
+  GOLDEN_ENEMY: off                               # Golden Enemies
+  SHOP_BOMBBAG: on                                # Extra JP/US Shop Item
+  PED_ITEMS: off                                  # Sanctuary Pedestal
+  ## World Settings:
+  #  Global:
+  OPENWORLD: OPENWORLD_OFF                        # World obstacles are
+  ENTRANCES: ENTRANCES_COUPLED                    # Dungeon Entrances are
+  #  Fusions:
+  GOLD_FUSION_SETTING: OPEN_GOLD_FUSIONS          # Gold Fusions are
+  RED_FUSION_SETTING: NO_RED_FUSIONS              # Red Fusions are
+  BLUE_FUSION_SETTING: NO_BLUE_FUSIONS            # Blue Fusions are
+  GREEN_FUSION_SETTING: NO_GREEN_FUSIONS          # Green Fusions are
+  SEEDED_SHARED: on                               # Order Shared Fusions
+  DEFICKLE: on                                    # Defickle Fusers
+  FUSION_SKIPS: INSTANT_SKIP                      # Skip Fusion Cutscenes
+  SHOW_MAP: on                                    # Always Show Map
+  #  Speed Up:
+  OPEN_WIND_TRIBE: off                            # Wind Tribe Tower
+  OPEN_TINGLE: off                                # Tingle Brothers
+  OPEN_LIBRARY: off                               # Library
+  #  Wind Crests:
+  CRENEL_CREST: off                               # Mt Crenel
+  FALLS_CREST: off                                # Veil Falls
+  CLOUD_CREST: off                                # Cloud Tops
+  TOWN_CREST: off                                 # Hyrule Town
+  LAKE_CREST: on                                  # Lake Hylia
+  SWAMP_CREST: off                                # Swamp
+  SHF_CREST: off                                  # Link's House
+  MINISH_CREST: off                               # Minish Woods
+  #  Dungeon Warps:
+  DWS_BLUEWARP: off                               # DWS Blue
+  DWS_REDWARP: off                                # DWS Red
+  COF_BLUEWARP: off                               # CoF Blue
+  COF_REDWARP: off                                # CoF Red
+  FOW_BLUEWARP: off                               # FoW Blue
+  FOW_REDWARP: off                                # FoW Red
+  TOD_BLUEWARP: on                                # ToD Blue
+  TOD_REDWARP: on                                 # ToD Red
+  POW_BLUEWARP: off                               # PoW Blue
+  POW_REDWARP: off                                # PoW Red
+  DHC_BLUEWARP: off                               # DHC Blue
+  DHC_REDWARP: off                                # DHC Red
+  ## Logic Settings:
+  #  Logic Rules:
+  NO_LOGIC: off                                   # No Logic
+  ACCESSIBILITY: ACCESS_LOCATIONS                 # Reachable
+  GRABBABLE: GRABBABLE                            # Grab items from a distance
+  GUARANTEED_BARLOV: BARLOVFARM                   # Barlov farm Infinite Rupees
+  #  Weapons:
+  BOMBWEAPON: NOBOMB                              # Bombs
+  BOWWEAPON: NOBOW                                # Bows
+  GUSTWEAPON: NOGUST                              # Gust Jar
+  LAMPWEAPON: NOLAMP                              # Lantern
+  #  Require Tricks:
+  MITTSMONEY_SETTING: NOMITTSMONEY                # Mole Mitts farm Infinite Rupees
+  BLOWDUST_SETTING: GUST                          # Bombs blow away dust
+  MUSHROOM_SETTING: NOMUSH                        # Crenel mushroom grab with Gust jar
+  ARROWBREAK_SETTING: NOLIGHTS                    # Light Arrows break objects
+  BOBOMBS_SETTING: NOBOBOMBS                      # Use Bobombs to destroy walls
+  LIKELIKE_SETTING: NOLIKELIKE                    # LikeLike cave without a Sword
+  GUARDSKIP_SETTING: NOGUARDSKIP                  # Skip Town guard using Boots
+  CRENELBEAM_SETTING: NOBEAM                      # Use Beam to hit switch on Mt Crenel
+  DTBEETLE_SETTING: NOTHRUST                      # Use DownThrust to flip Spikey Beetles
+  DARKROOMS_SETTING: NODARK                       # Dark Rooms without a Lantern
+  EXTENDCAPE_SETTING: NOEXTENSION                 # Tricky Cape jumps across water
+  LAKEMINISH_SETTING: NOLAKEMINISH                # Minish in Lake without Boots
+  CABINSWIM_SETTING: NOCABIN                      # Swim to Cabin without lilypad
+  CLOUDSKILL_SETTING: NOCLOUDSKILL                # Kill Cloud Sharks without Weapons
+  POWJUMP_SETTING: NOPOWJUMP                      # PoW 2F is clearable without a Cane
+  POWPOTOOL_SETTING: NOPOWOOL                     # Pot Puzzle without Power Bracelets
+  DHCCANON_SETTING: NODHCCANON                    # DHC Canon rooms without Four Sword
+  DHCJOSTLE_SETTING: NODHCJOSTLE                  # DHC Pressure Pads without Four Sword
+  DHCSWITCHES_SETTING: NODHCSWITCHES              # DHC Switches without Four Sword
+  FOWPOT_SETTING: NOFOWPOT                        # FoW Pot item early using the Gust Jar
+  ## Item Pool:
+  #  Global:
+  ITEM_POOL: ITEM_POOL_NORMAL                     # Item Pool
+  RANDOM_BOTTLE_CONTENT: on                       # Random Bottle Contents
+  TRAPS: off                                      # Traps
+  MEME: off                                       # Fun Junk
+  FIREROD: NO_FIREROD                             # Firerod
+  #  Progressive:
+  YES_SWORD_PROG: on                              # Swords are Progressive
+  YES_BOW_PROG: on                                # Bows are Progressive
+  YES_BOOM_PROG: on                               # Boomerangs are Progressive
+  YES_SHIELD_PROG: on                             # Shields are Progressive
+  YES_SCROLL_PROG: on                             # Spin Scrolls are Progressive
+  #  Kinstone Packs:
+  GOLD1MULTIPLIER: 1                              # Cloud Tops Kinstone pack size
+  GOLD2MULTIPLIER: 1                              # Swamp Kinstone pack size
+  REDWMULTIPLIER: 1                               # Red W Kinstone pack size
+  REDVMULTIPLIER: 1                               # Red V Kinstone pack size
+  REDEMULTIPLIER: 1                               # Red E Kinstone pack size
+  BLUELMULTIPLIER: 1                              # Blue L Kinstone pack size
+  BLUESMULTIPLIER: 1                              # Blue S Kinstone pack size
+  GREENCMULTIPLIER: 1                             # Green C Kinstone pack size
+  GREENGMULTIPLIER: 1                             # Green G Kinstone pack size
+  GREENPMULTIPLIER: 1                             # Green P Kinstone pack size
+  #  Key Chains:
+  KEYDWSMULTIPLIER: DWS1KEY                       # Deepwood Shrine Keychain size
+  KEYCOFMULTIPLIER: COF1KEY                       # Cave of Flames Keychain size
+  KEYFOWMULTIPLIER: FOW1KEY                       # Fortress of Winds Keychain size
+  KEYTODMULTIPLIER: TOD1KEY                       # Temple of Droplets Keychain size
+  KEYRCMULTIPLIER: RC1KEY                         # Royal Crypt Keychain size
+  KEYPOWMULTIPLIER: POW1KEY                       # Palace of Winds Keychain size
+  KEYDHCMULTIPLIER: DHC1KEY                       # Dark Hyrule Castle Keychain size
+  ## Start Inventory:
+  #  Main Items:
+  START_SMITH_SWORD: on                           # Smith Sword
+  START_GREEN_SWORD: off                          # Green Sword
+  START_RED_SWORD: off                            # Red Sword
+  START_BLUE_SWORD: off                           # Blue Sword
+  START_FOUR_SWORD: off                           # Four Sword
+  START_NORMAL_BOW: off                           # Bow
+  START_LIGHT_BOW: off                            # Light Arrows
+  START_NORMAL_BOOM: off                          # Boomerang
+  START_MAGIC_BOOM: off                           # Magical Boomerang
+  START_NORMAL_SHIELD: off                        # Shield
+  START_MIRROR_SHIELD: off                        # Mirror Shield
+  START_REMOTE: on                                # Remote Bomb Upgrade
+  START_LANTERN: off                              # Lantern
+  START_GUST: off                                 # Gust Jar
+  START_PACCI: off                                # Cane of Pacci
+  START_MITTS: off                                # Mole Mitts
+  START_CAPE: off                                 # Roc's Cape
+  START_BOOTS: off                                # Pegasus Boots
+  START_OCARINA: on                               # Ocarina of Wind
+  #  Start Capacity:
+  START_BOMBBAGS: START_BOMBBAGS_0                # Bomb Bags
+  START_QUIVERS: START_QUIVERS_0                  # Quivers
+  START_WALLETS: START_WALLETS_3                  # Wallets
+  START_BOTTLES: START_BOTTLES_0                  # Bottles
+  #  Quest Status Items:
+  START_EARTH_ELEMENT: on                         # Earth Element
+  START_FIRE_ELEMENT: off                         # Fire Element
+  START_WATER_ELEMENT: off                        # Water Element
+  START_WIND_ELEMENT: off                         # Wind Element
+  START_DOG_FOOD: off                             # Dog Food Bottle
+  START_RANCH_KEY: off                            # Lon Lon Ranch Key
+  START_MUSHROOM: off                             # Wake Up Mushroom
+  START_BOOK_1: off                               # Red Library Book
+  START_BOOK_2: off                               # Green Library Book
+  START_BOOK_3: off                               # Blue Library Book
+  START_GRAVEYARD_KEY: off                        # Graveyard Key
+  START_TINGLE_TROPHY: off                        # Tingle Trophy
+  START_CARLOV_MEDAL: off                         # Carlov Medal
+  START_GRIP_RING: off                            # Grip Ring
+  START_POWER_BRACELETS: off                      # Power Bracelets
+  START_FLIPPERS: off                             # Flippers
+  START_JABBER_NUT: off                           # Jabber Nut
+  #  Sword Scrolls:
+  START_SCROLL_SPIN: off                          # Spin Attack
+  START_SCROLL_ROLL: off                          # Roll Attack
+  START_SCROLL_DASH: off                          # Dash Attack
+  START_SCROLL_ROCK: on                           # Rock Breaker
+  START_SCROLL_SWORD_BEAM: off                    # Sword Beam
+  START_SCROLL_GREAT_SPIN: off                    # Great Spin Attack
+  START_SCROLL_DOWN_THRUST: off                   # Down Thrust
+  START_SCROLL_PERIL_BEAM: off                    # Peril Beam
+  START_SCROLL_FAST_SPIN: off                     # Fast Spin Charge
+  START_SCROLL_FAST_SPLIT: off                    # Fast Split Gauge
+  START_SCROLL_LONG_SPIN: off                     # Longer Great Spin Attack
+  #  Joy Butterflies:
+  START_ARROW_BUTTERFLY: on                       # Arrow Joy Butterfly
+  START_DIG_BUTTERFLY: on                         # Dig Joy Butterfly
+  START_SWIM_BUTTERFLY: on                        # Swim Joy Butterfly
+  #  Kinstones:
+  START_KINSTONES_GOLD_CLOUD: 0                   # Cloud Tops
+  START_KINSTONES_GOLD_SWAMP: 0                   # Swamp
+  START_KINSTONES_GOLD_FALLS: off                 # Veil Falls
+  START_KINSTONES_RED_W: 0                        # Red W
+  START_KINSTONES_RED_V: 0                        # Red V
+  START_KINSTONES_RED_E: 0                        # Red E
+  START_KINSTONES_BLUE_L: 0                       # Blue L
+  START_KINSTONES_BLUE_S: 0                       # Blue S
+  START_KINSTONES_GREEN_C: 0                      # Green C
+  START_KINSTONES_GREEN_G: 0                      # Green G
+  START_KINSTONES_GREEN_P: 0                      # Green P
+  ## Gameplay:
+  #  Difficulty:
+  GLITCHLESS: off                                 # Prevent Speedrun Glitches
+  TIMEDOHKO: off                                  # Timed OHKO
+  THREE_HEART: HEARTS_20                          # Maximum Health
+  DAMAGE_MULTI: MULTI_1                           # Damage Multiplier
+  SHY_FAIRIES: off                                # Shy Fairies
+  #  Improvements:
+  INSTANT_TEXT: on                                # Instant Text
+  ITEM_HISTORY: on                                # Item Name Display
+  HOMEWARP: on                                    # Homewarp
+  OCARINA_SELECT: on                              # Ocarina on Select
+  BOOTS_L: BOOTS_L_MINISH                         # Boots on L
+  #  Extras:
+  VANILLA_SHOP_ORDER: off                         # Vanilla Shop Item Order
+  GORON_ALT_PRICES: off                           # Goron Merchant JP/US prices
+  NO_KINSTONE_DROPS: on                           # Disable Kinstone Drops
+  NO_SHELL_DROPS: on                              # Disable Shell Drops
+  #  Mystery:
+  GOAL_HINT: GOAL_HINT_NUT_OR_ELEMENT             # Gentari Requirements Hint
+subweights: {}
