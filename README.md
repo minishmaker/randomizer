@@ -12,9 +12,9 @@
   * [Known Issues](#known-issues)
 * [CLI Information](#cli-information)
 * [Version History](#version-history)
-  
-This version: `0.7.0-alpha-rev3`
-This is a pre-release version before `0.7` proper
+
+This version: `1.0.0-rc2`
+This is a pre-release version before `1.0` proper
 
 Please see the [releases](https://github.com/minishmaker/randomizer/releases) page for the latest version.
 
@@ -25,7 +25,7 @@ This program is a Windows Only application, Linux and Mac users can run it throu
 Download the latest [release](https://github.com/minishmaker/randomizer/releases) directly from github, download the latest `MinishRandomizer.v0.X.X.zip` and not the source code.
 Extract all Files to a folder on your PC before running the program. With the program open, provide your European ROM and select the settings you wish to use. Press Randomize and save the newly created ROM, your original ROM is untouched.
 
-`WARNING:` Running the game on an inacurate emulator will cause crashes and a poor gameplay experience. A Blue screen has been added when the ROM boots to indicate to the player that the emulator is inacurate.
+`WARNING:` Running the game on an inaccurate emulator will cause crashes and a poor gameplay experience. A Blue screen has been added when the ROM boots to indicate to the player that the emulator is inaccurate.
 
 These are the recommended emulators:
 
@@ -130,13 +130,10 @@ Here are all the locations that you can expect to find items, depending on the s
 
 ### Known Issues
 
-- When the Graveyard Key is knocked out of your hands, it looks like the progressive sword.
-- Electric Chu’s have buggy animations.
-- Regional Keys combined with Dungeon Entrance Shuffle is unintuitive, eg: If Fortress is shuffled to Crenel, Small Keys for Fortress can be found in Wind Ruins but not in Crenel.
-- Major items sometimes do not show up properly in the Playthrough section of the spoiler log if they have a Minor version of the same item, or if they are unshuffled. (This has a pending fix in a later version)
-- About and Changelog pages are not implemented yet.
-- Verbose logger causes massive explosions in log size and has been disabled while we work on a fix.
-- Getting a second bomb bag with remotes equipped sometimes changes it back to regular bombs.
+- The UI is only supported on Windows machines and with display scaling set to 100%.
+- With Removed Gold Fusions, Dungeon Entrance Shuffle on, and Elements either placed Anywhere or forced in their Vanilla Dungeons or a high number of Dungeons required, some settings combinations have a high chance of failing to beat Vaati. This has no easy code fix until Logic v2 is done. To work around this, click the "New Seed" button and try again, or set your "Max Randomization Attempts" to 5 or more and try and randomize again.
+- Logic for Non-Progressive Swords can sometimes require unintuitive tricks with clones.
+- Regional Dungeon Items combined with Dungeon Entrance Shuffle is unintuitive, eg: If Fortress is shuffled to Crenel, Small Keys for Fortress can be found in Wind Ruins but not in Crenel.
 - Followers cause a fair amount of visual bugs ranging from miss coloured palettes, to certain sprites being completely missing.
 
 Please join our [Discord server](https://discord.gg/ndFuWbV) to discuss the project and assist with testing!

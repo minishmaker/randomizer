@@ -1,3 +1,135 @@
+# Version 1.0.0 RC 2
+
+
+#### This is a pre-release version
+
+## What's New!
+
+---
+
+### New Options
+
+- **Starting Inventory:** You can now pick a combination of items that you want to start the seed with. Would you like to start with a Sword to defend against enemies, or with the Ocarina for more early exploration options, or even with half the progression items in the game? It’s up to you! There are 65 items to choose from, so get creative!
+- **Element Shuffle:** There are four new options for how the Elements should get shuffled:
+  - Own Dungeon: The four Elements are randomized among the six usual Dungeons. However, they no longer have to get placed at the end of the dungeon, but can be found anywhere within the dungeon.
+  - Own Region: Like the above, except the Element can also get placed in the region surrounding the dungeon.
+  - Any Dungeon: The Elements can all get placed anywhere in any dungeon. There is no restriction for how many Elements can end up in the same dungeon. The locations of the Elements are not displayed on the overworld map.
+  - Any Region: Like the above, except the Elements can also get placed in the regions surrounding any of the dungeons.
+- **Biggoron:** A new item location can optionally be added to the seed! Biggoron is hungry for Shields. If you give it one, you will obtain its randomized item. Note that this will cost you your Normal Shield, though! Unlike vanilla, you do not need to have beaten the game beforehand, and you do not have to talk to Biggoron again after some time has passed. There are three options:
+  - Disabled: Biggoron is useless.
+  - Normal: Any Shield works to get the item.
+  - Require Mirror: The Mirror Shield is required to get the item.
+- **Extra JP/US Shop Item:** As many know, the JP and US versions of the game added a purchasable Bomb Bag to the shop in town, costing 600 Rupees. This option adds a corresponding location to the game.
+- **Vanilla Shop Item Order:** In the vanilla game, the player must buy the 80 Rupees item in the shop before the 300 Rupees item spawns. Additionally in the JP and US versions, you must buy the 300 Rupees item before the Bomb Bag item spawns. This option replicates that behavior. While this has no effect on the logic, you might have to visit the shop multiple times to find out what all the items are!
+- **Gentari Requirements Hint:** This only matters for playing a seed where you do not know the goal settings, like when playing a Mystery seed. Previously, Gentari always informed you about the goal and requirements when talking to him with the Jabber Nut. Now you can choose between six options:
+  - Always: Just talk to Gentari, no additional item required.
+  - Nut Or Element: You need the Jabber Nut or at least one of the four Elements. This is the new default option.
+  - Jabber Nut: You need the Jabber Nut.
+  - Element: You need at least one of the four Elements.
+  - Nut And Element: You need both the Jabber Nut and at least one of the four Elements.
+  - Never: Gentari never reveals any information about the seed options.
+- **DHC is Barren:** Like the name suggests, enabling this option guarantees that no important items can get placed inside Dark Hyrule Castle, aside from items belonging to the dungeon depending on the dungeon item settings.
+- **Lake Hylia Wind Crest:** Yes, you normally start with this, but now you can choose to disable it. Note that there will then be no way of reaching this wind crest, so this can remove some item locations from the game (including the library) depending on the other settings.
+- **Open Library:** This setting controls whether the library is open from the start of the game. Previously this was part of the “Open World” setting, now these are separate settings.
+- **Barlov Logic:** There is a new option to make the logic expect you to make as much money as you need in the Barlov minigame, of course enabling the patch to make you always win.
+
+### General Changes
+
+- The spare Shield sold in the shop now turns into a Mirror Shield after one has been collected for the first time. This ensures you cannot permanently lose it.
+- When Non-Element Dungeons are set to be Unrequired or Barren and Cave of Flames has no Element, then (like Melari) the item locations from Kinstone Fusions that are locked behind beating Cave of Flames are also forced to be Unrequired or Barren, assuming the corresponding Fusions are not set to Open.
+- When using Kinstone packs, the default item pool is now always adjusted to not contain way more Kinstones than necessary.
+- When the “Reachable” setting is set to “All Locations” or “All NonKeys”, the randomizer now guarantees that all locations (that should be reachable for the chosen settings) are really reachable. Note that this slightly changes the way the sphere-based shuffler places the remaining items after the goal has become reachable.
+- Vanilla Scrolls are now compatible with Progressive Scrolls.
+- CLI command files can now use and load YAML presets.
+- A small change in the Veil Falls Gold Crown Fusion logic allows for slightly more flexible placement of Gold Kinstones when starting with the Veil Falls Wind Crest.
+- Settings strings are now around 40% shorter due to dropdown settings taking up less space in them.
+- In UI tabs with many settings, the mouse wheel can now be used for easier scrolling without having to click on a setting in the tab first.
+- Biggoron can no longer be used to indefinitely upgrade Shields to Mirror Shields. Depending on the new Biggoron setting, Biggoron either does nothing useful, or you get its item once.
+- The new preset “3 Elements Fast” showcases some of the new options. Here you start with a few items including an element, the other three elements are hidden somewhere in three of the dungeons, and the other dungeons are unrequired. Go to the sanctuary with all four elements to finish the seed. Gold Fusions are Open and the others Removed.
+- The new Mystery weightset “Grouped” randomizes certain settings in groups. For example, Maps, Compasses, Small Keys and Big Keys always use the same (random) value, and the value for Element Shuffle gets restricted to use a value which is in some way similar to that. Similarly, Red, Blue and Green Fusions use the same value (restricting the possible options for Gold Fusions), dungeon warps of the same color are opened together, and more.
+
+### Bug Fixes
+
+- Very broken shuffler logic with Shared Fusions
+- Key logic bug with Keychains locking themselves when not allowed to
+- Fire Traps at Goron Merchant locking the game
+- Logic bug that counted the same element multiple times for beating the game and Pedestal Items with Plentiful Item Pool
+- Logic bug that made the normal shuffler not treat the Jabber Nut and the Lon Lon Ranch Key as progression during item placement
+- Required items besides DungeonPrize items never getting placed in DungeonPrize locations
+- Logic bug where Shared Fusions could expect one too few or one too many Green Kinstones in Vanilla or Combined Green Fusions
+- Castor Wilds Stone Block being in a glitched state in Open World without Open Gold Fusions
+- Ruins_NearFoWFusion_Chest only being in logic when fusing with Gentari was also doable in Vanilla Red Fusions
+- Veil Falls Gold Crown Fusion logic not taking Open Wind Tribe into account
+- The two Falls_WaterDigCaveFusion locations sometimes expecting Tricky Cape Jumps when those should be out of logic
+- Librari giving a random item when Heart Pieces and Containers are set to vanilla
+- Traps at Goron Merchant not showing the correct text that matches the item graphics
+- Multiple Traps at Goron Merchant using similar disguises
+- Missing error message when parsing a logic file failed
+- Loading of preset lists failing when a settings preset has been manually added that does not follow the naming scheme of the default presets
+- Gentari’s curtain not automatically opening when starting with the Minish Woods Wind Crest and finding the Ocarina
+- Generation error when using logic files with unshuffled items with certain subtypes
+- Generation error in some setting combinations involving Removed Gold Fusions and Dungeon Requirements
+- Generation error in some setting combinations involving Randomized Scrolls and Reduced Item Pool
+- “Reachable” setting not forced to “Only the Goal” in some setting combinations involving Vanilla Elements and an unreachable Palace of Winds
+- Issue with the hiding of settings strings and the disabling of the corresponding copy buttons not properly being tied to the use of Mystery settings
+- Small logic bug where Cape was not always considered for reaching the Underwater Pot location in Temple of Droplets
+- Like Likes giving back a different Shield type than they stole
+- Issue with Minish Dash after jumping down a ledge (could result in jumping on a Minish portal as a Minish which could cause various weird states)
+- A back side for the Temple of Droplets boss door was added to prevent getting stuck in the door when walking backwards into it after using a portal to get to the main part of the dungeon without having opened the boss door
+- Gina’s Grave not automatically getting pushed when the fusion cutscene is skipped
+- Graveyard Key visually appearing like a Progressive Sword when it gets knocked out of Link’s hand
+- Broken Blue Chuchu graphics
+- When saving a ROM, patch or spoiler from the UI, the suggested filenames being based on wrong seed numbers and settings when these were changed after generation of the seed
+- Types of Bombs and Bows unintentionally getting switched when equipped on the B button and picking up a matching item type
+- Killed Door Mimics counter getting overwritten by first killed Octorok
+- Golden Tektite near Cave of Flames not dropping its vanilla item (Big Red Rupee, unlike all other Golden Enemies which drop a Big Blue Rupee) when Golden Enemies are set to vanilla
+- Small visual bug with getting back a Shield from a Like Like
+
+Some of these bugs have been discovered by members of the community, including BlueZy, CandyCrystal, Chaia Eran, Deoxis, mashy, Nimbus125, NyanCato, Ranpo, Rom-Steïn and Star1468. Many thanks to all of them!
+
+### Logic Parser Changes
+
+- Logic files can use the new `!prizeplacement` directive to make a DungeonPrize item get shuffled within a given region after it has been assigned to a specific DungeonPrize location. (Some of the new options for how Elements are shuffled use this.)
+- Logic files can use the new `!ensurereachability` directive to enable a check after item placement whether all item and entrance locations that are not marked as being inaccessible are really logically accessible. This forces the sphere-based shuffler to continue placing items like normal even when the goal is reachable, otherwise remaining progression items might be discarded and as a result locations made unreachable.
+- Logic files can specify a multiplier when adding items to the pool, which affects how many items are actually added to reach the specified total amount. (The default logic uses this to adjust the amount of Kinstones in the pool with respect to the Kinstone pack settings.)
+- `!addition` now works with negative numbers, and there is no longer an upper limit of 255 for the sum.
+
+---
+
+# History
+
+# Version 1.0.0 RC 1.1
+
+
+#### This is a pre-release version
+
+## What's New!
+
+---
+
+### New Features
+
+- Octo Patch: Big Octorok can no longer give ink phases or bash into the wall on cycle 3
+- Barlov Money Farming: Rigs the Barlov game so you will always win no matter what chest you pick, does not affect logic
+
+### Improvements
+
+- CLI can now save the Seed Hash Image using the command SaveHash, saves as a .png file
+- UI and CLI will no longer lock up while checking for a new version
+- UI will no longer freeze while loading it if github is down or you do not have an internet connection
+- Uses Microsoft's CRC32 implementation due to vastly improved performance, speeding up creation of patches by >10x
+
+### Bug Fixes
+
+- You can now put in an ARGB color from the CLI for a colorpicker option
+- When github cannot be reached or a web request error occurs while checking for updates in the UI it will no longer display that you have the latest version after - showing the error message
+- If a custom logic file was loaded the last time the randomizer was closed it will now properly check the "Use Custom Logic" option on the Advanced page
+
+### Misc.
+
+- Updated framework to .net 8 (latest LTS)
+- Dungeon Shuffle tooltip now says that DHC is randomized whereas before it explicitly said it wasn't
+
 # Version 1.0.0 RC 1
 
 
@@ -182,7 +314,7 @@ These are the current and historic race settings for the randomizer. The current
 The following presets are intended to be played once one has become comfortable with the **Advanced** preset listed above. Some presets are useful to become more comfortable in specific parts of the randomizer, such as kinstones or figurines, while others are meant to be challenging to all players, such as the **Expert** preset. 
 
 - **Expert**: This is the MOST challenging combination of settings currently present. It requires an intimate knowledge of all aspects of the base game as well as all randomization options. Completing these settings in under 3.5 hours is proof you are a 'Minish Cap Expert'.
-- **Max Ranom**: This randomizes all possible things in the game that can be randomized, including all possible items and all possible locations. The difficulty is toned down so that it is enjoyable for most skill levels.
+- **Max Random**: This randomizes all possible things in the game that can be randomized, including all possible items and all possible locations. The difficulty is toned down so that it is enjoyable for most skill levels.
 - **No Logic Open World**: Items are randomized with no consideration for logic, making seeds have the possibility to be unbeatable, however most world obstacles are removed to give the player a fighting chance. Players will have to think outside of the box, and may have to utilize speedrun glitches, in order to beat these seeds.
 - **Firerod**: These settings all focus on the Firerod item, a leftover developer tool that has been re-introduced to give the player a completely different way of playing the game. Given to the player from the start, it allows the player to copy and paste tiles which effectively lets them walk through any wall/obstacle. Many advanced strategies and techniques can be utilised such as warping between regions and cloning items.
 - **Funky Fusions**: These settings focus on kinstone fusions. Somewhere between Intermediate and Advanced in terms of difficulty, this is aimed as an introduction to learning vanilla fusion locations and NPC's. Kinstones are in packs, so collecting one you will add the exact amount to your bag to complete all the fusions of that size and shape.
@@ -209,8 +341,6 @@ The following presets are intended to be played once one has become comfortable 
 - BizHawk download - https://tasvideos.org/Bizhawk/ReleaseHistory#Bizhawk242
   - Required prerequisites - https://github.com/TASEmulators/BizHawk-Prereqs/releases
 - mGBA download - https://mgba.io/downloads.html
-
-# History
 
 # 0.7.0 Rev 3.1
 
