@@ -70,8 +70,8 @@ internal abstract class ShufflerBase
 
         public string GetVersionName()
         {
-            return "0.7.0";
-        }    
+            return "1.0.0";
+        }
         
         /// <summary>
         ///     Throws a <code>ShufflerConfigurationException</code> if state is not valid with a message describing the

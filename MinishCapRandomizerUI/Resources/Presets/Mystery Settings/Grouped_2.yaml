@@ -1,48 +1,8 @@
-name: "Expert"
-description: "Expects familiarity with almost all options besides No Logic, Firerod and logic tricks."
+name: "Grouped"
+description: "Similar to Expert, but some settings are randomized in groups. For example, Maps, Compasses, Small Keys and Big Keys all use the same value, and they restrict the possible values for Element Shuffle. Expects familiarity with almost all options besides No Logic, Firerod and logic tricks."
 settings:
   ## Main Settings:
   #  Dungeon Settings:
-  MAP_SETTING:                                    # Dungeon Maps
-    MAP_KEASY: 5                                  #   Start With
-    MAP_VANILLA: 10                               #   Vanilla
-    MAP_STANDARD: 35                              #   Own Dungeon
-    MAP_REGION: 10                                #   Own Region
-    MAP_DUNGEON: 10                               #   Any Dungeon
-    MAP_REGDUN: 10                                #   Any Region
-    MAP_KEYSANITY: 20                             #   Anywhere (Keysanity)
-  COMPASS_SETTING:                                # Compasses
-    COMPASS_KEASY: 5                              #   Start With
-    COMPASS_VANILLA: 10                           #   Vanilla
-    COMPASS_STANDARD: 35                          #   Own Dungeon
-    COMPASS_REGION: 10                            #   Own Region
-    COMPASS_DUNGEON: 10                           #   Any Dungeon
-    COMPASS_REGDUN: 10                            #   Any Region
-    COMPASS_KEYSANITY: 20                         #   Anywhere (Keysanity)
-  SMALL_KEYS_SETTING:                             # Small Keys
-    SMALL_KEASY: 5                                #   Removed (Keasy)
-    SMALL_KEYS_VANILLA: 10                        #   Vanilla
-    SMALL_KEYS_STANDARD: 35                       #   Own Dungeon
-    SMALL_KEYS_REGION: 10                         #   Own Region
-    SMALL_KEYS_DUNGEON: 10                        #   Any Dungeon
-    SMALL_KEYS_REGDUN: 10                         #   Any Region
-    SMALL_KEYSANITY: 20                           #   Anywhere (Keysanity)
-  BIG_KEYS_SETTING:                               # Big Keys
-    BIG_KEASY: 5                                  #   Removed (Keasy)
-    BIG_KEYS_VANILLA: 10                          #   Vanilla
-    BIG_KEYS_STANDARD: 35                         #   Own Dungeon
-    BIG_KEYS_REGION: 10                           #   Own Region
-    BIG_KEYS_DUNGEON: 10                          #   Any Dungeon
-    BIG_KEYS_REGDUN: 10                           #   Any Region
-    BIG_KEYSANITY: 20                             #   Anywhere (Keysanity)
-  SHUFFLE_ELEMENTS:                               # Shuffle Elements
-    SHUFFLE_ELEMENTS_VANILLA: 5                   #   Vanilla
-    SHUFFLE_ELEMENTS_OFF: 40                      #   Dungeon Rewards
-    SHUFFLE_ELEMENTS_DUNGEON: 25                  #   Own Dungeon
-    SHUFFLE_ELEMENTS_REGION: 10                   #   Own Region
-    SHUFFLE_ELEMENTS_ON_DUNGEONS: 5               #   Any Dungeon
-    SHUFFLE_ELEMENTS_ON_REGIONS: 5                #   Any Region
-    SHUFFLE_ELEMENTS_ON: 10                       #   Anywhere
   DUNGEON:                                        # NonElement Dungeons
     NONE: 50                                      #   Standard
     UNREQ: 15                                     #   Unrequired
@@ -52,93 +12,6 @@ settings:
   DHC_BARREN:                                     # DHC is Barren
     on: 50
     off: 50
-  #  Requirements:
-  DHC_SETTING:                                    # Dark Hyrule Castle Opens
-    NODHC: 20                                     #   Never Open
-    NORMALDHC: 40                                 #   After Requirements
-    OPENDHC: 40                                   #   Always Open
-  REQUIREMENT_ITEM:                               # Requirement Reward
-    REQUIREMENT_ITEM_NONE: 20                     #   Disabled
-    REQUIREMENT_ITEM_DHC_BK: 75                   #   DHC Big Key
-    REQUIREMENT_ITEM_RANDOM: 5                    #   Random Item
-  AD_PED:                                         # Dungeons Required
-    AD_PED_0: 10                                  #   0
-    AD_PED_1: 10                                  #   1
-    AD_PED_2: 20                                  #   2
-    AD_PED_3: 20                                  #   3
-    AD_PED_4: 20                                  #   4
-    AD_PED_5: 10                                  #   5
-    AD_PED_6: 10                                  #   6
-  SWORD_SETTING:                                  # Sword Requirement
-    0SWORD: 10                                    #   No Sword
-    1SWORD: 10                                    #   Smith Sword
-    2SWORD: 15                                    #   Green Sword
-    3SWORD: 15                                    #   Red Sword
-    4SWORD: 15                                    #   Blue Sword
-    5SWORD: 35                                    #   Four Sword
-  ELEMENT_SETTING:                                # Elements Required
-    0ELEMENT: 15                                  #   0
-    1ELEMENT: 20                                  #   1
-    2ELEMENT: 30                                  #   2
-    3ELEMENT: 20                                  #   3
-    4ELEMENT: 15                                  #   4
-  FIGURINE_HUNT:                                  # Figurine Hunt
-    on: 25
-    off: 75
-  FIGURINE_TOTAL: 60                              # Figurines in world
-  FIGURINE_COUNT: 20 45 1                         # Figurines required
-  #  Shuffle:
-  DOJO:                                           # Dojo Swordmasters
-    DOJOVANILLA: 5                                #   Vanilla Scrolls
-    DOJORANDOM: 25                                #   Randomized Scrolls
-    DOJOANY: 70                                   #   Any Item
-  CUCCO_SETTING:                                  # Cucco Minigame
-    CUCCO_0: 10                                   #   Nothing
-    CUCCO_1: 25                                   #   1 Round
-    CUCCO_2: 25                                   #   2 Rounds
-    CUCCO_3: 10                                   #   3 Rounds
-    CUCCO_4: 10                                   #   4 Rounds
-    CUCCO_5: 5                                    #   5 Rounds
-    CUCCO_6: 3                                    #   6 Rounds
-    CUCCO_7: 3                                    #   7 Rounds
-    CUCCO_8: 3                                    #   8 Rounds
-    CUCCO_9: 3                                    #   9 Rounds
-    CUCCO_10: 3                                   #   10 Rounds
-  GORON_SETTING:                                  # Goron Merchant
-    GORON_0: 10                                   #   Nothing
-    GORON_1: 20                                   #   1 Set
-    GORON_2: 20                                   #   2 Sets
-    GORON_3: 20                                   #   3 Sets
-    GORON_4: 20                                   #   4 Sets
-    GORON_5: 10                                   #   5 Sets
-  BIGGORON_SETTING:                               # Biggoron
-    BIGGORON_OFF: 25                              #   Disabled
-    BIGGORON_NORMAL: 50                           #   Normal
-    BIGGORON_MIRROR: 25                           #   Require Mirror
-  HEART_RANDO:                                    # Heart Pieces and Containers
-    on: 100
-    off: 0
-  RUPEEMANIA:                                     # Rupees
-    on: 75
-    off: 25
-  SPECIALPOTS:                                    # Special Pots
-    on: 75
-    off: 25
-  DIGGING:                                        # Dig spots
-    on: 75
-    off: 25
-  UNDERWATER:                                     # Underwater spots
-    on: 75
-    off: 25
-  GOLDEN_ENEMY:                                   # Golden Enemies
-    on: 75
-    off: 25
-  SHOP_BOMBBAG:                                   # Extra JP/US Shop Item
-    on: 75
-    off: 25
-  PED_ITEMS:                                      # Sanctuary Pedestal
-    on: 75
-    off: 25
   ## World Settings:
   #  Global:
   OPENWORLD:                                      # World obstacles are
@@ -148,26 +21,6 @@ settings:
     ENTRANCES_VANILLA: 25                         #   Vanilla
     ENTRANCES_COUPLED: 75                         #   Shuffled
   #  Fusions:
-  GOLD_FUSION_SETTING:                            # Gold Fusions are
-    NO_GOLD_FUSIONS: 10                           #   Removed (Closed)
-    VANILLA_GOLD_FUSIONS: 40                      #   Vanilla
-    COMBINED_GOLD_FUSIONS: 30                     #   Combined
-    OPEN_GOLD_FUSIONS: 20                         #   Completed (Open)
-  RED_FUSION_SETTING:                             # Red Fusions are
-    NO_RED_FUSIONS: 25                            #   Removed (Closed)
-    VANILLA_RED_FUSIONS: 25                       #   Vanilla
-    COMBINED_RED_FUSIONS: 25                      #   Combined
-    OPEN_RED_FUSIONS: 25                          #   Completed (Open)
-  BLUE_FUSION_SETTING:                            # Blue Fusions are
-    NO_BLUE_FUSIONS: 25                           #   Removed (Closed)
-    VANILLA_BLUE_FUSIONS: 25                      #   Vanilla
-    COMBINED_BLUE_FUSIONS: 25                     #   Combined
-    OPEN_BLUE_FUSIONS: 25                         #   Completed (Open)
-  GREEN_FUSION_SETTING:                           # Green Fusions are
-    NO_GREEN_FUSIONS: 25                          #   Removed (Closed)
-    VANILLA_GREEN_FUSIONS: 25                     #   Vanilla
-    COMBINED_GREEN_FUSIONS: 25                    #   Combined
-    OPEN_GREEN_FUSIONS: 25                        #   Completed (Open)
   SEEDED_SHARED:                                  # Order Shared Fusions
     on: 75
     off: 25
@@ -189,68 +42,6 @@ settings:
     on: 25
     off: 75
   OPEN_LIBRARY:                                   # Library
-    on: 25
-    off: 75
-  #  Wind Crests:
-  CRENEL_CREST:                                   # Mt Crenel
-    on: 25
-    off: 75
-  FALLS_CREST:                                    # Veil Falls
-    on: 25
-    off: 75
-  CLOUD_CREST:                                    # Cloud Tops
-    on: 25
-    off: 75
-  TOWN_CREST:                                     # Hyrule Town
-    on: 25
-    off: 75
-  LAKE_CREST:                                     # Lake Hylia
-    on: 90
-    off: 10
-  SWAMP_CREST:                                    # Swamp
-    on: 25
-    off: 75
-  SHF_CREST:                                      # Link's House
-    on: 25
-    off: 75
-  MINISH_CREST:                                   # Minish Woods
-    on: 25
-    off: 75
-  #  Dungeon Warps:
-  DWS_BLUEWARP:                                   # DWS Blue
-    on: 25
-    off: 75
-  DWS_REDWARP:                                    # DWS Red
-    on: 25
-    off: 75
-  COF_BLUEWARP:                                   # CoF Blue
-    on: 25
-    off: 75
-  COF_REDWARP:                                    # CoF Red
-    on: 25
-    off: 75
-  FOW_BLUEWARP:                                   # FoW Blue
-    on: 25
-    off: 75
-  FOW_REDWARP:                                    # FoW Red
-    on: 25
-    off: 75
-  TOD_BLUEWARP:                                   # ToD Blue
-    on: 25
-    off: 75
-  TOD_REDWARP:                                    # ToD Red
-    on: 25
-    off: 75
-  POW_BLUEWARP:                                   # PoW Blue
-    on: 25
-    off: 75
-  POW_REDWARP:                                    # PoW Red
-    on: 25
-    off: 75
-  DHC_BLUEWARP:                                   # DHC Blue
-    on: 25
-    off: 75
-  DHC_REDWARP:                                    # DHC Red
     on: 25
     off: 75
   ## Logic Settings:
@@ -354,8 +145,8 @@ settings:
     ITEM_POOL_NORMAL: 70                          #   Balanced
     ITEM_POOL_PLENTIFUL: 20                       #   Plentiful
   RANDOM_BOTTLE_CONTENT:                          # Random Bottle Contents
-    on: 100
-    off: 0
+    on: 75
+    off: 25
   TRAPS:                                          # Traps
     on: 50
     off: 50
@@ -366,134 +157,6 @@ settings:
     NO_FIREROD: 100                               #   No Firerod
     FIREROD_CHEST: 0                              #   Shuffled
     FIREROD_START: 0                              #   Start With
-  #  Progressive:
-  YES_SWORD_PROG:                                 # Swords are Progressive
-    on: 50
-    off: 50
-  YES_BOW_PROG:                                   # Bows are Progressive
-    on: 50
-    off: 50
-  YES_BOOM_PROG:                                  # Boomerangs are Progressive
-    on: 50
-    off: 50
-  YES_SHIELD_PROG:                                # Shields are Progressive
-    on: 50
-    off: 50
-  YES_SCROLL_PROG:                                # Spin Scrolls are Progressive
-    on: 50
-    off: 50
-  #  Kinstone Packs:
-  GOLD1MULTIPLIER:                                # Cloud Tops Kinstone pack size
-    1: 50                                         #   1
-    2: 0                                          #   2
-    3: 0                                          #   3
-    4: 0                                          #   4
-    5: 0                                          #   5
-    6: 0                                          #   6
-    GOLD1MAX: 50                                  #   Max
-  GOLD2MULTIPLIER:                                # Swamp Kinstone pack size
-    1: 50                                         #   1
-    2: 0                                          #   2
-    GOLD2MAX: 50                                  #   Max
-  REDWMULTIPLIER:                                 # Red W Kinstone pack size
-    1: 50                                         #   1
-    2: 0                                          #   2
-    3: 0                                          #   3
-    4: 0                                          #   4
-    5: 0                                          #   5
-    9: 0                                          #   9
-    12: 0                                         #   12
-    REDWMAX: 50                                   #   Max
-  REDVMULTIPLIER:                                 # Red V Kinstone pack size
-    1: 50                                         #   1
-    2: 0                                          #   2
-    3: 0                                          #   3
-    4: 0                                          #   4
-    5: 0                                          #   5
-    REDVMAX: 50                                   #   Max
-  REDEMULTIPLIER:                                 # Red E Kinstone pack size
-    1: 50                                         #   1
-    2: 0                                          #   2
-    3: 0                                          #   3
-    4: 0                                          #   4
-    5: 0                                          #   5
-    REDEMAX: 50                                   #   Max
-  BLUELMULTIPLIER:                                # Blue L Kinstone pack size
-    1: 50                                         #   1
-    2: 0                                          #   2
-    3: 0                                          #   3
-    4: 0                                          #   4
-    5: 0                                          #   5
-    9: 0                                          #   9
-    BLUELMAX: 50                                  #   Max
-  BLUESMULTIPLIER:                                # Blue S Kinstone pack size
-    1: 50                                         #   1
-    2: 0                                          #   2
-    3: 0                                          #   3
-    4: 0                                          #   4
-    5: 0                                          #   5
-    BLUESMAX: 50                                  #   Max
-  GREENCMULTIPLIER:                               # Green C Kinstone pack size
-    1: 50                                         #   1
-    2: 0                                          #   2
-    3: 0                                          #   3
-    4: 0                                          #   4
-    5: 0                                          #   5
-    10: 0                                         #   10
-    20: 0                                         #   20
-    GREENCMAX: 50                                 #   Max
-  GREENGMULTIPLIER:                               # Green G Kinstone pack size
-    1: 50                                         #   1
-    2: 0                                          #   2
-    3: 0                                          #   3
-    4: 0                                          #   4
-    5: 0                                          #   5
-    8: 0                                          #   8
-    GREENGMAX: 50                                 #   Max
-  GREENPMULTIPLIER:                               # Green P Kinstone pack size
-    1: 50                                         #   1
-    2: 0                                          #   2
-    3: 0                                          #   3
-    4: 0                                          #   4
-    5: 0                                          #   5
-    8: 0                                          #   8
-    GREENPMAX: 50                                 #   Max
-  #  Key Chains:
-  KEYDWSMULTIPLIER:                               # Deepwood Shrine Keychain size
-    DWS1KEY: 70                                   #   1
-    DWS2KEY: 10                                   #   2
-    DWS3KEY: 10                                   #   3
-    DWS4KEY: 10                                   #   4
-  KEYCOFMULTIPLIER:                               # Cave of Flames Keychain size
-    COF1KEY: 70                                   #   1
-    COF2KEY: 30                                   #   2
-  KEYFOWMULTIPLIER:                               # Fortress of Winds Keychain size
-    FOW1KEY: 60                                   #   1
-    FOW2KEY: 20                                   #   2
-    FOW3KEY: 10                                   #   3
-    FOW4KEY: 10                                   #   4
-  KEYTODMULTIPLIER:                               # Temple of Droplets Keychain size
-    TOD1KEY: 60                                   #   1
-    TOD2KEY: 20                                   #   2
-    TOD3KEY: 10                                   #   3
-    TOD4KEY: 10                                   #   4
-  KEYRCMULTIPLIER:                                # Royal Crypt Keychain size
-    RC1KEY: 70                                    #   1
-    RC2KEY: 10                                    #   2
-    RC3KEY: 20                                    #   3
-  KEYPOWMULTIPLIER:                               # Palace of Winds Keychain size
-    POW1KEY: 60                                   #   1
-    POW2KEY: 10                                   #   2
-    POW3KEY: 10                                   #   3
-    POW4KEY: 5                                    #   4
-    POW5KEY: 5                                    #   5
-    POW6KEY: 10                                   #   6
-  KEYDHCMULTIPLIER:                               # Dark Hyrule Castle Keychain size
-    DHC1KEY: 60                                   #   1
-    DHC2KEY: 10                                   #   2
-    DHC3KEY: 10                                   #   3
-    DHC4KEY: 10                                   #   4
-    DHC5KEY: 10                                   #   5
   ## Start Inventory:
   #  Main Items:
   START_SMITH_SWORD:                              # Smith Sword
@@ -793,4 +456,451 @@ settings:
     GOAL_HINT_ELEMENT: 0                          #   Element
     GOAL_HINT_NUT_AND_ELEMENT: 0                  #   Nut And Element
     GOAL_HINT_NEVER: 0                            #   Never
-subweights: {}
+subweights:
+  dungeon_items:
+    keasy:
+      chance: 5
+      settings:
+        MAP_SETTING: MAP_KEASY
+        COMPASS_SETTING: COMPASS_KEASY
+        SMALL_KEYS_SETTING: SMALL_KEASY
+        BIG_KEYS_SETTING: BIG_KEASY
+        SHUFFLE_ELEMENTS:
+          SHUFFLE_ELEMENTS_VANILLA: 25
+          SHUFFLE_ELEMENTS_OFF: 75
+    vanilla:
+      chance: 10
+      settings:
+        MAP_SETTING: MAP_VANILLA
+        COMPASS_SETTING: COMPASS_VANILLA
+        SMALL_KEYS_SETTING: SMALL_KEYS_VANILLA
+        BIG_KEYS_SETTING: BIG_KEYS_VANILLA
+        SHUFFLE_ELEMENTS:
+          SHUFFLE_ELEMENTS_VANILLA: 25
+          SHUFFLE_ELEMENTS_OFF: 75
+    standard:
+      chance: 35
+      settings:
+        MAP_SETTING: MAP_STANDARD
+        COMPASS_SETTING: COMPASS_STANDARD
+        SMALL_KEYS_SETTING: SMALL_KEYS_STANDARD
+        BIG_KEYS_SETTING: BIG_KEYS_STANDARD
+        SHUFFLE_ELEMENTS:
+          SHUFFLE_ELEMENTS_VANILLA: 25
+          SHUFFLE_ELEMENTS_OFF: 50
+          SHUFFLE_ELEMENTS_DUNGEON: 25
+    region:
+      chance: 10
+      settings:
+        MAP_SETTING: MAP_REGION
+        COMPASS_SETTING: COMPASS_REGION
+        SMALL_KEYS_SETTING: SMALL_KEYS_REGION
+        BIG_KEYS_SETTING: BIG_KEYS_REGION
+        SHUFFLE_ELEMENTS:
+          SHUFFLE_ELEMENTS_OFF: 50
+          SHUFFLE_ELEMENTS_REGION: 50
+    any_dungeon:
+      chance: 10
+      settings:
+        MAP_SETTING: MAP_DUNGEON
+        COMPASS_SETTING: COMPASS_DUNGEON
+        SMALL_KEYS_SETTING: SMALL_KEYS_DUNGEON
+        BIG_KEYS_SETTING: BIG_KEYS_DUNGEON
+        SHUFFLE_ELEMENTS:
+          SHUFFLE_ELEMENTS_OFF: 25
+          SHUFFLE_ELEMENTS_DUNGEON: 25
+          SHUFFLE_ELEMENTS_ON_DUNGEONS: 50
+    any_region:
+      chance: 10
+      settings:
+        MAP_SETTING: MAP_REGDUN
+        COMPASS_SETTING: COMPASS_REGDUN
+        SMALL_KEYS_SETTING: SMALL_KEYS_REGDUN
+        BIG_KEYS_SETTING: BIG_KEYS_REGDUN
+        SHUFFLE_ELEMENTS:
+          SHUFFLE_ELEMENTS_OFF: 25
+          SHUFFLE_ELEMENTS_DUNGEON: 25
+          SHUFFLE_ELEMENTS_ON_REGIONS: 50
+    keysanity:
+      chance: 20
+      settings:
+        MAP_SETTING: MAP_KEYSANITY
+        COMPASS_SETTING: COMPASS_KEYSANITY
+        SMALL_KEYS_SETTING: SMALL_KEYSANITY
+        BIG_KEYS_SETTING: BIG_KEYSANITY
+        SHUFFLE_ELEMENTS:
+          SHUFFLE_ELEMENTS_OFF: 25
+          SHUFFLE_ELEMENTS_ON: 75
+  goal:
+    pedestal:
+      chance: 20
+      settings:
+        DHC_SETTING: NODHC
+        REQUIREMENT_ITEM:
+          REQUIREMENT_ITEM_NONE: 75
+          REQUIREMENT_ITEM_RANDOM: 25
+    dhc:
+      chance: 40
+      settings:
+        DHC_SETTING: NORMALDHC
+        REQUIREMENT_ITEM:
+          REQUIREMENT_ITEM_NONE: 50
+          REQUIREMENT_ITEM_DHC_BK: 50
+    vaati:
+      chance: 40
+      settings:
+        DHC_SETTING: OPENDHC
+        REQUIREMENT_ITEM: REQUIREMENT_ITEM_DHC_BK
+  requirements:
+    elements_and_swords:
+      chance: 20
+      settings:
+        AD_PED: AD_PED_0
+        SWORD_SETTING: 5SWORD
+        ELEMENT_SETTING: 4ELEMENT
+        FIGURINE_HUNT: off
+    elements:
+      chance: 10
+      settings:
+        AD_PED: AD_PED_0
+        SWORD_SETTING: 0SWORD
+        ELEMENT_SETTING: 4ELEMENT
+        FIGURINE_HUNT: off
+    swords:
+      chance: 10
+      settings:
+        AD_PED: AD_PED_0
+        SWORD_SETTING: 5SWORD
+        ELEMENT_SETTING: 0ELEMENT
+        FIGURINE_HUNT: off
+    dungeons:
+      chance: 20
+      settings:
+        AD_PED: AD_PED_6
+        SWORD_SETTING: 0SWORD
+        ELEMENT_SETTING: 0ELEMENT
+        FIGURINE_HUNT: off
+    figurines:
+      chance: 20
+      settings:
+        AD_PED: AD_PED_0
+        SWORD_SETTING: 0SWORD
+        ELEMENT_SETTING: 0ELEMENT
+        FIGURINE_HUNT: on
+        FIGURINE_TOTAL: 60
+        FIGURINE_COUNT: 30 50 1
+    everything:
+      chance: 20
+      settings:
+        AD_PED: AD_PED_6
+        SWORD_SETTING: 5SWORD
+        ELEMENT_SETTING: 4ELEMENT
+        FIGURINE_HUNT: on
+        FIGURINE_TOTAL: 60
+        FIGURINE_COUNT: 30 50 1
+  shuffled_locations:
+    fewest:
+      chance: 20
+      settings:
+        DOJO: DOJOVANILLA
+        CUCCO_SETTING: CUCCO_0
+        GORON_SETTING: GORON_0
+        BIGGORON_SETTING: BIGGORON_OFF
+        HEART_RANDO: off
+        RUPEEMANIA: off
+        SPECIALPOTS: off
+        DIGGING: off
+        UNDERWATER: off
+        GOLDEN_ENEMY: off
+        SHOP_BOMBBAG: off
+        PED_ITEMS: off
+    few:
+      chance: 20
+      settings:
+        DOJO: DOJORANDOM
+        CUCCO_SETTING: CUCCO_0
+        GORON_SETTING: GORON_1
+        BIGGORON_SETTING: BIGGORON_OFF
+        HEART_RANDO: on
+        RUPEEMANIA: off
+        SPECIALPOTS: off
+        DIGGING: off
+        UNDERWATER: off
+        GOLDEN_ENEMY: off
+        SHOP_BOMBBAG: off
+        PED_ITEMS: off
+    medium:
+      chance: 20
+      settings:
+        DOJO: DOJOANY
+        CUCCO_SETTING: CUCCO_1
+        GORON_SETTING: GORON_2
+        BIGGORON_SETTING: BIGGORON_NORMAL
+        HEART_RANDO: on
+        RUPEEMANIA: on
+        SPECIALPOTS: off
+        DIGGING: off
+        UNDERWATER: off
+        GOLDEN_ENEMY: off
+        SHOP_BOMBBAG: on
+        PED_ITEMS: off
+    many:
+      chance: 20
+      settings:
+        DOJO: DOJOANY
+        CUCCO_SETTING: CUCCO_2
+        GORON_SETTING: GORON_3
+        BIGGORON_SETTING:
+          BIGGORON_NORMAL: 50
+          BIGGORON_MIRROR: 50
+        HEART_RANDO: on
+        RUPEEMANIA: on
+        SPECIALPOTS: on
+        DIGGING: on
+        UNDERWATER: on
+        GOLDEN_ENEMY: on
+        SHOP_BOMBBAG: on
+        PED_ITEMS: on
+    most:
+      chance: 20
+      settings:
+        DOJO: DOJOANY
+        CUCCO_SETTING: CUCCO_10
+        GORON_SETTING: GORON_5
+        BIGGORON_SETTING:
+          BIGGORON_NORMAL: 50
+          BIGGORON_MIRROR: 50
+        HEART_RANDO: on
+        RUPEEMANIA: on
+        SPECIALPOTS: on
+        DIGGING: on
+        UNDERWATER: on
+        GOLDEN_ENEMY: on
+        SHOP_BOMBBAG: on
+        PED_ITEMS: on
+  fusions:
+    removed:
+      chance: 25
+      settings:
+        RED_FUSION_SETTING: NO_RED_FUSIONS
+        BLUE_FUSION_SETTING: NO_BLUE_FUSIONS
+        GREEN_FUSION_SETTING: NO_GREEN_FUSIONS
+        GOLD_FUSION_SETTING:
+          NO_GOLD_FUSIONS: 50
+          OPEN_GOLD_FUSIONS: 50
+    vanilla:
+      chance: 25
+      settings:
+        RED_FUSION_SETTING: VANILLA_RED_FUSIONS
+        BLUE_FUSION_SETTING: VANILLA_BLUE_FUSIONS
+        GREEN_FUSION_SETTING: VANILLA_GREEN_FUSIONS
+        GOLD_FUSION_SETTING: VANILLA_GOLD_FUSIONS
+    combined:
+      chance: 25
+      settings:
+        RED_FUSION_SETTING: COMBINED_RED_FUSIONS
+        BLUE_FUSION_SETTING: COMBINED_BLUE_FUSIONS
+        GREEN_FUSION_SETTING: COMBINED_GREEN_FUSIONS
+        GOLD_FUSION_SETTING: COMBINED_GOLD_FUSIONS
+    open:
+      chance: 25
+      settings:
+        RED_FUSION_SETTING: OPEN_RED_FUSIONS
+        BLUE_FUSION_SETTING: OPEN_BLUE_FUSIONS
+        GREEN_FUSION_SETTING: OPEN_GREEN_FUSIONS
+        GOLD_FUSION_SETTING:
+          VANILLA_GOLD_FUSIONS: 25
+          COMBINED_GOLD_FUSIONS: 25
+          OPEN_GOLD_FUSIONS: 50
+  wind_crests:
+    none:
+      chance: 10
+      settings:
+        CRENEL_CREST: off
+        FALLS_CREST: off
+        CLOUD_CREST: off
+        TOWN_CREST: off
+        LAKE_CREST: off
+        SWAMP_CREST: off
+        SHF_CREST: off
+        MINISH_CREST: off
+    vanilla:
+      chance: 50
+      settings:
+        CRENEL_CREST: off
+        FALLS_CREST: off
+        CLOUD_CREST: off
+        TOWN_CREST: off
+        LAKE_CREST: on
+        SWAMP_CREST: off
+        SHF_CREST: off
+        MINISH_CREST: off
+    north:
+      chance: 10
+      settings:
+        CRENEL_CREST: on
+        FALLS_CREST: on
+        CLOUD_CREST: on
+        TOWN_CREST: on
+        LAKE_CREST: on
+        SWAMP_CREST: off
+        SHF_CREST: off
+        MINISH_CREST: off
+    south:
+      chance: 10
+      settings:
+        CRENEL_CREST: off
+        FALLS_CREST: off
+        CLOUD_CREST: off
+        TOWN_CREST: on
+        LAKE_CREST: on
+        SWAMP_CREST: on
+        SHF_CREST: on
+        MINISH_CREST: on
+    all:
+      chance: 20
+      settings:
+        CRENEL_CREST: on
+        FALLS_CREST: on
+        CLOUD_CREST: on
+        TOWN_CREST: on
+        LAKE_CREST: on
+        SWAMP_CREST: on
+        SHF_CREST: on
+        MINISH_CREST: on
+  dungeon_warps:
+    none:
+      chance: 50
+      settings:
+        DWS_BLUEWARP: off
+        DWS_REDWARP: off
+        COF_BLUEWARP: off
+        COF_REDWARP: off
+        FOW_BLUEWARP: off
+        FOW_REDWARP: off
+        TOD_BLUEWARP: off
+        TOD_REDWARP: off
+        POW_BLUEWARP: off
+        POW_REDWARP: off
+        DHC_BLUEWARP: off
+        DHC_REDWARP: off
+    blue:
+      chance: 20
+      settings:
+        DWS_BLUEWARP: on
+        DWS_REDWARP: off
+        COF_BLUEWARP: on
+        COF_REDWARP: off
+        FOW_BLUEWARP: on
+        FOW_REDWARP: off
+        TOD_BLUEWARP: on
+        TOD_REDWARP: off
+        POW_BLUEWARP: on
+        POW_REDWARP: off
+        DHC_BLUEWARP: on
+        DHC_REDWARP: off
+    red:
+      chance: 20
+      settings:
+        DWS_BLUEWARP: off
+        DWS_REDWARP: on
+        COF_BLUEWARP: off
+        COF_REDWARP: on
+        FOW_BLUEWARP: off
+        FOW_REDWARP: on
+        TOD_BLUEWARP: off
+        TOD_REDWARP: on
+        POW_BLUEWARP: off
+        POW_REDWARP: on
+        DHC_BLUEWARP: off
+        DHC_REDWARP: on
+    all:
+      chance: 10
+      settings:
+        DWS_BLUEWARP: on
+        DWS_REDWARP: on
+        COF_BLUEWARP: on
+        COF_REDWARP: on
+        FOW_BLUEWARP: on
+        FOW_REDWARP: on
+        TOD_BLUEWARP: on
+        TOD_REDWARP: on
+        POW_BLUEWARP: on
+        POW_REDWARP: on
+        DHC_BLUEWARP: on
+        DHC_REDWARP: on
+  progressive_items:
+    on:
+      chance: 50
+      settings:
+        YES_SWORD_PROG: on
+        YES_BOW_PROG: on
+        YES_BOOM_PROG: on
+        YES_SHIELD_PROG: on
+        YES_SCROLL_PROG: on
+    off:
+      chance: 50
+      settings:
+        YES_SWORD_PROG: off
+        YES_BOW_PROG: off
+        YES_BOOM_PROG: off
+        YES_SHIELD_PROG: off
+        YES_SCROLL_PROG: off
+  kinstone_packs:
+    one:
+      chance: 50
+      settings:
+        GOLD1MULTIPLIER: 1
+        GOLD2MULTIPLIER: 1
+        REDWMULTIPLIER: 1
+        REDVMULTIPLIER: 1
+        REDEMULTIPLIER: 1
+        BLUELMULTIPLIER: 1
+        BLUESMULTIPLIER: 1
+        GREENCMULTIPLIER: 1
+        GREENGMULTIPLIER: 1
+        GREENPMULTIPLIER: 1
+    max:
+      chance: 50
+      settings:
+        GOLD1MULTIPLIER: GOLD1MAX
+        GOLD2MULTIPLIER: GOLD2MAX
+        REDWMULTIPLIER: REDWMAX
+        REDVMULTIPLIER: REDVMAX
+        REDEMULTIPLIER: REDEMAX
+        BLUELMULTIPLIER: BLUELMAX
+        BLUESMULTIPLIER: BLUESMAX
+        GREENCMULTIPLIER: GREENCMAX
+        GREENGMULTIPLIER: GREENGMAX
+        GREENPMULTIPLIER: GREENPMAX
+  key_chains:
+    one:
+      chance: 60
+      settings:
+        KEYDWSMULTIPLIER: DWS1KEY
+        KEYCOFMULTIPLIER: COF1KEY
+        KEYFOWMULTIPLIER: FOW1KEY
+        KEYTODMULTIPLIER: TOD1KEY
+        KEYRCMULTIPLIER: RC1KEY
+        KEYPOWMULTIPLIER: POW1KEY
+        KEYDHCMULTIPLIER: DHC1KEY
+    half:
+      chance: 20
+      settings:
+        KEYDWSMULTIPLIER: DWS2KEY
+        KEYCOFMULTIPLIER: COF1KEY
+        KEYFOWMULTIPLIER: FOW2KEY
+        KEYTODMULTIPLIER: TOD2KEY
+        KEYRCMULTIPLIER: RC2KEY
+        KEYPOWMULTIPLIER: POW3KEY
+        KEYDHCMULTIPLIER: DHC3KEY
+    max:
+      chance: 20
+      settings:
+        KEYDWSMULTIPLIER: DWS4KEY
+        KEYCOFMULTIPLIER: COF2KEY
+        KEYFOWMULTIPLIER: FOW4KEY
+        KEYTODMULTIPLIER: TOD4KEY
+        KEYRCMULTIPLIER: RC3KEY
+        KEYPOWMULTIPLIER: POW6KEY
+        KEYDHCMULTIPLIER: DHC5KEY

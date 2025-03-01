@@ -1,0 +1,796 @@
+name: "Expert"
+description: "Expects familiarity with almost all options besides No Logic, Firerod and logic tricks."
+settings:
+  ## Main Settings:
+  #  Dungeon Settings:
+  MAP_SETTING:                                    # Dungeon Maps
+    MAP_KEASY: 5                                  #   Start With
+    MAP_VANILLA: 10                               #   Vanilla
+    MAP_STANDARD: 35                              #   Own Dungeon
+    MAP_REGION: 10                                #   Own Region
+    MAP_DUNGEON: 10                               #   Any Dungeon
+    MAP_REGDUN: 10                                #   Any Region
+    MAP_KEYSANITY: 20                             #   Anywhere (Keysanity)
+  COMPASS_SETTING:                                # Compasses
+    COMPASS_KEASY: 5                              #   Start With
+    COMPASS_VANILLA: 10                           #   Vanilla
+    COMPASS_STANDARD: 35                          #   Own Dungeon
+    COMPASS_REGION: 10                            #   Own Region
+    COMPASS_DUNGEON: 10                           #   Any Dungeon
+    COMPASS_REGDUN: 10                            #   Any Region
+    COMPASS_KEYSANITY: 20                         #   Anywhere (Keysanity)
+  SMALL_KEYS_SETTING:                             # Small Keys
+    SMALL_KEASY: 5                                #   Removed (Keasy)
+    SMALL_KEYS_VANILLA: 10                        #   Vanilla
+    SMALL_KEYS_STANDARD: 35                       #   Own Dungeon
+    SMALL_KEYS_REGION: 10                         #   Own Region
+    SMALL_KEYS_DUNGEON: 10                        #   Any Dungeon
+    SMALL_KEYS_REGDUN: 10                         #   Any Region
+    SMALL_KEYSANITY: 20                           #   Anywhere (Keysanity)
+  BIG_KEYS_SETTING:                               # Big Keys
+    BIG_KEASY: 5                                  #   Removed (Keasy)
+    BIG_KEYS_VANILLA: 10                          #   Vanilla
+    BIG_KEYS_STANDARD: 35                         #   Own Dungeon
+    BIG_KEYS_REGION: 10                           #   Own Region
+    BIG_KEYS_DUNGEON: 10                          #   Any Dungeon
+    BIG_KEYS_REGDUN: 10                           #   Any Region
+    BIG_KEYSANITY: 20                             #   Anywhere (Keysanity)
+  SHUFFLE_ELEMENTS:                               # Shuffle Elements
+    SHUFFLE_ELEMENTS_VANILLA: 5                   #   Vanilla
+    SHUFFLE_ELEMENTS_OFF: 40                      #   Dungeon Rewards
+    SHUFFLE_ELEMENTS_DUNGEON: 25                  #   Own Dungeon
+    SHUFFLE_ELEMENTS_REGION: 10                   #   Own Region
+    SHUFFLE_ELEMENTS_ON_DUNGEONS: 5               #   Any Dungeon
+    SHUFFLE_ELEMENTS_ON_REGIONS: 5                #   Any Region
+    SHUFFLE_ELEMENTS_ON: 10                       #   Anywhere
+  DUNGEON:                                        # NonElement Dungeons
+    NONE: 50                                      #   Standard
+    UNREQ: 15                                     #   Unrequired
+    BARREN: 20                                    #   Barren
+    UNREQSUR: 5                                   #   Regions Unrequired
+    BARRENSUR: 10                                 #   Regions Barren
+  DHC_BARREN:                                     # DHC is Barren
+    on: 50
+    off: 50
+  #  Requirements:
+  DHC_SETTING:                                    # Dark Hyrule Castle Opens
+    NODHC: 20                                     #   Never Open
+    NORMALDHC: 40                                 #   After Requirements
+    OPENDHC: 40                                   #   Always Open
+  REQUIREMENT_ITEM:                               # Requirement Reward
+    REQUIREMENT_ITEM_NONE: 20                     #   Disabled
+    REQUIREMENT_ITEM_DHC_BK: 75                   #   DHC Big Key
+    REQUIREMENT_ITEM_RANDOM: 5                    #   Random Item
+  AD_PED:                                         # Dungeons Required
+    AD_PED_0: 10                                  #   0
+    AD_PED_1: 10                                  #   1
+    AD_PED_2: 20                                  #   2
+    AD_PED_3: 20                                  #   3
+    AD_PED_4: 20                                  #   4
+    AD_PED_5: 10                                  #   5
+    AD_PED_6: 10                                  #   6
+  SWORD_SETTING:                                  # Sword Requirement
+    0SWORD: 10                                    #   No Sword
+    1SWORD: 10                                    #   Smith Sword
+    2SWORD: 15                                    #   Green Sword
+    3SWORD: 15                                    #   Red Sword
+    4SWORD: 15                                    #   Blue Sword
+    5SWORD: 35                                    #   Four Sword
+  ELEMENT_SETTING:                                # Elements Required
+    0ELEMENT: 15                                  #   0
+    1ELEMENT: 20                                  #   1
+    2ELEMENT: 30                                  #   2
+    3ELEMENT: 20                                  #   3
+    4ELEMENT: 15                                  #   4
+  FIGURINE_HUNT:                                  # Figurine Hunt
+    on: 25
+    off: 75
+  FIGURINE_TOTAL: 60                              # Figurines in world
+  FIGURINE_COUNT: 20 45 1                         # Figurines required
+  #  Shuffle:
+  DOJO:                                           # Dojo Swordmasters
+    DOJOVANILLA: 5                                #   Vanilla Scrolls
+    DOJORANDOM: 25                                #   Randomized Scrolls
+    DOJOANY: 70                                   #   Any Item
+  CUCCO_SETTING:                                  # Cucco Minigame
+    CUCCO_0: 10                                   #   Nothing
+    CUCCO_1: 25                                   #   1 Round
+    CUCCO_2: 25                                   #   2 Rounds
+    CUCCO_3: 10                                   #   3 Rounds
+    CUCCO_4: 10                                   #   4 Rounds
+    CUCCO_5: 5                                    #   5 Rounds
+    CUCCO_6: 3                                    #   6 Rounds
+    CUCCO_7: 3                                    #   7 Rounds
+    CUCCO_8: 3                                    #   8 Rounds
+    CUCCO_9: 3                                    #   9 Rounds
+    CUCCO_10: 3                                   #   10 Rounds
+  GORON_SETTING:                                  # Goron Merchant
+    GORON_0: 10                                   #   Nothing
+    GORON_1: 20                                   #   1 Set
+    GORON_2: 20                                   #   2 Sets
+    GORON_3: 20                                   #   3 Sets
+    GORON_4: 20                                   #   4 Sets
+    GORON_5: 10                                   #   5 Sets
+  BIGGORON_SETTING:                               # Biggoron
+    BIGGORON_OFF: 25                              #   Disabled
+    BIGGORON_NORMAL: 50                           #   Normal
+    BIGGORON_MIRROR: 25                           #   Require Mirror
+  HEART_RANDO:                                    # Heart Pieces and Containers
+    on: 90
+    off: 10
+  RUPEEMANIA:                                     # Rupees
+    on: 75
+    off: 25
+  SPECIALPOTS:                                    # Special Pots
+    on: 75
+    off: 25
+  DIGGING:                                        # Dig spots
+    on: 75
+    off: 25
+  UNDERWATER:                                     # Underwater spots
+    on: 75
+    off: 25
+  GOLDEN_ENEMY:                                   # Golden Enemies
+    on: 75
+    off: 25
+  SHOP_BOMBBAG:                                   # Extra JP/US Shop Item
+    on: 75
+    off: 25
+  PED_ITEMS:                                      # Sanctuary Pedestal
+    on: 75
+    off: 25
+  ## World Settings:
+  #  Global:
+  OPENWORLD:                                      # World obstacles are
+    OPENWORLD_ON: 10                              #   Open
+    OPENWORLD_OFF: 90                             #   Standard
+  ENTRANCES:                                      # Dungeon Entrances are
+    ENTRANCES_VANILLA: 25                         #   Vanilla
+    ENTRANCES_COUPLED: 75                         #   Shuffled
+  #  Fusions:
+  GOLD_FUSION_SETTING:                            # Gold Fusions are
+    NO_GOLD_FUSIONS: 10                           #   Removed (Closed)
+    VANILLA_GOLD_FUSIONS: 40                      #   Vanilla
+    COMBINED_GOLD_FUSIONS: 30                     #   Combined
+    OPEN_GOLD_FUSIONS: 20                         #   Completed (Open)
+  RED_FUSION_SETTING:                             # Red Fusions are
+    NO_RED_FUSIONS: 25                            #   Removed (Closed)
+    VANILLA_RED_FUSIONS: 25                       #   Vanilla
+    COMBINED_RED_FUSIONS: 25                      #   Combined
+    OPEN_RED_FUSIONS: 25                          #   Completed (Open)
+  BLUE_FUSION_SETTING:                            # Blue Fusions are
+    NO_BLUE_FUSIONS: 25                           #   Removed (Closed)
+    VANILLA_BLUE_FUSIONS: 25                      #   Vanilla
+    COMBINED_BLUE_FUSIONS: 25                     #   Combined
+    OPEN_BLUE_FUSIONS: 25                         #   Completed (Open)
+  GREEN_FUSION_SETTING:                           # Green Fusions are
+    NO_GREEN_FUSIONS: 25                          #   Removed (Closed)
+    VANILLA_GREEN_FUSIONS: 25                     #   Vanilla
+    COMBINED_GREEN_FUSIONS: 25                    #   Combined
+    OPEN_GREEN_FUSIONS: 25                        #   Completed (Open)
+  SEEDED_SHARED:                                  # Order Shared Fusions
+    on: 75
+    off: 25
+  DEFICKLE:                                       # Defickle Fusers
+    on: 75
+    off: 25
+  FUSION_SKIPS:                                   # Skip Fusion Cutscenes
+    NO_FUSION_SKIP: 0                             #   Never
+    ALLOW_FUSION_SKIPS: 100                       #   Choose
+    INSTANT_SKIP: 0                               #   Always
+  SHOW_MAP:                                       # Always Show Map
+    on: 100
+    off: 0
+  #  Speed Up:
+  OPEN_WIND_TRIBE:                                # Wind Tribe Tower
+    on: 25
+    off: 75
+  OPEN_TINGLE:                                    # Tingle Brothers
+    on: 25
+    off: 75
+  OPEN_LIBRARY:                                   # Library
+    on: 25
+    off: 75
+  #  Wind Crests:
+  CRENEL_CREST:                                   # Mt Crenel
+    on: 25
+    off: 75
+  FALLS_CREST:                                    # Veil Falls
+    on: 25
+    off: 75
+  CLOUD_CREST:                                    # Cloud Tops
+    on: 25
+    off: 75
+  TOWN_CREST:                                     # Hyrule Town
+    on: 25
+    off: 75
+  LAKE_CREST:                                     # Lake Hylia
+    on: 90
+    off: 10
+  SWAMP_CREST:                                    # Swamp
+    on: 25
+    off: 75
+  SHF_CREST:                                      # Link's House
+    on: 25
+    off: 75
+  MINISH_CREST:                                   # Minish Woods
+    on: 25
+    off: 75
+  #  Dungeon Warps:
+  DWS_BLUEWARP:                                   # DWS Blue
+    on: 25
+    off: 75
+  DWS_REDWARP:                                    # DWS Red
+    on: 25
+    off: 75
+  COF_BLUEWARP:                                   # CoF Blue
+    on: 25
+    off: 75
+  COF_REDWARP:                                    # CoF Red
+    on: 25
+    off: 75
+  FOW_BLUEWARP:                                   # FoW Blue
+    on: 25
+    off: 75
+  FOW_REDWARP:                                    # FoW Red
+    on: 25
+    off: 75
+  TOD_BLUEWARP:                                   # ToD Blue
+    on: 25
+    off: 75
+  TOD_REDWARP:                                    # ToD Red
+    on: 25
+    off: 75
+  POW_BLUEWARP:                                   # PoW Blue
+    on: 25
+    off: 75
+  POW_REDWARP:                                    # PoW Red
+    on: 25
+    off: 75
+  DHC_BLUEWARP:                                   # DHC Blue
+    on: 25
+    off: 75
+  DHC_REDWARP:                                    # DHC Red
+    on: 25
+    off: 75
+  ## Logic Settings:
+  #  Logic Rules:
+  NO_LOGIC:                                       # No Logic
+    on: 0
+    off: 100
+  ACCESSIBILITY:                                  # Reachable
+    ACCESS_LOCATIONS: 25                          #   All Locations
+    ACCESS_INVENTORY: 50                          #   All NonKeys
+    ACCESS_BEATABLE: 25                           #   Only the Goal
+  GRABBABLE:                                      # Grab items from a distance
+    NOT_GRABBABLE: 50                             #   Not Allowed
+    GRABBABLE: 50                                 #   Allowed
+    GRABBABLE_LOGIC: 0                            #   Require
+    GRABBABLE_HARD: 0                             #   Require Hard
+  GUARANTEED_BARLOV:                              # Barlov farm Infinite Rupees
+    NOBARLOVFARM: 25                              #   Disabled
+    BARLOVFARM: 75                                #   Enabled
+    REQUIREDBARLOVFARM: 0                         #   Required
+  #  Weapons:
+  BOMBWEAPON:                                     # Bombs
+    NOBOMB: 100                                   #   No
+    YESBOMB: 0                                    #   Yes
+    BOSSBOMB: 0                                   #   Yes + Bosses
+  BOWWEAPON:                                      # Bows
+    NOBOW: 100                                    #   No
+    YESBOW: 0                                     #   Yes
+    BOSSBOW: 0                                    #   Yes + Bosses
+  GUSTWEAPON:                                     # Gust Jar
+    NOGUST: 100                                   #   No
+    YESGUST: 0                                    #   Yes
+  LAMPWEAPON:                                     # Lantern
+    NOLAMP: 100                                   #   No
+    YESLAMP: 0                                    #   Yes
+  #  Require Tricks:
+  MITTSMONEY_SETTING:                             # Mole Mitts farm Infinite Rupees
+    NOMITTSMONEY: 100                             #   No
+    MITTSMONEY: 0                                 #   Yes
+  BLOWDUST_SETTING:                               # Bombs blow away dust
+    GUST: 100                                     #   No
+    GUSTBOMBS: 0                                  #   Yes
+  MUSHROOM_SETTING:                               # Crenel mushroom grab with Gust jar
+    NOMUSH: 100                                   #   No
+    YESMUSH: 0                                    #   Yes
+  ARROWBREAK_SETTING:                             # Light Arrows break objects
+    NOLIGHTS: 100                                 #   No
+    YESLIGHTS: 0                                  #   Yes
+  BOBOMBS_SETTING:                                # Use Bobombs to destroy walls
+    NOBOBOMBS: 100                                #   No
+    YESBOBOMBS: 0                                 #   Yes
+  LIKELIKE_SETTING:                               # LikeLike cave without a Sword
+    NOLIKELIKE: 100                               #   No
+    YESLIKELIKE: 0                                #   Yes
+  GUARDSKIP_SETTING:                              # Skip Town guard using Boots
+    NOGUARDSKIP: 100                              #   No
+    YESGUARDSKIP: 0                               #   Yes
+  CRENELBEAM_SETTING:                             # Use Beam to hit switch on Mt Crenel
+    NOBEAM: 100                                   #   No
+    YESBEAM: 0                                    #   Yes
+  DTBEETLE_SETTING:                               # Use DownThrust to flip Spikey Beetles
+    NOTHRUST: 100                                 #   No
+    YESTHRUST: 0                                  #   Yes
+  DARKROOMS_SETTING:                              # Dark Rooms without a Lantern
+    NODARK: 100                                   #   No
+    YESDARK: 0                                    #   Yes
+  EXTENDCAPE_SETTING:                             # Tricky Cape jumps across water
+    NOEXTENSION: 100                              #   No
+    YESEXTENSION: 0                               #   Yes
+  LAKEMINISH_SETTING:                             # Minish in Lake without Boots
+    NOLAKEMINISH: 100                             #   No
+    YESLAKEMINISH: 0                              #   Yes
+  CABINSWIM_SETTING:                              # Swim to Cabin without lilypad
+    NOCABIN: 100                                  #   No
+    YESCABIN: 0                                   #   Yes
+  CLOUDSKILL_SETTING:                             # Kill Cloud Sharks without Weapons
+    NOCLOUDSKILL: 100                             #   No
+    YESCLOUDSKILL: 0                              #   Yes
+  POWJUMP_SETTING:                                # PoW 2F is clearable without a Cane
+    NOPOWJUMP: 100                                #   No
+    YESPOWJUMP: 0                                 #   Yes
+  POWPOTOOL_SETTING:                              # Pot Puzzle without Power Bracelets
+    NOPOWOOL: 100                                 #   No
+    YESPOWOOL: 0                                  #   Yes
+  DHCCANON_SETTING:                               # DHC Canon rooms without Four Sword
+    NODHCCANON: 100                               #   No
+    YESDHCCANON: 0                                #   Yes
+  DHCJOSTLE_SETTING:                              # DHC Pressure Pads without Four Sword
+    NODHCJOSTLE: 100                              #   No
+    YESDHCJOSTLE: 0                               #   Yes
+  DHCSWITCHES_SETTING:                            # DHC Switches without Four Sword
+    NODHCSWITCHES: 100                            #   No
+    YESDHCSWITCHES: 0                             #   Yes
+  FOWPOT_SETTING:                                 # FoW Pot item early using the Gust Jar
+    NOFOWPOT: 100                                 #   No
+    YESFOWPOT: 0                                  #   Yes
+  ## Item Pool:
+  #  Global:
+  ITEM_POOL:                                      # Item Pool
+    ITEM_POOL_RIP: 10                             #   Reduced (RIP)
+    ITEM_POOL_NORMAL: 70                          #   Balanced
+    ITEM_POOL_PLENTIFUL: 20                       #   Plentiful
+  RANDOM_BOTTLE_CONTENT:                          # Random Bottle Contents
+    on: 75
+    off: 25
+  TRAPS:                                          # Traps
+    on: 50
+    off: 50
+  MEME:                                           # Fun Junk
+    on: 50
+    off: 50
+  FIREROD:                                        # Firerod
+    NO_FIREROD: 100                               #   No Firerod
+    FIREROD_CHEST: 0                              #   Shuffled
+    FIREROD_START: 0                              #   Start With
+  #  Progressive:
+  YES_SWORD_PROG:                                 # Swords are Progressive
+    on: 50
+    off: 50
+  YES_BOW_PROG:                                   # Bows are Progressive
+    on: 50
+    off: 50
+  YES_BOOM_PROG:                                  # Boomerangs are Progressive
+    on: 50
+    off: 50
+  YES_SHIELD_PROG:                                # Shields are Progressive
+    on: 50
+    off: 50
+  YES_SCROLL_PROG:                                # Spin Scrolls are Progressive
+    on: 50
+    off: 50
+  #  Kinstone Packs:
+  GOLD1MULTIPLIER:                                # Cloud Tops Kinstone pack size
+    1: 50                                         #   1
+    2: 0                                          #   2
+    3: 0                                          #   3
+    4: 0                                          #   4
+    5: 0                                          #   5
+    6: 0                                          #   6
+    GOLD1MAX: 50                                  #   Max
+  GOLD2MULTIPLIER:                                # Swamp Kinstone pack size
+    1: 50                                         #   1
+    2: 0                                          #   2
+    GOLD2MAX: 50                                  #   Max
+  REDWMULTIPLIER:                                 # Red W Kinstone pack size
+    1: 50                                         #   1
+    2: 0                                          #   2
+    3: 0                                          #   3
+    4: 0                                          #   4
+    5: 0                                          #   5
+    9: 0                                          #   9
+    12: 0                                         #   12
+    REDWMAX: 50                                   #   Max
+  REDVMULTIPLIER:                                 # Red V Kinstone pack size
+    1: 50                                         #   1
+    2: 0                                          #   2
+    3: 0                                          #   3
+    4: 0                                          #   4
+    5: 0                                          #   5
+    REDVMAX: 50                                   #   Max
+  REDEMULTIPLIER:                                 # Red E Kinstone pack size
+    1: 50                                         #   1
+    2: 0                                          #   2
+    3: 0                                          #   3
+    4: 0                                          #   4
+    5: 0                                          #   5
+    REDEMAX: 50                                   #   Max
+  BLUELMULTIPLIER:                                # Blue L Kinstone pack size
+    1: 50                                         #   1
+    2: 0                                          #   2
+    3: 0                                          #   3
+    4: 0                                          #   4
+    5: 0                                          #   5
+    9: 0                                          #   9
+    BLUELMAX: 50                                  #   Max
+  BLUESMULTIPLIER:                                # Blue S Kinstone pack size
+    1: 50                                         #   1
+    2: 0                                          #   2
+    3: 0                                          #   3
+    4: 0                                          #   4
+    5: 0                                          #   5
+    BLUESMAX: 50                                  #   Max
+  GREENCMULTIPLIER:                               # Green C Kinstone pack size
+    1: 50                                         #   1
+    2: 0                                          #   2
+    3: 0                                          #   3
+    4: 0                                          #   4
+    5: 0                                          #   5
+    10: 0                                         #   10
+    20: 0                                         #   20
+    GREENCMAX: 50                                 #   Max
+  GREENGMULTIPLIER:                               # Green G Kinstone pack size
+    1: 50                                         #   1
+    2: 0                                          #   2
+    3: 0                                          #   3
+    4: 0                                          #   4
+    5: 0                                          #   5
+    8: 0                                          #   8
+    GREENGMAX: 50                                 #   Max
+  GREENPMULTIPLIER:                               # Green P Kinstone pack size
+    1: 50                                         #   1
+    2: 0                                          #   2
+    3: 0                                          #   3
+    4: 0                                          #   4
+    5: 0                                          #   5
+    8: 0                                          #   8
+    GREENPMAX: 50                                 #   Max
+  #  Key Chains:
+  KEYDWSMULTIPLIER:                               # Deepwood Shrine Keychain size
+    DWS1KEY: 70                                   #   1
+    DWS2KEY: 10                                   #   2
+    DWS3KEY: 10                                   #   3
+    DWS4KEY: 10                                   #   4
+  KEYCOFMULTIPLIER:                               # Cave of Flames Keychain size
+    COF1KEY: 70                                   #   1
+    COF2KEY: 30                                   #   2
+  KEYFOWMULTIPLIER:                               # Fortress of Winds Keychain size
+    FOW1KEY: 60                                   #   1
+    FOW2KEY: 20                                   #   2
+    FOW3KEY: 10                                   #   3
+    FOW4KEY: 10                                   #   4
+  KEYTODMULTIPLIER:                               # Temple of Droplets Keychain size
+    TOD1KEY: 60                                   #   1
+    TOD2KEY: 20                                   #   2
+    TOD3KEY: 10                                   #   3
+    TOD4KEY: 10                                   #   4
+  KEYRCMULTIPLIER:                                # Royal Crypt Keychain size
+    RC1KEY: 70                                    #   1
+    RC2KEY: 10                                    #   2
+    RC3KEY: 20                                    #   3
+  KEYPOWMULTIPLIER:                               # Palace of Winds Keychain size
+    POW1KEY: 60                                   #   1
+    POW2KEY: 10                                   #   2
+    POW3KEY: 10                                   #   3
+    POW4KEY: 5                                    #   4
+    POW5KEY: 5                                    #   5
+    POW6KEY: 10                                   #   6
+  KEYDHCMULTIPLIER:                               # Dark Hyrule Castle Keychain size
+    DHC1KEY: 60                                   #   1
+    DHC2KEY: 10                                   #   2
+    DHC3KEY: 10                                   #   3
+    DHC4KEY: 10                                   #   4
+    DHC5KEY: 10                                   #   5
+  ## Start Inventory:
+  #  Main Items:
+  START_SMITH_SWORD:                              # Smith Sword
+    on: 10
+    off: 90
+  START_GREEN_SWORD:                              # Green Sword
+    on: 0
+    off: 100
+  START_RED_SWORD:                                # Red Sword
+    on: 0
+    off: 100
+  START_BLUE_SWORD:                               # Blue Sword
+    on: 0
+    off: 100
+  START_FOUR_SWORD:                               # Four Sword
+    on: 0
+    off: 100
+  START_NORMAL_BOW:                               # Bow
+    on: 10
+    off: 90
+  START_LIGHT_BOW:                                # Light Arrows
+    on: 0
+    off: 100
+  START_NORMAL_BOOM:                              # Boomerang
+    on: 10
+    off: 90
+  START_MAGIC_BOOM:                               # Magical Boomerang
+    on: 0
+    off: 100
+  START_NORMAL_SHIELD:                            # Shield
+    on: 10
+    off: 90
+  START_MIRROR_SHIELD:                            # Mirror Shield
+    on: 0
+    off: 100
+  START_REMOTE:                                   # Remote Bomb Upgrade
+    on: 25
+    off: 75
+  START_LANTERN:                                  # Lantern
+    on: 0
+    off: 100
+  START_GUST:                                     # Gust Jar
+    on: 0
+    off: 100
+  START_PACCI:                                    # Cane of Pacci
+    on: 0
+    off: 100
+  START_MITTS:                                    # Mole Mitts
+    on: 0
+    off: 100
+  START_CAPE:                                     # Roc's Cape
+    on: 10
+    off: 90
+  START_BOOTS:                                    # Pegasus Boots
+    on: 10
+    off: 90
+  START_OCARINA:                                  # Ocarina of Wind
+    on: 25
+    off: 75
+  #  Start Capacity:
+  START_BOMBBAGS:                                 # Bomb Bags
+    START_BOMBBAGS_0: 90                          #   0
+    START_BOMBBAGS_1: 10                          #   1
+    START_BOMBBAGS_2: 0                           #   2
+    START_BOMBBAGS_3: 0                           #   3
+    START_BOMBBAGS_4: 0                           #   4
+  START_QUIVERS:                                  # Quivers
+    START_QUIVERS_0: 40                           #   0
+    START_QUIVERS_1: 30                           #   1
+    START_QUIVERS_2: 20                           #   2
+    START_QUIVERS_3: 10                           #   3
+  START_WALLETS:                                  # Wallets
+    START_WALLETS_0: 40                           #   0
+    START_WALLETS_1: 30                           #   1
+    START_WALLETS_2: 20                           #   2
+    START_WALLETS_3: 10                           #   3
+  START_BOTTLES:                                  # Bottles
+    START_BOTTLES_0: 90                           #   0
+    START_BOTTLES_1: 10                           #   1
+    START_BOTTLES_2: 0                            #   2
+    START_BOTTLES_3: 0                            #   3
+    START_BOTTLES_4: 0                            #   4
+  #  Quest Status Items:
+  START_EARTH_ELEMENT:                            # Earth Element
+    on: 0
+    off: 100
+  START_FIRE_ELEMENT:                             # Fire Element
+    on: 0
+    off: 100
+  START_WATER_ELEMENT:                            # Water Element
+    on: 0
+    off: 100
+  START_WIND_ELEMENT:                             # Wind Element
+    on: 0
+    off: 100
+  START_DOG_FOOD:                                 # Dog Food Bottle
+    on: 0
+    off: 100
+  START_RANCH_KEY:                                # Lon Lon Ranch Key
+    on: 0
+    off: 100
+  START_MUSHROOM:                                 # Wake Up Mushroom
+    on: 0
+    off: 100
+  START_BOOK_1:                                   # Red Library Book
+    on: 0
+    off: 100
+  START_BOOK_2:                                   # Green Library Book
+    on: 0
+    off: 100
+  START_BOOK_3:                                   # Blue Library Book
+    on: 0
+    off: 100
+  START_GRAVEYARD_KEY:                            # Graveyard Key
+    on: 0
+    off: 100
+  START_TINGLE_TROPHY:                            # Tingle Trophy
+    on: 0
+    off: 100
+  START_CARLOV_MEDAL:                             # Carlov Medal
+    on: 0
+    off: 100
+  START_GRIP_RING:                                # Grip Ring
+    on: 0
+    off: 100
+  START_POWER_BRACELETS:                          # Power Bracelets
+    on: 0
+    off: 100
+  START_FLIPPERS:                                 # Flippers
+    on: 0
+    off: 100
+  START_JABBER_NUT:                               # Jabber Nut
+    on: 0
+    off: 100
+  #  Sword Scrolls:
+  START_SCROLL_SPIN:                              # Spin Attack
+    on: 0
+    off: 100
+  START_SCROLL_ROLL:                              # Roll Attack
+    on: 10
+    off: 90
+  START_SCROLL_DASH:                              # Dash Attack
+    on: 10
+    off: 90
+  START_SCROLL_ROCK:                              # Rock Breaker
+    on: 10
+    off: 90
+  START_SCROLL_SWORD_BEAM:                        # Sword Beam
+    on: 10
+    off: 90
+  START_SCROLL_GREAT_SPIN:                        # Great Spin Attack
+    on: 0
+    off: 100
+  START_SCROLL_DOWN_THRUST:                       # Down Thrust
+    on: 10
+    off: 90
+  START_SCROLL_PERIL_BEAM:                        # Peril Beam
+    on: 10
+    off: 90
+  START_SCROLL_FAST_SPIN:                         # Fast Spin Charge
+    on: 0
+    off: 100
+  START_SCROLL_FAST_SPLIT:                        # Fast Split Gauge
+    on: 0
+    off: 100
+  START_SCROLL_LONG_SPIN:                         # Longer Great Spin Attack
+    on: 0
+    off: 100
+  #  Joy Butterflies:
+  START_ARROW_BUTTERFLY:                          # Arrow Joy Butterfly
+    on: 25
+    off: 75
+  START_DIG_BUTTERFLY:                            # Dig Joy Butterfly
+    on: 25
+    off: 75
+  START_SWIM_BUTTERFLY:                           # Swim Joy Butterfly
+    on: 25
+    off: 75
+  #  Kinstones:
+  START_KINSTONES_GOLD_CLOUD:                     # Cloud Tops
+    0: 75
+    1: 25
+    9: 0
+    0 9 1: 0
+  START_KINSTONES_GOLD_SWAMP:                     # Swamp
+    0: 75
+    1: 25
+    3: 0
+    0 3 1: 0
+  START_KINSTONES_GOLD_FALLS:                     # Veil Falls
+    on: 25
+    off: 75
+  START_KINSTONES_RED_W:                          # Red W
+    0: 100
+    24: 0
+    0 24 1: 0
+  START_KINSTONES_RED_V:                          # Red V
+    0: 100
+    7: 0
+    0 7 1: 0
+  START_KINSTONES_RED_E:                          # Red E
+    0: 100
+    8: 0
+    0 8 1: 0
+  START_KINSTONES_BLUE_L:                         # Blue L
+    0: 100
+    18: 0
+    0 18 1: 0
+  START_KINSTONES_BLUE_S:                         # Blue S
+    0: 100
+    9: 0
+    0 9 1: 0
+  START_KINSTONES_GREEN_C:                        # Green C
+    0: 100
+    49: 0
+    0 49 1: 0
+  START_KINSTONES_GREEN_G:                        # Green G
+    0: 100
+    16: 0
+    0 16 1: 0
+  START_KINSTONES_GREEN_P:                        # Green P
+    0: 100
+    16: 0
+    0 16 1: 0
+  ## Gameplay:
+  #  Difficulty:
+  GLITCHLESS:                                     # Prevent Speedrun Glitches
+    on: 0
+    off: 100
+  TIMEDOHKO:                                      # Timed OHKO
+    on: 10
+    off: 90
+  THREE_HEART:                                    # Maximum Health
+    1: 0                                          #   1
+    2: 0                                          #   2
+    3: 0                                          #   3
+    4: 0                                          #   4
+    5: 0                                          #   5
+    6: 0                                          #   6
+    7: 0                                          #   7
+    8: 0                                          #   8
+    9: 0                                          #   9
+    10: 0                                         #   10
+    11: 0                                         #   11
+    12: 10                                        #   12
+    13: 0                                         #   13
+    14: 0                                         #   14
+    15: 0                                         #   15
+    16: 10                                        #   16
+    17: 0                                         #   17
+    18: 0                                         #   18
+    19: 0                                         #   19
+    HEARTS_20: 80                                 #   20
+  DAMAGE_MULTI:                                   # Damage Multiplier
+    MULTI_1: 90                                   #   1x
+    MULTI_2: 10                                   #   2x
+    MULTI_3: 0                                    #   3x
+    MULTI_4: 0                                    #   4x
+  SHY_FAIRIES:                                    # Shy Fairies
+    on: 0
+    off: 100
+  #  Improvements:
+  INSTANT_TEXT:                                   # Instant Text
+    on: 100
+    off: 0
+  ITEM_HISTORY:                                   # Item Name Display
+    on: 100
+    off: 0
+  HOMEWARP:                                       # Homewarp
+    on: 100
+    off: 0
+  OCARINA_SELECT:                                 # Ocarina on Select
+    on: 100
+    off: 0
+  BOOTS_L:                                        # Boots on L
+    BOOTS_L_OFF: 0                                #   Disabled
+    BOOTS_L_NORMAL: 50                            #   Enabled
+    BOOTS_L_MINISH: 50                            #   Enabled + Minish
+  #  Extras:
+  VANILLA_SHOP_ORDER:                             # Vanilla Shop Item Order
+    on: 50
+    off: 50
+  GORON_ALT_PRICES:                               # Goron Merchant JP/US prices
+    on: 50
+    off: 50
+  NO_KINSTONE_DROPS:                              # Disable Kinstone Drops
+    on: 50
+    off: 50
+  NO_SHELL_DROPS:                                 # Disable Shell Drops
+    on: 50
+    off: 50
+  #  Mystery:
+  GOAL_HINT:                                      # Gentari Requirements Hint
+    GOAL_HINT_ALWAYS: 0                           #   Always
+    GOAL_HINT_NUT_OR_ELEMENT: 100                 #   Nut Or Element
+    GOAL_HINT_NUT: 0                              #   Jabber Nut
+    GOAL_HINT_ELEMENT: 0                          #   Element
+    GOAL_HINT_NUT_AND_ELEMENT: 0                  #   Nut And Element
+    GOAL_HINT_NEVER: 0                            #   Never
+subweights: {}
