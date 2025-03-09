@@ -306,7 +306,7 @@ public class Parser
 
         Item? itemOverride = null;
 
-        if (type == LocationType.Unshuffled)
+        if (type == LocationType.Unshuffled || type == LocationType.UnshuffledPrize)
         {
             if (!(locationParts.Length >= 5) || locationParts[4].Length == 0)
                 throw new ParserException("Unshuffled location missing an item to place there!");

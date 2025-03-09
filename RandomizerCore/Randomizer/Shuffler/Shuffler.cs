@@ -39,7 +39,7 @@ internal class Shuffler : ShufflerBase
         LogicParser.SubParser.DuplicateIncrementalReplacements();
 
         var collectedLocations = locations.Select(AddLocation).ToList();
-        var collectedItems = items.Concat(locations.Where(loc => loc.Type is LocationType.Unshuffled && loc.Contents.HasValue).Select(loc => loc.Contents!.Value)).Select(AddItem).ToList();
+        var collectedItems = items.Concat(locations.Where(loc => loc.Type is LocationType.Unshuffled or LocationType.UnshuffledPrize && loc.Contents.HasValue).Select(loc => loc.Contents!.Value)).Select(AddItem).ToList();
 
         var distinctDeps = LogicParser.Dependencies.Distinct().ToList();
 
@@ -146,7 +146,7 @@ internal class Shuffler : ShufflerBase
 
         FilledLocations = new List<Location>();
 
-        var majorsAndPrizesAndDungeon = MajorItems.Concat(DungeonPrizes).Concat(DungeonMajorItems).Concat(UnshuffledItems).ToList();
+        var majorsAndPrizesAndDungeon = MajorItems.Concat(DungeonPrizes).Concat(DungeonMajorItems).Concat(UnshuffledItems).Concat(UnshuffledPrizes).ToList();
 
         //Shuffle dungeon entrances
         nextLocationGroup = locationGroups.Any(group => group.Key == LocationType.DungeonEntrance)
@@ -169,6 +169,16 @@ internal class Shuffler : ShufflerBase
             ? locationGroups.First(group => group.Key == LocationType.Unshuffled).ToList()
             : new List<Location>();
         FilledLocations.AddRange(nextLocationGroup);
+
+        nextLocationGroup = locationGroups.Any(group => group.Key == LocationType.UnshuffledPrize)
+            ? locationGroups.First(group => group.Key == LocationType.UnshuffledPrize).ToList()
+            : new List<Location>();
+        Logger.Instance.LogInfo($"Handle Dungeon Prizes with fixed dungeon associations");
+        if (HandleUnshuffledPrizes(nextLocationGroup))
+        {
+            //Some locations changed their type from UnshuffledPrize to Dungeon
+            locationGroups = Locations.GroupBy(location => location.Type).ToList();
+        }
 
         //Grab all items that we need to beat the seed
         var allItems = MajorItems.Concat(DungeonMajorItems).ToList();
@@ -219,6 +229,35 @@ internal class Shuffler : ShufflerBase
         unfilledLocations = unfilledLocations.Distinct().ToList();
 
         return (locationGroups, unfilledLocations);
+    }
+
+    private bool HandleUnshuffledPrizes(List<Location> locations)
+    {
+        var locationTypeChanged = false;
+        foreach (var location in locations)
+        {
+            var item = location.AssociatedPrize!.Value;
+            if (ElementAssociations.TryGetValue(item.Type, out var locs)) locs.Add(location);
+            else ElementAssociations.Add(item.Type, [location]);
+
+            if (LogicParser.SubParser.PrizePlacements.TryGetValue(location.Name, out var dungeon))
+            {
+                // Instead of placing the prize item here, the prize is only associated with the prize location, and the item placed later in a region dependent on this location
+                Logger.Instance.LogInfo(
+                    $"Assigned unshuffled prize {item.Type} subtype {StringUtil.AsStringHex2(item.SubValue)} to {location.Name}");
+
+                item.ShufflePool = dungeon == "" ? ItemPool.Major : ItemPool.DungeonMajor;
+                item.Dungeon = dungeon;
+                (dungeon == "" ? MajorItems : ReshuffledPrizes).Add(item);
+                location.Type = LocationType.Dungeon;
+                locationTypeChanged = true;
+            }
+            else
+            {
+                FilledLocations.Add(location);
+            }
+        }
+        return locationTypeChanged;
     }
 
     /// <summary>

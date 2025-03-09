@@ -16,9 +16,10 @@
 # RAND_INT is a hexadecimal number set by default.
 #
 # The available location types are:
-#   Music - Used for shuffling music, should not be used for anything else
+#   Music - Used to shuffle music. Should not be used for anything else.
 #   Helper - Lets the logic be reused for other locations; this location type is the only one that does not require an address.
 #   Unshuffled - This location type requires an item to be placed on the location - this location will have that item.
+#   UnshuffledPrize - This location type requires an item to be placed on the location - this location will have that item. Should be used for dungeon prizes. Final item placement can be overridden using !prizeplacement.
 #   DungeonEntrance - Used to specify that this location represents a dungeon entrance. Only items of type DungeonEntrance can be placed here. If there are any unfilled locations after placing all DungeonEntrance items, randomization will fail.
 #   DungeonConstraint - Used by dummy items to manipulate where other items can get placed in dungeons, only items of type DungeonConstraint can be placed here. If there are any unfilled locations after placing all DungeonConstraint items, randomization will fail.
 #   OverworldConstraint - Used by dummy items to manipulate where other items can get placed in the overworld, only items of type OverworldConstraint can be placed here. If there are any unfilled locations after placing all OverworldConstraint items, randomization will fail.
@@ -6725,7 +6726,7 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 !ifndef - SHUFFLE_ELEMENTS_VANILLA
 	!define - DUNGEONPRIZE - DungeonPrize
 !else
-	!define - DUNGEONPRIZE - Unshuffled
+	!define - DUNGEONPRIZE - UnshuffledPrize
 !endif
 # Dojos
 !ifdef - DOJOVANILLA

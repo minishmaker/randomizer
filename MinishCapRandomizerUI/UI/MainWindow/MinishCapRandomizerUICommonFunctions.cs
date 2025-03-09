@@ -135,9 +135,9 @@ partial class MinishCapRandomizerUI
         tip.InitialDelay = Constants.TooltipInitialShowDelayMs;
         tip.ReshowDelay = Constants.TooltipRepeatDelayMs;
         tip.SetToolTip(UseCustomCosmetics, "Patches in cosmetics based on what you have selected in the cosmetics tab.\nOnly works if both logic and patches are set to default.");
-        tip.SetToolTip(UseSphereBasedShuffler, @"Generates the seed using the sphere based shuffler. This shuffler is guaranteed to generate a seed that can beat vaati on the first attempt unless it is impossible to get out of the first sphere or takes more than 200,000 attempts to generate the seed.
+        tip.SetToolTip(UseSphereBasedShuffler, @"Generates the seed using the sphere based shuffler. This shuffler is guaranteed to generate a seed that can beat Vaati on the first attempt unless it is impossible to get out of the first sphere or takes more than 200,000 attempts to generate the seed.
 
-This shuffler gets the locations in sphere 1, fills them, checks for progression, advances to the next sphere, etc. until it can beat vaati. 
+This shuffler gets the locations in sphere 1, fills them, checks for progression, advances to the next sphere, etc. until it can beat Vaati. 
 If no progression is available, it goes to the previous sphere and re-places items there to try and change what is processed the next time.
 
 This shuffler is known for creating very linear and plando-esque seeds, use at your own risk. We have cases where it has generated 30+ sphere seeds when the normal shuffler generated 12-15 sphere seeds.

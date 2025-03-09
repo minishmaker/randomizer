@@ -6,6 +6,7 @@ public enum LocationType
     Untyped,
     Helper,
     Unshuffled,
+    UnshuffledPrize,
     DungeonEntrance,
     DungeonConstraint,
     OverworldConstraint,
