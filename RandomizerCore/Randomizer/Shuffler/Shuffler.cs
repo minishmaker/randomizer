@@ -326,13 +326,16 @@ internal class Shuffler : ShufflerBase
             var locationIndex = Rng.Next(availableLocations.Count);
             var location = availableLocations[locationIndex];
 
-            if (considerPrizePlacements) location.AssociatedPrize = item;
+            if (considerPrizePlacements)
+            {
+                location.AssociatedPrize = item;
+                if (ElementAssociations.TryGetValue(item.Type, out var locs)) locs.Add(location);
+                else ElementAssociations.Add(item.Type, [location]);
+            }
 
             if (considerPrizePlacements && LogicParser.SubParser.PrizePlacements.TryGetValue(location.Name, out var dungeon))
             {
                 // Instead of placing the prize item here, the prize is only associated with the prize location, and the item placed later in a region dependent on this location
-                if (ElementAssociations.TryGetValue(item.Type, out var locs)) locs.Add(location);
-                else ElementAssociations.Add(item.Type, [location]);
                 Logger.Instance.LogInfo(
                     $"Assigned prize {item.Type} subtype {StringUtil.AsStringHex2(item.SubValue)} to {location.Name} from {availableLocations.Count} locations, with {items.Count} items remaining");
 
