@@ -50,6 +50,7 @@ internal abstract class ShufflerBase
             protected readonly List<Item> Music;
             protected readonly List<Item> OverworldConstraints;
             protected readonly List<Item> UnshuffledItems;
+            protected readonly List<Item> UnshuffledPrizes;
 
             protected readonly Dictionary<ItemType, HashSet<Location>> ElementAssociations;
             
@@ -317,6 +318,7 @@ internal abstract class ShufflerBase
 
         Music = new List<Item>();
         UnshuffledItems = new List<Item>();
+        UnshuffledPrizes = new List<Item>();
 
         DungeonEntrances = new List<Item>();
         DungeonConstraints = new List<Item>();
@@ -429,12 +431,22 @@ internal abstract class ShufflerBase
 
             if (LogicParser.SubParser.LocationTypeOverrides.ContainsKey(location.Contents.Value))
                 location.Type = LogicParser.SubParser.LocationTypeOverrides[location.Contents.Value];
+            
+            if (location.Type == LocationType.Unshuffled)
+            {
+                location.Fill(location.Contents.Value);
+                UnshuffledItems.Add(location.Contents.Value);
+            }
 
-            if (location.Type != LocationType.Unshuffled) return location;
-
-            // Unshuffled locations require contents, so add them here
-            location.Fill(location.Contents!.Value);
-            UnshuffledItems.Add(location.Contents!.Value);
+            if (location.Type == LocationType.UnshuffledPrize)
+            {
+                location.AssociatedPrize = location.Contents.Value;
+                UnshuffledPrizes.Add(location.Contents.Value);
+                if (!LogicParser.SubParser.PrizePlacements.ContainsKey(location.Name))
+                {
+                    location.Fill(location.Contents.Value);
+                }
+            }
 
             return location;
         }
@@ -447,6 +459,7 @@ internal abstract class ShufflerBase
 
             Music.Clear();
             UnshuffledItems.Clear();
+            UnshuffledPrizes.Clear();
 
             DungeonEntrances.Clear();
             DungeonConstraints.Clear();

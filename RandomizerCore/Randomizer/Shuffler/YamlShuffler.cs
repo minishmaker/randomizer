@@ -108,13 +108,15 @@ internal class YamlShuffler : Shuffler
         var locationStrings = LoadLocationFile(logicFile);
         
         var time = DateTime.Now;
-        var locationAndItems = LogicParser.ParseLocationsAndItems(locationStrings, Rng);
+        Logger.Instance.BeginLogTransaction();
+        var (locations, items) = LogicParser.ParseLocationsAndItems(locationStrings, Rng);
+        Logger.Instance.SaveLogTransaction();
 
         LogicParser.SubParser.DuplicateAmountReplacements();
         LogicParser.SubParser.DuplicateIncrementalReplacements();
 
-        var collectedLocations = locationAndItems.locations.Select(AddLocation).ToList();
-        var collectedItems = locationAndItems.items.Concat(locationAndItems.locations.Where(loc => loc.Type is LocationType.Unshuffled && loc.Contents.HasValue).Select(loc => loc.Contents!.Value)).Select(AddItem).ToList();
+        var collectedLocations = locations.Select(AddLocation).ToList();
+        var collectedItems = items.Concat(locations.Where(loc => loc.Type is LocationType.Unshuffled or LocationType.UnshuffledPrize && loc.Contents.HasValue).Select(loc => loc.Contents!.Value)).Select(AddItem).ToList();
 
         var distinctDeps = LogicParser.Dependencies.Distinct().ToList();
 
