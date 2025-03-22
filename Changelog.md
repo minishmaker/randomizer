@@ -1,3 +1,21 @@
+# Version 1.0.0 RC 2.1
+
+
+#### This is a pre-release version
+
+## What's New!
+
+---
+
+- Fixed elements not being drawn at the correct locations on the map with Element Shuffle set to Dungeon Rewards
+- Fixed elements not being drawn at the correct locations on the map with Element Shuffle set to Vanilla
+- Added location type UnshuffledPrize to the logic parser
+- Added the 2024 Francophone Tournament to the Tournament Champions part of the credits
+
+---
+
+# History
+
 # Version 1.0.0 RC 2
 
 
@@ -93,10 +111,6 @@ Some of these bugs have been discovered by members of the community, including B
 - Logic files can use the new `!ensurereachability` directive to enable a check after item placement whether all item and entrance locations that are not marked as being inaccessible are really logically accessible. This forces the sphere-based shuffler to continue placing items like normal even when the goal is reachable, otherwise remaining progression items might be discarded and as a result locations made unreachable.
 - Logic files can specify a multiplier when adding items to the pool, which affects how many items are actually added to reach the specified total amount. (The default logic uses this to adjust the amount of Kinstones in the pool with respect to the Kinstone pack settings.)
 - `!addition` now works with negative numbers, and there is no longer an upper limit of 255 for the sum.
-
----
-
-# History
 
 # Version 1.0.0 RC 1.1
 

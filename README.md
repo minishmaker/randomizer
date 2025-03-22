@@ -13,7 +13,7 @@
 * [CLI Information](#cli-information)
 * [Version History](#version-history)
 
-This version: `1.0.0-rc2`
+This version: `1.0.0-rc2.1`
 This is a pre-release version before `1.0` proper
 
 Please see the [releases](https://github.com/minishmaker/randomizer/releases) page for the latest version.
