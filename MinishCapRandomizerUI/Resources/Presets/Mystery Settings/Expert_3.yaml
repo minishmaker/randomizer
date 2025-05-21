@@ -36,7 +36,9 @@ settings:
     BIG_KEYS_REGDUN: 10                           #   Any Region
     BIG_KEYSANITY: 20                             #   Anywhere (Keysanity)
   SHUFFLE_ELEMENTS:                               # Shuffle Elements
-    SHUFFLE_ELEMENTS_VANILLA: 5                   #   Vanilla
+    SHUFFLE_ELEMENTS_VANILLA: 2                   #   Vanilla
+    SHUFFLE_ELEMENTS_VANILLA_DUNGEON: 2           #   Vanilla Dungeon
+    SHUFFLE_ELEMENTS_VANILLA_REGION: 1            #   Vanilla Region
     SHUFFLE_ELEMENTS_OFF: 40                      #   Dungeon Rewards
     SHUFFLE_ELEMENTS_DUNGEON: 25                  #   Own Dungeon
     SHUFFLE_ELEMENTS_REGION: 10                   #   Own Region
