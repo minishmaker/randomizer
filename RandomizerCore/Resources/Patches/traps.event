@@ -63,6 +63,11 @@ ALIGN 4
 moneyTrapEffect:
 #incbin "asm/moneyTrapEffect.dmp"
 
+PUSH; ORG $85C98; jumpToHack(moneyTrapInit); POP
+ALIGN 4
+moneyTrapInit:
+#incbin "asm/moneyTrapInit.dmp"
+
 ALIGN 4
 stinkTrap:
 #incbin "asm/stinkTrap.dmp"
