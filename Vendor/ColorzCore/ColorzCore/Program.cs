@@ -228,7 +228,10 @@ namespace ColorzCore
             }
 
             inStream.Close();
-            outStream.Close();
+            if (CustomOutputStream == null)
+            {
+                outStream.Close();
+            }
             errorStream.Close();
 
             return success ? ExitSuccess : ExitFailure;
