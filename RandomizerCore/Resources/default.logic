@@ -311,6 +311,7 @@
 !flag - Gameplay - Setting - Improvements - ITEM_HISTORY - Item Name Display - Collecting an item will display text at the bottom left corner of the screen telling you what you just picked up, useful in Keysanity modes where the textbox closes too quickly for you to read which dungeon it came from. - true
 !flag - Gameplay - Setting - Improvements - HOMEWARP - Homewarp - In the Pause menu there is a 'SLEEP' option on the 'QUEST STATUS' screen, using this will warp Link back to his bed from wherever he is.\nThis option is force enabled whenever a setting combination has the possibility of softlocks - true
 !flag - Gameplay - Setting - Improvements - OCARINA_SELECT - Ocarina on Select - Allows you to use the Ocarina by pressing the Select button, once obtained.\nWarning: Since this removes the Ezlo interaction, this prevents certain glitches. - true
+!dropdown - Gameplay - Setting - Extras - WALLET_REFILL - Wallets contain Rupees - Determines whether Wallet Upgrades contain Rupees when picked up. - WALLET_REFILL_OFF - Disabled - WALLET_REFILL_OFF - 'Disabled': You get no Rupees when expanding your Wallet size, like in the vanilla game. - Upgrade Amount - WALLET_REFILL_DIFFERENCE - 'Upgrade Amount': You get as many Rupees as the capacity of your Wallet is increasing by. - Max - WALLET_REFILL_MAX - 'Max': You get as many Rupees as your new Wallet can hold.
 !flag - Gameplay - Setting - Extras - VANILLA_SHOP_ORDER - Vanilla Shop Item Order - If enabled, the 300 Rupees item only appears after the 80 Rupees item has been bought.\nIf the extra JP/US item is enabled, that one only spawns after buying the 300 Rupees item.
 !flag - Gameplay - Setting - Extras - GORON_ALT_PRICES - Goron Merchant JP/US prices - If enabled will use the prices found in the JP and US versions.\nThese are the prices from left to right:\nEU 1st set: 200, 100, 50\nEU 2nd set: 300, 200, 100\nEU 3rd set: 400, 300, 200\nEU 4th set: 500, 400, 300\nEU 5th set: 600, 500, 400\nJP any set: 300, 200, 50
 !flag - Gameplay - Setting - Extras - NO_KINSTONE_DROPS - Disable Kinstone Drops - Kinstone Pieces can no longer randomly drop.\nThey can also not be obtained through any other means than items in the random item pool. - true
@@ -485,6 +486,7 @@
 
 !define - `THREE_HEART`
 !define - `DAMAGE_MULTI`
+!define - `WALLET_REFILL`
 !define - `BOOTS_L`
 !define - `GOAL_HINT`
 
@@ -1348,6 +1350,13 @@
 	!else
 		!eventdefine - mC87 - 0x00
 	!endif
+!endif
+
+!ifdef - WALLET_REFILL_DIFFERENCE
+	!eventdefine - walletRefillDifference
+!endif
+!ifdef - WALLET_REFILL_MAX
+	!eventdefine - walletRefillFull
 !endif
 
 !ifdef - BOOTS_L_NORMAL
@@ -4711,6 +4720,20 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 	PoWRupees;			Helper;;	(|Helpers.PoWJump, Helpers.HasMagicBoomerang)
 	PoWDrop;				Helper;;	(|(&Items.RocsCape, (|Helpers.CanSplit3, Helpers.CanSplit4), Items.PacciCane, Helpers.PoWPotPuzzle), (&(|Helpers.PoW2ndHalf, Helpers.PoWBlueWarp), Helpers.DarkRooms, (|(&Helpers.PoW2ndHalf1stDoor, Items.RocsCape), Helpers.PoWShortcuts), (|Items.GustJar, Helpers.HasBoomerang)), (&Helpers.PoWRedWarp, Helpers.OverworldBlocks, (|Items.GustJar, Helpers.HasBoomerang)))
 	PoWHP;				Helper;;	(|(&Helpers.DarkRooms, (|(&Helpers.PoW2ndHalf1stDoor, Items.RocsCape), Helpers.PoWShortcuts), Helpers.PoWHandRoom, (|Helpers.PoW2ndHalf, Helpers.PoWBlueWarp)), (&Helpers.PoWRedWarp, Helpers.OverworldBlocks), (&(|Helpers.CanSplit3, Helpers.CanSplit4), Helpers.PoWJump, Helpers.PoW1stDoor, (|Items.GustJar, Helpers.HasBoomerang)))
+!endif
+!ifndef - WALLET_REFILL_OFF
+	# Rupees in Wallets are considered for logic (without distinction between upgrade amount and completely filled wallets)
+	!ifndef - START_WALLETS_3
+		Dummy_ThirdWalletRefill1:NoSpoiler;			Unshuffled;	DumThirdWalletRefill11:Define:FirstByte, DumThirdWalletRefill12:Define:SecondByte;	;	Items.Rupee200
+		Dummy_ThirdWalletRefill2:NoSpoiler;			Unshuffled;	DumThirdWalletRefill21:Define:FirstByte, DumThirdWalletRefill22:Define:SecondByte;	;	Items.Rupee200
+		Dummy_ThirdWalletRefill3:NoSpoiler;			Unshuffled;	DumThirdWalletRefill31:Define:FirstByte, DumThirdWalletRefill32:Define:SecondByte;	;	Items.Rupee100
+		!ifndef - START_WALLETS_2
+			Dummy_SecondWalletRefill:NoSpoiler;		Unshuffled;	DumSecondWalletRefill1:Define:FirstByte, DumSecondWalletRefill2:Define:SecondByte;	;	Items.Rupee200
+			!ifndef - START_WALLETS_1
+				Dummy_FirstWalletRefill:NoSpoiler;	Unshuffled;	DumFirstWalletRefill1:Define:FirstByte, DumFirstWalletRefill2:Define:SecondByte;	;	Items.Rupee200
+			!endif
+		!endif
+	!endif
 !endif
 !ifdef - REQUIREDBARLOVFARM
 	# Guarantee you can find at least 50 Rupees total in the item pool (or through Mole Mitts) before Barlov game is considered for logic (even though it only costs 10 Rupees)
