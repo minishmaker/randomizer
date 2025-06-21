@@ -4695,7 +4695,7 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 	MusicHouseHP;			Helper;;	(|Helpers.MusicHouse, Helpers.HasBoomerang, Items.GustJar)
 	FountainHP;			Helper;;	(|Items.RocsCape, Items.GustJar, Helpers.HasMagicBoomerang, (&Helpers.HasBoomerang, (|Helpers.LightArrowBreak, Items.PacciCane)))
 	LowerFallsItems;		Helper;;	(|(&Helpers.AccessMinishWoods, Items.PacciCane, (|Items.Flippers, Items.RocsCape)), (&Helpers.OverworldBlocks, Helpers.FallsFusion, Helpers.DarkRooms, (|Helpers.HasMagicBoomerang, Items.GustJar)), (&Helpers.AccessFalls, Items.GripRing, (|Helpers.HasMagicBoomerang, Items.GustJar)))
-	LakeIslandHP;			Helper;;	(|Items.RocsCape, Helpers.HasMagicBoomerang)
+	LakeIslandHP;			Helper;;	(|Items.RocsCape, Helpers.HasMagicBoomerang, Items.GustJar)
 	LakeSouthHP;			Helper;;	(|(&Helpers.AccessLonLon, (|Helpers.CapeExtension, (&Helpers.LakeShortcut, Helpers.HasMagicBoomerang))), (&Helpers.AccessSouthLake, (|Items.RocsCape, Items.Flippers, Items.GustJar, Helpers.HasMagicBoomerang)))
 	MinishNorthHP;		Helper;;	(|Helpers.AccessNorthMinish, (&Helpers.AccessMinishWoods, (|Items.GustJar, Helpers.HasBoomerang)))
 	MinishSouthHP;		Helper;;	(|Helpers.AccessMinishWoods, (&Helpers.AccessBelari, Items.GustJar))
@@ -8197,7 +8197,7 @@ Droplets_RightPath_B2_UnderpassItem1			`TOD_INSIDE`		`DUNGEONRUPEE`;			0x0E483F;
 Droplets_RightPath_B2_UnderpassItem2			`TOD_INSIDE`		`DUNGEONRUPEE`;			0x0E484F;													(|(&`ENTERTOD`, Helpers.ToDRightRupees), Helpers.Hundo);	Items.Rupee1
 Droplets_RightPath_B2_UnderpassItem3			`TOD_INSIDE`		`DUNGEONRUPEE`;			0x0E485F;													(|(&`ENTERTOD`, Helpers.ToD2ndRupeePath), Helpers.Hundo);	Items.Rupee1
 Droplets_RightPath_B2_UnderpassItem4			`TOD_INSIDE`		`DUNGEONRUPEE`;			0x0E486F;													(|(&`ENTERTOD`, Helpers.ToD2ndRupeePath), Helpers.Hundo);	Items.Rupee1
-Droplets_RightPath_B2_UnderpassItem5			`TOD_INSIDE`		`DUNGEONRUPEE`;			0x0E487F;													(|(&`ENTERTOD`, Helpers.ToD2ndRupeePath), Helpers.Hundo);	Items.Rupee1
+Droplets_RightPath_B2_UnderpassItem5			`TOD_INSIDE`		`DUNGEONRUPEE`;			0x0E487F;													(|(&`ENTERTOD`, Helpers.ToDRightRupees), Helpers.Hundo);	Items.Rupee1
 
 CompleteDroplets;											Helper;					;																`ENTERTOD`, Helpers.AccessOcto, Items.Lantern, (|Helpers.HasSword, Helpers.HasShield);
 
