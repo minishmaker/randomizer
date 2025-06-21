@@ -50,6 +50,13 @@ public class LogicDropdown : LogicOptionBase
         return [new LogicDefine(Name, Selections[Selection])];
     }
 
+    public override IEnumerable<byte> GetAdditionalHashBytes()
+    {
+        List<byte> b = [(byte)Selections.Count];
+        b.AddRange(Selections.SelectMany(option => Encoding.UTF8.GetBytes(option.Value)));
+        return b;
+    }
+
     public override byte GetSelectionHashByte()
     {
         return Encoding.ASCII.GetBytes(Selection).Crc8();

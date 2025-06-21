@@ -44,6 +44,7 @@ public class OptionList : List<LogicOptionBase>
             bytes.AddRange(Encoding.UTF8.GetBytes(option.Name));
             bytes.AddRange(Encoding.UTF8.GetBytes(option.Type.ToString()));
             bytes.AddRange(Encoding.UTF8.GetBytes(option.GetType().ToString()));
+            bytes.AddRange(option.GetAdditionalHashBytes());
         }
 
         return bytes.ToArray().Crc32();

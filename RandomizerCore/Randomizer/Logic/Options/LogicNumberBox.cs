@@ -48,6 +48,11 @@ public class LogicNumberBox : LogicOptionBase
         return [new LogicDefine(Name, $"{Value}")];
     }
 
+    public override IEnumerable<byte> GetAdditionalHashBytes()
+    {
+        return [MinValue, MaxValue];
+    }
+
     public override byte GetSelectionHashByte()
     {
         return Value;

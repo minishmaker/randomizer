@@ -53,6 +53,11 @@ public abstract class LogicOptionBase : ICloneable
 
     public abstract string GetOptions();
 
+    public virtual IEnumerable<byte> GetAdditionalHashBytes()
+    {
+        return [];
+    }
+
     public abstract byte GetSelectionHashByte();
 
     public abstract string GetOptionUiType();
