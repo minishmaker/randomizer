@@ -16,56 +16,46 @@ public class LogicNumberBox : LogicOptionBase
         byte maximumValue,
         string descriptionText,
         LogicOptionType type) :
-        base(name, niceName, true, settingGroup, settingPage, descriptionText, type)
+        base(name, niceName, settingGroup, settingPage, descriptionText, type)
     {
         MinValue = minimumValue;
         MaxValue = maximumValue;
         DefaultValue = defaultValue;
-        Value = $"{DefaultValue}";
+        Value = defaultValue;
     }
 
-    public string Value { get; set; }
+    public byte Value { get; set; }
     public byte MinValue { get; }
     public byte MaxValue { get; }
     public byte DefaultValue { get; }
 
     public override void Reset()
     {
-        Value = $"{DefaultValue}";
+        Value = DefaultValue;
     }
 
     public override void CopyValueFrom(LogicOptionBase option)
     {
-        base.CopyValueFrom(option);
-        Value = ((LogicNumberBox)option).Value;
+        LogicNumberBox numberBox = (LogicNumberBox)option;
+        if (numberBox.Value < MinValue || numberBox.Value > MaxValue)
+            throw new Exception($"Attempt to load option {Name} failed! Invalid value {numberBox.Value}");
+        Value = numberBox.Value;
     }
 
     public override List<LogicDefine> GetLogicDefines()
     {
-        var defineList = new List<LogicDefine>(3);
-
-        // Only true if valid text has been entered
-        if (Value != "")
-        {
-            Logger.Instance.LogInfo($"Number box name: {Name}, Value: {Value}");
-            defineList.Add(new LogicDefine(Name, Value));
-        }
-        else
-        {
-            defineList.Add(new LogicDefine(Name, "0"));
-        }
-
-        return defineList;
+        Logger.Instance.LogInfo($"Number box name: {Name}, Value: {Value}");
+        return [new LogicDefine(Name, $"{Value}")];
     }
 
-    public override byte GetHashByte()
+    public override byte GetSelectionHashByte()
     {
-        return Value != "" ? byte.Parse(Value) : (byte)0;
+        return Value;
     }
 
     public override string GetOptions()
     {
-        return "A number between 0 and 255";
+        return $"A number between {MinValue} and {MaxValue}";
     }
 
     public override string GetOptionUiType()

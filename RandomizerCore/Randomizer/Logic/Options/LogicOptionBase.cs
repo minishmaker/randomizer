@@ -11,15 +11,13 @@ public abstract class LogicOptionBase : ICloneable
     protected LogicOptionBase(
         string name,
         string niceName,
-        bool active,
         string settingGroup,
         string settingPage,
         string descriptionText,
-        LogicOptionType type = LogicOptionType.Untyped)
+        LogicOptionType type)
     {
         Name = name;
         NiceName = niceName;
-        Active = active;
         Type = type;
         SettingGroup = settingGroup;
         SettingPage = settingPage;
@@ -27,16 +25,15 @@ public abstract class LogicOptionBase : ICloneable
         var builder = new StringBuilder();
         foreach (var s in tempText.Split("\\n")) builder.AppendLine(s);
         DescriptionText = builder.ToString();
-        Observers = new List<ILogicOptionObserver>();
+        Observers = [];
     }
 
-    public string Name { get; set; }
-    public string NiceName { get; set; }
-    public bool Active { get; set; }
-    public LogicOptionType Type { get; set; }
-    public string SettingGroup { get; set; }
-    public string SettingPage { get; set; }
-    public string DescriptionText { get; set; }
+    public string Name { get; }
+    public string NiceName { get; }
+    public LogicOptionType Type { get; }
+    public string SettingGroup { get; }
+    public string SettingPage { get; }
+    public string DescriptionText { get; }
 
     public void NotifyObservers()
     {
@@ -50,16 +47,13 @@ public abstract class LogicOptionBase : ICloneable
 
     public abstract void Reset();
 
-    public virtual void CopyValueFrom(LogicOptionBase option)
-    {
-        Active = option.Active;
-    }
+    public abstract void CopyValueFrom(LogicOptionBase option);
 
     public abstract List<LogicDefine> GetLogicDefines();
 
     public abstract string GetOptions();
 
-    public abstract byte GetHashByte();
+    public abstract byte GetSelectionHashByte();
 
     public abstract string GetOptionUiType();
 

@@ -47,7 +47,7 @@ public class NumberBoxWrapper : WrapperBase, ILogicOptionObserver
         {
             AutoSize = false,
             Name = _numberBox.Name,
-            Text = _numberBox.Value,
+            Text = _numberBox.Value.ToString(),
             Minimum = _numberBox.MinValue,
             Maximum = _numberBox.MaxValue,
             Location = new Point(initialX + (int)((TextWidth + Constants.WidthMargin)*Constants.SpecialScaling), initialY + NumberBoxAlign),
@@ -71,24 +71,31 @@ public class NumberBoxWrapper : WrapperBase, ILogicOptionObserver
         {
             if (_upDownBox.Text.Length == 0)
             {
-                _numberBox.Value = _upDownBox.Text = _numberBox.DefaultValue.ToString();
+                _numberBox.Value = _numberBox.DefaultValue;
+                _upDownBox.Text = _numberBox.DefaultValue.ToString();
                 return;
             }
 
             if (byte.TryParse(_upDownBox.Text, out var val))
             {
                 if (val > _numberBox.MaxValue)
-                    _numberBox.Value = _upDownBox.Text = _numberBox.MaxValue.ToString();
+                { 
+                    _numberBox.Value = _numberBox.MaxValue;
+                    _upDownBox.Text = _numberBox.MaxValue.ToString();
+                }
                 else
                 {
                     if (val < _numberBox.MinValue)
-                        _numberBox.Value = _upDownBox.Text = _numberBox.MinValue.ToString();
+                    { 
+                        _numberBox.Value = _numberBox.MinValue;
+                        _upDownBox.Text = _numberBox.MinValue.ToString();
+                    }
                     else
-                        _numberBox.Value = val.ToString();
+                        _numberBox.Value = val;
                 }
             }
             else
-                _upDownBox.Text = _numberBox.Value;
+                _upDownBox.Text = _numberBox.Value.ToString();
         };
 
         return new List<Control> { _label, _upDownBox };

@@ -31,7 +31,7 @@ internal static class YamlParser
                 {
                     switch (option)
                     {
-                        case LogicFlag:
+                        case LogicFlag flag:
                             if (mysteryFlag)
                             {
                                 content += PadComment(indent + option.Name + ":", option.NiceName, commentOffset);
@@ -39,7 +39,7 @@ internal static class YamlParser
                                 content += indent + indent + "off: 1" + Environment.NewLine;
                             }
                             else
-                                content += PadComment(indent + option.Name + ": " + (option.Active ? "on" : "off"), option.NiceName, commentOffset);
+                                content += PadComment(indent + option.Name + ": " + (flag.Active ? "on" : "off"), option.NiceName, commentOffset);
                             break;
                         case LogicDropdown dropdown:
                             if (mysteryFlag)
@@ -197,14 +197,14 @@ internal static class YamlParser
     {
         switch (option)
         {
-            case LogicFlag:
+            case LogicFlag flag:
                 if (string.Equals(value, "on", StringComparison.OrdinalIgnoreCase) || string.Equals(value, "true", StringComparison.OrdinalIgnoreCase) || value == "1")
-                    option.Active = true;
+                    flag.Active = true;
                 else
                 {
                     if (string.Equals(value, "off", StringComparison.OrdinalIgnoreCase) ||
                         string.Equals(value, "false", StringComparison.OrdinalIgnoreCase) || value == "0")
-                        option.Active = false;
+                        flag.Active = false;
                     else
                         throw new ParserException($"Invalid value \"{value}\" for Flag option \"{option.Name}\"");
                 }
@@ -266,7 +266,7 @@ internal static class YamlParser
                 break;
             case LogicNumberBox box:
                 if (int.TryParse(value, out var i) && i >= box.MinValue && i <= box.MaxValue)
-                    box.Value = i.ToString();
+                    box.Value = (byte)i;
                 else
                 {
                     var split = value.Split(" ");
@@ -278,7 +278,7 @@ internal static class YamlParser
                         if (step <= 0)
                             throw new ParserException($"Invalid value \"{value}\" for Number option \"{option.Name}\"");
                         var val = min + random.Next((max - min) / step + 1) * step;
-                        box.Value = val.ToString();
+                        box.Value = (byte)val;
                     }
                     else
                         throw new ParserException($"Invalid value \"{value}\" for Number option \"{option.Name}\"");

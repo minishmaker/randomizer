@@ -5,6 +5,7 @@ namespace RandomizerCore.Randomizer.Logic.Options;
 
 public class LogicFlag : LogicOptionBase
 {
+    public bool Active { get; set; }
     public bool Default { get; }
 
     public LogicFlag(
@@ -15,14 +16,20 @@ public class LogicFlag : LogicOptionBase
         string settingPage,
         string descriptionText,
         LogicOptionType type) :
-        base(name, niceName, active, settingGroup, settingPage, descriptionText, type)
+        base(name, niceName, settingGroup, settingPage, descriptionText, type)
     {
+        Active = active;
         Default = active;
     }
 
     public override void Reset()
     {
         Active = Default;
+    }
+
+    public override void CopyValueFrom(LogicOptionBase option)
+    {
+        Active = ((LogicFlag)option).Active;
     }
 
     public override List<LogicDefine> GetLogicDefines()
@@ -35,7 +42,7 @@ public class LogicFlag : LogicOptionBase
         return defineList;
     }
 
-    public override byte GetHashByte()
+    public override byte GetSelectionHashByte()
     {
         return Active ? (byte)01 : (byte)00;
     }

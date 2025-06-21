@@ -87,7 +87,7 @@ internal static class MinifiedSettings
 
             var numberBox = numberBoxes[numberBoxesProcessed];
 
-            numberBox.Value = $"{currentByte}";
+            numberBox.Value = currentByte;
             numberBox.NotifyObservers();
         }
 
@@ -168,7 +168,7 @@ internal static class MinifiedSettings
 
         for (var numberBoxesProcessed = 0; numberBoxesProcessed < numberBoxes.Count; ++numberBoxesProcessed)
         {
-            currentByte = numberBoxes[numberBoxesProcessed].GetHashByte();
+            currentByte = numberBoxes[numberBoxesProcessed].Value;
             bytes.Add(currentByte);
         }
 
