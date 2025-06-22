@@ -205,6 +205,8 @@
 !dropdown - Logic Settings - Setting - Require Tricks - DHCSWITCHES_SETTING - DHC Switches without Four Sword - Medium/High Difficulty:\nIn Dark Hyrule Castle 2F are 2 rooms that contain puzzles which require hitting 4 switches simultanously to solve the puzzle,\nthese switches are close enough together at each location that a single spin attack from a precise spot can hit all the switches and solve the puzzle without having to create clones.\nHowever because they are located late in the dungeon behind puzzles that always require the Four Sword, this setting will only matter when playing Open World and going through the red warp to reach this floor. - NODHCSWITCHES - No - NODHCSWITCHES - 'No': Four Sword (and a Spin) will always be required to hit these switches. - Yes - YESDHCSWITCHES - 'Yes': A sword and spin is all that is needed to do these puzzles. If Open World is off then Four Sword (and Spin) are required.
 !dropdown - Logic Settings - Setting - Require Tricks - FOWPOT_SETTING - FoW Pot item early using the Gust Jar - Low Difficulty:\nIn Fortress of Winds there are 2 pots that contain items when playing with 'Special Pots', these are located in a dirt filled room in the back right section of the dungeon on 2F locked behind various locked doors.\nHowever the lower of the 2 pots can be grabbed with the Gust Jar from a much earlier part of the dungeon located in the front right section 2F.\nThe pot can accidentally be released inside the wall which makes the item unobtainable, simply reload the room and the pot and item will respawn. - NOFOWPOT - No - NOFOWPOT - 'No': From the entrance of Fortress, this location always requires at least 3 Fortress small keys as well as the Mole Mitts and Bow. - Yes - YESFOWPOT - 'Yes': From the entrance of Fortress, this location may only require the Gust Jar.
 
+!dropdown - Logic Settings - Setting - Require Tricks - CLONETRICKS_SETTING - Tricky clone movement - Medium Difficulty:\nYour clones can walk on pits and even through the sides of some solid objects if you are quick enough.\nThis can allow you to complete certain puzzles with more clones than you would normally have at that point in the vanilla game.\nThis setting only has an impact when Swords are not Progressive as otherwise you can always switch to a smaller number of clones. - NOCLONETRICKS - No - NOCLONETRICKS - 'No': Walking across pits or through solid objects with your clones is never required. - Yes - YESCLONETRICKS - 'Yes': Walking across pits or through solid objects with your clones can be required if Swords are not set to Progressive.
+
 !dropdown - Item Pool - Setting - Global - ITEM_POOL - Item Pool -  - ITEM_POOL_NORMAL - Reduced (RIP) - ITEM_POOL_RIP - 'Reduced': Removes many items from the pool:\nAll Heart Containers removed and some Heart Pieces removed (Max Hearts available is 10)\nRemote Bombs removed\nAll Spin Scroll Upgrades removed, a single Spin Scroll remains\nAll Butterflies removed\nAll Quivers removed\nA Shield is removed, a single Shield remains\nA Boomerang is removed, a single Boomerang remains. If either 'Vanilla Red Fusions' or 'Vanilla Green Fusions' are on then no Boomerangs are removed.\n3 Bottles removed, a single Bottle remains\n3 Bomb bags are removed, a single Bomb bag remains - Balanced - ITEM_POOL_NORMAL - 'Balanced': Normal Item Pool. - Plentiful - ITEM_POOL_PLENTIFUL - 'Plentiful': Adds extra copies of major items to the pool.\nItems with 2 extra copies:\nSword\nLantern\nGust Jar\nCane of Pacci\nRocs Cape\nOcarina\nFlippers\nSpin Attack\nItems with 1 extra copy:\nBow\nMole Mitts\nPegasus Boots\nGrip Ring\nGraveyard Key\nIf Gold Kinstones are randomized:\n2 extra Cloud Kinstones, 2 extra Swamp Kinstones, and an extra Falls Kinstone (5 extra if combined)\nIf other fusion colors are randomized:\n2 of each red shape (6 if combined)\n2 of each blue shape (4 if combined)\n3 of each green shape (9 if combined)\nIf Big Keysanity is on then there is an extra Big Key for each Dungeon\nIf Small Keysanity is on then there are 2 extra Small Keys for each Dungeon
 !flag - Item Pool - Setting - Global - RANDOM_BOTTLE_CONTENT - Random Bottle Contents - Randomizes the contents of the bottles that are shuffled in the pool, these contents are never considered by logic. - true
 !flag - Item Pool - Setting - Global - TRAPS - Traps - Add Trap items to the item pool, These items are disguised to look like major items if they are in visible locations.\nTraps have 10 different possible effects they can deploy when collected, see if you can experience them all! 
@@ -447,6 +449,7 @@
 !define - `DHCJOSTLE_SETTING`
 !define - `DHCSWITCHES_SETTING`
 !define - `FOWPOT_SETTING`
+!define - `CLONETRICKS_SETTING`
 
 !define - `ITEM_POOL`
 !define - `FIREROD`
@@ -4664,7 +4667,7 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 		FoWHP;				Helper;;	Helpers.FoWCloneSwitch
 		ToDRightRupees;		Helper;;	Helpers.ToD2ndRupeePath
 		PoWRupees;			Helper;;	Helpers.PoWJump
-		PoWDrop;				Helper;;	Items.RocsCape, (|Helpers.CanSplit3, Helpers.CanSplit4), Items.PacciCane, Helpers.PoWPotPuzzle
+		PoWDrop;				Helper;;	Items.RocsCape, Helpers.PoWPlatformClones, Items.PacciCane, Helpers.PoWPotPuzzle
 		PoWHP;				Helper;;	(|(&Helpers.DarkRooms, (|(&Helpers.PoW2ndHalf1stDoor, Items.RocsCape), Helpers.PoWShortcuts), Helpers.PoWHandRoom, (|Helpers.PoW2ndHalf, Helpers.PoWBlueWarp)), (&Helpers.PoWRedWarp, Helpers.OverworldBlocks))
 	!else
 		ShopBack;			Helper;;	(|Helpers.TownDog, Items.GustJar)
@@ -4686,7 +4689,7 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 		FoWHP;				Helper;;	(|Helpers.FoWCloneSwitch, Items.GustJar)
 		ToDRightRupees;		Helper;;	Helpers.ToD2ndRupeePath
 		PoWRupees;			Helper;;	(|Helpers.PoWJump, Helpers.HasMagicBoomerang)
-		PoWDrop;				Helper;;	(|(&Items.RocsCape, (|Helpers.CanSplit3, Helpers.CanSplit4), Items.PacciCane, Helpers.PoWPotPuzzle), (&(|Helpers.PoW2ndHalf, Helpers.PoWBlueWarp), Helpers.DarkRooms, (|(&Helpers.PoW2ndHalf1stDoor, Items.RocsCape), Helpers.PoWShortcuts), (|Items.GustJar, (&Helpers.HasBoomerang, (|Helpers.LightArrowBreak, Items.PacciCane)))), (&Helpers.PoWRedWarp, Helpers.OverworldBlocks, (|Items.GustJar, (&Helpers.HasBoomerang, (|Helpers.LightArrowBreak, Items.PacciCane)))))
+		PoWDrop;				Helper;;	(|(&Items.RocsCape, Helpers.PoWPlatformClones, Items.PacciCane, Helpers.PoWPotPuzzle), (&(|Helpers.PoW2ndHalf, Helpers.PoWBlueWarp), Helpers.DarkRooms, (|(&Helpers.PoW2ndHalf1stDoor, Items.RocsCape), Helpers.PoWShortcuts), (|Items.GustJar, (&Helpers.HasBoomerang, (|Helpers.LightArrowBreak, Items.PacciCane)))), (&Helpers.PoWRedWarp, Helpers.OverworldBlocks, (|Items.GustJar, (&Helpers.HasBoomerang, (|Helpers.LightArrowBreak, Items.PacciCane)))))
 		PoWHP;				Helper;;	(|(&Helpers.DarkRooms, (|(&Helpers.PoW2ndHalf1stDoor, Items.RocsCape), Helpers.PoWShortcuts), Helpers.PoWHandRoom, (|Helpers.PoW2ndHalf, Helpers.PoWBlueWarp)), (&Helpers.PoWRedWarp, Helpers.OverworldBlocks), (&(|Helpers.CanSplit3, Helpers.CanSplit4), Helpers.PoWJump, Helpers.PoW1stDoor, (|Items.GustJar, Helpers.HasBoomerang)))
 	!endif
 !else
@@ -4709,7 +4712,7 @@ HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPE
 	FoWHP;				Helper;;	(|Helpers.FoWCloneSwitch, Items.GustJar)
 	ToDRightRupees;		Helper;;	(|Helpers.ToD2ndRupeePath, (&Items.GustJar, Helpers.ToDLilypadEnd))
 	PoWRupees;			Helper;;	(|Helpers.PoWJump, Helpers.HasMagicBoomerang)
-	PoWDrop;				Helper;;	(|(&Items.RocsCape, (|Helpers.CanSplit3, Helpers.CanSplit4), Items.PacciCane, Helpers.PoWPotPuzzle), (&(|Helpers.PoW2ndHalf, Helpers.PoWBlueWarp), Helpers.DarkRooms, (|(&Helpers.PoW2ndHalf1stDoor, Items.RocsCape), Helpers.PoWShortcuts), (|Items.GustJar, Helpers.HasBoomerang)), (&Helpers.PoWRedWarp, Helpers.OverworldBlocks, (|Items.GustJar, Helpers.HasBoomerang)))
+	PoWDrop;				Helper;;	(|(&Items.RocsCape, Helpers.PoWPlatformClones, Items.PacciCane, Helpers.PoWPotPuzzle), (&(|Helpers.PoW2ndHalf, Helpers.PoWBlueWarp), Helpers.DarkRooms, (|(&Helpers.PoW2ndHalf1stDoor, Items.RocsCape), Helpers.PoWShortcuts), (|Items.GustJar, Helpers.HasBoomerang)), (&Helpers.PoWRedWarp, Helpers.OverworldBlocks, (|Items.GustJar, Helpers.HasBoomerang)))
 	PoWHP;				Helper;;	(|(&Helpers.DarkRooms, (|(&Helpers.PoW2ndHalf1stDoor, Items.RocsCape), Helpers.PoWShortcuts), Helpers.PoWHandRoom, (|Helpers.PoW2ndHalf, Helpers.PoWBlueWarp)), (&Helpers.PoWRedWarp, Helpers.OverworldBlocks), (&(|Helpers.CanSplit3, Helpers.CanSplit4), Helpers.PoWJump, Helpers.PoW1stDoor, (|Items.GustJar, Helpers.HasBoomerang)))
 !endif
 !ifdef - REQUIREDBARLOVFARM
@@ -4831,6 +4834,19 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 	DHCSwitchHit;			Helper;;	Helpers.CanSplit4
 !else
 	DHCSwitchHit;			Helper;;	Helpers.HasSword, Helpers.HasSpin
+!endif
+!ifdef - NOCLONETRICKS
+	DrLeftClones;			Helper;;	Helpers.CanSplit2
+	FoWLeftDropClones;		Helper;;	Helpers.CanSplit2
+	FoWStatueDropClones;	Helper;;	Helpers.CanSplit2
+	PoWPlatformClones;		Helper;;	Helpers.CanSplit3
+	PoWPeahatClones;		Helper;;	(|Helpers.CanSplit2, Helpers.CanSplit3)
+!else
+	DrLeftClones;			Helper;;	(|Helpers.CanSplit2, Helpers.CanSplit3, Helpers.CanSplit4)
+	FoWLeftDropClones;		Helper;;	(|Helpers.CanSplit2, Helpers.CanSplit3, Helpers.CanSplit4)
+	FoWStatueDropClones;	Helper;;	(|Helpers.CanSplit2, Helpers.CanSplit3)
+	PoWPlatformClones;		Helper;;	(|Helpers.CanSplit3, Helpers.CanSplit4)
+	PoWPeahatClones;		Helper;;	(|Helpers.CanSplit2, Helpers.CanSplit3, Helpers.CanSplit4)
 !endif
 
 # OHKO trick
@@ -6064,11 +6080,11 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 					!ifndef - SPECIALPOTS 
 						!undefine - FoWRightDoor
 						!undefine - FoWMiddleDoor
-						!define - FoWRightDoor - , (&Items.SmallKey.0x1A, Helpers.CompleteFortress, (|Helpers.CanSplit2, Helpers.CanSplit3))
-						!define - FoWMiddleDoor - , (&(+2, Items.SmallKey.0x1A:`FOWKEYAMOUNT`), Helpers.CompleteFortress, (|Helpers.CanSplit2, Helpers.CanSplit3))
+						!define - FoWRightDoor - , (&Items.SmallKey.0x1A, Helpers.CompleteFortress, Helpers.FoWCloneSwitch, Helpers.FoWLeftDrop, Helpers.FoWStatueCloneSwitch)
+						!define - FoWMiddleDoor - , (&(+2, Items.SmallKey.0x1A:`FOWKEYAMOUNT`), Helpers.CompleteFortress, Helpers.FoWCloneSwitch, Helpers.FoWLeftDrop, Helpers.FoWStatueCloneSwitch)
 					!endif
 					!undefine - FoWLastDoor
-					!define - FoWLastDoor - , (&(+3, Items.SmallKey.0x1A:`FOWKEYAMOUNT`), Helpers.CompleteFortress, (|Helpers.CanSplit2, Helpers.CanSplit3))
+					!define - FoWLastDoor - , (&(+3, Items.SmallKey.0x1A:`FOWKEYAMOUNT`), Helpers.CompleteFortress, Helpers.FoWCloneSwitch, Helpers.FoWLeftDrop, Helpers.FoWStatueCloneSwitch)
 				!else
 					!define - Ruins_ButterflyFusion_Item - 
 					!define - Ruins_BeanStalkFusion_BigChest -
@@ -6097,11 +6113,11 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 					!ifndef - SPECIALPOTS
 						!undefine - FoWRightDoor
 						!undefine - FoWMiddleDoor
-						!define - FoWRightDoor - , (&Items.SmallKey.0x1A, Helpers.CompleteFortress, Helpers.BombWalls, (|Helpers.CanSplit2, Helpers.CanSplit3) `Ruins_ButterflyFusion_Item` `Ruins_BeanStalkFusion_BigChest` `Ruins_NearFoWFusion_Chest` `Ruins_PillarsFusion_Chest` `Ruins_CrackFusion_Chest` `Ruins_GoldenOcto`)
-						!define - FoWMiddleDoor - , (&(+2, Items.SmallKey.0x1A:`FOWKEYAMOUNT`), Helpers.CompleteFortress, Helpers.BombWalls, (|Helpers.CanSplit2, Helpers.CanSplit3) `Ruins_ButterflyFusion_Item` `Ruins_BeanStalkFusion_BigChest` `Ruins_NearFoWFusion_Chest` `Ruins_PillarsFusion_Chest` `Ruins_CrackFusion_Chest` `Ruins_GoldenOcto`)
+						!define - FoWRightDoor - , (&Items.SmallKey.0x1A, Helpers.CompleteFortress, Helpers.BombWalls, Helpers.FoWCloneSwitch, Helpers.FoWLeftDrop, Helpers.FoWStatueCloneSwitch `Ruins_ButterflyFusion_Item` `Ruins_BeanStalkFusion_BigChest` `Ruins_NearFoWFusion_Chest` `Ruins_PillarsFusion_Chest` `Ruins_CrackFusion_Chest` `Ruins_GoldenOcto`)
+						!define - FoWMiddleDoor - , (&(+2, Items.SmallKey.0x1A:`FOWKEYAMOUNT`), Helpers.CompleteFortress, Helpers.BombWalls, Helpers.FoWCloneSwitch, Helpers.FoWLeftDrop, Helpers.FoWStatueCloneSwitch `Ruins_ButterflyFusion_Item` `Ruins_BeanStalkFusion_BigChest` `Ruins_NearFoWFusion_Chest` `Ruins_PillarsFusion_Chest` `Ruins_CrackFusion_Chest` `Ruins_GoldenOcto`)
 					!endif
 					!undefine - FoWLastDoor
-					!define - FoWLastDoor - , (&(+3, Items.SmallKey.0x1A:`FOWKEYAMOUNT`), Helpers.CompleteFortress, Helpers.BombWalls, (|Helpers.CanSplit2, Helpers.CanSplit3) `Ruins_ButterflyFusion_Item` `Ruins_BeanStalkFusion_BigChest` `Ruins_NearFoWFusion_Chest` `Ruins_PillarsFusion_Chest` `Ruins_CrackFusion_Chest` `Ruins_GoldenOcto`)
+					!define - FoWLastDoor - , (&(+3, Items.SmallKey.0x1A:`FOWKEYAMOUNT`), Helpers.CompleteFortress, Helpers.BombWalls, Helpers.FoWCloneSwitch, Helpers.FoWLeftDrop, Helpers.FoWStatueCloneSwitch `Ruins_ButterflyFusion_Item` `Ruins_BeanStalkFusion_BigChest` `Ruins_NearFoWFusion_Chest` `Ruins_PillarsFusion_Chest` `Ruins_CrackFusion_Chest` `Ruins_GoldenOcto`)
 				!endif
 			!endif
 		!endif
@@ -6293,11 +6309,11 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 					!define - PoWBigChest - , (+3, Items.SmallKey.0x1C:`POWKEYAMOUNT`)
 				!else
 					!ifdef - SMALL_KEYS_STANDARD
-						!define - PoWFans - , (&(+2, Items.SmallKey.0x1C:`POWKEYAMOUNT`), (|Helpers.CanSplit3, Helpers.CanSplit4), Items.RocsCape, Helpers.PoWDrop, (|Items.BombBag, Helpers.HasBow, Helpers.HasBeam, Helpers.HasBoomerang), Helpers.DarkRooms, Helpers.BombWalls, Helpers.OverworldBlocks)
-						!define - PoWBigChest - , (&(+3, Items.SmallKey.0x1C:`POWKEYAMOUNT`), (|Helpers.CanSplit3, Helpers.CanSplit4), Items.RocsCape, Helpers.PoWDrop, (|Items.BombBag, Helpers.HasBow, Helpers.HasBeam, Helpers.HasBoomerang), Helpers.DarkRooms, Helpers.BombWalls, Helpers.OverworldBlocks)
+						!define - PoWFans - , (&(+2, Items.SmallKey.0x1C:`POWKEYAMOUNT`), Helpers.PoWPlatformClones, Items.RocsCape, Helpers.PoWDrop, (|Items.BombBag, Helpers.HasBow, Helpers.HasBeam, Helpers.HasBoomerang), Helpers.DarkRooms, Helpers.BombWalls, Helpers.OverworldBlocks)
+						!define - PoWBigChest - , (&(+3, Items.SmallKey.0x1C:`POWKEYAMOUNT`), Helpers.PoWPlatformClones, Items.RocsCape, Helpers.PoWDrop, (|Items.BombBag, Helpers.HasBow, Helpers.HasBeam, Helpers.HasBoomerang), Helpers.DarkRooms, Helpers.BombWalls, Helpers.OverworldBlocks)
 					!else
-						!define - PoWFans - , (&(+2, Items.SmallKey.0x1C:`POWKEYAMOUNT`), (|Helpers.CanSplit3, Helpers.CanSplit4), Items.RocsCape, Helpers.PoWDrop, (|Items.BombBag, Helpers.HasBow, Helpers.HasBeam, Helpers.HasBoomerang), Helpers.DarkRooms, Helpers.BombWalls, Helpers.OverworldBlocks, Items.GustJar)
-						!define - PoWBigChest - , (&(+3, Items.SmallKey.0x1C:`POWKEYAMOUNT`), (|Helpers.CanSplit3, Helpers.CanSplit4), Items.RocsCape, Helpers.PoWDrop, (|Items.BombBag, Helpers.HasBow, Helpers.HasBeam, Helpers.HasBoomerang), Helpers.DarkRooms, Helpers.BombWalls, Helpers.OverworldBlocks, Items.GustJar)
+						!define - PoWFans - , (&(+2, Items.SmallKey.0x1C:`POWKEYAMOUNT`), Helpers.PoWPlatformClones, Items.RocsCape, Helpers.PoWDrop, (|Items.BombBag, Helpers.HasBow, Helpers.HasBeam, Helpers.HasBoomerang), Helpers.DarkRooms, Helpers.BombWalls, Helpers.OverworldBlocks, Items.GustJar)
+						!define - PoWBigChest - , (&(+3, Items.SmallKey.0x1C:`POWKEYAMOUNT`), Helpers.PoWPlatformClones, Items.RocsCape, Helpers.PoWDrop, (|Items.BombBag, Helpers.HasBow, Helpers.HasBeam, Helpers.HasBoomerang), Helpers.DarkRooms, Helpers.BombWalls, Helpers.OverworldBlocks, Items.GustJar)
 					!endif
 				!endif
 			!endif
@@ -6495,7 +6511,7 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 	WellPillar;				Helper;;	Items.MoleMitts, (|Helpers.CanSplit3, Helpers.CanSplit4), (|Items.Flippers, Items.RocsCape)
 	InnLedge;				Helper;;	Items.Lantern
 	MusicHouse;				Helper;;	Items.CarlovMedal
-	DrLeft;					Helper;;	Helpers.TownDog, Items.PowerBracelets, Helpers.BlowDust, (|Helpers.CanSplit2, Helpers.CanSplit3, Helpers.CanSplit4)
+	DrLeft;					Helper;;	Helpers.TownDog, Items.PowerBracelets, Helpers.BlowDust, Helpers.DrLeftClones
 	Julietta;				Helper;;	Helpers.TownDog, Helpers.HasBottle
 	Fountain;				Helper;;	Helpers.TownDog, Helpers.HasBottle
 	TownMulldozers;			Helper;;	Helpers.Fountain, Items.PacciCane, Helpers.HasDamageSource
@@ -6543,8 +6559,8 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 	FoWStalfosFight;			Helper;;	Helpers.HasDamageSource
 	FoWDigSwitch;				Helper;;	Items.MoleMitts
 	FoWCloneSwitch;			Helper;;	(|Helpers.CanSplit2, Helpers.CanSplit3, Helpers.CanSplit4)
-	FoWStatueCloneSwitch;		Helper;;	(|Helpers.CanSplit2, Helpers.CanSplit3)
-	FoWLeftDrop;				Helper;;	Helpers.FoWEyeSwitch, Helpers.FoWStalfosFight, (|(|Helpers.CanSplit2, Helpers.CanSplit3, Helpers.CanSplit4), Items.RocsCape)
+	FoWStatueCloneSwitch;		Helper;;	Helpers.FoWStatueDropClones
+	FoWLeftDrop;				Helper;;	Helpers.FoWEyeSwitch, Helpers.FoWStalfosFight, (|Helpers.FoWLeftDropClones, Items.RocsCape)
 	FoWEyegores;				Helper;;	Helpers.HasBow
 	FoWRightDrop;				Helper;;	Helpers.FoWCloneSwitch
 	FoWDarknut;				Helper;;	Helpers.HasDarknutDamage
@@ -6565,7 +6581,7 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 	ToDMulldozer;				Helper;;	Helpers.HasDamageSource
 	PoWPotPuzzle;				Helper;;	(|(&Items.PowerBracelets, (|Items.GustJar, Items.BombBag, Helpers.HasBow, Helpers.HasBeam, Helpers.HasBoomerang)), Helpers.PoWPotPuzzleOOL)
 	PoWDarknut;				Helper;;	Helpers.HasDarknutDamage
-	PoWPeahatRoom;			Helper;;	(|Helpers.CanSplit2, Helpers.CanSplit3, Helpers.CanSplit4, (&Helpers.HasSword, Items.BombBag))
+	PoWPeahatRoom;			Helper;;	(|Helpers.PoWPeahatClones, (&Helpers.HasSword, Items.BombBag))
 	PoWShortcuts;				Helper;;	Helpers.Inaccessible
 	PoWDoubleWiz;				Helper;;	Helpers.HasWizrobeDamage
 	PoWTribleWiz;				Helper;;	Helpers.HasWizrobeDamage
@@ -6594,7 +6610,7 @@ ToDRightPath;				Helper;;	Helpers.ToDRightIceBlock, Helpers.ToDRightIce, Helpers
 ToDEitherPath;			Helper;;	Helpers.ToDEitherDoor, Items.Flippers, Helpers.ToDLeftPillars, Helpers.ToDRightIceBlock, Helpers.ToDRightIce, Helpers.DarkRooms, Helpers.ToDScissorBeetles, Helpers.ToDDarkMaze, Items.RocsCape
 ToD2ndRupeePath;			Helper;;	(|(&Helpers.ToDMainRoom, (|(&Helpers.ToDLeftPath, Items.RocsCape), Helpers.ToDRightPath, Helpers.ToDEitherPath)), (&Helpers.ToDBlueWarp, Helpers.ToDScissorBeetles, Items.RocsCape, Helpers.DarkRooms))
 AccessOcto;				Helper;;	Helpers.ToDMainRoom, Helpers.ToDEastSwitch, Helpers.ToDWestSwitch
-PoW2ndHalf;				Helper;;	(|(&Helpers.PoWBlueWarp, Helpers.PoWDarknut), (&Items.RocsCape, (|Helpers.CanSplit3, Helpers.CanSplit4), Helpers.PoWJump, Helpers.PoW1stDoor, Helpers.PoWBossDoor))
+PoW2ndHalf;				Helper;;	(|(&Helpers.PoWBlueWarp, Helpers.PoWDarknut), (&Items.RocsCape, Helpers.PoWPlatformClones, Helpers.PoWJump, Helpers.PoW1stDoor, Helpers.PoWBossDoor))
 !ifdef - OPEN_LIBRARY
 	Library;					Helper;;
 !else
@@ -8215,10 +8231,10 @@ Palace_1stHalf_2F_Item4						`POW_INSIDE`		`PALACERUPEE`;	0x0E8B4F;													
 Palace_1stHalf_2F_Item5						`POW_INSIDE`		`PALACERUPEE`;	0x0E8B5F;														(|(&`ENTERPOW`, Items.RocsCape, (|Helpers.CanSplit3, Helpers.CanSplit4), Helpers.PoWRupees), Helpers.Hundo);						Items.Rupee1
 
 Palace_1stHalf_3F_PotPuzzle_ItemDrop			`POW_INSIDE_SK`;	`PALACECHEST`;	0x0E896F;														(|(&`ENTERPOW`, Helpers.PoWDrop), Helpers.Hundo);																				Items.SmallKey.0x1C
-Palace_1stHalf_4F_BowMoblins_Chest				`POW_INSIDE`;		`PALACECHEST`;	0x70-0x0F-0x00;													(|(&`ENTERPOW`, Items.RocsCape, (|Helpers.CanSplit3, Helpers.CanSplit4), Helpers.PoWJump, Helpers.PoW1stDoor), Helpers.Hundo);		Items.Kinstone.BlueL
-Palace_1stHalf_5F_BallAndChainSoldiers_ItemDrop	`POW_INSIDE_SK`;	`PALACECHEST`;	0x0E719F;														(|(&`ENTERPOW`, Items.RocsCape, (|Helpers.CanSplit3, Helpers.CanSplit4), Helpers.PoWJump, Helpers.PoW1stDoor), Helpers.Hundo);		Items.SmallKey.0x1C
-Palace_1stHalf_5F_FanLoop_Chest					`POW_INSIDE_SK`;	`PALACECHEST`;	0x70-0x07-0x00;													(|(&`ENTERPOW`, Items.RocsCape, (|Helpers.CanSplit3, Helpers.CanSplit4), Helpers.PoWJump, Helpers.PoWFans), Helpers.Hundo);			Items.SmallKey.0x1C
-Palace_1stHalf_5F_BigChest						`POW_INSIDE_BK`;	`PALACECHEST`;	0x70-0x01-0x00;													(|(&`ENTERPOW`, Items.RocsCape, (|Helpers.CanSplit3, Helpers.CanSplit4), Helpers.PoWJump, Helpers.PoWBigChest), Helpers.Hundo);		Items.BigKey.0x1C
+Palace_1stHalf_4F_BowMoblins_Chest				`POW_INSIDE`;		`PALACECHEST`;	0x70-0x0F-0x00;													(|(&`ENTERPOW`, Items.RocsCape, Helpers.PoWPlatformClones, Helpers.PoWJump, Helpers.PoW1stDoor), Helpers.Hundo);		Items.Kinstone.BlueL
+Palace_1stHalf_5F_BallAndChainSoldiers_ItemDrop	`POW_INSIDE_SK`;	`PALACECHEST`;	0x0E719F;														(|(&`ENTERPOW`, Items.RocsCape, Helpers.PoWPlatformClones, Helpers.PoWJump, Helpers.PoW1stDoor), Helpers.Hundo);		Items.SmallKey.0x1C
+Palace_1stHalf_5F_FanLoop_Chest					`POW_INSIDE_SK`;	`PALACECHEST`;	0x70-0x07-0x00;													(|(&`ENTERPOW`, Items.RocsCape, Helpers.PoWPlatformClones, Helpers.PoWJump, Helpers.PoWFans), Helpers.Hundo);			Items.SmallKey.0x1C
+Palace_1stHalf_5F_BigChest						`POW_INSIDE_BK`;	`PALACECHEST`;	0x70-0x01-0x00;													(|(&`ENTERPOW`, Items.RocsCape, Helpers.PoWPlatformClones, Helpers.PoWJump, Helpers.PoWBigChest), Helpers.Hundo);		Items.BigKey.0x1C
 
 Palace_2ndHalf_1F_DarkRoom_BigChest				`POW_INSIDE_COM`;	`PALACECHEST`;	0x70-0x32-0x00;													(|(&`ENTERPOW`, (|Helpers.PoW2ndHalf, (&Helpers.PoWRedWarp, Helpers.OverworldBlocks)), Helpers.DarkRooms), Helpers.Hundo);																																											Items.Compass.0x1C
 Palace_2ndHalf_1F_DarkRoom_SmallChest			`POW_INSIDE_SK`;	`PALACECHEST`;	0x70-0x32-0x01;													(|(&`ENTERPOW`, (|Helpers.PoW2ndHalf, (&Helpers.PoWRedWarp, Helpers.OverworldBlocks)), Helpers.DarkRooms), Helpers.Hundo);																																											Items.SmallKey.0x1C
