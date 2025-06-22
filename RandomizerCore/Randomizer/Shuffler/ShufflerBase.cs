@@ -145,11 +145,7 @@ internal abstract class ShufflerBase
             // Write new patch file to patch folder/extDefinitions.event
             File.WriteAllText(Path.GetDirectoryName(patchFile) + "/extDefinitions.event", GetEventWrites());
 
-            string[] args = { "A", "FE8", "-input:" + patchFile, "-output:" + romLocation };
-
-            Program.CustomOutputStream = null;
-
-            return Program.Main(args);
+            return RunColorzCore(patchFile, romLocation);
         }
 
         public int ApplyPatch(Stream patchedRom, string? patchFile = null)
@@ -164,11 +160,29 @@ internal abstract class ShufflerBase
             // Write new patch file to patch folder/extDefinitions.event
             File.WriteAllText(Path.GetDirectoryName(patchFile) + "/extDefinitions.event", GetEventWrites());
 
-            string[] args = { "A", "FE8", "-input:" + patchFile, "-output:" + "usingAlternateStream" };
+            return RunColorzCore(patchFile, "usingAlternateStream", patchedRom);
+        }
 
-            Program.CustomOutputStream = patchedRom;
+        private static int RunColorzCore(string patchFile, string ouputFile, Stream? customOutputStream = null)
+        {
+            string[] args = ["A", "FE8", "-input:" + patchFile, "-output:" + ouputFile, "-error:" + "usingAlternateStream"];
 
-            return Program.Main(args);
+            using var errorStream = new MemoryStream(0x1000000);
+
+            Program.CustomOutputStream = customOutputStream;
+            Program.CustomErrorStream = errorStream;
+
+            var exitCode = Program.Main(args);
+
+            errorStream.Position = 0;
+            using var errorStreamReader = new StreamReader(errorStream);
+            var errorLogs = errorStreamReader.ReadToEnd().Trim();
+            if (!errorLogs.StartsWith("No errors. Please continue being awesome."))
+            {
+                Logger.Instance.LogInfo($"Warnings or errors from ColorzCore: {errorLogs}");
+            }
+
+            return exitCode;
         }
 
         /// <summary>
@@ -194,7 +208,6 @@ internal abstract class ShufflerBase
 
             spoilerBuilder.AppendLine();
             AddActualPlaythroughSpoiler(spoilerBuilder);
-
 
             return spoilerBuilder.ToString();
         }

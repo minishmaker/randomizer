@@ -4,6 +4,23 @@
 .thumb
 push	{r0-r7}
 
+@check if the phonograph is active
+ldr	r4, =#0x2000050
+ldrh	r0, [r4,#0x08]
+ldr	r1, =#0x3301
+cmp	r0, r1
+bne	notPhonograph
+
+ldrb	r0, [r4]
+cmp	r0, #0x00
+bne	notPhonograph
+
+ldr	r4, =#0x200AF00
+ldrb	r0, [r4,#0x01]
+cmp	r0, #0xFF
+beq	end
+
+notPhonograph:
 ldr	r4, =#0x203F300
 mov	r5, #12
 ldr	r0, line

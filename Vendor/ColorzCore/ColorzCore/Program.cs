@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using ColorzCore.IO;
 using ColorzCore.Lexer;
 using ColorzCore.Parser;
@@ -15,6 +14,7 @@ namespace ColorzCore
         private const int ExitFailure = 1;
         public static bool Debug = false;
         public static Stream CustomOutputStream { get; set; }
+        public static Stream CustomErrorStream { get; set; }
 
         private static string[] _helpstringarr =
         {
@@ -103,7 +103,11 @@ namespace ColorzCore
                                 break;
 
                             case "error":
-                                errorStream = new StreamWriter(File.OpenWrite(flag[1]));
+                                errorStream = new StreamWriter(CustomErrorStream ?? File.OpenWrite(flag[1]));
+                                if (CustomErrorStream != null)
+                                {
+                                    ((StreamWriter)errorStream).AutoFlush = true;
+                                }
                                 options.noColoredLog = true;
                                 break;
 
@@ -228,8 +232,14 @@ namespace ColorzCore
             }
 
             inStream.Close();
-            outStream.Close();
-            errorStream.Close();
+            if (CustomOutputStream == null)
+            {
+                outStream.Close();
+            }
+            if (CustomErrorStream == null)
+            {
+                errorStream.Close();
+            }
 
             return success ? ExitSuccess : ExitFailure;
         }

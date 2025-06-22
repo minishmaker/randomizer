@@ -221,11 +221,16 @@ public abstract class ControllerBase
         {
             Shuffler.ValidateState(true);
             var romBytes = Shuffler.GetRandomizedRom();
-            var stream = new MemoryStream(romBytes);
+            // We need this stream to be expandable in case the patch is large
+            var stream = new MemoryStream(romBytes.Length);
+            stream.Write(romBytes);
+            stream.Position = 0;
             int exitCode = Shuffler.ApplyPatch(stream, patchFile);
             if (exitCode != 0)
                 throw new Exception("Errors occured when saving the rom");
-            var patch = BpsPatcher.GeneratePatch(Rom.Instance!.RomData, romBytes, patchFilename);
+            byte[] patchedRom = stream.ToArray();
+            stream.Dispose();
+            var patch = BpsPatcher.GeneratePatch(Rom.Instance!.RomData, patchedRom, patchFilename);
             File.WriteAllBytes(patchFilename, patch.Content!);
             return new ShufflerControllerResult { WasSuccessful = true };
         }
