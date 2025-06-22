@@ -174,6 +174,7 @@
 !dropdown - Logic Settings - Setting - Weapons - BOWWEAPON - Bows - Bow can damage most enemies, many enemies are very resiliant to damage. Chu Bosses and Darknuts are Immune. - NOBOW - No - NOBOW - 'No': Bows are not considered as Weapons. - Yes - YESBOW - 'Yes': Bows are considered as weapons for most enemy fights. Bows are never considered for Chu Bossfights, Darknuts, Scissor Beetles, Madderpillar, Wizrobes, Simon Simulations, and Golden Enemies. - Yes + Bosses - BOSSBOW - 'Yes + Bosses': Bows are considered as weapons for most enemy fights, but can also be solely required to defeat Gleerok and Mazaal.
 !dropdown - Logic Settings - Setting - Weapons - GUSTWEAPON - Gust Jar - Gust Jar can suck up various enemies like Ghini(Ghosts) and Beetles (The things that grab onto link). It can also grab objects and fire them like projectiles to kill enemies, some enemies or parts of enemies can be used as projectiles such as Helmasaurs and Stalfos. - NOGUST - No - NOGUST - 'No': Gust Jar is never considered for killing enemies. - Yes - YESGUST - 'Yes': Gust Jar is considered as weapons for all enemies that get sucked up by it, you are never expected to use objects as projectiles to kill enemies.
 !dropdown - Logic Settings - Setting - Weapons - LAMPWEAPON - Lantern - The lit Lantern can instantly kill wizrobes by walking through them. - NOLAMP - No - NOLAMP - 'No': Lantern is not considered as a Weapon. - Yes - YESLAMP - 'Yes': Lantern is considered as a weapon for fighting Wizrobes.
+!dropdown - Logic Settings - Setting - Weapons - MIRRORWEAPON - Mirror Shield - Mirror Shield can reflect rocks from Octoroks back at them and deal damage. - NOMIRROR - No - NOMIRROR - 'No': Mirror Shield is not considered as a weapon. - Yes - YESMIRROR - 'Yes': Mirror Shield is considered as a weapon for fighting Golden Octoroks.
 
 !dropdown - Logic Settings - Setting - Require Tricks - MITTSMONEY_SETTING - Mole Mitts farm Infinite Rupees - Low Difficulty:\nA single spot outside of Link's house can be dug to find a 20 Rupee that respawns every time you leave link's house. - NOMITTSMONEY - No - NOMITTSMONEY - 'No': You will always require finding enough rupees in the item pool before you have to buy items. - Yes - MITTSMONEY - 'Yes': You may be required to farm rupees outside link's house to afford purchasing items if Mitts are acquired.
 !dropdown - Logic Settings - Setting - Require Tricks - BLOWDUST_SETTING - Bombs blow away dust - Low Difficulty:\nDust piles can be found that can be blown away to what is underneath. - GUST - No - GUST - 'No': Gust Jar will always be required to blow away dust piles. - Yes - GUSTBOMBS - 'Yes': Bombs may be required to blow away dust piles instead of Gust Jar. 
@@ -430,6 +431,7 @@
 !define - `BOWWEAPON`
 !define - `GUSTWEAPON`
 !define - `LAMPWEAPON`
+!define - `MIRRORWEAPON`
 !define - `MITTSMONEY_SETTING`
 !define - `BLOWDUST_SETTING`
 !define - `MUSHROOM_SETTING`
@@ -4621,16 +4623,22 @@ HasPerilBeam;			Helper;; Items.PerilBeam
 !else
 	!define - LAMPHELPER - , Items.Lantern
 !endif
+!ifdef - NOMIRROR
+	!define - MIRRORHELPER - 
+!else
+	!define - MIRRORHELPER - , Helpers.HasMirrorShield
+!endif
 HasDamageSource;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER`)
 HasMadderDamage;		Helper;;	(|Helpers.HasSword `CHUBOMBS`)
 HasChuDamage;			Helper;;	(|Helpers.HasSword `CHUBOMBS`)
-HasHelmasaurDamage;	Helper;;	(|Helpers.HasSword `BOMBHELPER` `BOWHELPER` `GUSTHELPER`)
+HasHelmasaurDamage;		Helper;;	(|Helpers.HasSword `BOMBHELPER` `BOWHELPER` `GUSTHELPER`)
 HasGleerokDamage;		Helper;;	(|Helpers.HasSword `GLEEROKBOW` `GLEEROKBOMBS`)
 HasWizrobeDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `LAMPHELPER`)
 HasDarknutDamage;		Helper;;	(|Helpers.HasSword `CHUBOMBS`)
 HasMazaalDamage;		Helper;;	(|Helpers.HasSword `GLEEROKBOW` `GLEEROKBOMBS`)
 HasScissorDamage;		Helper;;	(|Helpers.HasSword `GLEEROKBOMBS`)
-HasGhiniDamage;		Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPER`)
+HasGhiniDamage;			Helper;;	(|Helpers.HasSword `BOWHELPER` `BOMBHELPER` `GUSTHELPER`)
+HasGoldOctorokDamage;	Helper;;	(|Helpers.HasSword `MIRRORHELPER`)
 
 # This section shuffles some dummy items to determine which dungeons have elements and which don't, it then makes the unrequired dungeons require a dummy item you only get after beating vaati, or makes them barren by requiring all major items
 
@@ -7775,7 +7783,7 @@ Hylia_MayorCabin_Item;					Any;					blueBookItem:Define:FirstByte, blueBookSub:D
 # Minish Woods
 AccessNorthMinish;						Helper;				;														Helpers.AccessMinishWoods, (|Items.Flippers, Items.RocsCape, Helpers.LonLonSouthShortcut, (&Helpers.AccessLonLon, Items.PacciCane));
 
-MinishWoods_GoldenOcto						`GREENFUSIONENEMY`;	golden8Item:Define:FirstByte, golden8Sub:Define:SecondByte;	(|(&Helpers.Shared56Fusion, Helpers.AccessNorthMinish, Helpers.HasSword), Helpers.Hundo);	Items.Rupee100
+MinishWoods_GoldenOcto						`GREENFUSIONENEMY`;	golden8Item:Define:FirstByte, golden8Sub:Define:SecondByte;	(|(&Helpers.Shared56Fusion, Helpers.AccessNorthMinish, Helpers.HasGoldOctorokDamage), Helpers.Hundo);	Items.Rupee100
 MinishWoods_WitchHut_Item;					Any;					0x0F94D7;       											(|(&Helpers.AccessNorthMinish, Helpers.ShopWitch), Helpers.Hundo);						Items.WakeUpMushroom
 WitchDiggingCave_Chest;					Any;					0x0C-0x00-0x00;											(|(&Helpers.AccessNorthMinish, Items.MoleMitts), Helpers.Hundo);						Items.Kinstone.BlueL
 MinishWoods_NorthFusion_Chest;				`GREENFUSION`;		0x0FE07E;												(|(&Helpers.Shared44Fusion, Helpers.AccessNorthMinish), Helpers.Hundo);					Items.Kinstone.BlueS
@@ -7849,7 +7857,7 @@ WesternWoods_PercyFusion_Moblin;	`REDFUSION`;				0x0123D6;												(|(&Helper
 WesternWoods_PercyFusion_Percy;		`REDFUSION`;				0x06B058:FirstByte, 0x06B05A:SecondByte;						(|(&Helpers.PercyFusion, Helpers.AccessWestern, Helpers.Percy), Helpers.Hundo);			Items.Shells.100
 WesternWoods_BottomDig1			`GREENFUSIONDIG`;			0x0F782F;												(|(&Helpers.CastleMinishFusion, Helpers.AccessWestern, Items.MoleMitts), Helpers.Hundo);	Items.Rupee200
 WesternWoods_BottomDig2			`GREENFUSIONDIG`;			0x0F783F;												(|(&Helpers.CastleMinishFusion, Helpers.AccessWestern, Items.MoleMitts), Helpers.Hundo);	Items.Rupee200
-WesternWoods_GoldenOcto			`BLUEGREENFUSIONENEMY`;	golden9Item:Define:FirstByte, golden9Sub:Define:SecondByte;	(|(&Helpers.MinishScrub1Fusion, Helpers.AccessWestern, Helpers.HasSword), Helpers.Hundo);	Items.Rupee100
+WesternWoods_GoldenOcto			`BLUEGREENFUSIONENEMY`;	golden9Item:Define:FirstByte, golden9Sub:Define:SecondByte;	(|(&Helpers.MinishScrub1Fusion, Helpers.AccessWestern, Helpers.HasGoldOctorokDamage), Helpers.Hundo);	Items.Rupee100
 
 WesternWoods_BeanstalkFusion_Chest;		`BLUEFUSION`;			0x0D-0x04-0x00;											(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);	Items.Kinstone.RedV
 WesternWoods_BeanstalkFusion_Item1		`BLUEFUSIONRUPEE`;	0x0F6143;												(|(&Helpers.WesternMinishFusion, Helpers.AccessWestern), Helpers.Hundo);	Items.Rupee20
@@ -7963,7 +7971,7 @@ Ruins_CrackFusion_Chest		`FOW_OUTSIDE`;	`GOLDGREENFUSION`;		0x27-0x0C-0x00;					
 Ruins_MinishCave_HP			`FOW_OUTSIDE`;	`GOLDFUSIONHP`;			0x0DB4BF;												(|(&Helpers.AccessRuins, Helpers.RuinsArmos, Helpers.RuinsTektites), Helpers.Hundo);								Items.PieceOfHeart
 Ruins_ArmosKill_LeftChest		`FOW_OUTSIDE`;	`GOLDFUSION`;				0x05-0x05-0x00;											(|(&Helpers.AccessRuins, Helpers.HasDamageSource), Helpers.Hundo);												Items.Rupee50
 Ruins_ArmosKill_RightChest		`FOW_OUTSIDE`;	`GOLDFUSION`;				0x05-0x05-0x01;											(|(&Helpers.AccessRuins, Helpers.HasDamageSource), Helpers.Hundo);												Items.Shells.50
-Ruins_GoldenOcto				`FOW_OUTSIDE`	`GOLDGREENLIBRARYFUSIONENEMY`;	golden1Item:Define:FirstByte, golden1Sub:Define:SecondByte;	(|(&Helpers.LibrariFusion, Helpers.AccessRuins, Helpers.HasSword), Helpers.Hundo);								Items.Rupee100
+Ruins_GoldenOcto				`FOW_OUTSIDE`	`GOLDGREENLIBRARYFUSIONENEMY`;	golden1Item:Define:FirstByte, golden1Sub:Define:SecondByte;	(|(&Helpers.LibrariFusion, Helpers.AccessRuins, Helpers.HasDamageSource, Helpers.HasGoldOctorokDamage), Helpers.Hundo);	Items.Rupee100
 Ruins_NearFoWFusion_Chest		`FOW_OUTSIDE`;	`GOLDREDFUSION`;			0x0FE0AE;												(|(&Helpers.BelariFusion, Helpers.AccessRuins, Helpers.HasSword), Helpers.Hundo);								Items.BombBag
 
 AccessFortress;								Helper;					;														Helpers.AccessRuins, Helpers.HasSword;
