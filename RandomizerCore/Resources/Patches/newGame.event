@@ -435,7 +435,9 @@ POIN dhcRemovedDoor;	WORD 0x2002DC1 1
 	POIN book3Start; WORD 0x2002B40 1
 #endif
 #ifdef startInventoryGraveyardKey
-	POIN graveyardKeyStart; WORD 0x2002B41 1
+	#ifndef openWorld
+		POIN graveyardKeyStart; WORD 0x2002B41 1
+	#endif
 #endif
 #ifdef startInventoryTingleTrophy
 	POIN tingleTrophyStart; WORD 0x2002B41 1
