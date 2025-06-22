@@ -206,6 +206,7 @@
 !dropdown - Logic Settings - Setting - Require Tricks - FOWPOT_SETTING - FoW Pot item early using the Gust Jar - Low Difficulty:\nIn Fortress of Winds there are 2 pots that contain items when playing with 'Special Pots', these are located in a dirt filled room in the back right section of the dungeon on 2F locked behind various locked doors.\nHowever the lower of the 2 pots can be grabbed with the Gust Jar from a much earlier part of the dungeon located in the front right section 2F.\nThe pot can accidentally be released inside the wall which makes the item unobtainable, simply reload the room and the pot and item will respawn. - NOFOWPOT - No - NOFOWPOT - 'No': From the entrance of Fortress, this location always requires at least 3 Fortress small keys as well as the Mole Mitts and Bow. - Yes - YESFOWPOT - 'Yes': From the entrance of Fortress, this location may only require the Gust Jar.
 
 !dropdown - Logic Settings - Setting - Require Tricks - CLONETRICKS_SETTING - Tricky clone movement - Medium Difficulty:\nYour clones can walk on pits and even through the sides of some solid objects if you are quick enough.\nThis can allow you to complete certain puzzles with more clones than you would normally have at that point in the vanilla game.\nThis setting only has an impact when Swords are not Progressive as otherwise you can always switch to a smaller number of clones. - NOCLONETRICKS - No - NOCLONETRICKS - 'No': Walking across pits or through solid objects with your clones is never required. - Yes - YESCLONETRICKS - 'Yes': Walking across pits or through solid objects with your clones can be required if Swords are not set to Progressive.
+!dropdown - Logic Settings - Setting - Require Tricks - BOMBSWITCH_SETTING - PoW Switches without clones - Low Difficulty:\nSome rooms in Palace of Winds require you to hit 4 switches almost simultaneously.\nThis is normally done by using a Sword slash with clones to hit all of them at the same time.\nHowever, an alternative solution without clones is to place a Bomb next to 2 of the switches, and then hit the other 2 with a Sword slash while the Bomb is exploding. - NOBOMBSWITCH - No - NOBOMBSWITCH - 'No': Solving these puzzles always requires the use of clones. - Yes - YESBOMBSWITCH - 'Yes': It can be required to solve these puzzles either with clones or with a Bomb and a Sword slash.
 
 !dropdown - Item Pool - Setting - Global - ITEM_POOL - Item Pool -  - ITEM_POOL_NORMAL - Reduced (RIP) - ITEM_POOL_RIP - 'Reduced': Removes many items from the pool:\nAll Heart Containers removed and some Heart Pieces removed (Max Hearts available is 10)\nRemote Bombs removed\nAll Spin Scroll Upgrades removed, a single Spin Scroll remains\nAll Butterflies removed\nAll Quivers removed\nA Shield is removed, a single Shield remains\nA Boomerang is removed, a single Boomerang remains. If either 'Vanilla Red Fusions' or 'Vanilla Green Fusions' are on then no Boomerangs are removed.\n3 Bottles removed, a single Bottle remains\n3 Bomb bags are removed, a single Bomb bag remains - Balanced - ITEM_POOL_NORMAL - 'Balanced': Normal Item Pool. - Plentiful - ITEM_POOL_PLENTIFUL - 'Plentiful': Adds extra copies of major items to the pool.\nItems with 2 extra copies:\nSword\nLantern\nGust Jar\nCane of Pacci\nRocs Cape\nOcarina\nFlippers\nSpin Attack\nItems with 1 extra copy:\nBow\nMole Mitts\nPegasus Boots\nGrip Ring\nGraveyard Key\nIf Gold Kinstones are randomized:\n2 extra Cloud Kinstones, 2 extra Swamp Kinstones, and an extra Falls Kinstone (5 extra if combined)\nIf other fusion colors are randomized:\n2 of each red shape (6 if combined)\n2 of each blue shape (4 if combined)\n3 of each green shape (9 if combined)\nIf Big Keysanity is on then there is an extra Big Key for each Dungeon\nIf Small Keysanity is on then there are 2 extra Small Keys for each Dungeon
 !flag - Item Pool - Setting - Global - RANDOM_BOTTLE_CONTENT - Random Bottle Contents - Randomizes the contents of the bottles that are shuffled in the pool, these contents are never considered by logic. - true
@@ -450,6 +451,7 @@
 !define - `DHCSWITCHES_SETTING`
 !define - `FOWPOT_SETTING`
 !define - `CLONETRICKS_SETTING`
+!define - `BOMBSWITCH_SETTING`
 
 !define - `ITEM_POOL`
 !define - `FIREROD`
@@ -4848,6 +4850,11 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 	PoWPlatformClones;		Helper;;	(|Helpers.CanSplit3, Helpers.CanSplit4)
 	PoWPeahatClones;		Helper;;	(|Helpers.CanSplit2, Helpers.CanSplit3, Helpers.CanSplit4)
 !endif
+!ifdef - NOBOMBSWITCH
+	CloneSwitchesWithBomb;	Helper;;	Helpers.Inaccessible
+!else
+	CloneSwitchesWithBomb;	Helper;;	Helpers.HasSword, Items.BombBag
+!endif
 
 # OHKO trick
 !ifdef - TIMEDOHKO
@@ -6581,7 +6588,7 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 	ToDMulldozer;				Helper;;	Helpers.HasDamageSource
 	PoWPotPuzzle;				Helper;;	(|(&Items.PowerBracelets, (|Items.GustJar, Items.BombBag, Helpers.HasBow, Helpers.HasBeam, Helpers.HasBoomerang)), Helpers.PoWPotPuzzleOOL)
 	PoWDarknut;				Helper;;	Helpers.HasDarknutDamage
-	PoWPeahatRoom;			Helper;;	(|Helpers.PoWPeahatClones, (&Helpers.HasSword, Items.BombBag))
+	PoWPeahatRoom;			Helper;;	(|Helpers.PoWPeahatClones, Helpers.CloneSwitchesWithBomb)
 	PoWShortcuts;				Helper;;	Helpers.Inaccessible
 	PoWDoubleWiz;				Helper;;	Helpers.HasWizrobeDamage
 	PoWTribleWiz;				Helper;;	Helpers.HasWizrobeDamage
