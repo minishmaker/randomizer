@@ -416,6 +416,21 @@ internal static class GenericCommands
         }
     }
 
+    internal static void SaveDefaultLogic(string? output = null)
+    {
+        Console.Write("Please enter the path to save the default logic file (blank for default): ");
+        try
+        {
+            var input = output ?? Console.ReadLine();
+            var eventDefines = ControllerBase.ExportDefaultLogic(string.IsNullOrEmpty(input) ? "default.logic" : input);
+            Console.WriteLine("Default logic file saved successfully!");
+        }
+        catch
+        {
+            PrintError("Failed to save default logic file! Please check your file path and make sure you have write access.");
+        }
+    }
+
     internal static void GetSelectedSettingString()
     {
         if (!ValidatePreviouslyUsedController()) return;

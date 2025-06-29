@@ -49,7 +49,7 @@ public sealed partial class MinishCapRandomizerUI : Form
 
     private void exportDefaultLogicToolStripMenuItem_Click(object sender, EventArgs e)
     {
-        DisplaySaveDialog("Logic Files|*.logic|Text Files|*.txt", "Choose where to save logic file", "default.logic", DialogResult.OK, (filename) => DisplayConditionalAlertFromShufflerResult(_shufflerController.ExportDefaultLogic(filename), "Logic file saved successfully!", "Saved Logic File", "Failed to save logic file!", "Failed to Save"));
+        DisplaySaveDialog("Logic Files|*.logic|Text Files|*.txt", "Choose where to save logic file", "default.logic", DialogResult.OK, (filename) => DisplayConditionalAlertFromShufflerResult(ControllerBase.ExportDefaultLogic(filename), "Logic file saved successfully!", "Saved Logic File", "Failed to save logic file!", "Failed to Save"));
     }
 
     private void setLoggerOutputPathToolStripMenuItem_Click(object sender, EventArgs e)
