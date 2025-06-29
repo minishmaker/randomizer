@@ -788,6 +788,10 @@ settings:
     BOOTS_L_NORMAL: 1                             #   Enabled
     BOOTS_L_MINISH: 1                             #   Enabled + Minish
   #  Extras:
+  WALLET_REFILL:                                  # Wallets contain Rupees
+    WALLET_REFILL_OFF: 1
+    WALLET_REFILL_DIFFERENCE: 1
+    WALLET_REFILL_MAX: 1
   VANILLA_SHOP_ORDER:                             # Vanilla Shop Item Order
     on: 1
     off: 1

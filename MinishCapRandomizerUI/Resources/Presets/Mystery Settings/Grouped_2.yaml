@@ -439,6 +439,10 @@ settings:
     BOOTS_L_NORMAL: 50                            #   Enabled
     BOOTS_L_MINISH: 50                            #   Enabled + Minish
   #  Extras:
+  WALLET_REFILL:                                  # Wallets contain Rupees
+    WALLET_REFILL_OFF: 60
+    WALLET_REFILL_DIFFERENCE: 30
+    WALLET_REFILL_MAX: 10
   VANILLA_SHOP_ORDER:                             # Vanilla Shop Item Order
     on: 50
     off: 50
