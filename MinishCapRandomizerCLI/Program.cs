@@ -72,6 +72,7 @@ internal class Program
             {"GetFinalSettingString", GetFinalSettingString},
             {"PatchRom", PatchRom},
             {"CreatePatch", CreatePatch},
+            {"SaveDefaultLogic", SaveDefaultLogic},
             {"Exit", Exit},
             {"Strict", GenericCommands.Strict},
         };
@@ -99,6 +100,7 @@ GetSettingString        Gets the setting string for your currently selected sett
 GetFinalSettingString   Gets the setting string for the settings used for the randomized ROM, requires Randomize to have been called
 PatchRom                Patches a European Minish Cap ROM with a BPS patch
 CreatePatch             Creates a patch from a patched ROM and an unpatched European Minish Cap ROM
+SaveDefaultLogic        Saves the default logic used by the randomizer in a file
 Exit                    Exits the program
 Strict                  Toggle strict mode (exit after error)
 ");
@@ -196,6 +198,11 @@ Strict                  Toggle strict mode (exit after error)
     private static void CreatePatch()
     {
         GenericCommands.CreatePatch();
+    }
+
+    private static void SaveDefaultLogic()
+    {
+        GenericCommands.SaveDefaultLogic();
     }
     
     internal static void Exit()

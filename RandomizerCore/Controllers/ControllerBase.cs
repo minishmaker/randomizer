@@ -374,7 +374,7 @@ public abstract class ControllerBase
         }
     }
 
-    public ShufflerControllerResult ExportDefaultLogic(string filepath)
+    public static ShufflerControllerResult ExportDefaultLogic(string filepath)
     {
         try
         {

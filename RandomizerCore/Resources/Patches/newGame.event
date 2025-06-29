@@ -399,7 +399,9 @@ POIN dhcRemovedDoor;	WORD 0x2002DC1 1
 #endif
 #ifdef startInventoryOcarina
 	POIN ocarinaStart; WORD 0x2002B37 1
-	POIN libraryStart; WORD 0x2002CA1 1
+	#ifndef disableLakeCrest
+		POIN libraryStart; WORD 0x2002CA1 1
+	#endif
 	#ifdef minishCrestFlag
 		POIN gentariCurtainStart; WORD 0x2002CEC 1
 	#endif
@@ -435,7 +437,9 @@ POIN dhcRemovedDoor;	WORD 0x2002DC1 1
 	POIN book3Start; WORD 0x2002B40 1
 #endif
 #ifdef startInventoryGraveyardKey
-	POIN graveyardKeyStart; WORD 0x2002B41 1
+	#ifndef openWorld
+		POIN graveyardKeyStart; WORD 0x2002B41 1
+	#endif
 #endif
 #ifdef startInventoryTingleTrophy
 	POIN tingleTrophyStart; WORD 0x2002B41 1

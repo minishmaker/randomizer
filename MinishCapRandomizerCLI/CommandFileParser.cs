@@ -63,6 +63,9 @@ public static class CommandFileParser
                 case "GetFinalSettingString":
                     GenericCommands.GetFinalSettingString();
                     break;
+                case "SaveDefaultLogic":
+                    GenericCommands.SaveDefaultLogic(inputs.Length > 1 ? inputs[1] : null);
+                    break;
                 case "Rem":
                     Console.WriteLine($"Commented out line {input}");
                     break;
