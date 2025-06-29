@@ -136,6 +136,7 @@
 !dropdown - World Settings - Setting - Fusions - GREEN_FUSION_SETTING - Green Fusions are - Green Kinstones come in 3 shapes, Fusions can be found everywhere and a large amount are shared between many people.\nThere are 49 Fusions in total, There are more Kinstones in the pool than fusions available just to be generous. - NO_GREEN_FUSIONS - Removed (Closed) - NO_GREEN_FUSIONS - 'Removed': All the Green Kinstones are removed from the pool, and the fusions are unable to be completed. - Vanilla - VANILLA_GREEN_FUSIONS - 'Vanilla': This shuffles the 3 different shaped Green Kinstones into the pool, the exact amount needed to do every available fusion, the locations of the fusions and what shape they ask for are not shuffled. - Combined - COMBINED_GREEN_FUSIONS - 'Combined': This converts the different shaped Green Kinstones into a single Green shape. The locations of the fusions are not shuffled and all ask for the same shape. - Completed (Open) - OPEN_GREEN_FUSIONS - 'Completed': All the Green Kinstones are removed from the pool, and all the fusions are already completed.
 !flag - World Settings - Setting - Fusions - SEEDED_SHARED - Order Shared Fusions - There is a Pool of 18 Shared Fusions in the Game: 16 Green, 1 Blue and 1 Red. These Fusions are randomly selected by an NPC who offers Shared Fusions when you enter the room they are in.\n\nIf this setting is enabled then the seed generates a listed order these NPCs offer the Fusions in. This makes different people playing the same seed have the same Fusions available which is useful for races. - true
 !flag - World Settings - Setting - Fusions - DEFICKLE - Defickle Fusers - Many NPCs who offer fusions are considered 'Fickle', this means they can randomly decide to NOT offer their fusion.\n\nEnable this to make them ALWAYS offer a fusion. - true
+!flag - World Settings - Setting - Fusions - INSTANT_FUSION_RELOAD - Instant Fusion Reload - If enabled eliminates the need to reload a room after a fusion to make fusers offer their next fusion. - true
 !dropdown - World Settings - Setting - Fusions - FUSION_SKIPS - Skip Fusion Cutscenes - When doing a Kinstone Fusion you get a cutscene aftewards to show you what the fusion activated, and then a Map indicator spawns. - ALLOW_FUSION_SKIPS - Never - NO_FUSION_SKIP - 'Never': The cutscene is never able to be skipped by the player. - Choose - ALLOW_FUSION_SKIPS - 'Choose': If you hold a button prior to the start of the cutscene, then the cutscene is skipped, otherwise the cutscene plays normally.\n                If 'Show Map' is enabled then only the cutscene is skipped, but the map screen is still shown. - Always - INSTANT_SKIP - 'Always': The cutscene is always skipped without player input.\n                If 'Show Map' is enabled then it will always show the map screen.
 !flag - World Settings - Setting - Fusions - SHOW_MAP - Always Show Map - If enabled, it will always show the map screen at the end of a cutscene, even if the cutscene is skipped.
 
@@ -1386,6 +1387,10 @@
 
 !ifdef - DEFICKLE
     !eventdefine - removeFickleness
+!endif
+
+!ifdef - INSTANT_FUSION_RELOAD
+    !eventdefine - instantFusionReload
 !endif
 
 !ifdef - GLITCHLESS

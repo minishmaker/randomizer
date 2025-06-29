@@ -679,6 +679,14 @@ cafe:
 	POP
 #endif
 
+//fusers update their offered fusion after completing one without needing to reload the room
+#ifdef instantFusionReload
+	PUSH; ORG $1E744; jumpToHack(fastFusionReload); POP
+	ALIGN 4
+	fastFusionReload:
+	#incbin "asm/fastFusionReload.dmp"
+#endif
+
 //shared fusions are done in a fixed order
 #ifdef seededSharedFusions
 	PUSH
