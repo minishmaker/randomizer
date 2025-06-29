@@ -521,17 +521,17 @@ public abstract class ControllerBase
         }
     }
 
-    private void LoadSettings(bool loadLogicSettings, bool loadCosmeticSettings, IEnumerable<LogicOptionBase> options, YAMLResult result)
+    private static void LoadSettings(bool loadLogicSettings, bool loadCosmeticSettings, IEnumerable<LogicOptionBase> options, YAMLResult result)
     {
         var resultOptionsIndex = 0;
 
         foreach (var option in options)
         {
             if (option.Type == LogicOptionType.Setting ? !loadLogicSettings : !loadCosmeticSettings) continue;
-            
+
             if (option.Name != result.Options[resultOptionsIndex].Name)
                 throw new Exception($"Attempt to load options from yaml failed! Expected {result.Options[resultOptionsIndex].Name}, got {option.Name}");
-                        
+
             option.CopyValueFrom(result.Options[resultOptionsIndex++]);
             option.NotifyObservers();
         }

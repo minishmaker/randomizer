@@ -321,7 +321,7 @@ public class DirectiveParser
         var settings = Options.Where(option => option.Type == LogicOptionType.Setting).ToList();
         var bytes = new byte[settings.Count];
 
-        for (var i = 0; i < settings.Count; i++) bytes[i] = settings[i].GetHashByte();
+        for (var i = 0; i < settings.Count; i++) bytes[i] = settings[i].GetSelectionHashByte();
 
         return bytes;
     }
@@ -331,7 +331,7 @@ public class DirectiveParser
         var cosmetics = Options.Where(option => option.Type == LogicOptionType.Cosmetic).ToList();
         var bytes = new byte[cosmetics.Count];
 
-        for (var i = 0; i < cosmetics.Count; i++) bytes[i] = cosmetics[i].GetHashByte();
+        for (var i = 0; i < cosmetics.Count; i++) bytes[i] = cosmetics[i].GetSelectionHashByte();
 
         return bytes;
     }
@@ -605,11 +605,9 @@ public class DirectiveParser
     {
         if (directiveParts.Length != 3) throw new ParserException("!settype has an invalid amount of arguments");
 
-        LocationType newType;
-
         var replacedItem = new Item(directiveParts[1], "!settype");
 
-        if (!Enum.TryParse(directiveParts[2], out newType))
+        if (!Enum.TryParse(directiveParts[2], out LocationType newType))
             throw new ParserException("!settype has an invalid replaced location type");
 
         LocationTypeOverrides.Add(replacedItem, newType);
@@ -618,12 +616,12 @@ public class DirectiveParser
     private LogicFlag ParseFlagDirective(string[] directiveParts)
     {
         if (directiveParts.Length < 7)
-            throw new ParserException("A flag somewhere has an incorrect number of parameters!");
+            throw new ParserException("Flag has an incorrect number of parameters!");
 
         var optionType = GetOptionType(directiveParts[2]);
 
         if (optionType == LogicOptionType.Untyped)
-            throw new ParserException($"A flag somewhere has an invalid type! ({directiveParts[2]})");
+            throw new ParserException($"Flag has an invalid type! ({directiveParts[2]})");
 
         bool defaultActive;
         if (directiveParts.Length > 7)
@@ -640,15 +638,15 @@ public class DirectiveParser
             directiveParts[3], directiveParts[1], directiveParts[6], optionType);
     }
 
-    private LogicOptionBase ParseDropdownDirective(string[] directiveParts)
+    private LogicDropdown ParseDropdownDirective(string[] directiveParts)
     {
         if (directiveParts.Length % 3 != 2 || directiveParts.Length < 11)
-            throw new ParserException("A dropdown somewhere has an incorrect number of parameters!");
+            throw new ParserException("Dropdown has an incorrect number of parameters!");
 
         var optionType = GetOptionType(directiveParts[2]);
 
         if (optionType == LogicOptionType.Untyped)
-            throw new ParserException($"A dropdown somewhere has an invalid type! ({directiveParts[2]})");
+            throw new ParserException($"Dropdown has an invalid type! ({directiveParts[2]})");
 
         var selectionDict = new Dictionary<string, string>();
         var descriptionText = new StringBuilder();
@@ -660,6 +658,15 @@ public class DirectiveParser
             selectionDict.Add(directiveParts[i++], directiveParts[i++]);
             descriptionText.AppendLine($"\n{directiveParts[i++]}");
         }
+
+        if (selectionDict.Keys.Count != (directiveParts.Length - 8) / 3)
+            throw new ParserException("Dropdown has multiple options with the same readable name!");
+
+        if (selectionDict.Values.Count != (directiveParts.Length - 8) / 3)
+            throw new ParserException("Dropdown has multiple options with the same define name!");
+
+        if (!selectionDict.ContainsValue(defaultSelection))
+            throw new ParserException($"Dropdown has an invalid default value {defaultSelection}!");
 
         return new LogicDropdown(directiveParts[4], directiveParts[5], directiveParts[3],
             directiveParts[1], descriptionText.ToString(), defaultSelection, optionType, selectionDict);
@@ -698,7 +705,7 @@ public class DirectiveParser
             "Colorpicker does not have the right number of parameters!");
     }
 
-    private LogicOptionBase ParseNumberboxDirective(string[] directiveParts)
+    private LogicNumberBox ParseNumberboxDirective(string[] directiveParts)
     {
         if (directiveParts.Length != 10)
             throw new ParserException("Numberbox does not have the right number of parameters!");
@@ -718,7 +725,7 @@ public class DirectiveParser
             throw new ParserException($"Numberbox has invalid maximum value {directiveParts[9]}!");
 
         if (minValue > defaultValue || maxValue < defaultValue)
-            throw new ParserException("Numberbox has default value outside allowed range!");
+            throw new ParserException($"Numberbox has default value {defaultValue} outside allowed range {minValue}-{maxValue}!");
 
         return new LogicNumberBox(directiveParts[4], directiveParts[5], directiveParts[3],
             directiveParts[1], defaultValue, minValue, maxValue, directiveParts[6], optionType);

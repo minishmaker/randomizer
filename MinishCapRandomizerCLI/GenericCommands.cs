@@ -508,9 +508,9 @@ internal static class GenericCommands
     {
         switch (option)
         {
-            case LogicFlag:
+            case LogicFlag flag:
             {
-                return option.Active.ToString();
+                return flag.Active.ToString();
             }
             case LogicDropdown dropdown:
             {
@@ -522,7 +522,7 @@ internal static class GenericCommands
             }
             case LogicNumberBox box:
             {
-                return box.Value;
+                return $"{box.Value}";
             }
         }
         return "";
@@ -532,7 +532,7 @@ internal static class GenericCommands
     {
         switch (option)
         {
-            case LogicFlag:
+            case LogicFlag flag:
             {
                 Console.WriteLine("1) Enabled");
                 Console.WriteLine("2) Disabled");
@@ -547,7 +547,7 @@ internal static class GenericCommands
                     break;
                 }
 
-                option.Active = i == 1;
+                flag.Active = i == 1;
                 Console.WriteLine("Flag set successfully!");
                 break;
             }
@@ -645,14 +645,14 @@ internal static class GenericCommands
                 var input = Console.ReadLine();
                 if (string.IsNullOrEmpty(input) || !int.TryParse(input, out var i) || i < box.MinValue || i > box.MaxValue)
                 {
-                    if (!input!.Equals("exit", StringComparison.OrdinalIgnoreCase))
+                    if (input != null && !input.Equals("exit", StringComparison.OrdinalIgnoreCase))
                     {
                         PrintError("Invalid Input!");
                     }
                     break;
                 }
 
-                box.Value = input;
+                box.Value = (byte)i;
                 Console.WriteLine("Number box value set successfully!");
                 break;
             }

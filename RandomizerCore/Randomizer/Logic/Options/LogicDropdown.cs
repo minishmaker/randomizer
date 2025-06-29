@@ -17,7 +17,7 @@ public class LogicDropdown : LogicOptionBase
         string defaultSelection,
         LogicOptionType type,
         Dictionary<string, string> selections) :
-        base(name, niceName, true, settingGroup, settingPage, descriptionText, type)
+        base(name, niceName, settingGroup, settingPage, descriptionText, type)
     {
         Selections = selections;
         DefaultSelection = defaultSelection;
@@ -33,33 +33,33 @@ public class LogicDropdown : LogicOptionBase
 
     public override void CopyValueFrom(LogicOptionBase option)
     {
-        base.CopyValueFrom(option);
-        Selection = ((LogicDropdown)option).Selection;
+        var dropdown = (LogicDropdown)option;
+        if (!Selections.ContainsKey(dropdown.Selection))
+            throw new Exception($"Attempt to load option {Name} failed! Invalid value {dropdown.Selection}");
+        Selection = dropdown.Selection;
     }
 
-    public string Selection { get; set; }
-    public string DefaultSelection { get; }
+    // TODO: This could use some refactoring. The dictionary is not guaranteed to keep the intended order of the options, and it is not intuitive which side represents what.
+    public string Selection { get; set; } // must be a key
+    public string DefaultSelection { get; } // must be a value
     public Dictionary<string, string> Selections { get; }
 
     public override List<LogicDefine> GetLogicDefines()
     {
-        var defineList = new List<LogicDefine>(3);
-
-        // Only true if a color has been selected
-        if (!Active) return defineList;
-
-
-        if (!Selections.TryGetValue(Selection, out var content)) return defineList;
-
         Logger.Instance.LogInfo($"Active Define: {NiceName}, Value: {Selection}");
-        defineList.Add(new LogicDefine(Name, content));
-
-        return defineList;
+        return [new LogicDefine(Name, Selections[Selection])];
     }
 
-    public override byte GetHashByte()
+    public override IEnumerable<byte> GetAdditionalHashBytes()
     {
-        return Active ? Encoding.ASCII.GetBytes(Selection).Crc8() : (byte)0x0b;
+        List<byte> b = [(byte)Selections.Count];
+        b.AddRange(Selections.SelectMany(option => Encoding.UTF8.GetBytes(option.Value)));
+        return b;
+    }
+
+    public override byte GetSelectionHashByte()
+    {
+        return Encoding.ASCII.GetBytes(Selection).Crc8();
     }
 
     public override string GetOptions()

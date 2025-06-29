@@ -32,11 +32,7 @@ public class OptionList : List<LogicOptionBase>
 
     public byte[] GetBytes()
     {
-        var bytes = new byte[Count];
-
-        for (var i = 0; i < Count; i++) bytes[i] = this[i].GetHashByte();
-
-        return bytes;
+        return this.Select(option => option.GetSelectionHashByte()).ToArray();
     }
 
     public uint GetCrc32()
@@ -48,6 +44,7 @@ public class OptionList : List<LogicOptionBase>
             bytes.AddRange(Encoding.UTF8.GetBytes(option.Name));
             bytes.AddRange(Encoding.UTF8.GetBytes(option.Type.ToString()));
             bytes.AddRange(Encoding.UTF8.GetBytes(option.GetType().ToString()));
+            bytes.AddRange(option.GetAdditionalHashBytes());
         }
 
         return bytes.ToArray().Crc32();

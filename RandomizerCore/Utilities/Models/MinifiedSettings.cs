@@ -37,7 +37,7 @@ internal static class MinifiedSettings
             ? optionGroups.First(group => group.Key == typeof(LogicFlag)).Cast<LogicFlag>().ToList()
             : new List<LogicFlag>();
 
-        for (int i = 7, flagsProcressed = 0; flagsProcressed < flags.Count; --i, ++flagsProcressed)
+        for (int i = 7, flagsProcessed = 0; flagsProcessed < flags.Count; --i, ++flagsProcessed)
         {
             if (i < 0)
             {
@@ -47,8 +47,8 @@ internal static class MinifiedSettings
 
             var flagBit = (currentByte >> i) & 1;
 
-            flags[flagsProcressed].Active = flagBit == 1;
-            flags[flagsProcressed].NotifyObservers();
+            flags[flagsProcessed].Active = flagBit == 1;
+            flags[flagsProcessed].NotifyObservers();
         }
 
         currentByte = bytes[++currentIndex];
@@ -77,17 +77,32 @@ internal static class MinifiedSettings
             dropdown.NotifyObservers();
         }
 
+        currentByte = bytes[++currentIndex];
+
         var numberBoxes = optionGroups.Any(group => group.Key == typeof(LogicNumberBox))
             ? optionGroups.First(group => group.Key == typeof(LogicNumberBox)).Cast<LogicNumberBox>().ToList()
             : new List<LogicNumberBox>();
 
-        for (var numberBoxesProcessed = 0; numberBoxesProcessed < numberBoxes.Count; ++numberBoxesProcessed)
+        for (int i = 8, numberBoxesProcessed = 0; numberBoxesProcessed < numberBoxes.Count; ++numberBoxesProcessed)
         {
-            currentByte = bytes[++currentIndex];
-
             var numberBox = numberBoxes[numberBoxesProcessed];
+            var (mask, bitCount) = GetBitInfoForOptionCount(numberBox.MaxValue + 1 - numberBox.MinValue);
+            var numberBoxIndex = 0;
+            i -= bitCount;
 
-            numberBox.Value = $"{currentByte}";
+            if (i < 0)
+            {
+                i += 8;
+                numberBoxIndex |= (currentByte << (8 - i)) & mask;
+                currentByte = bytes[++currentIndex];
+            }
+
+            numberBoxIndex |= (currentByte >> i) & mask;
+
+            var value = numberBoxIndex + numberBox.MinValue;
+            if (value > numberBox.MaxValue)
+                throw new InvalidSettingStringException("Minified settings string is invalid because a NumberBox value is out of range!");
+            numberBox.Value = (byte)value;
             numberBox.NotifyObservers();
         }
 
@@ -122,7 +137,7 @@ internal static class MinifiedSettings
             : new List<LogicFlag>();
         byte currentByte = 0;
 
-        for (int i = 7, flagsProcressed = 0; flagsProcressed < flags.Count; --i, ++flagsProcressed)
+        for (int i = 7, flagsProcessed = 0; flagsProcessed < flags.Count; --i, ++flagsProcessed)
         {
             if (i < 0)
             {
@@ -131,7 +146,7 @@ internal static class MinifiedSettings
                 currentByte = 0;
             }
 
-            currentByte |= flags[flagsProcressed].Active ? (byte)(1 << i) : (byte)(0 << i);
+            currentByte |= flags[flagsProcessed].Active ? (byte)(1 << i) : (byte)0;
         }
 
         bytes.Add(currentByte);
@@ -153,24 +168,38 @@ internal static class MinifiedSettings
                 i += 8;
                 currentByte |= (byte)(dropdownValueAsByte >> (8 - i));
                 bytes.Add(currentByte);
-                currentByte = 0;
-                currentByte |= (byte)(dropdownValueAsByte << i);
+                currentByte = (byte)(dropdownValueAsByte << i);
             }
 
             currentByte |= (byte)(dropdownValueAsByte << i);
         }
 
         bytes.Add(currentByte);
+        currentByte = 0;
 
         var numberBoxes = optionGroups.Any(group => group.Key == typeof(LogicNumberBox))
             ? optionGroups.First(group => group.Key == typeof(LogicNumberBox)).Cast<LogicNumberBox>().ToList()
             : new List<LogicNumberBox>();
 
-        for (var numberBoxesProcessed = 0; numberBoxesProcessed < numberBoxes.Count; ++numberBoxesProcessed)
+        for (int i = 8, numberBoxesProcessed = 0; numberBoxesProcessed < numberBoxes.Count; ++numberBoxesProcessed)
         {
-            currentByte = numberBoxes[numberBoxesProcessed].GetHashByte();
-            bytes.Add(currentByte);
+            var numberBox = numberBoxes[numberBoxesProcessed];
+            var (mask, bitCount) = GetBitInfoForOptionCount(numberBox.MaxValue + 1 - numberBox.MinValue);
+            var numberBoxValueAsByte = (numberBox.Value - numberBox.MinValue) & mask;
+            i -= bitCount;
+
+            if (i < 0)
+            {
+                i += 8;
+                currentByte |= (byte)(numberBoxValueAsByte >> (8 - i));
+                bytes.Add(currentByte);
+                currentByte = (byte)(numberBoxValueAsByte << i);
+            }
+
+            currentByte |= (byte)(numberBoxValueAsByte << i);
         }
+
+        bytes.Add(currentByte);
 
         var colorPickers = optionGroups.Any(group => group.Key == typeof(LogicColorPicker))
             ? optionGroups.First(group => group.Key == typeof(LogicColorPicker)).Cast<LogicColorPicker>().ToList()

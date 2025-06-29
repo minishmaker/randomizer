@@ -17,14 +17,12 @@ public class LogicColorPicker : LogicOptionBase
         string descriptionText,
         LogicOptionType type,
         Color startingColor) :
-        base(name, niceName, true, settingGroup, settingPage, descriptionText, type)
+        base(name, niceName, settingGroup, settingPage, descriptionText, type)
     {
+        Active = true;
         BaseColor = startingColor;
         DefinedColor = startingColor;
-        InitialColors = new List<Color>(1)
-        {
-            startingColor
-        };
+        InitialColors = [startingColor];
         UseRandomColor = false;
     }
 
@@ -36,8 +34,9 @@ public class LogicColorPicker : LogicOptionBase
         string descriptionText,
         LogicOptionType type,
         List<Color> colors) :
-        base(name, niceName, true, settingGroup, settingPage, descriptionText, type)
+        base(name, niceName, settingGroup, settingPage, descriptionText, type)
     {
+        Active = true;
         BaseColor = colors[0];
         DefinedColor = colors[0];
         InitialColors = colors;
@@ -53,8 +52,8 @@ public class LogicColorPicker : LogicOptionBase
 
     public override void CopyValueFrom(LogicOptionBase option)
     {
-        base.CopyValueFrom(option);
         var colorPicker = (LogicColorPicker)option;
+        Active = colorPicker.Active;
         UseRandomColor = colorPicker.UseRandomColor;
         DefinedColor = colorPicker.DefinedColor;
     }
@@ -63,6 +62,7 @@ public class LogicColorPicker : LogicOptionBase
     public Color DefinedColor { get; set; }
     public List<Color> InitialColors { get; set; }
 
+    public bool Active { get; set; }
     public bool UseRandomColor { get; set; }
 
     public void PickRandomColor()
@@ -95,7 +95,7 @@ public class LogicColorPicker : LogicOptionBase
         return defineList;
     }
 
-    public override byte GetHashByte()
+    public override byte GetSelectionHashByte()
     {
         // Maybe not a great way to represent, leaves some info out and is likely to cause easy collisions
         return Active ? (byte)(DefinedColor.R ^ DefinedColor.G ^ DefinedColor.B) : (byte)00;
