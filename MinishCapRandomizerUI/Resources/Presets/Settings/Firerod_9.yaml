@@ -83,6 +83,7 @@ settings:
   BOWWEAPON: NOBOW                                # Bows
   GUSTWEAPON: NOGUST                              # Gust Jar
   LAMPWEAPON: NOLAMP                              # Lantern
+  MIRRORWEAPON: NOMIRROR                          # Mirror Shield
   #  Require Tricks:
   MITTSMONEY_SETTING: NOMITTSMONEY                # Mole Mitts farm Infinite Rupees
   BLOWDUST_SETTING: GUST                          # Bombs blow away dust
@@ -104,6 +105,8 @@ settings:
   DHCJOSTLE_SETTING: NODHCJOSTLE                  # DHC Pressure Pads without Four Sword
   DHCSWITCHES_SETTING: NODHCSWITCHES              # DHC Switches without Four Sword
   FOWPOT_SETTING: NOFOWPOT                        # FoW Pot item early using the Gust Jar
+  CLONETRICKS_SETTING: NOCLONETRICKS              # Tricky clone movement
+  BOMBSWITCH_SETTING: NOBOMBSWITCH                # PoW Switches without clones
   ## Item Pool:
   #  Global:
   ITEM_POOL: ITEM_POOL_PLENTIFUL                  # Item Pool

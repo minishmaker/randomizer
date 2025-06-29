@@ -132,7 +132,6 @@ Here are all the locations that you can expect to find items, depending on the s
 
 - The UI is only supported on Windows machines and with display scaling set to 100%.
 - With Removed Gold Fusions, Dungeon Entrance Shuffle on, and Elements either placed Anywhere or forced in their Vanilla Dungeons or a high number of Dungeons required, some settings combinations have a high chance of failing to beat Vaati. This has no easy code fix until Logic v2 is done. To work around this, click the "New Seed" button and try again, or set your "Max Randomization Attempts" to 5 or more and try and randomize again.
-- Logic for Non-Progressive Swords can sometimes require unintuitive tricks with clones.
 - Regional Dungeon Items combined with Dungeon Entrance Shuffle is unintuitive, eg: If Fortress is shuffled to Crenel, Small Keys for Fortress can be found in Wind Ruins but not in Crenel.
 - Followers cause a fair amount of visual bugs ranging from miss coloured palettes, to certain sprites being completely missing.
 

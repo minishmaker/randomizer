@@ -303,6 +303,9 @@ settings:
   LAMPWEAPON:                                     # Lantern
     NOLAMP: 1                                     #   No
     YESLAMP: 1                                    #   Yes
+  MIRRORWEAPON:                                   # Mirror Shield
+    NOMIRROR: 1                                   #   No
+    YESMIRROR: 1                                  #   Yes
   #  Require Tricks:
   MITTSMONEY_SETTING:                             # Mole Mitts farm Infinite Rupees
     NOMITTSMONEY: 1                               #   No
@@ -364,6 +367,12 @@ settings:
   FOWPOT_SETTING:                                 # FoW Pot item early using the Gust Jar
     NOFOWPOT: 1                                   #   No
     YESFOWPOT: 1                                  #   Yes
+  CLONETRICKS_SETTING:                            # Tricky clone movement
+    NOCLONETRICKS: 1                              #   No
+    YESCLONETRICKS: 1                             #   Yes
+  BOMBSWITCH_SETTING:                             # PoW Switches without clones
+    NOBOMBSWITCH: 1                               #   No
+    YESBOMBSWITCH: 1                              #   Yes
   ## Item Pool:
   #  Global:
   ITEM_POOL:                                      # Item Pool
