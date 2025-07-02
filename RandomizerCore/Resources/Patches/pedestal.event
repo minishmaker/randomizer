@@ -15,6 +15,7 @@
 		#undef openDHC
 	#endif
 	#ifdef vaatiWarp
+	    PUSH; ORG $127649; BYTE 0x1D; POP; // Change locationIndex of sanctuary to match DHC so you can quickwarp out
 		PUSH
 		ORG $139E80
 		// warp type, sub type
