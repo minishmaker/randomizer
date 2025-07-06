@@ -4,15 +4,27 @@
 	#endif
 #endif
 
-#ifdef openDHC 
-	#ifdef noDHC 
+#ifdef openDHC
+	#ifdef noDHC
 		#undef noDHC
 	#endif
 #endif
 
-#ifdef noDHC 
-	#ifdef openDHC 
+#ifdef noDHC
+	#ifdef openDHC
 		#undef openDHC
+	#endif
+	#ifdef vaatiWarp
+	    PUSH; ORG $127649; BYTE 0x1D; POP; // Change locationIndex of sanctuary to match DHC so you can quickwarp out
+		PUSH
+		ORG $139E80
+		// warp type, sub type
+		BYTE 1 0
+		// start x, start y, end x, end y
+		SHORT 0x00E8 0x0028 0x0078 0x0168
+		// shape, area, room, height, transition type, facing
+		BYTE 0 0x89 0 1 0 0
+		POP
 	#endif
 #endif
 
