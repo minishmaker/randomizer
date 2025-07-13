@@ -28,6 +28,9 @@
 #ifndef bombBagShopSub
 	#define bombBagShopSub "0x00"
 #endif
+#ifndef universalSmallKeysShopPrice
+	#define universalSmallKeysShopPrice "100"
+#endif
 #ifndef goronMerchantCustomSets
 	#define goronMerchantCustomSets "0"
 #endif
@@ -176,6 +179,9 @@ WORD quiverShopItem
 WORD quiverShopSub
 WORD bombBagShopItem
 WORD bombBagShopSub
+WORD universalSmallKeysShopPrice/100+0x30
+WORD universalSmallKeysShopPrice%100/10+0x30
+WORD universalSmallKeysShopPrice%10+0x30
 POIN getTextOffset
 POIN shootbutterflyCredits
 POIN digbutterflyCredits
@@ -246,6 +252,9 @@ POP
 //set price for mirror shield
 PUSH; ORG $FCEA8+(8*0x0E); SHORT 40; POP
 
+//set price for small key
+PUSH; ORG $FCEA8+(8*0x53); SHORT universalSmallKeysShopPrice; POP
+
 //set price for bomb bag
 PUSH; ORG $FCEA8+(8*0x65); SHORT 600; POP
 
@@ -281,6 +290,11 @@ shopTerminator
 
 ALIGN 4
 shopConsumables:
+#ifdef universalSmallKeys
+	#ifdef universalSmallKeysInShop
+		shopItem(0x53,0x17,0x53,0xB6,0x80) //universal small keys
+	#endif
+#endif
 shopItem(0x6C,0x00,0x6C,0x2D,0x40) //10 bombs, always spawns
 shopItem(0x6D,0x00,0x6D,0x40,0x40) //30 bombs, always spawns
 shopItem(0x6E,0x00,0x6E,0x52,0x40) //10 arrows, always spawns

@@ -4,13 +4,14 @@ namespace RandomizerCore.Randomizer.Logic.Dependency;
 
 public class CounterDependency : DependencyBase
 {
-    public Dictionary<DependencyBase, int> DependencySet;
-    public int RequiredCount;
+    private readonly Dictionary<DependencyBase, int> DependencySet;
+    private readonly int RequiredCount;
 
     public CounterDependency(Dictionary<DependencyBase, int> dependencySet, int reqValue) : base(true)
     {
         DependencySet = dependencySet;
         RequiredCount = reqValue;
+        Result = reqValue <= 0;
     }
 
     //This type can never have a not item as a dependent
