@@ -318,6 +318,7 @@
 !flag - Gameplay - Setting - Improvements - HOMEWARP - Homewarp - In the Pause menu there is a 'SLEEP' option on the 'QUEST STATUS' screen, using this will warp Link back to his bed from wherever he is.\nThis option is force enabled whenever a setting combination has the possibility of softlocks - true
 !flag - Gameplay - Setting - Improvements - OCARINA_SELECT - Ocarina on Select - Allows you to use the Ocarina by pressing the Select button, once obtained.\nWarning: Since this removes the Ezlo interaction, this prevents certain glitches. - true
 !dropdown - Gameplay - Setting - Extras - WALLET_REFILL - Wallets contain Rupees - Determines whether Wallet Upgrades contain Rupees when picked up. - WALLET_REFILL_OFF - Disabled - WALLET_REFILL_OFF - 'Disabled': You get no Rupees when expanding your Wallet size, like in the vanilla game. - Upgrade Amount - WALLET_REFILL_DIFFERENCE - 'Upgrade Amount': You get as many Rupees as the capacity of your Wallet is increasing by. - Max - WALLET_REFILL_MAX - 'Max': You get as many Rupees as your new Wallet can hold.
+!dropdown - Gameplay - Setting - Extras - UNI_KEY_SHOP_PRICE - Universal Small Keys in Shop - Determines the price in Rupees for which Universal Small Keys (if enabled) can be purchased indefinitely in the shop in town, or if this item should not be in the shop. - UNI_KEY_SHOP_PRICE_100 - Disabled - UNI_KEY_SHOP_PRICE_OFF - 'Disabled': The shop has no infinite source of Universal Small Keys, you have to pick them up from item locations. - 50 Rupees - UNI_KEY_SHOP_PRICE_50 - 'X Rupees': Universal Small Keys (if enabled) can be purchased indefinitely for X Rupees each.\nThe same price is valid for Universal Keychains, so consider increasing this price for larger Keychains.\nThe logic expects you to buy as many Small Keys as needed as soon as you have enough Wallets, no matter how many shuffled Small Keys and Rupees you currently have access to. - 100 Rupees - UNI_KEY_SHOP_PRICE_100 - - 200 Rupees - UNI_KEY_SHOP_PRICE_200 - - 300 Rupees - UNI_KEY_SHOP_PRICE_300 - - 400 Rupees - UNI_KEY_SHOP_PRICE_400 - - 500 Rupees - UNI_KEY_SHOP_PRICE_500 - - 600 Rupees - UNI_KEY_SHOP_PRICE_600 - - 700 Rupees - UNI_KEY_SHOP_PRICE_700 - - 800 Rupees - UNI_KEY_SHOP_PRICE_800 - - 900 Rupees - UNI_KEY_SHOP_PRICE_900 - - 999 Rupees - UNI_KEY_SHOP_PRICE_999 -
 !flag - Gameplay - Setting - Extras - VANILLA_SHOP_ORDER - Vanilla Shop Item Order - If enabled, the 300 Rupees item only appears after the 80 Rupees item has been bought.\nIf the extra JP/US item is enabled, that one only spawns after buying the 300 Rupees item.
 !flag - Gameplay - Setting - Extras - GORON_ALT_PRICES - Goron Merchant JP/US prices - If enabled will use the prices found in the JP and US versions.\nThese are the prices from left to right:\nEU 1st set: 200, 100, 50\nEU 2nd set: 300, 200, 100\nEU 3rd set: 400, 300, 200\nEU 4th set: 500, 400, 300\nEU 5th set: 600, 500, 400\nJP any set: 300, 200, 50
 !flag - Gameplay - Setting - Extras - NO_KINSTONE_DROPS - Disable Kinstone Drops - Kinstone Pieces can no longer randomly drop.\nThey can also not be obtained through any other means than items in the random item pool. - true
@@ -496,6 +497,7 @@
 !define - `THREE_HEART`
 !define - `DAMAGE_MULTI`
 !define - `WALLET_REFILL`
+!define - `UNI_KEY_SHOP_PRICE`
 !define - `BOOTS_L`
 !define - `GOAL_HINT`
 
@@ -595,6 +597,11 @@
 !endif
 !ifdef - VANILLA_SHOP_ORDER
 	!eventdefine - vanillaShopOrder
+!endif
+!ifndef - UNI_KEY_SHOP_PRICE_OFF
+	!ifdef - SMALL_KEYS_UNIVERSAL
+		!eventdefine - universalSmallKeysInShop
+	!endif
 !endif
 
 !ifndef - SHUFFLE_ELEMENTS_ON_DUNGEONS
@@ -3090,7 +3097,73 @@
 			!addition - UNITOTAL3 - `UNITOTAL`, -3
 			!addition - UNITOTAL4 - `UNITOTAL`, -4
 			!addition - UNITOTAL5 - `UNITOTAL`, -5
-			Items.SmallKey.0x17:`UNITOTAL`.`KEYUNIMULTIPLIER`;	Major;
+			!define - TOTAL_NEEDED_SMALL_KEYS - `UNITOTAL`
+			!ifdef - UNI_KEY_SHOP_PRICE_OFF
+				Items.SmallKey.0x17:`TOTAL_NEEDED_SMALL_KEYS`.`KEYUNIMULTIPLIER`;	Major;
+			!else
+				# Logic assumes access to unlimited universal small keys with the right wallet
+				!ifdef - UNI_KEY_SHOP_PRICE_50
+					!define - SK_UNIVERSAL_WALLET - Helpers.Start
+					!eventdefine - universalSmallKeysShopPrice - 50
+				!else
+					!ifdef - UNI_KEY_SHOP_PRICE_100
+						!define - SK_UNIVERSAL_WALLET - Helpers.Start
+						!eventdefine - universalSmallKeysShopPrice - 100
+					!else
+						!ifdef - UNI_KEY_SHOP_PRICE_200
+							!define - SK_UNIVERSAL_WALLET - Items.Wallet
+							!eventdefine - universalSmallKeysShopPrice - 200
+						!else
+							!ifdef - UNI_KEY_SHOP_PRICE_300
+								!define - SK_UNIVERSAL_WALLET - Items.Wallet
+								!eventdefine - universalSmallKeysShopPrice - 300
+							!else
+								!ifdef - UNI_KEY_SHOP_PRICE_400
+									!define - SK_UNIVERSAL_WALLET - Items.Wallet:2
+									!eventdefine - universalSmallKeysShopPrice - 400
+								!else
+									!ifdef - UNI_KEY_SHOP_PRICE_500
+										!define - SK_UNIVERSAL_WALLET - Items.Wallet:2
+										!eventdefine - universalSmallKeysShopPrice - 500
+									!else
+										!define - SK_UNIVERSAL_WALLET - Items.Wallet:3
+										!ifdef - UNI_KEY_SHOP_PRICE_600
+											!eventdefine - universalSmallKeysShopPrice - 600
+										!else
+											!ifdef - UNI_KEY_SHOP_PRICE_700
+												!eventdefine - universalSmallKeysShopPrice - 700
+											!else
+												!ifdef - UNI_KEY_SHOP_PRICE_800
+													!eventdefine - universalSmallKeysShopPrice - 800
+												!else
+													!ifdef - UNI_KEY_SHOP_PRICE_900
+														!eventdefine - universalSmallKeysShopPrice - 900
+													!else
+														!eventdefine - universalSmallKeysShopPrice - 999
+													!endif
+												!endif
+											!endif
+										!endif
+									!endif
+								!endif
+							!endif
+						!endif
+					!endif
+				!endif
+				!ifdef - ITEM_POOL_PLENTIFUL
+					Items.SmallKey.0x17:`TOTAL_NEEDED_SMALL_KEYS`.`KEYUNIMULTIPLIER`;	Major;
+				!else
+					!ifndef - ITEM_POOL_RIP
+						# Only place enough keys for three quarters of the small key doors and blocks in the game
+						!addition - TOTAL_NEEDED_SMALL_KEYS_TIMES_2_OR_3 - `TOTAL_NEEDED_SMALL_KEYS`, `TOTAL_NEEDED_SMALL_KEYS`, `TOTAL_NEEDED_SMALL_KEYS`
+					!else
+						# Only place enough keys for half of the small key doors and blocks in the game
+						!addition - TOTAL_NEEDED_SMALL_KEYS_TIMES_2_OR_3 - `TOTAL_NEEDED_SMALL_KEYS`, `TOTAL_NEEDED_SMALL_KEYS`
+					!endif
+					!addition - KEYUNIMULTIPLIER_TIMES_4 - `KEYUNIMULTIPLIER`, `KEYUNIMULTIPLIER`, `KEYUNIMULTIPLIER`, `KEYUNIMULTIPLIER`
+					Items.SmallKey.0x17:`TOTAL_NEEDED_SMALL_KEYS_TIMES_2_OR_3`.`KEYUNIMULTIPLIER_TIMES_4`;	Major;
+				!endif
+			!endif
 		!endif
 	!else
 		!ifdef - DWS1KEY
@@ -3726,8 +3799,10 @@
 		!endif
 	!endif
 	!ifdef - SMALL_KEYS_UNIVERSAL
-		!addition - KEYUNIMULTIPLIER_TIMES_4 - `KEYUNIMULTIPLIER`, `KEYUNIMULTIPLIER`, `KEYUNIMULTIPLIER`, `KEYUNIMULTIPLIER`
-		Items.SmallKey.0x17:`UNITOTAL`.`KEYUNIMULTIPLIER_TIMES_4`;	Minor;
+		!ifdef - UNI_KEY_SHOP_PRICE_OFF
+			!addition - KEYUNIMULTIPLIER_TIMES_4 - `KEYUNIMULTIPLIER`, `KEYUNIMULTIPLIER`, `KEYUNIMULTIPLIER`, `KEYUNIMULTIPLIER`
+			Items.SmallKey.0x17:`TOTAL_NEEDED_SMALL_KEYS`.`KEYUNIMULTIPLIER_TIMES_4`;	Minor;
+		!endif
 	!endif
 	!ifdef - DOJOANY
 		!ifdef - YES_SCROLL_PROG
@@ -6183,9 +6258,15 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 	!define - SK_2_DWS_OR_UNIVERSAL - (+2, Items.SmallKey.0x18:`DWSKEYAMOUNT`)
 	!define - SK_4_DWS_OR_UNIVERSAL - (+4, Items.SmallKey.0x18:`DWSKEYAMOUNT`)
 !else
-	!define - SK_1_DWS_OR_UNIVERSAL - (+`UNITOTAL3`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
-	!define - SK_2_DWS_OR_UNIVERSAL - (+`UNITOTAL2`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
-	!define - SK_4_DWS_OR_UNIVERSAL - (+`UNITOTAL`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
+	!ifdef - UNI_KEY_SHOP_PRICE_OFF
+		!define - SK_1_DWS_OR_UNIVERSAL - (+`UNITOTAL3`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
+		!define - SK_2_DWS_OR_UNIVERSAL - (+`UNITOTAL2`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
+		!define - SK_4_DWS_OR_UNIVERSAL - (+`UNITOTAL`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
+	!else
+		!define - SK_1_DWS_OR_UNIVERSAL - `SK_UNIVERSAL_WALLET`
+		!define - SK_2_DWS_OR_UNIVERSAL - `SK_UNIVERSAL_WALLET`
+		!define - SK_4_DWS_OR_UNIVERSAL - `SK_UNIVERSAL_WALLET`
+	!endif
 !endif
 	!define - Deepwood2ndDoor - 
 	!define - DeepwoodBasementDoor - 
@@ -6233,8 +6314,13 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 	!define - SK_1_COF_OR_UNIVERSAL - Items.SmallKey.0x19
 	!define - SK_2_COF_OR_UNIVERSAL - (+2, Items.SmallKey.0x19:`COFKEYAMOUNT`)
 !else
-	!define - SK_1_COF_OR_UNIVERSAL - (+`UNITOTAL1`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
-	!define - SK_2_COF_OR_UNIVERSAL - (+`UNITOTAL`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
+	!ifdef - UNI_KEY_SHOP_PRICE_OFF
+		!define - SK_1_COF_OR_UNIVERSAL - (+`UNITOTAL1`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
+		!define - SK_2_COF_OR_UNIVERSAL - (+`UNITOTAL`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
+	!else
+		!define - SK_1_COF_OR_UNIVERSAL - `SK_UNIVERSAL_WALLET`
+		!define - SK_2_COF_OR_UNIVERSAL - `SK_UNIVERSAL_WALLET`
+	!endif
 !endif
 	CoF1stDoor;				Helper;;	(|`SK_2_COF_OR_UNIVERSAL`, (&Helpers.CoFNoBlueWarp, `SK_1_COF_OR_UNIVERSAL`))
 	CoF2ndDoor;				Helper;;	`SK_2_COF_OR_UNIVERSAL`
@@ -6261,10 +6347,17 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 	!define - SK_3_FOW_OR_UNIVERSAL - (+3, Items.SmallKey.0x1A:`FOWKEYAMOUNT`)
 	!define - SK_4_FOW_OR_UNIVERSAL - (+4, Items.SmallKey.0x1A:`FOWKEYAMOUNT`)
 !else
-	!define - SK_1_FOW_OR_UNIVERSAL - (+`UNITOTAL3`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
-	!define - SK_2_FOW_OR_UNIVERSAL - (+`UNITOTAL2`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
-	!define - SK_3_FOW_OR_UNIVERSAL - (+`UNITOTAL1`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
-	!define - SK_4_FOW_OR_UNIVERSAL - (+`UNITOTAL`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
+	!ifdef - UNI_KEY_SHOP_PRICE_OFF
+		!define - SK_1_FOW_OR_UNIVERSAL - (+`UNITOTAL3`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
+		!define - SK_2_FOW_OR_UNIVERSAL - (+`UNITOTAL2`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
+		!define - SK_3_FOW_OR_UNIVERSAL - (+`UNITOTAL1`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
+		!define - SK_4_FOW_OR_UNIVERSAL - (+`UNITOTAL`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
+	!else
+		!define - SK_1_FOW_OR_UNIVERSAL - `SK_UNIVERSAL_WALLET`
+		!define - SK_2_FOW_OR_UNIVERSAL - `SK_UNIVERSAL_WALLET`
+		!define - SK_3_FOW_OR_UNIVERSAL - `SK_UNIVERSAL_WALLET`
+		!define - SK_4_FOW_OR_UNIVERSAL - `SK_UNIVERSAL_WALLET`
+	!endif
 !endif
 	!define - FoWRightDoor - 
 	!define - FoWMiddleDoor - 
@@ -6345,10 +6438,17 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 	!define - SK_3_TOD_OR_UNIVERSAL - (+3, Items.SmallKey.0x1B:`TODKEYAMOUNT`)
 	!define - SK_4_TOD_OR_UNIVERSAL - (+4, Items.SmallKey.0x1B:`TODKEYAMOUNT`)
 !else
-	!define - SK_1_TOD_OR_UNIVERSAL - (+`UNITOTAL3`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
-	!define - SK_2_TOD_OR_UNIVERSAL - (+`UNITOTAL2`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
-	!define - SK_3_TOD_OR_UNIVERSAL - (+`UNITOTAL1`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
-	!define - SK_4_TOD_OR_UNIVERSAL - (+`UNITOTAL`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
+	!ifdef - UNI_KEY_SHOP_PRICE_OFF
+		!define - SK_1_TOD_OR_UNIVERSAL - (+`UNITOTAL3`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
+		!define - SK_2_TOD_OR_UNIVERSAL - (+`UNITOTAL2`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
+		!define - SK_3_TOD_OR_UNIVERSAL - (+`UNITOTAL1`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
+		!define - SK_4_TOD_OR_UNIVERSAL - (+`UNITOTAL`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
+	!else
+		!define - SK_1_TOD_OR_UNIVERSAL - `SK_UNIVERSAL_WALLET`
+		!define - SK_2_TOD_OR_UNIVERSAL - `SK_UNIVERSAL_WALLET`
+		!define - SK_3_TOD_OR_UNIVERSAL - `SK_UNIVERSAL_WALLET`
+		!define - SK_4_TOD_OR_UNIVERSAL - `SK_UNIVERSAL_WALLET`
+	!endif
 !endif
 	!define - ToDRightBlock - 
 	!define - ToDLeftBlock - 
@@ -6466,8 +6566,13 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 	!define - SK_1_RC_OR_UNIVERSAL - Items.SmallKey.0x1E
 	!define - SK_3_RC_OR_UNIVERSAL - (+3, Items.SmallKey.0x1E:`RCKEYAMOUNT`)
 !else
-	!define - SK_1_RC_OR_UNIVERSAL - (+`UNITOTAL2`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
-	!define - SK_3_RC_OR_UNIVERSAL - (+`UNITOTAL`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
+	!ifdef - UNI_KEY_SHOP_PRICE_OFF
+		!define - SK_1_RC_OR_UNIVERSAL - (+`UNITOTAL2`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
+		!define - SK_3_RC_OR_UNIVERSAL - (+`UNITOTAL`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
+	!else
+		!define - SK_1_RC_OR_UNIVERSAL - `SK_UNIVERSAL_WALLET`
+		!define - SK_3_RC_OR_UNIVERSAL - `SK_UNIVERSAL_WALLET`
+	!endif
 !endif
 	CryptDoor;				Helper;;	`SK_1_RC_OR_UNIVERSAL`
 	CryptBlocks;				Helper;; `SK_3_RC_OR_UNIVERSAL`
@@ -6506,12 +6611,21 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 	!define - SK_5_POW_OR_UNIVERSAL - (+5, Items.SmallKey.0x1C:`POWKEYAMOUNT`)
 	!define - SK_6_POW_OR_UNIVERSAL - (+6, Items.SmallKey.0x1C:`POWKEYAMOUNT`)
 !else
-	!define - SK_1_POW_OR_UNIVERSAL - (+`UNITOTAL5`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
-	!define - SK_2_POW_OR_UNIVERSAL - (+`UNITOTAL4`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
-	!define - SK_3_POW_OR_UNIVERSAL - (+`UNITOTAL3`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
-	!define - SK_4_POW_OR_UNIVERSAL - (+`UNITOTAL2`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
-	!define - SK_5_POW_OR_UNIVERSAL - (+`UNITOTAL1`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
-	!define - SK_6_POW_OR_UNIVERSAL - (+`UNITOTAL`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
+	!ifdef - UNI_KEY_SHOP_PRICE_OFF
+		!define - SK_1_POW_OR_UNIVERSAL - (+`UNITOTAL5`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
+		!define - SK_2_POW_OR_UNIVERSAL - (+`UNITOTAL4`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
+		!define - SK_3_POW_OR_UNIVERSAL - (+`UNITOTAL3`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
+		!define - SK_4_POW_OR_UNIVERSAL - (+`UNITOTAL2`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
+		!define - SK_5_POW_OR_UNIVERSAL - (+`UNITOTAL1`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
+		!define - SK_6_POW_OR_UNIVERSAL - (+`UNITOTAL`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
+	!else
+		!define - SK_1_POW_OR_UNIVERSAL - `SK_UNIVERSAL_WALLET`
+		!define - SK_2_POW_OR_UNIVERSAL - `SK_UNIVERSAL_WALLET`
+		!define - SK_3_POW_OR_UNIVERSAL - `SK_UNIVERSAL_WALLET`
+		!define - SK_4_POW_OR_UNIVERSAL - `SK_UNIVERSAL_WALLET`
+		!define - SK_5_POW_OR_UNIVERSAL - `SK_UNIVERSAL_WALLET`
+		!define - SK_6_POW_OR_UNIVERSAL - `SK_UNIVERSAL_WALLET`
+	!endif
 !endif
 	!define - PoWFans - 
 	!define - PoWBigChest - 
@@ -6581,9 +6695,15 @@ ShopScrubCrenel;		Helper;;	(|(+210, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:
 	!define - SK_4_DHC_OR_UNIVERSAL - (+4, Items.SmallKey.0x1D:`DHCKEYAMOUNT`)
 	!define - SK_5_DHC_OR_UNIVERSAL - (+5, Items.SmallKey.0x1D:`DHCKEYAMOUNT`)
 !else
-	!define - SK_1_DHC_OR_UNIVERSAL - (+`UNITOTAL4`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
-	!define - SK_4_DHC_OR_UNIVERSAL - (+`UNITOTAL1`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
-	!define - SK_5_DHC_OR_UNIVERSAL - (+`UNITOTAL`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
+	!ifdef - UNI_KEY_SHOP_PRICE_OFF
+		!define - SK_1_DHC_OR_UNIVERSAL - (+`UNITOTAL4`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
+		!define - SK_4_DHC_OR_UNIVERSAL - (+`UNITOTAL1`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
+		!define - SK_5_DHC_OR_UNIVERSAL - (+`UNITOTAL`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
+	!else
+		!define - SK_1_DHC_OR_UNIVERSAL - `SK_UNIVERSAL_WALLET`
+		!define - SK_4_DHC_OR_UNIVERSAL - `SK_UNIVERSAL_WALLET`
+		!define - SK_5_DHC_OR_UNIVERSAL - `SK_UNIVERSAL_WALLET`
+	!endif
 !endif
 	DHC1stDoor;				Helper;;	(|`SK_5_DHC_OR_UNIVERSAL`, (&Helpers.DHCNoWarps, `SK_1_DHC_OR_UNIVERSAL`))
 	!define - DHCBigBlock - 
