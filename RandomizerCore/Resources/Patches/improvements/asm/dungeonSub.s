@@ -1,5 +1,6 @@
 .equ universalCompasses, universalMaps+4
 .equ universalBigKeys, universalCompasses+4
+.equ universalBigKeysWithoutDHC, universalBigKeys+4
 .thumb
 cmp	r7,#0
 beq	vanilla
@@ -35,6 +36,13 @@ notCompass:
 ldr	r3,universalBigKeys
 cmp	r3,#0
 beq	notUniversal
+ldr	r3,universalBigKeysWithoutDHC
+cmp	r3,#0
+beq	universalBig
+cmp	r0,#0x06
+beq	notUniversal
+
+universalBig:
 mov	r0,#0
 
 notUniversal:
@@ -52,3 +60,4 @@ universalMaps:
 @WORD universalMap
 @WORD universalCompasses
 @WORD universalBigKeys
+@WORD universalBigKeysWithoutDHC
