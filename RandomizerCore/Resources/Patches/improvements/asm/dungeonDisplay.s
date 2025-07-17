@@ -5,6 +5,7 @@
 .equ universalCompasses, universalMaps+4
 .equ universalSmallKeys, universalCompasses+4
 .equ universalBigKeys, universalSmallKeys+4
+.equ universalBigKeysWithoutDHC, universalBigKeys+4
 .thumb
 push	{r4-r7}
 
@@ -121,6 +122,13 @@ ldrb	r0,[r7,r4]
 ldr	r1,universalBigKeys
 cmp	r1,#0
 beq	notUniversalBig
+ldr	r1,universalBigKeysWithoutDHC
+cmp	r1,#0
+beq	universalBig
+cmp	r4,#0x06
+beq	notUniversalBig
+
+universalBig:
 ldrb	r0,[r7]
 
 notUniversalBig:

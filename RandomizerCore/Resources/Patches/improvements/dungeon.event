@@ -53,6 +53,11 @@ dungeonSub:
 #else
 	WORD 0
 #endif
+#ifdef universalBigKeysWithoutDHC
+	WORD 1
+#else
+	WORD 0
+#endif
 
 keyMultiplierTable:
 BYTE keyMultiplierUniversal
@@ -87,10 +92,17 @@ BYTE keyMultiplierRC
 	POP
 #endif
 #ifdef universalBigKeys
-	PUSH
 	//check if has big key
-	ORG $52394; SHORT 0x46C0;
-	POP
+	#ifndef universalBigKeysWithoutDHC
+		PUSH
+		ORG $52394; SHORT 0x46C0;
+		POP
+	#else
+		PUSH; ORG $52394; jumpToHack(hasBigKey); POP
+		ALIGN 4
+		hasBigKey:
+		#incbin "asm/hasBigKey.dmp"
+	#endif
 #endif
 
 //press select in dungeon map to look at world map (and select again to go back)
@@ -124,6 +136,11 @@ POIN dungeonDisplayKeys
 	WORD 0
 #endif
 #ifdef universalBigKeys
+	WORD 1
+#else
+	WORD 0
+#endif
+#ifdef universalBigKeysWithoutDHC
 	WORD 1
 #else
 	WORD 0
