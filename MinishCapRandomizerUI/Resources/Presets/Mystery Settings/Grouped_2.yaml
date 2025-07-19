@@ -452,6 +452,19 @@ settings:
     WALLET_REFILL_OFF: 60
     WALLET_REFILL_DIFFERENCE: 30
     WALLET_REFILL_MAX: 10
+  UNI_KEY_SHOP_PRICE:                             # Universal Small Keys in Shop
+    UNI_KEY_SHOP_PRICE_OFF: 20
+    UNI_KEY_SHOP_PRICE_50: 10
+    UNI_KEY_SHOP_PRICE_100: 50
+    UNI_KEY_SHOP_PRICE_200: 10
+    UNI_KEY_SHOP_PRICE_300: 10
+    UNI_KEY_SHOP_PRICE_400: 0
+    UNI_KEY_SHOP_PRICE_500: 0
+    UNI_KEY_SHOP_PRICE_600: 0
+    UNI_KEY_SHOP_PRICE_700: 0
+    UNI_KEY_SHOP_PRICE_800: 0
+    UNI_KEY_SHOP_PRICE_900: 0
+    UNI_KEY_SHOP_PRICE_999: 0
   VANILLA_SHOP_ORDER:                             # Vanilla Shop Item Order
     on: 50
     off: 50
@@ -495,7 +508,7 @@ subweights:
           SHUFFLE_ELEMENTS_VANILLA: 25
           SHUFFLE_ELEMENTS_OFF: 75
     standard:
-      chance: 35
+      chance: 30
       settings:
         MAP_SETTING: MAP_STANDARD
         COMPASS_SETTING: COMPASS_STANDARD
@@ -547,6 +560,16 @@ subweights:
         SHUFFLE_ELEMENTS:
           SHUFFLE_ELEMENTS_OFF: 25
           SHUFFLE_ELEMENTS_ON: 75
+    universal:
+      chance: 5
+      settings:
+        MAP_SETTING: MAP_UNIVERSAL
+        COMPASS_SETTING: COMPASS_UNIVERSAL
+        SMALL_KEYS_SETTING: SMALL_KEYS_UNIVERSAL
+        BIG_KEYS_SETTING: BIG_KEYS_UNIVERSAL
+        SHUFFLE_ELEMENTS:
+          SHUFFLE_ELEMENTS_OFF: 25
+          SHUFFLE_ELEMENTS_ON: 75
   goal:
     pedestal:
       chance: 20
@@ -563,10 +586,15 @@ subweights:
           REQUIREMENT_ITEM_NONE: 50
           REQUIREMENT_ITEM_DHC_BK: 50
     vaati:
-      chance: 40
+      chance: 20
       settings:
         DHC_SETTING: OPENDHC
         REQUIREMENT_ITEM: REQUIREMENT_ITEM_DHC_BK
+    fast_vaati:
+      chance: 20
+      settings:
+        DHC_SETTING: FASTVAATI
+        REQUIREMENT_ITEM: REQUIREMENT_ITEM_NONE
   requirements:
     elements_and_swords:
       chance: 20
@@ -900,6 +928,7 @@ subweights:
         KEYRCMULTIPLIER: RC1KEY
         KEYPOWMULTIPLIER: POW1KEY
         KEYDHCMULTIPLIER: DHC1KEY
+        KEYUNIMULTIPLIER: 1
     half:
       chance: 20
       settings:
@@ -910,6 +939,7 @@ subweights:
         KEYRCMULTIPLIER: RC2KEY
         KEYPOWMULTIPLIER: POW3KEY
         KEYDHCMULTIPLIER: DHC3KEY
+        KEYUNIMULTIPLIER: 14
     max:
       chance: 20
       settings:
@@ -920,3 +950,4 @@ subweights:
         KEYRCMULTIPLIER: RC3KEY
         KEYPOWMULTIPLIER: POW6KEY
         KEYDHCMULTIPLIER: DHC5KEY
+        KEYUNIMULTIPLIER: 28
