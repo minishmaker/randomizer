@@ -139,6 +139,7 @@ settings:
   KEYRCMULTIPLIER: RC1KEY                         # Royal Crypt Keychain size
   KEYPOWMULTIPLIER: POW1KEY                       # Palace of Winds Keychain size
   KEYDHCMULTIPLIER: DHC1KEY                       # Dark Hyrule Castle Keychain size
+  KEYUNIMULTIPLIER: 1                             # Universal Keychain size
   ## Start Inventory:
   #  Main Items:
   START_SMITH_SWORD: on                           # Smith Sword
@@ -225,7 +226,8 @@ settings:
   OCARINA_SELECT: on                              # Ocarina on Select
   BOOTS_L: BOOTS_L_NORMAL                         # Boots on L
   #  Extras:
-  WALLET_REFILL: WALLET_REFILL_DIFFERENCE         # Wallets contain Rupeesv
+  WALLET_REFILL: WALLET_REFILL_DIFFERENCE         # Wallets contain Rupees
+  UNI_KEY_SHOP_PRICE: UNI_KEY_SHOP_PRICE_100      # Universal Small Keys in Shop
   VANILLA_SHOP_ORDER: off                         # Vanilla Shop Item Order
   GORON_ALT_PRICES: off                           # Goron Merchant JP/US prices
   NO_KINSTONE_DROPS: on                           # Disable Kinstone Drops
