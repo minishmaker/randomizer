@@ -90,6 +90,30 @@ POIN dungeonPortal;	WORD 0x2002EBD 6
 		#endif
 	#endif
 #endif
+#ifdef startInventorySmallKeysDWS
+	POIN smallKeysDWSStart; WORD 0x2002E9D 1
+#endif
+#ifdef startInventorySmallKeysCOF
+	POIN smallKeysCOFStart; WORD 0x2002E9E 1
+#endif
+#ifdef startInventorySmallKeysFOW
+	POIN smallKeysFOWStart; WORD 0x2002E9F 1
+#endif
+#ifdef startInventorySmallKeysTOD
+	POIN smallKeysTODStart; WORD 0x2002EA0 1
+#endif
+#ifdef startInventorySmallKeysRC
+	POIN smallKeysRCStart; WORD 0x2002EA3 1
+#endif
+#ifdef startInventorySmallKeysPOW
+	POIN smallKeysPOWStart; WORD 0x2002EA1 1
+#endif
+#ifdef startInventorySmallKeysDHC
+	POIN smallKeysDHCStart; WORD 0x2002EA2 1
+#endif
+#ifdef startInventorySmallKeysUniversal
+	POIN smallKeysUniversalStart; WORD 0x2002E9C 1
+#endif
 //the only point of this macro and the temp define is so ColorzCore does not give us a warning log message for redefining kinstoneIndex
 #define incrementKinstoneIndex "#define temp kinstoneIndex+1; #undef kinstoneIndex; #define kinstoneIndex temp; #undef temp"
 #define kinstoneIndex 0
@@ -883,6 +907,54 @@ bottleContent4Start:
 	#define startInventoryBottleContent4 0x20
 #endif
 BYTE startInventoryBottleContent4
+
+smallKeysDWSStart:
+#ifndef startInventorySmallKeysDWS
+	#define startInventorySmallKeysDWS 0
+#endif
+BYTE startInventorySmallKeysDWS
+
+smallKeysCOFStart:
+#ifndef startInventorySmallKeysCOF
+	#define startInventorySmallKeysCOF 0
+#endif
+BYTE startInventorySmallKeysCOF
+
+smallKeysFOWStart:
+#ifndef startInventorySmallKeysFOW
+	#define startInventorySmallKeysFOW 0
+#endif
+BYTE startInventorySmallKeysFOW
+
+smallKeysTODStart:
+#ifndef startInventorySmallKeysTOD
+	#define startInventorySmallKeysTOD 0
+#endif
+BYTE startInventorySmallKeysTOD
+
+smallKeysRCStart:
+#ifndef startInventorySmallKeysRC
+	#define startInventorySmallKeysRC 0
+#endif
+BYTE startInventorySmallKeysRC
+
+smallKeysPOWStart:
+#ifndef startInventorySmallKeysPOW
+	#define startInventorySmallKeysPOW 0
+#endif
+BYTE startInventorySmallKeysPOW
+
+smallKeysDHCStart:
+#ifndef startInventorySmallKeysDHC
+	#define startInventorySmallKeysDHC 0
+#endif
+BYTE startInventorySmallKeysDHC
+
+smallKeysUniversalStart:
+#ifndef startInventorySmallKeysUniversal
+	#define startInventorySmallKeysUniversal 0
+#endif
+BYTE startInventorySmallKeysUniversal
 
 kinstonesGoldCloudType:
 BYTE 0x65

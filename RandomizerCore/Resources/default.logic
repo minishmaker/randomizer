@@ -295,6 +295,14 @@
 !flag - Start Inventory - Setting - Joy Butterflies - START_ARROW_BUTTERFLY - Arrow Joy Butterfly -
 !flag - Start Inventory - Setting - Joy Butterflies - START_DIG_BUTTERFLY - Dig Joy Butterfly -
 !flag - Start Inventory - Setting - Joy Butterflies - START_SWIM_BUTTERFLY - Swim Joy Butterfly -
+!numberbox - Start Inventory - Setting - Small Keys - START_SK_DWS - Deepwood Shrine - - 0 - 0 - 4
+!numberbox - Start Inventory - Setting - Small Keys - START_SK_COF - Cave of Flames - - 0 - 0 - 2
+!numberbox - Start Inventory - Setting - Small Keys - START_SK_FOW - Fortress of Winds - - 0 - 0 - 4
+!numberbox - Start Inventory - Setting - Small Keys - START_SK_TOD - Temple of Droplets - - 0 - 0 - 4
+!numberbox - Start Inventory - Setting - Small Keys - START_SK_RC - Royal Crypt - - 0 - 0 - 3
+!numberbox - Start Inventory - Setting - Small Keys - START_SK_POW - Palace of Winds - - 0 - 0 - 6
+!numberbox - Start Inventory - Setting - Small Keys - START_SK_DHC - Dark Hyrule Castle - - 0 - 0 - 5
+!numberbox - Start Inventory - Setting - Small Keys - START_SK_UNI - Universal - Only relevant when Small Keys are set to Universal. - 0 - 0 - 28
 !numberbox - Start Inventory - Setting - Kinstones - START_KINSTONES_GOLD_CLOUD - Cloud Tops - This kinstone is the gold combined kinstone when that setting is enabled.\nMax 5 for vanilla and 9 for combined. - 0 - 0 - 9
 !numberbox - Start Inventory - Setting - Kinstones - START_KINSTONES_GOLD_SWAMP - Swamp - This kinstone is not shuffled when the gold combined setting is enabled.\nMax 3. - 0 - 0 - 3
 !flag - Start Inventory - Setting - Kinstones - START_KINSTONES_GOLD_FALLS - Veil Falls - This kinstone is not shuffled when the gold combined setting is enabled.
@@ -484,6 +492,14 @@
 !define - `START_QUIVERS`
 !define - `START_WALLETS`
 !define - `START_BOTTLES`
+!define - START_SK_DWS_`START_SK_DWS`
+!define - START_SK_COF_`START_SK_COF`
+!define - START_SK_FOW_`START_SK_FOW`
+!define - START_SK_TOD_`START_SK_TOD`
+!define - START_SK_RC_`START_SK_RC`
+!define - START_SK_POW_`START_SK_POW`
+!define - START_SK_DHC_`START_SK_DHC`
+!define - START_SK_UNI_`START_SK_UNI`
 !define - START_KINSTONES_GOLD_CLOUD_`START_KINSTONES_GOLD_CLOUD`
 !define - START_KINSTONES_GOLD_SWAMP_`START_KINSTONES_GOLD_SWAMP`
 !define - START_KINSTONES_RED_W_`START_KINSTONES_RED_W`
@@ -1132,6 +1148,35 @@
 		!eventdefine - startInventoryBottleContent2 - (0x`RAND_INT`%0x12)+0x20
 		!eventdefine - startInventoryBottleContent3 - (0x`RAND_INT`%0x12)+0x20
 		!eventdefine - startInventoryBottleContent4 - (0x`RAND_INT`%0x12)+0x20
+	!endif
+!endif
+!ifndef - SMALL_KEASY
+	!ifndef - SMALL_KEYS_UNIVERSAL
+		!ifndef - START_SK_DWS_0
+			!eventdefine - startInventorySmallKeysDWS - `START_SK_DWS`
+		!endif
+		!ifndef - START_SK_COF_0
+			!eventdefine - startInventorySmallKeysCOF - `START_SK_COF`
+		!endif
+		!ifndef - START_SK_FOW_0
+			!eventdefine - startInventorySmallKeysFOW - `START_SK_FOW`
+		!endif
+		!ifndef - START_SK_TOD_0
+			!eventdefine - startInventorySmallKeysTOD - `START_SK_TOD`
+		!endif
+		!ifndef - START_SK_RC_0
+			!eventdefine - startInventorySmallKeysRC - `START_SK_RC`
+		!endif
+		!ifndef - START_SK_POW_0
+			!eventdefine - startInventorySmallKeysPOW - `START_SK_POW`
+		!endif
+		!ifndef - START_SK_DHC_0
+			!eventdefine - startInventorySmallKeysDHC - `START_SK_DHC`
+		!endif
+	!else
+		!ifndef - START_SK_UNI_0
+			!eventdefine - startInventorySmallKeysUniversal - `START_SK_UNI`
+		!endif
 	!endif
 !endif
 !ifndef - NO_GOLD_FUSIONS
@@ -2878,6 +2923,112 @@
 		!endif
 	!endif
 !endif
+
+!ifdef - DWS1KEY
+	!define - DWSKEYAMOUNT - 1
+!else
+	!ifdef - DWS2KEY
+		!define - DWSKEYAMOUNT - 2
+	!else
+		!ifdef - DWS3KEY
+			!define - DWSKEYAMOUNT - 3
+		!else
+			!define - DWSKEYAMOUNT - 4
+		!endif
+	!endif
+!endif
+!eventdefine - keyMultiplierDWS - `DWSKEYAMOUNT`
+
+!ifdef - COF1KEY
+	!define - COFKEYAMOUNT - 1
+!else
+	!define - COFKEYAMOUNT - 2
+!endif
+!eventdefine - keyMultiplierCOF - `COFKEYAMOUNT`
+
+!ifdef - FOW1KEY
+	!define - FOWKEYAMOUNT - 1
+!else
+	!ifdef - FOW2KEY
+		!define - FOWKEYAMOUNT - 2
+	!else
+		!ifdef - FOW3KEY
+			!define - FOWKEYAMOUNT - 3
+		!else
+			!define - FOWKEYAMOUNT - 4
+		!endif
+	!endif
+!endif
+!eventdefine - keyMultiplierFOW - `FOWKEYAMOUNT`
+
+!ifdef - TOD1KEY
+	!define - TODKEYAMOUNT - 1
+!else
+	!ifdef - TOD2KEY
+		!define - TODKEYAMOUNT - 2
+	!else
+		!ifdef - TOD3KEY
+			!define - TODKEYAMOUNT - 3
+		!else
+			!define - TODKEYAMOUNT - 4
+		!endif
+	!endif
+!endif
+!eventdefine - keyMultiplierTOD - `TODKEYAMOUNT`
+
+!ifdef - RC1KEY
+	!define - RCKEYAMOUNT - 1
+!else
+	!ifdef - RC2KEY
+		!define - RCKEYAMOUNT - 2
+	!else
+		!define - RCKEYAMOUNT - 3
+	!endif
+!endif
+!eventdefine - keyMultiplierRC - `RCKEYAMOUNT`
+
+!ifdef - POW1KEY
+	!define - POWKEYAMOUNT - 1
+!else
+	!ifdef - POW2KEY
+		!define - POWKEYAMOUNT - 2
+	!else
+		!ifdef - POW3KEY
+			!define - POWKEYAMOUNT - 3
+		!else
+			!ifdef - POW4KEY
+				!define - POWKEYAMOUNT - 4
+			!else
+				!ifdef - POW5KEY
+					!define - POWKEYAMOUNT - 5
+				!else
+					!define - POWKEYAMOUNT - 6
+				!endif
+			!endif
+		!endif
+	!endif
+!endif
+!eventdefine - keyMultiplierPOW - `POWKEYAMOUNT`
+
+!ifdef - DHC1KEY
+	!define - DHCKEYAMOUNT - 1
+!else
+	!ifdef - DHC2KEY
+		!define - DHCKEYAMOUNT - 2
+	!else
+		!ifdef - DHC3KEY
+			!define - DHCKEYAMOUNT - 3
+		!else
+			!ifdef - DHC4KEY
+				!define - DHCKEYAMOUNT - 4
+			!else
+				!define - DHCKEYAMOUNT - 5
+			!endif
+		!endif
+	!endif
+!endif
+!eventdefine - keyMultiplierDHC - `DHCKEYAMOUNT`
+
 	!ifdef - Replace_Map
 		!ifdef - MAP_UNIVERSAL
 			Items.DungeonMap.0x17;		Minor;
@@ -3098,7 +3249,7 @@
 			!addition - UNITOTAL3 - `UNITOTAL`, -3
 			!addition - UNITOTAL4 - `UNITOTAL`, -4
 			!addition - UNITOTAL5 - `UNITOTAL`, -5
-			!define - TOTAL_NEEDED_SMALL_KEYS - `UNITOTAL`
+			!addition - TOTAL_NEEDED_SMALL_KEYS - `UNITOTAL`, -`START_SK_UNI`
 			!ifdef - UNI_KEY_SHOP_PRICE_OFF
 				Items.SmallKey.0x17:`TOTAL_NEEDED_SMALL_KEYS`.`KEYUNIMULTIPLIER`;	Major;
 			!else
@@ -3177,156 +3328,63 @@
 			!endif
 		!endif
 	!else
-		!ifdef - DWS1KEY
-			Items.SmallKey.0x18:4;	`SMALL_KEY`;	`DWS_SMALL`
-		!else
-			!ifndef - DWS4KEY
-				Items.SmallKey.0x18:2;	`SMALL_KEY`;	`DWS_SMALL`
-			!else
-				Items.SmallKey.0x18;	`SMALL_KEY`;	`DWS_SMALL`
-			!endif
-		!endif
-		!ifdef - COF1KEY
-			Items.SmallKey.0x19:2;	`SMALL_KEY`;	`COF_SMALL`
-		!else
-			Items.SmallKey.0x19;	`SMALL_KEY`;	`COF_SMALL`
-		!endif
-		!ifdef - TOD1KEY
-			Items.SmallKey.0x1B:4;	`SMALL_KEY`;	`TOD_SMALL`
-		!else
-			!ifndef - TOD4KEY
-				Items.SmallKey.0x1B:2;	`SMALL_KEY`;	`TOD_SMALL`
-			!else
-				Items.SmallKey.0x1B;	`SMALL_KEY`;	`TOD_SMALL`
-			!endif
-		!endif
-		!ifdef - RC_ACCESS
-			!ifdef - RC1KEY
-				Items.SmallKey.0x1E:3;	`SMALL_KEY`;	`RC_SMALL`
-			!else
-				!ifdef - RC2KEY
-					Items.SmallKey.0x1E:2;	`SMALL_KEY`;	`RC_SMALL`
-				!else
-					Items.SmallKey.0x1E;	`SMALL_KEY`;	`RC_SMALL`
-				!endif
-			!endif
-		!else
-			!ifndef - SMALL_KEYS_VANILLA
-				!ifndef - SMALL_KEYS_REGION
-					!ifndef - SMALL_KEYS_STANDARD
-						!ifdef - MEME
-							!ifdef - RC1KEY
-								Items.SmallKey.0x1E:3;	`SMALL_KEY`;	`RC_SMALL`
-							!else
-								!ifdef - RC2KEY
-									Items.SmallKey.0x1E:2;	`SMALL_KEY`;	`RC_SMALL`
-								!else
-									Items.SmallKey.0x1E;	`SMALL_KEY`;	`RC_SMALL`
-								!endif
-							!endif
-						!endif
-					!endif
-				!endif
-			!endif
-		!endif
-		!ifdef - POW_ACCESS
-			!ifdef - POW1KEY
-				Items.SmallKey.0x1C:6;	`SMALL_KEY`;	`POW_SMALL`
-			!else
-				!ifdef - POW2KEY
-					Items.SmallKey.0x1C:3;	`SMALL_KEY`;	`POW_SMALL`
-				!else
-					!ifndef - POW6KEY
-						Items.SmallKey.0x1C:2;	`SMALL_KEY`;	`POW_SMALL`
-					!else
-						Items.SmallKey.0x1C;	`SMALL_KEY`;	`POW_SMALL`
-					!endif
-				!endif
-			!endif
-		!else
-			!ifndef - SMALL_KEYS_VANILLA
-				!ifndef - SMALL_KEYS_REGION
-					!ifndef - SMALL_KEYS_STANDARD
-						!ifdef - MEME
-							!ifdef - POW1KEY
-								Items.SmallKey.0x1C:6;	`SMALL_KEY`;	`POW_SMALL`
-							!else
-								!ifdef - POW2KEY
-									Items.SmallKey.0x1C:3;	`SMALL_KEY`;	`POW_SMALL`
-								!else
-									!ifndef - POW6KEY
-										Items.SmallKey.0x1C:2;	`SMALL_KEY`;	`POW_SMALL`
-									!else
-										Items.SmallKey.0x1C;	`SMALL_KEY`;	`POW_SMALL`
-									!endif
-								!endif
-							!endif
-						!endif
-					!endif
-				!endif
-			!endif
-		!endif
+		!addition - DWS_NEEDED_SMALL_KEYS - 4, -`START_SK_DWS`
+		Items.SmallKey.0x18:`DWS_NEEDED_SMALL_KEYS`.`DWSKEYAMOUNT`;	`SMALL_KEY`;	`DWS_SMALL`
+		!addition - COF_NEEDED_SMALL_KEYS - 2, -`START_SK_COF`
+		Items.SmallKey.0x19:`COF_NEEDED_SMALL_KEYS`.`COFKEYAMOUNT`;	`SMALL_KEY`;	`COF_SMALL`
+		!addition - FOW_NEEDED_SMALL_KEYS - 4, -`START_SK_FOW`
 		!ifdef - FOW_ACCESS
-			!ifdef - FOW1KEY
-				Items.SmallKey.0x1A:4;	`SMALL_KEY`;	`FOW_SMALL`
-			!else
-				!ifndef - FOW4KEY
-					Items.SmallKey.0x1A:2;	`SMALL_KEY`;	`FOW_SMALL`
-				!else
-					Items.SmallKey.0x1A;	`SMALL_KEY`;	`FOW_SMALL`
-				!endif
-			!endif
+			Items.SmallKey.0x1A:`FOW_NEEDED_SMALL_KEYS`.`FOWKEYAMOUNT`;	`SMALL_KEY`;	`FOW_SMALL`
 		!else
 			!ifndef - SMALL_KEYS_VANILLA
 				!ifndef - SMALL_KEYS_REGION
 					!ifndef - SMALL_KEYS_STANDARD
 						!ifdef - MEME
-							!ifdef - FOW1KEY
-								Items.SmallKey.0x1A:4;	`SMALL_KEY`;	`FOW_SMALL`
-							!else
-								!ifndef - FOW4KEY
-									Items.SmallKey.0x1A:2;	`SMALL_KEY`;	`FOW_SMALL`
-								!else
-									Items.SmallKey.0x1A;	`SMALL_KEY`;	`FOW_SMALL`
-								!endif
-							!endif
+							Items.SmallKey.0x1A:`FOW_NEEDED_SMALL_KEYS`.`FOWKEYAMOUNT`;	`SMALL_KEY`;	`FOW_SMALL`
 						!endif
 					!endif
 				!endif
 			!endif
 		!endif
-		!ifndef - NODHC
-			!ifdef - DHC1KEY
-				Items.SmallKey.0x1D:5;	`SMALL_KEY`;	`DHC_SMALL`
-			!else
-				!ifdef - DHC2KEY
-					Items.SmallKey.0x1D:3;	`SMALL_KEY`;	`DHC_SMALL`
-				!else
-					!ifndef - DHC5KEY
-						Items.SmallKey.0x1D:2;	`SMALL_KEY`;	`DHC_SMALL`
-					!else
-						Items.SmallKey.0x1D;	`SMALL_KEY`;	`DHC_SMALL`
-					!endif
-				!endif
-			!endif
+		!addition - TOD_NEEDED_SMALL_KEYS - 4, -`START_SK_TOD`
+		Items.SmallKey.0x1B:`TOD_NEEDED_SMALL_KEYS`.`TODKEYAMOUNT`;	`SMALL_KEY`;	`TOD_SMALL`
+		!addition - RC_NEEDED_SMALL_KEYS - 3, -`START_SK_RC`
+		!ifdef - RC_ACCESS
+			Items.SmallKey.0x1E:`RC_NEEDED_SMALL_KEYS`.`RCKEYAMOUNT`;	`SMALL_KEY`;	`RC_SMALL`
 		!else
 			!ifndef - SMALL_KEYS_VANILLA
 				!ifndef - SMALL_KEYS_REGION
 					!ifndef - SMALL_KEYS_STANDARD
 						!ifdef - MEME
-							!ifdef - DHC1KEY
-								Items.SmallKey.0x1D:5;	`SMALL_KEY`;	`DHC_SMALL`
-							!else
-								!ifdef - DHC2KEY
-									Items.SmallKey.0x1D:3;	`SMALL_KEY`;	`DHC_SMALL`
-								!else
-									!ifndef - DHC5KEY
-										Items.SmallKey.0x1D:2;	`SMALL_KEY`;	`DHC_SMALL`
-									!else
-										Items.SmallKey.0x1D;	`SMALL_KEY`;	`DHC_SMALL`
-									!endif
-								!endif
-							!endif
+							Items.SmallKey.0x1E:`RC_NEEDED_SMALL_KEYS`.`RCKEYAMOUNT`;	`SMALL_KEY`;	`RC_SMALL`
+						!endif
+					!endif
+				!endif
+			!endif
+		!endif
+		!addition - POW_NEEDED_SMALL_KEYS - 6, -`START_SK_POW`
+		!ifdef - POW_ACCESS
+			Items.SmallKey.0x1C:`POW_NEEDED_SMALL_KEYS`.`POWKEYAMOUNT`;	`SMALL_KEY`;	`POW_SMALL`
+		!else
+			!ifndef - SMALL_KEYS_VANILLA
+				!ifndef - SMALL_KEYS_REGION
+					!ifndef - SMALL_KEYS_STANDARD
+						!ifdef - MEME
+							Items.SmallKey.0x1C:`POW_NEEDED_SMALL_KEYS`.`POWKEYAMOUNT`;	`SMALL_KEY`;	`POW_SMALL`
+						!endif
+					!endif
+				!endif
+			!endif
+		!endif
+		!addition - DHC_NEEDED_SMALL_KEYS - 5, -`START_SK_DHC`
+		!ifndef - NODHC
+			Items.SmallKey.0x1D:`DHC_NEEDED_SMALL_KEYS`.`DHCKEYAMOUNT`;	`SMALL_KEY`;	`DHC_SMALL`
+		!else
+			!ifndef - SMALL_KEYS_VANILLA
+				!ifndef - SMALL_KEYS_REGION
+					!ifndef - SMALL_KEYS_STANDARD
+						!ifdef - MEME`
+							Items.SmallKey.0x1D:`DHC_NEEDED_SMALL_KEYS`.`DHCKEYAMOUNT`;	`SMALL_KEY`;	`DHC_SMALL`
 						!endif
 					!endif
 				!endif
@@ -3793,26 +3851,42 @@
 		Items.BigKey.0x17;	Minor;
 	!endif
 	!ifdef - SMALL_KEYSANITY
-		Items.SmallKey.0x18:2;	Minor;
-		Items.SmallKey.0x19:2;	Minor;
-		Items.SmallKey.0x1B:2;	Minor;
+		!ifndef - START_SK_DWS_4
+			Items.SmallKey.0x18:2;	Minor;
+		!endif
+		!ifndef - START_SK_COF_2
+			Items.SmallKey.0x19:2;	Minor;
+		!endif
+		!ifndef - START_SK_TOD_4
+			Items.SmallKey.0x1B:2;	Minor;
+		!endif
 		!ifdef - RC_ACCESS
-			Items.SmallKey.0x1E:2;	Minor;
+			!ifndef - START_SK_RC_3
+				Items.SmallKey.0x1E:2;	Minor;
+			!endif
 		!endif
 		!ifdef - FOW_ACCESS
-			Items.SmallKey.0x1A:2;	Minor;
+			!ifndef - START_SK_FOW_4
+				Items.SmallKey.0x1A:2;	Minor;
+			!endif
 		!endif
 		!ifdef - POW_ACCESS
-			Items.SmallKey.0x1C:2;	Minor;
+			!ifndef - START_SK_POW_6
+				Items.SmallKey.0x1C:2;	Minor;
+			!endif
 		!endif
 		!ifndef - NODHC
-			Items.SmallKey.0x1D:2;	Minor;
+			!ifndef - START_SK_DHC_5
+				Items.SmallKey.0x1D:2;	Minor;
+			!endif
 		!endif
 	!endif
 	!ifdef - SMALL_KEYS_UNIVERSAL
 		!ifdef - UNI_KEY_SHOP_PRICE_OFF
-			!addition - KEYUNIMULTIPLIER_TIMES_4 - `KEYUNIMULTIPLIER`, `KEYUNIMULTIPLIER`, `KEYUNIMULTIPLIER`, `KEYUNIMULTIPLIER`
-			Items.SmallKey.0x17:`TOTAL_NEEDED_SMALL_KEYS`.`KEYUNIMULTIPLIER_TIMES_4`;	Minor;
+			!ifndef - START_SK_UNI_28
+				!addition - KEYUNIMULTIPLIER_TIMES_4 - `KEYUNIMULTIPLIER`, `KEYUNIMULTIPLIER`, `KEYUNIMULTIPLIER`, `KEYUNIMULTIPLIER`
+				Items.SmallKey.0x17:`TOTAL_NEEDED_SMALL_KEYS`.`KEYUNIMULTIPLIER_TIMES_4`;	Minor;
+			!endif
 		!endif
 	!endif
 	!ifdef - DOJOANY
@@ -5037,6 +5111,9 @@ HasGoldOctorokDamage;	Helper;;	(|Helpers.HasSword `MIRRORHELPER`)
 	ShopKey26;	Helper;;	(|(+`SHOP_PRICE_KEY_26`, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Helpers.InfiniteMoney)
 	ShopKey27;	Helper;;	(|(+`SHOP_PRICE_KEY_27`, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Helpers.InfiniteMoney)
 	ShopKey28;	Helper;;	(|(+`SHOP_PRICE_KEY_28`, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Helpers.InfiniteMoney)
+	!ifndef - SK_UNIVERSAL_WALLET
+		!define - SK_UNIVERSAL_WALLET - Helpers.Start
+	!endif
 	Dummy_ShopKey1:NoSpoiler;	Unshuffled;	DumShopKey11:Define:FirstByte, DumShopKey12:Define:SecondByte;		Helpers.ShopKey1, `SK_UNIVERSAL_WALLET`;	Items.SmallKey.0x17
 	Dummy_ShopKey2:NoSpoiler;	Unshuffled;	DumShopKey21:Define:FirstByte, DumShopKey22:Define:SecondByte;		Helpers.ShopKey2, `SK_UNIVERSAL_WALLET`;	Items.SmallKey.0x17
 	Dummy_ShopKey3:NoSpoiler;	Unshuffled;	DumShopKey31:Define:FirstByte, DumShopKey32:Define:SecondByte;		Helpers.ShopKey3, `SK_UNIVERSAL_WALLET`;	Items.SmallKey.0x17
@@ -6330,31 +6407,15 @@ ShopScrubCrenel;		Helper;;	(|(+`SHOP_PRICE`, Items.Rupee1, Items.Rupee5:5, Items
 		!define - DHC_LOCKED_KEYS
 	!endif
 !endif
-!ifdef - DWS1KEY
-	!eventdefine - keyMultiplierDWS - 1
-	!define - DWSKEYAMOUNT - 1
-!else
-	!ifdef - DWS2KEY
-		!eventdefine - keyMultiplierDWS - 2
-		!define - DWSKEYAMOUNT - 2
-	!else
-		!ifdef - DWS3KEY
-			!eventdefine - keyMultiplierDWS - 3
-			!define - DWSKEYAMOUNT - 3
-		!else
-			!eventdefine - keyMultiplierDWS - 4
-			!define - DWSKEYAMOUNT - 4
-		!endif
-	!endif
-!endif
+
 !ifndef - SMALL_KEYS_UNIVERSAL
-	!define - SK_1_DWS_OR_UNIVERSAL - Items.SmallKey.0x18
-	!define - SK_2_DWS_OR_UNIVERSAL - (+2, Items.SmallKey.0x18:`DWSKEYAMOUNT`)
-	!define - SK_4_DWS_OR_UNIVERSAL - (+4, Items.SmallKey.0x18:`DWSKEYAMOUNT`)
+	!define - SK_1_DWS_OR_UNIVERSAL - (+1, Items.SmallKey.0x18:`DWSKEYAMOUNT`, Helpers.StartInv:`START_SK_DWS`)
+	!define - SK_2_DWS_OR_UNIVERSAL - (+2, Items.SmallKey.0x18:`DWSKEYAMOUNT`, Helpers.StartInv:`START_SK_DWS`)
+	!define - SK_4_DWS_OR_UNIVERSAL - (+4, Items.SmallKey.0x18:`DWSKEYAMOUNT`, Helpers.StartInv:`START_SK_DWS`)
 !else
-	!define - SK_1_DWS_OR_UNIVERSAL - (+`UNITOTAL3`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
-	!define - SK_2_DWS_OR_UNIVERSAL - (+`UNITOTAL2`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
-	!define - SK_4_DWS_OR_UNIVERSAL - (+`UNITOTAL`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
+	!define - SK_1_DWS_OR_UNIVERSAL - (+`UNITOTAL3`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`, Helpers.StartInv:`START_SK_UNI`)
+	!define - SK_2_DWS_OR_UNIVERSAL - (+`UNITOTAL2`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`, Helpers.StartInv:`START_SK_UNI`)
+	!define - SK_4_DWS_OR_UNIVERSAL - (+`UNITOTAL`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`, Helpers.StartInv:`START_SK_UNI`)
 !endif
 	!define - Deepwood2ndDoor - 
 	!define - DeepwoodBasementDoor - 
@@ -6391,49 +6452,27 @@ ShopScrubCrenel;		Helper;;	(|(+`SHOP_PRICE`, Items.Rupee1, Items.Rupee5:5, Items
 	Deepwood2ndDoor;			Helper;;	(|`SK_4_DWS_OR_UNIVERSAL` `Deepwood2ndDoor`)
 	DeepwoodMadderpillarDoor;	Helper;;	(|Helpers.DeepwoodMadderpillarWeb, `SK_4_DWS_OR_UNIVERSAL`)
 	DeepwoodBasementDoor;		Helper;;	(|`SK_4_DWS_OR_UNIVERSAL` `DeepwoodBasementDoor`)
-!ifdef - COF1KEY
-	!eventdefine - keyMultiplierCOF - 1
-	!define - COFKEYAMOUNT - 1
-!else
-	!eventdefine - keyMultiplierCOF - 2
-	!define - COFKEYAMOUNT - 2
-!endif
+
 !ifndef - SMALL_KEYS_UNIVERSAL
-	!define - SK_1_COF_OR_UNIVERSAL - Items.SmallKey.0x19
-	!define - SK_2_COF_OR_UNIVERSAL - (+2, Items.SmallKey.0x19:`COFKEYAMOUNT`)
+	!define - SK_1_COF_OR_UNIVERSAL - (+1, Items.SmallKey.0x19:`COFKEYAMOUNT`, Helpers.StartInv:`START_SK_COF`)
+	!define - SK_2_COF_OR_UNIVERSAL - (+2, Items.SmallKey.0x19:`COFKEYAMOUNT`, Helpers.StartInv:`START_SK_COF`)
 !else
-	!define - SK_1_COF_OR_UNIVERSAL - (+`UNITOTAL1`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
-	!define - SK_2_COF_OR_UNIVERSAL - (+`UNITOTAL`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
+	!define - SK_1_COF_OR_UNIVERSAL - (+`UNITOTAL1`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`, Helpers.StartInv:`START_SK_UNI`)
+	!define - SK_2_COF_OR_UNIVERSAL - (+`UNITOTAL`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`, Helpers.StartInv:`START_SK_UNI`)
 !endif
 	CoF1stDoor;				Helper;;	(|`SK_2_COF_OR_UNIVERSAL`, (&Helpers.CoFNoBlueWarp, `SK_1_COF_OR_UNIVERSAL`))
 	CoF2ndDoor;				Helper;;	`SK_2_COF_OR_UNIVERSAL`
-!ifdef - FOW1KEY
-	!eventdefine - keyMultiplierFOW - 1
-	!define - FOWKEYAMOUNT - 1
-!else
-	!ifdef - FOW2KEY
-		!eventdefine - keyMultiplierFOW - 2
-		!define - FOWKEYAMOUNT - 2
-	!else
-		!ifdef - FOW3KEY
-			!eventdefine - keyMultiplierFOW - 3
-			!define - FOWKEYAMOUNT - 3
-		!else
-			!eventdefine - keyMultiplierFOW - 4
-			!define - FOWKEYAMOUNT - 4
-		!endif
-	!endif
-!endif
+
 !ifndef - SMALL_KEYS_UNIVERSAL
-	!define - SK_1_FOW_OR_UNIVERSAL - Items.SmallKey.0x1A
-	!define - SK_2_FOW_OR_UNIVERSAL - (+2, Items.SmallKey.0x1A:`FOWKEYAMOUNT`)
-	!define - SK_3_FOW_OR_UNIVERSAL - (+3, Items.SmallKey.0x1A:`FOWKEYAMOUNT`)
-	!define - SK_4_FOW_OR_UNIVERSAL - (+4, Items.SmallKey.0x1A:`FOWKEYAMOUNT`)
+	!define - SK_1_FOW_OR_UNIVERSAL - (+1, Items.SmallKey.0x1A:`FOWKEYAMOUNT`, Helpers.StartInv:`START_SK_FOW`)
+	!define - SK_2_FOW_OR_UNIVERSAL - (+2, Items.SmallKey.0x1A:`FOWKEYAMOUNT`, Helpers.StartInv:`START_SK_FOW`)
+	!define - SK_3_FOW_OR_UNIVERSAL - (+3, Items.SmallKey.0x1A:`FOWKEYAMOUNT`, Helpers.StartInv:`START_SK_FOW`)
+	!define - SK_4_FOW_OR_UNIVERSAL - (+4, Items.SmallKey.0x1A:`FOWKEYAMOUNT`, Helpers.StartInv:`START_SK_FOW`)
 !else
-	!define - SK_1_FOW_OR_UNIVERSAL - (+`UNITOTAL3`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
-	!define - SK_2_FOW_OR_UNIVERSAL - (+`UNITOTAL2`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
-	!define - SK_3_FOW_OR_UNIVERSAL - (+`UNITOTAL1`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
-	!define - SK_4_FOW_OR_UNIVERSAL - (+`UNITOTAL`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
+	!define - SK_1_FOW_OR_UNIVERSAL - (+`UNITOTAL3`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`, Helpers.StartInv:`START_SK_UNI`)
+	!define - SK_2_FOW_OR_UNIVERSAL - (+`UNITOTAL2`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`, Helpers.StartInv:`START_SK_UNI`)
+	!define - SK_3_FOW_OR_UNIVERSAL - (+`UNITOTAL1`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`, Helpers.StartInv:`START_SK_UNI`)
+	!define - SK_4_FOW_OR_UNIVERSAL - (+`UNITOTAL`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`, Helpers.StartInv:`START_SK_UNI`)
 !endif
 	!define - FoWRightDoor - 
 	!define - FoWMiddleDoor - 
@@ -6491,33 +6530,17 @@ ShopScrubCrenel;		Helper;;	(|(+`SHOP_PRICE`, Items.Rupee1, Items.Rupee5:5, Items
 	FoWRightDoor;				Helper;;	(|`SK_2_FOW_OR_UNIVERSAL` `FoWRightDoor`)
 	FoWMiddleDoor;			Helper;;	(|`SK_3_FOW_OR_UNIVERSAL` `FoWMiddleDoor`)
 	FoWLastDoor;				Helper;;	(|`SK_4_FOW_OR_UNIVERSAL` `FoWLastDoor`)
-!ifdef - TOD1KEY
-	!eventdefine - keyMultiplierTOD - 1
-	!define - TODKEYAMOUNT - 1
-!else
-	!ifdef - TOD2KEY
-		!eventdefine - keyMultiplierTOD - 2
-		!define - TODKEYAMOUNT - 2
-	!else
-		!ifdef - TOD3KEY
-			!eventdefine - keyMultiplierTOD - 3
-			!define - TODKEYAMOUNT - 3
-		!else
-			!eventdefine - keyMultiplierTOD - 4
-			!define - TODKEYAMOUNT - 4
-		!endif
-	!endif
-!endif
+
 !ifndef - SMALL_KEYS_UNIVERSAL
-	!define - SK_1_TOD_OR_UNIVERSAL - Items.SmallKey.0x1B
-	!define - SK_2_TOD_OR_UNIVERSAL - (+2, Items.SmallKey.0x1B:`TODKEYAMOUNT`)
-	!define - SK_3_TOD_OR_UNIVERSAL - (+3, Items.SmallKey.0x1B:`TODKEYAMOUNT`)
-	!define - SK_4_TOD_OR_UNIVERSAL - (+4, Items.SmallKey.0x1B:`TODKEYAMOUNT`)
+	!define - SK_1_TOD_OR_UNIVERSAL - (+1, Items.SmallKey.0x1B:`TODKEYAMOUNT`, Helpers.StartInv:`START_SK_TOD`)
+	!define - SK_2_TOD_OR_UNIVERSAL - (+2, Items.SmallKey.0x1B:`TODKEYAMOUNT`, Helpers.StartInv:`START_SK_TOD`)
+	!define - SK_3_TOD_OR_UNIVERSAL - (+3, Items.SmallKey.0x1B:`TODKEYAMOUNT`, Helpers.StartInv:`START_SK_TOD`)
+	!define - SK_4_TOD_OR_UNIVERSAL - (+4, Items.SmallKey.0x1B:`TODKEYAMOUNT`, Helpers.StartInv:`START_SK_TOD`)
 !else
-	!define - SK_1_TOD_OR_UNIVERSAL - (+`UNITOTAL3`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
-	!define - SK_2_TOD_OR_UNIVERSAL - (+`UNITOTAL2`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
-	!define - SK_3_TOD_OR_UNIVERSAL - (+`UNITOTAL1`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
-	!define - SK_4_TOD_OR_UNIVERSAL - (+`UNITOTAL`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
+	!define - SK_1_TOD_OR_UNIVERSAL - (+`UNITOTAL3`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`, Helpers.StartInv:`START_SK_UNI`)
+	!define - SK_2_TOD_OR_UNIVERSAL - (+`UNITOTAL2`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`, Helpers.StartInv:`START_SK_UNI`)
+	!define - SK_3_TOD_OR_UNIVERSAL - (+`UNITOTAL1`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`, Helpers.StartInv:`START_SK_UNI`)
+	!define - SK_4_TOD_OR_UNIVERSAL - (+`UNITOTAL`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`, Helpers.StartInv:`START_SK_UNI`)
 !endif
 	!define - ToDRightBlock - 
 	!define - ToDLeftBlock - 
@@ -6619,68 +6642,31 @@ ShopScrubCrenel;		Helper;;	(|(+`SHOP_PRICE`, Items.Rupee1, Items.Rupee5:5, Items
 	ToDDarkDoor;				Helper;;	`SK_4_TOD_OR_UNIVERSAL`
 	ToDEitherDoor;			Helper;;	`SK_3_TOD_OR_UNIVERSAL`
 	ToDChuDoor;				Helper;;	(|`SK_4_TOD_OR_UNIVERSAL` `ToDChuDoor`)
-!ifdef - RC1KEY
-	!eventdefine - keyMultiplierRC - 1
-	!define - RCKEYAMOUNT - 1
-!else
-	!ifdef - RC2KEY
-		!eventdefine - keyMultiplierRC - 2
-		!define - RCKEYAMOUNT - 2
-	!else
-		!eventdefine - keyMultiplierRC - 3
-		!define - RCKEYAMOUNT - 3
-	!endif
-!endif
+
 !ifndef - SMALL_KEYS_UNIVERSAL
-	!define - SK_1_RC_OR_UNIVERSAL - Items.SmallKey.0x1E
-	!define - SK_3_RC_OR_UNIVERSAL - (+3, Items.SmallKey.0x1E:`RCKEYAMOUNT`)
+	!define - SK_1_RC_OR_UNIVERSAL - (+1, Items.SmallKey.0x1E:`RCKEYAMOUNT`, Helpers.StartInv:`START_SK_RC`)
+	!define - SK_3_RC_OR_UNIVERSAL - (+3, Items.SmallKey.0x1E:`RCKEYAMOUNT`, Helpers.StartInv:`START_SK_RC`)
 !else
-	!define - SK_1_RC_OR_UNIVERSAL - (+`UNITOTAL2`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
-	!define - SK_3_RC_OR_UNIVERSAL - (+`UNITOTAL`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
+	!define - SK_1_RC_OR_UNIVERSAL - (+`UNITOTAL2`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`, Helpers.StartInv:`START_SK_UNI`)
+	!define - SK_3_RC_OR_UNIVERSAL - (+`UNITOTAL`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`, Helpers.StartInv:`START_SK_UNI`)
 !endif
 	CryptDoor;				Helper;;	`SK_1_RC_OR_UNIVERSAL`
 	CryptBlocks;				Helper;; `SK_3_RC_OR_UNIVERSAL`
-!ifdef - POW1KEY
-	!eventdefine - keyMultiplierPOW - 1
-	!define - POWKEYAMOUNT - 1
-!else
-	!ifdef - POW2KEY
-		!eventdefine - keyMultiplierPOW - 2
-		!define - POWKEYAMOUNT - 2
-	!else
-		!ifdef - POW3KEY
-			!eventdefine - keyMultiplierPOW - 3
-			!define - POWKEYAMOUNT - 3
-		!else
-			!ifdef - POW4KEY
-				!eventdefine - keyMultiplierPOW - 4
-				!define - POWKEYAMOUNT - 4
-			!else
-				!ifdef - POW5KEY
-					!eventdefine - keyMultiplierPOW - 5
-					!define - POWKEYAMOUNT - 5
-				!else
-					!eventdefine - keyMultiplierPOW - 6
-					!define - POWKEYAMOUNT - 6
-				!endif
-			!endif
-		!endif
-	!endif
-!endif
+
 !ifndef - SMALL_KEYS_UNIVERSAL
-	!define - SK_1_POW_OR_UNIVERSAL - Items.SmallKey.0x1C
-	!define - SK_2_POW_OR_UNIVERSAL - (+2, Items.SmallKey.0x1C:`POWKEYAMOUNT`)
-	!define - SK_3_POW_OR_UNIVERSAL - (+3, Items.SmallKey.0x1C:`POWKEYAMOUNT`)
-	!define - SK_4_POW_OR_UNIVERSAL - (+4, Items.SmallKey.0x1C:`POWKEYAMOUNT`)
-	!define - SK_5_POW_OR_UNIVERSAL - (+5, Items.SmallKey.0x1C:`POWKEYAMOUNT`)
-	!define - SK_6_POW_OR_UNIVERSAL - (+6, Items.SmallKey.0x1C:`POWKEYAMOUNT`)
+	!define - SK_1_POW_OR_UNIVERSAL - (+1, Items.SmallKey.0x1C:`POWKEYAMOUNT`, Helpers.StartInv:`START_SK_POW`)
+	!define - SK_2_POW_OR_UNIVERSAL - (+2, Items.SmallKey.0x1C:`POWKEYAMOUNT`, Helpers.StartInv:`START_SK_POW`)
+	!define - SK_3_POW_OR_UNIVERSAL - (+3, Items.SmallKey.0x1C:`POWKEYAMOUNT`, Helpers.StartInv:`START_SK_POW`)
+	!define - SK_4_POW_OR_UNIVERSAL - (+4, Items.SmallKey.0x1C:`POWKEYAMOUNT`, Helpers.StartInv:`START_SK_POW`)
+	!define - SK_5_POW_OR_UNIVERSAL - (+5, Items.SmallKey.0x1C:`POWKEYAMOUNT`, Helpers.StartInv:`START_SK_POW`)
+	!define - SK_6_POW_OR_UNIVERSAL - (+6, Items.SmallKey.0x1C:`POWKEYAMOUNT`, Helpers.StartInv:`START_SK_POW`)
 !else
-	!define - SK_1_POW_OR_UNIVERSAL - (+`UNITOTAL5`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
-	!define - SK_2_POW_OR_UNIVERSAL - (+`UNITOTAL4`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
-	!define - SK_3_POW_OR_UNIVERSAL - (+`UNITOTAL3`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
-	!define - SK_4_POW_OR_UNIVERSAL - (+`UNITOTAL2`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
-	!define - SK_5_POW_OR_UNIVERSAL - (+`UNITOTAL1`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
-	!define - SK_6_POW_OR_UNIVERSAL - (+`UNITOTAL`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
+	!define - SK_1_POW_OR_UNIVERSAL - (+`UNITOTAL5`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`, Helpers.StartInv:`START_SK_UNI`)
+	!define - SK_2_POW_OR_UNIVERSAL - (+`UNITOTAL4`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`, Helpers.StartInv:`START_SK_UNI`)
+	!define - SK_3_POW_OR_UNIVERSAL - (+`UNITOTAL3`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`, Helpers.StartInv:`START_SK_UNI`)
+	!define - SK_4_POW_OR_UNIVERSAL - (+`UNITOTAL2`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`, Helpers.StartInv:`START_SK_UNI`)
+	!define - SK_5_POW_OR_UNIVERSAL - (+`UNITOTAL1`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`, Helpers.StartInv:`START_SK_UNI`)
+	!define - SK_6_POW_OR_UNIVERSAL - (+`UNITOTAL`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`, Helpers.StartInv:`START_SK_UNI`)
 !endif
 	!define - PoWFans - 
 	!define - PoWBigChest - 
@@ -6723,36 +6709,15 @@ ShopScrubCrenel;		Helper;;	(|(+`SHOP_PRICE`, Items.Rupee1, Items.Rupee5:5, Items
 	PoW2ndHalf1stDoor;		Helper;;	(|`SK_6_POW_OR_UNIVERSAL`, (&(|Helpers.PoWBlueWarp, Helpers.PoWNoWarps), `SK_4_POW_OR_UNIVERSAL`))
 	PoWRedWarpDoor;			Helper;;	`SK_5_POW_OR_UNIVERSAL`
 	PoWLastDoor;				Helper;;	`SK_6_POW_OR_UNIVERSAL`
-!ifdef - DHC1KEY
-	!eventdefine - keyMultiplierDHC - 1
-	!define - DHCKEYAMOUNT - 1
-!else
-	!ifdef - DHC2KEY
-		!eventdefine - keyMultiplierDHC - 2
-		!define - DHCKEYAMOUNT - 2
-	!else
-		!ifdef - DHC3KEY
-			!eventdefine - keyMultiplierDHC - 3
-			!define - DHCKEYAMOUNT - 3
-		!else
-			!ifdef - DHC4KEY
-				!eventdefine - keyMultiplierDHC - 4
-				!define - DHCKEYAMOUNT - 4
-			!else
-				!eventdefine - keyMultiplierDHC - 5
-				!define - DHCKEYAMOUNT - 5
-			!endif
-		!endif
-	!endif
-!endif
+
 !ifndef - SMALL_KEYS_UNIVERSAL
-	!define - SK_1_DHC_OR_UNIVERSAL - Items.SmallKey.0x1D
-	!define - SK_4_DHC_OR_UNIVERSAL - (+4, Items.SmallKey.0x1D:`DHCKEYAMOUNT`)
-	!define - SK_5_DHC_OR_UNIVERSAL - (+5, Items.SmallKey.0x1D:`DHCKEYAMOUNT`)
+	!define - SK_1_DHC_OR_UNIVERSAL - (+1, Items.SmallKey.0x1D:`DHCKEYAMOUNT`, Helpers.StartInv:`START_SK_DHC`)
+	!define - SK_4_DHC_OR_UNIVERSAL - (+4, Items.SmallKey.0x1D:`DHCKEYAMOUNT`, Helpers.StartInv:`START_SK_DHC`)
+	!define - SK_5_DHC_OR_UNIVERSAL - (+5, Items.SmallKey.0x1D:`DHCKEYAMOUNT`, Helpers.StartInv:`START_SK_DHC`)
 !else
-	!define - SK_1_DHC_OR_UNIVERSAL - (+`UNITOTAL4`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
-	!define - SK_4_DHC_OR_UNIVERSAL - (+`UNITOTAL1`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
-	!define - SK_5_DHC_OR_UNIVERSAL - (+`UNITOTAL`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`)
+	!define - SK_1_DHC_OR_UNIVERSAL - (+`UNITOTAL4`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`, Helpers.StartInv:`START_SK_UNI`)
+	!define - SK_4_DHC_OR_UNIVERSAL - (+`UNITOTAL1`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`, Helpers.StartInv:`START_SK_UNI`)
+	!define - SK_5_DHC_OR_UNIVERSAL - (+`UNITOTAL`, Items.SmallKey.0x17:`KEYUNIMULTIPLIER`, Helpers.StartInv:`START_SK_UNI`)
 !endif
 	DHC1stDoor;				Helper;;	(|`SK_5_DHC_OR_UNIVERSAL`, (&Helpers.DHCNoWarps, `SK_1_DHC_OR_UNIVERSAL`))
 	!define - DHCBigBlock - 
@@ -7641,19 +7606,50 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 			!endif
 		!endif
 		!ifndef - DHC_JUNK_NO_SMALL_KEYS
-			!ifndef - DHC1KEY
-				!ifndef - SMALL_KEYS_VANILLA
-					!define - DHC_JUNK_SMALL - DHCSmall
+			!ifndef - SMALL_KEYS_VANILLA
+				!define - DHC_JUNK_SMALL - DHCSmall
+			!else
+				!define - DHC_JUNK_SMALL - DHCSmallV
+			!endif
+			# We need to add exactly 5-ceil(DHC_NEEDED_SMALL_KEYS/DHCKEYAMOUNT) = 5-ceil((5-START_SK_DHC)/DHCKEYAMOUNT) junk items
+			!ifdef - START_SK_DHC_5
+				Items.Rupee5:5;		DungeonMinor;	`DHC_JUNK_SMALL`
+			!else
+				!ifdef - DHC1KEY
+					Items.Rupee5:`START_SK_DHC`;		DungeonMinor;	`DHC_JUNK_SMALL`
 				!else
-					!define - DHC_JUNK_SMALL - DHCSmallV
-				!endif
-				!ifdef - DHC2KEY
-					Items.Rupee5:2;		DungeonMinor;	`DHC_JUNK_SMALL`
-				!else
-					!ifndef - DHC5KEY
-						Items.Rupee5:3;		DungeonMinor;	`DHC_JUNK_SMALL`
-					!else
+					!ifdef - DHC5KEY
 						Items.Rupee5:4;		DungeonMinor;	`DHC_JUNK_SMALL`
+					!else
+						!ifdef - DHC4KEY
+							!ifdef - START_SK_DHC_0
+								Items.Rupee5:3;		DungeonMinor;	`DHC_JUNK_SMALL`
+							!else
+								Items.Rupee5:4;		DungeonMinor;	`DHC_JUNK_SMALL`
+							!endif
+						!else
+							!ifdef - START_SK_DHC_0
+								!ifdef - DHC2KEY
+									Items.Rupee5:2;		DungeonMinor;	`DHC_JUNK_SMALL`
+								!else
+									Items.Rupee5:3;		DungeonMinor;	`DHC_JUNK_SMALL`
+								!endif
+							!else
+								!ifdef - START_SK_DHC_1
+									Items.Rupee5:3;		DungeonMinor;	`DHC_JUNK_SMALL`
+								!else
+									!ifdef - START_SK_DHC_2
+										!ifdef - DHC2KEY
+											Items.Rupee5:3;		DungeonMinor;	`DHC_JUNK_SMALL`
+										!else
+											Items.Rupee5:4;		DungeonMinor;	`DHC_JUNK_SMALL`
+										!endif
+									!else
+										Items.Rupee5:4;		DungeonMinor;	`DHC_JUNK_SMALL`
+									!endif
+								!endif
+							!endif
+						!endif
 					!endif
 				!endif
 			!endif
