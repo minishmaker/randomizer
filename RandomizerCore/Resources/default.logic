@@ -303,6 +303,12 @@
 !numberbox - Start Inventory - Setting - Small Keys - START_SK_POW - Palace of Winds - - 0 - 0 - 6
 !numberbox - Start Inventory - Setting - Small Keys - START_SK_DHC - Dark Hyrule Castle - - 0 - 0 - 5
 !numberbox - Start Inventory - Setting - Small Keys - START_SK_UNI - Universal - Only relevant when Small Keys are set to Universal. - 0 - 0 - 28
+!flag - Start Inventory - Setting - Big Keys - START_BK_DWS - Deepwood Shrine -
+!flag - Start Inventory - Setting - Big Keys - START_BK_COF - Cave of Flames -
+!flag - Start Inventory - Setting - Big Keys - START_BK_FOW - Fortress of Winds -
+!flag - Start Inventory - Setting - Big Keys - START_BK_TOD - Temple of Droplets -
+!flag - Start Inventory - Setting - Big Keys - START_BK_POW - Palace of Winds -
+!flag - Start Inventory - Setting - Big Keys - START_BK_DHC - Dark Hyrule Castle - Only has an effect when the Requirement Reward is not set to DHC Big Key.
 !numberbox - Start Inventory - Setting - Kinstones - START_KINSTONES_GOLD_CLOUD - Cloud Tops - This kinstone is the gold combined kinstone when that setting is enabled.\nMax 5 for vanilla and 9 for combined. - 0 - 0 - 9
 !numberbox - Start Inventory - Setting - Kinstones - START_KINSTONES_GOLD_SWAMP - Swamp - This kinstone is not shuffled when the gold combined setting is enabled.\nMax 3. - 0 - 0 - 3
 !flag - Start Inventory - Setting - Kinstones - START_KINSTONES_GOLD_FALLS - Veil Falls - This kinstone is not shuffled when the gold combined setting is enabled.
@@ -1176,6 +1182,30 @@
 	!else
 		!ifndef - START_SK_UNI_0
 			!eventdefine - startInventorySmallKeysUniversal - `START_SK_UNI`
+		!endif
+	!endif
+!endif
+!ifndef - BIG_KEASY
+	!ifndef - BIG_KEYS_UNIVERSAL
+		!ifdef - START_BK_DWS
+			!eventdefine - startInventoryBigKeyDWS
+		!endif
+		!ifdef - START_BK_COF
+			!eventdefine - startInventoryBigKeyCOF
+		!endif
+		!ifdef - START_BK_FOW
+			!eventdefine - startInventoryBigKeyFOW
+		!endif
+		!ifdef - START_BK_TOD
+			!eventdefine - startInventoryBigKeyTOD
+		!endif
+		!ifdef - START_BK_POW
+			!eventdefine - startInventoryBigKeyPOW
+		!endif
+		!ifdef - START_BK_DHC
+			!ifndef - REQUIREMENT_ITEM_DHC_BK
+				!eventdefine - startInventoryBigKeyDHC
+			!endif
 		!endif
 	!endif
 !endif
@@ -2319,7 +2349,6 @@
 	!define - BK_TOD_OR_UNIVERSAL - Items.BigKey.0x1B
 	!define - BK_POW_OR_UNIVERSAL - Items.BigKey.0x1C
 	!define - BK_DHC_OR_UNIVERSAL - Items.BigKey.0x1D
-	!define - BK_RC_OR_UNIVERSAL - Items.BigKey.0x1E
 !else
 	!define - BK_DWS_OR_UNIVERSAL - Items.BigKey.0x17
 	!define - BK_COF_OR_UNIVERSAL - Items.BigKey.0x17
@@ -2331,7 +2360,6 @@
 	!else
 		!define - BK_DHC_OR_UNIVERSAL - Items.BigKey.0x1D
 	!endif
-	!define - BK_RC_OR_UNIVERSAL - Items.BigKey.0x17
 !endif
 
 #Item Pool settings
@@ -3167,48 +3195,81 @@
 			Items.BigKey.0x17;	Major;
 		!endif
 	!else
-		Items.BigKey.0x18;	`BIG_KEY`;	`DWS_BIG`
-		Items.BigKey.0x19;	`BIG_KEY`;	`COF_BIG`
-		Items.BigKey.0x1B;	`BIG_KEY`;	`TOD_BIG`
-		!ifdef - POW_ACCESS
-			Items.BigKey.0x1C;	`BIG_KEY`;	`POW_BIG`
-		!else
-			!ifndef - BIG_KEYS_VANILLA
-				!ifndef - BIG_KEYS_REGION
-					!ifndef - BIG_KEYS_STANDARD
-						!ifdef - MEME
-							Items.BigKey.0x1C;	`BIG_KEY`;	`POW_BIG`
-						!endif
+		!ifndef - BIG_KEYS_VANILLA
+			!ifndef - BIG_KEYS_REGION
+				!ifndef - BIG_KEYS_STANDARD
+					!ifdef - MEME
+						!define - ADD_JUNK_BIG_KEYS
 					!endif
 				!endif
 			!endif
 		!endif
-		!ifdef - FOW_ACCESS
-			Items.BigKey.0x1A;	`BIG_KEY`;	`FOW_BIG`
+		!ifndef - START_BK_DWS
+			Items.BigKey.0x18;	`BIG_KEY`;	`DWS_BIG`
 		!else
-			!ifndef - BIG_KEYS_VANILLA
-				!ifndef - BIG_KEYS_REGION
-					!ifndef - BIG_KEYS_STANDARD
-						!ifdef - MEME
-							Items.BigKey.0x1A;	`BIG_KEY`;	`FOW_BIG`
-						!endif						
-					!endif
+			Dummy_DWS_Big:NoSpoiler;	Unshuffled;	DumDWSBig:Define:FirstByte, DumDWSBig2:Define:SecondByte;	;	Items.BigKey.0x18
+			!ifdef - ADD_JUNK_BIG_KEYS
+				Items.BigKey.0x18;	`BIG_KEY`;	`DWS_BIG`
+			!endif
+		!endif
+		!ifndef - START_BK_COF
+			Items.BigKey.0x19;	`BIG_KEY`;	`COF_BIG`
+		!else
+			Dummy_CoF_Big:NoSpoiler;	Unshuffled;	DumCoFBig:Define:FirstByte, DumCoFBig2:Define:SecondByte;	;	Items.BigKey.0x19
+			!ifdef - ADD_JUNK_BIG_KEYS
+				Items.BigKey.0x19;	`BIG_KEY`;	`COF_BIG`
+			!endif
+		!endif
+		!ifndef - START_BK_TOD
+			Items.BigKey.0x1B;	`BIG_KEY`;	`TOD_BIG`
+		!else
+			Dummy_ToD_Big:NoSpoiler;	Unshuffled;	DumToDBig:Define:FirstByte, DumToDBig2:Define:SecondByte;	;	Items.BigKey.0x1B
+			!ifdef - ADD_JUNK_BIG_KEYS
+				Items.BigKey.0x1B;	`BIG_KEY`;	`TOD_BIG`
+			!endif
+		!endif
+		!ifdef - POW_ACCESS
+			!ifndef - START_BK_POW
+				Items.BigKey.0x1C;	`BIG_KEY`;	`POW_BIG`
+			!else
+				Dummy_PoW_Big:NoSpoiler;	Unshuffled;	DumPoWBig:Define:FirstByte, DumPoWBig2:Define:SecondByte;	;	Items.BigKey.0x1C
+				!ifdef - ADD_JUNK_BIG_KEYS
+					Items.BigKey.0x1C;	`BIG_KEY`;	`POW_BIG`
 				!endif
+			!endif
+		!else
+			!ifdef - ADD_JUNK_BIG_KEYS
+				Items.BigKey.0x1C;	`BIG_KEY`;	`POW_BIG`
+			!endif
+		!endif
+		!ifdef - FOW_ACCESS
+			!ifndef - START_BK_FOW
+				Items.BigKey.0x1A;	`BIG_KEY`;	`FOW_BIG`
+			!else
+				Dummy_FoW_Big:NoSpoiler;	Unshuffled;	DumFoWBig:Define:FirstByte, DumFoWBig2:Define:SecondByte;	;	Items.BigKey.0x1A
+				!ifdef - ADD_JUNK_BIG_KEYS
+					Items.BigKey.0x1A;	`BIG_KEY`;	`FOW_BIG`
+				!endif
+			!endif
+		!else
+			!ifdef - ADD_JUNK_BIG_KEYS
+				Items.BigKey.0x1A;	`BIG_KEY`;	`FOW_BIG`
 			!endif
 		!endif
 		!ifndef - NODHC
 			!ifndef - REQUIREMENT_ITEM_DHC_BK
-				Items.BigKey.0x1D;	`BIG_KEY`;	`DHC_BIG`
-			!endif
-		!else
-			!ifndef - BIG_KEYS_VANILLA
-				!ifndef - BIG_KEYS_REGION
-					!ifndef - BIG_KEYS_STANDARD
-						!ifdef - MEME
-							Items.BigKey.0x1D;	`BIG_KEY`;	`DHC_BIG`
-						!endif
+				!ifndef - START_BK_DHC
+					Items.BigKey.0x1D;	`BIG_KEY`;	`DHC_BIG`
+				!else
+					Dummy_DHC_Big:NoSpoiler;	Unshuffled;	DumDHCBig:Define:FirstByte, DumDHCBig2:Define:SecondByte;	;	Items.BigKey.0x1D
+					!ifdef - ADD_JUNK_BIG_KEYS
+						Items.BigKey.0x1D;	`BIG_KEY`;	`DHC_BIG`
 					!endif
 				!endif
+			!endif
+		!else
+			!ifdef - ADD_JUNK_BIG_KEYS
+				Items.BigKey.0x1D;	`BIG_KEY`;	`DHC_BIG`
 			!endif
 		!endif
 	!endif
@@ -3832,18 +3893,30 @@
 		Items.Flippers:2;			Minor;
 	!endif
 	!ifdef - BIG_KEYSANITY
-		Items.BigKey.0x18;	Minor;
-		Items.BigKey.0x19;	Minor;
-		Items.BigKey.0x1B;	Minor;
+		!ifndef - START_BK_DWS
+			Items.BigKey.0x18;	Minor;
+		!endif
+		!ifndef - START_BK_COF
+			Items.BigKey.0x19;	Minor;
+		!endif
+		!ifndef - START_BK_TOD
+			Items.BigKey.0x1B;	Minor;
+		!endif
 		!ifdef - FOW_ACCESS
-			Items.BigKey.0x1A;	Minor;
+			!ifndef - START_BK_FOW
+				Items.BigKey.0x1A;	Minor;
+			!endif
 		!endif
 		!ifdef - POW_ACCESS
-			Items.BigKey.0x1C;	Minor;
+			!ifndef - START_BK_POW
+				Items.BigKey.0x1C;	Minor;
+			!endif
 		!endif
 		!ifndef - NODHC
 			!ifndef - REQUIREMENT_ITEM_DHC_BK
-				Items.BigKey.0x1D;	Minor;
+				!ifndef - START_BK_DHC
+					Items.BigKey.0x1D;	Minor;
+				!endif
 			!endif
 		!endif
 	!endif
@@ -7657,10 +7730,14 @@ Inaccessible;    Helper;; Items.Untyped.0xFF:0xFF  # ask for 255 of them for goo
 		!ifdef - REQUIREMENT_ITEM_DHC_BK
 			Items.Rupee5;		DungeonMinor;	DHCBig
 		!else
-			!ifndef - BIG_KEYS_VANILLA
-				!ifndef - BIG_KEYS_STANDARD
-					!ifndef - BIG_KEYS_REGION
-						Items.Rupee5;		DungeonMinor;	DHCBig
+			!ifdef - START_BK_DHC
+				Items.Rupee5;		DungeonMinor;	DHCBig
+			!else
+				!ifndef - BIG_KEYS_VANILLA
+					!ifndef - BIG_KEYS_STANDARD
+						!ifndef - BIG_KEYS_REGION
+							Items.Rupee5;		DungeonMinor;	DHCBig
+						!endif
 					!endif
 				!endif
 			!endif

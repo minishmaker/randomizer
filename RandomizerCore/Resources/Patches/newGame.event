@@ -552,6 +552,24 @@ POIN dhcRemovedDoor;	WORD 0x2002DC1 1
 		#endif
 	#endif
 #endif
+#ifdef startInventoryBigKeyDWS
+	POIN bigKeyDWSStart; WORD 0x2002EAD 1
+#endif
+#ifdef startInventoryBigKeyCOF
+	POIN bigKeyCOFStart; WORD 0x2002EAE 1
+#endif
+#ifdef startInventoryBigKeyFOW
+	POIN bigKeyFOWStart; WORD 0x2002EAF 1
+#endif
+#ifdef startInventoryBigKeyTOD
+	POIN bigKeyTODStart; WORD 0x2002EB0 1
+#endif
+#ifdef startInventoryBigKeyPOW
+	POIN bigKeyPOWStart; WORD 0x2002EB1 1
+#endif
+#ifdef startInventoryBigKeyDHC
+	POIN bigKeyDHCStart; WORD 0x2002EB2 1
+#endif
 WORD 0 0 0 //terminator
 
 ALIGN 4
@@ -1147,6 +1165,24 @@ BYTE 0x10
 
 bottle4Start:
 BYTE 0x40
+
+bigKeyDWSStart:
+BYTE 0x04
+
+bigKeyCOFStart:
+BYTE 0x04
+
+bigKeyFOWStart:
+BYTE 0x04
+
+bigKeyTODStart:
+BYTE 0x04
+
+bigKeyPOWStart:
+BYTE 0x04
+
+bigKeyDHCStart:
+BYTE 0x04
 
 earthElementStart:
 BYTE 0x01
