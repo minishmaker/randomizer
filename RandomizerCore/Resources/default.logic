@@ -264,6 +264,8 @@
 !dropdown - Start Inventory - Setting - Start Capacity - START_QUIVERS - Quivers - - START_QUIVERS_0 - 0 - START_QUIVERS_0 - - 1 - START_QUIVERS_1 - - 2 - START_QUIVERS_2 - - 3 - START_QUIVERS_3 - Without a Quiver you can carry up to 30 Arrows, with the first you can carry 50, then 70 and finally 99
 !dropdown - Start Inventory - Setting - Start Capacity - START_WALLETS - Wallets - - START_WALLETS_0 - 0 - START_WALLETS_0 - - 1 - START_WALLETS_1 - - 2 - START_WALLETS_2 - - 3 - START_WALLETS_3 - Without a Wallet you can carry up to 100 Rupees, with the first you can carry 300, then 500 and finally 999
 !dropdown - Start Inventory - Setting - Start Capacity - START_BOTTLES - Bottles - - START_BOTTLES_0 - 0 - START_BOTTLES_0 - - 1 - START_BOTTLES_1 - - 2 - START_BOTTLES_2 - - 3 - START_BOTTLES_3 - - 4 - START_BOTTLES_4 - These Bottles always start out empty, unless "Random Bottle Contents" is enabled
+!dropdown - Start Inventory - Setting - Start Capacity - START_HEART_CONTAINERS - Heart Containers - - 3 - 1 - 1 - - 2 - 2 - - 3 - 3 - - 4 - 4 - - 5 - 5 - - 6 - 6 - - 7 - 7 - - 8 - 8 - - 9 - 9 - - 10 - 10 - - 11 - 11 - - 12 - 12 - - 13 - 13 - - 14 - 14 - - 15 - 15 - - 16 - 16 - - 17 - 17 - - 18 - 18 - - 19 - 19 - - 20 - 20 -
+!dropdown - Start Inventory - Setting - Start Capacity - START_HEART_PIECES - Heart Pieces - - 0 - 0 - 0 - - 1 - 1 - - 2 - 2 - - 3 - 3 -
 !flag - Start Inventory - Setting - Quest Status Items - START_EARTH_ELEMENT - Earth Element -
 !flag - Start Inventory - Setting - Quest Status Items - START_FIRE_ELEMENT - Fire Element -
 !flag - Start Inventory - Setting - Quest Status Items - START_WATER_ELEMENT - Water Element -
@@ -498,6 +500,8 @@
 !define - `START_QUIVERS`
 !define - `START_WALLETS`
 !define - `START_BOTTLES`
+!define - START_HEART_CONTAINERS_`START_HEART_CONTAINERS`
+!define - START_HEART_PIECES_`START_HEART_PIECES`
 !define - START_SK_DWS_`START_SK_DWS`
 !define - START_SK_COF_`START_SK_COF`
 !define - START_SK_FOW_`START_SK_FOW`
@@ -1155,6 +1159,16 @@
 		!eventdefine - startInventoryBottleContent3 - (0x`RAND_INT`%0x12)+0x20
 		!eventdefine - startInventoryBottleContent4 - (0x`RAND_INT`%0x12)+0x20
 	!endif
+!endif
+!ifndef - START_HEART_CONTAINERS_3
+	!eventdefine - startInventoryHeartContainers - `START_HEART_CONTAINERS`
+	!ifdef - START_HEART_CONTAINERS_1
+		!eventdefine - adjustHeartBeepThreshold
+	!endif
+!endif
+!addition - START_HEART_CONTAINERS_TIMES_4 - `START_HEART_CONTAINERS`, `START_HEART_CONTAINERS`, `START_HEART_CONTAINERS`, `START_HEART_CONTAINERS`
+!ifndef - START_HEART_PIECES_0
+	!eventdefine - startInventoryHeartPieces - `START_HEART_PIECES`
 !endif
 !ifndef - SMALL_KEASY
 	!ifndef - SMALL_KEYS_UNIVERSAL
@@ -3508,8 +3522,29 @@
 	Items.SmallHeart;		Filler;
 	#Items.Fairy;			Filler;
 	!ifdef - HEART_RANDO
-		Items.PieceOfHeart:4;	Major;
-		!eventdefine - heartTraps
+		!ifndef - START_HEART_CONTAINERS_20
+			!define - ADD_MAJOR_HEART_PIECES
+		!else
+			!ifndef - START_HEART_PIECES_0
+				!define - ADD_MAJOR_HEART_PIECES
+			!endif
+		!endif
+		!ifdef - ADD_MAJOR_HEART_PIECES
+			!ifdef - START_HEART_PIECES_0
+				Items.PieceOfHeart:4;	Major;
+			!else
+				!ifdef - START_HEART_PIECES_1
+					Items.PieceOfHeart:3;	Major;
+				!else
+					!ifdef - START_HEART_PIECES_2
+						Items.PieceOfHeart:2;	Major;
+					!else
+						Items.PieceOfHeart;	Major;
+					!endif
+				!endif
+			!endif
+			!eventdefine - heartTraps
+		!endif
 	!endif
 	!ifndef - START_WALLETS_0
 		Dummy_FirstWallet:NoSpoiler;	Unshuffled;	DumFirstWallet1:Define:FirstByte, DumFirstWallet2:Define:SecondByte;	;	Items.Wallet
@@ -3639,7 +3674,37 @@
 		Items.Trap.0x09;		Filler;
 	!endif
 	!ifdef - HEART_RANDO
-		Items.PieceOfHeart:24;	Major;
+		!ifdef - START_HEART_CONTAINERS_1
+			Items.PieceOfHeart:32;	Major;
+		!else
+			!ifdef - START_HEART_CONTAINERS_2
+				Items.PieceOfHeart:28;	Major;
+			!else
+				!ifdef - START_HEART_CONTAINERS_3
+					Items.PieceOfHeart:24;	Major;
+				!else
+					!ifdef - START_HEART_CONTAINERS_4
+						Items.PieceOfHeart:20;	Major;
+					!else
+						!ifdef - START_HEART_CONTAINERS_5
+							Items.PieceOfHeart:16;	Major;
+						!else
+							!ifdef - START_HEART_CONTAINERS_6
+								Items.PieceOfHeart:12;	Major;
+							!else
+								!ifdef - START_HEART_CONTAINERS_7
+									Items.PieceOfHeart:8;	Major;
+								!else
+									!ifdef - START_HEART_CONTAINERS_8
+										Items.PieceOfHeart:4;	Major;
+									!endif
+								!endif
+							!endif
+						!endif
+					!endif
+				!endif
+			!endif
+		!endif
 	!endif
 	!ifdef - DOJORANDOM
 		!ifndef - ACCESS_BEATABLE
@@ -3796,8 +3861,44 @@
 		Items.Trap.0x09:2;	Minor;
 	!endif
 	!ifdef - HEART_RANDO
-		Items.HeartContainer:6;	Major;
-		Items.PieceOfHeart:40;		Minor;
+		!ifdef - START_HEART_CONTAINERS_1
+			Items.HeartContainer:8;		Major;
+		!else
+			!ifdef - START_HEART_CONTAINERS_2
+				Items.HeartContainer:7;		Major;
+			!else
+				!ifdef - START_HEART_CONTAINERS_3
+					Items.HeartContainer:6;		Major;
+				!else
+					!ifdef - START_HEART_CONTAINERS_4
+						Items.HeartContainer:5;		Major;
+					!else
+						!ifdef - START_HEART_CONTAINERS_5
+							Items.HeartContainer:4;		Major;
+						!else
+							!ifdef - START_HEART_CONTAINERS_6
+								Items.HeartContainer:3;		Major;
+							!else
+								!ifdef - START_HEART_CONTAINERS_7
+									Items.HeartContainer:2;		Major;
+								!else
+									!ifdef - START_HEART_CONTAINERS_8
+										Items.HeartContainer;		Major;
+									!else
+										!addition - MISSING_HEART_CONTAINERS - 19, -`START_HEART_CONTAINERS`
+										!addition - MISSING_HEART_PIECES - `MISSING_HEART_CONTAINERS`, `MISSING_HEART_CONTAINERS`, `MISSING_HEART_CONTAINERS`, `MISSING_HEART_CONTAINERS`
+										Items.PieceOfHeart:`MISSING_HEART_PIECES`;		Minor;
+									!endif
+								!endif
+							!endif
+						!endif
+					!endif
+				!endif
+			!endif
+		!endif
+		!ifndef - MISSING_HEART_PIECES
+			Items.PieceOfHeart:40;		Minor;
+		!endif
 	!endif
 !endif
 !ifdef - ITEM_POOL_NORMAL
@@ -8234,7 +8335,7 @@ AccessDroplets;						Helper;				;																Helpers.AccessLonLon, Helpers.C
 Droplets_Entrance						`DUNGEONENTRANCE`;	DumToDENT:Define:FirstByte, DumToDENT2:Define:SecondByte;				(|Helpers.AccessDroplets, Helpers.Hundo);																													Items.Entrance.0x04
 
 AccessSouthLake;						Helper;				;																(|(&Helpers.AccessLonLon, Helpers.CapeExtension), (&Helpers.AccessNorthMinish, Items.MoleMitts))
-HasHearts;							Helper;				;																(+28, Items.PieceOfHeart, Items.HeartContainer:4)
+HasHearts;							Helper;				;																(+40, Items.PieceOfHeart, Items.HeartContainer:4, Helpers.Start:`START_HEART_PIECES`, Helpers.StartInv:`START_HEART_CONTAINERS_TIMES_4`)
 
 Hylia_BottomHP;						`HP`;				0x0F324B;														(|Helpers.LakeSouthHP, Helpers.Hundo);																														Items.PieceOfHeart
 Hylia_Dojo_HP;						`HP`;				0x0D7B03;														(|(&Helpers.AccessLonLon, (|Helpers.CapeExtension, Helpers.LakeShortcut)), Helpers.Hundo);																		Items.PieceOfHeart
