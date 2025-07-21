@@ -91,6 +91,12 @@ POIN dungeonPortal;	WORD 0x2002EBD 6
 		#endif
 	#endif
 #endif
+#ifdef startInventoryHeartContainers
+	POIN heartContainersStart; WORD 0x2002AEA 2
+#endif
+#ifdef startInventoryHeartPieces
+	POIN heartPiecesStart; WORD 0x2002AE9 1
+#endif
 #ifdef startInventorySmallKeysDWS
 	POIN smallKeysDWSStart; WORD 0x2002E9D 1
 #endif
@@ -929,6 +935,19 @@ bottleContent4Start:
 	#define startInventoryBottleContent4 0x20
 #endif
 BYTE startInventoryBottleContent4
+
+heartContainersStart:
+#ifndef startInventoryHeartContainers
+	#define startInventoryHeartContainers 3
+#endif
+BYTE startInventoryHeartContainers*8
+BYTE startInventoryHeartContainers*8
+
+heartPiecesStart:
+#ifndef startInventoryHeartPieces
+	#define startInventoryHeartPieces 0
+#endif
+BYTE startInventoryHeartPieces
 
 smallKeysDWSStart:
 #ifndef startInventorySmallKeysDWS

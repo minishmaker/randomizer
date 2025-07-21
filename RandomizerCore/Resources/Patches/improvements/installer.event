@@ -738,6 +738,16 @@ ORG $1711E
 BYTE lowHealthBeep
 POP
 
+//when having only a single heart container, lower the heart beep threshold to a half heart
+#ifdef adjustHeartBeepThreshold
+	PUSH
+	ORG $17138
+	BYTE 3
+	ORG $1713C
+	BYTE 4
+	POP
+#endif
+
 //guard moves when entering town from behind him
 PUSH; ORG $4DBA8; jumpToHack(loadTown); POP
 ALIGN 4
