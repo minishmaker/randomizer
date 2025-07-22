@@ -166,6 +166,8 @@ settings:
   START_QUIVERS: START_QUIVERS_0                  # Quivers
   START_WALLETS: START_WALLETS_0                  # Wallets
   START_BOTTLES: START_BOTTLES_0                  # Bottles
+  START_HEART_CONTAINERS: 1                       # Heart Containers
+  START_HEART_PIECES: 0                           # Heart Pieces
   #  Quest Status Items:
   START_EARTH_ELEMENT: off                        # Earth Element
   START_FIRE_ELEMENT: off                         # Fire Element
@@ -200,6 +202,22 @@ settings:
   START_ARROW_BUTTERFLY: off                      # Arrow Joy Butterfly
   START_DIG_BUTTERFLY: off                        # Dig Joy Butterfly
   START_SWIM_BUTTERFLY: off                       # Swim Joy Butterfly
+  #  Small Keys:
+  START_SK_DWS: 0                                 # Deepwood Shrine
+  START_SK_COF: 0                                 # Cave of Flames
+  START_SK_FOW: 0                                 # Fortress of Winds
+  START_SK_TOD: 0                                 # Temple of Droplets
+  START_SK_RC: 0                                  # Royal Crypt
+  START_SK_POW: 0                                 # Palace of Winds
+  START_SK_DHC: 0                                 # Dark Hyrule Castle
+  START_SK_UNI: 0                                 # Universal
+  #  Big Keys:
+  START_BK_DWS: off                               # Deepwood Shrine
+  START_BK_COF: off                               # Cave of Flames
+  START_BK_FOW: off                               # Fortress of Winds
+  START_BK_TOD: off                               # Temple of Droplets
+  START_BK_POW: off                               # Palace of Winds
+  START_BK_DHC: off                               # Dark Hyrule Castle
   #  Kinstones:
   START_KINSTONES_GOLD_CLOUD: 0                   # Cloud Tops
   START_KINSTONES_GOLD_SWAMP: 0                   # Swamp
