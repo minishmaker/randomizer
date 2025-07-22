@@ -529,7 +529,7 @@ internal static class GenericCommands
             }
             case LogicDropdown dropdown:
             {
-                return dropdown.Selection;
+                return dropdown.OptionsToNames[dropdown.Selection];
             }
             case LogicColorPicker colorPicker:
             {
@@ -568,8 +568,8 @@ internal static class GenericCommands
             }
             case LogicDropdown dropdown:
             {
-                var keys = dropdown.Selections.Keys.ToList();
-                for (var i = 0; i < keys.Count; )
+                var keys = dropdown.SelectionOptionNames;
+                for (var i = 0; i < keys.Length; )
                 {
                     var selection = keys[i];
                     Console.WriteLine($"{++i}) {selection}");
@@ -578,7 +578,7 @@ internal static class GenericCommands
                 Console.Write("Enter the number of the option you want for the dropdown: ");
                 var input = Console.ReadLine();
                 
-                if (string.IsNullOrEmpty(input) || !int.TryParse(input, out var o) || o < 1 || o > keys.Count)
+                if (string.IsNullOrEmpty(input) || !int.TryParse(input, out var o) || o < 1 || o > keys.Length)
                 {
                     if (!input!.Equals("exit", StringComparison.OrdinalIgnoreCase))
                     {
@@ -587,7 +587,7 @@ internal static class GenericCommands
                     break;
                 }
 
-                dropdown.Selection = keys[o - 1];
+                dropdown.Selection = dropdown.SelectionOptions[o - 1];
                 Console.WriteLine("Dropdown option set successfully!");
                 break;
             }

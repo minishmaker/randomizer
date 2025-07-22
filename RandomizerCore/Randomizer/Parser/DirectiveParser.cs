@@ -648,28 +648,30 @@ public class DirectiveParser
         if (optionType == LogicOptionType.Untyped)
             throw new ParserException($"Dropdown has an invalid type! ({directiveParts[2]})");
 
-        var selectionDict = new Dictionary<string, string>();
+        var optionDisplayNames = new List<string>();
+        var options = new List<string>();
         var descriptionText = new StringBuilder();
         descriptionText.AppendLine(directiveParts[6]);
         var defaultSelection = directiveParts[7];
 
         for (var i = 8; i < directiveParts.Length;)
         {
-            selectionDict.Add(directiveParts[i++], directiveParts[i++]);
+            optionDisplayNames.Add(directiveParts[i++]);
+            options.Add(directiveParts[i++]);
             descriptionText.AppendLine($"\n{directiveParts[i++]}");
         }
 
-        if (selectionDict.Keys.Count != (directiveParts.Length - 8) / 3)
+        if (optionDisplayNames.ToHashSet().Count != (directiveParts.Length - 8) / 3)
             throw new ParserException("Dropdown has multiple options with the same readable name!");
 
-        if (selectionDict.Values.Count != (directiveParts.Length - 8) / 3)
+        if (options.ToHashSet().Count != (directiveParts.Length - 8) / 3)
             throw new ParserException("Dropdown has multiple options with the same define name!");
 
-        if (!selectionDict.ContainsValue(defaultSelection))
+        if (!options.Contains(defaultSelection))
             throw new ParserException($"Dropdown has an invalid default value {defaultSelection}!");
 
         return new LogicDropdown(directiveParts[4], directiveParts[5], directiveParts[3],
-            directiveParts[1], descriptionText.ToString(), defaultSelection, optionType, selectionDict);
+            directiveParts[1], descriptionText.ToString(), defaultSelection, optionType, optionDisplayNames.ToArray(), options.ToArray());
     }
 
     private LogicColorPicker ParseColorDirective(string[] directiveParts)

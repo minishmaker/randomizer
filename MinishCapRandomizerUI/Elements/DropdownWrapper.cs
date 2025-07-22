@@ -56,12 +56,13 @@ public class DropdownWrapper : WrapperBase, ILogicOptionObserver
         };
 
         var selectedDefaultItem = false;
-        foreach (var key in _dropdown.Selections.Keys) 
+        var selectionName = _dropdown.OptionsToNames[_dropdown.Selection];
+        foreach (var key in _dropdown.SelectionOptionNames) 
         {
             _comboBox.Items.Add(key);
-            if (!selectedDefaultItem && key == _dropdown.Selection) 
+            if (!selectedDefaultItem && key == selectionName)
             {
-                _comboBox.SelectedItem = _dropdown.Selection; 
+                _comboBox.SelectedItem = selectionName;
                 selectedDefaultItem = true;
             }
         }
@@ -82,12 +83,12 @@ public class DropdownWrapper : WrapperBase, ILogicOptionObserver
 
         _comboBox.SelectedIndexChanged += (object? sender, EventArgs e) =>
         {
-            _dropdown.Selection = (string)_comboBox.SelectedItem!;
+            _dropdown.Selection = _dropdown.NamesToOptions[(string)_comboBox.SelectedItem!];
         };
         
         _comboBox.SelectedValueChanged += (object? sender, EventArgs e) =>
         {
-            _dropdown.Selection = (string)_comboBox.SelectedItem!;
+            _dropdown.Selection = _dropdown.NamesToOptions[(string)_comboBox.SelectedItem!];
         };
         
         _comboBox.KeyPress += (object? sender, KeyPressEventArgs e) =>
@@ -100,7 +101,7 @@ public class DropdownWrapper : WrapperBase, ILogicOptionObserver
 
 	public void NotifyObserver()
 	{
-        var index = _dropdown.Selections.Keys.ToList().IndexOf(_dropdown.Selection);
+        var index = _dropdown.SelectionOptions.ToList().IndexOf(_dropdown.Selection);
         _comboBox!.SelectedIndex = index;
 	}
 }
