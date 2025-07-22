@@ -58,9 +58,9 @@ public class LogicColorPicker : LogicOptionBase
         DefinedColor = colorPicker.DefinedColor;
     }
 
-    public Color BaseColor { get; set; }
+    public Color BaseColor { get; }
     public Color DefinedColor { get; set; }
-    public List<Color> InitialColors { get; set; }
+    private List<Color> InitialColors { get; }
 
     public bool Active { get; set; }
     public bool UseRandomColor { get; set; }

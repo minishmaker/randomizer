@@ -45,11 +45,11 @@ internal static class YamlParser
                             if (mysteryFlag)
                             {
                                 content += PadComment(indent + option.Name + ":", option.NiceName, commentOffset);
-                                foreach(var sel in dropdown.Selections)
-                                    content += PadComment(indent + indent + sel.Value + ": 1", indent + sel.Key, commentOffset);
+                                for (var i = 0; i < dropdown.SelectionOptions.Length; i++)
+                                    content += PadComment(indent + indent + dropdown.SelectionOptions[i] + ": 1", indent + dropdown.SelectionOptionNames[i], commentOffset);
                             }
                             else
-                                content += PadComment(indent + option.Name + ": " + dropdown.Selections[dropdown.Selection], option.NiceName, commentOffset);
+                                content += PadComment(indent + option.Name + ": " + dropdown.Selection, option.NiceName, commentOffset);
                             break;
                         case LogicColorPicker colorPicker:
                             if (mysteryFlag)
@@ -210,8 +210,8 @@ internal static class YamlParser
                 }
                 break;
             case LogicDropdown dropdown:
-                if (dropdown.Selections.ContainsValue(value))
-                    dropdown.Selection = dropdown.Selections.Keys.ToList()[dropdown.Selections.Values.ToList().IndexOf(value)];
+                if (dropdown.SelectionOptions.Contains(value))
+                    dropdown.Selection = value;
                 else
                     throw new ParserException($"Invalid value \"{value}\" for Dropdown option \"{option.Name}\"");
                 break;

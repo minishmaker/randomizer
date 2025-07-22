@@ -60,7 +60,7 @@ internal static class MinifiedSettings
         for (int i = 8, dropdownsProcessed = 0; dropdownsProcessed < dropdowns.Count; ++dropdownsProcessed)
         {
             var dropdown = dropdowns[dropdownsProcessed];
-            var (mask, bitCount) = GetBitInfoForOptionCount(dropdown.Selections.Count);
+            var (mask, bitCount) = GetBitInfoForOptionCount(dropdown.SelectionOptions.Length);
             var dropdownIndex = 0;
             i -= bitCount;
 
@@ -73,7 +73,7 @@ internal static class MinifiedSettings
 
             dropdownIndex |= (currentByte >> i) & mask;
 
-            dropdown.Selection = dropdown.Selections.Keys.ToList()[dropdownIndex];
+            dropdown.Selection = dropdown.SelectionOptions[dropdownIndex];
             dropdown.NotifyObservers();
         }
 
@@ -159,8 +159,8 @@ internal static class MinifiedSettings
         for (int i = 8, dropdownsProcessed = 0; dropdownsProcessed < dropdowns.Count; ++dropdownsProcessed)
         {
             var dropdown = dropdowns[dropdownsProcessed];
-            var (mask, bitCount) = GetBitInfoForOptionCount(dropdown.Selections.Count);
-            var dropdownValueAsByte = dropdown.Selections.Keys.ToList().IndexOf(dropdown.Selection) & mask;
+            var (mask, bitCount) = GetBitInfoForOptionCount(dropdown.SelectionOptions.Length);
+            var dropdownValueAsByte = dropdown.SelectionOptions.ToList().IndexOf(dropdown.Selection) & mask;
             i -= bitCount;
 
             if (i < 0)

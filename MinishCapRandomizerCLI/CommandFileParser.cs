@@ -155,7 +155,7 @@ public static class CommandFileParser
                     lf.Active = rand.Next() % 2 == 0;
                     break;
                 case LogicDropdown ld:
-                    ld.Selection = ld.Selections.Keys.ToList()[rand.Next() % ld.Selections.Keys.Count];
+                    ld.Selection = ld.SelectionOptions[rand.Next() % ld.SelectionOptions.Length];
                     break;
                 // case LogicNumberBox lnb:
                 //     lnb.Value = $"{rand.Next(lnb.MinValue, lnb.MaxValue + 1)}";
