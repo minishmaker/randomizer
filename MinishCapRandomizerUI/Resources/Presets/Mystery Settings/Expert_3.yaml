@@ -624,6 +624,32 @@ settings:
     START_BOTTLES_2: 0                            #   2
     START_BOTTLES_3: 0                            #   3
     START_BOTTLES_4: 0                            #   4
+  START_HEART_CONTAINERS:                         # Heart Containers
+    1: 10                                         #   1
+    2: 20                                         #   2
+    3: 40                                         #   3
+    4: 20                                         #   4
+    5: 10                                         #   5
+    6: 0                                          #   6
+    7: 0                                          #   7
+    8: 0                                          #   8
+    9: 0                                          #   9
+    10: 0                                         #   10
+    11: 0                                         #   11
+    12: 0                                         #   12
+    13: 0                                         #   13
+    14: 0                                         #   14
+    15: 0                                         #   15
+    16: 0                                         #   16
+    17: 0                                         #   17
+    18: 0                                         #   18
+    19: 0                                         #   19
+    20: 0                                         #   20
+  START_HEART_PIECES:                             # Heart Pieces
+    0: 40                                         #   0
+    1: 30                                         #   1
+    2: 20                                         #   2
+    3: 10                                         #   3
   #  Quest Status Items:
   START_EARTH_ELEMENT:                            # Earth Element
     on: 0
@@ -720,6 +746,58 @@ settings:
   START_SWIM_BUTTERFLY:                           # Swim Joy Butterfly
     on: 25
     off: 75
+  #  Small Keys:
+  START_SK_DWS:                                   # Deepwood Shrine
+    0: 100
+    4: 0
+    0 4 1: 0
+  START_SK_COF:                                   # Cave of Flames
+    0: 100
+    2: 0
+    0 2 1: 0
+  START_SK_FOW:                                   # Fortress of Winds
+    0: 100
+    4: 0
+    0 4 1: 0
+  START_SK_TOD:                                   # Temple of Droplets
+    0: 100
+    4: 0
+    0 4 1: 0
+  START_SK_RC:                                    # Royal Crypt
+    0: 100
+    3: 0
+    0 3 1: 0
+  START_SK_POW:                                   # Palace of Winds
+    0: 100
+    6: 0
+    0 6 1: 0
+  START_SK_DHC:                                   # Dark Hyrule Castle
+    0: 100
+    5: 0
+    0 5 1: 0
+  START_SK_UNI:                                   # Universal
+    0: 100
+    28: 0
+    0 28 1: 0
+  #  Big Keys:
+  START_BK_DWS:                                   # Deepwood Shrine
+    on: 0
+    off: 100
+  START_BK_COF:                                   # Cave of Flames
+    on: 0
+    off: 100
+  START_BK_FOW:                                   # Fortress of Winds
+    on: 0
+    off: 100
+  START_BK_TOD:                                   # Temple of Droplets
+    on: 0
+    off: 100
+  START_BK_POW:                                   # Palace of Winds
+    on: 0
+    off: 100
+  START_BK_DHC:                                   # Dark Hyrule Castle
+    on: 0
+    off: 100
   #  Kinstones:
   START_KINSTONES_GOLD_CLOUD:                     # Cloud Tops
     0: 75
@@ -822,22 +900,22 @@ settings:
     BOOTS_L_MINISH: 50                            #   Enabled + Minish
   #  Extras:
   WALLET_REFILL:                                  # Wallets contain Rupees
-    WALLET_REFILL_OFF: 60
-    WALLET_REFILL_DIFFERENCE: 30
-    WALLET_REFILL_MAX: 10
+    WALLET_REFILL_OFF: 60                         #   Disabled
+    WALLET_REFILL_DIFFERENCE: 30                  #   Upgrade Amount
+    WALLET_REFILL_MAX: 10                         #   Max
   UNI_KEY_SHOP_PRICE:                             # Universal Small Keys in Shop
-    UNI_KEY_SHOP_PRICE_OFF: 20
-    UNI_KEY_SHOP_PRICE_50: 10
-    UNI_KEY_SHOP_PRICE_100: 50
-    UNI_KEY_SHOP_PRICE_200: 10
-    UNI_KEY_SHOP_PRICE_300: 10
-    UNI_KEY_SHOP_PRICE_400: 0
-    UNI_KEY_SHOP_PRICE_500: 0
-    UNI_KEY_SHOP_PRICE_600: 0
-    UNI_KEY_SHOP_PRICE_700: 0
-    UNI_KEY_SHOP_PRICE_800: 0
-    UNI_KEY_SHOP_PRICE_900: 0
-    UNI_KEY_SHOP_PRICE_999: 0
+    UNI_KEY_SHOP_PRICE_OFF: 20                    #   Disabled
+    UNI_KEY_SHOP_PRICE_50: 10                     #   50 Rupees
+    UNI_KEY_SHOP_PRICE_100: 50                    #   100 Rupees
+    UNI_KEY_SHOP_PRICE_200: 10                    #   200 Rupees
+    UNI_KEY_SHOP_PRICE_300: 10                    #   300 Rupees
+    UNI_KEY_SHOP_PRICE_400: 0                     #   400 Rupees
+    UNI_KEY_SHOP_PRICE_500: 0                     #   500 Rupees
+    UNI_KEY_SHOP_PRICE_600: 0                     #   600 Rupees
+    UNI_KEY_SHOP_PRICE_700: 0                     #   700 Rupees
+    UNI_KEY_SHOP_PRICE_800: 0                     #   800 Rupees
+    UNI_KEY_SHOP_PRICE_900: 0                     #   900 Rupees
+    UNI_KEY_SHOP_PRICE_999: 0                     #   999 Rupees
   VANILLA_SHOP_ORDER:                             # Vanilla Shop Item Order
     on: 50
     off: 50
