@@ -319,6 +319,7 @@
 !flag - Gameplay - Setting - Improvements - OCARINA_SELECT - Ocarina on Select - Allows you to use the Ocarina by pressing the Select button, once obtained.\nWarning: Since this removes the Ezlo interaction, this prevents certain glitches. - true
 !dropdown - Gameplay - Setting - Extras - WALLET_REFILL - Wallets contain Rupees - Determines whether Wallet Upgrades contain Rupees when picked up. - WALLET_REFILL_OFF - Disabled - WALLET_REFILL_OFF - 'Disabled': You get no Rupees when expanding your Wallet size, like in the vanilla game. - Upgrade Amount - WALLET_REFILL_DIFFERENCE - 'Upgrade Amount': You get as many Rupees as the capacity of your Wallet is increasing by. - Max - WALLET_REFILL_MAX - 'Max': You get as many Rupees as your new Wallet can hold.
 !dropdown - Gameplay - Setting - Extras - UNI_KEY_SHOP_PRICE - Universal Small Keys in Shop - Determines the price in Rupees for which Universal Small Keys (if enabled) can be purchased indefinitely in the shop in town, or if this item should not be in the shop. - UNI_KEY_SHOP_PRICE_100 - Disabled - UNI_KEY_SHOP_PRICE_OFF - 'Disabled': The shop has no infinite source of Universal Small Keys, you have to pick them up from item locations. - 50 Rupees - UNI_KEY_SHOP_PRICE_50 - 'X Rupees': Universal Small Keys (if enabled) can be purchased indefinitely for X Rupees each.\nThe same price is valid for Universal Keychains, so consider increasing this price for larger Keychains.\nThe logic expects you to buy as many Small Keys as needed as soon as you have enough Wallets, no matter how many shuffled Small Keys and Rupees you currently have access to. - 100 Rupees - UNI_KEY_SHOP_PRICE_100 - - 200 Rupees - UNI_KEY_SHOP_PRICE_200 - - 300 Rupees - UNI_KEY_SHOP_PRICE_300 - - 400 Rupees - UNI_KEY_SHOP_PRICE_400 - - 500 Rupees - UNI_KEY_SHOP_PRICE_500 - - 600 Rupees - UNI_KEY_SHOP_PRICE_600 - - 700 Rupees - UNI_KEY_SHOP_PRICE_700 - - 800 Rupees - UNI_KEY_SHOP_PRICE_800 - - 900 Rupees - UNI_KEY_SHOP_PRICE_900 - - 999 Rupees - UNI_KEY_SHOP_PRICE_999 -
+!flag - Gameplay - Setting - Extras - UNI_KEY_SHOP_LOGIC - Universal Small Keys from Shop require Logic - If enabled, Logic will check that enough rupees are available to purchase Universal Keys from the Shop before requiring them. If disabled, Logic will assume the Universal Keys are always purchaseable if the player has a large enough wallet.
 !flag - Gameplay - Setting - Extras - VANILLA_SHOP_ORDER - Vanilla Shop Item Order - If enabled, the 300 Rupees item only appears after the 80 Rupees item has been bought.\nIf the extra JP/US item is enabled, that one only spawns after buying the 300 Rupees item.
 !flag - Gameplay - Setting - Extras - GORON_ALT_PRICES - Goron Merchant JP/US prices - If enabled will use the prices found in the JP and US versions.\nThese are the prices from left to right:\nEU 1st set: 200, 100, 50\nEU 2nd set: 300, 200, 100\nEU 3rd set: 400, 300, 200\nEU 4th set: 500, 400, 300\nEU 5th set: 600, 500, 400\nJP any set: 300, 200, 50
 !flag - Gameplay - Setting - Extras - NO_KINSTONE_DROPS - Disable Kinstone Drops - Kinstone Pieces can no longer randomly drop.\nThey can also not be obtained through any other means than items in the random item pool. - true
@@ -3098,56 +3099,59 @@
 			!addition - UNITOTAL4 - `UNITOTAL`, -4
 			!addition - UNITOTAL5 - `UNITOTAL`, -5
 			!define - TOTAL_NEEDED_SMALL_KEYS - `UNITOTAL`
-			Items.SmallKey.0x17:`TOTAL_NEEDED_SMALL_KEYS`.`KEYUNIMULTIPLIER`;	Major;
-			!ifdef - UNI_KEY_SHOP_PRICE_50
-				!define - SK_UNIVERSAL_WALLET - Helpers.Start
-				!define - SK_UNIVERSAL_PRICE - 50
-				!eventdefine - universalSmallKeysShopPrice - 50
+			!ifdef - UNI_KEY_SHOP_PRICE_OFF
+				Items.SmallKey.0x17:`TOTAL_NEEDED_SMALL_KEYS`.`KEYUNIMULTIPLIER`;	Major;
 			!else
-				!ifdef - UNI_KEY_SHOP_PRICE_100
+				!ifdef - UNI_KEY_SHOP_PRICE_50
 					!define - SK_UNIVERSAL_WALLET - Helpers.Start
-					!define - SK_UNIVERSAL_PRICE - 100
-					!eventdefine - universalSmallKeysShopPrice - 100
+					!define - SK_UNIVERSAL_PRICE - 50
+					!eventdefine - universalSmallKeysShopPrice - 50
 				!else
-					!ifdef - UNI_KEY_SHOP_PRICE_200
-						!define - SK_UNIVERSAL_WALLET - Items.Wallet
-						!define - SK_UNIVERSAL_PRICE - 200
-						!eventdefine - universalSmallKeysShopPrice - 200
+					!ifdef - UNI_KEY_SHOP_PRICE_100
+						!define - SK_UNIVERSAL_WALLET - Helpers.Start
+						!define - SK_UNIVERSAL_PRICE - 100
+						!eventdefine - universalSmallKeysShopPrice - 100
 					!else
-						!ifdef - UNI_KEY_SHOP_PRICE_300
+						!ifdef - UNI_KEY_SHOP_PRICE_200
 							!define - SK_UNIVERSAL_WALLET - Items.Wallet
-							!define - SK_UNIVERSAL_PRICE - 300
-							!eventdefine - universalSmallKeysShopPrice - 300
+							!define - SK_UNIVERSAL_PRICE - 200
+							!eventdefine - universalSmallKeysShopPrice - 200
 						!else
-							!ifdef - UNI_KEY_SHOP_PRICE_400
-								!define - SK_UNIVERSAL_WALLET - Items.Wallet:2
-								!define - SK_UNIVERSAL_PRICE - 400
-								!eventdefine - universalSmallKeysShopPrice - 400
+							!ifdef - UNI_KEY_SHOP_PRICE_300
+								!define - SK_UNIVERSAL_WALLET - Items.Wallet
+								!define - SK_UNIVERSAL_PRICE - 300
+								!eventdefine - universalSmallKeysShopPrice - 300
 							!else
-								!ifdef - UNI_KEY_SHOP_PRICE_500
+								!ifdef - UNI_KEY_SHOP_PRICE_400
 									!define - SK_UNIVERSAL_WALLET - Items.Wallet:2
-									!define - SK_UNIVERSAL_PRICE - 500
-									!eventdefine - universalSmallKeysShopPrice - 500
+									!define - SK_UNIVERSAL_PRICE - 400
+									!eventdefine - universalSmallKeysShopPrice - 400
 								!else
-									!define - SK_UNIVERSAL_WALLET - Items.Wallet:3
-									!ifdef - UNI_KEY_SHOP_PRICE_600
-										!define - SK_UNIVERSAL_PRICE - 600
-										!eventdefine - universalSmallKeysShopPrice - 600
+									!ifdef - UNI_KEY_SHOP_PRICE_500
+										!define - SK_UNIVERSAL_WALLET - Items.Wallet:2
+										!define - SK_UNIVERSAL_PRICE - 500
+										!eventdefine - universalSmallKeysShopPrice - 500
 									!else
-										!ifdef - UNI_KEY_SHOP_PRICE_700
-											!define - SK_UNIVERSAL_PRICE - 700
-											!eventdefine - universalSmallKeysShopPrice - 700
+										!define - SK_UNIVERSAL_WALLET - Items.Wallet:3
+										!ifdef - UNI_KEY_SHOP_PRICE_600
+											!define - SK_UNIVERSAL_PRICE - 600
+											!eventdefine - universalSmallKeysShopPrice - 600
 										!else
-											!ifdef - UNI_KEY_SHOP_PRICE_800
-												!define - SK_UNIVERSAL_PRICE - 800
-												!eventdefine - universalSmallKeysShopPrice - 800
+											!ifdef - UNI_KEY_SHOP_PRICE_700
+												!define - SK_UNIVERSAL_PRICE - 700
+												!eventdefine - universalSmallKeysShopPrice - 700
 											!else
-												!ifdef - UNI_KEY_SHOP_PRICE_900
-													!define - SK_UNIVERSAL_PRICE - 900
-													!eventdefine - universalSmallKeysShopPrice - 900
+												!ifdef - UNI_KEY_SHOP_PRICE_800
+													!define - SK_UNIVERSAL_PRICE - 800
+													!eventdefine - universalSmallKeysShopPrice - 800
 												!else
-													!define - SK_UNIVERSAL_PRICE - 999
-													!eventdefine - universalSmallKeysShopPrice - 999
+													!ifdef - UNI_KEY_SHOP_PRICE_900
+														!define - SK_UNIVERSAL_PRICE - 900
+														!eventdefine - universalSmallKeysShopPrice - 900
+													!else
+														!define - SK_UNIVERSAL_PRICE - 999
+														!eventdefine - universalSmallKeysShopPrice - 999
+													!endif
 												!endif
 											!endif
 										!endif
@@ -3157,19 +3161,19 @@
 						!endif
 					!endif
 				!endif
-			!endif
-			!ifdef - ITEM_POOL_PLENTIFUL
-				Items.SmallKey.0x17:`TOTAL_NEEDED_SMALL_KEYS`.`KEYUNIMULTIPLIER`;	Major;
-			!else
-				!ifndef - ITEM_POOL_RIP
-					# Only place enough keys for three quarters of the small key doors and blocks in the game
-					!addition - TOTAL_NEEDED_SMALL_KEYS_TIMES_2_OR_3 - `TOTAL_NEEDED_SMALL_KEYS`, `TOTAL_NEEDED_SMALL_KEYS`, `TOTAL_NEEDED_SMALL_KEYS`
+				!ifdef - ITEM_POOL_PLENTIFUL
+					Items.SmallKey.0x17:`TOTAL_NEEDED_SMALL_KEYS`.`KEYUNIMULTIPLIER`;	Major;
 				!else
-					# Only place enough keys for half of the small key doors and blocks in the game
-					!addition - TOTAL_NEEDED_SMALL_KEYS_TIMES_2_OR_3 - `TOTAL_NEEDED_SMALL_KEYS`, `TOTAL_NEEDED_SMALL_KEYS`
+					!ifndef - ITEM_POOL_RIP
+						# Only place enough keys for three quarters of the small key doors and blocks in the game
+						!addition - TOTAL_NEEDED_SMALL_KEYS_TIMES_2_OR_3 - `TOTAL_NEEDED_SMALL_KEYS`, `TOTAL_NEEDED_SMALL_KEYS`, `TOTAL_NEEDED_SMALL_KEYS`
+					!else
+						# Only place enough keys for half of the small key doors and blocks in the game
+						!addition - TOTAL_NEEDED_SMALL_KEYS_TIMES_2_OR_3 - `TOTAL_NEEDED_SMALL_KEYS`, `TOTAL_NEEDED_SMALL_KEYS`
+					!endif
+					!addition - KEYUNIMULTIPLIER_TIMES_4 - `KEYUNIMULTIPLIER`, `KEYUNIMULTIPLIER`, `KEYUNIMULTIPLIER`, `KEYUNIMULTIPLIER`
+					Items.SmallKey.0x17:`TOTAL_NEEDED_SMALL_KEYS_TIMES_2_OR_3`.`KEYUNIMULTIPLIER_TIMES_4`;	Major;
 				!endif
-				!addition - KEYUNIMULTIPLIER_TIMES_4 - `KEYUNIMULTIPLIER`, `KEYUNIMULTIPLIER`, `KEYUNIMULTIPLIER`, `KEYUNIMULTIPLIER`
-				Items.SmallKey.0x17:`TOTAL_NEEDED_SMALL_KEYS_TIMES_2_OR_3`.`KEYUNIMULTIPLIER_TIMES_4`;	Major;
 			!endif
 		!endif
 	!else
@@ -4982,7 +4986,12 @@ HasGoldOctorokDamage;	Helper;;	(|Helpers.HasSword `MIRRORHELPER`)
 	!addition - SHOP_PRICE_600 - `SHOP_PRICE_600`, 600
 !endif
 !ifndef - UNI_KEY_SHOP_PRICE_OFF
-	!addition - SHOP_PRICE_KEY_1 - `SHOP_PRICE`, `SK_UNIVERSAL_PRICE`
+	!ifdef - UNI_KEY_SHOP_LOGIC
+		!addition - SHOP_PRICE_KEY_1 - `SHOP_PRICE`, `SK_UNIVERSAL_PRICE`
+	!else
+		!define - SHOP_PRICE_KEY_1 - 0
+		!define - SK_UNIVERSAL_PRICE - 0
+	!endif
 	!addition - SHOP_PRICE_KEY_2 - `SHOP_PRICE_KEY_1`, `SK_UNIVERSAL_PRICE`
 	!addition - SHOP_PRICE_KEY_3 - `SHOP_PRICE_KEY_2`, `SK_UNIVERSAL_PRICE`
 	!addition - SHOP_PRICE_KEY_4 - `SHOP_PRICE_KEY_3`, `SK_UNIVERSAL_PRICE`
@@ -5038,34 +5047,34 @@ HasGoldOctorokDamage;	Helper;;	(|Helpers.HasSword `MIRRORHELPER`)
 	ShopKey26;	Helper;;	(|(+`SHOP_PRICE_KEY_26`, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Helpers.InfiniteMoney)
 	ShopKey27;	Helper;;	(|(+`SHOP_PRICE_KEY_27`, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Helpers.InfiniteMoney)
 	ShopKey28;	Helper;;	(|(+`SHOP_PRICE_KEY_28`, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Helpers.InfiniteMoney)
-	Dummy_ShopKey1:NoSpoiler;	Unshuffled;	DumShopKey11:Define:FirstByte, DumShopKey12:Define:SecondByte;		(|Helpers.ShopKey1, `SK_UNIVERSAL_WALLET`);	Items.SmallKey.0x17
-	Dummy_ShopKey2:NoSpoiler;	Unshuffled;	DumShopKey21:Define:FirstByte, DumShopKey22:Define:SecondByte;		(|Helpers.ShopKey2, `SK_UNIVERSAL_WALLET`);	Items.SmallKey.0x17
-	Dummy_ShopKey3:NoSpoiler;	Unshuffled;	DumShopKey31:Define:FirstByte, DumShopKey32:Define:SecondByte;		(|Helpers.ShopKey3, `SK_UNIVERSAL_WALLET`);	Items.SmallKey.0x17
-	Dummy_ShopKey4:NoSpoiler;	Unshuffled;	DumShopKey41:Define:FirstByte, DumShopKey42:Define:SecondByte;		(|Helpers.ShopKey4, `SK_UNIVERSAL_WALLET`);	Items.SmallKey.0x17
-	Dummy_ShopKey5:NoSpoiler;	Unshuffled;	DumShopKey51:Define:FirstByte, DumShopKey52:Define:SecondByte;		(|Helpers.ShopKey5, `SK_UNIVERSAL_WALLET`);	Items.SmallKey.0x17
-	Dummy_ShopKey6:NoSpoiler;	Unshuffled;	DumShopKey61:Define:FirstByte, DumShopKey62:Define:SecondByte;		(|Helpers.ShopKey6, `SK_UNIVERSAL_WALLET`);	Items.SmallKey.0x17
-	Dummy_ShopKey7:NoSpoiler;	Unshuffled;	DumShopKey71:Define:FirstByte, DumShopKey72:Define:SecondByte;		(|Helpers.ShopKey7, `SK_UNIVERSAL_WALLET`);	Items.SmallKey.0x17
-	Dummy_ShopKey8:NoSpoiler;	Unshuffled;	DumShopKey81:Define:FirstByte, DumShopKey82:Define:SecondByte;		(|Helpers.ShopKey8, `SK_UNIVERSAL_WALLET`);	Items.SmallKey.0x17
-	Dummy_ShopKey9:NoSpoiler;	Unshuffled;	DumShopKey91:Define:FirstByte, DumShopKey92:Define:SecondByte;		(|Helpers.ShopKey9, `SK_UNIVERSAL_WALLET`);	Items.SmallKey.0x17
-	Dummy_ShopKey10:NoSpoiler;	Unshuffled;	DumShopKey101:Define:FirstByte, DumShopKey102:Define:SecondByte;	(|Helpers.ShopKey10, `SK_UNIVERSAL_WALLET`);	Items.SmallKey.0x17
-	Dummy_ShopKey11:NoSpoiler;	Unshuffled;	DumShopKey111:Define:FirstByte, DumShopKey112:Define:SecondByte;	(|Helpers.ShopKey11, `SK_UNIVERSAL_WALLET`);	Items.SmallKey.0x17
-	Dummy_ShopKey12:NoSpoiler;	Unshuffled;	DumShopKey121:Define:FirstByte, DumShopKey122:Define:SecondByte;	(|Helpers.ShopKey12, `SK_UNIVERSAL_WALLET`);	Items.SmallKey.0x17
-	Dummy_ShopKey13:NoSpoiler;	Unshuffled;	DumShopKey131:Define:FirstByte, DumShopKey132:Define:SecondByte;	(|Helpers.ShopKey13, `SK_UNIVERSAL_WALLET`);	Items.SmallKey.0x17
-	Dummy_ShopKey14:NoSpoiler;	Unshuffled;	DumShopKey141:Define:FirstByte, DumShopKey142:Define:SecondByte;	(|Helpers.ShopKey14, `SK_UNIVERSAL_WALLET`);	Items.SmallKey.0x17
-	Dummy_ShopKey15:NoSpoiler;	Unshuffled;	DumShopKey151:Define:FirstByte, DumShopKey152:Define:SecondByte;	(|Helpers.ShopKey15, `SK_UNIVERSAL_WALLET`);	Items.SmallKey.0x17
-	Dummy_ShopKey16:NoSpoiler;	Unshuffled;	DumShopKey161:Define:FirstByte, DumShopKey162:Define:SecondByte;	(|Helpers.ShopKey16, `SK_UNIVERSAL_WALLET`);	Items.SmallKey.0x17
-	Dummy_ShopKey17:NoSpoiler;	Unshuffled;	DumShopKey171:Define:FirstByte, DumShopKey172:Define:SecondByte;	(|Helpers.ShopKey17, `SK_UNIVERSAL_WALLET`);	Items.SmallKey.0x17
-	Dummy_ShopKey18:NoSpoiler;	Unshuffled;	DumShopKey181:Define:FirstByte, DumShopKey182:Define:SecondByte;	(|Helpers.ShopKey18, `SK_UNIVERSAL_WALLET`);	Items.SmallKey.0x17
-	Dummy_ShopKey19:NoSpoiler;	Unshuffled;	DumShopKey191:Define:FirstByte, DumShopKey192:Define:SecondByte;	(|Helpers.ShopKey19, `SK_UNIVERSAL_WALLET`);	Items.SmallKey.0x17
-	Dummy_ShopKey20:NoSpoiler;	Unshuffled;	DumShopKey201:Define:FirstByte, DumShopKey202:Define:SecondByte;	(|Helpers.ShopKey20, `SK_UNIVERSAL_WALLET`);	Items.SmallKey.0x17
-	Dummy_ShopKey21:NoSpoiler;	Unshuffled;	DumShopKey211:Define:FirstByte, DumShopKey212:Define:SecondByte;	(|Helpers.ShopKey21, `SK_UNIVERSAL_WALLET`);	Items.SmallKey.0x17
-	Dummy_ShopKey22:NoSpoiler;	Unshuffled;	DumShopKey221:Define:FirstByte, DumShopKey222:Define:SecondByte;	(|Helpers.ShopKey22, `SK_UNIVERSAL_WALLET`);	Items.SmallKey.0x17
-	Dummy_ShopKey23:NoSpoiler;	Unshuffled;	DumShopKey231:Define:FirstByte, DumShopKey232:Define:SecondByte;	(|Helpers.ShopKey23, `SK_UNIVERSAL_WALLET`);	Items.SmallKey.0x17
-	Dummy_ShopKey24:NoSpoiler;	Unshuffled;	DumShopKey241:Define:FirstByte, DumShopKey242:Define:SecondByte;	(|Helpers.ShopKey24, `SK_UNIVERSAL_WALLET`);	Items.SmallKey.0x17
-	Dummy_ShopKey25:NoSpoiler;	Unshuffled;	DumShopKey251:Define:FirstByte, DumShopKey252:Define:SecondByte;	(|Helpers.ShopKey25, `SK_UNIVERSAL_WALLET`);	Items.SmallKey.0x17
-	Dummy_ShopKey26:NoSpoiler;	Unshuffled;	DumShopKey261:Define:FirstByte, DumShopKey262:Define:SecondByte;	(|Helpers.ShopKey26, `SK_UNIVERSAL_WALLET`);	Items.SmallKey.0x17
-	Dummy_ShopKey27:NoSpoiler;	Unshuffled;	DumShopKey271:Define:FirstByte, DumShopKey272:Define:SecondByte;	(|Helpers.ShopKey27, `SK_UNIVERSAL_WALLET`);	Items.SmallKey.0x17
-	Dummy_ShopKey28:NoSpoiler;	Unshuffled;	DumShopKey281:Define:FirstByte, DumShopKey282:Define:SecondByte;	(|Helpers.ShopKey28, `SK_UNIVERSAL_WALLET`);	Items.SmallKey.0x17
+	Dummy_ShopKey1:NoSpoiler;	Unshuffled;	DumShopKey11:Define:FirstByte, DumShopKey12:Define:SecondByte;		Helpers.ShopKey1, `SK_UNIVERSAL_WALLET`;	Items.SmallKey.0x17
+	Dummy_ShopKey2:NoSpoiler;	Unshuffled;	DumShopKey21:Define:FirstByte, DumShopKey22:Define:SecondByte;		Helpers.ShopKey2, `SK_UNIVERSAL_WALLET`;	Items.SmallKey.0x17
+	Dummy_ShopKey3:NoSpoiler;	Unshuffled;	DumShopKey31:Define:FirstByte, DumShopKey32:Define:SecondByte;		Helpers.ShopKey3, `SK_UNIVERSAL_WALLET`;	Items.SmallKey.0x17
+	Dummy_ShopKey4:NoSpoiler;	Unshuffled;	DumShopKey41:Define:FirstByte, DumShopKey42:Define:SecondByte;		Helpers.ShopKey4, `SK_UNIVERSAL_WALLET`;	Items.SmallKey.0x17
+	Dummy_ShopKey5:NoSpoiler;	Unshuffled;	DumShopKey51:Define:FirstByte, DumShopKey52:Define:SecondByte;		Helpers.ShopKey5, `SK_UNIVERSAL_WALLET`;	Items.SmallKey.0x17
+	Dummy_ShopKey6:NoSpoiler;	Unshuffled;	DumShopKey61:Define:FirstByte, DumShopKey62:Define:SecondByte;		Helpers.ShopKey6, `SK_UNIVERSAL_WALLET`;	Items.SmallKey.0x17
+	Dummy_ShopKey7:NoSpoiler;	Unshuffled;	DumShopKey71:Define:FirstByte, DumShopKey72:Define:SecondByte;		Helpers.ShopKey7, `SK_UNIVERSAL_WALLET`;	Items.SmallKey.0x17
+	Dummy_ShopKey8:NoSpoiler;	Unshuffled;	DumShopKey81:Define:FirstByte, DumShopKey82:Define:SecondByte;		Helpers.ShopKey8, `SK_UNIVERSAL_WALLET`;	Items.SmallKey.0x17
+	Dummy_ShopKey9:NoSpoiler;	Unshuffled;	DumShopKey91:Define:FirstByte, DumShopKey92:Define:SecondByte;		Helpers.ShopKey9, `SK_UNIVERSAL_WALLET`;	Items.SmallKey.0x17
+	Dummy_ShopKey10:NoSpoiler;	Unshuffled;	DumShopKey101:Define:FirstByte, DumShopKey102:Define:SecondByte;	Helpers.ShopKey10, `SK_UNIVERSAL_WALLET`;	Items.SmallKey.0x17
+	Dummy_ShopKey11:NoSpoiler;	Unshuffled;	DumShopKey111:Define:FirstByte, DumShopKey112:Define:SecondByte;	Helpers.ShopKey11, `SK_UNIVERSAL_WALLET`;	Items.SmallKey.0x17
+	Dummy_ShopKey12:NoSpoiler;	Unshuffled;	DumShopKey121:Define:FirstByte, DumShopKey122:Define:SecondByte;	Helpers.ShopKey12, `SK_UNIVERSAL_WALLET`;	Items.SmallKey.0x17
+	Dummy_ShopKey13:NoSpoiler;	Unshuffled;	DumShopKey131:Define:FirstByte, DumShopKey132:Define:SecondByte;	Helpers.ShopKey13, `SK_UNIVERSAL_WALLET`;	Items.SmallKey.0x17
+	Dummy_ShopKey14:NoSpoiler;	Unshuffled;	DumShopKey141:Define:FirstByte, DumShopKey142:Define:SecondByte;	Helpers.ShopKey14, `SK_UNIVERSAL_WALLET`;	Items.SmallKey.0x17
+	Dummy_ShopKey15:NoSpoiler;	Unshuffled;	DumShopKey151:Define:FirstByte, DumShopKey152:Define:SecondByte;	Helpers.ShopKey15, `SK_UNIVERSAL_WALLET`;	Items.SmallKey.0x17
+	Dummy_ShopKey16:NoSpoiler;	Unshuffled;	DumShopKey161:Define:FirstByte, DumShopKey162:Define:SecondByte;	Helpers.ShopKey16, `SK_UNIVERSAL_WALLET`;	Items.SmallKey.0x17
+	Dummy_ShopKey17:NoSpoiler;	Unshuffled;	DumShopKey171:Define:FirstByte, DumShopKey172:Define:SecondByte;	Helpers.ShopKey17, `SK_UNIVERSAL_WALLET`;	Items.SmallKey.0x17
+	Dummy_ShopKey18:NoSpoiler;	Unshuffled;	DumShopKey181:Define:FirstByte, DumShopKey182:Define:SecondByte;	Helpers.ShopKey18, `SK_UNIVERSAL_WALLET`;	Items.SmallKey.0x17
+	Dummy_ShopKey19:NoSpoiler;	Unshuffled;	DumShopKey191:Define:FirstByte, DumShopKey192:Define:SecondByte;	Helpers.ShopKey19, `SK_UNIVERSAL_WALLET`;	Items.SmallKey.0x17
+	Dummy_ShopKey20:NoSpoiler;	Unshuffled;	DumShopKey201:Define:FirstByte, DumShopKey202:Define:SecondByte;	Helpers.ShopKey20, `SK_UNIVERSAL_WALLET`;	Items.SmallKey.0x17
+	Dummy_ShopKey21:NoSpoiler;	Unshuffled;	DumShopKey211:Define:FirstByte, DumShopKey212:Define:SecondByte;	Helpers.ShopKey21, `SK_UNIVERSAL_WALLET`;	Items.SmallKey.0x17
+	Dummy_ShopKey22:NoSpoiler;	Unshuffled;	DumShopKey221:Define:FirstByte, DumShopKey222:Define:SecondByte;	Helpers.ShopKey22, `SK_UNIVERSAL_WALLET`;	Items.SmallKey.0x17
+	Dummy_ShopKey23:NoSpoiler;	Unshuffled;	DumShopKey231:Define:FirstByte, DumShopKey232:Define:SecondByte;	Helpers.ShopKey23, `SK_UNIVERSAL_WALLET`;	Items.SmallKey.0x17
+	Dummy_ShopKey24:NoSpoiler;	Unshuffled;	DumShopKey241:Define:FirstByte, DumShopKey242:Define:SecondByte;	Helpers.ShopKey24, `SK_UNIVERSAL_WALLET`;	Items.SmallKey.0x17
+	Dummy_ShopKey25:NoSpoiler;	Unshuffled;	DumShopKey251:Define:FirstByte, DumShopKey252:Define:SecondByte;	Helpers.ShopKey25, `SK_UNIVERSAL_WALLET`;	Items.SmallKey.0x17
+	Dummy_ShopKey26:NoSpoiler;	Unshuffled;	DumShopKey261:Define:FirstByte, DumShopKey262:Define:SecondByte;	Helpers.ShopKey26, `SK_UNIVERSAL_WALLET`;	Items.SmallKey.0x17
+	Dummy_ShopKey27:NoSpoiler;	Unshuffled;	DumShopKey271:Define:FirstByte, DumShopKey272:Define:SecondByte;	Helpers.ShopKey27, `SK_UNIVERSAL_WALLET`;	Items.SmallKey.0x17
+	Dummy_ShopKey28:NoSpoiler;	Unshuffled;	DumShopKey281:Define:FirstByte, DumShopKey282:Define:SecondByte;	Helpers.ShopKey28, `SK_UNIVERSAL_WALLET`;	Items.SmallKey.0x17
 !endif
 ShopSimon;			Helper;;	(|(+`SHOP_PRICE`, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Helpers.InfiniteMoney)
 Shop80;				Helper;;	(|(+`SHOP_PRICE`, Items.Rupee1, Items.Rupee5:5, Items.Rupee20:20, Items.Rupee50:50, Items.Rupee100:100, Items.Rupee200:200), Helpers.InfiniteMoney)
