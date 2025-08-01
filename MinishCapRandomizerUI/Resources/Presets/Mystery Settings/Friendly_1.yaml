@@ -10,7 +10,8 @@ settings:
     MAP_REGION: 0                                 #   Own Region
     MAP_DUNGEON: 10                               #   Any Dungeon
     MAP_REGDUN: 0                                 #   Any Region
-    MAP_KEYSANITY: 20                             #   Anywhere (Keysanity)
+    MAP_KEYSANITY: 15                             #   Anywhere (Keysanity)
+    MAP_UNIVERSAL: 5                              #   Universal
   COMPASS_SETTING:                                # Compasses
     COMPASS_KEASY: 10                             #   Start With
     COMPASS_VANILLA: 10                           #   Vanilla
@@ -18,7 +19,8 @@ settings:
     COMPASS_REGION: 0                             #   Own Region
     COMPASS_DUNGEON: 10                           #   Any Dungeon
     COMPASS_REGDUN: 0                             #   Any Region
-    COMPASS_KEYSANITY: 20                         #   Anywhere (Keysanity)
+    COMPASS_KEYSANITY: 15                         #   Anywhere (Keysanity)
+    COMPASS_UNIVERSAL: 5                          #   Universal
   SMALL_KEYS_SETTING:                             # Small Keys
     SMALL_KEASY: 10                               #   Removed (Keasy)
     SMALL_KEYS_VANILLA: 10                        #   Vanilla
@@ -26,7 +28,8 @@ settings:
     SMALL_KEYS_REGION: 0                          #   Own Region
     SMALL_KEYS_DUNGEON: 10                        #   Any Dungeon
     SMALL_KEYS_REGDUN: 0                          #   Any Region
-    SMALL_KEYSANITY: 20                           #   Anywhere (Keysanity)
+    SMALL_KEYSANITY: 15                           #   Anywhere (Keysanity)
+    SMALL_KEYS_UNIVERSAL: 5                       #   Universal
   BIG_KEYS_SETTING:                               # Big Keys
     BIG_KEASY: 10                                 #   Removed (Keasy)
     BIG_KEYS_VANILLA: 10                          #   Vanilla
@@ -34,7 +37,8 @@ settings:
     BIG_KEYS_REGION: 0                            #   Own Region
     BIG_KEYS_DUNGEON: 10                          #   Any Dungeon
     BIG_KEYS_REGDUN: 0                            #   Any Region
-    BIG_KEYSANITY: 20                             #   Anywhere (Keysanity)
+    BIG_KEYSANITY: 15                             #   Anywhere (Keysanity)
+    BIG_KEYS_UNIVERSAL: 5                         #   Universal
   SHUFFLE_ELEMENTS:                               # Shuffle Elements
     SHUFFLE_ELEMENTS_VANILLA: 5                   #   Vanilla
     SHUFFLE_ELEMENTS_VANILLA_DUNGEON: 5           #   Vanilla Dungeon
@@ -57,8 +61,9 @@ settings:
   #  Requirements:
   DHC_SETTING:                                    # Dark Hyrule Castle Opens
     NODHC: 20                                     #   Never Open
+    FASTVAATI: 20                                 #   Never, Vaati Warp
     NORMALDHC: 40                                 #   After Requirements
-    OPENDHC: 40                                   #   Always Open
+    OPENDHC: 20                                   #   Always Open
   REQUIREMENT_ITEM:                               # Requirement Reward
     REQUIREMENT_ITEM_NONE: 0                      #   Disabled
     REQUIREMENT_ITEM_DHC_BK: 100                  #   DHC Big Key
@@ -508,6 +513,35 @@ settings:
     DHC3KEY: 0                                    #   3
     DHC4KEY: 0                                    #   4
     DHC5KEY: 0                                    #   5
+  KEYUNIMULTIPLIER:                               # Universal Keychain size
+    1: 100                                        #   1
+    2: 0                                          #   2
+    3: 0                                          #   3
+    4: 0                                          #   4
+    5: 0                                          #   5
+    6: 0                                          #   6
+    7: 0                                          #   7
+    8: 0                                          #   8
+    9: 0                                          #   9
+    10: 0                                         #   10
+    11: 0                                         #   11
+    12: 0                                         #   12
+    13: 0                                         #   13
+    14: 0                                         #   14
+    15: 0                                         #   15
+    16: 0                                         #   16
+    17: 0                                         #   17
+    18: 0                                         #   18
+    19: 0                                         #   19
+    20: 0                                         #   20
+    21: 0                                         #   21
+    22: 0                                         #   22
+    23: 0                                         #   23
+    24: 0                                         #   24
+    25: 0                                         #   25
+    26: 0                                         #   26
+    27: 0                                         #   27
+    28: 0                                         #   28
   ## Start Inventory:
   #  Main Items:
   START_SMITH_SWORD:                              # Smith Sword
@@ -791,6 +825,19 @@ settings:
     WALLET_REFILL_OFF: 50
     WALLET_REFILL_DIFFERENCE: 25
     WALLET_REFILL_MAX: 25
+  UNI_KEY_SHOP_PRICE:                             # Universal Small Keys in Shop
+    UNI_KEY_SHOP_PRICE_OFF: 25
+    UNI_KEY_SHOP_PRICE_50: 25
+    UNI_KEY_SHOP_PRICE_100: 50
+    UNI_KEY_SHOP_PRICE_200: 0
+    UNI_KEY_SHOP_PRICE_300: 0
+    UNI_KEY_SHOP_PRICE_400: 0
+    UNI_KEY_SHOP_PRICE_500: 0
+    UNI_KEY_SHOP_PRICE_600: 0
+    UNI_KEY_SHOP_PRICE_700: 0
+    UNI_KEY_SHOP_PRICE_800: 0
+    UNI_KEY_SHOP_PRICE_900: 0
+    UNI_KEY_SHOP_PRICE_999: 0
   VANILLA_SHOP_ORDER:                             # Vanilla Shop Item Order
     on: 25
     off: 75

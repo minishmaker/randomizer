@@ -5,7 +5,10 @@
 .equ quiverShopSub, quiverShopItem+4
 .equ bombBagShopItem, quiverShopSub+4
 .equ bombBagShopSub, bombBagShopItem+4
-.equ getTextOffset, bombBagShopSub+4
+.equ universalSmallKeyPriceHundreds, bombBagShopSub+4
+.equ universalSmallKeyPriceTens, universalSmallKeyPriceHundreds+4
+.equ universalSmallKeyPriceUnits, universalSmallKeyPriceTens+4
+.equ getTextOffset, universalSmallKeyPriceUnits+4
 .equ shootbutterflyCredits, getTextOffset+4
 .equ digbutterflyCredits, shootbutterflyCredits+4
 .equ swimbutterflyCredits, digbutterflyCredits+4
@@ -30,6 +33,8 @@ cmp	r0,#0x66
 beq	quiver
 cmp	r0,#0x65
 beq	bombBag
+cmp	r0,#0x53
+beq	smallKey
 cmp	r0,#0x0E
 beq	mirrorShield
 b	vanilla
@@ -70,6 +75,14 @@ mirrorShield:
 ldr	r0,=#0x040E
 mov	r1,#0
 mov	r2,#3
+b	buildText
+
+smallKey:
+mov	r0,#0x53
+mov	r1,#0x17
+bl	getText
+mov	r1,r3
+mov	r2,#4
 
 buildText:
 push	{r4-r7}
@@ -103,6 +116,23 @@ cmp	r6,#1
 beq	is300
 cmp	r6,#2
 beq	is600
+cmp	r6,#3
+beq	is40
+isUniversalSmallKey:
+ldr	r0,universalSmallKeyPriceHundreds
+cmp	r0,#0x30
+beq	universalSmallKeyTensDigit
+strb	r0,[r7]
+add	r7,#1
+universalSmallKeyTensDigit:
+ldr	r0,universalSmallKeyPriceTens
+strb	r0,[r7]
+add	r7,#1
+universalSmallKeyUnitsDigit:
+ldr	r0,universalSmallKeyPriceUnits
+strb	r0,[r7]
+add	r7,#1
+b	doneprice
 is40:
 mov	r0,#0x34
 strb	r0,[r7]
@@ -492,6 +522,9 @@ walletShopItem:
 @WORD quiverShopSub
 @WORD bombBagShopItem
 @WORD bombBagShopSub
+@WORD universalSmallKeyPriceHundreds
+@WORD universalSmallKeyPriceTens
+@WORD universalSmallKeyPriceUnits
 @POIN getTextOffset
 @POIN shootbutterflyCredits
 @POIN digbutterflyCredits
