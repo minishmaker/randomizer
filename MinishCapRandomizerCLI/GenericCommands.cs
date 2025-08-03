@@ -213,6 +213,18 @@ internal static class GenericCommands
         Console.WriteLine("Settings loaded successfully!");
     }
 
+    internal static void LoadCosmetics(string? cosmetics = null)
+    {
+        Console.Write("Please enter the cosmetics string to load: ");
+        var input = cosmetics ?? Console.ReadLine();
+        if (!string.IsNullOrEmpty(input))
+        {
+            ShufflerController.LoadCosmeticsFromCosmeticsString(input);
+            SwitchToNormalSettingsIfIncompatible();
+        }
+        Console.WriteLine("Cosmetics loaded successfully!");
+    }
+
     // This option is not supported for use by command files, use the settings string or YAML option instead
     internal static void Options()
     {

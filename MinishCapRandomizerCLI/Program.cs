@@ -61,6 +61,7 @@ internal class Program
             {"UseYAML", UseYAML},
             {"LoadYAML", LoadYAML},
             {"LoadSettings", LoadSettings},
+            {"LoadCosmetics", LoadCosmetics},
             {"Options", Options},
             {"SettingsMode", SettingsMode},
             {"Logging", Logging},
@@ -89,7 +90,8 @@ LoadPatch               Load custom patch file
 ClearYAML               Clears the cached YAML options and resets all logic options to defaults
 LoadYAML                Load YAML file to use as a Preset, replaces the selected options
 UseYAML                 Use YAML file to use as a Preset or Mystery weights, instead of using the selected options
-LoadSettings            Load a setting string, replaces the selected options
+LoadSettings            Load a setting string, replaces the selected logic options
+LoadCosmetics           Load a cosmetics string, replaces the selected cosmetic options
 Options                 Display options, allows editing of option values
 SettingsMode            Allows switching between normal and compact settings mode and shows whether there are any incompatibilities
 Logging                 Allows you to change logger settings
@@ -146,6 +148,11 @@ Strict                  Toggle strict mode (exit after error)
     private static void LoadSettings()
     {
         GenericCommands.LoadSettings();
+    }
+
+    private static void LoadCosmetics()
+    {
+        GenericCommands.LoadCosmetics();
     }
 
     private static void Options()
