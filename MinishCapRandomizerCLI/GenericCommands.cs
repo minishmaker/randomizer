@@ -21,6 +21,7 @@ internal static class GenericCommands
     private static string? _cachedYAMLPathLogic;
     private static string? _cachedYAMLPathCosmetics;
     private static bool _cachedUseGlobalYAML = false;
+    private static bool _useCompactSettings = false;
     private static bool _strict = false;
     
     internal static void LoadRom(string? path = null)
@@ -192,7 +193,11 @@ internal static class GenericCommands
                 ShufflerController.LoadCosmeticsFromCosmeticsString(YamlController.GetSelectedCosmeticsString());
                 break;
         }
-        
+        if (number != 0)
+        {
+            SwitchToNormalSettingsIfIncompatible();
+        }
+
         Console.WriteLine("Settings loaded successfully!");
     }
 
@@ -200,15 +205,20 @@ internal static class GenericCommands
     {
         Console.Write("Please enter the setting string to load: ");
         var input = settings ?? Console.ReadLine();
-        if (!string.IsNullOrEmpty(input)) ShufflerController.LoadSettingsFromSettingString(input);
+        if (!string.IsNullOrEmpty(input))
+        {
+            ShufflerController.LoadSettingsFromSettingString(input);
+            SwitchToNormalSettingsIfIncompatible();
+        }
         Console.WriteLine("Settings loaded successfully!");
     }
 
-    // This option is not supported for use by command files, use the settings string option instead
+    // This option is not supported for use by command files, use the settings string or YAML option instead
     internal static void Options()
     {
-        Console.WriteLine("Options for current logic file:");
-        var options = ShufflerController.GetSelectedOptions();
+        var settingsModeDescription = ShufflerController.IsCompactModeSupported() ? (_useCompactSettings ? " (compact settings mode)" : " (normal settings mode)") : "";
+        Console.WriteLine($"Options for current logic file{settingsModeDescription}:");
+        var options = _useCompactSettings && ShufflerController.IsCompactModeSupported() ? ShufflerController.GetCompactOptions() : ShufflerController.GetSelectedOptions();
         for (var i = 0; i < options.Count; )
         {
             var option = options[i];
@@ -268,6 +278,60 @@ internal static class GenericCommands
             Console.Write("Please enter the number of the setting you would like to change, enter \"Exit\" to stop editing, or enter \"List\" to list all of the options again: ");
             input = Console.ReadLine();
         }
+    }
+
+    internal static void SettingsMode(string? option = null)
+    {
+        if (_useCompactSettings)
+        {
+            Console.WriteLine("Currently in compact settings mode.");
+        }
+        else
+        {
+            Console.WriteLine("Currently in normal settings mode.");
+            var isCompatible = !ShufflerController.IsCompactModeSupported() || ShufflerController.UpdateCompactOptionValues(false);
+            if (isCompatible)
+            {
+                Console.WriteLine("Switching to compact mode would not affect the currently selected options.");
+            }
+            else
+            {
+                Console.WriteLine("Warning: The currently selected options are not compatible with compact mode, so switching to compact mode would reset conflicting settings to their default values.");
+            }
+        }
+        if (!ShufflerController.IsCompactModeSupported())
+        {
+            Console.WriteLine("Note: The current logic file does not support compact mode, so this will have no effect unless you load a different logic file.");
+        }
+        Console.WriteLine("With which settings mode would you like to continue?");
+        Console.WriteLine("1) Normal settings");
+        Console.WriteLine("2) Compact settings");
+        Console.Write("Please enter the number of the mode you would like to use, or enter \"Exit\" to stop editing: ");
+        var input = option ?? Console.ReadLine();
+        if (!string.IsNullOrEmpty(input))
+        {
+            if (input.Equals("exit", StringComparison.OrdinalIgnoreCase))
+            {
+                return;
+            }
+            if (!int.TryParse(input, out var i) || i < 1 || i > 2)
+            {
+                PrintError("Invalid Input!");
+                return;
+            }
+            if (i == 1)
+            {
+                _useCompactSettings = false;
+                Console.WriteLine("Successfully enabled normal settings mode!");
+            }
+            else
+            {
+                ShufflerController.UpdateCompactOptionValues(true);
+                _useCompactSettings = true;
+                Console.WriteLine("Successfully enabled compact settings mode!");
+            }
+        }
+        else PrintError("Invalid Input!");
     }
 
     internal static void Logging(string? option = null, string? verbosityOption = null, string? logPath = null)
@@ -672,6 +736,7 @@ internal static class GenericCommands
                 break;
             }
         }
+        option.NotifyChildren();
     }
 
     internal static void PrintError(string msg)
@@ -680,6 +745,23 @@ internal static class GenericCommands
         if(_strict)
         {
             Environment.Exit(1);
+        }
+    }
+
+    private static void SwitchToNormalSettingsIfIncompatible()
+    {
+        if (_useCompactSettings && ShufflerController.IsCompactModeSupported())
+        {
+            var isCompatible = ShufflerController.UpdateCompactOptionValues(false);
+            if (!isCompatible)
+            {
+                _useCompactSettings = false;
+                Console.WriteLine("Note: Settings mode was switched to normal to avoid incompatibilities with the loaded options.");
+            }
+            else
+            {
+                ShufflerController.UpdateCompactOptionValues(true);
+            }
         }
     }
 

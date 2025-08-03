@@ -87,6 +87,7 @@ public static class CommandFileParser
                         totalSeeds++;
 
                         GenericCommands.Seed("R");
+                        GenericCommands.SettingsMode("1");
                         
                         if (shuffleSettingsEachAttempt && !lastRunFailure) ShuffleAllOptions();
 
