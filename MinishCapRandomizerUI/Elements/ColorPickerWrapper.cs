@@ -138,9 +138,11 @@ public class ColorPickerWrapper : WrapperBase, ILogicOptionObserver
             _selectColorButton.Enabled = !_checkBox.Checked;
             _selectRandomColorButton.Enabled = !_checkBox.Checked;
             _useDefaultColorButton.Enabled = !_checkBox.Checked;
-            if (_checkBox.Checked) _colorPreview.BackColor = Color.Transparent;
-            else _colorPreview.BackColor = _colorPicker.DefinedColor;
+            _colorPreview.BackColor = _checkBox.Checked ? Color.Transparent : _colorPicker.DefinedColor;
+            _colorPicker.NotifyChildren();
         };
+
+        if (_colorPicker.UseRandomColor) _checkBox.Checked = true;
 
         tip.SetToolTip(_checkBox, CheckboxToolTip);
 
@@ -191,30 +193,33 @@ public class ColorPickerWrapper : WrapperBase, ILogicOptionObserver
         if (colorPicker.ShowDialog() != DialogResult.OK) return;
         _colorPicker.DefinedColor = new GbaColor(colorPicker.Color).ToColor();
         UpdateColorPreview();
+        _colorPicker.NotifyChildren();
     }
 
     private void SelectRandomColor()
     {
         _colorPicker.PickRandomColor();
         UpdateColorPreview();
+        _colorPicker.NotifyChildren();
     }
 
     private void SelectDefaultColor()
     {
         _colorPicker.DefinedColor = _colorPicker.BaseColor;
         UpdateColorPreview();
+        _colorPicker.NotifyChildren();
     }
 
     private void UpdateColorPreview()
     {
         if (_colorPreview == null) return;
 
-        _colorPreview.BackColor = _colorPicker.DefinedColor;
+        _colorPreview.BackColor = _checkBox!.Checked ? Color.Transparent : _colorPicker.DefinedColor;
     }
 
     public void NotifyObserver()
     {
-        UpdateColorPreview();
         _checkBox!.Checked = _colorPicker.UseRandomColor;
+        UpdateColorPreview();
     }
 }

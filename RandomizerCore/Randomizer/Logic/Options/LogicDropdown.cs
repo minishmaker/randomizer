@@ -29,6 +29,11 @@ public class LogicDropdown : LogicOptionBase
         NamesToOptions = Enumerable.Range(0, options.Length).ToImmutableDictionary(i => optionDisplayNames[i], i => options[i]);
     }
 
+    public override bool IsReset()
+    {
+        return Selection == DefaultSelection;
+    }
+
     public override void Reset()
     {
         Selection = DefaultSelection;
@@ -79,5 +84,16 @@ public class LogicDropdown : LogicOptionBase
     public override string GetOptionUiType()
     {
         return "Dropdown";
+    }
+
+    public override string GetValueAsString()
+    {
+        return Selection;
+    }
+
+    public override void SetValueFromString(string value)
+    {
+        if (!SelectionOptions.Contains(value)) throw new Exception($"Invalid value \"{value}\"");
+        Selection = value;
     }
 }

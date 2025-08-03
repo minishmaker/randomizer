@@ -34,6 +34,7 @@
 			this.exportDefaultLogicToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.savePresetYAMLMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.saveMysteryYAMLMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.compactUIDefaultMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.loggingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.setLoggerOutputPathToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.logAllTransactionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -122,6 +123,10 @@
 			this.UseMysterySettings = new System.Windows.Forms.CheckBox();
 			this.LoadSettingSample = new System.Windows.Forms.Button();
 			this.SettingsWeights = new System.Windows.Forms.ComboBox();
+			this.UIModePanel = new System.Windows.Forms.Panel();
+			this.UIModePanelLabel = new System.Windows.Forms.Label();
+			this.UseCompactUI = new System.Windows.Forms.CheckBox();
+			this.CompactUINotSupportedLabel = new System.Windows.Forms.Label();
 			this.SeedOutput = new System.Windows.Forms.TabPage();
 			this.SaveRom = new System.Windows.Forms.Button();
 			this.SavePatch = new System.Windows.Forms.Button();
@@ -162,6 +167,7 @@
 			this.AlternativeShufflerPanel.SuspendLayout();
 			this.LogicPatchesYamlPanel.SuspendLayout();
 			this.MysterySettingsPanel.SuspendLayout();
+			this.UIModePanel.SuspendLayout();
 			this.SeedOutput.SuspendLayout();
 			this.CosmeticsInformationPanel.SuspendLayout();
 			this.SettingsInformationPanel.SuspendLayout();
@@ -187,7 +193,8 @@
 			this.logicToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.exportDefaultLogicToolStripMenuItem,
             this.savePresetYAMLMenuItem,
-            this.saveMysteryYAMLMenuItem});
+            this.saveMysteryYAMLMenuItem,
+            this.compactUIDefaultMenuItem});
 			this.logicToolStripMenuItem.Name = "logicToolStripMenuItem";
 			this.logicToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
 			this.logicToolStripMenuItem.Text = "Logic";
@@ -212,6 +219,13 @@
 			this.saveMysteryYAMLMenuItem.Size = new System.Drawing.Size(273, 22);
 			this.saveMysteryYAMLMenuItem.Text = "Save Mystery YAML template";
 			this.saveMysteryYAMLMenuItem.Click += new System.EventHandler(this.saveMysteryYAMLMenuItem_Click);
+			// 
+			// compactUIDefaultMenuItem
+			// 
+			this.compactUIDefaultMenuItem.Name = "compactUIDefaultMenuItem";
+			this.compactUIDefaultMenuItem.Size = new System.Drawing.Size(273, 22);
+			this.compactUIDefaultMenuItem.Text = "Use Compact UI on Start";
+			this.compactUIDefaultMenuItem.Click += new System.EventHandler(this.compactUIDefaultMenuItem_Click);
 			// 
 			// loggingToolStripMenuItem
 			// 
@@ -818,10 +832,12 @@
 			this.Advanced.Controls.Add(this.LogicPatchesYamlPanel);
 			this.Advanced.Controls.Add(this.MysterySettingsLabel);
 			this.Advanced.Controls.Add(this.MysterySettingsPanel);
+			this.Advanced.Controls.Add(this.UIModePanelLabel);
+			this.Advanced.Controls.Add(this.UIModePanel);
 			this.Advanced.Location = new System.Drawing.Point(4, 24);
 			this.Advanced.Name = "Advanced";
 			this.Advanced.Padding = new System.Windows.Forms.Padding(3);
-			this.Advanced.Size = new System.Drawing.Size(787, 535);
+			this.Advanced.Size = new System.Drawing.Size(787, 605);
 			this.Advanced.TabIndex = 3;
 			this.Advanced.Text = "Advanced";
 			this.Advanced.UseVisualStyleBackColor = true;
@@ -831,7 +847,7 @@
 			this.AlternativeShufflersPanelLabel.AutoSize = true;
 			this.AlternativeShufflersPanelLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
 			this.AlternativeShufflersPanelLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.AlternativeShufflersPanelLabel.Location = new System.Drawing.Point(17, 387);
+			this.AlternativeShufflersPanelLabel.Location = new System.Drawing.Point(17, 457);
 			this.AlternativeShufflersPanelLabel.Name = "AlternativeShufflersPanelLabel";
 			this.AlternativeShufflersPanelLabel.Size = new System.Drawing.Size(113, 15);
 			this.AlternativeShufflersPanelLabel.TabIndex = 20;
@@ -842,7 +858,7 @@
 			// 
 			this.AlternativeShufflerPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.AlternativeShufflerPanel.Controls.Add(this.UseSphereBasedShuffler);
-			this.AlternativeShufflerPanel.Location = new System.Drawing.Point(6, 395);
+			this.AlternativeShufflerPanel.Location = new System.Drawing.Point(6, 465);
 			this.AlternativeShufflerPanel.Name = "AlternativeShufflerPanel";
 			this.AlternativeShufflerPanel.Size = new System.Drawing.Size(760, 50);
 			this.AlternativeShufflerPanel.TabIndex = 19;
@@ -877,7 +893,7 @@
 			this.LogicPatchesYamlLabel.AutoSize = true;
 			this.LogicPatchesYamlLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
 			this.LogicPatchesYamlLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.LogicPatchesYamlLabel.Location = new System.Drawing.Point(17, 57);
+			this.LogicPatchesYamlLabel.Location = new System.Drawing.Point(17, 127);
 			this.LogicPatchesYamlLabel.Name = "LogicPatchesYamlLabel";
 			this.LogicPatchesYamlLabel.Size = new System.Drawing.Size(243, 15);
 			this.LogicPatchesYamlLabel.TabIndex = 17;
@@ -899,7 +915,7 @@
 			this.LogicPatchesYamlPanel.Controls.Add(this.LogicFilePath);
 			this.LogicPatchesYamlPanel.Controls.Add(this.UseCustomLogic);
 			this.LogicPatchesYamlPanel.Controls.Add(this.LogicFilePathLabel);
-			this.LogicPatchesYamlPanel.Location = new System.Drawing.Point(6, 65);
+			this.LogicPatchesYamlPanel.Location = new System.Drawing.Point(6, 135);
 			this.LogicPatchesYamlPanel.Name = "LogicPatchesYamlPanel";
 			this.LogicPatchesYamlPanel.Size = new System.Drawing.Size(760, 200);
 			this.LogicPatchesYamlPanel.TabIndex = 16;
@@ -1032,7 +1048,7 @@
 			this.MysterySettingsLabel.AutoSize = true;
 			this.MysterySettingsLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
 			this.MysterySettingsLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-			this.MysterySettingsLabel.Location = new System.Drawing.Point(17, 277);
+			this.MysterySettingsLabel.Location = new System.Drawing.Point(17, 347);
 			this.MysterySettingsLabel.Name = "MysterySettingsLabel";
 			this.MysterySettingsLabel.Size = new System.Drawing.Size(49, 15);
 			this.MysterySettingsLabel.TabIndex = 22;
@@ -1048,7 +1064,7 @@
 			this.MysterySettingsPanel.Controls.Add(this.UseMysterySettings);
 			this.MysterySettingsPanel.Controls.Add(this.LoadSettingSample);
 			this.MysterySettingsPanel.Controls.Add(this.SettingsWeights);
-			this.MysterySettingsPanel.Location = new System.Drawing.Point(6, 285);
+			this.MysterySettingsPanel.Location = new System.Drawing.Point(6, 355);
 			this.MysterySettingsPanel.Name = "MysterySettingsPanel";
 			this.MysterySettingsPanel.Size = new System.Drawing.Size(760, 90);
 			this.MysterySettingsPanel.TabIndex = 21;
@@ -1114,6 +1130,55 @@
 			this.SettingsWeights.Name = "SettingsWeights";
 			this.SettingsWeights.Size = new System.Drawing.Size(350, 23);
 			this.SettingsWeights.TabIndex = 27;
+			// 
+			// UIModePanelLabel
+			// 
+			this.UIModePanelLabel.AutoSize = true;
+			this.UIModePanelLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+			this.UIModePanelLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.UIModePanelLabel.Location = new System.Drawing.Point(17, 57);
+			this.UIModePanelLabel.Name = "UIModePanelLabel";
+			this.UIModePanelLabel.Size = new System.Drawing.Size(113, 15);
+			this.UIModePanelLabel.TabIndex = 35;
+			this.UIModePanelLabel.Text = "Settings UI mode";
+			this.UIModePanelLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+			// 
+			// UIModePanel
+			// 
+			this.UIModePanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.UIModePanel.Controls.Add(this.UseCompactUI);
+			this.UIModePanel.Controls.Add(this.CompactUINotSupportedLabel);
+			this.UIModePanel.Location = new System.Drawing.Point(6, 65);
+			this.UIModePanel.Name = "UIModePanel";
+			this.UIModePanel.Size = new System.Drawing.Size(760, 50);
+			this.UIModePanel.TabIndex = 34;
+			// 
+			// UseCompactUI
+			// 
+			this.UseCompactUI.AutoSize = true;
+			this.UseCompactUI.AutoCheck = false;
+			this.UseCompactUI.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.UseCompactUI.Checked = true;
+			this.UseCompactUI.Location = new System.Drawing.Point(10, 15);
+			this.UseCompactUI.Name = "UseCompactUI";
+			this.UseCompactUI.Size = new System.Drawing.Size(165, 19);
+			this.UseCompactUI.TabIndex = 36;
+			this.UseCompactUI.Text = "Use compact settings UI";
+			this.UseCompactUI.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.UseCompactUI.UseVisualStyleBackColor = true;
+			this.UseCompactUI.Click += new System.EventHandler(this.UseCompactUI_Click);
+			// 
+			// CompactUINotSupportedLabel
+			// 
+			this.CompactUINotSupportedLabel.AutoSize = true;
+			this.CompactUINotSupportedLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+			this.CompactUINotSupportedLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+			this.CompactUINotSupportedLabel.Location = new System.Drawing.Point(500, 16);
+			this.CompactUINotSupportedLabel.Name = "CompactUINotSupportedLabel";
+			this.CompactUINotSupportedLabel.Size = new System.Drawing.Size(200, 15);
+			this.CompactUINotSupportedLabel.TabIndex = 37;
+			this.CompactUINotSupportedLabel.Text = "Compact UI not supported by this logic file!";
+			this.CompactUINotSupportedLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
 			// SeedOutput
 			// 
@@ -1486,6 +1551,8 @@
 			this.LogicPatchesYamlPanel.ResumeLayout(false);
 			this.LogicPatchesYamlPanel.PerformLayout();
 			this.MysterySettingsPanel.ResumeLayout(false);
+			this.UIModePanel.ResumeLayout(false);
+			this.UIModePanel.PerformLayout();
 			this.SeedOutput.ResumeLayout(false);
 			this.SeedOutput.PerformLayout();
 			this.CosmeticsInformationPanel.ResumeLayout(false);
@@ -1507,6 +1574,7 @@
         private ToolStripMenuItem exportDefaultLogicToolStripMenuItem;
         private ToolStripMenuItem savePresetYAMLMenuItem;
         private ToolStripMenuItem saveMysteryYAMLMenuItem;
+        private ToolStripMenuItem compactUIDefaultMenuItem;
         private ToolStripMenuItem loggingToolStripMenuItem;
         private ToolStripMenuItem setLoggerOutputPathToolStripMenuItem;
         private ToolStripMenuItem logAllTransactionsToolStripMenuItem;
@@ -1622,5 +1690,9 @@
         private ToolStripMenuItem espanolToolStripMenuItem;
         private ToolStripMenuItem italianoToolStripMenuItem;
         private ToolStripMenuItem pleaseContactTheDevsIfYouWishToDoLocalizationForTheUIToolStripMenuItem;
+        private Panel UIModePanel;
+        private Label UIModePanelLabel;
+        private CheckBox UseCompactUI;
+        private Label CompactUINotSupportedLabel;
     }
 }

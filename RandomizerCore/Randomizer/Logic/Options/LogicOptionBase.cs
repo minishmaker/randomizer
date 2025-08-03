@@ -37,6 +37,7 @@ public abstract class LogicOptionBase : ICloneable
 
     public void NotifyObservers()
     {
+        NotifyChildren();
         foreach (var observer in Observers) observer.NotifyObserver();
     }
 
@@ -44,6 +45,17 @@ public abstract class LogicOptionBase : ICloneable
     {
         Observers.Add(observer);
     }
+
+    public void ClearObservers()
+    {
+        Observers.Clear();
+    }
+
+    public virtual void NotifyChildren()
+    {
+    }
+
+    public abstract bool IsReset();
 
     public abstract void Reset();
 
@@ -61,6 +73,25 @@ public abstract class LogicOptionBase : ICloneable
     public abstract byte GetSelectionHashByte();
 
     public abstract string GetOptionUiType();
+
+    public virtual IList<LogicOptionBase> GetChildren()
+    {
+        return [];
+    }
+
+    public abstract string GetValueAsString();
+
+    public abstract void SetValueFromString(string value);
+
+    protected void UpdateChildren(string[] options)
+    {
+        var originalSettings = GetChildren();
+        for (var i = 0; i < originalSettings.Count; i++)
+        {
+            originalSettings[i].SetValueFromString(options[i]);
+            originalSettings[i].NotifyObservers();
+        }
+    }
 
     public object Clone() => MemberwiseClone();
 }
