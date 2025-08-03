@@ -62,6 +62,7 @@ internal class Program
             {"LoadYAML", LoadYAML},
             {"LoadSettings", LoadSettings},
             {"Options", Options},
+            {"SettingsMode", SettingsMode},
             {"Logging", Logging},
             {"Randomize", Randomize},
             {"SaveRom", SaveRom},
@@ -90,6 +91,7 @@ LoadYAML                Load YAML file to use as a Preset, replaces the selected
 UseYAML                 Use YAML file to use as a Preset or Mystery weights, instead of using the selected options
 LoadSettings            Load a setting string, replaces the selected options
 Options                 Display options, allows editing of option values
+SettingsMode            Allows switching between normal and compact settings mode and shows whether there are any incompatibilities
 Logging                 Allows you to change logger settings
 Randomize               Generates a randomized ROM
 SaveRom                 Saves and patches the ROM, requires Randomize to have been called
@@ -125,6 +127,7 @@ Strict                  Toggle strict mode (exit after error)
     {
         GenericCommands.LoadPatch();
     }
+
     private static void ClearYAML()
     {
         GenericCommands.ClearYAMLConfig();
@@ -148,6 +151,11 @@ Strict                  Toggle strict mode (exit after error)
     private static void Options()
     {
         GenericCommands.Options();
+    }
+
+    private static void SettingsMode()
+    {
+        GenericCommands.SettingsMode();
     }
 
     private static void Logging()
