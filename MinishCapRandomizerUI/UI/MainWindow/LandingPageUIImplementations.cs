@@ -69,7 +69,19 @@ partial class MinishCapRandomizerUI
     
     private void LoadSettings_Click(object sender, EventArgs e)
     {
-        DisplayConditionalAlertFromShufflerResult(_shufflerController.LoadSettingsFromSettingString(SettingString.Text), "Settings loaded successfully!", "Settings Loaded", "Failed to load Settings string!", "Failed to Load Settings");
+        var successMessage = "Settings loaded successfully!";
+        var result = _shufflerController.LoadSettingsFromSettingString(SettingString.Text);
+        if (result.WasSuccessful && _useCompactUI)
+        {
+            var isCompatible = _shufflerController.UpdateCompactOptionValues(false);
+            if (!isCompatible)
+            {
+                SwitchToNormalMode();
+                successMessage += "\nSettings UI was switched to normal mode to support all the options from the settings string.";
+            }
+            else _shufflerController.UpdateCompactOptionValues(true);
+        }
+        DisplayConditionalAlertFromShufflerResult(result, successMessage, "Settings Loaded", "Failed to load Settings string!", "Failed to Load Settings");
     }
 
     private void GenerateSettings_Click(object sender, EventArgs e)
@@ -82,12 +94,32 @@ partial class MinishCapRandomizerUI
     private void ResetDefaultSettings_Click(object sender, EventArgs e)
     {
         DisplayAlert("Are you sure you wish to load default settings?", "Load Default Settings", MessageBoxButtons.YesNo, MessageBoxIcon.Question, DialogResult.Yes, 
-            () =>_shufflerController.LoadSettingsFromSettingString(_defaultSettings));
+            () =>
+            {
+                var settings = (_useCompactUI ? _shufflerController.GetCompactOptions() : _shufflerController.GetSelectedOptions()).OnlyLogic();
+                foreach (var setting in settings)
+                {
+                    setting.Reset();
+                    setting.NotifyObservers();
+                }
+            });
     }
 
     private void LoadCosmetics_Click(object sender, EventArgs e)
     {
-        DisplayConditionalAlertFromShufflerResult(_shufflerController.LoadCosmeticsFromCosmeticsString(CosmeticsString.Text), "Cosmetics loaded successfully!", "Cosmetics Loaded", "Failed to load cosmetics string!", "Failed to Load Cosmetics");
+        var successMessage = "Cosmetics loaded successfully!";
+        var result = _shufflerController.LoadCosmeticsFromCosmeticsString(CosmeticsString.Text);
+        if (result.WasSuccessful && _useCompactUI)
+        {
+            var isCompatible = _shufflerController.UpdateCompactOptionValues(false);
+            if (!isCompatible)
+            {
+                SwitchToNormalMode();
+                successMessage += "\nSettings UI was switched to normal mode to support all the options from the cosmetics string.";
+            }
+            else _shufflerController.UpdateCompactOptionValues(true);
+        }
+        DisplayConditionalAlertFromShufflerResult(result, successMessage, "Cosmetics Loaded", "Failed to load cosmetics string!", "Failed to Load Cosmetics");
     }
 
     private void GenerateCosmetics_Click(object sender, EventArgs e)
@@ -100,7 +132,15 @@ partial class MinishCapRandomizerUI
     private void ResetDefaultCosmetics_Click(object sender, EventArgs e)
     {
         DisplayAlert("Are you sure you wish to load default cosmetics?", "Load Default Cosmetics", MessageBoxButtons.YesNo, MessageBoxIcon.Question, DialogResult.Yes,
-            () => _shufflerController.LoadCosmeticsFromCosmeticsString(_defaultCosmetics));
+            () =>
+            {
+                var settings = (_useCompactUI ? _shufflerController.GetCompactOptions() : _shufflerController.GetSelectedOptions()).OnlyCosmetic();
+                foreach (var setting in settings)
+                {
+                    setting.Reset();
+                    setting.NotifyObservers();
+                }
+            });
     }
 
 	private void LoadSettingPreset_Click(object sender, EventArgs e)
@@ -113,6 +153,7 @@ partial class MinishCapRandomizerUI
 			return;
 		}
 
+        var successMessage = "Settings loaded successfully!";
         var filename = presets.First(preset => preset.PresetName == (string?)SettingPresets.SelectedItem).Filename;
         var result = _shufflerController.LoadLogicSettingsFromYaml($"{_presetPath}Settings{Path.DirectorySeparatorChar}{filename}.yaml");
 
@@ -120,10 +161,21 @@ partial class MinishCapRandomizerUI
         {
             _recentSettingsPreset = (string?)SettingPresets.SelectedItem;
             _recentSettingsPresetHash = _shufflerController.GetSelectedOptions().OnlyLogic().GetHash();
+
+            if (_useCompactUI)
+            {
+                var isCompatible = _shufflerController.UpdateCompactOptionValues(false);
+                if (!isCompatible)
+                {
+                    SwitchToNormalMode();
+                    successMessage += "\nSettings UI was switched to normal mode to support all the options from the settings preset.";
+                }
+                else _shufflerController.UpdateCompactOptionValues(true);
+            }
         }
 
 		DisplayConditionalAlertFromShufflerResult(result,
-			"Settings loaded successfully!", "Settings Loaded", "Failed to load Settings preset!", "Failed to Load Settings");
+			successMessage, "Settings Loaded", "Failed to load Settings preset!", "Failed to Load Settings");
 	}
 
 	private void SaveSettingPreset_Click(object sender, EventArgs e)
@@ -205,6 +257,7 @@ partial class MinishCapRandomizerUI
 			return;
 		}
 
+        var successMessage = "Cosmetics loaded successfully!";
         var filename = presets.First(preset => preset.PresetName == (string?)CosmeticsPresets.SelectedItem).Filename;
         var result = _shufflerController.LoadCosmeticsFromYaml($"{_presetPath}Cosmetics{Path.DirectorySeparatorChar}{filename}.yaml");
 
@@ -212,10 +265,21 @@ partial class MinishCapRandomizerUI
         {
             _recentCosmeticsPreset = (string?)CosmeticsPresets.SelectedItem;
             _recentCosmeticsPresetHash = _shufflerController.GetSelectedOptions().OnlyCosmetic().GetHash();
+
+            if (_useCompactUI)
+            {
+                var isCompatible = _shufflerController.UpdateCompactOptionValues(false);
+                if (!isCompatible)
+                {
+                    SwitchToNormalMode();
+                    successMessage += "\nSettings UI was switched to normal mode mode to support all the options from the cosmetics preset.";
+                }
+                else _shufflerController.UpdateCompactOptionValues(true);
+            }
         }
 
 		DisplayConditionalAlertFromShufflerResult(result,
-			"Cosmetics loaded successfully!", "Cosmetics Loaded", "Failed to load cosmetics preset!", "Failed to Load Cosmetics");
+			successMessage, "Cosmetics Loaded", "Failed to load cosmetics preset!", "Failed to Load Cosmetics");
 	}
 
 	private void SaveCosmeticPreset_Click(object sender, EventArgs e)

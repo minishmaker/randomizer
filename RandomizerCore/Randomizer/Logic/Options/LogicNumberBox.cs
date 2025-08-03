@@ -29,6 +29,11 @@ public class LogicNumberBox : LogicOptionBase
     public byte MaxValue { get; }
     public byte DefaultValue { get; }
 
+    public override bool IsReset()
+    {
+        return Value == DefaultValue;
+    }
+
     public override void Reset()
     {
         Value = DefaultValue;
@@ -66,5 +71,16 @@ public class LogicNumberBox : LogicOptionBase
     public override string GetOptionUiType()
     {
         return "Number Box";
+    }
+
+    public override string GetValueAsString()
+    {
+        return Value.ToString();
+    }
+
+    public override void SetValueFromString(string value)
+    {
+        if (!int.TryParse(value, out var number) || number < MinValue || number > MaxValue) throw new Exception($"Invalid value \"{value}\"");
+        Value = (byte)number;
     }
 }

@@ -11,15 +11,20 @@ public class LogicFlag : LogicOptionBase
     public LogicFlag(
         string name,
         string niceName,
-        bool active,
+        bool activeDefault,
         string settingGroup,
         string settingPage,
         string descriptionText,
         LogicOptionType type) :
         base(name, niceName, settingGroup, settingPage, descriptionText, type)
     {
-        Active = active;
-        Default = active;
+        Active = activeDefault;
+        Default = activeDefault;
+    }
+
+    public override bool IsReset()
+    {
+        return Active == Default;
     }
 
     public override void Reset()
@@ -55,5 +60,16 @@ public class LogicFlag : LogicOptionBase
     public override string GetOptionUiType()
     {
         return "Flag";
+    }
+
+    public override string GetValueAsString()
+    {
+        return Active ? "true" : "false";
+    }
+
+    public override void SetValueFromString(string value)
+    {
+        if (!bool.TryParse(value, out var active)) throw new Exception($"Invalid value \"{value}\"");
+        Active = active;
     }
 }

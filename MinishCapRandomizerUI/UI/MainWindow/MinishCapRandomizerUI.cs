@@ -10,8 +10,6 @@ public sealed partial class MinishCapRandomizerUI : Form
     private bool _randomizedRomCreated = false;
     private bool _isApplyPatchMode = true;
     private SettingPresets _settingPresets;
-    private string _defaultSettings;
-    private string _defaultCosmetics;
     private string? _recentSettingsPreset = null;
     private string? _recentCosmeticsPreset = null;
     private uint _recentSettingsPresetHash;
@@ -21,6 +19,7 @@ public sealed partial class MinishCapRandomizerUI : Form
     private bool _outputUsedYAML = false;
     private string? _outputFilename = null;
     private ControllerBase _previousShuffler;
+    private bool _useCompactUI = true;
 
     private readonly string _presetPath =
         $@"{Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory)}{Path.DirectorySeparatorChar}Presets{Path.DirectorySeparatorChar}";
@@ -96,5 +95,11 @@ public sealed partial class MinishCapRandomizerUI : Form
     private void saveMysteryYAMLMenuItem_Click(object sender, EventArgs e)
     {
         DisplaySaveDialog("YAML Files|*.yaml;*.yml|All Files|*.*", "Choose where to save Mystery YAML file", "Mystery.yaml", DialogResult.OK, (filepath) => DisplayConditionalAlertFromShufflerResult(_shufflerController.ExportYaml(filepath, true), "Mystery YAML file saved successfully!", "Saved YAML File", "Failed to save Mystery YAML file!", "Failed to Save"));
+    }
+
+    private void compactUIDefaultMenuItem_Click(object sender, EventArgs e)
+    {
+        compactUIDefaultMenuItem.Checked = !compactUIDefaultMenuItem.Checked;
+        _configuration.UseCompactUIOnStart = compactUIDefaultMenuItem.Checked;
     }
 }

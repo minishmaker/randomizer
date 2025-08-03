@@ -84,11 +84,13 @@ public class DropdownWrapper : WrapperBase, ILogicOptionObserver
         _comboBox.SelectedIndexChanged += (object? sender, EventArgs e) =>
         {
             _dropdown.Selection = _dropdown.NamesToOptions[(string)_comboBox.SelectedItem!];
+            _dropdown.NotifyChildren();
         };
         
         _comboBox.SelectedValueChanged += (object? sender, EventArgs e) =>
         {
             _dropdown.Selection = _dropdown.NamesToOptions[(string)_comboBox.SelectedItem!];
+            _dropdown.NotifyChildren();
         };
         
         _comboBox.KeyPress += (object? sender, KeyPressEventArgs e) =>

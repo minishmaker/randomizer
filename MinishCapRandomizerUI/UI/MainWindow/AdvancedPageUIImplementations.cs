@@ -48,8 +48,34 @@ public partial class MinishCapRandomizerUI
 
             UpdateUIWithLogicOptions();
         });
-    }	
-    
+    }
+
+    private void UseCompactUI_Click(object sender, EventArgs e)
+    {
+        if (!_shufflerController.IsCompactModeSupported())
+        {
+            UseCompactUI.Checked = !UseCompactUI.Checked;
+            return;
+        }
+
+        if (_useCompactUI)
+        {
+            SwitchToNormalMode();
+            return;
+        }
+
+        var isCompatible = _shufflerController.UpdateCompactOptionValues(false);
+        if (isCompatible)
+        {
+            SwitchToCompactMode();
+        }
+        else
+        {
+            DisplayAlert("The current combination of options is not supported in compact mode.\nSwitching to compact mode will set conflicting settings to their default values.",
+                "Imcompatible options", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, DialogResult.OK, SwitchToCompactMode);
+        }
+    }
+
     private void UseCustomLogic_CheckedChanged(object sender, EventArgs e)
     {
         BrowseCustomLogicFile.Enabled = UseCustomLogic.Checked;
@@ -61,16 +87,20 @@ public partial class MinishCapRandomizerUI
             case false when _customLogicFileLoaded:
                 _shufflerController.LoadLogicFile();
                 _yamlController.LoadLogicFile();
+                _useCompactUI = UseCompactUI.Checked && _shufflerController.IsCompactModeSupported();
                 UpdateUIWithLogicOptions();
                 _customLogicFileLoaded = false;
                 break;
             case true when LogicFilePath.Text.Length > 0:
                 _shufflerController.LoadLogicFile(LogicFilePath.Text);
                 _yamlController.LoadLogicFile(LogicFilePath.Text);
+                _useCompactUI = UseCompactUI.Checked && _shufflerController.IsCompactModeSupported();
                 UpdateUIWithLogicOptions();
                 _customLogicFileLoaded = true;
                 break;
         }
+
+        CompactUINotSupportedLabel.Visible = !_shufflerController.IsCompactModeSupported();
     }
 
     private void UseCustomPatch_CheckedChanged(object sender, EventArgs e)

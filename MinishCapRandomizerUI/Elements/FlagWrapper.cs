@@ -52,6 +52,7 @@ public class FlagWrapper : WrapperBase, ILogicOptionObserver
         _checkBox.CheckedChanged += (object? sender, EventArgs e) =>
         {
             _flag.Active = _checkBox.Checked;
+            _flag.NotifyChildren();
         };
         
         return new List<Control> { _checkBox };

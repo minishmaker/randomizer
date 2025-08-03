@@ -164,6 +164,114 @@ public abstract class ControllerBase
         return Shuffler.GetFinalOptions();
     }
 
+    public OptionList GetCompactOptions()
+    {
+        return Shuffler.GetCompactOptions();
+    }
+
+    public OptionList GetCompactHiddenOptions()
+    {
+        return Shuffler.GetCompactHiddenOptions();
+    }
+
+    public bool IsCompactModeSupported()
+    {
+        return Shuffler.IsCompactModeSupported();
+    }
+
+    public bool UpdateCompactOptionValues(bool execute)
+    {
+        if (!Shuffler.IsCompactModeSupported()) return true;
+        if (execute) Logger.Instance.BeginLogTransaction();
+        var isCompatible = true;
+        foreach (var compactSetting in GetCompactOptions())
+        {
+            switch (compactSetting)
+            {
+                case CompactFlag flag:
+                    var optionValues = compactSetting.GetChildren().Select(x => x.GetValueAsString()).ToList();
+                    if (optionValues.SequenceEqual(flag.OriginalOptionsFalse))
+                    {
+                        if (execute)
+                        {
+                            flag.Active = false;
+                            flag.NotifyObservers();
+                        }
+                    }
+                    else if (optionValues.SequenceEqual(flag.OriginalOptionsTrue))
+                    {
+                        if (execute)
+                        {
+                            flag.Active = true;
+                            flag.NotifyObservers();
+                        }
+                    }
+                    else
+                    {
+                        if (!execute) return false;
+                        Logger.Instance.LogInfo($"Resetting flag {flag.Name} because the value {string.Join(',', optionValues)} is not supported");
+                        flag.Reset();
+                        flag.NotifyObservers();
+                        isCompatible = false;
+                    }
+                    break;
+                case CompactDropdown dropdown:
+                    optionValues = compactSetting.GetChildren().Select(x => x.GetValueAsString()).ToList();
+                    var found = false;
+                    for (var i = 0; i < dropdown.SelectionOptions.Length; i++)
+                    {
+                        if (optionValues.SequenceEqual(dropdown.OriginalOptions[i]))
+                        {
+                            found = true;
+                            if (execute)
+                            {
+                                dropdown.Selection = dropdown.SelectionOptions[i];
+                                dropdown.NotifyObservers();
+                            }
+                            break;
+                        }
+                    }
+                    if (!found)
+                    {
+                        if (!execute) return false;
+                        Logger.Instance.LogInfo($"Resetting dropdown {dropdown.Name} because the value {string.Join(',', optionValues)} is not supported");
+                        dropdown.Reset();
+                        dropdown.NotifyObservers();
+                        isCompatible = false;
+                    }
+                    break;
+                case MirroredNumberBox numberBox:
+                    if (execute)
+                    {
+                        numberBox.Value = numberBox.OriginalSetting.Value;
+                        numberBox.NotifyObservers();
+                    }
+                    break;
+                case MirroredColorPicker colorPicker:
+                    if (execute)
+                    {
+                        colorPicker.Active = colorPicker.OriginalSetting.Active;
+                        colorPicker.UseRandomColor = colorPicker.OriginalSetting.UseRandomColor;
+                        colorPicker.DefinedColor = colorPicker.OriginalSetting.DefinedColor;
+                        colorPicker.NotifyObservers();
+                    }
+                    break;
+            }
+        }
+        foreach (var setting in GetCompactHiddenOptions())
+        {
+            if (!setting.IsReset())
+            {
+                if (!execute) return false;
+                Logger.Instance.LogInfo($"Resetting setting {setting.Name} because it was not set to its default value");
+                setting.Reset();
+                setting.NotifyObservers();
+            }
+        }
+        if (execute) Logger.Instance.SaveLogTransaction();
+        return isCompatible;
+    }
+
     public ShufflerControllerResult LoadLogicFile(string? filename = null)
     {
         try

@@ -43,6 +43,11 @@ public class LogicColorPicker : LogicOptionBase
         UseRandomColor = false;
     }
 
+    public override bool IsReset()
+    {
+        return Active && !UseRandomColor && DefinedColor == BaseColor;
+    }
+
     public override void Reset()
     {
         Active = true;
@@ -59,11 +64,11 @@ public class LogicColorPicker : LogicOptionBase
     }
 
     public Color BaseColor { get; }
-    public Color DefinedColor { get; set; }
-    private List<Color> InitialColors { get; }
+    public List<Color> InitialColors { get; }
 
     public bool Active { get; set; }
     public bool UseRandomColor { get; set; }
+    public Color DefinedColor { get; set; }
 
     public void PickRandomColor()
     {
@@ -109,5 +114,21 @@ public class LogicColorPicker : LogicOptionBase
     public override string GetOptionUiType()
     {
         return "Color Picker";
+    }
+
+    public override string GetValueAsString()
+    {
+        return $"{(Active ? "true" : "false")}_{(UseRandomColor ? "true" : "false")}_{ColorTranslator.ToHtml(DefinedColor)}";
+    }
+
+    public override void SetValueFromString(string value)
+    {
+        var properties = value.Split("_");
+        if (properties.Length != 3) throw new Exception($"Invalid value \"{value}\"");
+        if (!bool.TryParse(properties[0], out var active)) throw new Exception($"Invalid value \"{value}\"");
+        Active = active;
+        if (!bool.TryParse(properties[1], out var random)) throw new Exception($"Invalid value \"{value}\"");
+        UseRandomColor = random;
+        DefinedColor = ColorTranslator.FromHtml(properties[2]);
     }
 }
