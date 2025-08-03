@@ -42,6 +42,9 @@ public static class CommandFileParser
                 case "LoadSettings":
                     GenericCommands.LoadSettings(inputs[1]);
                     break;
+                case "LoadCosmetics":
+                    GenericCommands.LoadCosmetics(inputs[1]);
+                    break;
                 case "Logging":
                     GenericCommands.Logging(inputs[1], inputs.Length > 2 ? inputs[2] : null, inputs.Length > 2 ? inputs[2] : null);
                     break;
