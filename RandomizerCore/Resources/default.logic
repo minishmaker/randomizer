@@ -8112,9 +8112,9 @@ Hills_BombCave_Chest;				Any;					0x32-0x13-0x00;											(|(&Helpers.AccessEa
 Minish_GreatFairy_NPC;				Any;					0x00B7B4;												(|(&Helpers.AccessMinishWoods, Items.PacciCane), Helpers.Hundo);									Items.Wallet
 Hills_FarmDigCave_Item				`RUPEE`;				0x0F3C9F;												(|(&Helpers.AccessMinishWoods, Items.MoleMitts), Helpers.Hundo);									Items.Rupee20
 
-AccessLonLon;						Helper;			;											(|Helpers.LakeWindCrest, (&Helpers.CanDestroyTrees, (|Items.LonLonKey, Items.RocsCape, Helpers.LonLonNorthShortcut, (&Items.Flippers, Items.MoleMitts))));
+AccessLonLon;						Helper;			;											(|Helpers.LakeWindCrest,(&Helpers.CanDestroyTrees, (|Items.LonLonKey, Items.RocsCape, Helpers.LonLonNorthShortcut, (&Items.Flippers, Items.MoleMitts))));
 
-LonLon_RanchPot;					`POT`;			0x0F2C9B:FirstByte, 0x0F2C9D:SecondByte;			(|Helpers.CanDestroyTrees, Helpers.LakeWindCrest, Helpers.Hundo);																					Items.LonLonKey
+LonLon_RanchPot;					`POT`;			0x0F2C9B:FirstByte, 0x0F2C9D:SecondByte;			(|Helpers.CanDestroyTrees, Helpers.LakeWindCrest, Helpers.MinishWindCrest, Helpers.Hundo);																					Items.LonLonKey
 LonLon_PuddleFusion_BigChest;		`REDFUSION`;		0x32-0x0F-0x00;								(|(&Helpers.MayorFusion, Helpers.AccessLonLon), Helpers.Hundo);																					Items.Wallet
 LonLon_Cave_Chest;				Any;				0x32-0x0C-0x00;								(|(&Helpers.AccessLonLon, (|Helpers.CanSplit2, Helpers.CanSplit3, Helpers.CanSplit4)), Helpers.Hundo);													Items.Rupee50
 LonLon_CaveSecret_Chest;			Any;				0x32-0x0D-0x00;								(|(&Helpers.AccessLonLon, (|Helpers.CanSplit2, Helpers.CanSplit3, Helpers.CanSplit4), Helpers.BombWalls, Helpers.LonLonSecret), Helpers.Hundo);				Items.Kinstone.BlueS
