@@ -8181,7 +8181,7 @@ WitchDiggingCave_Chest;					Any;					0x0C-0x00-0x00;											(|(&Helpers.Acces
 MinishWoods_NorthFusion_Chest;				`GREENFUSION`;		0x0FE07E;												(|(&Helpers.Shared44Fusion, Helpers.AccessNorthMinish), Helpers.Hundo);					Items.Kinstone.BlueS
 MinishWoods_TopHP;						`HP`;				0x0F4347;       											(|Helpers.MinishNorthHP, Helpers.Hundo);												Items.PieceOfHeart
 
-AccessMinishWoods;						Helper;				;														(|Helpers.CanDestroyTrees, Helpers.LakeWindCrest);
+AccessMinishWoods;						Helper;				;														(|Helpers.CanDestroyTrees, Helpers.LakeWindCrest,Helper.MinishWindCrest);
 
 MinishWoods_WestFusion_Chest;				`GREENFUSION`;		0x0FE0CE;												(|(&Helpers.Shared47Fusion, Helpers.AccessMinishWoods), Helpers.Hundo);					Items.Rupee200
 MinishWoods_LikeLikeDiggingCave_LeftChest;	Any;					0x0C-0x00-0x01; 											(|(&Helpers.AccessMinishWoods, Items.MoleMitts, Helpers.LikeLike), Helpers.Hundo);		Items.Rupee50
