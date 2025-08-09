@@ -2,5 +2,7 @@
 	PUSH
 	ORG $113A14
 	#incbin "asm/guaranteedBarlov.dmp"
+	ORG $06DBF2
+	#incbin "asm/instantBarlov.dmp"
 	POP
 #endif 
