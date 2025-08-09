@@ -5939,7 +5939,7 @@ ShopScrubCrenel;		Helper;;	(|(+`SHOP_PRICE`, Items.Rupee1, Items.Rupee5:5, Items
 		Dampe1Fusion;			Helper;;	Helpers.CanFuseBlueS, Locations.Valley_DampeNPC																						#RightGrave				30
 		Spekter1Fusion;		Helper;;	Helpers.CanFuseBlueGhost, Helpers.AccessValley, Helpers.DarkRooms, Helpers.Graveyard													#USELESSChestGame			31
 		HurdyFusion;			Helper;;	Helpers.CanFuseBlueS																												#SHFTree					32
-		GoronLeftFusion;		Helper;;	Helpers.CanFuseBlueS, (&Helpers.GoronCave, (|Helpers.CanDestroyTrees, Helpers.LakeWindCrest))														#GoronMerchant			33
+		GoronLeftFusion;		Helper;;	Helpers.CanFuseBlueS, (&Helpers.GoronCave, (|Helpers.CanDestroyTrees, Helpers.LakeWindCrest, Helpers.MinishWindCrest))				#GoronMerchant			33
 	!endif
 !endif
 !ifdef - NO_GREEN_FUSIONS
@@ -8296,7 +8296,7 @@ Hills_BombCave_Chest;				Any;					0x32-0x13-0x00;											(|(&Helpers.AccessEa
 Minish_GreatFairy_NPC;				Any;					0x00B7B4;												(|(&Helpers.AccessMinishWoods, Items.PacciCane), Helpers.Hundo);									Items.Wallet
 Hills_FarmDigCave_Item				`RUPEE`;				0x0F3C9F;												(|(&Helpers.AccessMinishWoods, Items.MoleMitts), Helpers.Hundo);									Items.Rupee20
 
-AccessLonLon;						Helper;			;											(|Helpers.LakeWindCrest,(& (|Helpers.CanDestroyTrees, Helper.MinishWindCrest), (|Items.LonLonKey, Items.RocsCape, Helpers.LonLonNorthShortcut, (&Items.Flippers, Items.MoleMitts))));
+AccessLonLon;						Helper;			;											(|Helpers.LakeWindCrest,(& (|Helpers.CanDestroyTrees, Helpers.MinishWindCrest), (|Items.LonLonKey, Items.RocsCape, Helpers.LonLonNorthShortcut, (&Items.Flippers, Items.MoleMitts))));
 
 LonLon_RanchPot;					`POT`;			0x0F2C9B:FirstByte, 0x0F2C9D:SecondByte;			(|Helpers.CanDestroyTrees, Helpers.LakeWindCrest, Helpers.MinishWindCrest, Helpers.Hundo);																					Items.LonLonKey
 LonLon_PuddleFusion_BigChest;		`REDFUSION`;		0x32-0x0F-0x00;								(|(&Helpers.MayorFusion, Helpers.AccessLonLon), Helpers.Hundo);																					Items.Wallet
@@ -8306,8 +8306,8 @@ LonLon_Path_FusionChest;			`GREENFUSION`;	0x0FE086;									(|(&Helpers.Shared50
 LonLon_Path_HP;					`HP`;			0x0D56EF;									(|(&Helpers.AccessLonLon, Helpers.BonkedTrees), Helpers.Hundo);																					Items.PieceOfHeart
 LonLon_DigSpot					`DIG`;			0x0F6CFF;									(|(&Helpers.AccessLonLon, (|Items.PacciCane, Items.RocsCape), Items.MoleMitts), Helpers.Hundo);														Items.Rupee50
 LonLon_NorthMinishCrack_Chest;		Any;				0x27-0x00-0x00;								(|(&Helpers.AccessLonLon, (|Items.PacciCane, Items.RocsCape)), Helpers.Hundo);																		Items.Kinstone.RedV
-LonLon_GoronCaveFusion_SmallChest;	`BLUEFUSION`;		0x2F-0x01-0x00;								(|(&Helpers.4WallFusions, Helpers.GoronCave, (|Helpers.CanDestroyTrees, Helpers.LakeWindCrest)), Helpers.Hundo);										Items.Rupee200
-LonLon_GoronCaveFusion_BigChest;	`BLUEFUSION`;		0x2F-0x01-0x01;								(|(&Helpers.6WallFusions, Helpers.GoronCave, (|Helpers.CanDestroyTrees, Helpers.LakeWindCrest)), Helpers.Hundo);										Items.Bottle
+LonLon_GoronCaveFusion_SmallChest;	`BLUEFUSION`;		0x2F-0x01-0x00;								(|(&Helpers.4WallFusions, Helpers.GoronCave, (|Helpers.CanDestroyTrees, Helpers.LakeWindCrest, Helpers.MinishWindCrest)), Helpers.Hundo);					Items.Rupee200
+LonLon_GoronCaveFusion_BigChest;	`BLUEFUSION`;		0x2F-0x01-0x01;								(|(&Helpers.6WallFusions, Helpers.GoronCave, (|Helpers.CanDestroyTrees, Helpers.LakeWindCrest, Helpers.MinishWindCrest)), Helpers.Hundo);					Items.Bottle
 
 # Lower Veil Falls
 FallsLower_LonLonFusion_Chest;			`GREENFUSION`;	0x0FE0FE;															(|(&Helpers.Shared60Fusion, Helpers.AccessMinishWoods, Items.PacciCane), Helpers.Hundo);									Items.Rupee200
@@ -8365,7 +8365,7 @@ WitchDiggingCave_Chest;					Any;					0x0C-0x00-0x00;											(|(&Helpers.Acces
 MinishWoods_NorthFusion_Chest;				`GREENFUSION`;		0x0FE07E;												(|(&Helpers.Shared44Fusion, Helpers.AccessNorthMinish), Helpers.Hundo);					Items.Kinstone.BlueS
 MinishWoods_TopHP;						`HP`;				0x0F4347;       											(|Helpers.MinishNorthHP, Helpers.Hundo);												Items.PieceOfHeart
 
-AccessMinishWoods;						Helper;				;														(|Helpers.CanDestroyTrees, Helpers.LakeWindCrest,Helper.MinishWindCrest);
+AccessMinishWoods;						Helper;				;														(|Helpers.CanDestroyTrees, Helpers.LakeWindCrest, Helpers.MinishWindCrest);
 
 MinishWoods_WestFusion_Chest;				`GREENFUSION`;		0x0FE0CE;												(|(&Helpers.Shared47Fusion, Helpers.AccessMinishWoods), Helpers.Hundo);					Items.Rupee200
 MinishWoods_LikeLikeDiggingCave_LeftChest;	Any;					0x0C-0x00-0x01; 											(|(&Helpers.AccessMinishWoods, Items.MoleMitts, Helpers.LikeLike), Helpers.Hundo);		Items.Rupee50
