@@ -84,13 +84,21 @@ String("You need to"); BYTE 0x0A
 #ifdef requirementFigurinesAmount
     String("collect enough figurines and"); BYTE 0x0A
 #endif
-#ifdef noDHC
-    String("pull the pedestal.")
+#ifdef vaatiWarp
+    String("pull the pedestal and"); BYTE 0x0A; String("defeat Vaati in sanctuary."); BYTE 0x0A;
 #else
-    #ifdef openDHC
-        String("defeat Vaati.")
+    #ifdef openPed
+        String("pull the pedestal in DHC.")
     #else
-        String("pull the pedestal and defeat Vaati.")
+        #ifdef noDHC
+            String("pull the pedestal in sanctuary.")
+        #else
+            #ifdef openDHC
+                String("defeat Vaati in DHC.")
+            #else
+                String("pull the pedestal and"); BYTE 0x0A; String("defeat Vaati in DHC."); BYTE 0x0A;
+            #endif
+        #endif
     #endif
 #endif
 #ifdef requirementPrize

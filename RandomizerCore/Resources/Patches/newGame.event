@@ -24,6 +24,7 @@ POIN fastBombArrow;	WORD 0x2002B4D 1
 POIN kinstoneBag;	WORD 0x2002B4B 1
 POIN fusionFlags;	WORD 0x2002C81 13
 POIN startingFlags;	WORD 0x2002C9C 116
+POIN dhcGuards;		WORD 0x2002DB4 1
 POIN dungeonPortal;	WORD 0x2002EBD 6
 #ifndef requirementFigurinesAmount
 	POIN figurines;		WORD 0x2002B0E 18
@@ -569,6 +570,9 @@ BYTE 0x40 //remove the messages when picking shells for the first time
 
 fusionFlags:
 BYTE mC81 mC82 mC83 mC84 mC85 mC86 mC87 mC88 mC89 mC8A mC8B mC8C mC8D
+
+dhcGuards:
+BYTE 0x02 // move the dhc guards out of the way of the south entrance
 
 kinstoneBag:
 BYTE 0x40
@@ -1190,6 +1194,7 @@ BYTE 0x10
 #endif
 cuccoGame:
 BYTE ( (cuccoSkippedLevels << 3) | (cuccoHeartPieceFlag << 7) )
+
 
 startingFlags:
 	//                 0x00 0x01 0x02 0x03 0x04 0x05 0x06 0x07 0x08 0x09 0x0A 0x0B 0x0C 0x0D 0x0E 0x0F
