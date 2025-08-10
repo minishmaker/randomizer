@@ -4244,6 +4244,15 @@ GotSwords; 	Helper; ; `GOTSWORDS`
 
 All_Requirements_Met;	`ALLREQUIREMENTS`;	requirementPrizeItem:Define:FirstByte, requirementPrizeSub:Define:SecondByte;	Helpers.GotSwords `GOTELEMENTS` `DHC_FIG` `DHC_AD`; `REQREWARD`
 
+!ifdef - OPENPED
+	AccessDHC; 	Helper;;
+	!define - DHCBK - Items.Rupee5
+	!define - OPENDHC
+	!undefine - PED_ITEMS
+	!eventdefine - openPed
+	!eventdefine - pedGoal
+!endif
+
 !ifdef - OPENDHC
 	AccessDHC; 	Helper;;
     !eventdefine - openDHC
@@ -4252,6 +4261,7 @@ All_Requirements_Met;	`ALLREQUIREMENTS`;	requirementPrizeItem:Define:FirstByte, 
 	!undefine - PED_ITEMS
 	!ifdef - NODHC
 		!eventdefine - noDHC
+		!eventdefine - pedGoal
 	!endif
 !endif
 !ifdef - PED_ITEMS

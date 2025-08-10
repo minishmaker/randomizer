@@ -4,10 +4,19 @@
 	#endif
 #endif
 
+#ifdef openPed
+    #ifndef openDHC
+        #define openDHC
+    #endif
+#endif
+
 #ifdef openDHC
 	#ifdef noDHC
 		#undef noDHC
 	#endif
+	
+	// Remove the check for already watched the stained glass cutscene so that it's repeatable
+    PUSH; ORG $4EB12; BYTE 0 0 0 0 0 0 0 0 0 0; POP
 #endif
 
 #ifdef noDHC
@@ -58,7 +67,7 @@ PUSH; ORG $F4A9C; BYTE 0xFF; ORG $F4C18; POIN $F4AAC; POP//sanctuary switches do
 //remove wind element from pedestal animation
 PUSH; ORG $13EDC; POIN $670402; POP
 
-#ifndef noDHC
+#ifndef pedGoal
 //remove the stained glass scene
 PUSH; ORG $532F6; SHORT 0x2310; POP
 #else
