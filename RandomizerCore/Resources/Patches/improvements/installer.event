@@ -531,6 +531,8 @@ PUSH; ORG $9F3A4; jumpToHack(butterflyFix5); POP
 ALIGN 4
 butterflyFix5:
 #incbin "asm/butterflyFix5.dmp"
+//fix the initial Z speed when the subtype is nonzero (and unobtainable item with subtype 2)
+PUSH; ORG $9F328; SHORT 0xE002; POP
 
 //unlock all songs, why not
 PUSH; ORG $6E446; SHORT 0; POP
