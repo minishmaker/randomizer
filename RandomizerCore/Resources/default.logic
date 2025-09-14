@@ -2209,7 +2209,6 @@
 		!define - DHC_SMALL - DHCSmallV
 		!define - RC_SMALL - RCSmallV
 	!else
-		!define - SMALL_KEYS_ELSE	# Simplifies if keys are shuffled outside their dungeon
 		!ifdef - SMALL_KEYS_REGION
 			!define - DWS_SMALL - DWSSmallOutside
 			!define - COF_SMALL - CoFSmallOutside
@@ -2219,6 +2218,7 @@
 			!define - DHC_SMALL - DHCSmallOutside
 			!define - RC_SMALL - RCSmallOutside
 		!else
+			!define - SMALL_KEYS_ELSE	# Simplifies if keys are shuffled outside their dungeon
 			!ifdef - SMALL_KEYS_DUNGEON
 				!define - DWS_SMALL - Small
 				!define - COF_SMALL - Small
