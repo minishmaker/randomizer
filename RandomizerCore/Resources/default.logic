@@ -6921,28 +6921,24 @@ ShopScrubCrenel;		Helper;;	(|(+`SHOP_PRICE`, Items.Rupee1, Items.Rupee5:5, Items
 !endif
 	!define - PoWFans - 
 	!define - PoWBigChest - 
-	!define - PoW1stDoor - 
+	!ifdef - POW1KEY
+		!ifdef - SMALL_KEYS_VANILLA
+			!undefine - PoWFans -
+			!define - PoWFans - , `SK_1_POW_OR_UNIVERSAL`
+		!endif
+	!endif
 	!ifdef - BIG_KEYS_VANILLA
 		!undefine - PoWFans - 
 		!undefine - PoWBigChest -
 		!define - PoWFans - , `SK_2_POW_OR_UNIVERSAL`
 		!define - PoWBigChest - , `SK_3_POW_OR_UNIVERSAL`
 	!endif
-	!ifdef - SMALL_KEYS_VANILLA
-		!undefine - PoWFans - 
-		!undefine - PoW1stDoor -
-		!define - PoWFans - , `SK_2_POW_OR_UNIVERSAL`
-		!define - PoW1stDoor - , `SK_3_POW_OR_UNIVERSAL`
-	!endif
 	!ifdef - POW_LOCKED_KEYS
 		!ifndef - BIG_KEYS_VANILLA
-			!ifndef - SMALL_KEYS_ELSE
-					!undefine - PoWFans - 
+			!ifndef - SMALL_KEYS_VANILLA
+				!ifndef - SMALL_KEYS_ELSE
+					!undefine - PoWFans -
 					!undefine - PoWBigChest -
-				!ifdef - SMALL_KEYS_VANILLA
-					!define - PoWFans - , `SK_2_POW_OR_UNIVERSAL`
-					!define - PoWBigChest - , `SK_3_POW_OR_UNIVERSAL`
-				!else
 					!ifdef - SMALL_KEYS_STANDARD
 						!define - PoWFans - , (&`SK_2_POW_OR_UNIVERSAL`, Helpers.PoWPlatformClones, Items.RocsCape, Helpers.PoWDrop, (|Items.BombBag, Helpers.HasBow, Helpers.HasBeam, Helpers.HasBoomerang), Helpers.DarkRooms, Helpers.BombWalls, Helpers.OverworldBlocks)
 						!define - PoWBigChest - , (&`SK_3_POW_OR_UNIVERSAL`, Helpers.PoWPlatformClones, Items.RocsCape, Helpers.PoWDrop, (|Items.BombBag, Helpers.HasBow, Helpers.HasBeam, Helpers.HasBoomerang), Helpers.DarkRooms, Helpers.BombWalls, Helpers.OverworldBlocks)
