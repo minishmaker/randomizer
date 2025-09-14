@@ -312,6 +312,11 @@ Generating seeds with this shuffler may freeze the randomizer application for ma
         YAMLPath.Text = _configuration.CustomYAMLFilepath;
         BrowseCustomYAML.Enabled = UseCustomYAML.Checked;
 
+        compactUIDefaultMenuItem.Checked = _configuration.UseCompactUIOnStart;
+        UseCompactUI.Checked = _configuration.UseCompactUIOnStart;
+        CompactUINotSupportedLabel.Visible = !_shufflerController.IsCompactModeSupported();
+        _useCompactUI = UseCompactUI.Checked && _shufflerController.IsCompactModeSupported();
+
         logAllTransactionsToolStripMenuItem.Checked = _configuration.UseVerboseLogger;
         _shufflerController.SetLoggerVerbosity(_configuration.UseVerboseLogger);
 
@@ -320,9 +325,6 @@ Generating seeds with this shuffler may freeze the randomizer application for ma
 
         RandomizationAttempts.Text = $"{_configuration.MaximumRandomizationRetryCount}";
         UseSphereBasedShuffler.Checked = _configuration.UseHendrusShuffler;
-
-        _defaultSettings = _shufflerController.GetSelectedSettingsString();
-        _defaultCosmetics = _shufflerController.GetSelectedCosmeticsString();
 
         _shufflerController.SetRandomizationSeed(seed);
         _yamlController.SetRandomizationSeed(seed);
@@ -340,7 +342,7 @@ Generating seeds with this shuffler may freeze the randomizer application for ma
         if (_randomizedRomCreated)
             TabPane.TabPages.Add(SeedOutput);
 
-        var options = _shufflerController.GetSelectedOptions();
+        var options = _useCompactUI ? _shufflerController.GetCompactOptions() : _shufflerController.GetSelectedOptions();
         var wrappedOptions = WrappedLogicOptionFactory.BuildGenericWrappedLogicOptions(options);
         var pages = wrappedOptions.GroupBy(option => option.Page);
 
@@ -348,6 +350,34 @@ Generating seeds with this shuffler may freeze the randomizer application for ma
         {
             TabPane.TabPages.Add(UIGenerator.BuildSettingsPage(page.ToList(), page.Key));
         }
+    }
+
+    private void SwitchToCompactMode()
+    {
+        foreach (var setting in _shufflerController.GetSelectedOptions())
+        {
+            setting.ClearObservers();
+        }
+        _shufflerController.UpdateCompactOptionValues(true);
+        _useCompactUI = true;
+        UseCompactUI.Checked = true;
+        // This is a workaround for a weird issue with slow loading and visual glitches when the tabs are modified
+        TabPane.Visible = false;
+        UpdateUIWithLogicOptions();
+        TabPane.Visible = true;
+    }
+
+    private void SwitchToNormalMode()
+    {
+        foreach (var setting in _shufflerController.GetCompactOptions())
+        {
+            setting.ClearObservers();
+        }
+        _useCompactUI = false;
+        UseCompactUI.Checked = false;
+        TabPane.Visible = false;
+        UpdateUIWithLogicOptions();
+        TabPane.Visible = true;
     }
 
     private void DisplayAndUpdateSeedInfoPage()
@@ -366,7 +396,7 @@ Generating seeds with this shuffler may freeze the randomizer application for ma
             UpdateSeedInfoPageYaml(settingsString, cosmeticsString);
         else
             UpdateSeedInfoPageBase(settingsString, cosmeticsString);
-            
+
         DisplaySeedHash();
 
         TabPane.SelectedTab = SeedOutput;

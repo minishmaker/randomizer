@@ -128,6 +128,7 @@ partial class MinishCapRandomizerUI
 			return;
 		}
 
+        var successMessage = "Random settings loaded successfully!";
         var result = _yamlController.LoadLogicSettingsFromYaml($"{_presetPath}Mystery Settings{Path.DirectorySeparatorChar}{_settingPresets.SettingsWeights.First(preset => preset.PresetName == (string)SettingsWeights.SelectedItem!).Filename}.yaml");
 
         if (result)
@@ -135,10 +136,21 @@ partial class MinishCapRandomizerUI
             _shufflerController.LoadSettingsFromSettingString(_yamlController.GetSelectedSettingsString());
             _recentSettingsPreset = (string?)SettingsWeights.SelectedItem;
             _recentSettingsPresetHash = _yamlController.GetSelectedOptions().OnlyLogic().GetHash();
+
+            if (_useCompactUI)
+            {
+                var isCompatible = _shufflerController.UpdateCompactOptionValues(false);
+                if (!isCompatible)
+                {
+                    SwitchToNormalMode();
+                    successMessage += "\nSettings UI was switched to normal mode to support all the options from the settings preset.";
+                }
+                else _shufflerController.UpdateCompactOptionValues(true);
+            }
         }
 
 		DisplayConditionalAlertFromShufflerResult(result,
-			"Random settings loaded successfully!", "Settings Loaded", "Failed to load Settings preset!", "Failed to Load Settings");
+			successMessage, "Settings Loaded", "Failed to load Settings preset!", "Failed to Load Settings");
 	}
 
 	private void LoadCosmeticSample_Click(object sender, EventArgs e)
@@ -151,6 +163,7 @@ partial class MinishCapRandomizerUI
 			return;
 		}
 
+        var successMessage = "Random cosmetics loaded successfully!";
         var result = _yamlController.LoadCosmeticsFromYaml($"{_presetPath}Mystery Cosmetics{Path.DirectorySeparatorChar}{_settingPresets.CosmeticsWeights.First(preset => preset.PresetName == (string)CosmeticsWeights.SelectedItem!).Filename}.yaml");
 
         if (result)
@@ -158,9 +171,20 @@ partial class MinishCapRandomizerUI
             _shufflerController.LoadCosmeticsFromCosmeticsString(_yamlController.GetSelectedCosmeticsString());
             _recentCosmeticsPreset = (string?)CosmeticsWeights.SelectedItem;
             _recentCosmeticsPresetHash = _yamlController.GetSelectedOptions().OnlyCosmetic().GetHash();
+
+            if (_useCompactUI)
+            {
+                var isCompatible = _shufflerController.UpdateCompactOptionValues(false);
+                if (!isCompatible)
+                {
+                    SwitchToNormalMode();
+                    successMessage += "\nSettings UI was switched to normal mode to support all the options from the cosmetics preset.";
+                }
+                else _shufflerController.UpdateCompactOptionValues(true);
+            }
         }
 
 		DisplayConditionalAlertFromShufflerResult(result,
-			"Random cosmetics loaded successfully!", "Cosmetics Loaded", "Failed to load cosmetics preset!", "Failed to Load Cosmetics");
+			successMessage, "Cosmetics Loaded", "Failed to load cosmetics preset!", "Failed to Load Cosmetics");
 	}
 }

@@ -31,6 +31,8 @@ public class DirectiveParser
     public string? LogicVersion;
     public bool EnsureReachability;
     public readonly List<LogicOptionBase> Options;
+    public readonly List<LogicOptionBase> CompactOptions;
+    public readonly List<LogicOptionBase> CompactHiddenOptions;
     public readonly Dictionary<Item, ChanceItemSet> Replacements;
     public readonly Dictionary<string, string> PrizePlacements;
     public uint? RomCrc;
@@ -38,6 +40,8 @@ public class DirectiveParser
     public DirectiveParser()
     {
         Options = new List<LogicOptionBase>();
+        CompactOptions = new List<LogicOptionBase>();
+        CompactHiddenOptions = new List<LogicOptionBase>();
         _defines = new List<LogicDefine>();
         EventDefines = new List<EventDefine>();
         LocationTypeOverrides = new Dictionary<Item, LocationType>();
@@ -79,6 +83,9 @@ public class DirectiveParser
             case "!crc":
             case "!dropdown":
             case "!numberbox":
+            case "!compactmirror":
+            case "!compactflag":
+            case "!compactdropdown":
                 return true;
             case "!define":
             case "!addition":
@@ -148,6 +155,15 @@ public class DirectiveParser
                     break;
                 case "!dropdown":
                     Options.Add(ParseDropdownDirective(mainDirectiveParts));
+                    break;
+                case "!compactmirror":
+                    CompactOptions.Add(ParseCompactMirrorDirective(mainDirectiveParts));
+                    break;
+                case "!compactflag":
+                    CompactOptions.Add(ParseCompactFlagDirective(mainDirectiveParts));
+                    break;
+                case "!compactdropdown":
+                    CompactOptions.Add(ParseCompactDropdownDirective(mainDirectiveParts));
                     break;
                 case "!numberbox":
                     Options.Add(ParseNumberboxDirective(mainDirectiveParts));
@@ -336,9 +352,27 @@ public class DirectiveParser
         return bytes;
     }
 
+    public void DetermineCompactHiddenSettings()
+    {
+        foreach (var setting in Options)
+        {
+            var combinedSettings = CompactOptions.Where(s => s.GetChildren().Contains(setting)).ToList();
+            if (combinedSettings.Count > 1)
+            {
+                throw new ParserException("A setting can only be referenced by at most one compact setting!");
+            }
+            if (combinedSettings.Count == 0)
+            {
+                CompactHiddenOptions.Add(setting);
+            }
+        }
+    }
+
     public void ClearOptions()
     {
         Options.Clear();
+        CompactOptions.Clear();
+        CompactHiddenOptions.Clear();
     }
 
     public void ClearReplacements()
@@ -648,28 +682,30 @@ public class DirectiveParser
         if (optionType == LogicOptionType.Untyped)
             throw new ParserException($"Dropdown has an invalid type! ({directiveParts[2]})");
 
-        var selectionDict = new Dictionary<string, string>();
+        var optionDisplayNames = new List<string>();
+        var options = new List<string>();
         var descriptionText = new StringBuilder();
         descriptionText.AppendLine(directiveParts[6]);
         var defaultSelection = directiveParts[7];
 
         for (var i = 8; i < directiveParts.Length;)
         {
-            selectionDict.Add(directiveParts[i++], directiveParts[i++]);
+            optionDisplayNames.Add(directiveParts[i++]);
+            options.Add(directiveParts[i++]);
             descriptionText.AppendLine($"\n{directiveParts[i++]}");
         }
 
-        if (selectionDict.Keys.Count != (directiveParts.Length - 8) / 3)
+        if (optionDisplayNames.ToHashSet().Count != (directiveParts.Length - 8) / 3)
             throw new ParserException("Dropdown has multiple options with the same readable name!");
 
-        if (selectionDict.Values.Count != (directiveParts.Length - 8) / 3)
+        if (options.ToHashSet().Count != (directiveParts.Length - 8) / 3)
             throw new ParserException("Dropdown has multiple options with the same define name!");
 
-        if (!selectionDict.ContainsValue(defaultSelection))
+        if (!options.Contains(defaultSelection))
             throw new ParserException($"Dropdown has an invalid default value {defaultSelection}!");
 
         return new LogicDropdown(directiveParts[4], directiveParts[5], directiveParts[3],
-            directiveParts[1], descriptionText.ToString(), defaultSelection, optionType, selectionDict);
+            directiveParts[1], descriptionText.ToString(), defaultSelection, optionType, optionDisplayNames.ToArray(), options.ToArray());
     }
 
     private LogicColorPicker ParseColorDirective(string[] directiveParts)
@@ -729,6 +765,141 @@ public class DirectiveParser
 
         return new LogicNumberBox(directiveParts[4], directiveParts[5], directiveParts[3],
             directiveParts[1], defaultValue, minValue, maxValue, directiveParts[6], optionType);
+    }
+
+    private LogicOptionBase ParseCompactMirrorDirective(string[] directiveParts)
+    {
+        if (directiveParts.Length != 4)
+            throw new ParserException("Compact mirror command has an incorrect number of parameters!");
+
+        var originalSettingName = directiveParts[3].Trim();
+        var originalSetting = Options.FirstOrDefault(setting => setting.Name == originalSettingName);
+
+        switch (originalSetting)
+        {
+            case LogicFlag flag:
+                return new CompactFlag(flag.Name, flag.NiceName, flag.Default, directiveParts[2], directiveParts[1], flag.DescriptionText, flag.Type, [originalSetting], ["false"], ["true"]);
+            case LogicDropdown dropdown:
+                return new CompactDropdown(dropdown.Name, dropdown.NiceName, directiveParts[2], directiveParts[1], dropdown.DescriptionText, dropdown.DefaultSelection, dropdown.Type, dropdown.SelectionOptionNames, dropdown.SelectionOptions, [originalSetting], dropdown.SelectionOptions.Select(option => new string[] { option }).ToArray());
+            case LogicNumberBox numberBox:
+                return new MirroredNumberBox(numberBox.Name, numberBox.NiceName, directiveParts[2], directiveParts[1], numberBox.DefaultValue, numberBox.MinValue, numberBox.MaxValue, numberBox.DescriptionText, numberBox.Type, numberBox);
+            case LogicColorPicker colorPicker:
+                return new MirroredColorPicker(colorPicker.Name, colorPicker.NiceName, directiveParts[2], directiveParts[1], colorPicker.DescriptionText, colorPicker.Type, colorPicker.InitialColors, colorPicker);
+        }
+        throw new ParserException($"No setting with name {originalSettingName} found!");
+    }
+
+    private CompactFlag ParseCompactFlagDirective(string[] directiveParts)
+    {
+        if (directiveParts.Length != 9)
+            throw new ParserException("Compact flag has an incorrect number of parameters!");
+
+        var (originalSettingNames, originalSettings, settingType) = ParseCombinedSettings(directiveParts[4]);
+        var originalOptionsFalse = ParseCombinedOptionValues(directiveParts[7], originalSettings);
+        var originalOptionsTrue = ParseCombinedOptionValues(directiveParts[8], originalSettings);
+
+        if (originalOptionsFalse == originalOptionsTrue)
+            throw new ParserException("Both flag options have the same value!");
+
+        if (!bool.TryParse(directiveParts[6], out var defaultActive))
+            throw new ParserException($"{directiveParts[6]} is not a valid boolean value");
+
+        return new CompactFlag(string.Join(',', originalSettingNames), directiveParts[3], defaultActive, directiveParts[2],
+            directiveParts[1], directiveParts[5], settingType,
+            originalSettings.ToArray(), originalOptionsFalse, originalOptionsTrue);
+    }
+
+    private CompactDropdown ParseCompactDropdownDirective(string[] directiveParts)
+    {
+        if (directiveParts.Length % 3 != 1 || directiveParts.Length < 10)
+            throw new ParserException("Compact dropdown has an incorrect number of parameters!");
+
+        var optionDisplayNames = new List<string>();
+        var options = new List<string>();
+        var descriptionText = new StringBuilder();
+        descriptionText.AppendLine(directiveParts[5]);
+        var defaultSelection = directiveParts[6];
+
+        var (originalSettingNames, originalSettings, settingType) = ParseCombinedSettings(directiveParts[4]);
+        var originalOptions = new List<string[]>((directiveParts.Length - 7) / 3);
+        for (var i = 7; i < directiveParts.Length;)
+        {
+            optionDisplayNames.Add(directiveParts[i++]);
+            var originalOptionNames = ParseCombinedOptionValues(directiveParts[i++], originalSettings);
+            options.Add(string.Join(',', originalOptionNames));
+            descriptionText.AppendLine($"\n{directiveParts[i++]}");
+            if (originalOptionNames.Length != originalSettingNames.Length)
+                throw new ParserException("Incorrect count!");
+            originalOptions.Add(originalOptionNames);
+        }
+
+        if (optionDisplayNames.ToHashSet().Count != (directiveParts.Length - 7) / 3)
+            throw new ParserException("Dropdown has multiple options with the same readable name!");
+
+        if (options.ToHashSet().Count != (directiveParts.Length - 7) / 3 || originalOptions.ToHashSet().Count != originalOptions.Count)
+            throw new ParserException("Dropdown has multiple options with the same define name!");
+
+        if (!optionDisplayNames.Contains(defaultSelection))
+            throw new ParserException($"Dropdown has an invalid default value {defaultSelection}!");
+
+        return new CompactDropdown(string.Join(',', originalSettingNames), directiveParts[3], directiveParts[2],
+            directiveParts[1], descriptionText.ToString(), options[optionDisplayNames.IndexOf(defaultSelection)], settingType, optionDisplayNames.ToArray(),
+            options.ToArray(), originalSettings.ToArray(), originalOptions.ToArray());
+    }
+
+    private (string[] originalSettingNames, List<LogicOptionBase> originalSettings, LogicOptionType) ParseCombinedSettings(string text)
+    {
+        var originalSettingNames = text.Split(",").Select(name => name.Trim()).ToArray();
+        var originalSettings = new List<LogicOptionBase>(originalSettingNames.Length);
+        var settingType = LogicOptionType.Untyped;
+        for (var i = 0; i < originalSettingNames.Length; i++)
+        {
+            var originalSetting = Options.FirstOrDefault(setting => setting.Name == originalSettingNames[i]);
+            if (originalSetting == null)
+                throw new ParserException($"No setting with name {originalSettingNames[i]} found!");
+            originalSettings.Add(originalSetting);
+            if (settingType == LogicOptionType.Untyped)
+                settingType = originalSetting.Type;
+            if (settingType != originalSetting.Type)
+                throw new ParserException($"Conflicting types!");
+        }
+
+        if (settingType == LogicOptionType.Untyped)
+            throw new ParserException($"Setting has an invalid type! (optionType)");
+
+        return (originalSettingNames, originalSettings, settingType);
+    }
+
+    private static string[] ParseCombinedOptionValues(string text, IList<LogicOptionBase> originalSettings)
+    {
+        var originalOptions = text.Split(",").Select(name => name.Trim()).ToArray();
+        if (originalOptions.Length != originalSettings.Count)
+            throw new ParserException("Incorrect count!");
+
+        for (var i = 0; i < originalOptions.Length; i++)
+        {
+            switch (originalSettings[i])
+            {
+                case LogicFlag:
+                    if (!bool.TryParse(originalOptions[i], out var active))
+                        throw new ParserException($"Invalid value {originalOptions[i]} for flag {originalSettings[i].Name}!");
+                    originalOptions[i] = active ? "true" : "false";
+                    break;
+                case LogicDropdown dropdown:
+                    if (!dropdown.SelectionOptions.Contains(originalOptions[i]))
+                        throw new ParserException($"Invalid value {originalOptions[i]} for dropdown {originalSettings[i].Name}!");
+                    break;
+                case LogicNumberBox numberBox:
+                    if (!int.TryParse(originalOptions[i], out var value) || value < numberBox.MinValue || value > numberBox.MaxValue)
+                        throw new ParserException($"Invalid value {originalOptions[i]} for numberbox {originalSettings[i].Name}!");
+                    originalOptions[i] = value.ToString();
+                    break;
+                default:
+                    throw new ParserException($"Invalid setting {originalSettings[i].Name}!");
+            }
+        }
+
+        return originalOptions;
     }
 
     private class ItemComparerIgnorePool : IEqualityComparer<Item>

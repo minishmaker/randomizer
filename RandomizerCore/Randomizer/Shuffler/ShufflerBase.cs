@@ -131,8 +131,9 @@ internal abstract class ShufflerBase
             }
 
             LogicParser.PreParse(logicStrings);
+            LogicParser.SubParser.DetermineCompactHiddenSettings();
         }
-        
+
         public int ApplyPatch(string romLocation, string? patchFile = null)
         {
             if (string.IsNullOrEmpty(patchFile))
@@ -261,6 +262,21 @@ internal abstract class ShufflerBase
         public OptionList GetFinalOptions()
         {
             return Options ??= new OptionList(LogicParser.SubParser.Options);
+        }
+
+        public OptionList GetCompactOptions()
+        {
+            return new OptionList(LogicParser.SubParser.CompactOptions);
+        }
+
+        public OptionList GetCompactHiddenOptions()
+        {
+            return new OptionList(LogicParser.SubParser.CompactHiddenOptions);
+        }
+
+        public bool IsCompactModeSupported()
+        {
+            return LogicParser.SubParser.CompactOptions.Count != 0;
         }
 
         public uint GetSettingHash()

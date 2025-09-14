@@ -13,7 +13,7 @@ public class NumberBoxWrapper : WrapperBase, ILogicOptionObserver
     private const int NumberBoxAlign = -2;
     private new static readonly int ElementWidth = TextWidth + NumberBoxWidth + Constants.WidthMargin;
     private new const int ElementHeight = NumberBoxHeight + DefaultBottomMargin - 8;
-    
+
     private Label? _label;
     private NumericUpDown? _upDownBox;
     private LogicNumberBox _numberBox;
@@ -26,7 +26,6 @@ public class NumberBoxWrapper : WrapperBase, ILogicOptionObserver
 
     public override List<Control> GetControls(int initialX, int initialY)
     {
-        
         if (_label != null && _upDownBox != null)
             return new List<Control> { _label, _upDownBox };
 
@@ -47,14 +46,13 @@ public class NumberBoxWrapper : WrapperBase, ILogicOptionObserver
         {
             AutoSize = false,
             Name = _numberBox.Name,
-            Text = _numberBox.Value.ToString(),
             Minimum = _numberBox.MinValue,
             Maximum = _numberBox.MaxValue,
             Location = new Point(initialX + (int)((TextWidth + Constants.WidthMargin)*Constants.SpecialScaling), initialY + NumberBoxAlign),
             Height = (int)(NumberBoxHeight*Constants.SpecialScaling),
             Width = (int)(NumberBoxWidth*Constants.SpecialScaling),
-        };        
-        
+        };
+
         if (!string.IsNullOrEmpty(_numberBox.DescriptionText.Trim()))
         {
             var tip = new ToolTip();
@@ -73,6 +71,7 @@ public class NumberBoxWrapper : WrapperBase, ILogicOptionObserver
             {
                 _numberBox.Value = _numberBox.DefaultValue;
                 _upDownBox.Text = _numberBox.DefaultValue.ToString();
+                _numberBox.NotifyChildren();
                 return;
             }
 
@@ -93,10 +92,14 @@ public class NumberBoxWrapper : WrapperBase, ILogicOptionObserver
                     else
                         _numberBox.Value = val;
                 }
+                _numberBox.NotifyChildren();
             }
             else
                 _upDownBox.Text = _numberBox.Value.ToString();
         };
+
+        // For some reason, setting this in the constructor does not work when the value exceeds the default maximum of 100
+        _upDownBox.Text = _numberBox.Value.ToString();
 
         return new List<Control> { _label, _upDownBox };
     }

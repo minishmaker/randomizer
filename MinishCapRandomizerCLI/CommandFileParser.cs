@@ -42,6 +42,9 @@ public static class CommandFileParser
                 case "LoadSettings":
                     GenericCommands.LoadSettings(inputs[1]);
                     break;
+                case "LoadCosmetics":
+                    GenericCommands.LoadCosmetics(inputs[1]);
+                    break;
                 case "Logging":
                     GenericCommands.Logging(inputs[1], inputs.Length > 2 ? inputs[2] : null, inputs.Length > 2 ? inputs[2] : null);
                     break;
@@ -87,6 +90,7 @@ public static class CommandFileParser
                         totalSeeds++;
 
                         GenericCommands.Seed("R");
+                        GenericCommands.SettingsMode("1");
                         
                         if (shuffleSettingsEachAttempt && !lastRunFailure) ShuffleAllOptions();
 
@@ -155,7 +159,7 @@ public static class CommandFileParser
                     lf.Active = rand.Next() % 2 == 0;
                     break;
                 case LogicDropdown ld:
-                    ld.Selection = ld.Selections.Keys.ToList()[rand.Next() % ld.Selections.Keys.Count];
+                    ld.Selection = ld.SelectionOptions[rand.Next() % ld.SelectionOptions.Length];
                     break;
                 // case LogicNumberBox lnb:
                 //     lnb.Value = $"{rand.Next(lnb.MinValue, lnb.MaxValue + 1)}";

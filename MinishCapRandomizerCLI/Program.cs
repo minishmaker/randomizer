@@ -61,7 +61,9 @@ internal class Program
             {"UseYAML", UseYAML},
             {"LoadYAML", LoadYAML},
             {"LoadSettings", LoadSettings},
+            {"LoadCosmetics", LoadCosmetics},
             {"Options", Options},
+            {"SettingsMode", SettingsMode},
             {"Logging", Logging},
             {"Randomize", Randomize},
             {"SaveRom", SaveRom},
@@ -88,8 +90,10 @@ LoadPatch               Load custom patch file
 ClearYAML               Clears the cached YAML options and resets all logic options to defaults
 LoadYAML                Load YAML file to use as a Preset, replaces the selected options
 UseYAML                 Use YAML file to use as a Preset or Mystery weights, instead of using the selected options
-LoadSettings            Load a setting string, replaces the selected options
+LoadSettings            Load a setting string, replaces the selected logic options
+LoadCosmetics           Load a cosmetics string, replaces the selected cosmetic options
 Options                 Display options, allows editing of option values
+SettingsMode            Allows switching between normal and compact settings mode and shows whether there are any incompatibilities
 Logging                 Allows you to change logger settings
 Randomize               Generates a randomized ROM
 SaveRom                 Saves and patches the ROM, requires Randomize to have been called
@@ -125,6 +129,7 @@ Strict                  Toggle strict mode (exit after error)
     {
         GenericCommands.LoadPatch();
     }
+
     private static void ClearYAML()
     {
         GenericCommands.ClearYAMLConfig();
@@ -145,9 +150,19 @@ Strict                  Toggle strict mode (exit after error)
         GenericCommands.LoadSettings();
     }
 
+    private static void LoadCosmetics()
+    {
+        GenericCommands.LoadCosmetics();
+    }
+
     private static void Options()
     {
         GenericCommands.Options();
+    }
+
+    private static void SettingsMode()
+    {
+        GenericCommands.SettingsMode();
     }
 
     private static void Logging()

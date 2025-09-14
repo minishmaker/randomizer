@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Collections.Immutable;
+using System.Text;
 using RandomizerCore.Randomizer.Enumerables;
 using RandomizerCore.Randomizer.Logic.Defines;
 using RandomizerCore.Utilities.Logging;
@@ -16,44 +17,53 @@ public class LogicDropdown : LogicOptionBase
         string descriptionText,
         string defaultSelection,
         LogicOptionType type,
-        Dictionary<string, string> selections) :
+        string[] optionDisplayNames,
+        string[] options) :
         base(name, niceName, settingGroup, settingPage, descriptionText, type)
     {
-        Selections = selections;
+        SelectionOptionNames = optionDisplayNames;
+        SelectionOptions = options;
         DefaultSelection = defaultSelection;
-        Selection = selections.Keys.ToList()[
-            selections.Values.ToList()
-                .IndexOf(defaultSelection)];
+        Selection = defaultSelection;
+        OptionsToNames = Enumerable.Range(0, options.Length).ToImmutableDictionary(i => options[i], i => optionDisplayNames[i]);
+        NamesToOptions = Enumerable.Range(0, options.Length).ToImmutableDictionary(i => optionDisplayNames[i], i => options[i]);
+    }
+
+    public override bool IsReset()
+    {
+        return Selection == DefaultSelection;
     }
 
     public override void Reset()
     {
-        Selection = Selections.Keys.ToList()[Selections.Values.ToList().IndexOf(DefaultSelection)];
+        Selection = DefaultSelection;
     }
 
     public override void CopyValueFrom(LogicOptionBase option)
     {
         var dropdown = (LogicDropdown)option;
-        if (!Selections.ContainsKey(dropdown.Selection))
+        if (!SelectionOptions.Contains(dropdown.Selection))
             throw new Exception($"Attempt to load option {Name} failed! Invalid value {dropdown.Selection}");
         Selection = dropdown.Selection;
     }
 
-    // TODO: This could use some refactoring. The dictionary is not guaranteed to keep the intended order of the options, and it is not intuitive which side represents what.
-    public string Selection { get; set; } // must be a key
-    public string DefaultSelection { get; } // must be a value
-    public Dictionary<string, string> Selections { get; }
+    public string Selection { get; set; }
+    public string DefaultSelection { get; }
+    public string[] SelectionOptionNames { get; }
+    public string[] SelectionOptions { get; }
+    public ImmutableDictionary<string, string> OptionsToNames { get; }
+    public ImmutableDictionary<string, string> NamesToOptions { get; }
 
     public override List<LogicDefine> GetLogicDefines()
     {
         Logger.Instance.LogInfo($"Active Define: {NiceName}, Value: {Selection}");
-        return [new LogicDefine(Name, Selections[Selection])];
+        return [new LogicDefine(Name, Selection)];
     }
 
     public override IEnumerable<byte> GetAdditionalHashBytes()
     {
-        List<byte> b = [(byte)Selections.Count];
-        b.AddRange(Selections.SelectMany(option => Encoding.UTF8.GetBytes(option.Value)));
+        List<byte> b = [(byte)SelectionOptions.Length];
+        b.AddRange(SelectionOptions.SelectMany(Encoding.UTF8.GetBytes));
         return b;
     }
 
@@ -65,8 +75,8 @@ public class LogicDropdown : LogicOptionBase
     public override string GetOptions()
     {
         var builder = new StringBuilder();
-        foreach (var selection in Selections)
-            builder.Append("{Key: ").Append(selection.Key).Append(" Value: ").Append(selection.Value).Append("}, ");
+        for (var i = 0; i < SelectionOptions.Length; i++)
+            builder.Append("{Key: ").Append(SelectionOptionNames[i]).Append(" Value: ").Append(SelectionOptions[i]).Append("}, ");
 
         return builder.ToString();
     }
@@ -74,5 +84,16 @@ public class LogicDropdown : LogicOptionBase
     public override string GetOptionUiType()
     {
         return "Dropdown";
+    }
+
+    public override string GetValueAsString()
+    {
+        return Selection;
+    }
+
+    public override void SetValueFromString(string value)
+    {
+        if (!SelectionOptions.Contains(value)) throw new Exception($"Invalid value \"{value}\"");
+        Selection = value;
     }
 }
