@@ -6668,9 +6668,11 @@ ShopScrubCrenel;		Helper;;	(|(+`SHOP_PRICE`, Items.Rupee1, Items.Rupee5:5, Items
 !endif
 	!define - Deepwood2ndDoor - 
 	!define - DeepwoodBasementDoor - 
-	!ifdef - SMALL_KEYS_VANILLA
-		!undefine - Deepwood2ndDoor
-		!define - Deepwood2ndDoor - , `SK_2_DWS_OR_UNIVERSAL`
+	!ifdef - DWS1KEY
+		!ifdef - SMALL_KEYS_VANILLA
+			!undefine - Deepwood2ndDoor
+			!define - Deepwood2ndDoor - , `SK_2_DWS_OR_UNIVERSAL`
+		!endif
 	!endif
 	!ifdef - DWS_LOCKED_KEYS
 		!ifndef - SMALL_KEYS_ELSE
