@@ -6852,11 +6852,20 @@ ShopScrubCrenel;		Helper;;	(|(+`SHOP_PRICE`, Items.Rupee1, Items.Rupee5:5, Items
 			!define - PoWFans - , `SK_1_POW_OR_UNIVERSAL`
 		!endif
 	!endif
-	!ifdef - BIG_KEYS_VANILLA
-		!undefine - PoWFans - 
-		!undefine - PoWBigChest -
-		!define - PoWFans - , `SK_2_POW_OR_UNIVERSAL`
-		!define - PoWBigChest - , `SK_3_POW_OR_UNIVERSAL`
+	!ifdef - POW_BLUEWARP
+		!define - POW_BIGDOOR_SKIP
+	!else
+		!ifdef - POW_REDWARP
+			!define - POW_BIGDOOR_SKIP
+		!endif
+	!endif
+	!ifndef - POW_BIGDOOR_SKIP
+		!ifdef - BIG_KEYS_VANILLA
+			!undefine - PoWFans - 
+			!undefine - PoWBigChest -
+			!define - PoWFans - , `SK_2_POW_OR_UNIVERSAL`
+			!define - PoWBigChest - , `SK_3_POW_OR_UNIVERSAL`
+		!endif
 	!endif
 	!ifdef - POW_LOCKED_KEYS
 		!ifndef - BIG_KEYS_VANILLA
