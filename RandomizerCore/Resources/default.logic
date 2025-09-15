@@ -2209,7 +2209,6 @@
 		!define - DHC_SMALL - DHCSmallV
 		!define - RC_SMALL - RCSmallV
 	!else
-		!define - SMALL_KEYS_ELSE	# Simplifies if keys are shuffled outside their dungeon
 		!ifdef - SMALL_KEYS_REGION
 			!define - DWS_SMALL - DWSSmallOutside
 			!define - COF_SMALL - CoFSmallOutside
@@ -2219,6 +2218,7 @@
 			!define - DHC_SMALL - DHCSmallOutside
 			!define - RC_SMALL - RCSmallOutside
 		!else
+			!define - SMALL_KEYS_ELSE	# Simplifies if keys are shuffled outside their dungeon
 			!ifdef - SMALL_KEYS_DUNGEON
 				!define - DWS_SMALL - Small
 				!define - COF_SMALL - Small
@@ -6658,9 +6658,11 @@ ShopScrubCrenel;		Helper;;	(|(+`SHOP_PRICE`, Items.Rupee1, Items.Rupee5:5, Items
 !endif
 	!define - Deepwood2ndDoor - 
 	!define - DeepwoodBasementDoor - 
-	!ifdef - SMALL_KEYS_VANILLA
-		!undefine - Deepwood2ndDoor
-		!define - Deepwood2ndDoor - , `SK_2_DWS_OR_UNIVERSAL`
+	!ifdef - DWS1KEY
+		!ifdef - SMALL_KEYS_VANILLA
+			!undefine - Deepwood2ndDoor
+			!define - Deepwood2ndDoor - , `SK_2_DWS_OR_UNIVERSAL`
+		!endif
 	!endif
 	!ifdef - DWS_LOCKED_KEYS
 		!ifndef - SMALL_KEYS_ELSE
@@ -6909,28 +6911,33 @@ ShopScrubCrenel;		Helper;;	(|(+`SHOP_PRICE`, Items.Rupee1, Items.Rupee5:5, Items
 !endif
 	!define - PoWFans - 
 	!define - PoWBigChest - 
-	!define - PoW1stDoor - 
-	!ifdef - BIG_KEYS_VANILLA
-		!undefine - PoWFans - 
-		!undefine - PoWBigChest -
-		!define - PoWFans - , `SK_2_POW_OR_UNIVERSAL`
-		!define - PoWBigChest - , `SK_3_POW_OR_UNIVERSAL`
+	!ifdef - POW1KEY
+		!ifdef - SMALL_KEYS_VANILLA
+			!undefine - PoWFans -
+			!define - PoWFans - , `SK_1_POW_OR_UNIVERSAL`
+		!endif
 	!endif
-	!ifdef - SMALL_KEYS_VANILLA
-		!undefine - PoWFans - 
-		!undefine - PoW1stDoor -
-		!define - PoWFans - , `SK_2_POW_OR_UNIVERSAL`
-		!define - PoW1stDoor - , `SK_3_POW_OR_UNIVERSAL`
+	!ifdef - POW_BLUEWARP
+		!define - POW_BIGDOOR_SKIP
+	!else
+		!ifdef - POW_REDWARP
+			!define - POW_BIGDOOR_SKIP
+		!endif
+	!endif
+	!ifndef - POW_BIGDOOR_SKIP
+		!ifdef - BIG_KEYS_VANILLA
+			!undefine - PoWFans - 
+			!undefine - PoWBigChest -
+			!define - PoWFans - , `SK_2_POW_OR_UNIVERSAL`
+			!define - PoWBigChest - , `SK_3_POW_OR_UNIVERSAL`
+		!endif
 	!endif
 	!ifdef - POW_LOCKED_KEYS
 		!ifndef - BIG_KEYS_VANILLA
-			!ifndef - SMALL_KEYS_ELSE
-					!undefine - PoWFans - 
+			!ifndef - SMALL_KEYS_VANILLA
+				!ifndef - SMALL_KEYS_ELSE
+					!undefine - PoWFans -
 					!undefine - PoWBigChest -
-				!ifdef - SMALL_KEYS_VANILLA
-					!define - PoWFans - , `SK_2_POW_OR_UNIVERSAL`
-					!define - PoWBigChest - , `SK_3_POW_OR_UNIVERSAL`
-				!else
 					!ifdef - SMALL_KEYS_STANDARD
 						!define - PoWFans - , (&`SK_2_POW_OR_UNIVERSAL`, Helpers.PoWPlatformClones, Items.RocsCape, Helpers.PoWDrop, (|Items.BombBag, Helpers.HasBow, Helpers.HasBeam, Helpers.HasBoomerang), Helpers.DarkRooms, Helpers.BombWalls, Helpers.OverworldBlocks)
 						!define - PoWBigChest - , (&`SK_3_POW_OR_UNIVERSAL`, Helpers.PoWPlatformClones, Items.RocsCape, Helpers.PoWDrop, (|Items.BombBag, Helpers.HasBow, Helpers.HasBeam, Helpers.HasBoomerang), Helpers.DarkRooms, Helpers.BombWalls, Helpers.OverworldBlocks)
