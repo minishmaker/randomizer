@@ -5869,7 +5869,7 @@ ShopScrubCrenel;		Helper;;	(|(+`SHOP_PRICE`, Items.Rupee1, Items.Rupee5:5, Items
 		RuinsMinishFusion;		Helper;;	Helpers.CanFuseRedE, Helpers.AccessRuins																							#RuinsBeanstalk			17
 		Shared18Fusion;			Helper;;	Helpers.CanFuseSharedRed																										#CastleEastFountain		18
 		Nayru2Fusion;				Helper;;	Helpers.CanFuseRedV, Helpers.DinNayruFaroreFusion																					#GraveyardButterfly		19
-		MelariFusion;				Helper;;	Helpers.CanFuseRedV, Helpers.CompleteCoF																							#CrenelBeanstalk			1A
+		MelariFusion;				Helper;;	Helpers.CanFuseRedV, Helpers.AccessMelari, Helpers.CompleteCoF																							#CrenelBeanstalk			1A
 		DinNayruFaroreFusion;		Helper;;	Helpers.CanFuseRedDin																											#USELESSGorman House		1B
 		GentariFusion;			Helper;;	Helpers.CanFuseRedE, Helpers.AccessMinishWoods																					#BelariRemotes			1C
 		GrimbladeFusion;			Helper;;	Helpers.CanFuseRedE																											#FallsLowerWaterfallDojo	1D
@@ -8774,7 +8774,7 @@ CompleteCoF;									Helper;			;																		`ENTERCOF`, Helpers.CoFBasemen
 
 CoF_BossItem					`COF_INSIDE`;		`DUNGEONHP`;		gleerokContainerItem:Define:FirstByte, gleerokContainerSub:Define:SecondByte;	(|Helpers.CompleteCoF, Helpers.Hundo);																																												Items.HeartContainer
 CoF_Prize					`COF_PRIZE`;		`DUNGEONPRIZE`;	0x0E0F03;																(|Helpers.CompleteCoF, Helpers.Hundo);																																												Items.FireElement
-Crenel_Melari_NPC		:CoF		`COF_OUTSIDE`;	Dungeon;			0x00D26E;																(|Helpers.CompleteCoF, Helpers.Hundo);																																												`GREENSWORD`
+Crenel_Melari_NPC		:CoF		`COF_OUTSIDE`;	Dungeon;			0x00D26E;																(|(&Helpers.AccessMelari, Helpers.CompleteCoF), Helpers.Hundo);																																												`GREENSWORD`
 
 # Fortress of Winds Locations
 Fortress_Entrance_1F_LeftChest			`FOW_INSIDE`;		`FORTRESSCHEST`;		0x18-0x00-0x00;														(|(&`ENTERFOW`, Items.MoleMitts), Helpers.Hundo);																																	Items.Kinstone.BlueS
