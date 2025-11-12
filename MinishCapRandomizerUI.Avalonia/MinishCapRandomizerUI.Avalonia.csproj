@@ -1,0 +1,61 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationIcon>Resources/icon.ico</ApplicationIcon>
+    <AssemblyName>MinishCapRandomizerUI.Avalonia</AssemblyName>
+    <RootNamespace>MinishCapRandomizerUI.Avalonia</RootNamespace>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <RuntimeIdentifiers>win-x64;linux-x64</RuntimeIdentifiers>
+    <PublishSingleFile>true</PublishSingleFile>
+    <SelfContained>true</SelfContained>
+    <PublishTrimmed>true</PublishTrimmed>
+    <TrimMode>partial</TrimMode>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
+    <DebugType>embedded</DebugType>
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+    <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RandomizerCore\RandomizerCore.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="11.0.10" />
+    <PackageReference Include="Avalonia.Desktop" Version="11.0.10" />
+    <PackageReference Include="Avalonia.Themes.Fluent" Version="11.0.10" />
+    <PackageReference Include="Avalonia.Fonts.Inter" Version="11.0.10" />
+    <PackageReference Include="MsBox.Avalonia" Version="3.0.0-rc2" />
+    <PackageReference Include="SkiaSharp" Version="2.88.8" />
+    <PackageReference Include="SkiaSharp.NativeAssets.Linux.NoDependencies" Version="2.88.8" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+  </ItemGroup>
+
+  <!-- Embed Avalonia resources from local Resources folder -->
+  <ItemGroup>
+    <AvaloniaResource Include="Resources/**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Copy Presets YAML files (.yaml/.yml) -->
+    <None Include="Resources/Presets/**/*.yaml" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="Resources/Presets/**/*.yml" CopyToOutputDirectory="PreserveNewest" />
+    <!-- Copy RandomizerCore Patches directory for standalone Avalonia UI -->
+    <None Include="..\RandomizerCore\Resources\Patches\**\*.*">
+      <Link>Patches\%(RecursiveDir)%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <!-- Copy Vendor Language Raws directory for standalone Avalonia UI -->
+    <None Include="..\Vendor\Language Raws\**\*.*">
+      <Link>Language Raws\%(RecursiveDir)%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+</Project>

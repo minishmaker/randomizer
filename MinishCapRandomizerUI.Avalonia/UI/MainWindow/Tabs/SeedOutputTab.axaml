@@ -1,0 +1,45 @@
+<UserControl xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Class="MinishCapRandomizerUI.Avalonia.UI.MainWindow.Tabs.SeedOutputTab">
+  <ScrollViewer>
+    <StackPanel Margin="12" HorizontalAlignment="Stretch" Spacing="12">
+      <HeaderedContentControl Header="Seed Information" Classes="compact-groupbox">
+        <Grid ColumnDefinitions="200,*,180,Auto" RowDefinitions="Auto,Auto,Auto" HorizontalAlignment="Stretch">
+          <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Text="Input Seed Number:"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Name="InputSeedLabel"/>
+          <TextBlock Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" Text="Output Seed Number:"/>
+          <TextBlock Grid.Row="0" Grid.Column="3" Name="OutputSeedLabel"/>
+
+          <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Text="ROM Hash:"/>
+          <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Name="RomHashPanel" Orientation="Horizontal"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Name="YamlHashNotShownLabel" IsVisible="False" Text="Hash is not displayed when YAML is being used for settings."/>
+          <Button Grid.Row="2" Grid.Column="3" Name="CopyHashToClipboard" Content="Copy Hash To Clipboard"/>
+        </Grid>
+      </HeaderedContentControl>
+
+      <HeaderedContentControl Header="Settings Information" Classes="compact-groupbox">
+        <Grid ColumnDefinitions="178,*,225" RowDefinitions="Auto,Auto" HorizontalAlignment="Stretch">
+          <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Text="Settings Name:"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Name="SettingNameLabel"/>
+          <Button Grid.Row="0" Grid.Column="2" Name="CopySettingsHashToClipboard" Content="Copy Settings String To Clipboard"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Text="Settings String:"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Name="SettingHashLabel"/>
+        </Grid>
+      </HeaderedContentControl>
+
+      <HeaderedContentControl Header="Cosmetics Information" Classes="compact-groupbox">
+        <Grid ColumnDefinitions="178,*,225" RowDefinitions="Auto,Auto" HorizontalAlignment="Stretch">
+          <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Text="Cosmetics Name:"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Name="CosmeticNameLabel"/>
+          <Button Grid.Row="0" Grid.Column="2" Name="CopyCosmeticsHashToClipboard" Content="Copy Cosmetics String To Clipboard"/>
+          <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Text="Cosmetics String:"/>
+          <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Name="CosmeticStringLabel"/>
+        </Grid>
+      </HeaderedContentControl>
+
+      <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Spacing="8">
+        <Button Name="SaveSpoiler" Content="Save Spoiler Log" HorizontalAlignment="Left"/>
+        <Button Name="SavePatch" Content="Save BPS Patch"/>
+        <Button Name="SaveRom" Content="Save ROM" HorizontalAlignment="Right"/>
+      </StackPanel>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

@@ -1,0 +1,95 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="MinishCapRandomizerUI.Avalonia.App"
+             RequestedThemeVariant="Light">
+  <Application.Styles>
+    <FluentTheme />
+    <!-- Global style tweaks for less zoomed look and consistent control sizing -->
+    <Style Selector="TextBlock">
+      <Setter Property="FontSize" Value="13" />
+    </Style>
+    <Style Selector="TextBox">
+      <Setter Property="FontSize" Value="13" />
+      <Setter Property="MinHeight" Value="22" />
+    </Style>
+    <Style Selector="ComboBox">
+      <Setter Property="FontSize" Value="13" />
+      <Setter Property="MinHeight" Value="22" />
+      <Setter Property="Padding" Value="4,2" />
+    </Style>
+    <Style Selector="Button">
+      <Setter Property="FontSize" Value="13" />
+      <Setter Property="MinHeight" Value="24" />
+      <Setter Property="Padding" Value="8,2" />
+    </Style>
+    <Style Selector="CheckBox">
+      <Setter Property="FontSize" Value="13" />
+    </Style>
+    <Style Selector="CheckBox.toggled">
+      <Setter Property="Foreground" Value="#007ACC" />
+      <Setter Property="FontWeight" Value="Bold" />
+    </Style>
+    <Style Selector="CheckBox.toggled:checked">
+      <Setter Property="Foreground" Value="#1B5E20" />
+      <Setter Property="FontWeight" Value="Bold" />
+    </Style>
+    <!-- Real GroupBox style (HeaderedContentControl) adapted for compact layout -->
+    <Style Selector="HeaderedContentControl">
+      <Setter Property="Padding" Value="0" />
+      <Setter Property="Margin" Value="4,2" />
+      <Setter Property="BorderBrush" Value="{DynamicResource SystemControlForegroundBaseMediumBrush}" />
+      <Setter Property="BorderThickness" Value="1" />
+      <Setter Property="Background" Value="Transparent" />
+      <Setter Property="Template">
+        <ControlTemplate>
+          <Grid Margin="0">
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="Auto"/>
+              <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <!-- Header -->
+            <Border ZIndex="1" Background="{DynamicResource SystemControlBackgroundAltHighBrush}" Padding="6,0,6,0" Margin="8,0,0,0">
+              <TextBlock Text="{TemplateBinding Header}" FontWeight="Bold" />
+            </Border>
+            <!-- Content Area -->
+            <Border Grid.RowSpan="2" Grid.ColumnSpan="2" CornerRadius="4" Padding="0,4,0,0" Margin="0,8,0,0" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
+              <ContentPresenter Name="PART_ContentPresenter" Padding="8,4" Content="{TemplateBinding Content}" />
+            </Border>
+          </Grid>
+        </ControlTemplate>
+      </Setter>
+    </Style>
+    <!-- Compact variant using class, slightly tighter margins/padding -->
+    <Style Selector="HeaderedContentControl.compact-groupbox">
+      <Setter Property="Padding" Value="0" />
+      <Setter Property="Margin" Value="4,2" />
+      <Setter Property="BorderBrush" Value="{DynamicResource SystemControlForegroundBaseMediumBrush}" />
+      <Setter Property="BorderThickness" Value="1" />
+      <Setter Property="Background" Value="Transparent" />
+      <Setter Property="Template">
+        <ControlTemplate>
+          <Grid Margin="0">
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="Auto"/>
+              <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Border ZIndex="1" Background="{DynamicResource SystemControlBackgroundAltHighBrush}" Padding="5,0,5,0" Margin="6,0,0,0">
+              <TextBlock Text="{TemplateBinding Header}" FontWeight="Bold" />
+            </Border>
+            <Border Grid.RowSpan="2" Grid.ColumnSpan="2" CornerRadius="3" Padding="0,3,0,0" Margin="0,6,0,0" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
+              <ContentPresenter Name="PART_ContentPresenter" Padding="6,3" Content="{TemplateBinding Content}" />
+            </Border>
+          </Grid>
+        </ControlTemplate>
+      </Setter>
+    </Style>
+  </Application.Styles>
+</Application>

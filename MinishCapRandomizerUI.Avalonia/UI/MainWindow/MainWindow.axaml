@@ -1,0 +1,61 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:uiTabs="clr-namespace:MinishCapRandomizerUI.Avalonia.UI.MainWindow.Tabs"
+        x:Class="MinishCapRandomizerUI.Avalonia.MainWindow"
+        Title="Minish Cap Randomizer"
+        Width="1200" Height="800"
+        MinWidth="1100" MinHeight="780"
+        Icon="avares://MinishCapRandomizerUI.Avalonia/Resources/icon.ico">
+  <DockPanel>
+    <Menu DockPanel.Dock="Top">
+      <MenuItem Header="Logic">
+        <MenuItem Header="Export Default Logic" Name="ExportDefaultLogicMenu" Click="ExportDefaultLogicMenu_Click"/>
+        <MenuItem Header="Save Selected Options as YAML Preset" Name="SavePresetYamlMenu" Click="SavePresetYamlMenu_Click"/>
+        <MenuItem Header="Save Mystery YAML template" Name="SaveMysteryYamlMenu" Click="SaveMysteryYamlMenu_Click"/>
+        <MenuItem Header="Use Compact UI on Start" Name="CompactUiDefaultMenu" Click="CompactUiDefaultMenu_Click"/>
+      </MenuItem>
+      <MenuItem Header="Logging">
+        <MenuItem Header="Set Logger Output Path" Name="SetLoggerOutputPathMenu" Click="SetLoggerOutputPathMenu_Click"/>
+        <MenuItem Header="Log All Transactions" Name="LogAllTransactionsMenu" Click="LogAllTransactionsMenu_Click"/>
+        <MenuItem Header="Write and Flush Logger" Name="WriteAndFlushLoggerMenu" Click="WriteAndFlushLoggerMenu_Click"/>
+      </MenuItem>
+      <MenuItem Header="Localization">
+        <MenuItem Header="English" Name="EnglishMenu" Click="EnglishMenu_Click"/>
+        <MenuItem Header="Français" Name="FrenchMenu" IsEnabled="False" Click="FrenchMenu_Click"/>
+        <MenuItem Header="Deutsch" Name="GermanMenu" IsEnabled="False" Click="GermanMenu_Click"/>
+        <MenuItem Header="Espanol" Name="SpanishMenu" IsEnabled="False" Click="SpanishMenu_Click"/>
+        <MenuItem Header="Italiano" Name="ItalianMenu" IsEnabled="False" Click="ItalianMenu_Click"/>
+        <MenuItem Header="Please contact the devs if you wish to do Localization for the UI" IsEnabled="False"/>
+      </MenuItem>
+      <MenuItem Header="About">
+        <MenuItem Header="About" Name="AboutMenu" Click="AboutMenu_Click"/>
+        <MenuItem Header="Check for Updates" Name="CheckForUpdatesMenu" Click="CheckForUpdatesMenu_Click"/>
+      </MenuItem>
+      <MenuItem Header="Other">
+        <MenuItem Header="Check for Updates On Start" Name="CheckForUpdatesOnStartMenu" Click="CheckForUpdatesOnStartMenu_Click"/>
+      </MenuItem>
+    </Menu>
+
+    <DockPanel>
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="10,6" Margin="8,4,8,8" DockPanel.Dock="Bottom">
+        <Grid ColumnDefinitions="Auto,Auto,*,Auto" RowDefinitions="Auto" HorizontalAlignment="Stretch" Margin="2">
+          <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="Max Randomization Attempts:" Margin="0,0,8,0" />
+          <TextBox Grid.Column="1" Name="RandomizationAttempts" Width="80" Text="1" HorizontalContentAlignment="Right" VerticalAlignment="Center" Margin="0,0,16,0" />
+          <Button Grid.Column="3" Name="Randomize" Content="Randomize" MinWidth="160" Padding="10,4" HorizontalAlignment="Right" />
+        </Grid>
+      </Border>
+      <TabControl Name="TabPane">
+        <TabItem Header="General"><uiTabs:GeneralTab /></TabItem>
+        <TabItem Header="Main Settings" />
+        <TabItem Header="World Settings" />
+        <TabItem Header="Logic Settings" />
+        <TabItem Header="Item Pool" />
+        <TabItem Header="Start Inventory" />
+        <TabItem Header="Gameplay" />
+        <TabItem Header="Cosmetics" />
+        <TabItem Header="Advanced"><uiTabs:AdvancedTab /></TabItem>
+        <TabItem Header="Seed Output" Name="SeedOutput"><uiTabs:SeedOutputTab /></TabItem>
+      </TabControl>
+    </DockPanel>
+  </DockPanel>
+</Window>

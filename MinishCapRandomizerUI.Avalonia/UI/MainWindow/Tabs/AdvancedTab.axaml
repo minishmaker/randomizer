@@ -1,0 +1,46 @@
+<UserControl xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Class="MinishCapRandomizerUI.Avalonia.UI.MainWindow.Tabs.AdvancedTab">
+  <ScrollViewer>
+    <StackPanel Margin="12" Spacing="12" VerticalAlignment="Top">
+      <HeaderedContentControl Header="Advanced" Classes="compact-groupbox">
+        <Grid ColumnDefinitions="*,*" RowDefinitions="Auto" HorizontalAlignment="Stretch">
+          <CheckBox Name="UseCompactUI" Classes="toggled" Content="Use compact settings UI" IsChecked="True" />
+          <TextBlock Grid.Column="1" Name="CompactUINotSupportedLabel" Text="Compact UI not supported by this logic file!" Foreground="DarkRed" />
+        </Grid>
+      </HeaderedContentControl>
+
+      <HeaderedContentControl Header="Custom Logic, Patch, Global YAML" Classes="compact-groupbox">
+        <Grid ColumnDefinitions="140,*,100" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" HorizontalAlignment="Stretch">
+          <CheckBox Grid.Row="0" Grid.ColumnSpan="3" Name="UseCustomLogic" Content="Use Custom Logic File" />
+          <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Text="Logic File Path:" />
+          <TextBox Grid.Row="1" Grid.Column="1" Name="LogicFilePath" IsEnabled="{Binding #UseCustomLogic.IsChecked}" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
+          <Button Grid.Row="1" Grid.Column="2" Name="BrowseCustomLogicFile" Content="Browse" IsEnabled="{Binding #UseCustomLogic.IsChecked}" VerticalAlignment="Center" />
+          <CheckBox Grid.Row="2" Grid.ColumnSpan="3" Name="UseCustomPatch" Content="Use Custom Patch Files" />
+          <TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Text="ROM Buildfile Path:" />
+          <TextBox Grid.Row="3" Grid.Column="1" Name="RomBuildfilePath" IsEnabled="{Binding #UseCustomPatch.IsChecked}" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
+          <Button Grid.Row="3" Grid.Column="2" Name="BrowseCustomPatch" Content="Browse" IsEnabled="{Binding #UseCustomPatch.IsChecked}" VerticalAlignment="Center" />
+          <CheckBox Grid.Row="4" Grid.ColumnSpan="3" Name="UseCustomYAML" Content="Use Global YAML File" />
+          <TextBlock Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" Text="YAML File Path:" />
+          <TextBox Grid.Row="5" Grid.Column="1" Name="YAMLPath" IsEnabled="{Binding #UseCustomYAML.IsChecked}" HorizontalAlignment="Stretch" VerticalAlignment="Center" />
+          <Button Grid.Row="5" Grid.Column="2" Name="BrowseCustomYAML" Content="Browse" IsEnabled="{Binding #UseCustomYAML.IsChecked}" VerticalAlignment="Center" />
+        </Grid>
+      </HeaderedContentControl>
+
+      <HeaderedContentControl Header="Mystery Weights" Classes="compact-groupbox">
+        <Grid ColumnDefinitions="180,*,200" RowDefinitions="Auto,Auto" HorizontalAlignment="Stretch">
+          <CheckBox Grid.Row="0" Grid.Column="0" Name="UseMysterySettings" Content="Use Mystery Settings" VerticalAlignment="Center" />
+          <ComboBox Grid.Row="0" Grid.Column="1" Name="SettingsWeights" HorizontalAlignment="Stretch" VerticalAlignment="Center" IsEnabled="{Binding #UseMysterySettings.IsChecked}" />
+          <Button Grid.Row="0" Grid.Column="2" Name="LoadSettingSample" Content="Load Sample Options" HorizontalAlignment="Stretch" VerticalAlignment="Center" IsEnabled="{Binding #UseMysterySettings.IsChecked}" />
+          <CheckBox Grid.Row="1" Grid.Column="0" Name="UseMysteryCosmetics" Content="Use Mystery Cosmetics" VerticalAlignment="Center" />
+          <ComboBox Grid.Row="1" Grid.Column="1" Name="CosmeticsWeights" HorizontalAlignment="Stretch" VerticalAlignment="Center" IsEnabled="{Binding #UseMysteryCosmetics.IsChecked}" />
+          <Button Grid.Row="1" Grid.Column="2" Name="LoadCosmeticSample" Content="Load Sample Options" HorizontalAlignment="Stretch" VerticalAlignment="Center" IsEnabled="{Binding #UseMysteryCosmetics.IsChecked}" />
+        </Grid>
+      </HeaderedContentControl>
+
+      <HeaderedContentControl Header="Alternative Shufflers" Classes="compact-groupbox">
+        <Grid ColumnDefinitions="*" RowDefinitions="Auto" HorizontalAlignment="Stretch">
+          <CheckBox Name="UseSphereBasedShuffler" Content="Use Hendrus Seed Shuffler" />
+        </Grid>
+      </HeaderedContentControl>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>
