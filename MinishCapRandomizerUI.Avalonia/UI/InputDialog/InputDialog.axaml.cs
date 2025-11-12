@@ -1,2 +1,38 @@
-using Avalonia.Controls;using Avalonia.Interactivity;using Avalonia.Markup.Xaml;namespace MinishCapRandomizerUI.Avalonia.UI.InputDialog;public partial class InputDialog:Window{public InputDialog(){InitializeComponent();this.FindControl<Button>("OkButton")!.Click+=OkButton_Click;this.FindControl<Button>("CancelButton")!.Click+=(_,__)=>Close(null);}private void InitializeComponent(){AvaloniaXamlLoader.Load(this);}public void Setup(string title,string message,string? initial=null){Title=title;this.FindControl<TextBlock>("Message")!.Text=message;var tb=this.FindControl<TextBox>("UserInput")!;tb.Text=initial??string.Empty;tb.Focus();tb.CaretIndex=tb.Text!.Length;}private void OkButton_Click(object? s,RoutedEventArgs e){var text=this.FindControl<TextBox>("UserInput")!.Text??string.Empty;Close(text);}public Task<string?> ShowDialogAsync(Window owner)=> this.ShowDialog<string?>(owner);}
+using Avalonia.Controls;
+using Avalonia.Interactivity;
+using Avalonia.Markup.Xaml;
 
+namespace MinishCapRandomizerUI.Avalonia.UI.InputDialog;
+
+public partial class InputDialog : Window
+{
+    public InputDialog()
+    {
+        InitializeComponent();
+        this.FindControl<Button>("OkButton")!.Click += OkButton_Click;
+        this.FindControl<Button>("CancelButton")!.Click += (_, __) => Close(null);
+    }
+
+    private void InitializeComponent()
+    {
+        AvaloniaXamlLoader.Load(this);
+    }
+
+    public void Setup(string title, string message, string? initial = null)
+    {
+        Title = title;
+        this.FindControl<TextBlock>("Message")!.Text = message;
+        var tb = this.FindControl<TextBox>("UserInput")!;
+        tb.Text = initial ?? string.Empty;
+        tb.Focus();
+        tb.CaretIndex = tb.Text!.Length;
+    }
+
+    private void OkButton_Click(object? s, RoutedEventArgs e)
+    {
+        var text = this.FindControl<TextBox>("UserInput")!.Text ?? string.Empty;
+        Close(text);
+    }
+
+    public Task<string?> ShowDialogAsync(Window owner) => this.ShowDialog<string?>(owner);
+}
