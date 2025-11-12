@@ -331,10 +331,10 @@ public partial class MainWindow : Window
                     .SelectMany(e => e.Split(',', StringSplitOptions.RemoveEmptyEntries))
                     .Select(e => e.Trim().Trim('*').Trim('.'))
                     .Where(e => !string.IsNullOrWhiteSpace(e))
-                    .Select(e => $".{e}")
+                    .Select(e => e == "*" ? "*.*" : ($"*.{e}"))
                     .Distinct()
                     .ToList();
-                if (exts.Count == 0) exts.Add(".*");
+                if (exts.Count == 0) exts.Add("*.*");
                 return new FilePickerFileType(name) { Patterns = exts };
             }).ToList();
         }
@@ -361,10 +361,10 @@ public partial class MainWindow : Window
                     .SelectMany(e => e.Split(',', StringSplitOptions.RemoveEmptyEntries))
                     .Select(e => e.Trim().Trim('*').Trim('.'))
                     .Where(e => !string.IsNullOrWhiteSpace(e))
-                    .Select(e => $".{e}")
+                    .Select(e => e == "*" ? "*.*" : ($"*.{e}"))
                     .Distinct()
                     .ToList();
-                if (exts.Count == 0) exts.Add(".*");
+                if (exts.Count == 0) exts.Add("*.*");
                 return new FilePickerFileType(name) { Patterns = exts };
             }).ToList();
         }
@@ -887,8 +887,28 @@ public partial class MainWindow : Window
     {
         _previousShuffler = _shufflerController;
         _displayedInputSeed = TryGet<TextBox>("Seed")?.Text ?? string.Empty;
+
+        // Parse seed from UI like WinForms
+        if (!ulong.TryParse((_displayedInputSeed ?? string.Empty).Trim(), System.Globalization.NumberStyles.HexNumber, null, out var parsedSeed))
+        {
+            await ShowAlert("Invalid Seed Provided!", "Invalid Seed");
+            return;
+        }
+        _shufflerController.SetRandomizationSeed(parsedSeed);
+        _yamlController.SetRandomizationSeed(parsedSeed);
+
         var retries = Math.Max(1, _configuration.MaximumRandomizationRetryCount);
-        var useSphere = (TryGet<CheckBox>("UseSphereBasedShuffler")?.IsChecked ?? false) == true;
+        var useSphere = _configuration.UseHendrusShuffler;
+
+        // Load locations BEFORE randomizing to populate event defines for patching
+        var logicPath = _configuration.UseCustomLogic ? _configuration.CustomLogicFilepath : string.Empty;
+        var load = _shufflerController.LoadLocations(logicPath);
+        if (!load.WasSuccessful)
+        {
+            await ShowAlert(load.ErrorMessage ?? "Failed to parse logic!", "Failed to Parse Logic");
+            return;
+        }
+
         var result = _shufflerController.Randomize(retries, useSphere);
         if (!result.WasSuccessful)
         {
@@ -910,8 +930,18 @@ public partial class MainWindow : Window
     {
         _previousShuffler = _yamlController;
         _displayedInputSeed = TryGet<TextBox>("Seed")?.Text ?? string.Empty;
-        var logicPath = (TryGet<CheckBox>("UseCustomLogic")?.IsChecked ?? false) == true ? TryGet<TextBox>("LogicFilePath")?.Text ?? string.Empty : string.Empty;
-        var useGlobal = (TryGet<CheckBox>("UseCustomYAML")?.IsChecked ?? false) == true;
+
+        // Parse seed and set on both controllers
+        if (!ulong.TryParse((_displayedInputSeed ?? string.Empty).Trim(), System.Globalization.NumberStyles.HexNumber, null, out var parsedSeed))
+        {
+            await ShowAlert("Invalid Seed Provided!", "Invalid Seed");
+            return;
+        }
+        _shufflerController.SetRandomizationSeed(parsedSeed);
+        _yamlController.SetRandomizationSeed(parsedSeed);
+
+        var logicPath = _configuration.UseCustomLogic ? _configuration.CustomLogicFilepath : string.Empty;
+        var useGlobal = (_configuration.UseCustomYAML);
         string? logicYaml = null, cosmeticsYaml = null;
         if ((TryGet<CheckBox>("UseMysterySettings")?.IsChecked ?? false) == true)
         {
@@ -936,7 +966,7 @@ public partial class MainWindow : Window
             return;
         }
         var retries = Math.Max(1, _configuration.MaximumRandomizationRetryCount);
-        var useSphere = (TryGet<CheckBox>("UseSphereBasedShuffler")?.IsChecked ?? false) == true;
+        var useSphere = _configuration.UseHendrusShuffler;
         var result = _yamlController.Randomize(retries, useSphere);
         if (!result.WasSuccessful)
         {
@@ -966,16 +996,51 @@ public partial class MainWindow : Window
             ["Gameplay"]="Gameplay",
             ["Cosmetics"]="Cosmetics",
             ["Advanced"]="Advanced"};
+
+        // Tabs whose content is static XAML and must not be cleared/overwritten here
+        var staticTabs = new HashSet<string>(StringComparer.OrdinalIgnoreCase){"General","Advanced","Seed Output"};
+
+        var tabItemsByHeader = tab.Items!.OfType<TabItem>()
+            .ToDictionary(t => t.Header?.ToString() ?? string.Empty, t => t, StringComparer.OrdinalIgnoreCase);
+
+        // Hide and clear only dynamic tabs (non-static) before repopulating
+        foreach (var header in map.Values.Distinct())
+        {
+            if (!tabItemsByHeader.TryGetValue(header, out var tItem)) continue;
+            if (staticTabs.Contains(header)) continue; // don’t touch static tabs
+            tItem.IsVisible = false;
+            tItem.Content = null;
+        }
+
         var options = _useCompactUI ? _shufflerController.GetCompactOptions() : _shufflerController.GetSelectedOptions();
         var wrapped = MinishCapRandomizerUI.Avalonia.Elements.WrappedLogicOptionFactory.BuildGenericWrappedLogicOptions(options);
+
+        // Build and show only the dynamic tabs that exist for the current logic; never overwrite static tabs
         foreach (var pageGroup in wrapped.GroupBy(w=>w.Page??string.Empty))
         {
             if (!map.TryGetValue(pageGroup.Key, out var header)) continue;
-            var tabItem = tab.Items!.OfType<TabItem>().FirstOrDefault(t=> (t.Header?.ToString()??"")==header); if (tabItem==null) continue;
+            if (staticTabs.Contains(header)) continue; // skip Advanced/General/Seed Output
+            if (!tabItemsByHeader.TryGetValue(header, out var tabItem)) continue;
+
             var stack = new StackPanel{Spacing=6,Margin=new Thickness(6)};
             foreach(var group in pageGroup.GroupBy(w=>w.SettingGrouping).Where(g=>!string.IsNullOrWhiteSpace(g.Key)))
                 stack.Children.Add(MinishCapRandomizerUI.Avalonia.Elements.WrappedLogicOptionFactory.BuildGroupContainer(group.Key!, group));
+
             tabItem.Content = new ScrollViewer{ Content = stack };
+            tabItem.IsVisible = true;
+        }
+
+        // Ensure static tabs remain visible
+        foreach (var header in staticTabs)
+            if (tabItemsByHeader.TryGetValue(header, out var t)) t.IsVisible = true;
+
+        // If the currently selected tab became hidden, move selection to the first visible tab
+        var selected = tab.SelectedItem as TabItem;
+        if (selected != null && selected.IsVisible == false)
+        {
+            var firstVisible = tab.Items!.OfType<TabItem>().FirstOrDefault(t => t.IsVisible);
+            if (firstVisible != null)
+                tab.SelectedItem = firstVisible;
         }
     }
 
@@ -1283,7 +1348,17 @@ public partial class MainWindow : Window
         var fname = ($"{_outputFilename ?? _previousShuffler.SeedFilename}-Patch.bps").Replace('/', '_');
         await DisplaySaveDialog("Save Patch", fname, new[] { "BPS Patch|*.bps", "All Files|*.*" }, async filename =>
         {
-            var patchPath = FC<CheckBox>("UseCustomPatch").IsChecked == true ? FC<TextBox>("RomBuildfilePath").Text : string.Empty;
+            string? patchPath = null;
+            if (_configuration.UseCustomPatch)
+            {
+                var pp = _configuration.CustomPatchFilepath;
+                if (string.IsNullOrWhiteSpace(pp) || !File.Exists(pp))
+                {
+                    await ShowAlert("Custom patch file not found. Please select a valid patch buildfile.", "Patch File Missing");
+                    return;
+                }
+                patchPath = pp;
+            }
             var result = _previousShuffler.CreatePatch(filename, patchPath);
             await ShowAlert(result.WasSuccessful ? "Patch Saved Successfully!" : (result.ErrorMessage ?? "Failed to save patch!"), result.WasSuccessful ? "Patch Saved" : "Patch Save Failed");
         });
@@ -1294,7 +1369,17 @@ public partial class MainWindow : Window
         var fname = ($"{_outputFilename ?? _previousShuffler.SeedFilename}-ROM.gba").Replace('/', '_');
         await DisplaySaveDialog("Save ROM", fname, new[] { "GBA ROM|*.gba", "All Files|*.*" }, async filename =>
         {
-            var patchPath = FC<CheckBox>("UseCustomPatch").IsChecked == true ? FC<TextBox>("RomBuildfilePath").Text : string.Empty;
+            string? patchPath = null;
+            if (_configuration.UseCustomPatch)
+            {
+                var pp = _configuration.CustomPatchFilepath;
+                if (string.IsNullOrWhiteSpace(pp) || !File.Exists(pp))
+                {
+                    await ShowAlert("Custom patch file not found. Please select a valid patch buildfile.", "Patch File Missing");
+                    return;
+                }
+                patchPath = pp;
+            }
             var result = _previousShuffler.SaveAndPatchRom(filename, patchPath);
             await ShowAlert(result.WasSuccessful ? "ROM Saved Successfully!" : (result.ErrorMessage ?? "Failed to save ROM!"), result.WasSuccessful ? "ROM Saved" : "ROM Save Failed");
         });
