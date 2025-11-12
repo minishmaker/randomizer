@@ -1,7 +1,6 @@
 <UserControl xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Class="MinishCapRandomizerUI.Avalonia.UI.MainWindow.Tabs.GeneralTab">
   <ScrollViewer>
     <StackPanel Margin="12" HorizontalAlignment="Stretch" Spacing="12">
-      <!-- ROM & Seed Group -->
       <HeaderedContentControl Header="ROM &amp; Seed" Classes="compact-groupbox">
         <Grid ColumnDefinitions="Auto,*,Auto" RowDefinitions="Auto,Auto" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="0">
           <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Text="European Minish Cap ROM" Margin="0,0,12,0" />
@@ -13,7 +12,6 @@
         </Grid>
       </HeaderedContentControl>
 
-      <!-- Settings Group -->
       <HeaderedContentControl Header="Settings" Classes="compact-groupbox">
         <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto" HorizontalAlignment="Stretch">
           <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Text="Settings String:" Margin="0,0,12,0" />
@@ -33,7 +31,6 @@
         </Grid>
       </HeaderedContentControl>
 
-      <!-- Cosmetics Group -->
       <HeaderedContentControl Header="Cosmetics" Classes="compact-groupbox">
         <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto" HorizontalAlignment="Stretch">
           <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Text="Cosmetics String:" Margin="0,0,12,0" />
@@ -53,7 +50,6 @@
         </Grid>
       </HeaderedContentControl>
 
-      <!-- BPS Patcher Group -->
       <HeaderedContentControl Header="BPS Patcher &amp; Patch Generator" Classes="compact-groupbox">
         <Grid ColumnDefinitions="Auto,*,Auto" RowDefinitions="Auto,Auto,Auto" HorizontalAlignment="Stretch">
           <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Text="Patcher Mode:" Margin="0,0,12,0" />

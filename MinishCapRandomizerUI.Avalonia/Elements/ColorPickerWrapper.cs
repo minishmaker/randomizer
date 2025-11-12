@@ -4,25 +4,27 @@ using Avalonia.Media;
 using Avalonia.Layout;
 using RandomizerCore.Randomizer.Logic.Options;
 using MinishCapRandomizerUI.Avalonia.DrawConstants;
+using System;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 
 namespace MinishCapRandomizerUI.Avalonia.Elements;
 
 public class ColorPickerWrapper : WrapperBase, ILogicOptionObserver
 {
-    // Parity constants with WinForms implementation
     private const int NameTextWidth = 125;
     private const int CheckboxWidth = 125;
     private const int PreviewTextWidth = 55;
     private const int ButtonWidth = 100;
     private const int PictureBoxWidth = 60;
-    private const int Height = 23; // unified height for buttons / controls
+    private const int Height = 23;
     private const string CheckboxText = "Use Random Color";
     private const string SelectColorText = "Select Color";
     private const string SelectRandomColorText = "Pick Random";
     private const string UseDefaultColorText = "Use Default";
     private const string ColorPreviewText = "Preview:";
 
-    // Calculated width similar to WinForms (spacing approximated with WidthMargin usage)
     private static readonly int ElementWidthInternal = CheckboxWidth + NameTextWidth + PreviewTextWidth + PictureBoxWidth + 3 * ButtonWidth + 7 * Constants.WidthMargin;
 
     private readonly LogicColorPicker _picker;
@@ -49,7 +51,6 @@ public class ColorPickerWrapper : WrapperBase, ILogicOptionObserver
             return new List<Control>{ _nameLabel, _useRandomCheckbox, _selectColorButton, _selectRandomColorButton, _useDefaultColorButton, _previewLabel, _colorPreview };
         }
 
-        // Name label
         _nameLabel = new TextBlock
         {
             Text = _picker.NiceName + ":",
@@ -58,7 +59,6 @@ public class ColorPickerWrapper : WrapperBase, ILogicOptionObserver
         };
         ToolTip.SetTip(_nameLabel, _picker.DescriptionText);
 
-        // Random Color checkbox
         _useRandomCheckbox = new CheckBox
         {
             Content = CheckboxText,
@@ -75,16 +75,14 @@ public class ColorPickerWrapper : WrapperBase, ILogicOptionObserver
             _picker.NotifyChildren();
         };
 
-        // Select Color button (opens slider dialog)
         _selectColorButton = new Button
         {
             Content = SelectColorText,
             Width = ButtonWidth
         };
-        ToolTip.SetTip(_selectColorButton, "Opens the custom color picker");
-        _selectColorButton.Click += async (_, __) => await OpenColorDialog();
+        ToolTip.SetTip(_selectColorButton, "Opens the system color picker dialog");
+        _selectColorButton.Click += async (_, __) => await OpenSystemColorDialogAsync();
 
-        // Pick Random button (immediately randomizes color)
         _selectRandomColorButton = new Button
         {
             Content = SelectRandomColorText,
@@ -98,7 +96,6 @@ public class ColorPickerWrapper : WrapperBase, ILogicOptionObserver
             _picker.NotifyChildren();
         };
 
-        // Use Default button
         _useDefaultColorButton = new Button
         {
             Content = UseDefaultColorText,
@@ -112,7 +109,6 @@ public class ColorPickerWrapper : WrapperBase, ILogicOptionObserver
             _picker.NotifyChildren();
         };
 
-        // Preview label
         _previewLabel = new TextBlock
         {
             Text = ColorPreviewText,
@@ -120,7 +116,6 @@ public class ColorPickerWrapper : WrapperBase, ILogicOptionObserver
             Width = PreviewTextWidth
         };
 
-        // Color preview border
         _colorPreview = new Border
         {
             Width = PictureBoxWidth,
@@ -135,142 +130,201 @@ public class ColorPickerWrapper : WrapperBase, ILogicOptionObserver
         return new List<Control>{ _nameLabel, _useRandomCheckbox, _selectColorButton, _selectRandomColorButton, _useDefaultColorButton, _previewLabel, _colorPreview };
     }
 
-    private async Task OpenColorDialog()
+    private async Task OpenSystemColorDialogAsync()
     {
-        if (_useRandomCheckbox?.IsChecked == true) return; // disabled state
+        if (_useRandomCheckbox?.IsChecked == true) return;
 
-        var dialog = new Window{ Width = 460, Height = 420, Title = "Pick Color" };
-        var root = new StackPanel{ Margin = new Thickness(12), Spacing = 10 };
+        var c = _picker.DefinedColor;
+        System.Drawing.Color? selected = null;
 
-        var current = _picker.DefinedColor;
-        var r = new Slider{ Minimum = 0, Maximum = 255, Value = current.R, Width = 260 };
-        var g = new Slider{ Minimum = 0, Maximum = 255, Value = current.G, Width = 260 };
-        var b = new Slider{ Minimum = 0, Maximum = 255, Value = current.B, Width = 260 };
-        var rx = new NumericUpDown{ Minimum = 0, Maximum = 255, Value = current.R, Width = 70 };
-        var gx = new NumericUpDown{ Minimum = 0, Maximum = 255, Value = current.G, Width = 70 };
-        var bx = new NumericUpDown{ Minimum = 0, Maximum = 255, Value = current.B, Width = 70 };
-        var hexBox = new TextBox{ Width = 120, Watermark = "#RRGGBB" };
-
-        var preview = new Border{ Width = 80, Height = 80, Background = new SolidColorBrush(Color.FromRgb(current.R, current.G, current.B)), BorderBrush = Brushes.Gray, BorderThickness = new Thickness(1), Margin = new Thickness(0,8,0,8) };
-
-        void SyncFromSliders()
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
         {
-            rx.Value = (int)r.Value; gx.Value = (int)g.Value; bx.Value = (int)b.Value;
-            var c = Color.FromRgb((byte)r.Value, (byte)g.Value, (byte)b.Value);
-            preview.Background = new SolidColorBrush(c);
-            hexBox.Text = $"#{c.R:X2}{c.G:X2}{c.B:X2}";
+            selected = await Task.Run(() => ShowWindowsColorDialog(c));
         }
-        void SyncFromNumeric()
+        else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
         {
-            r.Value = (double)(rx.Value ?? 0);
-            g.Value = (double)(gx.Value ?? 0);
-            b.Value = (double)(bx.Value ?? 0);
-            var c = Color.FromRgb((byte)r.Value, (byte)g.Value, (byte)b.Value);
-            preview.Background = new SolidColorBrush(c);
-            hexBox.Text = $"#{c.R:X2}{c.G:X2}{c.B:X2}";
+            selected = await ShowMacColorDialogAsync(c);
         }
-        void SyncFromHex()
+        else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
         {
-            var t = hexBox.Text?.Trim() ?? string.Empty;
-            if (t.StartsWith("#")) t = t[1..];
-            if (t.Length == 6 && byte.TryParse(t.Substring(0,2), System.Globalization.NumberStyles.HexNumber, null, out var rr)
-                              && byte.TryParse(t.Substring(2,2), System.Globalization.NumberStyles.HexNumber, null, out var gg)
-                              && byte.TryParse(t.Substring(4,2), System.Globalization.NumberStyles.HexNumber, null, out var bb))
+            selected = await ShowLinuxColorDialogAsync(c);
+        }
+
+        if (selected.HasValue)
+        {
+            _picker.DefinedColor = System.Drawing.Color.FromArgb(255, selected.Value.R, selected.Value.G, selected.Value.B);
+            _picker.UseRandomColor = false;
+            if (_useRandomCheckbox != null) _useRandomCheckbox.IsChecked = false;
+            UpdatePreviewColor();
+            _picker.NotifyChildren();
+        }
+    }
+
+    private static System.Drawing.Color? ShowWindowsColorDialog(System.Drawing.Color initial)
+    {
+        try
+        {
+            const int CC_RGBINIT = 0x00000001;
+            const int CC_FULLOPEN = 0x00000002;
+
+            var customColors = Marshal.AllocHGlobal(sizeof(int) * 16);
+            try
             {
-                r.Value = rr; g.Value = gg; b.Value = bb;
-                rx.Value = rr; gx.Value = gg; bx.Value = bb;
-                preview.Background = new SolidColorBrush(Color.FromRgb(rr, gg, bb));
+                var cc = new CHOOSECOLOR();
+                cc.lStructSize = Marshal.SizeOf<CHOOSECOLOR>();
+                cc.hwndOwner = IntPtr.Zero;
+                cc.rgbResult = (initial.B << 16) | (initial.G << 8) | initial.R;
+                cc.lpCustColors = customColors;
+                cc.Flags = CC_RGBINIT | CC_FULLOPEN;
+
+                if (ChooseColor(ref cc))
+                {
+                    int rgb = cc.rgbResult;
+                    var r = (byte)(rgb & 0xFF);
+                    var g = (byte)((rgb >> 8) & 0xFF);
+                    var b = (byte)((rgb >> 16) & 0xFF);
+                    return System.Drawing.Color.FromArgb(255, r, g, b);
+                }
+            }
+            finally
+            {
+                Marshal.FreeHGlobal(customColors);
             }
         }
-
-        r.PropertyChanged += (_, a) => { if (a.Property.Name == nameof(Slider.Value)) SyncFromSliders(); };
-        g.PropertyChanged += (_, a) => { if (a.Property.Name == nameof(Slider.Value)) SyncFromSliders(); };
-        b.PropertyChanged += (_, a) => { if (a.Property.Name == nameof(Slider.Value)) SyncFromSliders(); };
-        rx.PropertyChanged += (_, a) => { if (a.Property.Name == nameof(NumericUpDown.Value)) SyncFromNumeric(); };
-        gx.PropertyChanged += (_, a) => { if (a.Property.Name == nameof(NumericUpDown.Value)) SyncFromNumeric(); };
-        bx.PropertyChanged += (_, a) => { if (a.Property.Name == nameof(NumericUpDown.Value)) SyncFromNumeric(); };
-        hexBox.PropertyChanged += (_, a) => { if (a.Property.Name == nameof(TextBox.Text)) SyncFromHex(); };
-
-        var sliders = new Grid();
-        sliders.ColumnDefinitions.Add(new ColumnDefinition(GridLength.Auto));
-        sliders.ColumnDefinitions.Add(new ColumnDefinition(GridLength.Star));
-        sliders.ColumnDefinitions.Add(new ColumnDefinition(GridLength.Auto));
-        sliders.RowDefinitions.Add(new RowDefinition(GridLength.Auto));
-        sliders.RowDefinitions.Add(new RowDefinition(GridLength.Auto));
-        sliders.RowDefinitions.Add(new RowDefinition(GridLength.Auto));
-        var lblR = new TextBlock{ Text = "Red", VerticalAlignment = VerticalAlignment.Center };
-        var lblG = new TextBlock{ Text = "Green", VerticalAlignment = VerticalAlignment.Center };
-        var lblB = new TextBlock{ Text = "Blue", VerticalAlignment = VerticalAlignment.Center };
-        Grid.SetRow(lblR,0); Grid.SetColumn(lblR,0);
-        Grid.SetRow(r,0); Grid.SetColumn(r,1);
-        Grid.SetRow(rx,0); Grid.SetColumn(rx,2);
-        Grid.SetRow(lblG,1); Grid.SetColumn(lblG,0);
-        Grid.SetRow(g,1); Grid.SetColumn(g,1);
-        Grid.SetRow(gx,1); Grid.SetColumn(gx,2);
-        Grid.SetRow(lblB,2); Grid.SetColumn(lblB,0);
-        Grid.SetRow(b,2); Grid.SetColumn(b,1);
-        Grid.SetRow(bx,2); Grid.SetColumn(bx,2);
-        sliders.Children.Add(lblR); sliders.Children.Add(r); sliders.Children.Add(rx);
-        sliders.Children.Add(lblG); sliders.Children.Add(g); sliders.Children.Add(gx);
-        sliders.Children.Add(lblB); sliders.Children.Add(b); sliders.Children.Add(bx);
-
-        var topRow = new StackPanel{ Orientation = Orientation.Horizontal, Spacing = 12 };
-        topRow.Children.Add(preview);
-        topRow.Children.Add(new StackPanel{ Spacing = 8, Children = { new TextBlock{ Text = "HEX" }, hexBox } });
-
-        // Preset swatches
-        var presetColors = new []{ "#E53E3E","#DD6B20","#D69E2E","#38A169","#3182CE","#805AD5","#D53F8C","#718096","#000000","#FFFFFF" };
-        var presetsPanel = new WrapPanel();
-        foreach (var hex in presetColors)
+        catch
         {
-            var c = Color.Parse(hex);
-            var btn = new Button{ Width = 24, Height = 24, Background = new SolidColorBrush(c), BorderBrush = Brushes.Gray, BorderThickness = new Thickness(1), Tag = hex, Margin = new Thickness(3) };
-            btn.Click += (_, __) => { hexBox.Text = hex; SyncFromHex(); };
-            presetsPanel.Children.Add(btn);
         }
+        return null;
+    }
 
-        // Recent colors
-        _recent ??= new Queue<Color>();
-        var recentsPanel = new WrapPanel();
-        foreach (var rc in _recent)
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
+    private struct CHOOSECOLOR
+    {
+        public int lStructSize;
+        public IntPtr hwndOwner;
+        public IntPtr hInstance;
+        public int rgbResult;
+        public IntPtr lpCustColors;
+        public int Flags;
+        public IntPtr lCustData;
+        public IntPtr lpfnHook;
+        public string? lpTemplateName;
+    }
+
+    [DllImport("comdlg32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    private static extern bool ChooseColor(ref CHOOSECOLOR cc);
+
+    private static async Task<System.Drawing.Color?> ShowMacColorDialogAsync(System.Drawing.Color initial)
+    {
+        try
         {
-            var btn = new Button{ Width = 24, Height = 24, Background = new SolidColorBrush(Color.FromRgb(rc.R, rc.G, rc.B)), BorderBrush = Brushes.Gray, BorderThickness = new Thickness(1), Margin = new Thickness(3) };
-            var cap = rc; btn.Click += (_, __) => { r.Value = cap.R; g.Value = cap.G; b.Value = cap.B; SyncFromSliders(); };
-            recentsPanel.Children.Add(btn);
+            int ri = initial.R * 257, gi = initial.G * 257, bi = initial.B * 257;
+            var psi = new ProcessStartInfo
+            {
+                FileName = "osascript",
+                ArgumentList = { "-e", $"choose color default color {{{ri},{gi},{bi}}}" },
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                UseShellExecute = false
+            };
+            using var p = Process.Start(psi);
+            if (p == null) return null;
+            string output = await p.StandardOutput.ReadToEndAsync();
+            await p.WaitForExitAsync();
+            if (p.ExitCode != 0) return null;
+            var parts = output.Trim().Split(',');
+            if (parts.Length >= 3 &&
+                int.TryParse(parts[0].Trim(), out var r16) &&
+                int.TryParse(parts[1].Trim(), out var g16) &&
+                int.TryParse(parts[2].Trim(), out var b16))
+            {
+                byte r = (byte)Math.Clamp(r16 / 257, 0, 255);
+                byte g = (byte)Math.Clamp(g16 / 257, 0, 255);
+                byte b = (byte)Math.Clamp(b16 / 257, 0, 255);
+                return System.Drawing.Color.FromArgb(255, r, g, b);
+            }
         }
-
-        var buttonsPanel = new StackPanel{ Orientation = Orientation.Horizontal, Spacing = 8 };
-        var ok = new Button{ Content = "OK", Width = 90 };
-        var cancel = new Button{ Content = "Cancel", Width = 90 };
-        ok.Click += (_, __) => {
-            var c = (preview.Background as SolidColorBrush)?.Color ?? Color.FromRgb((byte)r.Value,(byte)g.Value,(byte)b.Value);
-            _picker.DefinedColor = System.Drawing.Color.FromArgb(255, c.R, c.G, c.B);
-            EnqueueRecent(c);
-            _picker.NotifyChildren();
-            UpdatePreviewColor();
-            dialog.Close();
-        };
-        cancel.Click += (_, __) => dialog.Close();
-        buttonsPanel.Children.Add(ok);
-        buttonsPanel.Children.Add(cancel);
-
-        root.Children.Add(topRow);
-        root.Children.Add(new TextBlock{ Text = "RGB" });
-        root.Children.Add(sliders);
-        root.Children.Add(new TextBlock{ Text = "Presets" });
-        root.Children.Add(presetsPanel);
-        if (_recent.Count > 0)
+        catch
         {
-            root.Children.Add(new TextBlock{ Text = "Recent" });
-            root.Children.Add(recentsPanel);
         }
-        root.Children.Add(buttonsPanel);
-        dialog.Content = root;
-        var top = TopLevel.GetTopLevel(_selectColorButton);
-        if (top is Window owner)
-            await dialog.ShowDialog(owner);
-        else
-            dialog.Show();
+        return null;
+    }
+
+    private static async Task<System.Drawing.Color?> ShowLinuxColorDialogAsync(System.Drawing.Color initial)
+    {
+        var initHex = $"#{initial.R:X2}{initial.G:X2}{initial.B:X2}";
+        var result = await RunProcessAndCaptureAsync("zenity", new[] { "--color-selection", "--show-palette", "--color", initHex });
+        if (result.success)
+        {
+            var text = result.output.Trim();
+            if (text.StartsWith("#"))
+            {
+                if (TryParseHexColor(text, out var c)) return c;
+            }
+            else if (text.StartsWith("rgb", StringComparison.OrdinalIgnoreCase))
+            {
+                var inner = text.Trim().TrimStart('r','g','b','(').TrimEnd(')');
+                var parts = inner.Split(',');
+                if (parts.Length >= 3 &&
+                    int.TryParse(parts[0], out var r) &&
+                    int.TryParse(parts[1], out var g) &&
+                    int.TryParse(parts[2], out var b))
+                {
+                    return System.Drawing.Color.FromArgb(255, ClampByte(r), ClampByte(g), ClampByte(b));
+                }
+            }
+        }
+        result = await RunProcessAndCaptureAsync("kdialog", new[] { "--getcolor", initHex });
+        if (result.success)
+        {
+            var text = result.output.Trim();
+            if (TryParseHexColor(text, out var c)) return c;
+        }
+        return null;
+    }
+
+    private static byte ClampByte(int v) => (byte)Math.Clamp(v, 0, 255);
+
+    private static bool TryParseHexColor(string hex, out System.Drawing.Color color)
+    {
+        color = System.Drawing.Color.Empty;
+        if (string.IsNullOrWhiteSpace(hex)) return false;
+        var t = hex.Trim();
+        if (t.StartsWith("#")) t = t[1..];
+        if (t.Length == 6 &&
+            byte.TryParse(t.Substring(0, 2), System.Globalization.NumberStyles.HexNumber, null, out var r) &&
+            byte.TryParse(t.Substring(2, 2), System.Globalization.NumberStyles.HexNumber, null, out var g) &&
+            byte.TryParse(t.Substring(4, 2), System.Globalization.NumberStyles.HexNumber, null, out var b))
+        {
+            color = System.Drawing.Color.FromArgb(255, r, g, b);
+            return true;
+        }
+        return false;
+    }
+
+    private static async Task<(bool success, string output)> RunProcessAndCaptureAsync(string fileName, string[] args)
+    {
+        try
+        {
+            var psi = new ProcessStartInfo
+            {
+                FileName = fileName,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                UseShellExecute = false
+            };
+            foreach (var a in args) psi.ArgumentList.Add(a);
+            using var p = Process.Start(psi);
+            if (p == null) return (false, string.Empty);
+            string output = await p.StandardOutput.ReadToEndAsync();
+            await p.WaitForExitAsync();
+            return (p.ExitCode == 0, output);
+        }
+        catch
+        {
+            return (false, string.Empty);
+        }
     }
 
     private static Queue<Color>? _recent;
@@ -305,7 +359,6 @@ public class ColorPickerWrapper : WrapperBase, ILogicOptionObserver
 
     public void NotifyObserver()
     {
-        // reflect random state & color changes
         if (_useRandomCheckbox != null)
             _useRandomCheckbox.IsChecked = _picker.UseRandomColor;
         UpdateButtonEnablement();

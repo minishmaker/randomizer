@@ -2,16 +2,27 @@
   <ScrollViewer>
     <StackPanel Margin="12" HorizontalAlignment="Stretch" Spacing="12">
       <HeaderedContentControl Header="Seed Information" Classes="compact-groupbox">
-        <Grid ColumnDefinitions="200,*,180,Auto" RowDefinitions="Auto,Auto,Auto" HorizontalAlignment="Stretch">
-          <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Text="Input Seed Number:"/>
-          <TextBlock Grid.Row="0" Grid.Column="1" Name="InputSeedLabel"/>
-          <TextBlock Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" Text="Output Seed Number:"/>
-          <TextBlock Grid.Row="0" Grid.Column="3" Name="OutputSeedLabel"/>
+        <Grid RowDefinitions="Auto,Auto,Auto" HorizontalAlignment="Stretch">
+          <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" Spacing="32" VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+              <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="Input Seed:"/>
+              <TextBlock Name="InputSeedLabel" VerticalAlignment="Center" MinWidth="120"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+              <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="Output Seed:"/>
+              <TextBlock Name="OutputSeedLabel" VerticalAlignment="Center" MinWidth="120"/>
+            </StackPanel>
+          </StackPanel>
 
-          <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Text="ROM Hash:"/>
-          <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Name="RomHashPanel" Orientation="Horizontal"/>
-          <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Name="YamlHashNotShownLabel" IsVisible="False" Text="Hash is not displayed when YAML is being used for settings."/>
-          <Button Grid.Row="2" Grid.Column="3" Name="CopyHashToClipboard" Content="Copy Hash To Clipboard"/>
+          <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Top" Spacing="8">
+            <TextBlock HorizontalAlignment="Center" FontWeight="Bold" Text="ROM Hash:"/>
+            <Panel HorizontalAlignment="Center" VerticalAlignment="Top">
+              <StackPanel Name="RomHashPanel" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            </Panel>
+            <TextBlock Name="YamlHashNotShownLabel" IsVisible="False" HorizontalAlignment="Center" Text="Hash is not displayed when YAML is being used for settings."/>
+          </StackPanel>
+
+          <Button Grid.Row="2" Name="CopyHashToClipboard" Content="Copy Hash To Clipboard" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
         </Grid>
       </HeaderedContentControl>
 
@@ -43,3 +54,4 @@
     </StackPanel>
   </ScrollViewer>
 </UserControl>
+

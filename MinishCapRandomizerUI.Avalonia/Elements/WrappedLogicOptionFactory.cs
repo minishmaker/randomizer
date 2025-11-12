@@ -44,7 +44,6 @@ public static class WrappedLogicOptionFactory
 
     public static Control BuildGroupContainer(string groupName, IEnumerable<WrapperBase> elements)
     {
-        // Default to 2 columns; certain groups expand to 3 for compactness
         int columns = 2;
         if (groupName.Contains("Fusions", StringComparison.OrdinalIgnoreCase) ||
             groupName.Contains("Progressive", StringComparison.OrdinalIgnoreCase) ||
@@ -63,7 +62,6 @@ public static class WrappedLogicOptionFactory
         }
 
         bool multiColumn = columns == 3;
-        // Order: dropdowns first, then flags, then number boxes, then color pickers
         var reordered = elements.OrderBy(e => e switch {
             DropdownWrapper => 0,
             FlagWrapper => 1,
@@ -72,7 +70,6 @@ public static class WrappedLogicOptionFactory
             _ => 4
         }).ToList();
 
-        // Figurine Hunt alignment special-case
         if (groupName.Contains("Figurine", StringComparison.OrdinalIgnoreCase))
         {
             var figFlag = reordered.OfType<FlagWrapper>().FirstOrDefault(f => f.IsFigurineHuntFlag);
@@ -85,7 +82,7 @@ public static class WrappedLogicOptionFactory
                 var insertAt = 1;
                 foreach (var fi in figInputs) reordered.Insert(insertAt++, fi);
             }
-            columns = 2; // ensure side-by-side with inputs
+            columns = 2;
             multiColumn = false;
         }
 
@@ -97,13 +94,11 @@ public static class WrappedLogicOptionFactory
         bool numberBoxRowStarted = false;
         foreach (var element in reordered)
         {
-            // Ensure flags start on a new row, separate from dropdowns
             if (!placedAnyFlags && element is FlagWrapper)
             {
                 placedAnyFlags = true;
                 if (col != 0) { col = 0; row++; }
             }
-            // Ensure number boxes start on a new row after flags
             if (!numberBoxRowStarted && element is NumberBoxWrapper && placedAnyFlags)
             {
                 numberBoxRowStarted = true;
@@ -127,7 +122,6 @@ public static class WrappedLogicOptionFactory
                 else if (chk.Content is string s){ chk.Content = new TextBlock{ Text=s, MaxWidth=200, TextWrapping=TextWrapping.Wrap }; }
             }
 
-            // Heart color rows: start at new row to reduce wasted space
             bool isHeartColorRow = false;
             if (groupName.Contains("Hearts", StringComparison.OrdinalIgnoreCase) || groupName.Contains("Tunic", StringComparison.OrdinalIgnoreCase) || groupName.Contains("Split Bar", StringComparison.OrdinalIgnoreCase))
             {

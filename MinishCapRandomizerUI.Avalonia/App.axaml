@@ -4,7 +4,6 @@
              RequestedThemeVariant="Light">
   <Application.Styles>
     <FluentTheme />
-    <!-- Global style tweaks for less zoomed look and consistent control sizing -->
     <Style Selector="TextBlock">
       <Setter Property="FontSize" Value="13" />
     </Style>
@@ -33,7 +32,7 @@
       <Setter Property="Foreground" Value="#1B5E20" />
       <Setter Property="FontWeight" Value="Bold" />
     </Style>
-    <!-- Real GroupBox style (HeaderedContentControl) adapted for compact layout -->
+    <!-- Real GroupBox style (HeaderedContentControl) adapted for WinForms groups feel -->
     <Style Selector="HeaderedContentControl">
       <Setter Property="Padding" Value="0" />
       <Setter Property="Margin" Value="4,2" />
@@ -51,11 +50,9 @@
               <ColumnDefinition Width="Auto"/>
               <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <!-- Header -->
             <Border ZIndex="1" Background="{DynamicResource SystemControlBackgroundAltHighBrush}" Padding="6,0,6,0" Margin="8,0,0,0">
               <TextBlock Text="{TemplateBinding Header}" FontWeight="Bold" />
             </Border>
-            <!-- Content Area -->
             <Border Grid.RowSpan="2" Grid.ColumnSpan="2" CornerRadius="4" Padding="0,4,0,0" Margin="0,8,0,0" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
               <ContentPresenter Name="PART_ContentPresenter" Padding="8,4" Content="{TemplateBinding Content}" />
             </Border>

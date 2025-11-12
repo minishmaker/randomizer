@@ -66,9 +66,10 @@ public partial class MainWindow : Window
     private ShufflerController _shufflerController = null!;
     private YamlController _yamlController = null!;
 
-    private string _presetPath = string.Empty; // resolved at runtime
+    private string _presetPath = string.Empty;
 
     private WriteableBitmap? _lastHashBitmap;
+    private string _displayedInputSeed = string.Empty;
 
     public MainWindow()
     {
@@ -79,7 +80,6 @@ public partial class MainWindow : Window
         Title = $"{_shufflerController!.AppName} {_shufflerController.VersionName} {_shufflerController.RevName}";
         Closing += (_, e) => SaveConfig();
         LoadConfig();
-        // Defer UI initialization until visual tree is ready
         this.Opened += OnOpened;
     }
 
@@ -110,10 +110,9 @@ public partial class MainWindow : Window
 
     private async Task<bool> ShowConfirm(string text, string caption)
     {
-        // Fallback confirmation: show info and assume OK
         var box = MessageBoxManager.GetMessageBoxStandard(caption, text);
         await box.ShowWindowDialogAsync(this);
-        return true; // TODO: implement multi-button dialog when package supports it
+        return true;
     }
 
     private void InitializeBaseUi()
@@ -192,7 +191,6 @@ public partial class MainWindow : Window
         _shufflerController.SetLoggerVerbosity(_configuration.UseVerboseLogger);
         if (!string.IsNullOrEmpty(_configuration.DefaultLoggerPath)) _shufflerController.SetLogOutputPath(_configuration.DefaultLoggerPath);
         var attemptsBox = TryGet<TextBox>("RandomizationAttempts"); if (attemptsBox != null) attemptsBox.Text = $"{_configuration.MaximumRandomizationRetryCount}";
-        // Visual cue for menu items (check mark in header)
         SetMenuCheckVisual("CompactUiDefaultMenu", _configuration.UseCompactUIOnStart);
         SetMenuCheckVisual("LogAllTransactionsMenu", _configuration.UseVerboseLogger);
         SetMenuCheckVisual("CheckForUpdatesOnStartMenu", _configuration.CheckForUpdatesOnStart);
@@ -253,13 +251,9 @@ public partial class MainWindow : Window
         HookBtn("LoadSettingSample", LoadSettingSample_Click);
         HookBtn("LoadCosmeticSample", LoadCosmeticSample_Click);
 
-        // Note: Menu items are already wired via XAML Click attributes; do not hook them here to avoid double invocation.
-
-        // Re-populate Mystery weights if Advanced tab is selected later (content is created lazily)
         var tabs = TryGet<TabControl>("TabPane");
         if (tabs != null)
             tabs.SelectionChanged += (_, __) => {
-                // Delay to let the visual tree for the selected tab realize
                 Dispatcher.UIThread.Post(() => {
                     WireAdvancedTabEvents();
                     PopulateMysteryWeightCombos();
@@ -270,7 +264,6 @@ public partial class MainWindow : Window
                 }, DispatcherPriority.Loaded);
             };
 
-        // Also attempt to populate and wire now in case controls already exist
         WireAdvancedTabEvents();
         PopulateMysteryWeightCombos();
         WireSeedOutputTabEvents();
@@ -278,7 +271,6 @@ public partial class MainWindow : Window
 
     private void WireAdvancedTabEvents()
     {
-        // Helper to (re)wire events for controls that live inside the Advanced tab which may be created lazily.
         void HookBtn(string name, EventHandler<RoutedEventArgs> handler){ var b = TryGet<Button>(name); if (b != null) { b.Click -= handler; b.Click += handler; } }
         void HookChk(string name, EventHandler<RoutedEventArgs> handler){ var c = TryGet<CheckBox>(name); if (c != null) { c.Click -= handler; c.Click += handler; } }
 
@@ -293,7 +285,6 @@ public partial class MainWindow : Window
         HookChk("UseCustomPatch", UseCustomPatch_CheckedChanged);
         HookChk("UseCustomYAML", UseCustomYAML_CheckedChanged);
 
-        // Sync enabled state based on current checkboxes (in case controls were created after config load)
         var logicChk = TryGet<CheckBox>("UseCustomLogic");
         var patchChk = TryGet<CheckBox>("UseCustomPatch");
         var yamlChk  = TryGet<CheckBox>("UseCustomYAML");
@@ -306,7 +297,6 @@ public partial class MainWindow : Window
         if (mystCos  != null) { var en = mystCos.IsChecked  == true; var cb = TryGet<ComboBox>("CosmeticsWeights"); var btn = TryGet<Button>("LoadCosmeticSample"); if (cb!=null) cb.IsEnabled = en; if (btn!=null) btn.IsEnabled = en; }
     }
 
-    // Re-wire handlers for controls that live inside the Seed Output tab (created lazily)
     private void WireSeedOutputTabEvents()
     {
         void HookBtn(string name, EventHandler<RoutedEventArgs> handler)
@@ -326,7 +316,6 @@ public partial class MainWindow : Window
         HookBtn("CopyHashToClipboard", CopyHashToClipboard_Click);
     }
 
-    // File/folder dialogs used by browse/save handlers
     private async Task DisplayOpenDialog(string title, string[] filters, Func<string, Task> onOk)
     {
         var top = TopLevel.GetTopLevel(this);
@@ -387,11 +376,10 @@ public partial class MainWindow : Window
         }
     }
 
-    // Centralized population of Seed Output labels and hash image
     private void UpdateSeedOutputVisuals()
     {
         void safeSet(string name, string text){ var tb = TryGet<TextBlock>(name); if (tb != null) tb.Text = text ?? string.Empty; }
-        safeSet("InputSeedLabel", TryGet<TextBox>("Seed")?.Text ?? string.Empty);
+        safeSet("InputSeedLabel", _displayedInputSeed ?? string.Empty);
         safeSet("OutputSeedLabel", $"{_previousShuffler.FinalSeed:X}");
         var settingsString = _previousShuffler.GetFinalSettingsString();
         var cosmeticsString = _previousShuffler.GetFinalCosmeticsString();
@@ -430,18 +418,20 @@ public partial class MainWindow : Window
         var panel = TryGet<StackPanel>("RomHashPanel");
         var yamlLabel = TryGet<TextBlock>("YamlHashNotShownLabel");
         if (panel == null) return;
+
+        panel.HorizontalAlignment = HorizontalAlignment.Center;
+        panel.VerticalAlignment = VerticalAlignment.Top;
+
         var useYaml = (TryGet<CheckBox>("UseCustomYAML")?.IsChecked == true) || (TryGet<CheckBox>("UseMysterySettings")?.IsChecked == true) || (TryGet<CheckBox>("UseMysteryCosmetics")?.IsChecked == true);
         if (yamlLabel != null) yamlLabel.IsVisible = useYaml;
         panel.Children.Clear();
         if (useYaml) { _lastHashBitmap = null; return; }
-        // Use the active controller's output defines
         var eventLines = _previousShuffler.GetEventWrites().Split('\n');
         static bool TryParseDefine(string[] lines, string key, out uint value)
         {
             value = 0;
             var line = lines.FirstOrDefault(l => l.Contains(key));
             if (line == null) return false;
-            // tokens like: #define key 0xABCDEF12
             var parts = line.Split(new[]{'\t',' '}, StringSplitOptions.RemoveEmptyEntries);
             var token = parts.LastOrDefault(p => p.StartsWith("0x") || p.StartsWith("\"0x"));
             if (token == null) return false;
@@ -451,7 +441,6 @@ public partial class MainWindow : Window
         }
         if (!TryParseDefine(eventLines, "seedHashed", out var seed)) return;
         if (!TryParseDefine(eventLines, "settingHash", out var settings)) return;
-        // customRNG is not guaranteed to be in GetEventWrites(); synthesize a stable fallback when missing
         uint customRng;
         if (!TryParseDefine(eventLines, "customRNG", out customRng))
         {
@@ -492,7 +481,7 @@ public partial class MainWindow : Window
                 }
             }
         }
-        panel.Children.Add(new Image{ Source = wb, Width = targetW, Height = targetH });
+        panel.Children.Add(new Image{ Source = wb, Width = targetW, Height = targetH, Stretch = Stretch.None });
         _lastHashBitmap = wb;
     }
 
@@ -500,11 +489,9 @@ public partial class MainWindow : Window
     {
         var baseDir = Path.GetDirectoryName(AppContext.BaseDirectory)!;
         var candidates = new List<string>();
-        // Common output-relative locations
         candidates.Add(Path.Combine(baseDir, "Resources", "Presets"));
         candidates.Add(Path.Combine(baseDir, "Presets"));
 
-        // Walk up several levels and try both direct Resources/Presets and inside the Avalonia project folder
         var dir = new DirectoryInfo(baseDir);
         for (int i = 0; i < 8 && dir != null; i++)
         {
@@ -525,7 +512,6 @@ public partial class MainWindow : Window
 
     private void EnsurePresetDirectories()
     {
-        // If using Resources/Presets, assume directories exist and do not create duplicates.
         var usingResources = _presetPath.Contains($"{Path.DirectorySeparatorChar}Resources{Path.DirectorySeparatorChar}Presets{Path.DirectorySeparatorChar}");
         string[] dirs = { "Settings", "Cosmetics", "Mystery Settings", "Mystery Cosmetics" };
         foreach (var d in dirs)
@@ -714,7 +700,6 @@ public partial class MainWindow : Window
         }
         finally
         {
-            // Keep trying a few times as lazily-created tab content appears
             if (_presetLoadAttempts < 20)
             {
                 _presetLoadAttempts++;
@@ -807,11 +792,10 @@ public partial class MainWindow : Window
         dialog.Setup(title, "Enter a preset name:");
         var result = await dialog.ShowDialogAsync(this);
         if (string.IsNullOrWhiteSpace(result))
-            return $"Preset_{DateTime.Now:yyyyMMdd_HHmmss}"; // fallback
+            return $"Preset_{DateTime.Now:yyyyMMdd_HHmmss}";
         return result.Trim();
     }
 
-    // Added: missing event handlers and helpers
     private void Randomize_Click(object? sender, RoutedEventArgs e)
     {
         bool isChecked(string n) => (TryGet<CheckBox>(n)?.IsChecked ?? false) == true;
@@ -899,6 +883,7 @@ public partial class MainWindow : Window
     private async void RandomizeWithBaseShuffler()
     {
         _previousShuffler = _shufflerController;
+        _displayedInputSeed = TryGet<TextBox>("Seed")?.Text ?? string.Empty;
         var retries = Math.Max(1, _configuration.MaximumRandomizationRetryCount);
         var useSphere = (TryGet<CheckBox>("UseSphereBasedShuffler")?.IsChecked ?? false) == true;
         var result = _shufflerController.Randomize(retries, useSphere);
@@ -912,7 +897,6 @@ public partial class MainWindow : Window
 
     private string GetFilenameYamlShuffler()
     {
-        // Build name similar to WinForms: include seed and preset names when applicable
         var seed = _shufflerController.FinalSeed;
         var logicName = _yamlController.IsUsingLogicYaml() ? _yamlController.GetLogicYamlName() : (_recentSettingsPreset ?? "Custom");
         var cosName = _yamlController.IsUsingCosmeticsYaml() ? _yamlController.GetCosmeticsYamlName() : (_recentCosmeticsPreset ?? "Custom");
@@ -922,6 +906,7 @@ public partial class MainWindow : Window
     private async void RandomizeWithYamlShuffler()
     {
         _previousShuffler = _yamlController;
+        _displayedInputSeed = TryGet<TextBox>("Seed")?.Text ?? string.Empty;
         var logicPath = (TryGet<CheckBox>("UseCustomLogic")?.IsChecked ?? false) == true ? TryGet<TextBox>("LogicFilePath")?.Text ?? string.Empty : string.Empty;
         var useGlobal = (TryGet<CheckBox>("UseCustomYAML")?.IsChecked ?? false) == true;
         string? logicYaml = null, cosmeticsYaml = null;
@@ -997,7 +982,6 @@ public partial class MainWindow : Window
         var seedOutput = FC<TabItem>("SeedOutput");
         seedOutput.IsVisible = true;
         tab.SelectedItem = seedOutput;
-        // Defer until the tab content is realized, then populate
         Dispatcher.UIThread.Post(() => {
             WireSeedOutputTabEvents();
             UpdateSeedOutputVisuals();
