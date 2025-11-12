@@ -470,13 +470,16 @@ public partial class MainWindow : Window
             var rep = new SkiaSharp.SKColor(0x08,0x19,0xAD);
             for (int block=0; block<8; ++block){
                 uint idx = block switch { 0 => (seed>>24)&hashMask, 1 => (seed>>16)&hashMask, 2 => (seed>>8)&hashMask, 3 => seed & hashMask, 4 => (customRng>>8)&hashMask, 5 => 64U, 6 => (settings>>8)&hashMask, 7 => (settings>>16)&hashMask, _=>0};
-                var k = 16*(int)idx; var l = 16*block;
+                var k = 16*(int)idx; var l = 16*block*3; // 3x horizontal scale per source pixel
                 for (int sy=0; sy<16; ++sy){
                     for (int sx=0; sx<16; ++sx){
                         var c = src.GetPixel(sx, sy+k);
                         if ((c.Red==bad1.Red && c.Green==bad1.Green && c.Blue==bad1.Blue) || (c.Red==bad2.Red && c.Green==bad2.Green && c.Blue==bad2.Blue)) c = rep;
                         for (int dy=0; dy<3; ++dy){
-                            int x = sx + l; int y = sy*3 + dy; if (x>=targetW|| y>=targetH) continue; var off=(y*targetW + x)*4; ptr[off]=c.Blue; ptr[off+1]=c.Green; ptr[off+2]=c.Red; ptr[off+3]=c.Alpha; }
+                            for (int dx=0; dx<3; ++dx){
+                                int x = sx*3 + dx + l; int y = sy*3 + dy; if (x>=targetW|| y>=targetH) continue; var off=(y*targetW + x)*4; ptr[off]=c.Blue; ptr[off+1]=c.Green; ptr[off+2]=c.Red; ptr[off+3]=c.Alpha;
+                            }
+                        }
                     }
                 }
             }

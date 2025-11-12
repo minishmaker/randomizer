@@ -14,8 +14,9 @@
     <RuntimeIdentifiers>win-x64;linux-x64</RuntimeIdentifiers>
     <PublishSingleFile>true</PublishSingleFile>
     <SelfContained>true</SelfContained>
-    <PublishTrimmed>true</PublishTrimmed>
+    <PublishTrimmed>$(EnableTrimming)</PublishTrimmed>
     <TrimMode>partial</TrimMode>
+    <EnableTrimming>false</EnableTrimming>
     <InvariantGlobalization>true</InvariantGlobalization>
     <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
     <DebugType>embedded</DebugType>

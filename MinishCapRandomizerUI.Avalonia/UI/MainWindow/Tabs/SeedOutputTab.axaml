@@ -3,7 +3,7 @@
     <StackPanel Margin="12" HorizontalAlignment="Stretch" Spacing="12">
       <HeaderedContentControl Header="Seed Information" Classes="compact-groupbox">
         <Grid RowDefinitions="Auto,Auto,Auto" HorizontalAlignment="Stretch">
-          <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" Spacing="32" VerticalAlignment="Center">
+          <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" Spacing="32" VerticalAlignment="Center" Margin="0,6,0,0">
             <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
               <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="Input Seed:"/>
               <TextBlock Name="InputSeedLabel" VerticalAlignment="Center" MinWidth="120"/>
@@ -14,7 +14,7 @@
             </StackPanel>
           </StackPanel>
 
-          <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Top" Spacing="8">
+          <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Top" Spacing="8" Margin="0,6,0,0">
             <TextBlock HorizontalAlignment="Center" FontWeight="Bold" Text="ROM Hash:"/>
             <Panel HorizontalAlignment="Center" VerticalAlignment="Top">
               <StackPanel Name="RomHashPanel" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top"/>
@@ -27,22 +27,30 @@
       </HeaderedContentControl>
 
       <HeaderedContentControl Header="Settings Information" Classes="compact-groupbox">
-        <Grid ColumnDefinitions="178,*,225" RowDefinitions="Auto,Auto" HorizontalAlignment="Stretch">
-          <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Text="Settings Name:"/>
-          <TextBlock Grid.Row="0" Grid.Column="1" Name="SettingNameLabel"/>
-          <Button Grid.Row="0" Grid.Column="2" Name="CopySettingsHashToClipboard" Content="Copy Settings String To Clipboard"/>
-          <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Text="Settings String:"/>
-          <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Name="SettingHashLabel"/>
+        <Grid RowDefinitions="Auto,Auto,Auto" HorizontalAlignment="Stretch">
+          <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" Spacing="8" VerticalAlignment="Center" Margin="0,6,0,0">
+            <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="Settings Name:"/>
+            <TextBlock Name="SettingNameLabel" VerticalAlignment="Center"/>
+          </StackPanel>
+          <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Top" Spacing="6" Margin="0,6,0,0">
+            <TextBlock HorizontalAlignment="Left" FontWeight="Bold" Text="Settings String:"/>
+            <TextBlock Name="SettingHashLabel" TextWrapping="Wrap"/>
+          </StackPanel>
+          <Button Grid.Row="2" Name="CopySettingsHashToClipboard" Content="Copy Settings String To Clipboard" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
         </Grid>
       </HeaderedContentControl>
 
       <HeaderedContentControl Header="Cosmetics Information" Classes="compact-groupbox">
-        <Grid ColumnDefinitions="178,*,225" RowDefinitions="Auto,Auto" HorizontalAlignment="Stretch">
-          <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Text="Cosmetics Name:"/>
-          <TextBlock Grid.Row="0" Grid.Column="1" Name="CosmeticNameLabel"/>
-          <Button Grid.Row="0" Grid.Column="2" Name="CopyCosmeticsHashToClipboard" Content="Copy Cosmetics String To Clipboard"/>
-          <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Text="Cosmetics String:"/>
-          <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Name="CosmeticStringLabel"/>
+        <Grid RowDefinitions="Auto,Auto,Auto" HorizontalAlignment="Stretch">
+          <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" Spacing="8" VerticalAlignment="Center" Margin="0,6,0,0">
+            <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="Cosmetics Name:"/>
+            <TextBlock Name="CosmeticNameLabel" VerticalAlignment="Center"/>
+          </StackPanel>
+          <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Top" Spacing="6" Margin="0,6,0,0">
+            <TextBlock HorizontalAlignment="Left" FontWeight="Bold" Text="Cosmetics String:"/>
+            <TextBlock Name="CosmeticStringLabel" TextWrapping="Wrap"/>
+          </StackPanel>
+          <Button Grid.Row="2" Name="CopyCosmeticsHashToClipboard" Content="Copy Cosmetics String To Clipboard" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
         </Grid>
       </HeaderedContentControl>
 
@@ -54,4 +62,3 @@
     </StackPanel>
   </ScrollViewer>
 </UserControl>
-

@@ -35,15 +35,18 @@
         <ProjectReference Include="..\RandomizerCore\RandomizerCore.csproj" />
     </ItemGroup>
 
+    <!-- Copy auxiliary data into output/publish directories using MSBuild, not shell cp -->
     <ItemGroup>
-        <Content Include="..\RandomizerCore\Resouces\Patches\*.*">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-    </ItemGroup>
-
-    <ItemGroup>
-      <PackageReference Include="RestSharp" Version="112.1.0" />
-      <PackageReference Include="SkiaSharp.NativeAssets.Linux.NoDependencies" Version="2.88.8" />
+        <None Include="..\RandomizerCore\Resources\Patches\**\*.*">
+            <Link>Patches\%(RecursiveDir)%(Filename)%(Extension)</Link>
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+        </None>
+        <None Include="..\Vendor\Language Raws\**\*.*">
+            <Link>Language Raws\%(RecursiveDir)%(Filename)%(Extension)</Link>
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+        </None>
     </ItemGroup>
 
 	<Target Name="SetSourceRevisionId" BeforeTargets="InitializeSourceControlInformation">
@@ -52,24 +55,12 @@
 		</Exec>
 	</Target>
 
-    <Target Name="PostBuildDebugWindows" Condition="$([MSBuild]::IsOSPlatform('Windows')) and '$(Configuration)' == 'Debug'" AfterTargets="PostBuildEvent">
-        <Exec Command="xcopy &quot;$(ProjectDir)..\RandomizerCore\Resources\Patches\&quot; &quot;$(TargetDir)Patches\&quot; /y /d /s" />
-        <Exec Command="xcopy &quot;$(ProjectDir)..\Vendor\Language Raws\&quot; &quot;$(TargetDir)Language Raws\&quot; /y /d /s" />
-    </Target>
+    <ItemGroup>
+        <PackageReference Include="RestSharp" Version="112.1.0" />
+        <PackageReference Include="SkiaSharp" Version="2.88.8" />
+        <PackageReference Include="SkiaSharp.NativeAssets.Linux.NoDependencies" Version="2.88.8" />
+        <PackageReference Include="SkiaSharp.NativeAssets.Win32" Version="2.88.8" />
+    </ItemGroup>
 
-    <Target Name="PostBuildReleaseWindows" Condition="$([MSBuild]::IsOSPlatform('Windows')) and '$(Configuration)' == 'Release'" AfterTargets="PostBuildEvent">
-        <Exec Command="xcopy &quot;$(ProjectDir)..\RandomizerCore\Resources\Patches\&quot; &quot;$(PublishDir)Patches\&quot; /y /d /s" />
-        <Exec Command="xcopy &quot;$(ProjectDir)..\Vendor\Language Raws\&quot; &quot;$(PublishDir)Language Raws\&quot; /y /d /s" />
-    </Target>
-
-    <Target Name="PostBuildDebugUnix" Condition="!$([MSBuild]::IsOSPlatform('Windows')) and '$(Configuration)' == 'Debug'" AfterTargets="PostBuildEvent">
-        <Exec Command="cp -r &quot;$(ProjectDir)/../RandomizerCore/Resources/Patches/&quot; &quot;$(TargetDir)&quot;" />
-        <Exec Command="cp -r &quot;$(ProjectDir)/../Vendor/Language Raws/&quot; &quot;$(TargetDir)&quot;" />
-    </Target>
-
-    <Target Name="PostBuildReleaseUnix" Condition="!$([MSBuild]::IsOSPlatform('Windows')) and '$(Configuration)' == 'Release'" AfterTargets="PostBuildEvent">
-        <Exec Command="cp -r &quot;$(ProjectDir)/../RandomizerCore/Resources/Patches/&quot; &quot;$(PublishDir)&quot;" />
-        <Exec Command="cp -r &quot;$(ProjectDir)/../Vendor/Language Raws/&quot; &quot;$(PublishDir)&quot;" />
-    </Target>
-
+    <!-- Remove OS-specific post-build copy targets in favor of declarative CopyToPublishDirectory -->
 </Project>

@@ -11,12 +11,12 @@ OUTDIR="$1"
 SOLUTION_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$SOLUTION_DIR"
 
-# Build UI (Avalonia) self-contained single-file
+# Build UI (Avalonia) self-contained single-file (no trimming for compatibility)
 publish_ui(){
   local rid="$1"
   local dest="$OUTDIR/UI/$rid"
   dotnet publish MinishCapRandomizerUI.Avalonia/MinishCapRandomizerUI.Avalonia.csproj -c Release -r "$rid" \
-    -p:PublishSingleFile=true -p:SelfContained=true -p:PublishTrimmed=true -p:TrimMode=partial \
+    -p:PublishSingleFile=true -p:SelfContained=true \
     -p:EnableCompressionInSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true -o "$dest"
 }
 
@@ -34,4 +34,3 @@ for rid in linux-x64 linux-arm64 win-x64 win-arm64; do
 done
 
 echo "Builds published to $OUTDIR"
-
