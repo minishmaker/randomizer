@@ -69,7 +69,9 @@ public partial class MainWindow : Window
     private string _presetPath = string.Empty;
 
     private WriteableBitmap? _lastHashBitmap;
-    private string _displayedInputSeed = string.Empty;
+    private string _displayedInputSeed = string.Empty; // backing seed text allowing access when Seed textbox not realized
+    private string _seedText = string.Empty; // backing seed text allowing access when Seed textbox not realized
+    private bool _hasRandomized = false; // tracks if randomization occurred to show Seed Output tab
 
     public MainWindow()
     {
@@ -155,7 +157,7 @@ public partial class MainWindow : Window
         var seedOutput = TryGet<TabItem>("SeedOutput");
         if (seedOutput != null) seedOutput.IsVisible = false;
         var seed = new SquaresRandomNumberGenerator().Next();
-        var seedBox = TryGet<TextBox>("Seed"); if (seedBox != null) seedBox.Text = $"{seed:X}";
+        var seedBox = TryGet<TextBox>("Seed"); if (seedBox != null) { seedBox.Text = $"{seed:X}"; _seedText = seedBox.Text ?? string.Empty; seedBox.TextChanged += (_, __) => { _seedText = seedBox.Text ?? string.Empty; }; }
         var logicPath = _configuration.UseCustomLogic ? _configuration.CustomLogicFilepath : "";
         var result = _shufflerController.LoadLogicFile(logicPath);
         _yamlController.LoadLogicFile(logicPath);
@@ -545,6 +547,7 @@ public partial class MainWindow : Window
     {
         var seed = new SquaresRandomNumberGenerator().Next();
         FC<TextBox>("Seed").Text = $"{seed:X}";
+        _seedText = FC<TextBox>("Seed").Text ?? string.Empty; // update backing
         _shufflerController.SetRandomizationSeed(seed);
         _yamlController.SetRandomizationSeed(seed);
     }
@@ -886,10 +889,14 @@ public partial class MainWindow : Window
     private async void RandomizeWithBaseShuffler()
     {
         _previousShuffler = _shufflerController;
-        _displayedInputSeed = TryGet<TextBox>("Seed")?.Text ?? string.Empty;
-
-        // Parse seed from UI like WinForms
-        if (!ulong.TryParse((_displayedInputSeed ?? string.Empty).Trim(), System.Globalization.NumberStyles.HexNumber, null, out var parsedSeed))
+        // Prefer backing seed text (works even if General tab not active)
+        _displayedInputSeed = _seedText.Trim();
+        if (string.IsNullOrWhiteSpace(_displayedInputSeed))
+        {
+            await ShowAlert("Invalid Seed Provided!", "Invalid Seed");
+            return;
+        }
+        if (!ulong.TryParse(_displayedInputSeed, System.Globalization.NumberStyles.HexNumber, null, out var parsedSeed))
         {
             await ShowAlert("Invalid Seed Provided!", "Invalid Seed");
             return;
@@ -929,10 +936,8 @@ public partial class MainWindow : Window
     private async void RandomizeWithYamlShuffler()
     {
         _previousShuffler = _yamlController;
-        _displayedInputSeed = TryGet<TextBox>("Seed")?.Text ?? string.Empty;
-
-        // Parse seed and set on both controllers
-        if (!ulong.TryParse((_displayedInputSeed ?? string.Empty).Trim(), System.Globalization.NumberStyles.HexNumber, null, out var parsedSeed))
+        _displayedInputSeed = _seedText.Trim();
+        if (string.IsNullOrWhiteSpace(_displayedInputSeed) || !ulong.TryParse(_displayedInputSeed, System.Globalization.NumberStyles.HexNumber, null, out var parsedSeed))
         {
             await ShowAlert("Invalid Seed Provided!", "Invalid Seed");
             return;
@@ -996,56 +1001,84 @@ public partial class MainWindow : Window
             ["Gameplay"]="Gameplay",
             ["Cosmetics"]="Cosmetics",
             ["Advanced"]="Advanced"};
+        // Core tabs that have XAML definitions and should never be removed
+        var xamlTabs = new HashSet<string>(StringComparer.OrdinalIgnoreCase){"General","Advanced"};
+        // Known default tabs that should remain visible even if empty (when using default logic)
+        var knownDefaultTabs = new HashSet<string>(map.Values, StringComparer.OrdinalIgnoreCase);
+        knownDefaultTabs.UnionWith(xamlTabs);
 
-        // Tabs whose content is static XAML and must not be cleared/overwritten here
-        var staticTabs = new HashSet<string>(StringComparer.OrdinalIgnoreCase){"General","Advanced","Seed Output"};
+        var seedOutputTab = TryGet<TabItem>("SeedOutput"); if (seedOutputTab != null && !_hasRandomized) seedOutputTab.IsVisible = false;
+
+        // FIRST PASS: Remove all custom tabs (not in XAML, not in known defaults, not Seed Output) to ensure clean slate
+        var allTabHeaders = new HashSet<string>(knownDefaultTabs, StringComparer.OrdinalIgnoreCase);
+        allTabHeaders.Add("Seed Output");
+        foreach (var existing in tab.Items!.OfType<TabItem>().ToList())
+        {
+            var header = existing.Header?.ToString() ?? string.Empty;
+            if (!allTabHeaders.Contains(header))
+            {
+                tab.Items!.Remove(existing);
+            }
+        }
 
         var tabItemsByHeader = tab.Items!.OfType<TabItem>()
             .ToDictionary(t => t.Header?.ToString() ?? string.Empty, t => t, StringComparer.OrdinalIgnoreCase);
-
-        // Hide and clear only dynamic tabs (non-static) before repopulating
-        foreach (var header in map.Values.Distinct())
-        {
-            if (!tabItemsByHeader.TryGetValue(header, out var tItem)) continue;
-            if (staticTabs.Contains(header)) continue; // don’t touch static tabs
-            tItem.IsVisible = false;
-            tItem.Content = null;
-        }
-
         var options = _useCompactUI ? _shufflerController.GetCompactOptions() : _shufflerController.GetSelectedOptions();
         var wrapped = MinishCapRandomizerUI.Avalonia.Elements.WrappedLogicOptionFactory.BuildGenericWrappedLogicOptions(options);
+        var pagesPresent = wrapped.Select(w => w.Page ?? string.Empty).Where(p => !string.IsNullOrWhiteSpace(p)).Distinct(StringComparer.OrdinalIgnoreCase).ToHashSet(StringComparer.OrdinalIgnoreCase);
 
-        // Build and show only the dynamic tabs that exist for the current logic; never overwrite static tabs
-        foreach (var pageGroup in wrapped.GroupBy(w=>w.Page??string.Empty))
+        // Insert missing pages (custom) before Advanced
+        var advancedIndex = tab.Items!.OfType<TabItem>().ToList().FindIndex(t => string.Equals(t.Header?.ToString(), "Advanced", StringComparison.OrdinalIgnoreCase));
+        if (advancedIndex < 0) advancedIndex = tab.Items!.Count;
+        foreach (var page in pagesPresent)
         {
-            if (!map.TryGetValue(pageGroup.Key, out var header)) continue;
-            if (staticTabs.Contains(header)) continue; // skip Advanced/General/Seed Output
+            var header = map.TryGetValue(page, out var mapped) ? mapped : page;
+            if (!tabItemsByHeader.ContainsKey(header))
+            {
+                var newTab = new TabItem { Header = header, IsVisible = true };
+                tab.Items!.Insert(Math.Min(advancedIndex, tab.Items!.Count), newTab);
+                tabItemsByHeader[header] = newTab;
+                advancedIndex = tab.Items!.OfType<TabItem>().ToList().FindIndex(t => string.Equals(t.Header?.ToString(), "Advanced", StringComparison.OrdinalIgnoreCase));
+            }
+        }
+
+        foreach (var pageGroup in wrapped.GroupBy(w => w.Page ?? string.Empty))
+        {
+            if (string.IsNullOrWhiteSpace(pageGroup.Key)) continue;
+            var header = map.TryGetValue(pageGroup.Key, out var mapped) ? mapped : pageGroup.Key;
+            if (string.Equals(header, "Seed Output", StringComparison.OrdinalIgnoreCase)) continue;
             if (!tabItemsByHeader.TryGetValue(header, out var tabItem)) continue;
-
-            var stack = new StackPanel{Spacing=6,Margin=new Thickness(6)};
-            foreach(var group in pageGroup.GroupBy(w=>w.SettingGrouping).Where(g=>!string.IsNullOrWhiteSpace(g.Key)))
+            var groups = pageGroup.GroupBy(w => w.SettingGrouping).Where(g => !string.IsNullOrWhiteSpace(g.Key)).ToList();
+            if (groups.Count == 0 && knownDefaultTabs.Contains(header)) { tabItem.IsVisible = true; continue; }
+            var stack = new StackPanel { Spacing = 6, Margin = new Thickness(6) };
+            foreach (var group in groups)
                 stack.Children.Add(MinishCapRandomizerUI.Avalonia.Elements.WrappedLogicOptionFactory.BuildGroupContainer(group.Key!, group));
-
-            tabItem.Content = new ScrollViewer{ Content = stack };
+            tabItem.Content = new ScrollViewer { Content = stack };
             tabItem.IsVisible = true;
         }
 
-        // Ensure static tabs remain visible
-        foreach (var header in staticTabs)
-            if (tabItemsByHeader.TryGetValue(header, out var t)) t.IsVisible = true;
+        foreach (var header in knownDefaultTabs)
+        {
+            if (tabItemsByHeader.TryGetValue(header, out var t))
+            {
+                t.IsVisible = true;
+                if (t.Content == null && !xamlTabs.Contains(header))
+                    t.Content = new ScrollViewer { Content = new StackPanel { Margin = new Thickness(6) } }; // empty placeholder
+            }
+        }
+        if (seedOutputTab != null && _hasRandomized) seedOutputTab.IsVisible = true;
 
-        // If the currently selected tab became hidden, move selection to the first visible tab
         var selected = tab.SelectedItem as TabItem;
         if (selected != null && selected.IsVisible == false)
         {
             var firstVisible = tab.Items!.OfType<TabItem>().FirstOrDefault(t => t.IsVisible);
-            if (firstVisible != null)
-                tab.SelectedItem = firstVisible;
+            if (firstVisible != null) tab.SelectedItem = firstVisible;
         }
     }
 
     private void DisplayAndUpdateSeedInfoPage()
     {
+        _hasRandomized = true;
         var tab = FC<TabControl>("TabPane");
         var seedOutput = FC<TabItem>("SeedOutput");
         seedOutput.IsVisible = true;
