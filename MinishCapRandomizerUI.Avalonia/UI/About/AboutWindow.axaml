@@ -1,28 +1,28 @@
 <Window xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Class="MinishCapRandomizerUI.Avalonia.UI.About.AboutWindow" Width="560" Height="340" CanResize="False" Title="About">
   <DockPanel Margin="12">
-    <Button Content="OK" HorizontalAlignment="Right" Width="90" x:Name="OkButton" DockPanel.Dock="Bottom" />
+    <Button Content="OK" HorizontalAlignment="Right" Width="100" x:Name="OkButton" DockPanel.Dock="Bottom" />
 
     <Grid ColumnDefinitions="Auto,12,*" RowDefinitions="Auto,*">
       <Image Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Source="avares://MinishCapRandomizerUI.Avalonia/Resources/Untitled110.png" Width="130" Height="150" />
 
-      <StackPanel Grid.Row="0" Grid.Column="2" Spacing="6">
+      <StackPanel Grid.Row="0" Grid.Column="2" Spacing="8">
         <TextBlock x:Name="TitleBlock" FontSize="18" FontWeight="Bold" />
         <TextBlock x:Name="VersionBlock" />
         <TextBlock Text="Developed in .NET by the TMCR Development Team" />
         <TextBlock Text="Patches written in Event Assembly" />
-        <StackPanel Orientation="Horizontal" Spacing="6">
+        <StackPanel Orientation="Horizontal" Spacing="8">
           <TextBlock Text="Patching powered by ColorzCore:" />
           <Button Content="ColorzCore" x:Name="ColorzCore" />
         </StackPanel>
 
-        <TextBlock Text="Helpful Links" FontWeight="Bold" Margin="0,8,0,0" />
+        <TextBlock Text="Helpful Links" FontWeight="Bold" Margin="0,12,0,0" />
         <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto" HorizontalAlignment="Stretch">
-          <Button Grid.Row="0" Grid.Column="0" Content="Randomizer Discord" x:Name="DiscordRando" Margin="0,0,6,6" HorizontalAlignment="Stretch" />
-          <Button Grid.Row="0" Grid.Column="1" Content="Zelda Speed Runs Discord" x:Name="DiscordZsr" Margin="6,0,0,6" HorizontalAlignment="Stretch" />
-          <Button Grid.Row="1" Grid.Column="0" Content="TMCR Github" x:Name="GithubRepo" Margin="0,0,6,6" HorizontalAlignment="Stretch" />
-          <Button Grid.Row="1" Grid.Column="1" Content="TMCR Releases" x:Name="GithubReleases" Margin="6,0,0,6" HorizontalAlignment="Stretch" />
-          <Button Grid.Row="2" Grid.Column="0" Content="Emotracker Download" x:Name="EmoTracker" Margin="0,0,6,0" HorizontalAlignment="Stretch" />
-          <Button Grid.Row="2" Grid.Column="1" Content="Bizhawk Download" x:Name="BizHawk" Margin="6,0,0,0" HorizontalAlignment="Stretch" />
+          <Button Grid.Row="0" Grid.Column="0" Content="Randomizer Discord" x:Name="DiscordRando" Margin="0,0,4,4" HorizontalAlignment="Stretch" />
+          <Button Grid.Row="0" Grid.Column="1" Content="Zelda Speed Runs Discord" x:Name="DiscordZsr" Margin="4,0,0,4" HorizontalAlignment="Stretch" />
+          <Button Grid.Row="1" Grid.Column="0" Content="TMCR Github" x:Name="GithubRepo" Margin="0,4,4,4" HorizontalAlignment="Stretch" />
+          <Button Grid.Row="1" Grid.Column="1" Content="TMCR Releases" x:Name="GithubReleases" Margin="4,4,0,4" HorizontalAlignment="Stretch" />
+          <Button Grid.Row="2" Grid.Column="0" Content="Emotracker Download" x:Name="EmoTracker" Margin="0,4,4,0" HorizontalAlignment="Stretch" />
+          <Button Grid.Row="2" Grid.Column="1" Content="Bizhawk Download" x:Name="BizHawk" Margin="4,4,0,0" HorizontalAlignment="Stretch" />
         </Grid>
       </StackPanel>
     </Grid>

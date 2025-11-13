@@ -23,6 +23,9 @@
     </Style>
     <Style Selector="CheckBox">
       <Setter Property="FontSize" Value="13" />
+      <Setter Property="MinHeight" Value="24" />
+      <Setter Property="Padding" Value="4,2" />
+      <Setter Property="VerticalContentAlignment" Value="Center" />
     </Style>
     <Style Selector="CheckBox.toggled">
       <Setter Property="Foreground" Value="#007ACC" />
@@ -31,6 +34,12 @@
     <Style Selector="CheckBox.toggled:checked">
       <Setter Property="Foreground" Value="#1B5E20" />
       <Setter Property="FontWeight" Value="Bold" />
+    </Style>
+    <Style Selector="RadioButton">
+      <Setter Property="FontSize" Value="13" />
+      <Setter Property="MinHeight" Value="24" />
+      <Setter Property="Padding" Value="4,2" />
+      <Setter Property="VerticalContentAlignment" Value="Center" />
     </Style>
     <!-- Real GroupBox style (HeaderedContentControl) adapted for WinForms groups feel -->
     <Style Selector="HeaderedContentControl">
@@ -87,6 +96,17 @@
           </Grid>
         </ControlTemplate>
       </Setter>
+    </Style>
+    <Style Selector="MenuItem">
+      <Setter Property="FontSize" Value="13" />
+      <Setter Property="Padding" Value="6,8,6,6" />
+    </Style>
+    <Style Selector="MenuItem CheckBox">
+      <Setter Property="FontSize" Value="13" />
+      <Setter Property="Padding" Value="6" />
+      <Setter Property="Margin" Value="0" />
+      <Setter Property="MinHeight" Value="18" />
+      <Setter Property="VerticalAlignment" Value="Center" />
     </Style>
   </Application.Styles>
 </Application>

@@ -166,36 +166,66 @@ public partial class MainWindow : Window
             await ShowAlert("Could not load custom logic file from path in the config file. The file may have been moved or deleted.", "Could Not Load Logic File");
             _shufflerController.LoadLogicFile();
             _yamlController.LoadLogicFile();
+            _configuration.UseCustomLogic = false;
+            _configuration.CustomLogicFilepath = string.Empty;
         }
-        else if (result.WasSuccessful && _configuration.UseCustomLogic)
-        {
-            var cLogic = TryGet<CheckBox>("UseCustomLogic"); if (cLogic != null) cLogic.IsChecked = _configuration.UseCustomLogic;
-            var logicPathBox = TryGet<TextBox>("LogicFilePath"); if (logicPathBox != null) logicPathBox.Text = _configuration.CustomLogicFilepath;
-        }
-        var browseLogicBtn = TryGet<Button>("BrowseCustomLogicFile"); if (browseLogicBtn != null) browseLogicBtn.IsEnabled = (TryGet<CheckBox>("UseCustomLogic")?.IsChecked == true);
+
+        var cLogic = TryGet<CheckBox>("UseCustomLogic");
+        if (cLogic != null) cLogic.IsChecked = _configuration.UseCustomLogic;
+        var logicPathBox = TryGet<TextBox>("LogicFilePath");
+        if (logicPathBox != null) logicPathBox.Text = _configuration.CustomLogicFilepath ?? string.Empty;
+        var browseLogicBtn = TryGet<Button>("BrowseCustomLogicFile");
+        if (browseLogicBtn != null) browseLogicBtn.IsEnabled = _configuration.UseCustomLogic;
         if (!string.IsNullOrEmpty(_configuration.RomPath))
         {
             result = _shufflerController.LoadRom(_configuration.RomPath);
             if (!result.WasSuccessful)
+            {
                 await ShowAlert("Could not load ROM from path in the config file. The file may have been moved or deleted.", "Could Not Load ROM");
-            else
-            { var romPathBox = TryGet<TextBox>("RomPath"); if (romPathBox != null) romPathBox.Text = _configuration.RomPath; }
+                _configuration.RomPath = string.Empty;
+            }
         }
-        var cPatch = TryGet<CheckBox>("UseCustomPatch"); if (cPatch != null) cPatch.IsChecked = _configuration.UseCustomPatch;
-        var romBuildBox = TryGet<TextBox>("RomBuildfilePath"); if (romBuildBox != null) romBuildBox.Text = _configuration.CustomPatchFilepath;
-        var browsePatchBtn = TryGet<Button>("BrowseCustomPatch"); if (browsePatchBtn != null) browsePatchBtn.IsEnabled = _configuration.UseCustomPatch;
-        var cYaml = TryGet<CheckBox>("UseCustomYAML"); if (cYaml != null) cYaml.IsChecked = _configuration.UseCustomYAML;
-        var yamlPathBox = TryGet<TextBox>("YAMLPath"); if (yamlPathBox != null) yamlPathBox.Text = _configuration.CustomYAMLFilepath;
-        var browseYamlBtn = TryGet<Button>("BrowseCustomYAML"); if (browseYamlBtn != null) browseYamlBtn.IsEnabled = _configuration.UseCustomYAML;
+        var romPathBox = TryGet<TextBox>("RomPath");
+        if (romPathBox != null) romPathBox.Text = _configuration.RomPath ?? string.Empty;
 
-        // Initialize compact mode from config
+        if (_configuration.UseCustomPatch && !string.IsNullOrEmpty(_configuration.CustomPatchFilepath))
+        {
+            if (!File.Exists(_configuration.CustomPatchFilepath))
+            {
+                await ShowAlert("Could not find custom patch file from path in the config file. The file may have been moved or deleted.", "Could Not Load Patch File");
+                _configuration.UseCustomPatch = false;
+                _configuration.CustomPatchFilepath = string.Empty;
+            }
+        }
+        var cPatch = TryGet<CheckBox>("UseCustomPatch");
+        if (cPatch != null) cPatch.IsChecked = _configuration.UseCustomPatch;
+        var romBuildBox = TryGet<TextBox>("RomBuildfilePath");
+        if (romBuildBox != null) romBuildBox.Text = _configuration.CustomPatchFilepath ?? string.Empty;
+        var browsePatchBtn = TryGet<Button>("BrowseCustomPatch");
+        if (browsePatchBtn != null) browsePatchBtn.IsEnabled = _configuration.UseCustomPatch;
+
+        if (_configuration.UseCustomYAML && !string.IsNullOrEmpty(_configuration.CustomYAMLFilepath))
+        {
+            if (!File.Exists(_configuration.CustomYAMLFilepath))
+            {
+                await ShowAlert("Could not find custom YAML file from path in the config file. The file may have been moved or deleted.", "Could Not Load YAML File");
+                _configuration.UseCustomYAML = false;
+                _configuration.CustomYAMLFilepath = string.Empty;
+            }
+        }
+        var cYaml = TryGet<CheckBox>("UseCustomYAML");
+        if (cYaml != null) cYaml.IsChecked = _configuration.UseCustomYAML;
+        var yamlPathBox = TryGet<TextBox>("YAMLPath");
+        if (yamlPathBox != null) yamlPathBox.Text = _configuration.CustomYAMLFilepath ?? string.Empty;
+        var browseYamlBtn = TryGet<Button>("BrowseCustomYAML");
+        if (browseYamlBtn != null) browseYamlBtn.IsEnabled = _configuration.UseCustomYAML;
+
         var compactChk = TryGet<CheckBox>("UseCompactUI");
         var compactLabel = TryGet<TextBlock>("CompactUINotSupportedLabel");
         if (compactLabel != null) compactLabel.IsVisible = !_shufflerController.IsCompactModeSupported();
 
         if (_configuration.UseCompactUIOnStart && _shufflerController.IsCompactModeSupported())
         {
-            // Sync values from full to compact options on startup
             _shufflerController.UpdateCompactOptionValues(true);
             _useCompactUI = true;
             if (compactChk != null) compactChk.IsChecked = true;
@@ -210,7 +240,6 @@ public partial class MainWindow : Window
         if (!string.IsNullOrEmpty(_configuration.DefaultLoggerPath)) _shufflerController.SetLogOutputPath(_configuration.DefaultLoggerPath);
         var attemptsBox = TryGet<TextBox>("RandomizationAttempts"); if (attemptsBox != null) attemptsBox.Text = $"{_configuration.MaximumRandomizationRetryCount}";
 
-        // Initialize menu checkboxes after a delay to ensure menu is in visual tree
         Dispatcher.UIThread.Post(() => {
             SetMenuCheckVisual("CompactUiDefaultCheckBox", _configuration.UseCompactUIOnStart);
             SetMenuCheckVisual("LogAllTransactionsCheckBox", _configuration.UseVerboseLogger);
@@ -222,12 +251,10 @@ public partial class MainWindow : Window
 
     private void SetMenuCheckVisual(string checkBoxName, bool enabled)
     {
-        // Find the CheckBox control inside the MenuItem header
         var checkbox = this.FindControl<CheckBox>(checkBoxName);
 
         if (checkbox == null)
         {
-            // Fallback to TryGet if FindControl didn't work
             checkbox = TryGet<CheckBox>(checkBoxName);
         }
 
@@ -237,7 +264,6 @@ public partial class MainWindow : Window
             return;
         }
 
-        // Set the checkbox state
         checkbox.IsChecked = enabled;
 
         Console.WriteLine($"[MenuCheck] Set '{checkBoxName}' to {(enabled ? "checked" : "unchecked")}");
@@ -330,10 +356,9 @@ public partial class MainWindow : Window
         HookChk("UseCustomLogic", UseCustomLogic_CheckedChanged);
         HookChk("UseCustomPatch", UseCustomPatch_CheckedChanged);
         HookChk("UseCustomYAML", UseCustomYAML_CheckedChanged);
-        HookChk("UseCompactUI", UseCompactUI_Click);  // ✅ ADDED: Wire UseCompactUI event
-        HookChk("UseSphereBasedShuffler", UseSphereBasedShuffler_CheckedChanged);  // ✅ ADDED: Also wire this one
+        HookChk("UseCompactUI", UseCompactUI_Click);
+        HookChk("UseSphereBasedShuffler", UseSphereBasedShuffler_CheckedChanged);
 
-        // Set checkbox states to match current configuration
         var compactChk = TryGet<CheckBox>("UseCompactUI");
         if (compactChk != null)
         {
@@ -346,9 +371,34 @@ public partial class MainWindow : Window
         var yamlChk  = TryGet<CheckBox>("UseCustomYAML");
         var mystSet  = TryGet<CheckBox>("UseMysterySettings");
         var mystCos  = TryGet<CheckBox>("UseMysteryCosmetics");
-        if (logicChk != null) { var en = logicChk.IsChecked == true; var btn = TryGet<Button>("BrowseCustomLogicFile"); var tb = TryGet<TextBox>("LogicFilePath"); if (btn!=null) btn.IsEnabled = en; if (tb!=null) tb.IsEnabled = en; }
-        if (patchChk != null) { var en = patchChk.IsChecked == true; var btn = TryGet<Button>("BrowseCustomPatch"); var tb = TryGet<TextBox>("RomBuildfilePath"); if (btn!=null) btn.IsEnabled = en; if (tb!=null) tb.IsEnabled = en; }
-        if (yamlChk  != null) { var en = yamlChk.IsChecked  == true; var btn = TryGet<Button>("BrowseCustomYAML"); var tb = TryGet<TextBox>("YAMLPath"); if (btn!=null) btn.IsEnabled = en; if (tb!=null) tb.IsEnabled = en; }
+
+        if (logicChk != null)
+        {
+            logicChk.IsChecked = _configuration.UseCustomLogic;
+            var btn = TryGet<Button>("BrowseCustomLogicFile");
+            var tb = TryGet<TextBox>("LogicFilePath");
+            if (tb != null) tb.Text = _configuration.CustomLogicFilepath ?? string.Empty;
+            if (btn != null) btn.IsEnabled = _configuration.UseCustomLogic;
+            if (tb != null) tb.IsEnabled = _configuration.UseCustomLogic;
+        }
+        if (patchChk != null)
+        {
+            patchChk.IsChecked = _configuration.UseCustomPatch;
+            var btn = TryGet<Button>("BrowseCustomPatch");
+            var tb = TryGet<TextBox>("RomBuildfilePath");
+            if (tb != null) tb.Text = _configuration.CustomPatchFilepath ?? string.Empty;
+            if (btn != null) btn.IsEnabled = _configuration.UseCustomPatch;
+            if (tb != null) tb.IsEnabled = _configuration.UseCustomPatch;
+        }
+        if (yamlChk  != null)
+        {
+            yamlChk.IsChecked = _configuration.UseCustomYAML;
+            var btn = TryGet<Button>("BrowseCustomYAML");
+            var tb = TryGet<TextBox>("YAMLPath");
+            if (tb != null) tb.Text = _configuration.CustomYAMLFilepath ?? string.Empty;
+            if (btn != null) btn.IsEnabled = _configuration.UseCustomYAML;
+            if (tb != null) tb.IsEnabled = _configuration.UseCustomYAML;
+        }
         if (mystSet  != null) { var en = mystSet.IsChecked  == true; var cb = TryGet<ComboBox>("SettingsWeights"); var btn = TryGet<Button>("LoadSettingSample"); if (cb!=null) cb.IsEnabled = en; if (btn!=null) btn.IsEnabled = en; }
         if (mystCos  != null) { var en = mystCos.IsChecked  == true; var cb = TryGet<ComboBox>("CosmeticsWeights"); var btn = TryGet<Button>("LoadCosmeticSample"); if (cb!=null) cb.IsEnabled = en; if (btn!=null) btn.IsEnabled = en; }
     }
@@ -601,7 +651,7 @@ public partial class MainWindow : Window
     {
         var seed = new SquaresRandomNumberGenerator().Next();
         FC<TextBox>("Seed").Text = $"{seed:X}";
-        _seedText = FC<TextBox>("Seed").Text ?? string.Empty; // update backing
+        _seedText = FC<TextBox>("Seed").Text ?? string.Empty;
         _shufflerController.SetRandomizationSeed(seed);
         _yamlController.SetRandomizationSeed(seed);
     }
@@ -935,7 +985,6 @@ public partial class MainWindow : Window
 
             Console.WriteLine($"[CompactUI] Click: wantCompact={wantCompact}, _useCompactUI={_useCompactUI}");
 
-            // Check if compact mode is supported (mirrors WinForms check)
             if (wantCompact && !_shufflerController.IsCompactModeSupported())
             {
                 Console.WriteLine("[CompactUI] Compact mode not supported");
@@ -943,14 +992,12 @@ public partial class MainWindow : Window
                 return;
             }
 
-            // Check if state actually changed (avoid infinite loops from programmatic changes)
             if (wantCompact == _useCompactUI)
             {
                 Console.WriteLine("[CompactUI] State unchanged, returning");
                 return;
             }
 
-            // If switching to normal mode
             if (!wantCompact)
             {
                 Console.WriteLine("[CompactUI] Switching to normal mode");
@@ -958,7 +1005,6 @@ public partial class MainWindow : Window
                 return;
             }
 
-            // Switching TO compact mode: check compatibility first (mirrors WinForms)
             Console.WriteLine("[CompactUI] Checking compatibility for compact mode");
             var isCompatible = _shufflerController.UpdateCompactOptionValues(false);
             if (isCompatible)
@@ -969,7 +1015,6 @@ public partial class MainWindow : Window
             else
             {
                 Console.WriteLine("[CompactUI] Incompatible - showing warning then switching");
-                // Show warning like WinForms does, then proceed with switch
                 await ShowAlert("The current combination of options is not supported in compact mode.\nSwitching to compact mode will set conflicting settings to their default values.", "Incompatible Options");
                 SwitchToCompactMode();
             }
@@ -995,7 +1040,6 @@ public partial class MainWindow : Window
         UpdateUIWithLogicOptions();
         Console.WriteLine("[CompactUI] SwitchToCompactMode: Updating checkbox");
 
-        // Update checkbox state after tabs are rebuilt
         Dispatcher.UIThread.Post(() =>
         {
             var chk = TryGet<CheckBox>("UseCompactUI");
@@ -1007,7 +1051,6 @@ public partial class MainWindow : Window
     private async void RandomizeWithBaseShuffler()
     {
         _previousShuffler = _shufflerController;
-        // Prefer backing seed text (works even if General tab not active)
         _displayedInputSeed = _seedText.Trim();
         if (string.IsNullOrWhiteSpace(_displayedInputSeed))
         {
@@ -1025,7 +1068,6 @@ public partial class MainWindow : Window
         var retries = Math.Max(1, _configuration.MaximumRandomizationRetryCount);
         var useSphere = _configuration.UseHendrusShuffler;
 
-        // Load locations BEFORE randomizing to populate event defines for patching
         var logicPath = _configuration.UseCustomLogic ? _configuration.CustomLogicFilepath : string.Empty;
         var load = _shufflerController.LoadLocations(logicPath);
         if (!load.WasSuccessful)
@@ -1112,7 +1154,6 @@ public partial class MainWindow : Window
         UpdateUIWithLogicOptions();
 
         Console.WriteLine("[CompactUI] SwitchToNormalMode: Updating checkbox");
-        // Update checkbox state after tabs are rebuilt
         Dispatcher.UIThread.Post(() =>
         {
             var chk = TryGet<CheckBox>("UseCompactUI");
@@ -1124,23 +1165,18 @@ public partial class MainWindow : Window
     private void UpdateUIWithLogicOptions()
     {
         Console.WriteLine($"[UpdateUI] _useCompactUI={_useCompactUI}");
-        // SIMPLIFIED TO MIRROR WINFORMS: Complete rebuild instead of selective updates
         var tab = this.FindControl<TabControl>("TabPane"); if (tab == null) return;
 
-        // Save references to XAML-defined tabs that must be preserved
         var generalTab = tab.Items!.OfType<TabItem>().FirstOrDefault(t => string.Equals(t.Header?.ToString(), "General", StringComparison.OrdinalIgnoreCase));
         var advancedTab = tab.Items!.OfType<TabItem>().FirstOrDefault(t => string.Equals(t.Header?.ToString(), "Advanced", StringComparison.OrdinalIgnoreCase));
         var seedOutputTab = TryGet<TabItem>("SeedOutput");
 
         Console.WriteLine($"[UpdateUI] Found tabs - General={generalTab!=null}, Advanced={advancedTab!=null}, SeedOutput={seedOutputTab!=null}");
 
-        // COMPLETE REBUILD: Remove all tabs (mirroring WinForms: "for (var i = TabPane.TabPages.Count - 1; i >= 2; --i) TabPane.TabPages.RemoveAt(i);")
         tab.Items!.Clear();
 
-        // Re-add General tab (index 0, always first)
         if (generalTab != null) tab.Items.Add(generalTab);
 
-        // Get current options (respects compact mode like WinForms)
         var options = _useCompactUI ? _shufflerController.GetCompactOptions() : _shufflerController.GetSelectedOptions();
         Console.WriteLine($"[UpdateUI] Got {options.Count} options from {(_useCompactUI ? "COMPACT" : "FULL")} set");
         var wrapped = MinishCapRandomizerUI.Avalonia.Elements.WrappedLogicOptionFactory.BuildGenericWrappedLogicOptions(options);
@@ -1154,7 +1190,6 @@ public partial class MainWindow : Window
             Console.WriteLine($"  Page: '{pg.Key}' with {pg.Count()} options");
         }
 
-        // Build and add all dynamic tabs (mirroring WinForms: "TabPane.TabPages.Add(UIGenerator.BuildSettingsPage(...))")
         foreach (var page in pagesList)
         {
             var tabItem = new TabItem { Header = page.Key };
@@ -1170,10 +1205,8 @@ public partial class MainWindow : Window
             Console.WriteLine($"  Added tab: '{page.Key}'");
         }
 
-        // Re-add Advanced tab (index N-1 or N-2, always before/after Seed Output depending on randomization state)
         if (advancedTab != null) tab.Items.Add(advancedTab);
 
-        // Add Seed Output tab if randomization occurred (mirroring WinForms: "if (_randomizedRomCreated) TabPane.TabPages.Add(SeedOutput);")
         if (_hasRandomized && seedOutputTab != null)
         {
             tab.Items.Add(seedOutputTab);

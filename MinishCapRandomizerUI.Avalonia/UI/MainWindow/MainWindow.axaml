@@ -9,9 +9,9 @@
   <DockPanel>
     <Menu DockPanel.Dock="Top">
       <MenuItem Header="Logic">
-        <MenuItem Header="Export Default Logic" Name="ExportDefaultLogicMenu" Click="ExportDefaultLogicMenu_Click"/>
-        <MenuItem Header="Save Selected Options as YAML Preset" Name="SavePresetYamlMenu" Click="SavePresetYamlMenu_Click"/>
-        <MenuItem Header="Save Mystery YAML template" Name="SaveMysteryYamlMenu" Click="SaveMysteryYamlMenu_Click"/>
+        <MenuItem Header="Export Default Logic" Margin="26,0,0,0" Name="ExportDefaultLogicMenu" Click="ExportDefaultLogicMenu_Click"/>
+        <MenuItem Header="Save Selected Options as YAML Preset" Margin="26,0,0,0" Name="SavePresetYamlMenu" Click="SavePresetYamlMenu_Click"/>
+        <MenuItem Header="Save Mystery YAML template" Margin="26,0,0,0" Name="SaveMysteryYamlMenu" Click="SaveMysteryYamlMenu_Click"/>
         <MenuItem Name="CompactUiDefaultMenu" Click="CompactUiDefaultMenu_Click">
           <MenuItem.Header>
             <CheckBox Name="CompactUiDefaultCheckBox" Content="Use Compact UI on Start" IsHitTestVisible="False" />
@@ -19,13 +19,13 @@
         </MenuItem>
       </MenuItem>
       <MenuItem Header="Logging">
-        <MenuItem Header="Set Logger Output Path" Name="SetLoggerOutputPathMenu" Click="SetLoggerOutputPathMenu_Click"/>
+        <MenuItem Header="Set Logger Output Path" Margin="26,0,0,0" Name="SetLoggerOutputPathMenu" Click="SetLoggerOutputPathMenu_Click"/>
+        <MenuItem Header="Write and Flush Logger" Margin="26,0,0,0" Name="WriteAndFlushLoggerMenu" Click="WriteAndFlushLoggerMenu_Click"/>
         <MenuItem Name="LogAllTransactionsMenu" Click="LogAllTransactionsMenu_Click">
           <MenuItem.Header>
             <CheckBox Name="LogAllTransactionsCheckBox" Content="Log All Transactions" IsHitTestVisible="False" />
           </MenuItem.Header>
         </MenuItem>
-        <MenuItem Header="Write and Flush Logger" Name="WriteAndFlushLoggerMenu" Click="WriteAndFlushLoggerMenu_Click"/>
       </MenuItem>
       <MenuItem Header="Localization">
         <MenuItem Header="English" Name="EnglishMenu" Click="EnglishMenu_Click"/>
@@ -49,11 +49,11 @@
     </Menu>
 
     <DockPanel>
-      <Border BorderBrush="Gray" BorderThickness="1" Padding="10,6" Margin="8,4,8,8" DockPanel.Dock="Bottom">
-        <Grid ColumnDefinitions="Auto,Auto,*,Auto" RowDefinitions="Auto" HorizontalAlignment="Stretch" Margin="2">
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="12,8" Margin="12,8,12,12" DockPanel.Dock="Bottom">
+        <Grid ColumnDefinitions="Auto,Auto,*,Auto" RowDefinitions="Auto" HorizontalAlignment="Stretch">
           <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="Max Randomization Attempts:" Margin="0,0,8,0" />
-          <TextBox Grid.Column="1" Name="RandomizationAttempts" Width="80" Text="1" HorizontalContentAlignment="Right" VerticalAlignment="Center" Margin="0,0,16,0" />
-          <Button Grid.Column="3" Name="Randomize" Content="Randomize" MinWidth="160" Padding="10,4" HorizontalAlignment="Right" />
+          <TextBox Grid.Column="1" Name="RandomizationAttempts" Width="80" Text="1" HorizontalContentAlignment="Right" VerticalAlignment="Center" Margin="0,0,12,0" />
+          <Button Grid.Column="3" Name="Randomize" Content="Randomize" MinWidth="160" HorizontalAlignment="Right" />
         </Grid>
       </Border>
       <TabControl Name="TabPane">

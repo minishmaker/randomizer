@@ -24,10 +24,7 @@ public partial class AboutWindow : Window
             {
                 Process.Start(new ProcessStartInfo { FileName = url, UseShellExecute = true });
             }
-            catch
-            {
-                // ignore
-            }
+            catch { }
         }
 
         this.FindControl<Button>("DiscordRando")!.Click += (_, __) => Open("https://discord.gg/ndFuWbV");
