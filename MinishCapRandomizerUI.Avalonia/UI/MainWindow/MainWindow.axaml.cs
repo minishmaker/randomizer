@@ -187,9 +187,25 @@ public partial class MainWindow : Window
         var cYaml = TryGet<CheckBox>("UseCustomYAML"); if (cYaml != null) cYaml.IsChecked = _configuration.UseCustomYAML;
         var yamlPathBox = TryGet<TextBox>("YAMLPath"); if (yamlPathBox != null) yamlPathBox.Text = _configuration.CustomYAMLFilepath;
         var browseYamlBtn = TryGet<Button>("BrowseCustomYAML"); if (browseYamlBtn != null) browseYamlBtn.IsEnabled = _configuration.UseCustomYAML;
-        var compactChk = TryGet<CheckBox>("UseCompactUI"); if (compactChk != null) compactChk.IsChecked = _configuration.UseCompactUIOnStart;
-        var compactLabel = TryGet<TextBlock>("CompactUINotSupportedLabel"); if (compactLabel != null) compactLabel.IsVisible = !_shufflerController.IsCompactModeSupported();
-        _useCompactUI = (compactChk?.IsChecked == true) && _shufflerController.IsCompactModeSupported();
+
+        // Initialize compact mode from config
+        var compactChk = TryGet<CheckBox>("UseCompactUI");
+        var compactLabel = TryGet<TextBlock>("CompactUINotSupportedLabel");
+        if (compactLabel != null) compactLabel.IsVisible = !_shufflerController.IsCompactModeSupported();
+
+        if (_configuration.UseCompactUIOnStart && _shufflerController.IsCompactModeSupported())
+        {
+            // Sync values from full to compact options on startup
+            _shufflerController.UpdateCompactOptionValues(true);
+            _useCompactUI = true;
+            if (compactChk != null) compactChk.IsChecked = true;
+        }
+        else
+        {
+            _useCompactUI = false;
+            if (compactChk != null) compactChk.IsChecked = false;
+        }
+
         _shufflerController.SetLoggerVerbosity(_configuration.UseVerboseLogger);
         if (!string.IsNullOrEmpty(_configuration.DefaultLoggerPath)) _shufflerController.SetLogOutputPath(_configuration.DefaultLoggerPath);
         var attemptsBox = TryGet<TextBox>("RandomizationAttempts"); if (attemptsBox != null) attemptsBox.Text = $"{_configuration.MaximumRandomizationRetryCount}";
@@ -211,7 +227,7 @@ public partial class MainWindow : Window
     private void WireEvents()
     {
         void HookBtn(string name, EventHandler<RoutedEventArgs> handler){ var b = TryGet<Button>(name); if (b != null) { b.Click -= handler; b.Click += handler; } }
-        void HookChk(string name, EventHandler<RoutedEventArgs> handler){ var c = TryGet<CheckBox>(name); if (c != null) { c.Click -= handler; c.Click += handler; } }
+        void HookChk(string name, EventHandler<RoutedEventArgs> handler){ var c = TryGet<CheckBox>(name); if (c != null) { c.IsCheckedChanged -= handler; c.IsCheckedChanged += handler; } }
         void HookRadio(string name, Action<RadioButton> onChecked){ var r = TryGet<RadioButton>(name); if (r != null) { r.IsCheckedChanged -= (_, __) => { }; r.IsCheckedChanged += (_, __) => { if (r.IsChecked == true) onChecked(r); }; } }
 
         HookBtn("BrowseRom", BrowseRom_Click);
@@ -274,7 +290,16 @@ public partial class MainWindow : Window
     private void WireAdvancedTabEvents()
     {
         void HookBtn(string name, EventHandler<RoutedEventArgs> handler){ var b = TryGet<Button>(name); if (b != null) { b.Click -= handler; b.Click += handler; } }
-        void HookChk(string name, EventHandler<RoutedEventArgs> handler){ var c = TryGet<CheckBox>(name); if (c != null) { c.Click -= handler; c.Click += handler; } }
+        void HookChk(string name, EventHandler<RoutedEventArgs> handler){
+            var c = TryGet<CheckBox>(name);
+            if (c != null) {
+                c.IsCheckedChanged -= handler;
+                c.IsCheckedChanged += handler;
+                Console.WriteLine($"[WireEvents] Hooked checkbox: {name}");
+            } else {
+                Console.WriteLine($"[WireEvents] WARNING: Checkbox not found: {name}");
+            }
+        }
 
         HookBtn("BrowseCustomLogicFile", BrowseCustomLogicFile_Click);
         HookBtn("BrowseCustomPatch", BrowseCustomPatch_Click);
@@ -286,6 +311,16 @@ public partial class MainWindow : Window
         HookChk("UseCustomLogic", UseCustomLogic_CheckedChanged);
         HookChk("UseCustomPatch", UseCustomPatch_CheckedChanged);
         HookChk("UseCustomYAML", UseCustomYAML_CheckedChanged);
+        HookChk("UseCompactUI", UseCompactUI_Click);  // ✅ ADDED: Wire UseCompactUI event
+        HookChk("UseSphereBasedShuffler", UseSphereBasedShuffler_CheckedChanged);  // ✅ ADDED: Also wire this one
+
+        // Set checkbox states to match current configuration
+        var compactChk = TryGet<CheckBox>("UseCompactUI");
+        if (compactChk != null)
+        {
+            compactChk.IsChecked = _useCompactUI;
+            Console.WriteLine($"[WireEvents] Set UseCompactUI checkbox to: {_useCompactUI}");
+        }
 
         var logicChk = TryGet<CheckBox>("UseCustomLogic");
         var patchChk = TryGet<CheckBox>("UseCustomPatch");
@@ -872,18 +907,82 @@ public partial class MainWindow : Window
         PopulateMysteryWeightCombos();
     }
 
-    private void UseCompactUI_Click(object? sender, RoutedEventArgs e)
+    private async void UseCompactUI_Click(object? sender, RoutedEventArgs e)
     {
-        var wantCompact = FC<CheckBox>("UseCompactUI").IsChecked == true;
-        if (wantCompact && !_shufflerController.IsCompactModeSupported())
+        try
         {
-            FC<TextBlock>("CompactUINotSupportedLabel").IsVisible = true;
-            FC<CheckBox>("UseCompactUI").IsChecked = false;
-            _useCompactUI = false;
-            return;
+            var checkbox = FC<CheckBox>("UseCompactUI");
+            var wantCompact = checkbox.IsChecked == true;
+
+            Console.WriteLine($"[CompactUI] Click: wantCompact={wantCompact}, _useCompactUI={_useCompactUI}");
+
+            // Check if compact mode is supported (mirrors WinForms check)
+            if (wantCompact && !_shufflerController.IsCompactModeSupported())
+            {
+                Console.WriteLine("[CompactUI] Compact mode not supported");
+                checkbox.IsChecked = false;
+                return;
+            }
+
+            // Check if state actually changed (avoid infinite loops from programmatic changes)
+            if (wantCompact == _useCompactUI)
+            {
+                Console.WriteLine("[CompactUI] State unchanged, returning");
+                return;
+            }
+
+            // If switching to normal mode
+            if (!wantCompact)
+            {
+                Console.WriteLine("[CompactUI] Switching to normal mode");
+                SwitchToNormalMode();
+                return;
+            }
+
+            // Switching TO compact mode: check compatibility first (mirrors WinForms)
+            Console.WriteLine("[CompactUI] Checking compatibility for compact mode");
+            var isCompatible = _shufflerController.UpdateCompactOptionValues(false);
+            if (isCompatible)
+            {
+                Console.WriteLine("[CompactUI] Compatible - switching to compact mode");
+                SwitchToCompactMode();
+            }
+            else
+            {
+                Console.WriteLine("[CompactUI] Incompatible - showing warning then switching");
+                // Show warning like WinForms does, then proceed with switch
+                await ShowAlert("The current combination of options is not supported in compact mode.\nSwitching to compact mode will set conflicting settings to their default values.", "Incompatible Options");
+                SwitchToCompactMode();
+            }
         }
-        _useCompactUI = wantCompact;
+        catch (Exception ex)
+        {
+            Console.WriteLine($"[CompactUI] Exception: {ex}");
+            await ShowAlert($"Error toggling compact mode: {ex.Message}", "Error");
+        }
+    }
+
+    private void SwitchToCompactMode()
+    {
+        Console.WriteLine("[CompactUI] SwitchToCompactMode: Clearing observers");
+        foreach (var setting in _shufflerController.GetSelectedOptions())
+        {
+            setting.ClearObservers();
+        }
+        Console.WriteLine("[CompactUI] SwitchToCompactMode: Syncing values");
+        _shufflerController.UpdateCompactOptionValues(true);
+        _useCompactUI = true;
+        Console.WriteLine("[CompactUI] SwitchToCompactMode: Calling UpdateUIWithLogicOptions");
         UpdateUIWithLogicOptions();
+        Console.WriteLine("[CompactUI] SwitchToCompactMode: Updating checkbox");
+
+        // Update checkbox state after tabs are rebuilt
+        Dispatcher.UIThread.Post(() =>
+        {
+            var chk = TryGet<CheckBox>("UseCompactUI");
+            if (chk != null) chk.IsChecked = true;
+            Console.WriteLine("[CompactUI] SwitchToCompactMode: Checkbox updated");
+        }, DispatcherPriority.Loaded);
     }
 
     private async void RandomizeWithBaseShuffler()
@@ -983,96 +1082,89 @@ public partial class MainWindow : Window
 
     private void SwitchToNormalMode()
     {
+        Console.WriteLine("[CompactUI] SwitchToNormalMode: Clearing compact observers");
+        foreach (var setting in _shufflerController.GetCompactOptions())
+        {
+            setting.ClearObservers();
+        }
         _useCompactUI = false;
-        var chk = TryGet<CheckBox>("UseCompactUI"); if (chk != null) chk.IsChecked = false;
+
+        Console.WriteLine("[CompactUI] SwitchToNormalMode: Calling UpdateUIWithLogicOptions");
         UpdateUIWithLogicOptions();
+
+        Console.WriteLine("[CompactUI] SwitchToNormalMode: Updating checkbox");
+        // Update checkbox state after tabs are rebuilt
+        Dispatcher.UIThread.Post(() =>
+        {
+            var chk = TryGet<CheckBox>("UseCompactUI");
+            if (chk != null) chk.IsChecked = false;
+            Console.WriteLine("[CompactUI] SwitchToNormalMode: Checkbox updated");
+        }, DispatcherPriority.Loaded);
     }
 
     private void UpdateUIWithLogicOptions()
     {
+        Console.WriteLine($"[UpdateUI] _useCompactUI={_useCompactUI}");
+        // SIMPLIFIED TO MIRROR WINFORMS: Complete rebuild instead of selective updates
         var tab = this.FindControl<TabControl>("TabPane"); if (tab == null) return;
-        var map = new Dictionary<string,string>(StringComparer.OrdinalIgnoreCase){
-            ["Main Settings"]="Main Settings",
-            ["World Settings"]="World Settings",
-            ["Logic"]="Logic Settings",
-            ["Logic Settings"]="Logic Settings",
-            ["Item Pool"]="Item Pool",
-            ["Start Inventory"]="Start Inventory",
-            ["Gameplay"]="Gameplay",
-            ["Cosmetics"]="Cosmetics",
-            ["Advanced"]="Advanced"};
-        // Core tabs that have XAML definitions and should never be removed
-        var xamlTabs = new HashSet<string>(StringComparer.OrdinalIgnoreCase){"General","Advanced"};
-        // Known default tabs that should remain visible even if empty (when using default logic)
-        var knownDefaultTabs = new HashSet<string>(map.Values, StringComparer.OrdinalIgnoreCase);
-        knownDefaultTabs.UnionWith(xamlTabs);
 
-        var seedOutputTab = TryGet<TabItem>("SeedOutput"); if (seedOutputTab != null && !_hasRandomized) seedOutputTab.IsVisible = false;
+        // Save references to XAML-defined tabs that must be preserved
+        var generalTab = tab.Items!.OfType<TabItem>().FirstOrDefault(t => string.Equals(t.Header?.ToString(), "General", StringComparison.OrdinalIgnoreCase));
+        var advancedTab = tab.Items!.OfType<TabItem>().FirstOrDefault(t => string.Equals(t.Header?.ToString(), "Advanced", StringComparison.OrdinalIgnoreCase));
+        var seedOutputTab = TryGet<TabItem>("SeedOutput");
 
-        // FIRST PASS: Remove all custom tabs (not in XAML, not in known defaults, not Seed Output) to ensure clean slate
-        var allTabHeaders = new HashSet<string>(knownDefaultTabs, StringComparer.OrdinalIgnoreCase);
-        allTabHeaders.Add("Seed Output");
-        foreach (var existing in tab.Items!.OfType<TabItem>().ToList())
-        {
-            var header = existing.Header?.ToString() ?? string.Empty;
-            if (!allTabHeaders.Contains(header))
-            {
-                tab.Items!.Remove(existing);
-            }
-        }
+        Console.WriteLine($"[UpdateUI] Found tabs - General={generalTab!=null}, Advanced={advancedTab!=null}, SeedOutput={seedOutputTab!=null}");
 
-        var tabItemsByHeader = tab.Items!.OfType<TabItem>()
-            .ToDictionary(t => t.Header?.ToString() ?? string.Empty, t => t, StringComparer.OrdinalIgnoreCase);
+        // COMPLETE REBUILD: Remove all tabs (mirroring WinForms: "for (var i = TabPane.TabPages.Count - 1; i >= 2; --i) TabPane.TabPages.RemoveAt(i);")
+        tab.Items!.Clear();
+
+        // Re-add General tab (index 0, always first)
+        if (generalTab != null) tab.Items.Add(generalTab);
+
+        // Get current options (respects compact mode like WinForms)
         var options = _useCompactUI ? _shufflerController.GetCompactOptions() : _shufflerController.GetSelectedOptions();
+        Console.WriteLine($"[UpdateUI] Got {options.Count} options from {(_useCompactUI ? "COMPACT" : "FULL")} set");
         var wrapped = MinishCapRandomizerUI.Avalonia.Elements.WrappedLogicOptionFactory.BuildGenericWrappedLogicOptions(options);
-        var pagesPresent = wrapped.Select(w => w.Page ?? string.Empty).Where(p => !string.IsNullOrWhiteSpace(p)).Distinct(StringComparer.OrdinalIgnoreCase).ToHashSet(StringComparer.OrdinalIgnoreCase);
+        Console.WriteLine($"[UpdateUI] Wrapped into {wrapped.Count} UI elements");
+        var pages = wrapped.GroupBy(w => w.Page ?? string.Empty).Where(g => !string.IsNullOrWhiteSpace(g.Key));
 
-        // Insert missing pages (custom) before Advanced
-        var advancedIndex = tab.Items!.OfType<TabItem>().ToList().FindIndex(t => string.Equals(t.Header?.ToString(), "Advanced", StringComparison.OrdinalIgnoreCase));
-        if (advancedIndex < 0) advancedIndex = tab.Items!.Count;
-        foreach (var page in pagesPresent)
+        var pagesList = pages.ToList();
+        Console.WriteLine($"[UpdateUI] Building {pagesList.Count} dynamic tabs");
+        foreach (var pg in pagesList)
         {
-            var header = map.TryGetValue(page, out var mapped) ? mapped : page;
-            if (!tabItemsByHeader.ContainsKey(header))
-            {
-                var newTab = new TabItem { Header = header, IsVisible = true };
-                tab.Items!.Insert(Math.Min(advancedIndex, tab.Items!.Count), newTab);
-                tabItemsByHeader[header] = newTab;
-                advancedIndex = tab.Items!.OfType<TabItem>().ToList().FindIndex(t => string.Equals(t.Header?.ToString(), "Advanced", StringComparison.OrdinalIgnoreCase));
-            }
+            Console.WriteLine($"  Page: '{pg.Key}' with {pg.Count()} options");
         }
 
-        foreach (var pageGroup in wrapped.GroupBy(w => w.Page ?? string.Empty))
+        // Build and add all dynamic tabs (mirroring WinForms: "TabPane.TabPages.Add(UIGenerator.BuildSettingsPage(...))")
+        foreach (var page in pagesList)
         {
-            if (string.IsNullOrWhiteSpace(pageGroup.Key)) continue;
-            var header = map.TryGetValue(pageGroup.Key, out var mapped) ? mapped : pageGroup.Key;
-            if (string.Equals(header, "Seed Output", StringComparison.OrdinalIgnoreCase)) continue;
-            if (!tabItemsByHeader.TryGetValue(header, out var tabItem)) continue;
-            var groups = pageGroup.GroupBy(w => w.SettingGrouping).Where(g => !string.IsNullOrWhiteSpace(g.Key)).ToList();
-            if (groups.Count == 0 && knownDefaultTabs.Contains(header)) { tabItem.IsVisible = true; continue; }
+            var tabItem = new TabItem { Header = page.Key };
             var stack = new StackPanel { Spacing = 6, Margin = new Thickness(6) };
-            foreach (var group in groups)
-                stack.Children.Add(MinishCapRandomizerUI.Avalonia.Elements.WrappedLogicOptionFactory.BuildGroupContainer(group.Key!, group));
-            tabItem.Content = new ScrollViewer { Content = stack };
-            tabItem.IsVisible = true;
-        }
 
-        foreach (var header in knownDefaultTabs)
-        {
-            if (tabItemsByHeader.TryGetValue(header, out var t))
+            foreach (var group in page.GroupBy(w => w.SettingGrouping).Where(g => !string.IsNullOrWhiteSpace(g.Key)))
             {
-                t.IsVisible = true;
-                if (t.Content == null && !xamlTabs.Contains(header))
-                    t.Content = new ScrollViewer { Content = new StackPanel { Margin = new Thickness(6) } }; // empty placeholder
+                stack.Children.Add(MinishCapRandomizerUI.Avalonia.Elements.WrappedLogicOptionFactory.BuildGroupContainer(group.Key!, group));
             }
-        }
-        if (seedOutputTab != null && _hasRandomized) seedOutputTab.IsVisible = true;
 
-        var selected = tab.SelectedItem as TabItem;
-        if (selected != null && selected.IsVisible == false)
+            tabItem.Content = new ScrollViewer { Content = stack };
+            tab.Items.Add(tabItem);
+            Console.WriteLine($"  Added tab: '{page.Key}'");
+        }
+
+        // Re-add Advanced tab (index N-1 or N-2, always before/after Seed Output depending on randomization state)
+        if (advancedTab != null) tab.Items.Add(advancedTab);
+
+        // Add Seed Output tab if randomization occurred (avoid duplicates)
+        if (_hasRandomized && seedOutputTab != null)
         {
-            var firstVisible = tab.Items!.OfType<TabItem>().FirstOrDefault(t => t.IsVisible);
-            if (firstVisible != null) tab.SelectedItem = firstVisible;
+            var items = tab.Items!.OfType<TabItem>().ToList();
+            if (!items.Contains(seedOutputTab))
+            {
+                tab.Items!.Add(seedOutputTab);
+                Console.WriteLine("[UpdateUI] Added Seed Output tab after randomization");
+            }
+            // Ensure it is visible in the tab bar
+            seedOutputTab.IsVisible = true;
         }
     }
 
@@ -1081,8 +1173,25 @@ public partial class MainWindow : Window
         _hasRandomized = true;
         var tab = FC<TabControl>("TabPane");
         var seedOutput = FC<TabItem>("SeedOutput");
+
+        // Ensure Seed Output tab is part of the TabControl
+        var items = tab.Items!.OfType<TabItem>().ToList();
+        if (!items.Contains(seedOutput))
+        {
+            // Insert after Advanced if present; otherwise add to the end
+            var advIndex = items.FindIndex(t => string.Equals(t.Header?.ToString(), "Advanced", StringComparison.OrdinalIgnoreCase));
+            var insertIndex = advIndex >= 0 ? advIndex + 1 : items.Count;
+            tab.Items!.Insert(insertIndex, seedOutput);
+            Console.WriteLine($"[SeedOutput] Inserted Seed Output tab at index {insertIndex}");
+        }
+
+        // Make sure the tab header is visible
         seedOutput.IsVisible = true;
+
+        // Focus Seed Output tab
         tab.SelectedItem = seedOutput;
+
+        // Populate visuals
         Dispatcher.UIThread.Post(() => {
             WireSeedOutputTabEvents();
             UpdateSeedOutputVisuals();

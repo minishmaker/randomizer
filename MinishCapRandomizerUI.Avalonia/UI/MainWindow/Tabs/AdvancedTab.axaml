@@ -3,8 +3,8 @@
     <StackPanel Margin="12" Spacing="12" VerticalAlignment="Top">
       <HeaderedContentControl Header="Advanced" Classes="compact-groupbox">
         <Grid ColumnDefinitions="*,*" RowDefinitions="Auto" HorizontalAlignment="Stretch">
-          <CheckBox Name="UseCompactUI" Classes="toggled" Content="Use compact settings UI" IsChecked="True" />
-          <TextBlock Grid.Column="1" Name="CompactUINotSupportedLabel" Text="Compact UI not supported by this logic file!" Foreground="DarkRed" />
+          <CheckBox Name="UseCompactUI" Classes="toggled" Content="Use compact settings UI" />
+          <TextBlock Grid.Column="1" Name="CompactUINotSupportedLabel" Text="Compact UI not supported by this logic file!" Foreground="DarkRed" IsVisible="False" />
         </Grid>
       </HeaderedContentControl>
 
