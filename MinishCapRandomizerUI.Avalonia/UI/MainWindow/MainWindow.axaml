@@ -12,11 +12,19 @@
         <MenuItem Header="Export Default Logic" Name="ExportDefaultLogicMenu" Click="ExportDefaultLogicMenu_Click"/>
         <MenuItem Header="Save Selected Options as YAML Preset" Name="SavePresetYamlMenu" Click="SavePresetYamlMenu_Click"/>
         <MenuItem Header="Save Mystery YAML template" Name="SaveMysteryYamlMenu" Click="SaveMysteryYamlMenu_Click"/>
-        <MenuItem Header="Use Compact UI on Start" Name="CompactUiDefaultMenu" Click="CompactUiDefaultMenu_Click"/>
+        <MenuItem Name="CompactUiDefaultMenu" Click="CompactUiDefaultMenu_Click">
+          <MenuItem.Header>
+            <CheckBox Name="CompactUiDefaultCheckBox" Content="Use Compact UI on Start" IsHitTestVisible="False" />
+          </MenuItem.Header>
+        </MenuItem>
       </MenuItem>
       <MenuItem Header="Logging">
         <MenuItem Header="Set Logger Output Path" Name="SetLoggerOutputPathMenu" Click="SetLoggerOutputPathMenu_Click"/>
-        <MenuItem Header="Log All Transactions" Name="LogAllTransactionsMenu" Click="LogAllTransactionsMenu_Click"/>
+        <MenuItem Name="LogAllTransactionsMenu" Click="LogAllTransactionsMenu_Click">
+          <MenuItem.Header>
+            <CheckBox Name="LogAllTransactionsCheckBox" Content="Log All Transactions" IsHitTestVisible="False" />
+          </MenuItem.Header>
+        </MenuItem>
         <MenuItem Header="Write and Flush Logger" Name="WriteAndFlushLoggerMenu" Click="WriteAndFlushLoggerMenu_Click"/>
       </MenuItem>
       <MenuItem Header="Localization">
@@ -32,7 +40,11 @@
         <MenuItem Header="Check for Updates" Name="CheckForUpdatesMenu" Click="CheckForUpdatesMenu_Click"/>
       </MenuItem>
       <MenuItem Header="Other">
-        <MenuItem Header="Check for Updates On Start" Name="CheckForUpdatesOnStartMenu" Click="CheckForUpdatesOnStartMenu_Click"/>
+        <MenuItem Name="CheckForUpdatesOnStartMenu" Click="CheckForUpdatesOnStartMenu_Click">
+          <MenuItem.Header>
+            <CheckBox Name="CheckForUpdatesOnStartCheckBox" Content="Check for Updates On Start" IsHitTestVisible="False" />
+          </MenuItem.Header>
+        </MenuItem>
       </MenuItem>
     </Menu>
 

@@ -209,19 +209,38 @@ public partial class MainWindow : Window
         _shufflerController.SetLoggerVerbosity(_configuration.UseVerboseLogger);
         if (!string.IsNullOrEmpty(_configuration.DefaultLoggerPath)) _shufflerController.SetLogOutputPath(_configuration.DefaultLoggerPath);
         var attemptsBox = TryGet<TextBox>("RandomizationAttempts"); if (attemptsBox != null) attemptsBox.Text = $"{_configuration.MaximumRandomizationRetryCount}";
-        SetMenuCheckVisual("CompactUiDefaultMenu", _configuration.UseCompactUIOnStart);
-        SetMenuCheckVisual("LogAllTransactionsMenu", _configuration.UseVerboseLogger);
-        SetMenuCheckVisual("CheckForUpdatesOnStartMenu", _configuration.CheckForUpdatesOnStart);
+
+        // Initialize menu checkboxes after a delay to ensure menu is in visual tree
+        Dispatcher.UIThread.Post(() => {
+            SetMenuCheckVisual("CompactUiDefaultCheckBox", _configuration.UseCompactUIOnStart);
+            SetMenuCheckVisual("LogAllTransactionsCheckBox", _configuration.UseVerboseLogger);
+            SetMenuCheckVisual("CheckForUpdatesOnStartCheckBox", _configuration.CheckForUpdatesOnStart);
+        }, DispatcherPriority.Loaded);
+
         if (_configuration.CheckForUpdatesOnStart) CheckForUpdatesMenu_Click(this, null!);
     }
 
-    private void SetMenuCheckVisual(string name, bool enabled)
+    private void SetMenuCheckVisual(string checkBoxName, bool enabled)
     {
-        var item = TryGet<MenuItem>(name);
-        if (item == null) return;
-        var header = item.Header?.ToString() ?? name;
-        var baseHeader = header.Contains('[') ? header.Split('[')[0].TrimEnd() : header;
-        item.Header = $"{baseHeader} {(enabled ? "[✓]" : "[ ]")}";
+        // Find the CheckBox control inside the MenuItem header
+        var checkbox = this.FindControl<CheckBox>(checkBoxName);
+
+        if (checkbox == null)
+        {
+            // Fallback to TryGet if FindControl didn't work
+            checkbox = TryGet<CheckBox>(checkBoxName);
+        }
+
+        if (checkbox == null)
+        {
+            Console.WriteLine($"[MenuCheck] CheckBox '{checkBoxName}' not found!");
+            return;
+        }
+
+        // Set the checkbox state
+        checkbox.IsChecked = enabled;
+
+        Console.WriteLine($"[MenuCheck] Set '{checkBoxName}' to {(enabled ? "checked" : "unchecked")}");
     }
 
     private void WireEvents()
@@ -1154,17 +1173,10 @@ public partial class MainWindow : Window
         // Re-add Advanced tab (index N-1 or N-2, always before/after Seed Output depending on randomization state)
         if (advancedTab != null) tab.Items.Add(advancedTab);
 
-        // Add Seed Output tab if randomization occurred (avoid duplicates)
+        // Add Seed Output tab if randomization occurred (mirroring WinForms: "if (_randomizedRomCreated) TabPane.TabPages.Add(SeedOutput);")
         if (_hasRandomized && seedOutputTab != null)
         {
-            var items = tab.Items!.OfType<TabItem>().ToList();
-            if (!items.Contains(seedOutputTab))
-            {
-                tab.Items!.Add(seedOutputTab);
-                Console.WriteLine("[UpdateUI] Added Seed Output tab after randomization");
-            }
-            // Ensure it is visible in the tab bar
-            seedOutputTab.IsVisible = true;
+            tab.Items.Add(seedOutputTab);
         }
     }
 
@@ -1173,25 +1185,8 @@ public partial class MainWindow : Window
         _hasRandomized = true;
         var tab = FC<TabControl>("TabPane");
         var seedOutput = FC<TabItem>("SeedOutput");
-
-        // Ensure Seed Output tab is part of the TabControl
-        var items = tab.Items!.OfType<TabItem>().ToList();
-        if (!items.Contains(seedOutput))
-        {
-            // Insert after Advanced if present; otherwise add to the end
-            var advIndex = items.FindIndex(t => string.Equals(t.Header?.ToString(), "Advanced", StringComparison.OrdinalIgnoreCase));
-            var insertIndex = advIndex >= 0 ? advIndex + 1 : items.Count;
-            tab.Items!.Insert(insertIndex, seedOutput);
-            Console.WriteLine($"[SeedOutput] Inserted Seed Output tab at index {insertIndex}");
-        }
-
-        // Make sure the tab header is visible
         seedOutput.IsVisible = true;
-
-        // Focus Seed Output tab
         tab.SelectedItem = seedOutput;
-
-        // Populate visuals
         Dispatcher.UIThread.Post(() => {
             WireSeedOutputTabEvents();
             UpdateSeedOutputVisuals();
@@ -1641,7 +1636,7 @@ public partial class MainWindow : Window
     private void CompactUiDefaultMenu_Click(object? sender, RoutedEventArgs e)
     {
         _configuration.UseCompactUIOnStart = !_configuration.UseCompactUIOnStart;
-        SetMenuCheckVisual("CompactUiDefaultMenu", _configuration.UseCompactUIOnStart);
+        SetMenuCheckVisual("CompactUiDefaultCheckBox", _configuration.UseCompactUIOnStart);
     }
 
     private async void SetLoggerOutputPathMenu_Click(object? sender, RoutedEventArgs e)
@@ -1657,7 +1652,7 @@ public partial class MainWindow : Window
     {
         _configuration.UseVerboseLogger = !_configuration.UseVerboseLogger;
         _shufflerController.SetLoggerVerbosity(_configuration.UseVerboseLogger);
-        SetMenuCheckVisual("LogAllTransactionsMenu", _configuration.UseVerboseLogger);
+        SetMenuCheckVisual("LogAllTransactionsCheckBox", _configuration.UseVerboseLogger);
     }
 
     private async void WriteAndFlushLoggerMenu_Click(object? sender, RoutedEventArgs e)
@@ -1675,7 +1670,7 @@ public partial class MainWindow : Window
     private void CheckForUpdatesOnStartMenu_Click(object? sender, RoutedEventArgs e)
     {
         _configuration.CheckForUpdatesOnStart = !_configuration.CheckForUpdatesOnStart;
-        SetMenuCheckVisual("CheckForUpdatesOnStartMenu", _configuration.CheckForUpdatesOnStart);
+        SetMenuCheckVisual("CheckForUpdatesOnStartCheckBox", _configuration.CheckForUpdatesOnStart);
     }
 
     private async void EnglishMenu_Click(object? sender, RoutedEventArgs e)
