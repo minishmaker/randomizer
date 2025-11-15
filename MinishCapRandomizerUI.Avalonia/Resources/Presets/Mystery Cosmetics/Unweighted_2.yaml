@@ -1,0 +1,61 @@
+name: "Unweighted"
+description: "All options are possible with equal probabilities."
+settings:
+  ## Cosmetics:
+  #  Music & Sound Effects:
+  MUSIC_SETTING:                                  # Music
+    NO_MUSIC: 1                                   #   None
+    VANILLA_MUSIC: 1                              #   Vanilla
+    MUSIC_RANDO: 1                                #   Shuffled
+  HEALTH_BEEP:                                    # Low Health Beep
+    0: 0
+    90: 0
+    255: 0
+    0 255 1: 1
+  #  Text:
+  RANDOM_LANGUAGE:                                # Randomize language
+    on: 1
+    off: 1
+  #  Hearts:
+  RAINBOW_HEARTS:                                 # Rainbow Hearts
+    on: 1
+    off: 1
+  HEART_COLOR:                                    # Heart Color
+    vanilla: 0
+    default: 0
+    random: 1
+    255 80 48: 0
+    "#FF5030": 0
+  #  Heart Outlines:
+  HEART_OUTLINE_COLOR:                            # Heart Outline Color
+    vanilla: 0
+    default: 0
+    random: 1
+    255 255 255: 0
+    "#FFFFFF": 0
+  #  Tunic:
+  TUNIC_COLOR:                                    # Tunic Color
+    vanilla: 0
+    default: 0
+    random: 1
+    16 255 8: 0
+    "#10FF08": 0
+  #  Split Bar:
+  SPLIT_COLOR:                                    # Split Bar Color
+    vanilla: 0
+    default: 0
+    random: 1
+    74 255 24: 0
+    "#4AFF18": 0
+  #  Follower:
+  FOLLOWER_SETTING:                               # Follower
+    NOFOLLOWER: 1                                 #   None
+    0x04: 1                                       #   Mailman
+    0x05: 1                                       #   Zelda
+    0x1E: 1                                       #   Malon
+    0x22: 1                                       #   Smith
+    0x24: 1                                       #   King Daltus
+    0x31: 1                                       #   Cow
+    0x32: 1                                       #   Goron
+    0x45: 1                                       #   Anju
+subweights: {}

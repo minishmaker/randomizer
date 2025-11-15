@@ -1,0 +1,21 @@
+name: "Torture"
+description: "Torture"
+settings:
+  ## Cosmetics:
+  #  Music & Sound Effects:
+  MUSIC_SETTING: NO_MUSIC                         # Music
+  HEALTH_BEEP: 5                                  # Low Health Beep
+  #  Text:
+  RANDOM_LANGUAGE: on                             # Randomize language
+  #  Hearts:
+  RAINBOW_HEARTS: off                             # Rainbow Hearts
+  HEART_COLOR: random                             # Heart Color
+  #  Heart Outlines:
+  HEART_OUTLINE_COLOR: random                     # Heart Outline Color
+  #  Tunic:
+  TUNIC_COLOR: random                             # Tunic Color
+  #  Split Bar:
+  SPLIT_COLOR: random                             # Split Bar Color
+  #  Follower:
+  FOLLOWER_SETTING: NOFOLLOWER                    # Follower
+subweights: {}
