@@ -8,10 +8,23 @@
         Icon="avares://MinishCapRandomizerUI.Avalonia/Resources/icon.ico">
   <DockPanel>
     <Menu DockPanel.Dock="Top">
+
       <MenuItem Header="Logic">
-        <MenuItem Header="Export Default Logic" Margin="26,0,0,0" Name="ExportDefaultLogicMenu" Click="ExportDefaultLogicMenu_Click"/>
-        <MenuItem Header="Save Selected Options as YAML Preset" Margin="26,0,0,0" Name="SavePresetYamlMenu" Click="SavePresetYamlMenu_Click"/>
-        <MenuItem Header="Save Mystery YAML template" Margin="26,0,0,0" Name="SaveMysteryYamlMenu" Click="SaveMysteryYamlMenu_Click"/>
+        <MenuItem Name="ExportDefaultLogicMenu" Click="ExportDefaultLogicMenu_Click">
+          <MenuItem.Header>
+            <TextBlock Text="Export Default Logic" Margin="26,0,0,0" />
+          </MenuItem.Header>
+        </MenuItem>
+        <MenuItem Name="SavePresetYamlMenu" Click="SavePresetYamlMenu_Click">
+          <MenuItem.Header>
+            <TextBlock Text="Save Selected Options as YAML Preset" Margin="26,0,0,0" />
+          </MenuItem.Header>
+        </MenuItem>
+        <MenuItem Name="SaveMysteryYamlMenu" Click="SaveMysteryYamlMenu_Click">
+          <MenuItem.Header>
+            <TextBlock Text="Save Mystery YAML template" Margin="26,0,0,0" />
+          </MenuItem.Header>
+        </MenuItem>
         <MenuItem Name="CompactUiDefaultMenu" Click="CompactUiDefaultMenu_Click">
           <MenuItem.Header>
             <CheckBox Name="CompactUiDefaultCheckBox" Content="Use Compact UI on Start" IsHitTestVisible="False" />
@@ -19,8 +32,16 @@
         </MenuItem>
       </MenuItem>
       <MenuItem Header="Logging">
-        <MenuItem Header="Set Logger Output Path" Margin="26,0,0,0" Name="SetLoggerOutputPathMenu" Click="SetLoggerOutputPathMenu_Click"/>
-        <MenuItem Header="Write and Flush Logger" Margin="26,0,0,0" Name="WriteAndFlushLoggerMenu" Click="WriteAndFlushLoggerMenu_Click"/>
+        <MenuItem Name="SetLoggerOutputPathMenu" Click="SetLoggerOutputPathMenu_Click">
+          <MenuItem.Header>
+            <TextBlock Text="Set Logger Output Path" Margin="26,0,0,0" />
+          </MenuItem.Header>
+        </MenuItem>
+        <MenuItem Name="WriteAndFlushLoggerMenu" Click="WriteAndFlushLoggerMenu_Click">
+          <MenuItem.Header>
+            <TextBlock Text="Write and Flush Logger" Margin="26,0,0,0" />
+          </MenuItem.Header>
+        </MenuItem>
         <MenuItem Name="LogAllTransactionsMenu" Click="LogAllTransactionsMenu_Click">
           <MenuItem.Header>
             <CheckBox Name="LogAllTransactionsCheckBox" Content="Log All Transactions" IsHitTestVisible="False" />
