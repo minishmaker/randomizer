@@ -56,7 +56,12 @@ public static class WrappedLogicOptionFactory
             groupName.Contains("Speed Up", StringComparison.OrdinalIgnoreCase) ||
             groupName.Contains("Global", StringComparison.OrdinalIgnoreCase) ||
             groupName.Contains("Big Keys", StringComparison.OrdinalIgnoreCase) ||
-            groupName.Contains("Difficulty", StringComparison.OrdinalIgnoreCase))
+            groupName.Contains("Difficulty", StringComparison.OrdinalIgnoreCase) ||
+            groupName.Contains("Overworld", StringComparison.OrdinalIgnoreCase) ||
+            groupName.Contains("Dungeons", StringComparison.OrdinalIgnoreCase) ||
+            groupName.Contains("Logic", StringComparison.OrdinalIgnoreCase) ||
+            groupName.Contains("Small Keys", StringComparison.OrdinalIgnoreCase) ||
+            groupName.Contains("Maps & Compasses", StringComparison.OrdinalIgnoreCase))
         {
             columns = 3;
         }
@@ -106,44 +111,59 @@ public static class WrappedLogicOptionFactory
             }
 
             var controls = element.BuildControls(0,0);
-            StackPanel? verticalWrapper = null;
-            if (multiColumn && controls.Count==2 && (controls[1] is ComboBox || controls[1] is TextBox))
+
+            // For dropdowns/textboxes, ensure label doesn't wrap and dropdown has enough width
+            if (controls.Count==2 && (controls[1] is ComboBox || controls[1] is TextBox))
             {
                 if (controls[0] is TextBlock lbl)
-                { lbl.Width = Double.NaN; lbl.MaxWidth = 220; lbl.TextWrapping = TextWrapping.Wrap; lbl.Margin = new Thickness(0,0,0,2); }
-                if (controls[1] is Control input)
-                { input.Width = Double.NaN; input.HorizontalAlignment = HorizontalAlignment.Stretch; }
-                verticalWrapper = new StackPanel{ Orientation = Orientation.Vertical, Spacing = 2, Margin = new Thickness(0,0,6,4) };
-                verticalWrapper.Children.Add(controls[0]); verticalWrapper.Children.Add(controls[1]);
+                {
+                    lbl.Width = Double.NaN;
+                    lbl.TextWrapping = TextWrapping.NoWrap;
+                    lbl.Margin = new Thickness(0,0,6,0);
+                    lbl.VerticalAlignment = VerticalAlignment.Center;
+                }
+                if (controls[1] is ComboBox cb)
+                {
+                    cb.Width = 180; // Fixed width to prevent resize on selection change
+                    cb.HorizontalAlignment = HorizontalAlignment.Left;
+                }
+                else if (controls[1] is TextBox tb)
+                {
+                    tb.Width = 180; // Fixed width for consistency
+                    tb.HorizontalAlignment = HorizontalAlignment.Left;
+                }
             }
+
             if (multiColumn && controls.Count==1 && controls[0] is CheckBox chk)
             {
-                if (chk.Content is TextBlock ctb){ ctb.MaxWidth=200; ctb.TextWrapping=TextWrapping.Wrap; }
-                else if (chk.Content is string s){ chk.Content = new TextBlock{ Text=s, MaxWidth=200, TextWrapping=TextWrapping.Wrap }; }
+                if (chk.Content is TextBlock ctb){ ctb.MaxWidth=240; ctb.TextWrapping=TextWrapping.Wrap; }
+                else if (chk.Content is string s){ chk.Content = new TextBlock{ Text=s, MaxWidth=240, TextWrapping=TextWrapping.Wrap }; }
             }
 
             bool isHeartColorRow = false;
             if (groupName.Contains("Hearts", StringComparison.OrdinalIgnoreCase) || groupName.Contains("Tunic", StringComparison.OrdinalIgnoreCase) || groupName.Contains("Split Bar", StringComparison.OrdinalIgnoreCase))
             {
-                isHeartColorRow = controls.OfType<TextBlock>().Any(tb=>tb.Text?.StartsWith("Heart Color")==true) ||
-                    (verticalWrapper!=null && verticalWrapper.Children.OfType<TextBlock>().Any(tb=>tb.Text?.StartsWith("Heart Color")==true));
+                isHeartColorRow = controls.OfType<TextBlock>().Any(tb=>tb.Text?.StartsWith("Heart Color")==true);
             }
             if (isHeartColorRow && col!=0){ col=0; row++; }
 
-            Control toAdd;
-            if (verticalWrapper!=null) toAdd = verticalWrapper;
-            else
+            // Always use horizontal layout - put all controls in a horizontal container
+            var container = new StackPanel{ Orientation = Orientation.Horizontal, Spacing = 4, Margin = new Thickness(0,0,6,4) };
+            foreach (var c in controls)
             {
-                var container = new StackPanel{ Orientation = Orientation.Horizontal, Spacing = 4, Margin = new Thickness(0,0,6,4) };
-                foreach (var c in controls)
+                if (!multiColumn && c is TextBlock tb && tb.Text?.EndsWith(":")==true)
                 {
-                    if (!multiColumn && c is TextBlock tb && tb.Text?.EndsWith(":")==true){ tb.TextWrapping=TextWrapping.Wrap; tb.MaxWidth=180; }
-                    container.Children.Add(c);
+                    tb.TextWrapping = TextWrapping.NoWrap;
+                    tb.Margin = new Thickness(0,0,6,0);
+                    tb.VerticalAlignment = VerticalAlignment.Center;
                 }
-                toAdd = container;
+                container.Children.Add(c);
             }
+
             ensureRow(row);
-            Grid.SetRow(toAdd,row); Grid.SetColumn(toAdd,col); grid.Children.Add(toAdd);
+            Grid.SetRow(container,row);
+            Grid.SetColumn(container,col);
+            grid.Children.Add(container);
             col++; if (col>=columns){ col=0; row++; }
         }
         var headered = new HeaderedContentControl {
