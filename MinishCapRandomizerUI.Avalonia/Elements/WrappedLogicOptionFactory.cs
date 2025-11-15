@@ -44,6 +44,10 @@ public static class WrappedLogicOptionFactory
 
     public static Control BuildGroupContainer(string groupName, IEnumerable<WrapperBase> elements)
     {
+        // Check if this is the Item Pool tab - needs wider labels
+        var elementsList = elements.ToList();
+        bool isItemPoolTab = elementsList.Any() && elementsList.First().Page?.Contains("Item Pool", StringComparison.OrdinalIgnoreCase) == true;
+
         int columns = 2;
         if (groupName.Contains("Fusions", StringComparison.OrdinalIgnoreCase) ||
             groupName.Contains("Progressive", StringComparison.OrdinalIgnoreCase) ||
@@ -117,9 +121,31 @@ public static class WrappedLogicOptionFactory
             {
                 if (controls[0] is TextBlock lbl)
                 {
-                    lbl.Width = Double.NaN;
+                    // Determine label width based on tab and group
+                    int labelWidth = 180; // Default
+                    if (isItemPoolTab)
+                    {
+                        // Extra wide labels for specific groups with long option names
+                        if (groupName.Contains("Kinstone", StringComparison.OrdinalIgnoreCase) ||
+                            groupName.Contains("Key Chain", StringComparison.OrdinalIgnoreCase))
+                        {
+                            labelWidth = 280;
+                        }
+                        else
+                        {
+                            labelWidth = 220;
+                        }
+                    }
+                    // Also apply to Require Tricks group in Logic Settings tab
+                    else if (groupName.Contains("Require Tricks", StringComparison.OrdinalIgnoreCase))
+                    {
+                        labelWidth = 280;
+                    }
+
+                    lbl.Width = labelWidth;
                     lbl.TextWrapping = TextWrapping.NoWrap;
-                    lbl.Margin = new Thickness(0,0,6,0);
+                    lbl.TextTrimming = TextTrimming.CharacterEllipsis;
+                    lbl.Margin = new Thickness(0,0,8,0);
                     lbl.VerticalAlignment = VerticalAlignment.Center;
                 }
                 if (controls[1] is ComboBox cb)
