@@ -1220,7 +1220,6 @@ public partial class MainWindow : Window
         var seedOutput = FC<TabItem>("SeedOutput");
         seedOutput.IsVisible = true;
 
-        // Ensure the Seed Output tab is in the tab collection
         if (!tab.Items.Contains(seedOutput))
         {
             tab.Items.Add(seedOutput);

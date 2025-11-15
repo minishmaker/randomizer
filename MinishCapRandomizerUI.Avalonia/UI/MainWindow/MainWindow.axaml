@@ -3,8 +3,8 @@
         xmlns:uiTabs="clr-namespace:MinishCapRandomizerUI.Avalonia.UI.MainWindow.Tabs"
         x:Class="MinishCapRandomizerUI.Avalonia.MainWindow"
         Title="Minish Cap Randomizer"
-        Width="1200" Height="800"
-        MinWidth="1100" MinHeight="780"
+        Width="900" Height="650"
+        MinWidth="800" MinHeight="550"
         Icon="avares://MinishCapRandomizerUI.Avalonia/Resources/icon.ico">
   <DockPanel>
     <Menu DockPanel.Dock="Top">
@@ -70,7 +70,7 @@
     </Menu>
 
     <DockPanel>
-      <Border BorderBrush="Gray" BorderThickness="1" Padding="12,8" Margin="12,8,12,12" DockPanel.Dock="Bottom">
+      <Border BorderBrush="Gray" BorderThickness="1" Padding="8,4" Margin="6,4,6,6" DockPanel.Dock="Bottom">
         <Grid ColumnDefinitions="Auto,Auto,*,Auto" RowDefinitions="Auto" HorizontalAlignment="Stretch">
           <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="Max Randomization Attempts:" Margin="0,0,8,0" />
           <TextBox Grid.Column="1" Name="RandomizationAttempts" Width="80" Text="1" HorizontalContentAlignment="Right" VerticalAlignment="Center" Margin="0,0,12,0" />

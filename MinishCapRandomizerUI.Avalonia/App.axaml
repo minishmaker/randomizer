@@ -5,26 +5,27 @@
   <Application.Styles>
     <FluentTheme />
     <Style Selector="TextBlock">
-      <Setter Property="FontSize" Value="13" />
+      <Setter Property="FontSize" Value="11" />
     </Style>
     <Style Selector="TextBox">
-      <Setter Property="FontSize" Value="13" />
-      <Setter Property="MinHeight" Value="22" />
+      <Setter Property="FontSize" Value="11" />
+      <Setter Property="MinHeight" Value="20" />
+      <Setter Property="Padding" Value="4,2" />
     </Style>
     <Style Selector="ComboBox">
-      <Setter Property="FontSize" Value="13" />
-      <Setter Property="MinHeight" Value="22" />
-      <Setter Property="Padding" Value="4,2" />
+      <Setter Property="FontSize" Value="11" />
+      <Setter Property="MinHeight" Value="20" />
+      <Setter Property="Padding" Value="4,1" />
     </Style>
     <Style Selector="Button">
-      <Setter Property="FontSize" Value="13" />
-      <Setter Property="MinHeight" Value="24" />
-      <Setter Property="Padding" Value="8,2" />
+      <Setter Property="FontSize" Value="11" />
+      <Setter Property="MinHeight" Value="22" />
+      <Setter Property="Padding" Value="6,2" />
     </Style>
     <Style Selector="CheckBox">
-      <Setter Property="FontSize" Value="13" />
-      <Setter Property="MinHeight" Value="24" />
-      <Setter Property="Padding" Value="4,2" />
+      <Setter Property="FontSize" Value="11" />
+      <Setter Property="MinHeight" Value="20" />
+      <Setter Property="Padding" Value="4,1" />
       <Setter Property="VerticalContentAlignment" Value="Center" />
     </Style>
     <Style Selector="CheckBox.toggled">
@@ -36,15 +37,15 @@
       <Setter Property="FontWeight" Value="Bold" />
     </Style>
     <Style Selector="RadioButton">
-      <Setter Property="FontSize" Value="13" />
-      <Setter Property="MinHeight" Value="24" />
-      <Setter Property="Padding" Value="4,2" />
+      <Setter Property="FontSize" Value="11" />
+      <Setter Property="MinHeight" Value="20" />
+      <Setter Property="Padding" Value="4,1" />
       <Setter Property="VerticalContentAlignment" Value="Center" />
     </Style>
     <!-- Real GroupBox style (HeaderedContentControl) adapted for WinForms groups feel -->
     <Style Selector="HeaderedContentControl">
       <Setter Property="Padding" Value="0" />
-      <Setter Property="Margin" Value="4,2" />
+      <Setter Property="Margin" Value="3,2" />
       <Setter Property="BorderBrush" Value="{DynamicResource SystemControlForegroundBaseMediumBrush}" />
       <Setter Property="BorderThickness" Value="1" />
       <Setter Property="Background" Value="Transparent" />
@@ -59,35 +60,7 @@
               <ColumnDefinition Width="Auto"/>
               <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Border ZIndex="1" Background="{DynamicResource SystemControlBackgroundAltHighBrush}" Padding="6,0,6,0" Margin="8,0,0,0">
-              <TextBlock Text="{TemplateBinding Header}" FontWeight="Bold" />
-            </Border>
-            <Border Grid.RowSpan="2" Grid.ColumnSpan="2" CornerRadius="4" Padding="0,4,0,0" Margin="0,8,0,0" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
-              <ContentPresenter Name="PART_ContentPresenter" Padding="8,4" Content="{TemplateBinding Content}" />
-            </Border>
-          </Grid>
-        </ControlTemplate>
-      </Setter>
-    </Style>
-    <!-- Compact variant using class, slightly tighter margins/padding -->
-    <Style Selector="HeaderedContentControl.compact-groupbox">
-      <Setter Property="Padding" Value="0" />
-      <Setter Property="Margin" Value="4,2" />
-      <Setter Property="BorderBrush" Value="{DynamicResource SystemControlForegroundBaseMediumBrush}" />
-      <Setter Property="BorderThickness" Value="1" />
-      <Setter Property="Background" Value="Transparent" />
-      <Setter Property="Template">
-        <ControlTemplate>
-          <Grid Margin="0">
-            <Grid.RowDefinitions>
-              <RowDefinition Height="Auto"/>
-              <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-              <ColumnDefinition Width="Auto"/>
-              <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Border ZIndex="1" Background="{DynamicResource SystemControlBackgroundAltHighBrush}" Padding="5,0,5,0" Margin="6,0,0,0">
+            <Border ZIndex="1" Background="{DynamicResource SystemControlBackgroundAltHighBrush}" Padding="4,0,4,0" Margin="6,0,0,0">
               <TextBlock Text="{TemplateBinding Header}" FontWeight="Bold" />
             </Border>
             <Border Grid.RowSpan="2" Grid.ColumnSpan="2" CornerRadius="3" Padding="0,3,0,0" Margin="0,6,0,0" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
@@ -97,15 +70,43 @@
         </ControlTemplate>
       </Setter>
     </Style>
+    <!-- Compact variant using class, slightly tighter margins/padding -->
+    <Style Selector="HeaderedContentControl.compact-groupbox">
+      <Setter Property="Padding" Value="0" />
+      <Setter Property="Margin" Value="3,1" />
+      <Setter Property="BorderBrush" Value="{DynamicResource SystemControlForegroundBaseMediumBrush}" />
+      <Setter Property="BorderThickness" Value="1" />
+      <Setter Property="Background" Value="Transparent" />
+      <Setter Property="Template">
+        <ControlTemplate>
+          <Grid Margin="0">
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="Auto"/>
+              <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Border ZIndex="1" Background="{DynamicResource SystemControlBackgroundAltHighBrush}" Padding="4,0,4,0" Margin="5,0,0,0">
+              <TextBlock Text="{TemplateBinding Header}" FontWeight="Bold" />
+            </Border>
+            <Border Grid.RowSpan="2" Grid.ColumnSpan="2" CornerRadius="3" Padding="0,2,0,0" Margin="0,5,0,0" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
+              <ContentPresenter Name="PART_ContentPresenter" Padding="5,6,5,3" Content="{TemplateBinding Content}" />
+            </Border>
+          </Grid>
+        </ControlTemplate>
+      </Setter>
+    </Style>
     <Style Selector="MenuItem">
-      <Setter Property="FontSize" Value="13" />
-      <Setter Property="Padding" Value="6,8,6,6" />
+      <Setter Property="FontSize" Value="11" />
+      <Setter Property="Padding" Value="6,4,6,4" />
     </Style>
     <Style Selector="MenuItem CheckBox">
-      <Setter Property="FontSize" Value="13" />
-      <Setter Property="Padding" Value="6" />
+      <Setter Property="FontSize" Value="11" />
+      <Setter Property="Padding" Value="4" />
       <Setter Property="Margin" Value="0" />
-      <Setter Property="MinHeight" Value="18" />
+      <Setter Property="MinHeight" Value="16" />
       <Setter Property="VerticalAlignment" Value="Center" />
     </Style>
   </Application.Styles>
