@@ -1,14 +1,14 @@
 <UserControl xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Class="MinishCapRandomizerUI.Avalonia.UI.MainWindow.Tabs.GeneralTab">
   <ScrollViewer>
-    <StackPanel Margin="12" HorizontalAlignment="Stretch" Spacing="12">
+    <StackPanel Margin="6" HorizontalAlignment="Stretch" Spacing="6">
       <HeaderedContentControl Header="ROM &amp; Seed" Classes="compact-groupbox">
         <Grid ColumnDefinitions="Auto,*,Auto" RowDefinitions="Auto,Auto" HorizontalAlignment="Stretch" VerticalAlignment="Top">
           <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Text="European Minish Cap ROM" Margin="0,0,12,0" />
           <TextBox Name="RomPath" Grid.Row="0" Grid.Column="1" Margin="0,0,8,0" />
           <Button Name="BrowseRom" Grid.Row="0" Grid.Column="2" Content="Browse" MinWidth="100" />
-          <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Text="Randomizer Seed" Margin="0,8,12,0" />
-          <TextBox Name="Seed" Grid.Row="1" Grid.Column="1" Margin="0,8,8,0" />
-          <Button Name="RandomSeed" Grid.Row="1" Grid.Column="2" Content="New Seed" MinWidth="100" Margin="0,8,0,0" />
+          <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Text="Randomizer Seed" Margin="0,6,12,0" />
+          <TextBox Name="Seed" Grid.Row="1" Grid.Column="1" Margin="0,6,8,0" />
+          <Button Name="RandomSeed" Grid.Row="1" Grid.Column="2" Content="New Seed" MinWidth="100" Margin="0,6,0,0" />
         </Grid>
       </HeaderedContentControl>
 
@@ -16,14 +16,14 @@
         <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto" HorizontalAlignment="Stretch">
           <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Text="Settings String:" Margin="0,0,12,0" />
           <TextBox Name="SettingString" Grid.Row="0" Grid.Column="1" />
-          <UniformGrid Grid.Row="1" Grid.ColumnSpan="2" Columns="3" HorizontalAlignment="Stretch" Margin="0,8,0,0">
+          <UniformGrid Grid.Row="1" Grid.ColumnSpan="2" Columns="3" HorizontalAlignment="Stretch" Margin="0,6,0,0">
             <Button Name="LoadSettings" Content="Load Settings" MinWidth="120" HorizontalAlignment="Stretch" Margin="0,0,4,0" />
             <Button Name="GenerateSettings" Content="Generate String" MinWidth="140" HorizontalAlignment="Stretch" Margin="4,0" />
             <Button Name="ResetDefaultSettings" Content="Reset Defaults" MinWidth="140" HorizontalAlignment="Stretch" Margin="4,0,0,0" />
           </UniformGrid>
-          <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Text="Settings Preset:" Margin="0,8,12,0" />
-          <ComboBox Name="SettingPresets" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" Margin="0,8,0,0" />
-          <UniformGrid Grid.Row="3" Grid.ColumnSpan="2" Columns="3" HorizontalAlignment="Stretch" Margin="0,8,0,0">
+          <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Text="Settings Preset:" Margin="0,6,12,0" />
+          <ComboBox Name="SettingPresets" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" Margin="0,6,0,0" />
+          <UniformGrid Grid.Row="3" Grid.ColumnSpan="2" Columns="3" HorizontalAlignment="Stretch" Margin="0,6,0,0">
             <Button Name="LoadSettingPreset" Content="Load Preset" MinWidth="120" HorizontalAlignment="Stretch" Margin="0,0,4,0" />
             <Button Name="SaveSettingPreset" Content="Save Current As Preset" MinWidth="190" HorizontalAlignment="Stretch" Margin="4,0" />
             <Button Name="DeleteSettingPreset" Content="Delete Preset" MinWidth="140" HorizontalAlignment="Stretch" Margin="4,0,0,0" />
@@ -35,14 +35,14 @@
         <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto" HorizontalAlignment="Stretch">
           <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Text="Cosmetics String:" Margin="0,0,12,0" />
           <TextBox Name="CosmeticsString" Grid.Row="0" Grid.Column="1" />
-          <UniformGrid Grid.Row="1" Grid.ColumnSpan="2" Columns="3" HorizontalAlignment="Stretch" Margin="0,8,0,0">
+          <UniformGrid Grid.Row="1" Grid.ColumnSpan="2" Columns="3" HorizontalAlignment="Stretch" Margin="0,6,0,0">
             <Button Name="LoadCosmetics" Content="Load Cosmetics" MinWidth="140" HorizontalAlignment="Stretch" Margin="0,0,4,0" />
             <Button Name="GenerateCosmetics" Content="Generate String" MinWidth="140" HorizontalAlignment="Stretch" Margin="4,0" />
             <Button Name="ResetDefaultCosmetics" Content="Reset Defaults" MinWidth="140" HorizontalAlignment="Stretch" Margin="4,0,0,0" />
           </UniformGrid>
-          <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Text="Cosmetics Preset:" Margin="0,8,12,0" />
-          <ComboBox Name="CosmeticsPresets" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" Margin="0,8,0,0" />
-          <UniformGrid Grid.Row="3" Grid.ColumnSpan="2" Columns="3" HorizontalAlignment="Stretch" Margin="0,8,0,0">
+          <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Text="Cosmetics Preset:" Margin="0,6,12,0" />
+          <ComboBox Name="CosmeticsPresets" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" Margin="0,6,0,0" />
+          <UniformGrid Grid.Row="3" Grid.ColumnSpan="2" Columns="3" HorizontalAlignment="Stretch" Margin="0,6,0,0">
             <Button Name="LoadCosmeticPreset" Content="Load Preset" MinWidth="120" HorizontalAlignment="Stretch" Margin="0,0,4,0" />
             <Button Name="SaveCosmeticPreset" Content="Save Current As Preset" MinWidth="190" HorizontalAlignment="Stretch" Margin="4,0" />
             <Button Name="DeleteCosmeticPreset" Content="Delete Preset" MinWidth="140" HorizontalAlignment="Stretch" Margin="4,0,0,0" />
@@ -58,10 +58,10 @@
             <RadioButton Name="GeneratePatchButton" Content="Generate Patch" />
           </StackPanel>
           <CheckBox Grid.Row="0" Grid.Column="2" Name="UseCustomCosmetics" Content="Use Custom Cosmetics (Disabled)" IsEnabled="False" />
-          <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Name="BpsPatchAndPatchedRomLabel" Text="BPS Patch File Path:" Margin="0,8,12,0" />
-          <TextBox Grid.Row="1" Grid.Column="1" Name="BpsPatchAndPatchedRomPath" Margin="0,8,8,0" HorizontalAlignment="Stretch" />
-          <Button Grid.Row="1" Grid.Column="2" Name="BrowsePatchOrRom" Content="Browse" MinWidth="100" Margin="0,8,0,0" />
-          <Button Grid.Row="2" Grid.Column="2" Name="PatchRomAndGenPatch" Content="Patch Rom" MinWidth="160" HorizontalAlignment="Right" Margin="0,8,0,0" />
+          <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Name="BpsPatchAndPatchedRomLabel" Text="BPS Patch File Path:" Margin="0,6,12,0" />
+          <TextBox Grid.Row="1" Grid.Column="1" Name="BpsPatchAndPatchedRomPath" Margin="0,6,8,0" HorizontalAlignment="Stretch" />
+          <Button Grid.Row="1" Grid.Column="2" Name="BrowsePatchOrRom" Content="Browse" MinWidth="100" Margin="0,6,0,0" />
+          <Button Grid.Row="2" Grid.Column="2" Name="PatchRomAndGenPatch" Content="Patch Rom" MinWidth="160" HorizontalAlignment="Right" Margin="0,6,0,0" />
         </Grid>
       </HeaderedContentControl>
     </StackPanel>

@@ -1219,6 +1219,12 @@ public partial class MainWindow : Window
         var tab = FC<TabControl>("TabPane");
         var seedOutput = FC<TabItem>("SeedOutput");
         seedOutput.IsVisible = true;
+
+        if (!tab.Items.Contains(seedOutput))
+        {
+            tab.Items.Add(seedOutput);
+        }
+
         tab.SelectedItem = seedOutput;
         Dispatcher.UIThread.Post(() => {
             WireSeedOutputTabEvents();

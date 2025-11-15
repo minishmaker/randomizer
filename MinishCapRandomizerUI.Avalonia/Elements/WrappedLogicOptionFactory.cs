@@ -86,7 +86,7 @@ public static class WrappedLogicOptionFactory
             multiColumn = false;
         }
 
-        var grid = new Grid{ Margin = new Thickness(2) };
+        var grid = new Grid{ Margin = new Thickness(1) };
         for (int i=0;i<columns;i++) grid.ColumnDefinitions.Add(new ColumnDefinition(GridLength.Star));
         int col=0,row=0; void ensureRow(int r){ while(grid.RowDefinitions.Count <= r) grid.RowDefinitions.Add(new RowDefinition(GridLength.Auto)); }
 
