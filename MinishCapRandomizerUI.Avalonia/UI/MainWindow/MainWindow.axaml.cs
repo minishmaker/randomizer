@@ -139,6 +139,12 @@ public partial class MainWindow : Window
             }
         }
         catch { _configuration = new UIConfiguration(); }
+
+        // Apply the saved theme preference
+        if (Application.Current is App app)
+        {
+            app.ApplyThemePreference(_configuration.ThemePreference);
+        }
     }
 
     private void SaveConfig()
@@ -244,6 +250,7 @@ public partial class MainWindow : Window
             SetMenuCheckVisual("CompactUiDefaultCheckBox", _configuration.UseCompactUIOnStart);
             SetMenuCheckVisual("LogAllTransactionsCheckBox", _configuration.UseVerboseLogger);
             SetMenuCheckVisual("CheckForUpdatesOnStartCheckBox", _configuration.CheckForUpdatesOnStart);
+            UpdateThemeMenuChecks();
         }, DispatcherPriority.Loaded);
 
         if (_configuration.CheckForUpdatesOnStart) CheckForUpdatesMenu_Click(this, null!);
@@ -1710,6 +1717,34 @@ public partial class MainWindow : Window
     {
         _configuration.CheckForUpdatesOnStart = !_configuration.CheckForUpdatesOnStart;
         SetMenuCheckVisual("CheckForUpdatesOnStartCheckBox", _configuration.CheckForUpdatesOnStart);
+    }
+
+    private void ThemeSystemMenu_Click(object? sender, RoutedEventArgs e)
+    {
+        _configuration.ThemePreference = "System";
+        if (Application.Current is App app) app.ApplyThemePreference("System");
+        UpdateThemeMenuChecks();
+    }
+
+    private void ThemeLightMenu_Click(object? sender, RoutedEventArgs e)
+    {
+        _configuration.ThemePreference = "Light";
+        if (Application.Current is App app) app.ApplyThemePreference("Light");
+        UpdateThemeMenuChecks();
+    }
+
+    private void ThemeDarkMenu_Click(object? sender, RoutedEventArgs e)
+    {
+        _configuration.ThemePreference = "Dark";
+        if (Application.Current is App app) app.ApplyThemePreference("Dark");
+        UpdateThemeMenuChecks();
+    }
+
+    private void UpdateThemeMenuChecks()
+    {
+        SetMenuCheckVisual("ThemeSystemCheckBox", _configuration.ThemePreference == "System");
+        SetMenuCheckVisual("ThemeLightCheckBox", _configuration.ThemePreference == "Light");
+        SetMenuCheckVisual("ThemeDarkCheckBox", _configuration.ThemePreference == "Dark");
     }
 
     private async void EnglishMenu_Click(object? sender, RoutedEventArgs e)

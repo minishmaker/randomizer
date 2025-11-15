@@ -56,6 +56,23 @@
         <MenuItem Header="Italiano" Name="ItalianMenu" IsEnabled="False" Click="ItalianMenu_Click"/>
         <MenuItem Header="Please contact the devs if you wish to do Localization for the UI" IsEnabled="False"/>
       </MenuItem>
+      <MenuItem Header="Themes">
+        <MenuItem Name="ThemeSystemMenu" Click="ThemeSystemMenu_Click">
+          <MenuItem.Header>
+            <CheckBox Name="ThemeSystemCheckBox" Content="System Default" IsHitTestVisible="False" />
+          </MenuItem.Header>
+        </MenuItem>
+        <MenuItem Name="ThemeLightMenu" Click="ThemeLightMenu_Click">
+          <MenuItem.Header>
+            <CheckBox Name="ThemeLightCheckBox" Content="Light" IsHitTestVisible="False" />
+          </MenuItem.Header>
+        </MenuItem>
+        <MenuItem Name="ThemeDarkMenu" Click="ThemeDarkMenu_Click">
+          <MenuItem.Header>
+            <CheckBox Name="ThemeDarkCheckBox" Content="Dark" IsHitTestVisible="False" />
+          </MenuItem.Header>
+        </MenuItem>
+      </MenuItem>
       <MenuItem Header="About">
         <MenuItem Header="About" Name="AboutMenu" Click="AboutMenu_Click"/>
         <MenuItem Header="Check for Updates" Name="CheckForUpdatesMenu" Click="CheckForUpdatesMenu_Click"/>

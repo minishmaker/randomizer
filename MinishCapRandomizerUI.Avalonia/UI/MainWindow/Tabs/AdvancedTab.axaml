@@ -26,7 +26,7 @@
       </HeaderedContentControl>
 
       <HeaderedContentControl Header="Mystery Weights" Classes="compact-groupbox">
-        <Grid ColumnDefinitions="180,*,200" RowDefinitions="Auto,Auto" HorizontalAlignment="Stretch">
+        <Grid ColumnDefinitions="Auto,*,200" RowDefinitions="Auto,Auto" HorizontalAlignment="Stretch">
           <CheckBox Grid.Row="0" Grid.Column="0" Name="UseMysterySettings" Content="Use Mystery Settings" VerticalAlignment="Center" />
           <ComboBox Grid.Row="0" Grid.Column="1" Name="SettingsWeights" HorizontalAlignment="Stretch" VerticalAlignment="Center" IsEnabled="{Binding #UseMysterySettings.IsChecked}" Margin="0,0,8,0" />
           <Button Grid.Row="0" Grid.Column="2" Name="LoadSettingSample" Content="Load Sample Options" HorizontalAlignment="Stretch" VerticalAlignment="Center" IsEnabled="{Binding #UseMysterySettings.IsChecked}" />

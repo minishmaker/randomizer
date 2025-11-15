@@ -3,6 +3,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Layout;
 using Avalonia.Media;
+using Avalonia.Visuals;
 using MinishCapRandomizerUI.Avalonia.DrawConstants;
 using RandomizerCore.Randomizer.Logic.Options;
 
@@ -10,6 +11,8 @@ namespace MinishCapRandomizerUI.Avalonia.Elements;
 
 public static class WrappedLogicOptionFactory
 {
+    private enum RowKind { Flags, Inputs, Color, Mixed }
+
     public static List<WrapperBase> BuildGenericWrappedLogicOptions(List<LogicOptionBase> logicOptions)
     {
         var wrappedOptions = new List<WrapperBase>();
@@ -44,34 +47,10 @@ public static class WrappedLogicOptionFactory
 
     public static Control BuildGroupContainer(string groupName, IEnumerable<WrapperBase> elements)
     {
-        // Check if this is the Item Pool tab - needs wider labels
         var elementsList = elements.ToList();
         bool isItemPoolTab = elementsList.Any() && elementsList.First().Page?.Contains("Item Pool", StringComparison.OrdinalIgnoreCase) == true;
 
-        int columns = 2;
-        if (groupName.Contains("Fusions", StringComparison.OrdinalIgnoreCase) ||
-            groupName.Contains("Progressive", StringComparison.OrdinalIgnoreCase) ||
-            groupName.Contains("Main Items", StringComparison.OrdinalIgnoreCase) ||
-            groupName.Contains("Quest Status Items", StringComparison.OrdinalIgnoreCase) ||
-            groupName.Contains("Sword Scrolls", StringComparison.OrdinalIgnoreCase) ||
-            groupName.Contains("Joy Butterflies", StringComparison.OrdinalIgnoreCase) ||
-            groupName.Contains("Wind Crests", StringComparison.OrdinalIgnoreCase) ||
-            groupName.Contains("Dungeon Warps", StringComparison.OrdinalIgnoreCase) ||
-            groupName.Contains("Speed Up", StringComparison.OrdinalIgnoreCase) ||
-            groupName.Contains("Global", StringComparison.OrdinalIgnoreCase) ||
-            groupName.Contains("Big Keys", StringComparison.OrdinalIgnoreCase) ||
-            groupName.Contains("Difficulty", StringComparison.OrdinalIgnoreCase) ||
-            groupName.Contains("Overworld", StringComparison.OrdinalIgnoreCase) ||
-            groupName.Contains("Dungeons", StringComparison.OrdinalIgnoreCase) ||
-            groupName.Contains("Logic", StringComparison.OrdinalIgnoreCase) ||
-            groupName.Contains("Small Keys", StringComparison.OrdinalIgnoreCase) ||
-            groupName.Contains("Maps & Compasses", StringComparison.OrdinalIgnoreCase))
-        {
-            columns = 3;
-        }
-
-        bool multiColumn = columns == 3;
-        var reordered = elements.OrderBy(e => e switch {
+        var reordered = elementsList.OrderBy(e => e switch {
             DropdownWrapper => 0,
             FlagWrapper => 1,
             NumberBoxWrapper => 2,
@@ -91,112 +70,233 @@ public static class WrappedLogicOptionFactory
                 var insertAt = 1;
                 foreach (var fi in figInputs) reordered.Insert(insertAt++, fi);
             }
-            columns = 2;
-            multiColumn = false;
         }
 
-        var grid = new Grid{ Margin = new Thickness(1) };
-        for (int i=0;i<columns;i++) grid.ColumnDefinitions.Add(new ColumnDefinition(GridLength.Star));
-        int col=0,row=0; void ensureRow(int r){ while(grid.RowDefinitions.Count <= r) grid.RowDefinitions.Add(new RowDefinition(GridLength.Auto)); }
 
-        bool placedAnyFlags = false;
-        bool numberBoxRowStarted = false;
-        foreach (var element in reordered)
+        var rows = new List<(RowKind Kind, List<WrapperBase> Items)>();
+
+        foreach (var el in reordered)
         {
-            if (!placedAnyFlags && element is FlagWrapper)
+            var isFlag = el is FlagWrapper;
+            var isInput = el is DropdownWrapper || el is NumberBoxWrapper;
+            var isColor = el is ColorPickerWrapper;
+
+            if (isColor)
             {
-                placedAnyFlags = true;
-                if (col != 0) { col = 0; row++; }
-            }
-            if (!numberBoxRowStarted && element is NumberBoxWrapper && placedAnyFlags)
-            {
-                numberBoxRowStarted = true;
-                if (col != 0) { col = 0; row++; }
+                rows.Add((RowKind.Color, new List<WrapperBase>{el}));
+                continue;
             }
 
-            var controls = element.BuildControls(0,0);
-
-            // For dropdowns/textboxes, ensure label doesn't wrap and dropdown has enough width
-            if (controls.Count==2 && (controls[1] is ComboBox || controls[1] is TextBox))
+            if (isFlag)
             {
-                if (controls[0] is TextBlock lbl)
+                var last = rows.LastOrDefault();
+                if (last.Items != null && last.Kind == RowKind.Flags && last.Items.Count < 3)
                 {
-                    // Determine label width based on tab and group
-                    int labelWidth = 180; // Default
-                    if (isItemPoolTab)
-                    {
-                        // Extra wide labels for specific groups with long option names
-                        if (groupName.Contains("Kinstone", StringComparison.OrdinalIgnoreCase) ||
-                            groupName.Contains("Key Chain", StringComparison.OrdinalIgnoreCase))
-                        {
-                            labelWidth = 280;
-                        }
-                        else
-                        {
-                            labelWidth = 220;
-                        }
-                    }
-                    // Also apply to Require Tricks group in Logic Settings tab
-                    else if (groupName.Contains("Require Tricks", StringComparison.OrdinalIgnoreCase))
-                    {
-                        labelWidth = 280;
-                    }
-
-                    lbl.Width = labelWidth;
-                    lbl.TextWrapping = TextWrapping.NoWrap;
-                    lbl.TextTrimming = TextTrimming.CharacterEllipsis;
-                    lbl.Margin = new Thickness(0,0,8,0);
-                    lbl.VerticalAlignment = VerticalAlignment.Center;
+                    last.Items.Add(el);
+                    rows[^1] = last;
                 }
-                if (controls[1] is ComboBox cb)
+                else
                 {
-                    cb.Width = 180; // Fixed width to prevent resize on selection change
-                    cb.HorizontalAlignment = HorizontalAlignment.Left;
+                    rows.Add((RowKind.Flags, new List<WrapperBase>{el}));
                 }
-                else if (controls[1] is TextBox tb)
+                continue;
+            }
+
+            if (isInput)
+            {
+                var last = rows.LastOrDefault();
+                if (last.Items != null && last.Kind == RowKind.Inputs && last.Items.Count < 2)
                 {
-                    tb.Width = 180; // Fixed width for consistency
-                    tb.HorizontalAlignment = HorizontalAlignment.Left;
+                    last.Items.Add(el);
+                    rows[^1] = last;
                 }
-            }
-
-            if (multiColumn && controls.Count==1 && controls[0] is CheckBox chk)
-            {
-                if (chk.Content is TextBlock ctb){ ctb.MaxWidth=240; ctb.TextWrapping=TextWrapping.Wrap; }
-                else if (chk.Content is string s){ chk.Content = new TextBlock{ Text=s, MaxWidth=240, TextWrapping=TextWrapping.Wrap }; }
-            }
-
-            bool isHeartColorRow = false;
-            if (groupName.Contains("Hearts", StringComparison.OrdinalIgnoreCase) || groupName.Contains("Tunic", StringComparison.OrdinalIgnoreCase) || groupName.Contains("Split Bar", StringComparison.OrdinalIgnoreCase))
-            {
-                isHeartColorRow = controls.OfType<TextBlock>().Any(tb=>tb.Text?.StartsWith("Heart Color")==true);
-            }
-            if (isHeartColorRow && col!=0){ col=0; row++; }
-
-            // Always use horizontal layout - put all controls in a horizontal container
-            var container = new StackPanel{ Orientation = Orientation.Horizontal, Spacing = 4, Margin = new Thickness(0,0,6,4) };
-            foreach (var c in controls)
-            {
-                if (!multiColumn && c is TextBlock tb && tb.Text?.EndsWith(":")==true)
+                else
                 {
-                    tb.TextWrapping = TextWrapping.NoWrap;
-                    tb.Margin = new Thickness(0,0,6,0);
-                    tb.VerticalAlignment = VerticalAlignment.Center;
+                    rows.Add((RowKind.Inputs, new List<WrapperBase>{el}));
                 }
-                container.Children.Add(c);
+                continue;
             }
 
-            ensureRow(row);
-            Grid.SetRow(container,row);
-            Grid.SetColumn(container,col);
-            grid.Children.Add(container);
-            col++; if (col>=columns){ col=0; row++; }
+            rows.Add((RowKind.Mixed, new List<WrapperBase>{el}));
         }
-        var headered = new HeaderedContentControl {
+
+        double measuredLabelWidth = 0.0;
+        foreach (var row in rows)
+        {
+            foreach (var item in row.Items)
+            {
+                var controls = item.BuildControls(0, 0);
+                var label = controls.OfType<TextBlock>().FirstOrDefault();
+                if (label != null)
+                {
+                    label.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
+                    var w = label.DesiredSize.Width;
+                    if (w > measuredLabelWidth) measuredLabelWidth = w;
+                }
+            }
+        }
+
+        var preferredCap = isItemPoolTab ? 320.0 : 240.0;
+        measuredLabelWidth = Math.Min(measuredLabelWidth + 8.0, preferredCap);
+        if (measuredLabelWidth < 60.0) measuredLabelWidth = 60.0;
+
+        var mainGrid = new Grid { HorizontalAlignment = HorizontalAlignment.Stretch };
+        mainGrid.ColumnDefinitions.Add(new ColumnDefinition(new GridLength(measuredLabelWidth, GridUnitType.Pixel)));
+        mainGrid.ColumnDefinitions.Add(new ColumnDefinition(GridLength.Auto));
+        mainGrid.ColumnDefinitions.Add(new ColumnDefinition(new GridLength(measuredLabelWidth, GridUnitType.Pixel)));
+        mainGrid.ColumnDefinitions.Add(new ColumnDefinition(GridLength.Auto));
+        mainGrid.ColumnDefinitions.Add(new ColumnDefinition(new GridLength(1, GridUnitType.Star)));
+
+        int gridRow = 0;
+        foreach (var row in rows)
+        {
+            mainGrid.RowDefinitions.Add(new RowDefinition(GridLength.Auto));
+
+            if (row.Kind == RowKind.Flags)
+            {
+                var flagsPanel = new Grid { HorizontalAlignment = HorizontalAlignment.Stretch };
+                for (int i = 0; i < Math.Max(1, row.Items.Count); i++) flagsPanel.ColumnDefinitions.Add(new ColumnDefinition(GridLength.Star));
+                for (int i = 0; i < row.Items.Count; i++)
+                {
+                    var item = row.Items[i];
+                    var ctrls = item.BuildControls(0, 0);
+                    var panel = new StackPanel { Orientation = Orientation.Horizontal, Spacing = 6, HorizontalAlignment = HorizontalAlignment.Left };
+                    foreach (var c in ctrls) panel.Children.Add(c);
+                    Grid.SetColumn(panel, i);
+                    flagsPanel.Children.Add(panel);
+                }
+                Grid.SetRow(flagsPanel, gridRow);
+                Grid.SetColumnSpan(flagsPanel, 5);
+                mainGrid.Children.Add(flagsPanel);
+            }
+            else if (row.Kind == RowKind.Inputs)
+            {
+                for (int i = 0; i < row.Items.Count && i < 2; i++)
+                {
+                    var item = row.Items[i];
+                    var controls = item.BuildControls(0, 0);
+                    var label = controls.OfType<TextBlock>().FirstOrDefault();
+                    var control = controls.FirstOrDefault(c => !(c is TextBlock));
+
+                    if (label != null)
+                    {
+                        label.FontSize = 11;
+                        label.MinWidth = 60;
+                        label.MaxWidth = measuredLabelWidth;
+                        label.TextWrapping = TextWrapping.NoWrap;
+                        label.TextTrimming = TextTrimming.CharacterEllipsis;
+                        label.Margin = new Thickness(0, 0, 6, 0);
+                        label.VerticalAlignment = VerticalAlignment.Center;
+                        label.HorizontalAlignment = HorizontalAlignment.Right;
+                        label.TextAlignment = TextAlignment.Right;
+                        Grid.SetRow(label, gridRow);
+                        Grid.SetColumn(label, i * 2);
+                        mainGrid.Children.Add(label);
+                    }
+
+                    if (control != null)
+                    {
+                        if (control is ComboBox cb)
+                        {
+                            cb.HorizontalAlignment = HorizontalAlignment.Left;
+                            cb.Width = 160;
+                            cb.FontSize = 11;
+                            cb.Margin = new Thickness(0, 0, 6, 0);
+                        }
+                        else if (control is TextBox tb)
+                        {
+                            tb.HorizontalAlignment = HorizontalAlignment.Left;
+                            tb.Width = 160;
+                            tb.FontSize = 11;
+                            tb.Margin = new Thickness(0, 0, 6, 0);
+                        }
+
+                        Grid.SetRow(control, gridRow);
+                        Grid.SetColumn(control, i * 2 + 1);
+                        mainGrid.Children.Add(control);
+                    }
+                }
+            }
+            else if (row.Kind == RowKind.Color)
+            {
+                var item = row.Items[0];
+                var controls = item.BuildControls(0, 0);
+
+                var panel = new StackPanel
+                {
+                    Orientation = Orientation.Horizontal,
+                    Spacing = 8,
+                    HorizontalAlignment = HorizontalAlignment.Left
+                };
+
+                foreach (var control in controls)
+                {
+                    if (control is TextBlock tb)
+                    {
+                        tb.FontSize = 11;
+                        tb.VerticalAlignment = VerticalAlignment.Center;
+                    }
+                    panel.Children.Add(control);
+                }
+
+                Grid.SetRow(panel, gridRow);
+                Grid.SetColumn(panel, 0);
+                Grid.SetColumnSpan(panel, 5);
+                mainGrid.Children.Add(panel);
+            }
+            else // Mixed
+            {
+                // Place items left-to-right into label/control pairs where possible, fall back to stacked panels
+                for (int i = 0; i < row.Items.Count && i < 2; i++)
+                {
+                    var item = row.Items[i];
+                    var controls = item.BuildControls(0, 0);
+                    var panel = new StackPanel { Orientation = Orientation.Horizontal, Spacing = 6 };
+                    foreach (var c in controls) panel.Children.Add(c);
+                    Grid.SetRow(panel, gridRow);
+                    Grid.SetColumn(panel, i * 2);
+                    Grid.SetColumnSpan(panel, 2);
+                    mainGrid.Children.Add(panel);
+                }
+            }
+
+            gridRow++;
+        }
+
+        var headered = new HeaderedContentControl
+        {
             Header = groupName,
-            Content = grid,
+            Content = mainGrid,
             Classes = { "compact-groupbox" }
         };
+
+        headered.AttachedToVisualTree += (s, e) =>
+        {
+            void UpdateLabelColumns()
+            {
+                try
+                {
+                    double available = headered.Bounds.Width;
+                    if (available <= 0)
+                    {
+                        available = preferredCap * 3;
+                    }
+                    if (available <= 0) available = preferredCap * 3;
+
+                    var target = Math.Min(measuredLabelWidth, Math.Min(preferredCap, available * 0.45));
+                    if (mainGrid.ColumnDefinitions.Count >= 3)
+                    {
+                        mainGrid.ColumnDefinitions[0].Width = new GridLength(target, GridUnitType.Pixel);
+                        mainGrid.ColumnDefinitions[2].Width = new GridLength(target, GridUnitType.Pixel);
+                    }
+                }
+                catch { }
+            }
+
+            UpdateLabelColumns();
+            headered.GetObservable(Control.BoundsProperty).Subscribe(_ => UpdateLabelColumns());
+        };
+
         return headered;
     }
 }

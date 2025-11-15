@@ -1,9 +1,104 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Class="MinishCapRandomizerUI.Avalonia.App"
-             RequestedThemeVariant="Light">
+             RequestedThemeVariant="Default">
   <Application.Styles>
     <FluentTheme />
+
+    <!-- Window backgrounds per theme -->
+    <Style Selector="Window:light">
+      <Setter Property="Background" Value="#F6F8FB" />
+    </Style>
+    <Style Selector="Window:dark">
+      <Setter Property="Background" Value="#2D2D30" />
+    </Style>
+
+    <!-- Dark theme styles with grey tones -->
+    <Style Selector="HeaderedContentControl:dark">
+      <Setter Property="BorderBrush" Value="#3F3F46" />
+      <Setter Property="Template">
+        <ControlTemplate>
+          <Grid Margin="0">
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="Auto"/>
+              <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Border ZIndex="1" Background="#2D2D30" Padding="4,0,4,0" Margin="6,0,0,0">
+              <TextBlock Text="{TemplateBinding Header}" FontWeight="Bold" Foreground="#E0E0E0" />
+            </Border>
+            <Border Grid.RowSpan="2" Grid.ColumnSpan="2" CornerRadius="3" Padding="0,3,0,0" Margin="0,6,0,0"
+                    BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
+                    Background="#252526">
+              <ContentPresenter Name="PART_ContentPresenter" Padding="6,8,6,3" Content="{TemplateBinding Content}" />
+            </Border>
+          </Grid>
+        </ControlTemplate>
+      </Setter>
+    </Style>
+
+    <Style Selector="HeaderedContentControl.compact-groupbox:dark">
+      <Setter Property="BorderBrush" Value="#3F3F46" />
+      <Setter Property="Template">
+        <ControlTemplate>
+          <Grid Margin="0">
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="Auto"/>
+              <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Border ZIndex="1" Background="#2D2D30" Padding="4,0,4,0" Margin="5,0,0,0">
+              <TextBlock Text="{TemplateBinding Header}" FontWeight="Bold" Foreground="#E0E0E0" />
+            </Border>
+            <Border Grid.RowSpan="2" Grid.ColumnSpan="2" CornerRadius="3" Padding="0,2,0,0" Margin="0,5,0,0"
+                    BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
+                    Background="#252526">
+              <ContentPresenter Name="PART_ContentPresenter" Padding="5,6,5,3" Content="{TemplateBinding Content}" />
+            </Border>
+          </Grid>
+        </ControlTemplate>
+      </Setter>
+    </Style>
+
+    <!-- Dark theme text and control colors -->
+    <Style Selector="TextBlock:dark">
+      <Setter Property="Foreground" Value="#E0E0E0" />
+    </Style>
+
+    <Style Selector="TextBox:dark">
+      <Setter Property="Background" Value="#333337" />
+      <Setter Property="Foreground" Value="#E0E0E0" />
+      <Setter Property="BorderBrush" Value="#3F3F46" />
+    </Style>
+
+    <Style Selector="ComboBox:dark">
+      <Setter Property="Background" Value="#333337" />
+      <Setter Property="Foreground" Value="#E0E0E0" />
+      <Setter Property="BorderBrush" Value="#3F3F46" />
+    </Style>
+
+    <Style Selector="Button:dark">
+      <Setter Property="Background" Value="#3F3F46" />
+      <Setter Property="Foreground" Value="#E0E0E0" />
+      <Setter Property="BorderBrush" Value="#555555" />
+    </Style>
+
+    <Style Selector="CheckBox.toggled:dark">
+      <Setter Property="Foreground" Value="#569CD6" />
+      <Setter Property="FontWeight" Value="Bold" />
+    </Style>
+
+    <Style Selector="CheckBox.toggled:checked:dark">
+      <Setter Property="Foreground" Value="#6FCF97" />
+      <Setter Property="FontWeight" Value="Bold" />
+    </Style>
+
     <Style Selector="TextBlock">
       <Setter Property="FontSize" Value="11" />
     </Style>

@@ -15,5 +15,6 @@ internal class UIConfiguration
     public bool UseCustomYAML { get; set; }
     public string CustomYAMLFilepath { get; set; } = "";
     public bool UseCompactUIOnStart { get; set; } = true;
+    public string ThemePreference { get; set; } = "System"; // "System", "Light", or "Dark"
 }
 

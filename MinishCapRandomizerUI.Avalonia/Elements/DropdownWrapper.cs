@@ -9,8 +9,8 @@ namespace MinishCapRandomizerUI.Avalonia.Elements;
 
 public class DropdownWrapper : WrapperBase, ILogicOptionObserver
 {
-    private const int TextWidth = 160; // reduced further for compactness
-    private const int DropdownWidth = 0; // use stretch
+    private const int TextWidth = 160;
+    private const int DropdownWidth = 0;
     private const int DropdownHeight = 23;
     private static readonly int ElementWidthInternal = TextWidth + 160 + Constants.WidthMargin;
     private const int ElementHeightInternal = DropdownHeight;
@@ -30,11 +30,21 @@ public class DropdownWrapper : WrapperBase, ILogicOptionObserver
         if (_label != null && _comboBox != null)
             return new List<Control> { _label, _comboBox };
 
-        _label = new TextBlock { Text = _dropdown.NiceName + ":", VerticalAlignment = VerticalAlignment.Center, Width = TextWidth, TextWrapping = TextWrapping.Wrap };
+        _label = new TextBlock {
+            Text = _dropdown.NiceName + ":",
+            VerticalAlignment = VerticalAlignment.Center,
+            TextWrapping = TextWrapping.Wrap,
+            FontSize = 11
+        };
         if (!string.IsNullOrWhiteSpace(_dropdown.DescriptionText))
             ToolTip.SetTip(_label, _dropdown.DescriptionText);
 
-        _comboBox = new ComboBox{ MinWidth = 160, HorizontalAlignment = HorizontalAlignment.Stretch };
+        _comboBox = new ComboBox{
+            MinWidth = 160,
+            Width = 160,
+            HorizontalAlignment = HorizontalAlignment.Left,
+            FontSize = 11
+        };
         var items = _dropdown.SelectionOptionNames.ToList();
         _comboBox.ItemsSource = items;
         var selectedName = _dropdown.OptionsToNames[_dropdown.Selection];
