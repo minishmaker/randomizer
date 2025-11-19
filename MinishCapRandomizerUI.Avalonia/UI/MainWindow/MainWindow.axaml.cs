@@ -1169,54 +1169,77 @@ public partial class MainWindow : Window
         }, DispatcherPriority.Loaded);
     }
 
+    // Reserved tab headers that are defined in XAML and should not be rebuilt dynamically if present.
+    private static readonly string[] ReservedPageHeaders = { "General", "Advanced", "Seed Output" };
+    private const string FallbackGroupName = "Misc"; // used when SettingGrouping is empty/whitespace
+
     private void UpdateUIWithLogicOptions()
     {
         Console.WriteLine($"[UpdateUI] _useCompactUI={_useCompactUI}");
-        var tab = this.FindControl<TabControl>("TabPane"); if (tab == null) return;
-
-        var generalTab = tab.Items!.OfType<TabItem>().FirstOrDefault(t => string.Equals(t.Header?.ToString(), "General", StringComparison.OrdinalIgnoreCase));
-        var advancedTab = tab.Items!.OfType<TabItem>().FirstOrDefault(t => string.Equals(t.Header?.ToString(), "Advanced", StringComparison.OrdinalIgnoreCase));
-        var seedOutputTab = TryGet<TabItem>("SeedOutput");
-
-        Console.WriteLine($"[UpdateUI] Found tabs - General={generalTab!=null}, Advanced={advancedTab!=null}, SeedOutput={seedOutputTab!=null}");
-
-        tab.Items!.Clear();
-
-        if (generalTab != null) tab.Items.Add(generalTab);
-
-        var options = _useCompactUI ? _shufflerController.GetCompactOptions() : _shufflerController.GetSelectedOptions();
-        Console.WriteLine($"[UpdateUI] Got {options.Count} options from {(_useCompactUI ? "COMPACT" : "FULL")} set");
-        var wrapped = MinishCapRandomizerUI.Avalonia.Elements.WrappedLogicOptionFactory.BuildGenericWrappedLogicOptions(options);
-        Console.WriteLine($"[UpdateUI] Wrapped into {wrapped.Count} UI elements");
-        var pages = wrapped.GroupBy(w => w.Page ?? string.Empty).Where(g => !string.IsNullOrWhiteSpace(g.Key));
-
-        var pagesList = pages.ToList();
-        Console.WriteLine($"[UpdateUI] Building {pagesList.Count} dynamic tabs");
-        foreach (var pg in pagesList)
+        var tab = this.FindControl<TabControl>("TabPane"); if (tab == null) { Console.WriteLine("[UpdateUI] TabPane not found - aborting"); return; }
+        var existingReserved = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        foreach (var header in ReservedPageHeaders)
         {
-            Console.WriteLine($"  Page: '{pg.Key}' with {pg.Count()} options");
+            var match = tab.Items?.OfType<TabItem>().FirstOrDefault(t => string.Equals(t.Header?.ToString(), header, StringComparison.OrdinalIgnoreCase));
+            if (match != null) existingReserved.Add(header);
         }
-
-        foreach (var page in pagesList)
+        var generalTab = tab.Items?.OfType<TabItem>().FirstOrDefault(t => string.Equals(t.Header?.ToString(), "General", StringComparison.OrdinalIgnoreCase));
+        var advancedTab = tab.Items?.OfType<TabItem>().FirstOrDefault(t => string.Equals(t.Header?.ToString(), "Advanced", StringComparison.OrdinalIgnoreCase));
+        var seedOutputTab = TryGet<TabItem>("SeedOutput");
+        Console.WriteLine($"[UpdateUI] Found reserved tabs -> General={(generalTab!=null)}, Advanced={(advancedTab!=null)}, SeedOutput={(seedOutputTab!=null)}");
+        tab.Items?.Clear();
+        if (generalTab != null) tab.Items!.Add(generalTab);
+        var options = _useCompactUI ? _shufflerController.GetCompactOptions() : _shufflerController.GetSelectedOptions();
+        Console.WriteLine($"[UpdateUI] Retrieved {options.Count} {( _useCompactUI ? "compact" : "full" )} options");
+        var wrapped = MinishCapRandomizerUI.Avalonia.Elements.WrappedLogicOptionFactory.BuildGenericWrappedLogicOptions(options);
+        Console.WriteLine($"[UpdateUI] Wrapped into {wrapped.Count} wrapper elements");
+        var pageOrder = new List<string>();
+        foreach (var w in wrapped)
+        {
+            if (string.IsNullOrWhiteSpace(w.Page)) continue;
+            var key = w.Page.Trim();
+            if (!pageOrder.Any(p => p.Equals(key, StringComparison.OrdinalIgnoreCase))) pageOrder.Add(key);
+        }
+        var pagesDict = wrapped
+            .Where(w => !string.IsNullOrWhiteSpace(w.Page))
+            .GroupBy(w => w.Page!.Trim(), StringComparer.OrdinalIgnoreCase)
+            .ToDictionary(g => g.Key, g => g.ToList(), StringComparer.OrdinalIgnoreCase);
+        var dynamicPages = pageOrder
+            .Where(p => !existingReserved.Contains(p))
+            .Select(p => new { Key = p, Items = pagesDict[p] })
+            .ToList();
+        Console.WriteLine($"[UpdateUI] Building {dynamicPages.Count} dynamic tabs (original order preserved)");
+        foreach (var dp in dynamicPages) Console.WriteLine($"  [UpdateUI] Page '{dp.Key}' with {dp.Items.Count} items");
+        foreach (var page in dynamicPages)
         {
             var tabItem = new TabItem { Header = page.Key };
             var stack = new StackPanel { Spacing = 6, Margin = new Thickness(6) };
-
-            foreach (var group in page.GroupBy(w => w.SettingGrouping).Where(g => !string.IsNullOrWhiteSpace(g.Key)))
+            var groupOrder = new List<string>();
+            foreach (var w in page.Items)
             {
-                stack.Children.Add(MinishCapRandomizerUI.Avalonia.Elements.WrappedLogicOptionFactory.BuildGroupContainer(group.Key!, group));
+                var g = string.IsNullOrWhiteSpace(w.SettingGrouping) ? FallbackGroupName : w.SettingGrouping.Trim();
+                if (!groupOrder.Any(x => x.Equals(g, StringComparison.OrdinalIgnoreCase))) groupOrder.Add(g);
             }
-
+            var groupsDict = page.Items
+                .GroupBy(w => string.IsNullOrWhiteSpace(w.SettingGrouping) ? FallbackGroupName : w.SettingGrouping.Trim(), StringComparer.OrdinalIgnoreCase)
+                .ToDictionary(g => g.Key, g => g.ToList(), StringComparer.OrdinalIgnoreCase);
+            foreach (var groupName in groupOrder)
+            {
+                stack.Children.Add(MinishCapRandomizerUI.Avalonia.Elements.WrappedLogicOptionFactory.BuildGroupContainer(groupName, groupsDict[groupName]));
+            }
             tabItem.Content = new ScrollViewer { Content = stack };
-            tab.Items.Add(tabItem);
-            Console.WriteLine($"  Added tab: '{page.Key}'");
+            tab.Items!.Add(tabItem);
+            Console.WriteLine($"  [UpdateUI] Added dynamic tab '{page.Key}' with {groupOrder.Count} groups (original order preserved)");
         }
-
-        if (advancedTab != null) tab.Items.Add(advancedTab);
+        if (advancedTab != null) tab.Items!.Add(advancedTab);
+        else if (pageOrder.Any(p => p.Equals("Advanced", StringComparison.OrdinalIgnoreCase)) && !existingReserved.Contains("Advanced"))
+        {
+            Console.WriteLine("[UpdateUI] Advanced tab provided dynamically");
+        }
 
         if (_hasRandomized && seedOutputTab != null)
         {
-            tab.Items.Add(seedOutputTab);
+            if (!tab.Items!.OfType<TabItem>().Any(t => t == seedOutputTab)) tab.Items!.Add(seedOutputTab);
         }
     }
 
