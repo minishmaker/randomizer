@@ -1,0 +1,10 @@
+<Window xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Class="MinishCapRandomizerUI.Avalonia.UI.UrlDialog.UrlDialog" Width="500" Height="160" CanResize="False" Title="Open Link">
+  <StackPanel Margin="12" Spacing="12">
+    <TextBlock x:Name="Message" Text="A new release is available."/>
+    <TextBlock x:Name="LinkText" TextDecorations="Underline" Foreground="#4DA8FF" Cursor="Hand"/>
+    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8">
+      <Button x:Name="OkButton" Content="OK" Width="90"/>
+    </StackPanel>
+  </StackPanel>
+</Window>
+

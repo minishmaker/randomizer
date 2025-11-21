@@ -1,0 +1,11 @@
+<Window xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Class="MinishCapRandomizerUI.Avalonia.UI.InputDialog.InputDialog" Width="400" Height="160" CanResize="False" Title="Enter Value">
+  <StackPanel Margin="12" Spacing="12">
+    <TextBlock x:Name="Message" Text="Enter text:" TextWrapping="Wrap" />
+    <TextBox x:Name="UserInput" Width="360" />
+    <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Right">
+      <Button x:Name="OkButton" Content="OK" Width="90" />
+      <Button x:Name="CancelButton" Content="Cancel" Width="90" />
+    </StackPanel>
+  </StackPanel>
+</Window>
+

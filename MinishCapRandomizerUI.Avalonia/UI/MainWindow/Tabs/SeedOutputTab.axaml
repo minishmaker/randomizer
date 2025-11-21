@@ -1,0 +1,68 @@
+<UserControl xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Class="MinishCapRandomizerUI.Avalonia.UI.MainWindow.Tabs.SeedOutputTab">
+  <ScrollViewer>
+    <StackPanel Margin="6" HorizontalAlignment="Stretch" Spacing="6">
+      <HeaderedContentControl Header="Seed Information" Classes="compact-groupbox">
+        <Grid RowDefinitions="Auto,Auto,Auto" HorizontalAlignment="Stretch">
+          <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" Spacing="32" VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+              <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="Input Seed:"/>
+              <TextBlock Name="InputSeedLabel" VerticalAlignment="Center" MinWidth="120"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+              <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="Output Seed:"/>
+              <TextBlock Name="OutputSeedLabel" VerticalAlignment="Center" MinWidth="120"/>
+            </StackPanel>
+          </StackPanel>
+
+          <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Top" Spacing="6" Margin="0,6,0,0">
+            <TextBlock HorizontalAlignment="Center" FontWeight="Bold" Text="ROM Hash:"/>
+            <Panel HorizontalAlignment="Center" VerticalAlignment="Top">
+              <StackPanel Name="RomHashPanel" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            </Panel>
+            <TextBlock Name="YamlHashNotShownLabel" IsVisible="False" HorizontalAlignment="Center" Text="Hash is not displayed when YAML is being used for settings."/>
+          </StackPanel>
+
+          <Button Grid.Row="2" Name="CopyHashToClipboard" Content="Copy Hash To Clipboard" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,6,0,0"/>
+        </Grid>
+      </HeaderedContentControl>
+
+      <HeaderedContentControl Header="Settings Information" Classes="compact-groupbox">
+        <Grid RowDefinitions="Auto,Auto,Auto" HorizontalAlignment="Stretch">
+          <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" Spacing="8" VerticalAlignment="Center">
+            <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="Settings Name:"/>
+            <TextBlock Name="SettingNameLabel" VerticalAlignment="Center"/>
+          </StackPanel>
+
+          <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Top" Spacing="4" Margin="0,6,0,0">
+            <TextBlock HorizontalAlignment="Left" FontWeight="Bold" Text="Settings String:"/>
+            <TextBlock Name="SettingHashLabel" TextWrapping="Wrap" HorizontalAlignment="Stretch"/>
+          </StackPanel>
+
+          <Button Grid.Row="2" Name="CopySettingsHashToClipboard" Content="Copy Settings String To Clipboard" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,6,0,0"/>
+        </Grid>
+      </HeaderedContentControl>
+
+      <HeaderedContentControl Header="Cosmetics Information" Classes="compact-groupbox">
+        <Grid RowDefinitions="Auto,Auto,Auto" HorizontalAlignment="Stretch">
+          <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" Spacing="8" VerticalAlignment="Center">
+            <TextBlock VerticalAlignment="Center" FontWeight="Bold" Text="Cosmetics Name:"/>
+            <TextBlock Name="CosmeticNameLabel" VerticalAlignment="Center"/>
+          </StackPanel>
+
+          <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Top" Spacing="4" Margin="0,6,0,0">
+            <TextBlock HorizontalAlignment="Left" FontWeight="Bold" Text="Cosmetics String:"/>
+            <TextBlock Name="CosmeticStringLabel" TextWrapping="Wrap" HorizontalAlignment="Stretch"/>
+          </StackPanel>
+
+          <Button Grid.Row="2" Name="CopyCosmeticsHashToClipboard" Content="Copy Cosmetics String To Clipboard" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,6,0,0"/>
+        </Grid>
+      </HeaderedContentControl>
+
+      <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Spacing="12">
+        <Button Name="SaveSpoiler" Content="Save Spoiler Log" HorizontalAlignment="Left"/>
+        <Button Name="SavePatch" Content="Save BPS Patch"/>
+        <Button Name="SaveRom" Content="Save ROM" HorizontalAlignment="Right"/>
+      </StackPanel>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>
