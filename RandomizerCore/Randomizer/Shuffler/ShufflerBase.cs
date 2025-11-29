@@ -705,7 +705,8 @@ internal abstract class ShufflerBase
         {
             var itemLocations = Locations.Where(location =>
                 location.Type is not LocationType.Helper and not LocationType.DungeonConstraint and not LocationType.OverworldConstraint
-                    and not LocationType.Music and not LocationType.Untyped and not LocationType.Inaccessible).ToList();
+                    and not LocationType.Music and not LocationType.Untyped and not LocationType.Inaccessible
+                    && (!location.Contents.HasValue || location.Contents.Value.Type != ItemType.Entrance)).ToList();
             var inaccessibleLocations = itemLocations.Where(location => !location.IsAccessible());
             return inaccessibleLocations.ToList();
         }

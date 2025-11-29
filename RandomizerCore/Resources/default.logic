@@ -1764,10 +1764,12 @@
 	!define - DUNGEONENTRANCE - :NoSpoiler;	Unshuffled
 	!define - ENTERDWS - Helpers.AccessDeepwood
 	!define - ENTERCOF - Helpers.AccessCoF
+	!define - FOW_ENTRANCE_ALT_RULE - Helpers.Hundo
 	!define - FOW_DUNGEONENTRANCE - :NoSpoiler;	Unshuffled
 	!define - ENTERFOW - Helpers.AccessFortress
 	!define - ENTERTOD - Helpers.AccessDroplets
 	!define - ENTERRC - Helpers.AccessCrypt
+	!define - POW_ENTRANCE_ALT_RULE - Helpers.Hundo
 	!define - POW_DUNGEONENTRANCE - :NoSpoiler;	Unshuffled
 	!define - ENTERPOW - Helpers.AccessPalace
 	!define - DHC_MAIN_DUNGEONENTRANCE - :NoSpoiler;	Unshuffled
@@ -2004,8 +2006,10 @@
 	!endif
 	!ifdef - RUINS_ACCESS
 		Items.Entrance.0x03;	DungeonEntrance;
+		!define - FOW_ENTRANCE_ALT_RULE - Helpers.Hundo
 		!define - FOW_DUNGEONENTRANCE - :DHCValid;	DungeonEntrance
 	!else
+		!define - FOW_ENTRANCE_ALT_RULE - Helpers.BeatVaati
 		!ifndef - ELEMENTS_TIED_TO_DUNGEONS
 			!define - FOW_DUNGEONENTRANCE - :NoSpoiler:NoElement;	DungeonEntrance
 			Items.Entrance.0x03;	DungeonEntrance;
@@ -2036,8 +2040,10 @@
 	!endif
 	!ifdef - UWT_ACCESS
 		Items.Entrance.0x05;	DungeonEntrance;
+		!define - POW_ENTRANCE_ALT_RULE - Helpers.Hundo
 		!define - POW_DUNGEONENTRANCE - :DHCValid;	DungeonEntrance
 	!else
+		!define - POW_ENTRANCE_ALT_RULE - Helpers.BeatVaati
 		!ifndef - ELEMENTS_TIED_TO_DUNGEONS
 			!define - POW_DUNGEONENTRANCE - :NoSpoiler:NoElement;	DungeonEntrance
 			Items.Entrance.0x05;	DungeonEntrance;
@@ -8614,7 +8620,7 @@ Ruins_NearFoWFusion_Chest		`FOW_OUTSIDE`;	`GOLDREDFUSION`;			0x0FE0AE;										
 
 AccessFortress;								Helper;					;														Helpers.AccessRuins, Helpers.HasSword;
 
-Fortress_Entrance								`FOW_DUNGEONENTRANCE`;		DumFoWENT:Define:FirstByte, DumFoWENT2:Define:SecondByte;		(|Helpers.AccessFortress, Helpers.BeatVaati);																	Items.Entrance.0x03
+Fortress_Entrance								`FOW_DUNGEONENTRANCE`;		DumFoWENT:Define:FirstByte, DumFoWENT2:Define:SecondByte;		(|Helpers.AccessFortress, `FOW_ENTRANCE_ALT_RULE`);														Items.Entrance.0x03
 
 # Royal Valley
 AccessValley;					Helper;			;			(|Helpers.CanSplit3, Helpers.CanSplit4), (|Helpers.OverworldBlocks, Helpers.CapeExtension);
@@ -8712,7 +8718,7 @@ WindTribe_4F_RightChest	`POW_OUTSIDE`;	`PALACEOUTSIDECHEST`;	0x30-0x03-0x01;				
 
 AccessPalace;													Helper;	;											Helpers.AccessWindTribe;
 
-Palace_Entrance							`POW_DUNGEONENTRANCE`;	DumPoWENT:Define:FirstByte, DumPoWENT2:Define:SecondByte;	(|Helpers.AccessPalace, Helpers.BeatVaati);												Items.Entrance.0x06
+Palace_Entrance							`POW_DUNGEONENTRANCE`;	DumPoWENT:Define:FirstByte, DumPoWENT2:Define:SecondByte;	(|Helpers.AccessPalace, `POW_ENTRANCE_ALT_RULE`);							Items.Entrance.0x06
 
 # Deepwood locations
 Deepwood_2F_Chest						`DWS_INSIDE`;		Dungeon;			0x48-0x17-0x01;													(|(&`ENTERDWS`, Helpers.DeepwoodWeb), Helpers.Hundo);																											Items.Rupee20
