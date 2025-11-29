@@ -2600,7 +2600,6 @@
 	!eventdefine - arbitraryShields
 	!define - SHIELD - Items.Shield
 	!define - MIRROR - Items.MirrorShield
-	Items.Shield;			Major;
 	!ifndef - START_NORMAL_SHIELD
 		Items.Shield;	Major;
 	!else
