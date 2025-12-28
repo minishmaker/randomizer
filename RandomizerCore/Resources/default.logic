@@ -8675,7 +8675,7 @@ Falls_RupeeCave_Underwater_BottomLeft	`FALLSWATER`;		0x0F8FF7;												(|(&He
 Falls_RupeeCave_Underwater_BottomRight	`FALLSWATER`;		0x0F9007;												(|(&Helpers.AccessFalls, Items.Flippers), Helpers.Hundo);							Items.Rupee20
 Falls_TopCave_BombWall_Chest;			`FALLSCHEST`;		0x33-0x02-0x00;											(|(&Helpers.AccessFalls, Helpers.BombWalls), Helpers.Hundo);						Items.Shells.50
 Falls_TopCave_Chest;					`FALLSCHEST`;		0x33-0x00-0x00;											(|Helpers.AccessFalls, Helpers.Hundo);											Items.Rupee100
-Falls_Biggoron;							`FALLSBIGGORON`;	biggoronItem:Define:FirstByte, biggoronSub:Define:SecondByte;	(|(&Helpers.GoronRightFusion, Helpers.AccessFalls, Helpers.HasBiggoronShield), Helpers.Hundo);	`MIRROR`
+Falls_Biggoron;							`FALLSBIGGORON`;	biggoronItem:Define:FirstByte, biggoronSub:Define:SecondByte;	(|(&Helpers.GoronRightFusion, Helpers.AccessClouds, Helpers.HasBiggoronShield), Helpers.Hundo);	`MIRROR`
 
 # Cloud Tops
 AccessClouds;					Helper;				;				(|(&Helpers.AccessFalls, Items.GripRing), Helpers.CloudWindCrest, (&Helpers.StrangerFusion, Helpers.OpenWindTribe))
