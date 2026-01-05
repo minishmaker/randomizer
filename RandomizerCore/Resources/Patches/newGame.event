@@ -25,6 +25,7 @@ POIN kinstoneBag;	WORD 0x2002B4B 1
 POIN fusionFlags;	WORD 0x2002C81 13
 POIN startingFlags;	WORD 0x2002C9C 116
 POIN dhcGuards;		WORD 0x2002DB4 1
+POIN dhcBossDoor;	WORD 0x2002DBE 1
 POIN dungeonPortal;	WORD 0x2002EBD 6
 #ifndef requirementFigurinesAmount
 	POIN figurines;		WORD 0x2002B0E 18
@@ -621,6 +622,13 @@ BYTE mC81 mC82 mC83 mC84 mC85 mC86 mC87 mC88 mC89 mC8A mC8B mC8C mC8D
 
 dhcGuards:
 BYTE 0x02 // move the dhc guards out of the way of the south entrance
+
+dhcBossDoor:
+#ifdef pedGoal
+BYTE 0x20 // remove dhc boss door in favor of blocker
+#else
+BYTE 0x00
+#endif
 
 kinstoneBag:
 BYTE 0x40
