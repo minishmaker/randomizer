@@ -7115,8 +7115,10 @@ ShopScrubCrenel;		Helper;;	(|(+`SHOP_PRICE`, Items.Rupee1, Items.Rupee5:5, Items
 	DHCOutsideSwitch;			Helper;;	
 	DHCSwitchPuzzles;			Helper;;	
 	DHCChainSoldiers;			Helper;;
-	DHCGrateRoom;				Helper;;	
-	DHCBlackKnightFight;		Helper;;	
+	DHCChainSoldiersReverse;	Helper;;
+	DHCGrateRoom;				Helper;;
+	DHCGrateRoomReverse;		Helper;;
+	DHCBlackKnightFight;		Helper;;
 	DHCTowerDarknuts;			Helper;;	
 	DHCLampPuzzle;			Helper;;	
 	DHCGhini;				Helper;;	
@@ -7213,7 +7215,9 @@ ShopScrubCrenel;		Helper;;	(|(+`SHOP_PRICE`, Items.Rupee1, Items.Rupee5:5, Items
 	DHCOutsideSwitch;			Helper;;	(|Helpers.HasBow, Helpers.HasMagicBoomerang, Helpers.HasBeam)
 	DHCSwitchPuzzles;			Helper;;	Helpers.DHCSwitchHit
 	DHCChainSoldiers;			Helper;;	Helpers.HasDamageSource
+	DHCChainSoldiersReverse;	Helper;;	Helpers.Inaccessible
 	DHCGrateRoom;				Helper;;	Items.RocsCape, (|Helpers.HasBow, Helpers.HasBoomerang, Helpers.HasBeam)
+	DHCGrateRoomReverse;		Helper;;	Helpers.Inaccessible
 	DHCBlackKnightFight;		Helper;;	Helpers.HasDarknutDamage
 	DHCTowerDarknuts;			Helper;;	Helpers.HasDarknutDamage
 	DHCLampPuzzle;			Helper;;	Items.Lantern
@@ -8917,13 +8921,13 @@ DHC_B1_BigChest			`DHC_INSIDE_MAP`;	`DHCCHEST`;	0x88-0x37-0x00;	(|(&`ENTERDHC`),
 DHC_1F_Blade_Chest		`DHC_INSIDE_SK`;	`DHCCHEST`;	0x88-0x27-0x00;	(|(&`ENTERDHC`, Helpers.DHCFirstCanon, Helpers.DHCBladePuzzle), Helpers.Hundo);											Items.SmallKey.0x1D
 DHC_1F_Throne_BigChest		`DHC_INSIDE_COM`;	`DHCCHEST`;	0x88-0x20-0x00;	(|(&`ENTERDHC`, Helpers.DHC1stDoor, Helpers.DHC2ndCanon, Helpers.BombWalls, Helpers.DHCThrone), Helpers.Hundo);				Items.Compass.0x1D
 
-DHCBlackKnight;						Helper;;							Helpers.DHCBlackKnightFight, (|Helpers.DHCBlueWarp, (&Helpers.DHCRedWarp, Helpers.DHCChainSoldiers, Helpers.DHCGrateRoom, Helpers.OverworldBlocks), (&Helpers.DHC1stDoor, Helpers.DHC2ndCanon, Helpers.BombWalls, Helpers.DHCThrone, Helpers.CanSplit4, Helpers.DHCOutsideSwitch, Helpers.DHCSwitchPuzzles, Helpers.DHCChainSoldiers, Helpers.DHCGrateRoom, Helpers.OverworldBlocks))
-DHCSouthTowers;						Helper;;							(|(&Helpers.DHCBlueWarp, (|Helpers.OverworldBlocks, Items.RocsCape)), (&Helpers.DHCRedWarp, Helpers.DHCChainSoldiers), (&Helpers.DHC1stDoor, Helpers.DHC2ndCanon, Helpers.BombWalls, Helpers.DHCThrone, Helpers.CanSplit4, Helpers.DHCOutsideSwitch, Helpers.DHCSwitchPuzzles, Helpers.DHCChainSoldiers))
+DHCChainSoldiersWarpless;			Helper;;							Helpers.DHC1stDoor, Helpers.DHC2ndCanon, Helpers.BombWalls, Helpers.DHCThrone, Helpers.CanSplit4, Helpers.DHCOutsideSwitch, Helpers.DHCSwitchPuzzles, Helpers.DHCChainSoldiers
+DHCBlackKnight;						Helper;;							Helpers.DHCBlackKnightFight, (|Helpers.DHCBlueWarp, (&Helpers.DHCRedWarp, Helpers.DHCChainSoldiers, Helpers.DHCGrateRoom, Helpers.OverworldBlocks), (&Helpers.DHCChainSoldiersWarpless, Helpers.DHCGrateRoom, Helpers.OverworldBlocks))
 
 DHC_3F_NorthWest_Chest		`DHC_INSIDE_SK`;	`DHCCHEST`;	0x88-0x01-0x00;	(|(&`ENTERDHC`, Helpers.DHCBlackKnight, Helpers.DHCTowerDarknuts, Helpers.HasBow), Helpers.Hundo);							Items.SmallKey.0x1D
 DHC_3F_NorthEast_Chest		`DHC_INSIDE_SK`;	`DHCCHEST`;	0x88-0x02-0x00;	(|(&`ENTERDHC`, Helpers.DHCBlackKnight, Helpers.DHCTowerDarknuts, Helpers.DHCLampPuzzle, Helpers.DHCGhini), Helpers.Hundo);	Items.SmallKey.0x1D
-DHC_3F_SouthWest_Chest		`DHC_INSIDE_SK`;	`DHCCHEST`;	0x88-0x03-0x00;	(|(&`ENTERDHC`, Helpers.DHCBlackKnight, Helpers.DHCSouthTowers, Helpers.DHCTowerDarknuts, Helpers.DHCGhini), Helpers.Hundo);						Items.SmallKey.0x1D
-DHC_3F_SouthEast_Chest		`DHC_INSIDE_SK`;	`DHCCHEST`;	0x88-0x04-0x00;	(|(&`ENTERDHC`, Helpers.DHCBlackKnight, Helpers.DHCSouthTowers, Helpers.DHCTowerDarknuts, Helpers.DHCSwitchPuzzles), Helpers.Hundo);				Items.SmallKey.0x1D
+DHC_3F_SouthWest_Chest		`DHC_INSIDE_SK`;	`DHCCHEST`;	0x88-0x03-0x00;	(|(&`ENTERDHC`, Helpers.DHCBlackKnight, (|Helpers.DHCChainSoldiersWarpless, (&Helpers.DHCBlueWarp, (|(&Helpers.DHCGrateRoomReverse, Helpers.OverworldBlocks), (&Items.RocsCape, Helpers.DHCChainSoldiersReverse))), (&Helpers.DHCRedWarp, Helpers.DHCChainSoldiers)), Helpers.DHCTowerDarknuts, Helpers.DHCGhini), Helpers.Hundo);			Items.SmallKey.0x1D
+DHC_3F_SouthEast_Chest		`DHC_INSIDE_SK`;	`DHCCHEST`;	0x88-0x04-0x00;	(|(&`ENTERDHC`, Helpers.DHCBlackKnight, (|Helpers.DHCChainSoldiersWarpless, (&Helpers.DHCBlueWarp, (|Items.RocsCape, (&Helpers.DHCGrateRoomReverse, Helpers.OverworldBlocks, Helpers.DHCChainSoldiersReverse))), (&Helpers.DHCRedWarp, Helpers.DHCChainSoldiers)), Helpers.DHCTowerDarknuts, Helpers.DHCSwitchPuzzles), Helpers.Hundo);		Items.SmallKey.0x1D
 DHC_2F_BlueWarp_BigChest	`DHC_INSIDE_BK`;	`DHCCHEST`;	0x88-0x09-0x00;	(|(&`ENTERDHC`, Helpers.DHCBlackKnight, Helpers.DHCBigBlock, Helpers.CanSplit4), Helpers.Hundo);							`DHCBK`
 
 !ifdef - NODHC
