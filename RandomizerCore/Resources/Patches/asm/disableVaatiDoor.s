@@ -37,4 +37,3 @@ mov	lr, r3
 .align
 .ltorg
 blocker:
-@POIN blocker

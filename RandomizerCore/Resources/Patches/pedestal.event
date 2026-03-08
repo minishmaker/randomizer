@@ -10,15 +10,6 @@
     #endif
 #endif
 
-#ifdef openDHC
-	#ifdef noDHC
-		#undef noDHC
-	#endif
-	
-	// Remove the check for already watched the stained glass cutscene so that it's repeatable
-    PUSH; ORG $4EB12; BYTE 0 0 0 0 0 0 0 0 0 0; POP
-#endif
-
 #ifdef noDHC
 	#ifdef openDHC
 		#undef openDHC
@@ -35,6 +26,15 @@
 		BYTE 0 0x89 0 1 0 0
 		POP
 	#endif
+#endif
+
+#ifdef openDHC
+	#ifdef noDHC
+		#undef noDHC
+	#endif
+	
+	// Remove the check for already watched the stained glass cutscene so that it's repeatable
+    PUSH; ORG $4EB12; BYTE 0 0 0 0 0 0 0 0 0 0; POP
 #endif
 
 #ifndef pedestalSpot1Item

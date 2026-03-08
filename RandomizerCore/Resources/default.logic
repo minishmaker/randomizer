@@ -4246,7 +4246,6 @@ All_Requirements_Met;	`ALLREQUIREMENTS`;	requirementPrizeItem:Define:FirstByte, 
 
 !ifdef - OPENPED
 	AccessDHC; 	Helper;;
-	!define - DHCBK - Items.Rupee5
 	!define - OPENDHC
 	!undefine - PED_ITEMS
 	!eventdefine - openPed
@@ -4255,7 +4254,7 @@ All_Requirements_Met;	`ALLREQUIREMENTS`;	requirementPrizeItem:Define:FirstByte, 
 
 !ifdef - OPENDHC
 	AccessDHC; 	Helper;;
-    !eventdefine - openDHC
+	!eventdefine - openDHC
 !else
 	AccessDHC; 	Helper;;	Helpers.GotSwords `GOTELEMENTS` `DHC_FIG` `DHC_AD`
 	!undefine - PED_ITEMS
@@ -4265,7 +4264,7 @@ All_Requirements_Met;	`ALLREQUIREMENTS`;	requirementPrizeItem:Define:FirstByte, 
 	!endif
 !endif
 !ifdef - PED_ITEMS
-    !eventdefine - pedestalItems
+	!eventdefine - pedestalItems
 	!define - PED - Dungeon
 !else
 	!define - PED - Inaccessible
