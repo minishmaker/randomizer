@@ -24,7 +24,9 @@ POIN fastBombArrow;	WORD 0x2002B4D 1
 POIN kinstoneBag;	WORD 0x2002B4B 1
 POIN fusionFlags;	WORD 0x2002C81 13
 POIN startingFlags;	WORD 0x2002C9C 116
-POIN dhcGuards;		WORD 0x2002DB4 1
+#ifdef noDHC
+	POIN dhcGuards;		WORD 0x2002DB4 1
+#endif
 POIN dhcBossDoor;	WORD 0x2002DBE 1
 POIN dungeonPortal;	WORD 0x2002EBD 6
 #ifndef requirementFigurinesAmount
