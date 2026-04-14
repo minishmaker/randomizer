@@ -4244,18 +4244,27 @@ GotSwords; 	Helper; ; `GOTSWORDS`
 
 All_Requirements_Met;	`ALLREQUIREMENTS`;	requirementPrizeItem:Define:FirstByte, requirementPrizeSub:Define:SecondByte;	Helpers.GotSwords `GOTELEMENTS` `DHC_FIG` `DHC_AD`; `REQREWARD`
 
-!ifdef - OPENDHC
+!ifdef - OPENPED
 	AccessDHC; 	Helper;;
-    !eventdefine - openDHC
-!else
-	AccessDHC; 	Helper;;	Helpers.GotSwords `GOTELEMENTS` `DHC_FIG` `DHC_AD`
 	!undefine - PED_ITEMS
-	!ifdef - NODHC
-		!eventdefine - noDHC
+	!eventdefine - openDHC
+	!eventdefine - openPed
+	!eventdefine - pedGoal
+!else 
+	!ifdef - OPENDHC
+		AccessDHC; 	Helper;;
+		!eventdefine - openDHC
+	!else
+		AccessDHC; 	Helper;;	Helpers.GotSwords `GOTELEMENTS` `DHC_FIG` `DHC_AD`
+		!undefine - PED_ITEMS
+		!ifdef - NODHC
+			!eventdefine - noDHC
+			!eventdefine - pedGoal
+		!endif
 	!endif
 !endif
 !ifdef - PED_ITEMS
-    !eventdefine - pedestalItems
+	!eventdefine - pedestalItems
 	!define - PED - Dungeon
 !else
 	!define - PED - Inaccessible

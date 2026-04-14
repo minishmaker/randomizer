@@ -4,10 +4,10 @@
 	#endif
 #endif
 
-#ifdef openDHC
-	#ifdef noDHC
-		#undef noDHC
-	#endif
+#ifdef openPed
+    #ifndef openDHC
+        #define openDHC
+    #endif
 #endif
 
 #ifdef noDHC
@@ -26,6 +26,15 @@
 		BYTE 0 0x89 0 1 0 0
 		POP
 	#endif
+#endif
+
+#ifdef openDHC
+	#ifdef noDHC
+		#undef noDHC
+	#endif
+	
+	// Remove the check for already watched the stained glass cutscene so that it's repeatable
+    PUSH; ORG $4EB12; BYTE 0 0 0 0 0 0 0 0 0 0; POP
 #endif
 
 #ifndef pedestalSpot1Item
@@ -58,7 +67,7 @@ PUSH; ORG $F4A9C; BYTE 0xFF; ORG $F4C18; POIN $F4AAC; POP//sanctuary switches do
 //remove wind element from pedestal animation
 PUSH; ORG $13EDC; POIN $670402; POP
 
-#ifndef noDHC
+#ifndef pedGoal
 //remove the stained glass scene
 PUSH; ORG $532F6; SHORT 0x2310; POP
 #else
@@ -67,6 +76,18 @@ PUSH; ORG $532F4; jumpToHack(pedestalWin); POP
 ALIGN 4
 pedestalWin:
 #incbin "asm/pedestalWin.dmp"
+
+//disable the DHC boss door when goal is pedestal
+PUSH; ORG $4AD38; jumpToHack(disableVaatiDoor); POP
+ALIGN 4
+disableVaatiDoor:
+#incbin "asm/disableVaatiDoor.dmp"
+POIN vaatiBlocker
+
+ALIGN 4
+vaatiBlocker:
+BYTE 6 0xF 0x4D 0x38 0 0; SHORT 0 0x0088 0x20 0 0
+WORD 0xFFFFFFFF 0xFFFFFFFF 0xFFFFFFFF 0xFFFFFFFF
 #endif
 
 //logic for pedestal pulls
