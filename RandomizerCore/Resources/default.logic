@@ -4246,21 +4246,21 @@ All_Requirements_Met;	`ALLREQUIREMENTS`;	requirementPrizeItem:Define:FirstByte, 
 
 !ifdef - OPENPED
 	AccessDHC; 	Helper;;
-	!define - OPENDHC
 	!undefine - PED_ITEMS
+	!eventdefine - openDHC
 	!eventdefine - openPed
 	!eventdefine - pedGoal
-!endif
-
-!ifdef - OPENDHC
-	AccessDHC; 	Helper;;
-	!eventdefine - openDHC
-!else
-	AccessDHC; 	Helper;;	Helpers.GotSwords `GOTELEMENTS` `DHC_FIG` `DHC_AD`
-	!undefine - PED_ITEMS
-	!ifdef - NODHC
-		!eventdefine - noDHC
-		!eventdefine - pedGoal
+!else 
+	!ifdef - OPENDHC
+		AccessDHC; 	Helper;;
+		!eventdefine - openDHC
+	!else
+		AccessDHC; 	Helper;;	Helpers.GotSwords `GOTELEMENTS` `DHC_FIG` `DHC_AD`
+		!undefine - PED_ITEMS
+		!ifdef - NODHC
+			!eventdefine - noDHC
+			!eventdefine - pedGoal
+		!endif
 	!endif
 !endif
 !ifdef - PED_ITEMS
